@@ -4441,6 +4441,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   margin-right: .6em;
   padding: 0;
   border-radius: 50%;
+  text-indent: -99999px;
 }
 .ink-navigation ul.pagination.dotted li:first-child a,
 .ink-navigation ul.pagination.dotted li:last-child a {
@@ -4454,6 +4455,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 .ink-navigation ul.pagination.chevron li {
   display: none;
+}
+.ink-navigation ul.pagination.chevron li a {
+  font-size: 0;
 }
 .ink-navigation ul.pagination.chevron li.next,
 .ink-navigation ul.pagination.chevron li.previous {
@@ -5422,67 +5426,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 .ink-navigation ul.pagination {
   display: inline-block;
 }
-.ink-navigation ul.pagination li a {
-  text-decoration: none;
-}
-.ink-navigation ul.pagination li.active a {
-  text-decoration: underline;
-}
-.ink-navigation ul.pagination li.disabled a {
-  color: #b3b3b3;
-  text-shadow: 0 1px 0 #ffffff;
-}
-.ink-navigation ul.pagination li.disabled a:hover {
-  background: none;
-}
-.ink-navigation ul.pagination.dotted li {
-  background: none;
-}
-.ink-navigation ul.pagination.dotted li a {
-  background: #999999;
-  filter: alpha(opacity=50);
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
-  opacity: 0.5;
-}
-.ink-navigation ul.pagination.dotted li:hover a,
-.ink-navigation ul.pagination.dotted li.active a {
-  filter: alpha(opacity=100);
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
-  opacity: 1;
-}
-.ink-navigation ul.pagination.chevron li.next a,
-.ink-navigation ul.pagination.chevron li.previous a {
-  color: #ffffff;
-  filter: alpha(opacity=60);
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
-  opacity: 0.6;
-}
-.ink-navigation ul.pagination.chevron li.next a:hover,
-.ink-navigation ul.pagination.chevron li.previous a:hover,
-.ink-navigation ul.pagination.chevron li.next a:focus,
-.ink-navigation ul.pagination.chevron li.previous a:focus,
-.ink-navigation ul.pagination.chevron li.next a.active,
-.ink-navigation ul.pagination.chevron li.previous a.active {
-  filter: alpha(opacity=80);
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
-  opacity: 0.8;
-  text-decoration: none;
-  background: none;
-}
-.ink-navigation ul.pagination.chevron li.disabled a {
-  color: #ffffff;
-  filter: alpha(opacity=60);
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
-  opacity: 0.6;
-  text-shadow: none;
-}
-.ink-navigation ul.pagination.chevron li.disabled a:hover,
-.ink-navigation ul.pagination.chevron li.disabled a:focus {
-  color: #ffffff;
-  filter: alpha(opacity=60);
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
-  opacity: 0.6;
-}
 .ink-navigation ul.pagination.white li {
   background: #ffffff;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#f2f2f2');
@@ -5705,6 +5648,119 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   -webkit-box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.3);
   box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.3);
+}
+.ink-navigation ul.pagination li a {
+  text-decoration: none;
+}
+.ink-navigation ul.pagination li.active a {
+  text-decoration: underline;
+}
+.ink-navigation ul.pagination li.disabled a {
+  color: #b3b3b3;
+  text-shadow: 0 1px 0 #ffffff;
+}
+.ink-navigation ul.pagination li.disabled a:hover {
+  background: none;
+}
+.ink-navigation ul.pagination.dotted li {
+  background: none;
+  filter: none;
+}
+.ink-navigation ul.pagination.dotted li {
+  background: none;
+}
+.ink-navigation ul.pagination.dotted li a {
+  background: #999999;
+  filter: alpha(opacity=50);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+  opacity: 0.5;
+}
+.ink-navigation ul.pagination.dotted li:hover a,
+.ink-navigation ul.pagination.dotted li.active a {
+  filter: alpha(opacity=100);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+  opacity: 1;
+}
+.ink-navigation ul.pagination.dotted.black li a {
+  background: #1a1a1a;
+}
+.ink-navigation ul.pagination.dotted.white li a {
+  background: #ffffff;
+}
+.ink-navigation ul.pagination.dotted.blue li a {
+  background: #1b75ce;
+}
+.ink-navigation ul.pagination.dotted.green li a {
+  background: #4c9220;
+}
+.ink-navigation ul.pagination.dotted.orange li a {
+  background: #f2990d;
+}
+.ink-navigation ul.pagination.dotted.red li a {
+  background: #be1c1c;
+}
+.ink-navigation ul.pagination.chevron li.next a,
+.ink-navigation ul.pagination.chevron li.previous a {
+  color: #ffffff;
+  filter: alpha(opacity=60);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
+  opacity: 0.6;
+}
+.ink-navigation ul.pagination.chevron li.next a:hover,
+.ink-navigation ul.pagination.chevron li.previous a:hover,
+.ink-navigation ul.pagination.chevron li.next a:focus,
+.ink-navigation ul.pagination.chevron li.previous a:focus,
+.ink-navigation ul.pagination.chevron li.next a.active,
+.ink-navigation ul.pagination.chevron li.previous a.active {
+  filter: alpha(opacity=80);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+  opacity: 0.8;
+  text-decoration: none;
+  background: none;
+}
+.ink-navigation ul.pagination.chevron li.disabled a {
+  color: #ffffff;
+  filter: alpha(opacity=60);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
+  opacity: 0.6;
+  text-shadow: none;
+}
+.ink-navigation ul.pagination.chevron li.disabled a:hover,
+.ink-navigation ul.pagination.chevron li.disabled a:focus {
+  color: #ffffff;
+  filter: alpha(opacity=60);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
+  opacity: 0.6;
+}
+.ink-navigation ul.pagination.chevron.black li.next a,
+.ink-navigation ul.pagination.chevron.black li.previous a,
+.ink-navigation ul.pagination.chevron.black li.disabled a {
+  color: #1a1a1a;
+}
+.ink-navigation ul.pagination.chevron.grey li.next a,
+.ink-navigation ul.pagination.chevron.grey li.previous a,
+.ink-navigation ul.pagination.chevron.grey li.disabled a {
+  color: #d9d9d9;
+}
+.ink-navigation ul.pagination.chevron.blue li.next a,
+.ink-navigation ul.pagination.chevron.blue li.previous a,
+.ink-navigation ul.pagination.chevron.blue li.disabled a {
+  color: #1b75ce;
+}
+.ink-navigation ul.pagination.chevron.green li.next a,
+.ink-navigation ul.pagination.chevron.green li.previous a,
+.ink-navigation ul.pagination.chevron.green li.disabled a {
+  color: #4c9220;
+}
+.ink-navigation ul.pagination.chevron.orange li.next a,
+.ink-navigation ul.pagination.chevron.orange li.previous a,
+.ink-navigation ul.pagination.chevron.orange li.disabled a {
+  color: #f2990d;
+}
+.ink-navigation ul.pagination.chevron.red li.next a,
+.ink-navigation ul.pagination.chevron.red li.previous a,
+.ink-navigation ul.pagination.chevron.red li.disabled a {
+  color: #be1c1c;
 }
 .ink-navigation ul.pills li {
   background: #ffffff;
