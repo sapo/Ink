@@ -344,7 +344,7 @@ h3 {
   line-height: 1.45775em;
 }
 h4 {
-  line-height: 1.3660999999999999em;
+  line-height: 1.3661em;
 }
 h5 {
   line-height: 1.3125em;
@@ -567,7 +567,7 @@ footer {
 }
 /* makes the font 33% larger relative to the icon container */
 .icon-large:before {
-  font-size: 1.3333333333333333em;
+  font-size: 1.33333333em;
 }
 /* makes sure icons active on rollover in links */
 a [class^="icon-"],
@@ -578,16 +578,16 @@ a [class*=" icon-"] {
 [class^="icon-"].icon-fixed-width,
 [class*=" icon-"].icon-fixed-width {
   display: inline-block;
-  width: 1.1428571428571428em;
+  width: 1.14285714em;
   text-align: right;
-  padding-right: 0.2857142857142857em;
+  padding-right: 0.28571429em;
 }
 [class^="icon-"].icon-fixed-width.icon-large,
 [class*=" icon-"].icon-fixed-width.icon-large {
-  width: 1.4285714285714286em;
+  width: 1.42857143em;
 }
 .icons-ul {
-  margin-left: 2.142857142857143em;
+  margin-left: 2.14285714em;
   list-style-type: none;
 }
 .icons-ul > li {
@@ -595,8 +595,8 @@ a [class*=" icon-"] {
 }
 .icons-ul .icon-li {
   position: absolute;
-  left: -2.142857142857143em;
-  width: 2.142857142857143em;
+  left: -2.14285714em;
+  width: 2.14285714em;
   text-align: center;
   line-height: inherit;
 }
@@ -4434,7 +4434,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   cursor: default;
   text-decoration: none;
 }
-.ink-navigation ul.pagination li.dotted li a {
+.ink-navigation ul.pagination.dotted li a {
   display: block;
   height: 1em;
   width: 1em;
@@ -4442,25 +4442,25 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   padding: 0;
   border-radius: 50%;
 }
-.ink-navigation ul.pagination li.dotted li:first-child a,
-.ink-navigation ul.pagination li.dotted li:last-child a {
+.ink-navigation ul.pagination.dotted li:first-child a,
+.ink-navigation ul.pagination.dotted li:last-child a {
   height: auto;
   width: auto;
   background: none;
 }
-.ink-navigation ul.pagination li.dotted li.previous a,
-.ink-navigation ul.pagination li.dotted li.next a {
+.ink-navigation ul.pagination.dotted li.previous a,
+.ink-navigation ul.pagination.dotted li.next a {
   display: none;
 }
-.ink-navigation ul.pagination li.chevron li {
+.ink-navigation ul.pagination.chevron li {
   display: none;
 }
-.ink-navigation ul.pagination li.chevron li.next,
-.ink-navigation ul.pagination li.chevron li.previous {
+.ink-navigation ul.pagination.chevron li.next,
+.ink-navigation ul.pagination.chevron li.previous {
   display: block;
 }
-.ink-navigation ul.pagination li.chevron li.next a,
-.ink-navigation ul.pagination li.chevron li.previous a {
+.ink-navigation ul.pagination.chevron li.next a,
+.ink-navigation ul.pagination.chevron li.previous a {
   display: block;
   position: absolute;
   top: 35%;
@@ -4489,24 +4489,24 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   -ms-transition-delay: 0;
   transition-delay: 0;
 }
-.ink-navigation ul.pagination li.chevron li.disabled a {
+.ink-navigation ul.pagination.chevron li.disabled a {
   color: rgba(255, 255, 255, 0.6);
   text-shadow: none;
 }
-.ink-navigation ul.pagination li.chevron li.disabled a:hover,
-.ink-navigation ul.pagination li.chevron li.disabled a:focus {
+.ink-navigation ul.pagination.chevron li.disabled a:hover,
+.ink-navigation ul.pagination.chevron li.disabled a:focus {
   color: rgba(255, 255, 255, 0.6);
 }
-.ink-navigation ul.pagination li.chevron li.previous a {
+.ink-navigation ul.pagination.chevron li.previous a {
   left: 0;
 }
-.ink-navigation ul.pagination li.chevron li.previous a:after {
+.ink-navigation ul.pagination.chevron li.previous a:after {
   content: "\f137";
 }
-.ink-navigation ul.pagination li.chevron li.next a {
+.ink-navigation ul.pagination.chevron li.next a {
   right: 0;
 }
-.ink-navigation ul.pagination li.chevron li.next a:after {
+.ink-navigation ul.pagination.chevron li.next a:after {
   content: "\f138";
 }
 .ink-navigation ul.pagination:after {
@@ -5419,6 +5419,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   -moz-box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.3);
   box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.3);
 }
+.ink-navigation ul.pagination {
+  display: inline-block;
+}
+.ink-navigation ul.pagination li a {
+  text-decoration: none;
+}
 .ink-navigation ul.pagination li.active a {
   text-decoration: underline;
 }
@@ -5428,6 +5434,54 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 .ink-navigation ul.pagination li.disabled a:hover {
   background: none;
+}
+.ink-navigation ul.pagination.dotted li {
+  background: none;
+}
+.ink-navigation ul.pagination.dotted li a {
+  background: #999999;
+  filter: alpha(opacity=50);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+  opacity: 0.5;
+}
+.ink-navigation ul.pagination.dotted li:hover a,
+.ink-navigation ul.pagination.dotted li.active a {
+  filter: alpha(opacity=100);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+  opacity: 1;
+}
+.ink-navigation ul.pagination.chevron li.next a,
+.ink-navigation ul.pagination.chevron li.previous a {
+  color: #ffffff;
+  filter: alpha(opacity=60);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
+  opacity: 0.6;
+}
+.ink-navigation ul.pagination.chevron li.next a:hover,
+.ink-navigation ul.pagination.chevron li.previous a:hover,
+.ink-navigation ul.pagination.chevron li.next a:focus,
+.ink-navigation ul.pagination.chevron li.previous a:focus,
+.ink-navigation ul.pagination.chevron li.next a.active,
+.ink-navigation ul.pagination.chevron li.previous a.active {
+  filter: alpha(opacity=80);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+  opacity: 0.8;
+  text-decoration: none;
+  background: none;
+}
+.ink-navigation ul.pagination.chevron li.disabled a {
+  color: #ffffff;
+  filter: alpha(opacity=60);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
+  opacity: 0.6;
+  text-shadow: none;
+}
+.ink-navigation ul.pagination.chevron li.disabled a:hover,
+.ink-navigation ul.pagination.chevron li.disabled a:focus {
+  color: #ffffff;
+  filter: alpha(opacity=60);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
+  opacity: 0.6;
 }
 .ink-navigation ul.pagination.white li {
   background: #ffffff;
@@ -5946,7 +6000,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 .ink-form input[type="tel"]:focus,
 .ink-form input[type="color"]:focus {
   outline: none;
-  border-color: rgba(153, 153, 153, 0.8999999999999999);
+  border-color: rgba(153, 153, 153, 0.9);
   -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 10px rgba(153, 153, 153, 0.6);
   -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 10px rgba(153, 153, 153, 0.6);
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 10px rgba(153, 153, 153, 0.6);
@@ -6165,7 +6219,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 .ink-form .control-group.validation.warning textarea,
 .ink-form .control-group.validation.warning select {
   outline: none;
-  border-color: rgba(255, 156, 0, 0.8999999999999999);
+  border-color: rgba(255, 156, 0, 0.9);
   -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 10px rgba(255, 156, 0, 0.6);
   -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 10px rgba(255, 156, 0, 0.6);
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 10px rgba(255, 156, 0, 0.6);
@@ -6457,7 +6511,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   border-left: 0.4em solid transparent;
   border-right: 0.4em solid transparent;
   border-top: 0.4em solid #f0f0f0;
-  bottom: -0.36363636363636365em;
+  bottom: -0.36363636em;
   left: 50%;
   margin-left: -0.2em;
 }
@@ -6466,7 +6520,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   border-bottom: 0.4em solid transparent;
   border-left: 0.4em solid #f0f0f0;
   top: 50%;
-  right: -0.36363636363636365em;
+  right: -0.36363636em;
   margin-top: -0.4em;
 }
 .ink-tooltip > .arrow.left {
@@ -6474,7 +6528,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   border-bottom: 0.4em solid transparent;
   border-right: 0.4em solid #f0f0f0;
   top: 50%;
-  left: -0.36363636363636365em;
+  left: -0.36363636em;
   margin-top: -0.4em;
 }
 .ink-tooltip.blue > .content {
@@ -8567,7 +8621,7 @@ body.animated *[class*="large-"] {
   border-radius: 4px;
   text-align: center;
   padding: 0.3em;
-  min-width: 17.400000000000002em;
+  min-width: 17.4em;
   font-size: 13px;
   -webkit-box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.4);
   -moz-box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.4);
