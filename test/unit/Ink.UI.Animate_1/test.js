@@ -9,7 +9,7 @@ Ink.requireModules(['Ink.Dom.Element_1', 'Ink.Dom.Css_1', 'Ink.UI.Animate_1', 'I
     if (Animate.animationSupported) {
         test('Animate constructor', function () {
             var animatedEl = InkElement.create('div');
-            var options = {};
+            var options = { animation: 'fadeOut' };
             var common_elOrSelector = sinon.spy(Common, 'elOrSelector');
             var common_options = sinon.spy(Common, 'options');
 
@@ -35,7 +35,7 @@ Ink.requireModules(['Ink.Dom.Element_1', 'Ink.Dom.Css_1', 'Ink.UI.Animate_1', 'I
             var triggerEl = InkElement.create('div');
             document.body.appendChild(animatedEl);
             document.body.appendChild(triggerEl);
-            var animateInstance = new Animate(animatedEl, { trigger: triggerEl });
+            var animateInstance = new Animate(animatedEl, { trigger: triggerEl, animation: 'fadeOut' });
 
             var spy = sinon.spy(animateInstance, 'animate');
 
@@ -52,7 +52,7 @@ Ink.requireModules(['Ink.Dom.Element_1', 'Ink.Dom.Css_1', 'Ink.UI.Animate_1', 'I
         test('Animation happens when calling instance.animate()', function () {
             var animatedEl = InkElement.create('div');
             document.body.appendChild(animatedEl);
-            var animateInstance = new Animate(animatedEl, {});
+            var animateInstance = new Animate(animatedEl, { animation: 'fadeOut' });
 
             var spy = sinon.spy(animateInstance, 'animate');
 
@@ -156,12 +156,12 @@ Ink.requireModules(['Ink.Dom.Element_1', 'Ink.Dom.Css_1', 'Ink.UI.Animate_1', 'I
         stop();
     });
 
-    test('when animation is done, if options.revert, the class names are removed', function () {
+    test('when animation is done, if options.removeClass, the class names are removed', function () {
         var spy = sinon.spy();
         var el = InkElement.create('div');
         document.body.appendChild(el);
 
-        Animate.animate(el, 'fadeOut', { duration: 101, onEnd: spy, revert: true });
+        Animate.animate(el, 'fadeOut', { duration: 101, onEnd: spy, removeClass: true });
 
         ok(!spy.called);
         ok(Css.hasClassName(el, 'fadeOut'));
@@ -182,8 +182,8 @@ Ink.requireModules(['Ink.Dom.Element_1', 'Ink.Dom.Css_1', 'Ink.UI.Animate_1', 'I
         var el = InkElement.create('div');
         document.body.appendChild(el);
 
-        Animate.animate(el, 'fadeIn', { duration: 100, onEnd: first, revert: true});
-        Animate.animate(el, 'shake', { duration: 200, onEnd: second, revert: true});
+        Animate.animate(el, 'fadeIn', { duration: 100, onEnd: first, removeClass: true});
+        Animate.animate(el, 'shake', { duration: 200, onEnd: second, removeClass: true});
 
         var firstCall = true;
 

@@ -206,55 +206,71 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
             var defaultVal;
             var key;
 
+			var invalidStr = function (str) {
+                if (fieldId) { str = fieldId + ': "' + ('' + str).replace(/"/, '\\"') + '"'; }
+				return str;
+			}
+
+			var quote = function (str) {
+				return '"' + ('' + str).replace(/"/, '\\"') + '"';
+			}
+
+            var invalidThrow = function (str) {
+                throw new Error(invalidStr(str));
+            };
+
             var invalid = function (str) {
-                if (fieldId) { str = fieldId + ': ' + str; }
-                throw new Error(str);
+                Ink.error(invalidStr(str) + '. Ignoring option.');
             };
 
             for (key in defaults) {
                 if (defaults.hasOwnProperty(key)) {
-                    type = defaults[key][0];
-                    lType = type.toLowerCase();
-                    defaultVal = defaults[key].length === 2 ? defaults[key][1] : nothing;
+					out[key] = (function () {
+						type = defaults[key][0];
+						lType = type.toLowerCase();
+						defaultVal = defaults[key].length === 2 ? defaults[key][1] : nothing;
 
-                    if (!type) {
-                        invalid('Ink.UI.Common.options: Always specify a type!');
-                    }
-                    if (!(lType in Common._coerce_funcs)) {
-                        invalid('Ink.UI.Common.options: ' + defaults[key][0] + ' is not a valid type. Use one of ' + keys(Common._coerce_funcs).join(', '));
+						if (!type) {
+							invalidThrow('Ink.UI.Common.options: Always specify a type!');
+						}
+						if (!(lType in Common._coerce_funcs)) {
+							invalidThrow('Ink.UI.Common.options: ' + defaults[key][0] + ' is not a valid type. Use one of ' + keys(Common._coerce_funcs).join(', '));
 
-                    }
-                    if (!defaults[key].length || defaults[key].length > 2) {
-                        invalid('the "defaults" argument must be an object mapping option names to [typestring, optional] arrays.');
-                    }
+						}
+						if (!defaults[key].length || defaults[key].length > 2) {
+							invalidThrow('the "defaults" argument must be an object mapping option names to [typestring, optional] arrays.');
+						}
 
-                    if (key in dataAttrs) {
-                        fromDataAttrs = Common._coerce_from_string(lType, dataAttrs[key]);
-                        // (above can return `nothing`)
-                    } else {
-                        fromDataAttrs = nothing;
-                    }
+						if (key in dataAttrs) {
+							fromDataAttrs = Common._coerce_from_string(lType, dataAttrs[key], key, fieldId);
+							// (above can return `nothing`)
+						} else {
+							fromDataAttrs = nothing;
+						}
 
-                    if (fromDataAttrs !== nothing) {
-                        if (!Common._options_validate(fromDataAttrs, lType)) {
-                            invalid('Invalid ' + lType + ': ' + fromDataAttrs);
-                        }
-                        out[key] = fromDataAttrs;
-                    } else if (key in overrides) {
-                        out[key] = overrides[key];
-                    } else if (defaultVal !== nothing) {
-                        out[key] = defaultVal;
-                    } else {
-                        invalid('Option ' + key + ' is required!');
-                    }
+						if (fromDataAttrs !== nothing) {
+							if (!Common._options_validate(fromDataAttrs, lType)) {
+								invalid('(' + key + ' option) Invalid ' + lType + ' ' + quote(fromDataAttrs));
+								return defaultVal;
+							} else {
+								return fromDataAttrs;
+							}
+						} else if (key in overrides) {
+							return overrides[key];
+						} else if (defaultVal !== nothing) {
+							return defaultVal;
+						} else {
+							invalidThrow('Option ' + key + ' is required!');
+						}
+					}());
                 }
             }
             return out;
         },
 
-        _coerce_from_string: function (type, val) {
+        _coerce_from_string: function (type, val, paramName, fieldId) {
             if (type in Common._coerce_funcs) {
-                return Common._coerce_funcs[type](val);
+                return Common._coerce_funcs[type](val, paramName, fieldId);
             } else {
                 return val;
             }
@@ -284,8 +300,9 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
                     return !(val === 'false' || val === '' || val === null);
                 },
                 string: function (val) { return val; },
-                'function': function () {
-                    throw new Error('This parameter is a function. Do not specify it through data-attributes! It\'s eval!');
+                'function': function (val, paramName, fieldId) {
+					Ink.error(fieldId + ': You cannot specify the option "' + paramName + '" through data-attributes because it\'s a function');
+					return nothing;
                 }
             };
             ret['float'] = ret.integer = ret.number;

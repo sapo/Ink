@@ -32,45 +32,70 @@ Ink.createModule('Ink.UI.Pagination', '1',
      * @param {String|DOMElement} selector
      * @param {Object} options Options
      * @param {Number}   [options.size]              number of pages.
-     * @param {Number}   [options.maxSize]           if passed, only shows at most maxSize items. displays also first|prev page and next page|last buttons
+     * @param {Number}   [options.totalItemCount]    Total numeber of items to display
+     * @param {Number}   [options.itemsPerPage]      number of items per page.
+     * @param {Number}   [options.maxSize]           If passed, only shows at most maxSize items. displays also first|prev page and next page|last buttons
      * @param {Number}   [options.start]             start page. defaults to 1
-     * @param {String}   [options.previousLabel]     label to display on previous page button
-     * @param {String}   [options.nextLabel]         label to display on next page button
+     * @param {String}   [options.firstLabel]        label to display on first page button
+     * @param {String}   [options.lastLabel]         label to display on last page button
+     * @param {String}   [options.previousLabel]     label to display on previous button
+     * @param {String}   [options.nextLabel]         label to display on next button
      * @param {String}   [options.previousPageLabel] label to display on previous page button
      * @param {String}   [options.nextPageLabel]     label to display on next page button
-     * @param {String}   [options.firstLabel]        label to display on previous page button
-     * @param {String}   [options.lastLabel]         label to display on next page button
      * @param {Function} [options.onChange]          optional callback. Called with `(thisPaginator, newPageNumber)`.
-     * @param {Function} [options.numberFormatter]   optional function which takes and 0-indexed number and returns the string which appears on a numbered button
-     * @xparam {Boolean}  [options.setHash]           if true, sets hashParameter on the location.hash. default is disabled
      * @param {String}   [options.hashParameter]     parameter to use on setHash. by default uses 'page'
+     * @param {String}   [options.parentTag]         HTML Tag used as the parent node.
+     * @param {String}   [options.childTag]          HTML Tag used as the child nodes.
+     * @param {String}   [options.wrapperClass]      CSS Class used in the wrapper element
+     * @param {String}   [options.paginationClass]   CSS Class used in the pagination element
+     * @param {String}   [options.activeClass]       CSS Class used to mark page as active
+     * @param {String}   [options.disabledClass]     CSS Class used to mark page as disabled
+     * @param {String}   [options.hideClass]         CSS Class used to hide elements
+     * @param {String}   [options.previousClass]     CSS Class used in the previous element
+     * @param {String}   [options.previousPageClass] CSS Class used in the previous page element
+     * @param {String}   [options.nextClass]         CSS Class used in the next element
+     * @param {String}   [options.nextPageClass]     CSS Class used in the next page element
+     * @param {Function} [options.numberFormatter]   optional function which takes and 0-indexed number and returns the string which appears on a numbered button
      */
     var Pagination = function(selector, options) {
 
         this._element = Common.elOrSelector(selector, 'Ink.UI.Pagination element');
 
         this._options = Common.options('Ink.UI.Pagination_1', {
-            size:            ['Integer', null],
-            totalItemCount:  ['Integer', null],
-            itemsPerPage:    ['Integer', null],
-            maxSize:         ['Integer', null],
-            start:           ['Integer', 1],
-            firstLabel:      ['String', 'First'],
-            lastLabel:       ['String', 'Last'],
-            previousLabel:   ['String', 'Previous'],
-            nextLabel:       ['String', 'Next'],
-            onChange:        ['Function', undefined],
-            // setHash:         ['Boolean', false],
-            hashParameter:   ['String', 'page'],
+            size:              ['Integer', null],
+            totalItemCount:    ['Integer', null],
+            itemsPerPage:      ['Integer', null],
+            maxSize:           ['Integer', null],
+            start:             ['Integer', 1],
+            firstLabel:        ['String', 'First'],
+            lastLabel:         ['String', 'Last'],
+            previousLabel:     ['String', 'Previous'],
+            nextLabel:         ['String', 'Next'],
+            previousPageLabel: ['String', null],
+            nextPageLabel:     ['String', null],
+            onChange:          ['Function', undefined],
+            hashParameter:     ['String', 'page'],
+            parentTag:         ['String', 'ul'],
+            childTag:          ['String', 'li'],
+            wrapperClass:      ['String', 'ink-navigation'],
+            paginationClass:   ['String', 'pagination'],
+            activeClass:       ['String', 'active'],
+            disabledClass:     ['String', 'disabled'],
+            hideClass:         ['String', 'hide-all'],
+            previousClass:     ['String', 'previous'],
+            previousPageClass: ['String', 'previousPage'],
+            nextClass:         ['String', 'next'],
+            nextPageClass:     ['String', 'nextPage'],
+
             numberFormatter: ['Function', function(i) { return i + 1; }]
         }, options || {}, this._element);
 
         if (!this._options.previousPageLabel) {
-            this._options.previousPageLabel = 'Previous ' + this._options.maxSize;
+            this._options.previousPageLabel = this._options.previousLabel + ' ' + this._options.maxSize;
         }
 
         if (!this._options.nextPageLabel) {
-            this._options.nextPageLabel = 'Next ' + this._options.maxSize;
+            this._options.nextPageLabel = this._options.nextLabel + ' ' + this._options.maxSize;
         }
 
         this._handlers = {
@@ -116,9 +141,6 @@ Ink.createModule('Ink.UI.Pagination', '1',
         _init: function() {
             // generate and apply DOM
             this._generateMarkup(this._element);
-            if (Css.hasClassName( Ink.s('ul', this._element), 'dotted')) {
-                this._options.numberFormatter = function() { return '<i class="icon-circle"></i>'; };
-            }
 
             this._updateItems();
 
@@ -135,7 +157,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
          * @private
          */
         _observe: function() {
-            Event.observeDelegated(this._element, 'click', '.pagination > li', this._handlers.click);
+            Event.observeDelegated(this._element, 'click', '.' + this._options.paginationClass + ' > ' + this._options.childTag, this._handlers.click);
         },
 
         /**
@@ -154,7 +176,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
             if (isSimpleToggle) {
                 // just toggle active class
                 for (i = 0, f = this._size; i < f; ++i) {
-                    Css.setClassName(liEls[i], 'active', i === this._current);
+                    Css.setClassName(liEls[i], this._options.activeClass, i === this._current);
                 }
             }
             else {
@@ -166,9 +188,9 @@ Ink.createModule('Ink.UI.Pagination', '1',
                 // add new items
                 liEls = [];
                 for (i = 0, f = this._size; i < f; ++i) {
-                    liEl = document.createElement('li');
+                    liEl = document.createElement(this._options.childTag);
                     liEl.appendChild( genAEl( this._options.numberFormatter(i), i) );
-                    Css.setClassName(liEl, 'active', i === this._current);
+                    Css.setClassName(liEl, this._options.activeClass, i === this._current);
                     this._ulEl.insertBefore(liEl, this._nextEl);
                     liEls.push(liEl);
                 }
@@ -183,23 +205,23 @@ Ink.createModule('Ink.UI.Pagination', '1',
 
                 for (i = 0, f = this._size; i < f; ++i) {
                     liEl = liEls[i];
-                    Css.setClassName(liEl, 'hide-all', i < pi || i > pf);
+                    Css.setClassName(liEl, this._options.hideClass, i < pi || i > pf);
                 }
 
                 this._pageStart = pi;
                 this._pageEnd = pf;
                 this._page = page;
 
-                Css.setClassName(this._prevPageEl, 'disabled', !this.hasPreviousPage());
-                Css.setClassName(this._nextPageEl, 'disabled', !this.hasNextPage());
+                Css.setClassName(this._prevPageEl, this._options.disabledClass, !this.hasPreviousPage());
+                Css.setClassName(this._nextPageEl, this._options.disabledClass, !this.hasNextPage());
 
-                Css.setClassName(this._firstEl, 'disabled', this.isFirst());
-                Css.setClassName(this._lastEl, 'disabled', this.isLast());
+                Css.setClassName(this._firstEl, this._options.disabledClass, this.isFirst());
+                Css.setClassName(this._lastEl, this._options.disabledClass, this.isLast());
             }
 
             // update prev and next
-            Css.setClassName(this._prevEl, 'disabled', !this.hasPrevious());
-            Css.setClassName(this._nextEl, 'disabled', !this.hasNext());
+            Css.setClassName(this._prevEl, this._options.disabledClass, !this.hasPrevious());
+            Css.setClassName(this._nextEl, this._options.disabledClass, !this.hasNext());
         },
 
         /**
@@ -214,51 +236,51 @@ Ink.createModule('Ink.UI.Pagination', '1',
 
             var ulEl,liEl,
                 hasUlAlready = false;
-            if( ( ulEl = Selector.select('ul.pagination',el)).length < 1 ){
-                ulEl = document.createElement('ul');
-                Css.addClassName(ulEl, 'pagination');
+            if( ( ulEl = Selector.select('.' + this._options.paginationClass,el)).length < 1 ){
+                ulEl = document.createElement(this._options.parentTag);
+                Css.addClassName(ulEl, this._options.paginationClass);
             } else {
                 hasUlAlready = true;
                 ulEl = ulEl[0];
             }
 
             if (this._options.maxSize) {
-                liEl = document.createElement('li');
+                liEl = document.createElement(this._options.childTag);
                 liEl.appendChild( genAEl(this._options.firstLabel) );
                 this._firstEl = liEl;
-                Css.addClassName(liEl, 'first');
+                Css.addClassName(liEl, this._options.firstClass);
                 ulEl.appendChild(liEl);
 
-                liEl = document.createElement('li');
+                liEl = document.createElement(this._options.childTag);
                 liEl.appendChild( genAEl(this._options.previousPageLabel) );
                 this._prevPageEl = liEl;
-                Css.addClassName(liEl, 'previousPage');
+                Css.addClassName(liEl, this._options.previousPageClass);
                 ulEl.appendChild(liEl);
             }
 
-            liEl = document.createElement('li');
+            liEl = document.createElement(this._options.childTag);
             liEl.appendChild( genAEl(this._options.previousLabel) );
             this._prevEl = liEl;
-            Css.addClassName(liEl, 'previous');
+            Css.addClassName(liEl, this._options.previousClass);
             ulEl.appendChild(liEl);
 
-            liEl = document.createElement('li');
+            liEl = document.createElement(this._options.childTag);
             liEl.appendChild( genAEl(this._options.nextLabel) );
             this._nextEl = liEl;
-            Css.addClassName(liEl, 'next');
+            Css.addClassName(liEl, this._options.nextClass);
             ulEl.appendChild(liEl);
 
             if (this._options.maxSize) {
-                liEl = document.createElement('li');
+                liEl = document.createElement(this._options.childTag);
                 liEl.appendChild( genAEl(this._options.nextPageLabel) );
                 this._nextPageEl = liEl;
-                Css.addClassName(liEl, 'nextPage');
+                Css.addClassName(liEl, this._options.nextPageClass);
                 ulEl.appendChild(liEl);
 
-                liEl = document.createElement('li');
+                liEl = document.createElement(this._options.childTag);
                 liEl.appendChild( genAEl(this._options.lastLabel) );
                 this._lastEl = liEl;
-                Css.addClassName(liEl, 'last');
+                Css.addClassName(liEl, this._options.lastClass);
                 ulEl.appendChild(liEl);
             }
 
@@ -280,15 +302,15 @@ Ink.createModule('Ink.UI.Pagination', '1',
             Event.stop(ev);
 
             var liEl = Event.element(ev);
-            if ( Css.hasClassName(liEl, 'active') ||
-                 Css.hasClassName(liEl, 'disabled') ) { return; }
+            if ( Css.hasClassName(liEl, this._options.activeClass) ||
+                 Css.hasClassName(liEl, this._options.disabledClass) ) { return; }
 
-            var isPrev = Css.hasClassName(liEl, 'previous');
-            var isNext = Css.hasClassName(liEl, 'next');
-            var isPrevPage = Css.hasClassName(liEl, 'previousPage');
-            var isNextPage = Css.hasClassName(liEl, 'nextPage');
-            var isFirst = Css.hasClassName(liEl, 'first');
-            var isLast = Css.hasClassName(liEl, 'last');
+            var isPrev = Css.hasClassName(liEl, this._options.previousClass);
+            var isNext = Css.hasClassName(liEl, this._options.nextClass);
+            var isPrevPage = Css.hasClassName(liEl, this._options.previousPageClass);
+            var isNextPage = Css.hasClassName(liEl, this._options.nextPageClass);
+            var isFirst = Css.hasClassName(liEl, this._options.firstClass);
+            var isLast = Css.hasClassName(liEl, this._options.lastClass);
 
             if (isFirst) {
                 this.setCurrent(0);

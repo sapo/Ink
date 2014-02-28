@@ -1,4 +1,5 @@
 // INK:GRID
+@border-radius: 4px;
 
 // Grid top class name (the class used to define the grids' top element)
 @grid-class-name: ink-grid;
@@ -23,7 +24,7 @@
 @grid-double-vertical-gutters-class-name: double-vertical-gutters;
 
 // site width
-@site-width: 1400px ;
+@site-width: 1200px ;
 
 // subpixel rounding for IE
 @subpixel-rounding: (0.5 / (@site-width * 100 * 1%));
@@ -32,12 +33,6 @@
 
 // gutter width
 @gutter-width: 2em;
-
-// grid for extra-large screens
-@extra-large-class-prefix: extra-large;
-@extra-large-min-width: 1200px;
-@extra-large-max-width: 0px;
-@extra-large-gutter-width: @gutter-width  * 1.25;
 
 // grid for large screens
 @large-class-prefix: large;
@@ -57,9 +52,46 @@
 @small-max-width: 649px;
 @small-gutter-width: @gutter-width * 0.5;
 
-@tiny-class-prefix: tiny;
-@tiny-min-width: 0px;
-@tiny-max-width: 320px;
-@tiny-gutter-width: @gutter-width * 0.25;
+// to use the new breakpoints uncomment the code below and recompile the css
 
-@border-radius: 4px;
+// // site width
+// @site-width: 1400px ;
+
+// // subpixel rounding for IE
+// @subpixel-rounding: (0.5 / (@site-width * 100 * 1%));
+
+// // @correction: 0.5 / @min-width * 100 * 1%;
+
+// // gutter width
+// @gutter-width: 2em;
+
+// // grid for extra-large screens
+// @extra-large-class-prefix: extra-large;
+// @extra-large-min-width: 1200px;
+// @extra-large-max-width: 0px;
+// @extra-large-gutter-width: @gutter-width  * 1.25;
+
+// // grid for large screens
+// @large-class-prefix: large;
+// @large-min-width: 0px;
+// @large-max-width: 0px;
+// @large-gutter-width: @gutter-width;
+
+// // grid for medium screens
+// @medium-class-prefix: medium;
+// @medium-min-width: 641px;
+// @medium-max-width: 960px;
+// @medium-gutter-width: @gutter-width * 0.75;
+
+// // grid for small screens
+// @small-class-prefix: small;
+// @small-min-width: 320px;
+// @small-max-width: 640px;
+// @small-gutter-width: @gutter-width * 0.5;
+
+// // grid for tiny screens
+// @tiny-class-prefix: tiny;
+// @tiny-min-width: 0px;
+// @tiny-max-width: 320px;
+// @tiny-gutter-width: @gutter-width * 0.25;
+
