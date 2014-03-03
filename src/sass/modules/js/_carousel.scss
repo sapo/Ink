@@ -25,14 +25,7 @@
             margin: 0;
             float: none;
             zoom: 1;
-            *display: inline;
+            *display: inline; 
         }
-    }
-
-    // Element which hides the rightmost part of the slide thing
-    .hider {
-        @include transition(compact(all 0.5s ease));
-        background-color: white;
-        margin: 0;
     }
 }
