@@ -204,16 +204,15 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
             var type;
             var lType;
             var defaultVal;
-            var key;
 
 			var invalidStr = function (str) {
                 if (fieldId) { str = fieldId + ': "' + ('' + str).replace(/"/, '\\"') + '"'; }
 				return str;
-			}
+			};
 
 			var quote = function (str) {
 				return '"' + ('' + str).replace(/"/, '\\"') + '"';
-			}
+			};
 
             var invalidThrow = function (str) {
                 throw new Error(invalidStr(str));
@@ -223,48 +222,51 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
                 Ink.error(invalidStr(str) + '. Ignoring option.');
             };
 
-            for (key in defaults) {
-                if (defaults.hasOwnProperty(key)) {
-					out[key] = (function () {
-						type = defaults[key][0];
-						lType = type.toLowerCase();
-						defaultVal = defaults[key].length === 2 ? defaults[key][1] : nothing;
+            function optionValue(key) {
+                type = defaults[key][0];
+                lType = type.toLowerCase();
+                defaultVal = defaults[key].length === 2 ? defaults[key][1] : nothing;
 
-						if (!type) {
-							invalidThrow('Ink.UI.Common.options: Always specify a type!');
-						}
-						if (!(lType in Common._coerce_funcs)) {
-							invalidThrow('Ink.UI.Common.options: ' + defaults[key][0] + ' is not a valid type. Use one of ' + keys(Common._coerce_funcs).join(', '));
+                if (!type) {
+                    invalidThrow('Ink.UI.Common.options: Always specify a type!');
+                }
+                if (!(lType in Common._coerce_funcs)) {
+                    invalidThrow('Ink.UI.Common.options: ' + defaults[key][0] + ' is not a valid type. Use one of ' + keys(Common._coerce_funcs).join(', '));
 
-						}
-						if (!defaults[key].length || defaults[key].length > 2) {
-							invalidThrow('the "defaults" argument must be an object mapping option names to [typestring, optional] arrays.');
-						}
+                }
+                if (!defaults[key].length || defaults[key].length > 2) {
+                    invalidThrow('the "defaults" argument must be an object mapping option names to [typestring, optional] arrays.');
+                }
 
-						if (key in dataAttrs) {
-							fromDataAttrs = Common._coerce_from_string(lType, dataAttrs[key], key, fieldId);
-							// (above can return `nothing`)
-						} else {
-							fromDataAttrs = nothing;
-						}
+                if (key in dataAttrs) {
+                    fromDataAttrs = Common._coerce_from_string(lType, dataAttrs[key], key, fieldId);
+                    // (above can return `nothing`)
+                } else {
+                    fromDataAttrs = nothing;
+                }
 
-						if (fromDataAttrs !== nothing) {
-							if (!Common._options_validate(fromDataAttrs, lType)) {
-								invalid('(' + key + ' option) Invalid ' + lType + ' ' + quote(fromDataAttrs));
-								return defaultVal;
-							} else {
-								return fromDataAttrs;
-							}
-						} else if (key in overrides) {
-							return overrides[key];
-						} else if (defaultVal !== nothing) {
-							return defaultVal;
-						} else {
-							invalidThrow('Option ' + key + ' is required!');
-						}
-					}());
+                if (fromDataAttrs !== nothing) {
+                    if (!Common._options_validate(fromDataAttrs, lType)) {
+                        invalid('(' + key + ' option) Invalid ' + lType + ' ' + quote(fromDataAttrs));
+                        return defaultVal;
+                    } else {
+                        return fromDataAttrs;
+                    }
+                } else if (key in overrides) {
+                    return overrides[key];
+                } else if (defaultVal !== nothing) {
+                    return defaultVal;
+                } else {
+                    invalidThrow('Option ' + key + ' is required!');
                 }
             }
+
+            for (var key in defaults) {
+                if (defaults.hasOwnProperty(key)) {
+					out[key] = optionValue(key);
+                }
+            }
+
             return out;
         },
 
