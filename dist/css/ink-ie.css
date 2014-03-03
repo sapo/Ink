@@ -488,10 +488,10 @@
   padding-left: 0.4375em; }
 
 .hide-large {
-  display: none; }
+  display: none !important; }
 
 .show-large {
-  display: inherit; }
+  display: inherit !important; }
 
 table.show-large {
   display: table; }
