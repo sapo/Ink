@@ -42,9 +42,6 @@ module.exports = function (grunt) {
                     install: true,
                     verbose: false,
                     cleanTargetDir: false,
-                    bowerOptions: {
-                        forceLatest: true
-                    }
                 }
             }
         },
@@ -52,14 +49,13 @@ module.exports = function (grunt) {
             fontAwesome: {
                 files: [
                     {
-                        cwd: 'tmp/font-awesome/scss/',
+                        cwd: '<%= ink.folders.bower %>font-awesome/scss/',
                         src: '*.scss', 
                         dest: 'src/sass/contrib/font-awesome/',
                         expand: true,
                     },
-
                     {
-                        cwd: 'tmp/font-awesome/less/',
+                        cwd: '<%= ink.folders.bower %>font-awesome/less/',
                         src: '*.less', 
                         dest: 'src/less/contrib/font-awesome/',
                         expand: true,
@@ -86,7 +82,7 @@ module.exports = function (grunt) {
             compass: {
                 files: [
                     {
-                        cwd: 'tmp/bower-compass-core/compass/stylesheets/',
+                        cwd: '<%= ink.folders.bower %>bower-compass-core/compass/stylesheets/',
                         src: '**/*.scss', 
                         dest: 'src/sass/contrib/',
                         expand: true,
@@ -376,7 +372,7 @@ module.exports = function (grunt) {
             minify: {
                 expand: true,
                 cwd: '<%= ink.folders.css.dist %>',
-                src: ['*.css', '!quick-start.css'],
+                src: ['*.css', '!quick-start.css', '!*min*'],
                 dest: '<%= ink.folders.css.dist %>',
                 ext: '.min.css',
                 options: {
@@ -400,8 +396,10 @@ module.exports = function (grunt) {
         }
     });
 
-    grunt.registerTask('default', ['bower', 'copy', 'clean:css', 'less', 'clean:js', 'concat', 'uglify']);
-    grunt.registerTask('test', ['connect', 'qunit']);
+    grunt.registerTask('js', ['clean:js', 'concat', 'uglify']);
+    grunt.registerTask('css', ['clean:css', 'less', 'compass', 'cssmin']);
+    grunt.registerTask('dependencies', ['bower', 'copy']);
+    grunt.registerTask('default', ['dependencies','css','js']);
     grunt.registerTask('custom_bundle', 'Create your custom bundle from a json file', function (fileName) {
         if (arguments.length === 0) {
             grunt.log.error('You need to specify a file name');
