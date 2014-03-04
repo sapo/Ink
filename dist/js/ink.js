@@ -5755,6 +5755,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
 return Ink.extendObj(InkEvent, bean);
 
 });
+
 /**
  * @module Ink.Dom.FormSerialize
  * @author inkdev AT sapo.pt

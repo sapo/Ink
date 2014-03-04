@@ -560,7 +560,6 @@
             }
             return destination;
         },
-<<<<<<< HEAD
 
         /**
          * Calls console.log if available.
@@ -591,38 +590,6 @@
         },
 
         /**
-=======
-
-        /**
-         * Calls console.log if available.
-         *
-         * @method log
-         * @param args...
-         **/
-        log: function () {
-            // IE does not have console.log.apply in IE10 emulated mode
-            var console = window.console;
-            if (console && console.log) {
-                apply.call(console.log, console, arguments);
-            }
-        },
-
-        /**
-         * Calls console.warn if available.
-         *
-         * @method warn
-         * @param args...
-         **/
-        warn: function () {
-            // IE does not have console.log.apply in IE10 emulated mode
-            var console = window.console;
-            if (console && console.warn) {
-                apply.call(console.warn, console, arguments);
-            }
-        },
-
-        /**
->>>>>>> 3.0.0-wip
          * Calls console.error if available.
          *
          * @method error
@@ -4580,7 +4547,6 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
             for (i = 0; i < events.length; i++) events[i] && (hash[events[i]] = 1)
             return hash
           }({}, str2arr(standardNativeEvents + (W3C_MODEL ? w3cNativeEvents : ''))))
-<<<<<<< HEAD
 
           // custom events are events that we *fake*, they are not provided natively but
           // we can use native events to generate them
@@ -5043,470 +5009,6 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
                 ft       : findTarget // attach it here for customEvents to use too
               , selector : selector
             }
-=======
-
-          // custom events are events that we *fake*, they are not provided natively but
-          // we can use native events to generate them
-        , customEvents = (function () {
-            var isAncestor = 'compareDocumentPosition' in root
-                  ? function (element, container) {
-                      return container.compareDocumentPosition && (container.compareDocumentPosition(element) & 16) === 16
-                    }
-                  : 'contains' in root
-                    ? function (element, container) {
-                        container = container.nodeType === 9 || container === window ? root : container
-                        return container !== element && container.contains(element)
-                      }
-                    : function (element, container) {
-                        while (element = element.parentNode) if (element === container) return 1
-                        return 0
-                      }
-              , check = function (event) {
-                  var related = event.relatedTarget
-                  return !related
-                    ? related == null
-                    : (related !== this && related.prefix !== 'xul' && !/document/.test(this.toString())
-                        && !isAncestor(related, this))
-                }
-
-            return {
-                mouseenter: { base: 'mouseover', condition: check }
-              , mouseleave: { base: 'mouseout', condition: check }
-              , mousewheel: { base: /Firefox/.test(navigator.userAgent) ? 'DOMMouseScroll' : 'mousewheel' }
-            }
-          }())
-
-          // we provide a consistent Event object across browsers by taking the actual DOM
-          // event object and generating a new one from its properties.
-        , Event = (function () {
-                // a whitelist of properties (for different event types) tells us what to check for and copy
-            var commonProps  = str2arr('altKey attrChange attrName bubbles cancelable ctrlKey currentTarget ' +
-                  'detail eventPhase getModifierState isTrusted metaKey relatedNode relatedTarget shiftKey '  +
-                  'srcElement target timeStamp type view which propertyName')
-              , mouseProps   = commonProps.concat(str2arr('button buttons clientX clientY dataTransfer '      +
-                  'fromElement offsetX offsetY pageX pageY screenX screenY toElement'))
-              , mouseWheelProps = mouseProps.concat(str2arr('wheelDelta wheelDeltaX wheelDeltaY wheelDeltaZ ' +
-                  'axis')) // 'axis' is FF specific
-              , keyProps     = commonProps.concat(str2arr('char charCode key keyCode keyIdentifier '          +
-                  'keyLocation location'))
-              , textProps    = commonProps.concat(str2arr('data'))
-              , touchProps   = commonProps.concat(str2arr('touches targetTouches changedTouches scale rotation'))
-              , messageProps = commonProps.concat(str2arr('data origin source'))
-              , stateProps   = commonProps.concat(str2arr('state'))
-              , overOutRegex = /over|out/
-                // some event types need special handling and some need special properties, do that all here
-              , typeFixers   = [
-                    { // key events
-                        reg: /key/i
-                      , fix: function (event, newEvent) {
-                          newEvent.keyCode = event.keyCode || event.which
-                          return keyProps
-                        }
-                    }
-                  , { // mouse events
-                        reg: /click|mouse(?!(.*wheel|scroll))|menu|drag|drop/i
-                      , fix: function (event, newEvent, type) {
-                          newEvent.rightClick = event.which === 3 || event.button === 2
-                          newEvent.pos = { x: 0, y: 0 }
-                          if (event.pageX || event.pageY) {
-                            newEvent.clientX = event.pageX
-                            newEvent.clientY = event.pageY
-                          } else if (event.clientX || event.clientY) {
-                            newEvent.clientX = event.clientX + doc.body.scrollLeft + root.scrollLeft
-                            newEvent.clientY = event.clientY + doc.body.scrollTop + root.scrollTop
-                          }
-                          if (overOutRegex.test(type)) {
-                            newEvent.relatedTarget = event.relatedTarget
-                              || event[(type == 'mouseover' ? 'from' : 'to') + 'Element']
-                          }
-                          return mouseProps
-                        }
-                    }
-                  , { // mouse wheel events
-                        reg: /mouse.*(wheel|scroll)/i
-                      , fix: function () { return mouseWheelProps }
-                    }
-                  , { // TextEvent
-                        reg: /^text/i
-                      , fix: function () { return textProps }
-                    }
-                  , { // touch and gesture events
-                        reg: /^touch|^gesture/i
-                      , fix: function () { return touchProps }
-                    }
-                  , { // message events
-                        reg: /^message$/i
-                      , fix: function () { return messageProps }
-                    }
-                  , { // popstate events
-                        reg: /^popstate$/i
-                      , fix: function () { return stateProps }
-                    }
-                  , { // everything else
-                        reg: /.*/
-                      , fix: function () { return commonProps }
-                    }
-                ]
-              , typeFixerMap = {} // used to map event types to fixer functions (above), a basic cache mechanism
-
-              , Event = function (event, element, isNative) {
-                  if (!arguments.length) return
-                  event = event || ((element.ownerDocument || element.document || element).parentWindow || win).event
-                  this.originalEvent = event
-                  this.isNative       = isNative
-                  this.isBean         = true
-
-                  if (!event) return
-
-                  var type   = event.type
-                    , target = event.target || event.srcElement
-                    , i, l, p, props, fixer
-
-                  this.target = target && target.nodeType === 3 ? target.parentNode : target
-
-                  if (isNative) { // we only need basic augmentation on custom events, the rest expensive & pointless
-                    fixer = typeFixerMap[type]
-                    if (!fixer) { // haven't encountered this event type before, map a fixer function for it
-                      for (i = 0, l = typeFixers.length; i < l; i++) {
-                        if (typeFixers[i].reg.test(type)) { // guaranteed to match at least one, last is .*
-                          typeFixerMap[type] = fixer = typeFixers[i].fix
-                          break
-                        }
-                      }
-                    }
-
-                    props = fixer(event, this, type)
-                    for (i = props.length; i--;) {
-                      if (!((p = props[i]) in this) && p in event) this[p] = event[p]
-                    }
-                  }
-                }
-
-            // preventDefault() and stopPropagation() are a consistent interface to those functions
-            // on the DOM, stop() is an alias for both of them together
-            Event.prototype.preventDefault = function () {
-              if (this.originalEvent.preventDefault) this.originalEvent.preventDefault()
-              else this.originalEvent.returnValue = false
-            }
-            Event.prototype.stopPropagation = function () {
-              if (this.originalEvent.stopPropagation) this.originalEvent.stopPropagation()
-              else this.originalEvent.cancelBubble = true
-            }
-            Event.prototype.stop = function () {
-              this.preventDefault()
-              this.stopPropagation()
-              this.stopped = true
-            }
-            // stopImmediatePropagation() has to be handled internally because we manage the event list for
-            // each element
-            // note that originalElement may be a Bean#Event object in some situations
-            Event.prototype.stopImmediatePropagation = function () {
-              if (this.originalEvent.stopImmediatePropagation) this.originalEvent.stopImmediatePropagation()
-              this.isImmediatePropagationStopped = function () { return true }
-            }
-            Event.prototype.isImmediatePropagationStopped = function () {
-              return this.originalEvent.isImmediatePropagationStopped && this.originalEvent.isImmediatePropagationStopped()
-            }
-            Event.prototype.clone = function (currentTarget) {
-              //TODO: this is ripe for optimisation, new events are *expensive*
-              // improving this will speed up delegated events
-              var ne = new Event(this, this.element, this.isNative)
-              ne.currentTarget = currentTarget
-              return ne
-            }
-
-            return Event
-          }())
-
-          // if we're in old IE we can't do onpropertychange on doc or win so we use doc.documentElement for both
-        , targetElement = function (element, isNative) {
-            return !W3C_MODEL && !isNative && (element === doc || element === win) ? root : element
-          }
-
-          /**
-            * Bean maintains an internal registry for event listeners. We don't touch elements, objects
-            * or functions to identify them, instead we store everything in the registry.
-            * Each event listener has a RegEntry object, we have one 'registry' for the whole instance.
-            */
-        , RegEntry = (function () {
-            // each handler is wrapped so we can handle delegation and custom events
-            var wrappedHandler = function (element, fn, condition, args) {
-                var call = function (event, eargs) {
-                      return fn.apply(element, args ? slice.call(eargs, event ? 0 : 1).concat(args) : eargs)
-                    }
-                  , findTarget = function (event, eventElement) {
-                      return fn.__beanDel ? fn.__beanDel.ft(event.target, element) : eventElement
-                    }
-                  , handler = condition
-                      ? function (event) {
-                          var target = findTarget(event, this) // deleated event
-                          if (condition.apply(target, arguments)) {
-                            if (event) event.currentTarget = target
-                            return call(event, arguments)
-                          }
-                        }
-                      : function (event) {
-                          if (fn.__beanDel) event = event.clone(findTarget(event)) // delegated event, fix the fix
-                          return call(event, arguments)
-                        }
-                handler.__beanDel = fn.__beanDel
-                return handler
-              }
-
-            , RegEntry = function (element, type, handler, original, namespaces, args, root) {
-                var customType     = customEvents[type]
-                  , isNative
-
-                if (type == 'unload') {
-                  // self clean-up
-                  handler = once(removeListener, element, type, handler, original)
-                }
-
-                if (customType) {
-                  if (customType.condition) {
-                    handler = wrappedHandler(element, handler, customType.condition, args)
-                  }
-                  type = customType.base || type
-                }
-
-                this.isNative      = isNative = nativeEvents[type] && !!element[eventSupport]
-                this.customType    = !W3C_MODEL && !isNative && type
-                this.element       = element
-                this.type          = type
-                this.original      = original
-                this.namespaces    = namespaces
-                this.eventType     = W3C_MODEL || isNative ? type : 'propertychange'
-                this.target        = targetElement(element, isNative)
-                this[eventSupport] = !!this.target[eventSupport]
-                this.root          = root
-                this.handler       = wrappedHandler(element, handler, null, args)
-              }
-
-            // given a list of namespaces, is our entry in any of them?
-            RegEntry.prototype.inNamespaces = function (checkNamespaces) {
-              var i, j, c = 0
-              if (!checkNamespaces) return true
-              if (!this.namespaces) return false
-              for (i = checkNamespaces.length; i--;) {
-                for (j = this.namespaces.length; j--;) {
-                  if (checkNamespaces[i] == this.namespaces[j]) c++
-                }
-              }
-              return checkNamespaces.length === c
-            }
-
-            // match by element, original fn (opt), handler fn (opt)
-            RegEntry.prototype.matches = function (checkElement, checkOriginal, checkHandler) {
-              return this.element === checkElement &&
-                (!checkOriginal || this.original === checkOriginal) &&
-                (!checkHandler || this.handler === checkHandler)
-            }
-
-            return RegEntry
-          }())
-
-        , registry = (function () {
-            // our map stores arrays by event type, just because it's better than storing
-            // everything in a single array.
-            // uses '$' as a prefix for the keys for safety and 'r' as a special prefix for
-            // rootListeners so we can look them up fast
-            var map = {}
-
-              // generic functional search of our registry for matching listeners,
-              // `fn` returns false to break out of the loop
-              , forAll = function (element, type, original, handler, root, fn) {
-                  var pfx = root ? 'r' : '$'
-                  if (!type || type == '*') {
-                    // search the whole registry
-                    for (var t in map) {
-                      if (t.charAt(0) == pfx) {
-                        forAll(element, t.substr(1), original, handler, root, fn)
-                      }
-                    }
-                  } else {
-                    var i = 0, l, list = map[pfx + type], all = element == '*'
-                    if (!list) return
-                    for (l = list.length; i < l; i++) {
-                      if ((all || list[i].matches(element, original, handler)) && !fn(list[i], list, i, type)) return
-                    }
-                  }
-                }
-
-              , has = function (element, type, original, root) {
-                  // we're not using forAll here simply because it's a bit slower and this
-                  // needs to be fast
-                  var i, list = map[(root ? 'r' : '$') + type]
-                  if (list) {
-                    for (i = list.length; i--;) {
-                      if (!list[i].root && list[i].matches(element, original, null)) return true
-                    }
-                  }
-                  return false
-                }
-
-              , get = function (element, type, original, root) {
-                  var entries = []
-                  forAll(element, type, original, null, root, function (entry) {
-                    return entries.push(entry)
-                  })
-                  return entries
-                }
-
-              , put = function (entry) {
-                  var has = !entry.root && !this.has(entry.element, entry.type, null, false)
-                    , key = (entry.root ? 'r' : '$') + entry.type
-                  ;(map[key] || (map[key] = [])).push(entry)
-                  return has
-                }
-
-              , del = function (entry) {
-                  forAll(entry.element, entry.type, null, entry.handler, entry.root, function (entry, list, i) {
-                    list.splice(i, 1)
-                    entry.removed = true
-                    if (list.length === 0) delete map[(entry.root ? 'r' : '$') + entry.type]
-                    return false
-                  })
-                }
-
-                // dump all entries, used for onunload
-              , entries = function () {
-                  var t, entries = []
-                  for (t in map) {
-                    if (t.charAt(0) == '$') entries = entries.concat(map[t])
-                  }
-                  return entries
-                }
-
-            return { has: has, get: get, put: put, del: del, entries: entries }
-          }())
-
-          // we need a selector engine for delegated events, use querySelectorAll if it exists
-          // but for older browsers we need Qwery, Sizzle or similar
-        , selectorEngine
-        , setSelectorEngine = function (e) {
-            if (!arguments.length) {
-              selectorEngine = doc.querySelectorAll
-                ? function (s, r) {
-                    return r.querySelectorAll(s)
-                  }
-                : function () {
-                    throw new Error('Bean: No selector engine installed') // eeek
-                  }
-            } else {
-              selectorEngine = e
-            }
-          }
-
-          // we attach this listener to each DOM event that we need to listen to, only once
-          // per event type per DOM element
-        , rootListener = function (event, type) {
-            if (!W3C_MODEL && type && event && event.propertyName != '_on' + type) return
-
-            var listeners = registry.get(this, type || event.type, null, false)
-              , l = listeners.length
-              , i = 0
-
-            event = new Event(event, this, true)
-            if (type) event.type = type
-
-            // iterate through all handlers registered for this type, calling them unless they have
-            // been removed by a previous handler or stopImmediatePropagation() has been called
-            for (; i < l && !event.isImmediatePropagationStopped(); i++) {
-              if (!listeners[i].removed) listeners[i].handler.call(this, event)
-            }
-          }
-
-          // add and remove listeners to DOM elements
-        , listener = W3C_MODEL
-            ? function (element, type, add) {
-                // new browsers
-                element[add ? addEvent : removeEvent](type, rootListener, false)
-              }
-            : function (element, type, add, custom) {
-                // IE8 and below, use attachEvent/detachEvent and we have to piggy-back propertychange events
-                // to simulate event bubbling etc.
-                var entry
-                if (add) {
-                  registry.put(entry = new RegEntry(
-                      element
-                    , custom || type
-                    , function (event) { // handler
-                        rootListener.call(element, event, custom)
-                      }
-                    , rootListener
-                    , null
-                    , null
-                    , true // is root
-                  ))
-                  if (custom && element['_on' + custom] == null) element['_on' + custom] = 0
-                  entry.target.attachEvent('on' + entry.eventType, entry.handler)
-                } else {
-                  entry = registry.get(element, custom || type, rootListener, true)[0]
-                  if (entry) {
-                    entry.target.detachEvent('on' + entry.eventType, entry.handler)
-                    registry.del(entry)
-                  }
-                }
-              }
-
-        , once = function (rm, element, type, fn, originalFn) {
-            // wrap the handler in a handler that does a remove as well
-            return function () {
-              fn.apply(this, arguments)
-              rm(element, type, originalFn)
-            }
-          }
-
-        , removeListener = function (element, orgType, handler, namespaces) {
-            var type     = orgType && orgType.replace(nameRegex, '')
-              , handlers = registry.get(element, type, null, false)
-              , removed  = {}
-              , i, l
-
-            for (i = 0, l = handlers.length; i < l; i++) {
-              if ((!handler || handlers[i].original === handler) && handlers[i].inNamespaces(namespaces)) {
-                // TODO: this is problematic, we have a registry.get() and registry.del() that
-                // both do registry searches so we waste cycles doing this. Needs to be rolled into
-                // a single registry.forAll(fn) that removes while finding, but the catch is that
-                // we'll be splicing the arrays that we're iterating over. Needs extra tests to
-                // make sure we don't screw it up. @rvagg
-                registry.del(handlers[i])
-                if (!removed[handlers[i].eventType] && handlers[i][eventSupport])
-                  removed[handlers[i].eventType] = { t: handlers[i].eventType, c: handlers[i].type }
-              }
-            }
-            // check each type/element for removed listeners and remove the rootListener where it's no longer needed
-            for (i in removed) {
-              if (!registry.has(element, removed[i].t, null, false)) {
-                // last listener of this type, remove the rootListener
-                listener(element, removed[i].t, false, removed[i].c)
-              }
-            }
-          }
-
-          // set up a delegate helper using the given selector, wrap the handler function
-        , delegate = function (selector, fn) {
-            //TODO: findTarget (therefore $) is called twice, once for match and once for
-            // setting e.currentTarget, fix this so it's only needed once
-            var findTarget = function (target, root) {
-                  var i, array = isString(selector) ? selectorEngine(selector, root) : selector
-                  for (; target && target !== root; target = target.parentNode) {
-                    for (i = array.length; i--;) {
-                      if (array[i] === target) return target
-                    }
-                  }
-                }
-              , handler = function (e) {
-                  var match = findTarget(e.target, this)
-                  if (match) fn.apply(match, arguments)
-                }
-
-            // __beanDel isn't pleasant but it's a private function, not exposed outside of Bean
-            handler.__beanDel = {
-                ft       : findTarget // attach it here for customEvents to use too
-              , selector : selector
-            }
->>>>>>> 3.0.0-wip
             return handler
           }
 
@@ -13990,11 +13492,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
             swipe:          ['Boolean', true]
             // TODO exponential swipe
             // TODO specify break point for next page when moving finger
-<<<<<<< HEAD
         }, options || {}, element, this);
-=======
-        }, options || {}, element);
->>>>>>> 3.0.0-wip
 
         this._isY = (opts.axis === 'y');
 
@@ -14010,43 +13508,15 @@ Ink.createModule('Ink.UI.Carousel', '1',
             this._ulEl.style.whiteSpace = 'normal';
         }
 
-<<<<<<< HEAD
-=======
-        var pagination;
-        if (opts.pagination) {
-            if (Common.isDOMElement(opts.pagination) || typeof opts.pagination === 'string') {
-                // if dom element or css selector string...
-                pagination = this._pagination = new Pagination(opts.pagination, {
-                    size:     this._numPages,
-                    onChange: this._handlers.paginationChange
-                });
-            } else {
-                // assumes instantiated pagination
-                pagination = this._pagination = opts.pagination;
-                this._pagination._options.onChange = this._handlers.paginationChange;
-                this._pagination.setSize(this._numPages);
-                this._pagination.setCurrent(opts.initialPage || 0);
-            }
-        } else {
-            this._currentPage = opts.initialPage || 0;
-        }
-
->>>>>>> 3.0.0-wip
         if (opts.swipe) {
             InkEvent.observe(element, 'touchstart', Ink.bindMethod(this, '_onTouchStart'));
             InkEvent.observe(element, 'touchmove', Ink.bindMethod(this, '_onTouchMove'));
             InkEvent.observe(element, 'touchend', Ink.bindMethod(this, '_onTouchEnd'));
         }
 
-<<<<<<< HEAD
         this._setUpPagination();
         this._setUpAutoAdvance();
         this._setUpHider();
-=======
-        if (opts.autoAdvance) {
-            this._setUpAutoAdvance();
-        }
->>>>>>> 3.0.0-wip
     };
 
     Carousel.prototype = {
@@ -14071,17 +13541,11 @@ Ink.createModule('Ink.UI.Carousel', '1',
 
             this._liEls = Ink.ss('li.slide', this._ulEl);
             var numSlides = this._liEls.length;
-<<<<<<< HEAD
 
             var contRect = this._ulEl.getBoundingClientRect();
             this._ctnLength = _isY ? contRect.bottom - contRect.top : contRect.right - contRect.left;
             this._elLength = size(this._liEls[0]);
             this._slidesPerPage = Math.floor( this._ctnLength / this._elLength  ) || 1;
-=======
-            this._ctnLength = size(this._element);
-            this._elLength = size(this._liEls[0]);
-            this._slidesPerPage = Math.floor( this._ctnLength / this._elLength  );
->>>>>>> 3.0.0-wip
 
             var numPages = Math.ceil( numSlides / this._slidesPerPage );
             var numPagesChanged = this._numPages !== numPages;
@@ -14094,7 +13558,6 @@ Ink.createModule('Ink.UI.Carousel', '1',
 
             if (this._pagination && numPagesChanged) {
                 this._pagination.setSize(this._numPages);
-<<<<<<< HEAD
             }
             this.setPage(limitRange(this.getPage(), 1, this._numPages));
         },
@@ -14141,20 +13604,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
                 hiderEl.style[ this._isY ? 'right' : 'bottom' ] = '0';  // and bottom...
                 hiderEl.style[ this._isY ? 'bottom' : 'right' ] = '0';  // and move to the end.
                 this._hiderEl = hiderEl;
-=======
->>>>>>> 3.0.0-wip
             }
-            this.setPage(limitRange(this.getPage(), 1, this._numPages));
-        },
-
-        _setUpAutoAdvance: function () {
-            var self = this;
-            function autoAdvance() {
-                self.nextPage(true /* wrap */);
-                setTimeout(autoAdvance, self._options.autoAdvance);
-            }
-
-            setTimeout(autoAdvance, this._options.autoAdvance);
         },
 
         _center: function() {
@@ -14306,12 +13756,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
         },
 
         _onPaginationChange: function(pgn) {
-<<<<<<< HEAD
             this._setPage(pgn.getCurrent());
-=======
-            var currPage = pgn.getCurrent();
-            this.setPage(currPage);
->>>>>>> 3.0.0-wip
         },
 
         /**
@@ -14339,7 +13784,6 @@ Ink.createModule('Ink.UI.Carousel', '1',
                 if (page < 0) { page = this._numPages - page; }
             }
             page = limitRange(page, 0, this._numPages - 1);
-<<<<<<< HEAD
 
             if (this._pagination) {
                 this._pagination.setCurrent(page);
@@ -14352,9 +13796,6 @@ Ink.createModule('Ink.UI.Carousel', '1',
             this._ulEl.style[ this._isY ? 'top' : 'left'] =
                 ['-', page * this._deltaLength, 'px'].join('');
 
-=======
-            this._ulEl.style[ this._options.axis === 'y' ? 'top' : 'left'] = ['-', page * this._deltaLength, 'px'].join('');
->>>>>>> 3.0.0-wip
             if (this._options.onChange) {
                 this._options.onChange.call(this, page);
             }
@@ -18346,25 +17787,12 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
                 errorMsg.innerHTML = error.custom[0].msg;
             }
 
-<<<<<<< HEAD
             var target = (controlElm || controlGroupElm);
             if (target) {
                 target.appendChild(errorMsg);
             } else {
                 InkElement.insertAfter(errorMsg, curElm);
             }
-=======
-            // TODO stop not inserting the error message when we can get CSS to work with us.
-            // This is terrible. CSS should be fixed instead
-            // This check should be removed.
-            // The lines after this add the "validation error" classes, so that the radios and checkboxes still appear in red.
-            // But that won't be removed because _clearError will iterate the error messages.
-            // var type = (curElm.getAttribute('type') + '').toLowerCase();
-            // if (type !== 'radio' && type !== 'checkbox') {
-                InkElement.insertAfter(errorMsg, controlElm || controlGroupElm || curElm);
-            // }
-            // Whatever
->>>>>>> 3.0.0-wip
 
             if (controlElm) {
                 if(error.errors[0] === 'ink-fv-required') {
@@ -19335,20 +18763,12 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
 
                     var paragraph = document.createElement('p');
                     Css.addClassName(paragraph,'tip');
-<<<<<<< HEAD
                     if (controlElement || controlGroupElement) {
                         (controlElement || controlGroupElement).appendChild(paragraph);
                     } else {
                         Element.insertAfter(paragraph, formElement.getElement());
                     }
 
-=======
-                    if (controlGroupElement && !controlElement) {
-                        controlGroupElement.appendChild(paragraph);
-                    } else {
-                        Element.insertAfter(paragraph, controlElement || formElement.getElement());
-                    }
->>>>>>> 3.0.0-wip
                     var errors = formElement.getErrors();
                     var errorArr = [];
                     for (var k in errors) {
@@ -21097,7 +20517,6 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Css_1',
     var SortableList = function(selector, options) {
 
         this._element = Common.elOrSelector(selector, 'Ink.UI.SortableList');
-<<<<<<< HEAD
 
         this._options = Common.options('Sortable', {
             'placeholderClass': ['String', 'placeholder'],
@@ -21119,23 +20538,6 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Css_1',
                 this._options.handleSelector || this._options.dragObject;
         }
 
-=======
-
-        this._options = Common.options('Sortable', {
-            'placeholderClass': ['String', 'placeholder'],
-            'draggedClass': ['String', 'hide-all'],
-            'draggingClass': ['String', 'dragging'],
-            'dragSelector': ['String', 'li'],
-            'dragObject': ['String', false], // Deprecated. Use dragSelector instead
-            'handleSelector': ['String', null],
-            'moveSelector': ['String', false],
-            'swap': ['Boolean', false],
-            'cancelMouseOut': ['Boolean', false]
-        }, options || {}, this._element);
-
-        this._options.dragSelector = this._options.dragObject || this._options.dragSelector; // Backwards compatibility
-
->>>>>>> 3.0.0-wip
         this._handlers = {
             down: Ink.bind(this._onDown, this),
             move: Ink.bind(this._onMove, this),
@@ -21177,7 +20579,6 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Css_1',
                 Events.on(this._element, 'mouseleave', Ink.bind(this.stopMoving, this));
             }
             Events.on(document.documentElement, this._up, this._handlers.up);
-<<<<<<< HEAD
         },
 
         /**
@@ -21207,75 +20608,10 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Css_1',
          */
         _onMove: function(ev) {
             this.validateMove(ev.currentTarget);
-=======
-        },
-
-        /**
-         * Mousedown or touchstart handler
-         * 
-         * @method _onDown
-         * @param {Event} ev
-         * @private
-         */
-        _onDown: function(ev) {
-            if (this._isMoving || this._placeholder) { return; }
-            if(this._options.handleSelector && !Selector.matchesSelector(ev.target, this._options.handleSelector)) { return; }
-            var tgtEl = ev.currentTarget;
-            this._isMoving = tgtEl;
-            this._placeholder = tgtEl.cloneNode(true);
-            this._movePlaceholder(tgtEl);
-            this._addMovingClasses();
->>>>>>> 3.0.0-wip
             return false;
         },
 
         /**
-<<<<<<< HEAD
-         * Mouseup or touchend handler
-         * 
-         * @method _onUp
-         * @param {Event} ev
-         * @private
-         */
-        _onUp: function(ev) {
-            if (!this._isMoving || !this._placeholder) { return; }
-            if (ev.currentTarget === this._isMoving) { return; }
-            if (ev.currentTarget === this._placeholder) { return; }
-            Element.insertBefore(this._isMoving, this._placeholder);
-            this.stopMoving();
-=======
-         * Mousemove or touchmove handler
-         * 
-         * @method _onMove
-         * @param {Event} ev
-         * @private
-         */
-        _onMove: function(ev) {
-            this.validateMove(ev.currentTarget);
->>>>>>> 3.0.0-wip
-            return false;
-        },
-
-        /**
-<<<<<<< HEAD
-         * Adds the CSS classes to interactive elements
-         * 
-         * @method _addMovingClasses
-         * @private
-         */
-        _addMovingClasses: function(){
-            Css.addClassName(this._placeholder, this._options.placeholderClass);
-            Css.addClassName(this._isMoving, this._options.draggedClass);
-            Css.addClassName(document.documentElement, this._options.draggingClass);
-        },
-
-        /**
-         * Removes the CSS classes from interactive elements
-         * 
-         * @method _removeMovingClasses
-         * @private
-         */
-=======
          * Mouseup or touchend handler
          * 
          * @method _onUp
@@ -21309,7 +20645,6 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Css_1',
          * @method _removeMovingClasses
          * @private
          */
->>>>>>> 3.0.0-wip
         _removeMovingClasses: function(){
             if(this._isMoving) { Css.removeClassName(this._isMoving, this._options.draggedClass); }
             if(this._placeholder) { Css.removeClassName(this._placeholder, this._options.placeholderClass); }
@@ -24566,11 +23901,7 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
      * @version 1
      * @param {String|DOMElement} selector
      * @param {String} [options.node='li'] Selector to define which elements are seen as nodes.
-<<<<<<< HEAD
      * @param {String} [options.children='ul'] Selector to define which elements are represented as children.
-=======
-     * @param {String} [options.child='ul'] Selector to define which elements are represented as childs.
->>>>>>> 3.0.0-wip
      * @param {String} [options.parentClass='parent'] Classes to be added to the parent node.
      * @param {String} [options.openClass='icon icon-minus-circle'] Classes to be added to the icon when a parent is open.
      * @param {String} [options.closedClass='icon icon-plus-circle'] Classes to be added to the icon when a parent is closed.
@@ -24579,11 +23910,7 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
      * @param {Boolean} [options.stopDefault=true] Stops the default behavior of the click handler.
      * @example
      *      <ul class="ink-tree-view">
-<<<<<<< HEAD
      *        <li data-open="true"><a href="#">root</a>
-=======
-     *        <li class="open"><a href="#">root</a>
->>>>>>> 3.0.0-wip
      *          <ul>
      *            <li><a href="#">child 1</a></li>
      *            <li><a href="#">child 2</a>
@@ -24633,20 +23960,6 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
             this._options.children = this._options.child;
         }
 
-<<<<<<< HEAD
-=======
-        this._options = Common.options('Treeview', {
-            'node':   ['String', 'li'],
-            'child':  ['String','ul'],
-            'parentClass': ['String','parent'],
-            'openClass': ['String','icon icon-minus-circle'],
-            'closedClass': ['String','icon icon-plus-circle'],
-            'hideClass': ['String','hide-all'],
-            'iconTag': ['String', 'i'],
-            'stopDefault' : ['Boolean', true]
-        }, options || {}, this._element);
-
->>>>>>> 3.0.0-wip
         this._init();
     };
 
@@ -24669,17 +23982,9 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
                 if( this.isParent(item) ) {
                     Css.addClassName(item, this._options.parentClass);
 
-<<<<<<< HEAD
                     var isOpen = this.isOpen(item);
                     if( !this._getIcon(item) ){
                         Element.create(this._options.iconTag, { insertTop: item });
-=======
-                    is_open = Element.data(item).open === 'true';
-                    icon = Selector.select('> ' + this._options.iconTag, item)[0];
-                    if( !icon ){
-                        icon = Element.create('i');
-                        item.insertBefore(icon, item.children[0]);
->>>>>>> 3.0.0-wip
                     }
 
                     this._setNodeOpen(item, isOpen);
@@ -24753,43 +24058,12 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
              * Summary:
              * If the clicked element is a "node" as defined in the options, will check if it has any "child".
              * If so, will toggle its state and stop the event's default behavior if the stopDefault option is true.
-<<<<<<< HEAD
              **/
 
             if (!this.isParent(ev.currentTarget) ||
                     Selector.matchesSelector(ev.target, this._options.node) ||
                     Selector.matchesSelector(ev.target, this._options.child)) {
                 return;
-=======
-             *
-             */
-            var tgtEl = Event.element(event);
-
-            tgtEl = Element.findUpwardsBySelector(tgtEl, this._options.node);
-
-            if(tgtEl === false){ return; }
-
-            var child = Selector.select(this._options.child, tgtEl),
-                is_open,
-                icon;
-
-            if( child.length > 0 ){
-
-                if(this._options.stopDefault){
-                    Event.stop(event);
-                }
-                child = child[0];
-                this._toggleClassNames(child, this._options.hideClass);
-                is_open = Element.data(tgtEl).open === 'true';
-                icon = tgtEl.children[0];
-                if(is_open){
-                    tgtEl.setAttribute('data-open', false);
-                } else {
-                    tgtEl.setAttribute('data-open', true);
-                }
-                this._toggleClassNames(icon, this._options.openClass); 
-                this._toggleClassNames(icon, this._options.closedClass); 
->>>>>>> 3.0.0-wip
             }
 
             if (this._options.stopDefault){
