@@ -1,0 +1,46 @@
+.#{$navigation-class-name} {
+    
+    ul {
+
+        &.pagination {
+            
+            @include nav-pagination();
+            
+            // defines default pagination themes
+            &.white     { @include nav-pagination(null,$white); }
+            &.grey      { @include nav-pagination(null,$grey-15 ); }
+            &.black     { @include nav-pagination(null,$grey-90); }
+            &.orange    { @include nav-pagination(null,$orange); }
+            &.blue      { @include nav-pagination(null,$blue); }
+            &.green     { @include nav-pagination(null,$green); }
+            &.red       { @include nav-pagination(null,$red); }
+
+            // defines dotted pagination themes
+            &.dotted {
+
+                @include nav-pagination(dotted);
+
+                &.black     { @include nav-pagination(dotted,$grey-90); }
+                &.white     { @include nav-pagination(dotted,$white); }
+                &.blue      { @include nav-pagination(dotted,desaturate($blue,10%)); }
+                &.green     { @include nav-pagination(dotted,desaturate($green,10%)); }
+                &.orange    { @include nav-pagination(dotted,desaturate($orange,10%)); }
+                &.red       { @include nav-pagination(dotted,desaturate($red,10%)); }
+            }
+
+            // defines chevron pagination theme
+            &.chevron {
+
+                @include nav-pagination(chevron);
+
+                &.black     { @include nav-pagination(chevron,$grey-90); }
+                &.grey      { @include nav-pagination(chevron,$grey-15); }
+                &.blue      { @include nav-pagination(chevron,desaturate($blue,10%)); }
+                &.green     { @include nav-pagination(chevron,desaturate($green,10%)); }
+                &.orange    { @include nav-pagination(chevron,desaturate($orange,10%)); }
+                &.red       { @include nav-pagination(chevron,desaturate($red,10%)); }
+            
+            }
+        }
+    }
+}

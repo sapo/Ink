@@ -1,0 +1,36 @@
+@mixin generate-quick-start ($breakpoints) {
+
+  @each $breakpoint in $breakpoints {
+
+    $class-name: nth($breakpoint,1);
+    $minimum-width: nth($breakpoint,2);
+    $maximum-width: nth($breakpoint,3);
+
+    @if $minimum-width and not $maximum-width {
+      /* for #{$class-name} screens */
+      @media screen and (min-width: $minimum-width) {
+        
+        /* your css for #{$class-name} screens goes here ... */
+
+      }
+    }
+
+    @if $minimum-width and $maximum-width {
+      /* for #{$class-name} screens */
+      @media screen and (min-width: $minimum-width) and (max-width: $maximum-width) {
+        
+        /* your css for #{$class-name} screens goes here ... */
+
+      }
+    }
+
+    @if not $minimum-width and $maximum-width {
+      /* for #{$class-name} screens */
+      @media screen and (max-width: $maximum-width) {
+        
+        /* your css for #{$class-name} screens goes here ... */
+
+      }
+    }
+  }
+}

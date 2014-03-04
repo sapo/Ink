@@ -1,6 +1,6 @@
 {
   "name": "ink",
-  "version": "2.3.0",
+  "version": "3.0.0",
   "description": "SAPO InK - Interface Toolkit",
   "main": "index.js",
   "author": "SAPO",
@@ -11,7 +11,7 @@
   },
   "keywords": [
     "css",
-    "less",
+    "sass",
     "js",
     "framework"
   ],
@@ -26,11 +26,14 @@
     "grunt-contrib-qunit": "~0.3.0",
     "grunt-contrib-connect": "~0.5.0",
     "grunt-contrib-jshint": "~0.7.2",
-    "grunt-plato": "~0.2.1",
-    "bower": "~1.2.8",
-    "grunt-bower-task": "~0.3.4",
     "grunt-contrib-copy": "~0.4.1",
-    "jit-grunt": "~0.2.1"
+    "grunt-contrib-compass": "~0.7.0",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-plato": "~0.2.1",
+    "grunt-bower-task": "~0.3.4",
+    "jit-grunt": "~0.2.1",
+    "grunt-contrib-cssmin": "~0.7.0",
+    "inkdoc": "~0.2.5"
   },
   "scripts": {
     "test": "grunt --verbose"

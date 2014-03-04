@@ -18,6 +18,8 @@ Read the full documentation here: [http://ink.sapo.pt](http://ink.sapo.pt). The 
 
 We've improved things all over Ink, fixed a lot of bugs, added new functions, and the Carousel module. Check out the [changelog](http://ink.sapo.pt/changelog) to know more.
 
+We're moving the CSS generation over to SASS + COMPASS and working on some new exciting stuff.
+Stay tuned.
 
 ## Repository branches
     
@@ -60,26 +62,36 @@ Make sure you have `node` installed. Then, on the root Ink folder of this repo:
 The Ink JavaScript modules used to be in a separate repository. Now they are in the `src/js` folder. Check out the `README.md` file inside with further information regarding those modules.
 
 
-## LESS Compiler
+## Building from source
 
-Ink requires the 1.4.2 LESS compiler version.
+If you wish to compile our source code you'll need a couple of things:
 
++ [Node.js](http://nodejs.org/)
++ [Compass](http://compass-style.org/install/)
++ [Grunt](http://gruntjs.com/getting-started)
 
-## Legal stuff
-
-We built Ink by standing on the shoulders of giants, following the opensource mantra. We acknowledge & credit those giants here.
-
-* [{LESS}](http://lesscss.org/) (under [under Apache License 2.0](https://github.com/cloudhead/less.js/blob/master/LICENSE))
-* [FontAwesome](http://fortawesome.github.io/Font-Awesome/) (under [cc-by-3.0](http://creativecommons.org/licenses/by/3.0/))
-* [Ubuntu Font](http://font.ubuntu.com/) (under [Ubuntu Font License](http://font.ubuntu.com/licence/))
-* [html5shiv](https://code.google.com/p/html5shiv/) (under [MIT License](http://opensource.org/licenses/MIT))
-* [normalize.css](http://necolas.github.io/normalize.css/) (under [normalizes license agreement](https://github.com/necolas/normalize.css/blob/master/LICENSE.md))
+After installing these dependencies simple run the `npm install` and `grunt` from your terminal.
 
 
-## Contributing
+## Kudos
 
-If you wish to contribute with your own code, please submit your pull requests to the **[develop](https://github.com/sapo/Ink/tree/develop)** branch.
+Ink is built with help from these wonderfull projects:
 
+**CSS Generation**
++ [Sass](http://sass-lang.com/)
++ [Compass](http://compass-style.org/)
+
+**Typography and Icons**
++ [FontAwesome](http://fortawesome.github.io/Font-Awesome/)
++ [Ubuntu Font](http://font.ubuntu.com/)
+
+**Browser feature detection**
++ [Modernizr](http://modernizr.com/)
+
+**Build system**
++ [Node.js](http://nodejs.org/)
++ [Grunt](http://gruntjs.com/)
++ [Bower](http://bower.io/)
 
 ## Versions
 
@@ -94,3 +106,4 @@ If you wish to contribute with your own code, please submit your pull requests t
 ## Projects using Ink
 
 You can check out a list of projects we find around the web that are using Ink in some form [here](https://github.com/sapo/Ink/wiki/Projects-using-Ink).
+

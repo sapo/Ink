@@ -48,22 +48,24 @@ module.exports = function (grunt) {
                 }
             }
         },
-        //
         copy: {
-            /*
-            [3.0.0]: uncomment this
             fontAwesome: {
-                files: [{
-                    cwd: '<%= ink.folders.bower %>font-awesome/less/',
-                    src: [
-                        '*.less',
-                        '!variables.less',
-                    ],
-                    dest: '<%= ink.folders.css.src %>modules/icons/',
-                    expand: true
-                }]
+                files: [
+                    {
+                        cwd: 'tmp/font-awesome/scss/',
+                        src: '*.scss', 
+                        dest: 'src/sass/contrib/font-awesome/',
+                        expand: true,
+                    },
+
+                    {
+                        cwd: 'tmp/font-awesome/less/',
+                        src: '*.less', 
+                        dest: 'src/less/contrib/font-awesome/',
+                        expand: true,
+                    }
+                ]
             },
-            */
             animate: {
                 files: [{
                     cwd: '<%= ink.folders.bower %>animate.css',
@@ -80,6 +82,17 @@ module.exports = function (grunt) {
                     expand: true
                 }]
             },
+
+            compass: {
+                files: [
+                    {
+                        cwd: 'tmp/bower-compass-core/compass/stylesheets/',
+                        src: '**/*.scss', 
+                        dest: 'src/sass/contrib/',
+                        expand: true,
+                    }
+                ]
+            },
             html5shiv: {
                 files: [{
                     cwd: '<%= ink.folders.bower %>html5shiv/dist',
@@ -89,7 +102,6 @@ module.exports = function (grunt) {
                 }]
             }
         },
-
 
         // builds the javascript bundles
         concat: {
@@ -348,6 +360,27 @@ module.exports = function (grunt) {
                 },
                 files: {
                     src: '<%= ink.folders.js.src %>**/lib.js'
+                }
+            },
+        },
+
+        compass: {                                    
+            css: {                                     
+                options: {     
+                    config: "config.rb"
+                }
+            },
+        },
+
+        cssmin: {
+            minify: {
+                expand: true,
+                cwd: '<%= ink.folders.css.dist %>',
+                src: ['*.css', '!quick-start.css'],
+                dest: '<%= ink.folders.css.dist %>',
+                ext: '.min.css',
+                options: {
+                    report: 'min'
                 }
             }
         },

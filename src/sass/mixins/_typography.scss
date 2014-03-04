@@ -1,0 +1,22 @@
+@mixin ink-font-stack ($style: sans) {
+
+    @if $style == sans {
+      font-family: $sans-serif-font-stack;
+    }
+
+    @if $style == serif {
+      font-family: $serif-font-stack;
+    }
+
+    @if $style == condensed {
+      font-family: $condensed-font-stack;
+    }
+
+    @if $style == slab {
+      font-family: $slab-font-stack;
+    }
+
+    @if $style == mono {
+      font-family: $mono-font-stack;
+    }
+}
