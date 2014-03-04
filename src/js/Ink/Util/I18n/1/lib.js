@@ -25,8 +25,8 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
      * @constructor
      *
      * @param {Object} dict object mapping language codes (in the form of `pt_PT`, `pt_BR`, `fr`, `en_US`, etc.) to their Object dictionaries.
-     *     @param {Object} dict.(dictionaries...) 
-     * @param {String} [lang='pt_PT'] language code of the target language
+     * @param {Object} dict.DICTIONARIES
+     * @param {String} [lang]='pt_PT's language code of the target language
      *
      * @example
      *      var dictionaries = {    // This could come from a JSONP request from your server
@@ -95,13 +95,7 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
             return this;
         },
         /**
-         * Get the language code
-         *
-         * @returns {String} the language code for this instance
-         * @method {String} lang
-         */
-        /**
-         * Set the language. If there are more dictionaries available in cache, they will be loaded.
+         * Get or set the language. If there are more dictionaries available in cache, they will be loaded.
          *
          * @method  lang
          * @param   lang    {String} Language code to set this instance to.
@@ -121,12 +115,6 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
 
             return this;
         },
-        /**
-         * Get the testMode
-         *
-         * @returns {Boolean} the testMode for this instance
-         * @method {Boolean} testMode
-         */
         /**
          * Sets or unsets test mode. In test mode, unknown strings are wrapped
          * in `[ ... ]`. This is useful for debugging your application and
@@ -177,12 +165,12 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
          * Given a translation key, return a translated string, with replaced parameters.
          * When a translated string is not available, the original string is returned unchanged.
          *
-         * @method {String} text
+         * @method text
          * @param {String} str key to look for in i18n dictionary (which is returned verbatim if unknown)
          * @param {Object} [namedParms] named replacements. Replaces {named} with values in this object.
          * @param {String} [arg1] replacement #1 (replaces first {} and all {1})
          * @param {String} [arg2] replacement #2 (replaces second {} and all {2})
-         * @param {String} [argn...] replacement #n (replaces nth {} and all {n})
+         * @param {String} [argn*] replacement #n (replaces nth {} and all {n})
          *
          * @example
          *      _('Gosto muito de {} e o céu é {}.', 'carros', 'azul');
@@ -249,7 +237,7 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
          * @param {String} strSin   word to use when count is 1
          * @param {String} strPlur  word to use otherwise
          * @param {Number} count    number which defines which word to use
-         * @param [...]             extra arguments, to be passed to `text()`
+         * @param [args*]             extra arguments, to be passed to `text()`
          *
          * @example
          *     i18n.ntext('platypus', 'platypuses', 1); // returns 'ornitorrinco'
@@ -288,7 +276,7 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
          *
          * @param {Number}          num             Input number
          * 
-         * @param {Object|Function} [options={}]
+         * @param {Object|Function} [options]={}
          *
          *    Maps for translating. Each of these options' fallback is found in the current
          *    language's dictionary. The lookup order is the following:
@@ -444,8 +432,8 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
     };
 
     /**
+     * @method reset
      * @static
-     * @method I18n.reset
      *
      * Reset I18n global state (global dictionaries, and default language for instances)
      **/
@@ -457,8 +445,8 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
     I18n.reset( );
 
     /**
+     * @method append
      * @static
-     * @method I18n.append
      *
      * @param dict {Object}     Dictionary to be added
      * @param lang {String}     Language to be added to
@@ -484,18 +472,10 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
     };
 
     /**
+     * @method lang
      * @static
-     * @method I18n.lang
-     * 
-     * @param lang {String} String in the format `"pt_PT"`, `"fr"`, etc.
      *
-     * Set global default language of I18n instances to `lang`
-     */
-    /**
-     * @static
-     * @method I18n.lang
-     *
-     * Get the current default language of I18n instances.
+     * Get or set the current default language of I18n instances.
      *
      * @return {String} language code
      */

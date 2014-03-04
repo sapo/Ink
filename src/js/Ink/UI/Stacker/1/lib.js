@@ -36,10 +36,10 @@ Stacker.prototype = {
      * @param [options.item='.stacker-item']     {String}   Select items in your stack
      *
      * @param [options.customBreakPoints]        {Object}   options for each breakpoint name. Use this if you have more breakpoints than Ink by default (`large`, `medium`, `small`)
-     * @param [options.customBreakpoints.(breakpoint)] {Object} 
-     * @param options.customBreakpoints.(breakpoint).max    Maximum screen size as seen in your media query
-     * @param options.customBreakpoints.(breakpoint).min    Minimum screen size as seen in your media query
-     * @param options.customBreakpoints.(breakpoint).cols   Column count for this size.
+     * @param [options.customBreakpoints.BREAKPOINT_NAME] {Object} 
+     * @param options.customBreakpoints.BREAKPOINT_NAME.max    Maximum screen size as seen in your media query
+     * @param options.customBreakpoints.BREAKPOINT_NAME.min    Minimum screen size as seen in your media query
+     * @param options.customBreakpoints.BREAKPOINT_NAME.cols   Column count for this size.
      *
      * @param [options.largeMax]                 {Number}   Upper bound of `large` breakpoint
      * @param [options.largeMin=961]             {Number}   Lower bound of `large` breakpoint
