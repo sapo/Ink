@@ -368,6 +368,8 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('default', ['bower', 'copy', 'clean:css', 'less', 'clean:js', 'concat', 'uglify']);
+    grunt.registerTask('js', ['clean:js', 'concat', 'uglify']);
+    grunt.registerTask('css', ['clean:css', 'less']);
     grunt.registerTask('test', ['connect', 'qunit']);
     grunt.registerTask('custom_bundle', 'Create your custom bundle from a json file', function (fileName) {
         if (arguments.length === 0) {
