@@ -1,0 +1,51 @@
+/**
+ * Ink class names prefix
+ * Used in all of Inks components root elements
+ */
+$ink-classes-prefix             : ink- !default;
+
+/**
+ * Grid class names
+ */
+$grid-class-name                : #{$ink-classes-prefix}grid !default;
+$grid-column-group-class-name   : "column-group";
+$grid-gutters-class-name        : "gutters";
+$grid-half-gutters-class-name   : "half-gutters";
+$grid-quarter-gutters-class-name: "quarter-gutters";
+$grid-no-gutters-class-name     : "no-gutters";
+
+/**
+ * Alerts class names
+ */
+$alert-class-name               : #{$ink-classes-prefix}alert !default; 
+
+/**
+ * Badges class names
+ */
+$badge-class-name               : #{$ink-classes-prefix}badge !default;
+
+/**
+ * Buttons class names
+ */
+$button-class-name              : #{$ink-classes-prefix}button !default;
+
+/**
+ * Forms class names
+ */
+$form-class-name                : #{$ink-classes-prefix}form !default;
+
+/**
+ * Labels class names
+ */
+$label-class-name               : #{$ink-classes-prefix}label !default;
+
+/**
+ * Navigation class names
+ */
+$navigation-class-name          : #{$ink-classes-prefix}navigation !default;
+$dropdown-class-name            : #{$ink-classes-prefix}dropdown !default;
+
+/**
+ * Tables class names
+ */
+$table-class-name               : #{$ink-classes-prefix}table

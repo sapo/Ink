@@ -42,28 +42,26 @@ module.exports = function (grunt) {
                     install: true,
                     verbose: false,
                     cleanTargetDir: false,
-                    bowerOptions: {
-                        forceLatest: true
-                    }
                 }
             }
         },
-        //
         copy: {
-            /*
-            [3.0.0]: uncomment this
             fontAwesome: {
-                files: [{
-                    cwd: '<%= ink.folders.bower %>font-awesome/less/',
-                    src: [
-                        '*.less',
-                        '!variables.less',
-                    ],
-                    dest: '<%= ink.folders.css.src %>modules/icons/',
-                    expand: true
-                }]
+                files: [
+                    {
+                        cwd: '<%= ink.folders.bower %>font-awesome/scss/',
+                        src: '*.scss', 
+                        dest: 'src/sass/contrib/font-awesome/',
+                        expand: true,
+                    },
+                    {
+                        cwd: '<%= ink.folders.bower %>font-awesome/less/',
+                        src: '*.less', 
+                        dest: 'src/less/contrib/font-awesome/',
+                        expand: true,
+                    }
+                ]
             },
-            */
             animate: {
                 files: [{
                     cwd: '<%= ink.folders.bower %>animate.css',
@@ -80,6 +78,17 @@ module.exports = function (grunt) {
                     expand: true
                 }]
             },
+
+            compass: {
+                files: [
+                    {
+                        cwd: '<%= ink.folders.bower %>bower-compass-core/compass/stylesheets/',
+                        src: '**/*.scss', 
+                        dest: 'src/sass/contrib/',
+                        expand: true,
+                    }
+                ]
+            },
             html5shiv: {
                 files: [{
                     cwd: '<%= ink.folders.bower %>html5shiv/dist',
@@ -89,7 +98,6 @@ module.exports = function (grunt) {
                 }]
             }
         },
-
 
         // builds the javascript bundles
         concat: {
@@ -349,6 +357,27 @@ module.exports = function (grunt) {
                 files: {
                     src: '<%= ink.folders.js.src %>**/lib.js'
                 }
+            },
+        },
+
+        compass: {                                    
+            css: {                                     
+                options: {     
+                    config: "config.rb"
+                }
+            },
+        },
+
+        cssmin: {
+            minify: {
+                expand: true,
+                cwd: '<%= ink.folders.css.dist %>',
+                src: ['*.css', '!quick-start.css', '!*min*'],
+                dest: '<%= ink.folders.css.dist %>',
+                ext: '.min.css',
+                options: {
+                    report: 'min'
+                }
             }
         },
 
@@ -367,10 +396,12 @@ module.exports = function (grunt) {
         }
     });
 
-    grunt.registerTask('default', ['bower', 'copy', 'clean:css', 'less', 'clean:js', 'concat', 'uglify']);
     grunt.registerTask('js', ['clean:js', 'concat', 'uglify']);
-    grunt.registerTask('css', ['clean:css', 'less']);
-    grunt.registerTask('test', ['connect', 'qunit']);
+    grunt.registerTask('css', ['clean:css', 'less', 'compass', 'cssmin']);
+    grunt.registerTask('dependencies', ['bower', 'copy']);
+    grunt.registerTask('default', ['dependencies','css','js']);
+	grunt.registerTask('test', ['connect', 'qunit']);
+
     grunt.registerTask('custom_bundle', 'Create your custom bundle from a json file', function (fileName) {
         if (arguments.length === 0) {
             grunt.log.error('You need to specify a file name');

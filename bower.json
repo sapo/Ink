@@ -1,20 +1,24 @@
 {
   "name": "Ink",
-  "version": "2.2.1",
+  "version": "3.0.0-wip",
   "description": "An HTML5/CSS3 framework used at SAPO for fast and efficient website design and prototyping.",
-  "main": [
-    "dist/*"
+  "keywords": [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "SASS"
   ],
+  "main": ["dist/*"],
   "ignore": [
     "**/.*",
-    "node_modules",
-    "src/*"
+    "node_modules"
   ],
   "dependencies": {
     "modernizr": "~2.6.2",
-    "font-awesome": "~3.2.1",
+    "font-awesome": "~4.0.3",
     "html5shiv": "~3.7.0",
-    "animate.css": "~3.0.0"
+    "animate.css": "~3.0.0",
+    "bower-compass-core": ">=0.0.1"
   },
   "devDependencies": {
     "qunit": "~1.12.0",

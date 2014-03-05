@@ -1,0 +1,20 @@
+.#{$navigation-class-name} {
+    
+    ul {
+
+        &.pills {
+
+            // defines default theme
+            @include nav-pills();
+
+            // defines custom themes
+            &.grey      { @include nav-pills($grey-15); }
+            &.black     { @include nav-pills($grey-90); }
+            &.blue      { @include nav-pills($blue); }
+            &.green     { @include nav-pills($green); }
+            &.orange    { @include nav-pills($orange); }
+            &.red       { @include nav-pills($red); }
+
+        }
+    }
+}

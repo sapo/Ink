@@ -151,23 +151,31 @@ Ink.requireModules(['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1', '
             bag.setAttribute('data-numb', 'NaN');
             bag.setAttribute('data-func', 'somethin');
 
-            throws(function () {
-                Common.options({
-                    int: ['Integer']
-                }, {}, bag);
-            }, /Integer/i);
+            sinon.spy(Ink, 'error');
 
-            throws(function () {
-                Common.options({
-                    numb: ['Float']
-                }, {}, bag);
-            }, /Float/i);
+            deepEqual(Common.options('fakeComponent', {
+                    int: ['Integer', 2]
+                }, {}, bag),
+                {int: 2});
 
-            throws(function () {
-                Common.options({
-                    func: ['Function']
-                }, {}, bag);
-            }, /Eval/i);
+            deepEqual(Common.options('fakeComponent', {
+                    numb: ['Float', 2.2]
+                }, {}, bag),
+                { numb: 2.2 });
+
+            deepEqual(Common.options('fakeComponent', {
+                    func: ['Function', 'somethin']
+                }, {}, bag),
+                { func: 'somethin' });
+
+            var errCalls = Ink.error.getCalls();
+            equal(errCalls.length, 3, 'Ink.error called 3 times');
+
+            for (var i = 0, len = errCalls.length; i < len; i++) {
+                ok(/fakeComponent/.test(errCalls[i].args[0]), i + 'th call to Ink.error mentions "fakeComponent" substring');
+            }
+
+            Ink.error.restore();
         });
     }());
 
