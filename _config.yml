@@ -48,6 +48,10 @@ sections:
           - title: Inline forms
           - title: Required fields and warnings
           - title: Checkboxes and radio buttons
+      - title: Buttons
+        topics:
+          - title: Button group
+          - title: Button toolbar
       - title: Alerts
         topics:
           - title: Horizontal menu
