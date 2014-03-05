@@ -1373,11 +1373,27 @@
             .red    () { #ink > #gradients > .gradient (desaturate(@red,10%), darken(desaturate(@red,10%),10%), 150%); }
         }
 
-        
-        // PAGINATION:CHEVRON
-        .pagination(@type) when (isstring(@type)) {
 
-            li when (@type = 'chevron') {
+        .pagination-dotted-default() {
+
+            li {
+                background: none;
+        
+                a { 
+                    background: @grey-40; 
+                    #ink > #effects > .opacity(.5);
+                }
+                
+                &:hover,
+                &.active {
+                    a { #ink > #effects > .opacity(1); }
+                }
+            }
+        }
+
+        .pagination-chevron-default() {
+
+            li {
 
                 &.next,
                 &.previous {
@@ -1409,154 +1425,319 @@
                     }
                 }
             }
-
-            li when (@type = 'dotted' ) {
-                background: none;
-        
-                a { 
-                    background: @grey-40; 
-                    #ink > #effects > .opacity(.5);
-                }
-                
-                &:hover,
-                &.active {
-                    a { #ink > #effects > .opacity(1); }
-                }
-            }           
         }
 
-        .pagination(@type, @nav-color) when (isstring(@type)) and (iscolor(@nav-color)) {
+        
+        // // PAGINATION:CHEVRON
+        // .pagination(@type) when (isstring(@type)) {
+
+        //     li when (@type = 'chevron') {
+
+        //         &.next,
+        //         &.previous {
+
+        //             a {
+        //                 color: @white;
+        //                 #ink > #effects > .opacity(.6);
+                        
+        //                 &:hover,
+        //                 &:focus,
+        //                 &.active {
+        //                     #ink > #effects > .opacity(.8);
+        //                     text-decoration: none;
+        //                     background: none;
+        //                 }
+        //             }
+        //         }
+
+        //         &.disabled {
+        //             a {
+        //                 color: @white;
+        //                 #ink > #effects > .opacity(.6);
+        //                 #ink > #shadows > .no-text-shadow();
+        //                 &:hover,
+        //                 &:focus {
+        //                     color: @white;
+        //                     #ink > #effects > .opacity(.6);
+        //                 }
+        //             }
+        //         }
+        //     }
+
+        //     li when (@type = 'dotted' ) {
+        //         background: none;
+        
+        //         a { 
+        //             background: @grey-40; 
+        //             #ink > #effects > .opacity(.5);
+        //         }
+                
+        //         &:hover,
+        //         &.active {
+        //             a { #ink > #effects > .opacity(1); }
+        //         }
+        //     }           
+        // }
+
+        .pagination-chevron-theme (@nav-color) {
             
-            li when (@type = 'chevron')  {
+            li {
                 &.next ,
                 &.previous,
                 &.disabled {
                     a { color: @nav-color; }
                 }
             }
+
         }
 
+        // .pagination(@type, @nav-color) when (isstring(@type)) and (iscolor(@nav-color)) {
+            
+        //     li when (@type = 'chevron')  {
+        //         &.next ,
+        //         &.previous,
+        //         &.disabled {
+        //             a { color: @nav-color; }
+        //         }
+        //     }
+        // }
 
-        .pagination(@type, @nav-color) when (isstring(@type)) and (iscolor(@nav-color)) {
-            li a when (@type = 'dotted' ) { background: @nav-color; }
-        }
 
-        .pagination(@nav-color) when ( iscolor(@nav-color) ) {
+        // .pagination(@type, @nav-color) when (isstring(@type)) and (iscolor(@nav-color)) {
+        //     li a when (@type = 'dotted' ) { background: @nav-color; }
+        // }
 
-            li when ( lightness(@nav-color) > 80% ) {
-
-                background: desaturate(@nav-color,10%);
-
-                &.active a { background: darken(@nav-color,10%); }
-
-                &.disabled {
-                    a {
-                        color: darken(@nav-color,20%); 
-                        background: fade(@black,0%);
-                        #ink > #shadows > .text-shadow(lighten(@nav-color,8%), 0, 1px, 0);
-                        &:hover { background: none; }
-                    }
-                }
-
-                a {
-                    color: @text-color;
-                    text-decoration: none;
-
-                    &:hover {
-                        background: darken(@nav-color,5%);
-                    }
-                }
-            }
-        }
-
-        .pagination(@nav-color) when (iscolor(@nav-color)) {
-
-            li when (lightness(@nav-color) > 32%) and (lightness(@nav-color) <= 80%) {
-
-                background: desaturate(@nav-color,10%);
-
-                &.active a { background: darken(@nav-color,10%); }
-
-                &.disabled {
-                    a {
-                        color: darken(@nav-color,20%); 
-                        background: fade(@black,0%);
-                        #ink > #shadows > .text-shadow(lighten(@nav-color,8%), 0, 1px, 0);
-                        &:hover { background: none; }
-                    }
-                }
-
-                a {
-                    color: @white;
-                    text-decoration: none;
-
-                    &:hover {
-                        background: darken(@nav-color,5%);
-                    }
-                }
-            }
-        }
-
-        .pagination(@nav-color) when (iscolor(@nav-color)) {
-
-            li when (lightness(@nav-color) <= 10% ) {
-
-                background: desaturate(@nav-color,10%);
-
-                &.active a { background: lighten(@nav-color,10%); }
-
-                &.disabled {
-                    a {
-                        color: lighten(@nav-color,20%); 
-                        background: fade(@black,0%);
-                        #ink > #shadows > .text-shadow(darken(@nav-color,20%), 0, -1px, 0);
-                        &:hover { background: none; }
-                    }
-                }
-
-                a {
-                    color: @white;
-                    text-decoration: none;
-
-                    &:hover {
-                        background: lighten(@nav-color,5%);
-                    }
-                }
-            }
+        .pagination-dotted-theme (@nav-color) {
+            li a { background: @nav-color; }
         }
 
 
 
+        // .pagination-theme (@nav-color) when ( lightness(@nav-color) > 80% ) {
+        //     li {
 
-        .pagination(@nav-color) when (iscolor(@nav-color)) {
+        //         background: desaturate(@nav-color,10%);
 
-            li {
+        //         &.active a { background: darken(@nav-color,10%); }
 
-                background: desaturate(@nav-color,10%);
+        //         &.disabled {
+        //             a {
+        //                 color: darken(@nav-color,20%); 
+        //                 background: fade(@black,0%);
+        //                 #ink > #shadows > .text-shadow(lighten(@nav-color,8%), 0, 1px, 0);
+        //                 &:hover { background: none; }
+        //             }
+        //         }
 
-                &.active a { background: darken(@nav-color,10%); }
+        //         a {
+        //             color: @text-color;
+        //             text-decoration: none;
 
-                &.disabled {
-                    a {
-                        color: darken(@nav-color,20%); 
-                        background: fade(@black,0%);
-                        #ink > #shadows > .text-shadow(lighten(@nav-color,8%), 0, 1px, 0);
-                        &:hover { background: none; }
-                    }
-                }
+        //             &:hover {
+        //                 background: darken(@nav-color,5%);
+        //             }
+        //         }
+        //     }
+        // }
 
-                a {
-                    color: @white;
-                    text-decoration: none;
+        // .pagination-theme (@nav-color) when (lightness(@nav-color) > 32%) and (lightness(@nav-color) <= 80%) {
+        //     li {
 
-                    &:hover {
-                        background: darken(@nav-color,10%);
-                    }
-                }
-            }
-        }
+        //         background: desaturate(@nav-color,10%);
+
+        //         &.active a { background: darken(@nav-color,10%); }
+
+        //         &.disabled {
+        //             a {
+        //                 color: darken(@nav-color,20%); 
+        //                 background: fade(@black,0%);
+        //                 #ink > #shadows > .text-shadow(lighten(@nav-color,8%), 0, 1px, 0);
+        //                 &:hover { background: none; }
+        //             }
+        //         }
+
+        //         a {
+        //             color: @white;
+        //             text-decoration: none;
+
+        //             &:hover {
+        //                 background: darken(@nav-color,5%);
+        //             }
+        //         }
+        //     }
+        // }
+
+        // .pagination-theme (@nav-color) when (lightness(@nav-color) <= 10% )  {
+        //     li  {
+
+        //         background: desaturate(@nav-color,10%);
+
+        //         &.active a { background: lighten(@nav-color,10%); }
+
+        //         &.disabled {
+        //             a {
+        //                 color: lighten(@nav-color,20%); 
+        //                 background: fade(@black,0%);
+        //                 #ink > #shadows > .text-shadow(darken(@nav-color,20%), 0, -1px, 0);
+        //                 &:hover { background: none; }
+        //             }
+        //         }
+
+        //         a {
+        //             color: @white;
+        //             text-decoration: none;
+
+        //             &:hover {
+        //                 background: lighten(@nav-color,5%);
+        //             }
+        //         }
+        //     }
+        // }
+
+        // .pagination-theme(@nav-color) {
+
+        //     li {
+
+        //         background: desaturate(@nav-color,10%);
+
+        //         &.active a { background: darken(@nav-color,10%); }
+
+        //         &.disabled {
+        //             a {
+        //                 color: darken(@nav-color,20%); 
+        //                 background: fade(@black,0%);
+        //                 #ink > #shadows > .text-shadow(lighten(@nav-color,8%), 0, 1px, 0);
+        //                 &:hover { background: none; }
+        //             }
+        //         }
+
+        //         a {
+        //             color: @white;
+        //             text-decoration: none;
+
+        //             &:hover {
+        //                 background: darken(@nav-color,10%);
+        //             }
+        //         }
+        //     }
+        // }
+
+        // .pagination(@nav-color) when ( iscolor(@nav-color) ) {
+
+        //     li when ( lightness(@nav-color) > 80% ) {
+
+        //         background: desaturate(@nav-color,10%);
+
+        //         &.active a { background: darken(@nav-color,10%); }
+
+        //         &.disabled {
+        //             a {
+        //                 color: darken(@nav-color,20%); 
+        //                 background: fade(@black,0%);
+        //                 #ink > #shadows > .text-shadow(lighten(@nav-color,8%), 0, 1px, 0);
+        //                 &:hover { background: none; }
+        //             }
+        //         }
+
+        //         a {
+        //             color: @text-color;
+        //             text-decoration: none;
+
+        //             &:hover {
+        //                 background: darken(@nav-color,5%);
+        //             }
+        //         }
+        //     }
+        // }
+
+        // .pagination(@nav-color) when (iscolor(@nav-color)) {
+
+        //     li when (lightness(@nav-color) > 32%) and (lightness(@nav-color) <= 80%) {
+
+        //         background: desaturate(@nav-color,10%);
+
+        //         &.active a { background: darken(@nav-color,10%); }
+
+        //         &.disabled {
+        //             a {
+        //                 color: darken(@nav-color,20%); 
+        //                 background: fade(@black,0%);
+        //                 #ink > #shadows > .text-shadow(lighten(@nav-color,8%), 0, 1px, 0);
+        //                 &:hover { background: none; }
+        //             }
+        //         }
+
+        //         a {
+        //             color: @white;
+        //             text-decoration: none;
+
+        //             &:hover {
+        //                 background: darken(@nav-color,5%);
+        //             }
+        //         }
+        //     }
+        // }
+
+        // .pagination(@nav-color) when (iscolor(@nav-color)) {
+
+        //     li when (lightness(@nav-color) <= 10% ) {
+
+        //         background: desaturate(@nav-color,10%);
+
+        //         &.active a { background: lighten(@nav-color,10%); }
+
+        //         &.disabled {
+        //             a {
+        //                 color: lighten(@nav-color,20%); 
+        //                 background: fade(@black,0%);
+        //                 #ink > #shadows > .text-shadow(darken(@nav-color,20%), 0, -1px, 0);
+        //                 &:hover { background: none; }
+        //             }
+        //         }
+
+        //         a {
+        //             color: @white;
+        //             text-decoration: none;
+
+        //             &:hover {
+        //                 background: lighten(@nav-color,5%);
+        //             }
+        //         }
+        //     }
+        // }
+
+
+
+
+        // .pagination(@nav-color) when (iscolor(@nav-color)) {
+
+        //     li {
+
+        //         background: desaturate(@nav-color,10%);
+
+        //         &.active a { background: darken(@nav-color,10%); }
+
+        //         &.disabled {
+        //             a {
+        //                 color: darken(@nav-color,20%); 
+        //                 background: fade(@black,0%);
+        //                 #ink > #shadows > .text-shadow(lighten(@nav-color,8%), 0, 1px, 0);
+        //                 &:hover { background: none; }
+        //             }
+        //         }
+
+        //         a {
+        //             color: @white;
+        //             text-decoration: none;
+
+        //             &:hover {
+        //                 background: darken(@nav-color,10%);
+        //             }
+        //         }
+        //     }
+        // }
         
-        .pagination() {
+        .pagination-default() {
 
             display: inline-block;
 
