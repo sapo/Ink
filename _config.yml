@@ -44,7 +44,10 @@ sections:
           - title: Horizontal menu
       - title: Forms
         topics:
-          - title: Horizontal menu
+          - title: Block forms
+          - title: Inline forms
+          - title: Required fields and warnings
+          - title: Checkboxes and radio buttons
       - title: Alerts
         topics:
           - title: Horizontal menu
