@@ -265,7 +265,7 @@
                 }
             }
 
-             #ink > #navigation > .pagination();
+             #ink > #navigation > .pagination-default();
     
             // defines dotted pagination themes
             &.dotted {
@@ -275,27 +275,27 @@
                         filter: none;
                 }
                 
-                #ink > #navigation > .pagination('dotted');
+                #ink > #navigation > .pagination-dotted-default();
 
-                &.black     { #ink > #navigation > .pagination('dotted', @grey-90); }
-                &.white     { #ink > #navigation > .pagination('dotted', @white); }
-                &.blue      { #ink > #navigation > .pagination('dotted', desaturate( @blue, 10%) ); }
-                &.green     { #ink > #navigation > .pagination('dotted', desaturate( @green, 10%) ); }
-                &.orange    { #ink > #navigation > .pagination('dotted', desaturate( @orange, 10%) ); }
-                &.red       { #ink > #navigation > .pagination('dotted', desaturate( @red, 10%) ); }
+                &.black     { #ink > #navigation > .pagination-dotted-theme( @grey-90); }
+                &.white     { #ink > #navigation > .pagination-dotted-theme( @white); }
+                &.blue      { #ink > #navigation > .pagination-dotted-theme( desaturate( @blue, 10%) ); }
+                &.green     { #ink > #navigation > .pagination-dotted-theme( desaturate( @green, 10%) ); }
+                &.orange    { #ink > #navigation > .pagination-dotted-theme( desaturate( @orange, 10%) ); }
+                &.red       { #ink > #navigation > .pagination-dotted-theme( desaturate( @red, 10%) ); }
             }
 
             // defines chevron pagination theme
             &.chevron {
 
-                #ink > #navigation > .pagination('chevron');
+                #ink > #navigation > .pagination-chevron-default();
 
-                &.black     { #ink > #navigation > .pagination('chevron', @grey-90); }
-                &.grey      { #ink > #navigation > .pagination('chevron', @grey-15); }
-                &.blue      { #ink > #navigation > .pagination('chevron', desaturate( @blue,10%) ); }
-                &.green     { #ink > #navigation > .pagination('chevron', desaturate( @green,10%) ); }
-                &.orange    { #ink > #navigation > .pagination('chevron', desaturate( @orange,10%) ); }
-                &.red       { #ink > #navigation > .pagination('chevron', desaturate( @red,10%) ); }
+                &.black     { #ink > #navigation > .pagination-chevron-theme( @grey-90); }
+                &.grey      { #ink > #navigation > .pagination-chevron-theme( @grey-15); }
+                &.blue      { #ink > #navigation > .pagination-chevron-theme( desaturate( @blue,10%)); }
+                &.green     { #ink > #navigation > .pagination-chevron-theme( desaturate( @green,10%)); }
+                &.orange    { #ink > #navigation > .pagination-chevron-theme( desaturate( @orange,10%)); }
+                &.red       { #ink > #navigation > .pagination-chevron-theme( desaturate( @red,10%)); }
             
             }
         }

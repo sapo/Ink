@@ -422,6 +422,8 @@ module.exports = function (grunt) {
     grunt.registerTask('css', ['clean:css', 'less', 'compass', 'cssmin']);
     grunt.registerTask('dependencies', ['bower', 'copy']);
     grunt.registerTask('default', ['dependencies','css','js']);
+	grunt.registerTask('test', ['connect', 'qunit']);
+
     grunt.registerTask('custom_bundle', 'Create your custom bundle from a json file', function (fileName) {
         if (arguments.length === 0) {
             grunt.log.error('You need to specify a file name');
