@@ -2,50 +2,55 @@
  * Ink class names prefix
  * Used in all of Inks components root elements
  */
-$ink-classes-prefix             : ink- !default;
+$ink-class-prefix             : ink- !default;
 
 /**
  * Grid class names
  */
-$grid-class-name                : #{$ink-classes-prefix}grid !default;
-$grid-column-group-class-name   : "column-group";
-$grid-gutters-class-name        : "gutters";
-$grid-half-gutters-class-name   : "half-gutters";
-$grid-quarter-gutters-class-name: "quarter-gutters";
-$grid-no-gutters-class-name     : "no-gutters";
+$grid-class-name                : #{$ink-class-prefix}grid !default;
+$grid-column-group-class-name   : column-group !default;
+$grid-gutters-class-name        : gutters !default;
+$grid-half-gutters-class-name   : half-gutters !default;
+$grid-quarter-gutters-class-name: quarter-gutters !default;
+$grid-double-gutters-class-name : double-gutters !default;
+$grid-no-gutters-class-name     : no-gutters !default;
 
 /**
  * Alerts class names
  */
-$alert-class-name               : #{$ink-classes-prefix}alert !default; 
+$alert-class-name               : #{$ink-class-prefix}alert !default; 
 
 /**
  * Badges class names
  */
-$badge-class-name               : #{$ink-classes-prefix}badge !default;
+$badge-class-name               : #{$ink-class-prefix}badge !default;
 
 /**
  * Buttons class names
  */
-$button-class-name              : #{$ink-classes-prefix}button !default;
+$button-class-name              : #{$ink-class-prefix}button !default;
 
 /**
  * Forms class names
  */
-$form-class-name                : #{$ink-classes-prefix}form !default;
+$form-class-name                : #{$ink-class-prefix}form !default;
 
 /**
  * Labels class names
  */
-$label-class-name               : #{$ink-classes-prefix}label !default;
+$label-class-name               : #{$ink-class-prefix}label !default;
 
 /**
  * Navigation class names
  */
-$navigation-class-name          : #{$ink-classes-prefix}navigation !default;
-$dropdown-class-name            : #{$ink-classes-prefix}dropdown !default;
+$navigation-class-name          : #{$ink-class-prefix}navigation !default;
+
+/**
+ * Dropdown class names
+ */
+$dropdown-class-name            : #{$ink-class-prefix}dropdown !default;
 
 /**
  * Tables class names
  */
-$table-class-name               : #{$ink-classes-prefix}table
+$table-class-name               : #{$ink-class-prefix}table
