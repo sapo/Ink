@@ -393,7 +393,29 @@ module.exports = function (grunt) {
                     '<%= ink.folders.js.srcBase %>report': '<%= ink.folders.js.src %>**/lib.js'
                 }
             }
-        }
+        },
+
+        watch: {
+            css: {
+                files: [
+                    'src/**/*.scss',
+                    'src/**/*.less',
+                ],
+                tasks: ['css'],
+                options: {
+                    spawn: false,
+                    // interrupt: true,
+                }
+            },
+            js: {
+                files: ['<%= ink.folders.js.src %>/**/*.js'],
+                tasks: ['js'],
+                options: {
+                    spawn: false,
+                    // interrupt: true,
+                }
+            },
+        },
     });
 
     grunt.registerTask('js', ['clean:js', 'concat', 'uglify']);
