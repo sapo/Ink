@@ -153,7 +153,7 @@ site_root: ../../
   <h1>Targeting multiple devices</h1>
   <p>When dealing with multiple devices, one major concearn should be asset size optimization. So Ink gives you a way to serve images with the appropriate size to your client devices.</p>
   <p>This is done with our <a href="{{ site.url }}">Ink.UI.ImageQuery</a> JavaScript component, that'll detect the screen size and serve a larger version of the image if required.</p>
-  
+  <p>By default we'll load the smallest image, so that mobile phones and </p>
 <p class="example-title">Javascript</p>
 {% highlight javascript %}
 <script>
@@ -161,8 +161,8 @@ site_root: ../../
     src: '{{ site.url }}assets/img/examples/{:label}/{:file}',
     queries: [
       {
-          label: 'small',
-          width: 640
+          label: 'tiny',
+          width: 320
       },
       {
           label: 'medium',
