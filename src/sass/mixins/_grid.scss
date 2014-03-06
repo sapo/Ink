@@ -562,7 +562,7 @@
         max-width: $grid-max-width;
         margin: 0 auto;
     }
-
+    
     @include generate-grid-all-divisions();
 
     @each $breakpoint in $breakpoints {
@@ -604,6 +604,4 @@
             }
         }
     }
-
-    
 }
