@@ -34,6 +34,7 @@ table.#{$table-class-name} {
 
             tr:hover {
                 background: $table-row-hoverColor;
+                color: $text-color;
             }
         }
     }
@@ -64,6 +65,60 @@ table.#{$table-class-name} {
                     border-left: none;
                 }
             }
+        }
+    }
+
+    tbody {
+
+        & > tr {
+
+            &.red {
+                td {
+                    background: $red;
+                    color: lighten($red,80%);
+                }
+            }
+
+            
+            &.green {
+                td {
+                    background: $green;
+                    color: lighten($green,80%);
+                }
+            }
+
+            
+            &.blue {
+                td {
+                    background: $blue;
+                    color: lighten($blue,80%);
+                }
+            }
+
+            
+            &.orange {
+                td {
+                    background: $orange;
+                    color: lighten($orange,80%);
+                }
+            }
+
+            
+            &.black {
+                td {
+                    background: $black;
+                    color: lighten($black,80%);
+                }
+            }
+
+            
+            &.yellow {
+                td {
+                    background: $yellow;
+                    color: darken($yellow,80%);
+                }
+            }
+        
         }
     }
 }
