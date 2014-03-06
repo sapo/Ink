@@ -5,10 +5,13 @@
         font-size: .938em;
         margin: 1em 0 ;
         position:relative;
+        overflow: hidden;
     }
 
     &.basic {
         padding:1em;
+
+        p { margin: 0 }
 
         .ink-close {
             top:.55em; *top:.2em;
@@ -25,9 +28,7 @@
             margin:0; 
         }
 
-        p, ul, ol {
-            padding: 0 1em 1em;
-        }
+        p { margin: 1.5em 1em; }
 
         ul {
             list-style: inside ;
