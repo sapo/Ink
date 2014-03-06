@@ -55,6 +55,12 @@ site_root: ../../
                 </td>
                 <td>Defines the type of message printed upon form submission.</td>
             </tr>
+            <tr>
+                <td>
+                    <code>tip</code>
+                </td>
+                <td>Defines the default ink style for a tip. Used with a paragraph in the form.</td>
+            </tr>
         </tbody>
     </table>
 
@@ -72,6 +78,7 @@ site_root: ../../
         <li class="prop">ink-form</li>
         <li class="prop">control-group</li>
         <li class="prop">control</li>
+        <li class="prop">tip</li>
     </ul>
     
     <p>This is the most straight forward type of form, since all of its elements are displayed on top of each other, as a block.</p>
@@ -119,7 +126,7 @@ site_root: ../../
 
 {% highlight html %}
 <form class="ink-form">
-    <fieldset class="column-group gutters vspace">
+    <fieldset class="column-group gutters">
         <div class="control-group all-33">
             <label for="name">Name</label>
             <div class="control">
@@ -142,9 +149,9 @@ site_root: ../../
 </form>{% endhighlight %}
 
     <p class="example-title">Example</p>
-    <div class="example bottom-space">
+    <div class="example">
         <form class="ink-form">
-            <fieldset class="column-group gutters vspace">
+            <fieldset class="column-group gutters">
                 <div class="control-group all-33">
                     <label for="name">Name</label>
                     <div class="control">
@@ -178,6 +185,7 @@ site_root: ../../
         <li class="prop">ink-form</li>
         <li class="prop">control-group</li>
         <li class="prop">control</li>
+        <li class="prop">tip</li>
         <li class="prop">column-group</li>
         <li class="prop">gutters</li>
         <li class="prop">all-%</li>
@@ -218,6 +226,7 @@ site_root: ../../
         <li class="prop">ink-form</li>
         <li class="prop">control-group</li>
         <li class="prop">control</li>
+        <li class="prop">tip</li>
         <li class="prop">column-group</li>
         <li class="prop">gutters</li>
         <li class="prop">all-%</li>
@@ -297,8 +306,344 @@ site_root: ../../
 
 </section>
 
-<section>
+<section id="">
 
     <h1>Required fields and warnings</h1>
+    <ul class="css props inline">
+        <li class="heading">Css classes: </li>
+        <li class="prop">ink-form</li>
+        <li class="prop">control-group</li>
+        <li class="prop">control</li>
+        <li class="prop">required</li>
+        <li class="prop">validation</li>
+        <li class="prop">error</li>
+        <li class="prop">warning</li>
+        <li class="prop">tip</li>
+    </ul>
+
+    <p>
+        Ink forms also have utility classes to address and highlight warnings and required fields. So if you have a required field, generated content will be added to mark your field as required, this way you don't need to do it manually.
+    </p>
+
+    <h2>Required field</h2>
+
+{% highlight html %}
+<form class="ink-form">
+    <div class="control-group required">
+        <label for="text-input">Passw</label> 
+        <div class="control">
+            <input id="text-input" type="text" placeholder="Please input some text">
+        </div>
+        <p clas="tip">This field is required</p>
+    </div>
+</form>{% endhighlight %}
+    
+    <p class="example-title">Example</p>
+    <div class="example">
+        <form class="ink-form">
+            <div class="control-group required">
+                <label for="text-input">Passw</label> 
+                <div class="control">
+                    <input id="text-input" type="text" placeholder="Please input some text">
+                </div>
+                <p class="tip">This field is required</p>
+            </div>
+        </form>
+    </div>
+
+    <h2 class="top-space">Field with warning</h2>
+
+{% highlight html %}
+<form class="ink-form">
+    <div class="control-group required validation warning">
+        <label for="text-input">Passw</label> 
+        <div class="control">
+            <input id="text-input" type="text" placeholder="Please input some text">
+        </div>
+        <p clas="tip">Warn about something</p>
+    </div>
+</form>{% endhighlight %}
+    
+    <p class="example-title">Example</p>
+    <div class="example">
+        <form class="ink-form">
+            <div class="control-group required validation warning">
+                <label for="text-input">Passw</label> 
+                <div class="control">
+                    <input id="text-input" type="text" placeholder="Please input some text">
+                </div>
+                <p class="tip">This field is required</p>
+            </div>
+        </form>
+    </div>
+    
+    <h2 class="top-space">Field with errors</h2>
+{% highlight html %}
+<form class="ink-form">
+    <div class="control-group required validation error">
+        <label for="text-input">Text input</label> 
+        <div class="control">
+            <input id="text-input" type="text" placeholder="Please input some text">
+        </div>
+        <p class="tip">Your field has errors</p>
+    </div>
+</form>{% endhighlight %}
+
+    <p class="example-title">Example</p>
+    <div class="example">
+        <form class="ink-form">
+            <div class="control-group required validation error">
+                <label for="text-input">Text input</label> 
+                <div class="control">
+                    <input id="text-input" type="text" placeholder="Please input some text">
+                </div>
+                <p class="tip">Your field has errors</p>
+            </div>
+        </form>
+    </div>
+
+</section>
+
+<section id="">
+    <h1>Appended and prepended inputs</h1>
+    <ul class="css props inline">
+        <li class="heading">Css classes: </li>
+        <li class="prop">ink-form</li>
+        <li class="prop">control-group</li>
+        <li class="prop">control</li>
+        <li class="prop">prepend-button</li>
+        <li class="prop">append-button</li>
+        <li class="prop">prepend-symbol</li>
+        <li class="prop">append-symbol</li>
+    </ul>
+    <p>
+        Case you need to append or prepend buttons or symbols to your form input, Ink has got that covered aswell. To achieve that, and depending on your use case, just add the class <code>append-button</code>, <code>prepend-button</code>, <code>append-symbol</code> or <code>prepend-symbol</code> to the <code>control</code> element and wrap your <code>&ltinput&gt</code> in a <code>&ltspan&gt</code>.
+    </p>
+
+    <h2>Buttons</h2>
+    <ul class="css props inline">
+        <li class="heading">Css classes: </li>
+        <li class="prop">ink-form</li>
+        <li class="prop">control-group</li>
+        <li class="prop">control</li>
+        <li class="prop">prepend-button</li>
+        <li class="prop">append-button</li>
+    </ul>
+    
+{% highlight html %}
+<form class="ink-form">
+    <fieldset class="column-group gutters">
+        <!-- Prepended button -->
+        <div class="control-group all-50 small-100 tiny-100">
+            <div class="column-group gutters">
+                <label for="name" class="all-20 small-10 tiny-10 align-right">Label</label>
+                <div class="control all-80 small-90 tiny-90 prepend-button">
+                    <input type="submit" value="Search" class="ink-button">
+                    <span><input type="text" id="phone"></span>
+                </div>
+            </div>
+        </div>
+        <!-- Appended button -->
+        <div class="control-group all-50 small-100 tiny-100">
+            <div class="column-group gutters">
+                <label for="name" class="all-20 small-10 tiny-10 align-right">Label</label>
+                <div class="control all-80 small-90 tiny-90 append-button">
+                    <span><input type="text" id="name"></span>
+                    <button class="ink-button"><i class="icon-search"></i> Search</button>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+</form>{% endhighlight %}
+
+    <p class="example-title">Example</p>
+    <div class="example bottom-space">
+        <form class="ink-form">
+            <fieldset class="column-group gutters">
+                <div class="control-group all-50 small-100 tiny-100">
+                    <div class="column-group gutters">
+                        <label for="name" class="all-20 small-10 tiny-10 align-right">Label</label>
+                        <div class="control all-80 small-90 tiny-90 prepend-button">
+                            <input type="submit" value="Search" class="ink-button">
+                            <span><input type="text" id="phone"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="control-group all-50 small-100 tiny-100">
+                    <div class="column-group gutters">
+                        <label for="name" class="all-20 small-10 tiny-10 align-right">Label</label>
+                        <div class="control all-80 small-90 tiny-90 append-button">
+                            <span><input type="text" id="name"></span>
+                            <button class="ink-button"><i class="icon-search"></i> Search</button>
+                        </div>
+                        
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+
+    <h2>Symbols</h2>
+    <ul class="css props inline">
+        <li class="heading">Css classes: </li>
+        <li class="prop">ink-form</li>
+        <li class="prop">control-group</li>
+        <li class="prop">control</li>
+        <li class="prop">prepend-symbol</li>
+        <li class="prop">append-symbol</li>
+    </ul>
+
+{% highlight html %}
+<form class="ink-form">
+    <fieldset class="column-group gutters">
+        <!-- Prepended symbol -->
+        <div class="control-group all-50 small-100 tiny-100">
+            <div class="column-group gutters">
+                <label for="email" class="all-20 small-10 tiny-10 align-right">Email</label>
+                <div class="control all-80 small-90 tiny-90 append-symbol">
+                    <span>
+                        <input type="text" id="email">
+                        <i class="fa fa-envelope-o"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <!-- Appended symbol -->
+        <div class="control-group all-50 small-100 tiny-100">
+            <div class="column-group gutters">
+                <label for="email" class="all-20 small-10 tiny-10 align-right">Email</label>
+                <div class="control all-80 small-90 tiny-90 prepend-symbol">
+                    <span>
+                        <input type="text" id="email">
+                        <i class="fa fa-envelope-o"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+</form>{% endhighlight %}
+
+    <p class="example-title">Example</p>
+    <div class="example">
+        <form class="ink-form">
+            <fieldset class="column-group gutters">
+                <div class="control-group all-50 small-100 tiny-100">
+                    <div class="column-group gutters">
+                        <label for="email" class="all-20 small-10 tiny-10 align-right">Email</label>
+                        <div class="control all-80 small-90 tiny-90 append-symbol">
+                            <span>
+                                <input type="text" id="email">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="control-group all-50 small-100 tiny-100">
+                    <div class="column-group gutters">
+                        <label for="email" class="all-20 small-10 tiny-10 align-right">Email</label>
+                        <div class="control all-80 small-90 tiny-90 prepend-symbol">
+                            <span>
+                                <input type="text" id="email">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+
+</section>
+
+
+<section id="">
+    <h1>Checkboxes and radio buttons</h1>
+    <ul class="css props inline">
+        <li class="heading">Css classes: </li>
+        <li class="prop">ink-form</li>
+        <li class="prop">control-group</li>
+        <li class="prop">control</li>
+        <li class="prop">label</li>
+    </ul>
+    <p>
+        Lists of checkboxes or radio buttons follow the same structure as the previous examples, only here your inputs should be wrapped by an <code>&ltul&gt</code> with the <code>control</code> class, in place of the <code>&ltdiv&gt</code>. Then, each of your checkbox/label pairs needs to be inside a <code>&ltli&gt</code>.
+    </p>
+
+    <h2>Checkboxes</h2>
+
+{% highlight html %}
+<form class="ink-form">
+    <fieldset>
+        <legend>Rock Bands</legend>
+        <div class="control-group">
+            <p class="label">Please select one or more options</p>
+            <ul class="control unstyled">
+                <li><input type="checkbox" id="cb4" name="cb4" value=""><label for="cb4">Chimaira</label></li>
+                <li><input type="checkbox" id="cb3" name="cb3" value=""><label for="cb3">Metallica</label></li>
+                <li><input type="checkbox" id="cb4" name="cb4" value=""><label for="cb4">Motörhead</label></li>
+                <li><input type="checkbox" id="cb2" name="cb2" value=""><label for="cb2">Pantera</label></li>
+                <li><input type="checkbox" id="cb1" name="cb1" value=""><label for="cb1">Slayer</label></li>
+            </ul>
+        </div>
+    </fieldset>
+</form>{% endhighlight %}
+
+    <p class="example-title">Example</p>
+    <div class="example bottom-space">
+        <form class="ink-form">
+            <fieldset>
+                <legend>Rock Bands</legend>
+                <div class="control-group">
+                    <p class="label">Please select one or more options</p>
+                    <ul class="control unstyled">
+                        <li><input type="checkbox" id="cb4" name="cb4" value=""><label for="cb4">Chimaira</label></li>
+                        <li><input type="checkbox" id="cb3" name="cb3" value=""><label for="cb3">Metallica</label></li>
+                        <li><input type="checkbox" id="cb4" name="cb4" value=""><label for="cb4">Motörhead</label></li>
+                        <li><input type="checkbox" id="cb2" name="cb2" value=""><label for="cb2">Pantera</label></li>
+                        <li><input type="checkbox" id="cb1" name="cb1" value=""><label for="cb1">Slayer</label></li>
+                    </ul>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+
+    <h2>Radio buttons</h2>
+{% highlight html %}
+<form class="ink-form">
+    <form class="ink-form">
+        <fieldset>
+            <legend>Pick a card</legend>
+            <div class="control-group">
+                <p class="label">Please select one of these options</p>
+                <ul class="control unstyled">
+                    <li><input type="radio" id="rb1" name="rb" value=""><label for="rb1">Ace of Spades</label></li>
+                    <li><input type="radio" id="rb2" name="rb" value=""><label for="rb2">Queen of Diamonds</label></li>
+                    <li><input type="radio" id="rb2" name="rb" value=""><label for="rb2">Queen of Spades</label></li>
+                    <li><input type="radio" id="rb3" name="rb" value=""><label for="rb3">Jack of Hearts</label></li>
+                    <li><input type="radio" id="rb4" name="rb" value=""><label for="rb4">King of Clubs</label></li>
+                </ul>
+            </div>
+        </fieldset>
+    </form>
+</form>{% endhighlight %}
+
+    <p class="example-title">Example</p>
+    <div class="example">
+        <form class="ink-form">
+            <fieldset>
+                <legend>Pick a card</legend>
+                <div class="control-group">
+                    <p class="label">Please select one of these options</p>
+                    <ul class="control unstyled">
+                        <li><input type="radio" id="rb1" name="rb" value=""><label for="rb1">Ace of Spades</label></li>
+                        <li><input type="radio" id="rb2" name="rb" value=""><label for="rb2">Queen of Diamonds</label></li>
+                        <li><input type="radio" id="rb2" name="rb" value=""><label for="rb2">Queen of Spades</label></li>
+                        <li><input type="radio" id="rb3" name="rb" value=""><label for="rb3">Jack of Hearts</label></li>
+                        <li><input type="radio" id="rb4" name="rb" value=""><label for="rb4">King of Clubs</label></li>
+                    </ul>
+                </div>
+            </fieldset>
+        </form>
+    </div>
 
 </section>
