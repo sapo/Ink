@@ -35,6 +35,9 @@
  * Navigation class names
  */
 /**
+ * Dropdown class names
+ */
+/**
  * Tables class names
  */
 /** 
@@ -182,11 +185,52 @@
   margin-bottom: 1.75em;
 }
 
+.column-group.horizontal-gutters {
+  margin-left: -1.75em;
+}
+.column-group.horizontal-gutters > [class*=large-], .column-group.horizontal-gutters > [class*=all-] {
+  padding-left: 1.75em;
+}
+
+.column-group.vertical-gutters > [class*=large-], .column-group.vertical-gutters > [class*=all-] {
+  margin-bottom: 1.75em;
+}
+
+.column-group.double-gutters {
+  margin-left: -3.5em;
+}
+.column-group.double-gutters > [class*=large-], .column-group.double-gutters > [class*=all-] {
+  padding-left: 3.5em;
+  margin-bottom: 3.5em;
+}
+
+.column-group.double-horizontal-gutters {
+  margin-left: -3.5em;
+}
+.column-group.double-horizontal-gutters > [class*=large-], .column-group.double-horizontal-gutters > [class*=all-] {
+  padding-left: 3.5em;
+}
+
+.column-group.double-vertical-gutters > [class*=large-], .column-group.double-vertical-gutters > [class*=all-] {
+  margin-bottom: 3.5em;
+}
+
 .column-group.half-gutters {
   margin-left: -0.875em;
 }
 .column-group.half-gutters > [class*=large-], .column-group.half-gutters > [class*=all-] {
   padding-left: 0.875em;
+  margin-bottom: 0.875em;
+}
+
+.column-group.half-horizontal-gutters {
+  margin-left: -0.875em;
+}
+.column-group.half-horizontal-gutters > [class*=large-], .column-group.half-horizontal-gutters > [class*=all-] {
+  padding-left: 0.875em;
+}
+
+.column-group.half-vertical-gutters > [class*=large-], .column-group.half-vertical-gutters > [class*=all-] {
   margin-bottom: 0.875em;
 }
 
@@ -198,12 +242,53 @@
   margin-bottom: 0.4375em;
 }
 
+.column-group.quarter-horizontal-gutters {
+  margin-left: -0.4375em;
+}
+.column-group.quarter-horizontal-gutters > [class*=large-], .column-group.quarter-horizontal-gutters > [class*=all-] {
+  padding-left: 0.4375em;
+}
+
+.column-group.quarter-vertical-gutters > [class*=large-], .column-group.quarter-vertical-gutters > [class*=all-] {
+  margin-bottom: 0.4375em;
+}
+
 .column-group.large-gutters {
   margin-left: -1.75em;
 }
 .column-group.large-gutters > [class*=large-], .column-group.large-gutters > [class*=all-] {
   padding-left: 0.4375em;
   margin-bottom: 0.4375em;
+}
+
+.column-group.large-horizontal-gutters {
+  margin-left: -1.75em;
+}
+.column-group.large-horizontal-gutters > [class*=large-], .column-group.large-horizontal-gutters > [class*=all-] {
+  padding-left: 1.75em;
+}
+
+.column-group.large-vertical-gutters > [class*=large-], .column-group.large-vertical-gutters > [class*=all-] {
+  margin-bottom: 1.75em;
+}
+
+.column-group.large-double-gutters {
+  margin-left: -3.5em;
+}
+.column-group.large-double-gutters > [class*=large-], .column-group.large-double-gutters > [class*=all-] {
+  padding-left: 3.5em;
+  margin-bottom: 3.5em;
+}
+
+.column-group.large-double-horizontal-gutters {
+  margin-left: -3.5em;
+}
+.column-group.large-double-horizontal-gutters > [class*=large-], .column-group.large-double-horizontal-gutters > [class*=all-] {
+  padding-left: 3.5em;
+}
+
+.column-group.large-double-vertical-gutters > [class*=large-], .column-group.large-double-vertical-gutters > [class*=all-] {
+  margin-bottom: 3.5em;
 }
 
 .column-group.large-half-gutters {
@@ -214,11 +299,33 @@
   margin-bottom: 0.875em;
 }
 
+.column-group.large-half-horizontal-gutters {
+  margin-left: -0.875em;
+}
+.column-group.large-half-horizontal-gutters > [class*=large-], .column-group.large-half-horizontal-gutters > [class*=all-] {
+  padding-left: 0.875em;
+}
+
+.column-group.large-half-vertical-gutters > [class*=large-], .column-group.large-half-vertical-gutters > [class*=all-] {
+  margin-bottom: 0.875em;
+}
+
 .column-group.large-quarter-gutters {
   margin-left: -0.4375em;
 }
 .column-group.large-quarter-gutters > [class*=large-], .column-group.large-quarter-gutters > [class*=all-] {
   padding-left: 0.4375em;
+  margin-bottom: 0.4375em;
+}
+
+.column-group.large-quarter-horizontal-gutters {
+  margin-left: -0.4375em;
+}
+.column-group.large-quarter-horizontal-gutters > [class*=large-], .column-group.large-quarter-horizontal-gutters > [class*=all-] {
+  padding-left: 0.4375em;
+}
+
+.column-group.large-quarter-vertical-gutters > [class*=large-], .column-group.large-quarter-vertical-gutters > [class*=all-] {
   margin-bottom: 0.4375em;
 }
 

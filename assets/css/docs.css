@@ -796,7 +796,7 @@ span.label.context-aware:after {
 }
 span.label.halves-quarters:after {
   color: #ff9c00;
-  content: "Halves & Quarters";
+  content: "Double, Halves & Quarters";
   text-transform: uppercase;
 }
 
