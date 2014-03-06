@@ -145,7 +145,7 @@
   border-top: 1px solid #ddd;
 }
 .sidebar.ink-navigation ul.menu.vertical li.heading a {
-  font-size: 1.2em;
+  font-size: 1.25em;
   padding: 1em 0 0;
   color: #555555;
 }
@@ -796,7 +796,7 @@ span.label.context-aware:after {
 }
 span.label.halves-quarters:after {
   color: #ff9c00;
-  content: "Halves & Quarters";
+  content: "Double, Halves & Quarters";
   text-transform: uppercase;
 }
 
@@ -845,14 +845,6 @@ footer .socialplugins {
   -o-border-radius: 2px;
   border-radius: 2px;
 }
-footer .copyright {
-  *zoom: 1;
-}
-footer .copyright:after {
-  content: "";
-  display: table;
-  clear: both;
-}
 footer .copyright .SAPOlogo {
   background: url("../img/SAPOlogo.png") no-repeat;
   text-indent: -9999px;
@@ -872,9 +864,6 @@ footer .copyright .PTClogo {
 footer .copyright .PTClogo small {
   display: block;
   line-height: 1.6;
-}
-footer h5 {
-  margin-top: .5em;
 }
 footer .credits {
   margin: 0;

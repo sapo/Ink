@@ -42,6 +42,19 @@ sections:
       - title: Typography
         topics:
           - title: Horizontal menu
+      - title: Images
+        topics:
+          - title: Introduction
+          - title: Captions
+          - title: Targeting multiple devices
+      - title: Tables
+        topics:
+          - title: Usaging
+          - title: Alternating row colors
+          - title: Highlighting rows
+          - title: Borders
+          - title: Row colors
+          - title: Combining styles
       - title: Forms
         topics:
           - title: Block forms

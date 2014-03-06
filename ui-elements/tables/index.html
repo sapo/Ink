@@ -1,22 +1,14 @@
 ---
 layout: documentation
 title: Tables
-description: ???
-tags: grid
+description: Tabular data display
+tags: table, tables, tabular data, hover, alternating, highlight, bordered
 site_root: ../../
 ---
 
 <section id="introduction">
   <h1 class="fw-300">Introduction</h1>
-  <p class="fw-300">Our layout grid was built to allow precise control on how horizontal space is divided and on targeting several screen sizes. To accomplish this we use percentages as our base units and css @media queries to allow you to decide what width should an element take when viewed in a specific screen size.</p>
-  <p class="fw-300">Our default layout breakpoints are:</p>
-  <ul class="unstyled" id="breakpoints">
-    <li><code>tiny</code> for screens widths up to 320px.</li>
-    <li><code>small</code> for screen widths between 321 and 600 pixels.</li>
-    <li><code>medium</code> for screen widths between 601 and 960 pixels.</li>
-    <li><code>large</code> for screen widths between 961 and 1200 pixels.</li>
-    <li><code>extra-large</code> for screen widths above 1201 pixels.</li>
-  </ul>
+  <p class="fw-300">Ink provides a way to give styling and interaction to tabular data, without interfering with the HTML table element default behaviour.</p>
   <table class="props css">
     <caption>CSS CLASSES</caption>
     <thead>
@@ -27,63 +19,444 @@ site_root: ../../
     </thead>
     <tbody>
         <tr>
-          <td><code>ink-grid</code></td>
-          <td>The grid root class. <span class="label mandatory"></span></td>
+          <td><code>ink-table</code></td>
+          <td>The table root class. <span class="label mandatory"></span></td>
         </tr>
         <tr>
-          <td><code>column-group</code></td>
-          <td>Groups layout columns. <span class="label mandatory"></span></td>
+          <td><code>alternating</code></td>
+          <td>Sets a darker darker background color on odd number rows.</td>
         </tr>
         <tr>
-          <td><code>gutters</code></td>
-          <td>Add space between layout columns. <span class="label breakpoint-aware"></span><span class="label halves-quarters"></span></td>
+          <td><code>hover</code></td>
+          <td>Highlights table rows when the mouse pointer hovers a row.</td>
         </tr>
         <tr>
-          <td><code>all-x%</code></td>
-          <td>Sets x% element width for all breakpoints.</td>
+          <td><code>bordered</code></td>
+          <td>Applies borders to all table cells.</td>
         </tr>
         <tr>
-          <td><code>tiny-x%</code></td>
-          <td>Sets x% element width for the '<a href="#breakpoints">tiny</a>' breakpoint.</td>
-        </tr>
-        <tr>
-          <td><code>small-x%</code></td>
-          <td>Sets x% element width for the '<a href="#breakpoints">small</a>' breakpoint.</td>
-        </tr>
-        <tr>
-          <td><code>medium-x%</code></td>
-          <td>Sets x% element width for the '<a href="#breakpoints">medium</a>' breakpoint.</td>            
-        </tr>
-        <tr>
-          <td><code>large-x%</code></td>
-          <td>Sets x% element width for the '<a href="#breakpoints">large</a>' breakpoint.</td>           
-        </tr>
-        <tr>
-          <td><code>extra-large-x%</code></td>
-          <td>Sets element x% width for the '<a href="#breakpoints">extra-large</a>' breakpoint.</td> 
-        </tr>
-        <tr>
-          <td><code>show</code></td>
-          <td>Shows a previously hidden element. <span class="label breakpoint-aware"></span></td> 
-        </tr>
-        <tr>
-          <td><code>hide</code></td>
-          <td>Hides an element. <span class="label breakpoint-aware"></span></td> 
+          <td>
+            <code>red</code><br>
+            <code>green</code><br>
+            <code>blue</code><br>
+            <code>orange</code><br>
+            <code>grey</code><br>
+            <code>black</code><br>
+            <code>yellow</code>
+          </td>
+          <td>Sets a background color on a table row<td>
         </tr>
     </tbody>    
   </table>
-  <ul class="unstyled">
-    <li><span class="label mandatory"></span>: This class must be used for the {{page.title | downcase }} to work.</li>
-    <li><span class="label breakpoint-aware"></span>: This class has breakpoint dependent variants, e.g. <code>large-class-name</code>.</li>
-    <li><span class="label halves-quarters"></span>: This class has half and quarter size variants, e.g. <code>half-class-name</code>.</li>
-  </ul>
+<ul class="unstyled">
+  <li><span class="label mandatory"></span>: This class must be used for the {{ page.title | downcase }} to work.</li>
+</ul>
 </section>
-<section id="visibility">
-  <h1>Visibility</h1>
-  <ul class="css props">
-    <li class="heading">Css classes:</li>
-    <li><code>show</code> <span class="label breakpoint-aware"></span></li>
-    <li><code>hide</code> <span class="label breakpoint-aware"></span></li>
+<section id="usage">
+  <h1>Usage</h1>
+  <ul class="css props inline">
+    <li class="heading">Css classes: </li>
+    <li class="prop">ink-table</li>
   </ul>
-  <p>With Ink, you can control the visibility of any element based globally of based on a specific breakpoint.</p>
+  <p>To add Inks style rules to your tables, begin by adding the <code>ink-table</code> css class to your table elements:</p>
+{% highlight html %}
+<table class="ink-table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>John</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Will</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Steve</td>
+    </tr>
+  </tbody>
+</table>
+{% endhighlight %}
+<p>This will result in a table that gets our default table style, that looks like this:</p>
+<p class="example-title">Example</p>
+<div class="example">
+<table class="ink-table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>John</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Will</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Steve</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>As you can see, by default table headings have centered text, so if you wish to change the text alignment you can use on of our content alignment css classes: </p>
+{% highlight html %}
+<table class="ink-table">
+  <thead>
+    <tr>
+      <th class="align-left">ID</th>
+      <th class="align-left">Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>John</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Will</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Steve</td>
+    </tr>
+  </tbody>
+</table>
+{% endhighlight %}
+<p>Resulting in:</p>
+<p class="example-title">Example</p>
+<div class="example">
+<table class="ink-table">
+  <thead>
+    <tr>
+      <th class="align-left">ID</th>
+      <th class="align-left">Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>John</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Will</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Steve</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</section>
+<section id="alternating-row-colors">
+  <h1>Alternating row colors</h1>
+  <ul class="css props inline">
+    <li class="heading">Css classes: </li>
+    <li class="prop">alternating</li>
+  </ul>
+  <p>Adding the <code>alternating</code> css class to your table will add a darker background color to every odd numbered row. This can be useful to distinguish between rows, in large and, or complex tables.</p>
+{% highlight html %}
+<table class="ink-table alternating">
+  <thead>
+    <tr>
+      <th class="align-left">ID</th>
+      <th class="align-left">Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>John</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Will</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Steve</td>
+    </tr>
+  </tbody>
+</table>
+{% endhighlight %}
+<p>Like so:</p>
+<p class="example-title">Example</p>
+<div class="example">
+<table class="ink-table alternating">
+  <thead>
+    <tr>
+      <th class="align-left">ID</th>
+      <th class="align-left">Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>John</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Will</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Steve</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</section>
+<section id="highlighting-rows">
+  <h1>Highlighting table rows</h1>
+  <ul class="css props inline">
+    <li class="heading">Css classes: </li>
+    <li class="prop">hover</li>
+  </ul>
+  <p>Adding the <code>hover</code> css class to the table will cause table rows to be highlighted with a background color when hovered. Mouse pointer is set to the hand pointer.</p>
+  {% highlight html %}
+<table class="ink-table hover">
+  <thead>
+    <tr>
+      <th class="align-left">ID</th>
+      <th class="align-left">Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>John</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Will</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Steve</td>
+    </tr>
+  </tbody>
+</table>
+{% endhighlight %}
+<p class="example-title">Example</p>
+<div class="example">
+<table class="ink-table hover">
+  <thead>
+    <tr>
+      <th class="align-left">ID</th>
+      <th class="align-left">Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>John</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Will</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Steve</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</section>
+<section id="borders">
+  <h1>Borders</h1>
+  <ul class="css props inline">
+    <li class="heading">Css classes: </li>
+    <li class="prop">bordered</li>
+  </ul>
+  <p>The <code>bordered</code> class adds borders around all table cells, headings and footers.</p>
+{% highlight html %}
+<table class="ink-table bordered">
+  <thead>
+    <tr>
+      <th class="align-left">ID</th>
+      <th class="align-left">Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>John</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Will</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Steve</td>
+    </tr>
+  </tbody>
+</table>
+{% endhighlight %}
+<p class="example-title">Example</p>
+<div class="example">
+<table class="ink-table bordered">
+  <thead>
+    <tr>
+      <th class="align-left">ID</th>
+      <th class="align-left">Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>John</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Will</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Steve</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</section>
+<section id="row-colors">
+  <h1>Row colors</h1>
+  <ul class="css props inline">
+    <li class="heading">Css classes: </li>
+    <li class="prop">red</li>
+    <li class="prop">green</li>
+    <li class="prop">blue</li>
+    <li class="prop">orange</li>
+    <li class="prop">grey</li>
+    <li class="prop">black</li>
+    <li class="prop">yellow</li>
+  </ul>
+  <p>You can use one of Inks base colors as the background for a table row by adding one of the above classes:</p>
+  {% highlight html %}
+<table class="ink-table hover">
+  <thead>
+    <tr>
+      <th class="align-left">ID</th>
+      <th class="align-left">Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="red">
+      <td>1</td>
+      <td>John</td>
+    </tr>
+    <tr class="blue">
+      <td>2</td>
+      <td>Will</td>
+    </tr>
+    <tr class="green">
+      <td>3</td>
+      <td>Steve</td>
+    </tr>
+  </tbody>
+</table>
+{% endhighlight %}
+<p class="example-title">Example</p>
+<div class="example">
+<table class="ink-table hover">
+  <thead>
+    <tr>
+      <th class="align-left">ID</th>
+      <th class="align-left">Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="red">
+      <td>1</td>
+      <td>John</td>
+    </tr>
+    <tr class="blue">
+      <td>2</td>
+      <td>Will</td>
+    </tr>
+    <tr class="green">
+      <td>3</td>
+      <td>Steve</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</section>
+<section id="combining-styles">
+  
+  <h1>Combining multiple styles</h1>
+  <ul class="css props inline">
+    <li class="heading">Css classes: </li>
+    <li class="prop">red</li>
+    <li class="prop">green</li>
+    <li class="prop">blue</li>
+    <li class="prop">orange</li>
+    <li class="prop">grey</li>
+    <li class="prop">black</li>
+    <li class="prop">yellow</li>
+  </ul>
+  <p>If necessary, you can combine all of the above options:</p>
+{% highlight html %}
+<table class="ink-table bordered hover alternating">
+  <thead>
+    <tr>
+      <th class="align-left">ID</th>
+      <th class="align-left">Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="orange">
+      <td>1</td>
+      <td>John</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Will</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Steve</td>
+    </tr>
+  </tbody>
+</table>
+{% endhighlight %}
+<p class="example-title">Example</p>
+<div class="example">
+<table class="ink-table bordered hover alternating">
+  <thead>
+    <tr>
+      <th class="align-left">ID</th>
+      <th class="align-left">Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="orange">
+      <td>1</td>
+      <td>John</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Will</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Steve</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 </section>

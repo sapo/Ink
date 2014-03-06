@@ -10,9 +10,9 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
 
       this._name = 'Ink Drawer',
 
-      this._options = Common.options (
+      this._options = Ink.extendObj(
       {
-        rootElement: ['String','.ink-drawer'],
+        parentSelector: ['String','.ink-drawer'],
         leftDrawer: ['String','.left-drawer'],
         leftTrigger: ['String','.left-drawer-trigger'],
         rightDrawer: ['String','.right-drawer'],
@@ -27,23 +27,18 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
 
       // make sure we have the required elements acording to the config options
 
-      this._rootElement = Ink.s(this._options.rootElement);
-      this._contentDrawers = Ink.ss(this._options.contentDrawer);
+      this._contentDrawers = Ink.ss(this._options.contentDrawer[1]);
 
-      this._leftDrawer = Ink.s(this._options.leftDrawer);
-      this._leftTriggers = Ink.ss(this._options.leftTrigger);
+      this._leftDrawer = Ink.s(this._options.leftDrawer[1]);
+      this._leftTriggers = Ink.ss(this._options.leftTrigger[1]);
 
-      this._rightDrawer = Ink.s(this._options.rightDrawer);
-      this._rightTriggers = Ink.ss(this._options.rightTrigger);
+      this._rightDrawer = Ink.s(this._options.rightDrawer[1]);
+      this._rightTriggers = Ink.ss(this._options.rightTrigger[1]);
 
-
-      if( !this._rootElement ) {
-        console.warn( this._name + ': Could not find any "' + this._options.rootElement + '" elements on this page. Please make sure you have at least one.' );
-      }
 
 
       if(this._contentDrawers.length == 0) {
-        console.warn( this._name + ': Could not find any "' + this._options.contentDrawer + '" elements on this page. Please make sure you have at least one.' );
+        console.warn( this._name + ': Could not find any "' + this._options.contentDrawer[1] + '" elements on this page. Please make sure you have at least one.' );
       }
 
       switch (this._options.sides) {
@@ -51,43 +46,43 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
         case 'both':
 
         if( !this._leftDrawer ){
-          console.warn( this._name + ': You chose to use navigation drawers on both sides of the screeen, however we could not find the "' + this._options.leftDrawer + '" element on this page. Please make sure it exists.' );            
+          console.warn( this._name + ': Could not find the "' + this._options.leftDrawer[1] + '" element on this page. Please make sure it exists.' );            
         } 
 
         if(this._leftTriggers.length == 0){
-          console.warn( this._name + ': You chose to use navigation drawers on both sides of the screeen, however we could not find the "' + this._options.leftTrigger + '" element on this page. Please make sure it exists.' );            
+          console.warn( this._name + ': Could not find the "' + this._options.leftTrigger[1] + '" element on this page. Please make sure it exists.' );            
         } 
 
         if( !this._rightDrawer ){
-          console.warn( this._name + ': You chose to use navigation drawers on both sides of the screeen, however we could not find the "' + this._options.rightDrawer + '" element on this page. Please make sure it exists.' );            
+          console.warn( this._name + ': Could not find the "' + this._options.rightDrawer[1] + '" element on this page. Please make sure it exists.' );            
         } 
 
         if( this._rightTriggers.length == 0 ){
-          console.warn( this._name + ': You chose to use navigation drawers on both sides of the screeen, however we could not find the "' + this._options.rightTrigger + '" element on this page. Please make sure it exists.' );            
+          console.warn( this._name + ': Could not find the "' + this._options.rightTrigger[1] + '" element on this page. Please make sure it exists.' );            
         }
-        this._triggers =  this._options.leftTrigger + ', ' + this._options.rightTrigger + ', ' + this._options.contentDrawer;
+        this._triggers =  this._options.leftTrigger[1] + ', ' + this._options.rightTrigger[1] + ', ' + this._options.contentDrawer[1];
         break;
 
         case 'left':
         if( !this._leftDrawer ){
-          console.warn( this._name + ': You chose to use navigation drawers on both sides of the screeen, however we could not find the "' + this._options.leftDrawer + '" element on this page. Please make sure it exists.' );            
+          console.warn( this._name + ': Could not find the "' + this._options.leftDrawer[1] + '" element on this page. Please make sure it exists.' );            
         } 
 
         if(this._leftTriggers.length == 0){
-          console.warn( this._name + ': You chose to use navigation drawers on both sides of the screeen, however we could not find the "' + this._options.leftTrigger + '" element on this page. Please make sure it exists.' );            
+          console.warn( this._name + ': Could not find the "' + this._options.leftTrigger[1] + '" element on this page. Please make sure it exists.' );            
         }
-        this._triggers = this._options.leftTrigger + ', ' + this._options.contentDrawer + ', ' + this._options.leftDrawer;
+        this._triggers = this._options.leftTrigger[1] + ', ' + this._options.contentDrawer[1];
         break;
 
         case 'right':
         if( !this._rightDrawer ){
-          console.warn( this._name + ': You chose to use navigation drawers on both sides of the screeen, however we could not find the "' + this._options.rightDrawer + '" element on this page. Please make sure it exists.' );            
+          console.warn( this._name + ': Could not find the "' + this._options.rightDrawer[1] + '" element on this page. Please make sure it exists.' );            
         } 
 
         if( this._rightTriggers.length == 0 ){
-          console.warn( this._name + ': You chose to use navigation drawers on both sides of the screeen, however we could not find the "' + this._options.rightTrigger + '" element on this page. Please make sure it exists.' );            
+          console.warn( this._name + ': Could not find the "' + this._options.rightTrigger[1] + '" element on this page. Please make sure it exists.' );            
         } 
-        this._triggers = this._options.rightTrigger + ', ' + this._options.contentDrawer;
+        this._triggers = this._options.rightTrigger[1] + ', ' + this._options.contentDrawer[1];
         break;
       }
 
@@ -97,67 +92,45 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
 
       this._handlers = {
         click:   Ink.bindEvent(this._onClick, this),
-        afterTransition: Ink.bindEvent(this._afterTransition, this),
-        touchmove: Ink.bindEvent(this._onTouchMove, this),
+        afterTransition: Ink.bindEvent(this._afterTransition, this)
       };
-
       this._delay = 10;
       this._addEvents();
-
     },
 
-    _onClick: function(ev){
-      if(Selector.matchesSelector(ev.currentTarget,this._options.leftTrigger)){
+    _onClick: function(ev){                
+
+      if(Selector.matchesSelector(ev.currentTarget,this._options.leftTrigger[1])){
         if(this._isOpen) {
           this.close();
         } else {
           this.open('left');
         }            
-      } else if(Selector.matchesSelector(ev.currentTarget,this._options.rightTrigger)){
+      } else if(Selector.matchesSelector(ev.currentTarget,this._options.rightTrigger[1])){
         if(this._isOpen) {
           this.close();
         } else {
           this.open('right');
         }          
-      } else if(Selector.matchesSelector(ev.currentTarget,this._options.contentDrawer) ){
+      } else if(Selector.matchesSelector(ev.currentTarget,this._options.contentDrawer[1])){
         if(this._options.closeOnContentClick && this._isOpen) {
           this.close();
         }
       }
     },
 
-    _onTouchMove: function (ev) {
-
-        // console.log('_onTouchMove');
-        // console.log(ev);
-        // console.log(ev.currentTartget);
-
-        if( this._isOpen ) {
-          if( ! Selector.matchesSelector(ev.currentTarget,'.left-drawer') ){        
-            // ev.preventDefault();
-          }
-        }
-    },
-
-    _afterTransition: function() {
+    _afterTransition: function(){
       if(!this._isOpen){
         if(this._direction == 'left') {
           Css.removeClassName(this._leftDrawer,'show');
         } else {
-          Css.removeClassName(this._rightDrawer,'show');          
+          Css.removeClassName(this._rightDrawer,'show');            
         }
       }
     },
 
-    _addEvents: function () {
-      Event.on( document.body, 'click', this._triggers, this._handlers.click);
-      // if(this._options.sides == 'both'){        
-        // Event.on( document, 'touchmove', this._options.leftDrawer, + ', ' + this._options.rightDrawer + ', body', this._handlers.touchmove );
-      // } else if (this._options.sides == 'left') {
-      Event.on( document.body, 'touchmove', this._handlers.touchmove );
-      // } else if (this._options.sides == 'right') {
-        // Event.on( document, 'touchmove', this._options.rightDrawer + ', body', this._handlers.touchmove );
-      // }
+    _addEvents: function(){
+      Event.on(document.body, 'click', this._triggers, this._handlers.click); 
     },
 
     open: function(direction) {
@@ -175,8 +148,6 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
       setTimeout(Ink.bind(function(){         
         Css.addClassName(document.body, this._options.mode + ' '  + direction);
       },this), this._delay);
-
-      // this._contentDrawers[0].style.height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0) + 'px';
 
     },
 

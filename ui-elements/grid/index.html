@@ -125,7 +125,7 @@ site_root: ../../
 </div>
 
 <p>The example above creates a 50/50 two column layout for all screens.</p>
-<p>Grid elements can be nested to create complex layouts:</p>
+<p>Grid elements can be nested to create more intricate layouts:</p>
 {% highlight html %}
 <div class="ink-grid">
   <div class="column-group">
@@ -191,12 +191,15 @@ site_root: ../../
     <li class="heading">Css classes:</li>
     <li><code>gutters</code> <span class="label breakpoint-aware"></span><span class="label halves-quarters"></span></li>
   </ul>
-  <p>Gutters are the space between columns of printed text. In ink we use the term to describe the space between layout columns.</p>
-  <p>Horizontal spacing is created by adding padding to the left of the columns and using the <a href="http://quirksmode.org/css/user-interface/boxsizing.html">border-box</a> box model. Vertical spacing is created with a bottom margin. So, if you want to add a background to a column, you'll need to add an additional element inside it.</p>
+  <blockquote>
+    Gutters are the space between columns of printed text.
+  </blockquote>
+  <p>In ink we use the term to describe the space between layout columns.</p>
+  <p><i class="fa fa-leaf"></i> Horizontal spacing is created by adding padding to the left of the columns and using the <a href="http://quirksmode.org/css/user-interface/boxsizing.html">border-box</a> box model. Vertical spacing is created with a bottom margin. So, if you want to add a background to a column, you'll need to add an additional element inside it.</p>
   <p>To add space between a group of columns in your layout add the <code>gutters</code> class to the parent <code>column-group</code> element. You can also choose the amount of gutter space by using <code>half-gutters</code> or <code>quarter-gutters</code> classes to halve or quarter your column gutters.</p>
 {% highlight html %}
 <div class="ink-grid">
-  <div class="column-group gutters">
+  <div class="column-group horizontal-gutters">
     <div class="all-50">
       ...
     </div>
@@ -209,7 +212,7 @@ site_root: ../../
 <p class="example-title">Example</p>
 <div class="example">
   <div class="ink-grid">
-    <div class="column-group gutters">
+    <div class="column-group horizontal-gutters">
       <div class="all-50">
         <div class="column">50%</div>
       </div>
@@ -222,7 +225,7 @@ site_root: ../../
 <p>Gutters are applied only to the <code>column-group</code> direct children. Nested elements are left untouched.</p>
 {% highlight html %}
 <div class="ink-grid">
-  <div class="column-group large-half-gutters">
+  <div class="column-group large-half-horizontal-gutters">
     <div class="all-50">
       ...
     </div>
@@ -235,7 +238,7 @@ site_root: ../../
 <p class="example-title">Example</p>
 <div class="example">
   <div class="ink-grid">
-  <div class="column-group large-half-gutters">
+  <div class="column-group large-half-horizontal-gutters">
     <div class="all-50">
       <div class="column">50%</div>
     </div>
@@ -261,7 +264,7 @@ site_root: ../../
   <p>Handling layout changes for multiple screen sizes is as simple as adding a few more classes to your markup.</p>
 {% highlight html %}
 <div class="ink-grid">
-  <div class="column-group gutters">
+  <div class="column-group horizontal-gutters">
     <div class="extra-large-30 large-40 medium-50 small-70 tiny-100">
       <div class="column">50%</div>
     </div>
@@ -274,7 +277,7 @@ site_root: ../../
 <p class="example-title">Example</p>
 <div class="example">
   <div class="ink-grid">
-    <div class="column-group gutters">
+    <div class="column-group horizontal-gutters">
       <div class="extra-large-30 large-40 medium-50 small-70 tiny-100">
         <div class="column">
           <span class="hide-all show-extra-large">extra large 30%</span>
@@ -296,7 +299,7 @@ site_root: ../../
     </div>
   </div>
 </div>
-<p>To set the width of a grid column just add the desired width percentage class for the targeted breakpoint: <code>large-50 small-100 ...</code></p>
+<p>To set the width of a grid column just add the desired width percentage class for the targeted breakpoint: <code>large-50 small-100 ...</code>.</p>
 <p><i class="fa fa-leaf"></i> If you need your layout to work on multiple screens, you'll have to declare the width for all available breakpoints.</p>
 <p>You can also set a width for all breakpoints by using the <code>all-</code> prefix: {% highlight html %}<div class="all-50 small-100"></div>{% endhighlight %}</p>
 <p>Try resizing your browser window to see it working.</p>

@@ -42,11 +42,65 @@
         }
     }
 
+    .#{$grid-column-group-class-name}.#{$grid-horizontal-gutters-class-name} {
+        margin-left: $gutter-width * -1;
+        & > [class*=#{$class-name}-],
+        & > [class*=all-] {
+            padding-left: $gutter-width;
+        }
+    }
+
+    .#{$grid-column-group-class-name}.#{$grid-vertical-gutters-class-name} {
+        & > [class*=#{$class-name}-],
+        & > [class*=all-] {
+            margin-bottom: $gutter-width;
+        }
+    }
+
+    .#{$grid-column-group-class-name}.#{$grid-double-gutters-class-name} {
+        margin-left: ($gutter-width * 2) * -1;
+        & > [class*=#{$class-name}-],
+        & > [class*=all-] {
+            padding-left: ($gutter-width * 2);
+            margin-bottom: ($gutter-width * 2);
+        }
+    }
+
+    .#{$grid-column-group-class-name}.#{$grid-double-horizontal-gutters-class-name} {
+        margin-left: ($gutter-width * 2) * -1;
+        & > [class*=#{$class-name}-],
+        & > [class*=all-] {
+            padding-left: ($gutter-width * 2);
+        }
+    }
+
+    .#{$grid-column-group-class-name}.#{$grid-double-vertical-gutters-class-name} {
+        & > [class*=#{$class-name}-],
+        & > [class*=all-] {
+            margin-bottom: ($gutter-width * 2);
+        }
+    }
+
     .#{$grid-column-group-class-name}.#{$grid-half-gutters-class-name} {
         margin-left: ( $gutter-width / 2 ) * -1;
         & > [class*=#{$class-name}-],
         & > [class*=all-] {
             padding-left: ( $gutter-width / 2);
+            margin-bottom: ( $gutter-width / 2);
+        } 
+    }
+
+    .#{$grid-column-group-class-name}.#{$grid-half-horizontal-gutters-class-name} {
+        margin-left: ( $gutter-width / 2 ) * -1;
+        & > [class*=#{$class-name}-],
+        & > [class*=all-] {
+            padding-left: ( $gutter-width / 2);
+        } 
+    }
+
+    .#{$grid-column-group-class-name}.#{$grid-half-vertical-gutters-class-name} {
+        & > [class*=#{$class-name}-],
+        & > [class*=all-] {
             margin-bottom: ( $gutter-width / 2);
         } 
     }
@@ -60,12 +114,66 @@
         } 
     }
 
+    .#{$grid-column-group-class-name}.#{$grid-quarter-horizontal-gutters-class-name} {
+        margin-left: ( $gutter-width / 4 ) * -1;
+        & > [class*=#{$class-name}-],
+        & > [class*=all-] {
+            padding-left: ( $gutter-width / 4);
+        } 
+    }
+
+    .#{$grid-column-group-class-name}.#{$grid-quarter-vertical-gutters-class-name} {
+        & > [class*=#{$class-name}-],
+        & > [class*=all-] {
+            margin-bottom: ( $gutter-width / 4);
+        } 
+    }
+
     .#{$grid-column-group-class-name}.#{$class-name}-#{$grid-gutters-class-name} {
         margin-left: $gutter-width * -1;
         & > [class*=#{$class-name}-],
         & > [class*=all-] {
             padding-left: ( $gutter-width / 4);
             margin-bottom: ( $gutter-width / 4);
+        } 
+    }
+
+    .#{$grid-column-group-class-name}.#{$class-name}-#{$grid-horizontal-gutters-class-name} {
+        margin-left: $gutter-width * -1;
+        & > [class*=#{$class-name}-],
+        & > [class*=all-] {
+            padding-left: $gutter-width ;
+        } 
+    }
+
+    .#{$grid-column-group-class-name}.#{$class-name}-#{$grid-vertical-gutters-class-name} {
+        & > [class*=#{$class-name}-],
+        & > [class*=all-] {
+            margin-bottom: $gutter-width;
+        } 
+    }
+
+    .#{$grid-column-group-class-name}.#{$class-name}-#{$grid-double-gutters-class-name} {
+        margin-left: ($gutter-width * 2) * -1;
+        & > [class*=#{$class-name}-],
+        & > [class*=all-] {
+            padding-left: ( $gutter-width * 2);
+            margin-bottom: ( $gutter-width * 2);
+        } 
+    }
+
+    .#{$grid-column-group-class-name}.#{$class-name}-#{$grid-double-horizontal-gutters-class-name} {
+        margin-left: ($gutter-width * 2) * -1;
+        & > [class*=#{$class-name}-],
+        & > [class*=all-] {
+            padding-left: ( $gutter-width * 2);
+        } 
+    }
+
+    .#{$grid-column-group-class-name}.#{$class-name}-#{$grid-double-vertical-gutters-class-name} {
+        & > [class*=#{$class-name}-],
+        & > [class*=all-] {
+            margin-bottom: ( $gutter-width * 2);
         } 
     }
 
@@ -78,11 +186,41 @@
         } 
     }
 
+    .#{$grid-column-group-class-name}.#{$class-name}-#{$grid-half-horizontal-gutters-class-name} {
+        margin-left: ( $gutter-width / 2 ) * -1;
+        & > [class*=#{$class-name}-],
+        & > [class*=all-] {
+            padding-left: ( $gutter-width / 2);
+        } 
+    }
+
+    .#{$grid-column-group-class-name}.#{$class-name}-#{$grid-half-vertical-gutters-class-name} {
+        & > [class*=#{$class-name}-],
+        & > [class*=all-] {
+            margin-bottom: ( $gutter-width / 2);
+        } 
+    }
+
     .#{$grid-column-group-class-name}.#{$class-name}-#{$grid-quarter-gutters-class-name} {
         margin-left: ( $gutter-width / 4 ) * -1;
         & > [class*=#{$class-name}-],
         & > [class*=all-] {
             padding-left: ( $gutter-width / 4);
+            margin-bottom: ( $gutter-width / 4);
+        } 
+    }
+
+    .#{$grid-column-group-class-name}.#{$class-name}-#{$grid-quarter-horizontal-gutters-class-name} {
+        margin-left: ( $gutter-width / 4 ) * -1;
+        & > [class*=#{$class-name}-],
+        & > [class*=all-] {
+            padding-left: ( $gutter-width / 4);
+        } 
+    }
+
+    .#{$grid-column-group-class-name}.#{$class-name}-#{$grid-quarter-vertical-gutters-class-name} {
+        & > [class*=#{$class-name}-],
+        & > [class*=all-] {
             margin-bottom: ( $gutter-width / 4);
         } 
     }
