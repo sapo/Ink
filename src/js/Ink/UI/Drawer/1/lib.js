@@ -49,15 +49,15 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
                 case 'both':
                 if( !this._leftDrawer ){
                     elNotFound(this._options.leftDrawer[1]);
-                } 
+                }
 
                 if(this._leftTriggers.length === 0){
                     elNotFound(this._options.leftTrigger[1]);
-                } 
+                }
 
                 if( !this._rightDrawer ){
                     elNotFound(this._options.rightDrawer[1]);
-                } 
+                }
 
                 if( this._rightTriggers.length === 0 ){
                     elNotFound(this._options.rightTrigger[1]);
@@ -68,7 +68,7 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
                 case 'left':
                 if( !this._leftDrawer ){
                     elNotFound(this._options.leftDrawer[1]);
-                } 
+                }
 
                 if(this._leftTriggers.length === 0){
                     elNotFound(this._options.leftTrigger[1]);
@@ -79,11 +79,11 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
                 case 'right':
                 if( !this._rightDrawer ){
                     elNotFound(this._options.rightDrawer[1]);
-                } 
+                }
 
                 if( this._rightTriggers.length === 0 ){
                     elNotFound(this._options.rightTrigger[1]);
-                } 
+                }
                 this._triggers = this._options.rightTrigger[1] + ', ' + this._options.contentDrawer[1];
                 break;
             }
@@ -100,19 +100,19 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
             this._addEvents();
         },
 
-        _onClick: function(ev){                                
+        _onClick: function(ev){
             if(Selector.matchesSelector(ev.currentTarget,this._options.leftTrigger[1])){
                 if(this._isOpen) {
                     this.close();
                 } else {
                     this.open('left');
-                }                        
+                }
             } else if(Selector.matchesSelector(ev.currentTarget,this._options.rightTrigger[1])){
                 if(this._isOpen) {
                     this.close();
                 } else {
                     this.open('right');
-                }                    
+                }
             } else if(Selector.matchesSelector(ev.currentTarget,this._options.contentDrawer[1])){
                 if(this._options.closeOnContentClick && this._isOpen) {
                     this.close();
@@ -127,13 +127,13 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
                 if(this._direction === 'left') {
                     Css.removeClassName(this._leftDrawer,'show');
                 } else {
-                    Css.removeClassName(this._rightDrawer,'show');                        
+                    Css.removeClassName(this._rightDrawer,'show');
                 }
             }
         },
 
         _addEvents: function(){
-            Event.on(document.body, 'click', this._triggers, this._handlers.click); 
+            Event.on(document.body, 'click', this._triggers, this._handlers.click);
         },
 
         open: function(direction) {
@@ -145,7 +145,7 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
                 this._rightDrawer;
 
             Css.addClassName(open,'show');
-            setTimeout(Ink.bind(function(){                 
+            setTimeout(Ink.bind(function(){
                 Css.addClassName(document.body, this._options.mode + ' '    + direction);
             },this), this._delay);
         },
