@@ -70,6 +70,7 @@ module.exports = function (grunt) {
                     src: ['animate.css'],
                     dest: '<%= ink.folders.css.src %>modules/animations/',
                     expand: true,
+                    rename: function (dirname, filename) { return dirname + (filename.replace(/\.css$/, '.less')); }
                 }]
             },
             modernizr: {
