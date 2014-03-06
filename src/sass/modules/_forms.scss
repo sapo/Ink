@@ -61,6 +61,11 @@
             @include input-focus($focusBlurSize, $focusColor);
             outline: 0 none;
         }
+
+        &:disabled {
+            background: $form-field-disabled-bg;
+            cursor: not-allowed;
+        }
     }
 
     .input-file {
