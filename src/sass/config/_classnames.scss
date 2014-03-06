@@ -63,4 +63,10 @@ $dropdown-class-name            : #{$ink-class-prefix}dropdown !default;
 /**
  * Tables class names
  */
-$table-class-name               : #{$ink-class-prefix}table
+$table-class-name               : #{$ink-class-prefix}table;
+
+/**
+ * Images class names
+ */
+$image-class-name               : #{$ink-class-prefix}image;
+
