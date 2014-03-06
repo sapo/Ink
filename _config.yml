@@ -42,6 +42,11 @@ sections:
       - title: Typography
         topics:
           - title: Horizontal menu
+      - title: Images
+        topics:
+          - title: Introduction
+          - title: Captions
+          - title: Targeting multiple devices
       - title: Tables
         topics:
           - title: Usaging
