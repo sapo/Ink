@@ -1,90 +1,304 @@
 ---
 layout: documentation
 title: Forms
-description: ???
+description: Form building nightmare made easy.
 tags: grid
-site_root: ../../
 site_root: ../../
 ---
 
-<section id="introduction">
-  <h1 class="fw-300">Introduction</h1>
-  <p class="fw-300">Our layout grid was built to allow precise control on how horizontal space is divided and on targeting several screen sizes. To accomplish this we use percentages as our base units and css @media queries to allow you to decide what width should an element take when viewed in a specific screen size.</p>
-  <p class="fw-300">Our default layout breakpoints are:</p>
-  <ul class="unstyled" id="breakpoints">
-    <li><code>tiny</code> for screens widths up to 320px.</li>
-    <li><code>small</code> for screen widths between 321 and 600 pixels.</li>
-    <li><code>medium</code> for screen widths between 601 and 960 pixels.</li>
-    <li><code>large</code> for screen widths between 961 and 1200 pixels.</li>
-    <li><code>extra-large</code> for screen widths above 1201 pixels.</li>
-  </ul>
-  <table class="props css">
-    <caption>CSS CLASSES</caption>
-    <thead>
-      <tr>
-        <th>Class name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td><code>ink-grid</code></td>
-          <td>The grid root class. <span class="label mandatory"></span></td>
-        </tr>
-        <tr>
-          <td><code>column-group</code></td>
-          <td>Groups layout columns. <span class="label mandatory"></span></td>
-        </tr>
-        <tr>
-          <td><code>gutters</code></td>
-          <td>Add space between layout columns. <span class="label breakpoint-aware"></span><span class="label halves-quarters"></span></td>
-        </tr>
-        <tr>
-          <td><code>all-x%</code></td>
-          <td>Sets x% element width for all breakpoints.</td>
-        </tr>
-        <tr>
-          <td><code>tiny-x%</code></td>
-          <td>Sets x% element width for the '<a href="#breakpoints">tiny</a>' breakpoint.</td>
-        </tr>
-        <tr>
-          <td><code>small-x%</code></td>
-          <td>Sets x% element width for the '<a href="#breakpoints">small</a>' breakpoint.</td>
-        </tr>
-        <tr>
-          <td><code>medium-x%</code></td>
-          <td>Sets x% element width for the '<a href="#breakpoints">medium</a>' breakpoint.</td>            
-        </tr>
-        <tr>
-          <td><code>large-x%</code></td>
-          <td>Sets x% element width for the '<a href="#breakpoints">large</a>' breakpoint.</td>           
-        </tr>
-        <tr>
-          <td><code>extra-large-x%</code></td>
-          <td>Sets element x% width for the '<a href="#breakpoints">extra-large</a>' breakpoint.</td> 
-        </tr>
-        <tr>
-          <td><code>show</code></td>
-          <td>Shows a previously hidden element. <span class="label breakpoint-aware"></span></td> 
-        </tr>
-        <tr>
-          <td><code>hide</code></td>
-          <td>Hides an element. <span class="label breakpoint-aware"></span></td> 
-        </tr>
-    </tbody>    
-  </table>
-  <ul class="unstyled">
-    <li><span class="label mandatory"></span>: This class must be used for the {{page.title | downcase }} to work.</li>
-    <li><span class="label breakpoint-aware"></span>: This class has breakpoint dependent variants, e.g. <code>large-class-name</code>.</li>
-    <li><span class="label halves-quarters"></span>: This class has half and quarter size variants, e.g. <code>half-class-name</code>.</li>
-  </ul>
+<!--
+<p>
+    To make forms fluid, responsive and overall easier to grasp, Ink makes use of its <a href="{{ site.url }}ui-elements/grid">grid structure</a> to build them for various layouts and screen sizes.
+</p>
+-->
+<section id="">
+    <h1>Introduction</h1>
+    <p>
+        Forms are a tough thing to implement, especially if you want to include them in a fluid layout, so we made everything work as painlessly as possible while giving you multiple layout choices as you build your forms.
+    </p>
+
+    <table class="props css">
+        <caption>CSS CLASSES</caption>
+        <thead>
+            <tr>
+                <th>Class name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>ink-form</code></td>
+                <td>The form root class. <span class="label mandatory"></span></td>
+            </tr>
+            <tr>
+                <td><code>control-group</code></td>
+                <td>Defines the container for a label / form control pair. Used with a <code>&ltdiv&gt</code> element. <span class="label mandatory"></span></td>
+            </tr>
+            <tr>
+                <td><code>control</code></td>
+                <td>
+                    Defines the container for a form control (e.g. text field, checkbox, etc.). Used with a <code>&ltdiv&gt</code> element nested in the .control-group. <span class="label mandatory"></span>
+                </td>
+            </tr>
+            <tr>
+                <td><code>required</code></td>
+                <td>Defines a required field.</td>
+            </tr>
+            <tr>
+                <td><code>validation</code></td>
+                <td>Used if you need to print a message upon form submission.</td>
+            </tr>
+            <tr>
+                <td>
+                    <code>error</code><br>
+                    <code>warning</code>
+                </td>
+                <td>Defines the type of message printed upon form submission.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul class="unstyled">
+        <li><span class="label mandatory"></span>: These classes must be used to make any kind of {{page.title | downcase }} work.</li>
+    </ul>
+
 </section>
-<section id="visibility">
-  <h1>Visibility</h1>
-  <ul class="css props">
-    <li class="heading">Css classes:</li>
-    <li><code>show</code> <span class="label breakpoint-aware"></span></li>
-    <li><code>hide</code> <span class="label breakpoint-aware"></span></li>
-  </ul>
-  <p>With Ink, you can control the visibility of any element based globally of based on a specific breakpoint.</p>
+
+<section id="">
+    
+    <h1>Block forms</h1>
+    <ul class="css props inline">
+        <li class="heading">Css classes: </li>
+        <li class="prop">ink-form</li>
+        <li class="prop">control-group</li>
+        <li class="prop">control</li>
+    </ul>
+    
+    <p>This is the most straight forward type of form, since all of its elements are displayed on top of each other, as a block.</p>
+
+{% highlight html %}
+<form class="ink-form">
+    <div class="control-group">
+        <label for="email">Email</label>
+        <div class="control">
+            <input id="email" type="text" placeholder="Type some text">
+        </div>
+    </div>
+</form>{% endhighlight %}
+    
+    <p class="example-title">Example</p>
+    <div class="example bottom-space">
+        <form class="ink-form">
+            <div class="control-group">
+                <label for="email">Email</label>
+                <div class="control">
+                    <input id="email" type="text" placeholder="Type some text">
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <h2>Block forms with inline fields</h2>
+    <ul class="css props inline">
+        <li class="heading">Css classes: </li>
+        <li class="prop">ink-form</li>
+        <li class="prop">control-group</li>
+        <li class="prop">control</li>
+        <li class="prop">column-group</li>
+        <li class="prop">gutters</li>
+        <li class="prop">all-%</li>
+        <li class="prop">tiny-%</li>
+        <li class="prop">small-%</li>
+        <li class="prop">medium-%</li>
+        <li class="prop">large-%</li>
+        <li class="prop">extra-large-%</li>
+    </ul>
+    <p>
+        These form elements are displayed in blocks (labels over fields), but each control group is inline with the previous. For this, Ink lets you use layout classes to build different form field layouts.
+    </p>
+
+{% highlight html %}
+<form class="ink-form">
+    <fieldset class="column-group gutters vspace">
+        <div class="control-group all-33">
+            <label for="name">Name</label>
+            <div class="control">
+                <input type="text" id="name">
+            </div>
+        </div>
+        <div class="control-group all-33">
+            <label for="phone">Phone</label>
+            <div class="control">
+                <input type="text" id="phone">
+            </div>
+        </div>
+        <div class="control-group all-33">
+            <label for="email">Email</label>
+            <div class="control">
+                <input type="text" id="email">
+            </div>
+        </div>
+    </fieldset>
+</form>{% endhighlight %}
+
+    <p class="example-title">Example</p>
+    <div class="example bottom-space">
+        <form class="ink-form">
+            <fieldset class="column-group gutters vspace">
+                <div class="control-group all-33">
+                    <label for="name">Name</label>
+                    <div class="control">
+                        <input type="text" id="name">
+                    </div>
+                </div>
+                <div class="control-group all-33">
+                    <label for="phone">Phone</label>
+                    <div class="control">
+                        <input type="text" id="phone">
+                    </div>
+                </div>
+                <div class="control-group all-33">
+                    <label for="email">Email</label>
+                    <div class="control">
+                        <input type="text" id="email">
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+
+
+</section>
+
+<section id="">
+    
+    <h1>Inline forms</h1>
+    <ul class="css props inline">
+        <li class="heading">Css classes: </li>
+        <li class="prop">ink-form</li>
+        <li class="prop">control-group</li>
+        <li class="prop">control</li>
+        <li class="prop">column-group</li>
+        <li class="prop">gutters</li>
+        <li class="prop">all-%</li>
+        <li class="prop">tiny-%</li>
+        <li class="prop">small-%</li>
+        <li class="prop">medium-%</li>
+        <li class="prop">large-%</li>
+        <li class="prop">extra-large-%</li>
+    </ul>
+    <p>To make inline forms, Ink makes use of its <a href="{{ site.url }}ui-elements/grid">grid structure</a> to build them for various layouts and screen sizes.</p>
+
+{% highlight html %}
+<form class="ink-form">
+    <div class="control-group column-group gutters">
+        <label for="name" class="all-20 align-right">Name</label>
+        <div class="control all-80">
+            <input type="text" id="first-name">
+            <p class="tip">First Name</p>
+        </div>
+    </div>
+</form>{% endhighlight %}
+
+    <p class="example-title">Example</p>
+    <div class="example bottom-space">
+        <form class="ink-form">
+            <div class="control-group column-group gutters">
+                <label for="name" class="all-10 align-right">Name</label>
+                <div class="control all-90">
+                    <input type="text" id="first-name">
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <h2>Inline forms with inline fields</h2>
+    <ul class="css props inline">
+        <li class="heading">Css classes: </li>
+        <li class="prop">ink-form</li>
+        <li class="prop">control-group</li>
+        <li class="prop">control</li>
+        <li class="prop">column-group</li>
+        <li class="prop">gutters</li>
+        <li class="prop">all-%</li>
+        <li class="prop">tiny-%</li>
+        <li class="prop">small-%</li>
+        <li class="prop">medium-%</li>
+        <li class="prop">large-%</li>
+        <li class="prop">extra-large-%</li>
+    </ul>
+
+{% highlight html %}
+<form class="ink-form">
+    <fieldset class="column-group gutters">
+        <div class="control-group all-33">
+            <div class="column-group gutters">
+                <label for="name" class="all-20 align-right">Name</label>
+                <div class="control all-80">
+                    <input type="text" id="name">
+                </div>
+            </div>
+        </div>
+        <div class="control-group all-33">
+            <div class="column-group gutters">
+                <label for="phone" class="all-20 align-right">Phone</label>
+                <div class="control all-80">
+                    <input type="text" id="phone">
+                </div>
+            </div>
+        </div>
+        <div class="control-group all-33">
+            <div class="column-group gutters">
+                <label for="email" class="all-20 align-right">Email</label>
+                <div class="control all-80">
+                    <input type="text" id="email">
+                </div>
+            </div>
+        </div>
+    </fieldset>
+</form>{% endhighlight %}
+
+    <p class="example-title">Example</p>
+    <div class="example">
+        <form class="ink-form">
+            <fieldset class="column-group gutters">
+                            
+                <div class="control-group all-33">
+                    <div class="column-group gutters">
+                        <label for="name" class="all-20 align-right">Name</label>
+                        <div class="control all-80">
+                            <input type="text" id="name">
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <div class="control-group all-33">
+                    <div class="column-group gutters">
+                        <label for="phone" class="all-20 align-right">Phone</label>
+                        <div class="control all-80">
+                            <input type="text" id="phone">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="control-group all-33">
+                    <div class="column-group gutters">
+                        <label for="email" class="all-20 align-right">Email</label>
+                        <div class="control all-80">
+                            <input type="text" id="email">
+                        </div>
+                    </div>
+                </div>
+
+            </fieldset>
+        </form>
+    </div>
+
+</section>
+
+<section>
+
+    <h1>Required fields and warnings</h1>
+
 </section>

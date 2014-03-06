@@ -52,7 +52,14 @@ sections:
           - title: Combining styles
       - title: Forms
         topics:
-          - title: Horizontal menu
+          - title: Block forms
+          - title: Inline forms
+          - title: Required fields and warnings
+          - title: Checkboxes and radio buttons
+      - title: Buttons
+        topics:
+          - title: Button group
+          - title: Button toolbar
       - title: Alerts
         topics:
           - title: Horizontal menu

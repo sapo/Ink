@@ -8,14 +8,14 @@
 @import "config/colors"; 
 
 // Variables
-$themeBackground            : #DEEDF1;
-$topbar-fontSize            : 14px;      
-$topbar-bgColor             : #222;
-$topbar-color               : #BBB;
-$topbar-colorHover          : $white;
-$img-path                   : "../img/";
-$code-background            : #EEEBE5;
-$code-border                : darken($code-background,8%);
+$themeBackground    : #DEEDF1;
+$topbar-fontSize    : 14px;      
+$topbar-bgColor     : #222;
+$topbar-color       : #BBB;
+$topbar-colorHover  : $white;
+$img-path           : "../img/";
+$code-background    : #EEEBE5;
+$code-border        : darken($code-background,8%);
 
 .fw-100 { font-weight: 100; }
 .fw-300 { font-weight: 300; }
@@ -129,8 +129,6 @@ $code-border                : darken($code-background,8%);
                     padding: 0; 
                     border-bottom: none;
                 }
-                
-                //ul { display: none; }
 
                 &.heading {
                     margin-top: 1em;
@@ -138,7 +136,7 @@ $code-border                : darken($code-background,8%);
                     @extend .fw-500;
 
                     a { 
-                        font-size: 1.2em;
+                        font-size: 1.25em;
                         padding: 1em 0 0;
                         color: $text-color; 
                         &:hover { text-decoration: none; }
@@ -332,8 +330,6 @@ body.ink-drawer {
         text-decoration: none;
         border: 1px solid $grey-25;
         background: #fcfcfc;
-        
-        .title {}
 
         .description {
             text-transform: none;
@@ -459,8 +455,8 @@ code {
 }
 
 table.props {
+    
     padding: 0.7em 1em;
-
     width: 100%;
     border-collapse: initial;
     background: $code-background;
@@ -488,8 +484,6 @@ table.props {
     tr:last-child td {
         border-bottom: none;
     }
-
-
 }
 
 span.tip {
@@ -576,7 +570,6 @@ p.example-title {
     background: $code-background;
     @include border-radius($border-radius);
 
-
     .ink-grid {
         padding: 0;
         .column {
@@ -602,8 +595,6 @@ footer {
     }
 
     .copyright {
-        
-        @include pie-clearfix();
 
         .SAPOlogo {
             background: url("#{$img-path}SAPOlogo.png") no-repeat;
@@ -626,12 +617,10 @@ footer {
                 display: block;
                 line-height: 1.6;
             }
-
         }
     }
 
-    h5 { margin-top: .5em; }
-    .credits { margin: 0 }
+    .credits { margin: 0; }
 
     .ink-navigation {
         ul.menu.horizontal {
