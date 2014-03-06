@@ -3,11 +3,8 @@ figure {
             position: relative;
             border: 1px solid $text-color;
             > img {
-                margin-bottom: -0.4em;
+                margin-bottom: -6px;
                 width: 100%;
-                + figcaption {
-                    border-top: 1px solid $image-border-color;
-                }
             }
             > figcaption {
                 padding: 1em;                

@@ -7207,11 +7207,8 @@ figure.ink-image {
   border: 1px solid #555555;
 }
 figure.ink-image > img {
-  margin-bottom: -0.4em;
+  margin-bottom: -6px;
   width: 100%;
-}
-figure.ink-image > img + figcaption {
-  border-top: 1px solid #222222;
 }
 figure.ink-image > figcaption {
   padding: 1em;

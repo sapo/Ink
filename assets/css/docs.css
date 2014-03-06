@@ -799,6 +799,11 @@ span.label.halves-quarters:after {
   content: "Double, Halves & Quarters";
   text-transform: uppercase;
 }
+span.label.js:after {
+  color: #0f75da;
+  content: "JavaScript";
+  text-transform: uppercase;
+}
 
 p.example-title {
   padding: 0 0 0 0.4em;

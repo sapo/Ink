@@ -553,6 +553,13 @@ span.label {
                 text-transform: uppercase;
             }
     }
+    &.js {
+            &:after {
+                color: $blue;
+                content: "JavaScript";
+                text-transform: uppercase;
+            }
+    }
 }
 
 p.example-title {

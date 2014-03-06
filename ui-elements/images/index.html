@@ -35,6 +35,10 @@ site_root: ../../
           <td><code>dark</code></td>
           <td>Applies a white text on a dark background theme to the caption.</td>
         </tr>
+        <tr>
+          <td><code>imagequery</code></td>
+          <td>Identifies images that will be handled by the <a href="{{ site.url }}">Ink.UI.ImageQuery</a> component. <span class="label js"></span></td>
+        </tr>
     </tbody>    
   </table>
   <ul class="unstyled">
@@ -109,7 +113,7 @@ site_root: ../../
   </figcaption>
 </figure>
 {% endhighlight %}
-<p>Captions can also be placed over the image, and aligned either to the top or the bottom:</p>
+<p>Captions can also be placed over the image, and aligned either to the top or the bottom by adding the <code>over-top</code> or <code>over-bottom</code> css classes to the <code>figcaption</code> element:</p>
 <div class="column-group horizontal-gutters">
     <div class="extra-large-50 large-50 medium-50 small-100 tiny-100">
       <figure class="ink-image bottom-space">
@@ -118,6 +122,14 @@ site_root: ../../
           This a caption over the top of the image.
         </figcaption>
       </figure>
+{% highlight html %}
+<figure class="ink-image bottom-space">
+  <img src="{{ site.url }}assets/img/examples/field.jpg" class="imagequery">
+  <figcaption class="over-top">
+    This a caption over the top of the image.
+  </figcaption>
+</figure>
+{% endhighlight %}
     </div>
     <div class="extra-large-50 large-50 medium-50 small-100 tiny-100">
       <figure class="ink-image bottom-space">
@@ -126,8 +138,49 @@ site_root: ../../
           This a caption over the top of the image.
         </figcaption>
       </figure>
+{% highlight html %}
+<figure class="ink-image bottom-space">
+  <img src="{{ site.url }}assets/img/examples/field.jpg" class="imagequery">
+  <figcaption class="over-bottom">
+    This a caption over the top of the image.
+  </figcaption>
+</figure>
+{% endhighlight %}
     </div>
 </div>
+</section>
+<section id="targeting-multiple-devices">
+  <h1>Targeting multiple devices</h1>
+  <p>When dealing with multiple devices, one major concearn should be asset size optimization. So Ink gives you a way to serve images with the appropriate size to your client devices.</p>
+  <p>This is done with our <a href="{{ site.url }}">Ink.UI.ImageQuery</a> JavaScript component, that'll detect the screen size and serve a larger version of the image if required.</p>
+  
+<p class="example-title">Javascript</p>
+{% highlight javascript %}
+<script>
+  var imagequery = new Ink.UI.ImageQuery('.imagequery', {
+    src: '{{ site.url }}assets/img/examples/{:label}/{:file}',
+    queries: [
+      {
+          label: 'small',
+          width: 640
+      },
+      {
+          label: 'medium',
+          width: 960
+      },
+      {
+          label: 'large',
+          width: 1200
+      },
+      {
+          label: 'extra-large',
+          width: 1400
+      }
+    ]
+  });
+</script>
+{% endhighlight %}
+
 </section>
 <script>
   var imagequery = new Ink.UI.ImageQuery('.imagequery', {
@@ -152,3 +205,4 @@ site_root: ../../
     ]
   });
 </script>
+
