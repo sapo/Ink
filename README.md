@@ -41,5 +41,5 @@ We also have quite a few usefull grunt tasks:
 - ``grunt css`` will compile the scss src into css
 - ``grunt js`` will build the js portion of ink
 - ``grunt watch`` will watch the src/ folder for changes on eiher js or scss files and rebuild the lot.
-- ``grunt watch:css`` will watch the src/ folder for changes on js files and rebuild.
-- ``grunt watch:js`` will watch the src/ folder for changes on scss files and rebuild.
+- ``grunt watch:js`` will watch the src/ folder for changes on js files and rebuild.
+- ``grunt watch:css`` will watch the src/ folder for changes on scss files and rebuild.
