@@ -977,7 +977,12 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      *
      * @method observeMulti
      * @param {Array|String} elements
-     * @param ... See the `observe` function.
+     * @param {String}             eventName    Event name
+     * @param {Function}           callBack     Receives event object as a
+     * parameter. If you're manually firing custom events, check the
+     * eventName property of the event object to make sure you're handling
+     * the right event.
+     * @param {Boolean}            [useCapture] Set to true to change event listening from bubbling to capture.
      * @return {Function} The used callback.
      */
     observeMulti: function (elements, eventName, callBack, useCapture) {
