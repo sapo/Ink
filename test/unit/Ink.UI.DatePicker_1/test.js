@@ -4,14 +4,18 @@ var body = document.body;
 var dtElm;
 var dt;
 
+function mkDatePicker(options) {
+    testWrapper = InkElement.create('div', { insertBottom: body });
+    dtElm = InkElement.create('input', { type: 'text', insertBottom: testWrapper });
+    dt = new DatePicker(dtElm, Ink.extendObj({
+        startDate: '2000-10-10',
+        format: 'dd/mm/yyyy'
+    }, options));
+}
+
 module('main', {
     setup: function () {
-        testWrapper = InkElement.create('div', { insertBottom: body })
-        dtElm = InkElement.create('input', { type: 'text', insertBottom: testWrapper });
-        dt = new DatePicker(dtElm, {
-            startDate: '2000-10-10',
-            format: 'dd/mm/yyyy'
-        });
+        mkDatePicker({});
     },
     teardown: function () {
         InkElement.remove(testWrapper);
@@ -60,6 +64,33 @@ test('_getNextMonth', function () {
     deepEqual(dt._getNextMonth(), { _year: 2000, _month: 11, _day: 1 });
     dt.setDate('2000-12-01');
     deepEqual(dt._getNextMonth(), { _year: 2001, _month: 0, _day: 1 });
+});
+
+test('_getFirstDayIndex', function () {
+    /* Cal 2014-03
+     *
+     * Su Mo Tu We Th Fr Sa  
+     *                    1  <- The "1" is in the 7th day
+     *  2  3  4  5  6  7  8  
+     *  9 10 11 12 13 14 15  
+     * 16 17 18 19 20 21 22  
+     * 23 24 25 26 27 28 29  
+     * 30 31       
+     */
+    mkDatePicker({ startWeekDay: 0 /* sunday, like the cal above*/});
+    strictEqual(dt._getFirstDayIndex(2014, 2 /* month - 1 */), 6);
+    /* Cal 2014-03 (starting in monday)
+     *
+     * Mo Tu We Th Fr Sa Su  
+     *                 1  2  <- Now "1" is the sixth day
+     *  3  4  5  6  7  8  9  
+     * 10 11 12 13 14 15 16  
+     * 17 18 19 20 21 22 23  
+     * 24 25 26 27 28 29 30  
+     * 31                    
+     */
+    mkDatePicker({ startWeekDay: 1 /* monday */});
+    strictEqual(dt._getFirstDayIndex(2014, 2), 5);
 });
 
 test('_getPrevMonth', function () {
@@ -260,6 +291,50 @@ test('destroy', function () {
     dt.destroy();
     equal(testWrapper.children.length, 1, 'destroyed remaining instances');
     strictEqual(testWrapper.firstChild, dtElm, 'the only element there is our original input');
+});
+
+test('regression: months have correct amount of days', function () {
+    mkDatePicker({
+        startDate: '2014-02-01' });
+    dt.show();
+    equal(Ink.ss('.ink-calendar-month [data-cal-day]', testWrapper).length, 28);
+
+    mkDatePicker({
+        startDate: '2014-01-01' });
+    dt.show();
+    equal(Ink.ss('.ink-calendar-month [data-cal-day]', testWrapper).length, 31);
+});
+
+test('regression: days start in the correct week day by filling with an appropriate amount of "empties"', function () {
+    /* March 2014  start=Su     March 2014  start=Mo
+     * Su Mo Tu We Th Fr Sa     Mo Tu We Th Fr Sa Su
+     *                    1                     1  2
+     *  2  3  4  5  6  7  8      3  4  5  6  7  8  9
+     *  9 10 11 12 13 14 15     10 11 12 13 14 15 16
+     * 16 17 18 19 20 21 22     17 18 19 20 21 22 23
+     * 23 24 25 26 27 28 29     24 25 26 27 28 29 30
+     * 30 31                    31                  
+     *
+     * 6 empties before "1"     5 empties before "1"
+     */
+
+    dt.destroy();
+
+    equal(Ink.ss('.ink-calendar-empty', getFirstLine(0)).length, 6);
+    dt.destroy();
+
+    equal(Ink.ss('.ink-calendar-empty', getFirstLine(1)).length, 5);
+    dt.destroy();
+
+    function getFirstLine(startWeekDay) {
+        mkDatePicker({
+            startDate: '2014-03-01',
+            startWeekDay: startWeekDay });
+        dt.show();
+        var firstLine = Ink.s('.ink-calendar-month .ink-calendar-header + ul', testWrapper);
+        ok(firstLine, 'sanity check');
+        return firstLine;
+    }
 });
 
 });
