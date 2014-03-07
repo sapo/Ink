@@ -1,0 +1,151 @@
+---
+layout: documentation
+title: Alerts
+description: Although they're a way of displaying text, alerts have their own specificity and functionality.
+tags: grid
+site_root: ../../
+---
+
+<section id="">
+    
+    
+    <table class="props css">
+        <caption>CSS CLASSES</caption>
+        <thead>
+          <tr>
+            <th>Class name</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>ink-alert</code></td>
+                <td>Alerts root class. <span class="label mandatory"></span></td>
+            </tr>
+            <tr>
+                <td>
+                    <code>basic</code><br>
+                    <code>block</code>
+                </td>
+                <td>Defines the type of alert. <span class="label mandatory"></span></td>
+            </tr>
+            <tr>
+                <td>
+                    <code>info</code><br>
+                    <code>success</code><br>
+                    <code>error</code>
+                </td>
+                <td>Defines alert theme.</td>
+            </tr>
+            <tr>
+                <td><code>ink-dismiss</code></td>
+                <td>Defines a dismissing action button.</td>
+            </tr>
+        </tbody>    
+    </table>
+    <ul class="unstyled">
+        <li><span class="label mandatory"></span>: This class must be used for the {{page.title | downcase }} to work.</li>
+    </ul>
+
+</section>
+
+<section id="">
+    <h1>Basic alerts</h1>
+    <ul class="css props inline">
+        <li class="heading">Css classes: </li>
+        <li class="prop">ink-alert</li>
+        <li class="prop">basic</li>
+        <li class="prop">info</li>
+        <li class="prop">warning</li>
+        <li class="prop">error</li>
+        <li class="prop">ink-dismiss</li>
+    </ul>
+
+    <p>Basic alerts are useful for simple interaction with the user, such as showing a state on a web application or giving a warning on a form.</p>
+
+{% highlight html %}
+<div class="ink-alert basic">
+    <button class="ink-dismiss">&times;</button>
+    <p><b>Warning:</b> There's a warning for you</p>
+</div>{% endhighlight %}
+
+    <div class="column-group horizontal-gutters">
+        <div class="all-50 small-100 tiny-100">
+            <div class="ink-alert basic">
+                <button class="ink-dismiss">&times;</button>
+                <p><b>Warning:</b> There's a warning for you</p>
+            </div>
+        </div>
+        <div class="all-50 small-100 tiny-100">
+            <div class="ink-alert basic success">
+                <button class="ink-dismiss">&times;</button>
+                <p><b>Done:</b> Process completed successfully</p>
+            </div>
+        </div>
+        <div class="all-50 small-100 tiny-100">
+            <div class="ink-alert basic info">
+                <button class="ink-dismiss">&times;</button>
+                <p><b>Note:</b> You have 5 minutes to leave, before self-destruction</p>
+            </div>
+        </div>
+        <div class="all-50 small-100 tiny-100">
+            <div class="ink-alert basic error">
+                <button class="ink-dismiss">&times;</button>
+                <p><b>Error:</b> The system has failed</p>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<section id="">
+
+    <h1>Block alerts</h1>
+    <ul class="css props inline">
+        <li class="heading">Css classes: </li>
+        <li class="prop">ink-alert</li>
+        <li class="prop">block</li>
+        <li class="prop">info</li>
+        <li class="prop">warning</li>
+        <li class="prop">error</li>
+        <li class="prop">ink-dismiss</li>
+    </ul>
+
+    <p>Block alerts are ideal for messages that require further explanation, since they're comprised of a title.</p>
+
+{% highlight html %}
+<div class="ink-alert block">
+    <button class="ink-dismiss">&times;</button>
+    <h4>System maintenance scheduled</h4>
+    <p>Please note that, due to a platypus invasion on our datacenter early last morning, the servers will have to undergo a maintenance cleaning today at 23:00 GMT.</p>
+</div>{% endhighlight %}
+
+        <div class="ink-alert block">
+            <button class="ink-dismiss">&times;</button>
+            <h4>System maintenance scheduled</h4>
+            <p>Please note that, due to a platypus invasion on our datacenter early last morning, the servers will have to undergo a maintenance cleaning today at 23:00 GMT.</p>
+        </div>
+        <div class="ink-alert block success">
+            <button class="ink-dismiss">&times;</button>
+            <h4>Thank you for buying!</h4>
+            <p>Your payment has been received and your plutonium will be shipped shortly. Check your e-mail for tracking information.</p>
+        </div>
+
+        <div class="ink-alert block info">
+            <button class="ink-dismiss">&times;</button>
+            <h4>Additional info</h4>
+            <p>A ring of weapons-grade 99.96% pure electrorefined plutonium is enough for one bomb core.</p>
+        </div>
+        <div class="ink-alert block error">
+            <button class="ink-dismiss">&times;</button>
+            <h4>System is down</h4>
+            <ul>
+                <li>Do not panic</li>
+                <li>Do not call our service line</li>
+                <li>Breathe deep and wait an hour</li>
+            </ul>
+        </div>
+    
+    </div>
+
+</section>
