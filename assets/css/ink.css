@@ -6441,7 +6441,7 @@ table {
 }
 @media screen and (min-width: 321px) and (max-width: 640px) {
   html {
-    font-size: 0.8em;
+    font-size: 0.938em;
   }
   html:after {
     font-family: '{"name":"small",{"min":"321px","max":"640px"}}';
@@ -6449,7 +6449,7 @@ table {
 }
 @media screen and (max-width: 320px) {
   html {
-    font-size: 0.8em;
+    font-size: 0.938em;
   }
   html:after {
     font-family: '{"name":"tiny",{"min":"","max":"320px"}}';

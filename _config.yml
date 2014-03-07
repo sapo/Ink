@@ -4,6 +4,7 @@ exclude: [".gitignore", ".git", "config.rb", "package.json", "Gruntfile.js", ".t
 destination: ./_site
 
 url: http://oss.sapo.pt/Ink/
+environment: production
 
 # SITE TITLE
 title: Ink
@@ -76,6 +77,7 @@ sections:
           - title: Element visibility  
   - title: Javascript
     components: 
+      - title: Ink
       - title: Dom
         topics:
           - title: Browser
