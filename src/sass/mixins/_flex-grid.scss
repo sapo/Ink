@@ -1,3 +1,31 @@
+// Ink
+//
+// A set of tools for quick development of web interfaces.
+//
+// @package    Ink
+// @subpackage Mixins
+// @author     Sapo Ink Team
+// @license    http://opensource.org/licenses/MIT MIT
+// @link       http://ink.sapo.pt
+// @since      Version 3.0.0
+
+// ---------------------------------------------------------------------------------------------
+
+// Grid Divisions
+// 
+// @package    Ink
+// @subpackage Mixins
+// @category   Layout flex grid
+// @author     Sapo Ink Team
+
+// generates the grid main container
+@mixin generate-grid-container ($grid-container-class-name, $gutter-width) {
+
+    .#{$grid-container-class-name} { 
+        padding: 0 $gutter-width;
+    }
+}
+
 // generates the grid column grouping container
 @mixin generate-flex-column-group {
 
@@ -451,6 +479,52 @@
     }
 }
 
+@mixin css-js-bridge($breakpoints) {
+
+    @each $breakpoint in $breakpoints {
+
+        $class-name: nth($breakpoint,1);
+        $minimum-width: nth($breakpoint,2);
+        $maximum-width: nth($breakpoint,3);
+        $gutter-width: nth($breakpoint,4);
+        $base-font-size: nth($breakpoint,5);
+        $no-media-query: nth($breakpoint,6);
+
+        @if $minimum-width and not $maximum-width {
+            @media screen and (min-width: $minimum-width) {
+                html {
+                    &:after {
+                        font-family: '{"name":"#{$class-name}",{"min":"#{$minimum-width}","max":"#{$maximum-width}"}}';
+                    }
+                    font-size: $base-font-size;
+                }
+            }
+        }
+
+        @if $minimum-width and $maximum-width {
+            @media screen and (min-width: $minimum-width) and (max-width: $maximum-width) {
+                html {
+                    &:after {
+                        font-family: '{"name":"#{$class-name}",{"min":"#{$minimum-width}","max":"#{$maximum-width}"}}';
+                    }
+                    font-size: $base-font-size;
+                }
+            }
+        }
+
+        @if not $minimum-width and $maximum-width {
+            @media screen and (max-width: $maximum-width) {
+                html {
+                    &:after {
+                        font-family: '{"name":"#{$class-name}",{"min":"#{$minimum-width}","max":"#{$maximum-width}"}}';
+                    }
+                    font-size: $base-font-size;
+                }
+            }
+        }
+    }
+}
+
 @mixin generate-flex-grid-divisions ($class-name) {
 
     // iteration counter
@@ -458,7 +532,7 @@
 
     // define the step size (this is the minimum column width percentage)
     $step-size: 5;
-    
+
     .width-auto,
     .#{$class-name}-auto {
         @include experimental(flex, 1 0 auto, -moz, -webkit, not -o, not -ms, not -khtml, official);        

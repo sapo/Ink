@@ -61,6 +61,7 @@ sections:
           - title: Block forms
           - title: Inline forms
           - title: Required fields and warnings
+          - title: Appended and prepended inputs
           - title: Checkboxes and radio buttons
       - title: Buttons
         topics:

@@ -35,7 +35,6 @@
 
 // IMPORT MIXINS FILES (THESE CONTAIN HELPER FUNCTIONS)
 @import "mixins/buttons";
-@import "mixins/grid";
 @import "mixins/flex-grid";
 @import "mixins/forms";
 @import "mixins/nav.pills";
@@ -65,6 +64,7 @@
 @import "modules/tables";
 @import "modules/typography";
 
+
 // IMPORT THEMING FILES
 @import "themes/badges";
 @import "themes/buttons";
@@ -78,3 +78,4 @@
 
 // IMPORT JS COMPONENTS STYLING
 @import "modules/js/drawer";
+@import "modules/js/flex-carousel";

@@ -16,6 +16,11 @@
         position: relative;
         @include transition(compact(all 0.5s ease));
 
+        &.#{$grid-column-group-class-name} {
+            @include experimental-value(display, block, -moz, -webkit, not -o, not -ms, not -khtml, official);
+            @include experimental(flex-flow, none, -moz, -webkit, not -o, not -ms, not -khtml, official);
+        }
+
         // Each slide
         .slide {
             position: relative;
