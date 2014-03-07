@@ -1243,7 +1243,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
             // Add padding if the first day of the month is not monday.
             if(wDayFirst !== 0) {
-                var empties = wDayFirst - startWeekDay - 1;
+                var empties = this._getFirstDayIndex(year, month);
                 counter += empties;
                 html += strRepeat(empties, emptyHtml);
             }
