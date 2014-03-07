@@ -20,11 +20,11 @@
 
 // IMPORT CONFIG FILES (THESE CONTAIN VARIABLE DEFINITIONS)
 @import "config/common";
+@import "config/colors";
 @import "config/alerts";
 @import "config/buttons";
 @import "config/classnames";
 @import "config/fonts";
-@import "config/colors";
 @import "config/forms";
 @import "config/grid";
 @import "config/labels";
@@ -34,6 +34,7 @@
 @import "config/typography";
 
 // IMPORT MIXINS FILES (THESE CONTAIN HELPER FUNCTIONS)
+@import "mixins/alerts";
 @import "mixins/buttons";
 @import "mixins/flex-grid";
 @import "mixins/forms";
@@ -66,6 +67,7 @@
 
 
 // IMPORT THEMING FILES
+@import "themes/alerts";
 @import "themes/badges";
 @import "themes/buttons";
 @import "themes/labels";
