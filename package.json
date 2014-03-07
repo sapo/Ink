@@ -33,9 +33,12 @@
     "grunt-bower-task": "~0.3.4",
     "jit-grunt": "~0.2.1",
     "grunt-contrib-cssmin": "~0.7.0",
+    "phantomjs": "~1.9.7-1",
     "inkdoc": "~0.2.5"
   },
   "scripts": {
     "test": "grunt --verbose"
+  },
+  "dependencies": {
   }
 }
