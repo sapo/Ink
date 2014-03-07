@@ -7,7 +7,7 @@
 
     &.basic {
         
-        @include alert(basic);
+        @include alert(basic, $alert-bg);
 
         &.success   { @include alert(basic, $green); }
         &.error     { @include alert(basic, $red); }
@@ -16,7 +16,7 @@
     
     &.block { 
 
-        @include alert(block);
+        @include alert(block, $alert-bg);
 
         &.success   { @include alert(block, $green); }
         &.error     { @include alert(block, $red); }
@@ -24,10 +24,12 @@
     }
 
     .ink-dismiss {
-        color: $black;
         font-family: Arial, sans-serif;
         font-weight: bold;
         @include text-shadow($white 0 1px 0);
-        @include opacity(0.2);
+        @include opacity(0.25);
+        @include transition(compact(opacity 140ms ease-in-out));
+
+        &:hover { @include opacity(.6); }
     }
 }

@@ -9,52 +9,28 @@
 // @link       http://ink.sapo.pt
 // @since      Version 3.0.0
 
-@mixin alert($alert-type, $alert-color: null) {
+@mixin alert($alert-type, $alert-color) {
 
-    @if $alert-type == basic and $alert-color == null {
-        background: desaturate($alert-bg, 10%);
-        @include box-shadow(rgba(0, 0, 0, 0.2) 0 1px 2px 0);
-    }
-
-    @if $alert-type == basic and $alert-color != null {
-        background: desaturate($alert-color,10%);
-        color: $white;
-    }
-
-    @if $alert-type == basic and $alert-color != null and lightness($alert-color) <= 10% {}
-    @if $alert-type == basic and $alert-color != null and lightness($alert-color) > 10% and lightness($alert-color) <= 80% {}
-    @if $alert-type == basic and $alert-color != null and lightness($alert-color) > 80% {
-        color: $text-color;
-    }
-
-    @if $alert-type == block and $alert-color == null {
-        background: $alert-block-bg;
-        @include box-shadow(rgba(0, 0, 0, 0.2) 0 1px 2px 0);
-
-        > h4 {
-            color: $text-color;
-            background: desaturate($alert-bg, 10%);
-            @include border-top-radius($border-radius);
-            border-bottom: 1px solid darken($alert-bg, 3%);
-        }
-    }
-
-    @if $alert-type == block and $alert-color != null {
+    @if $alert-type == basic {
         
-        @include box-shadow(rgba(0, 0, 0, 0.2) 0, 1px, 2px, 0);
+        background: rgba($alert-color,.25);
+        color: darken(desaturate($alert-color,20%),10%);
+        border: 1px solid darken(desaturate($alert-color,20%),10%);
 
-        > h4 {
-            background: desaturate($alert-color, 10%);
-            border-bottom: 1px solid darken($alert-color, 3%);
-            color: $white; 
-        }
+        .ink-dismiss { color: darken(desaturate($alert-color,20%),10%); }
     }
 
-    @if $alert-type == block and $alert-color != null and lightness($alert-color) <= 10% {}
-    @if $alert-type == block and $alert-color != null and lightness($alert-color) > 10% and lightness($alert-color) <= 80% {}
-    @if $alert-type == block and $alert-color != null and lightness($alert-color) > 80% {
+    @if $alert-type == block {
+        
+        border: 1px solid darken(desaturate($alert-color,20%),10%);
+        background: $alert-block-bg;
+
         > h4 {
-            color: $text-color; 
+            background: rgba($alert-color,.3);
+            color: darken(desaturate($alert-color,20%),10%);
         }
+
+        .ink-dismiss { color: darken(desaturate($alert-color,20%),10%); }
     }
+
 }
