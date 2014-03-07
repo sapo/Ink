@@ -5,7 +5,7 @@ var dtElm;
 var dt;
 
 function mkDatePicker(options) {
-    testWrapper = InkElement.create('div', { insertBottom: body })
+    testWrapper = InkElement.create('div', { insertBottom: body });
     dtElm = InkElement.create('input', { type: 'text', insertBottom: testWrapper });
     dt = new DatePicker(dtElm, Ink.extendObj({
         startDate: '2000-10-10',
@@ -78,7 +78,7 @@ test('_getFirstDayIndex', function () {
      * 30 31       
      */
     mkDatePicker({ startWeekDay: 0 /* sunday, like the cal above*/});
-    strictEqual(dt._getFirstDayIndex(2014, 2 /* month - 1 */), 6)
+    strictEqual(dt._getFirstDayIndex(2014, 2 /* month - 1 */), 6);
     /* Cal 2014-03 (starting in monday)
      *
      * Mo Tu We Th Fr Sa Su  
@@ -320,23 +320,21 @@ test('regression: days start in the correct week day by filling with an appropri
 
     dt.destroy();
 
-    mkDatePicker({
-        startDate: '2014-03-01',
-        startWeekDay: 0 });
-    dt.show();
-    var firstLine = Ink.s('.ink-calendar-month .ink-calendar-header + ul', testWrapper);
-    ok(firstLine, 'sanity check');
-    equal(Ink.ss('.ink-calendar-empty', firstLine).length, 6);
-
+    equal(Ink.ss('.ink-calendar-empty', getFirstLine(0)).length, 6);
     dt.destroy();
 
-    mkDatePicker({
-        startDate: '2014-03-01',
-        startWeekDay: 1 });
-    dt.show();
-    var firstLine = Ink.s('.ink-calendar-month .ink-calendar-header + ul', testWrapper);
-    ok(firstLine, 'sanity check');
-    equal(Ink.ss('.ink-calendar-empty', firstLine).length, 5);
+    equal(Ink.ss('.ink-calendar-empty', getFirstLine(1)).length, 5);
+    dt.destroy();
+
+    function getFirstLine(startWeekDay) {
+        mkDatePicker({
+            startDate: '2014-03-01',
+            startWeekDay: startWeekDay });
+        dt.show();
+        var firstLine = Ink.s('.ink-calendar-month .ink-calendar-header + ul', testWrapper);
+        ok(firstLine, 'sanity check');
+        return firstLine;
+    }
 });
 
 });
