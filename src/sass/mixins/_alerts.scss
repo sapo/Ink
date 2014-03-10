@@ -1,0 +1,36 @@
+// Ink
+// A set of tools for quick development of web interfaces.
+//
+// @package    Ink
+// @subpackage Mixins
+// @category   Alerts
+// @author     Sapo Ink Team
+// @license    http://opensource.org/licenses/MIT MIT
+// @link       http://ink.sapo.pt
+// @since      Version 3.0.0
+
+@mixin alert($alert-type, $alert-color) {
+
+    @if $alert-type == basic {
+        
+        background: rgba($alert-color,.25);
+        color: darken(desaturate($alert-color,20%),10%);
+        border: 1px solid darken(desaturate($alert-color,20%),10%);
+
+        .ink-dismiss { color: darken(desaturate($alert-color,20%),10%); }
+    }
+
+    @if $alert-type == block {
+        
+        border: 1px solid darken(desaturate($alert-color,20%),10%);
+        background: $alert-block-bg;
+
+        > h4 {
+            background: rgba($alert-color,.3);
+            color: darken(desaturate($alert-color,20%),10%);
+        }
+
+        .ink-dismiss { color: darken(desaturate($alert-color,20%),10%); }
+    }
+
+}

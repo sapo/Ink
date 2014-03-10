@@ -69,7 +69,8 @@ sections:
           - title: Button toolbar
       - title: Alerts
         topics:
-          - title: Horizontal menu
+          - title: Basic alerts
+          - title: Block alerts
       - title: Helpers
         topics:
           - title: Element alignment
