@@ -32,6 +32,7 @@
 @import "config/reset";
 @import "config/tables";
 @import "config/typography";
+@import "config/images";
 
 // IMPORT MIXINS FILES (THESE CONTAIN HELPER FUNCTIONS)
 @import "mixins/alerts";
@@ -64,6 +65,7 @@
 @import "modules/nav.menu";
 @import "modules/tables";
 @import "modules/typography";
+@import "modules/images";
 
 // IMPORT THEMING FILES
 @import "themes/alerts";
