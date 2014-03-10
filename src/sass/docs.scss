@@ -154,7 +154,7 @@ $code-border        : darken($code-background,8%);
                             color: $link-color;
                             text-decoration: none;
                             text-transform: uppercase;
-                            //font-size: 1em;
+                            font-size: 1em;
                             @extend .fw-400;
                         }
                     }

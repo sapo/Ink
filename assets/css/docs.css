@@ -162,6 +162,7 @@
   color: #6998c9;
   text-decoration: none;
   text-transform: uppercase;
+  font-size: 1em;
 }
 .sidebar.ink-navigation ul.menu.vertical li.search {
   position: relative;
