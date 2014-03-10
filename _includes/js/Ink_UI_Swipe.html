@@ -1,0 +1,332 @@
+
+
+    <div class="box box-module">
+
+        
+            <h2><a name="Ink_UI_Swipe">Ink.UI.Swipe <i>module</i></a></h2>
+        
+
+        
+
+        
+            <p><label>author:</label>ink AT sapo.pt</p>
+        
+        
+        
+            <p><label>version:</label>1</p>
+        
+
+        
+
+        
+
+        
+
+
+        
+            <h3>Defined classes and namespaces:</h3>
+            <ul>
+            
+                
+                    <li><a href="#Ink_UI_Swipe-Ink_UI_Swipe">(C) Ink.UI.Swipe</a></li>
+                
+            
+            </ul>
+        
+
+        
+
+        
+
+    </div>
+
+    
+        <div class="box box-class">
+
+    <h2><a name="Ink_UI_Swipe-Ink_UI_Swipe">Ink.UI.Swipe <i>
+    
+        class
+    
+    </i></a></h2>
+
+    
+
+    
+    
+    
+
+    
+        <div class="text"><p>Subscribe swipe gestures!</p>
+<p>Supports filtering swipes be any combination of the criteria supported in the options.</p>
+</div>
+    
+
+    
+
+
+    
+        
+            <h3>Defined methods:</h3>
+        
+        
+        <ul>
+        
+            <li><a href="#Ink_UI_Swipe-Ink_UI_Swipe-Swipe">
+            
+                Ink.UI.Swipe
+            
+            (el, options, )</a></li>
+        
+        </ul>
+    
+
+    
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_Swipe-Ink_UI_Swipe-Swipe">
+    
+        Ink.UI.Swipe
+    
+    (el, options, )
+    
+        <i>constructor</i>
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String|DOMElement</pre>
+                
+
+                
+                    <label>el
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Object</pre>
+                
+
+                
+                    <label>options
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label class="optional">[options.onEnd]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">callback function for the `touchend` event. Gets all the gesture information, and is filtered by min/max Dist and Duration options (see below)</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label class="optional">[options.onStart]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">callback function for `touchstart` event</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label class="optional">[options.onMove]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">callback function for every `touchmove` event. Gets current gesture information.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Number</pre>
+                
+
+                
+                    <label class="optional">[options.minDist]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">minimum allowed distance, in pixels</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Number</pre>
+                
+
+                
+                    <label class="optional">[options.maxDist]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">maximum allowed distance, in pixels</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Number</pre>
+                
+
+                
+                    <label class="optional">[options.minDuration]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">minimum allowed duration, in seconds</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Number</pre>
+                
+
+                
+                    <label class="optional">[options.maxDuration]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">maximum allowed duration, in seconds</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.axis]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">if either 'x' or 'y' is passed, only swipes where the dominant axis is the given one trigger the callback</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.storeGesture]
+                
+
+                
+                    =false
+                
+                </label>
+
+                
+                    <span class="description">store gesture information and provide to the callback</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.stopEvents]
+                
+
+                
+                    =true
+                
+                </label>
+
+                
+                    <span class="description">stop (default and propagation) of the received events</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+
+    
+
+
+</div>
+
+
+
+
+
+    
+
+    
+
+    
+

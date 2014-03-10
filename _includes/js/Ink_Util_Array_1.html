@@ -1,0 +1,1372 @@
+
+
+    <div class="box box-module">
+
+        
+            <h2><a name="Ink_Util_Array_1">Ink.Util.Array_1 <i>module</i></a></h2>
+        
+
+        
+
+        
+            <p><label>author:</label>inkdev AT sapo.pt</p>
+        
+        
+        
+            <p><label>version:</label>1</p>
+        
+
+        
+
+        
+
+        
+
+
+        
+            <h3>Defined classes and namespaces:</h3>
+            <ul>
+            
+                
+                    <li><a href="#Ink_Util_Array_1-Ink_Util_Array">(C) Ink.Util.Array</a></li>
+                
+            
+            </ul>
+        
+
+        
+
+        
+
+    </div>
+
+    
+        <div class="box box-class">
+
+    <h2><a name="Ink_Util_Array_1-Ink_Util_Array">Ink.Util.Array <i>
+    
+        class
+    
+    </i></a></h2>
+
+    
+
+    
+    
+    
+        <p><label>version:</label>1</p>
+    
+
+    
+        <div class="text"><p>Utility functions to use with Arrays</p>
+</div>
+    
+
+    
+
+
+    
+        
+            <h3>Defined methods:</h3>
+        
+        
+        <ul>
+        
+            <li><a href="#Ink_Util_Array_1-Ink_Util_Array-convert">
+            
+                Ink.Util.Array.convert
+            
+            (arr)</a></li>
+        
+            <li><a href="#Ink_Util_Array_1-Ink_Util_Array-forEach">
+            
+                Ink.Util.Array.forEach
+            
+            (arr, cb)</a></li>
+        
+            <li><a href="#Ink_Util_Array_1-Ink_Util_Array-forEach">
+            
+                Ink.Util.Array.forEach
+            
+            ()</a></li>
+        
+            <li><a href="#Ink_Util_Array_1-Ink_Util_Array-inArray">
+            
+                Ink.Util.Array.inArray
+            
+            (value, arr)</a></li>
+        
+            <li><a href="#Ink_Util_Array_1-Ink_Util_Array-insert">
+            
+                Ink.Util.Array.insert
+            
+            (arr, idx, value)</a></li>
+        
+            <li><a href="#Ink_Util_Array_1-Ink_Util_Array-intersect">
+            
+                Ink.Util.Array.intersect
+            
+            (arr, arr)</a></li>
+        
+            <li><a href="#Ink_Util_Array_1-Ink_Util_Array-keyValue">
+            
+                Ink.Util.Array.keyValue
+            
+            (value, arr, [first])</a></li>
+        
+            <li><a href="#Ink_Util_Array_1-Ink_Util_Array-map">
+            
+                Ink.Util.Array.map
+            
+            (array, map, [context], array, test, [context])</a></li>
+        
+            <li><a href="#Ink_Util_Array_1-Ink_Util_Array-remove">
+            
+                Ink.Util.Array.remove
+            
+            (arr, from, rLen)</a></li>
+        
+            <li><a href="#Ink_Util_Array_1-Ink_Util_Array-shuffle">
+            
+                Ink.Util.Array.shuffle
+            
+            (arr)</a></li>
+        
+            <li><a href="#Ink_Util_Array_1-Ink_Util_Array-some">
+            
+                Ink.Util.Array.some
+            
+            (arr, cb, Context)</a></li>
+        
+            <li><a href="#Ink_Util_Array_1-Ink_Util_Array-sortMulti">
+            
+                Ink.Util.Array.sortMulti
+            
+            (arr, key)</a></li>
+        
+        </ul>
+    
+
+    
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Util_Array_1-Ink_Util_Array-convert">
+    
+        
+            Ink.Util.Array.convert
+        
+    
+    (arr)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>Array</pre>
+                
+
+                
+                    <label>arr
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Array to be converted</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Array</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Convert lists type to type array</p>
+</span>
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+    Ink.requireModules([&#x27;Ink.Util.Array_1&#x27;], function( InkArray ){
+        var testArray = [ &#x27;value1&#x27;, &#x27;value2&#x27; ];
+        testArray.myMethod = function(){
+            console.log(&#x27;stuff&#x27;);
+        }
+
+        console.log( InkArray.convert( testArray ) ); // Result: [ &#x27;value1&#x27;, &#x27;value2&#x27; ]
+    });
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Util_Array_1-Ink_Util_Array-forEach">
+    
+        
+            Ink.Util.Array.forEach
+        
+    
+    (arr, cb)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>Array</pre>
+                
+
+                
+                    <label>arr
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Array to be cycled/iterated</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label>cb
+                
+
+                
+                </label>
+
+                
+                    <span class="description">The function receives as arguments the value, index and array.</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Array</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Runs a function through each of the elements of an array</p>
+</span>
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+    Ink.requireModules([&#x27;Ink.Util.Array_1&#x27;], function( InkArray ){
+        var testArray = [ &#x27;value1&#x27;, &#x27;value2&#x27;, &#x27;value3&#x27;, &#x27;value2&#x27; ];
+        InkArray.forEach( testArray, function( value, index, arr ){
+            console.log( &#x27;The value is: &#x27; + value + &#x27; | The index is: &#x27; + index );
+        });
+    });
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Util_Array_1-Ink_Util_Array-forEach">
+    
+        
+            Ink.Util.Array.forEach
+        
+    
+    ()
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+
+    
+
+    
+        <span class="text"><p>Alias for backwards compatibility. See forEach</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Util_Array_1-Ink_Util_Array-inArray">
+    
+        
+            Ink.Util.Array.inArray
+        
+    
+    (value, arr)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>Mixed</pre>
+                
+
+                
+                    <label>value
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Array</pre>
+                
+
+                
+                    <label>arr
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Boolean</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Checks if value exists in array</p>
+</span>
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+    Ink.requireModules([&#x27;Ink.Util.Array_1&#x27;], function( InkArray ){
+        var testArray = [ &#x27;value1&#x27;, &#x27;value2&#x27;, &#x27;value3&#x27; ];
+        if( InkArray.inArray( &#x27;value2&#x27;, testArray ) === true ){
+            console.log( &quot;Yep it&#x27;s in the array.&quot; );
+        } else {
+            console.log( &quot;No it&#x27;s NOT in the array.&quot; );
+        }
+    });
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Util_Array_1-Ink_Util_Array-insert">
+    
+        
+            Ink.Util.Array.insert
+        
+    
+    (arr, idx, value)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>Array</pre>
+                
+
+                
+                    <label>arr
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Array where the value will be inserted</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Number</pre>
+                
+
+                
+                    <label>idx
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Index of the array where the value should be inserted</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Mixed</pre>
+                
+
+                
+                    <label>value
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Value to be inserted</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>Insert value into the array on specified idx</p>
+</span>
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+    Ink.requireModules([&#x27;Ink.Util.Array_1&#x27;], function( InkArray ){
+        var testArray = [ &#x27;value1&#x27;, &#x27;value2&#x27; ];
+        console.log( InkArray.insert( testArray, 1, &#x27;value3&#x27; ) ); // Result: [ &#x27;value1&#x27;, &#x27;value3&#x27;, &#x27;value2&#x27; ]
+    });
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Util_Array_1-Ink_Util_Array-intersect">
+    
+        
+            Ink.Util.Array.intersect
+        
+    
+    (arr, arr)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>Array</pre>
+                
+
+                
+                    <label>arr
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Array1 to be intersected with Array2</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Array</pre>
+                
+
+                
+                    <label>arr
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Array2 to be intersected with Array1</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Array</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Returns an array containing every item that is shared between the two given arrays</p>
+</span>
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+    Ink.requireModules([&#x27;Ink.Util.Array_1&#x27;], function( InkArray ){
+        var testArray1 = [ &#x27;value1&#x27;, &#x27;value2&#x27;, &#x27;value3&#x27; ];
+        var testArray2 = [ &#x27;value2&#x27;, &#x27;value3&#x27;, &#x27;value4&#x27;, &#x27;value5&#x27;, &#x27;value6&#x27; ];
+        console.log( InkArray.intersect( testArray1,testArray2 ) ); // Result: [ &#x27;value2&#x27;, &#x27;value3&#x27; ]
+    });
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Util_Array_1-Ink_Util_Array-keyValue">
+    
+        
+            Ink.Util.Array.keyValue
+        
+    
+    (value, arr, [first])
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>value
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Value to search for</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Array</pre>
+                
+
+                
+                    <label>arr
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Array where the search will run</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Boolean</pre>
+                
+
+                
+                    <label class="optional">[first]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Flag that determines if the search stops at first occurrence. It also returns an index number instead of an array of indexes.</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Boolean|Number|Array</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Returns the associated key of an array value</p>
+</span>
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+    Ink.requireModules([&#x27;Ink.Util.Array_1&#x27;], function( InkArray ){
+        var testArray = [ &#x27;value1&#x27;, &#x27;value2&#x27;, &#x27;value3&#x27;, &#x27;value2&#x27; ];
+        console.log( InkArray.keyValue( &#x27;value2&#x27;, testArray, true ) ); // Result: 1
+        console.log( InkArray.keyValue( &#x27;value2&#x27;, testArray ) ); // Result: [1, 3]
+    });
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Util_Array_1-Ink_Util_Array-map">
+    
+        
+            Ink.Util.Array.map
+        
+    
+    (array, map, [context], array, test, [context])
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>Array</pre>
+                
+
+                
+                    <label>array
+                
+
+                
+                </label>
+
+                
+                    <span class="description">The array to map over</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label>map
+                
+
+                
+                </label>
+
+                
+                    <span class="description">The map function. Will take `(item, index, array)` and `this` will be the `context` argument.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Object</pre>
+                
+
+                
+                    <label class="optional">[context]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Object to be `this` in the map function.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Array</pre>
+                
+
+                
+                    <label>array
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label>test
+                
+
+                
+                </label>
+
+                
+                    <span class="description">A test function taking `(item, index, array)`</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Object</pre>
+                
+
+                
+                    <label class="optional">[context]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Object to be `this` in the test function.</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Run a <code>map</code> function for each item in the array. The function will receive each item as argument and its return value will change the corresponding array item.</p>
+</span>
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+     InkArray.map([1, 2, 3, 4], function (item) {
+         return item + 1;
+     }); // -&gt; [2, 3, 4, 5]
+
+		</code></pre>
+	
+		<pre class="example"><code>
+			
+     InkArray.filter([1, 2, 3, 4, 5], function (val) {
+         return val &gt; 2;
+     })  // -&gt; [3, 4, 5]
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Util_Array_1-Ink_Util_Array-remove">
+    
+        
+            Ink.Util.Array.remove
+        
+    
+    (arr, from, rLen)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>Array</pre>
+                
+
+                
+                    <label>arr
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Array where the value will be inserted</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Number</pre>
+                
+
+                
+                    <label>from
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Index of the array where the removal will start removing.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Number</pre>
+                
+
+                
+                    <label>rLen
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Number of items to be removed from the index onwards.</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Array</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Remove a range of values from the array</p>
+</span>
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+    Ink.requireModules([&#x27;Ink.Util.Array_1&#x27;], function( InkArray ){
+        var testArray = [ &#x27;value1&#x27;, &#x27;value2&#x27;, &#x27;value3&#x27;, &#x27;value4&#x27;, &#x27;value5&#x27; ];
+        console.log( InkArray.remove( testArray, 1, 3 ) ); // Result: [ &#x27;value1&#x27;, &#x27;value4&#x27;, &#x27;value5&#x27; ]
+    });
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Util_Array_1-Ink_Util_Array-shuffle">
+    
+        
+            Ink.Util.Array.shuffle
+        
+    
+    (arr)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>Array</pre>
+                
+
+                
+                    <label>arr
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Array to shuffle</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Boolean|Number|Array</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Returns the array shuffled, false if the param is not an array</p>
+</span>
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+    Ink.requireModules([&#x27;Ink.Util.Array_1&#x27;], function( InkArray ){
+        var testArray = [ &#x27;value1&#x27;, &#x27;value2&#x27;, &#x27;value3&#x27;, &#x27;value2&#x27; ];
+        console.log( InkArray.shuffle( testArray ) ); // Result example: [ &#x27;value3&#x27;, &#x27;value2&#x27;, &#x27;value2&#x27;, &#x27;value1&#x27; ]
+    });
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Util_Array_1-Ink_Util_Array-some">
+    
+        
+            Ink.Util.Array.some
+        
+    
+    (arr, cb, Context)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>Array</pre>
+                
+
+                
+                    <label>arr
+                
+
+                
+                </label>
+
+                
+                    <span class="description">The array you walk to iterate through</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label>cb
+                
+
+                
+                </label>
+
+                
+                    <span class="description">The callback that will be called on the array's elements. It receives the value, the index and the array as arguments.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Object</pre>
+                
+
+                
+                    <label>Context
+                
+
+                
+                </label>
+
+                
+                    <span class="description">object of the callback function</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Boolean</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Runs a callback function, which should return true or false.
+If one of the &#39;runs&#39; returns true, it will return. Otherwise if none returns true, it will return false.
+See more at: <a href="https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Array/some">https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Array/some</a> (MDN)</p>
+</span>
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+    Ink.requireModules([&#x27;Ink.Util.Array_1&#x27;], function( InkArray ){
+        var testArray1 = [ 10, 20, 50, 100, 30 ];
+        var testArray2 = [ 1, 2, 3, 4, 5 ];
+
+        function myTestFunction( value, index, arr ){
+            if( value &gt; 90 ){
+                return true;
+            }
+            return false;
+        }
+        console.log( InkArray.some( testArray1, myTestFunction, null ) ); // Result: true
+        console.log( InkArray.some( testArray2, myTestFunction, null ) ); // Result: false
+    });
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Util_Array_1-Ink_Util_Array-sortMulti">
+    
+        
+            Ink.Util.Array.sortMulti
+        
+    
+    (arr, key)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>Array</pre>
+                
+
+                
+                    <label>arr
+                
+
+                
+                </label>
+
+                
+                    <span class="description">array of objects to sort</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>key
+                
+
+                
+                </label>
+
+                
+                    <span class="description">property to sort by</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Array|Boolean</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Sorts an array of object by an object property</p>
+</span>
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+    Ink.requireModules([&#x27;Ink.Util.Array_1&#x27;], function( InkArray ){
+        var testArray = [
+            { &#x27;myKey&#x27;: &#x27;value1&#x27; },
+            { &#x27;myKey&#x27;: &#x27;value2&#x27; },
+            { &#x27;myKey&#x27;: &#x27;value3&#x27; }
+        ];
+
+        InkArray.sortMulti( testArray, &#x27;myKey&#x27; );
+    });
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+
+
+
+    
+
+    
+
+    
+

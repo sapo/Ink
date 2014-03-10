@@ -1,0 +1,2003 @@
+
+
+    <div class="box box-module">
+
+        
+            <h2><a name="Ink_Util_Validator_1">Ink.Util.Validator_1 <i>module</i></a></h2>
+        
+
+        
+
+        
+            <p><label>author:</label>inkdev AT sapo.pt</p>
+        
+        
+        
+            <p><label>version:</label>1</p>
+        
+
+        
+
+        
+
+        
+
+
+        
+            <h3>Defined classes and namespaces:</h3>
+            <ul>
+            
+                
+                    <li><a href="#Ink_Util_Validator_1-Ink_Util_Validator">(C) Ink.Util.Validator</a></li>
+                
+            
+            </ul>
+        
+
+        
+
+        
+
+    </div>
+
+    
+        <div class="box box-class">
+
+    <h2><a name="Ink_Util_Validator_1-Ink_Util_Validator">Ink.Util.Validator <i>
+    
+        class
+    
+    </i></a></h2>
+
+    
+
+    
+    
+    
+        <p><label>version:</label>1</p>
+    
+
+    
+        <div class="text"><p>Set of functions to provide validation</p>
+</div>
+    
+
+    
+
+
+    
+        
+            <h3>Defined methods:</h3>
+        
+        
+        <ul>
+        
+            <li><a href="#Ink_Util_Validator_1-Ink_Util_Validator-ascii">
+            
+                Ink.Util.Validator.ascii
+            
+            (s, [options])</a></li>
+        
+            <li><a href="#Ink_Util_Validator_1-Ink_Util_Validator-checkCharacterGroups">
+            
+                Ink.Util.Validator.checkCharacterGroups
+            
+            (s, [groups])</a></li>
+        
+            <li><a href="#Ink_Util_Validator_1-Ink_Util_Validator-codPostal">
+            
+                Ink.Util.Validator.codPostal
+            
+            (cp1, cp2, returnBothResults)</a></li>
+        
+            <li><a href="#Ink_Util_Validator_1-Ink_Util_Validator-createRegExp">
+            
+                Ink.Util.Validator.createRegExp
+            
+            (Groups*)</a></li>
+        
+            <li><a href="#Ink_Util_Validator_1-Ink_Util_Validator-isAOPhone">
+            
+                Ink.Util.Validator.isAOPhone
+            
+            (phone)</a></li>
+        
+            <li><a href="#Ink_Util_Validator_1-Ink_Util_Validator-isCVPhone">
+            
+                Ink.Util.Validator.isCVPhone
+            
+            (phone)</a></li>
+        
+            <li><a href="#Ink_Util_Validator_1-Ink_Util_Validator-isColor">
+            
+                Ink.Util.Validator.isColor
+            
+            (str)</a></li>
+        
+            <li><a href="#Ink_Util_Validator_1-Ink_Util_Validator-isCreditCard">
+            
+                Ink.Util.Validator.isCreditCard
+            
+            (num, creditCardType)</a></li>
+        
+            <li><a href="#Ink_Util_Validator_1-Ink_Util_Validator-isDate">
+            
+                Ink.Util.Validator.isDate
+            
+            (format, dateStr)</a></li>
+        
+            <li><a href="#Ink_Util_Validator_1-Ink_Util_Validator-isIP">
+            
+                Ink.Util.Validator.isIP
+            
+            (value, ipType)</a></li>
+        
+            <li><a href="#Ink_Util_Validator_1-Ink_Util_Validator-isMZPhone">
+            
+                Ink.Util.Validator.isMZPhone
+            
+            (phone)</a></li>
+        
+            <li><a href="#Ink_Util_Validator_1-Ink_Util_Validator-isPTPhone">
+            
+                Ink.Util.Validator.isPTPhone
+            
+            (phone)</a></li>
+        
+            <li><a href="#Ink_Util_Validator_1-Ink_Util_Validator-isPhone">
+            
+                Ink.Util.Validator.isPhone
+            
+            (phone, country)</a></li>
+        
+            <li><a href="#Ink_Util_Validator_1-Ink_Util_Validator-isPortuguesePhone">
+            
+                Ink.Util.Validator.isPortuguesePhone
+            
+            (phone)</a></li>
+        
+            <li><a href="#Ink_Util_Validator_1-Ink_Util_Validator-isTLPhone">
+            
+                Ink.Util.Validator.isTLPhone
+            
+            (phone)</a></li>
+        
+            <li><a href="#Ink_Util_Validator_1-Ink_Util_Validator-latin1">
+            
+                Ink.Util.Validator.latin1
+            
+            (s, [options])</a></li>
+        
+            <li><a href="#Ink_Util_Validator_1-Ink_Util_Validator-mail">
+            
+                Ink.Util.Validator.mail
+            
+            ()</a></li>
+        
+            <li><a href="#Ink_Util_Validator_1-Ink_Util_Validator-mail">
+            
+                Ink.Util.Validator.mail
+            
+            (email)</a></li>
+        
+            <li><a href="#Ink_Util_Validator_1-Ink_Util_Validator-number">
+            
+                Ink.Util.Validator.number
+            
+            (numb, [options], )</a></li>
+        
+            <li><a href="#Ink_Util_Validator_1-Ink_Util_Validator-unicode">
+            
+                Ink.Util.Validator.unicode
+            
+            (s, [options])</a></li>
+        
+            <li><a href="#Ink_Util_Validator_1-Ink_Util_Validator-url">
+            
+                Ink.Util.Validator.url
+            
+            (url, [full])</a></li>
+        
+        </ul>
+    
+
+    
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Util_Validator_1-Ink_Util_Validator-ascii">
+    
+        
+            Ink.Util.Validator.ascii
+        
+    
+    (s, [options])
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>s
+                
+
+                
+                </label>
+
+                
+                    <span class="description">The validation string</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Object</pre>
+                
+
+                
+                    <label class="optional">[options]
+                
+
+                
+                    ={}
+                
+                </label>
+
+                
+                    <span class="description">Optional configuration object. See createRegexp</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>Checks that a field only contains only ASCII alphanumeric
+characters. Takes options for allowing singleline whitespace,
+cross-line whitespace and punctuation.</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Util_Validator_1-Ink_Util_Validator-checkCharacterGroups">
+    
+        
+            Ink.Util.Validator.checkCharacterGroups
+        
+    
+    (s, [groups])
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>s
+                
+
+                
+                </label>
+
+                
+                    <span class="description">The validation string</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Object</pre>
+                
+
+                
+                    <label class="optional">[groups]
+                
+
+                
+                    ={}
+                
+                </label>
+
+                
+                    <span class="description">What groups are included. See createRegexp</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>Checks if a field has the required groups. Takes an options object for further configuration.</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Util_Validator_1-Ink_Util_Validator-codPostal">
+    
+        
+            Ink.Util.Validator.codPostal
+        
+    
+    (cp1, cp2, returnBothResults)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>Number|String</pre>
+                
+
+                
+                    <label>cp1
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+            <li>
+                
+                    <pre>optional Number|String</pre>
+                
+
+                
+                    <label>cp2
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+            <li>
+                
+                    <pre>optional Boolean</pre>
+                
+
+                
+                    <label>returnBothResults
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Boolean</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Validates if a zip code is valid in Portugal</p>
+</span>
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+    Ink.requireModules([&#x27;Ink.Util.Validator_1&#x27;], function( InkValidator ){
+        console.log( InkValidator.codPostal( &#x27;1069&#x27;, &#x27;300&#x27; ) );        // Result: true
+        console.log( InkValidator.codPostal( &#x27;1069&#x27;, &#x27;300&#x27;, true ) );  // Result: [true, true]
+    });
+
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Util_Validator_1-Ink_Util_Validator-createRegExp">
+    
+        
+            Ink.Util.Validator.createRegExp
+        
+    
+    (Groups*)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+
+                
+                    <label>Groups*
+                
+
+                
+                </label>
+
+                
+                    <span class="description">{Object}</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>Create a regular expression for several character groups.</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Util_Validator_1-Ink_Util_Validator-isAOPhone">
+    
+        
+            Ink.Util.Validator.isAOPhone
+        
+    
+    (phone)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>Number</pre>
+                
+
+                
+                    <label>phone
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Phone number to be checked</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Boolean</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Checks if a phone is valid in Angola</p>
+</span>
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+    Ink.requireModules([&#x27;Ink.Util.Validator_1&#x27;], function( InkValidator ){
+        console.log( InkValidator.isAOPhone( &#x27;244222396385&#x27; ) );     // Result: true
+        console.log( InkValidator.isAOPhone( &#x27;00244222396385&#x27; ) );   // Result: true
+        console.log( InkValidator.isAOPhone( &#x27;+244222396385&#x27; ) );    // Result: true
+        console.log( InkValidator.isAOPhone( &#x27;1&#x27; ) );                // Result: false
+    });
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Util_Validator_1-Ink_Util_Validator-isCVPhone">
+    
+        
+            Ink.Util.Validator.isCVPhone
+        
+    
+    (phone)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>Number</pre>
+                
+
+                
+                    <label>phone
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Phone number to be checked</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Boolean</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Checks if a phone is valid in Cabo Verde</p>
+</span>
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+    Ink.requireModules([&#x27;Ink.Util.Validator_1&#x27;], function( InkValidator ){
+        console.log( InkValidator.isCVPhone( &#x27;2610303&#x27; ) );        // Result: true
+        console.log( InkValidator.isCVPhone( &#x27;002382610303&#x27; ) );   // Result: true
+        console.log( InkValidator.isCVPhone( &#x27;+2382610303&#x27; ) );    // Result: true
+        console.log( InkValidator.isCVPhone( &#x27;1&#x27; ) );              // Result: false
+    });
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Util_Validator_1-Ink_Util_Validator-isColor">
+    
+        
+            Ink.Util.Validator.isColor
+        
+    
+    (str)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>str
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Color string to be checked</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Boolean</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Checks if a string is a valid color</p>
+</span>
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+    Ink.requireModules([&#x27;Ink.Util.Validator_1&#x27;], function( InkValidator ){
+        console.log( InkValidator.isColor( &#x27;#FF00FF&#x27; ) );        // Result: true
+        console.log( InkValidator.isColor( &#x27;amdafasfs&#x27; ) );      // Result: false
+    });
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Util_Validator_1-Ink_Util_Validator-isCreditCard">
+    
+        
+            Ink.Util.Validator.isCreditCard
+        
+    
+    (num, creditCardType)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>num
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Number to be validates</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String|Array</pre>
+                
+
+                
+                    <label>creditCardType
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Credit card type. See _creditCardSpecs for the list of supported values.</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Boolean</pre>
+            
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Validates if a number is of a specific credit card</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Util_Validator_1-Ink_Util_Validator-isDate">
+    
+        
+            Ink.Util.Validator.isDate
+        
+    
+    (format, dateStr)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>format
+                
+
+                
+                </label>
+
+                
+                    <span class="description">- defined in _dateParsers</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>dateStr
+                
+
+                
+                </label>
+
+                
+                    <span class="description">- date string</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Boolean</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Checks is a date is valid in a given format</p>
+</span>
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+    Ink.requireModules([&#x27;Ink.Util.Validator_1&#x27;], function( InkValidator ){
+        console.log( InkValidator.isDate( &#x27;yyyy-mm-dd&#x27;, &#x27;2012-05-21&#x27; ) );        // Result: true
+    });
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Util_Validator_1-Ink_Util_Validator-isIP">
+    
+        
+            Ink.Util.Validator.isIP
+        
+    
+    (value, ipType)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>value
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Value to be checked</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>ipType
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Type of IP to be validated. The values are: ipv4, ipv6. By default is ipv4.</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Boolean</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Checks if the value is a valid IP. Supports ipv4 and ipv6</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Util_Validator_1-Ink_Util_Validator-isMZPhone">
+    
+        
+            Ink.Util.Validator.isMZPhone
+        
+    
+    (phone)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>Number</pre>
+                
+
+                
+                    <label>phone
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Phone number to be checked</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Boolean</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Checks if a phone is valid in Mozambique</p>
+</span>
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+    Ink.requireModules([&#x27;Ink.Util.Validator_1&#x27;], function( InkValidator ){
+        console.log( InkValidator.isMZPhone( &#x27;21426861&#x27; ) );        // Result: true
+        console.log( InkValidator.isMZPhone( &#x27;0025821426861&#x27; ) );   // Result: true
+        console.log( InkValidator.isMZPhone( &#x27;+25821426861&#x27; ) );    // Result: true
+        console.log( InkValidator.isMZPhone( &#x27;1&#x27; ) );              // Result: false
+    });
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Util_Validator_1-Ink_Util_Validator-isPTPhone">
+    
+        
+            Ink.Util.Validator.isPTPhone
+        
+    
+    (phone)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>Number</pre>
+                
+
+                
+                    <label>phone
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Phone number to be checked</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Boolean</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Checks if a phone is valid in Portugal</p>
+</span>
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+    Ink.requireModules([&#x27;Ink.Util.Validator_1&#x27;], function( InkValidator ){
+        console.log( InkValidator.isPTPhone( &#x27;213919264&#x27; ) );        // Result: true
+        console.log( InkValidator.isPTPhone( &#x27;00351213919264&#x27; ) );   // Result: true
+        console.log( InkValidator.isPTPhone( &#x27;+351213919264&#x27; ) );    // Result: true
+        console.log( InkValidator.isPTPhone( &#x27;1&#x27; ) );                // Result: false
+    });
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Util_Validator_1-Ink_Util_Validator-isPhone">
+    
+        
+            Ink.Util.Validator.isPhone
+        
+    
+    (phone, country)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>phone
+                
+
+                
+                </label>
+
+                
+                    <span class="description">number</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>optional String|Array</pre>
+                
+
+                
+                    <label>country
+                
+
+                
+                </label>
+
+                
+                    <span class="description">or array of countries to validate</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Boolean</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Validates the function in all country codes available or in the ones set in the second param</p>
+</span>
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+    Ink.requireModules([&#x27;Ink.Util.Validator_1&#x27;], function( InkValidator ){
+        console.log( InkValidator.isPhone( &#x27;6703331234&#x27; ) );        // Result: true
+    });
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Util_Validator_1-Ink_Util_Validator-isPortuguesePhone">
+    
+        
+            Ink.Util.Validator.isPortuguesePhone
+        
+    
+    (phone)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>Number</pre>
+                
+
+                
+                    <label>phone
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Phone number to be checked</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Boolean</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Alias function for isPTPhone</p>
+</span>
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+    Ink.requireModules([&#x27;Ink.Util.Validator_1&#x27;], function( InkValidator ){
+        console.log( InkValidator.isPortuguesePhone( &#x27;213919264&#x27; ) );        // Result: true
+        console.log( InkValidator.isPortuguesePhone( &#x27;00351213919264&#x27; ) );   // Result: true
+        console.log( InkValidator.isPortuguesePhone( &#x27;+351213919264&#x27; ) );    // Result: true
+        console.log( InkValidator.isPortuguesePhone( &#x27;1&#x27; ) );                // Result: false
+    });
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Util_Validator_1-Ink_Util_Validator-isTLPhone">
+    
+        
+            Ink.Util.Validator.isTLPhone
+        
+    
+    (phone)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>Number</pre>
+                
+
+                
+                    <label>phone
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Phone number to be checked</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Boolean</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Checks if a phone is valid in Timor</p>
+</span>
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+    Ink.requireModules([&#x27;Ink.Util.Validator_1&#x27;], function( InkValidator ){
+        console.log( InkValidator.isTLPhone( &#x27;6703331234&#x27; ) );     // Result: true
+        console.log( InkValidator.isTLPhone( &#x27;006703331234&#x27; ) );   // Result: true
+        console.log( InkValidator.isTLPhone( &#x27;+6703331234&#x27; ) );    // Result: true
+        console.log( InkValidator.isTLPhone( &#x27;1&#x27; ) );              // Result: false
+    });
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Util_Validator_1-Ink_Util_Validator-latin1">
+    
+        
+            Ink.Util.Validator.latin1
+        
+    
+    (s, [options])
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>s
+                
+
+                
+                </label>
+
+                
+                    <span class="description">The validation string</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Object</pre>
+                
+
+                
+                    <label class="optional">[options]
+                
+
+                
+                    ={}
+                
+                </label>
+
+                
+                    <span class="description">Optional configuration object. See createRegexp</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>Checks that a field only contains only latin-1 alphanumeric
+characters. Takes options for allowing singleline whitespace,
+cross-line whitespace and punctuation.</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Util_Validator_1-Ink_Util_Validator-mail">
+    
+        
+            Ink.Util.Validator.mail
+        
+    
+    ()
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+
+    
+
+    
+        <span class="text"><p>Deprecated. Alias for email(). Use it instead.</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Util_Validator_1-Ink_Util_Validator-mail">
+    
+        
+            Ink.Util.Validator.mail
+        
+    
+    (email)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>email
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Boolean</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Checks if a email is valid</p>
+</span>
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+    Ink.requireModules([&#x27;Ink.Util.Validator_1&#x27;], function( InkValidator ){
+        console.log( InkValidator.email( &#x27;agfsdfgfdsgdsf&#x27; ) ); // Result: false
+        console.log( InkValidator.email( &#x27;inkdev\u0040sapo.pt&#x27; ) ); // Result: true (where \u0040 is at sign)
+    });
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Util_Validator_1-Ink_Util_Validator-number">
+    
+        
+            Ink.Util.Validator.number
+        
+    
+    (numb, [options], )
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>numb
+                
+
+                
+                </label>
+
+                
+                    <span class="description">The number</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Object</pre>
+                
+
+                
+                    <label class="optional">[options]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Further options</span>
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label class="optional">[options.decimalSep]
+                
+
+                
+                    =&#x27;.&#x27;
+                
+                </label>
+
+                
+                    <span class="description">Allow decimal separator.</span>
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label class="optional">[options.thousandSep]
+                
+
+                
+                    =&quot;,&quot;
+                
+                </label>
+
+                
+                    <span class="description">Strip this character from the number.</span>
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label class="optional">[options.negative]
+                
+
+                
+                    =false
+                
+                </label>
+
+                
+                    <span class="description">Allow negative numbers.</span>
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label class="optional">[options.decimalPlaces]
+                
+
+                
+                    =null
+                
+                </label>
+
+                
+                    <span class="description">Maximum number of decimal places. Use `0` for an integer number.</span>
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label class="optional">[options.max]
+                
+
+                
+                    =null
+                
+                </label>
+
+                
+                    <span class="description">Maximum number</span>
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label class="optional">[options.min]
+                
+
+                
+                    =null
+                
+                </label>
+
+                
+                    <span class="description">Minimum number</span>
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label class="optional">[options.returnNumber]
+                
+
+                
+                    =false
+                
+                </label>
+
+                
+                    <span class="description">When this option is true, return the number itself when the value is valid.</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>Checks that the number is a valid number</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Util_Validator_1-Ink_Util_Validator-unicode">
+    
+        
+            Ink.Util.Validator.unicode
+        
+    
+    (s, [options])
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>s
+                
+
+                
+                </label>
+
+                
+                    <span class="description">The validation string</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Object</pre>
+                
+
+                
+                    <label class="optional">[options]
+                
+
+                
+                    ={}
+                
+                </label>
+
+                
+                    <span class="description">Optional configuration object. See createRegexp</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>Checks whether a field contains unicode printable characters. Takes an
+options object for further configuration</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Util_Validator_1-Ink_Util_Validator-url">
+    
+        
+            Ink.Util.Validator.url
+        
+    
+    (url, [full])
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>url
+                
+
+                
+                </label>
+
+                
+                    <span class="description">URL to be checked</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Boolean</pre>
+                
+
+                
+                    <label class="optional">[full]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">If true, validates a full URL (one that should start with 'http')</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Boolean</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Checks if a url is valid</p>
+</span>
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+    Ink.requireModules([&#x27;Ink.Util.Validator_1&#x27;], function( InkValidator ){
+        console.log( InkValidator.url( &#x27;www.sapo.pt&#x27; ) );                // Result: true
+        console.log( InkValidator.url( &#x27;http://www.sapo.pt&#x27;, true ) );   // Result: true
+        console.log( InkValidator.url( &#x27;meh&#x27; ) );                        // Result: false
+    });
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+
+
+
+    
+
+    
+
+    
+

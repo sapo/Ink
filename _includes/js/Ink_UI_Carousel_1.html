@@ -1,0 +1,587 @@
+
+
+    <div class="box box-module">
+
+        
+            <h2><a name="Ink_UI_Carousel_1">Ink.UI.Carousel_1 <i>module</i></a></h2>
+        
+
+        
+
+        
+            <p><label>author:</label>inkdev AT sapo.pt</p>
+        
+        
+        
+            <p><label>version:</label>1</p>
+        
+
+        
+
+        
+
+        
+
+
+        
+            <h3>Defined classes and namespaces:</h3>
+            <ul>
+            
+                
+                    <li><a href="#Ink_UI_Carousel_1-Ink_UI_Carousel_1">(C) Ink.UI.Carousel_1</a></li>
+                
+            
+            </ul>
+        
+
+        
+
+        
+
+    </div>
+
+    
+        <div class="box box-class">
+
+    <h2><a name="Ink_UI_Carousel_1-Ink_UI_Carousel_1">Ink.UI.Carousel_1 <i>
+    
+        class
+    
+    </i></a></h2>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+
+    
+        
+            <h3>Defined methods:</h3>
+        
+        
+        <ul>
+        
+            <li><a href="#Ink_UI_Carousel_1-Ink_UI_Carousel_1-Carousel_1">
+            
+                Ink.UI.Carousel_1
+            
+            (selector, [options], [autoAdvance], )</a></li>
+        
+            <li><a href="#Ink_UI_Carousel_1-Ink_UI_Carousel_1-getPage">
+            
+                Ink.UI.Carousel_1.getPage
+            
+            ()</a></li>
+        
+            <li><a href="#Ink_UI_Carousel_1-Ink_UI_Carousel_1-nextPage">
+            
+                Ink.UI.Carousel_1.nextPage
+            
+            ([wrap])</a></li>
+        
+            <li><a href="#Ink_UI_Carousel_1-Ink_UI_Carousel_1-previousPage">
+            
+                Ink.UI.Carousel_1.previousPage
+            
+            ([wrap])</a></li>
+        
+            <li><a href="#Ink_UI_Carousel_1-Ink_UI_Carousel_1-refit">
+            
+                Ink.UI.Carousel_1.refit
+            
+            ()</a></li>
+        
+            <li><a href="#Ink_UI_Carousel_1-Ink_UI_Carousel_1-setPage">
+            
+                Ink.UI.Carousel_1.setPage
+            
+            (page, [wrap])</a></li>
+        
+        </ul>
+    
+
+    
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_Carousel_1-Ink_UI_Carousel_1-Carousel_1">
+    
+        Ink.UI.Carousel_1
+    
+    (selector, [options], [autoAdvance], )
+    
+        <i>constructor</i>
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String|DOMElement</pre>
+                
+
+                
+                    <label>selector
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Object</pre>
+                
+
+                
+                    <label class="optional">[options]
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Integer</pre>
+                
+
+                
+                    <label class="optional">[autoAdvance]
+                
+
+                
+                    =0
+                
+                </label>
+
+                
+                    <span class="description">The number of milliseconds to wait between auto-advancing pages. Set to 0 to disable auto-advance.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.axis]
+                
+
+                
+                    =&#x27;x&#x27;
+                
+                </label>
+
+                
+                    <span class="description">Can be `'x'` or `'y'`, for a horizontal or vertical carousel</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Boolean</pre>
+                
+
+                
+                    <label class="optional">[options.center]
+                
+
+                
+                    =false
+                
+                </label>
+
+                
+                    <span class="description">Center the carousel.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Number</pre>
+                
+
+                
+                    <label class="optional">[options.initialPage]
+                
+
+                
+                    =0
+                
+                </label>
+
+                
+                    <span class="description">When initialized, set the page to this.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Boolean</pre>
+                
+
+                
+                    <label class="optional">[options.keyboardSupport]
+                
+
+                
+                    =false
+                
+                </label>
+
+                
+                    <span class="description">Enable keyboard support</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Boolean</pre>
+                
+
+                
+                    <label class="optional">[options.swipe]
+                
+
+                
+                    =true
+                
+                </label>
+
+                
+                    <span class="description">Enable swipe support where available</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String|DOMElement|Ink.UI.Pagination_1</pre>
+                
+
+                
+                    <label class="optional">[options.pagination]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Either an `<ul>` element to add pagination markup to, or an `Ink.UI.Pagination` instance to use.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label class="optional">[options.onChange]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Callback for when the page is changed.</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_Carousel_1-Ink_UI_Carousel_1-getPage">
+    
+        
+            Ink.UI.Carousel_1.getPage
+        
+    
+    ()
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+
+    
+
+    
+        <span class="text"><p>Get the currently displayed page.</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_Carousel_1-Ink_UI_Carousel_1-nextPage">
+    
+        
+            Ink.UI.Carousel_1.nextPage
+        
+    
+    ([wrap])
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>Boolean</pre>
+                
+
+                
+                    <label class="optional">[wrap]
+                
+
+                
+                    =false
+                
+                </label>
+
+                
+                    <span class="description">If true, going to the page after the last page takes you to the first page.</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>Change to the next page</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_Carousel_1-Ink_UI_Carousel_1-previousPage">
+    
+        
+            Ink.UI.Carousel_1.previousPage
+        
+    
+    ([wrap])
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>Boolean</pre>
+                
+
+                
+                    <label class="optional">[wrap]
+                
+
+                
+                    =false
+                
+                </label>
+
+                
+                    <span class="description">If true, going to the page after the last page takes you to the first page.</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>Change to the previous page</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_Carousel_1-Ink_UI_Carousel_1-refit">
+    
+        
+            Ink.UI.Carousel_1.refit
+        
+    
+    ()
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+
+    
+
+    
+        <span class="text"><p>Measure the carousel once again, adjusting the involved elements&#39;
+sizes. Called automatically when the window resizes, in order to
+cater for changes from responsive media queries, for instance.</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_Carousel_1-Ink_UI_Carousel_1-setPage">
+    
+        
+            Ink.UI.Carousel_1.setPage
+        
+    
+    (page, [wrap])
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+
+                
+                    <label>page
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label class="optional">[wrap]
+                
+
+                
+                    =false
+                
+                </label>
+
+                
+                    <span class="description">Wrap over the first and last pages. (For example, going to the 5th page when there are only 4 pages goes to the 1st page)</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>Set the current page to <code>page</code></p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+
+
+
+    
+
+    
+
+    
+

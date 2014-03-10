@@ -1,0 +1,442 @@
+
+
+    <div class="box box-module">
+
+        
+            <h2><a name="Ink_Util_Cookie_1">Ink.Util.Cookie_1 <i>module</i></a></h2>
+        
+
+        
+
+        
+            <p><label>author:</label>inkdev AT sapo.pt</p>
+        
+        
+        
+            <p><label>version:</label>1</p>
+        
+
+        
+
+        
+
+        
+
+
+        
+            <h3>Defined classes and namespaces:</h3>
+            <ul>
+            
+                
+                    <li><a href="#Ink_Util_Cookie_1-Ink_Util_Cookie">(C) Ink.Util.Cookie</a></li>
+                
+            
+            </ul>
+        
+
+        
+
+        
+
+    </div>
+
+    
+        <div class="box box-class">
+
+    <h2><a name="Ink_Util_Cookie_1-Ink_Util_Cookie">Ink.Util.Cookie <i>
+    
+        class
+    
+    </i></a></h2>
+
+    
+
+    
+    
+    
+        <p><label>version:</label>1</p>
+    
+
+    
+        <div class="text"><p>Utilities for Cookie handling</p>
+</div>
+    
+
+    
+
+
+    
+        
+            <h3>Defined methods:</h3>
+        
+        
+        <ul>
+        
+            <li><a href="#Ink_Util_Cookie_1-Ink_Util_Cookie-get">
+            
+                Ink.Util.Cookie.get
+            
+            (name)</a></li>
+        
+            <li><a href="#Ink_Util_Cookie_1-Ink_Util_Cookie-remove">
+            
+                Ink.Util.Cookie.remove
+            
+            (cookieName, [path], [domain])</a></li>
+        
+            <li><a href="#Ink_Util_Cookie_1-Ink_Util_Cookie-set">
+            
+                Ink.Util.Cookie.set
+            
+            (name, value, [expires], [path], [domain], [secure])</a></li>
+        
+        </ul>
+    
+
+    
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Util_Cookie_1-Ink_Util_Cookie-get">
+    
+        
+            Ink.Util.Cookie.get
+        
+    
+    (name)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>name
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>String|Object</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Gets an object with current page cookies</p>
+</span>
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+    Ink.requireModules([&#x27;Ink.Util.Cookie_1&#x27;], function( InkCookie ){
+        var myCookieValue = InkCookie.get(&#x27;someVarThere&#x27;);
+        console.log( myCookieValue ); // This will output the value of the cookie &#x27;someVarThere&#x27;, from the cookie object.
+    });
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Util_Cookie_1-Ink_Util_Cookie-remove">
+    
+        
+            Ink.Util.Cookie.remove
+        
+    
+    (cookieName, [path], [domain])
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>cookieName
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Cookie name</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[path]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Path of the cookie (default '/')</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[domain]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Domain of the cookie (default current hostname)</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>Delete a cookie</p>
+</span>
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+    Ink.requireModules([&#x27;Ink.Util.Cookie_1&#x27;], function( InkCookie ){
+        InkCookie.remove( &#x27;someVarThere&#x27; );
+    });
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Util_Cookie_1-Ink_Util_Cookie-set">
+    
+        
+            Ink.Util.Cookie.set
+        
+    
+    (name, value, [expires], [path], [domain], [secure])
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>name
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Cookie name</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>value
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Cookie value</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Number</pre>
+                
+
+                
+                    <label class="optional">[expires]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Number to add to current Date in seconds</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[path]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Path to sets cookie (default '/')</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[domain]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Domain to sets cookie (default current hostname)</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Boolean</pre>
+                
+
+                
+                    <label class="optional">[secure]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">True if wants secure, default 'false'</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>Sets a cookie</p>
+</span>
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+    Ink.requireModules([&#x27;Ink.Util.Cookie_1&#x27;], function( InkCookie ){
+        var expireDate = new Date( 2014,00,01, 0,0,0);
+        InkCookie.set( &#x27;someVarThere&#x27;, &#x27;anyValueHere&#x27;, expireDate.getTime() );
+    });
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+
+
+
+    
+
+    
+
+    
+

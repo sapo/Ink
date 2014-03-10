@@ -1,0 +1,326 @@
+
+
+    <div class="box box-module">
+
+        
+            <h2><a name="Ink_UI_ImageQuery_1">Ink.UI.ImageQuery_1 <i>module</i></a></h2>
+        
+
+        
+
+        
+            <p><label>author:</label>inkdev AT sapo.pt</p>
+        
+        
+        
+            <p><label>version:</label>1</p>
+        
+
+        
+
+        
+
+        
+
+
+        
+            <h3>Defined classes and namespaces:</h3>
+            <ul>
+            
+                
+                    <li><a href="#Ink_UI_ImageQuery_1-Ink_UI_ImageQuery">(C) Ink.UI.ImageQuery</a></li>
+                
+            
+            </ul>
+        
+
+        
+
+        
+
+    </div>
+
+    
+        <div class="box box-class">
+
+    <h2><a name="Ink_UI_ImageQuery_1-Ink_UI_ImageQuery">Ink.UI.ImageQuery <i>
+    
+        class
+    
+    </i></a></h2>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+
+    
+        
+            <h3>Defined methods:</h3>
+        
+        
+        <ul>
+        
+            <li><a href="#Ink_UI_ImageQuery_1-Ink_UI_ImageQuery-ImageQuery">
+            
+                Ink.UI.ImageQuery
+            
+            (selector, [options], queries, allowFirstLoad)</a></li>
+        
+        </ul>
+    
+
+    
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_ImageQuery_1-Ink_UI_ImageQuery-ImageQuery">
+    
+        Ink.UI.ImageQuery
+    
+    (selector, [options], queries, allowFirstLoad)
+    
+        <i>constructor</i>
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String|DOMElement</pre>
+                
+
+                
+                    <label>selector
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Object</pre>
+                
+
+                
+                    <label class="optional">[options]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Options</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String|Function</pre>
+                
+
+                
+                    <label class="optional">[options.src]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">String or Callback function (that returns a string) with the path to be used to get the images.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String|Function</pre>
+                
+
+                
+                    <label class="optional">[options.retina]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">String or Callback function (that returns a string) with the path to be used to get RETINA specific images.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Array</pre>
+                
+
+                
+                    <label class="optional">[options.queries]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Array of queries</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.queries.label]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Label of the query. Ex. 'small'</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Number</pre>
+                
+
+                
+                    <label class="optional">[options.queries.width]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Min-width to use this query</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label class="optional">[options.onLoad]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Date format string</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>array</pre>
+                
+
+                
+                    <label>queries
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Array of objects that determine the label/name and its min-width to be applied.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>boolean</pre>
+                
+
+                
+                    <label>allowFirstLoad
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Boolean flag to allow the loading of the first element.</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+     &lt;div class=&quot;imageQueryExample large-100 medium-100 small-100 content-center clearfix vspace&quot;&gt;
+         &lt;img src=&quot;/assets/imgs/imagequery/small/image.jpg&quot; /&gt;
+     &lt;/div&gt;
+     &lt;script type=&quot;text/javascript&quot;&gt;
+     Ink.requireModules( [&#x27;Ink.Dom.Selector_1&#x27;, &#x27;Ink.UI.ImageQuery_1&#x27;], function( Selector, ImageQuery ){
+         var imageQueryElement = Ink.s(&#x27;.imageQueryExample img&#x27;);
+         var imageQueryObj = new ImageQuery(&#x27;.imageQueryExample img&#x27;,{
+             src: &#x27;/assets/imgs/imagequery/{:label}/{:file}&#x27;,
+             queries: [
+                 {
+                     label: &#x27;small&#x27;,
+                     width: 480
+                 },
+                 {
+                     label: &#x27;medium&#x27;,
+                     width: 640
+                 },
+                 {
+                     label: &#x27;large&#x27;,
+                     width: 1024
+                 }   
+             ]
+         });
+     } );
+     &lt;/script&gt;
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+
+
+
+    
+
+    
+
+    
+

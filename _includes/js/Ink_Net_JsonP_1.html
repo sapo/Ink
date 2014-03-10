@@ -1,0 +1,297 @@
+
+
+    <div class="box box-module">
+
+        
+            <h2><a name="Ink_Net_JsonP_1">Ink.Net.JsonP_1 <i>module</i></a></h2>
+        
+
+        
+
+        
+        
+        
+
+        
+
+        
+
+        
+
+
+        
+            <h3>Defined classes and namespaces:</h3>
+            <ul>
+            
+                
+                    <li><a href="#Ink_Net_JsonP_1-Ink_Net_JsonP">(C) Ink.Net.JsonP</a></li>
+                
+            
+            </ul>
+        
+
+        
+
+        
+
+    </div>
+
+    
+        <div class="box box-class">
+
+    <h2><a name="Ink_Net_JsonP_1-Ink_Net_JsonP">Ink.Net.JsonP <i>
+    
+        class
+    
+    </i></a></h2>
+
+    
+
+    
+    
+    
+
+    
+        <div class="text"><p>This class takes care of the nitty-gritty details of doing jsonp requests: Storing
+a callback in a globally accessible manner, waiting for the timeout or completion
+of the request, and passing extra GET parameters to the server, is not so complicated
+but it&#39;s boring and repetitive to code and tricky to get right.</p>
+</div>
+    
+
+    
+
+
+    
+        
+            <h3>Defined methods:</h3>
+        
+        
+        <ul>
+        
+            <li><a href="#Ink_Net_JsonP_1-Ink_Net_JsonP-JsonP">
+            
+                Ink.Net.JsonP
+            
+            (uri, options, )</a></li>
+        
+        </ul>
+    
+
+    
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Net_JsonP_1-Ink_Net_JsonP-JsonP">
+    
+        Ink.Net.JsonP
+    
+    (uri, options, )
+    
+        <i>constructor</i>
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>uri
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Object</pre>
+                
+
+                
+                    <label>options
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label>options.onSuccess
+                
+
+                
+                </label>
+
+                
+                    <span class="description">success callback</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label class="optional">[options.onFailure]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">failure callback</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Object</pre>
+                
+
+                
+                    <label class="optional">[options.failureObj]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">object to be passed as argument to failure callback</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Number</pre>
+                
+
+                
+                    <label class="optional">[options.timeout]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">timeout for request fail, in seconds. defaults to 10</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Object</pre>
+                
+
+                
+                    <label class="optional">[options.params]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">object with the parameters and respective values to unfold</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.callbackParam]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">parameter to use as callback. defaults to 'jsoncallback'</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.internalCallback]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">*Advanced*: name of the callback function stored in the Ink.Net.JsonP object.</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+     Ink.requireModules([&#x27;Ink.Net.JsonP_1&#x27;], function (JsonP) {
+         var jsonp = new JsonP(&#x27;http://path.to.jsonp/endpoint&#x27;, {
+             // When the JSONP response arrives, this callback is called:
+             onSuccess: function (gameData) {
+                 game.startGame(gameData);
+             },
+             // after options.timeout seconds, this callback gets called:
+             onFailure: function () {
+                 game.error(&#x27;Could not load game data!&#x27;);
+             },
+             timeout: 5
+         });
+     });
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+
+
+
+    
+
+    
+
+    
+

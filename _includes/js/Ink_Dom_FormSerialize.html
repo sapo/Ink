@@ -1,0 +1,282 @@
+
+
+    <div class="box box-module">
+
+        
+            <h2><a name="Ink_Dom_FormSerialize">Ink.Dom.FormSerialize <i>module</i></a></h2>
+        
+
+        
+
+        
+            <p><label>author:</label>inkdev AT sapo.pt</p>
+        
+        
+        
+
+        
+
+        
+
+        
+
+
+        
+            <h3>Defined classes and namespaces:</h3>
+            <ul>
+            
+                
+                    <li><a href="#Ink_Dom_FormSerialize-Ink_Dom_FormSerialize">(C) Ink.Dom.FormSerialize</a></li>
+                
+            
+            </ul>
+        
+
+        
+
+        
+
+    </div>
+
+    
+        <div class="box box-class">
+
+    <h2><a name="Ink_Dom_FormSerialize-Ink_Dom_FormSerialize">Ink.Dom.FormSerialize <i>
+    
+        class
+    
+    </i></a></h2>
+
+    
+
+    
+    
+    
+
+    
+        <div class="text"><p>Supports serialization of form data to/from javascript Objects.</p>
+<p>Valid applications are ad hoc AJAX/syndicated submission of forms, restoring form values from server side state, etc.</p>
+</div>
+    
+
+    
+
+
+    
+        
+            <h3>Defined methods:</h3>
+        
+        
+        <ul>
+        
+            <li><a href="#Ink_Dom_FormSerialize-Ink_Dom_FormSerialize-fillIn">
+            
+                Ink.Dom.FormSerialize.fillIn
+            
+            (form, map2)</a></li>
+        
+            <li><a href="#Ink_Dom_FormSerialize-Ink_Dom_FormSerialize-serialize">
+            
+                Ink.Dom.FormSerialize.serialize
+            
+            (form)</a></li>
+        
+        </ul>
+    
+
+    
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Dom_FormSerialize-Ink_Dom_FormSerialize-fillIn">
+    
+        
+            Ink.Dom.FormSerialize.fillIn
+        
+    
+    (form, map2)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>DomElement|String</pre>
+                
+
+                
+                    <label>form
+                
+
+                
+                </label>
+
+                
+                    <span class="description">form element which is to be populated</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Object</pre>
+                
+
+                
+                    <label>map2
+                
+
+                
+                </label>
+
+                
+                    <span class="description">map of fieldName -> String|String[]|Boolean</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>Sets form elements&#39;s values with values given from object</p>
+<p>One cannot restore the values of an input with <code>type=&quot;file&quot;</code> (browser prohibits it)</p>
+</span>
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+    &lt;form id=&quot;frm&quot;&gt;
+        &lt;input type=&quot;text&quot; name=&quot;field1&quot;&gt;
+        &lt;button type=&quot;submit&quot;&gt;Submit&lt;/button&gt;
+    &lt;/form&gt;
+    &lt;script type=&quot;text/javascript&quot;&gt;
+        Ink.requireModules([&#x27;Ink.Dom.FormSerialize_1&#x27;], function (FormSerialize) {
+            var values = {field1: &#x27;CTHULHU&#x27;};
+            FormSerialize.fillIn(&#x27;frm&#x27;, values);
+            // At this point the form is pre-filled with the values above.
+        });
+    &lt;/script&gt;
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Dom_FormSerialize-Ink_Dom_FormSerialize-serialize">
+    
+        
+            Ink.Dom.FormSerialize.serialize
+        
+    
+    (form)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>DomElement|String</pre>
+                
+
+                
+                    <label>form
+                
+
+                
+                </label>
+
+                
+                    <span class="description">form element from which the extraction is to occur</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Object</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Serializes a form into an object, turning field names into keys, and field values into values.</p>
+<p>note: Multi-select and checkboxes with multiple values will yield arrays</p>
+</span>
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+    &lt;form id=&quot;frm&quot;&gt;
+        &lt;input type=&quot;text&quot; name=&quot;field1&quot;&gt;
+        &lt;button type=&quot;submit&quot;&gt;Submit&lt;/button&gt;
+    &lt;/form&gt;
+    &lt;script type=&quot;text/javascript&quot;&gt;
+        Ink.requireModules([&#x27;Ink.Dom.FormSerialize_1&#x27;, &#x27;Ink.Dom.Event_1&#x27;], function (FormSerialize, InkEvent) {
+            InkEvent.observe(&#x27;frm&#x27;, &#x27;submit&#x27;, function (event) {
+                var formData = FormSerialize.serialize(&#x27;frm&#x27;); // -&gt; {field1:&quot;123&quot;}
+                InkEvent.stop(event);
+            });
+        });
+    &lt;/script&gt;
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+
+
+
+    
+
+    
+
+    
+

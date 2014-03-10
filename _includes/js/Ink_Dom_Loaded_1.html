@@ -1,0 +1,187 @@
+
+
+    <div class="box box-module">
+
+        
+            <h2><a name="Ink_Dom_Loaded_1">Ink.Dom.Loaded_1 <i>module</i></a></h2>
+        
+
+        
+
+        
+            <p><label>author:</label>inkdev AT sapo.pt</p>
+        
+        
+        
+            <p><label>version:</label>1</p>
+        
+
+        
+
+        
+
+        
+
+
+        
+            <h3>Defined classes and namespaces:</h3>
+            <ul>
+            
+                
+                    <li><a href="#Ink_Dom_Loaded_1-Ink_Dom_Loaded">(C) Ink.Dom.Loaded</a></li>
+                
+            
+            </ul>
+        
+
+        
+
+        
+
+    </div>
+
+    
+        <div class="box box-class">
+
+    <h2><a name="Ink_Dom_Loaded_1-Ink_Dom_Loaded">Ink.Dom.Loaded <i>
+    
+        class
+    
+    </i></a></h2>
+
+    
+
+    
+    
+    
+        <p><label>version:</label>1</p>
+    
+
+    
+        <div class="text"><p>The Loaded class provides a method that allows developers to queue functions to run when
+the page is loaded (document is ready).</p>
+</div>
+    
+
+    
+
+
+    
+        
+            <h3>Defined methods:</h3>
+        
+        
+        <ul>
+        
+            <li><a href="#Ink_Dom_Loaded_1-Ink_Dom_Loaded-run">
+            
+                Ink.Dom.Loaded.run
+            
+            ([win], fn)</a></li>
+        
+        </ul>
+    
+
+    
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Dom_Loaded_1-Ink_Dom_Loaded-run">
+    
+        
+            Ink.Dom.Loaded.run
+        
+    
+    ([win], fn)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>Object</pre>
+                
+
+                
+                    <label class="optional">[win]
+                
+
+                
+                    =window
+                
+                </label>
+
+                
+                    <span class="description">Window object to attach/add the event</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label>fn
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Callback function to be run after the page is loaded</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>Adds a new function that will be invoked once the document is ready</p>
+</span>
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+    Ink.requireModules([&#x27;Ink.Dom.Loaded_1&#x27;], function(Loaded){
+        Loaded.run(function(){
+            console.log(&#x27;This will run when the page/document is ready/loaded&#x27;);
+        });
+    });
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+
+
+
+    
+
+    
+
+    
+

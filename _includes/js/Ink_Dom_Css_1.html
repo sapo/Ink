@@ -1,0 +1,2031 @@
+
+
+    <div class="box box-module">
+
+        
+            <h2><a name="Ink_Dom_Css_1">Ink.Dom.Css_1 <i>module</i></a></h2>
+        
+
+        
+
+        
+        
+        
+
+        
+
+        
+
+        
+
+
+        
+            <h3>Defined classes and namespaces:</h3>
+            <ul>
+            
+                
+                    <li><a href="#Ink_Dom_Css_1-Ink_Dom_Css">(C) Ink.Dom.Css</a></li>
+                
+            
+            </ul>
+        
+
+        
+
+        
+
+    </div>
+
+    
+        <div class="box box-class">
+
+    <h2><a name="Ink_Dom_Css_1-Ink_Dom_Css">Ink.Dom.Css <i>
+    
+        class
+    
+    </i></a></h2>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+
+    
+        
+            <h3>Defined methods:</h3>
+        
+        
+        <ul>
+        
+            <li><a href="#Ink_Dom_Css_1-Ink_Dom_Css-addClassName">
+            
+                Ink.Dom.Css.addClassName
+            
+            (elm, className)</a></li>
+        
+            <li><a href="#Ink_Dom_Css_1-Ink_Dom_Css-addRemoveClassName">
+            
+                Ink.Dom.Css.addRemoveClassName
+            
+            (elm, className, addRemState)</a></li>
+        
+            <li><a href="#Ink_Dom_Css_1-Ink_Dom_Css-appendStyleTag">
+            
+                Ink.Dom.Css.appendStyleTag
+            
+            (selector, style, options, )</a></li>
+        
+            <li><a href="#Ink_Dom_Css_1-Ink_Dom_Css-appendStylesheet">
+            
+                Ink.Dom.Css.appendStylesheet
+            
+            (path, options, )</a></li>
+        
+            <li><a href="#Ink_Dom_Css_1-Ink_Dom_Css-appendStylesheetCb">
+            
+                Ink.Dom.Css.appendStylesheetCb
+            
+            (cssURI, [callback])</a></li>
+        
+            <li><a href="#Ink_Dom_Css_1-Ink_Dom_Css-blinkClass">
+            
+                Ink.Dom.Css.blinkClass
+            
+            (elm, className, timeout, negate)</a></li>
+        
+            <li><a href="#Ink_Dom_Css_1-Ink_Dom_Css-changeFontSize">
+            
+                Ink.Dom.Css.changeFontSize
+            
+            (selector, delta, [op], [minVal], [maxVal])</a></li>
+        
+            <li><a href="#Ink_Dom_Css_1-Ink_Dom_Css-decToHex">
+            
+                Ink.Dom.Css.decToHex
+            
+            (dec)</a></li>
+        
+            <li><a href="#Ink_Dom_Css_1-Ink_Dom_Css-getPropertyFromStylesheet">
+            
+                Ink.Dom.Css.getPropertyFromStylesheet
+            
+            (selector, property)</a></li>
+        
+            <li><a href="#Ink_Dom_Css_1-Ink_Dom_Css-getStyle">
+            
+                Ink.Dom.Css.getStyle
+            
+            (elm, style)</a></li>
+        
+            <li><a href="#Ink_Dom_Css_1-Ink_Dom_Css-hasClassName">
+            
+                Ink.Dom.Css.hasClassName
+            
+            (elm, classNames, [all])</a></li>
+        
+            <li><a href="#Ink_Dom_Css_1-Ink_Dom_Css-hexToDec">
+            
+                Ink.Dom.Css.hexToDec
+            
+            (hex)</a></li>
+        
+            <li><a href="#Ink_Dom_Css_1-Ink_Dom_Css-hide">
+            
+                Ink.Dom.Css.hide
+            
+            (elm)</a></li>
+        
+            <li><a href="#Ink_Dom_Css_1-Ink_Dom_Css-removeClassName">
+            
+                Ink.Dom.Css.removeClassName
+            
+            (elm, className)</a></li>
+        
+            <li><a href="#Ink_Dom_Css_1-Ink_Dom_Css-setClassName">
+            
+                Ink.Dom.Css.setClassName
+            
+            (elm, className, add)</a></li>
+        
+            <li><a href="#Ink_Dom_Css_1-Ink_Dom_Css-setOpacity">
+            
+                Ink.Dom.Css.setOpacity
+            
+            (elm, value)</a></li>
+        
+            <li><a href="#Ink_Dom_Css_1-Ink_Dom_Css-setStyle">
+            
+                Ink.Dom.Css.setStyle
+            
+            (elm, style)</a></li>
+        
+            <li><a href="#Ink_Dom_Css_1-Ink_Dom_Css-show">
+            
+                Ink.Dom.Css.show
+            
+            (elm, forceDisplayProperty)</a></li>
+        
+            <li><a href="#Ink_Dom_Css_1-Ink_Dom_Css-showHide">
+            
+                Ink.Dom.Css.showHide
+            
+            (elm, [show])</a></li>
+        
+            <li><a href="#Ink_Dom_Css_1-Ink_Dom_Css-toggle">
+            
+                Ink.Dom.Css.toggle
+            
+            (elm, forceShow)</a></li>
+        
+            <li><a href="#Ink_Dom_Css_1-Ink_Dom_Css-toggleClassName">
+            
+                Ink.Dom.Css.toggleClassName
+            
+            (elm, className, forceAdd)</a></li>
+        
+        </ul>
+    
+
+    
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Dom_Css_1-Ink_Dom_Css-addClassName">
+    
+        
+            Ink.Dom.Css.addClassName
+        
+    
+    (elm, className)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>DOMElement|String</pre>
+                
+
+                
+                    <label>elm
+                
+
+                
+                </label>
+
+                
+                    <span class="description">DOM element or element id</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>className
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>add a class to a given element</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Dom_Css_1-Ink_Dom_Css-addRemoveClassName">
+    
+        
+            Ink.Dom.Css.addRemoveClassName
+        
+    
+    (elm, className, addRemState)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>DOMElement|string</pre>
+                
+
+                
+                    <label>elm
+                
+
+                
+                </label>
+
+                
+                    <span class="description">DOM element or element id</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>string</pre>
+                
+
+                
+                    <label>className
+                
+
+                
+                </label>
+
+                
+                    <span class="description">class name to add or remove.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>boolean</pre>
+                
+
+                
+                    <label>addRemState
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Whether to add or remove. `true` to add, `false` to remove.</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>adds or removes a class to the given element according to addRemState</p>
+</span>
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+     Ink.requireModules([&#x27;Ink.Dom.Css_1&#x27;], function (Css) {
+         Css.addRemoveClassName(myElm, &#x27;classss&#x27;, true);  // Adds the &#x60;classss&#x60; class.
+         Css.addRemoveClassName(myElm, &#x27;classss&#x27;, false);  // Removes the &#x60;classss&#x60; class.
+     });
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Dom_Css_1-Ink_Dom_Css-appendStyleTag">
+    
+        
+            Ink.Dom.Css.appendStyleTag
+        
+    
+    (selector, style, options, )
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>selector
+                
+
+                
+                </label>
+
+                
+                    <span class="description">The css selector for the rule</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>style
+                
+
+                
+                </label>
+
+                
+                    <span class="description">The content of the style rule</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Object</pre>
+                
+
+                
+                    <label>options
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Options for the tag</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.type]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">file type</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Boolean</pre>
+                
+
+                
+                    <label class="optional">[options.force]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">if true, style tag will be appended to end of head</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>Adds css style tags to the head section of a page</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Dom_Css_1-Ink_Dom_Css-appendStylesheet">
+    
+        
+            Ink.Dom.Css.appendStylesheet
+        
+    
+    (path, options, )
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>path
+                
+
+                
+                </label>
+
+                
+                    <span class="description">File path</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Object</pre>
+                
+
+                
+                    <label>options
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Options for the tag</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.media]
+                
+
+                
+                    =&#x27;screen&#x27;
+                
+                </label>
+
+                
+                    <span class="description">media type</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.type]
+                
+
+                
+                    =&#x27;text/css&#x27;
+                
+                </label>
+
+                
+                    <span class="description">file type</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Boolean</pre>
+                
+
+                
+                    <label class="optional">[options.force]
+                
+
+                
+                    =false
+                
+                </label>
+
+                
+                    <span class="description">if true, tag will be appended to end of head</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>Adds a link tag for a stylesheet to the head section of a page</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Dom_Css_1-Ink_Dom_Css-appendStylesheetCb">
+    
+        
+            Ink.Dom.Css.appendStylesheetCb
+        
+    
+    (cssURI, [callback])
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>cssURI
+                
+
+                
+                </label>
+
+                
+                    <span class="description">URI of the CSS to load, if empty ignores and just calls back directly</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function(cssURI)</pre>
+                
+
+                
+                    <label class="optional">[callback]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">optional callback which will be called once the CSS is loaded</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>Loads CSS via LINK element inclusion in HEAD (skips append if already there)</p>
+<p>Works similarly to appendStylesheet but:
+  a) supports all browsers;
+  b) supports optional callback which gets invoked once the CSS has been applied</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Dom_Css_1-Ink_Dom_Css-blinkClass">
+    
+        
+            Ink.Dom.Css.blinkClass
+        
+    
+    (elm, className, timeout, negate)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>DOMElement|String</pre>
+                
+
+                
+                    <label>elm
+                
+
+                
+                </label>
+
+                
+                    <span class="description">DOM element or element id</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>className
+                
+
+                
+                </label>
+
+                
+                    <span class="description">class name</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Boolean</pre>
+                
+
+                
+                    <label>timeout
+                
+
+                
+                </label>
+
+                
+                    <span class="description">timeout in ms between adding and removing, default 100 ms</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Boolean</pre>
+                
+
+                
+                    <label>negate
+                
+
+                
+                </label>
+
+                
+                    <span class="description">is true, class is removed then added</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>Add and removes the class from the element with a timeout, so it blinks</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Dom_Css_1-Ink_Dom_Css-changeFontSize">
+    
+        
+            Ink.Dom.Css.changeFontSize
+        
+    
+    (selector, delta, [op], [minVal], [maxVal])
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>selector
+                
+
+                
+                </label>
+
+                
+                    <span class="description">CSS selector rule</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Number</pre>
+                
+
+                
+                    <label>delta
+                
+
+                
+                </label>
+
+                
+                    <span class="description">number of pixels to change on font-size</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[op]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">supported operations are '+' and '*'. defaults to '+'</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Number</pre>
+                
+
+                
+                    <label class="optional">[minVal]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">if result gets smaller than minVal, change does not occurr</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Number</pre>
+                
+
+                
+                    <label class="optional">[maxVal]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">if result gets bigger  than maxVal, change does not occurr</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>Changes the font size of the elements which match the given CSS rule
+For this function to work, the CSS file must be in the same domain than the host page, otherwise JS can&#39;t access it.</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Dom_Css_1-Ink_Dom_Css-decToHex">
+    
+        
+            Ink.Dom.Css.decToHex
+        
+    
+    (dec)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>dec
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Either a single decimal value,</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Converts decimal to hexadecimal values, for use with colors</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Dom_Css_1-Ink_Dom_Css-getPropertyFromStylesheet">
+    
+        
+            Ink.Dom.Css.getPropertyFromStylesheet
+        
+    
+    (selector, property)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>selector
+                
+
+                
+                </label>
+
+                
+                    <span class="description">a CSS rule. must be an exact match</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>property
+                
+
+                
+                </label>
+
+                
+                    <span class="description">a CSS property</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>String</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>use this to obtain the value of a CSS property (searched from loaded CSS documents)</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Dom_Css_1-Ink_Dom_Css-getStyle">
+    
+        
+            Ink.Dom.Css.getStyle
+        
+    
+    (elm, style)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>DOMElement|String</pre>
+                
+
+                
+                    <label>elm
+                
+
+                
+                </label>
+
+                
+                    <span class="description">DOM element or element id</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>style
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Which css attribute to fetch</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Gets the value for an element&#39;s style attribute</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Dom_Css_1-Ink_Dom_Css-hasClassName">
+    
+        
+            Ink.Dom.Css.hasClassName
+        
+    
+    (elm, classNames, [all])
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>DOMElement|String</pre>
+                
+
+                
+                    <label>elm
+                
+
+                
+                </label>
+
+                
+                    <span class="description">DOM element or element id</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String|Array</pre>
+                
+
+                
+                    <label>classNames
+                
+
+                
+                </label>
+
+                
+                    <span class="description">classNames to test</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Boolean</pre>
+                
+
+                
+                    <label class="optional">[all]
+                
+
+                
+                    =false
+                
+                </label>
+
+                
+                    <span class="description">if true, return whether all classes in classNames are there. Otherwise, return true if any is present.</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Boolean</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Dom_Css_1-Ink_Dom_Css-hexToDec">
+    
+        
+            Ink.Dom.Css.hexToDec
+        
+    
+    (hex)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>hex
+                
+
+                
+                </label>
+
+                
+                    <span class="description">hexadecimal value with 6, 3, 2 or 1 characters</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Number</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Converts hexadecimal values to decimal, for use with colors</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Dom_Css_1-Ink_Dom_Css-hide">
+    
+        
+            Ink.Dom.Css.hide
+        
+    
+    (elm)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>DOMElement|String</pre>
+                
+
+                
+                    <label>elm
+                
+
+                
+                </label>
+
+                
+                    <span class="description">DOM element or element id</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>Hides an element</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Dom_Css_1-Ink_Dom_Css-removeClassName">
+    
+        
+            Ink.Dom.Css.removeClassName
+        
+    
+    (elm, className)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>DOMElement|String</pre>
+                
+
+                
+                    <label>elm
+                
+
+                
+                </label>
+
+                
+                    <span class="description">DOM element or element id</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>className
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>removes a class from a given element</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Dom_Css_1-Ink_Dom_Css-setClassName">
+    
+        
+            Ink.Dom.Css.setClassName
+        
+    
+    (elm, className, add)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>DOMElement|String</pre>
+                
+
+                
+                    <label>elm
+                
+
+                
+                </label>
+
+                
+                    <span class="description">DOM element or element id</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>className
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Boolean</pre>
+                
+
+                
+                    <label>add
+                
+
+                
+                </label>
+
+                
+                    <span class="description">true to add, false to remove</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>Alias to addRemoveClassName. Utility function, saves many if/elses.</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Dom_Css_1-Ink_Dom_Css-setOpacity">
+    
+        
+            Ink.Dom.Css.setOpacity
+        
+    
+    (elm, value)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>DOMElement|String</pre>
+                
+
+                
+                    <label>elm
+                
+
+                
+                </label>
+
+                
+                    <span class="description">DOM element or element id</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Number</pre>
+                
+
+                
+                    <label>value
+                
+
+                
+                </label>
+
+                
+                    <span class="description">allows 0 to 1(default mode decimal) or percentage (warning using 0 or 1 will reset to default mode)</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>sets the opacity of given client a given element</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Dom_Css_1-Ink_Dom_Css-setStyle">
+    
+        
+            Ink.Dom.Css.setStyle
+        
+    
+    (elm, style)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>DOMElement|String</pre>
+                
+
+                
+                    <label>elm
+                
+
+                
+                </label>
+
+                
+                    <span class="description">DOM element or element id</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>style
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Which css attribute to set</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>Adds CSS rules to an element&#39;s style attribute.</p>
+</span>
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+    &lt;a href=&quot;#&quot; class=&quot;change-color&quot;&gt;Change his color&lt;/a&gt;
+    &lt;p class=&quot;him&quot;&gt;&quot;He&quot; is me&lt;/p&gt;
+    &lt;script type=&quot;text/javascript&quot;&gt;
+        Ink.requireModules([&#x27;Ink.Dom.Css_1&#x27;, &#x27;Ink.Dom.Event_1&#x27;, &#x27;Ink.Dom.Selector_1&#x27;], function (Css, InkEvent, Selector) {
+            var btn = Selector.select(&#x27;.change-color&#x27;)[0];
+            var other = Selector.select(&#x27;.him&#x27;)[0];
+            InkEvent.observe(btn, &#x27;click&#x27;, function () {
+                Css.setStyle(other, &#x27;background-color: black&#x27;);
+                Css.setStyle(other, &#x27;color: white&#x27;);
+            });
+        });
+    &lt;/script&gt;
+
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Dom_Css_1-Ink_Dom_Css-show">
+    
+        
+            Ink.Dom.Css.show
+        
+    
+    (elm, forceDisplayProperty)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>DOMElement|String</pre>
+                
+
+                
+                    <label>elm
+                
+
+                
+                </label>
+
+                
+                    <span class="description">DOM element or element id</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>forceDisplayProperty
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Css display property to apply on show</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>Makes an element visible</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Dom_Css_1-Ink_Dom_Css-showHide">
+    
+        
+            Ink.Dom.Css.showHide
+        
+    
+    (elm, [show])
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>DOMElement|String</pre>
+                
+
+                
+                    <label>elm
+                
+
+                
+                </label>
+
+                
+                    <span class="description">DOM element or element id</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>boolean</pre>
+                
+
+                
+                    <label class="optional">[show]
+                
+
+                
+                    =false
+                
+                </label>
+
+                
+                    <span class="description">Whether to show or hide `elm`.</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>shows or hides according to param show</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Dom_Css_1-Ink_Dom_Css-toggle">
+    
+        
+            Ink.Dom.Css.toggle
+        
+    
+    (elm, forceShow)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>DOMElement|String</pre>
+                
+
+                
+                    <label>elm
+                
+
+                
+                </label>
+
+                
+                    <span class="description">DOM element or element id</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Boolean</pre>
+                
+
+                
+                    <label>forceShow
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Forces showing if element is hidden</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>Shows or hides an element depending on current state</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Dom_Css_1-Ink_Dom_Css-toggleClassName">
+    
+        
+            Ink.Dom.Css.toggleClassName
+        
+    
+    (elm, className, forceAdd)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>DOMElement|String</pre>
+                
+
+                
+                    <label>elm
+                
+
+                
+                </label>
+
+                
+                    <span class="description">DOM element or element id</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>className
+                
+
+                
+                </label>
+
+                
+                    <span class="description">class name</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Boolean</pre>
+                
+
+                
+                    <label>forceAdd
+                
+
+                
+                </label>
+
+                
+                    <span class="description">forces the addition of the class if it doesn't exists</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>Add or remove a class name from a given element</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+
+
+
+    
+
+    
+
+    
+

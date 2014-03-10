@@ -1,0 +1,916 @@
+
+
+    <div class="box box-module">
+
+        
+            <h2><a name="Ink_UI_DatePicker_1">Ink.UI.DatePicker_1 <i>module</i></a></h2>
+        
+
+        
+
+        
+            <p><label>author:</label>inkdev AT sapo.pt</p>
+        
+        
+        
+            <p><label>version:</label>1</p>
+        
+
+        
+
+        
+
+        
+
+
+        
+            <h3>Defined classes and namespaces:</h3>
+            <ul>
+            
+                
+                    <li><a href="#Ink_UI_DatePicker_1-Ink_UI_DatePicker">(C) Ink.UI.DatePicker</a></li>
+                
+            
+            </ul>
+        
+
+        
+
+        
+
+    </div>
+
+    
+        <div class="box box-class">
+
+    <h2><a name="Ink_UI_DatePicker_1-Ink_UI_DatePicker">Ink.UI.DatePicker <i>
+    
+        class
+    
+    </i></a></h2>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+
+    
+        
+            <h3>Defined methods:</h3>
+        
+        
+        <ul>
+        
+            <li><a href="#Ink_UI_DatePicker_1-Ink_UI_DatePicker-DatePicker">
+            
+                Ink.UI.DatePicker
+            
+            (selector, [options], )</a></li>
+        
+            <li><a href="#Ink_UI_DatePicker_1-Ink_UI_DatePicker-getDate">
+            
+                Ink.UI.DatePicker.getDate
+            
+            ()</a></li>
+        
+            <li><a href="#Ink_UI_DatePicker_1-Ink_UI_DatePicker-setDate">
+            
+                Ink.UI.DatePicker.setDate
+            
+            (dateString)</a></li>
+        
+            <li><a href="#Ink_UI_DatePicker_1-Ink_UI_DatePicker-show">
+            
+                Ink.UI.DatePicker.show
+            
+            ()</a></li>
+        
+            <li><a href="#Ink_UI_DatePicker_1-Ink_UI_DatePicker-showMonth">
+            
+                Ink.UI.DatePicker.showMonth
+            
+            ()</a></li>
+        
+        </ul>
+    
+
+    
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_DatePicker_1-Ink_UI_DatePicker-DatePicker">
+    
+        Ink.UI.DatePicker
+    
+    (selector, [options], )
+    
+        <i>constructor</i>
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String|DOMElement</pre>
+                
+
+                
+                    <label>selector
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Object</pre>
+                
+
+                
+                    <label class="optional">[options]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Options</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Boolean</pre>
+                
+
+                
+                    <label class="optional">[options.autoOpen]
+                
+
+                
+                    =false
+                
+                </label>
+
+                
+                    <span class="description">set to `true` to automatically open the datepicker.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.cleanText]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">text to display on clean button. defaults to 'Limpar'</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.closeText]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">text to display on close button. defaults to 'Fechar'</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.cssClass]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">CSS class to be applied to the datepicker</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.dateRange]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">enforce limits to year, month and day for the Date, ex: '1990-08-25:2020-11'</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Boolean</pre>
+                
+
+                
+                    <label class="optional">[options.displayInSelect]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">whether to display the component in a select. defaults to false.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String|DOMElement</pre>
+                
+
+                
+                    <label class="optional">[options.dayField]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">(if using options.displayInSelect) `<select>` field with days.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String|DOMElement</pre>
+                
+
+                
+                    <label class="optional">[options.monthField]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">(if using options.displayInSelect)  `<select>` field with months.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String|DOMElement</pre>
+                
+
+                
+                    <label class="optional">[options.yearField]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">(if using options.displayInSelect)  `<select>` field with years.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.format]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Date format string</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.instance]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">unique id for the datepicker</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Object</pre>
+                
+
+                
+                    <label class="optional">[options.month]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Hash of month names. Defaults to portuguese month names. January is 1.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.nextLinkText]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">text to display on the previous button. defaults to '«'</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.ofText]
+                
+
+                
+                    =&#x27;
+                
+                </label>
+
+                
+                    <span class="description">of '   text to display between month and year. defaults to ' de '</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Boolean</pre>
+                
+
+                
+                    <label class="optional">[options.onFocus]
+                
+
+                
+                    =true
+                
+                </label>
+
+                
+                    <span class="description">if the datepicker should open when the target element is focused</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label class="optional">[options.onMonthSelected]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">callback function to execute when the month is selected</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label class="optional">[options.onSetDate]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">callback to execute when set date</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label class="optional">[options.onYearSelected]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">callback function to execute when the year is selected</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.position]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">position the datepicker. Accept right or bottom, default is right</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.prevLinkText]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">text to display on the previous button. defaults to '«'</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Boolean</pre>
+                
+
+                
+                    <label class="optional">[options.showClean]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">whether to display the clean button or not. defaults to true.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Boolean</pre>
+                
+
+                
+                    <label class="optional">[options.showClose]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">whether to display the close button or not. defaults to true.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Boolean</pre>
+                
+
+                
+                    <label class="optional">[options.shy]
+                
+
+                
+                    =true
+                
+                </label>
+
+                
+                    <span class="description">whether the datepicker starts automatically.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.startDate]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Date to define init month. Must be in yyyy-mm-dd format</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Number</pre>
+                
+
+                
+                    <label class="optional">[options.startWeekDay]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">day to use as first column on the calendar view. Defaults to Monday (1)</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label class="optional">[options.validYearFn]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">callback function to execute when 'rendering' the month (in the month view)</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label class="optional">[options.validMonthFn]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">callback function to execute when 'rendering' the month (in the month view)</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label class="optional">[options.validDayFn]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">callback function to execute when 'rendering' the day (in the month view)</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label class="optional">[options.nextValidDateFn]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Find the next valid date, given the current Date. Necessary when the calendar has a lot of "holes", and not many dates are valid and they are separated by many months or years so it doesn't make sense to have the user click the "next" button too many times and not see any valid date.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label class="optional">[options.prevValidDateFn]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">See nextValidDateFn. Find the previous valid date.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Object</pre>
+                
+
+                
+                    <label class="optional">[options.wDay]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Hash of weekdays. Defaults to portuguese month names. Sunday is 0.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.yearRange]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">enforce limits to year for the Date, ex: '1990:2020' (deprecated)</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+    &lt;input type=&quot;text&quot; id=&quot;dPicker&quot; /&gt;
+    &lt;script&gt;
+        Ink.requireModules([&#x27;Ink.Dom.Selector_1&#x27;,&#x27;Ink.UI.DatePicker_1&#x27;],function( Selector, DatePicker ){
+            var datePickerElement = Ink.s(&#x27;#dPicker&#x27;);
+            var datePickerObj = new DatePicker( datePickerElement );
+        });
+    &lt;/script&gt;
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_DatePicker_1-Ink_UI_DatePicker-getDate">
+    
+        
+            Ink.UI.DatePicker.getDate
+        
+    
+    ()
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+
+    
+
+    
+        <span class="text"><p>Get the current date as a JavaScript date.</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_DatePicker_1-Ink_UI_DatePicker-setDate">
+    
+        
+            Ink.UI.DatePicker.setDate
+        
+    
+    (dateString)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>dateString
+                
+
+                
+                </label>
+
+                
+                    <span class="description">A date string in yyyy-mm-dd format.</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>This method allows the user to set the DatePicker&#39;s date on run-time.</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_DatePicker_1-Ink_UI_DatePicker-show">
+    
+        
+            Ink.UI.DatePicker.show
+        
+    
+    ()
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+
+    
+
+    
+        <span class="text"><p>Shows the calendar</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_DatePicker_1-Ink_UI_DatePicker-showMonth">
+    
+        
+            Ink.UI.DatePicker.showMonth
+        
+    
+    ()
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Boolean</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>This calls the rendering of the selected month. (Deprecated: use show() instead)</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+
+
+
+    
+
+    
+
+    
+

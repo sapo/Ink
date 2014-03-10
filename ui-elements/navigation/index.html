@@ -16,7 +16,7 @@ site_root: ../../
     <ul class="unstyled" id="breakpoints">
         <li>
             <code>menu</code>
-            A simple menu bar for basic navigation, with has a vertical variant and support for multiple levels for more complex structures.
+            A simple menu bar for basic navigation, with has a vertical variant and support for a single sublevel for more complex structures.
         </li>
         <li>
             <code>breadcrumbs</code>
@@ -97,21 +97,25 @@ site_root: ../../
         <li class="prop">red</li>
     </ul>
 
-    {% highlight html %}
-    <nav class="ink-navigation">
-        <ul class="menu horizontal">
-            <li><a href="#">...</a></li>
-            <li><a href="#">...</a></li>
-            <li>
-                <a href="#">...</a>
-                <ul class="submenu">
-                    <li>...</li>
-                    <li>...</li>
-                </ul>
-            </li>
-        </ul>
-    </nav>{% endhighlight %}
-
+    <p>Horizontal menus are created with a <code>nav</code> element with the <code>ink-navigation</code> css class with an <code>ul</code> element within it.</p>
+    <p>Adding the <code>menu</code> and <code>horizontal</code> css classes to the <code>ul</code> element will set it as a horizontal menu:</p>
+    <p>Menu items are created by adding list items containing links. Submenus are created with an aditional <code>ul</code> element with the <code>submenu</code> inside one of the <code>ul.menu.horizontal</code> element list items, as in the example below:</p>
+{% highlight html %}
+<nav class="ink-navigation">
+    <ul class="menu horizontal">
+        <li class=""><a href="#">...</a></li>
+        <li><a href="#">...</a></li>
+        <li>
+            <a href="#">...</a>
+            <ul class="submenu">
+                <li>...</li>
+                <li>...</li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+{% endhighlight %}
+<p>If you need you can set menu items as faux headings by adding the <code>heading</code> css class to its corresponding list item as shown below:</p>
     <p class="example-title">Example</p>
     <div class="example">
         <nav class="ink-navigation">

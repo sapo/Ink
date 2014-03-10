@@ -1,0 +1,459 @@
+
+
+    <div class="box box-module">
+
+        
+            <h2><a name="Ink_UI_FormValidator_1">Ink.UI.FormValidator_1 <i>module</i></a></h2>
+        
+
+        
+
+        
+            <p><label>author:</label>inkdev AT sapo.pt</p>
+        
+        
+        
+            <p><label>version:</label>1</p>
+        
+
+        
+
+        
+
+        
+
+
+        
+            <h3>Defined classes and namespaces:</h3>
+            <ul>
+            
+                
+                    <li><a href="#Ink_UI_FormValidator_1-Ink_UI_FormValidator">(C) Ink.UI.FormValidator</a></li>
+                
+            
+            </ul>
+        
+
+        
+
+        
+
+    </div>
+
+    
+        <div class="box box-class">
+
+    <h2><a name="Ink_UI_FormValidator_1-Ink_UI_FormValidator">Ink.UI.FormValidator <i>
+    
+        class
+    
+    </i></a></h2>
+
+    
+
+    
+    
+    
+        <p><label>version:</label>1</p>
+    
+
+    
+
+    
+
+
+    
+        
+            <h3>Defined methods:</h3>
+        
+        
+        <ul>
+        
+            <li><a href="#Ink_UI_FormValidator_1-Ink_UI_FormValidator-reset">
+            
+                Ink.UI.FormValidator.reset
+            
+            ()</a></li>
+        
+            <li><a href="#Ink_UI_FormValidator_1-Ink_UI_FormValidator-validate">
+            
+                Ink.UI.FormValidator.validate
+            
+            (elm, options, )</a></li>
+        
+        </ul>
+    
+
+    
+        <h3>Defined attributes:</h3>
+        <ul>
+        
+            <li><a href="#Ink_UI_FormValidator_1-Ink_UI_FormValidator-confirmElms">Ink.UI.FormValidator.confirmElms</a></li>
+        
+            <li><a href="#Ink_UI_FormValidator_1-Ink_UI_FormValidator-elements">Ink.UI.FormValidator.elements</a></li>
+        
+            <li><a href="#Ink_UI_FormValidator_1-Ink_UI_FormValidator-hasConfirm">Ink.UI.FormValidator.hasConfirm</a></li>
+        
+            <li><a href="#Ink_UI_FormValidator_1-Ink_UI_FormValidator-version">Ink.UI.FormValidator.version</a></li>
+        
+        </ul>
+    
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_FormValidator_1-Ink_UI_FormValidator-reset">
+    
+        
+            Ink.UI.FormValidator.reset
+        
+    
+    ()
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+
+    
+
+    
+        <span class="text"><p>Reset previously generated validation errors</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_FormValidator_1-Ink_UI_FormValidator-validate">
+    
+        
+            Ink.UI.FormValidator.validate
+        
+    
+    (elm, options, )
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>DOMElement|String</pre>
+                
+
+                
+                    <label>elm
+                
+
+                
+                </label>
+
+                
+                    <span class="description">DOM form element or form id</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Object</pre>
+                
+
+                
+                    <label>options
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Options for</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label class="optional">[options.onSuccess]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">function to run when form is valid</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label class="optional">[options.onError]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">function to run when form is not valid</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Array</pre>
+                
+
+                
+                    <label class="optional">[options.customFlag]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">custom flags to use to validate form fields</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Boolean</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Check if a form is valid or not</p>
+</span>
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+
+## What markup do I need?
+
+Besides the markup structure you can see in
+&lt;a href=&quot;http://ink.sapo.pt/forms#building&quot;&gt;&lt;/a&gt;, you need to add
+the &#x60;ink-fv-*&#x60; classes to your inputs, which correspond to validation
+rules in this component. Available classes are:
+
+- &#x60;ink-fv-required&#x60; : Required field
+- &#x60;ink-fv-email&#x60;    : Valid e-mail
+- &#x60;ink-fv-url&#x60;      : Valid URL address
+- &#x60;ink-fv-number&#x60;   : Valid number
+- &#x60;ink-fv-phone_pt&#x60;, &#x60;ink-fv-phone_cv&#x60;, &#x60;ink-fv-phone_mz&#x60;, &#x60;ink-fv-phone_ao&#x60; : Valid telephone number in Portugal, Cape Verde, Mozambique or Angola.
+- &#x60;ink-fv-date&#x60;     : Valid date
+- &#x60;ink-fv-confirm&#x60;  : Make the user type the same thing twice. Common rule for confirming passwords.
+- &#x60;ink-fv-custom&#x60;   : Custom rule (see below example &quot;Custom rule&quot;)
+
+          E-mail field: &lt;input class=&quot;ink-fv-required ink-fv-email&quot;&gt;&lt;br&gt;
+          Phone number field: &lt;input class=&quot;ink-fv-number ink-fv-required&quot;&gt;&lt;br&gt;
+          Website field (optional): &lt;input class=&quot;ink-fv-url&quot;&gt;
+
+## Simple usage
+
+So you have a form and would like to validate it? This example shows
+how to validate a form and stop it from being submitted when invalid.
+To use this, add the several ink-fv-* classes to your input elements.
+
+The validate() function will also add &quot;invalid&quot; classes to each of
+your elements so the user gets a color feedback and an error message
+below each element (control-group, really).
+
+        var myForm = Ink.i(&#x27;my-form&#x27;);
+        InkEvent.observe(myForm, &#x27;submit&#x27;, function (ev) {
+            var formIsValid = FormValidator.validate(myForm);
+            if (!formIsValid) {
+                InkEvent.stop(ev);  // Cancel submission of form.
+            }
+        });
+
+
+		</code></pre>
+	
+		<pre class="example"><code>
+			
+
+## Custom rule.
+
+The following code validates using a custom rule named &#x60;minthree&#x60;,
+which fails if the input string has less than three characters.
+To do this, you must add the &#x60;ink-fv-custom&#x60; and &#x60;minthree&#x60; classes
+to the input elements you want to validate, and pass the &#x60;customFlag&#x60;
+option to this function, like so:
+
+        var isValid = FormValidator.validate(myForm, {
+            customFlag: [
+                {
+                    flag: &#x27;minthree&#x27;,  // The name of this rule (add this class to your &lt;input&gt;s
+                    msg: &#x27;Please input at least three characters&#x27;,  // Error message when rule fails
+                    callback: function (el) {
+                        return el.value.length &gt;= 3  // Return true when okay, false when not
+                    }
+                }
+            ]
+        });
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+
+
+    <div class="box box-attribute">
+
+     <h2><a name="Ink_UI_FormValidator_1-Ink_UI_FormValidator-confirmElms">
+    
+       Ink.UI.FormValidator.confirmElms
+    
+    <i>attribute</i></a></h2>
+
+    
+
+    
+        <p class="text"><p>This property holds the objects needed to cross-check for the &#39;confirm&#39; rule</p>
+</p>
+    
+
+    
+        <pre>Object</pre>
+    
+
+    <label>confirmElms</label>
+
+    
+
+</div>
+
+
+    <div class="box box-attribute">
+
+     <h2><a name="Ink_UI_FormValidator_1-Ink_UI_FormValidator-elements">
+    
+       Ink.UI.FormValidator.elements
+    
+    <i>attribute</i></a></h2>
+
+    
+
+    
+        <p class="text"><p>This property holds all form elements for later validation</p>
+</p>
+    
+
+    
+        <pre>Object</pre>
+    
+
+    <label>elements</label>
+
+    
+
+</div>
+
+
+    <div class="box box-attribute">
+
+     <h2><a name="Ink_UI_FormValidator_1-Ink_UI_FormValidator-hasConfirm">
+    
+       Ink.UI.FormValidator.hasConfirm
+    
+    <i>attribute</i></a></h2>
+
+    
+
+    
+        <p class="text"><p>This property holds the previous elements in the confirmElms property, but with a
+true/false specifying if it has the class ink-fv-confirm.</p>
+</p>
+    
+
+    
+        <pre>Object</pre>
+    
+
+    <label>hasConfirm</label>
+
+    
+
+</div>
+
+
+    <div class="box box-attribute">
+
+     <h2><a name="Ink_UI_FormValidator_1-Ink_UI_FormValidator-version">
+    
+       Ink.UI.FormValidator.version
+    
+    <i>attribute</i></a></h2>
+
+    
+
+    
+        <p class="text"><p>Specifies the version of the component</p>
+</p>
+    
+
+    
+        <pre>String</pre>
+    
+
+    <label>version</label>
+
+    
+
+</div>
+
+
+
+    
+
+    
+
+    
+

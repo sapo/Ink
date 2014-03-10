@@ -1,0 +1,328 @@
+
+
+    <div class="box box-module">
+
+        
+            <h2><a name="Ink_UI_TreeView_1">Ink.UI.TreeView_1 <i>module</i></a></h2>
+        
+
+        
+
+        
+            <p><label>author:</label>inkdev AT sapo.pt</p>
+        
+        
+        
+            <p><label>version:</label>1</p>
+        
+
+        
+
+        
+
+        
+
+
+        
+            <h3>Defined classes and namespaces:</h3>
+            <ul>
+            
+                
+                    <li><a href="#Ink_UI_TreeView_1-Ink_UI_TreeView">(C) Ink.UI.TreeView</a></li>
+                
+            
+            </ul>
+        
+
+        
+
+        
+
+    </div>
+
+    
+        <div class="box box-class">
+
+    <h2><a name="Ink_UI_TreeView_1-Ink_UI_TreeView">Ink.UI.TreeView <i>
+    
+        class
+    
+    </i></a></h2>
+
+    
+
+    
+    
+    
+
+    
+        <div class="text"><p>Shows elements in a tree-like hierarchical structure.</p>
+</div>
+    
+
+    
+
+
+    
+        
+            <h3>Defined methods:</h3>
+        
+        
+        <ul>
+        
+            <li><a href="#Ink_UI_TreeView_1-Ink_UI_TreeView-TreeView">
+            
+                Ink.UI.TreeView
+            
+            (selector, )</a></li>
+        
+        </ul>
+    
+
+    
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_TreeView_1-Ink_UI_TreeView-TreeView">
+    
+        Ink.UI.TreeView
+    
+    (selector, )
+    
+        <i>constructor</i>
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String|DOMElement</pre>
+                
+
+                
+                    <label>selector
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.node]
+                
+
+                
+                    =&#x27;li&#x27;
+                
+                </label>
+
+                
+                    <span class="description">Selector to define which elements are seen as nodes.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.children]
+                
+
+                
+                    =&#x27;ul&#x27;
+                
+                </label>
+
+                
+                    <span class="description">Selector to define which elements are represented as children.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.parentClass]
+                
+
+                
+                    =&#x27;parent&#x27;
+                
+                </label>
+
+                
+                    <span class="description">Classes to be added to the parent node.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.openClass]
+                
+
+                
+                    =&#x27;ico
+                
+                </label>
+
+                
+                    <span class="description">icon-minus-circle'] Classes to be added to the icon when a parent is open.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.closedClass]
+                
+
+                
+                    =&#x27;ico
+                
+                </label>
+
+                
+                    <span class="description">icon-plus-circle'] Classes to be added to the icon when a parent is closed.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.hideClass]
+                
+
+                
+                    =&#x27;hide-all&#x27;
+                
+                </label>
+
+                
+                    <span class="description">Class to toggle visibility of the children.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.iconTag]
+                
+
+                
+                    =&#x27;i&#x27;
+                
+                </label>
+
+                
+                    <span class="description">The name of icon tag. The component tries to find a tag with that name as a direct child of the node. If it doesn't find it, it creates it.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Boolean</pre>
+                
+
+                
+                    <label class="optional">[options.stopDefault]
+                
+
+                
+                    =true
+                
+                </label>
+
+                
+                    <span class="description">Stops the default behavior of the click handler.</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+     &lt;ul class=&quot;ink-tree-view&quot;&gt;
+       &lt;li data-open=&quot;true&quot;&gt;&lt;a href=&quot;#&quot;&gt;root&lt;/a&gt;
+         &lt;ul&gt;
+           &lt;li&gt;&lt;a href=&quot;#&quot;&gt;child 1&lt;/a&gt;&lt;/li&gt;
+           &lt;li&gt;&lt;a href=&quot;#&quot;&gt;child 2&lt;/a&gt;
+             &lt;ul&gt;
+               &lt;li&gt;&lt;a href=&quot;#&quot;&gt;grandchild 2a&lt;/a&gt;&lt;/li&gt;
+               &lt;li&gt;&lt;a href=&quot;#&quot;&gt;grandchild 2b&lt;/a&gt;
+                 &lt;ul&gt;
+                   &lt;li&gt;&lt;a href=&quot;#&quot;&gt;grandgrandchild 1bA&lt;/a&gt;&lt;/li&gt;
+                   &lt;li&gt;&lt;a href=&quot;#&quot;&gt;grandgrandchild 1bB&lt;/a&gt;&lt;/li&gt;
+                 &lt;/ul&gt;
+               &lt;/li&gt;
+             &lt;/ul&gt;
+           &lt;/li&gt;
+           &lt;li&gt;&lt;a href=&quot;#&quot;&gt;child 3&lt;/a&gt;&lt;/li&gt;
+         &lt;/ul&gt;
+       &lt;/li&gt;
+     &lt;/ul&gt;
+     &lt;script&gt;
+         Ink.requireModules( [&#x27;Ink.Dom.Selector_1&#x27;,&#x27;Ink.UI.TreeView_1&#x27;], function( Selector, TreeView ){
+             var treeViewElement = Ink.s(&#x27;.ink-tree-view&#x27;);
+             var treeViewObj = new TreeView( treeViewElement );
+         });
+     &lt;/script&gt;
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+
+
+
+    
+
+    
+
+    
+

@@ -1,0 +1,525 @@
+
+
+    <div class="box box-module">
+
+        
+            <h2><a name="Ink_UI_Table_1">Ink.UI.Table_1 <i>module</i></a></h2>
+        
+
+        
+
+        
+            <p><label>author:</label>inkdev AT sapo.pt</p>
+        
+        
+        
+            <p><label>version:</label>1</p>
+        
+
+        
+
+        
+
+        
+
+
+        
+            <h3>Defined classes and namespaces:</h3>
+            <ul>
+            
+                
+                    <li><a href="#Ink_UI_Table_1-Ink_UI_Table">(C) Ink.UI.Table</a></li>
+                
+            
+            </ul>
+        
+
+        
+
+        
+
+    </div>
+
+    
+        <div class="box box-class">
+
+    <h2><a name="Ink_UI_Table_1-Ink_UI_Table">Ink.UI.Table <i>
+    
+        class
+    
+    </i></a></h2>
+
+    
+
+    
+    
+    
+
+    
+        <div class="text"><p>The Table component transforms the native/DOM table element into a
+sortable, paginated component.</p>
+</div>
+    
+
+    
+
+
+    
+        
+            <h3>Defined methods:</h3>
+        
+        
+        <ul>
+        
+            <li><a href="#Ink_UI_Table_1-Ink_UI_Table-Table">
+            
+                Ink.UI.Table
+            
+            (selector, [options], )</a></li>
+        
+        </ul>
+    
+
+    
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_Table_1-Ink_UI_Table-Table">
+    
+        Ink.UI.Table
+    
+    (selector, [options], )
+    
+        <i>constructor</i>
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String|DOMElement</pre>
+                
+
+                
+                    <label>selector
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Object</pre>
+                
+
+                
+                    <label class="optional">[options]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Options</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Number</pre>
+                
+
+                
+                    <label class="optional">[options.pageSize]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Number of rows per page. Omit to avoid paginating.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.endpoint]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Endpoint to get the records via AJAX. Omit if you don't want to do AJAX</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label class="optional">[options.createEndpointUrl]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Callback to customise what URL the AJAX endpoint is at. Receives three</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label class="optional">[options.getDataFromEndPoint]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Callback to allow the user to retrieve the data himself given an URL.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label class="optional">[options.processJSONRows]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Retrieve an array of rows from the data which came from AJAX.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label class="optional">[options.processJSONHeaders]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Get an object with all the headers' names as keys, and a { label, sortable }</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label class="optional">[options.processJSONRow]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Process a row object before it gets on the table.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label class="optional">[options.processJSONField]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Process the field data before putting it on the table.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label class="optional">[options.processJSONField.FIELD_NAME]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">The same as processJSONField, but for a particular field.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label class="optional">[options.processJSONTotalRows]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">A callback where you have a chance to say how many rows</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label class="optional">[options.getSortKey]
+                
+
+                
+                    =null
+                
+                </label>
+
+                
+                    <span class="description">A function taking a `{ columnIndex, columnName, data, element }`</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label class="optional">[options.getSortKey.FIELD_NAME]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Same as `options.getSortKey`, but for a particular field.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Object</pre>
+                
+
+                
+                    <label class="optional">[options.tdClassNames]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">An object mapping each field to what classes it gets.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String|DomElement|Ink.UI.Pagination</pre>
+                
+
+                
+                    <label class="optional">[options.pagination]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Pagination instance or element.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Object</pre>
+                
+
+                
+                    <label class="optional">[options.paginationOptions]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Override the options with which we instantiate the Ink.UI.Pagination.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Boolean</pre>
+                
+
+                
+                    <label class="optional">[options.allowResetSorting]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Allow sort order to be set to "none" in addition to "ascending" and "descending"</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String|Array</pre>
+                
+
+                
+                    <label class="optional">[options.visibleFields]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Set of fields which get shown on the table</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+     &lt;table class=&quot;ink-table alternating&quot; data-page-size=&quot;6&quot;&gt;
+         &lt;thead&gt;
+             &lt;tr&gt;
+                 &lt;th data-sortable=&quot;true&quot; width=&quot;75%&quot;&gt;Pepper&lt;/th&gt;
+                 &lt;th data-sortable=&quot;true&quot; width=&quot;25%&quot;&gt;Scoville Rating&lt;/th&gt;
+             &lt;/tr&gt;
+         &lt;/thead&gt;
+         &lt;tbody&gt;
+             &lt;tr&gt;
+                 &lt;td&gt;Trinidad Moruga Scorpion&lt;/td&gt;
+                 &lt;td&gt;1500000&lt;/td&gt;
+             &lt;/tr&gt;
+             &lt;tr&gt;
+                 &lt;td&gt;Bhut Jolokia&lt;/td&gt;
+                 &lt;td&gt;1000000&lt;/td&gt;
+             &lt;/tr&gt;
+             &lt;tr&gt;
+                 &lt;td&gt;Naga Viper&lt;/td&gt;
+                 &lt;td&gt;1463700&lt;/td&gt;
+             &lt;/tr&gt;
+             &lt;tr&gt;
+                 &lt;td&gt;Red Savina Habanero&lt;/td&gt;
+                 &lt;td&gt;580000&lt;/td&gt;
+             &lt;/tr&gt;
+             &lt;tr&gt;
+                 &lt;td&gt;Habanero&lt;/td&gt;
+                 &lt;td&gt;350000&lt;/td&gt;
+             &lt;/tr&gt;
+             &lt;tr&gt;
+                 &lt;td&gt;Scotch Bonnet&lt;/td&gt;
+                 &lt;td&gt;180000&lt;/td&gt;
+             &lt;/tr&gt;
+             &lt;tr&gt;
+                 &lt;td&gt;Malagueta&lt;/td&gt;
+                 &lt;td&gt;50000&lt;/td&gt;
+             &lt;/tr&gt;
+             &lt;tr&gt;
+                 &lt;td&gt;Tabasco&lt;/td&gt;
+                 &lt;td&gt;35000&lt;/td&gt;
+             &lt;/tr&gt;
+             &lt;tr&gt;
+                 &lt;td&gt;Serrano Chili&lt;/td&gt;
+                 &lt;td&gt;27000&lt;/td&gt;
+             &lt;/tr&gt;
+             &lt;tr&gt;
+                 &lt;td&gt;Jalapeño&lt;/td&gt;
+                 &lt;td&gt;8000&lt;/td&gt;
+             &lt;/tr&gt;
+             &lt;tr&gt;
+                 &lt;td&gt;Poblano&lt;/td&gt;
+                 &lt;td&gt;1500&lt;/td&gt;
+             &lt;/tr&gt;
+             &lt;tr&gt;
+                 &lt;td&gt;Peperoncino&lt;/td&gt;
+                 &lt;td&gt;500&lt;/td&gt;
+             &lt;/tr&gt;
+         &lt;/tbody&gt;
+     &lt;/table&gt;
+     &lt;nav class=&quot;ink-navigation&quot;&gt;&lt;ul class=&quot;pagination&quot;&gt;&lt;/ul&gt;&lt;/nav&gt;
+     &lt;script&gt;
+         Ink.requireModules( [&#x27;Ink.Dom.Selector_1&#x27;,&#x27;Ink.UI.Table_1&#x27;], function( Selector, Table ){
+             var tableElement = Ink.s(&#x27;.ink-table&#x27;);
+             var tableObj = new Table( tableElement );
+         });
+     &lt;/script&gt;
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+
+
+
+    
+
+    
+
+    
+

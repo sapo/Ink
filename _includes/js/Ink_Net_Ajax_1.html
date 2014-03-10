@@ -1,0 +1,1663 @@
+
+
+    <div class="box box-module">
+
+        
+            <h2><a name="Ink_Net_Ajax_1">Ink.Net.Ajax_1 <i>module</i></a></h2>
+        
+
+        
+
+        
+        
+        
+
+        
+
+        
+
+        
+
+
+        
+            <h3>Defined classes and namespaces:</h3>
+            <ul>
+            
+                
+                    <li><a href="#Ink_Net_Ajax_1-Ink_Net_Ajax">(C) Ink.Net.Ajax</a></li>
+                
+            
+            </ul>
+        
+
+        
+
+        
+
+    </div>
+
+    
+        <div class="box box-class">
+
+    <h2><a name="Ink_Net_Ajax_1-Ink_Net_Ajax">Ink.Net.Ajax <i>
+    
+        class
+    
+    </i></a></h2>
+
+    
+
+    
+    
+    
+
+    
+        <div class="text"><p>Creates a new cross browser XMLHttpRequest object</p>
+</div>
+    
+
+    
+
+
+    
+        
+            <h3>Defined methods:</h3>
+        
+        
+        <ul>
+        
+            <li><a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-Ajax">
+            
+                Ink.Net.Ajax
+            
+            (url, options, )</a></li>
+        
+            <li><a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-abort">
+            
+                Ink.Net.Ajax.abort
+            
+            ()</a></li>
+        
+            <li><a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-evalJSON">
+            
+                Ink.Net.Ajax.evalJSON
+            
+            (str, sanitize)</a></li>
+        
+            <li><a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-finish">
+            
+                Ink.Net.Ajax.finish
+            
+            (response, responseContent)</a></li>
+        
+            <li><a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-getAllHeaders">
+            
+                Ink.Net.Ajax.getAllHeaders
+            
+            ()</a></li>
+        
+            <li><a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-getHeader">
+            
+                Ink.Net.Ajax.getHeader
+            
+            (name)</a></li>
+        
+            <li><a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-getResponse">
+            
+                Ink.Net.Ajax.getResponse
+            
+            ()</a></li>
+        
+            <li><a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-getTransport">
+            
+                Ink.Net.Ajax.getTransport
+            
+            ()</a></li>
+        
+            <li><a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-isJSON">
+            
+                Ink.Net.Ajax.isJSON
+            
+            (str)</a></li>
+        
+            <li><a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-load">
+            
+                Ink.Net.Ajax.load
+            
+            (url, callback)</a></li>
+        
+            <li><a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-makeError">
+            
+                Ink.Net.Ajax.makeError
+            
+            (code, message)</a></li>
+        
+            <li><a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-paramsObjToStr">
+            
+                Ink.Net.Ajax.paramsObjToStr
+            
+            (optParams)</a></li>
+        
+            <li><a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-ping">
+            
+                Ink.Net.Ajax.ping
+            
+            (url, callback)</a></li>
+        
+            <li><a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-request">
+            
+                Ink.Net.Ajax.request
+            
+            ()</a></li>
+        
+            <li><a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-runStateChange">
+            
+                Ink.Net.Ajax.runStateChange
+            
+            ()</a></li>
+        
+            <li><a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-safeCall">
+            
+                Ink.Net.Ajax.safeCall
+            
+            (listener)</a></li>
+        
+            <li><a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-setHeaders">
+            
+                Ink.Net.Ajax.setHeaders
+            
+            (url)</a></li>
+        
+            <li><a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-setParams">
+            
+                Ink.Net.Ajax.setParams
+            
+            ()</a></li>
+        
+            <li><a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-setRequestHeader">
+            
+                Ink.Net.Ajax.setRequestHeader
+            
+            (name, value)</a></li>
+        
+        </ul>
+    
+
+    
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Net_Ajax_1-Ink_Net_Ajax-Ajax">
+    
+        Ink.Net.Ajax
+    
+    (url, options, )
+    
+        <i>constructor</i>
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>url
+                
+
+                
+                </label>
+
+                
+                    <span class="description">request url</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Object</pre>
+                
+
+                
+                    <label>options
+                
+
+                
+                </label>
+
+                
+                    <span class="description">request options</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Boolean</pre>
+                
+
+                
+                    <label class="optional">[options.asynchronous]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">if the request should be asynchronous. true by default.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Boolean</pre>
+                
+
+                
+                    <label class="optional">[options.cors]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">set this to true if you're doing a cross-origin request</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.method]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">HTTP request method. POST by default.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Object|String</pre>
+                
+
+                
+                    <label class="optional">[options.parameters]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Request parameters which should be sent with the request</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Number</pre>
+                
+
+                
+                    <label class="optional">[options.timeout]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Request timeout</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Number</pre>
+                
+
+                
+                    <label class="optional">[options.delay]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Artificial delay. If request is completed in time lower than this, then wait a bit before calling the callbacks</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.postBody]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">POST request body. If not specified, it's filled with the contents from parameters</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.contentType]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Content-type header to be sent. Defaults to 'application/x-www-form-urlencoded'</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Object</pre>
+                
+
+                
+                    <label class="optional">[options.requestHeaders]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">key-value pairs for additional request headers</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label class="optional">[options.onComplete]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Callback executed after the request is completed, no matter what happens during the request.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label class="optional">[options.onSuccess]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Callback executed if the request is successful (requests with 2xx status codes)</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label class="optional">[options.onFailure]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Callback executed if the request fails (requests with status codes different from 2xx)</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label class="optional">[options.onException]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Callback executed if an exception  occurs. Receives the exception as a parameter.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label class="optional">[options.onCreate]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Callback executed after object initialization but before the request is made</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label class="optional">[options.onInit]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Callback executed before any initialization</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label class="optional">[options.onTimeout]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Callback executed if the request times out</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Boolean|String</pre>
+                
+
+                
+                    <label class="optional">[options.evalJS]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">If the request Content-type header is application/json, evaluates the response and populates responseJSON. Use 'force' if you want to force the response evaluation, no matter what Content-type it's using. Defaults to true.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Boolean</pre>
+                
+
+                
+                    <label class="optional">[options.sanitizeJSON]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Sanitize the content of responseText before evaluation</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.xhrProxy]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">URI for proxy service hosted on the same server as the web app, that can fetch documents from other domains.</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+    new Ajax(&#x27;test.json&#x27;, {
+        method: &#x27;get&#x27;,
+        onSuccess: function (ajx, responseJSON) {
+            // Do stuff with responseJSON or ajx.responseText
+            console.log(responseJSON.something.length);
+        },
+        onFailure: function (ajx, errorResponse) {
+            // Deal with it
+            alert(ajx.status);  // The HTTP response code
+        }
+    });
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Net_Ajax_1-Ink_Net_Ajax-abort">
+    
+        
+            Ink.Net.Ajax.abort
+        
+    
+    ()
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+
+    
+
+    
+        <span class="text"><p>Aborts the request if still running. No callbacks are called</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Net_Ajax_1-Ink_Net_Ajax-evalJSON">
+    
+        
+            Ink.Net.Ajax.evalJSON
+        
+    
+    (str, sanitize)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>str
+                
+
+                
+                </label>
+
+                
+                    <span class="description">String to be evaluated</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Boolean</pre>
+                
+
+                
+                    <label>sanitize
+                
+
+                
+                </label>
+
+                
+                    <span class="description">whether to sanitize the content or not</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Object</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Evaluates a given string as JSON</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Net_Ajax_1-Ink_Net_Ajax-finish">
+    
+        
+            Ink.Net.Ajax.finish
+        
+    
+    (response, responseContent)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+
+                
+                    <label>response
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label>responseContent
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>Last step after XHR is complete. Call onComplete and cleanup object</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Net_Ajax_1-Ink_Net_Ajax-getAllHeaders">
+    
+        
+            Ink.Net.Ajax.getAllHeaders
+        
+    
+    ()
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>String</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Returns all http headers from the response</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Net_Ajax_1-Ink_Net_Ajax-getHeader">
+    
+        
+            Ink.Net.Ajax.getHeader
+        
+    
+    (name)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>name
+                
+
+                
+                </label>
+
+                
+                    <span class="description">header name</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>String</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Retrieves HTTP header from response</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Net_Ajax_1-Ink_Net_Ajax-getResponse">
+    
+        
+            Ink.Net.Ajax.getResponse
+        
+    
+    ()
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Object</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Setup the response object</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Net_Ajax_1-Ink_Net_Ajax-getTransport">
+    
+        
+            Ink.Net.Ajax.getTransport
+        
+    
+    ()
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Object</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Creates the appropriate XMLHttpRequest object</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Net_Ajax_1-Ink_Net_Ajax-isJSON">
+    
+        
+            Ink.Net.Ajax.isJSON
+        
+    
+    (str)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>str
+                
+
+                
+                </label>
+
+                
+                    <span class="description">String to be evaluated</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Boolean</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Checks if a given string is valid JSON</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Net_Ajax_1-Ink_Net_Ajax-load">
+    
+        
+            Ink.Net.Ajax.load
+        
+    
+    (url, callback)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>url
+                
+
+                
+                </label>
+
+                
+                    <span class="description">request url</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label>callback
+                
+
+                
+                </label>
+
+                
+                    <span class="description">callback to be executed if the request is successful</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Object</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Loads content from a given url through a XMLHttpRequest.</p>
+<p>Shortcut function for simple AJAX use cases.</p>
+<p>Works with JSON, XML and plain text.</p>
+</span>
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+     Ajax.load(&#x27;some/text/file&#x27;, function (responseText) {
+         doSomething(responseText);
+     });
+     Ajax.load(&#x27;some/xml/file&#x27;, function (responseXML) {
+         doSomething(responseXML);
+     });
+     Ajax.load(&#x27;some/json/file&#x27;, function (responseJSON) {
+         doSomething(responseJSON);
+     });
+
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Net_Ajax_1-Ink_Net_Ajax-makeError">
+    
+        
+            Ink.Net.Ajax.makeError
+        
+    
+    (code, message)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+
+                
+                    <label>code
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label>message
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Object</pre>
+            
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Returns new exception object that can be thrown</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Net_Ajax_1-Ink_Net_Ajax-paramsObjToStr">
+    
+        
+            Ink.Net.Ajax.paramsObjToStr
+        
+    
+    (optParams)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>Object|String</pre>
+                
+
+                
+                    <label>optParams
+                
+
+                
+                </label>
+
+                
+                    <span class="description">parameters object</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>String</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Converts an object with parameters to a querystring</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Net_Ajax_1-Ink_Net_Ajax-ping">
+    
+        
+            Ink.Net.Ajax.ping
+        
+    
+    (url, callback)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>url
+                
+
+                
+                </label>
+
+                
+                    <span class="description">request url</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label>callback
+                
+
+                
+                </label>
+
+                
+                    <span class="description">callback to be executed if the request is successful</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Object</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Loads content from a given url through a XMLHttpRequest.
+Shortcut function for simple AJAX use cases.</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Net_Ajax_1-Ink_Net_Ajax-request">
+    
+        
+            Ink.Net.Ajax.request
+        
+    
+    ()
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+
+    
+
+    
+        <span class="text"><p>Execute the request</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Net_Ajax_1-Ink_Net_Ajax-runStateChange">
+    
+        
+            Ink.Net.Ajax.runStateChange
+        
+    
+    ()
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+
+    
+
+    
+        <span class="text"><p>Executes the state changing phase of an ajax request</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Net_Ajax_1-Ink_Net_Ajax-safeCall">
+    
+        
+            Ink.Net.Ajax.safeCall
+        
+    
+    (listener)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label>listener
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>Safely calls a callback function.
+Verifies that the callback is well defined and traps errors</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Net_Ajax_1-Ink_Net_Ajax-setHeaders">
+    
+        
+            Ink.Net.Ajax.setHeaders
+        
+    
+    (url)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>url
+                
+
+                
+                </label>
+
+                
+                    <span class="description">- url for the request</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>Set the necessary headers for an ajax request</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Net_Ajax_1-Ink_Net_Ajax-setParams">
+    
+        
+            Ink.Net.Ajax.setParams
+        
+    
+    ()
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+
+    
+
+    
+        <span class="text"><p>set the url parameters for a GET request</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Net_Ajax_1-Ink_Net_Ajax-setRequestHeader">
+    
+        
+            Ink.Net.Ajax.setRequestHeader
+        
+    
+    (name, value)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>name
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>value
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>Sets new request header for the subsequent http request</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+
+
+
+    
+
+    
+
+    
+
