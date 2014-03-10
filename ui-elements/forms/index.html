@@ -152,19 +152,19 @@ site_root: ../../
     <div class="example">
         <form class="ink-form">
             <fieldset class="column-group gutters">
-                <div class="control-group all-33">
+                <div class="control-group all-33 tiny-100">
                     <label for="name">Name</label>
                     <div class="control">
                         <input type="text" id="name">
                     </div>
                 </div>
-                <div class="control-group all-33">
+                <div class="control-group all-33 tiny-100">
                     <label for="phone">Phone</label>
                     <div class="control">
                         <input type="text" id="phone">
                     </div>
                 </div>
-                <div class="control-group all-33">
+                <div class="control-group all-33 tiny-100">
                     <label for="email">Email</label>
                     <div class="control">
                         <input type="text" id="email">
@@ -173,7 +173,6 @@ site_root: ../../
             </fieldset>
         </form>
     </div>
-
 
 </section>
 
@@ -210,10 +209,10 @@ site_root: ../../
 
     <p class="example-title">Example</p>
     <div class="example bottom-space">
-        <form class="ink-form">
-            <div class="control-group column-group gutters">
-                <label for="name" class="all-10 align-right">Name</label>
-                <div class="control all-90">
+        <form class="ink-form half-top-space">
+            <div class="control-group column-group horizontal-gutters">
+                <label for="name" class="all-10 tiny-20 align-right">Name</label>
+                <div class="control all-90 tiny-80">
                     <input type="text" id="first-name">
                 </div>
             </div>
@@ -269,11 +268,10 @@ site_root: ../../
 
     <p class="example-title">Example</p>
     <div class="example">
-        <form class="ink-form">
-            <fieldset class="column-group gutters">
-                            
-                <div class="control-group all-33">
-                    <div class="column-group gutters">
+        <form class="ink-form half-top-space">
+            <fieldset class="column-group horizontal-gutters">
+                <div class="control-group all-33 small-100 tiny-100">
+                    <div class="column-group horizontal-gutters">
                         <label for="name" class="all-20 align-right">Name</label>
                         <div class="control all-80">
                             <input type="text" id="name">
@@ -281,18 +279,16 @@ site_root: ../../
                         
                     </div>
                 </div>
-
-                <div class="control-group all-33">
-                    <div class="column-group gutters">
+                <div class="control-group all-33 small-100 tiny-100">
+                    <div class="column-group horizontal-gutters">
                         <label for="phone" class="all-20 align-right">Phone</label>
                         <div class="control all-80">
                             <input type="text" id="phone">
                         </div>
                     </div>
                 </div>
-
-                <div class="control-group all-33">
-                    <div class="column-group gutters">
+                <div class="control-group all-33 small-100 tiny-100">
+                    <div class="column-group horizontal-gutters">
                         <label for="email" class="all-20 align-right">Email</label>
                         <div class="control all-80">
                             <input type="text" id="email">
@@ -322,8 +318,37 @@ site_root: ../../
     </ul>
 
     <p>
-        Ink forms also have utility classes to address and highlight warnings and required fields. So if you have a required field, generated content will be added to mark your field as required, this way you don't need to do it manually.
+        Ink forms also has utility classes to address and highlight warnings and required fields. So if you have a required field, generated content will be added to mark your field as required, this way you don't need to do it manually.
     </p>
+
+    <h2>Adding tips</h2>
+    <p>
+        Adding tips to forms fields is easy. Just add the message by using a paragraph element with the <code>tip</code> class and keep it inside your <code>control-group</code>.
+    </p>
+
+    {% highlight html %}
+<form class="ink-form">
+    <div class="control-group">
+        <label for="text-input">Text input</label> 
+        <div class="control">
+            <input id="text-input" type="text" placeholder="Please input some text">
+        </div>
+        <p class="tip">You can add elp text to fields</p>
+    </div>
+</form>{% endhighlight %}
+    
+    <p class="example-title">Example</p>
+    <div class="example bottom-space">
+        <form class="ink-form">
+            <div class="control-group">
+                <label for="text-input">Passw</label> 
+                <div class="control">
+                    <input id="text-input" type="text" placeholder="Please input some text">
+                </div>
+                <p class="tip">You can add elp text to fields</p>
+            </div>
+        </form>
+    </div>
 
     <h2>Required field</h2>
 
@@ -360,7 +385,7 @@ site_root: ../../
         <div class="control">
             <input id="text-input" type="text" placeholder="Please input some text">
         </div>
-        <p clas="tip">Warn about something</p>
+        <p class="tip">Warn about something</p>
     </div>
 </form>{% endhighlight %}
     
@@ -436,8 +461,8 @@ site_root: ../../
         <!-- Prepended button -->
         <div class="control-group all-50 small-100 tiny-100">
             <div class="column-group gutters">
-                <label for="name" class="all-20 small-10 tiny-10 align-right">Label</label>
-                <div class="control all-80 small-90 tiny-90 prepend-button">
+                <label for="name" class="all-20 align-right">Label</label>
+                <div class="control all-80 prepend-button">
                     <input type="submit" value="Search" class="ink-button">
                     <span><input type="text" id="phone"></span>
                 </div>
@@ -446,8 +471,8 @@ site_root: ../../
         <!-- Appended button -->
         <div class="control-group all-50 small-100 tiny-100">
             <div class="column-group gutters">
-                <label for="name" class="all-20 small-10 tiny-10 align-right">Label</label>
-                <div class="control all-80 small-90 tiny-90 append-button">
+                <label for="name" class="all-20 align-right">Label</label>
+                <div class="control all-80 append-button">
                     <span><input type="text" id="name"></span>
                     <button class="ink-button"><i class="icon-search"></i> Search</button>
                 </div>
@@ -458,21 +483,21 @@ site_root: ../../
 
     <p class="example-title">Example</p>
     <div class="example bottom-space">
-        <form class="ink-form">
-            <fieldset class="column-group gutters">
+        <form class="ink-form half-top-space">
+            <fieldset class="column-group horizontal-gutters">
                 <div class="control-group all-50 small-100 tiny-100">
-                    <div class="column-group gutters">
-                        <label for="name" class="all-20 small-10 tiny-10 align-right">Label</label>
-                        <div class="control all-80 small-90 tiny-90 prepend-button">
+                    <div class="column-group horizontal-gutters">
+                        <label for="name" class="all-20 align-right">Label</label>
+                        <div class="control all-80 prepend-button">
                             <input type="submit" value="Search" class="ink-button">
                             <span><input type="text" id="phone"></span>
                         </div>
                     </div>
                 </div>
                 <div class="control-group all-50 small-100 tiny-100">
-                    <div class="column-group gutters">
-                        <label for="name" class="all-20 small-10 tiny-10 align-right">Label</label>
-                        <div class="control all-80 small-90 tiny-90 append-button">
+                    <div class="column-group horizontal-gutters">
+                        <label for="name" class="all-20 align-right">Label</label>
+                        <div class="control all-80 append-button">
                             <span><input type="text" id="name"></span>
                             <button class="ink-button"><i class="icon-search"></i> Search</button>
                         </div>
@@ -499,8 +524,8 @@ site_root: ../../
         <!-- Prepended symbol -->
         <div class="control-group all-50 small-100 tiny-100">
             <div class="column-group gutters">
-                <label for="email" class="all-20 small-10 tiny-10 align-right">Email</label>
-                <div class="control all-80 small-90 tiny-90 append-symbol">
+                <label for="email" class="all-20 align-right">Email</label>
+                <div class="control all-80 append-symbol">
                     <span>
                         <input type="text" id="email">
                         <i class="fa fa-envelope-o"></i>
@@ -511,8 +536,8 @@ site_root: ../../
         <!-- Appended symbol -->
         <div class="control-group all-50 small-100 tiny-100">
             <div class="column-group gutters">
-                <label for="email" class="all-20 small-10 tiny-10 align-right">Email</label>
-                <div class="control all-80 small-90 tiny-90 prepend-symbol">
+                <label for="email" class="all-20 align-right">Email</label>
+                <div class="control all-80 prepend-symbol">
                     <span>
                         <input type="text" id="email">
                         <i class="fa fa-envelope-o"></i>
@@ -525,12 +550,12 @@ site_root: ../../
 
     <p class="example-title">Example</p>
     <div class="example">
-        <form class="ink-form">
-            <fieldset class="column-group gutters">
+        <form class="ink-form half-top-space">
+            <fieldset class="column-group horizontal-gutters">
                 <div class="control-group all-50 small-100 tiny-100">
-                    <div class="column-group gutters">
-                        <label for="email" class="all-20 small-10 tiny-10 align-right">Email</label>
-                        <div class="control all-80 small-90 tiny-90 append-symbol">
+                    <div class="column-group horizontal-gutters">
+                        <label for="email" class="all-20 align-right">Email</label>
+                        <div class="control all-80 append-symbol">
                             <span>
                                 <input type="text" id="email">
                                 <i class="fa fa-envelope-o"></i>
@@ -539,9 +564,9 @@ site_root: ../../
                     </div>
                 </div>
                 <div class="control-group all-50 small-100 tiny-100">
-                    <div class="column-group gutters">
-                        <label for="email" class="all-20 small-10 tiny-10 align-right">Email</label>
-                        <div class="control all-80 small-90 tiny-90 prepend-symbol">
+                    <div class="column-group horizontal-gutters">
+                        <label for="email" class="all-20 align-right">Email</label>
+                        <div class="control all-80 prepend-symbol">
                             <span>
                                 <input type="text" id="email">
                                 <i class="fa fa-envelope-o"></i>
