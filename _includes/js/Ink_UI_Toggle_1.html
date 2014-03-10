@@ -1,0 +1,436 @@
+
+
+    <div class="box box-module">
+
+        
+            <h2><a name="Ink_UI_Toggle_1">Ink.UI.Toggle_1 <i>module</i></a></h2>
+        
+
+        
+
+        
+            <p><label>author:</label>inkdev AT sapo.pt</p>
+        
+        
+        
+            <p><label>version:</label>1</p>
+        
+
+        
+
+        
+
+        
+
+
+        
+            <h3>Defined classes and namespaces:</h3>
+            <ul>
+            
+                
+                    <li><a href="#Ink_UI_Toggle_1-Ink_UI_Toggle">(C) Ink.UI.Toggle</a></li>
+                
+            
+            </ul>
+        
+
+        
+
+        
+
+    </div>
+
+    
+        <div class="box box-class">
+
+    <h2><a name="Ink_UI_Toggle_1-Ink_UI_Toggle">Ink.UI.Toggle <i>
+    
+        class
+    
+    </i></a></h2>
+
+    
+
+    
+    
+    
+
+    
+        <div class="text"><p>Toggle component</p>
+</div>
+    
+
+    
+
+
+    
+        
+            <h3>Defined methods:</h3>
+        
+        
+        <ul>
+        
+            <li><a href="#Ink_UI_Toggle_1-Ink_UI_Toggle-Toggle">
+            
+                Ink.UI.Toggle
+            
+            (selector, [options], )</a></li>
+        
+            <li><a href="#Ink_UI_Toggle_1-Ink_UI_Toggle-getState">
+            
+                Ink.UI.Toggle.getState
+            
+            ()</a></li>
+        
+            <li><a href="#Ink_UI_Toggle_1-Ink_UI_Toggle-setState">
+            
+                Ink.UI.Toggle.setState
+            
+            ()</a></li>
+        
+        </ul>
+    
+
+    
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_Toggle_1-Ink_UI_Toggle-Toggle">
+    
+        Ink.UI.Toggle
+    
+    (selector, [options], )
+    
+        <i>constructor</i>
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String|DOMElement</pre>
+                
+
+                
+                    <label>selector
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Object</pre>
+                
+
+                
+                    <label class="optional">[options]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Options</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>options.target
+                
+
+                
+                </label>
+
+                
+                    <span class="description">CSS Selector that specifies the elements that this component will toggle</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.classNameOn]
+                
+
+                
+                    =&#x27;show-all&#x27;
+                
+                </label>
+
+                
+                    <span class="description">className when toggle is On</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.classNameOff]
+                
+
+                
+                    =&#x27;hide-all&#x27;
+                
+                </label>
+
+                
+                    <span class="description">className when toggle is Off.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.triggerEvent]
+                
+
+                
+                    =&#x27;click&#x27;
+                
+                </label>
+
+                
+                    <span class="description">Event that will trigger the toggling.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Boolean</pre>
+                
+
+                
+                    <label class="optional">[options.closeOnClick]
+                
+
+                
+                    =true
+                
+                </label>
+
+                
+                    <span class="description">When this is on, if the user clicks outside of the toggled content, the target is toggled off.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Selector</pre>
+                
+
+                
+                    <label class="optional">[options.closeOnInsideClick]
+                
+
+                
+                    =&#x27;a[href]&#x27;
+                
+                </label>
+
+                
+                    <span class="description">Toggle off when an element matching this selector is clicked. Set to null to deactivate the check. Default: 'a[href]' (finds links)</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Boolean</pre>
+                
+
+                
+                    <label class="optional">[options.initialState]
+                
+
+                
+                    =null
+                
+                </label>
+
+                
+                    <span class="description">Whether to start toggled off, on, or as found in the markup. (false: off, true: on, null: markup)</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label class="optional">[options.onChangeState]
+                
+
+                
+                    =null
+                
+                </label>
+
+                
+                    <span class="description">Callback to be called when the toggle state changes. Return `false` to cancel the event.</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+     &lt;div class=&quot;ink-dropdown&quot;&gt;
+         &lt;button class=&quot;ink-button toggle&quot; data-target=&quot;#dropdown&quot;&gt;Dropdown &lt;span class=&quot;icon-caret-down&quot;&gt;&lt;/span&gt;&lt;/button&gt;
+         &lt;ul id=&quot;dropdown&quot; class=&quot;dropdown-menu&quot;&gt;
+             &lt;li class=&quot;heading&quot;&gt;Heading&lt;/li&gt;
+             &lt;li class=&quot;separator-above&quot;&gt;&lt;a href=&quot;#&quot;&gt;Option&lt;/a&gt;&lt;/li&gt;
+             &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Option&lt;/a&gt;&lt;/li&gt;
+             &lt;li class=&quot;separator-above disabled&quot;&gt;&lt;a href=&quot;#&quot;&gt;Disabled option&lt;/a&gt;&lt;/li&gt;
+             &lt;li class=&quot;submenu&quot;&gt;
+                 &lt;a href=&quot;#&quot; class=&quot;toggle&quot; data-target=&quot;#submenu1&quot;&gt;A longer option name&lt;/a&gt;
+                 &lt;ul id=&quot;submenu1&quot; class=&quot;dropdown-menu&quot;&gt;
+                     &lt;li class=&quot;submenu&quot;&gt;
+                         &lt;a href=&quot;#&quot; class=&quot;toggle&quot; data-target=&quot;#ultrasubmenu&quot;&gt;Sub option&lt;/a&gt;
+                         &lt;ul id=&quot;ultrasubmenu&quot; class=&quot;dropdown-menu&quot;&gt;
+                             &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Sub option&lt;/a&gt;&lt;/li&gt;
+                             &lt;li&gt;&lt;a href=&quot;#&quot; data-target=&quot;ultrasubmenu&quot;&gt;Sub option&lt;/a&gt;&lt;/li&gt;
+                             &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Sub option&lt;/a&gt;&lt;/li&gt;
+                         &lt;/ul&gt;
+                     &lt;/li&gt;
+                     &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Sub option&lt;/a&gt;&lt;/li&gt;
+                     &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Sub option&lt;/a&gt;&lt;/li&gt;
+                 &lt;/ul&gt;
+             &lt;/li&gt;
+             &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Option&lt;/a&gt;&lt;/li&gt;
+         &lt;/ul&gt;
+     &lt;/div&gt;
+     &lt;script&gt;
+         Ink.requireModules( [&#x27;Ink.Dom.Selector_1&#x27;,&#x27;Ink.UI.Toggle_1&#x27;], function( Selector, Toggle ){
+             var toggleElement = Ink.s(&#x27;.toggle&#x27;);
+             var toggleObj = new Toggle( toggleElement );
+         });
+     &lt;/script&gt;
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_Toggle_1-Ink_UI_Toggle-getState">
+    
+        
+            Ink.UI.Toggle.getState
+        
+    
+    ()
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Boolean</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Gets the state of the toggle. (on/off)</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_Toggle_1-Ink_UI_Toggle-setState">
+    
+        
+            Ink.UI.Toggle.setState
+        
+    
+    ()
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+
+</div>
+
+
+
+
+
+    
+
+    
+
+    
+

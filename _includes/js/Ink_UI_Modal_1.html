@@ -1,0 +1,691 @@
+
+
+    <div class="box box-module">
+
+        
+            <h2><a name="Ink_UI_Modal_1">Ink.UI.Modal_1 <i>module</i></a></h2>
+        
+
+        
+
+        
+            <p><label>author:</label>inkdev AT sapo.pt</p>
+        
+        
+        
+            <p><label>version:</label>1</p>
+        
+
+        
+
+        
+
+        
+
+
+        
+            <h3>Defined classes and namespaces:</h3>
+            <ul>
+            
+                
+                    <li><a href="#Ink_UI_Modal_1-Ink_UI_Modal">(C) Ink.UI.Modal</a></li>
+                
+            
+            </ul>
+        
+
+        
+
+        
+
+    </div>
+
+    
+        <div class="box box-class">
+
+    <h2><a name="Ink_UI_Modal_1-Ink_UI_Modal">Ink.UI.Modal <i>
+    
+        class
+    
+    </i></a></h2>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+
+    
+        
+            <h3>Defined methods:</h3>
+        
+        
+        <ul>
+        
+            <li><a href="#Ink_UI_Modal_1-Ink_UI_Modal-Modal">
+            
+                Ink.UI.Modal
+            
+            (selector, [options], )</a></li>
+        
+            <li><a href="#Ink_UI_Modal_1-Ink_UI_Modal-destroy">
+            
+                Ink.UI.Modal.destroy
+            
+            ()</a></li>
+        
+            <li><a href="#Ink_UI_Modal_1-Ink_UI_Modal-dismiss">
+            
+                Ink.UI.Modal.dismiss
+            
+            ()</a></li>
+        
+            <li><a href="#Ink_UI_Modal_1-Ink_UI_Modal-getContentElement">
+            
+                Ink.UI.Modal.getContentElement
+            
+            ()</a></li>
+        
+            <li><a href="#Ink_UI_Modal_1-Ink_UI_Modal-open">
+            
+                Ink.UI.Modal.open
+            
+            ([event])</a></li>
+        
+            <li><a href="#Ink_UI_Modal_1-Ink_UI_Modal-setContentMarkup">
+            
+                Ink.UI.Modal.setContentMarkup
+            
+            (contentMarkup)</a></li>
+        
+        </ul>
+    
+
+    
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_Modal_1-Ink_UI_Modal-Modal">
+    
+        Ink.UI.Modal
+    
+    (selector, [options], )
+    
+        <i>constructor</i>
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String|DOMElement</pre>
+                
+
+                
+                    <label>selector
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Object</pre>
+                
+
+                
+                    <label class="optional">[options]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Options</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.width]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Default/Initial width. Ex: '600px'</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.height]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Default/Initial height. Ex: '400px'</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.shadeClass]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Custom class to be added to the div.ink-shade</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.modalClass]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Custom class to be added to the div.ink-modal</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.trigger]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">CSS Selector to target elements that will trigger the Modal.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.triggerEvent]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Trigger's event to be listened. 'click' is the default value. Ex: 'mouseover', 'touchstart'...</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Boolean</pre>
+                
+
+                
+                    <label class="optional">[options.autoDisplay]
+                
+
+                
+                    =true
+                
+                </label>
+
+                
+                    <span class="description">Display the Modal automatically when constructed.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.markup]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Markup to be placed in the Modal when created</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label class="optional">[options.onShow]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Callback function to run when the Modal is opened.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label class="optional">[options.onDismiss]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Callback function to run when the Modal is closed. Return `false` to cancel dismissing the Modal.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Boolean</pre>
+                
+
+                
+                    <label class="optional">[options.closeOnClick]
+                
+
+                
+                    =false
+                
+                </label>
+
+                
+                    <span class="description">Determines if the Modal should close when clicked outside of it.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Boolean</pre>
+                
+
+                
+                    <label class="optional">[options.closeOnEscape]
+                
+
+                
+                    =true
+                
+                </label>
+
+                
+                    <span class="description">Determines if the Modal should close when "Esc" key is pressed.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Boolean</pre>
+                
+
+                
+                    <label class="optional">[options.responsive]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Determines if the Modal should behave responsively (adapt to smaller viewports).</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Boolean</pre>
+                
+
+                
+                    <label class="optional">[options.disableScroll]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Determines if the Modal should 'disable' the page's scroll (not the Modal's body).</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+     &lt;div class=&quot;ink-shade fade&quot;&gt;
+         &lt;div id=&quot;test&quot; class=&quot;ink-modal fade&quot; data-trigger=&quot;#bModal&quot; data-width=&quot;800px&quot; data-height=&quot;400px&quot;&gt;
+             &lt;div class=&quot;modal-header&quot;&gt;
+                 &lt;button class=&quot;modal-close ink-dismiss&quot;&gt;&lt;/button&gt;
+                 &lt;h5&gt;Modal windows can have headers&lt;/h5&gt;
+             &lt;/div&gt;
+             &lt;div class=&quot;modal-body&quot; id=&quot;modalContent&quot;&gt;
+                 &lt;h3&gt;Please confirm your previous choice&lt;/h3&gt;
+                 &lt;p&gt;&quot;No,&quot; said Peleg, &quot;and he hasn&#x27;t been baptized right either, or it would have washed some of that devil&#x27;s blue off his face.&quot;&lt;/p&gt;
+                 &lt;p&gt;
+                     &lt;img src=&quot;http://placehold.it/800x400&quot; style=&quot;width: 100%;&quot; alt=&quot;&quot;&gt;
+                 &lt;/p&gt;
+                 &lt;p&gt;&quot;Do tell, now,&quot; cried Bildad, &quot;is this Philistine a regular member of Deacon Deuteronomy&#x27;s meeting? I never saw him going there, and I pass it every Lord&#x27;s day.&quot;&lt;/p&gt;
+                 &lt;p&gt;&quot;I don&#x27;t know anything about Deacon Deuteronomy or his meeting,&quot; said I; &quot;all I know is, that Queequeg here is a born member of the First Congregational Church. He is a deacon himself, Queequeg is.&quot;&lt;/p&gt;
+             &lt;/div&gt;
+             &lt;div class=&quot;modal-footer&quot;&gt;
+                 &lt;div class=&quot;push-right&quot;&gt;
+                     &lt;button class=&quot;ink-button info&quot;&gt;Confirm&lt;/button&gt;
+                     &lt;button class=&quot;ink-button caution ink-dismiss&quot;&gt;Cancel&lt;/button&gt;
+                 &lt;/div&gt;
+             &lt;/div&gt;
+         &lt;/div&gt;
+     &lt;/div&gt;
+     &lt;a href=&quot;#&quot; id=&quot;bModal&quot;&gt;Open modal&lt;/a&gt;
+     &lt;script&gt;
+         Ink.requireModules( [&#x27;Ink.Dom.Selector_1&#x27;,&#x27;Ink.UI.Modal_1&#x27;], function( Selector, Modal ){
+             var modalElement = Ink.s(&#x27;#test&#x27;);
+             var modalObj = new Modal( modalElement );
+         });
+     &lt;/script&gt;
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_Modal_1-Ink_UI_Modal-destroy">
+    
+        
+            Ink.UI.Modal.destroy
+        
+    
+    ()
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+
+    
+
+    
+        <span class="text"><p>Removes the modal from the DOM</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_Modal_1-Ink_UI_Modal-dismiss">
+    
+        
+            Ink.UI.Modal.dismiss
+        
+    
+    ()
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+
+    
+
+    
+        <span class="text"><p>Dismisses the modal</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_Modal_1-Ink_UI_Modal-getContentElement">
+    
+        
+            Ink.UI.Modal.getContentElement
+        
+    
+    ()
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>DOMElement</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Returns the content DOM element</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_Modal_1-Ink_UI_Modal-open">
+    
+        
+            Ink.UI.Modal.open
+        
+    
+    ([event])
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>Event</pre>
+                
+
+                
+                    <label class="optional">[event]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">(internal) In case its fired by the internal trigger.</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>Display this Modal. Useful if you have initialized the modal</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_Modal_1-Ink_UI_Modal-setContentMarkup">
+    
+        
+            Ink.UI.Modal.setContentMarkup
+        
+    
+    (contentMarkup)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>contentMarkup
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>Replaces the content markup</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+
+
+
+    
+
+    
+
+    
+

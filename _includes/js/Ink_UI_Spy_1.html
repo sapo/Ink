@@ -1,0 +1,195 @@
+
+
+    <div class="box box-module">
+
+        
+            <h2><a name="Ink_UI_Spy_1">Ink.UI.Spy_1 <i>module</i></a></h2>
+        
+
+        
+
+        
+            <p><label>author:</label>inkdev AT sapo.pt</p>
+        
+        
+        
+            <p><label>version:</label>1</p>
+        
+
+        
+
+        
+
+        
+
+
+        
+            <h3>Defined classes and namespaces:</h3>
+            <ul>
+            
+                
+                    <li><a href="#Ink_UI_Spy_1-Ink_UI_Spy">(C) Ink.UI.Spy</a></li>
+                
+            
+            </ul>
+        
+
+        
+
+        
+
+    </div>
+
+    
+        <div class="box box-class">
+
+    <h2><a name="Ink_UI_Spy_1-Ink_UI_Spy">Ink.UI.Spy <i>
+    
+        class
+    
+    </i></a></h2>
+
+    
+
+    
+    
+    
+
+    
+        <div class="text"><p>Spy is a component that &#39;spies&#39; an element (or a group of elements) and when they leave the viewport (through the top),
+highlight an option - related to that element being spied - that resides in a menu, initially identified as target.</p>
+</div>
+    
+
+    
+
+
+    
+        
+            <h3>Defined methods:</h3>
+        
+        
+        <ul>
+        
+            <li><a href="#Ink_UI_Spy_1-Ink_UI_Spy-Spy">
+            
+                Ink.UI.Spy
+            
+            (selector, [options], )</a></li>
+        
+        </ul>
+    
+
+    
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_Spy_1-Ink_UI_Spy-Spy">
+    
+        Ink.UI.Spy
+    
+    (selector, [options], )
+    
+        <i>constructor</i>
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String|DOMElement</pre>
+                
+
+                
+                    <label>selector
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Object</pre>
+                
+
+                
+                    <label class="optional">[options]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Options</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>DOMElement|String</pre>
+                
+
+                
+                    <label>options.target
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Target menu on where the spy will highlight the right option.</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+     &lt;script&gt;
+         Ink.requireModules( [&#x27;Ink.Dom.Selector_1&#x27;,&#x27;Ink.UI.Spy_1&#x27;], function( Selector, Spy ){
+             var menuElement = Ink.s(&#x27;#menu&#x27;);
+             var specialAnchorToSpy = Ink.s(&#x27;#specialAnchor&#x27;);
+             var spyObj = new Spy( specialAnchorToSpy, {
+                 target: menuElement
+             });
+         });
+     &lt;/script&gt;
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+
+
+
+    
+
+    
+
+    
+

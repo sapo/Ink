@@ -1,0 +1,294 @@
+
+
+    <div class="box box-module">
+
+        
+            <h2><a name="Ink_Util_Json_1">Ink.Util.Json_1 <i>module</i></a></h2>
+        
+
+        
+
+        
+            <p><label>author:</label>inkdev AT sapo.pt</p>
+        
+        
+        
+
+        
+
+        
+
+        
+
+
+        
+            <h3>Defined classes and namespaces:</h3>
+            <ul>
+            
+                
+                    <li><a href="#Ink_Util_Json_1-Ink_Util_Json">(C) Ink.Util.Json</a></li>
+                
+            
+            </ul>
+        
+
+        
+
+        
+
+    </div>
+
+    
+        <div class="box box-class">
+
+    <h2><a name="Ink_Util_Json_1-Ink_Util_Json">Ink.Util.Json <i>
+    
+        class
+    
+    </i></a></h2>
+
+    
+
+    
+    
+    
+
+    
+        <div class="text"><p>Use this class to convert JSON strings to JavaScript objects
+<code>(Json.parse)</code> and also to do the opposite operation <code>(Json.stringify)</code>.
+Internally, the standard JSON implementation is used if available
+Otherwise, the functions mimic the standard implementation.</p>
+<p>Here&#39;s how to produce JSON from an existing object:</p>
+<pre><code> Ink.requireModules([&#39;Ink.Util.Json_1&#39;], function (Json) {
+     var obj = {
+         key1: &#39;value1&#39;,
+         key2: &#39;value2&#39;,
+         keyArray: [&#39;arrayValue1&#39;, &#39;arrayValue2&#39;, &#39;arrayValue3&#39;]
+     };
+     Json.stringify(obj);  // The above object as a JSON string
+ });
+</code></pre><p>And here is how to parse JSON:</p>
+<pre><code> Ink.requireModules([&#39;Ink.Util.Json_1&#39;], function (Json) {
+     var source = &#39;{&quot;key&quot;: &quot;value&quot;, &quot;array&quot;: [true, null, false]}&#39;;
+     Json.parse(source);  // The above JSON string as an object
+ });
+</code></pre></div>
+    
+
+    
+
+
+    
+        
+            <h3>Defined methods:</h3>
+        
+        
+        <ul>
+        
+            <li><a href="#Ink_Util_Json_1-Ink_Util_Json-parse">
+            
+                Ink.Util.Json.parse
+            
+            (text, reviver)</a></li>
+        
+            <li><a href="#Ink_Util_Json_1-Ink_Util_Json-stringify">
+            
+                Ink.Util.Json.stringify
+            
+            (input, convertToUnicode)</a></li>
+        
+        </ul>
+    
+
+    
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Util_Json_1-Ink_Util_Json-parse">
+    
+        
+            Ink.Util.Json.parse
+        
+    
+    (text, reviver)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+
+                
+                    <label>text
+                
+
+                
+                </label>
+
+                
+                    <span class="description">{String}    Input string</span>
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label>reviver
+                
+
+                
+                </label>
+
+                
+                    <span class="description">{Function}  Function receiving `(key, value)`, and `this`=(containing object), used to walk objects.</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+Simple example:
+
+     Json.parse(&#x27;{&quot;a&quot;: &quot;3&quot;,&quot;numbers&quot;:false}&#x27;,
+         function (key, value) {
+             if (!this.numbers &amp;&amp; key === &#x27;a&#x27;) {
+                 return &quot;NO NUMBERS&quot;;
+             } else {
+                 return value;
+             }
+         }); // -&gt; object: {a: &#x27;NO NUMBERS&#x27;, numbers: false}
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Util_Json_1-Ink_Util_Json-stringify">
+    
+        
+            Ink.Util.Json.stringify
+        
+    
+    (input, convertToUnicode)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>Object</pre>
+                
+
+                
+                    <label>input
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Data to be serialized into JSON</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Boolean</pre>
+                
+
+                
+                    <label>convertToUnicode
+                
+
+                
+                </label>
+
+                
+                    <span class="description">When `true`, converts string contents to unicode \uXXXX</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>String</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>serializes a JSON object into a string.</p>
+</span>
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+     Json.stringify({a:1.23}); // -&gt; string: &#x27;{&quot;a&quot;: 1.23}&#x27;
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+
+
+
+    
+
+    
+
+    
+

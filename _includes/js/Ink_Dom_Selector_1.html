@@ -1,0 +1,387 @@
+
+
+    <div class="box box-module">
+
+        
+            <h2><a name="Ink_Dom_Selector_1">Ink.Dom.Selector_1 <i>module</i></a></h2>
+        
+
+        
+
+        
+            <p><label>author:</label>inkdev AT sapo.pt</p>
+        
+        
+        
+            <p><label>version:</label>1</p>
+        
+
+        
+
+        
+
+        
+
+
+        
+            <h3>Defined classes and namespaces:</h3>
+            <ul>
+            
+                
+                    <li><a href="#Ink_Dom_Selector_1-Ink_Dom_Selector">(C) Ink.Dom.Selector</a></li>
+                
+            
+            </ul>
+        
+
+        
+
+        
+
+    </div>
+
+    
+        <div class="box box-class">
+
+    <h2><a name="Ink_Dom_Selector_1-Ink_Dom_Selector">Ink.Dom.Selector <i>
+    
+        class
+    
+    </i></a></h2>
+
+    
+
+    
+    
+    
+        <p><label>version:</label>1</p>
+    
+
+    
+
+    
+
+
+    
+        
+            <h3>Defined methods:</h3>
+        
+        
+        <ul>
+        
+            <li><a href="#Ink_Dom_Selector_1-Ink_Dom_Selector-matches">
+            
+                Ink.Dom.Selector.matches
+            
+            (selector, matches)</a></li>
+        
+            <li><a href="#Ink_Dom_Selector_1-Ink_Dom_Selector-matchesSelector">
+            
+                Ink.Dom.Selector.matchesSelector
+            
+            (element, selector)</a></li>
+        
+            <li><a href="#Ink_Dom_Selector_1-Ink_Dom_Selector-select">
+            
+                Ink.Dom.Selector.select
+            
+            (selector, [context], [results], [seed])</a></li>
+        
+        </ul>
+    
+
+    
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Dom_Selector_1-Ink_Dom_Selector-matches">
+    
+        
+            Ink.Dom.Selector.matches
+        
+    
+    (selector, matches)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>selector
+                
+
+                
+                </label>
+
+                
+                    <span class="description">CSS selector to search for elements</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Array</pre>
+                
+
+                
+                    <label>matches
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Elements to be 'matched' with</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Array</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Returns elements which match with the second argument to the function.</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Dom_Selector_1-Ink_Dom_Selector-matchesSelector">
+    
+        
+            Ink.Dom.Selector.matchesSelector
+        
+    
+    (element, selector)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>DOMElement</pre>
+                
+
+                
+                    <label>element
+                
+
+                
+                </label>
+
+                
+                    <span class="description">to test</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>selector
+                
+
+                
+                </label>
+
+                
+                    <span class="description">CSS selector to test the element with</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Boolean</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Returns true iif element matches given selector</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Dom_Selector_1-Ink_Dom_Selector-select">
+    
+        
+            Ink.Dom.Selector.select
+        
+    
+    (selector, [context], [results], [seed])
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>selector
+                
+
+                
+                </label>
+
+                
+                    <span class="description">CSS selector to search for elements</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>DOMElement</pre>
+                
+
+                
+                    <label class="optional">[context]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">By default the search is done in the document element. However, you can specify an element as search context</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Array</pre>
+                
+
+                
+                    <label class="optional">[results]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">By default this is considered an empty array. But if you want to merge it with other searches you did, pass their result array through here.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Object</pre>
+                
+
+                
+                    <label class="optional">[seed]
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Array</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Alias for the Sizzle selector engine</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+
+
+
+    
+
+    
+
+    
+

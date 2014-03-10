@@ -1,0 +1,342 @@
+
+
+    <div class="box box-module">
+
+        
+            <h2><a name="Ink_UI_Sticky_1">Ink.UI.Sticky_1 <i>module</i></a></h2>
+        
+
+        
+
+        
+            <p><label>author:</label>inkdev AT sapo.pt</p>
+        
+        
+        
+            <p><label>version:</label>1</p>
+        
+
+        
+
+        
+
+        
+
+
+        
+            <h3>Defined classes and namespaces:</h3>
+            <ul>
+            
+                
+                    <li><a href="#Ink_UI_Sticky_1-Ink_UI_Sticky">(C) Ink.UI.Sticky</a></li>
+                
+            
+            </ul>
+        
+
+        
+
+        
+
+    </div>
+
+    
+        <div class="box box-class">
+
+    <h2><a name="Ink_UI_Sticky_1-Ink_UI_Sticky">Ink.UI.Sticky <i>
+    
+        class
+    
+    </i></a></h2>
+
+    
+
+    
+    
+    
+
+    
+        <div class="text"><p>The Sticky component takes an element and transforms it&#39;s behavior in order to, when the user scrolls he sets its position
+to fixed and maintain it until the user scrolls back to the same place.</p>
+</div>
+    
+
+    
+
+
+    
+        
+            <h3>Defined methods:</h3>
+        
+        
+        <ul>
+        
+            <li><a href="#Ink_UI_Sticky_1-Ink_UI_Sticky-Sticky">
+            
+                Ink.UI.Sticky
+            
+            (selector, [options], )</a></li>
+        
+        </ul>
+    
+
+    
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_Sticky_1-Ink_UI_Sticky-Sticky">
+    
+        Ink.UI.Sticky
+    
+    (selector, [options], )
+    
+        <i>constructor</i>
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String|DOMElement</pre>
+                
+
+                
+                    <label>selector
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Object</pre>
+                
+
+                
+                    <label class="optional">[options]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Options</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Number</pre>
+                
+
+                
+                    <label class="optional">[options.offsetBottom]
+                
+
+                
+                    =0
+                
+                </label>
+
+                
+                    <span class="description">Number of pixels of distance from the bottomElement.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Number</pre>
+                
+
+                
+                    <label class="optional">[options.offsetTop]
+                
+
+                
+                    =0
+                
+                </label>
+
+                
+                    <span class="description">Number of pixels of distance from the topElement.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Boolean</pre>
+                
+
+                
+                    <label class="optional">[options.inlineDimensions]
+                
+
+                
+                    =true
+                
+                </label>
+
+                
+                    <span class="description">Whether to set "style.height" and "style.width" in the stuck element. Turn this off when your `stickyClass` has its own height and width and you don't want this to be dealt with through javascript.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Boolean</pre>
+                
+
+                
+                    <label class="optional">[options.inlinePosition]
+                
+
+                
+                    =true
+                
+                </label>
+
+                
+                    <span class="description">Whether to set "style.left" in the stuck element. Turn this off when your `stickyClass` has its own "left" position and you don't want this to be dealt with through javascript.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.wrapperClass]
+                
+
+                
+                    =&quot;ink-sticky-wrapper&quot;
+                
+                </label>
+
+                
+                    <span class="description">Css class for the wrapper element.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.stickyClass]
+                
+
+                
+                    =&quot;ink-sticky-stuck&quot;
+                
+                </label>
+
+                
+                    <span class="description">Css class for sticking the sticky to the screen. Add your own "stuck" class to define your own sticky behaviour.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.topElement]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">CSS Selector that specifies a top element with which the component could collide.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.bottomElement]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">CSS Selector that specifies a bottom element with which the component could collide.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Array|String</pre>
+                
+
+                
+                    <label class="optional">[options.activateInLayouts]
+                
+
+                
+                    =&#x27;medium,large&#x27;
+                
+                </label>
+
+                
+                    <span class="description">Layouts in which the sticky behaviour is present. Pass an array or comma-separated string.</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+     &lt;script&gt;
+         Ink.requireModules( [&#x27;Ink.Dom.Selector_1&#x27;,&#x27;Ink.UI.Sticky_1&#x27;], function( Selector, Sticky ) {
+             var menuElement = Ink.s(&#x27;#menu&#x27;);
+             var stickyObj = new Sticky( menuElement );
+         });
+     &lt;/script&gt;
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+
+
+
+    
+
+    
+
+    
+

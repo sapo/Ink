@@ -1,0 +1,443 @@
+
+
+    <div class="box box-module">
+
+        
+            <h2><a name="Ink_UI_Animate_1">Ink.UI.Animate_1 <i>module</i></a></h2>
+        
+
+        
+
+        
+            <p><label>author:</label>inkdev AT sapo.pt</p>
+        
+        
+        
+            <p><label>version:</label>1</p>
+        
+
+        
+
+        
+
+        
+
+
+        
+            <h3>Defined classes and namespaces:</h3>
+            <ul>
+            
+                
+                    <li><a href="#Ink_UI_Animate_1-Ink_UI_Animate_1">(C) Ink.UI.Animate_1</a></li>
+                
+            
+            </ul>
+        
+
+        
+
+        
+
+    </div>
+
+    
+        <div class="box box-class">
+
+    <h2><a name="Ink_UI_Animate_1-Ink_UI_Animate_1">Ink.UI.Animate_1 <i>
+    
+        class
+    
+    </i></a></h2>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+
+    
+        
+            <h3>Defined methods:</h3>
+        
+        
+        <ul>
+        
+            <li><a href="#Ink_UI_Animate_1-Ink_UI_Animate_1-Animate_1">
+            
+                Ink.UI.Animate_1
+            
+            (element, options, )</a></li>
+        
+            <li><a href="#Ink_UI_Animate_1-Ink_UI_Animate_1-animate">
+            
+                Ink.UI.Animate_1.animate
+            
+            (element, animation, [options], )</a></li>
+        
+        </ul>
+    
+
+    
+        <h3>Defined attributes:</h3>
+        <ul>
+        
+            <li><a href="#Ink_UI_Animate_1-Ink_UI_Animate_1-animationEndEventName">Ink.UI.Animate_1.animationEndEventName</a></li>
+        
+            <li><a href="#Ink_UI_Animate_1-Ink_UI_Animate_1-animationSupported">Ink.UI.Animate_1.animationSupported</a></li>
+        
+        </ul>
+    
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_Animate_1-Ink_UI_Animate_1-Animate_1">
+    
+        Ink.UI.Animate_1
+    
+    (element, options, )
+    
+        <i>constructor</i>
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+
+                
+                    <label>element
+                
+
+                
+                </label>
+
+                
+                    <span class="description">{DOMElement} animated element</span>
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label>options
+                
+
+                
+                </label>
+
+                
+                    <span class="description">{Object} options object</span>
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label>options.animation
+                
+
+                
+                </label>
+
+                
+                    <span class="description">{String} animation name</span>
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label class="optional">[options.duration]
+                
+
+                
+                    =medium
+                
+                </label>
+
+                
+                    <span class="description">{String|Number} duration name (fast|medium|slow) or duration in ms</span>
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label class="optional">[options.removeClass]
+                
+
+                
+                    =true
+                
+                </label>
+
+                
+                    <span class="description">{Boolean} Whether to remove the `animation` class when finished animating</span>
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label class="optional">[options.onEnd]
+                
+
+                
+                    =null
+                
+                </label>
+
+                
+                    <span class="description">{Function} callback for animation end</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+
+    &lt;button id=&quot;animate-me&quot; class=&quot;ink-button&quot;&gt;Animate me!&lt;/button&gt;
+    &lt;span class=&quot;ink-label info ink-animate&quot;
+        id=&quot;animated&quot;
+        data-trigger=&quot;#animate-me&quot;
+        data-animation=&quot;fadeOut&quot;
+        data-removeClass=&quot;false&quot;&gt;Hi!&lt;/span&gt;    
+
+    &lt;script type=&quot;text/javascript&quot;&gt;
+        // Note: this step is not necessary if you are using autoload.js
+        Ink.requireModules([&#x27;Ink.UI.Animate_1&#x27;], function (Animate) {
+            new Animate(&#x27;#animated&#x27;);
+        });
+    &lt;/script&gt;
+
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_Animate_1-Ink_UI_Animate_1-animate">
+    
+        
+            Ink.UI.Animate_1.animate
+        
+    
+    (element, animation, [options], )
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+
+                
+                    <label>element
+                
+
+                
+                </label>
+
+                
+                    <span class="description">{DOMElement} animated element</span>
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label>animation
+                
+
+                
+                </label>
+
+                
+                    <span class="description">{String} animation name</span>
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label class="optional">[options]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">{Object}</span>
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label class="optional">[options.onEnd]
+                
+
+                
+                    =null
+                
+                </label>
+
+                
+                    <span class="description">{Function} callback for animation end</span>
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label class="optional">[options.removeClass]
+                
+
+                
+                    =false
+                
+                </label>
+
+                
+                    <span class="description">{Boolean} whether to remove the Css class when finished</span>
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label class="optional">[options.duration]
+                
+
+                
+                    =medium
+                
+                </label>
+
+                
+                    <span class="description">{String|Number} duration name (fast|medium|slow) or duration in ms</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+
+    
+
+
+</div>
+
+
+
+
+    <div class="box box-attribute">
+
+     <h2><a name="Ink_UI_Animate_1-Ink_UI_Animate_1-animationEndEventName">
+    
+       Ink.UI.Animate_1.animationEndEventName
+    
+    <i>attribute</i></a></h2>
+
+    
+
+    
+        <p class="text"><p>The correct event for the animationend event in this browser, with the correct prefix</p>
+</p>
+    
+
+    
+        <pre>{String}</pre>
+    
+
+    <label>animationEndEventName</label>
+
+    
+
+</div>
+
+
+    <div class="box box-attribute">
+
+     <h2><a name="Ink_UI_Animate_1-Ink_UI_Animate_1-animationSupported">
+    
+       Ink.UI.Animate_1.animationSupported
+    
+    <i>attribute</i></a></h2>
+
+    
+
+    
+        <p class="text"><p>Whether CSS3 animation is supported in this browser.</p>
+</p>
+    
+
+    
+        <pre>{Boolean}</pre>
+    
+
+    <label>animationSupported</label>
+
+    
+
+</div>
+
+
+
+    
+
+    
+
+    
+

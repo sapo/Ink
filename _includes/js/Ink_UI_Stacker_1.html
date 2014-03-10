@@ -1,0 +1,621 @@
+
+
+    <div class="box box-module">
+
+        
+            <h2><a name="Ink_UI_Stacker_1">Ink.UI.Stacker_1 <i>module</i></a></h2>
+        
+
+        
+
+        
+        
+        
+
+        
+
+        
+
+        
+
+
+        
+            <h3>Defined classes and namespaces:</h3>
+            <ul>
+            
+                
+                    <li><a href="#Ink_UI_Stacker_1-Ink_UI_Stacker_1">(C) Ink.UI.Stacker_1</a></li>
+                
+            
+            </ul>
+        
+
+        
+
+        
+
+    </div>
+
+    
+        <div class="box box-class">
+
+    <h2><a name="Ink_UI_Stacker_1-Ink_UI_Stacker_1">Ink.UI.Stacker_1 <i>
+    
+        class
+    
+    </i></a></h2>
+
+    
+
+    
+    
+    
+
+    
+        <div class="text"><p>This module combines several stacks of items together, in smaller screen sizes.</p>
+<p>The purpose is to have several stacks of items which may have different heights and as such cannot be used because of <code>float: left</code> quirks.</p>
+<p>For example, when you have three different columns of information:</p>
+<pre><code>[col. A: 1] [col. B: 1] [col. C: 1]
+[col. B: 2] [col. C: 2] [col. C: 2]
+</code></pre><p>and the screen resizes and you need a layout of 2 columns, Stacker reorders the stacks so that you get:</p>
+<pre><code>[col. A: 1] [col. B: 1]
+[col. C: 1] [col. A: 2]
+[col. B: 2] [col. C: 2]
+</code></pre><p>Note: If you just want to use a different amount of columns for your items in several viewports, but these items are guaranteed to have a fixed height, don&#39;t use this module. Use the <code>small-*</code>, <code>medium-*</code> and <code>large-*</code> classes instead.</p>
+</div>
+    
+
+    
+
+
+    
+        
+            <h3>Defined methods:</h3>
+        
+        
+        <ul>
+        
+            <li><a href="#Ink_UI_Stacker_1-Ink_UI_Stacker_1-Stacker_1">
+            
+                Ink.UI.Stacker_1
+            
+            ([container], [options], )</a></li>
+        
+            <li><a href="#Ink_UI_Stacker_1-Ink_UI_Stacker_1-addItem">
+            
+                Ink.UI.Stacker_1.addItem
+            
+            (item)</a></li>
+        
+            <li><a href="#Ink_UI_Stacker_1-Ink_UI_Stacker_1-reloadItems">
+            
+                Ink.UI.Stacker_1.reloadItems
+            
+            ()</a></li>
+        
+        </ul>
+    
+
+    
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_Stacker_1-Ink_UI_Stacker_1-Stacker_1">
+    
+        Ink.UI.Stacker_1
+    
+    ([container], [options], )
+    
+        <i>constructor</i>
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+
+                
+                    <label class="optional">[container]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">{DOMElement|String} Element which contains the stacks (identified by the options.column selector)</span>
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label class="optional">[options]
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label class="optional">[options.column]
+                
+
+                
+                    =&#x27;.stacker-column&#x27;
+                
+                </label>
+
+                
+                    <span class="description">{String}   Select the columns inside the `container`</span>
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label class="optional">[options.item]
+                
+
+                
+                    =&#x27;.stacker-item&#x27;
+                
+                </label>
+
+                
+                    <span class="description">{String}   Select items in your stack</span>
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label class="optional">[options.customBreakPoints]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">{Object}   options for each breakpoint name. Use this if you have more breakpoints than Ink by default (`large`, `medium`, `small`)</span>
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label class="optional">[options.customBreakpoints.BREAKPOINT_NAME]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">{Object}</span>
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label>options.customBreakpoints.BREAKPOINT_NAME.max
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Maximum screen size as seen in your media query</span>
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label>options.customBreakpoints.BREAKPOINT_NAME.min
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Minimum screen size as seen in your media query</span>
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label>options.customBreakpoints.BREAKPOINT_NAME.cols
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Column count for this size.</span>
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label class="optional">[options.largeMax]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">{Number}   Upper bound of `large` breakpoint</span>
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label class="optional">[options.largeMin]
+                
+
+                
+                    =961
+                
+                </label>
+
+                
+                    <span class="description">{Number}   Lower bound of `large` breakpoint</span>
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label class="optional">[options.mediumMax]
+                
+
+                
+                    =960
+                
+                </label>
+
+                
+                    <span class="description">{Number}   Upper bound of `medium` breakpoint</span>
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label class="optional">[options.mediumMin]
+                
+
+                
+                    =651
+                
+                </label>
+
+                
+                    <span class="description">{Number}   Lower bound of `medium` breakpoint</span>
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label class="optional">[options.smallMax]
+                
+
+                
+                    =650
+                
+                </label>
+
+                
+                    <span class="description">{Number}   Upper bound of `small` breakpoint</span>
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label class="optional">[options.smallMin]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">{Number}   Lower bound of `small` breakpoint</span>
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label class="optional">[options.largeCols]
+                
+
+                
+                    =3
+                
+                </label>
+
+                
+                    <span class="description">{Integer}  Number of columns in the `large` viewport</span>
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label class="optional">[options.mediumCols]
+                
+
+                
+                    =2
+                
+                </label>
+
+                
+                    <span class="description">{Integer}  Number of columns in the `medium` viewport</span>
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label class="optional">[options.smallCols]
+                
+
+                
+                    =1
+                
+                </label>
+
+                
+                    <span class="description">{Integer}  Number of columns in the `small` viewport</span>
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label class="optional">[options.isOrdered]
+                
+
+                
+                    =true
+                
+                </label>
+
+                
+                    <span class="description">{Boolean}  When `false`, do not reorder stacks when combining them.</span>
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label class="optional">[options.onRunCallback]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">{Function} Called when instantiated</span>
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label class="optional">[options.onResizeCallback]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">{Function} Called when resized because the window resized.</span>
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label class="optional">[options.onAPIReloadCallback]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">{Function} Called when you ask to reload stack items from the DOM.</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+
+Html:
+
+    &lt;div id=&quot;stacker-container&quot;&gt;  &lt;!-- Stacker element --&gt;
+        &lt;div class=&quot;large-33 medium-50 small-100 stacker-column&quot;&gt; &lt;!-- Column element (&#x27;.stacker-column&#x27; is the default selector) --&gt;
+            &lt;div id=&quot;a&quot; class=&quot;stacker-item&quot;&gt;a&lt;/div&gt; &lt;!-- Item (&#x27;.stacker-item&#x27; is the default selector) --&gt;
+            &lt;div id=&quot;d&quot; class=&quot;stacker-item&quot;&gt;d&lt;/div&gt;
+            &lt;div id=&quot;g&quot; class=&quot;stacker-item&quot;&gt;g&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;large-33 medium-50 small-100 hide-small stacker-column&quot;&gt;
+            &lt;div id=&quot;b&quot; class=&quot;stacker-item&quot;&gt;b&lt;/div&gt;
+            &lt;div id=&quot;e&quot; class=&quot;stacker-item&quot;&gt;e&lt;/div&gt;
+            &lt;div id=&quot;h&quot; class=&quot;stacker-item&quot;&gt;h&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;large-33 medium-50 small-100 hide-medium hide-small stacker-column&quot;&gt;
+            &lt;div id=&quot;c&quot; class=&quot;stacker-item&quot;&gt;c&lt;/div&gt;
+            &lt;div id=&quot;f&quot; class=&quot;stacker-item&quot;&gt;f&lt;/div&gt;
+            &lt;div id=&quot;i&quot; class=&quot;stacker-item&quot;&gt;i&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+Javascript:
+
+    Ink.requireModules([&#x27;Ink.UI.Stacker_1&#x27;], function (Stacker) {
+        var stacker = new Stacker(&#x27;#stacker-container&#x27;);
+        // Keep the &quot;stacker&quot; variable around if you want to call addItem and reloadItems
+    });
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_Stacker_1-Ink_UI_Stacker_1-addItem">
+    
+        
+            Ink.UI.Stacker_1.addItem
+        
+    
+    (item)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>DOMElement</pre>
+                
+
+                
+                    <label>item
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>Add an item to the end of your stacks. Call <code>reloadItems()</code> when you are done adding items.</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_Stacker_1-Ink_UI_Stacker_1-reloadItems">
+    
+        
+            Ink.UI.Stacker_1.reloadItems
+        
+    
+    ()
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+
+    
+
+    
+        <span class="text"><p>Update the layout of your items.</p>
+<p>Call this when:</p>
+<ul>
+<li>The width has changed, but not because of the window resizing.</li>
+<li>You used addItem to add some items</li>
+</ul>
+</span>
+    
+
+    
+
+
+</div>
+
+
+
+
+
+    
+
+    
+
+    
+

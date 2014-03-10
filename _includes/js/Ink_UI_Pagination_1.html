@@ -1,0 +1,1342 @@
+
+
+    <div class="box box-module">
+
+        
+            <h2><a name="Ink_UI_Pagination_1">Ink.UI.Pagination_1 <i>module</i></a></h2>
+        
+
+        
+
+        
+            <p><label>author:</label>inkdev AT sapo.pt</p>
+        
+        
+        
+            <p><label>version:</label>1</p>
+        
+
+        
+
+        
+
+        
+
+
+        
+            <h3>Defined classes and namespaces:</h3>
+            <ul>
+            
+                
+                    <li><a href="#Ink_UI_Pagination_1-Ink_UI_Pagination">(C) Ink.UI.Pagination</a></li>
+                
+            
+            </ul>
+        
+
+        
+            <h3>Defined functions:</h3>
+            <ul>
+            
+                <li><a href="#Ink_UI_Pagination_1-genAel">
+                
+                    Ink.UI.Pagination_1.genAel
+                
+                (inner)</a></li>
+            
+            </ul>
+        
+
+        
+
+    </div>
+
+    
+        <div class="box box-class">
+
+    <h2><a name="Ink_UI_Pagination_1-Ink_UI_Pagination">Ink.UI.Pagination <i>
+    
+        class
+    
+    </i></a></h2>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+
+    
+        
+            <h3>Defined methods:</h3>
+        
+        
+        <ul>
+        
+            <li><a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-Pagination">
+            
+                Ink.UI.Pagination
+            
+            (selector, options, )</a></li>
+        
+            <li><a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-destroy">
+            
+                Ink.UI.Pagination.destroy
+            
+            ()</a></li>
+        
+            <li><a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-getCurrent">
+            
+                Ink.UI.Pagination.getCurrent
+            
+            ()</a></li>
+        
+            <li><a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-getSize">
+            
+                Ink.UI.Pagination.getSize
+            
+            ()</a></li>
+        
+            <li><a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-hasNext">
+            
+                Ink.UI.Pagination.hasNext
+            
+            ()</a></li>
+        
+            <li><a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-hasNextPage">
+            
+                Ink.UI.Pagination.hasNextPage
+            
+            ()</a></li>
+        
+            <li><a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-hasPrevious">
+            
+                Ink.UI.Pagination.hasPrevious
+            
+            ()</a></li>
+        
+            <li><a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-hasPreviousPage">
+            
+                Ink.UI.Pagination.hasPreviousPage
+            
+            ()</a></li>
+        
+            <li><a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-isFirst">
+            
+                Ink.UI.Pagination.isFirst
+            
+            ()</a></li>
+        
+            <li><a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-isLast">
+            
+                Ink.UI.Pagination.isLast
+            
+            ()</a></li>
+        
+            <li><a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-setCurrent">
+            
+                Ink.UI.Pagination.setCurrent
+            
+            (nr, isRelative)</a></li>
+        
+            <li><a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-setOnChange">
+            
+                Ink.UI.Pagination.setOnChange
+            
+            (cb)</a></li>
+        
+            <li><a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-setSize">
+            
+                Ink.UI.Pagination.setSize
+            
+            (sz, setSizeInItems, totalItems, itemsPerPage)</a></li>
+        
+        </ul>
+    
+
+    
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_Pagination_1-Ink_UI_Pagination-Pagination">
+    
+        Ink.UI.Pagination
+    
+    (selector, options, )
+    
+        <i>constructor</i>
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String|DOMElement</pre>
+                
+
+                
+                    <label>selector
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Object</pre>
+                
+
+                
+                    <label>options
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Options</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Number</pre>
+                
+
+                
+                    <label class="optional">[options.size]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">number of pages.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Number</pre>
+                
+
+                
+                    <label class="optional">[options.totalItemCount]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Total numeber of items to display</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Number</pre>
+                
+
+                
+                    <label class="optional">[options.itemsPerPage]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">number of items per page.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Number</pre>
+                
+
+                
+                    <label class="optional">[options.maxSize]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">If passed, only shows at most maxSize items. displays also first|prev page and next page|last buttons</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Number</pre>
+                
+
+                
+                    <label class="optional">[options.start]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">start page. defaults to 1</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.firstLabel]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">label to display on first page button</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.lastLabel]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">label to display on last page button</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.previousLabel]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">label to display on previous button</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.nextLabel]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">label to display on next button</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.previousPageLabel]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">label to display on previous page button</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.nextPageLabel]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">label to display on next page button</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label class="optional">[options.onChange]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">optional callback. Called with `(thisPaginator, newPageNumber)`.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.hashParameter]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">parameter to use on setHash. by default uses 'page'</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.parentTag]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">HTML Tag used as the parent node.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.childTag]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">HTML Tag used as the child nodes.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.wrapperClass]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">CSS Class used in the wrapper element</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.paginationClass]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">CSS Class used in the pagination element</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.activeClass]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">CSS Class used to mark page as active</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.disabledClass]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">CSS Class used to mark page as disabled</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.hideClass]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">CSS Class used to hide elements</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.previousClass]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">CSS Class used in the previous element</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.previousPageClass]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">CSS Class used in the previous page element</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.nextClass]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">CSS Class used in the next element</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.nextPageClass]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">CSS Class used in the next page element</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label class="optional">[options.numberFormatter]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">optional function which takes and 0-indexed number and returns the string which appears on a numbered button</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_Pagination_1-Ink_UI_Pagination-destroy">
+    
+        
+            Ink.UI.Pagination.destroy
+        
+    
+    ()
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+
+    
+
+    
+        <span class="text"><p>Unregisters the component and removes its markup from the DOM</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_Pagination_1-Ink_UI_Pagination-getCurrent">
+    
+        
+            Ink.UI.Pagination.getCurrent
+        
+    
+    ()
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Number</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Returns current page</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_Pagination_1-Ink_UI_Pagination-getSize">
+    
+        
+            Ink.UI.Pagination.getSize
+        
+    
+    ()
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Number</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Returns the number of pages</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_Pagination_1-Ink_UI_Pagination-hasNext">
+    
+        
+            Ink.UI.Pagination.hasNext
+        
+    
+    ()
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Boolean</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Returns true iif has pages ahead</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_Pagination_1-Ink_UI_Pagination-hasNextPage">
+    
+        
+            Ink.UI.Pagination.hasNextPage
+        
+    
+    ()
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Boolean</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Returns true iif has set of page(s) ahead</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_Pagination_1-Ink_UI_Pagination-hasPrevious">
+    
+        
+            Ink.UI.Pagination.hasPrevious
+        
+    
+    ()
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Boolean</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Returns true iif has prior pages</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_Pagination_1-Ink_UI_Pagination-hasPreviousPage">
+    
+        
+            Ink.UI.Pagination.hasPreviousPage
+        
+    
+    ()
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Boolean</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Returns true iif has prior set of page(s)</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_Pagination_1-Ink_UI_Pagination-isFirst">
+    
+        
+            Ink.UI.Pagination.isFirst
+        
+    
+    ()
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Boolean</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Returns true iif at first page</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_Pagination_1-Ink_UI_Pagination-isLast">
+    
+        
+            Ink.UI.Pagination.isLast
+        
+    
+    ()
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Boolean</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Returns true iif at last page</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_Pagination_1-Ink_UI_Pagination-setCurrent">
+    
+        
+            Ink.UI.Pagination.setCurrent
+        
+    
+    (nr, isRelative)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>Number</pre>
+                
+
+                
+                    <label>nr
+                
+
+                
+                </label>
+
+                
+                    <span class="description">sets the current page to given number</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Boolean</pre>
+                
+
+                
+                    <label>isRelative
+                
+
+                
+                </label>
+
+                
+                    <span class="description">trueish to set relative change instead of absolute (default)</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>Sets the current page</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_Pagination_1-Ink_UI_Pagination-setOnChange">
+    
+        
+            Ink.UI.Pagination.setOnChange
+        
+    
+    (cb)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+
+                
+                    <label>cb
+                
+
+                
+                </label>
+
+                
+                    <span class="description">{Function} Callback called with `(thisPaginator, newPageNumber)`.</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>Allows you to subscribe to the onChange event</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_Pagination_1-Ink_UI_Pagination-setSize">
+    
+        
+            Ink.UI.Pagination.setSize
+        
+    
+    (sz, setSizeInItems, totalItems, itemsPerPage)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>Number</pre>
+                
+
+                
+                    <label>sz
+                
+
+                
+                </label>
+
+                
+                    <span class="description">number of pages</span>
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label>setSizeInItems
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Number</pre>
+                
+
+                
+                    <label>totalItems
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Number</pre>
+                
+
+                
+                    <label>itemsPerPage
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>Sets the number of pages</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+
+
+
+    
+
+    
+        <div class="box box-function">
+
+    <h2><a name="Ink_UI_Pagination_1-genAel">
+    
+        
+            Ink.UI.Pagination_1.genAel
+        
+    
+    (inner)
+    
+        
+            <i>function</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>inner
+                
+
+                
+                </label>
+
+                
+                    <span class="description">HTML to be placed inside the anchor.</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>DOMElement</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Function to create the pagination anchors</p>
+</span>
+    
+
+    
+
+
+</div>
+
+    
+
+    
+

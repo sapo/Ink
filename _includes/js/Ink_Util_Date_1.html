@@ -1,0 +1,285 @@
+
+
+    <div class="box box-module">
+
+        
+            <h2><a name="Ink_Util_Date_1">Ink.Util.Date_1 <i>module</i></a></h2>
+        
+
+        
+
+        
+            <p><label>author:</label>inkdev AT sapo.pt</p>
+        
+        
+        
+            <p><label>version:</label>1</p>
+        
+
+        
+
+        
+
+        
+
+
+        
+            <h3>Defined classes and namespaces:</h3>
+            <ul>
+            
+                
+                    <li><a href="#Ink_Util_Date_1-Ink_Util_Date">(C) Ink.Util.Date</a></li>
+                
+            
+            </ul>
+        
+
+        
+
+        
+
+    </div>
+
+    
+        <div class="box box-class">
+
+    <h2><a name="Ink_Util_Date_1-Ink_Util_Date">Ink.Util.Date <i>
+    
+        class
+    
+    </i></a></h2>
+
+    
+
+    
+    
+    
+        <p><label>version:</label>1</p>
+    
+
+    
+        <div class="text"><p>Class to provide the same features that php date does</p>
+</div>
+    
+
+    
+
+
+    
+        
+            <h3>Defined methods:</h3>
+        
+        
+        <ul>
+        
+            <li><a href="#Ink_Util_Date_1-Ink_Util_Date-get">
+            
+                Ink.Util.Date.get
+            
+            (format, [_date])</a></li>
+        
+            <li><a href="#Ink_Util_Date_1-Ink_Util_Date-set">
+            
+                Ink.Util.Date.set
+            
+            ([format], str_date)</a></li>
+        
+        </ul>
+    
+
+    
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Util_Date_1-Ink_Util_Date-get">
+    
+        
+            Ink.Util.Date.get
+        
+    
+    (format, [_date])
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>format
+                
+
+                
+                </label>
+
+                
+                    <span class="description">- as the string in which the date it will be formatted - mandatory</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Date</pre>
+                
+
+                
+                    <label class="optional">[_date]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">- the date to format. If undefined it will do it on now() date. Can receive unix timestamp or a date object</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>String</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Function that works exactly as php date() function
+Works like PHP 5.2.2 <a href="http://php.net/manual/en/function.date.php" target="_blank">PHP Date function</a></p>
+</span>
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+    &lt;script&gt;
+        Ink.requireModules( [&#x27;Ink.Util.Date_1&#x27;], function( InkDate ){
+            console.log( InkDate.get(&#x27;Y-m-d&#x27;) ); // Result (at the time of writing): 2013-05-07
+        });
+    &lt;/script&gt;
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Util_Date_1-Ink_Util_Date-set">
+    
+        
+            Ink.Util.Date.set
+        
+    
+    ([format], str_date)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[format]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">As the string in which the date it will be formatted. By default is 'Y-m-d'</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>str_date
+                
+
+                
+                </label>
+
+                
+                    <span class="description">The date formatted - Mandatory.</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Date</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Functions that works like php date() function but return a date based on the formatted string
+Works like PHP 5.2.2 <a href="http://php.net/manual/en/function.date.php" target="_blank">PHP Date function</a></p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+
+
+
+    
+
+    
+
+    
+

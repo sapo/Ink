@@ -1,0 +1,1617 @@
+
+
+    <div class="box box-module">
+
+        
+            <h2><a name="Ink_1">Ink_1 <i>module</i></a></h2>
+        
+
+        
+
+        
+        
+        
+
+        
+
+        
+
+        
+
+
+        
+            <h3>Defined classes and namespaces:</h3>
+            <ul>
+            
+                
+                    <li><a href="#Ink_1-Ink">(C) Ink</a></li>
+                
+            
+            </ul>
+        
+
+        
+
+        
+
+    </div>
+
+    
+        <div class="box box-class">
+
+    <h2><a name="Ink_1-Ink">Ink <i>
+    
+        class
+    
+    </i></a></h2>
+
+    
+
+    
+    
+    
+
+    
+        <div class="text"><p>global object</p>
+</div>
+    
+
+    
+
+
+    
+        
+            <h3>Defined methods:</h3>
+        
+        
+        <ul>
+        
+            <li><a href="#Ink_1-Ink-bind">
+            
+                Ink.bind
+            
+            (fn, context)</a></li>
+        
+            <li><a href="#Ink_1-Ink-bindEvent">
+            
+                Ink.bindEvent
+            
+            (fn, context)</a></li>
+        
+            <li><a href="#Ink_1-Ink-bindMethod">
+            
+                Ink.bindMethod
+            
+            (object, methodName)</a></li>
+        
+            <li><a href="#Ink_1-Ink-createExt">
+            
+                Ink.createExt
+            
+            (moduleName, version, dependencies, modFn)</a></li>
+        
+            <li><a href="#Ink_1-Ink-createModule">
+            
+                Ink.createModule
+            
+            (mod, version, deps, modFn)</a></li>
+        
+            <li><a href="#Ink_1-Ink-error">
+            
+                Ink.error
+            
+            ()</a></li>
+        
+            <li><a href="#Ink_1-Ink-extendObj">
+            
+                Ink.extendObj
+            
+            (destination, sources)</a></li>
+        
+            <li><a href="#Ink_1-Ink-getModule">
+            
+                Ink.getModule
+            
+            (mod, [version])</a></li>
+        
+            <li><a href="#Ink_1-Ink-getModulesLoadOrder">
+            
+                Ink.getModulesLoadOrder
+            
+            ()</a></li>
+        
+            <li><a href="#Ink_1-Ink-getPath">
+            
+                Ink.getPath
+            
+            (modName, noLib)</a></li>
+        
+            <li><a href="#Ink_1-Ink-i">
+            
+                Ink.i
+            
+            (id)</a></li>
+        
+            <li><a href="#Ink_1-Ink-loadScript">
+            
+                Ink.loadScript
+            
+            (uri, [contentType])</a></li>
+        
+            <li><a href="#Ink_1-Ink-log">
+            
+                Ink.log
+            
+            ()</a></li>
+        
+            <li><a href="#Ink_1-Ink-namespace">
+            
+                Ink.namespace
+            
+            (ns, [returnParentAndKey])</a></li>
+        
+            <li><a href="#Ink_1-Ink-requireModules">
+            
+                Ink.requireModules
+            
+            (deps, cbFn)</a></li>
+        
+            <li><a href="#Ink_1-Ink-s">
+            
+                Ink.s
+            
+            (rule, [from])</a></li>
+        
+            <li><a href="#Ink_1-Ink-setPath">
+            
+                Ink.setPath
+            
+            (key, rootURI)</a></li>
+        
+            <li><a href="#Ink_1-Ink-ss">
+            
+                Ink.ss
+            
+            (rule, [from])</a></li>
+        
+            <li><a href="#Ink_1-Ink-warn">
+            
+                Ink.warn
+            
+            ()</a></li>
+        
+        </ul>
+    
+
+    
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_1-Ink-bind">
+    
+        
+            Ink.bind
+        
+    
+    (fn, context)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label>fn
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Object</pre>
+                
+
+                
+                    <label>context
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Function</pre>
+            
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Function.prototype.bind alternative.
+Additional arguments will be sent to the original function as prefix arguments.
+Set &quot;context&quot; to <code>false</code> to preserve the original context of the function and just bind the arguments.</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_1-Ink-bindEvent">
+    
+        
+            Ink.bindEvent
+        
+    
+    (fn, context)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label>fn
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Object</pre>
+                
+
+                
+                    <label>context
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Function</pre>
+            
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Function.prototype.bind alternative for event handlers.
+Same as bind but keeps first argument of the call the original event.
+Additional arguments will be sent to the original function as prefix arguments.
+Set &quot;context&quot; to <code>false</code> to preserve the original context of the function and just bind the arguments.</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_1-Ink-bindMethod">
+    
+        
+            Ink.bindMethod
+        
+    
+    (object, methodName)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>Object</pre>
+                
+
+                
+                    <label>object
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>methodName
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Function</pre>
+            
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Function.prototype.bind alternative for binding class methods</p>
+</span>
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+ // Build a function which calls Ink.Dom.Element.remove on an element.
+ var removeMyElem = Ink.bindMethod(Ink.Dom.Element, &#x27;remove&#x27;, someElement);
+
+ removeMyElem();  // no arguments, nor Ink.Dom.Element, needed
+
+		</code></pre>
+	
+		<pre class="example"><code>
+			
+ // (comparison with using Ink.bind to the same effect).
+ // The following two calls are equivalent
+
+ Ink.bind(this.remove, this, myElem);
+ Ink.bindMethod(this, &#x27;remove&#x27;, myElem);
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_1-Ink-createExt">
+    
+        
+            Ink.createExt
+        
+    
+    (moduleName, version, dependencies, modFn)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>moduleName
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Extension name</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>version
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Extension version</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Array</pre>
+                
+
+                
+                    <label>dependencies
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Extension dependencies</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label>modFn
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Function returning the extension</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>Creates an Ink.Ext module</p>
+<p>Does exactly the same as createModule but creates the module in the Ink.Ext namespace</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_1-Ink-createModule">
+    
+        
+            Ink.createModule
+        
+    
+    (mod, version, deps, modFn)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>mod
+                
+
+                
+                </label>
+
+                
+                    <span class="description">module name. parts are split with dots</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Number</pre>
+                
+
+                
+                    <label>version
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Array</pre>
+                
+
+                
+                    <label>deps
+                
+
+                
+                </label>
+
+                
+                    <span class="description">array of module names which are dependencies for the module being created</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label>modFn
+                
+
+                
+                </label>
+
+                
+                    <span class="description">its arguments are the resolved dependecies, once all of them are fetched. the body of this function should return the module.</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>must be the wrapper around each Ink lib module for require resolution</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_1-Ink-error">
+    
+        
+            Ink.error
+        
+    
+    ()
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+
+                
+                    <label>args...
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>Calls console.error if available.</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_1-Ink-extendObj">
+    
+        
+            Ink.extendObj
+        
+    
+    (destination, sources)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>Object</pre>
+                
+
+                
+                    <label>destination
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Object...</pre>
+                
+
+                
+                    <label>sources
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Enriches the destination object with values from source object whenever the key is missing in destination.</p>
+<p>More than one object can be passed as source, in which case the rightmost objects have precedence.</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_1-Ink-getModule">
+    
+        
+            Ink.getModule
+        
+    
+    (mod, [version])
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>mod
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Number</pre>
+                
+
+                
+                    <label class="optional">[version]
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Object|Function</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>synchronous. assumes module is loaded already!</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_1-Ink-getModulesLoadOrder">
+    
+        
+            Ink.getModulesLoadOrder
+        
+    
+    ()
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>String</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>list or module names, ordered by loaded time</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_1-Ink-getPath">
+    
+        
+            Ink.getPath
+        
+    
+    (modName, noLib)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+
+                
+                    <label>modName
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Name of the module you want the path of.</span>
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label>noLib
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Exclude the 'lib.js' filename</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>Get the path of a certain module by looking up the paths given in setPath (and ultimately the default Ink path)</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_1-Ink-i">
+    
+        
+            Ink.i
+        
+    
+    (id)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>id
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>alias to document.getElementById</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_1-Ink-loadScript">
+    
+        
+            Ink.loadScript
+        
+    
+    (uri, [contentType])
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>uri
+                
+
+                
+                </label>
+
+                
+                    <span class="description">can be an http URI or an Ink module name, which gets resolved.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[contentType]
+                
+
+                
+                    =&#x27;text/javascript&#x27;
+                
+                </label>
+
+                
+                    <span class="description">the `type` attribute of the new script tag.</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>Loads a script by creating a <code>&lt;script&gt;</code> tag in the <code>&lt;head&gt;</code> of the document.</p>
+<p>Reports errors by listening to &#39;error&#39; and &#39;readystatechange&#39; events.</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_1-Ink-log">
+    
+        
+            Ink.log
+        
+    
+    ()
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+
+                
+                    <label>args...
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>Calls console.log if available.</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_1-Ink-namespace">
+    
+        
+            Ink.namespace
+        
+    
+    (ns, [returnParentAndKey])
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>ns
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Boolean</pre>
+                
+
+                
+                    <label class="optional">[returnParentAndKey]
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Array|Object</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>defines a namespace.</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_1-Ink-requireModules">
+    
+        
+            Ink.requireModules
+        
+    
+    (deps, cbFn)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>Array</pre>
+                
+
+                
+                    <label>deps
+                
+
+                
+                </label>
+
+                
+                    <span class="description">array of module names which are dependencies for the require function body</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label>cbFn
+                
+
+                
+                </label>
+
+                
+                    <span class="description">its arguments are the resolved dependecies, once all of them are fetched</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>use this to get depencies, even if they&#39;re not loaded yet</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_1-Ink-s">
+    
+        
+            Ink.s
+        
+    
+    (rule, [from])
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>rule
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+            <li>
+                
+                    <pre>DOMElement</pre>
+                
+
+                
+                    <label class="optional">[from]
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>DOMElement</pre>
+            
+            
+        </div>
+    
+
+    
+        <span class="text"><p>alias to sizzle or querySelector</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_1-Ink-setPath">
+    
+        
+            Ink.setPath
+        
+    
+    (key, rootURI)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+
+                
+                    <label>key
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label>rootURI
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>Sets the URL path for a namespace. Use this to customize where
+requireModules (and createModule) will load dependencies from.</p>
+</span>
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+     Ink.setPath(&#x27;Ink&#x27;, &#x27;http://my-cdn/Ink/&#x27;);
+     Ink.setPath(&#x27;Lol&#x27;, &#x27;http://my-cdn/Lol/&#x27;);
+
+     // Loads from http://my-cdn/Ink/Dom/Whatever/lib.js
+     Ink.requireModules([&#x27;Ink.Dom.Whatever&#x27;], function () { ... });
+     // Loads from http://my-cdn/Lol/Whatever/lib.js
+     Ink.requireModules([&#x27;Lol.Whatever&#x27;], function () { ... });
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_1-Ink-ss">
+    
+        
+            Ink.ss
+        
+    
+    (rule, [from])
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>rule
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+            <li>
+                
+                    <pre>DOMElement</pre>
+                
+
+                
+                    <label class="optional">[from]
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Array</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>alias to sizzle or querySelectorAll</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_1-Ink-warn">
+    
+        
+            Ink.warn
+        
+    
+    ()
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+
+                
+                    <label>args...
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>Calls console.warn if available.</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+
+
+
+    
+
+    
+
+    
+

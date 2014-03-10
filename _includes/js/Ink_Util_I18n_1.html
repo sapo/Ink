@@ -1,0 +1,1238 @@
+
+
+    <div class="box box-module">
+
+        
+            <h2><a name="Ink_Util_I18n_1">Ink.Util.I18n_1 <i>module</i></a></h2>
+        
+
+        
+
+        
+            <p><label>author:</label>inkdev AT sapo.pt</p>
+        
+        
+        
+
+        
+
+        
+
+        
+
+
+        
+            <h3>Defined classes and namespaces:</h3>
+            <ul>
+            
+                
+                    <li><a href="#Ink_Util_I18n_1-Ink_Util_I18n">(C) Ink.Util.I18n</a></li>
+                
+            
+            </ul>
+        
+
+        
+
+        
+
+    </div>
+
+    
+        <div class="box box-class">
+
+    <h2><a name="Ink_Util_I18n_1-Ink_Util_I18n">Ink.Util.I18n <i>
+    
+        class
+    
+    </i></a></h2>
+
+    
+
+    
+    
+    
+
+    
+        <div class="text"><p>Creates a new internationalization helper object</p>
+</div>
+    
+
+    
+
+
+    
+        
+            <h3>Defined methods:</h3>
+        
+        
+        <ul>
+        
+            <li><a href="#Ink_Util_I18n_1-Ink_Util_I18n-I18n">
+            
+                Ink.Util.I18n
+            
+            (dict, [lang])</a></li>
+        
+            <li><a href="#Ink_Util_I18n_1-Ink_Util_I18n-alias">
+            
+                Ink.Util.I18n.alias
+            
+            ()</a></li>
+        
+            <li><a href="#Ink_Util_I18n_1-Ink_Util_I18n-append">
+            
+                Ink.Util.I18n.append
+            
+            (dict)</a></li>
+        
+            <li><a href="#Ink_Util_I18n_1-Ink_Util_I18n-append">
+            
+                Ink.Util.I18n.append
+            
+            (dict, lang)</a></li>
+        
+            <li><a href="#Ink_Util_I18n_1-Ink_Util_I18n-getKey">
+            
+                Ink.Util.I18n.getKey
+            
+            (key)</a></li>
+        
+            <li><a href="#Ink_Util_I18n_1-Ink_Util_I18n-lang">
+            
+                Ink.Util.I18n.lang
+            
+            ()</a></li>
+        
+            <li><a href="#Ink_Util_I18n_1-Ink_Util_I18n-lang">
+            
+                Ink.Util.I18n.lang
+            
+            (lang)</a></li>
+        
+            <li><a href="#Ink_Util_I18n_1-Ink_Util_I18n-ntext">
+            
+                Ink.Util.I18n.ntext
+            
+            (strSin, strPlur, count, [args*])</a></li>
+        
+            <li><a href="#Ink_Util_I18n_1-Ink_Util_I18n-ordinal">
+            
+                Ink.Util.I18n.ordinal
+            
+            (num, [options], )</a></li>
+        
+            <li><a href="#Ink_Util_I18n_1-Ink_Util_I18n-reset">
+            
+                Ink.Util.I18n.reset
+            
+            ()</a></li>
+        
+            <li><a href="#Ink_Util_I18n_1-Ink_Util_I18n-testMode">
+            
+                Ink.Util.I18n.testMode
+            
+            (bool)</a></li>
+        
+            <li><a href="#Ink_Util_I18n_1-Ink_Util_I18n-text">
+            
+                Ink.Util.I18n.text
+            
+            (str, [namedParms], [arg1], [arg2], [argn*])</a></li>
+        
+        </ul>
+    
+
+    
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Util_I18n_1-Ink_Util_I18n-I18n">
+    
+        Ink.Util.I18n
+    
+    (dict, [lang])
+    
+        <i>constructor</i>
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>Object</pre>
+                
+
+                
+                    <label>dict
+                
+
+                
+                </label>
+
+                
+                    <span class="description">object mapping language codes (in the form of `pt_PT`, `pt_BR`, `fr`, `en_US`, etc.) to their Object dictionaries.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Object</pre>
+                
+
+                
+                    <label>dict.DICTIONARIES
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[lang]
+                
+
+                
+                    =&#x27;pt_PT&#x27;s
+                
+                </label>
+
+                
+                    <span class="description">language code of the target language</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+     var dictionaries = {    // This could come from a JSONP request from your server
+         &#x27;pt_PT&#x27;: {
+             &#x27;hello&#x27;: &#x27;olá&#x27;,
+             &#x27;me&#x27;: &#x27;eu&#x27;,
+             &#x27;i have a {} for you&#x27;: &#x27;tenho um {} para ti&#x27; // Old syntax using &#x60;{%s}&#x60; tokens still available
+         },
+         &#x27;pt_BR&#x27;: {
+             &#x27;hello&#x27;: &#x27;oi&#x27;,
+             &#x27;me&#x27;: &#x27;eu&#x27;,
+             &#x27;i have a {} for you&#x27;: &#x27;tenho um {} para você&#x27;
+         }
+     };
+     Ink.requireModules([&#x27;Ink.Util.I18n_1&#x27;], function (I18n) {
+         var i18n = new I18n(dictionaries, &#x27;pt_PT&#x27;);
+         i18n.text(&#x27;hello&#x27;);  // returns &#x27;olá&#x27;
+         i18n.text(&#x27;i have a {} for you&#x27;, &#x27;IRON SWORD&#x27;); // returns &#x27;tenho um IRON SWORD&#x27; para ti
+         
+         i18n.lang(&#x27;pt_BR&#x27;);  // Changes language. pt_BR dictionary is loaded
+         i18n.text(&#x27;hello&#x27;);  // returns &#x27;oi&#x27;
+
+         i18n.lang(&#x27;en_US&#x27;);  // Missing language.
+         i18n.text(&#x27;hello&#x27;);  // returns &#x27;hello&#x27;. If testMode is on, returns &#x27;[hello]&#x27;
+     });
+     
+ 
+		</code></pre>
+	
+		<pre class="example"><code>
+			
+     // The old {%s} syntax from libsapo&#x27;s i18n is still supported
+     i18n.text(&#x27;hello, {%s}!&#x27;, &#x27;someone&#x27;); // -&gt; &#x27;olá, someone!&#x27;
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Util_I18n_1-Ink_Util_I18n-alias">
+    
+        
+            Ink.Util.I18n.alias
+        
+    
+    ()
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Function</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Returns an alias to <code>text()</code>, for convenience. The resulting function is
+traditionally assigned to &quot;_&quot;.</p>
+</span>
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+    var i18n = new I18n({
+        &#x27;pt_PT&#x27;: {
+            &#x27;hi&#x27;: &#x27;olá&#x27;,
+            &#x27;{} day&#x27;: &#x27;{} dia&#x27;,
+            &#x27;{} days&#x27;: &#x27;{} dias&#x27;,
+            &#x27;_ordinals&#x27;: {
+                &#x27;default&#x27;: &#x27;º&#x27;
+            }
+        }
+    }, &#x27;pt_PT&#x27;);
+    var _ = i18n.alias();
+    _(&#x27;hi&#x27;);  // -&gt; &#x27;olá&#x27;
+    _(&#x27;{} days&#x27;, 3);  // -&gt; &#x27;3 dias&#x27;
+    _.ntext(&#x27;{} day&#x27;, &#x27;{} days&#x27;, 2);  // -&gt; &#x27;2 dias&#x27;
+    _.ntext(&#x27;{} day&#x27;, &#x27;{} days&#x27;, 1);  // -&gt; &#x27;1 dia&#x27;
+    _.ordinal(3);  // -&gt; &#x27;º&#x27;
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Util_I18n_1-Ink_Util_I18n-append">
+    
+        
+            Ink.Util.I18n.append
+        
+    
+    (dict)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>Object</pre>
+                
+
+                
+                    <label>dict
+                
+
+                
+                </label>
+
+                
+                    <span class="description">object containing language objects identified by their language code</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>Adds translation strings for this helper to use.</p>
+</span>
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+    var i18n = new I18n({}, &#x27;pt_PT&#x27;);
+    i18n.append({&#x27;pt_PT&#x27;: {
+        &#x27;sfraggles&#x27;: &#x27;braggles&#x27;
+    }});
+    i18n.text(&#x27;sfraggles&#x27;) // -&gt; &#x27;braggles&#x27;
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Util_I18n_1-Ink_Util_I18n-append">
+    
+        
+            Ink.Util.I18n.append
+        
+    
+    (dict, lang)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+
+                
+                    <label>dict
+                
+
+                
+                </label>
+
+                
+                    <span class="description">{Object}     Dictionary to be added</span>
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label>lang
+                
+
+                
+                </label>
+
+                
+                    <span class="description">{String}     Language to be added to</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>Reset I18n global state (global dictionaries, and default language for instances)</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Util_I18n_1-Ink_Util_I18n-getKey">
+    
+        
+            Ink.Util.I18n.getKey
+        
+    
+    (key)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>key
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Any</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Return an arbitrary key from the current language dictionary</p>
+</span>
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+     _.getKey(&#x27;astring&#x27;); // -&gt; &#x27;a translated string&#x27;
+     _.getKey(&#x27;anobject&#x27;); // -&gt; {&#x27;a&#x27;: &#x27;translated object&#x27;}
+     _.getKey(&#x27;afunction&#x27;); // -&gt; function () { return &#x27;this is a localized function&#x27; }
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Util_I18n_1-Ink_Util_I18n-lang">
+    
+        
+            Ink.Util.I18n.lang
+        
+    
+    ()
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>String</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Util_I18n_1-Ink_Util_I18n-lang">
+    
+        
+            Ink.Util.I18n.lang
+        
+    
+    (lang)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+
+                
+                    <label>lang
+                
+
+                
+                </label>
+
+                
+                    <span class="description">{String} Language code to set this instance to.</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>Get or set the language. If there are more dictionaries available in cache, they will be loaded.</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Util_I18n_1-Ink_Util_I18n-ntext">
+    
+        
+            Ink.Util.I18n.ntext
+        
+    
+    (strSin, strPlur, count, [args*])
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>strSin
+                
+
+                
+                </label>
+
+                
+                    <span class="description">word to use when count is 1</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>strPlur
+                
+
+                
+                </label>
+
+                
+                    <span class="description">word to use otherwise</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Number</pre>
+                
+
+                
+                    <label>count
+                
+
+                
+                </label>
+
+                
+                    <span class="description">number which defines which word to use</span>
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label class="optional">[args*]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">extra arguments, to be passed to `text()`</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>String</pre>
+            
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Given a singular string, a plural string, and a number, translates
+either the singular or plural string.</p>
+</span>
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+    i18n.ntext(&#x27;platypus&#x27;, &#x27;platypuses&#x27;, 1); // returns &#x27;ornitorrinco&#x27;
+    i18n.ntext(&#x27;platypus&#x27;, &#x27;platypuses&#x27;, 2); // returns &#x27;ornitorrincos&#x27;
+
+
+		</code></pre>
+	
+		<pre class="example"><code>
+			
+    // The &quot;count&quot; argument is passed to text()
+    i18n.ntext(&#x27;{} platypus&#x27;, &#x27;{} platypuses&#x27;, 1); // returns &#x27;1 ornitorrinco&#x27;
+    i18n.ntext(&#x27;{} platypus&#x27;, &#x27;{} platypuses&#x27;, 2); // returns &#x27;2 ornitorrincos&#x27;
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Util_I18n_1-Ink_Util_I18n-ordinal">
+    
+        
+            Ink.Util.I18n.ordinal
+        
+    
+    (num, [options], )
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>Number</pre>
+                
+
+                
+                    <label>num
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Input number</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Object|Function</pre>
+                
+
+                
+                    <label class="optional">[options]
+                
+
+                
+                    ={}
+                
+                </label>
+
+                
+                    <span class="description">Maps for translating. Each of these options' fallback is found in the current</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Object|Function</pre>
+                
+
+                
+                    <label class="optional">[options.byLastDigit]
+                
+
+                
+                    ={}
+                
+                </label>
+
+                
+                    <span class="description">If the language requires the last digit to be considered, mappings of last digits</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Object|Function</pre>
+                
+
+                
+                    <label class="optional">[options.exceptions]
+                
+
+                
+                    ={}
+                
+                </label>
+
+                
+                    <span class="description">Map unique, special cases to their ordinal suffixes.</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>String</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Returns the ordinal suffix of <code>num</code> (For example, 1 &gt; &#39;st&#39;, 2 &gt; &#39;nd&#39;, 5 &gt; &#39;th&#39;, ...).</p>
+<p>This works by using transforms (in the form of Objects or Functions) passed into the
+function or found in the special key <code>_ordinals</code> in the active language dictionary.</p>
+</span>
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+    var i18n = new I18n({
+        pt_PT: {  // 1º, 2º, 3º, 4º, ...
+            _ordinal: {  // The _ordinals key each translation dictionary is special.
+                &#x27;default&#x27;: &quot;º&quot; // Usually the suffix is &quot;º&quot; in portuguese...
+            }
+        },
+        fr: {  // 1er, 2e, 3e, 4e, ...
+            _ordinal: {  // The _ordinals key is special.
+                &#x27;default&#x27;: &quot;e&quot;, // Usually the suffix is &quot;e&quot; in french...
+                exceptions: {
+                    1: &quot;er&quot;   // ... Except for the number one.
+                }
+            }
+        },
+        en_US: {  // 1st, 2nd, 3rd, 4th, ..., 11th, 12th, ... 21st, 22nd...
+            _ordinal: {
+                &#x27;default&#x27;: &quot;th&quot;,// Usually the digit is &quot;th&quot; in english...
+                byLastDigit: {
+                    1: &quot;st&quot;,  // When the last digit is 1, use &quot;th&quot;...
+                    2: &quot;nd&quot;,  // When the last digit is 2, use &quot;nd&quot;...
+                    3: &quot;rd&quot;   // When the last digit is 3, use &quot;rd&quot;...
+                },
+                exceptions: { // But these numbers are special
+                    0: &quot;&quot;,
+                    11: &quot;th&quot;,
+                    12: &quot;th&quot;,
+                    13: &quot;th&quot;
+                }
+            }
+        }
+    }, &#x27;pt_PT&#x27;);
+
+    i18n.ordinal(1);    // returns &#x27;º&#x27;
+    i18n.ordinal(2);    // returns &#x27;º&#x27;
+    i18n.ordinal(11);   // returns &#x27;º&#x27;
+
+    i18n.lang(&#x27;fr&#x27;);
+    i18n.ordinal(1);    // returns &#x27;er&#x27;
+    i18n.ordinal(2);    // returns &#x27;e&#x27;
+    i18n.ordinal(11);   // returns &#x27;e&#x27;
+
+    i18n.lang(&#x27;en_US&#x27;);
+    i18n.ordinal(1);    // returns &#x27;st&#x27;
+    i18n.ordinal(2);    // returns &#x27;nd&#x27;
+    i18n.ordinal(12);   // returns &#x27;th&#x27;
+    i18n.ordinal(22);   // returns &#x27;nd&#x27;
+    i18n.ordinal(3);    // returns &#x27;rd&#x27;
+    i18n.ordinal(4);    // returns &#x27;th&#x27;
+    i18n.ordinal(5);    // returns &#x27;th&#x27;
+
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Util_I18n_1-Ink_Util_I18n-reset">
+    
+        
+            Ink.Util.I18n.reset
+        
+    
+    ()
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Util_I18n_1-Ink_Util_I18n-testMode">
+    
+        
+            Ink.Util.I18n.testMode
+        
+    
+    (bool)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>Boolean</pre>
+                
+
+                
+                    <label>bool
+                
+
+                
+                </label>
+
+                
+                    <span class="description">boolean value to set the test mode to.</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>Sets or unsets test mode. In test mode, unknown strings are wrapped
+in <code>[ ... ]</code>. This is useful for debugging your application and
+making sure all your translation keys are in place.</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Util_I18n_1-Ink_Util_I18n-text">
+    
+        
+            Ink.Util.I18n.text
+        
+    
+    (str, [namedParms], [arg1], [arg2], [argn*])
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>str
+                
+
+                
+                </label>
+
+                
+                    <span class="description">key to look for in i18n dictionary (which is returned verbatim if unknown)</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Object</pre>
+                
+
+                
+                    <label class="optional">[namedParms]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">named replacements. Replaces {named} with values in this object.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[arg1]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">replacement #1 (replaces first {} and all {1})</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[arg2]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">replacement #2 (replaces second {} and all {2})</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[argn*]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">replacement #n (replaces nth {} and all {n})</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>Given a translation key, return a translated string, with replaced parameters.
+When a translated string is not available, the original string is returned unchanged.</p>
+</span>
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+     _(&#x27;Gosto muito de {} e o céu é {}.&#x27;, &#x27;carros&#x27;, &#x27;azul&#x27;);
+     // returns &#x27;Gosto muito de carros e o céu é azul.&#x27;
+
+
+		</code></pre>
+	
+		<pre class="example"><code>
+			
+     _(&#x27;O {1} é {2} como {2} é a cor do {3}.&#x27;, &#x27;carro&#x27;, &#x27;azul&#x27;, &#x27;FCP&#x27;);
+     // returns &#x27;O carro é azul como azul é o FCP.&#x27;
+
+ 
+		</code></pre>
+	
+		<pre class="example"><code>
+			
+     _(&#x27;O {person1} dava-se com a {person2}&#x27;, {person1: &#x27;coisinho&#x27;, person2: &#x27;coisinha&#x27;});
+     // -&gt; &#x27;O coisinho dava-se com a coisinha&#x27;
+
+ 
+		</code></pre>
+	
+		<pre class="example"><code>
+			
+     // This is a bit more complex
+     var i18n = make().lang(&#x27;pt_PT&#x27;).append({
+         pt_PT: {
+             array: [1, 2],
+             object: {&#x27;a&#x27;: &#x27;-a-&#x27;, &#x27;b&#x27;: &#x27;-b-&#x27;},
+             func: function (a, b) {return &#x27;[[&#x27; + a + &#x27;,&#x27; + b + &#x27;]]&#x27;;}
+         }
+     });
+     i18n.text(&#x27;array&#x27;, 0); // -&gt; &#x27;1&#x27;
+     i18n.text(&#x27;object&#x27;, &#x27;a&#x27;); // -&gt; &#x27;-a-&#x27;
+     i18n.text(&#x27;func&#x27;, &#x27;a&#x27;, &#x27;b&#x27;); // -&gt; &#x27;[[a,b]]&#x27;
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+
+
+
+    
+
+    
+
+    
+

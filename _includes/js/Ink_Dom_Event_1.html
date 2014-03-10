@@ -1,0 +1,2356 @@
+
+
+    <div class="box box-module">
+
+        
+            <h2><a name="Ink_Dom_Event_1">Ink.Dom.Event_1 <i>module</i></a></h2>
+        
+
+        
+
+        
+        
+        
+
+        
+
+        
+            <p class="text"><p>Instantiate browser native events array</p>
+</p>
+        
+
+        
+
+
+        
+            <h3>Defined classes and namespaces:</h3>
+            <ul>
+            
+                
+                    <li><a href="#Ink_Dom_Event_1-Ink_Dom_Event">(C) Ink.Dom.Event</a></li>
+                
+            
+            </ul>
+        
+
+        
+
+        
+
+    </div>
+
+    
+        <div class="box box-class">
+
+    <h2><a name="Ink_Dom_Event_1-Ink_Dom_Event">Ink.Dom.Event <i>
+    
+        class
+    
+    </i></a></h2>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+
+    
+        
+            <h3>Defined methods:</h3>
+        
+        
+        <ul>
+        
+            <li><a href="#Ink_Dom_Event_1-Ink_Dom_Event-clone">
+            
+                Ink.Dom.Event.clone
+            
+            (destElement, srcElement, [eventType])</a></li>
+        
+            <li><a href="#Ink_Dom_Event_1-Ink_Dom_Event-element">
+            
+                Ink.Dom.Event.element
+            
+            (ev)</a></li>
+        
+            <li><a href="#Ink_Dom_Event_1-Ink_Dom_Event-findElement">
+            
+                Ink.Dom.Event.findElement
+            
+            (ev, elmTagName, [force])</a></li>
+        
+            <li><a href="#Ink_Dom_Event_1-Ink_Dom_Event-fire">
+            
+                Ink.Dom.Event.fire
+            
+            (destElement, eventType, )</a></li>
+        
+            <li><a href="#Ink_Dom_Event_1-Ink_Dom_Event-getCharFromKeyboardEvent">
+            
+                Ink.Dom.Event.getCharFromKeyboardEvent
+            
+            (event, [changeCasing])</a></li>
+        
+            <li><a href="#Ink_Dom_Event_1-Ink_Dom_Event-isLeftClick">
+            
+                Ink.Dom.Event.isLeftClick
+            
+            (ev)</a></li>
+        
+            <li><a href="#Ink_Dom_Event_1-Ink_Dom_Event-isMiddleClick">
+            
+                Ink.Dom.Event.isMiddleClick
+            
+            (ev)</a></li>
+        
+            <li><a href="#Ink_Dom_Event_1-Ink_Dom_Event-isRightClick">
+            
+                Ink.Dom.Event.isRightClick
+            
+            (ev)</a></li>
+        
+            <li><a href="#Ink_Dom_Event_1-Ink_Dom_Event-observe">
+            
+                Ink.Dom.Event.observe
+            
+            (element, eventName, callBack, [useCapture])</a></li>
+        
+            <li><a href="#Ink_Dom_Event_1-Ink_Dom_Event-observeDelegated">
+            
+                Ink.Dom.Event.observeDelegated
+            
+            (element, eventName, selector, callback)</a></li>
+        
+            <li><a href="#Ink_Dom_Event_1-Ink_Dom_Event-observeMulti">
+            
+                Ink.Dom.Event.observeMulti
+            
+            (elements, eventName, callBack, [useCapture])</a></li>
+        
+            <li><a href="#Ink_Dom_Event_1-Ink_Dom_Event-observeOnce">
+            
+                Ink.Dom.Event.observeOnce
+            
+            (element, eventName, callBack, [useCapture])</a></li>
+        
+            <li><a href="#Ink_Dom_Event_1-Ink_Dom_Event-off">
+            
+                Ink.Dom.Event.off
+            
+            (element, eventType, [handler])</a></li>
+        
+            <li><a href="#Ink_Dom_Event_1-Ink_Dom_Event-on">
+            
+                Ink.Dom.Event.on
+            
+            (element, eventType, [selector], [handler], )</a></li>
+        
+            <li><a href="#Ink_Dom_Event_1-Ink_Dom_Event-one">
+            
+                Ink.Dom.Event.one
+            
+            (element, eventType, [selector], [handler], )</a></li>
+        
+            <li><a href="#Ink_Dom_Event_1-Ink_Dom_Event-pointer">
+            
+                Ink.Dom.Event.pointer
+            
+            (ev)</a></li>
+        
+            <li><a href="#Ink_Dom_Event_1-Ink_Dom_Event-pointerX">
+            
+                Ink.Dom.Event.pointerX
+            
+            (ev)</a></li>
+        
+            <li><a href="#Ink_Dom_Event_1-Ink_Dom_Event-pointerY">
+            
+                Ink.Dom.Event.pointerY
+            
+            (ev)</a></li>
+        
+            <li><a href="#Ink_Dom_Event_1-Ink_Dom_Event-relatedTarget">
+            
+                Ink.Dom.Event.relatedTarget
+            
+            (ev)</a></li>
+        
+            <li><a href="#Ink_Dom_Event_1-Ink_Dom_Event-stop">
+            
+                Ink.Dom.Event.stop
+            
+            (event)</a></li>
+        
+            <li><a href="#Ink_Dom_Event_1-Ink_Dom_Event-stopDefault">
+            
+                Ink.Dom.Event.stopDefault
+            
+            (event)</a></li>
+        
+            <li><a href="#Ink_Dom_Event_1-Ink_Dom_Event-stopObserving">
+            
+                Ink.Dom.Event.stopObserving
+            
+            (element, eventName, callBack, [useCapture])</a></li>
+        
+            <li><a href="#Ink_Dom_Event_1-Ink_Dom_Event-stopPropagation">
+            
+                Ink.Dom.Event.stopPropagation
+            
+            (event)</a></li>
+        
+            <li><a href="#Ink_Dom_Event_1-Ink_Dom_Event-throttle">
+            
+                Ink.Dom.Event.throttle
+            
+            (func, [wait])</a></li>
+        
+        </ul>
+    
+
+    
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Dom_Event_1-Ink_Dom_Event-clone">
+    
+        
+            Ink.Dom.Event.clone
+        
+    
+    (destElement, srcElement, [eventType])
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>DOMElement|Object</pre>
+                
+
+                
+                    <label>destElement
+                
+
+                
+                </label>
+
+                
+                    <span class="description">An HTML DOM element or any JavaScript Object to copy events to</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>srcElement
+                
+
+                
+                </label>
+
+                
+                    <span class="description">An HTML DOM element or any JavaScript Object to copy events from</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[eventType]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">An Event (or multiple events, space separated) to clone</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>DOMElement|Object</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>bean.clone() is a method for cloning events from one DOM element or object to another.
+<a href="http://github.com/fat/bean#clone">http://github.com/fat/bean#clone</a></p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Dom_Event_1-Ink_Dom_Event-element">
+    
+        
+            Ink.Dom.Event.element
+        
+    
+    (ev)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>Object</pre>
+                
+
+                
+                    <label>ev
+                
+
+                
+                </label>
+
+                
+                    <span class="description">event object</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Node</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Returns the target of the event object</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Dom_Event_1-Ink_Dom_Event-findElement">
+    
+        
+            Ink.Dom.Event.findElement
+        
+    
+    (ev, elmTagName, [force])
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>Object</pre>
+                
+
+                
+                    <label>ev
+                
+
+                
+                </label>
+
+                
+                    <span class="description">event object</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>elmTagName
+                
+
+                
+                </label>
+
+                
+                    <span class="description">tag name to find</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Boolean</pre>
+                
+
+                
+                    <label class="optional">[force]
+                
+
+                
+                    =false
+                
+                </label>
+
+                
+                    <span class="description">If this is true, never return `document`, and returns `false` instead.</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>DOMElement</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Navigate up the DOM tree, looking for a tag with the name <code>elmTagName</code>.</p>
+<p>If such tag is not found, <code>document</code> is returned.</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Dom_Event_1-Ink_Dom_Event-fire">
+    
+        
+            Ink.Dom.Event.fire
+        
+    
+    (destElement, eventType, )
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>DOMElement|Object</pre>
+                
+
+                
+                    <label>destElement
+                
+
+                
+                </label>
+
+                
+                    <span class="description">An HTML DOM element or any JavaScript Object fire the event on</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>eventType
+                
+
+                
+                </label>
+
+                
+                    <span class="description">An Event (or multiple events, space separated) to fire</span>
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label class="optional">[args...]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Additional arguments to pass to the callback function when triggered</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>DOMElement|Object</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>bean.fire() gives you the ability to trigger events.
+<a href="http://github.com/fat/bean#fire">http://github.com/fat/bean#fire</a></p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Dom_Event_1-Ink_Dom_Event-getCharFromKeyboardEvent">
+    
+        
+            Ink.Dom.Event.getCharFromKeyboardEvent
+        
+    
+    (event, [changeCasing])
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>KeyboardEvent</pre>
+                
+
+                
+                    <label>event
+                
+
+                
+                </label>
+
+                
+                    <span class="description">keyboard event</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>optional Boolean</pre>
+                
+
+                
+                    <label class="optional">[changeCasing]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">if true uppercases, if false lowercases, otherwise keeps casing</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>String</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Work in Progress.
+Used in SAPO.Component.MaskedInput</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Dom_Event_1-Ink_Dom_Event-isLeftClick">
+    
+        
+            Ink.Dom.Event.isLeftClick
+        
+    
+    (ev)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>Object</pre>
+                
+
+                
+                    <label>ev
+                
+
+                
+                </label>
+
+                
+                    <span class="description">event object</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Boolean</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Dom_Event_1-Ink_Dom_Event-isMiddleClick">
+    
+        
+            Ink.Dom.Event.isMiddleClick
+        
+    
+    (ev)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>Object</pre>
+                
+
+                
+                    <label>ev
+                
+
+                
+                </label>
+
+                
+                    <span class="description">event object</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Boolean</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Dom_Event_1-Ink_Dom_Event-isRightClick">
+    
+        
+            Ink.Dom.Event.isRightClick
+        
+    
+    (ev)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>Object</pre>
+                
+
+                
+                    <label>ev
+                
+
+                
+                </label>
+
+                
+                    <span class="description">event object</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Boolean</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Dom_Event_1-Ink_Dom_Event-observe">
+    
+        
+            Ink.Dom.Event.observe
+        
+    
+    (element, eventName, callBack, [useCapture])
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>DOMElement|String</pre>
+                
+
+                
+                    <label>element
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Element id or element</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>eventName
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Event name</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label>callBack
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Receives event object as a</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Boolean</pre>
+                
+
+                
+                    <label class="optional">[useCapture]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Set to true to change event listening from bubbling to capture.</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Function</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Attaches an event to element</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Dom_Event_1-Ink_Dom_Event-observeDelegated">
+    
+        
+            Ink.Dom.Event.observeDelegated
+        
+    
+    (element, eventName, selector, callback)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>DOMElement|String</pre>
+                
+
+                
+                    <label>element
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Element to observe.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>eventName
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Event name to observe.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>selector
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Child element selector. When null, finds any element.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label>callback
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Callback to be called when the event is fired</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Function</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Observe an event on the given element and every children which matches the selector string (if provided).</p>
+<p>Requires Ink.Dom.Selector if you need to use a selector.</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Dom_Event_1-Ink_Dom_Event-observeMulti">
+    
+        
+            Ink.Dom.Event.observeMulti
+        
+    
+    (elements, eventName, callBack, [useCapture])
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>Array|String</pre>
+                
+
+                
+                    <label>elements
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>eventName
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Event name</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label>callBack
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Receives event object as a</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Boolean</pre>
+                
+
+                
+                    <label class="optional">[useCapture]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Set to true to change event listening from bubbling to capture.</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Function</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Attaches an event to a selector or array of elements.</p>
+<p>Requires Ink.Dom.Selector</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Dom_Event_1-Ink_Dom_Event-observeOnce">
+    
+        
+            Ink.Dom.Event.observeOnce
+        
+    
+    (element, eventName, callBack, [useCapture])
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>DOMElement|String</pre>
+                
+
+                
+                    <label>element
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Element id or element</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>eventName
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Event name</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label>callBack
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Receives event object as a</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Boolean</pre>
+                
+
+                
+                    <label class="optional">[useCapture]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Set to true to change event listening from bubbling to capture.</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Function</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Like observe, but listen to the event only once.</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Dom_Event_1-Ink_Dom_Event-off">
+    
+        
+            Ink.Dom.Event.off
+        
+    
+    (element, eventType, [handler])
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>DOMElement|Object</pre>
+                
+
+                
+                    <label>element
+                
+
+                
+                </label>
+
+                
+                    <span class="description">An HTML DOM element or any JavaScript Object</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>eventType
+                
+
+                
+                </label>
+
+                
+                    <span class="description">An Event (or multiple events, space separated) to remove</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label class="optional">[handler]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">The specific callback function to remove</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>DOMElement|Object</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>bean.off() is how you get rid of handlers once you no longer want them active. It&#39;s also a good idea to call off on elements before you remove them from your DOM; this gives Bean a chance to clean up some things and prevents memory leaks.
+<a href="http://github.com/fat/bean#off">http://github.com/fat/bean#off</a></p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Dom_Event_1-Ink_Dom_Event-on">
+    
+        
+            Ink.Dom.Event.on
+        
+    
+    (element, eventType, [selector], [handler], )
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>DOMElement|Object</pre>
+                
+
+                
+                    <label>element
+                
+
+                
+                </label>
+
+                
+                    <span class="description">An HTML DOM element or any JavaScript Object</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>eventType
+                
+
+                
+                </label>
+
+                
+                    <span class="description">An Event (or multiple events, space separated) to listen to</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[selector]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">A CSS DOM Element selector string to bind the listener to child elements matching the selector</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label class="optional">[handler]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">The callback function</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Object</pre>
+                
+
+                
+                    <label class="optional">[args...]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Additional arguments to pass to the callback function when triggered</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>DOMElement|Object</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>bean.on() lets you attach event listeners to both elements and objects.
+<a href="http://github.com/fat/bean#on">http://github.com/fat/bean#on</a></p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Dom_Event_1-Ink_Dom_Event-one">
+    
+        
+            Ink.Dom.Event.one
+        
+    
+    (element, eventType, [selector], [handler], )
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>DOMElement|Object</pre>
+                
+
+                
+                    <label>element
+                
+
+                
+                </label>
+
+                
+                    <span class="description">An HTML DOM element or any JavaScript Object</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>eventType
+                
+
+                
+                </label>
+
+                
+                    <span class="description">An Event (or multiple events, space separated) to listen to</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[selector]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">A CSS DOM Element selector string to bind the listener to child elements matching the selector</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label class="optional">[handler]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">The callback function</span>
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label class="optional">[args...]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Additional arguments to pass to the callback function when triggered</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>DOMElement|Object</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>bean.one() is an alias for bean.on() except that the handler will only be executed once and then removed for the event type(s).
+<a href="http://github.com/fat/bean#one">http://github.com/fat/bean#one</a></p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Dom_Event_1-Ink_Dom_Event-pointer">
+    
+        
+            Ink.Dom.Event.pointer
+        
+    
+    (ev)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>Object</pre>
+                
+
+                
+                    <label>ev
+                
+
+                
+                </label>
+
+                
+                    <span class="description">event object</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Object</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Dom_Event_1-Ink_Dom_Event-pointerX">
+    
+        
+            Ink.Dom.Event.pointerX
+        
+    
+    (ev)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>Object</pre>
+                
+
+                
+                    <label>ev
+                
+
+                
+                </label>
+
+                
+                    <span class="description">event object</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Number</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Dom_Event_1-Ink_Dom_Event-pointerY">
+    
+        
+            Ink.Dom.Event.pointerY
+        
+    
+    (ev)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>Object</pre>
+                
+
+                
+                    <label>ev
+                
+
+                
+                </label>
+
+                
+                    <span class="description">event object</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Number</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Dom_Event_1-Ink_Dom_Event-relatedTarget">
+    
+        
+            Ink.Dom.Event.relatedTarget
+        
+    
+    (ev)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>Object</pre>
+                
+
+                
+                    <label>ev
+                
+
+                
+                </label>
+
+                
+                    <span class="description">event object</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>Node</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Returns the related target of the event object</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Dom_Event_1-Ink_Dom_Event-stop">
+    
+        
+            Ink.Dom.Event.stop
+        
+    
+    (event)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>Object</pre>
+                
+
+                
+                    <label>event
+                
+
+                
+                </label>
+
+                
+                    <span class="description">event handle</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>Stops event propagation and bubbling</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Dom_Event_1-Ink_Dom_Event-stopDefault">
+    
+        
+            Ink.Dom.Event.stopDefault
+        
+    
+    (event)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>Object</pre>
+                
+
+                
+                    <label>event
+                
+
+                
+                </label>
+
+                
+                    <span class="description">event handle</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>Stops event default behaviour</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Dom_Event_1-Ink_Dom_Event-stopObserving">
+    
+        
+            Ink.Dom.Event.stopObserving
+        
+    
+    (element, eventName, callBack, [useCapture])
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>DOMElement|String</pre>
+                
+
+                
+                    <label>element
+                
+
+                
+                </label>
+
+                
+                    <span class="description">element id or element</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label>eventName
+                
+
+                
+                </label>
+
+                
+                    <span class="description">event name</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label>callBack
+                
+
+                
+                </label>
+
+                
+                    <span class="description">callback function</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Boolean</pre>
+                
+
+                
+                    <label class="optional">[useCapture]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">set to true if the event was being observed with useCapture set to true as well.</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>Remove an event attached to an element</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Dom_Event_1-Ink_Dom_Event-stopPropagation">
+    
+        
+            Ink.Dom.Event.stopPropagation
+        
+    
+    (event)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>Object</pre>
+                
+
+                
+                    <label>event
+                
+
+                
+                </label>
+
+                
+                    <span class="description">event handle</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>Stops event propagation</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_Dom_Event_1-Ink_Dom_Event-throttle">
+    
+        
+            Ink.Dom.Event.throttle
+        
+    
+    (func, [wait])
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label>func
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Function to call. Arguments and context are both passed.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Number</pre>
+                
+
+                
+                    <label class="optional">[wait]
+                
+
+                
+                    =0
+                
+                </label>
+
+                
+                    <span class="description">Milliseconds to wait between calls.</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>Returns a function which calls <code>func</code>, waiting at least <code>wait</code>
+milliseconds between calls. This is useful for events such as <code>scroll</code>
+or <code>resize</code>, which can be triggered too many times per second, slowing
+down the browser with needless function calls.</p>
+<p><em>note:</em> This does not delay the first function call to the function.</p>
+</span>
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+ 
+Suppose you are observing the &#x60;scroll&#x60; event, but your application is lagging because &#x60;scroll&#x60; is triggered too many times.
+
+    // BEFORE
+    InkEvent.observe(window, &#x27;scroll&#x27;, function () {
+        ...
+    }); // When scrolling on mobile devices or on firefox&#x27;s smooth scroll
+        // this is expensive because onscroll is called many times
+
+    // AFTER
+    InkEvent.observe(window, &#x27;scroll&#x27;, InkEvent.throttle(function () {
+        ...
+    }, 100)); // The event handler is called only every 100ms. Problem solved.
+
+
+		</code></pre>
+	
+		<pre class="example"><code>
+			
+    var handler = InkEvent.throttle(function () {
+        ...
+    }, 100);
+
+    InkEvent.observe(window, &#x27;scroll&#x27;, handler);
+    InkEvent.observe(window, &#x27;resize&#x27;, handler);
+
+    // on resize, both the &quot;scroll&quot; and the &quot;resize&quot; events are triggered
+    // a LOT of times. This prevents both of them being called a lot of
+    // times when the window is being resized by a user.
+
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+
+
+
+    
+
+    
+
+    
+

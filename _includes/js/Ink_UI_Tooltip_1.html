@@ -1,0 +1,480 @@
+
+
+    <div class="box box-module">
+
+        
+            <h2><a name="Ink_UI_Tooltip_1">Ink.UI.Tooltip_1 <i>module</i></a></h2>
+        
+
+        
+
+        
+            <p><label>author:</label>inkdev AT sapo.pt</p>
+        
+        
+        
+
+        
+
+        
+
+        
+
+
+        
+            <h3>Defined classes and namespaces:</h3>
+            <ul>
+            
+                
+                    <li><a href="#Ink_UI_Tooltip_1-Ink_UI_Tooltip">(C) Ink.UI.Tooltip</a></li>
+                
+            
+            </ul>
+        
+
+        
+
+        
+
+    </div>
+
+    
+        <div class="box box-class">
+
+    <h2><a name="Ink_UI_Tooltip_1-Ink_UI_Tooltip">Ink.UI.Tooltip <i>
+    
+        class
+    
+    </i></a></h2>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+
+    
+        
+            <h3>Defined methods:</h3>
+        
+        
+        <ul>
+        
+            <li><a href="#Ink_UI_Tooltip_1-Ink_UI_Tooltip-Tooltip">
+            
+                Ink.UI.Tooltip
+            
+            (target, [options], )</a></li>
+        
+            <li><a href="#Ink_UI_Tooltip_1-Ink_UI_Tooltip-destroy">
+            
+                Ink.UI.Tooltip.destroy
+            
+            ()</a></li>
+        
+        </ul>
+    
+
+    
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_Tooltip_1-Ink_UI_Tooltip-Tooltip">
+    
+        Ink.UI.Tooltip
+    
+    (target, [options], )
+    
+        <i>constructor</i>
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>DOMElement|String</pre>
+                
+
+                
+                    <label>target
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Target element or selector of elements, to display the tooltips on.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Object</pre>
+                
+
+                
+                    <label class="optional">[options]
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label class="optional">[options.text]
+                
+
+                
+                    =&#x27;&#x27;
+                
+                </label>
+
+                
+                    <span class="description">Text content for the tooltip.</span>
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label class="optional">[options.html]
+                
+
+                
+                    =&#x27;&#x27;
+                
+                </label>
+
+                
+                    <span class="description">HTML for the tooltip. Same as above, but won't escape HTML.</span>
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label class="optional">[options.where]
+                
+
+                
+                    =&#x27;up&#x27;
+                
+                </label>
+
+                
+                    <span class="description">Positioning for the tooltip. Options:</span>
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label>options.where.up
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Place above, below, to the left of, or to the right of, the target. Show an arrow.</span>
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label>options.where.mousemove
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Place the tooltip to the bottom and to the right of the mouse when it hovers the element, and follow the mouse as it moves.</span>
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label>options.where.mousefix
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Place the tooltip to the bottom and to the right of the mouse when it hovers the element, keep the tooltip there motionless.</span>
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label class="optional">[options.color]
+                
+
+                
+                    =&#x27;&#x27;
+                
+                </label>
+
+                
+                    <span class="description">Color of the tooltip. Options are red, orange, blue, green and black. Default is white.</span>
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label class="optional">[options.fade]
+                
+
+                
+                    =0.3
+                
+                </label>
+
+                
+                    <span class="description">Fade time; Duration of the fade in/out effect.</span>
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label class="optional">[options.forever]
+                
+
+                
+                    =0
+                
+                </label>
+
+                
+                    <span class="description">Set to 1/true to prevent the tooltip from being erased when the mouse hovers away from the target</span>
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label class="optional">[options.timeout]
+                
+
+                
+                    =0
+                
+                </label>
+
+                
+                    <span class="description">Time for the tooltip to live. Useful together with [options.forever].</span>
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label class="optional">[options.delay]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Time the tooltip waits until it is displayed. Useful to avoid getting the attention of the user unnecessarily</span>
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label class="optional">[options.template]
+                
+
+                
+                    =null
+                
+                </label>
+
+                
+                    <span class="description">Element or selector containing HTML to be cloned into the tooltips. Can be a hidden element, because CSS `display` is set to `block`.</span>
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label class="optional">[options.templatefield]
+                
+
+                
+                    =null
+                
+                </label>
+
+                
+                    <span class="description">Selector within the template element to choose where the text is inserted into the tooltip. Useful when a wrapper DIV is required.</span>
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label class="optional">[options.left]
+                
+
+                
+                    =10
+                
+                </label>
+
+                
+                    <span class="description">(Nitty-gritty) Spacing from the target to the tooltip, when `where` is `mousemove` or `mousefix`</span>
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label class="optional">[options.top]
+                
+
+                
+                    =10
+                
+                </label>
+
+                
+                    <span class="description">(Nitty-gritty) Spacing from the target to the tooltip, when `where` is `mousemove` or `mousefix`</span>
+                
+            </li>
+        
+            <li>
+                
+
+                
+                    <label class="optional">[options.spacing]
+                
+
+                
+                    =8
+                
+                </label>
+
+                
+                    <span class="description">(Nitty-gritty) Spacing between the tooltip and the target element, when `where` is `up`, `down`, `left`, or `right`</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+    &lt;ul class=&quot;buttons&quot;&gt;
+        &lt;li class=&quot;button&quot; data-tip-text=&quot;Create a new document&quot;&gt;New&lt;/li&gt;
+        &lt;li class=&quot;button&quot; data-tip-text=&quot;Exit the program&quot;&gt;Quit&lt;/li&gt;
+        &lt;li class=&quot;button&quot; data-tip-text=&quot;Save the document you are working on&quot;&gt;Save&lt;/li&gt;
+    &lt;/ul&gt;
+    
+    [...]
+
+    &lt;script&gt;
+        Ink.requireModules([&#x27;Ink.UI.Tooltip_1&#x27;], function (Tooltip) {
+            new Tooltip(&#x27;.button&#x27;, {where: &#x27;mousefix&#x27;});
+        });
+    &lt;/script&gt;
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_Tooltip_1-Ink_UI_Tooltip-destroy">
+    
+        
+            Ink.UI.Tooltip.destroy
+        
+    
+    ()
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+
+    
+
+    
+        <span class="text"><p>Destroys the tooltips created by this instance</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+
+
+
+    
+
+    
+
+    
+

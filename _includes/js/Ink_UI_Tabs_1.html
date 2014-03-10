@@ -1,0 +1,722 @@
+
+
+    <div class="box box-module">
+
+        
+            <h2><a name="Ink_UI_Tabs_1">Ink.UI.Tabs_1 <i>module</i></a></h2>
+        
+
+        
+
+        
+            <p><label>author:</label>inkdev AT sapo.pt</p>
+        
+        
+        
+            <p><label>version:</label>1</p>
+        
+
+        
+
+        
+
+        
+
+
+        
+            <h3>Defined classes and namespaces:</h3>
+            <ul>
+            
+                
+                    <li><a href="#Ink_UI_Tabs_1-Ink_UI_Tabs">(C) Ink.UI.Tabs</a></li>
+                
+            
+            </ul>
+        
+
+        
+
+        
+
+    </div>
+
+    
+        <div class="box box-class">
+
+    <h2><a name="Ink_UI_Tabs_1-Ink_UI_Tabs">Ink.UI.Tabs <i>
+    
+        class
+    
+    </i></a></h2>
+
+    
+
+    
+    
+    
+
+    
+        <div class="text"><p>Tabs component</p>
+</div>
+    
+
+    
+
+
+    
+        
+            <h3>Defined methods:</h3>
+        
+        
+        <ul>
+        
+            <li><a href="#Ink_UI_Tabs_1-Ink_UI_Tabs-Tabs">
+            
+                Ink.UI.Tabs
+            
+            (selector, [options], )</a></li>
+        
+            <li><a href="#Ink_UI_Tabs_1-Ink_UI_Tabs-activeContentTab">
+            
+                Ink.UI.Tabs.activeContentTab
+            
+            ()</a></li>
+        
+            <li><a href="#Ink_UI_Tabs_1-Ink_UI_Tabs-activeMenuLink">
+            
+                Ink.UI.Tabs.activeMenuLink
+            
+            ()</a></li>
+        
+            <li><a href="#Ink_UI_Tabs_1-Ink_UI_Tabs-activeMenuTab">
+            
+                Ink.UI.Tabs.activeMenuTab
+            
+            ()</a></li>
+        
+            <li><a href="#Ink_UI_Tabs_1-Ink_UI_Tabs-activeTab">
+            
+                Ink.UI.Tabs.activeTab
+            
+            ()</a></li>
+        
+            <li><a href="#Ink_UI_Tabs_1-Ink_UI_Tabs-changeTab">
+            
+                Ink.UI.Tabs.changeTab
+            
+            (selector)</a></li>
+        
+            <li><a href="#Ink_UI_Tabs_1-Ink_UI_Tabs-destroy">
+            
+                Ink.UI.Tabs.destroy
+            
+            ()</a></li>
+        
+            <li><a href="#Ink_UI_Tabs_1-Ink_UI_Tabs-disable">
+            
+                Ink.UI.Tabs.disable
+            
+            (selector)</a></li>
+        
+            <li><a href="#Ink_UI_Tabs_1-Ink_UI_Tabs-enable">
+            
+                Ink.UI.Tabs.enable
+            
+            (selector)</a></li>
+        
+        </ul>
+    
+
+    
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_Tabs_1-Ink_UI_Tabs-Tabs">
+    
+        Ink.UI.Tabs
+    
+    (selector, [options], )
+    
+        <i>constructor</i>
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String|DOMElement</pre>
+                
+
+                
+                    <label>selector
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Object</pre>
+                
+
+                
+                    <label class="optional">[options]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Options</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Boolean</pre>
+                
+
+                
+                    <label class="optional">[options.preventUrlChange]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Flag that determines if follows the link on click or stops the event</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.active]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">ID of the tab to activate on creation</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Array</pre>
+                
+
+                
+                    <label class="optional">[options.disabled]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">IDs of the tabs that will be disabled on creation</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label class="optional">[options.onBeforeChange]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Callback to be executed before changing tabs</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label class="optional">[options.onChange]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Callback to be executed after changing tabs</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Boolean</pre>
+                
+
+                
+                    <label class="optional">[options.triggerEventsOnLoad]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Trigger the above events when the page is loaded.</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+     &lt;div class=&quot;ink-tabs top&quot;&gt; &lt;!-- replace &#x27;top&#x27; with &#x27;bottom&#x27;, &#x27;left&#x27; or &#x27;right&#x27; to place navigation --&gt;
+         
+         &lt;!-- put navigation first if using top, left or right positioning --&gt;
+         &lt;ul class=&quot;tabs-nav&quot;&gt;
+             &lt;li&gt;&lt;a href=&quot;#home&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+             &lt;li&gt;&lt;a href=&quot;#news&quot;&gt;News&lt;/a&gt;&lt;/li&gt;
+             &lt;li&gt;&lt;a href=&quot;#description&quot;&gt;Description&lt;/a&gt;&lt;/li&gt;
+             &lt;li&gt;&lt;a href=&quot;#stuff&quot;&gt;Stuff&lt;/a&gt;&lt;/li&gt;
+             &lt;li&gt;&lt;a href=&quot;#more_stuff&quot;&gt;More stuff&lt;/a&gt;&lt;/li&gt;
+         &lt;/ul&gt;
+         
+         &lt;!-- Put your content second if using top, left or right navigation --&gt;
+         &lt;div id=&quot;home&quot; class=&quot;tabs-content&quot;&gt;&lt;p&gt;Content&lt;/p&gt;&lt;/div&gt;
+         &lt;div id=&quot;news&quot; class=&quot;tabs-content&quot;&gt;&lt;p&gt;Content&lt;/p&gt;&lt;/div&gt;
+         &lt;div id=&quot;description&quot; class=&quot;tabs-content&quot;&gt;&lt;p&gt;Content&lt;/p&gt;&lt;/div&gt;
+         &lt;div id=&quot;stuff&quot; class=&quot;tabs-content&quot;&gt;&lt;p&gt;Content&lt;/p&gt;&lt;/div&gt;
+         &lt;div id=&quot;more_stuff&quot; class=&quot;tabs-content&quot;&gt;&lt;p&gt;Content&lt;/p&gt;&lt;/div&gt;
+         &lt;!-- If you&#x27;re using bottom navigation, switch the nav block with the content blocks --&gt;
+      
+     &lt;/div&gt;
+     &lt;script&gt;
+         Ink.requireModules( [&#x27;Ink.Dom.Selector_1&#x27;,&#x27;Ink.UI.Tabs_1&#x27;], function( Selector, Tabs ){
+             var tabsElement = Ink.s(&#x27;.ink-tabs&#x27;);
+             var tabsObj = new Tabs( tabsElement );
+         });
+     &lt;/script&gt;
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_Tabs_1-Ink_UI_Tabs-activeContentTab">
+    
+        
+            Ink.UI.Tabs.activeContentTab
+        
+    
+    ()
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>DOMElement</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Returns the current active Content Tab</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_Tabs_1-Ink_UI_Tabs-activeMenuLink">
+    
+        
+            Ink.UI.Tabs.activeMenuLink
+        
+    
+    ()
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>DOMElement</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Returns the current active Menu anchorChanges to the desired tag</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_Tabs_1-Ink_UI_Tabs-activeMenuTab">
+    
+        
+            Ink.UI.Tabs.activeMenuTab
+        
+    
+    ()
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>DOMElement</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Returns the current active Menu LI</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_Tabs_1-Ink_UI_Tabs-activeTab">
+    
+        
+            Ink.UI.Tabs.activeTab
+        
+    
+    ()
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>String</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Returns the active tab id</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_Tabs_1-Ink_UI_Tabs-changeTab">
+    
+        
+            Ink.UI.Tabs.changeTab
+        
+    
+    (selector)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String|DOMElement</pre>
+                
+
+                
+                    <label>selector
+                
+
+                
+                </label>
+
+                
+                    <span class="description">the id of the desired tab or the link that links to it</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>Changes to the desired tag</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_Tabs_1-Ink_UI_Tabs-destroy">
+    
+        
+            Ink.UI.Tabs.destroy
+        
+    
+    ()
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+
+    
+
+    
+        <span class="text"><p>Unregisters the component and removes its markup from the DOM</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_Tabs_1-Ink_UI_Tabs-disable">
+    
+        
+            Ink.UI.Tabs.disable
+        
+    
+    (selector)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String|DOMElement</pre>
+                
+
+                
+                    <label>selector
+                
+
+                
+                </label>
+
+                
+                    <span class="description">the id of the desired tab or the link that links to it</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>Disables the desired tag</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_Tabs_1-Ink_UI_Tabs-enable">
+    
+        
+            Ink.UI.Tabs.enable
+        
+    
+    (selector)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String|DOMElement</pre>
+                
+
+                
+                    <label>selector
+                
+
+                
+                </label>
+
+                
+                    <span class="description">the id of the desired tab or the link that links to it</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>Enables the desired tag</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+
+
+
+    
+
+    
+
+    
+

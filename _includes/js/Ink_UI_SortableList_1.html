@@ -1,0 +1,354 @@
+
+
+    <div class="box box-module">
+
+        
+            <h2><a name="Ink_UI_SortableList_1">Ink.UI.SortableList_1 <i>module</i></a></h2>
+        
+
+        
+
+        
+            <p><label>author:</label>inkdev AT sapo.pt</p>
+        
+        
+        
+            <p><label>version:</label>1</p>
+        
+
+        
+
+        
+
+        
+
+
+        
+            <h3>Defined classes and namespaces:</h3>
+            <ul>
+            
+                
+                    <li><a href="#Ink_UI_SortableList_1-Ink_UI_SortableList">(C) Ink.UI.SortableList</a></li>
+                
+            
+            </ul>
+        
+
+        
+
+        
+
+    </div>
+
+    
+        <div class="box box-class">
+
+    <h2><a name="Ink_UI_SortableList_1-Ink_UI_SortableList">Ink.UI.SortableList <i>
+    
+        class
+    
+    </i></a></h2>
+
+    
+
+    
+    
+    
+
+    
+        <div class="text"><p>Adds sortable behaviour to any list!</p>
+</div>
+    
+
+    
+
+
+    
+        
+            <h3>Defined methods:</h3>
+        
+        
+        <ul>
+        
+            <li><a href="#Ink_UI_SortableList_1-Ink_UI_SortableList-SortableList">
+            
+                Ink.UI.SortableList
+            
+            (selector, )</a></li>
+        
+            <li><a href="#Ink_UI_SortableList_1-Ink_UI_SortableList-destroy">
+            
+                Ink.UI.SortableList.destroy
+            
+            ()</a></li>
+        
+        </ul>
+    
+
+    
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_SortableList_1-Ink_UI_SortableList-SortableList">
+    
+        Ink.UI.SortableList
+    
+    (selector, )
+    
+        <i>constructor</i>
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String|DOMElement</pre>
+                
+
+                
+                    <label>selector
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.placeholderClass]
+                
+
+                
+                    =&#x27;placeholder&#x27;
+                
+                </label>
+
+                
+                    <span class="description">CSS class to be added to the "ghost" element being dragged around</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.draggedClass]
+                
+
+                
+                    =&#x27;hide-all&#x27;
+                
+                </label>
+
+                
+                    <span class="description">CSS class added to the original element.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.draggingClass]
+                
+
+                
+                    =&#x27;dragging&#x27;
+                
+                </label>
+
+                
+                    <span class="description">CSS class added to the html element when the user is dragging.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.dragSelector]
+                
+
+                
+                    =&#x27;li&#x27;
+                
+                </label>
+
+                
+                    <span class="description">CSS selector for the drag enabled nodes.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.handleSelector]
+                
+
+                
+                    =null
+                
+                </label>
+
+                
+                    <span class="description">CSS selector for the drag handle. If present, you can only drag nodes by this selector.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>String</pre>
+                
+
+                
+                    <label class="optional">[options.moveSelector]
+                
+
+                
+                    =null
+                
+                </label>
+
+                
+                    <span class="description">CSS selector to validate a node move. If present, you can only move nodes into this selector.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Boolean</pre>
+                
+
+                
+                    <label class="optional">[options.swap]
+                
+
+                
+                    =false
+                
+                </label>
+
+                
+                    <span class="description">Flag to swap moving element with target element instead of changing its order.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Boolean</pre>
+                
+
+                
+                    <label class="optional">[options.cancelMouseOut]
+                
+
+                
+                    =false
+                
+                </label>
+
+                
+                    <span class="description">Flag to cancel moving if mouse leaves the container element.</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+     &lt;ul class=&quot;unstyled ink-sortable-list&quot; id=&quot;slist&quot; data-handle-selector=&quot;.ink-label&quot;&gt;
+         &lt;li&gt;&lt;span class=&quot;ink-label info&quot;&gt;drag here&lt;/span&gt;primeiro&lt;/li&gt;
+         &lt;li&gt;&lt;span class=&quot;ink-label info&quot;&gt;drag here&lt;/span&gt;segundo&lt;/li&gt;
+         &lt;li&gt;&lt;span class=&quot;ink-label info&quot;&gt;drag here&lt;/span&gt;terceiro&lt;/li&gt;
+     &lt;/ul&gt;
+     &lt;script&gt;
+         Ink.requireModules( [&#x27;Ink.Dom.Selector_1&#x27;,&#x27;Ink.UI.SortableList_1&#x27;], function( Selector, SortableList ){
+             var sortableListElement = Ink.s(&#x27;.ink-sortable-list&#x27;);
+             var sortableListObj = new SortableList( sortableListElement );
+         });
+     &lt;\/script&gt;
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_SortableList_1-Ink_UI_SortableList-destroy">
+    
+        
+            Ink.UI.SortableList.destroy
+        
+    
+    ()
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+
+    
+
+    
+        <span class="text"><p>Unregisters the component and removes its markup from the DOM</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+
+
+
+    
+
+    
+
+    
+

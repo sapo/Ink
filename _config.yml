@@ -79,8 +79,10 @@ sections:
           - title: Element visibility  
   - title: Javascript
     components: 
-      - title: Ink
-      - title: Dom
+      - title: Global Object
+        topics:
+          - title: Ink
+      - title: Dom manipulation
         topics:
           - title: Browser
           - title: Css
@@ -88,11 +90,11 @@ sections:
           - title: Event
           - title: Loaded
           - title: Selector
-      - title: Net
+      - title: Network communication
         topics:
           - title: Ajax
           - title: JsonP
-      - title: UI
+      - title: User interface
         topics:
           - title: Aux
           - title: Carousel
@@ -113,7 +115,7 @@ sections:
           - title: Toggle
           - title: Tooltip
           - title: TreeView
-      - title:
+      - title: Utilities
         topics:
           - title: Array
           - title: BinPack

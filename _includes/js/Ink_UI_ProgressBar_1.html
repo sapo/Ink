@@ -1,0 +1,292 @@
+
+
+    <div class="box box-module">
+
+        
+            <h2><a name="Ink_UI_ProgressBar_1">Ink.UI.ProgressBar_1 <i>module</i></a></h2>
+        
+
+        
+
+        
+            <p><label>author:</label>inkdev AT sapo.pt</p>
+        
+        
+        
+            <p><label>version:</label>1</p>
+        
+
+        
+
+        
+
+        
+
+
+        
+            <h3>Defined classes and namespaces:</h3>
+            <ul>
+            
+                
+                    <li><a href="#Ink_UI_ProgressBar_1-Ink_UI_ProgressBar">(C) Ink.UI.ProgressBar</a></li>
+                
+            
+            </ul>
+        
+
+        
+
+        
+
+    </div>
+
+    
+        <div class="box box-class">
+
+    <h2><a name="Ink_UI_ProgressBar_1-Ink_UI_ProgressBar">Ink.UI.ProgressBar <i>
+    
+        class
+    
+    </i></a></h2>
+
+    
+
+    
+    
+    
+
+    
+        <div class="text"><p>Associated to a .ink-progress-bar element, it provides the necessary
+method - setValue() - for the user to change the element&#39;s value.</p>
+</div>
+    
+
+    
+
+
+    
+        
+            <h3>Defined methods:</h3>
+        
+        
+        <ul>
+        
+            <li><a href="#Ink_UI_ProgressBar_1-Ink_UI_ProgressBar-ProgressBar">
+            
+                Ink.UI.ProgressBar
+            
+            (selector, [options], )</a></li>
+        
+            <li><a href="#Ink_UI_ProgressBar_1-Ink_UI_ProgressBar-setValue">
+            
+                Ink.UI.ProgressBar.setValue
+            
+            (newValue)</a></li>
+        
+        </ul>
+    
+
+    
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_ProgressBar_1-Ink_UI_ProgressBar-ProgressBar">
+    
+        Ink.UI.ProgressBar
+    
+    (selector, [options], )
+    
+        <i>constructor</i>
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>String|DOMElement</pre>
+                
+
+                
+                    <label>selector
+                
+
+                
+                </label>
+
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Object</pre>
+                
+
+                
+                    <label class="optional">[options]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Options</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Number</pre>
+                
+
+                
+                    <label class="optional">[options.startValue]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Percentage of the bar that is filled. Range between 0 and 100. Default: 0</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label class="optional">[options.onStart]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Callback that is called when a change of value is started</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Function</pre>
+                
+
+                
+                    <label class="optional">[options.onEnd]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Callback that is called when a change of value ends</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+
+    
+	<h3>Examples:</h3>
+
+	
+		<pre class="example"><code>
+			
+     &lt;div class=&quot;ink-progress-bar grey&quot; data-start-value=&quot;70%&quot;&gt;
+         &lt;span class=&quot;caption&quot;&gt;I am a grey progress bar&lt;/span&gt;
+         &lt;div class=&quot;bar grey&quot;&gt;&lt;/div&gt;
+     &lt;/div&gt;
+     &lt;script&gt;
+         Ink.requireModules( [&#x27;Ink.Dom.Selector_1&#x27;,&#x27;Ink.UI.ProgressBar_1&#x27;], function( Selector, ProgressBar ){
+             var progressBarElement = Ink.s(&#x27;.ink-progress-bar&#x27;);
+             var progressBarObj = new ProgressBar( progressBarElement );
+         });
+     &lt;/script&gt;
+
+		</code></pre>
+	
+
+
+
+</div>
+
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_UI_ProgressBar_1-Ink_UI_ProgressBar-setValue">
+    
+        
+            Ink.UI.ProgressBar.setValue
+        
+    
+    (newValue)
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+        <!--<h3>Parameters:</h3>-->
+        <ul class="params">
+        
+            <li>
+                
+                    <pre>Number</pre>
+                
+
+                
+                    <label>newValue
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Numeric value, between 0 and 100, that represents the percentage of the bar.</span>
+                
+            </li>
+        
+        </ul>
+    
+
+    
+
+    
+        <span class="text"><p>Sets the value of the Progressbar</p>
+</span>
+    
+
+    
+
+
+</div>
+
+
+
+
+
+    
+
+    
+
+    
+
