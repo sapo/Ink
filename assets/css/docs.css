@@ -142,6 +142,7 @@
 }
 .sidebar.ink-navigation ul.menu.vertical li.heading {
   margin-top: 1em;
+  padding-top: 1em;
   border-top: 1px solid #ddd;
 }
 .sidebar.ink-navigation ul.menu.vertical li.heading a {
@@ -156,7 +157,7 @@
   display: block;
 }
 .sidebar.ink-navigation ul.menu.vertical li.heading ul a {
-  padding: .3em 0;
+  padding: .5em 0 0;
   border-bottom: none;
   color: #6998c9;
   text-decoration: none;
