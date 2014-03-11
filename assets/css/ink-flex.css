@@ -1844,6 +1844,10 @@
   display: none !important;
 }
 
+.no-margin {
+  margin: 0 !important;
+}
+
 .push-left {
   float: left;
 }
@@ -6793,7 +6797,7 @@ dl.inline dd {
   color: white;
 }
 .ink-navigation ul.breadcrumbs.black li.active a {
-  color: #4d4d4d;
+  color: #666666;
   text-shadow: black 0 -1px 0;
 }
 .ink-navigation ul.breadcrumbs.blue {
@@ -6804,7 +6808,7 @@ dl.inline dd {
 }
 .ink-navigation ul.breadcrumbs.blue li.active a {
   color: #08427b;
-  text-shadow: #2289f0 0 1px 0;
+  text-shadow: #1884ef 0 1px 0;
 }
 .ink-navigation ul.breadcrumbs.orange {
   background: #f2990d;
@@ -6814,7 +6818,7 @@ dl.inline dd {
 }
 .ink-navigation ul.breadcrumbs.orange li.active a {
   color: #995e00;
-  text-shadow: #ffac29 0 1px 0;
+  text-shadow: #ffa81f 0 1px 0;
 }
 .ink-navigation ul.breadcrumbs.green {
   background: #4c9220;
@@ -6824,7 +6828,7 @@ dl.inline dd {
 }
 .ink-navigation ul.breadcrumbs.green li.active a {
   color: #20420a;
-  text-shadow: #5bbf1c 0 1px 0;
+  text-shadow: #57b61b 0 1px 0;
 }
 .ink-navigation ul.breadcrumbs.red {
   background: #be1c1c;
@@ -6834,7 +6838,7 @@ dl.inline dd {
 }
 .ink-navigation ul.breadcrumbs.red li.active a {
   color: #6b0909;
-  text-shadow: #eb1717 0 1px 0;
+  text-shadow: #e51313 0 1px 0;
 }
 
 .ink-dropdown.blue ul.dropdown-menu li.active a {
@@ -7092,7 +7096,7 @@ dl.inline dd {
   background: #333333;
 }
 .ink-navigation ul.menu.black li.disabled a {
-  color: #4d4d4d;
+  color: #666666;
   text-shadow: black 0 -1px 0;
 }
 .ink-navigation ul.menu.black li a {
@@ -7100,7 +7104,7 @@ dl.inline dd {
   text-decoration: none;
 }
 .ink-navigation ul.menu.black li a:hover {
-  background: #262626;
+  background: #292929;
 }
 .ink-navigation ul.menu.blue {
   background: #1b75ce;
@@ -7379,7 +7383,7 @@ dl.inline dd {
   background: #333333;
 }
 .ink-navigation ul.pagination.black li.disabled a {
-  color: #4d4d4d;
+  color: #666666;
   background: fade(black, 0%);
   text-shadow: black 0 -1px 0;
 }
@@ -7391,7 +7395,7 @@ dl.inline dd {
   text-decoration: none;
 }
 .ink-navigation ul.pagination.black li a:hover {
-  background: #262626;
+  background: #292929;
 }
 .ink-navigation ul.pagination.orange li {
   background: #f2990d;
@@ -7684,7 +7688,7 @@ dl.inline dd {
   background: #333333;
 }
 .ink-navigation ul.pills.black li.disabled a {
-  color: #4d4d4d;
+  color: #666666;
   text-shadow: black 0 -1px 0;
 }
 .ink-navigation ul.pills.black li.disabled a:hover {
@@ -7694,7 +7698,7 @@ dl.inline dd {
   color: white;
 }
 .ink-navigation ul.pills.black li a:hover {
-  background: #262626;
+  background: #292929;
 }
 .ink-navigation ul.pills.blue li {
   background: #1b75ce;

@@ -132,7 +132,6 @@ $code-border        : darken($code-background,8%);
 
                 &.heading {
                     margin-top: 1em;
-                    padding-top: 1em;
                     border-top: 1px solid #ddd;
                     @extend .fw-500;
 
@@ -149,7 +148,7 @@ $code-border        : darken($code-background,8%);
 
                     ul {
                         a {
-                            padding: .5em 0 0;
+                            padding: .3em 0;
                             border-bottom: none;
                             color: $link-color;
                             text-decoration: none;
