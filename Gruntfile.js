@@ -1,8 +1,10 @@
 module.exports = function (grunt) {
+    var child_process = require('child_process');
     var path = require('path');
+    var async = require('async');
 
     require('jit-grunt')(grunt, {
-        'bower': 'grunt-bower-task'
+        'bower': 'grunt-bower-task',
     });
 
     var jshintFile = './src/js/.jshintrc';
@@ -223,26 +225,6 @@ module.exports = function (grunt) {
             */
         },
 
-        // [TODO] check if this works okay
-        qunit: {
-            options: {
-                // inject: 'js/tests/assets/phantom.js',
-                urls: ['http://localhost:8000/js/tests/index.html']
-            },
-            files: ['<%= ink.folders.js.src %>/tests/unit/**/*.html']
-        },
-
-        connect: {
-            server: {
-                options: {
-                    port: 8000,
-                    debug: true,
-                    base: '.',
-                    keepalive: true
-                }
-            }
-        },
-
         // CONCATENATE JS
         uglify: {
             options: {
@@ -422,7 +404,39 @@ module.exports = function (grunt) {
     grunt.registerTask('css', ['clean:css', 'less', 'compass', 'cssmin']);
     grunt.registerTask('dependencies', ['bower', 'copy']);
     grunt.registerTask('default', ['dependencies','css','js']);
-	grunt.registerTask('test', ['connect', 'qunit']);
+	grunt.registerTask('test', 'Run unit tests using phantomjs', function () {
+        var failures = [];
+        var testFiles = grunt.file.expand('test/unit/**/index.html');
+        var done = this.async();
+
+        async.eachSeries(testFiles, function (testFile, next) {
+            var url = 'file://' + path.join(__dirname, testFile);
+            var displayName = path.basename(path.dirname(testFile));
+
+            console.log('\nrunning tests for ' + testFile);
+            phantomjsProcess = child_process.spawn('./node_modules/phantomjs/bin/phantomjs', [
+                    'test/phantomjs-qunit.js',
+                    testFile
+                ]);
+            phantomjsProcess.on('close', function(exitCode) {
+                if (exitCode) {
+                    failures.push(displayName);
+                }
+                next(null);
+            });
+            phantomjsProcess.stdout.pipe(process.stdout);
+            phantomjsProcess.stderr.pipe(process.stdout);
+        }, function afterAllTests() {
+            if (failures.length) {
+                console.log('\n# %d suites (in %d) FAILED: %s',
+                    failures.length, testFiles.length, failures.join(' ,'));
+                process.exit(failures.length);
+            } else {
+                console.log('\n# %d suites passed', testFiles.length);
+            }
+            done(failures.length);
+        });
+    });
 
     grunt.registerTask('custom_bundle', 'Create your custom bundle from a json file', function (fileName) {
         if (arguments.length === 0) {
