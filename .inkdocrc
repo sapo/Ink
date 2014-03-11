@@ -1,0 +1,14 @@
+{
+    "outputDir":       "_includes/js",
+    "sourceDir":       "src",
+    "template":        "ink",
+    "markupFile":      "index.html",
+    "debug":           false,
+    "skipJSON":        false,
+    "skipIdentifiers": true,
+    "title":           "Ink Javascript API",
+    "sourceFiles": [ 
+        "**/**/lib.js",
+        "**/**/**/lib.js"
+    ]
+}
