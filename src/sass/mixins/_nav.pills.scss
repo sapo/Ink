@@ -45,7 +45,7 @@
             
             &.disabled {
                 a {
-                    color: lighten($nav-color,20%);
+                    color: lighten($nav-color,30%);
                     @include text-shadow(darken($nav-color,20%) 0 -1px 0);
                     &:hover { background: none; }
                 }
@@ -53,7 +53,7 @@
             
             a { 
                 color: $white; 
-                &:hover { background: lighten($nav-color,5%); }
+                &:hover { background: lighten($nav-color,6%); }
             }
         }
     }
