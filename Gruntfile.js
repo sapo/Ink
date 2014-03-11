@@ -425,7 +425,7 @@ module.exports = function (grunt) {
                 next(null);
             });
             phantomjsProcess.stdout.pipe(process.stdout);
-            phantomjsProcess.stderr.pipe(process.stderr);
+            phantomjsProcess.stderr.pipe(process.stdout);
         }, function afterAllTests() {
             if (failures.length) {
                 console.log('\n# %d suites (in %d) FAILED: %s',
