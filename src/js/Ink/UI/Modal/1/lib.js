@@ -5,6 +5,12 @@
  */
 Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Common, Event, Css, InkElement, Selector, InkArray ) {
     'use strict';
+
+    var opacitySupported = (function (div) {
+        div.style.opacity = 'invalid';
+        return div.style.opacity !== 'invalid';
+    }(InkElement.create('div', {style: 'opacity: 1'})));
+
     /**
      * @class Ink.UI.Modal
      * @constructor
@@ -60,7 +66,9 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
      */
 
     function upName(dimension) {
-        return dimension[0].toUpperCase() + dimension.replace(/^./, '');
+        // omg IE
+        var firstCharacter = dimension.match(/^./)[0];
+        return firstCharacter.toUpperCase() + dimension.replace(/^./, '');
     }
     function maxName(dimension) {
         return 'max' + upName(dimension);
@@ -515,6 +523,8 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
          * Specific to this._element
          */
         _waitForFade: function (elem, callback) {
+            if (!opacitySupported) { return callback(); }
+
             var transitionEndEventNames = [
                 'transitionEnd', 'oTransitionEnd', 'webkitTransitionEnd'];
             var classicName;

@@ -5,12 +5,14 @@
 
         <title>InkJS - ProgressBar samples</title>
 
-        <link rel="stylesheet" href="/samples/assets/css/ink.css" />
-        <link rel="stylesheet" href="/samples/assets/css/docs.css" />
+        <link rel="stylesheet" href="../../../../../../dist/css/ink.css" />
 
-        <script type="text/javascript" src="/Ink/1/"></script>
+        <script type="text/javascript" src="../../../../Ink/1/lib.js"></script>
+        <script>
+            Ink.setPath('Ink', '../../../../Ink/');
+        </script>
 
-        <script type="text/javascript" src="http://imgs.sapo.pt/ink/assets/js/prettify.js"></script>
+        <script type="text/javascript" src="../../../../../../dist/js/prettify.js"></script>
         <style>
             pre.prettyprint{
                 font-size: 0.75em;
@@ -33,7 +35,7 @@
             <section>
                 <header>
                     <h2>ProgressBar #1 - Setting the initial value throught data attributes</h2>
-                    <p> ... and with a 3s change of value. </p>
+                    <p> ... changing value every 3s. </p>
                 </header>
                 <div id="progressbar1" class="ink-progress-bar grey" data-start-value="70%">
                     <div class="bar grey"></div>

@@ -59,7 +59,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
             swipe:          ['Boolean', true]
             // TODO exponential swipe
             // TODO specify break point for next page when moving finger
-        }, options || {}, element);
+        }, options || {}, element, this);
 
         this._isY = (opts.axis === 'y');
 
@@ -68,42 +68,11 @@ Ink.createModule('Ink.UI.Carousel', '1',
 
         InkElement.removeTextNodeChildren(ulEl);
 
-        if (opts.hideLast) {
-            var hiderEl = InkElement.create('div', {
-                className: 'hider',
-                insertBottom: this._element
-            });
-            hiderEl.style.position = 'absolute';
-            hiderEl.style[ this._isY ? 'left' : 'top' ] = '0';  // fix to top..
-            hiderEl.style[ this._isY ? 'right' : 'bottom' ] = '0';  // and bottom...
-            hiderEl.style[ this._isY ? 'bottom' : 'right' ] = '0';  // and move to the end.
-            this._hiderEl = hiderEl;
-        }
-
-        this.refit();
+        this.refit(); // recalculate this._numPages
 
         if (this._isY) {
             // Override white-space: no-wrap which is only necessary to make sure horizontal stuff stays horizontal, but breaks stuff intended to be vertical.
             this._ulEl.style.whiteSpace = 'normal';
-        }
-
-        var pagination;
-        if (opts.pagination) {
-            if (Common.isDOMElement(opts.pagination) || typeof opts.pagination === 'string') {
-                // if dom element or css selector string...
-                pagination = this._pagination = new Pagination(opts.pagination, {
-                    size:     this._numPages,
-                    onChange: this._handlers.paginationChange
-                });
-            } else {
-                // assumes instantiated pagination
-                pagination = this._pagination = opts.pagination;
-                this._pagination._options.onChange = this._handlers.paginationChange;
-                this._pagination.setSize(this._numPages);
-                this._pagination.setCurrent(opts.initialPage || 0);
-            }
-        } else {
-            this._currentPage = opts.initialPage || 0;
         }
 
         if (opts.swipe) {
@@ -112,9 +81,9 @@ Ink.createModule('Ink.UI.Carousel', '1',
             InkEvent.observe(element, 'touchend', Ink.bindMethod(this, '_onTouchEnd'));
         }
 
-        if (opts.autoAdvance) {
-            this._setUpAutoAdvance();
-        }
+        this._setUpPagination();
+        this._setUpAutoAdvance();
+        this._setUpHider();
     };
 
     Carousel.prototype = {
@@ -139,9 +108,11 @@ Ink.createModule('Ink.UI.Carousel', '1',
 
             this._liEls = Ink.ss('li.slide', this._ulEl);
             var numSlides = this._liEls.length;
-            this._ctnLength = size(this._element);
+
+            var contRect = this._ulEl.getBoundingClientRect();
+            this._ctnLength = _isY ? contRect.bottom - contRect.top : contRect.right - contRect.left;
             this._elLength = size(this._liEls[0]);
-            this._slidesPerPage = Math.floor( this._ctnLength / this._elLength  );
+            this._slidesPerPage = Math.floor( this._ctnLength / this._elLength  ) || 1;
 
             var numPages = Math.ceil( numSlides / this._slidesPerPage );
             var numPagesChanged = this._numPages !== numPages;
@@ -151,21 +122,56 @@ Ink.createModule('Ink.UI.Carousel', '1',
             this._center();
             this._updateHider();
             this._IE7();
-            
+
             if (this._pagination && numPagesChanged) {
                 this._pagination.setSize(this._numPages);
             }
             this.setPage(limitRange(this.getPage(), 1, this._numPages));
         },
 
+        _setUpPagination: function () {
+            if (this._options.pagination) {
+                if (Common.isDOMElement(this._options.pagination) ||
+                        typeof this._options.pagination === 'string') {
+                    // if dom element or css selector string...
+                    this._pagination = new Pagination(this._options.pagination, {
+                        size:     this._numPages,
+                        onChange: this._handlers.paginationChange
+                    });
+                } else {
+                    // assumes instantiated pagination
+                    this._pagination = this._options.pagination;
+                    this._pagination._options.onChange = this._handlers.paginationChange;
+                    this._pagination.setSize(this._numPages);
+                }
+                this._pagination.setCurrent(this._options.initialPage || 0);
+            } else {
+                this._currentPage = this._options.initialPage || 0;
+            }
+        },
+
         _setUpAutoAdvance: function () {
+            if (!this._options.autoAdvance) { return; }
             var self = this;
-            function autoAdvance() {
+
+            setTimeout(function autoAdvance() {
                 self.nextPage(true /* wrap */);
                 setTimeout(autoAdvance, self._options.autoAdvance);
-            }
+            }, this._options.autoAdvance);
+        },
 
-            setTimeout(autoAdvance, this._options.autoAdvance);
+        _setUpHider: function () {
+            if (this._options.hideLast) {
+                var hiderEl = InkElement.create('div', {
+                    className: 'hider',
+                    insertBottom: this._element
+                });
+                hiderEl.style.position = 'absolute';
+                hiderEl.style[ this._isY ? 'left' : 'top' ] = '0';  // fix to top..
+                hiderEl.style[ this._isY ? 'right' : 'bottom' ] = '0';  // and bottom...
+                hiderEl.style[ this._isY ? 'bottom' : 'right' ] = '0';  // and move to the end.
+                this._hiderEl = hiderEl;
+            }
         },
 
         _center: function() {
@@ -258,11 +264,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
             if (!this._scrolling && this._swipeData) {
                 event.preventDefault();
 
-                if (!this._isY) {
-                    this._swipeData.pointerPos = pointerX;
-                } else {
-                    this._swipeData.pointerPos = pointerY;
-                }
+                this._swipeData.pointerPos = this._isY ? pointerY : pointerX;
             }
 
             event.stopPropagation();
@@ -321,8 +323,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
         },
 
         _onPaginationChange: function(pgn) {
-            var currPage = pgn.getCurrent();
-            this.setPage(currPage);
+            this._setPage(pgn.getCurrent());
         },
 
         /**
@@ -350,7 +351,18 @@ Ink.createModule('Ink.UI.Carousel', '1',
                 if (page < 0) { page = this._numPages - page; }
             }
             page = limitRange(page, 0, this._numPages - 1);
-            this._ulEl.style[ this._options.axis === 'y' ? 'top' : 'left'] = ['-', page * this._deltaLength, 'px'].join('');
+
+            if (this._pagination) {
+                this._pagination.setCurrent(page);
+            } else {
+                this._setPage(page);
+            }
+        },
+
+        _setPage: function (page) {
+            this._ulEl.style[ this._isY ? 'top' : 'left'] =
+                ['-', page * this._deltaLength, 'px'].join('');
+
             if (this._options.onChange) {
                 this._options.onChange.call(this, page);
             }
