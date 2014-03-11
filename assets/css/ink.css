@@ -6863,14 +6863,14 @@ table {
   -ms-border-radius: 50%;
   -o-border-radius: 50%;
   border-radius: 50%;
+  text-indent: 99999px;
 }
-.ink-navigation ul.pagination.dotted li:first-child a, .ink-navigation ul.pagination.dotted li:last-child a {
-  height: auto;
-  width: auto;
-  background: none;
-}
-.ink-navigation ul.pagination.dotted li.previous a, .ink-navigation ul.pagination.dotted li.next a {
-  display: none;
+.ink-navigation ul.pagination.dotted li a:first-child, .ink-navigation ul.pagination.dotted li a:last-child {
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  border-radius: 50%;
 }
 .ink-navigation ul.pagination.chevron li {
   display: none;
@@ -6890,6 +6890,9 @@ table {
   -moz-transition: all 140ms ease-in-out;
   -o-transition: all 140ms ease-in-out;
   transition: all 140ms ease-in-out;
+}
+.ink-navigation ul.pagination.chevron li.next a span, .ink-navigation ul.pagination.chevron li.previous a span {
+  text-indent: 99999px;
 }
 .ink-navigation ul.pagination.chevron li.disabled a {
   color: rgba(255, 255, 255, 0.6);
@@ -6911,14 +6914,6 @@ table {
   content: "\f138";
 }
 
-@media screen and (max-width: 650px) {
-  html body .ink-navigation .pagination li a {
-    display: none;
-  }
-  html body .ink-navigation .pagination li:first-child a, html body .ink-navigation .pagination li:last-child a {
-    display: block;
-  }
-}
 .ink-navigation .pills {
   overflow: hidden;
   *zoom: 1;

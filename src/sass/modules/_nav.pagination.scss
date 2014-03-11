@@ -29,22 +29,13 @@
                         margin-right: .6em;
                         padding: 0; 
                         @include border-radius(50%);
-                    }
+                        text-indent: 99999px;
 
-                    &:first-child,
-                    &:last-child {
-                        a { 
-                            height: auto;
-                            width: auto;
-                            background: none;
+                        &:first-child,
+                        &:last-child {
+                            @include border-radius(50%);
                         }
                     }
-
-                    &.previous,
-                    &.next {
-                        a { display: none }
-                    }
-            
                 }
             }
 
@@ -68,6 +59,8 @@
                             font-family: FontAwesome;
                             font-size: 4em;
                             @include transition(compact(all 140ms ease-in-out));
+
+                            span { text-indent: 99999px; }
                         }
                     }
 
@@ -94,29 +87,6 @@
                             right: 0;
                             &:after { content: $fa-var-chevron-circle-right; }
                         }
-                    }
-
-                }
-            }
-        }
-    }
-}
-
-@media screen and (max-width: 650px) {
-
-    html body .#{$navigation-class-name} {
-        
-        .pagination {
-        
-            li {
-            
-                a {
-                    display:none
-                }
-                
-                &:first-child, &:last-child {
-                    a {
-                        display:block;
                     }
                 }
             }
