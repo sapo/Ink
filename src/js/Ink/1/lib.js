@@ -355,7 +355,12 @@
             }
 
             for (i = 0; i < f; ++i) {
-                dep = deps[i];
+                if (Ink._moduleRenames[deps[i]]) {
+                    Ink.warn(deps[i] + ' was renamed to ' + Ink._moduleRenames[deps[i]]);
+                    dep = Ink._moduleRenames[deps[i]];
+                } else {
+                    dep = deps[i];
+                }
                 mod = modules[dep];
                 if (mod) {
                     o.args[i] = mod;
@@ -374,6 +379,10 @@
             else {
                 cbFn.apply(true, o.args);
             }
+        },
+
+        _moduleRenames: {
+            'Ink.UI.Aux_1': 'Ink.UI.Common_1'
         },
 
         /**
@@ -537,6 +546,7 @@
          * @param {Object} destination
          * @param {Object...} sources
          * @return destination object, enriched with defaults from the sources
+         * @sample Ink_1_extendObj.html 
          */
         extendObj: function(destination, source) {
             if (arguments.length > 2) {

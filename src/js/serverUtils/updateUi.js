@@ -1,9 +1,10 @@
 /*jshint node:true*/
 'use strict';
 
-var fs = require('fs');
-var sh = require('execSync');
+var fsExtra = require('fs-extra');
+var async = require('async');
 var path = require('path');
+var fs = require('fs');
 
 if (process.argv.length === 4) {
     var uiFolder = process.argv[2] // Ink/Inkjs/Ink/UI
@@ -43,9 +44,13 @@ var cpSync = function(from, to) {
 };
 
 // Copy all the things!
-copyOps.forEach(function(copyOp) {
-    if (!cpSync(copyOp.from, copyOp.to)) {
-        console.log(['error copying ', copyOp.from, ' to ', copyOp.to, '!'].join(''));
-    }
+async.series(copyOps, function (next) {
+    fsExtra.copy(copyOp.from, copyOp.to, function (err) {
+        if (err) {
+            console.log(['error copying ', copyOp.from, ' to ', copyOp.to, '!'].join(''));
+            console.log(err);
+        }
+        next();
+    });
 });
 

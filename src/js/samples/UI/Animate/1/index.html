@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>
+            Ink.UI.Animate_1 samples
+        </title>
+        <meta name="description" content="">
+        <meta name="author" content="ink, cookbook, recipes">
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="320">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <link rel="shortcut icon" href="../img/ink-favicon.ico">
+        <link rel="apple-touch-icon-precomposed" href="../img/touch-icon.57.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../img/touch-icon.72.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../img/touch-icon.114.png">
+        <link rel="apple-touch-startup-image" href="../img/splash.320x460.png"
+        media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
+        <link rel="apple-touch-startup-image" href="../img/splash.768x1004.png"
+        media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+        <link rel="apple-touch-startup-image" href="../img/splash.1024x748.png"
+        media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+        <link rel="stylesheet" type="text/css" href="../../../../../../dist/css/ink.css">
+        
+        <!--[if IE 7 ]>
+            <link rel="stylesheet" href="../css/ink-ie7.css" type="text/css" media="screen" title="no title" charset="utf-8">
+        <![endif]-->
+        
+        <script type="text/javascript" src="../../../../Ink/1/lib.js"></script>
+        <script type="text/javascript">
+            Ink.setPath('Ink', '../../../../Ink/');
+        </script>
+        <script type="text/javascript" src="../../../../../../dist/js/holder.js"></script>
+        <script type="text/javascript" src="../../../../../../dist/js/autoload.js"></script>
+        <script type="text/javascript" src="../../../../../../dist/js/html5shiv.js"></script>
+    </head>
+    
+    <body>
+        <div class="ink-grid">
+            <h1>Ink.UI.Animate_1 samples</h1>
+
+            <p>The main method of this UI module is "animate". Call it with the target element (or a selector), the animation name (see below), a duration (in milliseconds or 'slow', 'medium', 'fast'), and a callback. You can also send an object with the <code>{duration, onEnd}</code> parameters after the animation name.</p>
+
+            <p>This method still works on old browsers without CSS3 animation support. When support is not detected, no animation occurs, and the callback is called immediately.</p>
+
+            <div>
+                <img src="holder.js/350x200/ink/" id="target" class="push-center" style="display:block">
+            </div>
+
+            <p id="animation-menu">
+                Some animation names:
+                <span class="ink-button" data-animate-class="fadeIn">fadeIn</span>
+                <span class="ink-button" data-animate-class="fadeOut">fadeOut</span>
+                <span class="ink-button" data-animate-class="shake">shake</span>
+                <span class="ink-button" data-animate-class="bounce">bounce</span>
+            </p>
+
+            <p>For the full animation name list, visit <a href="http://daneden.me/animate/">http://daneden.me/animate/</a></p>
+
+            <h2>One-shot animations</h2>
+
+            <p>You can execute an animation as a one-time thing.</p>
+
+<pre><code>Animate.animate('#to-animate', 'bounce', 'slow');</code></pre>
+
+            <h2>Fade out and remove an element:</h2>
+            <p>This is how to do the common task of fading out an element and then remove it. It uses the fourth parameter, <code>onEnd</code>, to perform an action when your animation ends. If the browser does not support animations, this function is called immediately after anyway.</p>
+            
+<pre><code>var toAnimate = Ink.i('element_id');
+Animate.animate(toAnimate, 'fadeOut', 'slow', function () {
+    InkElement.remove(toAnimate);
+})</code></pre>
+
+
+            <h1>Use Ink.UI.Animate from your markup</h1>
+
+            <p>You can use Ink.UI.Animate by adding the <code>ink-animate</code> class to your elements. This section shows you how can use this feature.</p>
+
+            <h2>Usage with a trigger</h2>
+            <p>The below example shows you how to set a trigger and say what animation you want using markup (Remember to load the autoload.js script!).</p>
+            <p>You can use data-attributes like <code>data-trigger</code>, <code>data-animation</code>, <code>data-duration</code> to customize the animation. The full list is available in the API documentation for the module. </p>
+
+            <div class="ink-example">
+                <button id="animate-me" class="ink-button">Animate me!</button>
+                <span class="ink-label info ink-animate"
+                    data-trigger="#animate-me"
+                    data-animation="fadeOut"
+                    data-revert="false">Hi!</span>
+            </div>
+
+            <p>Source code:</p>
+
+<pre><code>&lt;button id="animate-me" class="ink-button"&gt;Animate me!&lt;/button&gt;
+&lt;span class="ink-label info ink-animate"
+    data-trigger="#animate-me"
+    data-animation="fadeOut"
+    data-revert="false"&gt;Hi!&lt;/span&gt;</code></pre>
+
+            <h2>Animate immediately when the page loads</h2>
+
+            <p>To see this example, refresh the page and see the label slowly fade out.</p>
+
+            <div class="ink-example">
+                <span class="ink-animate ink-label info"
+                    data-animation="fadeOut"
+                    data-revert="false" data-duration="10000">Slowly fading oooooooout.....</span>
+            </div>
+
+<pre><code>&lt;span class="ink-animate ink-label info"
+    data-animation="fadeOut"
+    data-revert="false" data-duration="10000"&gt;Slowly fading oooooooout.....&lt;/span&gt;</code></pre>
+
+            <script type="text/javascript">
+                Ink.requireModules(['Ink.UI.Animate_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1'], function (Animate, InkEvent, InkElement) {
+                    var animating;
+                    InkEvent.observeDelegated(Ink.i('animation-menu'), 'click', '[data-animate-class]', function (ev) {
+                        var animateClass = InkElement.data(InkEvent.element(ev)).animateClass;
+                        animating = true;
+                        Animate.animate('#target', animateClass, 'slow', function onEnd() {
+                            animating = false;
+                        })
+                    });
+                })
+            </script>
+        </div>
+
+        <script></script>
+    </body>
+</html>

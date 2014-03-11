@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title>
-            Empty page
+            Ink.UI.Dropdown sample
         </title>
         <meta name="description" content="">
         <meta name="author" content="ink, cookbook, recipes">
@@ -21,30 +21,34 @@
         media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
         <link rel="apple-touch-startup-image" href="../../../../../img/splash.1024x748.png"
         media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
-        <link rel="stylesheet" type="text/css" href="../../../../../css/ink.css">
-        <link rel="stylesheet" type="text/css" href="../../../../../css/quick-start.css">
+        <link rel="stylesheet" type="text/css" href="../../../../../../dist/css/ink.css">
         
         <!--[if IE 7 ]>
             <link rel="stylesheet" href="../../../../../css/ink-ie7.css" type="text/css" media="screen" title="no title" charset="utf-8">
         <![endif]-->
-        
-        <script type="text/javascript" src="../../../../../js/holder.js"></script>
-        <script type="text/javascript" src="../../../../../js/autoload.js"></script>
-        <script type="text/javascript" src="../../../../../js/html5shiv.js"></script>
+
+        <script src="../../../../Ink/1/lib.js"></script>
+        <script>
+            Ink.setPath('Ink', '../../../../Ink/');
+        </script>
+        <script type="text/javascript" src="../../../../../../dist/js/holder.js"></script>
+        <script type="text/javascript" src="../../../../../../dist/js/autoload.js"></script>
+        <script type="text/javascript" src="../../../../../../dist/js/html5shiv.js"></script>
     </head>
     <body>
-        <div class="ink-dropdown" data-target="#dropdown" data-hover-open="1" data-dismiss-after="1">
-            <span class="ink-button" >Dropdown <span class="icon-caret-down"></span></SPAN>
+        <h1>Ink.UI.Dropdown sample</h1>
+        <div class="ink-dropdown" data-target="#dropdown">
+            <span class="ink-button" >Dropdown <span class="icon icon-caret-down"></span></span>
             <ul id="dropdown" class="dropdown-menu hide-all">
                 <li class="heading">Heading</li>
                 <li class="separator-above"><a href="#">Option</a></li>
                 <li><a href="#">Option</a></li>
                 <li class="separator-above disabled"><a href="#">Disabled option</a></li>
                 <li class="submenu">
-                    <a href="#" data-target="#submenu1">A longer option name</a>
+                    <a href="#" class="ink-dropdown" data-target="#submenu1">A longer option name</a>
                     <ul id="submenu1" class="dropdown-menu hide-all">
                         <li class="submenu">
-                            <a href="#" data-target="#ultrasubmenu">Sub option</a>
+                            <a href="#" class="ink-dropdown" data-target="#ultrasubmenu">Sub option</a>
                             <ul id="ultrasubmenu" class="dropdown-menu hide-all">
                                 <li><a href="#">Sub option</a></li>
                                 <li><a href="#" data-target="ultrasubmenu">Sub option</a></li>
