@@ -65,7 +65,7 @@
   position: fixed;
   z-index: 100;
   width: 100%;
-  background: #222222;
+  background: #1a1a1a;
   *zoom: 1;
 }
 #topbar:after {
@@ -76,10 +76,10 @@
 #topbar .ink-navigation {
   *zoom: 1;
 }
-#topbar .ink-navigation ul li {
+#topbar .ink-navigation ul.black li {
   font-size: 14px;
 }
-#topbar .ink-navigation ul li a {
+#topbar .ink-navigation ul.black li a {
   padding: .7em 1em;
   color: #bbbbbb;
   text-transform: uppercase;
@@ -87,45 +87,37 @@
   line-height: 24px;
   *height: auto;
 }
-#topbar .ink-navigation ul li a:hover {
+#topbar .ink-navigation ul.black li a:hover {
   color: white;
 }
-#topbar .ink-navigation ul li a.ink-button {
+#topbar .ink-navigation ul.black li a.ink-button {
   color: white;
   padding: 4px 12px;
   margin: 5px 1em;
   font-size: .875em;
 }
-#topbar .ink-navigation ul li a.ink-button:hover {
+#topbar .ink-navigation ul.black li a.ink-button:hover {
   background: #0d68c2;
 }
-#topbar .ink-navigation ul li a.logoPlaceholder {
+#topbar .ink-navigation ul.black li a.logoPlaceholder {
   margin-right: .5em;
   padding: .4em 0;
   font-weight: bold;
   font-size: 1.8em;
 }
-#topbar .ink-navigation ul li a.logoPlaceholder:hover {
+#topbar .ink-navigation ul.black li a.logoPlaceholder:hover {
   background: none;
 }
-#topbar .ink-navigation ul li a.fa-bars {
+#topbar .ink-navigation ul.black li a.fa-bars {
   margin-right: .8em;
   padding: .46em 0;
   font-size: 21px;
 }
-#topbar .ink-navigation ul li a.fa-bars:hover {
+#topbar .ink-navigation ul.black li a.fa-bars:hover {
   background: none;
 }
-#topbar .ink-navigation ul li.active a {
-  background: #333;
+#topbar .ink-navigation ul.black li.active a {
   color: white;
-}
-#topbar .ink-navigation ul.black.flat {
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-  background: #222222;
-  filter: none;
 }
 #topbar .ink-navigation:after {
   content: "";
