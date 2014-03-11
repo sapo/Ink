@@ -414,7 +414,7 @@ module.exports = function (grunt) {
             var displayName = path.basename(path.dirname(testFile));
 
             console.log('\nrunning tests for ' + testFile);
-            phantomjsProcess = child_process.spawn('phantomjs', [
+            phantomjsProcess = child_process.spawn('./node_modules/phantomjs/bin/phantomjs', [
                     'test/phantomjs-qunit.js',
                     testFile
                 ]);
