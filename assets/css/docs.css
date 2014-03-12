@@ -131,14 +131,14 @@
 .sidebar.ink-navigation ul.menu.vertical li.heading {
   margin-top: 1em;
   border-top: 1px solid #ddd;
-  font-size: 1.25em;
+  font-size: .875em;
   padding: 1em 0 0;
   color: #555555;
 }
 .sidebar.ink-navigation ul.menu.vertical li.heading ul a {
   padding: .3em 0;
   border-bottom: none;
-  font-size: .8em;
+  font-size: .875em;
 }
 .sidebar.ink-navigation ul.menu.vertical li.search {
   position: relative;

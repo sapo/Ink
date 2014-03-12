@@ -40,7 +40,7 @@ $code-border        : darken($code-background,8%);
     z-index: $layer-100;
     width: 100%;
     background: desaturate($grey-90,10%);
-    // -webkit-transform: scale3d(1,1,1); // Solves weird “redraw behavior” involving anchor links and fixed positioned elements in chrome.
+    -webkit-transform: scale3d(1,1,1); // Solves weird “redraw behavior” involving anchor links and fixed positioned elements in chrome.
     @include pie-clearfix;
     
     .ink-navigation {
@@ -120,7 +120,7 @@ $code-border        : darken($code-background,8%);
                 &.heading {
                     margin-top: 1em;
                     border-top: 1px solid #ddd;
-                    font-size: 1.25em;
+                    font-size: .875em;
                     padding: 1em 0 0;
                     color: $text-color;
                     @extend .fw-500;
@@ -130,8 +130,7 @@ $code-border        : darken($code-background,8%);
                         a {
                             padding: .3em 0;
                             border-bottom: none;
-                            //color: $link-color;
-                            font-size: .8em;
+                            font-size: .875em;
                             @extend .fw-400;
                         }
                     }
