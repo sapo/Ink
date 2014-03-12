@@ -6390,6 +6390,42 @@ dl.inline dd {
   margin: .5em 0 .5em 200px;
 }
 
+figure.ink-image {
+  position: relative;
+  border: 1px solid #555555;
+}
+figure.ink-image > img {
+  margin-bottom: -6px;
+  width: 100%;
+}
+figure.ink-image > figcaption {
+  padding: 1em;
+  background: white;
+  line-height: 1.3;
+}
+figure.ink-image > figcaption.over-top, figure.ink-image > figcaption.over-bottom {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  border: none;
+}
+figure.ink-image > figcaption.over-top.dark, figure.ink-image > figcaption.over-bottom.dark {
+  color: white;
+  background: rgba(0, 0, 0, 0.6);
+}
+figure.ink-image > figcaption.over-top {
+  top: 0;
+  background: rgba(255, 255, 255, 0.7);
+}
+figure.ink-image > figcaption.over-bottom {
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.7);
+}
+figure.ink-image > figcaption.dark {
+  color: white;
+  background: #222222;
+}
+
 .ink-alert.basic, .ink-alert.block {
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
