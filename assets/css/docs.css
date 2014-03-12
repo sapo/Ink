@@ -66,6 +66,7 @@
   z-index: 100;
   width: 100%;
   background: #1a1a1a;
+  -webkit-transform: scale3d(1, 1, 1);
   *zoom: 1;
 }
 #topbar:after {
