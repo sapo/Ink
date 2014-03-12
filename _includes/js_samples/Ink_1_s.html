@@ -1,0 +1,24 @@
+{% highlight html %}
+
+<div id="element_id">
+    <p id="a" class="small">
+    A text sample with a <span>span</span> and a <a href="#">link</a>.
+    </p>
+    <p id="b" class="small">
+    Another text paragraph. 
+    </p>
+</div>
+<script>
+
+var elmA = Ink.s('#element_id');  
+// "div" with id "element_id"
+
+var elmB = Ink.s('#element_id > p');  
+// <p> with id "a"
+
+var elmC = Ink.s('.noclass'); 
+// null 
+
+</script>
+
+{% endhighlight %}

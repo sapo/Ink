@@ -1,5 +1,5 @@
 <p>Copy object person1 to person2</p>
-{% highlight js %}
+{% highlight html %}
 <script>
 var person1 = {
     name: 'Charles', 
@@ -8,11 +8,18 @@ var person1 = {
 };
 
 var person2 = Ink.extendObj({}, person1); 
+
+/*
+   person1 will be: 
+   { name: 'Charles', age: 31, married: true }
+   person2 will be: 
+   { name: 'Charles', age: 31, married: true }
+*/
 </script>
 {% endhighlight %}
 
 <p>Copy object but define default values in new object. </p>
-{% highlight js %}
+{% highlight html %}
 <script>
 var person1 = {
     name: 'Charles', 
@@ -24,6 +31,13 @@ var person2 = Ink.extendObj({
             hasGlasses: true,
             married: false
         }, person1); 
+/*
+   person1 will be: 
+   { name: 'Charles', age: 31, married: true }
+   person2 will be: 
+   { name: 'Charles', age: 31, married: false, hasGlasses: true }
+*/
+
 </script>
 {% endhighlight %}
 
