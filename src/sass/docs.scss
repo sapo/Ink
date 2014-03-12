@@ -40,13 +40,13 @@ $code-border        : darken($code-background,8%);
     position: fixed;
     z-index: $layer-100;
     width: 100%;
-    background: $topbar-bgColor;
-    // -webkit-transform: scale3d(1,1,1); // Solves weird “redraw behavior” involving anchor links and fixed positioned elements in chrome.
+    background: desaturate($grey-90,10%);
+    -webkit-transform: scale3d(1,1,1); // Solves weird “redraw behavior” involving anchor links and fixed positioned elements in chrome.
     @include pie-clearfix;
     
     .ink-navigation {
     
-        ul {
+        ul.black {
         
             li {
     
@@ -99,17 +99,9 @@ $code-border        : darken($code-background,8%);
 
                 &.active {
                     a {
-                        background: #333;
+                        //background: #333;
                         color:$white;
                     }
-                }
-            }
-            
-            &.black {
-                &.flat {
-                    @include box-shadow(none);
-                    background:$topbar-bgColor;  
-                    filter:none;
                 }
             }
         }
@@ -126,35 +118,20 @@ $code-border        : darken($code-background,8%);
 
                 text-transform: uppercase;
 
-                a { 
-                    padding: 0; 
-                    border-bottom: none;
-                }
-
                 &.heading {
                     margin-top: 1em;
                     border-top: 1px solid #ddd;
+                    font-size: .875em;
+                    padding: 1em 0 0;
+                    color: $text-color;
                     @extend .fw-500;
 
-                    a { 
-                        font-size: 1.25em;
-                        padding: 1em 0 0;
-                        color: $text-color; 
-                        &:hover { text-decoration: none; }
-                    }
-
-                    &.active ul {
-                        display: block;
-                    }
-
                     ul {
+
                         a {
                             padding: .3em 0;
                             border-bottom: none;
-                            color: $link-color;
-                            text-decoration: none;
-                            text-transform: uppercase;
-                            font-size: 1em;
+                            font-size: .875em;
                             @extend .fw-400;
                         }
                     }
@@ -573,7 +550,9 @@ p.example-title {
     line-height: 0.8;
     margin: 0;
 }
-.example {
+
+.example,
+html.flexbox .example {
     padding: 1em;
     background: $code-background;
     @include border-radius($border-radius);
