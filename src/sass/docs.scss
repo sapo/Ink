@@ -549,7 +549,9 @@ p.example-title {
     line-height: 0.8;
     margin: 0;
 }
-.example {
+
+.example,
+html.flexbox .example {
     padding: 1em;
     background: $code-background;
     @include border-radius($border-radius);

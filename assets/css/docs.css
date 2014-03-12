@@ -794,7 +794,8 @@ p.example-title {
   margin: 0;
 }
 
-.example {
+.example,
+html.flexbox .example {
   padding: 1em;
   background: #eeebe5;
   -webkit-border-radius: 2px;
@@ -803,10 +804,12 @@ p.example-title {
   -o-border-radius: 2px;
   border-radius: 2px;
 }
-.example .ink-grid {
+.example .ink-grid,
+html.flexbox .example .ink-grid {
   padding: 0;
 }
-.example .ink-grid .column {
+.example .ink-grid .column,
+html.flexbox .example .ink-grid .column {
   height: 150px;
   border: 1px #c5d2dd solid;
   background: #E5EBF0;
