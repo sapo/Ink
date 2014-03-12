@@ -1,0 +1,57 @@
+<p>How to keep "this" in the object context</p>
+{% highlight js %}
+
+var MyObj = {
+
+    _name: null,
+
+    setName: function(name) 
+    {
+        this._name = name;
+    },
+
+    showNameAfter1Sec: function()
+    {
+        // success 
+        setTimeout(Ink.bind(function() {
+                alert(this._name);
+            }, this), 1000);
+        
+        // "this" will be "window", so this._name will be "undefined"
+        setTimeout(function() {
+                alert(this._name);
+            }, 1000);
+    }
+};
+
+MyObj.setName('John');
+MyObj.showNameAfter1Sec(); 
+
+{% endhighlight %}
+
+<p>Ink.bind() can be used to pass more arguments to callback function</p>
+
+{% highlight js %}
+
+var MyObj = {
+
+    _name: null, 
+
+    _age: null,
+
+    _setAndAlertInfo: function(name, age) 
+    {
+        this._name = name;
+        this._age = age; 
+        alert(this._name +' => '+ this._age);
+    },
+    
+    showInfoAfter1Sec: function(name, age)
+    {
+        setTimeout(Ink.bind(this._setAndAlertInfo, this, name, age), 1000);
+    }
+};
+
+MyObj.showInfoAfter1Sec('John', 35);
+
+{% endhighlight %}
