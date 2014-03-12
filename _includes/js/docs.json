@@ -322,6 +322,9 @@
 									"type": "String",
 									"isFirstLevel": true
 								}
+							],
+							"samples": [
+								"Ink_1_i.html"
 							]
 						},
 						{
@@ -347,7 +350,10 @@
 							"return": {
 								"kind": "return",
 								"type": "DOMElement"
-							}
+							},
+							"samples": [
+								"Ink_1_s.html"
+							]
 						},
 						{
 							"kind": "function",
@@ -373,7 +379,10 @@
 								"kind": "return",
 								"type": "Array",
 								"description": "array of DOMElements"
-							}
+							},
+							"samples": [
+								"Ink_1_ss.html"
+							]
 						},
 						{
 							"kind": "function",
@@ -397,7 +406,10 @@
 							"return": {
 								"kind": "return",
 								"description": "destination object, enriched with defaults from the sources"
-							}
+							},
+							"samples": [
+								"Ink_1_extendObj.html"
+							]
 						},
 						{
 							"kind": "function",

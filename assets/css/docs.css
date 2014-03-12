@@ -65,7 +65,7 @@
   position: fixed;
   z-index: 100;
   width: 100%;
-  background: #1a1a1a;
+  background: #222222;
   *zoom: 1;
 }
 #topbar:after {
@@ -76,10 +76,10 @@
 #topbar .ink-navigation {
   *zoom: 1;
 }
-#topbar .ink-navigation ul.black li {
+#topbar .ink-navigation ul li {
   font-size: 14px;
 }
-#topbar .ink-navigation ul.black li a {
+#topbar .ink-navigation ul li a {
   padding: .7em 1em;
   color: #bbbbbb;
   text-transform: uppercase;
@@ -87,37 +87,45 @@
   line-height: 24px;
   *height: auto;
 }
-#topbar .ink-navigation ul.black li a:hover {
+#topbar .ink-navigation ul li a:hover {
   color: white;
 }
-#topbar .ink-navigation ul.black li a.ink-button {
+#topbar .ink-navigation ul li a.ink-button {
   color: white;
   padding: 4px 12px;
   margin: 5px 1em;
   font-size: .875em;
 }
-#topbar .ink-navigation ul.black li a.ink-button:hover {
+#topbar .ink-navigation ul li a.ink-button:hover {
   background: #0d68c2;
 }
-#topbar .ink-navigation ul.black li a.logoPlaceholder {
+#topbar .ink-navigation ul li a.logoPlaceholder {
   margin-right: .5em;
   padding: .4em 0;
   font-weight: bold;
   font-size: 1.8em;
 }
-#topbar .ink-navigation ul.black li a.logoPlaceholder:hover {
+#topbar .ink-navigation ul li a.logoPlaceholder:hover {
   background: none;
 }
-#topbar .ink-navigation ul.black li a.fa-bars {
+#topbar .ink-navigation ul li a.fa-bars {
   margin-right: .8em;
   padding: .46em 0;
   font-size: 21px;
 }
-#topbar .ink-navigation ul.black li a.fa-bars:hover {
+#topbar .ink-navigation ul li a.fa-bars:hover {
   background: none;
 }
-#topbar .ink-navigation ul.black li.active a {
+#topbar .ink-navigation ul li.active a {
+  background: #333;
   color: white;
+}
+#topbar .ink-navigation ul.black.flat {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  background: #222222;
+  filter: none;
 }
 #topbar .ink-navigation:after {
   content: "";
@@ -128,9 +136,15 @@
 .sidebar.ink-navigation ul.menu.vertical li {
   text-transform: uppercase;
 }
+.sidebar.ink-navigation ul.menu.vertical li a {
+  padding: 0;
+  border-bottom: none;
+}
 .sidebar.ink-navigation ul.menu.vertical li.heading {
   margin-top: 1em;
   border-top: 1px solid #ddd;
+}
+.sidebar.ink-navigation ul.menu.vertical li.heading a {
   font-size: 1.25em;
   padding: 1em 0 0;
   color: #555555;
@@ -141,13 +155,13 @@
 .sidebar.ink-navigation ul.menu.vertical li.heading.active ul {
   display: block;
 }
-.sidebar.ink-navigation ul.menu.vertical li.heading ul {
-  font-size: 0.85em;
-}
 .sidebar.ink-navigation ul.menu.vertical li.heading ul a {
   padding: .3em 0;
   border-bottom: none;
-  font-size: .8em;
+  color: #6998c9;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 1em;
 }
 .sidebar.ink-navigation ul.menu.vertical li.search {
   position: relative;
@@ -708,24 +722,13 @@ code {
 }
 
 table.props {
+  padding: 0.7em 1em;
   width: 100%;
   border-collapse: initial;
   background: #eeebe5;
 }
-table.props tr:nth-child(even) td {
-  background: #f2f0eb;
-}
-table.props tr td, table.props tr th {
-  padding: 0.7em 0;
-}
-table.props tr td:first-child, table.props tr th:first-child {
-  padding-left: 1em;
-}
-table.props tr td:last-child, table.props tr th:last-child {
-  padding-right: 1em;
-}
-table.props tr td {
-  line-height: 1.4;
+table.props tr {
+  line-height: 1.5;
 }
 table.props caption {
   padding: 0 0 0 0.4em;
@@ -821,7 +824,6 @@ p.example-title {
   -ms-border-radius: 2px;
   -o-border-radius: 2px;
   border-radius: 2px;
-  *zoom: 1;
 }
 .example .ink-grid {
   padding: 0;
@@ -832,14 +834,6 @@ p.example-title {
   background: #E5EBF0;
   text-align: center;
   line-height: 150px;
-}
-.example .ink-navigation ul.dropdown {
-  position: static;
-}
-.example:after {
-  content: "";
-  display: table;
-  clear: both;
 }
 
 footer {
