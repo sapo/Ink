@@ -89,7 +89,7 @@
 
             &.disabled {
                 a {
-                    color: lighten($nav-color,30%);
+                    color: lighten($nav-color,20%); 
                     background: fade($black,0%);
                     @include text-shadow(darken($nav-color,20%) 0 -1px 0);
                     &:hover { background: none; }
@@ -101,7 +101,7 @@
                 text-decoration: none;
 
                 &:hover {
-                    background: lighten($nav-color,6%);
+                    background: lighten($nav-color,5%);
                 }
             }
         }

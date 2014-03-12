@@ -8,28 +8,23 @@
     display: none !important;
 }
 
-// Removes margin
-.no-margin {
-    margin: 0 !important;
-}
-
 .push-left {
-    float: left;        
+  float: left;        
 }
 .push-center {
-    float: none !important;
-    margin-left: auto;
-    margin-right: auto;
+  float: none !important;
+  margin-left: auto;
+  margin-right: auto;
 }
 .push-right {
-    float: right;
+  float: right;
 }
 .align-left {
-    text-align: left;
+  text-align: left;
 }
 .align-center {
-    text-align: center;
+  text-align: center;
 }
 .align-right {
-    text-align: right;
+  text-align: right;
 }

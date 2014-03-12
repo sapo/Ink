@@ -1,8 +1,9 @@
-.#{$dropdown-class-name}, .#{$navigation-class-name}  {
+.#{$dropdown-class-name} {
 
     position: relative;
+    display: inline-block;
     
-    ul.dropdown-menu, ul.dropdown {
+    ul.dropdown-menu {
 
         position: absolute;
         background: $white;
@@ -11,13 +12,12 @@
         height: auto;
         width: auto;
         min-width: 10em;
-        max-width: 12em;
         @include border-radius($border-radius);
         @include box-shadow(rgba(100,100,100,0.3) 0 0 1px 0);
         padding: 0.3em 0;
         margin-left: 0px;
         padding: 0.35em 0;   
-        font-size: 0.9em;
+        font-size: 0.85em;
 
         li {
             
@@ -95,7 +95,7 @@
                     white-space: nowrap;
 
                     &:after {
-                        content: $fa-var-caret-right;
+                        content: "\f0da";
                         width: auto;
                         margin-left: 0.8em;
                         font-family: FontAwesome;
@@ -112,14 +112,14 @@
                     }
 
                     &:hover {
-                        > ul.dropdown-menu, > ul.dropdown {
+                        > ul.dropdown-menu {
                             display: block;
                         }
                     }
 
                 }
 
-                > ul.dropdown-menu, ul.dropdown {
+                > ul.dropdown-menu {
                     font-size: inherit;
                     position: absolute;
                     top: -0.36em;

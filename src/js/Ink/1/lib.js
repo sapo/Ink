@@ -546,7 +546,6 @@
          * @param {Object} destination
          * @param {Object...} sources
          * @return destination object, enriched with defaults from the sources
-         * @sample Ink_1_extendObj.html 
          */
         extendObj: function(destination, source) {
             if (arguments.length > 2) {

@@ -43,7 +43,7 @@
                 color: $white;
             }
             &.active a { 
-                color: lighten($nav-color,30%);
+                color: lighten($nav-color,20%);
                 @include text-shadow(darken($nav-color,20%) 0 -1px 0);
             }
         }
@@ -58,7 +58,7 @@
             }
             &.active a { 
                 color: darken($nav-color,20%); 
-                @include text-shadow(lighten($nav-color,6%) 0 1px 0);
+                @include text-shadow(lighten($nav-color,8%) 0 1px 0);
             }
         }
     }
