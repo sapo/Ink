@@ -494,6 +494,7 @@
          *
          * @method i
          * @param {String} id
+         * @sample Ink_1_i.html 
          */
         i: function(id) {
             if(!id) {
@@ -512,6 +513,7 @@
          * @param {String}     rule
          * @param {DOMElement} [from]
          * @return {DOMElement}
+         * @sample Ink_1_s.html 
          */
         s: function(rule, from)
         {
@@ -528,6 +530,7 @@
          * @param {String}     rule
          * @param {DOMElement} [from]
          * @return {Array} array of DOMElements
+         * @sample Ink_1_ss.html 
          */
         ss: function(rule, from)
         {
