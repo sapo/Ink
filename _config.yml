@@ -26,31 +26,32 @@ sections:
     components: 
       - title: Grid
         topics:
-          - title: Introduction
+          - title: Basic principles
           - title: Dividing space
           - title: Gutters
           - title: Vertical spacing
           - title: Multiple screen sizes
-          - title: Customizing
       - title: Navigation
         topics:
-          - title: Horizontal menu
-          - title: Vertical menu
+          - title: Basic principles
+          - title: Menus
           - title: Breadcrumbs
           - title: Pagination
           - title: Pills
           - title: Dropdowns
       - title: Typography
         topics:
-          - title: Horizontal menu
+          - title: Basic principles
+          - title: NOT WRITTEN!!!!
       - title: Images
         topics:
-          - title: Introduction
+          - title: Basic principles
           - title: Captions
           - title: Targeting multiple devices
       - title: Tables
         topics:
-          - title: Usaging
+          - title: Basic principles
+          - title: Usagse
           - title: Alternating row colors
           - title: Highlighting rows
           - title: Borders
@@ -58,6 +59,7 @@ sections:
           - title: Combining styles
       - title: Forms
         topics:
+          - title: Basic principles
           - title: Block forms
           - title: Inline forms
           - title: Required fields and warnings
@@ -65,69 +67,72 @@ sections:
           - title: Checkboxes and radio buttons
       - title: Buttons
         topics:
+          - title: Basic principles
           - title: Button group
           - title: Button toolbar
       - title: Alerts
         topics:
+          - title: Basic principles
           - title: Basic alerts
           - title: Block alerts
       - title: Helpers
         topics:
+          - title: Basic principles
           - title: Element alignment
           - title: Content alignment
           - title: Element spacing
           - title: Element visibility  
   - title: Javascript
     components: 
-      - title: Global Object
+      - title: Core
         topics:
           - title: Ink
       - title: Dom manipulation
         topics:
-          - title: Browser
-          - title: Css
-          - title: Element
-          - title: Event
-          - title: Loaded
-          - title: Selector
+          - title: Ink.Dom.Browser
+          - title: Ink.Dom.Css
+          - title: Ink.Dom.Element
+          - title: Ink.Dom.Event
+          - title: Ink.Dom.Loaded
+          - title: Ink.Dom.Selector
       - title: Network communication
         topics:
-          - title: Ajax
-          - title: JsonP
+          - title: Ink.Net.Ajax
+          - title: Ink.Net.JsonP
       - title: User interface
         topics:
-          - title: Aux
-          - title: Carousel
-          - title: Close
-          - title: DatePicker
-          - title: Draggable
-          - title: Droppable
-          - title: FormValidator
-          - title: ImageQuery
-          - title: Modal
-          - title: Pagination
-          - title: ProgressBar
-          - title: SortableList
-          - title: Spy
-          - title: Sticky
-          - title: Table
-          - title: Tabs
-          - title: Toggle
-          - title: Tooltip
-          - title: TreeView
+          - title: Ink.UI.Common
+          - title: Ink.UI.Carousel
+          - title: Ink.UI.Close
+          - title: Ink.UI.DatePicker
+          - title: Ink.UI.Draggable
+          - title: Ink.UI.Droppable
+          - title: Ink.UI.FormValidator
+          - title: Ink.UI.ImageQuery
+          - title: Ink.UI.Modal
+          - title: Ink.UI.Pagination
+          - title: Ink.UI.ProgressBar
+          - title: Ink.UI.SortableList
+          - title: Ink.UI.Spy
+          - title: Ink.UI.Sticky
+          - title: Ink.UI.Table
+          - title: Ink.UI.Tabs
+          - title: Ink.UI.Toggle
+          - title: Ink.UI.Tooltip
+          - title: Ink.UI.TreeView
       - title: Utilities
         topics:
-          - title: Array
-          - title: BinPack
-          - title: Cookie
-          - title: Date
-          - title: Dumper
-          - title: I18n
-          - title: Json
-          - title: String
-          - title: Swipe
-          - title: Url
-          - title: Validator
+          - title: Ink.Util.Array
+          - title: Ink.Util.BinPack
+          - title: Ink.Util.Cookie
+          - title: Ink.Util.Date
+          - title: Ink.Util.Dumper
+          - title: Ink.Util.I18n
+          - title: Ink.Util.Json
+          - title: Ink.Util.String
+          - title: Ink.Util.Swipe
+          - title: Ink.Util.Url
+          - title: Ink.Util.Validator
   - title: Cookbook
   - title: Glossary
 

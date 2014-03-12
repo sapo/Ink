@@ -6,8 +6,8 @@ tags: navigation
 site_root: ../../
 ---
 
-<section id="introduction">
-    <h1 class="fw-300">Introduction</h1>
+<section id="#basic-principles">
+    <h1 class="fw-300">Basic principles</h1>
     <p class="fw-300">
         Like other Ink components, our navigation elements have an easy and intuitive implementation and their structure is a combination of simple and semantic markup with natural language class naming.
     </p>
@@ -16,7 +16,7 @@ site_root: ../../
     <ul class="unstyled" id="breakpoints">
         <li>
             <code>menu</code>
-            A simple menu bar for basic navigation, with has a vertical variant and support for a single sublevel for more complex structures.
+            A simple menu bar for basic navigation, with horizontal and vertical layouts and sub menus.
         </li>
         <li>
             <code>breadcrumbs</code>
@@ -28,7 +28,11 @@ site_root: ../../
         </li>
         <li>
             <code>pills</code>
-            Pill type navigation. Pills are basically the same as menu navigation but look like single "buttons".
+            Pill type navigation. Pills are essentially the same as menu navigation but look like single "buttons".
+        </li>
+        <li>
+            <code>dropdowns</code>
+            Dropdown menu type navigation. Very similar to what you'd find in your operative system.
         </li>
     </ul>
     
@@ -51,6 +55,7 @@ site_root: ../../
                     <code>breadcrumbs</code><br>
                     <code>pagination</code><br>
                     <code>pills</code>
+                    <code>dropdown</code>
                 </td>
                 <td>Defines the type of navigation. <span class="label mandatory"></span></td>
             </tr>
@@ -74,9 +79,22 @@ site_root: ../../
         <li><span class="label context-aware"></span>: These classes are aware of their context and behave differently according to the type of navigation in which they are used.</li>
     </ul>
 
+    <p>All of the navigation elements have the same basic structure:</p>
+
+<p class="example-title">Structure</p>
+{% highlight html %}
+<nav class="ink-navigation">
+    <ul>
+        <li><a href="#">...</a></li>
+        <li><a href="#">...</a></li>
+        ...
+    </ul>
+</nav>
+{% endhighlight %}
+
 </section>
 
-<section>
+<section id="menus">
     <h1>Menus</h1>
     <h2 id="horizontal-menu">Horizontal</h2>
     <ul class="css props inline">
@@ -97,45 +115,118 @@ site_root: ../../
         <li class="prop">red</li>
     </ul>
 
-    <p>Horizontal menus are created with a <code>nav</code> element with the <code>ink-navigation</code> css class with an <code>ul</code> element within it.</p>
-    <p>Adding the <code>menu</code> and <code>horizontal</code> css classes to the <code>ul</code> element will set it as a horizontal menu:</p>
-    <p>Menu items are created by adding list items containing links. Submenus are created with an aditional <code>ul</code> element with the <code>submenu</code> inside one of the <code>ul.menu.horizontal</code> element list items, as in the example below:</p>
+
+
+    <p>Horizontal menu bars are created by adding the <code>menu</code> and <code>horizontal</code> css classes to the <code>ul</code> element within our base structure. By default no styling is added to make customization easier, but you can use on of our themes by adding <code>white</code>, <code>grey</code>, <code>black</code>, <code>blue</code>, <code>green</code>, <code>orange</code> or <code>red</code> css class to the <code>ul</code> element.</p>
+    <p>Menu items are created by adding list items containing links.</p>
+
+<p class="example-title">Code</p>
 {% highlight html %}
 <nav class="ink-navigation">
-    <ul class="menu horizontal">
-        <li class=""><a href="#">...</a></li>
-        <li><a href="#">...</a></li>
-        <li>
-            <a href="#">...</a>
-            <ul class="submenu">
-                <li>...</li>
-                <li>...</li>
-            </ul>
-        </li>
+    <ul class="menu horizontal black">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Post archive</a></li>
     </ul>
 </nav>
 {% endhighlight %}
-<p>If you need you can set menu items as faux headings by adding the <code>heading</code> css class to its corresponding list item as shown below:</p>
-    <p class="example-title">Example</p>
-    <div class="example">
-        <nav class="ink-navigation">
-            <ul class="menu horizontal black">
-                <li class="heading"><a onClick="return false;">Heading</a></li>
-                <li><a onClick="return false;">Home</a></li>
-                <li><a onClick="return false;">Videos</a></li>
-                <li><a onClick="return false;">Photos</a></li>
-                <li>
-                    <a onClick="return false;">More...</a>
-                    <ul class="submenu">
-                        <li><a onClick="return false;">News</a></li>
-                        <li><a onClick="return false;">Books</a></li>
-                        <li><a onClick="return false;">Apps</a></li>
-                    </ul>
-                </li>
-                <li class="disabled"><a href="#">Disabled link</a></li>
+
+<p class="example-title">Demo</p>
+<div class="example">
+    <nav class="ink-navigation">
+        <ul class="menu horizontal black">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Post archive</a></li>
+        </ul>
+    </nav>
+</div>
+
+<p>You can add extra emphasis to a link by adding the <code>heading</code>css class to the corresponding list item.</p>
+
+<p class="example-title">Code</p>
+{% highlight html %}
+<nav class="ink-navigation">
+    <ul class="menu horizontal black">
+        <li class="heading"><a href="#">Home</a></li>
+        <li><a href="#">Post archive</a></li>
+    </ul>
+</nav>
+{% endhighlight %}
+
+
+
+<p class="example-title">Demo</p>
+<div class="example">
+  <nav class="ink-navigation">
+    <ul class="menu horizontal black">
+        <li class="heading"><a href="#">Home</a></li>
+        <li><a href="#">Post archive</a></li>
+        <li><a href="#">About</a></li>
+    </ul>
+</nav>
+</div>
+
+<p>To add a submenu, create an unordered list with the <code>submenu</code> class within the appropriate top level list item:</p>
+
+
+<p class="example-title">Code</p>
+{% highlight html %}
+<nav class="ink-navigation">
+    <ul class="menu horizontal black">
+        <li class="heading"><a href="#">Home</a></li>
+        <li>
+            <a href="#">Post archive</a>
+            <ul class="submenu">
+                <li><a href="#">January</a></li>
+                <li><a href="#">February</a></li>
+                <li><a href="#">March</a></li>
+                <li><a href="#">...</a></li>
             </ul>
-        </nav>
-    </div>
+        </li>
+        <li><a href="#">About</a></li>
+    </ul>
+</nav>
+{% endhighlight %}
+
+<p>You can also set the current state of a link by adding <code>active</code> or <code>disabled</code> classes to the corresponding list item:</p>
+
+<p class="example-title">Code</p>
+{% highlight html %}
+<nav class="ink-navigation">
+    <ul class="menu horizontal black">
+        <li class="heading active"><a href="#">Home</a></li>
+        <li>
+            <a href="#">Post archive</a>
+            <ul class="submenu">
+                <li><a href="#">January</a></li>
+                <li><a href="#">February</a></li>
+                <li><a href="#">March</a></li>
+                <li><a href="#">...</a></li>
+            </ul>
+        </li>
+        <li class="disabled"><a href="#">About</a></li>
+    </ul>
+</nav>
+{% endhighlight %}
+
+<p class="example-title">Demo</p>
+<div class="example">
+  <nav class="ink-navigation">
+    <ul class="menu horizontal black">
+        <li class="heading active"><a href="#">Home</a></li>
+        <li>
+            <a href="#">Post archive</a>
+            <ul class="submenu">
+                <li><a href="#">January</a></li>
+                <li><a href="#">February</a></li>
+                <li><a href="#">March</a></li>
+                <li><a href="#">...</a></li>
+            </ul>
+        </li>
+        <li class="disabled"><a href="#">About</a></li>
+    </ul>
+</nav>
+</div>
+
 
     <h2 class="top-space">Vertical</h2>
     <ul class="css props inline">
@@ -159,66 +250,89 @@ site_root: ../../
         <li class="prop">red</li>
     </ul>
 
-    <div class="column-group gutters">
-        <div class="all-50 small-100 tiny-100">
+    <p>Vertical menus are created by using the <code>vertical</code> css class instead of <code>horizontal</code>.</p>
+
+<p class="example-title">Code</p>
 {% highlight html %}
-<nav class="ink-navigation">
-    <ul class="menu vertical">
-        <li><a href="#">...</a></li>
+  <nav class="ink-navigation">
+    <ul class="menu vertical black">
+        <li class="heading active"><a href="#">Home</a></li>
         <li>
-            <a href="#">...</a>
-            <li>
-            <a href="#">...</a>
-                <ul class="submenu flyout left">
-                    <li>...</li>
-                    <li>...</li>
-                </ul>
-            </li>
-        </li>
-        <li>
-            <a href="#">...</a>
+            <a href="#">Post archive</a>
             <ul class="submenu">
-                <li>...</li>
-                <li>...</li>
+                <li><a href="#">January</a></li>
+                <li><a href="#">February</a></li>
+                <li><a href="#">March</a></li>
+                <li><a href="#">...</a></li>
             </ul>
         </li>
+        <li class="disabled"><a href="#">About</a></li>
     </ul>
-</nav>{% endhighlight %}
-        </div>
+</nav>
+{% endhighlight %}
 
-        <div class="all-50 small-100 tiny-100">
+<div class="column-group horizontal-gutters">
+    <div class="all-50 small-100 tiny-100">
             <p class="example-title">Example</p>
-            <div class="example">
-                <nav class="ink-navigation">
-                    <ul class="menu vertical black">
-                        <li class="heading"><a href="#">Heading</a></li>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Videos</a></li>
-                        <li>
-                            <a href="#">Fotos</a>
-                            <ul class="submenu flyout left">
-                                <li><a href="#">Arquitecture</a></li>
-                                <li><a href="#">Business</a></li>
-                                <li><a href="#">Wild life</a></li>
-                                <li><a href="#">Sports</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#">More...</a>
-                            <ul class="submenu">
-                                <li><a href="#">News</a></li>
-                                <li><a href="#">Books</a></li>
-                                <li><a href="#">Apps</a></li>
-                            </ul>
-                        </li>
-                        <li class="disabled"><a href="#">Disabled link</a></li>
-                    </ul>
-                </nav>
-            </div>
-            <p>To obtain a flyout style submenu add the <code>flyout</code> class to the <code>submenu</code> as shown in the example above.</p>
-            <p><code>heading</code>, <code>disabled</code> and <code>active</code> classes can be added to the <code>&lt;li&gt;</code> to achieve the desired state.</p>
-        </div>
+    <div class="example">
+          <nav class="ink-navigation">
+    <ul class="menu vertical black">
+        <li class="heading active"><a href="#">Home</a></li>
+        <li>
+            <a href="#">Post archive</a>
+            <ul class="submenu">
+                <li><a href="#">January</a></li>
+                <li><a href="#">February</a></li>
+                <li><a href="#">March</a></li>
+                <li><a href="#">...</a></li>
+            </ul>
+        </li>
+        <li class="disabled"><a href="#">About</a></li>
+    </ul>
+</nav>
+</div>
+<p>By default, in the vertical variant, sub menus behave like an accordion, pushing any items after them down, but you can choose to use a fly out sub menu style by adding the <code>flyout</code> css class to the sub menu <code>ul</code> element.</p>
     </div>
+    <div class="all-50 small-100 tiny-100">
+    <p class="example-title">Example</p>
+    <div class="example">
+          <nav class="ink-navigation">
+    <ul class="menu vertical black">
+        <li class="heading active"><a href="#">Home</a></li>
+        <li>
+            <a href="#">Post archive</a>
+            <ul class="submenu flyout left">
+                <li><a href="#">January</a></li>
+                <li><a href="#">February</a></li>
+                <li><a href="#">March</a></li>
+                <li><a href="#">...</a></li>
+            </ul>
+        </li>
+        <li class="disabled"><a href="#">About</a></li>
+    </ul>
+</nav>
+</div>
+<p>You can choose to which side the sub menu will open to, by adding either the <code>left</code> or <code>right</code> css class.</p>
+    </div>
+</div>
+<p class="example-title">Code</p>
+{% highlight html %}
+  <nav class="ink-navigation">
+    <ul class="menu vertical black">
+        <li class="heading active"><a href="#">Home</a></li>
+        <li>
+            <a href="#">Post archive</a>
+            <ul class="submenu flyout left">
+                <li><a href="#">January</a></li>
+                <li><a href="#">February</a></li>
+                <li><a href="#">March</a></li>
+                <li><a href="#">...</a></li>
+            </ul>
+        </li>
+        <li class="disabled"><a href="#">About</a></li>
+    </ul>
+</nav>
+{% endhighlight %}
 </section>
 
 <section class="breadcrumbs">
@@ -237,7 +351,7 @@ site_root: ../../
         <li class="prop">orange</li>
         <li class="prop">red</li>
     </ul>
-
+<p>Breadcrumb navigation is created by using the <code>breadcrumbs</code> css class in the <code>ul</code> element:</p>
     {% highlight html %}
 <nav class="ink-navigation">
     <ul class="breadcrumbs black">
@@ -259,7 +373,13 @@ site_root: ../../
             </ul>
         </nav>
     </div>
-
+<p>Link separators are added automatically and are made with css and can be overridden like this:</p>
+<p class="example-title">Code</p>
+{% highlight css %}
+.ink-navigation .breadcrumbs li:after {
+  content: '/'; /* this is the separator character */
+}
+{% endhighlight %}
 </section>
 
 
@@ -285,29 +405,90 @@ site_root: ../../
         <li class="prop">red</li>
     </ul>
 
-    {% highlight html %}
+
+<p>Pagination type navigation is created by using the <code>pagination</code> css class in the <code>ul</code> element, and by default has a button bar presentation:</p>
+
+<p class="example-title">Code</p>
+{% highlight html %}
 <nav class="ink-navigation">
     <ul class="pagination black">
-        <li class="previous disabled"><a href="#">Previous</a></li>
+        <li class="disabled"><a href="#">Previous</a></li>
         <li class="active"><a href="#">1</a></li>
         <li><a href="#">2</a></li>
         <li><a href="#">3</a></li>
-        <li class="next"><a href="#">Next</a></li>
+        <li><a href="#">Next</a></li>
     </ul>
-</nav>{% endhighlight %}
-    
-    <p class="example-title">Example</p>
-    <div class="example">
-        <nav class="ink-navigation">
-            <ul class="pagination black">
-                <li class="previous disabled"><a href="#">Previous</a></li>
-                <li class="active"><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li class="next"><a href="#">Next</a></li>
-            </ul>
-        </nav>
-    </div>
+</nav>
+{% endhighlight %}
+
+<p class="example-title">Demo</p>
+<div class="example">
+  <nav class="ink-navigation">
+    <ul class="pagination black">
+        <li class="disabled"><a href="#">Previous</a></li>
+        <li class="active"><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">Next</a></li>
+    </ul>
+</nav>
+</div>
+
+<h2 class="half-top-space">Dotted</h2>
+<p>To get a dotted style of pagination, add the <code>dotted</code> css class to the <code>ul</code> element:</p>
+
+<p class="example-title">Code</p>
+{% highlight html %}
+<nav class="ink-navigation">
+    <ul class="pagination dotted">
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+        <li><a href="#">6</a></li>
+    </ul>
+</nav> 
+{% endhighlight %}
+
+<p class="example-title">Demo</p>
+<div class="example">
+<nav class="ink-navigation">
+    <ul class="pagination dotted">
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+        <li><a href="#">6</a></li>
+    </ul>
+</nav>  
+</div>
+
+<h2 class="half-top-space">Chevron</h2>
+<p>To get a chevron style of pagination, add the <code>dotted</code> css class to the <code>ul</code> element:</p>
+
+<p class="example-title">Code</p>
+{% highlight html %}
+<nav class="ink-navigation">
+    <ul class="pagination chevron">
+        <li class="previous"><a href="#"><span>Previous</span></a></li>
+        <li class="next"><a href="#"><span>Next</span></a></li>
+    </ul>
+</nav> 
+{% endhighlight %}
+
+<p class="example-title">Demo</p>
+<div class="example">
+ <nav class="ink-navigation">
+        <ul class="pagination chevron black">
+            <li class="previous"><a href="#"><span>Previous</span></a></li>
+            <li class="next"><a href="#"><span>Next</span></a></li>
+        </ul>
+    </nav>
+</div>
+
+
 
 </section>
 
@@ -329,7 +510,10 @@ site_root: ../../
         <li class="prop">red</li>
     </ul>
 
-    {% highlight html %}
+<p>Pills type navigation is created by using the <code>pills</code> css class in the <code>ul</code> element, and by default has a button bar presentation:</p>
+
+<p class="example-title">Code</p>
+{% highlight html %}
 <nav class="ink-navigation">
     <ul class="pagination pills black">
         <li class="disabled"><a href="#">Pill disabled</a></li>
@@ -338,19 +522,251 @@ site_root: ../../
         <li><a href="#">Pill 3</a></li>
         <li><a href="#">Pill 4</a></li>
     </ul>
-</nav>{% endhighlight %}
-    
-    <p class="example-title">Example</p>
-    <div class="example">
-        <nav class="ink-navigation">
-            <ul class="pagination pills black">
-                <li class="disabled"><a href="#">Pill disabled</a></li>
-                <li class="active"><a href="#">Pill 1</a></li>
-                <li><a href="#">Pill 2</a></li>
-                <li><a href="#">Pill 3</a></li>
-                <li><a href="#">Pill 4</a></li>
-            </ul>
-        </nav>
-    </div>
+</nav>
+{% endhighlight %}
 
+<p class="example-title">Demo</p>
+<div class="example">
+    <nav class="ink-navigation">
+        <ul class="pagination pills black">
+            <li class="disabled"><a href="#">Pill disabled</a></li>
+            <li class="active"><a href="#">Pill 1</a></li>
+            <li><a href="#">Pill 2</a></li>
+            <li><a href="#">Pill 3</a></li>
+            <li><a href="#">Pill 4</a></li>
+        </ul>
+    </nav>
+</div>
+
+</section>
+
+<section id="dropdowns">
+    <h1>Dropdowns</h1>
+    <ul class="css props inline">
+        <li class="heading">Css classes: </li>
+        <li class="prop">ink-navigation</li>
+        <li class="prop">dropdown</li>
+        <li class="prop">active</li>
+        <li class="prop">disabled</li>
+        <li class="prop">submenu</li>
+        <li class="prop">heading</li>
+        <li class="prop">separator-above</li>
+        <li class="prop">separator-below</li>
+        <li class="prop">white</li>
+        <li class="prop">grey</li>
+        <li class="prop">black</li>
+        <li class="prop">blue</li>
+        <li class="prop">green</li>
+        <li class="prop">orange</li>
+        <li class="prop">red</li>
+    </ul>
+
+<p>Dropdowns use the same base structure as the other navigation types, but have a few extra classes to handle its higher complexity. Adding the <code>dropdown</code> css class to the top <code>ul</code> element will set the basic styling and behaviour of the dropdown menu.</p>
+
+<div class="column-group horizontal-gutters">
+    <div class="extra-large-50 large-50 medium-50 small-100 tiny-100">
+<p class="example-title">Code</p>
+{% highlight html %}
+<div class="ink-navigation">
+    <ul class="dropdown">
+        <li><a href="#">Back</a></li>
+        <li><a href="#">Forward</a></li>
+        <li><a href="#">Copy</a></li>
+        <li><a href="#">Cut</a></li>
+        <li><a href="#">Paste</a></li>
+    </ul>
+</div>
+{% endhighlight %}  
+    </div>
+    <div class="extra-large-50 large-50 medium-50 small-100 tiny-100">
+        <p class="example-title">Demo</p>
+        <div class="example">
+          <div class="ink-navigation">
+                <ul class="dropdown">
+                    <li><a href="#">Back</a></li>
+                    <li><a href="#">Forward</a></li>
+                    <li><a href="#">Copy</a></li>
+                    <li><a href="#">Cut</a></li>
+                    <li><a href="#">Paste</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<p>If you need to organize your menu items into groups, use either the <code>separator-above</code> or <code>separator-below</code>, to create a separating line:</p>
+
+<div class="column-group horizontal-gutters">
+    <div class="extra-large-50 large-50 medium-50 small-100 tiny-100">
+<p class="example-title">Code</p>
+{% highlight html %}
+<div class="ink-navigation">
+    <ul class="dropdown">
+        <li><a href="#">Back</a></li>
+        <li><a href="#">Forward</a></li>
+        <li class="separator-above"><a href="#">Copy</a></li>
+        <li><a href="#">Cut</a></li>
+        <li><a href="#">Paste</a></li>
+    </ul>
+</div>
+{% endhighlight %}  
+    </div>
+    <div class="extra-large-50 large-50 medium-50 small-100 tiny-100">
+        <p class="example-title">Demo</p>
+        <div class="example">
+          <div class="ink-navigation">
+                <ul class="dropdown">
+                    <li><a href="#">Back</a></li>
+                    <li><a href="#">Forward</a></li>
+                    <li class="separator-above"><a href="#">Copy</a></li>
+                    <li><a href="#">Cut</a></li>
+                    <li><a href="#">Paste</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p>Menu section headings are also available:</p>
+
+<div class="column-group horizontal-gutters">
+    <div class="extra-large-50 large-50 medium-50 small-100 tiny-100">
+<p class="example-title">Code</p>
+{% highlight html %}
+<div class="ink-navigation">
+    <ul class="dropdown">
+        <ul class="dropdown">
+            <li class="heading">Browse</li>
+            <li><a href="#">Back</a></li>
+            <li><a href="#">Forward</a></li>
+            <li class="heading separator-above">Clipboard</li>
+            <li><a href="#">Copy</a></li>
+            <li><a href="#">Cut</a></li>
+            <li><a href="#">Paste</a></li>
+        </ul>
+    </ul>
+</div>
+{% endhighlight %}  
+    </div>
+    <div class="extra-large-50 large-50 medium-50 small-100 tiny-100">
+        <p class="example-title">Demo</p>
+        <div class="example">
+          <div class="ink-navigation">
+                <ul class="dropdown">
+                    <li class="heading">Browse</li>
+                    <li><a href="#">Back</a></li>
+                    <li><a href="#">Forward</a></li>
+                    <li class="heading separator-above">Clipboard</li>
+                    <li><a href="#">Copy</a></li>
+                    <li><a href="#">Cut</a></li>
+                    <li><a href="#">Paste</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p>Submenus are created by adding the <code>submenu</code> class to one of your menu items and creating another dropdown within it:
+
+<div class="column-group horizontal-gutters">
+    <div class="extra-large-50 large-50 medium-50 small-100 tiny-100">
+<p class="example-title">Code</p>
+{% highlight html %}
+<div class="ink-navigation">
+    <ul class="dropdown">
+        <li class="heading">Browse</li>
+        <li><a href="#">Back</a></li>
+        <li><a href="#">Forward</a></li>
+        <li class="heading separator-above">Clipboard</li>
+        <li><a href="#">Copy</a></li>
+        <li><a href="#">Cut</a></li>
+        <li><a href="#">Paste</a></li>
+        <li class="heading">Screenshot</li>
+        <li class="submenu separator-above">
+            <a href="#">Options</a>
+            <ul class="dropdown">
+                <li><a href="#">Whole screen</a></li>
+                <li><a href="#">Portion of screen</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+{% endhighlight %}  
+    </div>
+    <div class="extra-large-50 large-50 medium-50 small-100 tiny-100">
+        <p class="example-title">Demo</p>
+        <div class="example">
+          <div class="ink-navigation">
+                <ul class="dropdown">
+                    <li class="heading">Browse</li>
+                    <li><a href="#">Back</a></li>
+                    <li><a href="#">Forward</a></li>
+                    <li class="heading separator-above">Clipboard</li>
+                    <li><a href="#">Copy</a></li>
+                    <li><a href="#">Cut</a></li>
+                    <li><a href="#">Paste</a></li>
+                    <li class="heading">Screenshot</li>
+                    <li class="submenu separator-above">
+                        <a href="#">Options</a>
+                        <ul class="dropdown">
+                            <li><a href="#">Whole screen</a></li>
+                            <li><a href="#">Portion of screen</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<p>Submenus can be nested to create multiple sub level complex menu structures.</p>
+<p>As in other components you can set the state of a menu item with the <code>active</code> or <code>disabled</code> classes, and use our navigation themes:</p>
+<div class="column-group horizontal-gutters">
+    <div class="extra-large-50 large-50 medium-50 small-100 tiny-100">
+<p class="example-title">Code</p>
+{% highlight html %}
+<div class="ink-navigation">
+    <ul class="dropdown red">
+        <li class="heading">Browse</li>
+        <li class="disabled"><a href="#">Back</a></li>
+        <li><a href="#">Forward</a></li>
+        <li class="heading separator-above">Clipboard</li>
+        <li><a href="#">Copy</a></li>
+        <li class="active"><a href="#">Cut</a></li>
+        <li><a href="#">Paste</a></li>
+        <li class="heading">Screenshot</li>
+        <li class="submenu separator-above">
+            <a href="#">Options</a>
+            <ul class="dropdown">
+                <li><a href="#">Whole screen</a></li>
+                <li><a href="#">Portion of screen</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+{% endhighlight %}  
+    </div>
+    <div class="extra-large-50 large-50 medium-50 small-100 tiny-100">
+        <p class="example-title">Demo</p>
+        <div class="example">
+          <div class="ink-navigation">
+                <ul class="dropdown red">
+                    <li class="heading">Browse</li>
+                    <li class="disabled"><a href="#">Back</a></li>
+                    <li><a href="#">Forward</a></li>
+                    <li class="heading separator-above">Clipboard</li>
+                    <li><a href="#">Copy</a></li>
+                    <li class="active"><a href="#">Cut</a></li>
+                    <li><a href="#">Paste</a></li>
+                    <li class="heading">Screenshot</li>
+                    <li class="submenu separator-above">
+                        <a href="#">Options</a>
+                        <ul class="dropdown">
+                            <li><a href="#">Whole screen</a></li>
+                            <li><a href="#">Portion of screen</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
 </section>

@@ -1,0 +1,21 @@
+
+// [3.0.0]: This is an orphan file. Include it in icons.less, if we decide to support the old way to do icons (using the icon-* classes)
+// This file is to ensure compatibility with the old way to add icons to elements in Ink. The old way is as follows:
+//     <i class="icon-xyz"></i>
+// When we upgraded FontAwesome, we began to require users to use
+//     <i class="icon icon-xyz"></i>
+// Which is backwards-incompatible. This fix adds the rule required for the old "icon" treatment.
+
+[class^="icon-"],
+[class*=" icon-"] {
+    // A copy of the class in src/less/modules/icons/core.less, applied to icon-* classes
+    display: inline-block;
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+

@@ -6,8 +6,8 @@ tags: image, caption
 site_root: ../../
 ---
 
-<section id="introduction">
-  <h1>Introduction</h1>
+<section id="#basic-principles">
+  <h1>Basic principles</h1>
   <p>Images are an essential comunication tool and as such, Ink provides a few simple styling and functional solutions to handle them in a sematic fashion.</p>
 
   <table class="props css">
@@ -45,6 +45,7 @@ site_root: ../../
     <li><span class="label mandatory"></span>: This class must be used for the {{page.title | downcase }} to work.</li>
   </ul>
   <p>We chose to make use of HTML5 tags, so the markup structure for our images element is:</p> 
+  <p class="example-title">Structure</p>
 {% highlight html %}
 <figure>
   <img src="{{ site.url }}assets/img/examples/sky.jpg" alt="example image">
@@ -65,12 +66,17 @@ site_root: ../../
 
   <div class="column-group horizontal-gutters">
     <div class="extra-large-50 large-50 medium-50 small-100 tiny-100">
-      <figure class="ink-image bottom-space">
+      <p class="example-title">Demo</p>
+      <div class="example bottom-space">
+        <figure class="ink-image">
         <figcaption>
           This caption is placed before the image
         </figcaption>
         <img src="{{ site.url }}assets/img/examples/tiny/sky.jpg" class="imagequery">
       </figure>
+      </div>
+
+<p class="example-title">Code</p>
 {% highlight html %}
 <figure class="ink-image">
   <figcaption>
@@ -79,24 +85,29 @@ site_root: ../../
   <img src="{{ site.url }}assets/img/examples/sky.jpg">
 </figure>
 {% endhighlight %}
+
     </div>
 
     <div class="extra-large-50 large-50 medium-50 small-100 tiny-100">
-      <figure class="ink-image bottom-space">
+<p class="example-title">Demo</p>
+      <div class="example bottom-space">
+        <figure class="ink-image">
         <img src="{{ site.url }}assets/img/examples/tiny/sky.jpg" class="imagequery">
         <figcaption>
           This caption is placed after the image.
         </figcaption>
       </figure>
+      </div>      
+<p class="example-title">Code</p>
 {% highlight html %}
 <figure class="ink-image">
   <img src="{{ site.url }}assets/img/examples/sky.jpg">
   <figcaption>
     This caption is placed after the image.
   </figcaption>
-</figure>   
-{% endhighlight %}      
-    </div>
+</figure>  
+{% endhighlight %}    
+</div>
   </div>
 <p>Adding the <code>dark</code> css class to the <code>figcaption</code> element will set an alternative dark caption theme:</p>
       <figure class="ink-image bottom-space">
@@ -156,7 +167,6 @@ site_root: ../../
   <p>By default we'll load the smallest image, so that mobile phones and </p>
 <p class="example-title">Javascript</p>
 
-{% include js/Ink_UI_ImageQuery_1.html %}
 
 {% highlight javascript %}
 <script>
@@ -185,27 +195,4 @@ site_root: ../../
 {% endhighlight %}
 
 </section>
-<script>
-  var imagequery = new Ink.UI.ImageQuery('.imagequery', {
-    src: '{{ site.url }}assets/img/examples/{:label}/{:file}',
-    queries: [
-      {
-          label: 'small',
-          width: 640
-      },
-      {
-          label: 'medium',
-          width: 960
-      },
-      {
-          label: 'large',
-          width: 1200
-      },
-      {
-          label: 'extra-large',
-          width: 1300
-      }
-    ]
-  });
-</script>
 
