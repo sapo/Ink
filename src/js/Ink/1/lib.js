@@ -434,7 +434,7 @@
          * @param {Function}  fn
          * @param {Object}    context
          * @return {Function}
-         * @sample: Ink_1_bind.html 
+         * @sample Ink_1_bind.html 
          */
         bind: function(fn, context) {
             var args = Array.prototype.slice.call(arguments, 2);
