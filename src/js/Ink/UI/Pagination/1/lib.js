@@ -36,6 +36,8 @@ Ink.createModule('Ink.UI.Pagination', '1',
      * @param {Number}   [options.itemsPerPage]      number of items per page.
      * @param {Number}   [options.maxSize]           If passed, only shows at most maxSize items. displays also first|prev page and next page|last buttons
      * @param {Number}   [options.start]             start page. defaults to 1
+     * @param {Boolean}  [options.dotted=false]      whether the pagination is dotted. Implies sideButtons=false
+     * @param {Boolean}  [options.sideButtons=true]  whether to show the first, last, previous, next, previousPage and lastPage buttons. Do not use together with maxSize.
      * @param {String}   [options.firstLabel]        label to display on first page button
      * @param {String}   [options.lastLabel]         label to display on last page button
      * @param {String}   [options.previousLabel]     label to display on previous button
@@ -67,6 +69,8 @@ Ink.createModule('Ink.UI.Pagination', '1',
             itemsPerPage:      ['Integer', null],
             maxSize:           ['Integer', null],
             start:             ['Integer', 1],
+            dotted:            ['Boolean', false],
+            sideButtons:       ['Boolean', true],
             firstLabel:        ['String', 'First'],
             lastLabel:         ['String', 'Last'],
             previousLabel:     ['String', 'Previous'],
@@ -107,20 +111,16 @@ Ink.createModule('Ink.UI.Pagination', '1',
         } else if (Common.isInteger(this._options.size)) {
             this._size = this._options.size;
         } else {
-            throw new TypeError('Ink.UI.Pagination: Please supply a size option or totalItemCount and itemsPerPage options.');
+            Ink.error('Ink.UI.Pagination: Please supply a size option or totalItemCount and itemsPerPage options.');
+            this._size = 0;
         }
 
-        if (!Common.isInteger(this._options.start) && this._options.start > 0 && this._options.start <= this._size) {
-            throw new TypeError('start option is a required integer between 1 and size!');
+        if (this._options.maxSize && this._options.sideButtons === false) {
+            Ink.error('Ink.UI.Pagination: You cannot provide both maxSize and disable the sideButtons option.' +
+                     this._options.dotted ? ' (note: enabling "dotted" option disables sideButtons)' : '');
         }
 
-        if (this._options.maxSize && !Common.isInteger(this._options.maxSize) && this._options.maxSize > 0) {
-            throw new TypeError('maxSize option is a positive integer!');
-        }
-
-        else if (this._size < 0) {
-            throw new RangeError('size option must be equal or more than 0!');
-        }
+        if (this._options.dotted) { this._options.sideButtons = false; }
 
         this.setOnChange(this._options.onChange);
 
@@ -231,8 +231,12 @@ Ink.createModule('Ink.UI.Pagination', '1',
             }
 
             // update prev and next
-            Css.setClassName(this._prevEl, this._options.disabledClass, !this.hasPrevious());
-            Css.setClassName(this._nextEl, this._options.disabledClass, !this.hasNext());
+            if (this._prevEl) {
+                Css.setClassName(this._prevEl, this._options.disabledClass, !this.hasPrevious());
+            }
+            if (this._nextEl) {
+                Css.setClassName(this._nextEl, this._options.disabledClass, !this.hasNext());
+            }
         },
 
         /**
@@ -245,8 +249,8 @@ Ink.createModule('Ink.UI.Pagination', '1',
         _generateMarkup: function(el) {
             Css.addClassName(el, 'ink-navigation');
 
-            var ulEl,liEl,
-                hasUlAlready = false;
+            var ulEl;
+            var hasUlAlready = false;
             if( ( ulEl = Selector.select('.' + this._options.paginationClass,el)).length < 1 ){
                 ulEl = document.createElement(this._options.parentTag);
                 Css.addClassName(ulEl, this._options.paginationClass);
@@ -255,44 +259,31 @@ Ink.createModule('Ink.UI.Pagination', '1',
                 ulEl = ulEl[0];
             }
 
-            if (this._options.maxSize) {
-                liEl = document.createElement(this._options.childTag);
-                liEl.appendChild( genAEl(this._options.firstLabel) );
-                this._firstEl = liEl;
-                Css.addClassName(liEl, this._options.firstClass);
+            var createLiEl = Ink.bind(function (name) {
+                var liEl = document.createElement(this._options.childTag);
+                liEl.appendChild( genAEl(this._options[name + 'Label']) );
+                Css.addClassName(liEl, this._options[name + 'Class']);
                 ulEl.appendChild(liEl);
+                return liEl;
+            }, this);
 
-                liEl = document.createElement(this._options.childTag);
-                liEl.appendChild( genAEl(this._options.previousPageLabel) );
-                this._prevPageEl = liEl;
-                Css.addClassName(liEl, this._options.previousPageClass);
-                ulEl.appendChild(liEl);
-            }
+            if (!this._options.dotted) {
+                if (this._options.maxSize) {
+                    this._firstEl = createLiEl('first');
+                    this._prevPageEl = createLiEl('previousPage');
+                }
 
-            liEl = document.createElement(this._options.childTag);
-            liEl.appendChild( genAEl(this._options.previousLabel) );
-            this._prevEl = liEl;
-            Css.addClassName(liEl, this._options.previousClass);
-            ulEl.appendChild(liEl);
+                if (this._options.sideButtons) {
+                    this._prevEl = createLiEl('previous');
+                    this._nextEl = createLiEl('next');
+                }
 
-            liEl = document.createElement(this._options.childTag);
-            liEl.appendChild( genAEl(this._options.nextLabel) );
-            this._nextEl = liEl;
-            Css.addClassName(liEl, this._options.nextClass);
-            ulEl.appendChild(liEl);
-
-            if (this._options.maxSize) {
-                liEl = document.createElement(this._options.childTag);
-                liEl.appendChild( genAEl(this._options.nextPageLabel) );
-                this._nextPageEl = liEl;
-                Css.addClassName(liEl, this._options.nextPageClass);
-                ulEl.appendChild(liEl);
-
-                liEl = document.createElement(this._options.childTag);
-                liEl.appendChild( genAEl(this._options.lastLabel) );
-                this._lastEl = liEl;
-                Css.addClassName(liEl, this._options.lastClass);
-                ulEl.appendChild(liEl);
+                if (this._options.maxSize) {
+                    this._nextPageEl = createLiEl('nextPage');
+                    this._lastEl = createLiEl('last');
+                }
+            } else {
+                Css.addClassName(ulEl, 'dotted');
             }
 
             if( !hasUlAlready ){

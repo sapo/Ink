@@ -37,11 +37,26 @@ Ink.requireModules(['Ink.UI.Pagination_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1',
         equal(component._calculateSize(10, 5), 2);
     });
 
-    test('_calculateSize called to calculate page count when itemsPerPage and totalItemCount options passed', sinon.test(function () {
+    test('_calculateSize called to calculate page count when itemsPerPage and totalItemCount options passed', function () {
         var container = InkElement.create('div');
-        var spy = this.spy(Pagination.prototype, '_calculateSize');
+        var spy = sinon.spy(Pagination.prototype, '_calculateSize');
         var pagination = new Pagination(container, {itemsPerPage: 5, totalItemCount: 64});
-        ok(spy.calledOnce)
+        ok(spy.calledOnce, '_calculateSize was called');
         deepEqual(spy.lastCall.args, [64, 5]);
-    }));
+        spy.restore();
+    });
+
+    testPagination('When Pagination has the "sideButtons" option set to false, no previous/next <li> elements are created', function (comp, container) {
+        equal(Ink.ss('.previous,.next', container).length, 0, 'no previous nor next elements were created');
+        equal(Ink.ss('li', container).length, 2, 'no previous nor next elements were created');
+    }, { sideButtons: false, size: 2});
+
+    testPagination('When Pagination has the "dotted" option, no previous/next <li> elements are created', function (comp, container) {
+        equal(Ink.ss('.previous,.next', container).length, 0, 'no previous nor next elements were created');
+        equal(Ink.ss('li', container).length, 2, 'no previous nor next elements were created');
+    }, {dotted: true, size: 2});
+
+    testPagination('When Pagination has the "dotted" option the <ul> gets the "dotted" class', function (comp, container) {
+        ok(Css.hasClassName(Ink.s('ul', container), 'dotted'), 'the UL has the "dotted" className');
+    }, {dotted: true});
 });
