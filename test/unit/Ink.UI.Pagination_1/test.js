@@ -59,4 +59,13 @@ Ink.requireModules(['Ink.UI.Pagination_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1',
     testPagination('When Pagination has the "dotted" option the <ul> gets the "dotted" class', function (comp, container) {
         ok(Css.hasClassName(Ink.s('ul', container), 'dotted'), 'the UL has the "dotted" className');
     }, {dotted: true});
+
+    testPagination('When Pagination has the "chevron" option, the <ul> gets the "chevron" class', function (_, container) {
+        ok(Css.hasClassName(Ink.s('ul', container), 'chevron'), 'has "chevron" class');
+    }, { chevron: true });
+    testPagination('When Pagination has the "chevron" option, the "next" and "previous" <li>s have <span> tags inside their <a> tags', function (_, container) {
+        ok(Ink.s('li.previous span a', container), '.previous is wrapped in a span');
+        ok(Ink.s('li.next span a', container), '.next is wrapped too');
+        ok(!Ink.s('li:not(.previous):not(.next) span a', container), 'sanity check: everything else is not.');
+    }, { chevron: true });
 });

@@ -36,6 +36,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
      * @param {Number}   [options.itemsPerPage]      number of items per page.
      * @param {Number}   [options.maxSize]           If passed, only shows at most maxSize items. displays also first|prev page and next page|last buttons
      * @param {Number}   [options.start]             start page. defaults to 1
+     * @param {Boolean}  [options.chevron=false]     whether the pagination is has chevron buttons.
      * @param {Boolean}  [options.dotted=false]      whether the pagination is dotted. Implies sideButtons=false
      * @param {Boolean}  [options.sideButtons=true]  whether to show the first, last, previous, next, previousPage and lastPage buttons. Do not use together with maxSize.
      * @param {String}   [options.firstLabel]        label to display on first page button
@@ -70,6 +71,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
             maxSize:           ['Integer', null],
             start:             ['Integer', 1],
             dotted:            ['Boolean', false],
+            chevron:           ['Boolean', false],
             sideButtons:       ['Boolean', true],
             firstLabel:        ['String', 'First'],
             lastLabel:         ['String', 'Last'],
@@ -201,6 +203,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
                 for (i = 0, f = this._size; i < f; ++i) {
                     liEl = document.createElement(this._options.childTag);
                     liEl.appendChild( genAEl( this._options.numberFormatter(i), i) );
+                    // add "active" class if this is the active element.
                     Css.setClassName(liEl, this._options.activeClass, i === this._current);
                     this._ulEl.insertBefore(liEl, this._nextEl);
                     liEls.push(liEl);
@@ -259,9 +262,16 @@ Ink.createModule('Ink.UI.Pagination', '1',
                 ulEl = ulEl[0];
             }
 
-            var createLiEl = Ink.bind(function (name) {
+            var createLiEl = Ink.bind(function (name, options) {
                 var liEl = document.createElement(this._options.childTag);
-                liEl.appendChild( genAEl(this._options[name + 'Label']) );
+                var aEl = genAEl(this._options[name + 'Label']);
+                if (options && options.wrapInSpan) {
+                    var spanEl = Element.create('span');
+                    spanEl.appendChild(aEl);
+                    liEl.appendChild(spanEl);
+                } else {
+                    liEl.appendChild( aEl );
+                }
                 Css.addClassName(liEl, this._options[name + 'Class']);
                 ulEl.appendChild(liEl);
                 return liEl;
@@ -274,17 +284,18 @@ Ink.createModule('Ink.UI.Pagination', '1',
                 }
 
                 if (this._options.sideButtons) {
-                    this._prevEl = createLiEl('previous');
-                    this._nextEl = createLiEl('next');
+                    this._prevEl = createLiEl('previous', { wrapInSpan: this._options.chevron });
+                    this._nextEl = createLiEl('next', { wrapInSpan: this._options.chevron });
                 }
 
                 if (this._options.maxSize) {
                     this._nextPageEl = createLiEl('nextPage');
                     this._lastEl = createLiEl('last');
                 }
-            } else {
-                Css.addClassName(ulEl, 'dotted');
             }
+
+            Css.setClassName(ulEl, 'dotted', this._options.dotted);
+            Css.setClassName(ulEl, 'chevron', this._options.chevron);
 
             if( !hasUlAlready ){
                 el.appendChild(ulEl);
@@ -321,10 +332,10 @@ Ink.createModule('Ink.UI.Pagination', '1',
                 this.setCurrent(this._size - 1);
             }
             else if (isPrevPage || isNextPage) {
-                this.setCurrent( (isPrevPage ? -1 : 1) * this._options.maxSize, true);
+                this.setCurrent( (isPrevPage ? -1 : 1) * this._options.maxSize, true /* relative */);
             }
             else if (isPrev || isNext) {
-                this.setCurrent(isPrev ? -1 : 1, true);
+                this.setCurrent(isPrev ? -1 : 1, true /* relative */);
             }
             else {
                 var aElem = Ink.s('[data-index]', liEl);
