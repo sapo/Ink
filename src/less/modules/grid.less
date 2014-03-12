@@ -3,9 +3,12 @@
 // HELPER CLASSES
 
 // set content alignment
-.content-left { text-align: left; }
-.content-center { text-align: center;}
-.content-right { text-align: right; }
+.content-left,
+.align-left { text-align: left; }
+.content-center,
+.align-center { text-align: center;}
+.content-right,
+.align-right { text-align: right; }
 
 // show hidden element
 .show-all {
@@ -28,8 +31,14 @@
 // LARGE SCREENS ( width > 960px )
 #ink > #grid > .set-breakpoint (@large-class-prefix,@large-min-width,@large-max-width,@large-gutter-width,true,@medium-max-width+1);
 
+// EXTRA-LARGE SCREENS ( width > 650px and < 959px ) - To use this breakpoint, uncomment the line below and recompile the CSS
+// #ink > #grid > .set-breakpoint (@extra-large-class-prefix,@extra-large-min-width,@extra-large-max-width,@extra-large-gutter-width);
+
 // MEDIUM SCREENS ( width > 650px and < 959px )
 #ink > #grid > .set-breakpoint (@medium-class-prefix,@medium-min-width,@medium-max-width,@medium-gutter-width);
 
-// SMALL SCREENS ( width < 649px )
+// SMALL SCREENS ( width > 320px and width < 649px )
 #ink > #grid > .set-breakpoint (@small-class-prefix,@small-min-width,@small-max-width,@small-gutter-width);
+
+// Tiny SCREENS ( width < 320px ) - To use this breakpoint, uncomment the line below and recompile the CSS
+// #ink > #grid > .set-breakpoint (@tiny-class-prefix,@tiny-min-width,@tiny-max-width,@tiny-gutter-width);

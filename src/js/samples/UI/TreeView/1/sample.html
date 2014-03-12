@@ -5,11 +5,13 @@
 
         <title>InkJS - TreeView samples</title>
 
-        <link rel="stylesheet" href="/samples/assets/css/ink.css" />
-        <link rel="stylesheet" href="/samples/assets/css/docs.css" />
+        <link rel="stylesheet" href="../../../../../../dist/css/ink.css">
 
-        <script type="text/javascript" src="/Ink/1/"></script>
-        <script type="text/javascript" src="http://imgs.sapo.pt/ink/assets/js/prettify.js"></script>
+        <script type="text/javascript" src="../../../../Ink/1/lib.js"></script>
+        <script>
+            Ink.setPath('Ink', '../../../../Ink/');
+        </script>
+        <script type="text/javascript" src="../../../../../../dist/js/prettify.js"></script>
         <style>
             pre.prettyprint{
                 font-size: 0.75em;
@@ -33,72 +35,44 @@
                 <header>
                     <h2>TreeView #1 - Default Markup</h2>
                 </header>
+
+                <p>A TreeView is built with "node"s and "children". "node"s are <code>&lt;li&gt;</code> tags, and "children" are <code>&lt;ul&gt;</code> tags.</p>
+
+                <p>You can build your TreeView out of a regular UL and LI element structure which you already use to display lists with several levels.</p>
+
+                <p>If you want a node (LI) to be open when the TreeView is built, just add the <code>data-open="true"</code> attribute to it.</p>
+
                 <ul class="ink-tree-view">
-                    <li class="open">
-                        <span></span>
+                    <li data-open="true">
                         <a href="#">root</a>
                         <ul>
                             <li>
-                                <a href="">child 1</a>
+                                <a href="#">child 1</a>
                             </li>
                             <li>
-                                <span></span>
-                                <a href="">child 2</a>
+                                <a href="#">child 2</a>
                                 <ul>
-                                    <li><a href="">grandchild 2a</a></li>
+                                    <li><a href="#">grandchild 2a</a></li>
                                     <li>
-                                        <span></span>
-                                        <a href="">grandchild 2b</a>
+                                        <a href="#">grandchild 2b</a>
                                         <ul>
                                             <li>
-                                                <a href="">grandgrandchild 1bA</a>
+                                                <a href="#">grandgrandchild 1bA</a>
                                             </li>
                                             <li>
-                                                <a href="">grandgrandchild 1bB</a>
+                                                <a href="#">grandgrandchild 1bB</a>
                                             </li>
                                         </ul>
                                     </li>
                                 </ul>
                             </li>
-                            <li><a href="">child 3</a></li>
+                            <li><a href="#">child 3</a></li>
                         </ul>
                     </li>
                 </ul>
                 <p>
-                    <pre class="prettyprint linenums">&lt;ul class="ink-tree-view"&gt;
-    &lt;li class="open"&gt;
-        &lt;span&gt;&lt;/span&gt;
-        &lt;a href="#"&gt;root&lt;/a&gt;
-        &lt;ul&gt;
-            &lt;li&gt;
-                &lt;a href=""&gt;child 1&lt;/a&gt;
-            &lt;/li&gt;
-            &lt;li&gt;
-                &lt;span&gt;&lt;/span&gt;
-                &lt;a href=""&gt;child 2&lt;/a&gt;
-                &lt;ul&gt;
-                    &lt;li&gt;&lt;a href=""&gt;grandchild 2a&lt;/a&gt;&lt;/li&gt;
-                    &lt;li&gt;
-                        &lt;span&gt;&lt;/span&gt;
-                        &lt;a href=""&gt;grandchild 2b&lt;/a&gt;
-                        &lt;ul&gt;
-                            &lt;li&gt;
-                                &lt;a href=""&gt;grandgrandchild 1bA&lt;/a&gt;
-                            &lt;/li&gt;
-                            &lt;li&gt;
-                                &lt;a href=""&gt;grandgrandchild 1bB&lt;/a&gt;
-                            &lt;/li&gt;
-                        &lt;/ul&gt;
-                    &lt;/li&gt;
-                &lt;/ul&gt;
-            &lt;/li&gt;
-            &lt;li&gt;&lt;a href=""&gt;child 3&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-    &lt;/li&gt;
-&lt;/ul&gt;
-&lt;script&gt;
-    var treeView = new Ink.UI.TreeView('.ink-tree-view');
-&lt;/script&gt;</pre>
+                    <pre class="prettyprint linenums">
+                    </pre>
                 </p>
             </section>
 
@@ -106,72 +80,37 @@
                 <header>
                     <h2>TreeView #2 - Different Markup... Same behavior</h2>
                 </header>
-                <div class="ink-tree-view" data-child=".child" data-node=".node">
-                    <div class="node open">
-                        <span></span>
+                <p>By using the <code>children</code> and <code>node</code> options, you can choose what is a "node" and what is a "children". This way you are not limited to using <code>ul</code>s and <code>li</code>s</p>
+                <div class="ink-tree-view" data-children=".children" data-node=".node">
+                    <div data-open="true" class="node">
                         <a href="#">root</a>
-                        <div class="child">
+                        <div class="children">
                             <div class="node">
-                                <a href="">child 1</a>
+                                <a href="#">child 1</a>
                             </div>
                             <div class="node">
-                                <span></span>
-                                <a href="">child 2</a>
-                                <div class="child">
-                                    <div class="node"><a href="">grandchild 2a</a></div>
+                                <a href="#">child 2</a>
+                                <div class="children">
+                                    <div class="node"><a href="#">grandchild 2a</a></div>
                                     <div class="node">
-                                        <span></span>
-                                        <a href="">grandchild 2b</a>
-                                        <div class="child">
+                                        <a href="#">grandchild 2b</a>
+                                        <div class="children">
                                             <div class="node">
-                                                <a href="">grandgrandchild 1bA</a>
+                                                <a href="#">grandgrandchild 1bA</a>
                                             </div>
                                             <div class="node">
-                                                <a href="">grandgrandchild 1bB</a>
+                                                <a href="#">grandgrandchild 1bB</a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="node"><a href="">child 3</a></div>
+                            <div class="node"><a href="#">child 3</a></div>
                         </div>
                     </div>
                 </div>
                 <p>
-                    <pre class="prettyprint linenums">&lt;div class="ink-tree-view" data-child=".child" data-node=".node"&gt;
-    &lt;div class="node open"&gt;
-        &lt;span&gt;&lt;/span&gt;
-        &lt;a href="#"&gt;root&lt;/a&gt;
-        &lt;div class="child"&gt;
-            &lt;div class="node"&gt;
-                &lt;a href=""&gt;child 1&lt;/a&gt;
-            &lt;/div&gt;
-            &lt;div class="node"&gt;
-                &lt;span&gt;&lt;/span&gt;
-                &lt;a href=""&gt;child 2&lt;/a&gt;
-                &lt;div class="child"&gt;
-                    &lt;div class="node"&gt;&lt;a href=""&gt;grandchild 2a&lt;/a&gt;&lt;/div&gt;
-                    &lt;div class="node"&gt;
-                        &lt;span&gt;&lt;/span&gt;
-                        &lt;a href=""&gt;grandchild 2b&lt;/a&gt;
-                        &lt;div class="child"&gt;
-                            &lt;div class="node"&gt;
-                                &lt;a href=""&gt;grandgrandchild 1bA&lt;/a&gt;
-                            &lt;/div&gt;
-                            &lt;div class="node"&gt;
-                                &lt;a href=""&gt;grandgrandchild 1bB&lt;/a&gt;
-                            &lt;/div&gt;
-                        &lt;/div&gt;
-                    &lt;/div&gt;
-                &lt;/div&gt;
-            &lt;/div&gt;
-            &lt;div class="node"&gt;&lt;a href=""&gt;child 3&lt;/a&gt;&lt;/div&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;script&gt;
-    var treeView = new Ink.UI.TreeView('.ink-tree-view');
-&lt;/script&gt;</pre>
+                    <pre class="prettyprint linenums"></pre>
                 </p>
             </section>
         </div>

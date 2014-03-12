@@ -3,23 +3,6 @@
     ul {
 
         &.pagination {
-            
-            //defaults
-            li {
-                
-                &.active a { text-decoration: underline; }
-                
-                &.disabled {
-                    a {
-                        color: @grey-30;
-                        #ink > #shadows > .text-shadow (0, 1px, 0, lighten(@grey-40,40%));
-
-                        &:hover {
-                            background: none;
-                        }
-                    }
-                }
-            }
 
             // white
             &.white {
@@ -265,7 +248,7 @@
             &.rounded {
                 li {
                     &:first-child,
-                    &:first-child a {
+                    &:first-child a {                        
                         #ink > #border-radius > .left (@navigation-border-radius);
                     }
                     &:last-child, 
@@ -280,6 +263,40 @@
                 li a {
                     #ink > #shadows > .box-shadow (0px, 1px, 2px, 0, fade(@black,30%));
                 }
+            }
+
+             #ink > #navigation > .pagination-default();
+    
+            // defines dotted pagination themes
+            &.dotted {
+
+                li {
+                    background: none;
+                        filter: none;
+                }
+                
+                #ink > #navigation > .pagination-dotted-default();
+
+                &.black     { #ink > #navigation > .pagination-dotted-theme( @grey-90); }
+                &.white     { #ink > #navigation > .pagination-dotted-theme( @white); }
+                &.blue      { #ink > #navigation > .pagination-dotted-theme( desaturate( @blue, 10%) ); }
+                &.green     { #ink > #navigation > .pagination-dotted-theme( desaturate( @green, 10%) ); }
+                &.orange    { #ink > #navigation > .pagination-dotted-theme( desaturate( @orange, 10%) ); }
+                &.red       { #ink > #navigation > .pagination-dotted-theme( desaturate( @red, 10%) ); }
+            }
+
+            // defines chevron pagination theme
+            &.chevron {
+
+                #ink > #navigation > .pagination-chevron-default();
+
+                &.black     { #ink > #navigation > .pagination-chevron-theme( @grey-90); }
+                &.grey      { #ink > #navigation > .pagination-chevron-theme( @grey-15); }
+                &.blue      { #ink > #navigation > .pagination-chevron-theme( desaturate( @blue,10%)); }
+                &.green     { #ink > #navigation > .pagination-chevron-theme( desaturate( @green,10%)); }
+                &.orange    { #ink > #navigation > .pagination-chevron-theme( desaturate( @orange,10%)); }
+                &.red       { #ink > #navigation > .pagination-chevron-theme( desaturate( @red,10%)); }
+            
             }
         }
     }

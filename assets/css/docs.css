@@ -143,8 +143,6 @@
 .sidebar.ink-navigation ul.menu.vertical li.heading {
   margin-top: 1em;
   border-top: 1px solid #ddd;
-}
-.sidebar.ink-navigation ul.menu.vertical li.heading a {
   font-size: 1.25em;
   padding: 1em 0 0;
   color: #555555;
@@ -154,6 +152,9 @@
 }
 .sidebar.ink-navigation ul.menu.vertical li.heading.active ul {
   display: block;
+}
+.sidebar.ink-navigation ul.menu.vertical li.heading ul {
+  font-size: 0.85em;
 }
 .sidebar.ink-navigation ul.menu.vertical li.heading ul a {
   padding: .3em 0;
@@ -722,13 +723,24 @@ code {
 }
 
 table.props {
-  padding: 0.7em 1em;
   width: 100%;
   border-collapse: initial;
   background: #eeebe5;
 }
-table.props tr {
-  line-height: 1.5;
+table.props tr:nth-child(even) td {
+  background: #f2f0eb;
+}
+table.props tr td, table.props tr th {
+  padding: 0.7em 0;
+}
+table.props tr td:first-child, table.props tr th:first-child {
+  padding-left: 1em;
+}
+table.props tr td:last-child, table.props tr th:last-child {
+  padding-right: 1em;
+}
+table.props tr td {
+  line-height: 1.4;
 }
 table.props caption {
   padding: 0 0 0 0.4em;
@@ -824,6 +836,7 @@ p.example-title {
   -ms-border-radius: 2px;
   -o-border-radius: 2px;
   border-radius: 2px;
+  *zoom: 1;
 }
 .example .ink-grid {
   padding: 0;
@@ -834,6 +847,14 @@ p.example-title {
   background: #E5EBF0;
   text-align: center;
   line-height: 150px;
+}
+.example .ink-navigation ul.dropdown {
+  position: static;
+}
+.example:after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
 footer {

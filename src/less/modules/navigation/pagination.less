@@ -28,8 +28,94 @@
                             text-decoration: none;                  
                         }
                     }
-                }
+                }                
+
             }
+
+            &.dotted {
+
+                    li {
+                                        
+                        a {
+                            display: block;
+                            height: 1em;
+                            width: 1em;
+                            margin-right: .6em;
+                            padding: 0; 
+                            #ink > #border-radius > .all(50%);
+                            text-indent: -99999px;
+                        }
+
+                        &:first-child,
+                        &:last-child {
+                            a { 
+                                height: auto;
+                                width: auto;
+                                background: none;
+                            }
+                        }
+
+                        &.previous,
+                        &.next {
+                            a { display: none }
+                        }
+                    }
+                }
+
+                &.chevron {
+
+                    li {
+                        
+                        display: none;
+
+                        a {
+                            font-size: 0;
+                        }
+
+                        &.next,
+                        &.previous { 
+                            
+                            display: block;
+
+                            a {
+                                display: block;
+                                position: absolute;
+                                top: 35%;
+                                padding: 0 .5em; 
+                                margin: 0;
+                                font-family: FontAwesome;
+                                font-size: 4em;
+                                #ink > #effects > .transition (all, 140ms, ease-in-out);
+                            }
+                        }
+
+                        &.disabled {
+                            a {
+                                color: fade(@white,60%);
+                                #ink > #shadows > .no-text-shadow();
+                                &:hover,
+                                &:focus {
+                                    color: fade(@white,60%);    
+                                }
+                            }
+                        }
+                        
+                        &.previous {
+                            a {
+                                left: 0;
+                                &:after { content: @chevron-sign-left; }
+                            }
+                        }
+
+                        &.next {
+                            a {
+                                right: 0;
+                                &:after { content: @chevron-sign-right; }
+                            }
+                        }
+
+                    }
+                }
 
             #ink > #utils > .clearfix;
         }

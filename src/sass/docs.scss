@@ -133,12 +133,12 @@ $code-border        : darken($code-background,8%);
                 &.heading {
                     margin-top: 1em;
                     border-top: 1px solid #ddd;
+                    font-size: 1.25em;
+                    padding: 1em 0 0;
+                    color: $text-color;
                     @extend .fw-500;
 
                     a { 
-                        font-size: 1.25em;
-                        padding: 1em 0 0;
-                        color: $text-color; 
                         &:hover { text-decoration: none; }
                     }
 
@@ -147,6 +147,7 @@ $code-border        : darken($code-background,8%);
                     }
 
                     ul {
+                        font-size: 0.85em;
                         a {
                             padding: .3em 0;
                             border-bottom: none;
@@ -455,14 +456,29 @@ code {
 }
 
 table.props {
-    
-    padding: 0.7em 1em;
+
     width: 100%;
     border-collapse: initial;
     background: $code-background;
 
     tr {            
-        line-height: 1.5;
+        &:nth-child(even){
+            td {
+                background: lighten($code-background,2%);
+            }
+        }
+        td, th {
+            padding: 0.7em 0;
+            &:first-child {
+                padding-left:  1em;
+            }
+            &:last-child {
+                padding-right:  1em;
+            }
+        }
+        td {
+            line-height: 1.4;
+        }
     }
 
     caption {
@@ -587,6 +603,12 @@ p.example-title {
             line-height: 150px;
         }
     }
+
+    .ink-navigation ul.dropdown {
+        position: static;
+    }
+
+    @include pie-clearfix;
 }
 
 footer {

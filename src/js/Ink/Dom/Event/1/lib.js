@@ -977,7 +977,12 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      *
      * @method observeMulti
      * @param {Array|String} elements
-     * @param ... See the `observe` function.
+     * @param {String}             eventName    Event name
+     * @param {Function}           callBack     Receives event object as a
+     * parameter. If you're manually firing custom events, check the
+     * eventName property of the event object to make sure you're handling
+     * the right event.
+     * @param {Boolean}            [useCapture] Set to true to change event listening from bubbling to capture.
      * @return {Function} The used callback.
      */
     observeMulti: function (elements, eventName, callBack, useCapture) {
@@ -1218,6 +1223,69 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     debug: function(){}
 };
 
+/**
+ * bean.on() lets you attach event listeners to both elements and objects.
+ * http://github.com/fat/bean#on
+ *
+ * @method on
+ * @param {DOMElement|Object} element An HTML DOM element or any JavaScript Object
+ * @param {String}            eventType An Event (or multiple events, space separated) to listen to
+ * @param {String}            [selector] A CSS DOM Element selector string to bind the listener to child elements matching the selector
+ * @param {Function}          [handler] The callback function
+ * @param {Object}            [args...] Additional arguments to pass to the callback function when triggered
+ * 
+ * @return {DOMElement|Object} Returns the original DOM Element or Javascript Object
+ */
+
+/**
+ * bean.one() is an alias for bean.on() except that the handler will only be executed once and then removed for the event type(s).
+ * http://github.com/fat/bean#one
+ *
+ * @method one
+ * @param {DOMElement|Object} element An HTML DOM element or any JavaScript Object
+ * @param {String}            eventType An Event (or multiple events, space separated) to listen to
+ * @param {String}            [selector] A CSS DOM Element selector string to bind the listener to child elements matching the selector
+ * @param {Function}          [handler] The callback function
+ * @param                     [args...] Additional arguments to pass to the callback function when triggered
+ * 
+ * @return {DOMElement|Object} Returns the original DOM Element or Javascript Object
+ */
+
+/**
+ * bean.off() is how you get rid of handlers once you no longer want them active. It's also a good idea to call off on elements before you remove them from your DOM; this gives Bean a chance to clean up some things and prevents memory leaks.
+ * http://github.com/fat/bean#off
+ *
+ * @method off
+ * @param {DOMElement|Object} element An HTML DOM element or any JavaScript Object
+ * @param {String}            eventType An Event (or multiple events, space separated) to remove
+ * @param {Function}          [handler] The specific callback function to remove
+ * 
+ * @return {DOMElement|Object} Returns the original DOM Element or Javascript Object
+ */
+
+/**
+ * bean.clone() is a method for cloning events from one DOM element or object to another.
+ * http://github.com/fat/bean#clone
+ *
+ * @method clone
+ * @param {DOMElement|Object} destElement An HTML DOM element or any JavaScript Object to copy events to
+ * @param {String}            srcElement An HTML DOM element or any JavaScript Object to copy events from
+ * @param {String}            [eventType] An Event (or multiple events, space separated) to clone
+ * 
+ * @return {DOMElement|Object} Returns the original DOM Element or Javascript Object
+ */
+
+/**
+ * bean.fire() gives you the ability to trigger events.
+ * http://github.com/fat/bean#fire
+ *
+ * @method fire
+ * @param {DOMElement|Object} destElement An HTML DOM element or any JavaScript Object fire the event on
+ * @param {String}            eventType An Event (or multiple events, space separated) to fire
+ * @param                     [args...] Additional arguments to pass to the callback function when triggered
+ *
+ * @return {DOMElement|Object} Returns the original DOM Element or Javascript Object
+ */
 
 return Ink.extendObj(InkEvent, bean);
 

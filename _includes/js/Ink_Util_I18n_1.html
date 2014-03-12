@@ -229,13 +229,12 @@
 	<h3>Examples:</h3>
 
 	
-		<pre class="example"><code>
-			
+{% highlight json %}			
      var dictionaries = {    // This could come from a JSONP request from your server
          &#x27;pt_PT&#x27;: {
              &#x27;hello&#x27;: &#x27;olá&#x27;,
              &#x27;me&#x27;: &#x27;eu&#x27;,
-             &#x27;i have a {} for you&#x27;: &#x27;tenho um {} para ti&#x27; // Old syntax using &#x60;{%s}&#x60; tokens still available
+             &#x27;i have a {} for you&#x27;: &#x27;tenho um {} para ti&#x27; // Old syntax using &#x60;{ %s }&#x60; tokens still available
          },
          &#x27;pt_BR&#x27;: {
              &#x27;hello&#x27;: &#x27;oi&#x27;,
@@ -256,15 +255,12 @@
      });
      
  
-		</code></pre>
-	
-		<pre class="example"><code>
-			
-     // The old {%s} syntax from libsapo&#x27;s i18n is still supported
-     i18n.text(&#x27;hello, {%s}!&#x27;, &#x27;someone&#x27;); // -&gt; &#x27;olá, someone!&#x27;
+{% endhighlight %}	
+{% highlight json %}			
+     // The old { %s } syntax from libsapo&#x27;s i18n is still supported
+     i18n.text(&#x27;hello, { %s }!&#x27;, &#x27;someone&#x27;); // -&gt; &#x27;olá, someone!&#x27;
 
-		</code></pre>
-	
+{% endhighlight %}	
 
 
 
