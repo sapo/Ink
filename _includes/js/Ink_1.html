@@ -13,14 +13,23 @@
         
 
         
-
+            <h3>uses:</h3>
+            <ul>
+            
+                <li>requireModules</li>
+            
+                <li>createModule</li>
+            
+                <li>bind</li>
+            
+            </ul>
         
 
         
 
         
 
-
+        
 
 
         
@@ -65,168 +74,134 @@
     
 
 
-
-
     
         
             <h3>Defined methods:</h3>
         
         
-        <table>
+        <ul>
         
-            <tr>
-                <td><a href="#Ink_1-Ink-bind">
-                
-                    Ink.bind
-                
-                (fn, context)</a></td>
-            </tr>
+            <li><a href="#Ink_1-Ink-bind">
+            
+                Ink.bind
+            
+            (fn, context, [args*])</a></li>
         
-            <tr>
-                <td><a href="#Ink_1-Ink-bindEvent">
-                
-                    Ink.bindEvent
-                
-                (fn, context)</a></td>
-            </tr>
+            <li><a href="#Ink_1-Ink-bindEvent">
+            
+                Ink.bindEvent
+            
+            (fn, context, [args*])</a></li>
         
-            <tr>
-                <td><a href="#Ink_1-Ink-bindMethod">
-                
-                    Ink.bindMethod
-                
-                (object, methodName)</a></td>
-            </tr>
+            <li><a href="#Ink_1-Ink-bindMethod">
+            
+                Ink.bindMethod
+            
+            (object, methodName, [args*])</a></li>
         
-            <tr>
-                <td><a href="#Ink_1-Ink-createExt">
-                
-                    Ink.createExt
-                
-                (moduleName, version, dependencies, modFn)</a></td>
-            </tr>
+            <li><a href="#Ink_1-Ink-createExt">
+            
+                Ink.createExt
+            
+            (moduleName, version, dependencies, modFn)</a></li>
         
-            <tr>
-                <td><a href="#Ink_1-Ink-createModule">
-                
-                    Ink.createModule
-                
-                (mod, version, deps, modFn)</a></td>
-            </tr>
+            <li><a href="#Ink_1-Ink-createModule">
+            
+                Ink.createModule
+            
+            (mod, version, deps, modFn)</a></li>
         
-            <tr>
-                <td><a href="#Ink_1-Ink-error">
-                
-                    Ink.error
-                
-                ()</a></td>
-            </tr>
+            <li><a href="#Ink_1-Ink-error">
+            
+                Ink.error
+            
+            ([args*])</a></li>
         
-            <tr>
-                <td><a href="#Ink_1-Ink-extendObj">
-                
-                    Ink.extendObj
-                
-                (destination, sources)</a></td>
-            </tr>
+            <li><a href="#Ink_1-Ink-extendObj">
+            
+                Ink.extendObj
+            
+            (destination, source, [args*])</a></li>
         
-            <tr>
-                <td><a href="#Ink_1-Ink-getModule">
-                
-                    Ink.getModule
-                
-                (mod, [version])</a></td>
-            </tr>
+            <li><a href="#Ink_1-Ink-getModule">
+            
+                Ink.getModule
+            
+            (mod, [version])</a></li>
         
-            <tr>
-                <td><a href="#Ink_1-Ink-getModulesLoadOrder">
-                
-                    Ink.getModulesLoadOrder
-                
-                ()</a></td>
-            </tr>
+            <li><a href="#Ink_1-Ink-getModuleScripts">
+            
+                Ink.getModuleScripts
+            
+            ()</a></li>
         
-            <tr>
-                <td><a href="#Ink_1-Ink-getPath">
-                
-                    Ink.getPath
-                
-                (modName, noLib)</a></td>
-            </tr>
+            <li><a href="#Ink_1-Ink-getModulesLoadOrder">
+            
+                Ink.getModulesLoadOrder
+            
+            ()</a></li>
         
-            <tr>
-                <td><a href="#Ink_1-Ink-i">
-                
-                    Ink.i
-                
-                (id)</a></td>
-            </tr>
+            <li><a href="#Ink_1-Ink-getPath">
+            
+                Ink.getPath
+            
+            (key, [noLib])</a></li>
         
-            <tr>
-                <td><a href="#Ink_1-Ink-loadScript">
-                
-                    Ink.loadScript
-                
-                (uri, [contentType])</a></td>
-            </tr>
+            <li><a href="#Ink_1-Ink-i">
+            
+                Ink.i
+            
+            (id)</a></li>
         
-            <tr>
-                <td><a href="#Ink_1-Ink-log">
-                
-                    Ink.log
-                
-                ()</a></td>
-            </tr>
+            <li><a href="#Ink_1-Ink-loadScript">
+            
+                Ink.loadScript
+            
+            (uri, [contentType])</a></li>
         
-            <tr>
-                <td><a href="#Ink_1-Ink-namespace">
-                
-                    Ink.namespace
-                
-                (ns, [returnParentAndKey])</a></td>
-            </tr>
+            <li><a href="#Ink_1-Ink-log">
+            
+                Ink.log
+            
+            ([args*])</a></li>
         
-            <tr>
-                <td><a href="#Ink_1-Ink-requireModules">
-                
-                    Ink.requireModules
-                
-                (deps, cbFn)</a></td>
-            </tr>
+            <li><a href="#Ink_1-Ink-namespace">
+            
+                Ink.namespace
+            
+            (ns, [returnParentAndKey])</a></li>
         
-            <tr>
-                <td><a href="#Ink_1-Ink-s">
-                
-                    Ink.s
-                
-                (rule, [from])</a></td>
-            </tr>
+            <li><a href="#Ink_1-Ink-requireModules">
+            
+                Ink.requireModules
+            
+            (deps, cbFn)</a></li>
         
-            <tr>
-                <td><a href="#Ink_1-Ink-setPath">
-                
-                    Ink.setPath
-                
-                (key, rootURI)</a></td>
-            </tr>
+            <li><a href="#Ink_1-Ink-s">
+            
+                Ink.s
+            
+            (rule, [from])</a></li>
         
-            <tr>
-                <td><a href="#Ink_1-Ink-ss">
-                
-                    Ink.ss
-                
-                (rule, [from])</a></td>
-            </tr>
+            <li><a href="#Ink_1-Ink-setPath">
+            
+                Ink.setPath
+            
+            (key, rootURI)</a></li>
         
-            <tr>
-                <td><a href="#Ink_1-Ink-warn">
-                
-                    Ink.warn
-                
-                ()</a></td>
-            </tr>
+            <li><a href="#Ink_1-Ink-ss">
+            
+                Ink.ss
+            
+            (rule, [from])</a></li>
         
-        </table>
+            <li><a href="#Ink_1-Ink-warn">
+            
+                Ink.warn
+            
+            ([args*])</a></li>
+        
+        </ul>
     
 
     
@@ -242,7 +217,7 @@
             Ink.bind
         
     
-    (fn, context)
+    (fn, context, [args*])
     
         
             <i>method</i>
@@ -270,6 +245,8 @@
                 </label>
 
                 
+                    <span class="description">The function</span>
+                
             </li>
         
             <li>
@@ -284,6 +261,25 @@
                 
                 </label>
 
+                
+                    <span class="description">The value to be passed as the this parameter to the target function when the bound function is called. If used as false, it preserves the original context and just binds the arguments.</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Any</pre>
+                
+
+                
+                    <label class="optional">[args*]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Additional arguments will be sent to the original function as prefix arguments.</span>
                 
             </li>
         
@@ -302,15 +298,18 @@
 
     
         <span class="text"><p>Function.prototype.bind alternative.
-Additional arguments will be sent to the original function as prefix arguments.
-Set &quot;context&quot; to <code>false</code> to preserve the original context of the function and just bind the arguments.</p>
+Creates a new function that, when called, has its this keyword set to the provided value, with a given sequence of arguments preceding any provided when the new function is called.</p>
 </span>
     
 
     
 
     
+	<h3>Samples:</h3>
 
+	
+		{% include js_samples/Ink_1_bind.html %}
+	
 
 
 </div>
@@ -324,7 +323,7 @@ Set &quot;context&quot; to <code>false</code> to preserve the original context o
             Ink.bindEvent
         
     
-    (fn, context)
+    (fn, context, [args*])
     
         
             <i>method</i>
@@ -352,6 +351,8 @@ Set &quot;context&quot; to <code>false</code> to preserve the original context o
                 </label>
 
                 
+                    <span class="description">The function</span>
+                
             </li>
         
             <li>
@@ -366,6 +367,25 @@ Set &quot;context&quot; to <code>false</code> to preserve the original context o
                 
                 </label>
 
+                
+                    <span class="description">The value to be passed as the this parameter to the target</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Any</pre>
+                
+
+                
+                    <label class="optional">[args*]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Additional arguments will be sent to the original function as prefix arguments</span>
                 
             </li>
         
@@ -385,7 +405,6 @@ Set &quot;context&quot; to <code>false</code> to preserve the original context o
     
         <span class="text"><p>Function.prototype.bind alternative for event handlers.
 Same as bind but keeps first argument of the call the original event.
-Additional arguments will be sent to the original function as prefix arguments.
 Set &quot;context&quot; to <code>false</code> to preserve the original context of the function and just bind the arguments.</p>
 </span>
     
@@ -393,8 +412,6 @@ Set &quot;context&quot; to <code>false</code> to preserve the original context o
     
 
     
-
-
 
 </div>
 
@@ -407,7 +424,7 @@ Set &quot;context&quot; to <code>false</code> to preserve the original context o
             Ink.bindMethod
         
     
-    (object, methodName)
+    (object, methodName, [args*])
     
         
             <i>method</i>
@@ -435,6 +452,8 @@ Set &quot;context&quot; to <code>false</code> to preserve the original context o
                 </label>
 
                 
+                    <span class="description">The object that contains the method to bind</span>
+                
             </li>
         
             <li>
@@ -449,6 +468,25 @@ Set &quot;context&quot; to <code>false</code> to preserve the original context o
                 
                 </label>
 
+                
+                    <span class="description">The name of the method that will be bound</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Any</pre>
+                
+
+                
+                    <label class="optional">[args*]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Additional arguments will be sent to the new method as prefix arguments.</span>
                 
             </li>
         
@@ -466,12 +504,12 @@ Set &quot;context&quot; to <code>false</code> to preserve the original context o
     
 
     
-        <span class="text"><p>Function.prototype.bind alternative for binding class methods</p>
+        <span class="text"><p>Function.prototype.bind alternative for class methods
+Creates a new function that, when called, has this k</p>
 </span>
     
 
     
-{% raw %}
 	<h3>Examples:</h3>
 
 	
@@ -494,12 +532,9 @@ Set &quot;context&quot; to <code>false</code> to preserve the original context o
 
 		</code></pre>
 	
-  {% endraw %}
 
 
     
-
-
 
 </div>
 
@@ -610,8 +645,6 @@ Set &quot;context&quot; to <code>false</code> to preserve the original context o
 
     
 
-
-
 </div>
 
 
@@ -651,7 +684,7 @@ Set &quot;context&quot; to <code>false</code> to preserve the original context o
                 </label>
 
                 
-                    <span class="description">module name. parts are split with dots</span>
+                    <span class="description">Module name, separated by dots. Like Ink.Dom.Selector, Ink.UI.Modal</span>
                 
             </li>
         
@@ -668,6 +701,8 @@ Set &quot;context&quot; to <code>false</code> to preserve the original context o
                 </label>
 
                 
+                    <span class="description">Version number</span>
+                
             </li>
         
             <li>
@@ -683,7 +718,7 @@ Set &quot;context&quot; to <code>false</code> to preserve the original context o
                 </label>
 
                 
-                    <span class="description">array of module names which are dependencies for the module being created</span>
+                    <span class="description">Array of module names which are dependencies of the module being created. The order in which they are passed here will define the order they will be passed to the callback function.</span>
                 
             </li>
         
@@ -700,7 +735,7 @@ Set &quot;context&quot; to <code>false</code> to preserve the original context o
                 </label>
 
                 
-                    <span class="description">its arguments are the resolved dependecies, once all of them are fetched. the body of this function should return the module.</span>
+                    <span class="description">The callback function to be executed when all the dependencies are resolved. The dependencies are passed as arguments, in the same order they were declared. The function itself should return the module.</span>
                 
             </li>
         
@@ -710,15 +745,13 @@ Set &quot;context&quot; to <code>false</code> to preserve the original context o
     
 
     
-        <span class="text"><p>must be the wrapper around each Ink lib module for require resolution</p>
+        <span class="text"><p>Creates a new Ink Module. Use this to wrap your code and benefit from the module loading used throughout the Ink library</p>
 </span>
     
 
     
 
     
-
-
 
 </div>
 
@@ -731,7 +764,7 @@ Set &quot;context&quot; to <code>false</code> to preserve the original context o
             Ink.error
         
     
-    ()
+    ([args*])
     
         
             <i>method</i>
@@ -748,14 +781,18 @@ Set &quot;context&quot; to <code>false</code> to preserve the original context o
         
             <li>
                 
+                    <pre>Any</pre>
+                
 
                 
-                    <label>args...
+                    <label class="optional">[args*]
                 
 
                 
                 </label>
 
+                
+                    <span class="description">Arguments to be evaluated</span>
                 
             </li>
         
@@ -765,15 +802,13 @@ Set &quot;context&quot; to <code>false</code> to preserve the original context o
     
 
     
-        <span class="text"><p>Calls console.error if available.</p>
+        <span class="text"><p>Calls native console.error if available.</p>
 </span>
     
 
     
 
     
-
-
 
 </div>
 
@@ -786,7 +821,7 @@ Set &quot;context&quot; to <code>false</code> to preserve the original context o
             Ink.extendObj
         
     
-    (destination, sources)
+    (destination, source, [args*])
     
         
             <i>method</i>
@@ -814,20 +849,41 @@ Set &quot;context&quot; to <code>false</code> to preserve the original context o
                 </label>
 
                 
+                    <span class="description">The object that will receive the new/updated properties</span>
+                
             </li>
         
             <li>
                 
-                    <pre>Object...</pre>
+                    <pre>Object</pre>
                 
 
                 
-                    <label>sources
+                    <label>source
                 
 
                 
                 </label>
 
+                
+                    <span class="description">The object whose properties will be copied over to the destination object</span>
+                
+            </li>
+        
+            <li>
+                
+                    <pre>Object</pre>
+                
+
+                
+                    <label class="optional">[args*]
+                
+
+                
+                </label>
+
+                
+                    <span class="description">Additional source objects. The last source will override properties of the same name in the previous defined sources</span>
                 
             </li>
         
@@ -845,8 +901,7 @@ Set &quot;context&quot; to <code>false</code> to preserve the original context o
     
 
     
-        <span class="text"><p>Enriches the destination object with values from source object whenever the key is missing in destination.</p>
-<p>More than one object can be passed as source, in which case the rightmost objects have precedence.</p>
+        <span class="text"><p>Copy all of the properties in one or more source objects over to the destination object, and return the destination object. It&#39;s in-order, so the last source will override properties of the same name in previous arguments.</p>
 </span>
     
 
@@ -856,13 +911,8 @@ Set &quot;context&quot; to <code>false</code> to preserve the original context o
 	<h3>Samples:</h3>
 
 	
-  <p class="example-title">Code</p>
-{% highlight html %}
-{% include js_samples/Ink_1_extendObj.html %}
-{% endhighlight %}
+		{% include js_samples/Ink_1_extendObj.html %}
 	
-
-
 
 
 </div>
@@ -904,6 +954,8 @@ Set &quot;context&quot; to <code>false</code> to preserve the original context o
                 </label>
 
                 
+                    <span class="description">Module name</span>
+                
             </li>
         
             <li>
@@ -918,6 +970,8 @@ Set &quot;context&quot; to <code>false</code> to preserve the original context o
                 
                 </label>
 
+                
+                    <span class="description">Version number of the module</span>
                 
             </li>
         
@@ -937,7 +991,7 @@ Set &quot;context&quot; to <code>false</code> to preserve the original context o
     
 
     
-        <span class="text"><p>synchronous. assumes module is loaded already!</p>
+        <span class="text"><p>A synchronous method to get the module from the registry. It assumes the module is defined and loaded already!</p>
 </span>
     
 
@@ -945,7 +999,51 @@ Set &quot;context&quot; to <code>false</code> to preserve the original context o
 
     
 
+</div>
 
+
+    <div class="box box-function">
+
+    <h2><a name="Ink_1-Ink-getModuleScripts">
+    
+        
+            Ink.getModuleScripts
+        
+    
+    ()
+    
+        
+            <i>method</i>
+        
+    
+    </a></h2>
+
+    
+    
+
+    
+
+    
+        <div class="return">
+            Returns 
+            
+                <pre>String</pre>
+            
+            
+                <span class="description"></span>
+            
+        </div>
+    
+
+    
+        <span class="text"><p>Get the markup needed to load all the modules.
+This method builds the script tags needed to load the currently used modules</p>
+</span>
+    
+
+    
+
+    
 
 </div>
 
@@ -975,7 +1073,7 @@ Set &quot;context&quot; to <code>false</code> to preserve the original context o
         <div class="return">
             Returns 
             
-                <pre>String</pre>
+                <pre>Array</pre>
             
             
                 <span class="description"></span>
@@ -984,15 +1082,13 @@ Set &quot;context&quot; to <code>false</code> to preserve the original context o
     
 
     
-        <span class="text"><p>list or module names, ordered by loaded time</p>
+        <span class="text"><p>List of module names, ordered by loaded time (oldest module comes first)</p>
 </span>
     
 
     
 
     
-
-
 
 </div>
 
@@ -1005,7 +1101,7 @@ Set &quot;context&quot; to <code>false</code> to preserve the original context o
             Ink.getPath
         
     
-    (modName, noLib)
+    (key, [noLib])
     
         
             <i>method</i>
@@ -1022,31 +1118,35 @@ Set &quot;context&quot; to <code>false</code> to preserve the original context o
         
             <li>
                 
+                    <pre>String</pre>
+                
 
                 
-                    <label>modName
+                    <label>key
                 
 
                 
                 </label>
 
                 
-                    <span class="description">Name of the module you want the path of.</span>
+                    <span class="description">Name of the module you want to get the path</span>
                 
             </li>
         
             <li>
                 
+                    <pre>Boolean</pre>
+                
 
                 
-                    <label>noLib
+                    <label class="optional">[noLib]
                 
 
                 
                 </label>
 
                 
-                    <span class="description">Exclude the 'lib.js' filename</span>
+                    <span class="description">Flag to skip appending 'lib.js' to the returned path.</span>
                 
             </li>
         
@@ -1056,15 +1156,13 @@ Set &quot;context&quot; to <code>false</code> to preserve the original context o
     
 
     
-        <span class="text"><p>Get the path of a certain module by looking up the paths given in setPath (and ultimately the default Ink path)</p>
+        <span class="text"><p>Get the full path of a certain module by looking up the paths given in setPath (and ultimately the default Ink path)</p>
 </span>
     
 
     
 
     
-
-
 
 </div>
 
@@ -1105,15 +1203,25 @@ Set &quot;context&quot; to <code>false</code> to preserve the original context o
                 </label>
 
                 
+                    <span class="description">Element ID</span>
+                
             </li>
         
         </ul>
     
 
     
+        <div class="return">
+            Returns 
+            
+                <pre>DOMElement</pre>
+            
+            
+        </div>
+    
 
     
-        <span class="text"><p>alias to document.getElementById</p>
+        <span class="text"><p>Alias to document.getElementById</p>
 </span>
     
 
@@ -1123,13 +1231,8 @@ Set &quot;context&quot; to <code>false</code> to preserve the original context o
 	<h3>Samples:</h3>
 
 	
-  <p class="example-title">Code</p>
-{% highlight html %}
-{% include js_samples/Ink_1_i.html %}
-{% endhighlight %}
+		{% include js_samples/Ink_1_i.html %}
 	
-
-
 
 
 </div>
@@ -1171,7 +1274,7 @@ Set &quot;context&quot; to <code>false</code> to preserve the original context o
                 </label>
 
                 
-                    <span class="description">can be an http URI or an Ink module name, which gets resolved.</span>
+                    <span class="description">Can be an external URL or a module name</span>
                 
             </li>
         
@@ -1190,7 +1293,7 @@ Set &quot;context&quot; to <code>false</code> to preserve the original context o
                 </label>
 
                 
-                    <span class="description">the `type` attribute of the new script tag.</span>
+                    <span class="description">The `type` attribute of the new script tag.</span>
                 
             </li>
         
@@ -1209,8 +1312,6 @@ Set &quot;context&quot; to <code>false</code> to preserve the original context o
 
     
 
-
-
 </div>
 
 
@@ -1222,7 +1323,7 @@ Set &quot;context&quot; to <code>false</code> to preserve the original context o
             Ink.log
         
     
-    ()
+    ([args*])
     
         
             <i>method</i>
@@ -1239,14 +1340,18 @@ Set &quot;context&quot; to <code>false</code> to preserve the original context o
         
             <li>
                 
+                    <pre>Any</pre>
+                
 
                 
-                    <label>args...
+                    <label class="optional">[args*]
                 
 
                 
                 </label>
 
+                
+                    <span class="description">Arguments to be evaluated</span>
                 
             </li>
         
@@ -1256,15 +1361,13 @@ Set &quot;context&quot; to <code>false</code> to preserve the original context o
     
 
     
-        <span class="text"><p>Calls console.log if available.</p>
+        <span class="text"><p>Calls native console.log if available.</p>
 </span>
     
 
     
 
     
-
-
 
 </div>
 
@@ -1305,6 +1408,8 @@ Set &quot;context&quot; to <code>false</code> to preserve the original context o
                 </label>
 
                 
+                    <span class="description">Namespace to define.</span>
+                
             </li>
         
             <li>
@@ -1320,6 +1425,8 @@ Set &quot;context&quot; to <code>false</code> to preserve the original context o
                 </label>
 
                 
+                    <span class="description">Flag to change the return value to an array containing the namespace parent and the namespace key</span>
+                
             </li>
         
         </ul>
@@ -1329,7 +1436,7 @@ Set &quot;context&quot; to <code>false</code> to preserve the original context o
         <div class="return">
             Returns 
             
-                <pre>Array|Object</pre>
+                <pre>Object|Array</pre>
             
             
                 <span class="description"></span>
@@ -1338,15 +1445,13 @@ Set &quot;context&quot; to <code>false</code> to preserve the original context o
     
 
     
-        <span class="text"><p>defines a namespace.</p>
+        <span class="text"><p>Defines a module namespace.</p>
 </span>
     
 
     
 
     
-
-
 
 </div>
 
@@ -1387,7 +1492,7 @@ Set &quot;context&quot; to <code>false</code> to preserve the original context o
                 </label>
 
                 
-                    <span class="description">array of module names which are dependencies for the require function body</span>
+                    <span class="description">Array of module names. The order in which they are passed here will define the order they will be passed to the callback function.</span>
                 
             </li>
         
@@ -1404,7 +1509,7 @@ Set &quot;context&quot; to <code>false</code> to preserve the original context o
                 </label>
 
                 
-                    <span class="description">its arguments are the resolved dependecies, once all of them are fetched</span>
+                    <span class="description">The callback function to be executed when all the dependencies are resolved. The dependencies are passed as arguments, in the same order they were declared.</span>
                 
             </li>
         
@@ -1414,15 +1519,13 @@ Set &quot;context&quot; to <code>false</code> to preserve the original context o
     
 
     
-        <span class="text"><p>use this to get depencies, even if they&#39;re not loaded yet</p>
+        <span class="text"><p>Use this to get modules, even if they&#39;re not loaded yet</p>
 </span>
     
 
     
 
     
-
-
 
 </div>
 
@@ -1463,6 +1566,8 @@ Set &quot;context&quot; to <code>false</code> to preserve the original context o
                 </label>
 
                 
+                    <span class="description">Selector string</span>
+                
             </li>
         
             <li>
@@ -1477,6 +1582,8 @@ Set &quot;context&quot; to <code>false</code> to preserve the original context o
                 
                 </label>
 
+                
+                    <span class="description">Context element. If set to a DOM element, the rule will only look for descendants of this DOM Element.</span>
                 
             </li>
         
@@ -1494,7 +1601,7 @@ Set &quot;context&quot; to <code>false</code> to preserve the original context o
     
 
     
-        <span class="text"><p>alias to sizzle or querySelector</p>
+        <span class="text"><p>Alias for Ink.Dom.Selector first result</p>
 </span>
     
 
@@ -1504,13 +1611,8 @@ Set &quot;context&quot; to <code>false</code> to preserve the original context o
 	<h3>Samples:</h3>
 
 	
-  <p class="example-title">Code</p>
-{% highlight html %}
-{% include js_samples/Ink_1_s.html %}
-{% endhighlight %}
+		{% include js_samples/Ink_1_s.html %}
 	
-
-
 
 
 </div>
@@ -1541,6 +1643,8 @@ Set &quot;context&quot; to <code>false</code> to preserve the original context o
         
             <li>
                 
+                    <pre>String</pre>
+                
 
                 
                     <label>key
@@ -1550,9 +1654,13 @@ Set &quot;context&quot; to <code>false</code> to preserve the original context o
                 </label>
 
                 
+                    <span class="description">Module or namespace</span>
+                
             </li>
         
             <li>
+                
+                    <pre>String</pre>
                 
 
                 
@@ -1563,6 +1671,8 @@ Set &quot;context&quot; to <code>false</code> to preserve the original context o
                 </label>
 
                 
+                    <span class="description">Base URL path and schema to be appended to the module or namespace</span>
+                
             </li>
         
         </ul>
@@ -1571,13 +1681,12 @@ Set &quot;context&quot; to <code>false</code> to preserve the original context o
     
 
     
-        <span class="text"><p>Sets the URL path for a namespace. Use this to customize where
-requireModules (and createModule) will load dependencies from.</p>
+        <span class="text"><p>Sets the URL path for a namespace or module. Use this to customize where requireModules (and createModule) will load dependencies from.
+This can be useful to set your own CDN for dynamic module loading or simply to avoi</p>
 </span>
     
 
     
-{% raw %}
 	<h3>Examples:</h3>
 
 	
@@ -1593,12 +1702,9 @@ requireModules (and createModule) will load dependencies from.</p>
 
 		</code></pre>
 	
-  {% endraw %}
 
 
     
-
-
 
 </div>
 
@@ -1672,7 +1778,7 @@ requireModules (and createModule) will load dependencies from.</p>
     
 
     
-        <span class="text"><p>alias to sizzle or querySelectorAll</p>
+        <span class="text"><p>Alias for Ink.Dom.Selector</p>
 </span>
     
 
@@ -1682,13 +1788,8 @@ requireModules (and createModule) will load dependencies from.</p>
 	<h3>Samples:</h3>
 
 	
-  <p class="example-title">Code</p>
-{% highlight html %}
-{% include js_samples/Ink_1_ss.html %}
-{% endhighlight %}
+		{% include js_samples/Ink_1_ss.html %}
 	
-
-
 
 
 </div>
@@ -1702,7 +1803,7 @@ requireModules (and createModule) will load dependencies from.</p>
             Ink.warn
         
     
-    ()
+    ([args*])
     
         
             <i>method</i>
@@ -1719,14 +1820,18 @@ requireModules (and createModule) will load dependencies from.</p>
         
             <li>
                 
+                    <pre>Any</pre>
+                
 
                 
-                    <label>args...
+                    <label class="optional">[args*]
                 
 
                 
                 </label>
 
+                
+                    <span class="description">Arguments to be evaluated</span>
                 
             </li>
         
@@ -1736,15 +1841,13 @@ requireModules (and createModule) will load dependencies from.</p>
     
 
     
-        <span class="text"><p>Calls console.warn if available.</p>
+        <span class="text"><p>Calls native console.warn if available.</p>
 </span>
     
 
     
 
     
-
-
 
 </div>
 
