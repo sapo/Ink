@@ -117,35 +117,21 @@ $code-border        : darken($code-background,8%);
 
                 text-transform: uppercase;
 
-                a { 
-                    padding: 0; 
-                    border-bottom: none;
-                }
-
                 &.heading {
                     margin-top: 1em;
                     border-top: 1px solid #ddd;
+                    font-size: 1.25em;
+                    padding: 1em 0 0;
+                    color: $text-color;
                     @extend .fw-500;
 
-                    a { 
-                        font-size: 1.25em;
-                        padding: 1em 0 0;
-                        color: $text-color; 
-                        &:hover { text-decoration: none; }
-                    }
-
-                    &.active ul {
-                        display: block;
-                    }
-
                     ul {
+
                         a {
                             padding: .3em 0;
                             border-bottom: none;
-                            color: $link-color;
-                            text-decoration: none;
-                            text-transform: uppercase;
-                            font-size: 1em;
+                            //color: $link-color;
+                            font-size: .8em;
                             @extend .fw-400;
                         }
                     }
