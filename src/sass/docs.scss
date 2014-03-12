@@ -17,12 +17,13 @@ $img-path           : "../img/";
 $code-background    : #EEEBE5;
 $code-border        : darken($code-background,8%);
 
-.fw-100 { font-weight: 100; }
-.fw-300 { font-weight: 300; }
-.fw-400 { font-weight: 400; }
-.fw-500 { font-weight: 500; }
-.fw-700 { font-weight: 700; }
-.fw-900 { font-weight: 900; }
+.uppercase { text-transform: uppercase; }
+.fw-100 { font-weight: 100; font-family: Roboto; }
+.fw-300 { font-weight: 300; font-family: Roboto; }
+.fw-400 { font-weight: 400; font-family: Roboto; }
+.fw-500 { font-weight: 500; font-family: Roboto; }
+.fw-700 { font-weight: 700; font-family: Roboto; }
+.fw-900 { font-weight: 900; font-family: Roboto; }
 
 .condensed-300 { font-weight: 200; font-family: Roboto_condensed; }
 .condensed-400 { font-weight: 400; font-family: Roboto_condensed; }
@@ -33,7 +34,7 @@ $code-border        : darken($code-background,8%);
 .slab-400 { font-weight: 400; font-family: Roboto_slab; }
 .slab-700 { font-weight: 700; font-family: Roboto_slab; }
 
-.uppercase { text-transform: uppercase; }
+.italic { font-style: italic; }
 
 #topbar {   
     position: fixed;

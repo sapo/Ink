@@ -1,25 +1,35 @@
+.uppercase, .mosaic .title {
+  text-transform: uppercase;
+}
+
 .fw-100 {
   font-weight: 100;
+  font-family: Roboto;
 }
 
 .fw-300, ul.props li.prop.breakpoint-aware:after {
   font-weight: 300;
+  font-family: Roboto;
 }
 
 .fw-400, .sidebar.ink-navigation ul.menu.vertical li.heading ul a {
   font-weight: 400;
+  font-family: Roboto;
 }
 
 .fw-500, .sidebar.ink-navigation ul.menu.vertical li.heading {
   font-weight: 500;
+  font-family: Roboto;
 }
 
 .fw-700, .mosaic .title, ul.props li.heading {
   font-weight: 700;
+  font-family: Roboto;
 }
 
 .fw-900 {
   font-weight: 900;
+  font-family: Roboto;
 }
 
 .condensed-300 {
@@ -57,8 +67,8 @@
   font-family: Roboto_slab;
 }
 
-.uppercase, .mosaic .title {
-  text-transform: uppercase;
+.italic {
+  font-style: italic;
 }
 
 #topbar {

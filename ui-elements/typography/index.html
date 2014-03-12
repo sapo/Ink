@@ -1,0 +1,266 @@
+---
+layout: documentation
+title: Typography
+description: Basic typographic rules for consistent type setting on the web.
+tags: text, paragraph, heading, title
+site_root: ../../
+---
+
+<section id="#basic-principles">
+  <h1>Basic principles</h1>
+  <p>Ink defines a lightweight set of rules to control the way text elements are presented and in some cases extends basic html styling.</p>
+  <p>As of version 3.0.0 we're using Christian Robertsons <a href="https://www.google.com/fonts/specimen/Roboto">Roboto</a> font family as our suggested typeface. The <a href="https://www.google.com/fonts/specimen/Roboto">Roboto</a> font family was designed for the Android operative system and includes sans-serif, condensed and slab-serif and each style has several weights. Sadly, this also means that we're no longer distributing the Ubuntu font familiy.</p>
+  <p>Unlike the other components in Ink, Typography does not require a specific markup, and is enabled by default.</p>
+    <table class="props css">
+    <caption>CSS CLASSES</caption>
+    <thead>
+      <tr>
+        <th>Class name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          fw-100<br>
+          fw-300<br>
+          fw-400<br>
+          fw-500<br>
+          fw-700<br>
+          fw-900
+        </td>
+        <td>Sets font weight and defines font-family as Roboto.</td>
+      </tr>
+      <tr>
+        <td>
+          condensed-300<br>
+          condensed-400<br>
+          condensed-700
+        </td>
+        <td>Sets font weight and defines font-family as Roboto Condensed.</td>
+      </tr>
+      <tr>
+        <td>
+          slab-100<br>
+          slab-300<br>
+          slab-400<br>
+          slab-700
+        </td>
+        <td>Sets font weight and defines font-family as Roboto Slab.</td>
+      </tr>
+      <tr>
+        <td>sans</td>
+        <td>Set font-family to the sans-serif font stack</td>
+      </tr>
+      <tr>
+        <td>serif
+          </td>
+        <td>Set font-family to the serif font stack</td>
+      </tr>
+      <tr>
+        <td>monospace</td>
+        <td>Set font-family to the monospaced font stack</td>
+      </tr>
+      <tr>
+        <td>condensed</td>
+        <td>Set font-family to the condensed font stack</td>
+      </tr>
+      <tr>
+        <td>slab</td>
+        <td>Set font-family to the slab serif font stack</td>
+      </tr>
+      <tr>
+        <td>small</td>
+        <td>Sets font-size to 75% of the base font-size</td>
+      </tr>
+      <tr>
+        <td>small</td>
+        <td>Sets font-size to 85% of the base font-size</td>
+      </tr>
+      <tr>
+        <td>large</td>
+        <td>Sets font-size to 120% of the base font-size</td>
+      </tr>
+      <tr>
+        <td>extralarge</td>
+        <td>Sets font-size to 145% of the base font-size</td>
+      </tr>
+    </tbody>    
+  </table>
+</section>
+<section id="fonts">
+  <h1>Fonts</h1>
+  <p>As previsouly mentioned we're now using the Roboto font-family, so let's get acquainted with it:</p>
+  <h2>Roboto</h2>
+  <p class="note">All the weight variants have italics.</p>
+  <h3>Roboto light</h3>
+  <p class="fw-100">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+  consequat.</p>
+  <p class="fw-100 italic">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+  consequat.</p>
+
+  <h3>Roboto thin</h3>
+  <p class="fw-300">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+  consequat.</p>
+  <p class="fw-300 italic">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+  consequat.</p>
+
+  <h3>Roboto regular</h3>
+  <p class="fw-400">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+  consequat.</p>
+  <p class="fw-400 italic">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+  consequat.</p>
+
+
+  <h3>Roboto medium</h3>
+  <p class="fw-500">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+  consequat.</p>
+  <p class="fw-500 italic">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+  consequat.</p>
+
+
+  <h3>Roboto bold</h3>
+  <p class="fw-700">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+  consequat.</p>
+  <p class="fw-700 italic">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+  consequat.</p>
+
+
+  <h3>Roboto black</h3>
+  <p class="fw-900">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+  consequat.</p>
+  <p class="fw-900 italic">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+  consequat.</p>
+
+
+  <h2>Roboto Condensed</h2>
+
+  <h3>Roboto Condensed light</h3>
+  <p class="fw-300">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+  consequat.</p>
+  <p class="fw-300 italic">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+  consequat.</p>
+
+  <h3>Roboto Condensed regular</h3>
+  <p class="fw-400">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+  consequat.</p>
+  <p class="fw-400 italic">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+  consequat.</p>
+
+  <h3>Roboto Condensed bold</h3>
+  <p class="fw-700">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+  consequat.</p>
+  <p class="fw-700 italic">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+  consequat.</p>
+
+    <h2>Roboto Slab</h2>
+
+  <h3>Roboto Slab thin</h3>
+  <p class="slab-100">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+  consequat.</p>
+
+  <h3>Roboto Slab light</h3>
+  <p class="slab-300">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+  consequat.</p>
+
+  <h3>Roboto Slab regular</h3>
+  <p class="slab-400">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+  consequat.</p>
+
+  <h3>Roboto Slab bold</h3>
+  <p class="slab-700">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+  consequat.</p>
+
+</section>
+
+<section id="titles-and-paragraph">
+  <h1>Titles and paragraphs</h1>
+  <p>Ink provides font size and margin relationships, for headings and paragraphs that result in an even vertical rhythm when setting text.</p>
+  <p class="example-title">Demo</p>
+  <div class="example">
+    <h1 class="fw-700">MOBY DICK</h1>
+    <h2>CHAPTER 1. Loomings.</h2>
+    <p>
+      Call me Ishmael. Some years ago—never mind how long precisely—having
+      little or no money in my purse, and nothing particular to interest me on
+      shore, I thought I would sail about a little and see the watery part of
+      the world. It is a way I have of driving off the spleen and regulating the
+      circulation. Whenever I find myself growing grim about the mouth; whenever
+      it is a damp, drizzly November in my soul; whenever I find myself
+      involuntarily pausing before coffin warehouses, and bringing up the rear
+      of every funeral I meet; and especially whenever my hypos get such an
+      upper hand of me, that it requires a strong moral principle to prevent me
+      from deliberately stepping into the street, and methodically knocking
+      people's hats off—then, I account it high time to get to sea as soon
+      as I can. This is my substitute for pistol and ball. With a philosophical
+      flourish Cato throws himself upon his sword; I quietly take to the ship.
+      There is nothing surprising in this. If they but knew it, almost all men
+      in their degree, some time or other, cherish very nearly the same feelings
+      towards the ocean with me.
+    </p>
+    <p>
+      There now is your insular city of the Manhattoes, belted round by wharves
+      as Indian isles by coral reefs—commerce surrounds it with her surf.
+      Right and left, the streets take you waterward. Its extreme downtown is
+      the battery, where that noble mole is washed by waves, and cooled by
+      breezes, which a few hours previous were out of sight of land. Look at the
+      crowds of water-gazers there.
+    </p>
+    <p>
+      Circumambulate the city of a dreamy Sabbath afternoon. Go from Corlears
+      Hook to Coenties Slip, and from thence, by Whitehall, northward. What do
+      you see?—Posted like silent sentinels all around the town, stand
+      thousands upon thousands of mortal men fixed in ocean reveries. Some
+      leaning against the spiles; some seated upon the pier-heads; some looking
+      over the bulwarks of ships from China; some high aloft in the rigging, as
+      if striving to get a still better seaward peep. But these are all
+      landsmen; of week days pent up in lath and plaster—tied to counters,
+      nailed to benches, clinched to desks. How then is this? Are the green
+      fields gone? What do they here?
+    </p>
+  </div>
+</section>
