@@ -656,21 +656,27 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          *
          * @method inViewport
          * @param {DOMElement} element Element to check
-         * @param {Boolean} [partial=false] Return `true` even if it is only partially visible.
+         * @param {Object}  [opts]
+         * @param {Boolean} [opts.partial=false] When `true`, return `true` even if it is only partially inside the viewport.
+         * @param {Number}  [opts.margin=0] Consider a margin all around the viewport with `opts.margin` width a dead zone.
          * @return {Boolean}
          */
-        inViewport: function (element, partial) {
+        inViewport: function (element, opts) {
             var dims = rect(Ink.i(element));
-            if (partial) {
-                return  dims.bottom > 0                        && // from the top
-                        dims.left < InkElement.viewportWidth()    && // from the right
-                        dims.top < InkElement.viewportHeight()    && // from the bottom
-                        dims.right  > 0;                          // from the left
+            if (typeof opts === 'boolean') {
+                opts = {partial: opts, margin: 0}
+            }
+            opts = Ink.extendObj({ partial: false, margin: 0}, opts || {});
+            if (opts.partial) {
+                return  dims.bottom + opts.margin > 0                           && // from the top
+                        dims.left   - opts.margin < InkElement.viewportWidth()  && // from the right
+                        dims.top    - opts.margin < InkElement.viewportHeight() && // from the bottom
+                        dims.right  + opts.margin > 0;                             // from the left
             } else {
-                return  dims.top > 0                           && // from the top
-                        dims.right < InkElement.viewportWidth()   && // from the right
-                        dims.bottom < InkElement.viewportHeight() && // from the bottom
-                        dims.left  > 0;                           // from the left
+                return  dims.top    + opts.margin > 0                           && // from the top
+                        dims.right  - opts.margin < InkElement.viewportWidth()  && // from the right
+                        dims.bottom - opts.margin < InkElement.viewportHeight() && // from the bottom
+                        dims.left   + opts.margin > 0;                             // from the left
             }
         },
 
