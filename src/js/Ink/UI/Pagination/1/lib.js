@@ -103,7 +103,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
         };
 
         if (Common.isInteger(this._options.totalItemCount) && Common.isInteger(this._options.itemsPerPage)) {
-            this._size = Math.ceil(this._options.totalItemCount / this._options.itemsPerPage);
+            this._size = this._calculateSize(this._options.totalItemCount, this._options.itemsPerPage);
         } else if (Common.isInteger(this._options.size)) {
             this._size = this._options.size;
         } else {
@@ -160,6 +160,17 @@ Ink.createModule('Ink.UI.Pagination', '1',
             Event.observeDelegated(this._element, 'click', '.' + this._options.paginationClass + ' > ' + this._options.childTag, this._handlers.click);
         },
 
+        /**
+         * Calculate how many pages are necessary for `count` items, and `itemsPerPage` items per page.
+         *
+         * @method _calculateSize
+         * @param count
+         * @param itemsPerPage
+         * @private
+         **/
+        _calculateSize: function (count, itemsPerPage) {
+            return Math.ceil(count / itemsPerPage);
+        },
         /**
          * Updates the markup everytime there's a change in the Pagination object.
          *
