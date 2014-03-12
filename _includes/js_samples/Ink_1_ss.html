@@ -1,0 +1,24 @@
+{% highlight html %}
+
+<div id="element_id">
+    <p id="a" class="small">
+    A text sample with a <span>span</span> and a <a href="#">link</a>.
+    </p>
+    <p id="b" class="small">
+    Another text paragraph. 
+    </p>
+</div>
+<script>
+
+var aElmA = Ink.ss('#element_id'); 
+// [object HTMLDivElement] => array with "div" with id "element_id"
+
+var aElmB = Ink.ss('#element_id > p');  
+// [[object HTMLParagraphElement],[object HTMLParagraphElement]] with id "a"
+
+var aElmC = Ink.ss('.noclass'); 
+// [] 
+
+</script>
+
+{% endhighlight %}

@@ -1844,6 +1844,10 @@
   display: none !important;
 }
 
+.no-margin {
+  margin: 0 !important;
+}
+
 .push-left {
   float: left;
 }
@@ -2413,7 +2417,7 @@ table {
   overflow: hidden;
 }
 .ink-alert.basic {
-  padding: 1em;
+  padding: 1em 3em 1em 1em;
 }
 .ink-alert.basic p {
   margin: 0;
@@ -2426,7 +2430,7 @@ table {
   font-size: 1em;
 }
 .ink-alert.block > h4 {
-  padding: 1em;
+  padding: 1em 3em 1em 1em;
   font-size: .938em;
   line-height: 1.5;
   margin: 0;
@@ -6004,14 +6008,14 @@ html.flexbox .column-group.vertical.reverse {
   -ms-border-radius: 50%;
   -o-border-radius: 50%;
   border-radius: 50%;
+  text-indent: 99999px;
 }
-.ink-navigation ul.pagination.dotted li:first-child a, .ink-navigation ul.pagination.dotted li:last-child a {
-  height: auto;
-  width: auto;
-  background: none;
-}
-.ink-navigation ul.pagination.dotted li.previous a, .ink-navigation ul.pagination.dotted li.next a {
-  display: none;
+.ink-navigation ul.pagination.dotted li a:first-child, .ink-navigation ul.pagination.dotted li a:last-child {
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  border-radius: 50%;
 }
 .ink-navigation ul.pagination.chevron li {
   display: none;
@@ -6031,6 +6035,9 @@ html.flexbox .column-group.vertical.reverse {
   -moz-transition: all 140ms ease-in-out;
   -o-transition: all 140ms ease-in-out;
   transition: all 140ms ease-in-out;
+}
+.ink-navigation ul.pagination.chevron li.next a span, .ink-navigation ul.pagination.chevron li.previous a span {
+  text-indent: 99999px;
 }
 .ink-navigation ul.pagination.chevron li.disabled a {
   color: rgba(255, 255, 255, 0.6);
@@ -6052,14 +6059,6 @@ html.flexbox .column-group.vertical.reverse {
   content: "\f138";
 }
 
-@media screen and (max-width: 650px) {
-  html body .ink-navigation .pagination li a {
-    display: none;
-  }
-  html body .ink-navigation .pagination li:first-child a, html body .ink-navigation .pagination li:last-child a {
-    display: block;
-  }
-}
 .ink-navigation .pills {
   overflow: hidden;
   *zoom: 1;
@@ -6389,6 +6388,42 @@ dl.inline dt {
 }
 dl.inline dd {
   margin: .5em 0 .5em 200px;
+}
+
+figure.ink-image {
+  position: relative;
+  border: 1px solid #555555;
+}
+figure.ink-image > img {
+  margin-bottom: -6px;
+  width: 100%;
+}
+figure.ink-image > figcaption {
+  padding: 1em;
+  background: white;
+  line-height: 1.3;
+}
+figure.ink-image > figcaption.over-top, figure.ink-image > figcaption.over-bottom {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  border: none;
+}
+figure.ink-image > figcaption.over-top.dark, figure.ink-image > figcaption.over-bottom.dark {
+  color: white;
+  background: rgba(0, 0, 0, 0.6);
+}
+figure.ink-image > figcaption.over-top {
+  top: 0;
+  background: rgba(255, 255, 255, 0.7);
+}
+figure.ink-image > figcaption.over-bottom {
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.7);
+}
+figure.ink-image > figcaption.dark {
+  color: white;
+  background: #222222;
 }
 
 .ink-alert.basic, .ink-alert.block {
@@ -6793,7 +6828,7 @@ dl.inline dd {
   color: white;
 }
 .ink-navigation ul.breadcrumbs.black li.active a {
-  color: #4d4d4d;
+  color: #666666;
   text-shadow: black 0 -1px 0;
 }
 .ink-navigation ul.breadcrumbs.blue {
@@ -6804,7 +6839,7 @@ dl.inline dd {
 }
 .ink-navigation ul.breadcrumbs.blue li.active a {
   color: #08427b;
-  text-shadow: #2289f0 0 1px 0;
+  text-shadow: #1884ef 0 1px 0;
 }
 .ink-navigation ul.breadcrumbs.orange {
   background: #f2990d;
@@ -6814,7 +6849,7 @@ dl.inline dd {
 }
 .ink-navigation ul.breadcrumbs.orange li.active a {
   color: #995e00;
-  text-shadow: #ffac29 0 1px 0;
+  text-shadow: #ffa81f 0 1px 0;
 }
 .ink-navigation ul.breadcrumbs.green {
   background: #4c9220;
@@ -6824,7 +6859,7 @@ dl.inline dd {
 }
 .ink-navigation ul.breadcrumbs.green li.active a {
   color: #20420a;
-  text-shadow: #5bbf1c 0 1px 0;
+  text-shadow: #57b61b 0 1px 0;
 }
 .ink-navigation ul.breadcrumbs.red {
   background: #be1c1c;
@@ -6834,7 +6869,7 @@ dl.inline dd {
 }
 .ink-navigation ul.breadcrumbs.red li.active a {
   color: #6b0909;
-  text-shadow: #eb1717 0 1px 0;
+  text-shadow: #e51313 0 1px 0;
 }
 
 .ink-dropdown ul.dropdown.blue ul.dropdown-menu li.active a, .ink-navigation ul.dropdown.blue ul.dropdown-menu li.active a {
@@ -7092,7 +7127,7 @@ dl.inline dd {
   background: #333333;
 }
 .ink-navigation ul.menu.black li.disabled a {
-  color: #4d4d4d;
+  color: #666666;
   text-shadow: black 0 -1px 0;
 }
 .ink-navigation ul.menu.black li a {
@@ -7100,7 +7135,7 @@ dl.inline dd {
   text-decoration: none;
 }
 .ink-navigation ul.menu.black li a:hover {
-  background: #262626;
+  background: #292929;
 }
 .ink-navigation ul.menu.blue {
   background: #1b75ce;
@@ -7379,7 +7414,7 @@ dl.inline dd {
   background: #333333;
 }
 .ink-navigation ul.pagination.black li.disabled a {
-  color: #4d4d4d;
+  color: #666666;
   background: fade(black, 0%);
   text-shadow: black 0 -1px 0;
 }
@@ -7391,7 +7426,7 @@ dl.inline dd {
   text-decoration: none;
 }
 .ink-navigation ul.pagination.black li a:hover {
-  background: #262626;
+  background: #292929;
 }
 .ink-navigation ul.pagination.orange li {
   background: #f2990d;
@@ -7684,7 +7719,7 @@ dl.inline dd {
   background: #333333;
 }
 .ink-navigation ul.pills.black li.disabled a {
-  color: #4d4d4d;
+  color: #666666;
   text-shadow: black 0 -1px 0;
 }
 .ink-navigation ul.pills.black li.disabled a:hover {
@@ -7694,7 +7729,7 @@ dl.inline dd {
   color: white;
 }
 .ink-navigation ul.pills.black li a:hover {
-  background: #262626;
+  background: #292929;
 }
 .ink-navigation ul.pills.blue li {
   background: #1b75ce;

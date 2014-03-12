@@ -1,0 +1,213 @@
+---
+layout: documentation
+title: Buttons
+description: Although they're a way of displaying text, alerts have their own specificity and functionality.
+tags: grid
+site_root: ../../
+---
+
+<section id="">
+
+    <h1>Introduction</h1>
+
+    <p>
+        Buttons can be created with one of several markup elements, although <code>&ltbutton&gt</code> is most appropriate. Just add the <code>ink-button</code> class for the button layout and then use a utility class to give it a specific meaning.
+    </p>
+
+    <table class="props css">
+        <caption>CSS CLASSES</caption>
+        <thead>
+          <tr>
+            <th>Class name</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>ink-button</code></td>
+                <td>Buttons root class. <span class="label mandatory"></span></td>
+            </tr>
+            <tr>
+                <td>
+                    <code>blue</code><br>
+                    <code>green</code><br>
+                    <code>orange</code><br>
+                    <code>red</code><br>
+                    <code>black</code>
+                </td>
+                <td>Defines the button theme.</td>
+            </tr>
+            <tr>
+                <td><code>button-group</code></td>
+                <td>Defines a wrapper to build a button group. Used with a <code>&ltdiv&gt</code> element.</td>
+            </tr>
+            <tr>
+                <td><code>button-toolbar</code></td>
+                <td>Defines a wrapper to build a button toolbar. Used with a <code>&ltdiv&gt</code> element.</td>
+            </tr>
+        </tbody>    
+    </table>
+    <ul class="unstyled">
+        <li><span class="label mandatory"></span>: This class must be used for the {{page.title | downcase }} to work.</li>
+    </ul>
+
+{% highlight html %}
+<button class="ink-button">Button</button>
+{% endhighlight %}
+
+    <p class="example-title">Example</p>
+    <div class="example hide-tiny">
+        <div class="column-group half-top-space">
+            <div class="all-33">
+                <div class="column-group">
+                    <div class="all-50 align-center"><a href="#" class="ink-button">Button</a></div>
+                    <div class="all-50 align-center"><button class="ink-button green">Button</button></div>
+                </div>
+            </div>
+            <div class="all-33">    
+                <div class="column-group">
+                    <div class="all-50 align-center"><button class="ink-button orange">Button</button></div>
+                    <div class="all-50 align-center"><button class="ink-button red">Button</button></div>
+                </div>
+            </div>
+            <div class="all-33">    
+                <div class="column-group">
+                    <div class="all-50 align-center"><button class="ink-button blue">Button</button></div>
+                    <div class="all-50 align-center"><button class="ink-button black">Button</button></div>
+                </div>
+            </div>
+        </div>    
+        <div class="column-group half-vertical-space">
+            <div class="all-33">
+                <div class="column-group">
+                    <div class="all-50 align-center"><button class="ink-button" disabled="">Button</button></div>
+                    <div class="all-50 align-center"><button class="ink-button green" disabled="">Button</button></div>
+                </div>
+            </div>
+            <div class="all-33">
+                <div class="column-group">
+                    <div class="all-50 align-center"><button class="ink-button orange" disabled="">Button</button></div>
+                    <div class="all-50 align-center"><button class="ink-button red" disabled="">Button</button></div>
+                </div>
+            </div>
+            <div class="all-33">
+                <div class="column-group">
+                    <div class="all-50 align-center"><button class="ink-button blue" disabled="">Button</button></div>
+                    <div class="all-50 align-center"><button class="ink-button black" disabled="">Button</button></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="example hide-all show-tiny">
+        <div class="column-group gutters">
+            <div class="all-50 align-center"><button class="ink-button">Button</button></div>
+            <div class="all-50 align-center"><button class="ink-button" disabled>Button</button></div>
+        </div>
+        <div class="column-group gutters">
+            <div class="all-50 align-center"><button class="ink-button blue">Button</button></div>
+            <div class="all-50 align-center"><button class="ink-button blue" disabled>Button</button></div>
+        </div>
+        <div class="column-group gutters">
+            <div class="all-50 align-center"><button class="ink-button green">Button</button></div>
+            <div class="all-50 align-center"><button class="ink-button green" disabled>Button</button></div>
+        </div>    
+        <div class="column-group gutters">
+            <div class="all-50 align-center"><button class="ink-button orange">Button</button></div>
+            <div class="all-50 align-center"><button class="ink-button orange" disabled>Button</button></div>
+        </div>
+        <div class="column-group gutters">
+            <div class="all-50 align-center"><button class="ink-button red">Button</button></div>
+            <div class="all-50 align-center"><button class="ink-button red" disabled>Button</button></div>
+        </div>
+        <div class="column-group gutters">
+            <div class="all-50 align-center"><button class="ink-button black">Button</button></div>
+            <div class="all-50 align-center"><button class="ink-button black" disabled>Button</button></div>
+        </div>
+    </div>
+
+</section>
+
+<section id="">
+
+    <h1>Button group</h1>
+    <ul class="css props inline">
+        <li class="heading">Css classes: </li>
+        <li class="prop">ink-button</li>
+        <li class="prop">button-group</li>
+    </ul>
+
+    <p>Ink also allows you to neatly group your buttons in a single line with the <code>button-group</code>.</p>
+
+{% highlight html %}
+<div class="button-group">
+    <button class="ink-button">left</button>
+    <button class="ink-button">middle</button>
+    <button class="ink-button">right</button>
+</div>
+{% endhighlight %}
+
+    <p class="example-title">Example</p>
+    <div class="example">
+        <div class="button-group">
+            <button class="ink-button">left</button>
+            <button class="ink-button">middle</button>
+            <button class="ink-button">right</button>
+        </div>
+    </div>
+
+</section>
+
+<section id="">
+
+    <h1>Button toolbar</h1>
+    <ul class="css props inline">
+        <li class="heading">Css classes: </li>
+        <li class="prop">ink-button</li>
+        <li class="prop">button-toolbar</li>
+        <li class="prop">button-group</li>
+    </ul>
+
+    <p>To build a button toolbar wrap your button groups in a <code>&ltdiv&gt</code> with the <code>button-toolbar</code> class as shown in the code below.</p>
+
+{% highlight html %}
+<div class="button-toolbar">
+    <div class="button-group">
+        <button class="ink-button"><span class="fa fa-file"></span></button>
+        <button class="ink-button"><span class="fa fa-save"></span></button>
+    </div>
+    <div class="button-group">
+        <button class="ink-button"><span class="fa fa-bold"></span></button>
+        <button class="ink-button"><span class="fa fa-italic"></span></button>
+        <button class="ink-button"><span class="fa fa-underline"></span></button>
+    </div>
+    <div class="button-group">
+        <button class="ink-button"><span class="fa fa-align-left"></span></button>
+        <button class="ink-button"><span class="fa fa-align-center"></span></button>
+        <button class="ink-button"><span class="fa fa-align-right"></span></button>
+        <button class="ink-button"><span class="fa fa-align-justify"></span></button>
+    </div>
+</div>{% endhighlight %}
+
+    <p class="example-title">Example</p>
+    <div class="example">
+        <div class="button-toolbar">
+            <div class="button-group">
+                <button class="ink-button"><span class="fa fa-file"></span></button>
+                <button class="ink-button"><span class="fa fa-save"></span></button>
+            </div>
+            <div class="button-group">
+                <button class="ink-button"><span class="fa fa-bold"></span></button>
+                <button class="ink-button"><span class="fa fa-italic"></span></button>
+                <button class="ink-button"><span class="fa fa-underline"></span></button>
+            </div>
+            <div class="button-group">
+                <button class="ink-button"><span class="fa fa-align-left"></span></button>
+                <button class="ink-button"><span class="fa fa-align-center"></span></button>
+                <button class="ink-button"><span class="fa fa-align-right"></span></button>
+                <button class="ink-button"><span class="fa fa-align-justify"></span></button>
+            </div>
+        </div>
+    </div>
+
+</section>
