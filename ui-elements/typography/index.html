@@ -7,7 +7,7 @@ site_root: ../../
 ---
 
 <section id="#basic-principles">
-  <h1>Basic principles</h1>
+  <h1 class="fw-300">Basic principles</h1>
   <p>Ink defines a lightweight set of rules to control the way text elements are presented and in some cases extends basic html styling.</p>
   <p>As of version 3.0.0 we're using Christian Robertsons <a href="https://www.google.com/fonts/specimen/Roboto">Roboto</a> font family as our suggested typeface. The <a href="https://www.google.com/fonts/specimen/Roboto">Roboto</a> font family was designed for the Android operative system and includes sans-serif, condensed and slab-serif and each style has several weights. Sadly, this also means that we're no longer distributing the Ubuntu font familiy.</p>
   <p>Unlike the other components in Ink, Typography does not require a specific markup, and is enabled by default.</p>
@@ -74,7 +74,7 @@ site_root: ../../
         <td>Sets font-size to 75% of the base font-size</td>
       </tr>
       <tr>
-        <td>small</td>
+        <td>medium</td>
         <td>Sets font-size to 85% of the base font-size</td>
       </tr>
       <tr>
@@ -85,13 +85,42 @@ site_root: ../../
         <td>extralarge</td>
         <td>Sets font-size to 145% of the base font-size</td>
       </tr>
+      <tr>
+        <td>uppercase</td>
+        <td>Transforms character to upper case</td>
+      </tr>
+      <tr>
+        <td>lowercase</td>
+        <td>Transforms character to upper case</td>
+      </tr>
     </tbody>    
   </table>
 </section>
 <section id="fonts">
-  <h1>Fonts</h1>
+  <h1 class="fw-300">Fonts</h1>
+
+
+  <ul class="css props inline">
+    <li class="heading">Css classes: </li>
+    <li class="prop">fw-100</li>
+    <li class="prop">fw-300</li>
+    <li class="prop">fw-400</li>
+    <li class="prop">fw-500</li>
+    <li class="prop">fw-700</li>
+    <li class="prop">fw-900</li>
+    <li class="prop">condensed-300</li>
+    <li class="prop">condensed-400</li>
+    <li class="prop">condensed-700</li>
+    <li class="prop">slab-100</li>
+    <li class="prop">slab-300</li>
+    <li class="prop">slab-400</li>
+    <li class="prop">slab-700</li>
+  </ul>
   <p>As previsouly mentioned we're now using the Roboto font-family, so let's get acquainted with it:</p>
-  <h2>Roboto</h2>
+  
+  <p class="example-title">Demo</p>
+  <div class="example bottom-space">
+    <h2>Roboto</h2>
   <p class="note">All the weight variants have italics.</p>
   <h3>Roboto light</h3>
   <p class="fw-100">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -155,9 +184,12 @@ site_root: ../../
   tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
   quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
   consequat.</p>
+  </div>
 
 
-  <h2>Roboto Condensed</h2>
+  <p class="example-title">Demo</p>
+  <div class="example bottom-space">
+    <h2>Roboto Condensed</h2>
 
   <h3>Roboto Condensed light</h3>
   <p class="fw-300">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -188,37 +220,41 @@ site_root: ../../
   tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
   quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
   consequat.</p>
+  </div>
 
-    <h2>Roboto Slab</h2>
+   <p class="example-title">Demo</p>
+   <div class="example">
+      <h2>Roboto Slab</h2>
 
-  <h3>Roboto Slab thin</h3>
-  <p class="slab-100">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-  consequat.</p>
+    <h3>Roboto Slab thin</h3>
+    <p class="slab-100">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    consequat.</p>
 
-  <h3>Roboto Slab light</h3>
-  <p class="slab-300">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-  consequat.</p>
+    <h3>Roboto Slab light</h3>
+    <p class="slab-300">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    consequat.</p>
 
-  <h3>Roboto Slab regular</h3>
-  <p class="slab-400">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-  consequat.</p>
+    <h3>Roboto Slab regular</h3>
+    <p class="slab-400">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    consequat.</p>
 
-  <h3>Roboto Slab bold</h3>
-  <p class="slab-700">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-  consequat.</p>
+    <h3>Roboto Slab bold</h3>
+    <p class="slab-700">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    consequat.</p>
+   </div>
 
 </section>
 
 <section id="titles-and-paragraph">
-  <h1>Titles and paragraphs</h1>
+  <h1 class="fw-300">Titles and paragraphs</h1>
   <p>Ink provides font size and margin relationships, for headings and paragraphs that result in an even vertical rhythm when setting text.</p>
   <p class="example-title">Demo</p>
   <div class="example">
@@ -263,4 +299,194 @@ site_root: ../../
       fields gone? What do they here?
     </p>
   </div>
+</section>
+<section id="lists">
+  <h1 class="fw-300">Lists</h1>
+  <ul class="css props inline">
+    <li class="heading">Css classes: </li>
+    <li class="prop">unstyled</li>
+  </ul>
+  <p>Styling is also provided for html list elements. Adding the <code>unstyled</code> css class to an unordered list will remove bullets and indentation.</p>
+  <div class="column-group horizontal-gutters">
+    <div class="extra-large-25 large-25 medium-25 small-100 small-top-space tiny-100 tiny-top-space">
+      <p class="example-title">Demo</p>
+      <div class="example">
+        <h4>Ordered list</h4>
+        <ol>
+          <li>List item</li>
+          <li>List item</li>
+          <li>List item</li>
+          <li>List item</li>
+          <li>List item</li>
+          <li>List item</li>
+          <li>List item</li>
+        </ol>
+      </div>
+    </div>
+    <div class="extra-large-25 large-25 medium-25 small-100 small-top-space tiny-100 tiny-top-space">
+      <p class="example-title">Demo</p>
+      <div class="example">
+        <h4>Unordered list</h4>
+        <ul>
+          <li>List item</li>
+          <li>List item</li>
+          <li>List item</li>
+          <li>List item</li>
+          <li>List item</li>
+          <li>List item</li>
+          <li>List item</li>
+        </ul>
+      </div>
+    </div>
+     <div class="extra-large-25 large-25 medium-25 small-100 small-top-space tiny-100 tiny-top-space">
+      <p class="example-title">Demo</p>
+      <div class="example">
+        <h4>Unstyled list</h4>
+        <ul class="unstyled">
+          <li>List item</li>
+          <li>List item</li>
+          <li>List item</li>
+          <li>List item</li>
+          <li>List item</li>
+          <li>List item</li>
+          <li>List item</li>
+        </ul>
+      </div>
+    </div>
+    <div class="extra-large-25 large-25 medium-25 small-100 small-top-space tiny-100 tiny-top-space">
+      <p class="example-title">Demo</p>
+      <div class="example">
+        <h4>Definition list</h4>
+        <dl>
+           <dt>Definition term</dt>
+           <dd>Definition text</dd>
+           <dt>Definition term</dt>
+           <dd>Definition text</dd>
+           <dt>Definition term</dt>
+           <dd>Definition text</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="links-and-semantic-elements">
+  <h1 class="fw-300">Hypertext</h1>
+  <p>Hypertext is the foundation of the web. Ink defines styling for the <code>a</code> element states:</p>
+
+  <p class="example-title">Demo</p>
+  <div class="example">
+    <ul>
+      <li><a href="#">Normal</a></li>
+      <li><a href="#" class="visited">Visited</a></li>
+      <li><a href="#" class="active">Active</a></li>
+      <li><a href="#" class="hover">Hover</a></li>
+  </ul>
+  </div>
+</section><section id="emphasis">
+  <h1 class="fw-300">Emphasis</h1>
+  <p>You can use htmls native elements to add importance to a piece of text:</p>
+  <p class="example-title">Demo</p>
+  <div class="example">
+    <ul>
+        <li><em>This is some italic text, using </em><code>&lt;em&gt;</code></li>
+        <li><strong>This text is bold, using </strong><code>&lt;strong&gt;</code></li>
+        <li><mark>This is some highlighted text, using</mark> <code>&lt;mark&gt;</code></li>
+    </ul>
+  </div>
+</section>
+<section id="blockquotes-and-notes">
+  <h1 class="fw-300">Notes, blockquotes and addresses</h1>
+  <ul class="css props inline">
+    <li class="heading">Css classes: </li>
+    <li class="prop">note</li>
+  </ul>
+  <p>A paragraph with the <code>note</code> css class will create a smaller and lighter colored apearance:</p>
+  <p class="example-title">Demo</p>
+  <div class="example">
+    <p class="note">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua.</p>
+  </div>
+  <p>Blockquotes and addresses are also styled:</p>
+  <p class="example-title">Demo</p>
+  <div class="example bottom-space">
+    <blockquote cite="http://ink.sapo.pt">
+      <p>Some years ago—never mind how long precisely—having
+      little or no money in my purse, and nothing particular to interest me on
+      shore, I thought I would sail about a little and see the watery part of
+      the world.</p>
+      <cite>Ishmael</cite>
+    </blockquote>
+  </div>
+  <p class="example-title">Demo</p>
+  <div class="example">
+    <address>
+        <h6>SAPO</h6>
+        <p>Av. Fontes Pereira de Melo, 40<br>1050 Lisboa</p>
+    </address>
+  </div>
+</section>
+
+<section id="labels-and-bagdes">
+
+  <h1 class="fw-300">Labels and badges</h1>
+  <ul class="css props inline">
+    <li class="heading">Css classes: </li>
+    <li class="prop">ink-label</li>
+    <li class="prop">ink-badge</li>
+    <li class="prop">black</li>
+    <li class="prop">grey</li>
+    <li class="prop">white</li>
+    <li class="prop">blue</li>
+    <li class="prop">green</li>
+    <li class="prop">orange</li>
+    <li class="prop">red</li>
+  </ul>
+
+  <p>Add the <code>ink-label</code> and one of the color css classes to an text element will create a label like presentation: </p>
+
+  <p class="example-title">Demo</p>
+  <div class="example">
+    <span class="ink-label black">black label</span>
+    <span class="ink-label white">white label</span>
+    <span class="ink-label grey">grey label</span>
+    <span class="ink-label blue">blue label</span>
+    <span class="ink-label red">red label</span>
+    <span class="ink-label orange">orange label</span>
+    <span class="ink-label yellow">red label</span>
+    <span class="ink-label green">green label</span>
+  </div>
+  <p>Badges work the same way but use the <code>ink-badge</code> css class:</p>
+   <p class="example-title">Demo</p>
+  <div class="example">
+    <span class="ink-badge black">99</span>
+    <span class="ink-badge grey">99</span>
+    <span class="ink-badge white">99</span>
+    <span class="ink-badge blue">99</span>
+    <span class="ink-badge red">99</span>
+    <span class="ink-badge orange">99</span>
+    <span class="ink-badge yellow">99</span>
+    <span class="ink-badge green">99</span>
+  </div>  
+ </section>
+
+<section id="utility-classes">
+  <h1 class="fw-300">Utility classes</h1>
+  <ul class="css props inline">
+    <li class="heading">Css classes: </li>
+    <li class="prop">small</li>
+    <li class="prop">medium</li>
+    <li class="prop">large</li>
+    <li class="prop">extralarge</li>
+    <li class="prop">uppercase</li>
+    <li class="prop">lowercase</li>
+  </ul>
+  <p>Ink provides a few more css classes to handle simple tasks like changing font size. These can be combined with all others:</p>
+  <p class="example-title">Demo</p>
+  <div class="example bottom-space">
+    <p class="extralarge fw-700 uppercase">I'm an extra large, bold, all caps paragraph.<p>
+  </div>
+  <p class="example-title">Code</p>
+  {% highlight html %}
+  <p class="extralarge fw-700 uppercase">I'm an extra large, bold all caps paragraph.<p>
+  {% endhighlight %}
 </section>

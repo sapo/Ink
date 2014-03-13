@@ -71,6 +71,19 @@
   font-style: italic;
 }
 
+a.hover {
+  color: #007ed5;
+  text-decoration: underline;
+}
+
+a.active {
+  color: #f20000;
+}
+
+a.visited {
+  color: gray;
+}
+
 #topbar {
   position: fixed;
   z-index: 100;
@@ -689,7 +702,7 @@ body.ink-drawer .right-drawer li:last-child {
   height: .3em;
 }
 
-section h1, section p, section ul, section ol, section table {
+section p, section ul, section ol, section table {
   font-weight: 300;
 }
 section + section {

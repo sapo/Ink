@@ -8,21 +8,21 @@ body {
     line-height: $base-line-height;
 }
 
-.fw-100 { font-weight: 100; font-family: Roboto; }
-.fw-300 { font-weight: 300; font-family: Roboto; }
-.fw-400 { font-weight: 400; font-family: Roboto; }
-.fw-500 { font-weight: 500; font-family: Roboto; }
-.fw-700 { font-weight: 700; font-family: Roboto; }
-.fw-900 { font-weight: 900; font-family: Roboto; }
+.fw-100, .fw-light { font-weight: 100; font-family: $sans-serif-font-stack; }
+.fw-300, .fw-thin { font-weight: 300; font-family: $sans-serif-font-stack; }
+.fw-400, .fw-regular { font-weight: 400; font-family: $sans-serif-font-stack; }
+.fw-500, .fw-medium { font-weight: 500; font-family: $sans-serif-font-stack; }
+.fw-700, .fw-bold { font-weight: 700; font-family: $sans-serif-font-stack; }
+.fw-900, .fw-black { font-weight: 900; font-family: $sans-serif-font-stack; }
 
-.condensed-300 { font-weight: 200; font-family: Roboto_condensed; }
-.condensed-400 { font-weight: 400; font-family: Roboto_condensed; }
-.condensed-700 { font-weight: 700; font-family: Roboto_condensed; }
+.condensed-300, .condensed-thin { font-weight: 200; font-family: $condensed-font-stack; }
+.condensed-400, .condensed-regular { font-weight: 400; font-family: $condensed-font-stack; }
+.condensed-700, .condensed-bold { font-weight: 700; font-family: $condensed-font-stack; }
 
-.slab-100 { font-weight: 100; font-family: Roboto_slab; }
-.slab-300 { font-weight: 300; font-family: Roboto_slab; }
-.slab-400 { font-weight: 400; font-family: Roboto_slab; }
-.slab-700 { font-weight: 700; font-family: Roboto_slab; }
+.slab-100, .slab-light { font-weight: 100; font-family: $slab-font-stack; }
+.slab-300, .slab-thin { font-weight: 300; font-family: $slab-font-stack; }
+.slab-400, .slab-regular { font-weight: 400; font-family: $slab-font-stack; }
+.slab-700, .slab-bold { font-weight: 700; font-family: $slab-font-stack; }
 
 .sans       { font-family: $sans-serif-font-stack; }
 .serif      { font-family: $serif-font-stack; }
@@ -31,6 +31,8 @@ body {
 .slab       { font-family: $slab-font-stack; }
 
 .italic { font-style: italic; }
+.uppercase { text-transform: uppercase; }
+.lowercase { text-transform: lowercase; }
 
 .fa { font-size: 14px }
 
@@ -49,7 +51,7 @@ a {
 /* Headings  */
 h1, h2, h3, h4, h5, h6 {
     color: $headings-color;
-    margin: 0;
+    // margin: 0;
     font-weight: 700;
 }
 
@@ -73,6 +75,10 @@ h1 small, h2 small, h3 small, h4 small {
     font-size: .6em;
     font-weight: 100;
     line-height: 1;
+}
+
+mark {
+    background: lighten($link-color,30%)
 }
 
 address {

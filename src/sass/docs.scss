@@ -36,6 +36,20 @@ $code-border        : darken($code-background,8%);
 
 .italic { font-style: italic; }
 
+
+a.hover {
+color: $link-hover-color;
+text-decoration: underline;
+}
+
+a.active {
+color: $link-active-color;
+}
+
+a.visited {
+color: $link-visited-color ;
+}
+
 #topbar {   
     position: fixed;
     z-index: $layer-100;
@@ -408,7 +422,7 @@ body.ink-drawer {
 
 section {
 
-    h1, p, ul, ol, table {
+    p, ul, ol, table {
         font-weight: 300;
     }
 
