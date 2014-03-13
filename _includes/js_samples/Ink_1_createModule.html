@@ -1,0 +1,118 @@
+<p>How to create a new Ink's static module ex: <code>Ink.Util.Calculator</code> version 1 without dependencies</p>
+<p>This module is static, that means, all methods will be used as <code>Ink.Util.Calculator.method();</code></p>
+
+<p class="example-title">Code</p>
+{% highlight js %}
+<script type="text/javascript">
+
+Ink.createModule('Ink.Util.Calculator', 1,  // define module and version 
+        [],  // empty array to define no dependencies 
+        function() { // callback function
+
+    var StaticModule = {
+        _toNumber: function(str) // private method, should be used only internaly 
+        {
+            return Number(str);
+        },
+
+        add: function(a, b) 
+        {
+            return this._toNumber(a) + this._toNumber(b);
+        },
+
+        subtract: function(a, b)
+        {
+            return this._toNumber(a) - this._toNumber(b);
+        },
+
+        multiply: function(a, b)
+        {
+            return this._toNumber(a) * this._toNumber(b);
+        },
+
+        divide: function(a, b)
+        {
+            return this._toNumber(a) / this._toNumber(b);
+        },
+    };
+
+    return StaticModule;
+});
+
+
+// How to use it... see Ink.requireModules to understand how it works 
+
+Ink.requireModules(['Ink.Util.Calculator_1'], function(Calculator) {
+    
+    Calculator.add(7, '5'); // 12
+        
+    Calculator.subtract(15, 4); // 11 
+        
+    Calculator.multiply(7, 6); // 42 
+        
+    Calculator.divide('a', 'b'); // NaN 
+});
+
+
+</script>
+{% endhighlight %}
+
+<p></p> 
+<p>How to create a new Ink's instantiable module ex: <code>Ink.UI.ElementClickable</code> version 1 with <code>Ink.Dom.Event_1</code> and <code>Ink.Dom.Element_1</code> as dependencies</p>
+<p>This module is instantiable, that means, will be used as <code>new Ink.Util.ElementClickable();</code></p>
+<p class="example-title">Code</p>
+{% highlight js %}
+<script type="text/javascript">
+Ink.createModule('Ink.UI.ElementClickable', 1,  // define module and version 
+        ['Ink.Dom.Event_1', 'Ink.Dom.Element_1'],  // array of dependencies 
+        function(InkEvent, InkElement) { // callback function with dependencies alias 
+
+    var ElementClickable = function(options) {
+        this._init(options); 
+    };
+
+    ElementClickable.prototype = {
+        _init: function() // by convention, use _init method as constructor name 
+        {
+            this._options = Ink.extendObj({
+                    label: 'Click me',
+                    target: Ink.s('body')
+                }, arguments[0] || {});
+
+            this._addElementToTarget();
+        },
+        _createElement: function()
+        {
+            var div = InkElement.create('div', {setTextContent: this._options.label});
+            return this._addEvent(div);
+        },
+
+        _addEvent: function(elm)
+        {
+            InkEvent.observe(elm, 'click', function() {
+                    alert('Click');
+                });
+            return elm; 
+        },
+
+        _addElementToTarget: function()
+        {
+            var elm = this._createElement(); 
+            InkElement.insertBottom(elm, this._options.target);
+        }
+    };
+    return ElementClickable;
+});
+       
+Ink.requireModules(['Ink.UI.ElementClickable_1'], function(ElmClickable) {
+
+    new ElmClickable(); 
+
+    new ElmClickable({label: 'Click here please', target: Ink.ss('div')[0]});
+
+});
+
+</script>
+{% endhighlight %}
+
+

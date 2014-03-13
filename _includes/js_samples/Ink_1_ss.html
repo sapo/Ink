@@ -1,3 +1,4 @@
+<p class="example-title">Code</p>
 {% highlight html %}
 
 <div id="element_id">
@@ -18,6 +19,9 @@ var aElmB = Ink.ss('#element_id > p');
 
 var aElmC = Ink.ss('.noclass'); 
 // [] 
+
+var aElmD = Ink.ss('.small', document.body); 
+// Found all elements with class .small in document.body context 
 
 </script>
 

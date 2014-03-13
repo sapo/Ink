@@ -16,19 +16,22 @@
 							"kind": "function",
 							"name": "getPath",
 							"file": "src/js/Ink/1/lib.js",
-							"text": "Get the path of a certain module by looking up the paths given in setPath (and ultimately the default Ink path)",
+							"text": "Get the full path of a certain module by looking up the paths given in setPath (and ultimately the default Ink path)",
 							"params": [
 								{
 									"kind": "param",
-									"name": "modName",
+									"name": "key",
+									"type": "String",
 									"isFirstLevel": true,
-									"description": "Name of the module you want the path of."
+									"description": "Name of the module you want to get the path"
 								},
 								{
 									"kind": "param",
 									"name": "noLib",
+									"type": "Boolean",
+									"isOptional": true,
 									"isFirstLevel": true,
-									"description": "Exclude the 'lib.js' filename"
+									"description": "Flag to skip appending 'lib.js' to the returned path."
 								}
 							]
 						},
@@ -36,17 +39,21 @@
 							"kind": "function",
 							"name": "setPath",
 							"file": "src/js/Ink/1/lib.js",
-							"text": "Sets the URL path for a namespace. Use this to customize where\nrequireModules (and createModule) will load dependencies from.",
+							"text": "Sets the URL path for a namespace or module. Use this to customize where requireModules (and createModule) will load dependencies from.\nThis can be useful to set your own CDN for dynamic module loading or simply to avoi",
 							"params": [
 								{
 									"kind": "param",
 									"name": "key",
-									"isFirstLevel": true
+									"type": "String",
+									"isFirstLevel": true,
+									"description": "Module or namespace"
 								},
 								{
 									"kind": "param",
 									"name": "rootURI",
-									"isFirstLevel": true
+									"type": "String",
+									"isFirstLevel": true,
+									"description": "Base URL path and schema to be appended to the module or namespace"
 								}
 							],
 							"examples": [
@@ -64,7 +71,7 @@
 									"name": "uri",
 									"type": "String",
 									"isFirstLevel": true,
-									"description": "can be an http URI or an Ink module name, which gets resolved."
+									"description": "Can be an external URL or a module name"
 								},
 								{
 									"kind": "param",
@@ -73,7 +80,7 @@
 									"isOptional": true,
 									"defaultValue": "'text/javascript'",
 									"isFirstLevel": true,
-									"description": "the `type` attribute of the new script tag."
+									"description": "The `type` attribute of the new script tag."
 								}
 							]
 						},
@@ -81,108 +88,116 @@
 							"kind": "function",
 							"name": "namespace",
 							"file": "src/js/Ink/1/lib.js",
-							"text": "defines a namespace.",
+							"text": "Defines a module namespace.",
 							"params": [
 								{
 									"kind": "param",
 									"name": "ns",
 									"type": "String",
-									"isFirstLevel": true
+									"isFirstLevel": true,
+									"description": "Namespace to define."
 								},
 								{
 									"kind": "param",
 									"name": "returnParentAndKey",
 									"type": "Boolean",
 									"isOptional": true,
-									"isFirstLevel": true
+									"isFirstLevel": true,
+									"description": "Flag to change the return value to an array containing the namespace parent and the namespace key"
 								}
 							],
 							"return": {
 								"kind": "return",
-								"type": "Array|Object",
-								"description": "if returnParentAndKey, returns [parent, lastPart], otherwise return the namespace directly"
+								"type": "Object|Array",
+								"description": "Returns the created namespace object"
 							}
 						},
 						{
 							"kind": "function",
 							"name": "getModule",
 							"file": "src/js/Ink/1/lib.js",
-							"text": "synchronous. assumes module is loaded already!",
+							"text": "A synchronous method to get the module from the registry. It assumes the module is defined and loaded already!",
 							"params": [
 								{
 									"kind": "param",
 									"name": "mod",
 									"type": "String",
-									"isFirstLevel": true
+									"isFirstLevel": true,
+									"description": "Module name"
 								},
 								{
 									"kind": "param",
 									"name": "version",
 									"type": "Number",
 									"isOptional": true,
-									"isFirstLevel": true
+									"isFirstLevel": true,
+									"description": "Version number of the module"
 								}
 							],
 							"return": {
 								"kind": "return",
 								"type": "Object|Function",
-								"description": "module object / function"
+								"description": "Module object or function, depending how the module is defined"
 							}
 						},
 						{
 							"kind": "function",
 							"name": "createModule",
 							"file": "src/js/Ink/1/lib.js",
-							"text": "must be the wrapper around each Ink lib module for require resolution",
+							"text": "Creates a new Ink Module. Use this to wrap your code and benefit from the module loading used throughout the Ink library",
 							"params": [
 								{
 									"kind": "param",
 									"name": "mod",
 									"type": "String",
 									"isFirstLevel": true,
-									"description": "module name. parts are split with dots"
+									"description": "Module name, separated by dots. Like Ink.Dom.Selector, Ink.UI.Modal"
 								},
 								{
 									"kind": "param",
 									"name": "version",
 									"type": "Number",
-									"isFirstLevel": true
+									"isFirstLevel": true,
+									"description": "Version number"
 								},
 								{
 									"kind": "param",
 									"name": "deps",
 									"type": "Array",
 									"isFirstLevel": true,
-									"description": "array of module names which are dependencies for the module being created"
+									"description": "Array of module names which are dependencies of the module being created. The order in which they are passed here will define the order they will be passed to the callback function."
 								},
 								{
 									"kind": "param",
 									"name": "modFn",
 									"type": "Function",
 									"isFirstLevel": true,
-									"description": "its arguments are the resolved dependecies, once all of them are fetched. the body of this function should return the module."
+									"description": "The callback function to be executed when all the dependencies are resolved. The dependencies are passed as arguments, in the same order they were declared. The function itself should return the module."
 								}
+							],
+							"samples": [
+								"Ink_1_createModule.html"
 							]
 						},
 						{
 							"kind": "function",
 							"name": "requireModules",
 							"file": "src/js/Ink/1/lib.js",
-							"text": "use this to get depencies, even if they're not loaded yet",
+							"text": "Use this to get modules, even if they're not loaded yet",
 							"params": [
 								{
 									"kind": "param",
 									"name": "deps",
 									"type": "Array",
 									"isFirstLevel": true,
-									"description": "array of module names which are dependencies for the require function body"
+									"description": "Array of module names. The order in which they are passed here will define the order they will be passed to the callback function."
 								},
 								{
 									"kind": "param",
 									"name": "cbFn",
 									"type": "Function",
 									"isFirstLevel": true,
-									"description": "its arguments are the resolved dependecies, once all of them are fetched"
+									"description": "The callback function to be executed when all the dependencies are resolved. The dependencies are passed as arguments, in the same order they were declared."
 								}
 							]
 						},
@@ -190,12 +205,24 @@
 							"kind": "function",
 							"name": "getModulesLoadOrder",
 							"file": "src/js/Ink/1/lib.js",
-							"text": "list or module names, ordered by loaded time",
+							"text": "List of module names, ordered by loaded time (oldest module comes first)",
+							"params": [],
+							"return": {
+								"kind": "return",
+								"type": "Array",
+								"description": "returns the order in which modules were resolved and correctly loaded"
+							}
+						},
+						{
+							"kind": "function",
+							"name": "getModuleScripts",
+							"file": "src/js/Ink/1/lib.js",
+							"text": "Get the markup needed to load all the modules.\nThis method builds the script tags needed to load the currently used modules",
 							"params": [],
 							"return": {
 								"kind": "return",
 								"type": "String",
-								"description": "scripts markup"
+								"description": "The script markup"
 							}
 						},
 						{
@@ -238,43 +265,66 @@
 							"kind": "function",
 							"name": "bind",
 							"file": "src/js/Ink/1/lib.js",
-							"text": "Function.prototype.bind alternative.\nAdditional arguments will be sent to the original function as prefix arguments.\nSet \"context\" to `false` to preserve the original context of the function and just bind the arguments.",
+							"text": "Function.prototype.bind alternative.\nCreates a new function that, when called, has its this keyword set to the provided value, with a given sequence of arguments preceding any provided when the new function is called.",
 							"params": [
 								{
 									"kind": "param",
 									"name": "fn",
 									"type": "Function",
-									"isFirstLevel": true
+									"isFirstLevel": true,
+									"description": "The function"
 								},
 								{
 									"kind": "param",
 									"name": "context",
 									"type": "Object",
-									"isFirstLevel": true
+									"isFirstLevel": true,
+									"description": "The value to be passed as the this parameter to the target function when the bound function is called. If used as false, it preserves the original context and just binds the arguments."
+								},
+								{
+									"kind": "param",
+									"name": "args*",
+									"type": "Any",
+									"isOptional": true,
+									"isFirstLevel": true,
+									"description": "Additional arguments will be sent to the original function as prefix arguments."
 								}
 							],
 							"return": {
 								"kind": "return",
 								"type": "Function"
-							}
+							},
+							"samples": [
+								"Ink_1_bind.html"
+							]
 						},
 						{
 							"kind": "function",
 							"name": "bindMethod",
 							"file": "src/js/Ink/1/lib.js",
-							"text": "Function.prototype.bind alternative for binding class methods",
+							"text": "Function.prototype.bind alternative for class methods\nCreates a new function that, when called, has this k",
 							"params": [
 								{
 									"kind": "param",
 									"name": "object",
 									"type": "Object",
-									"isFirstLevel": true
+									"isFirstLevel": true,
+									"description": "The object that contains the method to bind"
 								},
 								{
 									"kind": "param",
 									"name": "methodName",
 									"type": "String",
-									"isFirstLevel": true
+									"isFirstLevel": true,
+									"description": "The name of the method that will be bound"
+								},
+								{
+									"kind": "param",
+									"name": "args*",
+									"type": "Any",
+									"isOptional": true,
+									"isFirstLevel": true,
+									"description": "Additional arguments will be sent to the new method as prefix arguments."
 								}
 							],
 							"return": {
@@ -290,19 +340,29 @@
 							"kind": "function",
 							"name": "bindEvent",
 							"file": "src/js/Ink/1/lib.js",
-							"text": "Function.prototype.bind alternative for event handlers.\nSame as bind but keeps first argument of the call the original event.\nAdditional arguments will be sent to the original function as prefix arguments.\nSet \"context\" to `false` to preserve the original context of the function and just bind the arguments.",
+							"text": "Function.prototype.bind alternative for event handlers.\nSame as bind but keeps first argument of the call the original event.\nSet \"context\" to `false` to preserve the original context of the function and just bind the arguments.",
 							"params": [
 								{
 									"kind": "param",
 									"name": "fn",
 									"type": "Function",
-									"isFirstLevel": true
+									"isFirstLevel": true,
+									"description": "The function"
 								},
 								{
 									"kind": "param",
 									"name": "context",
 									"type": "Object",
-									"isFirstLevel": true
+									"isFirstLevel": true,
+									"description": "The value to be passed as the this parameter to the target"
+								},
+								{
+									"kind": "param",
+									"name": "args*",
+									"type": "Any",
+									"isOptional": true,
+									"isFirstLevel": true,
+									"description": "Additional arguments will be sent to the original function as prefix arguments"
 								}
 							],
 							"return": {
@@ -314,37 +374,14 @@
 							"kind": "function",
 							"name": "i",
 							"file": "src/js/Ink/1/lib.js",
-							"text": "alias to document.getElementById",
+							"text": "Alias to document.getElementById",
 							"params": [
 								{
 									"kind": "param",
 									"name": "id",
 									"type": "String",
-									"isFirstLevel": true
-								}
-							],
-							"samples": [
-								"Ink_1_i.html"
-							]
-						},
-						{
-							"kind": "function",
-							"name": "s",
-							"file": "src/js/Ink/1/lib.js",
-							"text": "alias to sizzle or querySelector",
-							"params": [
-								{
-									"kind": "param",
-									"name": "rule",
-									"type": "String",
-									"isFirstLevel": true
-								},
-								{
-									"kind": "param",
-									"name": "from",
-									"type": "DOMElement",
-									"isOptional": true,
-									"isFirstLevel": true
+									"isFirstLevel": true,
+									"description": "Element ID"
 								}
 							],
 							"return": {
@@ -352,14 +389,14 @@
 								"type": "DOMElement"
 							},
 							"samples": [
-								"Ink_1_s.html"
+								"Ink_1_i.html"
 							]
 						},
 						{
 							"kind": "function",
 							"name": "ss",
 							"file": "src/js/Ink/1/lib.js",
-							"text": "alias to sizzle or querySelectorAll",
+							"text": "Alias for Ink.Dom.Selector",
 							"params": [
 								{
 									"kind": "param",
@@ -386,21 +423,61 @@
 						},
 						{
 							"kind": "function",
+							"name": "s",
+							"file": "src/js/Ink/1/lib.js",
+							"text": "Alias for Ink.Dom.Selector first result",
+							"params": [
+								{
+									"kind": "param",
+									"name": "rule",
+									"type": "String",
+									"isFirstLevel": true,
+									"description": "Selector string"
+								},
+								{
+									"kind": "param",
+									"name": "from",
+									"type": "DOMElement",
+									"isOptional": true,
+									"isFirstLevel": true,
+									"description": "Context element. If set to a DOM element, the rule will only look for descendants of this DOM Element."
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "DOMElement"
+							},
+							"samples": [
+								"Ink_1_s.html"
+							]
+						},
+						{
+							"kind": "function",
 							"name": "extendObj",
 							"file": "src/js/Ink/1/lib.js",
-							"text": "Enriches the destination object with values from source object whenever the key is missing in destination.\n\nMore than one object can be passed as source, in which case the rightmost objects have precedence.",
+							"text": "Copy all of the properties in one or more source objects over to the destination object, and return the destination object. It's in-order, so the last source will override properties of the same name in previous arguments.",
 							"params": [
 								{
 									"kind": "param",
 									"name": "destination",
 									"type": "Object",
-									"isFirstLevel": true
+									"isFirstLevel": true,
+									"description": "The object that will receive the new/updated properties"
 								},
 								{
 									"kind": "param",
-									"name": "sources",
-									"type": "Object...",
-									"isFirstLevel": true
+									"name": "source",
+									"type": "Object",
+									"isFirstLevel": true,
+									"description": "The object whose properties will be copied over to the destination object"
+								},
+								{
+									"kind": "param",
+									"name": "args*",
+									"type": "Object",
+									"isOptional": true,
+									"isFirstLevel": true,
+									"description": "Additional source objects. The last source will override properties of the same name in the previous defined sources"
 								}
 							],
 							"return": {
@@ -415,12 +492,15 @@
 							"kind": "function",
 							"name": "log",
 							"file": "src/js/Ink/1/lib.js",
-							"text": "Calls console.log if available.",
+							"text": "Calls native console.log if available.",
 							"params": [
 								{
 									"kind": "param",
-									"name": "args...",
-									"isFirstLevel": false
+									"name": "args*",
+									"type": "Any",
+									"isOptional": true,
+									"isFirstLevel": true,
+									"description": "Arguments to be evaluated"
 								}
 							]
 						},
@@ -428,12 +508,15 @@
 							"kind": "function",
 							"name": "warn",
 							"file": "src/js/Ink/1/lib.js",
-							"text": "Calls console.warn if available.",
+							"text": "Calls native console.warn if available.",
 							"params": [
 								{
 									"kind": "param",
-									"name": "args...",
-									"isFirstLevel": false
+									"name": "args*",
+									"type": "Any",
+									"isOptional": true,
+									"isFirstLevel": true,
+									"description": "Arguments to be evaluated"
 								}
 							]
 						},
@@ -441,12 +524,15 @@
 							"kind": "function",
 							"name": "error",
 							"file": "src/js/Ink/1/lib.js",
-							"text": "Calls console.error if available.",
+							"text": "Calls native console.error if available.",
 							"params": [
 								{
 									"kind": "param",
-									"name": "args...",
-									"isFirstLevel": false
+									"name": "args*",
+									"type": "Any",
+									"isOptional": true,
+									"isFirstLevel": true,
+									"description": "Arguments to be evaluated"
 								}
 							]
 						}
@@ -456,7 +542,11 @@
 			],
 			"functions": [],
 			"attributes": [],
-			"uses": []
+			"uses": [
+				"requireModules",
+				"createModule",
+				"bind"
+			]
 		},
 		{
 			"kind": "module",
@@ -8299,6 +8389,33 @@
 								},
 								{
 									"kind": "param",
+									"name": "options.chevron",
+									"type": "Boolean",
+									"isOptional": true,
+									"defaultValue": "false",
+									"isFirstLevel": false,
+									"description": "whether the pagination is has chevron buttons."
+								},
+								{
+									"kind": "param",
+									"name": "options.dotted",
+									"type": "Boolean",
+									"isOptional": true,
+									"defaultValue": "false",
+									"isFirstLevel": false,
+									"description": "whether the pagination is dotted. Implies sideButtons=false"
+								},
+								{
+									"kind": "param",
+									"name": "options.sideButtons",
+									"type": "Boolean",
+									"isOptional": true,
+									"defaultValue": "true",
+									"isFirstLevel": false,
+									"description": "whether to show the first, last, previous, next, previousPage and lastPage buttons. Do not use together with maxSize."
+								},
+								{
+									"kind": "param",
 									"name": "options.firstLabel",
 									"type": "String",
 									"isOptional": true,
@@ -8474,6 +8591,25 @@
 							"file": "src/js/Ink/UI/Pagination/1/lib.js",
 							"text": "Responsible for setting listener in the 'click' event of the Pagination element.",
 							"params": [],
+							"private": true
+						},
+						{
+							"kind": "function",
+							"name": "_calculateSize",
+							"file": "src/js/Ink/UI/Pagination/1/lib.js",
+							"text": "Calculate how many pages are necessary for `count` items, and `itemsPerPage` items per page.",
+							"params": [
+								{
+									"kind": "param",
+									"name": "count",
+									"isFirstLevel": true
+								},
+								{
+									"kind": "param",
+									"name": "itemsPerPage",
+									"isFirstLevel": true
+								}
+							],
 							"private": true
 						},
 						{

@@ -83,11 +83,11 @@
         },
 
         /**
-         * Get the path of a certain module by looking up the paths given in setPath (and ultimately the default Ink path)
+         * Get the full path of a certain module by looking up the paths given in setPath (and ultimately the default Ink path)
          *
          * @method getPath
-         * @param modName   Name of the module you want the path of.
-         * @param noLib     Exclude the 'lib.js' filename
+         * @param {String}  key      Name of the module you want to get the path
+         * @param {Boolean} [noLib] Flag to skip appending 'lib.js' to the returned path.
          */
         getPath: function(key, noLib) {
             var split = key.split(/[._]/g);
@@ -117,13 +117,13 @@
         },
         
         /**
-         * Sets the URL path for a namespace. Use this to customize where
-         * requireModules (and createModule) will load dependencies from.
-         *
+         * Sets the URL path for a namespace or module. Use this to customize where requireModules (and createModule) will load dependencies from.
+         * This can be useful to set your own CDN for dynamic module loading or simply to avoi
+         * 
          * @method setPath
          *
-         * @param key
-         * @param rootURI
+         * @param {String} key       Module or namespace
+         * @param {String} rootURI   Base URL path and schema to be appended to the module or namespace
          *
          * @example
          *      Ink.setPath('Ink', 'http://my-cdn/Ink/');
@@ -147,8 +147,8 @@
          * Reports errors by listening to 'error' and 'readystatechange' events.
          *
          * @method loadScript
-         * @param {String}   uri  can be an http URI or an Ink module name, which gets resolved.
-         * @param {String}  [contentType='text/javascript'] the `type` attribute of the new script tag.
+         * @param {String}  uri  Can be an external URL or a module name
+         * @param {String}  [contentType]='text/javascript' The `type` attribute of the new script tag.
          */
         loadScript: function(uri, contentType) {
             /*jshint evil:true */
@@ -193,12 +193,12 @@
         },
 
         /**
-         * defines a namespace.
+         * Defines a module namespace.
          *
          * @method namespace
-         * @param  {String}   ns
-         * @param  {Boolean}  [returnParentAndKey]
-         * @return {Array|Object} if returnParentAndKey, returns [parent, lastPart], otherwise return the namespace directly
+         * @param  {String}   ns                    Namespace to define.
+         * @param  {Boolean}  [returnParentAndKey]  Flag to change the return value to an array containing the namespace parent and the namespace key
+         * @return {Object|Array} Returns the created namespace object
          */
         namespace: function(ns, returnParentAndKey) {
             if (!ns || !ns.length) { return null; }
@@ -224,12 +224,12 @@
         },
 
         /**
-         * synchronous. assumes module is loaded already!
+         * A synchronous method to get the module from the registry. It assumes the module is defined and loaded already!
          *
          * @method getModule
-         * @param  {String}  mod
-         * @param  {Number}  [version]
-         * @return {Object|Function} module object / function
+         * @param  {String}  mod        Module name
+         * @param  {Number}  [version]  Version number of the module
+         * @return {Object|Function}    Module object or function, depending how the module is defined
          */
         getModule: function(mod, version) {
             var key = version ? [mod, '_', version].join('') : mod;
@@ -237,13 +237,16 @@
         },
 
         /**
-         * must be the wrapper around each Ink lib module for require resolution
+         * Creates a new Ink Module. Use this to wrap your code and benefit from the module loading used throughout the Ink library
          *
          * @method createModule
-         * @param  {String}    mod      module name. parts are split with dots
-         * @param  {Number}    version
-         * @param  {Array}     deps     array of module names which are dependencies for the module being created
-         * @param  {Function}  modFn    its arguments are the resolved dependecies, once all of them are fetched. the body of this function should return the module.
+         * @uses   requireModules
+         * @param  {String}    mod      Module name, separated by dots. Like Ink.Dom.Selector, Ink.UI.Modal
+         * @param  {Number}    version  Version number
+         * @param  {Array}     deps     Array of module names which are dependencies of the module being created. The order in which they are passed here will define the order they will be passed to the callback function.
+         * @param  {Function}  modFn    The callback function to be executed when all the dependencies are resolved. The dependencies are passed as arguments, in the same order they were declared. The function itself should return the module.
+         * @sample Ink_1_createModule.html 
+         *
          */
         createModule: function(mod, ver, deps, modFn) { // define
             if (typeof mod !== 'string') {
@@ -330,11 +333,11 @@
         },
 
         /**
-         * use this to get depencies, even if they're not loaded yet
+         * Use this to get modules, even if they're not loaded yet
          *
          * @method requireModules
-         * @param  {Array}     deps  array of module names which are dependencies for the require function body
-         * @param  {Function}  cbFn  its arguments are the resolved dependecies, once all of them are fetched
+         * @param  {Array}     deps  Array of module names. The order in which they are passed here will define the order they will be passed to the callback function. 
+         * @param  {Function}  cbFn  The callback function to be executed when all the dependencies are resolved. The dependencies are passed as arguments, in the same order they were declared.
          */
         requireModules: function(deps, cbFn) { // require
             //console.log(['requireModules([', deps.join(', '), '], ', !!cbFn, ')'].join(''));
@@ -386,7 +389,7 @@
         },
 
         /**
-         * list or module names, ordered by loaded time
+         * List of module names, ordered by loaded time (oldest module comes first)
          *
          * @method getModulesLoadOrder
          * @return {Array} returns the order in which modules were resolved and correctly loaded
@@ -396,9 +399,11 @@
         },
 
         /**
-         * returns the markup you should have to bundle your JS resources yourself
-         *
-         * @return {String} scripts markup
+         * Get the markup needed to load all the modules.
+         * This method builds the script tags needed to load the currently used modules
+         * 
+         * @method getModuleScripts
+         * @return {String} The script markup
          */
         getModuleScripts: function() {
             var mlo = this.getModulesLoadOrder();
@@ -416,6 +421,7 @@
          * Does exactly the same as createModule but creates the module in the Ink.Ext namespace
          *
          * @method createExt
+         * @uses createModule
          * @param {String} moduleName   Extension name
          * @param {String} version  Extension version
          * @param {Array}  dependencies Extension dependencies
@@ -427,13 +433,14 @@
 
         /**
          * Function.prototype.bind alternative.
-         * Additional arguments will be sent to the original function as prefix arguments.
-         * Set "context" to `false` to preserve the original context of the function and just bind the arguments.
+         * Creates a new function that, when called, has its this keyword set to the provided value, with a given sequence of arguments preceding any provided when the new function is called.
          *
          * @method bind
-         * @param {Function}  fn
-         * @param {Object}    context
+         * @param {Function}  fn        The function 
+         * @param {Object}    context   The value to be passed as the this parameter to the target function when the bound function is called. If used as false, it preserves the original context and just binds the arguments.
+         * @param {Any}   [args*]     Additional arguments will be sent to the original function as prefix arguments.
          * @return {Function}
+         * @sample Ink_1_bind.html 
          */
         bind: function(fn, context) {
             var args = Array.prototype.slice.call(arguments, 2);
@@ -445,11 +452,13 @@
         },
 
         /**
-         * Function.prototype.bind alternative for binding class methods
-         *
+         * Function.prototype.bind alternative for class methods
+         * Creates a new function that, when called, has this k
          * @method bindMethod
-         * @param {Object}  object
-         * @param {String}  methodName
+         * @uses bind
+         * @param {Object}  object      The object that contains the method to bind
+         * @param {String}  methodName  The name of the method that will be bound
+         * @param {Any}   [args*]     Additional arguments will be sent to the new method as prefix arguments.
          * @return {Function}
          *  
          * @example
@@ -472,12 +481,12 @@
         /**
          * Function.prototype.bind alternative for event handlers.
          * Same as bind but keeps first argument of the call the original event.
-         * Additional arguments will be sent to the original function as prefix arguments.
          * Set "context" to `false` to preserve the original context of the function and just bind the arguments.
          *
          * @method bindEvent
-         * @param {Function}  fn
-         * @param {Object}    context
+         * @param {Function}  fn        The function 
+         * @param {Object}    context   The value to be passed as the this parameter to the target 
+         * @param {Any}     [args*]   Additional arguments will be sent to the original function as prefix arguments
          * @return {Function}
          */
         bindEvent: function(fn, context) {
@@ -490,10 +499,11 @@
         },
 
         /**
-         * alias to document.getElementById
+         * Alias to document.getElementById
          *
          * @method i
-         * @param {String} id
+         * @param {String} id Element ID
+         * @return {DOMElement}
          * @sample Ink_1_i.html 
          */
         i: function(id) {
@@ -507,24 +517,7 @@
         },
 
         /**
-         * alias to sizzle or querySelector
-         *
-         * @method s
-         * @param {String}     rule
-         * @param {DOMElement} [from]
-         * @return {DOMElement}
-         * @sample Ink_1_s.html 
-         */
-        s: function(rule, from)
-        {
-            if(typeof(Ink.Dom) === 'undefined' || typeof(Ink.Dom.Selector) === 'undefined') {
-                throw new Error('This method requires Ink.Dom.Selector');
-            }
-            return Ink.Dom.Selector.select(rule, (from || document))[0] || null;
-        },
-
-        /**
-         * alias to sizzle or querySelectorAll
+         * Alias for Ink.Dom.Selector
          *
          * @method ss
          * @param {String}     rule
@@ -541,13 +534,29 @@
         },
 
         /**
-         * Enriches the destination object with values from source object whenever the key is missing in destination.
+         * Alias for Ink.Dom.Selector first result
          *
-         * More than one object can be passed as source, in which case the rightmost objects have precedence.
+         * @method s
+         * @param {String}     rule     Selector string
+         * @param {DOMElement} [from]   Context element. If set to a DOM element, the rule will only look for descendants of this DOM Element.
+         * @return {DOMElement}
+         * @sample Ink_1_s.html 
+         */
+        s: function(rule, from)
+        {
+            if(typeof(Ink.Dom) === 'undefined' || typeof(Ink.Dom.Selector) === 'undefined') {
+                throw new Error('This method requires Ink.Dom.Selector');
+            }
+            return Ink.Dom.Selector.select(rule, (from || document))[0] || null;
+        },
+
+        /**
+         * Copy all of the properties in one or more source objects over to the destination object, and return the destination object. It's in-order, so the last source will override properties of the same name in previous arguments.
          *
          * @method extendObj
-         * @param {Object} destination
-         * @param {Object...} sources
+         * @param {Object} destination  The object that will receive the new/updated properties
+         * @param {Object} source       The object whose properties will be copied over to the destination object
+         * @param {Object} [args*]      Additional source objects. The last source will override properties of the same name in the previous defined sources
          * @return destination object, enriched with defaults from the sources
          * @sample Ink_1_extendObj.html 
          */
@@ -566,10 +575,10 @@
         },
 
         /**
-         * Calls console.log if available.
+         * Calls native console.log if available.
          *
          * @method log
-         * @param args...
+         * @param {Any} [args*] Arguments to be evaluated
          **/
         log: function () {
             // IE does not have console.log.apply in IE10 emulated mode
@@ -580,10 +589,10 @@
         },
 
         /**
-         * Calls console.warn if available.
+         * Calls native console.warn if available.
          *
          * @method warn
-         * @param args...
+         * @param {Any} [args*] Arguments to be evaluated
          **/
         warn: function () {
             // IE does not have console.log.apply in IE10 emulated mode
@@ -594,10 +603,10 @@
         },
 
         /**
-         * Calls console.error if available.
+         * Calls native console.error if available.
          *
          * @method error
-         * @param args...
+         * @param {Any} [args*] Arguments to be evaluated
          **/
         error: function () {
             // IE does not have console.log.apply in IE10 emulated mode
