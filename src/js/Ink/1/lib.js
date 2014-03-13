@@ -245,6 +245,7 @@
          * @param  {Number}    version  Version number
          * @param  {Array}     deps     Array of module names which are dependencies of the module being created. The order in which they are passed here will define the order they will be passed to the callback function.
          * @param  {Function}  modFn    The callback function to be executed when all the dependencies are resolved. The dependencies are passed as arguments, in the same order they were declared. The function itself should return the module.
+         * @sample Ink_1_createModule.html 
          *
          */
         createModule: function(mod, ver, deps, modFn) { // define
