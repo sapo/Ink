@@ -1,9 +1,8 @@
 <p>How to create a new Ink's static module ex: <code>Ink.Util.Calculator</code> version 1 without dependencies</p>
-<p>This module is static, that means, all methods will be used as <code>Ink.Util.Calculator.method();</code></p>
+<p>This module is static, that means, all methods will be used as <code>Ink.Util.Calculator_1.method();</code></p>
 
 <p class="example-title">Code</p>
 {% highlight js %}
-<script type="text/javascript">
 
 Ink.createModule('Ink.Util.Calculator', 1,  // define module and version 
         [],  // empty array to define no dependencies 
@@ -33,15 +32,13 @@ Ink.createModule('Ink.Util.Calculator', 1,  // define module and version
         divide: function(a, b)
         {
             return this._toNumber(a) / this._toNumber(b);
-        },
+        }
     };
 
     return StaticModule;
 });
 
-
 // How to use it... see Ink.requireModules to understand how it works 
-
 Ink.requireModules(['Ink.Util.Calculator_1'], function(Calculator) {
     
     Calculator.add(7, '5'); // 12
@@ -53,19 +50,15 @@ Ink.requireModules(['Ink.Util.Calculator_1'], function(Calculator) {
     Calculator.divide('a', 'b'); // NaN 
 });
 
-
-</script>
 {% endhighlight %}
 
-<p></p> 
 <p>How to create a new Ink's instantiable module ex: <code>Ink.UI.ElementClickable</code> version 1 with <code>Ink.Dom.Event_1</code> and <code>Ink.Dom.Element_1</code> as dependencies</p>
-<p>This module is instantiable, that means, will be used as <code>new Ink.Util.ElementClickable();</code></p>
+<p>This module is instantiable, that means, will be used as <code>new Ink.UI.ElementClickable_1();</code></p>
 <p class="example-title">Code</p>
 {% highlight js %}
-<script type="text/javascript">
 Ink.createModule('Ink.UI.ElementClickable', 1,  // define module and version 
         ['Ink.Dom.Event_1', 'Ink.Dom.Element_1'],  // array of dependencies 
-        function(InkEvent, InkElement) { // callback function with dependencies alias 
+        function(InkEvent, InkElement) { // callback function with dependencies alias. Using Event/Element as alias can conflit with Event/Element JS global objects
 
     var ElementClickable = function(options) {
         this._init(options); 
@@ -78,9 +71,10 @@ Ink.createModule('Ink.UI.ElementClickable', 1,  // define module and version
                     label: 'Click me',
                     target: Ink.s('body')
                 }, arguments[0] || {});
-
+            
             this._addElementToTarget();
         },
+
         _createElement: function()
         {
             var div = InkElement.create('div', {setTextContent: this._options.label});
@@ -109,10 +103,7 @@ Ink.requireModules(['Ink.UI.ElementClickable_1'], function(ElmClickable) {
     new ElmClickable(); 
 
     new ElmClickable({label: 'Click here please', target: Ink.ss('div')[0]});
-
 });
 
-</script>
 {% endhighlight %}
-
 

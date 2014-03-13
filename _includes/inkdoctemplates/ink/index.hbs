@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <title>{{title}}</title>
+
+
+
+        <link rel="stylesheet" type="text/css" href="http://cdn.ink.sapo.pt/2.2.1/css/ink-min.css">
+
+        <link rel="stylesheet" type="text/css" href="doc.css">
+        <link rel="stylesheet" type="text/css" href="Autocomplete.css">
+
+
+
+        <script type="text/javascript">
+            window.INK_STATICMODE = true;
+        </script>
+
+        <script type="text/javascript" src="http://cdn.ink.sapo.pt/2.2.1/js/ink.min.js"></script>
+        <script type="text/javascript" src="http://cdn.ink.sapo.pt/2.2.1/js/ink-ui.min.js"></script>
+
+        <script type="text/javascript">
+            Ink.setPath('Inkx', '');
+        </script>
+
+        <script type="text/javascript" src="Autocomplete.js"></script>
+    </head>
+
+    <body>
+        <div class="top-part">
+            Module <input type="checkbox" id="filter-m" value="m" checked>
+            Class <input type="checkbox" id="filter-c" value="c" checked>
+            Function <input type="checkbox" id="filter-f" value="f" checked>
+            <div class="autocomplete-wrapper">
+                <input type="text" id="autocomplete" class="autocomplete" value="">
+                <ul class="unstyled"></ul>
+            </div>
+        </div>
+
+        <div class="left-part">
+            <!-- add modules.html here -->
+        </div>
+
+        <div class="main-part">
+            <!-- module info with go here -->
+            <div class="start-message">
+                Search the API using the top input<br/>or pick a module from the left.
+            </div>
+        </div>
+
+
+        {{#file "modules"}}
+            <div class="box box-modules">
+
+                <h2>Modules:</h2>
+                <ul>
+                {{#each modules}}
+                    <li><a href="#{{{hash}}}">{{name}}</a></li>
+                {{/each}}
+                </ul>
+
+            </div>
+        {{/file}}
+
+        {{> module}}
+
+        {{#each modules}}
+            {{> module}}
+        {{/each}}
+
+        </div>
+
+        <script type="text/javascript" src="multipage.js"></script>
+    </body>
+</html>s
