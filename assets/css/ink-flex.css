@@ -2009,7 +2009,7 @@ pre {
 
 blockquote {
   /* Set 1 unit of vertical rhythm on the top and bottom margin. */
-  margin: 0.75em 40px;
+  margin: 0.75em 25px;
 }
 
 /**
@@ -2026,38 +2026,38 @@ h1 {
 }
 
 h2 {
+  font-size: 1.75em;
+  line-height: 1.71429em;
+  margin-top: 0.85714em;
+  margin-bottom: 0.85714em;
+}
+
+h3 {
   font-size: 1.5em;
   line-height: 2em;
   margin-top: 1em;
   margin-bottom: 1em;
 }
 
-h3 {
-  font-size: 1.17em;
-  line-height: 1.28205em;
-  margin-top: 1.28205em;
-  margin-bottom: 1.28205em;
+h4 {
+  font-size: 1.25em;
+  line-height: 1.2em;
+  margin-top: 1.2em;
+  margin-bottom: 1.2em;
 }
 
-h4 {
+h5 {
+  font-size: 1.1em;
+  line-height: 1.36364em;
+  margin-top: 1.36364em;
+  margin-bottom: 1.36364em;
+}
+
+h6 {
   font-size: 1em;
   line-height: 1.5em;
   margin-top: 1.5em;
   margin-bottom: 1.5em;
-}
-
-h5 {
-  font-size: 0.83em;
-  line-height: 1.80723em;
-  margin-top: 1.80723em;
-  margin-bottom: 1.80723em;
-}
-
-h6 {
-  font-size: 0.67em;
-  line-height: 2.23881em;
-  margin-top: 2.23881em;
-  margin-bottom: 2.23881em;
 }
 
 /**
@@ -2168,7 +2168,7 @@ ul {
 }
 
 dd {
-  margin: 0 0 0 40px;
+  margin: 0 0 0 25px;
 }
 
 /**
@@ -2177,7 +2177,7 @@ dd {
 menu,
 ol,
 ul {
-  padding: 0 0 0 40px;
+  padding: 0 0 0 25px;
 }
 
 /**
@@ -6258,9 +6258,6 @@ html.flexbox .column-group.vertical.reverse {
   padding: 0.2em 0.5em;
   white-space: nowrap;
 }
-.ink-label.success.invert, .ink-label.warning.invert, .ink-label.error.invert, .ink-label.info.invert {
-  padding: 0;
-}
 
 .ink-navigation {
   overflow: visible;
@@ -6638,69 +6635,69 @@ body {
   line-height: 24px;
 }
 
-.fw-100 {
+.fw-100, .fw-light {
   font-weight: 100;
-  font-family: Roboto;
+  font-family: "Roboto", Arial, sans-serif;
 }
 
-.fw-300 {
+.fw-300, .fw-thin {
   font-weight: 300;
-  font-family: Roboto;
+  font-family: "Roboto", Arial, sans-serif;
 }
 
-.fw-400 {
+.fw-400, .fw-regular {
   font-weight: 400;
-  font-family: Roboto;
+  font-family: "Roboto", Arial, sans-serif;
 }
 
-.fw-500 {
+.fw-500, .fw-medium {
   font-weight: 500;
-  font-family: Roboto;
+  font-family: "Roboto", Arial, sans-serif;
 }
 
-.fw-700 {
+.fw-700, .fw-bold {
   font-weight: 700;
-  font-family: Roboto;
+  font-family: "Roboto", Arial, sans-serif;
 }
 
-.fw-900 {
+.fw-900, .fw-black {
   font-weight: 900;
-  font-family: Roboto;
+  font-family: "Roboto", Arial, sans-serif;
 }
 
-.condensed-300 {
+.condensed-300, .condensed-thin {
   font-weight: 200;
-  font-family: Roboto_condensed;
+  font-family: Roboto_condensed, Arial, sans-serif;
 }
 
-.condensed-400 {
+.condensed-400, .condensed-regular {
   font-weight: 400;
-  font-family: Roboto_condensed;
+  font-family: Roboto_condensed, Arial, sans-serif;
 }
 
-.condensed-700 {
+.condensed-700, .condensed-bold {
   font-weight: 700;
-  font-family: Roboto_condensed;
+  font-family: Roboto_condensed, Arial, sans-serif;
 }
 
-.slab-100 {
+.slab-100, .slab-light {
   font-weight: 100;
-  font-family: Roboto_slab;
+  font-family: Roboto_slab, Arial, sans-serif;
 }
 
-.slab-300 {
+.slab-300, .slab-thin {
   font-weight: 300;
-  font-family: Roboto_slab;
+  font-family: Roboto_slab, Arial, sans-serif;
 }
 
-.slab-400 {
+.slab-400, .slab-regular {
   font-weight: 400;
-  font-family: Roboto_slab;
+  font-family: Roboto_slab, Arial, sans-serif;
 }
 
-.slab-700 {
+.slab-700, .slab-bold {
   font-weight: 700;
-  font-family: Roboto_slab;
+  font-family: Roboto_slab, Arial, sans-serif;
 }
 
 .sans {
@@ -6725,6 +6722,14 @@ body {
 
 .italic {
   font-style: italic;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.lowercase {
+  text-transform: lowercase;
 }
 
 .fa {
@@ -6773,6 +6778,10 @@ h1 small, h2 small, h3 small, h4 small {
   line-height: 1;
 }
 
+mark {
+  background: #dae5f2;
+}
+
 address {
   color: #777777;
   font-size: 1em;
@@ -6791,7 +6800,7 @@ abbr:hover {
 
 blockquote {
   border-left: 4px solid #ddd;
-  padding-left: 40px;
+  padding-left: 25px;
   margin: 1em 0;
   font-weight: 200;
   font-size: 1.1em;
@@ -6873,7 +6882,7 @@ dl dt {
   margin: .5em 0;
 }
 dl dd {
-  margin: 0.5em 0 0.5em 40px;
+  margin: 0.5em 0 0.5em 25px;
 }
 dl.inline dt {
   float: left;
@@ -7032,6 +7041,13 @@ figure.ink-image > figcaption.dark {
   border-radius: 8em;
   color: white;
 }
+.ink-badge.white {
+  background: white;
+  color: #555555;
+}
+.ink-badge.black {
+  background: black;
+}
 .ink-badge.orange {
   background: #ff9c00;
 }
@@ -7044,15 +7060,15 @@ figure.ink-image > figcaption.dark {
 .ink-badge.blue {
   background: #0f75da;
 }
-.ink-badge.white {
-  background: white;
+.ink-badge.yellow {
+  background: #ffd500;
   color: #555555;
-}
-.ink-badge.black {
-  background: black;
 }
 .ink-badge.grey {
   background: gray;
+}
+.ink-badge + .ink-badge {
+  margin-left: 0.2em;
 }
 
 /**
@@ -7239,45 +7255,41 @@ figure.ink-image > figcaption.dark {
 
 .ink-label {
   color: white;
-  font-weight: bold;
+  font-weight: 300;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   -ms-border-radius: 2px;
   -o-border-radius: 2px;
   border-radius: 2px;
-  text-shadow: rgba(0, 0, 0, 0.25) 0 1px 0;
 }
-.ink-label.success {
-  background-color: #4a9b17;
+.ink-label.white {
+  background: white;
+  color: #555555;
 }
-.ink-label.success.invert {
-  color: #4a9b17;
-  background-color: transparent;
-  text-shadow: none;
+.ink-label.black {
+  background: black;
 }
-.ink-label.warning {
-  background-color: #ff9c00;
+.ink-label.orange {
+  background: #ff9c00;
 }
-.ink-label.warning.invert {
-  color: #ff9c00;
-  background-color: transparent;
-  text-shadow: none;
+.ink-label.red {
+  background: #c91111;
 }
-.ink-label.error {
-  background-color: #c91111;
+.ink-label.green {
+  background: #4a9b17;
 }
-.ink-label.error.invert {
-  color: #c91111;
-  background-color: transparent;
-  text-shadow: none;
+.ink-label.blue {
+  background: #0f75da;
 }
-.ink-label.info {
-  background-color: #0f75da;
+.ink-label.yellow {
+  background: #ffd500;
+  color: #555555;
 }
-.ink-label.info.invert {
-  color: #0f75da;
-  background-color: transparent;
-  text-shadow: none;
+.ink-label.grey {
+  background: gray;
+}
+.ink-label + .ink-label {
+  margin-left: 0.2em;
 }
 
 .ink-navigation ul.breadcrumbs {
