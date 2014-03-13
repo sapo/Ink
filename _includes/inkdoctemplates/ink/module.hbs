@@ -1,0 +1,88 @@
+{{#file hash}}
+
+    <div class="box box-module">
+
+        {{#if name}}
+            <h2><a name="{{{hash}}}">{{name}} <i>module</i></a></h2>
+        {{/if}}
+
+        {{!<p>Defined in file: {file}</p>}}
+
+        {{#if author}}
+            <p><label>author:</label>{{author}}</p>
+        {{/if}}
+        {{#if since}}
+            <p><label>since:</label>{{since}}</p>
+        {{/if}}
+        {{#if version}}
+            <p><label>version:</label>{{version}}</p>
+        {{/if}}
+
+        {{#if uses}}
+            <h3>uses:</h3>
+            <ul>
+            {{#each uses}}
+                <li>{{this}}</li>
+            {{/each}}
+            </ul>
+        {{/if}}
+
+        {{#if text}}
+            <p class="text">{{{text}}}</p>
+        {{/if}}
+
+        {{> examples}}
+        {{> samples}}
+
+        {{#if classes.length}}
+            <h3>Defined classes and namespaces:</h3>
+            <ul>
+            {{#each classes}}
+                {{#if isNamespace}}
+                    <li><a href="#{{{hash}}}">(NS) {{name}}</a></li>
+                {{else}}
+                    <li><a href="#{{{hash}}}">(C) {{name}}</a></li>
+                {{/if}}
+            {{/each}}
+            </ul>
+        {{/if}}
+
+        {{#if functions.length}}
+            <h3>Defined functions:</h3>
+            <ul>
+            {{#each functions}}
+                <li><a href="#{{{hash}}}">
+                {{#if isConstructor}}
+                    {{parent.name}}
+                {{else}}
+                    {{parent.name}}.{{name}}
+                {{/if}}
+                ({{#foreach params}}{{#if isFirstLevel}}{{#if isOptional}}[{{/if}}{{name}}{{#if isOptional}}]{{/if}}{{#unless $last}}, {{/unless}}{{/if}}{{/foreach}})</a></li>
+            {{/each}}
+            </ul>
+        {{/if}}
+
+        {{#if attributes.length}}
+            <h3>Defined attributes:</h3>
+            <ul>
+            {{#each attributes}}
+                <li><a href="#{{{hash}}}">{{name}}</a></li>
+            {{/each}}
+            </ul>
+        {{/if}}
+
+    </div>
+
+    {{#each classes}}
+        {{> class}}
+    {{/each}}
+
+    {{#each functions}}
+        {{> function}}
+    {{/each}}
+
+    {{#each attributes}}
+        {{> attribute}}
+    {{/each}}
+
+{{/file}}

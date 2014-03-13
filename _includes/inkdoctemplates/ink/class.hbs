@@ -1,0 +1,67 @@
+<div class="box box-class">
+
+    <h2><a name="{{{hash}}}">{{name}} <i>
+    {{#if isNamespace}}
+        namespace
+    {{else}}
+        class
+    {{/if}}
+    </i></a></h2>
+
+    {{!<p>Defined in file: {file}</p>}}
+
+    {{#if author}}
+        <p><label>author:</label>{{author}}</p>
+    {{/if}}
+    {{#if since}}
+        <p><label>since:</label>{{since}}</p>
+    {{/if}}
+    {{#if version}}
+        <p><label>version:</label>{{version}}</p>
+    {{/if}}
+
+    {{#if text}}
+        <div class="text">{{{text}}}</div>
+    {{/if}}
+
+    {{> examples}}
+    {{> samples}}
+
+    {{#if functions.length}}
+        {{#if isNamespace}}
+            <h3>Defined functions:</h3>
+        {{else}}
+            <h3>Defined methods:</h3>
+        {{/if}}
+        
+        <ul>
+        {{#each functions}}
+            <li><a href="#{{{hash}}}">
+            {{#if isConstructor}}
+                {{parent.name}}
+            {{else}}
+                {{parent.name}}.{{name}}
+            {{/if}}
+            ({{#foreach params}}{{#if isFirstLevel}}{{#if isOptional}}[{{/if}}{{name}}{{#if isOptional}}]{{/if}}{{#unless $last}}, {{/unless}}{{/if}}{{/foreach}})</a></li>
+        {{/each}}
+        </ul>
+    {{/if}}
+
+    {{#if attributes.length}}
+        <h3>Defined attributes:</h3>
+        <ul>
+        {{#each attributes}}
+            <li><a href="#{{{hash}}}">{{parent.name}}.{{name}}</a></li>
+        {{/each}}
+        </ul>
+    {{/if}}
+
+</div>
+
+{{#each functions}}
+    {{> function}}
+{{/each}}
+
+{{#each attributes}}
+    {{> attribute}}
+{{/each}}
