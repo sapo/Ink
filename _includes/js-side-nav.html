@@ -3,7 +3,7 @@
 <ul class="menu vertical">{% for component in section.components %}
   <li class="heading">{{ component.title }}{% if component.topics %}
     <ul>{% for topic in component.topics %}    
-      <li><a href="{{ site.url }}{{ section.title | downcase | replace: ' ','-' }}/{{ topic.title | downcase | replace: ' ','-' }}" title="{{ topic.title }}">{{ topic.title }}</a></li>{% endfor %}
+      <li><a href="{{ site.url }}{{ section.title | downcase | replace: ' ','-' }}/{{ topic.title | downcase | replace: ' ','-' | replace: ',','' }}" title="{{ topic.title }}">{{ topic.title }}</a></li>{% endfor %}
     </ul>{% endif %}
   </li>{% endfor %}
 </ul>

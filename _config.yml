@@ -5,6 +5,7 @@ destination: ./_site
 
 url: http://oss.sapo.pt/Ink/
 environment: production
+description: Ink is a set of tools for quick development of web interfaces.
 
 # SITE TITLE
 title: Ink
@@ -42,7 +43,14 @@ sections:
       - title: Typography
         topics:
           - title: Basic principles
-          - title: NOT WRITTEN!!!!
+          - title: Fonts
+          - title: Titles and paragraphs
+          - title: Lists
+          - title: Hypertext
+          - title: Emphasis
+          - title: "Notes, blockquotes and addresses"
+          - title: Labels and badges
+          - title: Utility classes
       - title: Images
         topics:
           - title: Basic principles
@@ -51,7 +59,7 @@ sections:
       - title: Tables
         topics:
           - title: Basic principles
-          - title: Usagse
+          - title: Usage
           - title: Alternating row colors
           - title: Highlighting rows
           - title: Borders
@@ -68,8 +76,8 @@ sections:
       - title: Buttons
         topics:
           - title: Basic principles
-          - title: Button group
-          - title: Button toolbar
+          - title: Button groups
+          - title: Button toolbars
       - title: Alerts
         topics:
           - title: Basic principles
