@@ -22,9 +22,8 @@
 
         
 
+
         
-
-
 
 
         
@@ -64,29 +63,22 @@
     
 
     
-{% raw %}
-	<h3>Examples:</h3>
+<p class="example-title">Example</p>
+{% highlight js html %}{% raw %}
+<script>
+    Ink.requireModules(['Ink.Dom.Browser_1'],function( InkBrowser ){
+        if( InkBrowser.CHROME ){
+            console.log( 'This is a CHROME browser.' );
+        }
+    });
+</script>{% endraw %}
+{% endhighlight %}
 
-	
-		<pre class="example"><code>
-			
-    &lt;input type=&quot;text&quot; id=&quot;dPicker&quot; /&gt;
-    &lt;script&gt;
-        Ink.requireModules([&#x27;Ink.Dom.Browser_1&#x27;],function( InkBrowser ){
-            if( InkBrowser.CHROME ){
-                console.log( &#x27;This is a CHROME browser.&#x27; );
-            }
-        });
-    &lt;/script&gt;
 
-		</code></pre>
-	
-  {% endraw %}
+
 
 
     
-
-
 
 
     
@@ -94,49 +86,39 @@
             <h3>Defined methods:</h3>
         
         
-        <table>
+        <ul>
         
-            <tr>
-                <td><a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-debug">
-                
-                    Ink.Dom.Browser.debug
-                
-                ()</a></td>
-            </tr>
+            <li><a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-debug">
+            
+                Ink.Dom.Browser.debug
+            
+            ()</a></li>
         
-            <tr>
-                <td><a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-detectBrowser">
-                
-                    Ink.Dom.Browser.detectBrowser
-                
-                ()</a></td>
-            </tr>
+            <li><a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-detectBrowser">
+            
+                Ink.Dom.Browser.detectBrowser
+            
+            ()</a></li>
         
-            <tr>
-                <td><a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-init">
-                
-                    Ink.Dom.Browser.init
-                
-                ()</a></td>
-            </tr>
+            <li><a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-init">
+            
+                Ink.Dom.Browser.init
+            
+            ()</a></li>
         
-            <tr>
-                <td><a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-setDimensions">
-                
-                    Ink.Dom.Browser.setDimensions
-                
-                ()</a></td>
-            </tr>
+            <li><a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-setDimensions">
+            
+                Ink.Dom.Browser.setDimensions
+            
+            ()</a></li>
         
-            <tr>
-                <td><a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-setReferrer">
-                
-                    Ink.Dom.Browser.setReferrer
-                
-                ()</a></td>
-            </tr>
+            <li><a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-setReferrer">
+            
+                Ink.Dom.Browser.setReferrer
+            
+            ()</a></li>
         
-        </table>
+        </ul>
     
 
     
@@ -196,16 +178,14 @@
     
 
     
-{% raw %}
-	<h3>Examples:</h3>
+<p class="example-title">Example</p>
+  
+<div class="example">
+{% highlight js html %}{% raw %}
 
-	
-		<pre class="example"><code>
-			
- 
  The following code
 
-     Ink.requireModules([&#x27;Ink.Dom.Browser_1&#x27;], function (Browser) {
+     Ink.requireModules(['Ink.Dom.Browser_1'], function (Browser) {
          Browser.debug();
      });
 
@@ -213,19 +193,17 @@
 
      known browsers: (ie, gecko, opera, safari, konqueror) 
      false,true,false,false,false
-     model -&gt; firefox
-     version -&gt; 22.0
+     model -> firefox
+     version -> 22.0
      
-     original UA -&gt; Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:22.0) Gecko/20100101 Firefox/22.0
+     original UA -> Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:22.0) Gecko/20100101 Firefox/22.0{% endraw %}
+{% endhighlight %}
+</div>
 
-		</code></pre>
-	
-  {% endraw %}
+
 
 
     
-
-
 
 </div>
 
@@ -260,9 +238,8 @@
 
     
 
+
     
-
-
 
 </div>
 
@@ -298,9 +275,8 @@
 
     
 
+
     
-
-
 
 </div>
 
@@ -335,9 +311,8 @@
 
     
 
+
     
-
-
 
 </div>
 
@@ -372,9 +347,8 @@
 
     
 
+
     
-
-
 
 </div>
 

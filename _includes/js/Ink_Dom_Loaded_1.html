@@ -22,9 +22,8 @@
 
         
 
+
         
-
-
 
 
         
@@ -69,9 +68,8 @@ the page is loaded (document is ready).</p>
 
     
 
+
     
-
-
 
 
     
@@ -79,17 +77,15 @@ the page is loaded (document is ready).</p>
             <h3>Defined methods:</h3>
         
         
-        <table>
+        <ul>
         
-            <tr>
-                <td><a href="#Ink_Dom_Loaded_1-Ink_Dom_Loaded-run">
-                
-                    Ink.Dom.Loaded.run
-                
-                ([win], fn)</a></td>
-            </tr>
+            <li><a href="#Ink_Dom_Loaded_1-Ink_Dom_Loaded-run">
+            
+                Ink.Dom.Loaded.run
+            
+            ([win], fn)</a></li>
         
-        </table>
+        </ul>
     
 
     
@@ -167,26 +163,24 @@ the page is loaded (document is ready).</p>
     
 
     
+<p class="example-title">Example</p>
+  
+<div class="example">
+{% highlight html %}
 {% raw %}
-	<h3>Examples:</h3>
-
-	
-		<pre class="example"><code>
-			
-    Ink.requireModules([&#x27;Ink.Dom.Loaded_1&#x27;], function(Loaded){
+    Ink.requireModules(['Ink.Dom.Loaded_1'], function(Loaded){
         Loaded.run(function(){
-            console.log(&#x27;This will run when the page/document is ready/loaded&#x27;);
+            console.log('This will run when the page/document is ready/loaded');
         });
     });
+{% endraw %}
+{% endhighlight %}
+</div>
 
-		</code></pre>
-	
-  {% endraw %}
+
 
 
     
-
-
 
 </div>
 

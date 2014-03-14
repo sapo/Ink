@@ -20,9 +20,8 @@
 
         
 
+
         
-
-
 
 
         
@@ -61,9 +60,8 @@
 
     
 
+
     
-
-
 
 
     
@@ -71,25 +69,21 @@
             <h3>Defined methods:</h3>
         
         
-        <table>
+        <ul>
         
-            <tr>
-                <td><a href="#Ink_UI_Tooltip_1-Ink_UI_Tooltip-Tooltip">
-                
-                    Ink.UI.Tooltip
-                
-                (target, [options], )</a></td>
-            </tr>
+            <li><a href="#Ink_UI_Tooltip_1-Ink_UI_Tooltip-Tooltip">
+            
+                Ink.UI.Tooltip
+            
+            (target, [options], )</a></li>
         
-            <tr>
-                <td><a href="#Ink_UI_Tooltip_1-Ink_UI_Tooltip-destroy">
-                
-                    Ink.UI.Tooltip.destroy
-                
-                ()</a></td>
-            </tr>
+            <li><a href="#Ink_UI_Tooltip_1-Ink_UI_Tooltip-destroy">
+            
+                Ink.UI.Tooltip.destroy
+            
+            ()</a></li>
         
-        </table>
+        </ul>
     
 
     
@@ -420,34 +414,32 @@
     
 
     
+<p class="example-title">Example</p>
+  
+<div class="example">
+{% highlight html %}
 {% raw %}
-	<h3>Examples:</h3>
-
-	
-		<pre class="example"><code>
-			
-    &lt;ul class=&quot;buttons&quot;&gt;
-        &lt;li class=&quot;button&quot; data-tip-text=&quot;Create a new document&quot;&gt;New&lt;/li&gt;
-        &lt;li class=&quot;button&quot; data-tip-text=&quot;Exit the program&quot;&gt;Quit&lt;/li&gt;
-        &lt;li class=&quot;button&quot; data-tip-text=&quot;Save the document you are working on&quot;&gt;Save&lt;/li&gt;
-    &lt;/ul&gt;
+    <ul class="buttons">
+        <li class="button" data-tip-text="Create a new document">New</li>
+        <li class="button" data-tip-text="Exit the program">Quit</li>
+        <li class="button" data-tip-text="Save the document you are working on">Save</li>
+    </ul>
     
     [...]
 
-    &lt;script&gt;
-        Ink.requireModules([&#x27;Ink.UI.Tooltip_1&#x27;], function (Tooltip) {
-            new Tooltip(&#x27;.button&#x27;, {where: &#x27;mousefix&#x27;});
+    <script>
+        Ink.requireModules(['Ink.UI.Tooltip_1'], function (Tooltip) {
+            new Tooltip('.button', {where: 'mousefix'});
         });
-    &lt;/script&gt;
+    </script>
+{% endraw %}
+{% endhighlight %}
+</div>
 
-		</code></pre>
-	
-  {% endraw %}
+
 
 
     
-
-
 
 </div>
 
@@ -482,9 +474,8 @@
 
     
 
+
     
-
-
 
 </div>
 

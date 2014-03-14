@@ -22,9 +22,8 @@
 
         
 
+
         
-
-
 
 
         
@@ -68,9 +67,8 @@
 
     
 
+
     
-
-
 
 
     
@@ -78,33 +76,27 @@
             <h3>Defined methods:</h3>
         
         
-        <table>
+        <ul>
         
-            <tr>
-                <td><a href="#Ink_Util_Cookie_1-Ink_Util_Cookie-get">
-                
-                    Ink.Util.Cookie.get
-                
-                (name)</a></td>
-            </tr>
+            <li><a href="#Ink_Util_Cookie_1-Ink_Util_Cookie-get">
+            
+                Ink.Util.Cookie.get
+            
+            (name)</a></li>
         
-            <tr>
-                <td><a href="#Ink_Util_Cookie_1-Ink_Util_Cookie-remove">
-                
-                    Ink.Util.Cookie.remove
-                
-                (cookieName, [path], [domain])</a></td>
-            </tr>
+            <li><a href="#Ink_Util_Cookie_1-Ink_Util_Cookie-remove">
+            
+                Ink.Util.Cookie.remove
+            
+            (cookieName, [path], [domain])</a></li>
         
-            <tr>
-                <td><a href="#Ink_Util_Cookie_1-Ink_Util_Cookie-set">
-                
-                    Ink.Util.Cookie.set
-                
-                (name, value, [expires], [path], [domain], [secure])</a></td>
-            </tr>
+            <li><a href="#Ink_Util_Cookie_1-Ink_Util_Cookie-set">
+            
+                Ink.Util.Cookie.set
+            
+            (name, value, [expires], [path], [domain], [secure])</a></li>
         
-        </table>
+        </ul>
     
 
     
@@ -171,25 +163,23 @@
     
 
     
+<p class="example-title">Example</p>
+  
+<div class="example">
+{% highlight html %}
 {% raw %}
-	<h3>Examples:</h3>
-
-	
-		<pre class="example"><code>
-			
-    Ink.requireModules([&#x27;Ink.Util.Cookie_1&#x27;], function( InkCookie ){
-        var myCookieValue = InkCookie.get(&#x27;someVarThere&#x27;);
-        console.log( myCookieValue ); // This will output the value of the cookie &#x27;someVarThere&#x27;, from the cookie object.
+    Ink.requireModules(['Ink.Util.Cookie_1'], function( InkCookie ){
+        var myCookieValue = InkCookie.get('someVarThere');
+        console.log( myCookieValue ); // This will output the value of the cookie 'someVarThere', from the cookie object.
     });
+{% endraw %}
+{% endhighlight %}
+</div>
 
-		</code></pre>
-	
-  {% endraw %}
+
 
 
     
-
-
 
 </div>
 
@@ -279,24 +269,22 @@
     
 
     
+<p class="example-title">Example</p>
+  
+<div class="example">
+{% highlight html %}
 {% raw %}
-	<h3>Examples:</h3>
-
-	
-		<pre class="example"><code>
-			
-    Ink.requireModules([&#x27;Ink.Util.Cookie_1&#x27;], function( InkCookie ){
-        InkCookie.remove( &#x27;someVarThere&#x27; );
+    Ink.requireModules(['Ink.Util.Cookie_1'], function( InkCookie ){
+        InkCookie.remove( 'someVarThere' );
     });
+{% endraw %}
+{% endhighlight %}
+</div>
 
-		</code></pre>
-	
-  {% endraw %}
+
 
 
     
-
-
 
 </div>
 
@@ -437,25 +425,23 @@
     
 
     
+<p class="example-title">Example</p>
+  
+<div class="example">
+{% highlight html %}
 {% raw %}
-	<h3>Examples:</h3>
-
-	
-		<pre class="example"><code>
-			
-    Ink.requireModules([&#x27;Ink.Util.Cookie_1&#x27;], function( InkCookie ){
+    Ink.requireModules(['Ink.Util.Cookie_1'], function( InkCookie ){
         var expireDate = new Date( 2014,00,01, 0,0,0);
-        InkCookie.set( &#x27;someVarThere&#x27;, &#x27;anyValueHere&#x27;, expireDate.getTime() );
+        InkCookie.set( 'someVarThere', 'anyValueHere', expireDate.getTime() );
     });
+{% endraw %}
+{% endhighlight %}
+</div>
 
-		</code></pre>
-	
-  {% endraw %}
+
 
 
     
-
-
 
 </div>
 

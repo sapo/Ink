@@ -15,13 +15,13 @@ var MyObj = {
     {
         // success 
         setTimeout(Ink.bind(function() {
-                alert(this._name);
-            }, this), 1000);
+            alert(this._name);
+        }, this), 1000);
         
         // "this" will be "window", so this._name will be "undefined"
         setTimeout(function() {
-                alert(this._name);
-            }, 1000);
+            alert(this._name);
+        }, 1000);
     }
 };
 

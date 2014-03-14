@@ -22,9 +22,8 @@
 
         
 
+
         
-
-
 
 
         
@@ -66,9 +65,8 @@
 
     
 
+
     
-
-
 
 
     
@@ -76,17 +74,15 @@
             <h3>Defined methods:</h3>
         
         
-        <table>
+        <ul>
         
-            <tr>
-                <td><a href="#Ink_UI_TreeView_1-Ink_UI_TreeView-TreeView">
-                
-                    Ink.UI.TreeView
-                
-                (selector, )</a></td>
-            </tr>
+            <li><a href="#Ink_UI_TreeView_1-Ink_UI_TreeView-TreeView">
+            
+                Ink.UI.TreeView
+            
+            (selector, )</a></li>
         
-        </table>
+        </ul>
     
 
     
@@ -288,46 +284,44 @@
     
 
     
+<p class="example-title">Example</p>
+  
+<div class="example">
+{% highlight html %}
 {% raw %}
-	<h3>Examples:</h3>
-
-	
-		<pre class="example"><code>
-			
-     &lt;ul class=&quot;ink-tree-view&quot;&gt;
-       &lt;li data-open=&quot;true&quot;&gt;&lt;a href=&quot;#&quot;&gt;root&lt;/a&gt;
-         &lt;ul&gt;
-           &lt;li&gt;&lt;a href=&quot;#&quot;&gt;child 1&lt;/a&gt;&lt;/li&gt;
-           &lt;li&gt;&lt;a href=&quot;#&quot;&gt;child 2&lt;/a&gt;
-             &lt;ul&gt;
-               &lt;li&gt;&lt;a href=&quot;#&quot;&gt;grandchild 2a&lt;/a&gt;&lt;/li&gt;
-               &lt;li&gt;&lt;a href=&quot;#&quot;&gt;grandchild 2b&lt;/a&gt;
-                 &lt;ul&gt;
-                   &lt;li&gt;&lt;a href=&quot;#&quot;&gt;grandgrandchild 1bA&lt;/a&gt;&lt;/li&gt;
-                   &lt;li&gt;&lt;a href=&quot;#&quot;&gt;grandgrandchild 1bB&lt;/a&gt;&lt;/li&gt;
-                 &lt;/ul&gt;
-               &lt;/li&gt;
-             &lt;/ul&gt;
-           &lt;/li&gt;
-           &lt;li&gt;&lt;a href=&quot;#&quot;&gt;child 3&lt;/a&gt;&lt;/li&gt;
-         &lt;/ul&gt;
-       &lt;/li&gt;
-     &lt;/ul&gt;
-     &lt;script&gt;
-         Ink.requireModules( [&#x27;Ink.Dom.Selector_1&#x27;,&#x27;Ink.UI.TreeView_1&#x27;], function( Selector, TreeView ){
-             var treeViewElement = Ink.s(&#x27;.ink-tree-view&#x27;);
+     <ul class="ink-tree-view">
+       <li data-open="true"><a href="#">root</a>
+         <ul>
+           <li><a href="#">child 1</a></li>
+           <li><a href="#">child 2</a>
+             <ul>
+               <li><a href="#">grandchild 2a</a></li>
+               <li><a href="#">grandchild 2b</a>
+                 <ul>
+                   <li><a href="#">grandgrandchild 1bA</a></li>
+                   <li><a href="#">grandgrandchild 1bB</a></li>
+                 </ul>
+               </li>
+             </ul>
+           </li>
+           <li><a href="#">child 3</a></li>
+         </ul>
+       </li>
+     </ul>
+     <script>
+         Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.TreeView_1'], function( Selector, TreeView ){
+             var treeViewElement = Ink.s('.ink-tree-view');
              var treeViewObj = new TreeView( treeViewElement );
          });
-     &lt;/script&gt;
+     </script>
+{% endraw %}
+{% endhighlight %}
+</div>
 
-		</code></pre>
-	
-  {% endraw %}
+
 
 
     
-
-
 
 </div>
 

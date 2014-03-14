@@ -9,7 +9,7 @@
 				{
 					"kind": "class",
 					"name": "Ink",
-					"text": "global object",
+					"text": "Nhonhonho",
 					"file": "src/js/Ink/1/lib.js",
 					"functions": [
 						{
@@ -199,6 +199,9 @@
 									"isFirstLevel": true,
 									"description": "The callback function to be executed when all the dependencies are resolved. The dependencies are passed as arguments, in the same order they were declared."
 								}
+							],
+							"samples": [
+								"Ink_1_requireModules.html"
 							]
 						},
 						{
@@ -259,6 +262,9 @@
 									"isFirstLevel": true,
 									"description": "Function returning the extension"
 								}
+							],
+							"samples": [
+								"Ink_1_createExt.html"
 							]
 						},
 						{
@@ -331,6 +337,9 @@
 								"kind": "return",
 								"type": "Function"
 							},
+							"samples": [
+								"Ink_1_bindMethod.html"
+							],
 							"examples": [
 								"\n // Build a function which calls Ink.Dom.Element.remove on an element.\n var removeMyElem = Ink.bindMethod(Ink.Dom.Element, 'remove', someElement);\n\n removeMyElem();  // no arguments, nor Ink.Dom.Element, needed\n",
 								"\n // (comparison with using Ink.bind to the same effect).\n // The following two calls are equivalent\n\n Ink.bind(this.remove, this, myElem);\n Ink.bindMethod(this, 'remove', myElem);\n"
@@ -368,7 +377,10 @@
 							"return": {
 								"kind": "return",
 								"type": "Function"
-							}
+							},
+							"samples": [
+								"Ink_1_bindEvent.html"
+							]
 						},
 						{
 							"kind": "function",
@@ -502,6 +514,9 @@
 									"isFirstLevel": true,
 									"description": "Arguments to be evaluated"
 								}
+							],
+							"samples": [
+								"Ink_1_log.html"
 							]
 						},
 						{
@@ -518,6 +533,9 @@
 									"isFirstLevel": true,
 									"description": "Arguments to be evaluated"
 								}
+							],
+							"samples": [
+								"Ink_1_warn.html"
 							]
 						},
 						{
@@ -534,6 +552,9 @@
 									"isFirstLevel": true,
 									"description": "Arguments to be evaluated"
 								}
+							],
+							"samples": [
+								"Ink_1_error.html"
 							]
 						}
 					],

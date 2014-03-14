@@ -22,9 +22,8 @@
 
         
 
+
         
-
-
 
 
         
@@ -66,9 +65,8 @@
 
     
 
+
     
-
-
 
 
     
@@ -76,81 +74,63 @@
             <h3>Defined methods:</h3>
         
         
-        <table>
+        <ul>
         
-            <tr>
-                <td><a href="#Ink_UI_Tabs_1-Ink_UI_Tabs-Tabs">
-                
-                    Ink.UI.Tabs
-                
-                (selector, [options], )</a></td>
-            </tr>
+            <li><a href="#Ink_UI_Tabs_1-Ink_UI_Tabs-Tabs">
+            
+                Ink.UI.Tabs
+            
+            (selector, [options], )</a></li>
         
-            <tr>
-                <td><a href="#Ink_UI_Tabs_1-Ink_UI_Tabs-activeContentTab">
-                
-                    Ink.UI.Tabs.activeContentTab
-                
-                ()</a></td>
-            </tr>
+            <li><a href="#Ink_UI_Tabs_1-Ink_UI_Tabs-activeContentTab">
+            
+                Ink.UI.Tabs.activeContentTab
+            
+            ()</a></li>
         
-            <tr>
-                <td><a href="#Ink_UI_Tabs_1-Ink_UI_Tabs-activeMenuLink">
-                
-                    Ink.UI.Tabs.activeMenuLink
-                
-                ()</a></td>
-            </tr>
+            <li><a href="#Ink_UI_Tabs_1-Ink_UI_Tabs-activeMenuLink">
+            
+                Ink.UI.Tabs.activeMenuLink
+            
+            ()</a></li>
         
-            <tr>
-                <td><a href="#Ink_UI_Tabs_1-Ink_UI_Tabs-activeMenuTab">
-                
-                    Ink.UI.Tabs.activeMenuTab
-                
-                ()</a></td>
-            </tr>
+            <li><a href="#Ink_UI_Tabs_1-Ink_UI_Tabs-activeMenuTab">
+            
+                Ink.UI.Tabs.activeMenuTab
+            
+            ()</a></li>
         
-            <tr>
-                <td><a href="#Ink_UI_Tabs_1-Ink_UI_Tabs-activeTab">
-                
-                    Ink.UI.Tabs.activeTab
-                
-                ()</a></td>
-            </tr>
+            <li><a href="#Ink_UI_Tabs_1-Ink_UI_Tabs-activeTab">
+            
+                Ink.UI.Tabs.activeTab
+            
+            ()</a></li>
         
-            <tr>
-                <td><a href="#Ink_UI_Tabs_1-Ink_UI_Tabs-changeTab">
-                
-                    Ink.UI.Tabs.changeTab
-                
-                (selector)</a></td>
-            </tr>
+            <li><a href="#Ink_UI_Tabs_1-Ink_UI_Tabs-changeTab">
+            
+                Ink.UI.Tabs.changeTab
+            
+            (selector)</a></li>
         
-            <tr>
-                <td><a href="#Ink_UI_Tabs_1-Ink_UI_Tabs-destroy">
-                
-                    Ink.UI.Tabs.destroy
-                
-                ()</a></td>
-            </tr>
+            <li><a href="#Ink_UI_Tabs_1-Ink_UI_Tabs-destroy">
+            
+                Ink.UI.Tabs.destroy
+            
+            ()</a></li>
         
-            <tr>
-                <td><a href="#Ink_UI_Tabs_1-Ink_UI_Tabs-disable">
-                
-                    Ink.UI.Tabs.disable
-                
-                (selector)</a></td>
-            </tr>
+            <li><a href="#Ink_UI_Tabs_1-Ink_UI_Tabs-disable">
+            
+                Ink.UI.Tabs.disable
+            
+            (selector)</a></li>
         
-            <tr>
-                <td><a href="#Ink_UI_Tabs_1-Ink_UI_Tabs-enable">
-                
-                    Ink.UI.Tabs.enable
-                
-                (selector)</a></td>
-            </tr>
+            <li><a href="#Ink_UI_Tabs_1-Ink_UI_Tabs-enable">
+            
+                Ink.UI.Tabs.enable
+            
+            (selector)</a></li>
         
-        </table>
+        </ul>
     
 
     
@@ -319,47 +299,45 @@
     
 
     
+<p class="example-title">Example</p>
+  
+<div class="example">
+{% highlight html %}
 {% raw %}
-	<h3>Examples:</h3>
-
-	
-		<pre class="example"><code>
-			
-     &lt;div class=&quot;ink-tabs top&quot;&gt; &lt;!-- replace &#x27;top&#x27; with &#x27;bottom&#x27;, &#x27;left&#x27; or &#x27;right&#x27; to place navigation --&gt;
+     <div class="ink-tabs top"> <!-- replace 'top' with 'bottom', 'left' or 'right' to place navigation -->
          
-         &lt;!-- put navigation first if using top, left or right positioning --&gt;
-         &lt;ul class=&quot;tabs-nav&quot;&gt;
-             &lt;li&gt;&lt;a href=&quot;#home&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
-             &lt;li&gt;&lt;a href=&quot;#news&quot;&gt;News&lt;/a&gt;&lt;/li&gt;
-             &lt;li&gt;&lt;a href=&quot;#description&quot;&gt;Description&lt;/a&gt;&lt;/li&gt;
-             &lt;li&gt;&lt;a href=&quot;#stuff&quot;&gt;Stuff&lt;/a&gt;&lt;/li&gt;
-             &lt;li&gt;&lt;a href=&quot;#more_stuff&quot;&gt;More stuff&lt;/a&gt;&lt;/li&gt;
-         &lt;/ul&gt;
+         <!-- put navigation first if using top, left or right positioning -->
+         <ul class="tabs-nav">
+             <li><a href="#home">Home</a></li>
+             <li><a href="#news">News</a></li>
+             <li><a href="#description">Description</a></li>
+             <li><a href="#stuff">Stuff</a></li>
+             <li><a href="#more_stuff">More stuff</a></li>
+         </ul>
          
-         &lt;!-- Put your content second if using top, left or right navigation --&gt;
-         &lt;div id=&quot;home&quot; class=&quot;tabs-content&quot;&gt;&lt;p&gt;Content&lt;/p&gt;&lt;/div&gt;
-         &lt;div id=&quot;news&quot; class=&quot;tabs-content&quot;&gt;&lt;p&gt;Content&lt;/p&gt;&lt;/div&gt;
-         &lt;div id=&quot;description&quot; class=&quot;tabs-content&quot;&gt;&lt;p&gt;Content&lt;/p&gt;&lt;/div&gt;
-         &lt;div id=&quot;stuff&quot; class=&quot;tabs-content&quot;&gt;&lt;p&gt;Content&lt;/p&gt;&lt;/div&gt;
-         &lt;div id=&quot;more_stuff&quot; class=&quot;tabs-content&quot;&gt;&lt;p&gt;Content&lt;/p&gt;&lt;/div&gt;
-         &lt;!-- If you&#x27;re using bottom navigation, switch the nav block with the content blocks --&gt;
+         <!-- Put your content second if using top, left or right navigation -->
+         <div id="home" class="tabs-content"><p>Content</p></div>
+         <div id="news" class="tabs-content"><p>Content</p></div>
+         <div id="description" class="tabs-content"><p>Content</p></div>
+         <div id="stuff" class="tabs-content"><p>Content</p></div>
+         <div id="more_stuff" class="tabs-content"><p>Content</p></div>
+         <!-- If you're using bottom navigation, switch the nav block with the content blocks -->
       
-     &lt;/div&gt;
-     &lt;script&gt;
-         Ink.requireModules( [&#x27;Ink.Dom.Selector_1&#x27;,&#x27;Ink.UI.Tabs_1&#x27;], function( Selector, Tabs ){
-             var tabsElement = Ink.s(&#x27;.ink-tabs&#x27;);
+     </div>
+     <script>
+         Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.Tabs_1'], function( Selector, Tabs ){
+             var tabsElement = Ink.s('.ink-tabs');
              var tabsObj = new Tabs( tabsElement );
          });
-     &lt;/script&gt;
+     </script>
+{% endraw %}
+{% endhighlight %}
+</div>
 
-		</code></pre>
-	
-  {% endraw %}
+
 
 
     
-
-
 
 </div>
 
@@ -404,9 +382,8 @@
 
     
 
+
     
-
-
 
 </div>
 
@@ -451,9 +428,8 @@
 
     
 
+
     
-
-
 
 </div>
 
@@ -498,9 +474,8 @@
 
     
 
+
     
-
-
 
 </div>
 
@@ -545,9 +520,8 @@
 
     
 
+
     
-
-
 
 </div>
 
@@ -604,9 +578,8 @@
 
     
 
+
     
-
-
 
 </div>
 
@@ -641,9 +614,8 @@
 
     
 
+
     
-
-
 
 </div>
 
@@ -700,9 +672,8 @@
 
     
 
+
     
-
-
 
 </div>
 
@@ -759,9 +730,8 @@
 
     
 
+
     
-
-
 
 </div>
 

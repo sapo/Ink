@@ -22,9 +22,8 @@
 
         
 
+
         
-
-
 
 
         
@@ -66,9 +65,8 @@
 
     
 
+
     
-
-
 
 
     
@@ -76,25 +74,21 @@
             <h3>Defined methods:</h3>
         
         
-        <table>
+        <ul>
         
-            <tr>
-                <td><a href="#Ink_UI_SortableList_1-Ink_UI_SortableList-SortableList">
-                
-                    Ink.UI.SortableList
-                
-                (selector, )</a></td>
-            </tr>
+            <li><a href="#Ink_UI_SortableList_1-Ink_UI_SortableList-SortableList">
+            
+                Ink.UI.SortableList
+            
+            (selector, )</a></li>
         
-            <tr>
-                <td><a href="#Ink_UI_SortableList_1-Ink_UI_SortableList-destroy">
-                
-                    Ink.UI.SortableList.destroy
-                
-                ()</a></td>
-            </tr>
+            <li><a href="#Ink_UI_SortableList_1-Ink_UI_SortableList-destroy">
+            
+                Ink.UI.SortableList.destroy
+            
+            ()</a></li>
         
-        </table>
+        </ul>
     
 
     
@@ -296,32 +290,30 @@
     
 
     
+<p class="example-title">Example</p>
+  
+<div class="example">
+{% highlight html %}
 {% raw %}
-	<h3>Examples:</h3>
-
-	
-		<pre class="example"><code>
-			
-     &lt;ul class=&quot;unstyled ink-sortable-list&quot; id=&quot;slist&quot; data-handle-selector=&quot;.ink-label&quot;&gt;
-         &lt;li&gt;&lt;span class=&quot;ink-label info&quot;&gt;drag here&lt;/span&gt;primeiro&lt;/li&gt;
-         &lt;li&gt;&lt;span class=&quot;ink-label info&quot;&gt;drag here&lt;/span&gt;segundo&lt;/li&gt;
-         &lt;li&gt;&lt;span class=&quot;ink-label info&quot;&gt;drag here&lt;/span&gt;terceiro&lt;/li&gt;
-     &lt;/ul&gt;
-     &lt;script&gt;
-         Ink.requireModules( [&#x27;Ink.Dom.Selector_1&#x27;,&#x27;Ink.UI.SortableList_1&#x27;], function( Selector, SortableList ){
-             var sortableListElement = Ink.s(&#x27;.ink-sortable-list&#x27;);
+     <ul class="unstyled ink-sortable-list" id="slist" data-handle-selector=".ink-label">
+         <li><span class="ink-label info">drag here</span>primeiro</li>
+         <li><span class="ink-label info">drag here</span>segundo</li>
+         <li><span class="ink-label info">drag here</span>terceiro</li>
+     </ul>
+     <script>
+         Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.SortableList_1'], function( Selector, SortableList ){
+             var sortableListElement = Ink.s('.ink-sortable-list');
              var sortableListObj = new SortableList( sortableListElement );
          });
-     &lt;\/script&gt;
+     <\/script>
+{% endraw %}
+{% endhighlight %}
+</div>
 
-		</code></pre>
-	
-  {% endraw %}
+
 
 
     
-
-
 
 </div>
 
@@ -356,9 +348,8 @@
 
     
 
+
     
-
-
 
 </div>
 

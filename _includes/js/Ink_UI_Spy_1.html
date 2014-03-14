@@ -22,9 +22,8 @@
 
         
 
+
         
-
-
 
 
         
@@ -67,9 +66,8 @@ highlight an option - related to that element being spied - that resides in a me
 
     
 
+
     
-
-
 
 
     
@@ -77,17 +75,15 @@ highlight an option - related to that element being spied - that resides in a me
             <h3>Defined methods:</h3>
         
         
-        <table>
+        <ul>
         
-            <tr>
-                <td><a href="#Ink_UI_Spy_1-Ink_UI_Spy-Spy">
-                
-                    Ink.UI.Spy
-                
-                (selector, [options], )</a></td>
-            </tr>
+            <li><a href="#Ink_UI_Spy_1-Ink_UI_Spy-Spy">
+            
+                Ink.UI.Spy
+            
+            (selector, [options], )</a></li>
         
-        </table>
+        </ul>
     
 
     
@@ -171,30 +167,28 @@ highlight an option - related to that element being spied - that resides in a me
     
 
     
+<p class="example-title">Example</p>
+  
+<div class="example">
+{% highlight html %}
 {% raw %}
-	<h3>Examples:</h3>
-
-	
-		<pre class="example"><code>
-			
-     &lt;script&gt;
-         Ink.requireModules( [&#x27;Ink.Dom.Selector_1&#x27;,&#x27;Ink.UI.Spy_1&#x27;], function( Selector, Spy ){
-             var menuElement = Ink.s(&#x27;#menu&#x27;);
-             var specialAnchorToSpy = Ink.s(&#x27;#specialAnchor&#x27;);
+     <script>
+         Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.Spy_1'], function( Selector, Spy ){
+             var menuElement = Ink.s('#menu');
+             var specialAnchorToSpy = Ink.s('#specialAnchor');
              var spyObj = new Spy( specialAnchorToSpy, {
                  target: menuElement
              });
          });
-     &lt;/script&gt;
+     </script>
+{% endraw %}
+{% endhighlight %}
+</div>
 
-		</code></pre>
-	
-  {% endraw %}
+
 
 
     
-
-
 
 </div>
 

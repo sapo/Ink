@@ -22,9 +22,8 @@
 
         
 
+
         
-
-
 
 
         
@@ -67,9 +66,8 @@ sortable, paginated component.</p>
 
     
 
+
     
-
-
 
 
     
@@ -77,17 +75,15 @@ sortable, paginated component.</p>
             <h3>Defined methods:</h3>
         
         
-        <table>
+        <ul>
         
-            <tr>
-                <td><a href="#Ink_UI_Table_1-Ink_UI_Table-Table">
-                
-                    Ink.UI.Table
-                
-                (selector, [options], )</a></td>
-            </tr>
+            <li><a href="#Ink_UI_Table_1-Ink_UI_Table-Table">
+            
+                Ink.UI.Table
+            
+            (selector, [options], )</a></li>
         
-        </table>
+        </ul>
     
 
     
@@ -445,86 +441,84 @@ sortable, paginated component.</p>
     
 
     
+<p class="example-title">Example</p>
+  
+<div class="example">
+{% highlight html %}
 {% raw %}
-	<h3>Examples:</h3>
-
-	
-		<pre class="example"><code>
-			
-     &lt;table class=&quot;ink-table alternating&quot; data-page-size=&quot;6&quot;&gt;
-         &lt;thead&gt;
-             &lt;tr&gt;
-                 &lt;th data-sortable=&quot;true&quot; width=&quot;75%&quot;&gt;Pepper&lt;/th&gt;
-                 &lt;th data-sortable=&quot;true&quot; width=&quot;25%&quot;&gt;Scoville Rating&lt;/th&gt;
-             &lt;/tr&gt;
-         &lt;/thead&gt;
-         &lt;tbody&gt;
-             &lt;tr&gt;
-                 &lt;td&gt;Trinidad Moruga Scorpion&lt;/td&gt;
-                 &lt;td&gt;1500000&lt;/td&gt;
-             &lt;/tr&gt;
-             &lt;tr&gt;
-                 &lt;td&gt;Bhut Jolokia&lt;/td&gt;
-                 &lt;td&gt;1000000&lt;/td&gt;
-             &lt;/tr&gt;
-             &lt;tr&gt;
-                 &lt;td&gt;Naga Viper&lt;/td&gt;
-                 &lt;td&gt;1463700&lt;/td&gt;
-             &lt;/tr&gt;
-             &lt;tr&gt;
-                 &lt;td&gt;Red Savina Habanero&lt;/td&gt;
-                 &lt;td&gt;580000&lt;/td&gt;
-             &lt;/tr&gt;
-             &lt;tr&gt;
-                 &lt;td&gt;Habanero&lt;/td&gt;
-                 &lt;td&gt;350000&lt;/td&gt;
-             &lt;/tr&gt;
-             &lt;tr&gt;
-                 &lt;td&gt;Scotch Bonnet&lt;/td&gt;
-                 &lt;td&gt;180000&lt;/td&gt;
-             &lt;/tr&gt;
-             &lt;tr&gt;
-                 &lt;td&gt;Malagueta&lt;/td&gt;
-                 &lt;td&gt;50000&lt;/td&gt;
-             &lt;/tr&gt;
-             &lt;tr&gt;
-                 &lt;td&gt;Tabasco&lt;/td&gt;
-                 &lt;td&gt;35000&lt;/td&gt;
-             &lt;/tr&gt;
-             &lt;tr&gt;
-                 &lt;td&gt;Serrano Chili&lt;/td&gt;
-                 &lt;td&gt;27000&lt;/td&gt;
-             &lt;/tr&gt;
-             &lt;tr&gt;
-                 &lt;td&gt;Jalapeño&lt;/td&gt;
-                 &lt;td&gt;8000&lt;/td&gt;
-             &lt;/tr&gt;
-             &lt;tr&gt;
-                 &lt;td&gt;Poblano&lt;/td&gt;
-                 &lt;td&gt;1500&lt;/td&gt;
-             &lt;/tr&gt;
-             &lt;tr&gt;
-                 &lt;td&gt;Peperoncino&lt;/td&gt;
-                 &lt;td&gt;500&lt;/td&gt;
-             &lt;/tr&gt;
-         &lt;/tbody&gt;
-     &lt;/table&gt;
-     &lt;nav class=&quot;ink-navigation&quot;&gt;&lt;ul class=&quot;pagination&quot;&gt;&lt;/ul&gt;&lt;/nav&gt;
-     &lt;script&gt;
-         Ink.requireModules( [&#x27;Ink.Dom.Selector_1&#x27;,&#x27;Ink.UI.Table_1&#x27;], function( Selector, Table ){
-             var tableElement = Ink.s(&#x27;.ink-table&#x27;);
+     <table class="ink-table alternating" data-page-size="6">
+         <thead>
+             <tr>
+                 <th data-sortable="true" width="75%">Pepper</th>
+                 <th data-sortable="true" width="25%">Scoville Rating</th>
+             </tr>
+         </thead>
+         <tbody>
+             <tr>
+                 <td>Trinidad Moruga Scorpion</td>
+                 <td>1500000</td>
+             </tr>
+             <tr>
+                 <td>Bhut Jolokia</td>
+                 <td>1000000</td>
+             </tr>
+             <tr>
+                 <td>Naga Viper</td>
+                 <td>1463700</td>
+             </tr>
+             <tr>
+                 <td>Red Savina Habanero</td>
+                 <td>580000</td>
+             </tr>
+             <tr>
+                 <td>Habanero</td>
+                 <td>350000</td>
+             </tr>
+             <tr>
+                 <td>Scotch Bonnet</td>
+                 <td>180000</td>
+             </tr>
+             <tr>
+                 <td>Malagueta</td>
+                 <td>50000</td>
+             </tr>
+             <tr>
+                 <td>Tabasco</td>
+                 <td>35000</td>
+             </tr>
+             <tr>
+                 <td>Serrano Chili</td>
+                 <td>27000</td>
+             </tr>
+             <tr>
+                 <td>Jalapeño</td>
+                 <td>8000</td>
+             </tr>
+             <tr>
+                 <td>Poblano</td>
+                 <td>1500</td>
+             </tr>
+             <tr>
+                 <td>Peperoncino</td>
+                 <td>500</td>
+             </tr>
+         </tbody>
+     </table>
+     <nav class="ink-navigation"><ul class="pagination"></ul></nav>
+     <script>
+         Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.Table_1'], function( Selector, Table ){
+             var tableElement = Ink.s('.ink-table');
              var tableObj = new Table( tableElement );
          });
-     &lt;/script&gt;
+     </script>
+{% endraw %}
+{% endhighlight %}
+</div>
 
-		</code></pre>
-	
-  {% endraw %}
+
 
 
     
-
-
 
 </div>
 

@@ -50,6 +50,8 @@ a.visited {
 color: $link-visited-color ;
 }
 
+
+
 #topbar {   
     position: fixed;
     z-index: $layer-100;
@@ -57,6 +59,7 @@ color: $link-visited-color ;
     background: desaturate($grey-90,10%);
     -webkit-transform: scale3d(1,1,1); // Solves weird “redraw behavior” involving anchor links and fixed positioned elements in chrome.
     @include pie-clearfix;
+    top: 0;
     
     .ink-navigation {
     
@@ -395,9 +398,12 @@ body.ink-drawer {
 .highlight .lineno  { color: #ccc; } /* Literal.Number.Integer.Long */
 
 
+#page-content {
+    margin-top: 115px;
+}
+
 .page-header {
-        
-    padding: 3.5em 0 2em;
+    padding: 0 0  2em 0;
     font-size: 1.25em;
 
     h1 { margin-bottom: 0 }

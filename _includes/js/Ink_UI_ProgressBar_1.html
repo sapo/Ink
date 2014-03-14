@@ -22,9 +22,8 @@
 
         
 
+
         
-
-
 
 
         
@@ -67,9 +66,8 @@ method - setValue() - for the user to change the element&#39;s value.</p>
 
     
 
+
     
-
-
 
 
     
@@ -77,25 +75,21 @@ method - setValue() - for the user to change the element&#39;s value.</p>
             <h3>Defined methods:</h3>
         
         
-        <table>
+        <ul>
         
-            <tr>
-                <td><a href="#Ink_UI_ProgressBar_1-Ink_UI_ProgressBar-ProgressBar">
-                
-                    Ink.UI.ProgressBar
-                
-                (selector, [options], )</a></td>
-            </tr>
+            <li><a href="#Ink_UI_ProgressBar_1-Ink_UI_ProgressBar-ProgressBar">
+            
+                Ink.UI.ProgressBar
+            
+            (selector, [options], )</a></li>
         
-            <tr>
-                <td><a href="#Ink_UI_ProgressBar_1-Ink_UI_ProgressBar-setValue">
-                
-                    Ink.UI.ProgressBar.setValue
-                
-                (newValue)</a></td>
-            </tr>
+            <li><a href="#Ink_UI_ProgressBar_1-Ink_UI_ProgressBar-setValue">
+            
+                Ink.UI.ProgressBar.setValue
+            
+            (newValue)</a></li>
         
-        </table>
+        </ul>
     
 
     
@@ -213,31 +207,29 @@ method - setValue() - for the user to change the element&#39;s value.</p>
     
 
     
+<p class="example-title">Example</p>
+  
+<div class="example">
+{% highlight html %}
 {% raw %}
-	<h3>Examples:</h3>
-
-	
-		<pre class="example"><code>
-			
-     &lt;div class=&quot;ink-progress-bar grey&quot; data-start-value=&quot;70%&quot;&gt;
-         &lt;span class=&quot;caption&quot;&gt;I am a grey progress bar&lt;/span&gt;
-         &lt;div class=&quot;bar grey&quot;&gt;&lt;/div&gt;
-     &lt;/div&gt;
-     &lt;script&gt;
-         Ink.requireModules( [&#x27;Ink.Dom.Selector_1&#x27;,&#x27;Ink.UI.ProgressBar_1&#x27;], function( Selector, ProgressBar ){
-             var progressBarElement = Ink.s(&#x27;.ink-progress-bar&#x27;);
+     <div class="ink-progress-bar grey" data-start-value="70%">
+         <span class="caption">I am a grey progress bar</span>
+         <div class="bar grey"></div>
+     </div>
+     <script>
+         Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.ProgressBar_1'], function( Selector, ProgressBar ){
+             var progressBarElement = Ink.s('.ink-progress-bar');
              var progressBarObj = new ProgressBar( progressBarElement );
          });
-     &lt;/script&gt;
+     </script>
+{% endraw %}
+{% endhighlight %}
+</div>
 
-		</code></pre>
-	
-  {% endraw %}
+
 
 
     
-
-
 
 </div>
 
@@ -294,9 +286,8 @@ method - setValue() - for the user to change the element&#39;s value.</p>
 
     
 
+
     
-
-
 
 </div>
 

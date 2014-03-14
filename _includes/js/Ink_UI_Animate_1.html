@@ -22,9 +22,8 @@
 
         
 
+
         
-
-
 
 
         
@@ -63,9 +62,8 @@
 
     
 
+
     
-
-
 
 
     
@@ -73,25 +71,21 @@
             <h3>Defined methods:</h3>
         
         
-        <table>
+        <ul>
         
-            <tr>
-                <td><a href="#Ink_UI_Animate_1-Ink_UI_Animate_1-Animate_1">
-                
-                    Ink.UI.Animate_1
-                
-                (element, options, )</a></td>
-            </tr>
+            <li><a href="#Ink_UI_Animate_1-Ink_UI_Animate_1-Animate_1">
+            
+                Ink.UI.Animate_1
+            
+            (element, options, )</a></li>
         
-            <tr>
-                <td><a href="#Ink_UI_Animate_1-Ink_UI_Animate_1-animate">
-                
-                    Ink.UI.Animate_1.animate
-                
-                (element, animation, [options], )</a></td>
-            </tr>
+            <li><a href="#Ink_UI_Animate_1-Ink_UI_Animate_1-animate">
+            
+                Ink.UI.Animate_1.animate
+            
+            (element, animation, [options], )</a></li>
         
-        </table>
+        </ul>
     
 
     
@@ -231,36 +225,34 @@
     
 
     
+<p class="example-title">Example</p>
+  
+<div class="example">
+{% highlight html %}
 {% raw %}
-	<h3>Examples:</h3>
 
-	
-		<pre class="example"><code>
-			
+    <button id="animate-me" class="ink-button">Animate me!</button>
+    <span class="ink-label info ink-animate"
+        id="animated"
+        data-trigger="#animate-me"
+        data-animation="fadeOut"
+        data-removeClass="false">Hi!</span>    
 
-    &lt;button id=&quot;animate-me&quot; class=&quot;ink-button&quot;&gt;Animate me!&lt;/button&gt;
-    &lt;span class=&quot;ink-label info ink-animate&quot;
-        id=&quot;animated&quot;
-        data-trigger=&quot;#animate-me&quot;
-        data-animation=&quot;fadeOut&quot;
-        data-removeClass=&quot;false&quot;&gt;Hi!&lt;/span&gt;    
-
-    &lt;script type=&quot;text/javascript&quot;&gt;
+    <script type="text/javascript">
         // Note: this step is not necessary if you are using autoload.js
-        Ink.requireModules([&#x27;Ink.UI.Animate_1&#x27;], function (Animate) {
-            new Animate(&#x27;#animated&#x27;);
+        Ink.requireModules(['Ink.UI.Animate_1'], function (Animate) {
+            new Animate('#animated');
         });
-    &lt;/script&gt;
+    </script>
+
+{% endraw %}
+{% endhighlight %}
+</div>
 
 
-		</code></pre>
-	
-  {% endraw %}
 
 
     
-
-
 
 </div>
 
@@ -393,9 +385,8 @@
 
     
 
+
     
-
-
 
 </div>
 

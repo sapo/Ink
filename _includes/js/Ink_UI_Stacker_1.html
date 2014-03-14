@@ -18,9 +18,8 @@
 
         
 
+
         
-
-
 
 
         
@@ -71,9 +70,8 @@
 
     
 
+
     
-
-
 
 
     
@@ -81,33 +79,27 @@
             <h3>Defined methods:</h3>
         
         
-        <table>
+        <ul>
         
-            <tr>
-                <td><a href="#Ink_UI_Stacker_1-Ink_UI_Stacker_1-Stacker_1">
-                
-                    Ink.UI.Stacker_1
-                
-                ([container], [options], )</a></td>
-            </tr>
+            <li><a href="#Ink_UI_Stacker_1-Ink_UI_Stacker_1-Stacker_1">
+            
+                Ink.UI.Stacker_1
+            
+            ([container], [options], )</a></li>
         
-            <tr>
-                <td><a href="#Ink_UI_Stacker_1-Ink_UI_Stacker_1-addItem">
-                
-                    Ink.UI.Stacker_1.addItem
-                
-                (item)</a></td>
-            </tr>
+            <li><a href="#Ink_UI_Stacker_1-Ink_UI_Stacker_1-addItem">
+            
+                Ink.UI.Stacker_1.addItem
+            
+            (item)</a></li>
         
-            <tr>
-                <td><a href="#Ink_UI_Stacker_1-Ink_UI_Stacker_1-reloadItems">
-                
-                    Ink.UI.Stacker_1.reloadItems
-                
-                ()</a></td>
-            </tr>
+            <li><a href="#Ink_UI_Stacker_1-Ink_UI_Stacker_1-reloadItems">
+            
+                Ink.UI.Stacker_1.reloadItems
+            
+            ()</a></li>
         
-        </table>
+        </ul>
     
 
     
@@ -490,48 +482,46 @@
     
 
     
+<p class="example-title">Example</p>
+  
+<div class="example">
+{% highlight html %}
 {% raw %}
-	<h3>Examples:</h3>
-
-	
-		<pre class="example"><code>
-			
 
 Html:
 
-    &lt;div id=&quot;stacker-container&quot;&gt;  &lt;!-- Stacker element --&gt;
-        &lt;div class=&quot;large-33 medium-50 small-100 stacker-column&quot;&gt; &lt;!-- Column element (&#x27;.stacker-column&#x27; is the default selector) --&gt;
-            &lt;div id=&quot;a&quot; class=&quot;stacker-item&quot;&gt;a&lt;/div&gt; &lt;!-- Item (&#x27;.stacker-item&#x27; is the default selector) --&gt;
-            &lt;div id=&quot;d&quot; class=&quot;stacker-item&quot;&gt;d&lt;/div&gt;
-            &lt;div id=&quot;g&quot; class=&quot;stacker-item&quot;&gt;g&lt;/div&gt;
-        &lt;/div&gt;
-        &lt;div class=&quot;large-33 medium-50 small-100 hide-small stacker-column&quot;&gt;
-            &lt;div id=&quot;b&quot; class=&quot;stacker-item&quot;&gt;b&lt;/div&gt;
-            &lt;div id=&quot;e&quot; class=&quot;stacker-item&quot;&gt;e&lt;/div&gt;
-            &lt;div id=&quot;h&quot; class=&quot;stacker-item&quot;&gt;h&lt;/div&gt;
-        &lt;/div&gt;
-        &lt;div class=&quot;large-33 medium-50 small-100 hide-medium hide-small stacker-column&quot;&gt;
-            &lt;div id=&quot;c&quot; class=&quot;stacker-item&quot;&gt;c&lt;/div&gt;
-            &lt;div id=&quot;f&quot; class=&quot;stacker-item&quot;&gt;f&lt;/div&gt;
-            &lt;div id=&quot;i&quot; class=&quot;stacker-item&quot;&gt;i&lt;/div&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
+    <div id="stacker-container">  <!-- Stacker element -->
+        <div class="large-33 medium-50 small-100 stacker-column"> <!-- Column element ('.stacker-column' is the default selector) -->
+            <div id="a" class="stacker-item">a</div> <!-- Item ('.stacker-item' is the default selector) -->
+            <div id="d" class="stacker-item">d</div>
+            <div id="g" class="stacker-item">g</div>
+        </div>
+        <div class="large-33 medium-50 small-100 hide-small stacker-column">
+            <div id="b" class="stacker-item">b</div>
+            <div id="e" class="stacker-item">e</div>
+            <div id="h" class="stacker-item">h</div>
+        </div>
+        <div class="large-33 medium-50 small-100 hide-medium hide-small stacker-column">
+            <div id="c" class="stacker-item">c</div>
+            <div id="f" class="stacker-item">f</div>
+            <div id="i" class="stacker-item">i</div>
+        </div>
+    </div>
 
 Javascript:
 
-    Ink.requireModules([&#x27;Ink.UI.Stacker_1&#x27;], function (Stacker) {
-        var stacker = new Stacker(&#x27;#stacker-container&#x27;);
-        // Keep the &quot;stacker&quot; variable around if you want to call addItem and reloadItems
+    Ink.requireModules(['Ink.UI.Stacker_1'], function (Stacker) {
+        var stacker = new Stacker('#stacker-container');
+        // Keep the "stacker" variable around if you want to call addItem and reloadItems
     });
+{% endraw %}
+{% endhighlight %}
+</div>
 
-		</code></pre>
-	
-  {% endraw %}
+
 
 
     
-
-
 
 </div>
 
@@ -586,9 +576,8 @@ Javascript:
 
     
 
+
     
-
-
 
 </div>
 
@@ -628,9 +617,8 @@ Javascript:
 
     
 
+
     
-
-
 
 </div>
 

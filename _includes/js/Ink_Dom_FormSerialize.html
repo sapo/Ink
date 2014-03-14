@@ -20,9 +20,8 @@
 
         
 
+
         
-
-
 
 
         
@@ -65,9 +64,8 @@
 
     
 
+
     
-
-
 
 
     
@@ -75,25 +73,21 @@
             <h3>Defined methods:</h3>
         
         
-        <table>
+        <ul>
         
-            <tr>
-                <td><a href="#Ink_Dom_FormSerialize-Ink_Dom_FormSerialize-fillIn">
-                
-                    Ink.Dom.FormSerialize.fillIn
-                
-                (form, map2)</a></td>
-            </tr>
+            <li><a href="#Ink_Dom_FormSerialize-Ink_Dom_FormSerialize-fillIn">
+            
+                Ink.Dom.FormSerialize.fillIn
+            
+            (form, map2)</a></li>
         
-            <tr>
-                <td><a href="#Ink_Dom_FormSerialize-Ink_Dom_FormSerialize-serialize">
-                
-                    Ink.Dom.FormSerialize.serialize
-                
-                (form)</a></td>
-            </tr>
+            <li><a href="#Ink_Dom_FormSerialize-Ink_Dom_FormSerialize-serialize">
+            
+                Ink.Dom.FormSerialize.serialize
+            
+            (form)</a></li>
         
-        </table>
+        </ul>
     
 
     
@@ -170,32 +164,30 @@
     
 
     
+<p class="example-title">Example</p>
+  
+<div class="example">
+{% highlight html %}
 {% raw %}
-	<h3>Examples:</h3>
-
-	
-		<pre class="example"><code>
-			
-    &lt;form id=&quot;frm&quot;&gt;
-        &lt;input type=&quot;text&quot; name=&quot;field1&quot;&gt;
-        &lt;button type=&quot;submit&quot;&gt;Submit&lt;/button&gt;
-    &lt;/form&gt;
-    &lt;script type=&quot;text/javascript&quot;&gt;
-        Ink.requireModules([&#x27;Ink.Dom.FormSerialize_1&#x27;], function (FormSerialize) {
-            var values = {field1: &#x27;CTHULHU&#x27;};
-            FormSerialize.fillIn(&#x27;frm&#x27;, values);
+    <form id="frm">
+        <input type="text" name="field1">
+        <button type="submit">Submit</button>
+    </form>
+    <script type="text/javascript">
+        Ink.requireModules(['Ink.Dom.FormSerialize_1'], function (FormSerialize) {
+            var values = {field1: 'CTHULHU'};
+            FormSerialize.fillIn('frm', values);
             // At this point the form is pre-filled with the values above.
         });
-    &lt;/script&gt;
+    </script>
+{% endraw %}
+{% endhighlight %}
+</div>
 
-		</code></pre>
-	
-  {% endraw %}
+
 
 
     
-
-
 
 </div>
 
@@ -262,33 +254,31 @@
     
 
     
+<p class="example-title">Example</p>
+  
+<div class="example">
+{% highlight html %}
 {% raw %}
-	<h3>Examples:</h3>
-
-	
-		<pre class="example"><code>
-			
-    &lt;form id=&quot;frm&quot;&gt;
-        &lt;input type=&quot;text&quot; name=&quot;field1&quot;&gt;
-        &lt;button type=&quot;submit&quot;&gt;Submit&lt;/button&gt;
-    &lt;/form&gt;
-    &lt;script type=&quot;text/javascript&quot;&gt;
-        Ink.requireModules([&#x27;Ink.Dom.FormSerialize_1&#x27;, &#x27;Ink.Dom.Event_1&#x27;], function (FormSerialize, InkEvent) {
-            InkEvent.observe(&#x27;frm&#x27;, &#x27;submit&#x27;, function (event) {
-                var formData = FormSerialize.serialize(&#x27;frm&#x27;); // -&gt; {field1:&quot;123&quot;}
+    <form id="frm">
+        <input type="text" name="field1">
+        <button type="submit">Submit</button>
+    </form>
+    <script type="text/javascript">
+        Ink.requireModules(['Ink.Dom.FormSerialize_1', 'Ink.Dom.Event_1'], function (FormSerialize, InkEvent) {
+            InkEvent.observe('frm', 'submit', function (event) {
+                var formData = FormSerialize.serialize('frm'); // -> {field1:"123"}
                 InkEvent.stop(event);
             });
         });
-    &lt;/script&gt;
+    </script>
+{% endraw %}
+{% endhighlight %}
+</div>
 
-		</code></pre>
-	
-  {% endraw %}
+
 
 
     
-
-
 
 </div>
 

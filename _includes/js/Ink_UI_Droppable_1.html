@@ -22,9 +22,8 @@
 
         
 
+
         
-
-
 
 
         
@@ -65,9 +64,8 @@
 
     
 
+
     
-
-
 
 
     
@@ -75,25 +73,21 @@
             <h3>Defined methods:</h3>
         
         
-        <table>
+        <ul>
         
-            <tr>
-                <td><a href="#Ink_UI_Droppable_1-Ink_UI_Droppable-add">
-                
-                    Ink.UI.Droppable.add
-                
-                (element, [options], )</a></td>
-            </tr>
+            <li><a href="#Ink_UI_Droppable_1-Ink_UI_Droppable-add">
+            
+                Ink.UI.Droppable.add
+            
+            (element, [options], )</a></li>
         
-            <tr>
-                <td><a href="#Ink_UI_Droppable_1-Ink_UI_Droppable-remove">
-                
-                    Ink.UI.Droppable.remove
-                
-                (elOrSelector)</a></td>
-            </tr>
+            <li><a href="#Ink_UI_Droppable_1-Ink_UI_Droppable-remove">
+            
+                Ink.UI.Droppable.remove
+            
+            (elOrSelector)</a></li>
         
-        </table>
+        </ul>
     
 
     
@@ -256,14 +250,13 @@ Can consider it a constructor of droppable elements, but where no Droppable obje
     
 
     
+<p class="example-title">Example</p>
+  
+<div class="example">
+{% highlight html %}
 {% raw %}
-	<h3>Examples:</h3>
 
-	
-		<pre class="example"><code>
-			
-
-      &lt;style type=&quot;text/css&quot;&gt;
+      <style type="text/css">
           .hover {
               border: 1px solid red;
           }
@@ -272,33 +265,32 @@ Can consider it a constructor of droppable elements, but where no Droppable obje
               outline: 1px solid gray;
               min-height: 2em;
           }
-      &lt;/style&gt;
-       &lt;ul class=&quot;left&quot;&gt;
-           &lt;li&gt;Draggable 1&lt;/li&gt;
-           &lt;li&gt;Draggable 2&lt;/li&gt;
-           &lt;li&gt;Draggable 3&lt;/li&gt;
-       &lt;/ul&gt;
-       &lt;ul class=&quot;right&quot;&gt;
-       &lt;/ul&gt;
-       &lt;script type=&quot;text/javascript&quot;&gt;
-           Ink.requireModules([&#x27;Ink.UI.Draggable_1&#x27;, &#x27;Ink.UI.Droppable_1&#x27;], function (Draggable, Droppable) {
-               new Draggable(&#x27;.left li:eq(0)&#x27;, {});
-               new Draggable(&#x27;.left li:eq(1)&#x27;, {});
-               new Draggable(&#x27;.left li:eq(2)&#x27;, {});
-               Droppable.add(&#x27;.left&#x27;, {onDrop: &#x27;move&#x27;, onDropOut: &#x27;revert&#x27;});
-               Droppable.add(&#x27;.right&#x27;, {onDrop: &#x27;move&#x27;, onDropOut: &#x27;revert&#x27;});
+      </style>
+       <ul class="left">
+           <li>Draggable 1</li>
+           <li>Draggable 2</li>
+           <li>Draggable 3</li>
+       </ul>
+       <ul class="right">
+       </ul>
+       <script type="text/javascript">
+           Ink.requireModules(['Ink.UI.Draggable_1', 'Ink.UI.Droppable_1'], function (Draggable, Droppable) {
+               new Draggable('.left li:eq(0)', {});
+               new Draggable('.left li:eq(1)', {});
+               new Draggable('.left li:eq(2)', {});
+               Droppable.add('.left', {onDrop: 'move', onDropOut: 'revert'});
+               Droppable.add('.right', {onDrop: 'move', onDropOut: 'revert'});
            })
-       &lt;/script&gt;
+       </script>
+
+{% endraw %}
+{% endhighlight %}
+</div>
 
 
-		</code></pre>
-	
-  {% endraw %}
 
 
     
-
-
 
 </div>
 
@@ -365,9 +357,8 @@ Can consider it a constructor of droppable elements, but where no Droppable obje
 
     
 
+
     
-
-
 
 </div>
 

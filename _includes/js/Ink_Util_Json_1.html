@@ -20,9 +20,8 @@
 
         
 
+
         
-
-
 
 
         
@@ -81,9 +80,8 @@ Otherwise, the functions mimic the standard implementation.</p>
 
     
 
+
     
-
-
 
 
     
@@ -91,25 +89,21 @@ Otherwise, the functions mimic the standard implementation.</p>
             <h3>Defined methods:</h3>
         
         
-        <table>
+        <ul>
         
-            <tr>
-                <td><a href="#Ink_Util_Json_1-Ink_Util_Json-parse">
-                
-                    Ink.Util.Json.parse
-                
-                (text, reviver)</a></td>
-            </tr>
+            <li><a href="#Ink_Util_Json_1-Ink_Util_Json-parse">
+            
+                Ink.Util.Json.parse
+            
+            (text, reviver)</a></li>
         
-            <tr>
-                <td><a href="#Ink_Util_Json_1-Ink_Util_Json-stringify">
-                
-                    Ink.Util.Json.stringify
-                
-                (input, convertToUnicode)</a></td>
-            </tr>
+            <li><a href="#Ink_Util_Json_1-Ink_Util_Json-stringify">
+            
+                Ink.Util.Json.stringify
+            
+            (input, convertToUnicode)</a></li>
         
-        </table>
+        </ul>
     
 
     
@@ -178,31 +172,29 @@ Otherwise, the functions mimic the standard implementation.</p>
     
 
     
+<p class="example-title">Example</p>
+  
+<div class="example">
+{% highlight html %}
 {% raw %}
-	<h3>Examples:</h3>
-
-	
-		<pre class="example"><code>
-			
 Simple example:
 
-     Json.parse(&#x27;{&quot;a&quot;: &quot;3&quot;,&quot;numbers&quot;:false}&#x27;,
+     Json.parse('{"a": "3","numbers":false}',
          function (key, value) {
-             if (!this.numbers &amp;&amp; key === &#x27;a&#x27;) {
-                 return &quot;NO NUMBERS&quot;;
+             if (!this.numbers && key === 'a') {
+                 return "NO NUMBERS";
              } else {
                  return value;
              }
-         }); // -&gt; object: {a: &#x27;NO NUMBERS&#x27;, numbers: false}
+         }); // -> object: {a: 'NO NUMBERS', numbers: false}
+{% endraw %}
+{% endhighlight %}
+</div>
 
-		</code></pre>
-	
-  {% endraw %}
+
 
 
     
-
-
 
 </div>
 
@@ -285,22 +277,20 @@ Simple example:
     
 
     
+<p class="example-title">Example</p>
+  
+<div class="example">
+{% highlight html %}
 {% raw %}
-	<h3>Examples:</h3>
+     Json.stringify({a:1.23}); // -> string: '{"a": 1.23}'
+{% endraw %}
+{% endhighlight %}
+</div>
 
-	
-		<pre class="example"><code>
-			
-     Json.stringify({a:1.23}); // -&gt; string: &#x27;{&quot;a&quot;: 1.23}&#x27;
 
-		</code></pre>
-	
-  {% endraw %}
 
 
     
-
-
 
 </div>
 

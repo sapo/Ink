@@ -22,9 +22,8 @@
 
         
 
+
         
-
-
 
 
         
@@ -66,9 +65,8 @@
 
     
 
+
     
-
-
 
 
     
@@ -76,33 +74,27 @@
             <h3>Defined methods:</h3>
         
         
-        <table>
+        <ul>
         
-            <tr>
-                <td><a href="#Ink_UI_Toggle_1-Ink_UI_Toggle-Toggle">
-                
-                    Ink.UI.Toggle
-                
-                (selector, [options], )</a></td>
-            </tr>
+            <li><a href="#Ink_UI_Toggle_1-Ink_UI_Toggle-Toggle">
+            
+                Ink.UI.Toggle
+            
+            (selector, [options], )</a></li>
         
-            <tr>
-                <td><a href="#Ink_UI_Toggle_1-Ink_UI_Toggle-getState">
-                
-                    Ink.UI.Toggle.getState
-                
-                ()</a></td>
-            </tr>
+            <li><a href="#Ink_UI_Toggle_1-Ink_UI_Toggle-getState">
+            
+                Ink.UI.Toggle.getState
+            
+            ()</a></li>
         
-            <tr>
-                <td><a href="#Ink_UI_Toggle_1-Ink_UI_Toggle-setState">
-                
-                    Ink.UI.Toggle.setState
-                
-                ()</a></td>
-            </tr>
+            <li><a href="#Ink_UI_Toggle_1-Ink_UI_Toggle-setState">
+            
+                Ink.UI.Toggle.setState
+            
+            ()</a></li>
         
-        </table>
+        </ul>
     
 
     
@@ -319,52 +311,50 @@
     
 
     
+<p class="example-title">Example</p>
+  
+<div class="example">
+{% highlight html %}
 {% raw %}
-	<h3>Examples:</h3>
-
-	
-		<pre class="example"><code>
-			
-     &lt;div class=&quot;ink-dropdown&quot;&gt;
-         &lt;button class=&quot;ink-button toggle&quot; data-target=&quot;#dropdown&quot;&gt;Dropdown &lt;span class=&quot;icon-caret-down&quot;&gt;&lt;/span&gt;&lt;/button&gt;
-         &lt;ul id=&quot;dropdown&quot; class=&quot;dropdown-menu&quot;&gt;
-             &lt;li class=&quot;heading&quot;&gt;Heading&lt;/li&gt;
-             &lt;li class=&quot;separator-above&quot;&gt;&lt;a href=&quot;#&quot;&gt;Option&lt;/a&gt;&lt;/li&gt;
-             &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Option&lt;/a&gt;&lt;/li&gt;
-             &lt;li class=&quot;separator-above disabled&quot;&gt;&lt;a href=&quot;#&quot;&gt;Disabled option&lt;/a&gt;&lt;/li&gt;
-             &lt;li class=&quot;submenu&quot;&gt;
-                 &lt;a href=&quot;#&quot; class=&quot;toggle&quot; data-target=&quot;#submenu1&quot;&gt;A longer option name&lt;/a&gt;
-                 &lt;ul id=&quot;submenu1&quot; class=&quot;dropdown-menu&quot;&gt;
-                     &lt;li class=&quot;submenu&quot;&gt;
-                         &lt;a href=&quot;#&quot; class=&quot;toggle&quot; data-target=&quot;#ultrasubmenu&quot;&gt;Sub option&lt;/a&gt;
-                         &lt;ul id=&quot;ultrasubmenu&quot; class=&quot;dropdown-menu&quot;&gt;
-                             &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Sub option&lt;/a&gt;&lt;/li&gt;
-                             &lt;li&gt;&lt;a href=&quot;#&quot; data-target=&quot;ultrasubmenu&quot;&gt;Sub option&lt;/a&gt;&lt;/li&gt;
-                             &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Sub option&lt;/a&gt;&lt;/li&gt;
-                         &lt;/ul&gt;
-                     &lt;/li&gt;
-                     &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Sub option&lt;/a&gt;&lt;/li&gt;
-                     &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Sub option&lt;/a&gt;&lt;/li&gt;
-                 &lt;/ul&gt;
-             &lt;/li&gt;
-             &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Option&lt;/a&gt;&lt;/li&gt;
-         &lt;/ul&gt;
-     &lt;/div&gt;
-     &lt;script&gt;
-         Ink.requireModules( [&#x27;Ink.Dom.Selector_1&#x27;,&#x27;Ink.UI.Toggle_1&#x27;], function( Selector, Toggle ){
-             var toggleElement = Ink.s(&#x27;.toggle&#x27;);
+     <div class="ink-dropdown">
+         <button class="ink-button toggle" data-target="#dropdown">Dropdown <span class="icon-caret-down"></span></button>
+         <ul id="dropdown" class="dropdown-menu">
+             <li class="heading">Heading</li>
+             <li class="separator-above"><a href="#">Option</a></li>
+             <li><a href="#">Option</a></li>
+             <li class="separator-above disabled"><a href="#">Disabled option</a></li>
+             <li class="submenu">
+                 <a href="#" class="toggle" data-target="#submenu1">A longer option name</a>
+                 <ul id="submenu1" class="dropdown-menu">
+                     <li class="submenu">
+                         <a href="#" class="toggle" data-target="#ultrasubmenu">Sub option</a>
+                         <ul id="ultrasubmenu" class="dropdown-menu">
+                             <li><a href="#">Sub option</a></li>
+                             <li><a href="#" data-target="ultrasubmenu">Sub option</a></li>
+                             <li><a href="#">Sub option</a></li>
+                         </ul>
+                     </li>
+                     <li><a href="#">Sub option</a></li>
+                     <li><a href="#">Sub option</a></li>
+                 </ul>
+             </li>
+             <li><a href="#">Option</a></li>
+         </ul>
+     </div>
+     <script>
+         Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.Toggle_1'], function( Selector, Toggle ){
+             var toggleElement = Ink.s('.toggle');
              var toggleObj = new Toggle( toggleElement );
          });
-     &lt;/script&gt;
+     </script>
+{% endraw %}
+{% endhighlight %}
+</div>
 
-		</code></pre>
-	
-  {% endraw %}
+
 
 
     
-
-
 
 </div>
 
@@ -409,9 +399,8 @@
 
     
 
+
     
-
-
 
 </div>
 
@@ -443,9 +432,8 @@
 
     
 
+
     
-
-
 
 </div>
 

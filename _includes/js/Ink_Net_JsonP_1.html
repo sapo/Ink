@@ -18,9 +18,8 @@
 
         
 
+
         
-
-
 
 
         
@@ -65,9 +64,8 @@ but it&#39;s boring and repetitive to code and tricky to get right.</p>
 
     
 
+
     
-
-
 
 
     
@@ -75,17 +73,15 @@ but it&#39;s boring and repetitive to code and tricky to get right.</p>
             <h3>Defined methods:</h3>
         
         
-        <table>
+        <ul>
         
-            <tr>
-                <td><a href="#Ink_Net_JsonP_1-Ink_Net_JsonP-JsonP">
-                
-                    Ink.Net.JsonP
-                
-                (uri, options, )</a></td>
-            </tr>
+            <li><a href="#Ink_Net_JsonP_1-Ink_Net_JsonP-JsonP">
+            
+                Ink.Net.JsonP
+            
+            (uri, options, )</a></li>
         
-        </table>
+        </ul>
     
 
     
@@ -269,34 +265,32 @@ but it&#39;s boring and repetitive to code and tricky to get right.</p>
     
 
     
+<p class="example-title">Example</p>
+  
+<div class="example">
+{% highlight html %}
 {% raw %}
-	<h3>Examples:</h3>
-
-	
-		<pre class="example"><code>
-			
-     Ink.requireModules([&#x27;Ink.Net.JsonP_1&#x27;], function (JsonP) {
-         var jsonp = new JsonP(&#x27;http://path.to.jsonp/endpoint&#x27;, {
+     Ink.requireModules(['Ink.Net.JsonP_1'], function (JsonP) {
+         var jsonp = new JsonP('http://path.to.jsonp/endpoint', {
              // When the JSONP response arrives, this callback is called:
              onSuccess: function (gameData) {
                  game.startGame(gameData);
              },
              // after options.timeout seconds, this callback gets called:
              onFailure: function () {
-                 game.error(&#x27;Could not load game data!&#x27;);
+                 game.error('Could not load game data!');
              },
              timeout: 5
          });
      });
+{% endraw %}
+{% endhighlight %}
+</div>
 
-		</code></pre>
-	
-  {% endraw %}
+
 
 
     
-
-
 
 </div>
 

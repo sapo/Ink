@@ -22,9 +22,8 @@
 
         
 
+
         
-
-
 
 
         
@@ -67,9 +66,8 @@ to fixed and maintain it until the user scrolls back to the same place.</p>
 
     
 
+
     
-
-
 
 
     
@@ -77,17 +75,15 @@ to fixed and maintain it until the user scrolls back to the same place.</p>
             <h3>Defined methods:</h3>
         
         
-        <table>
+        <ul>
         
-            <tr>
-                <td><a href="#Ink_UI_Sticky_1-Ink_UI_Sticky-Sticky">
-                
-                    Ink.UI.Sticky
-                
-                (selector, [options], )</a></td>
-            </tr>
+            <li><a href="#Ink_UI_Sticky_1-Ink_UI_Sticky-Sticky">
+            
+                Ink.UI.Sticky
+            
+            (selector, [options], )</a></li>
         
-        </table>
+        </ul>
     
 
     
@@ -321,27 +317,25 @@ to fixed and maintain it until the user scrolls back to the same place.</p>
     
 
     
+<p class="example-title">Example</p>
+  
+<div class="example">
+{% highlight html %}
 {% raw %}
-	<h3>Examples:</h3>
-
-	
-		<pre class="example"><code>
-			
-     &lt;script&gt;
-         Ink.requireModules( [&#x27;Ink.Dom.Selector_1&#x27;,&#x27;Ink.UI.Sticky_1&#x27;], function( Selector, Sticky ) {
-             var menuElement = Ink.s(&#x27;#menu&#x27;);
+     <script>
+         Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.Sticky_1'], function( Selector, Sticky ) {
+             var menuElement = Ink.s('#menu');
              var stickyObj = new Sticky( menuElement );
          });
-     &lt;/script&gt;
+     </script>
+{% endraw %}
+{% endhighlight %}
+</div>
 
-		</code></pre>
-	
-  {% endraw %}
+
 
 
     
-
-
 
 </div>
 
