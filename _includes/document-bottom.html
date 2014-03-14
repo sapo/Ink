@@ -16,28 +16,5 @@
     <script>
       var inkDrawer = new Ink.UI.Drawer_1({ sides: 'left', mode: 'push' });
     </script>
-    <script>
-      var imagequery = new Ink.UI.ImageQuery('.imagequery', {
-        src: '{{ site.url }}assets/img/examples/{:label}/{:file}',
-        queries: [
-          {
-              label: 'small',
-              width: 640
-          },
-          {
-              label: 'medium',
-              width: 960
-          },
-          {
-              label: 'large',
-              width: 1200
-          },
-          {
-              label: 'extra-large',
-              width: 1300
-          }
-        ]
-      });
-</script>
   </body>
 </html>
