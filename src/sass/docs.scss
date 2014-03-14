@@ -453,14 +453,29 @@ code {
 }
 
 table.props {
-    
-    padding: 0.7em 1em;
+
     width: 100%;
     border-collapse: initial;
     background: $code-background;
 
     tr {            
-        line-height: 1.5;
+        &:nth-child(odd){
+            td {
+                background: lighten($code-background,2%);
+            }
+        }
+        td, th {
+            padding: 0.7em 0;
+            &:first-child {
+                padding-left:  1em;
+            }
+            &:last-child {
+                padding-right:  1em;
+            }
+        }
+        td {
+            line-height: 1.4;
+        }
     }
 
     caption {
