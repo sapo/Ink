@@ -18,24 +18,22 @@ LazyLoad.prototype = {
         this._rootElm = UICommon.elsOrSelector(selector, 'Ink.UI.LazyLoad root element')[0] || null;
 
         this._options = UICommon.options({
-            onLoad: ['Boolean', true],
-            item: ['String', '.lazyload-item'],
-            destination: ['String', 'src'], 
-            delay: ['Number', 100],
-            delta: ['Number', 0], // distance in px from viewport  
-            image: ['Boolean', true], // default is for images but can be used to infinit scroll  
-            onTouch: ['Boolean', false], // default is for images but can be used to infinit scroll  
-            onBeforeLoad: ['Function', false],
-            onLazyLoad: ['Function', false], // to run when image is false 
-            onAfterLoad: ['Function', false],
-            source: ['String', 'data-src']
+            item: ['String', '.lazyload-item'], // Use this to select and define what is to be considered an `item`.
+            source: ['String', 'data-src'], // When an `item` is within the viewport, take the value it has in this attribute then set its `destination` attribute to it.
+            destination: ['String', 'src'], // attribute which gets the value in `source` when the element is visible.
+            delay: ['Number', 100], // Wait a few milliseconds before trying to load.
+            delta: ['Number', 0], // Distance in px from the outside of the viewport. Elements touching within this "margin", items are considered to be inside even if they are outside the viewport limits. Can be negative if you want an element to be considered inside only when it is a certain distance into the viewport.
+            image: ['Boolean', true], // Set to false to make this component do nothing to any elements and just give you the onInsideViewport callback.
+            onTouch: ['Boolean', true],  // Subscribe to touch events in addition to scroll events. Useful in mobile safari because 'scroll' events aren't frequent enough.
+            onInsideViewport: ['Function', false], // Called when an `item` is within the viewport. Receives `{ element }`
+            onAfterAttributeChange: ['Function', false],  // (advanced) Called after `source` is copied over to `destination`. Receives `{ element }`
+            autoInit: ['Boolean', true]  // Set to false if you want LazyLoad to do nothing until you call `reload()`
         }, arguments[1] || {}, this._rootElm);
 
-        this._sto = false;
         this._aData = [];
         this._hasEvents = false;
    
-        if(this._options.onLoad) {
+        if(this._options.autoInit) {
             this._activate();
         } 
     },
@@ -46,7 +44,7 @@ LazyLoad.prototype = {
         if(!this._hasEvents) {
             this._addEvents(); 
         }
-        this._onScroll();
+        this._onScrollThrottled();
     },
 
     _getData: function()
@@ -63,55 +61,60 @@ LazyLoad.prototype = {
 
     _addEvents: function() 
     {
-        this._onScrollBinded = InkEvent.throttle(Ink.bindEvent(this._onScroll, this), 400);
+        this._onScrollThrottled = InkEvent.throttle(Ink.bindEvent(this._onScroll, this), 400);
         if('ontouchmove' in document.documentElement && this._options.onTouch) {
-            InkEvent.observe(document.documentElement, 'touchmove', this._onScrollBinded);
+            InkEvent.observe(document.documentElement, 'touchmove', this._onScrollThrottled);
         } else {
-            InkEvent.observe(window, 'scroll', this._onScrollBinded);
+            InkEvent.observe(window, 'scroll', this._onScrollThrottled);
         }
         this._hasEvents = true;
     },
 
     _removeEvents: function() {
         if('ontouchmove' in document.documentElement && this._options.onTouch) {
-            InkEvent.stopObserving(document.documentElement, 'touchmove', this._onScrollBinded);
+            InkEvent.stopObserving(document.documentElement, 'touchmove', this._onScrollThrottled);
         } else {
-            InkEvent.stopObserving(window, 'scroll', this._onScrollBinded);
+            InkEvent.stopObserving(window, 'scroll', this._onScrollThrottled);
         }
         this._hasEvents = false;
     }, 
 
     _onScroll: function() {
-        var total = this._aData.length; 
-        var curElm = false;
-        var curOffset = false;
+        var curElm;
 
-        if(total > 0) {
-            for(var i=0; i < total; i++) {
-                curElm = this._aData[i];
-                curOffset = InkElement.offset(curElm.elm)[1];
+        for(var i=0; i < this._aData.length; i++) {
+            curElm = this._aData[i];
 
-                if(InkElement.inViewport(curElm, { partial: true, margin: this._options.delta })) {
-                    this._userCallback('onBeforeLoad', { element: curElm.elm });
-
-                    if(this._options.image) {
-                        curElm.elm.setAttribute(this._options.destination, curElm.original);
-                        curElm.elm.removeAttribute(this._options.source);
-                        this._aData.splice(i, 1);
-                        i -= 1;
-                        total = this._aData.length;
-                    } else {
-                        this._userCallback('onLazyLoad', { element: curElm.elm });
-                    }
-                    
-                    this._userCallback('onAfterLoad', { element: curElm.elm });
-                } else {
-                    return;
+            if(InkElement.inViewport(curElm, { partial: true, margin: this._options.delta })) {
+                this._elInViewport(curElm);
+                if (this._options.image) {
+                    /* [todo] a seemingly unrelated option creates a branch? Some of this belongs in another module. */
+                    this._aData.splice(i, 1);
                 }
             }
-        } else {
+        }
+
+        if (this._aData.length === 0) {
             this._removeEvents();
         }
+    },
+
+    /**
+     * Called when an element is detected inside the viewport
+     *
+     * @method _elInViewport
+     * @param {LazyLoadInternalElementData} curElm
+     * @private
+     **/
+    _elInViewport: function (curElm) {
+        this._userCallback('onInsideViewport', { element: curElm.elm });
+
+        if(this._options.image) {
+            curElm.elm.setAttribute(this._options.destination, curElm.original);
+            curElm.elm.removeAttribute(this._options.source);
+        }
+
+        this._userCallback('onAfterAttributeChange', { element: curElm.elm });
     },
 
     /**
