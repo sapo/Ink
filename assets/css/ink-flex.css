@@ -2009,7 +2009,7 @@ pre {
 
 blockquote {
   /* Set 1 unit of vertical rhythm on the top and bottom margin. */
-  margin: 0.75em 25px;
+  margin: 0.75em 40px;
 }
 
 /**
@@ -2026,38 +2026,38 @@ h1 {
 }
 
 h2 {
-  font-size: 1.75em;
-  line-height: 1.71429em;
-  margin-top: 0.85714em;
-  margin-bottom: 0.85714em;
-}
-
-h3 {
   font-size: 1.5em;
   line-height: 2em;
   margin-top: 1em;
   margin-bottom: 1em;
 }
 
+h3 {
+  font-size: 1.17em;
+  line-height: 1.28205em;
+  margin-top: 1.28205em;
+  margin-bottom: 1.28205em;
+}
+
 h4 {
-  font-size: 1.25em;
-  line-height: 1.2em;
-  margin-top: 1.2em;
-  margin-bottom: 1.2em;
-}
-
-h5 {
-  font-size: 1.1em;
-  line-height: 1.36364em;
-  margin-top: 1.36364em;
-  margin-bottom: 1.36364em;
-}
-
-h6 {
   font-size: 1em;
   line-height: 1.5em;
   margin-top: 1.5em;
   margin-bottom: 1.5em;
+}
+
+h5 {
+  font-size: 0.83em;
+  line-height: 1.80723em;
+  margin-top: 1.80723em;
+  margin-bottom: 1.80723em;
+}
+
+h6 {
+  font-size: 0.67em;
+  line-height: 2.23881em;
+  margin-top: 2.23881em;
+  margin-bottom: 2.23881em;
 }
 
 /**
@@ -2168,7 +2168,7 @@ ul {
 }
 
 dd {
-  margin: 0 0 0 25px;
+  margin: 0 0 0 40px;
 }
 
 /**
@@ -2177,7 +2177,7 @@ dd {
 menu,
 ol,
 ul {
-  padding: 0 0 0 25px;
+  padding: 0 0 0 40px;
 }
 
 /**
@@ -6258,6 +6258,9 @@ html.flexbox .column-group.vertical.reverse {
   padding: 0.2em 0.5em;
   white-space: nowrap;
 }
+.ink-label.success.invert, .ink-label.warning.invert, .ink-label.error.invert, .ink-label.info.invert {
+  padding: 0;
+}
 
 .ink-navigation {
   overflow: visible;
@@ -6635,69 +6638,69 @@ body {
   line-height: 24px;
 }
 
-.fw-100, .fw-light {
+.fw-100 {
   font-weight: 100;
-  font-family: "Roboto", Arial, sans-serif;
+  font-family: Roboto;
 }
 
-.fw-300, .fw-thin {
+.fw-300 {
   font-weight: 300;
-  font-family: "Roboto", Arial, sans-serif;
+  font-family: Roboto;
 }
 
-.fw-400, .fw-regular {
+.fw-400 {
   font-weight: 400;
-  font-family: "Roboto", Arial, sans-serif;
+  font-family: Roboto;
 }
 
-.fw-500, .fw-medium {
+.fw-500 {
   font-weight: 500;
-  font-family: "Roboto", Arial, sans-serif;
+  font-family: Roboto;
 }
 
-.fw-700, .fw-bold {
+.fw-700 {
   font-weight: 700;
-  font-family: "Roboto", Arial, sans-serif;
+  font-family: Roboto;
 }
 
-.fw-900, .fw-black {
+.fw-900 {
   font-weight: 900;
-  font-family: "Roboto", Arial, sans-serif;
+  font-family: Roboto;
 }
 
-.condensed-300, .condensed-thin {
+.condensed-300 {
   font-weight: 200;
-  font-family: Roboto_condensed, Arial, sans-serif;
+  font-family: Roboto_condensed;
 }
 
-.condensed-400, .condensed-regular {
+.condensed-400 {
   font-weight: 400;
-  font-family: Roboto_condensed, Arial, sans-serif;
+  font-family: Roboto_condensed;
 }
 
-.condensed-700, .condensed-bold {
+.condensed-700 {
   font-weight: 700;
-  font-family: Roboto_condensed, Arial, sans-serif;
+  font-family: Roboto_condensed;
 }
 
-.slab-100, .slab-light {
+.slab-100 {
   font-weight: 100;
-  font-family: Roboto_slab, Arial, sans-serif;
+  font-family: Roboto_slab;
 }
 
-.slab-300, .slab-thin {
+.slab-300 {
   font-weight: 300;
-  font-family: Roboto_slab, Arial, sans-serif;
+  font-family: Roboto_slab;
 }
 
-.slab-400, .slab-regular {
+.slab-400 {
   font-weight: 400;
-  font-family: Roboto_slab, Arial, sans-serif;
+  font-family: Roboto_slab;
 }
 
-.slab-700, .slab-bold {
+.slab-700 {
   font-weight: 700;
-  font-family: Roboto_slab, Arial, sans-serif;
+  font-family: Roboto_slab;
 }
 
 .sans {
@@ -6722,14 +6725,6 @@ body {
 
 .italic {
   font-style: italic;
-}
-
-.uppercase {
-  text-transform: uppercase;
-}
-
-.lowercase {
-  text-transform: lowercase;
 }
 
 .fa {
@@ -6778,10 +6773,6 @@ h1 small, h2 small, h3 small, h4 small {
   line-height: 1;
 }
 
-mark {
-  background: #dae5f2;
-}
-
 address {
   color: #777777;
   font-size: 1em;
@@ -6800,7 +6791,7 @@ abbr:hover {
 
 blockquote {
   border-left: 4px solid #ddd;
-  padding-left: 25px;
+  padding-left: 40px;
   margin: 1em 0;
   font-weight: 200;
   font-size: 1.1em;
@@ -6882,7 +6873,7 @@ dl dt {
   margin: .5em 0;
 }
 dl dd {
-  margin: 0.5em 0 0.5em 25px;
+  margin: 0.5em 0 0.5em 40px;
 }
 dl.inline dt {
   float: left;
@@ -7041,13 +7032,6 @@ figure.ink-image > figcaption.dark {
   border-radius: 8em;
   color: white;
 }
-.ink-badge.white {
-  background: white;
-  color: #555555;
-}
-.ink-badge.black {
-  background: black;
-}
 .ink-badge.orange {
   background: #ff9c00;
 }
@@ -7060,15 +7044,15 @@ figure.ink-image > figcaption.dark {
 .ink-badge.blue {
   background: #0f75da;
 }
-.ink-badge.yellow {
-  background: #ffd500;
+.ink-badge.white {
+  background: white;
   color: #555555;
+}
+.ink-badge.black {
+  background: black;
 }
 .ink-badge.grey {
   background: gray;
-}
-.ink-badge + .ink-badge {
-  margin-left: 0.2em;
 }
 
 /**
@@ -7255,41 +7239,45 @@ figure.ink-image > figcaption.dark {
 
 .ink-label {
   color: white;
-  font-weight: 300;
+  font-weight: bold;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   -ms-border-radius: 2px;
   -o-border-radius: 2px;
   border-radius: 2px;
+  text-shadow: rgba(0, 0, 0, 0.25) 0 1px 0;
 }
-.ink-label.white {
-  background: white;
-  color: #555555;
+.ink-label.success {
+  background-color: #4a9b17;
 }
-.ink-label.black {
-  background: black;
+.ink-label.success.invert {
+  color: #4a9b17;
+  background-color: transparent;
+  text-shadow: none;
 }
-.ink-label.orange {
-  background: #ff9c00;
+.ink-label.warning {
+  background-color: #ff9c00;
 }
-.ink-label.red {
-  background: #c91111;
+.ink-label.warning.invert {
+  color: #ff9c00;
+  background-color: transparent;
+  text-shadow: none;
 }
-.ink-label.green {
-  background: #4a9b17;
+.ink-label.error {
+  background-color: #c91111;
 }
-.ink-label.blue {
-  background: #0f75da;
+.ink-label.error.invert {
+  color: #c91111;
+  background-color: transparent;
+  text-shadow: none;
 }
-.ink-label.yellow {
-  background: #ffd500;
-  color: #555555;
+.ink-label.info {
+  background-color: #0f75da;
 }
-.ink-label.grey {
-  background: gray;
-}
-.ink-label + .ink-label {
-  margin-left: 0.2em;
+.ink-label.info.invert {
+  color: #0f75da;
+  background-color: transparent;
+  text-shadow: none;
 }
 
 .ink-navigation ul.breadcrumbs {
