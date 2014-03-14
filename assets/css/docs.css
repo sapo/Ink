@@ -728,13 +728,24 @@ code {
 }
 
 table.props {
-  padding: 0.7em 1em;
   width: 100%;
   border-collapse: initial;
   background: #eeebe5;
 }
-table.props tr {
-  line-height: 1.5;
+table.props tr:nth-child(odd) td {
+  background: #f2f0eb;
+}
+table.props tr td, table.props tr th {
+  padding: 0.7em 0;
+}
+table.props tr td:first-child, table.props tr th:first-child {
+  padding-left: 1em;
+}
+table.props tr td:last-child, table.props tr th:last-child {
+  padding-right: 1em;
+}
+table.props tr td {
+  line-height: 1.4;
 }
 table.props caption {
   padding: 0 0 0 0.4em;

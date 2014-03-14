@@ -1,155 +1,328 @@
 
 
-    <div class="box box-module">
+    
+        <h1 class="fw-300">Ink.Dom.Browser_1 <small>version: 1</small></h1>
+    
 
-        
-            <h2><a name="Ink_Dom_Browser_1">Ink.Dom.Browser_1 <i>module</i></a></h2>
-        
+    
 
-        
+    
 
-        
-            <p><label>author:</label>inkdev AT sapo.pt</p>
-        
-        
-        
-            <p><label>version:</label>1</p>
-        
-
-        
-
-        
-
-        
+    
 
 
-        
+    
 
 
+    
+
+    
+
+
+
+    
+        <section>
+
+    
+    <table class="props bottom-space">
         
-            <h3>Defined classes and namespaces:</h3>
-            <ul>
-            
+        
+        <caption>METHODS</caption>
+        <thead>
+            <tr>
+                <th>Method name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        
+        
+        <tbody>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-debug">
+                        
+                            .debug
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Debug function which displays browser (and Ink.Dom.Browser) information as an alert message.</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-detectBrowser">
+                        
+                            .detectBrowser
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Detects the browser and stores the found properties. Called automatically when this module is loaded.</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-init">
+                        
+                            .init
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Initialization function for the Browser object.</p>
+<p>Is called automatically when this module is loaded, and calls setDimensions, setBrowser and setReferrer.</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-setDimensions">
+                        
+                            .setDimensions
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Retrieves and stores window dimensions in this object. Called automatically when this module is loaded.</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-setReferrer">
+                        
+                            .setReferrer
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Stores the referrer. Called automatically when this module is loaded.</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+        </tbody>
+    </table>
+    
+
+    
+
+    <table class="props">
+        <caption>PROPERTIES</caption>
+        <thead>
+            <tr>
+                <th>Property name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+        
+        <tr>
+            <td><a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-CHROME">.CHROME</a></td>
+            <td>
                 
-                    <li><a href="#Ink_Dom_Browser_1-Ink_Dom_Browser">(C) Ink.Dom.Browser</a></li>
+
                 
-            
-            </ul>
-        
+                    <p>True if browser is Chrome</p>
 
-        
+                
 
+                
+                    <code>Boolean</code>
+                
+                
+            </td>
+        </tr>
         
+        <tr>
+            <td><a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-GECKO">.GECKO</a></td>
+            <td>
+                
 
-    </div>
+                
+                    <p>True if the browser is Gecko based</p>
+
+                
+
+                
+                    <code>Boolean</code>
+                
+                
+            </td>
+        </tr>
+        
+        <tr>
+            <td><a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-IE">.IE</a></td>
+            <td>
+                
+
+                
+                    <p>True if the browser is Internet Explorer</p>
+
+                
+
+                
+                    <code>Boolean</code>
+                
+                
+            </td>
+        </tr>
+        
+        <tr>
+            <td><a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-KONQUEROR">.KONQUEROR</a></td>
+            <td>
+                
+
+                
+                    <p>True if the browser is Konqueror</p>
+
+                
+
+                
+                    <code>Boolean</code>
+                
+                
+            </td>
+        </tr>
+        
+        <tr>
+            <td><a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-OPERA">.OPERA</a></td>
+            <td>
+                
+
+                
+                    <p>True if the browser is Opera</p>
+
+                
+
+                
+                    <code>Boolean</code>
+                
+                
+            </td>
+        </tr>
+        
+        <tr>
+            <td><a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-SAFARI">.SAFARI</a></td>
+            <td>
+                
+
+                
+                    <p>True if the browser is Safari</p>
+
+                
+
+                
+                    <code>Boolean</code>
+                
+                
+            </td>
+        </tr>
+        
+        <tr>
+            <td><a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-model">.model</a></td>
+            <td>
+                
+
+                
+                    <p>The specific browser model. False if it is unavailable.</p>
+
+                
+
+                
+                    <code>Boolean|String</code>
+                
+                
+            </td>
+        </tr>
+        
+        <tr>
+            <td><a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-userAgent">.userAgent</a></td>
+            <td>
+                
+
+                
+                    <p>The user agent string. False if it is unavailable.</p>
+
+                
+
+                
+                    <code>Boolean|String</code>
+                
+                
+            </td>
+        </tr>
+        
+        <tr>
+            <td><a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-version">.version</a></td>
+            <td>
+                
+
+                
+                    <p>The browser version. False if it is unavailable.</p>
+
+                
+
+                
+                    <code>Boolean|String</code>
+                
+                
+            </td>
+        </tr>
+        
+        </tbody>
+    </table>
 
     
-        <div class="box box-class">
 
-    <h2><a name="Ink_Dom_Browser_1-Ink_Dom_Browser">Ink.Dom.Browser <i>
-    
-        class
-    
-    </i></a></h2>
 
     
 
     
     
-    
-        <p><label>version:</label>1</p>
-    
-
-    
-
-    
-<p class="example-title">Example</p>
-{% highlight js html %}{% raw %}
-<script>
-    Ink.requireModules(['Ink.Dom.Browser_1'],function( InkBrowser ){
-        if( InkBrowser.CHROME ){
-            console.log( 'This is a CHROME browser.' );
-        }
-    });
-</script>{% endraw %}
-{% endhighlight %}
-
-
 
 
 
     
-
-
-    
-        
-            <h3>Defined methods:</h3>
-        
-        
-        <ul>
-        
-            <li><a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-debug">
-            
-                Ink.Dom.Browser.debug
-            
-            ()</a></li>
-        
-            <li><a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-detectBrowser">
-            
-                Ink.Dom.Browser.detectBrowser
-            
-            ()</a></li>
-        
-            <li><a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-init">
-            
-                Ink.Dom.Browser.init
-            
-            ()</a></li>
-        
-            <li><a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-setDimensions">
-            
-                Ink.Dom.Browser.setDimensions
-            
-            ()</a></li>
-        
-            <li><a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-setReferrer">
-            
-                Ink.Dom.Browser.setReferrer
-            
-            ()</a></li>
-        
-        </ul>
-    
-
-    
-        <h3>Defined attributes:</h3>
-        <ul>
-        
-            <li><a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-CHROME">Ink.Dom.Browser.CHROME</a></li>
-        
-            <li><a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-GECKO">Ink.Dom.Browser.GECKO</a></li>
-        
-            <li><a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-IE">Ink.Dom.Browser.IE</a></li>
-        
-            <li><a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-KONQUEROR">Ink.Dom.Browser.KONQUEROR</a></li>
-        
-            <li><a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-OPERA">Ink.Dom.Browser.OPERA</a></li>
-        
-            <li><a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-SAFARI">Ink.Dom.Browser.SAFARI</a></li>
-        
-            <li><a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-model">Ink.Dom.Browser.model</a></li>
-        
-            <li><a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-userAgent">Ink.Dom.Browser.userAgent</a></li>
-        
-            <li><a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-version">Ink.Dom.Browser.version</a></li>
-        
-        </ul>
-    
-
-</div>
-
-
-    <div class="box box-function">
+        <div class="box box-function">
 
     <h2><a name="Ink_Dom_Browser_1-Ink_Dom_Browser-debug">
     
@@ -180,9 +353,9 @@
     
 <p class="example-title">Example</p>
   
-<div class="example">
-{% highlight js html %}{% raw %}
-
+<div class="example bottom-space">
+{% highlight html %}{% raw %}
+ 
  The following code
 
      Ink.requireModules(['Ink.Dom.Browser_1'], function (Browser) {
@@ -196,8 +369,8 @@
      model -> firefox
      version -> 22.0
      
-     original UA -> Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:22.0) Gecko/20100101 Firefox/22.0{% endraw %}
-{% endhighlight %}
+     original UA -> Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:22.0) Gecko/20100101 Firefox/22.0
+{% endraw %}{% endhighlight %}
 </div>
 
 
@@ -207,8 +380,8 @@
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_Dom_Browser_1-Ink_Dom_Browser-detectBrowser">
     
@@ -243,8 +416,8 @@
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_Dom_Browser_1-Ink_Dom_Browser-init">
     
@@ -280,8 +453,8 @@
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_Dom_Browser_1-Ink_Dom_Browser-setDimensions">
     
@@ -316,8 +489,8 @@
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_Dom_Browser_1-Ink_Dom_Browser-setReferrer">
     
@@ -352,16 +525,16 @@
 
 </div>
 
+    
 
+    
+        <div class="box box-attribute">
 
-
-    <div class="box box-attribute">
-
-     <h2><a name="Ink_Dom_Browser_1-Ink_Dom_Browser-CHROME">
+     <h2>
     
        Ink.Dom.Browser.CHROME
     
-    <i>attribute</i></a></h2>
+    <i>attribute</i></h2>
 
     
 
@@ -380,14 +553,14 @@
 
 </div>
 
+    
+        <div class="box box-attribute">
 
-    <div class="box box-attribute">
-
-     <h2><a name="Ink_Dom_Browser_1-Ink_Dom_Browser-GECKO">
+     <h2>
     
        Ink.Dom.Browser.GECKO
     
-    <i>attribute</i></a></h2>
+    <i>attribute</i></h2>
 
     
 
@@ -406,14 +579,14 @@
 
 </div>
 
+    
+        <div class="box box-attribute">
 
-    <div class="box box-attribute">
-
-     <h2><a name="Ink_Dom_Browser_1-Ink_Dom_Browser-IE">
+     <h2>
     
        Ink.Dom.Browser.IE
     
-    <i>attribute</i></a></h2>
+    <i>attribute</i></h2>
 
     
 
@@ -432,14 +605,14 @@
 
 </div>
 
+    
+        <div class="box box-attribute">
 
-    <div class="box box-attribute">
-
-     <h2><a name="Ink_Dom_Browser_1-Ink_Dom_Browser-KONQUEROR">
+     <h2>
     
        Ink.Dom.Browser.KONQUEROR
     
-    <i>attribute</i></a></h2>
+    <i>attribute</i></h2>
 
     
 
@@ -458,14 +631,14 @@
 
 </div>
 
+    
+        <div class="box box-attribute">
 
-    <div class="box box-attribute">
-
-     <h2><a name="Ink_Dom_Browser_1-Ink_Dom_Browser-OPERA">
+     <h2>
     
        Ink.Dom.Browser.OPERA
     
-    <i>attribute</i></a></h2>
+    <i>attribute</i></h2>
 
     
 
@@ -484,14 +657,14 @@
 
 </div>
 
+    
+        <div class="box box-attribute">
 
-    <div class="box box-attribute">
-
-     <h2><a name="Ink_Dom_Browser_1-Ink_Dom_Browser-SAFARI">
+     <h2>
     
        Ink.Dom.Browser.SAFARI
     
-    <i>attribute</i></a></h2>
+    <i>attribute</i></h2>
 
     
 
@@ -510,14 +683,14 @@
 
 </div>
 
+    
+        <div class="box box-attribute">
 
-    <div class="box box-attribute">
-
-     <h2><a name="Ink_Dom_Browser_1-Ink_Dom_Browser-model">
+     <h2>
     
        Ink.Dom.Browser.model
     
-    <i>attribute</i></a></h2>
+    <i>attribute</i></h2>
 
     
 
@@ -536,14 +709,14 @@
 
 </div>
 
+    
+        <div class="box box-attribute">
 
-    <div class="box box-attribute">
-
-     <h2><a name="Ink_Dom_Browser_1-Ink_Dom_Browser-userAgent">
+     <h2>
     
        Ink.Dom.Browser.userAgent
     
-    <i>attribute</i></a></h2>
+    <i>attribute</i></h2>
 
     
 
@@ -562,14 +735,14 @@
 
 </div>
 
+    
+        <div class="box box-attribute">
 
-    <div class="box box-attribute">
-
-     <h2><a name="Ink_Dom_Browser_1-Ink_Dom_Browser-version">
+     <h2>
     
        Ink.Dom.Browser.version
     
-    <i>attribute</i></a></h2>
+    <i>attribute</i></h2>
 
     
 
@@ -588,8 +761,8 @@
 
 </div>
 
-
-
+    
+</section>
     
 
     

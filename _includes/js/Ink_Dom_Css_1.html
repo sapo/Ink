@@ -1,57 +1,9 @@
 
 
-    <div class="box box-module">
-
-        
-            <h2><a name="Ink_Dom_Css_1">Ink.Dom.Css_1 <i>module</i></a></h2>
-        
-
-        
-
-        
-        
-        
-
-        
-
-        
-
-        
-
-
-        
-
-
-        
-            <h3>Defined classes and namespaces:</h3>
-            <ul>
-            
-                
-                    <li><a href="#Ink_Dom_Css_1-Ink_Dom_Css">(C) Ink.Dom.Css</a></li>
-                
-            
-            </ul>
-        
-
-        
-
-        
-
-    </div>
-
     
-        <div class="box box-class">
-
-    <h2><a name="Ink_Dom_Css_1-Ink_Dom_Css">Ink.Dom.Css <i>
-    
-        class
-    
-    </i></a></h2>
-
+        <h1 class="fw-300">Ink.Dom.Css_1 </h1>
     
 
-    
-    
     
 
     
@@ -63,147 +15,468 @@
 
 
     
+
+    
+
+
+
+    
+        <section>
+
+    
+    <table class="props bottom-space">
         
-            <h3>Defined methods:</h3>
+        
+        <caption>METHODS</caption>
+        <thead>
+            <tr>
+                <th>Method name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
         
         
-        <ul>
+        <tbody>
         
-            <li><a href="#Ink_Dom_Css_1-Ink_Dom_Css-addClassName">
-            
-                Ink.Dom.Css.addClassName
-            
-            (elm, className)</a></li>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Css_1-Ink_Dom_Css-addClassName">
+                        
+                            .addClassName
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>add a class to a given element</p>
+
+
+                    
+                    
+                </td>
+            </tr>
         
-            <li><a href="#Ink_Dom_Css_1-Ink_Dom_Css-addRemoveClassName">
-            
-                Ink.Dom.Css.addRemoveClassName
-            
-            (elm, className, addRemState)</a></li>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Css_1-Ink_Dom_Css-addRemoveClassName">
+                        
+                            .addRemoveClassName
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>adds or removes a class to the given element according to addRemState</p>
+
+
+                    
+                    
+                </td>
+            </tr>
         
-            <li><a href="#Ink_Dom_Css_1-Ink_Dom_Css-appendStyleTag">
-            
-                Ink.Dom.Css.appendStyleTag
-            
-            (selector, style, options, )</a></li>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Css_1-Ink_Dom_Css-appendStyleTag">
+                        
+                            .appendStyleTag
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Adds css style tags to the head section of a page</p>
+
+
+                    
+                    
+                </td>
+            </tr>
         
-            <li><a href="#Ink_Dom_Css_1-Ink_Dom_Css-appendStylesheet">
-            
-                Ink.Dom.Css.appendStylesheet
-            
-            (path, options, )</a></li>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Css_1-Ink_Dom_Css-appendStylesheet">
+                        
+                            .appendStylesheet
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Adds a link tag for a stylesheet to the head section of a page</p>
+
+
+                    
+                    
+                </td>
+            </tr>
         
-            <li><a href="#Ink_Dom_Css_1-Ink_Dom_Css-appendStylesheetCb">
-            
-                Ink.Dom.Css.appendStylesheetCb
-            
-            (cssURI, [callback])</a></li>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Css_1-Ink_Dom_Css-appendStylesheetCb">
+                        
+                            .appendStylesheetCb
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Loads CSS via LINK element inclusion in HEAD (skips append if already there)</p>
+<p>Works similarly to appendStylesheet but:
+  a) supports all browsers;
+  b) supports optional callback which gets invoked once the CSS has been applied</p>
+
+
+                    
+                    
+                </td>
+            </tr>
         
-            <li><a href="#Ink_Dom_Css_1-Ink_Dom_Css-blinkClass">
-            
-                Ink.Dom.Css.blinkClass
-            
-            (elm, className, timeout, negate)</a></li>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Css_1-Ink_Dom_Css-blinkClass">
+                        
+                            .blinkClass
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Add and removes the class from the element with a timeout, so it blinks</p>
+
+
+                    
+                    
+                </td>
+            </tr>
         
-            <li><a href="#Ink_Dom_Css_1-Ink_Dom_Css-changeFontSize">
-            
-                Ink.Dom.Css.changeFontSize
-            
-            (selector, delta, [op], [minVal], [maxVal])</a></li>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Css_1-Ink_Dom_Css-changeFontSize">
+                        
+                            .changeFontSize
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Changes the font size of the elements which match the given CSS rule
+For this function to work, the CSS file must be in the same domain than the host page, otherwise JS can&#39;t access it.</p>
+
+
+                    
+                    
+                </td>
+            </tr>
         
-            <li><a href="#Ink_Dom_Css_1-Ink_Dom_Css-decToHex">
-            
-                Ink.Dom.Css.decToHex
-            
-            (dec)</a></li>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Css_1-Ink_Dom_Css-decToHex">
+                        
+                            .decToHex
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Converts decimal to hexadecimal values, for use with colors</p>
+
+
+                    
+                    
+                </td>
+            </tr>
         
-            <li><a href="#Ink_Dom_Css_1-Ink_Dom_Css-getPropertyFromStylesheet">
-            
-                Ink.Dom.Css.getPropertyFromStylesheet
-            
-            (selector, property)</a></li>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Css_1-Ink_Dom_Css-getPropertyFromStylesheet">
+                        
+                            .getPropertyFromStylesheet
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>use this to obtain the value of a CSS property (searched from loaded CSS documents)</p>
+
+
+                    
+                    
+                </td>
+            </tr>
         
-            <li><a href="#Ink_Dom_Css_1-Ink_Dom_Css-getStyle">
-            
-                Ink.Dom.Css.getStyle
-            
-            (elm, style)</a></li>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Css_1-Ink_Dom_Css-getStyle">
+                        
+                            .getStyle
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Gets the value for an element&#39;s style attribute</p>
+
+
+                    
+                    
+                </td>
+            </tr>
         
-            <li><a href="#Ink_Dom_Css_1-Ink_Dom_Css-hasClassName">
-            
-                Ink.Dom.Css.hasClassName
-            
-            (elm, classNames, [all])</a></li>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Css_1-Ink_Dom_Css-hasClassName">
+                        
+                            .hasClassName
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    
+
+                    
+                    
+                </td>
+            </tr>
         
-            <li><a href="#Ink_Dom_Css_1-Ink_Dom_Css-hexToDec">
-            
-                Ink.Dom.Css.hexToDec
-            
-            (hex)</a></li>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Css_1-Ink_Dom_Css-hexToDec">
+                        
+                            .hexToDec
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Converts hexadecimal values to decimal, for use with colors</p>
+
+
+                    
+                    
+                </td>
+            </tr>
         
-            <li><a href="#Ink_Dom_Css_1-Ink_Dom_Css-hide">
-            
-                Ink.Dom.Css.hide
-            
-            (elm)</a></li>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Css_1-Ink_Dom_Css-hide">
+                        
+                            .hide
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Hides an element</p>
+
+
+                    
+                    
+                </td>
+            </tr>
         
-            <li><a href="#Ink_Dom_Css_1-Ink_Dom_Css-removeClassName">
-            
-                Ink.Dom.Css.removeClassName
-            
-            (elm, className)</a></li>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Css_1-Ink_Dom_Css-removeClassName">
+                        
+                            .removeClassName
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>removes a class from a given element</p>
+
+
+                    
+                    
+                </td>
+            </tr>
         
-            <li><a href="#Ink_Dom_Css_1-Ink_Dom_Css-setClassName">
-            
-                Ink.Dom.Css.setClassName
-            
-            (elm, className, add)</a></li>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Css_1-Ink_Dom_Css-setClassName">
+                        
+                            .setClassName
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Alias to addRemoveClassName. Utility function, saves many if/elses.</p>
+
+
+                    
+                    
+                </td>
+            </tr>
         
-            <li><a href="#Ink_Dom_Css_1-Ink_Dom_Css-setOpacity">
-            
-                Ink.Dom.Css.setOpacity
-            
-            (elm, value)</a></li>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Css_1-Ink_Dom_Css-setOpacity">
+                        
+                            .setOpacity
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>sets the opacity of given client a given element</p>
+
+
+                    
+                    
+                </td>
+            </tr>
         
-            <li><a href="#Ink_Dom_Css_1-Ink_Dom_Css-setStyle">
-            
-                Ink.Dom.Css.setStyle
-            
-            (elm, style)</a></li>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Css_1-Ink_Dom_Css-setStyle">
+                        
+                            .setStyle
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Adds CSS rules to an element&#39;s style attribute.</p>
+
+
+                    
+                    
+                </td>
+            </tr>
         
-            <li><a href="#Ink_Dom_Css_1-Ink_Dom_Css-show">
-            
-                Ink.Dom.Css.show
-            
-            (elm, forceDisplayProperty)</a></li>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Css_1-Ink_Dom_Css-show">
+                        
+                            .show
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Makes an element visible</p>
+
+
+                    
+                    
+                </td>
+            </tr>
         
-            <li><a href="#Ink_Dom_Css_1-Ink_Dom_Css-showHide">
-            
-                Ink.Dom.Css.showHide
-            
-            (elm, [show])</a></li>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Css_1-Ink_Dom_Css-showHide">
+                        
+                            .showHide
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>shows or hides according to param show</p>
+
+
+                    
+                    
+                </td>
+            </tr>
         
-            <li><a href="#Ink_Dom_Css_1-Ink_Dom_Css-toggle">
-            
-                Ink.Dom.Css.toggle
-            
-            (elm, forceShow)</a></li>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Css_1-Ink_Dom_Css-toggle">
+                        
+                            .toggle
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Shows or hides an element depending on current state</p>
+
+
+                    
+                    
+                </td>
+            </tr>
         
-            <li><a href="#Ink_Dom_Css_1-Ink_Dom_Css-toggleClassName">
-            
-                Ink.Dom.Css.toggleClassName
-            
-            (elm, className, forceAdd)</a></li>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Css_1-Ink_Dom_Css-toggleClassName">
+                        
+                            .toggleClassName
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Add or remove a class name from a given element</p>
+
+
+                    
+                    
+                </td>
+            </tr>
         
-        </ul>
+        </tbody>
+    </table>
     
 
     
 
-</div>
+
+    
+
+    
+    
 
 
-    <div class="box box-function">
+
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_Dom_Css_1-Ink_Dom_Css-addClassName">
     
@@ -275,8 +548,8 @@
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_Dom_Css_1-Ink_Dom_Css-addRemoveClassName">
     
@@ -363,15 +636,13 @@
     
 <p class="example-title">Example</p>
   
-<div class="example">
-{% highlight html %}
-{% raw %}
+<div class="example bottom-space">
+{% highlight html %}{% raw %}
      Ink.requireModules(['Ink.Dom.Css_1'], function (Css) {
          Css.addRemoveClassName(myElm, 'classss', true);  // Adds the `classss` class.
          Css.addRemoveClassName(myElm, 'classss', false);  // Removes the `classss` class.
      });
-{% endraw %}
-{% endhighlight %}
+{% endraw %}{% endhighlight %}
 </div>
 
 
@@ -381,8 +652,8 @@
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_Dom_Css_1-Ink_Dom_Css-appendStyleTag">
     
@@ -507,8 +778,8 @@
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_Dom_Css_1-Ink_Dom_Css-appendStylesheet">
     
@@ -639,8 +910,8 @@
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_Dom_Css_1-Ink_Dom_Css-appendStylesheetCb">
     
@@ -717,8 +988,8 @@
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_Dom_Css_1-Ink_Dom_Css-blinkClass">
     
@@ -826,8 +1097,8 @@
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_Dom_Css_1-Ink_Dom_Css-changeFontSize">
     
@@ -953,8 +1224,8 @@ For this function to work, the CSS file must be in the same domain than the host
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_Dom_Css_1-Ink_Dom_Css-decToHex">
     
@@ -1019,8 +1290,8 @@ For this function to work, the CSS file must be in the same domain than the host
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_Dom_Css_1-Ink_Dom_Css-getPropertyFromStylesheet">
     
@@ -1104,8 +1375,8 @@ For this function to work, the CSS file must be in the same domain than the host
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_Dom_Css_1-Ink_Dom_Css-getStyle">
     
@@ -1187,8 +1458,8 @@ For this function to work, the CSS file must be in the same domain than the host
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_Dom_Css_1-Ink_Dom_Css-hasClassName">
     
@@ -1288,8 +1559,8 @@ For this function to work, the CSS file must be in the same domain than the host
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_Dom_Css_1-Ink_Dom_Css-hexToDec">
     
@@ -1356,8 +1627,8 @@ For this function to work, the CSS file must be in the same domain than the host
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_Dom_Css_1-Ink_Dom_Css-hide">
     
@@ -1414,8 +1685,8 @@ For this function to work, the CSS file must be in the same domain than the host
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_Dom_Css_1-Ink_Dom_Css-removeClassName">
     
@@ -1487,8 +1758,8 @@ For this function to work, the CSS file must be in the same domain than the host
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_Dom_Css_1-Ink_Dom_Css-setClassName">
     
@@ -1577,8 +1848,8 @@ For this function to work, the CSS file must be in the same domain than the host
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_Dom_Css_1-Ink_Dom_Css-setOpacity">
     
@@ -1652,8 +1923,8 @@ For this function to work, the CSS file must be in the same domain than the host
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_Dom_Css_1-Ink_Dom_Css-setStyle">
     
@@ -1723,9 +1994,8 @@ For this function to work, the CSS file must be in the same domain than the host
     
 <p class="example-title">Example</p>
   
-<div class="example">
-{% highlight html %}
-{% raw %}
+<div class="example bottom-space">
+{% highlight html %}{% raw %}
     <a href="#" class="change-color">Change his color</a>
     <p class="him">"He" is me</p>
     <script type="text/javascript">
@@ -1739,8 +2009,7 @@ For this function to work, the CSS file must be in the same domain than the host
         });
     </script>
 
-{% endraw %}
-{% endhighlight %}
+{% endraw %}{% endhighlight %}
 </div>
 
 
@@ -1750,8 +2019,8 @@ For this function to work, the CSS file must be in the same domain than the host
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_Dom_Css_1-Ink_Dom_Css-show">
     
@@ -1825,8 +2094,8 @@ For this function to work, the CSS file must be in the same domain than the host
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_Dom_Css_1-Ink_Dom_Css-showHide">
     
@@ -1902,8 +2171,8 @@ For this function to work, the CSS file must be in the same domain than the host
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_Dom_Css_1-Ink_Dom_Css-toggle">
     
@@ -1977,8 +2246,8 @@ For this function to work, the CSS file must be in the same domain than the host
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_Dom_Css_1-Ink_Dom_Css-toggleClassName">
     
@@ -2069,10 +2338,10 @@ For this function to work, the CSS file must be in the same domain than the host
 
 </div>
 
+    
 
-
-
-
+    
+</section>
     
 
     

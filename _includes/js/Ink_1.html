@@ -1,217 +1,481 @@
 
 
-    <div class="box box-module">
-
-        
-            <h2><a name="Ink_1">Ink_1 <i>module</i></a></h2>
-        
-
-        
-
-        
-        
-        
-
-        
-            <h3>uses:</h3>
-            <ul>
-            
-                <li>requireModules</li>
-            
-                <li>createModule</li>
-            
-                <li>bind</li>
-            
-            </ul>
-        
-
-        
-
-        
-
-
-        
-
-
-        
-            <h3>Defined classes and namespaces:</h3>
-            <ul>
-            
-                
-                    <li><a href="#Ink_1-Ink">(C) Ink</a></li>
-                
-            
-            </ul>
-        
-
-        
-
-        
-
-    </div>
-
     
-        <div class="box box-class">
-
-    <h2><a name="Ink_1-Ink">Ink <i>
-    
-        class
-    
-    </i></a></h2>
-
+        <h1 class="fw-300">Ink_1 </h1>
     
 
     
-    
-    
-
-    
-        <div class="text"><p>Nhonhonho</p>
-</div>
-    
-
-    
-
-
-    
-
-
-    
-        
-            <h3>Defined methods:</h3>
-        
-        
+        <h3>uses:</h3>
         <ul>
         
-            <li><a href="#Ink_1-Ink-bind">
-            
-                Ink.bind
-            
-            (fn, context, [args*])</a></li>
+            <li>requireModules</li>
         
-            <li><a href="#Ink_1-Ink-bindEvent">
-            
-                Ink.bindEvent
-            
-            (fn, context, [args*])</a></li>
+            <li>createModule</li>
         
-            <li><a href="#Ink_1-Ink-bindMethod">
-            
-                Ink.bindMethod
-            
-            (object, methodName, [args*])</a></li>
-        
-            <li><a href="#Ink_1-Ink-createExt">
-            
-                Ink.createExt
-            
-            (moduleName, version, dependencies, modFn)</a></li>
-        
-            <li><a href="#Ink_1-Ink-createModule">
-            
-                Ink.createModule
-            
-            (mod, version, deps, modFn)</a></li>
-        
-            <li><a href="#Ink_1-Ink-error">
-            
-                Ink.error
-            
-            ([args*])</a></li>
-        
-            <li><a href="#Ink_1-Ink-extendObj">
-            
-                Ink.extendObj
-            
-            (destination, source, [args*])</a></li>
-        
-            <li><a href="#Ink_1-Ink-getModule">
-            
-                Ink.getModule
-            
-            (mod, [version])</a></li>
-        
-            <li><a href="#Ink_1-Ink-getModuleScripts">
-            
-                Ink.getModuleScripts
-            
-            ()</a></li>
-        
-            <li><a href="#Ink_1-Ink-getModulesLoadOrder">
-            
-                Ink.getModulesLoadOrder
-            
-            ()</a></li>
-        
-            <li><a href="#Ink_1-Ink-getPath">
-            
-                Ink.getPath
-            
-            (key, [noLib])</a></li>
-        
-            <li><a href="#Ink_1-Ink-i">
-            
-                Ink.i
-            
-            (id)</a></li>
-        
-            <li><a href="#Ink_1-Ink-loadScript">
-            
-                Ink.loadScript
-            
-            (uri, [contentType])</a></li>
-        
-            <li><a href="#Ink_1-Ink-log">
-            
-                Ink.log
-            
-            ([args*])</a></li>
-        
-            <li><a href="#Ink_1-Ink-namespace">
-            
-                Ink.namespace
-            
-            (ns, [returnParentAndKey])</a></li>
-        
-            <li><a href="#Ink_1-Ink-requireModules">
-            
-                Ink.requireModules
-            
-            (deps, cbFn)</a></li>
-        
-            <li><a href="#Ink_1-Ink-s">
-            
-                Ink.s
-            
-            (rule, [from])</a></li>
-        
-            <li><a href="#Ink_1-Ink-setPath">
-            
-                Ink.setPath
-            
-            (key, rootURI)</a></li>
-        
-            <li><a href="#Ink_1-Ink-ss">
-            
-                Ink.ss
-            
-            (rule, [from])</a></li>
-        
-            <li><a href="#Ink_1-Ink-warn">
-            
-                Ink.warn
-            
-            ([args*])</a></li>
+            <li>bind</li>
         
         </ul>
     
 
     
 
+    
+
+
+    
+
+
+    
+
+    
+
+
+
+    
+        <section>
+
+    
+    <table class="props bottom-space">
+        
+        
+        <caption>METHODS</caption>
+        <thead>
+            <tr>
+                <th>Method name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        
+        
+        <tbody>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_1-Ink-bind">
+                        
+                            .bind
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Function.prototype.bind alternative.
+Creates a new function that, when called, has its this keyword set to the provided value, with a given sequence of arguments preceding any provided when the new function is called.</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_1-Ink-bindEvent">
+                        
+                            .bindEvent
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Function.prototype.bind alternative for event handlers.
+Same as bind but keeps first argument of the call the original event.
+Set &quot;context&quot; to <code>false</code> to preserve the original context of the function and just bind the arguments.</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_1-Ink-bindMethod">
+                        
+                            .bindMethod
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Function.prototype.bind alternative for class methods
+Creates a new function that, when called, has this k</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_1-Ink-createExt" class="ink-scroller" data-scroll-target="#Ink_1-Ink-createExt" data-vertical-offset="44">
+                        
+                            .createExt
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Creates an Ink.Ext module</p>
+<p>Does exactly the same as createModule but creates the module in the Ink.Ext namespace</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_1-Ink-createModule">
+                        
+                            .createModule
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Creates a new Ink Module. Use this to wrap your code and benefit from the module loading used throughout the Ink library</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_1-Ink-error">
+                        
+                            .error
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Calls native console.error if available.</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_1-Ink-extendObj">
+                        
+                            .extendObj
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Copy all of the properties in one or more source objects over to the destination object, and return the destination object. It&#39;s in-order, so the last source will override properties of the same name in previous arguments.</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_1-Ink-getModule">
+                        
+                            .getModule
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>A synchronous method to get the module from the registry. It assumes the module is defined and loaded already!</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_1-Ink-getModuleScripts">
+                        
+                            .getModuleScripts
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Get the markup needed to load all the modules.
+This method builds the script tags needed to load the currently used modules</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_1-Ink-getModulesLoadOrder">
+                        
+                            .getModulesLoadOrder
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>List of module names, ordered by loaded time (oldest module comes first)</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_1-Ink-getPath">
+                        
+                            .getPath
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Get the full path of a certain module by looking up the paths given in setPath (and ultimately the default Ink path)</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_1-Ink-i">
+                        
+                            .i
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Alias to document.getElementById</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_1-Ink-loadScript">
+                        
+                            .loadScript
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Loads a script by creating a <code>&lt;script&gt;</code> tag in the <code>&lt;head&gt;</code> of the document.</p>
+<p>Reports errors by listening to &#39;error&#39; and &#39;readystatechange&#39; events.</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_1-Ink-log">
+                        
+                            .log
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Calls native console.log if available.</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_1-Ink-namespace">
+                        
+                            .namespace
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Defines a module namespace.</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_1-Ink-requireModules">
+                        
+                            .requireModules
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Use this to get modules, even if they&#39;re not loaded yet</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_1-Ink-s">
+                        
+                            .s
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Alias for Ink.Dom.Selector first result</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_1-Ink-setPath">
+                        
+                            .setPath
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Sets the URL path for a namespace or module. Use this to customize where requireModules (and createModule) will load dependencies from.
+This can be useful to set your own CDN for dynamic module loading or simply to avoi</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_1-Ink-ss">
+                        
+                            .ss
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Alias for Ink.Dom.Selector</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_1-Ink-warn">
+                        
+                            .warn
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Calls native console.warn if available.</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+        </tbody>
+    </table>
+    
+
+    
+
+
+    
+        <div class="text"><p>global object</p>
 </div>
+    
+
+    
+    
 
 
-    <div class="box box-function">
+
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_1-Ink-bind">
     
@@ -317,8 +581,8 @@ Creates a new function that, when called, has its this keyword set to the provid
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_1-Ink-bindEvent">
     
@@ -425,8 +689,8 @@ Set &quot;context&quot; to <code>false</code> to preserve the original context o
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_1-Ink-bindMethod">
     
@@ -522,27 +786,23 @@ Creates a new function that, when called, has this k</p>
     
 <p class="example-title">Example</p>
   
-<div class="example">
-{% highlight html %}
-{% raw %}
+<div class="example bottom-space">
+{% highlight html %}{% raw %}
  // Build a function which calls Ink.Dom.Element.remove on an element.
  var removeMyElem = Ink.bindMethod(Ink.Dom.Element, 'remove', someElement);
 
  removeMyElem();  // no arguments, nor Ink.Dom.Element, needed
-{% endraw %}
-{% endhighlight %}
+{% endraw %}{% endhighlight %}
 </div>
   
-<div class="example">
-{% highlight html %}
-{% raw %}
+<div class="example bottom-space">
+{% highlight html %}{% raw %}
  // (comparison with using Ink.bind to the same effect).
  // The following two calls are equivalent
 
  Ink.bind(this.remove, this, myElem);
  Ink.bindMethod(this, 'remove', myElem);
-{% endraw %}
-{% endhighlight %}
+{% endraw %}{% endhighlight %}
 </div>
 
 
@@ -558,8 +818,8 @@ Creates a new function that, when called, has this k</p>
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_1-Ink-createExt">
     
@@ -674,8 +934,8 @@ Creates a new function that, when called, has this k</p>
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_1-Ink-createModule">
     
@@ -789,8 +1049,8 @@ Creates a new function that, when called, has this k</p>
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_1-Ink-error">
     
@@ -853,8 +1113,8 @@ Creates a new function that, when called, has this k</p>
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_1-Ink-extendObj">
     
@@ -959,8 +1219,8 @@ Creates a new function that, when called, has this k</p>
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_1-Ink-getModule">
     
@@ -1044,8 +1304,8 @@ Creates a new function that, when called, has this k</p>
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_1-Ink-getModuleScripts">
     
@@ -1091,8 +1351,8 @@ This method builds the script tags needed to load the currently used modules</p>
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_1-Ink-getModulesLoadOrder">
     
@@ -1137,8 +1397,8 @@ This method builds the script tags needed to load the currently used modules</p>
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_1-Ink-getPath">
     
@@ -1212,8 +1472,8 @@ This method builds the script tags needed to load the currently used modules</p>
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_1-Ink-i">
     
@@ -1284,8 +1544,8 @@ This method builds the script tags needed to load the currently used modules</p>
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_1-Ink-loadScript">
     
@@ -1362,8 +1622,8 @@ This method builds the script tags needed to load the currently used modules</p>
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_1-Ink-log">
     
@@ -1426,8 +1686,8 @@ This method builds the script tags needed to load the currently used modules</p>
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_1-Ink-namespace">
     
@@ -1511,8 +1771,8 @@ This method builds the script tags needed to load the currently used modules</p>
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_1-Ink-requireModules">
     
@@ -1592,8 +1852,8 @@ This method builds the script tags needed to load the currently used modules</p>
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_1-Ink-s">
     
@@ -1681,8 +1941,8 @@ This method builds the script tags needed to load the currently used modules</p>
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_1-Ink-setPath">
     
@@ -1753,9 +2013,8 @@ This can be useful to set your own CDN for dynamic module loading or simply to a
     
 <p class="example-title">Example</p>
   
-<div class="example">
-{% highlight html %}
-{% raw %}
+<div class="example bottom-space">
+{% highlight html %}{% raw %}
      Ink.setPath('Ink', 'http://my-cdn/Ink/');
      Ink.setPath('Lol', 'http://my-cdn/Lol/');
 
@@ -1763,8 +2022,7 @@ This can be useful to set your own CDN for dynamic module loading or simply to a
      Ink.requireModules(['Ink.Dom.Whatever'], function () { ... });
      // Loads from http://my-cdn/Lol/Whatever/lib.js
      Ink.requireModules(['Lol.Whatever'], function () { ... });
-{% endraw %}
-{% endhighlight %}
+{% endraw %}{% endhighlight %}
 </div>
 
 
@@ -1774,8 +2032,8 @@ This can be useful to set your own CDN for dynamic module loading or simply to a
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_1-Ink-ss">
     
@@ -1861,8 +2119,8 @@ This can be useful to set your own CDN for dynamic module loading or simply to a
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_1-Ink-warn">
     
@@ -1925,10 +2183,10 @@ This can be useful to set your own CDN for dynamic module loading or simply to a
 
 </div>
 
+    
 
-
-
-
+    
+</section>
     
 
     

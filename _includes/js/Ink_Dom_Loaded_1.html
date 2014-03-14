@@ -1,64 +1,69 @@
 
 
-    <div class="box box-module">
-
-        
-            <h2><a name="Ink_Dom_Loaded_1">Ink.Dom.Loaded_1 <i>module</i></a></h2>
-        
-
-        
-
-        
-            <p><label>author:</label>inkdev AT sapo.pt</p>
-        
-        
-        
-            <p><label>version:</label>1</p>
-        
-
-        
-
-        
-
-        
-
-
-        
-
-
-        
-            <h3>Defined classes and namespaces:</h3>
-            <ul>
-            
-                
-                    <li><a href="#Ink_Dom_Loaded_1-Ink_Dom_Loaded">(C) Ink.Dom.Loaded</a></li>
-                
-            
-            </ul>
-        
-
-        
-
-        
-
-    </div>
+    
+        <h1 class="fw-300">Ink.Dom.Loaded_1 <small>version: 1</small></h1>
+    
 
     
-        <div class="box box-class">
-
-    <h2><a name="Ink_Dom_Loaded_1-Ink_Dom_Loaded">Ink.Dom.Loaded <i>
-    
-        class
-    
-    </i></a></h2>
 
     
 
     
+
+
     
+
+
     
-        <p><label>version:</label>1</p>
+
     
+
+
+
+    
+        <section>
+
+    
+    <table class="props bottom-space">
+        
+        
+        <caption>METHODS</caption>
+        <thead>
+            <tr>
+                <th>Method name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        
+        
+        <tbody>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Loaded_1-Ink_Dom_Loaded-run">
+                        
+                            .run
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Adds a new function that will be invoked once the document is ready</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+        </tbody>
+    </table>
+    
+
+    
+
 
     
         <div class="text"><p>The Loaded class provides a method that allows developers to queue functions to run when
@@ -67,33 +72,12 @@ the page is loaded (document is ready).</p>
     
 
     
-
-
     
 
 
-    
-        
-            <h3>Defined methods:</h3>
-        
-        
-        <ul>
-        
-            <li><a href="#Ink_Dom_Loaded_1-Ink_Dom_Loaded-run">
-            
-                Ink.Dom.Loaded.run
-            
-            ([win], fn)</a></li>
-        
-        </ul>
-    
 
     
-
-</div>
-
-
-    <div class="box box-function">
+        <div class="box box-function">
 
     <h2><a name="Ink_Dom_Loaded_1-Ink_Dom_Loaded-run">
     
@@ -165,16 +149,14 @@ the page is loaded (document is ready).</p>
     
 <p class="example-title">Example</p>
   
-<div class="example">
-{% highlight html %}
-{% raw %}
+<div class="example bottom-space">
+{% highlight html %}{% raw %}
     Ink.requireModules(['Ink.Dom.Loaded_1'], function(Loaded){
         Loaded.run(function(){
             console.log('This will run when the page/document is ready/loaded');
         });
     });
-{% endraw %}
-{% endhighlight %}
+{% endraw %}{% endhighlight %}
 </div>
 
 
@@ -184,10 +166,10 @@ the page is loaded (document is ready).</p>
 
 </div>
 
+    
 
-
-
-
+    
+</section>
     
 
     

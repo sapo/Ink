@@ -1,167 +1,253 @@
 
 
-    <div class="box box-module">
+    
+        <h1 class="fw-300">Ink.UI.SmoothScroller_1 <small>version: 1</small></h1>
+    
 
-        
-            <h2><a name="Ink_UI_SmoothScroller_1">Ink.UI.SmoothScroller_1 <i>module</i></a></h2>
-        
+    
 
-        
+    
 
-        
-            <p><label>author:</label>inkdev AT sapo.pt</p>
-        
-        
-        
-            <p><label>version:</label>1</p>
-        
-
-        
-
-        
-
-        
+    
 
 
-        
+    
 
 
+    
+
+    
+
+
+
+    
+        <section>
+
+    
+    <table class="props bottom-space">
         
-            <h3>Defined classes and namespaces:</h3>
-            <ul>
-            
+        
+        <caption>METHODS</caption>
+        <thead>
+            <tr>
+                <th>Method name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        
+        
+        <tbody>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-add">
+                        
+                            .add
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Attaches an event for an element</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-end">
+                        
+                            .end
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Kill an event of an element</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-getTop">
+                        
+                            .getTop
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Returns the Y position of an element, relative to the document</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-init">
+                        
+                            .init
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Has smooth scrolling applied to relevant elements upon page load.</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-onClick">
+                        
+                            .onClick
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Click handler</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-render">
+                        
+                            .render
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>This method extracts all the anchors and validates them as # and attaches the events</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-scroll">
+                        
+                            .scroll
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Moves the scrollbar to the target element. This is the function
+which animates the scroll position bit by bit. It calls itself in
+the end through requestAnimationFrame</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-scrollTop">
+                        
+                            .scrollTop
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Returns the current scroll position</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+        </tbody>
+    </table>
+    
+
+    
+
+    <table class="props">
+        <caption>PROPERTIES</caption>
+        <thead>
+            <tr>
+                <th>Property name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+        
+        <tr>
+            <td><a href="#Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-speed">.speed</a></td>
+            <td>
                 
-                    <li><a href="#Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller">(C) Ink.UI.SmoothScroller</a></li>
+
                 
-            
-            </ul>
+                    <p>Sets the speed of the scrolling</p>
+
+                
+
+                
+                    <code>Number</code>
+                
+                
+            </td>
+        </tr>
         
-
-        
-
-        
-
-    </div>
-
-    
-        <div class="box box-class">
-
-    <h2><a name="Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller">Ink.UI.SmoothScroller <i>
-    
-        class
-    
-    </i></a></h2>
-
-    
-
-    
-    
-    
-        <p><label>version:</label>1</p>
-    
-
-    
-
-    
-<p class="example-title">Example</p>
-  
-<div class="example">
-{% highlight html %}
-{% raw %}
-
-     <a href="#part1" class="ink-smooth-scroll">go to Part 1</a>
-
-     [lots and lots of content...]
-
-     <h1 id="part1">Part 1</h1>
-
-     <script>
-         // ...Although you don't need to do this if you have autoload.js
-         Ink.requireModules(['Ink.UI.SmoothScroller_1'], function (SmoothScroller) {
-             SmoothScroller.init('.ink-smooth-scroll');
-         })
-     </script>
-{% endraw %}
-{% endhighlight %}
-</div>
-
-
-
+        </tbody>
+    </table>
 
     
 
 
     
-        
-            <h3>Defined methods:</h3>
-        
-        
-        <ul>
-        
-            <li><a href="#Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-add">
-            
-                Ink.UI.SmoothScroller.add
-            
-            (el, event, fn)</a></li>
-        
-            <li><a href="#Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-end">
-            
-                Ink.UI.SmoothScroller.end
-            
-            (e)</a></li>
-        
-            <li><a href="#Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-getTop">
-            
-                Ink.UI.SmoothScroller.getTop
-            
-            (d)</a></li>
-        
-            <li><a href="#Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-init">
-            
-                Ink.UI.SmoothScroller.init
-            
-            ([selector])</a></li>
-        
-            <li><a href="#Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-onClick">
-            
-                Ink.UI.SmoothScroller.onClick
-            
-            ()</a></li>
-        
-            <li><a href="#Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-render">
-            
-                Ink.UI.SmoothScroller.render
-            
-            ()</a></li>
-        
-            <li><a href="#Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-scroll">
-            
-                Ink.UI.SmoothScroller.scroll
-            
-            (d)</a></li>
-        
-            <li><a href="#Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-scrollTop">
-            
-                Ink.UI.SmoothScroller.scrollTop
-            
-            ()</a></li>
-        
-        </ul>
-    
 
     
-        <h3>Defined attributes:</h3>
-        <ul>
-        
-            <li><a href="#Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-speed">Ink.UI.SmoothScroller.speed</a></li>
-        
-        </ul>
     
 
-</div>
 
 
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-add">
     
@@ -252,8 +338,8 @@
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-end">
     
@@ -310,8 +396,8 @@
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-getTop">
     
@@ -378,8 +464,8 @@
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-init">
     
@@ -436,8 +522,8 @@
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-onClick">
     
@@ -472,8 +558,8 @@
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-render">
     
@@ -508,8 +594,8 @@
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-scroll">
     
@@ -568,8 +654,8 @@ the end through requestAnimationFrame</p>
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-scrollTop">
     
@@ -614,16 +700,16 @@ the end through requestAnimationFrame</p>
 
 </div>
 
+    
 
+    
+        <div class="box box-attribute">
 
-
-    <div class="box box-attribute">
-
-     <h2><a name="Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-speed">
+     <h2>
     
        Ink.UI.SmoothScroller.speed
     
-    <i>attribute</i></a></h2>
+    <i>attribute</i></h2>
 
     
 
@@ -642,8 +728,8 @@ the end through requestAnimationFrame</p>
 
 </div>
 
-
-
+    
+</section>
     
 
     

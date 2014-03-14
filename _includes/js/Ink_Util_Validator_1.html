@@ -1,64 +1,474 @@
 
 
-    <div class="box box-module">
-
-        
-            <h2><a name="Ink_Util_Validator_1">Ink.Util.Validator_1 <i>module</i></a></h2>
-        
-
-        
-
-        
-            <p><label>author:</label>inkdev AT sapo.pt</p>
-        
-        
-        
-            <p><label>version:</label>1</p>
-        
-
-        
-
-        
-
-        
-
-
-        
-
-
-        
-            <h3>Defined classes and namespaces:</h3>
-            <ul>
-            
-                
-                    <li><a href="#Ink_Util_Validator_1-Ink_Util_Validator">(C) Ink.Util.Validator</a></li>
-                
-            
-            </ul>
-        
-
-        
-
-        
-
-    </div>
+    
+        <h1 class="fw-300">Ink.Util.Validator_1 <small>version: 1</small></h1>
+    
 
     
-        <div class="box box-class">
-
-    <h2><a name="Ink_Util_Validator_1-Ink_Util_Validator">Ink.Util.Validator <i>
-    
-        class
-    
-    </i></a></h2>
 
     
 
     
+
+
     
+
+
     
-        <p><label>version:</label>1</p>
+
     
+
+
+
+    
+        <section>
+
+    
+    <table class="props bottom-space">
+        
+        
+        <caption>METHODS</caption>
+        <thead>
+            <tr>
+                <th>Method name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        
+        
+        <tbody>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator-ascii">
+                        
+                            .ascii
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Checks that a field only contains only ASCII alphanumeric
+characters. Takes options for allowing singleline whitespace,
+cross-line whitespace and punctuation.</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator-checkCharacterGroups">
+                        
+                            .checkCharacterGroups
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Checks if a field has the required groups. Takes an options object for further configuration.</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator-codPostal">
+                        
+                            .codPostal
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Validates if a zip code is valid in Portugal</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator-createRegExp">
+                        
+                            .createRegExp
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Create a regular expression for several character groups.</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator-isAOPhone">
+                        
+                            .isAOPhone
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Checks if a phone is valid in Angola</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator-isCVPhone">
+                        
+                            .isCVPhone
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Checks if a phone is valid in Cabo Verde</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator-isColor">
+                        
+                            .isColor
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Checks if a string is a valid color</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator-isCreditCard">
+                        
+                            .isCreditCard
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Validates if a number is of a specific credit card</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator-isDate">
+                        
+                            .isDate
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Checks is a date is valid in a given format</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator-isIP">
+                        
+                            .isIP
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Checks if the value is a valid IP. Supports ipv4 and ipv6</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator-isMZPhone">
+                        
+                            .isMZPhone
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Checks if a phone is valid in Mozambique</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator-isPTPhone">
+                        
+                            .isPTPhone
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Checks if a phone is valid in Portugal</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator-isPhone">
+                        
+                            .isPhone
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Validates the function in all country codes available or in the ones set in the second param</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator-isPortuguesePhone">
+                        
+                            .isPortuguesePhone
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Alias function for isPTPhone</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator-isTLPhone">
+                        
+                            .isTLPhone
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Checks if a phone is valid in Timor</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator-latin1">
+                        
+                            .latin1
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Checks that a field only contains only latin-1 alphanumeric
+characters. Takes options for allowing singleline whitespace,
+cross-line whitespace and punctuation.</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator-mail">
+                        
+                            .mail
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Deprecated. Alias for email(). Use it instead.</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator-mail">
+                        
+                            .mail
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Checks if a email is valid</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator-number">
+                        
+                            .number
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Checks that the number is a valid number</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator-unicode">
+                        
+                            .unicode
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Checks whether a field contains unicode printable characters. Takes an
+options object for further configuration</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator-url">
+                        
+                            .url
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Checks if a url is valid</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+        </tbody>
+    </table>
+    
+
+    
+
 
     
         <div class="text"><p>Set of functions to provide validation</p>
@@ -66,153 +476,12 @@
     
 
     
-
-
     
 
 
-    
-        
-            <h3>Defined methods:</h3>
-        
-        
-        <ul>
-        
-            <li><a href="#Ink_Util_Validator_1-Ink_Util_Validator-ascii">
-            
-                Ink.Util.Validator.ascii
-            
-            (s, [options])</a></li>
-        
-            <li><a href="#Ink_Util_Validator_1-Ink_Util_Validator-checkCharacterGroups">
-            
-                Ink.Util.Validator.checkCharacterGroups
-            
-            (s, [groups])</a></li>
-        
-            <li><a href="#Ink_Util_Validator_1-Ink_Util_Validator-codPostal">
-            
-                Ink.Util.Validator.codPostal
-            
-            (cp1, cp2, returnBothResults)</a></li>
-        
-            <li><a href="#Ink_Util_Validator_1-Ink_Util_Validator-createRegExp">
-            
-                Ink.Util.Validator.createRegExp
-            
-            (Groups*)</a></li>
-        
-            <li><a href="#Ink_Util_Validator_1-Ink_Util_Validator-isAOPhone">
-            
-                Ink.Util.Validator.isAOPhone
-            
-            (phone)</a></li>
-        
-            <li><a href="#Ink_Util_Validator_1-Ink_Util_Validator-isCVPhone">
-            
-                Ink.Util.Validator.isCVPhone
-            
-            (phone)</a></li>
-        
-            <li><a href="#Ink_Util_Validator_1-Ink_Util_Validator-isColor">
-            
-                Ink.Util.Validator.isColor
-            
-            (str)</a></li>
-        
-            <li><a href="#Ink_Util_Validator_1-Ink_Util_Validator-isCreditCard">
-            
-                Ink.Util.Validator.isCreditCard
-            
-            (num, creditCardType)</a></li>
-        
-            <li><a href="#Ink_Util_Validator_1-Ink_Util_Validator-isDate">
-            
-                Ink.Util.Validator.isDate
-            
-            (format, dateStr)</a></li>
-        
-            <li><a href="#Ink_Util_Validator_1-Ink_Util_Validator-isIP">
-            
-                Ink.Util.Validator.isIP
-            
-            (value, ipType)</a></li>
-        
-            <li><a href="#Ink_Util_Validator_1-Ink_Util_Validator-isMZPhone">
-            
-                Ink.Util.Validator.isMZPhone
-            
-            (phone)</a></li>
-        
-            <li><a href="#Ink_Util_Validator_1-Ink_Util_Validator-isPTPhone">
-            
-                Ink.Util.Validator.isPTPhone
-            
-            (phone)</a></li>
-        
-            <li><a href="#Ink_Util_Validator_1-Ink_Util_Validator-isPhone">
-            
-                Ink.Util.Validator.isPhone
-            
-            (phone, country)</a></li>
-        
-            <li><a href="#Ink_Util_Validator_1-Ink_Util_Validator-isPortuguesePhone">
-            
-                Ink.Util.Validator.isPortuguesePhone
-            
-            (phone)</a></li>
-        
-            <li><a href="#Ink_Util_Validator_1-Ink_Util_Validator-isTLPhone">
-            
-                Ink.Util.Validator.isTLPhone
-            
-            (phone)</a></li>
-        
-            <li><a href="#Ink_Util_Validator_1-Ink_Util_Validator-latin1">
-            
-                Ink.Util.Validator.latin1
-            
-            (s, [options])</a></li>
-        
-            <li><a href="#Ink_Util_Validator_1-Ink_Util_Validator-mail">
-            
-                Ink.Util.Validator.mail
-            
-            ()</a></li>
-        
-            <li><a href="#Ink_Util_Validator_1-Ink_Util_Validator-mail">
-            
-                Ink.Util.Validator.mail
-            
-            (email)</a></li>
-        
-            <li><a href="#Ink_Util_Validator_1-Ink_Util_Validator-number">
-            
-                Ink.Util.Validator.number
-            
-            (numb, [options], )</a></li>
-        
-            <li><a href="#Ink_Util_Validator_1-Ink_Util_Validator-unicode">
-            
-                Ink.Util.Validator.unicode
-            
-            (s, [options])</a></li>
-        
-            <li><a href="#Ink_Util_Validator_1-Ink_Util_Validator-url">
-            
-                Ink.Util.Validator.url
-            
-            (url, [full])</a></li>
-        
-        </ul>
-    
 
     
-
-</div>
-
-
-    <div class="box box-function">
+        <div class="box box-function">
 
     <h2><a name="Ink_Util_Validator_1-Ink_Util_Validator-ascii">
     
@@ -290,8 +559,8 @@ cross-line whitespace and punctuation.</p>
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_Util_Validator_1-Ink_Util_Validator-checkCharacterGroups">
     
@@ -367,8 +636,8 @@ cross-line whitespace and punctuation.</p>
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_Util_Validator_1-Ink_Util_Validator-codPostal">
     
@@ -459,16 +728,14 @@ cross-line whitespace and punctuation.</p>
     
 <p class="example-title">Example</p>
   
-<div class="example">
-{% highlight html %}
-{% raw %}
+<div class="example bottom-space">
+{% highlight html %}{% raw %}
     Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){
         console.log( InkValidator.codPostal( '1069', '300' ) );        // Result: true
         console.log( InkValidator.codPostal( '1069', '300', true ) );  // Result: [true, true]
     });
 
-{% endraw %}
-{% endhighlight %}
+{% endraw %}{% endhighlight %}
 </div>
 
 
@@ -478,8 +745,8 @@ cross-line whitespace and punctuation.</p>
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_Util_Validator_1-Ink_Util_Validator-createRegExp">
     
@@ -534,8 +801,8 @@ cross-line whitespace and punctuation.</p>
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_Util_Validator_1-Ink_Util_Validator-isAOPhone">
     
@@ -598,17 +865,15 @@ cross-line whitespace and punctuation.</p>
     
 <p class="example-title">Example</p>
   
-<div class="example">
-{% highlight html %}
-{% raw %}
+<div class="example bottom-space">
+{% highlight html %}{% raw %}
     Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){
         console.log( InkValidator.isAOPhone( '244222396385' ) );     // Result: true
         console.log( InkValidator.isAOPhone( '00244222396385' ) );   // Result: true
         console.log( InkValidator.isAOPhone( '+244222396385' ) );    // Result: true
         console.log( InkValidator.isAOPhone( '1' ) );                // Result: false
     });
-{% endraw %}
-{% endhighlight %}
+{% endraw %}{% endhighlight %}
 </div>
 
 
@@ -618,8 +883,8 @@ cross-line whitespace and punctuation.</p>
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_Util_Validator_1-Ink_Util_Validator-isCVPhone">
     
@@ -682,17 +947,15 @@ cross-line whitespace and punctuation.</p>
     
 <p class="example-title">Example</p>
   
-<div class="example">
-{% highlight html %}
-{% raw %}
+<div class="example bottom-space">
+{% highlight html %}{% raw %}
     Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){
         console.log( InkValidator.isCVPhone( '2610303' ) );        // Result: true
         console.log( InkValidator.isCVPhone( '002382610303' ) );   // Result: true
         console.log( InkValidator.isCVPhone( '+2382610303' ) );    // Result: true
         console.log( InkValidator.isCVPhone( '1' ) );              // Result: false
     });
-{% endraw %}
-{% endhighlight %}
+{% endraw %}{% endhighlight %}
 </div>
 
 
@@ -702,8 +965,8 @@ cross-line whitespace and punctuation.</p>
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_Util_Validator_1-Ink_Util_Validator-isColor">
     
@@ -766,15 +1029,13 @@ cross-line whitespace and punctuation.</p>
     
 <p class="example-title">Example</p>
   
-<div class="example">
-{% highlight html %}
-{% raw %}
+<div class="example bottom-space">
+{% highlight html %}{% raw %}
     Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){
         console.log( InkValidator.isColor( '#FF00FF' ) );        // Result: true
         console.log( InkValidator.isColor( 'amdafasfs' ) );      // Result: false
     });
-{% endraw %}
-{% endhighlight %}
+{% endraw %}{% endhighlight %}
 </div>
 
 
@@ -784,8 +1045,8 @@ cross-line whitespace and punctuation.</p>
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_Util_Validator_1-Ink_Util_Validator-isCreditCard">
     
@@ -867,8 +1128,8 @@ cross-line whitespace and punctuation.</p>
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_Util_Validator_1-Ink_Util_Validator-isDate">
     
@@ -948,14 +1209,12 @@ cross-line whitespace and punctuation.</p>
     
 <p class="example-title">Example</p>
   
-<div class="example">
-{% highlight html %}
-{% raw %}
+<div class="example bottom-space">
+{% highlight html %}{% raw %}
     Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){
         console.log( InkValidator.isDate( 'yyyy-mm-dd', '2012-05-21' ) );        // Result: true
     });
-{% endraw %}
-{% endhighlight %}
+{% endraw %}{% endhighlight %}
 </div>
 
 
@@ -965,8 +1224,8 @@ cross-line whitespace and punctuation.</p>
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_Util_Validator_1-Ink_Util_Validator-isIP">
     
@@ -1050,8 +1309,8 @@ cross-line whitespace and punctuation.</p>
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_Util_Validator_1-Ink_Util_Validator-isMZPhone">
     
@@ -1114,17 +1373,15 @@ cross-line whitespace and punctuation.</p>
     
 <p class="example-title">Example</p>
   
-<div class="example">
-{% highlight html %}
-{% raw %}
+<div class="example bottom-space">
+{% highlight html %}{% raw %}
     Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){
         console.log( InkValidator.isMZPhone( '21426861' ) );        // Result: true
         console.log( InkValidator.isMZPhone( '0025821426861' ) );   // Result: true
         console.log( InkValidator.isMZPhone( '+25821426861' ) );    // Result: true
         console.log( InkValidator.isMZPhone( '1' ) );              // Result: false
     });
-{% endraw %}
-{% endhighlight %}
+{% endraw %}{% endhighlight %}
 </div>
 
 
@@ -1134,8 +1391,8 @@ cross-line whitespace and punctuation.</p>
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_Util_Validator_1-Ink_Util_Validator-isPTPhone">
     
@@ -1198,17 +1455,15 @@ cross-line whitespace and punctuation.</p>
     
 <p class="example-title">Example</p>
   
-<div class="example">
-{% highlight html %}
-{% raw %}
+<div class="example bottom-space">
+{% highlight html %}{% raw %}
     Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){
         console.log( InkValidator.isPTPhone( '213919264' ) );        // Result: true
         console.log( InkValidator.isPTPhone( '00351213919264' ) );   // Result: true
         console.log( InkValidator.isPTPhone( '+351213919264' ) );    // Result: true
         console.log( InkValidator.isPTPhone( '1' ) );                // Result: false
     });
-{% endraw %}
-{% endhighlight %}
+{% endraw %}{% endhighlight %}
 </div>
 
 
@@ -1218,8 +1473,8 @@ cross-line whitespace and punctuation.</p>
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_Util_Validator_1-Ink_Util_Validator-isPhone">
     
@@ -1299,14 +1554,12 @@ cross-line whitespace and punctuation.</p>
     
 <p class="example-title">Example</p>
   
-<div class="example">
-{% highlight html %}
-{% raw %}
+<div class="example bottom-space">
+{% highlight html %}{% raw %}
     Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){
         console.log( InkValidator.isPhone( '6703331234' ) );        // Result: true
     });
-{% endraw %}
-{% endhighlight %}
+{% endraw %}{% endhighlight %}
 </div>
 
 
@@ -1316,8 +1569,8 @@ cross-line whitespace and punctuation.</p>
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_Util_Validator_1-Ink_Util_Validator-isPortuguesePhone">
     
@@ -1380,17 +1633,15 @@ cross-line whitespace and punctuation.</p>
     
 <p class="example-title">Example</p>
   
-<div class="example">
-{% highlight html %}
-{% raw %}
+<div class="example bottom-space">
+{% highlight html %}{% raw %}
     Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){
         console.log( InkValidator.isPortuguesePhone( '213919264' ) );        // Result: true
         console.log( InkValidator.isPortuguesePhone( '00351213919264' ) );   // Result: true
         console.log( InkValidator.isPortuguesePhone( '+351213919264' ) );    // Result: true
         console.log( InkValidator.isPortuguesePhone( '1' ) );                // Result: false
     });
-{% endraw %}
-{% endhighlight %}
+{% endraw %}{% endhighlight %}
 </div>
 
 
@@ -1400,8 +1651,8 @@ cross-line whitespace and punctuation.</p>
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_Util_Validator_1-Ink_Util_Validator-isTLPhone">
     
@@ -1464,17 +1715,15 @@ cross-line whitespace and punctuation.</p>
     
 <p class="example-title">Example</p>
   
-<div class="example">
-{% highlight html %}
-{% raw %}
+<div class="example bottom-space">
+{% highlight html %}{% raw %}
     Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){
         console.log( InkValidator.isTLPhone( '6703331234' ) );     // Result: true
         console.log( InkValidator.isTLPhone( '006703331234' ) );   // Result: true
         console.log( InkValidator.isTLPhone( '+6703331234' ) );    // Result: true
         console.log( InkValidator.isTLPhone( '1' ) );              // Result: false
     });
-{% endraw %}
-{% endhighlight %}
+{% endraw %}{% endhighlight %}
 </div>
 
 
@@ -1484,8 +1733,8 @@ cross-line whitespace and punctuation.</p>
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_Util_Validator_1-Ink_Util_Validator-latin1">
     
@@ -1563,8 +1812,8 @@ cross-line whitespace and punctuation.</p>
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_Util_Validator_1-Ink_Util_Validator-mail">
     
@@ -1599,8 +1848,8 @@ cross-line whitespace and punctuation.</p>
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_Util_Validator_1-Ink_Util_Validator-mail">
     
@@ -1661,15 +1910,13 @@ cross-line whitespace and punctuation.</p>
     
 <p class="example-title">Example</p>
   
-<div class="example">
-{% highlight html %}
-{% raw %}
+<div class="example bottom-space">
+{% highlight html %}{% raw %}
     Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){
         console.log( InkValidator.email( 'agfsdfgfdsgdsf' ) ); // Result: false
         console.log( InkValidator.email( 'inkdev\u0040sapo.pt' ) ); // Result: true (where \u0040 is at sign)
     });
-{% endraw %}
-{% endhighlight %}
+{% endraw %}{% endhighlight %}
 </div>
 
 
@@ -1679,8 +1926,8 @@ cross-line whitespace and punctuation.</p>
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_Util_Validator_1-Ink_Util_Validator-number">
     
@@ -1873,8 +2120,8 @@ cross-line whitespace and punctuation.</p>
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_Util_Validator_1-Ink_Util_Validator-unicode">
     
@@ -1951,8 +2198,8 @@ options object for further configuration</p>
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_Util_Validator_1-Ink_Util_Validator-url">
     
@@ -2032,16 +2279,14 @@ options object for further configuration</p>
     
 <p class="example-title">Example</p>
   
-<div class="example">
-{% highlight html %}
-{% raw %}
+<div class="example bottom-space">
+{% highlight html %}{% raw %}
     Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){
         console.log( InkValidator.url( 'www.sapo.pt' ) );                // Result: true
         console.log( InkValidator.url( 'http://www.sapo.pt', true ) );   // Result: true
         console.log( InkValidator.url( 'meh' ) );                        // Result: false
     });
-{% endraw %}
-{% endhighlight %}
+{% endraw %}{% endhighlight %}
 </div>
 
 
@@ -2051,10 +2296,10 @@ options object for further configuration</p>
 
 </div>
 
+    
 
-
-
-
+    
+</section>
     
 
     

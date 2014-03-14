@@ -1,64 +1,210 @@
 
 
-    <div class="box box-module">
-
-        
-            <h2><a name="Ink_Util_Url_1">Ink.Util.Url_1 <i>module</i></a></h2>
-        
-
-        
-
-        
-            <p><label>author:</label>inkdev AT sapo.pt</p>
-        
-        
-        
-            <p><label>version:</label>1</p>
-        
-
-        
-
-        
-
-        
-
-
-        
-
-
-        
-            <h3>Defined classes and namespaces:</h3>
-            <ul>
-            
-                
-                    <li><a href="#Ink_Util_Url_1-Ink_Util_Url">(C) Ink.Util.Url</a></li>
-                
-            
-            </ul>
-        
-
-        
-
-        
-
-    </div>
+    
+        <h1 class="fw-300">Ink.Util.Url_1 <small>version: 1</small></h1>
+    
 
     
-        <div class="box box-class">
-
-    <h2><a name="Ink_Util_Url_1-Ink_Util_Url">Ink.Util.Url <i>
-    
-        class
-    
-    </i></a></h2>
 
     
 
     
+
+
     
+
+
     
-        <p><label>version:</label>1</p>
+
     
+
+
+
+    
+        <section>
+
+    
+    <table class="props bottom-space">
+        
+        
+        <caption>METHODS</caption>
+        <thead>
+            <tr>
+                <th>Method name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        
+        
+        <tbody>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Url_1-Ink_Util_Url-currentScriptElement">
+                        
+                            .currentScriptElement
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Get last loaded script element</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Url_1-Ink_Util_Url-format">
+                        
+                            .format
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Take a URL object from Ink.Util.Url.parseUrl or a window.location
+object and returns a URL string.</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Url_1-Ink_Util_Url-genQueryString">
+                        
+                            .genQueryString
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Generates an uri with query string based on the parameters object given</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Url_1-Ink_Util_Url-getAnchor">
+                        
+                            .getAnchor
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Get URL hash</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Url_1-Ink_Util_Url-getAnchorString">
+                        
+                            .getAnchorString
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Get anchor string of current or passed URL</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Url_1-Ink_Util_Url-getQueryString">
+                        
+                            .getQueryString
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Get query string of current or passed URL</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Url_1-Ink_Util_Url-getUrl">
+                        
+                            .getUrl
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Get current URL of page</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Url_1-Ink_Util_Url-parseUrl">
+                        
+                            .parseUrl
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Parse passed URL</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+        </tbody>
+    </table>
+    
+
+    
+
 
     
         <div class="text"><p>Utility functions to use with URLs</p>
@@ -66,75 +212,12 @@
     
 
     
-
-
     
 
 
-    
-        
-            <h3>Defined methods:</h3>
-        
-        
-        <ul>
-        
-            <li><a href="#Ink_Util_Url_1-Ink_Util_Url-currentScriptElement">
-            
-                Ink.Util.Url.currentScriptElement
-            
-            ([match])</a></li>
-        
-            <li><a href="#Ink_Util_Url_1-Ink_Util_Url-format">
-            
-                Ink.Util.Url.format
-            
-            (urlObj)</a></li>
-        
-            <li><a href="#Ink_Util_Url_1-Ink_Util_Url-genQueryString">
-            
-                Ink.Util.Url.genQueryString
-            
-            (uri, params)</a></li>
-        
-            <li><a href="#Ink_Util_Url_1-Ink_Util_Url-getAnchor">
-            
-                Ink.Util.Url.getAnchor
-            
-            ([str])</a></li>
-        
-            <li><a href="#Ink_Util_Url_1-Ink_Util_Url-getAnchorString">
-            
-                Ink.Util.Url.getAnchorString
-            
-            ([string])</a></li>
-        
-            <li><a href="#Ink_Util_Url_1-Ink_Util_Url-getQueryString">
-            
-                Ink.Util.Url.getQueryString
-            
-            ([str])</a></li>
-        
-            <li><a href="#Ink_Util_Url_1-Ink_Util_Url-getUrl">
-            
-                Ink.Util.Url.getUrl
-            
-            ()</a></li>
-        
-            <li><a href="#Ink_Util_Url_1-Ink_Util_Url-parseUrl">
-            
-                Ink.Util.Url.parseUrl
-            
-            (url)</a></li>
-        
-        </ul>
-    
 
     
-
-</div>
-
-
-    <div class="box box-function">
+        <div class="box box-function">
 
     <h2><a name="Ink_Util_Url_1-Ink_Util_Url-currentScriptElement">
     
@@ -201,8 +284,8 @@
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_Util_Url_1-Ink_Util_Url-format">
     
@@ -268,8 +351,8 @@ object and returns a URL string.</p>
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_Util_Url_1-Ink_Util_Url-genQueryString">
     
@@ -345,9 +428,8 @@ object and returns a URL string.</p>
     
 <p class="example-title">Example</p>
   
-<div class="example">
-{% highlight html %}
-{% raw %}
+<div class="example bottom-space">
+{% highlight html %}{% raw %}
     Ink.requireModules(['Ink.Util.Url_1'], function( InkUrl ){
         var queryString = InkUrl.genQueryString( 'http://www.sapo.pt/', {
             'param1': 'valueParam1',
@@ -356,8 +438,7 @@ object and returns a URL string.</p>
 
         console.log( queryString ); // Result: http://www.sapo.pt/?param1=valueParam1&param2=valueParam2
     });
-{% endraw %}
-{% endhighlight %}
+{% endraw %}{% endhighlight %}
 </div>
 
 
@@ -367,8 +448,8 @@ object and returns a URL string.</p>
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_Util_Url_1-Ink_Util_Url-getAnchor">
     
@@ -431,15 +512,13 @@ object and returns a URL string.</p>
     
 <p class="example-title">Example</p>
   
-<div class="example">
-{% highlight html %}
-{% raw %}
+<div class="example bottom-space">
+{% highlight html %}{% raw %}
     Ink.requireModules(['Ink.Util.Url_1'], function( InkUrl ){
         var anchor = InkUrl.getAnchor( 'http://www.sapo.pt/page.php#TEST' );
         console.log( anchor ); // Result: TEST
     });
-{% endraw %}
-{% endhighlight %}
+{% endraw %}{% endhighlight %}
 </div>
 
 
@@ -449,8 +528,8 @@ object and returns a URL string.</p>
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_Util_Url_1-Ink_Util_Url-getAnchorString">
     
@@ -513,9 +592,8 @@ object and returns a URL string.</p>
     
 <p class="example-title">Example</p>
   
-<div class="example">
-{% highlight html %}
-{% raw %}
+<div class="example bottom-space">
+{% highlight html %}{% raw %}
     Ink.requireModules(['Ink.Util.Url_1'], function( InkUrl ){
         var hashParams = InkUrl.getAnchorString( 'http://www.sapo.pt/#var1=valueVar1&var2=valueVar2' );
         console.log( hashParams );
@@ -525,8 +603,7 @@ object and returns a URL string.</p>
         //    var2: 'valueVar2'
         // }
     });
-{% endraw %}
-{% endhighlight %}
+{% endraw %}{% endhighlight %}
 </div>
 
 
@@ -536,8 +613,8 @@ object and returns a URL string.</p>
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_Util_Url_1-Ink_Util_Url-getQueryString">
     
@@ -600,9 +677,8 @@ object and returns a URL string.</p>
     
 <p class="example-title">Example</p>
   
-<div class="example">
-{% highlight html %}
-{% raw %}
+<div class="example bottom-space">
+{% highlight html %}{% raw %}
     Ink.requireModules(['Ink.Util.Url_1'], function( InkUrl ){
         var queryStringParams = InkUrl.getQueryString( 'http://www.sapo.pt/?var1=valueVar1&var2=valueVar2' );
         console.log( queryStringParams );
@@ -612,8 +688,7 @@ object and returns a URL string.</p>
         //    var2: 'valueVar2'
         // }
     });
-{% endraw %}
-{% endhighlight %}
+{% endraw %}{% endhighlight %}
 </div>
 
 
@@ -623,8 +698,8 @@ object and returns a URL string.</p>
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_Util_Url_1-Ink_Util_Url-getUrl">
     
@@ -665,14 +740,12 @@ object and returns a URL string.</p>
     
 <p class="example-title">Example</p>
   
-<div class="example">
-{% highlight html %}
-{% raw %}
+<div class="example bottom-space">
+{% highlight html %}{% raw %}
     Ink.requireModules(['Ink.Util.Url_1'], function( InkUrl ){
         console.log( InkUrl.getUrl() ); // Will return it's window URL
     });
-{% endraw %}
-{% endhighlight %}
+{% endraw %}{% endhighlight %}
 </div>
 
 
@@ -682,8 +755,8 @@ object and returns a URL string.</p>
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_Util_Url_1-Ink_Util_Url-parseUrl">
     
@@ -746,9 +819,8 @@ object and returns a URL string.</p>
     
 <p class="example-title">Example</p>
   
-<div class="example">
-{% highlight html %}
-{% raw %}
+<div class="example bottom-space">
+{% highlight html %}{% raw %}
     Ink.requireModules(['Ink.Util.Url_1'], function( InkUrl ){
         var parsedURL = InkUrl.parseUrl( 'http://www.sapo.pt/index.html?var1=value1#anchor' )
         console.log( parsedURL );
@@ -762,8 +834,7 @@ object and returns a URL string.</p>
         // }
     });
 
-{% endraw %}
-{% endhighlight %}
+{% endraw %}{% endhighlight %}
 </div>
 
 
@@ -773,10 +844,10 @@ object and returns a URL string.</p>
 
 </div>
 
+    
 
-
-
-
+    
+</section>
     
 
     

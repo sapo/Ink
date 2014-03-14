@@ -1,64 +1,109 @@
 
 
-    <div class="box box-module">
-
-        
-            <h2><a name="Ink_Util_Cookie_1">Ink.Util.Cookie_1 <i>module</i></a></h2>
-        
-
-        
-
-        
-            <p><label>author:</label>inkdev AT sapo.pt</p>
-        
-        
-        
-            <p><label>version:</label>1</p>
-        
-
-        
-
-        
-
-        
-
-
-        
-
-
-        
-            <h3>Defined classes and namespaces:</h3>
-            <ul>
-            
-                
-                    <li><a href="#Ink_Util_Cookie_1-Ink_Util_Cookie">(C) Ink.Util.Cookie</a></li>
-                
-            
-            </ul>
-        
-
-        
-
-        
-
-    </div>
+    
+        <h1 class="fw-300">Ink.Util.Cookie_1 <small>version: 1</small></h1>
+    
 
     
-        <div class="box box-class">
-
-    <h2><a name="Ink_Util_Cookie_1-Ink_Util_Cookie">Ink.Util.Cookie <i>
-    
-        class
-    
-    </i></a></h2>
 
     
 
     
+
+
     
+
+
     
-        <p><label>version:</label>1</p>
+
     
+
+
+
+    
+        <section>
+
+    
+    <table class="props bottom-space">
+        
+        
+        <caption>METHODS</caption>
+        <thead>
+            <tr>
+                <th>Method name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        
+        
+        <tbody>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Cookie_1-Ink_Util_Cookie-get">
+                        
+                            .get
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Gets an object with current page cookies</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Cookie_1-Ink_Util_Cookie-remove">
+                        
+                            .remove
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Delete a cookie</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Cookie_1-Ink_Util_Cookie-set">
+                        
+                            .set
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Sets a cookie</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+        </tbody>
+    </table>
+    
+
+    
+
 
     
         <div class="text"><p>Utilities for Cookie handling</p>
@@ -66,45 +111,12 @@
     
 
     
-
-
     
 
 
-    
-        
-            <h3>Defined methods:</h3>
-        
-        
-        <ul>
-        
-            <li><a href="#Ink_Util_Cookie_1-Ink_Util_Cookie-get">
-            
-                Ink.Util.Cookie.get
-            
-            (name)</a></li>
-        
-            <li><a href="#Ink_Util_Cookie_1-Ink_Util_Cookie-remove">
-            
-                Ink.Util.Cookie.remove
-            
-            (cookieName, [path], [domain])</a></li>
-        
-            <li><a href="#Ink_Util_Cookie_1-Ink_Util_Cookie-set">
-            
-                Ink.Util.Cookie.set
-            
-            (name, value, [expires], [path], [domain], [secure])</a></li>
-        
-        </ul>
-    
 
     
-
-</div>
-
-
-    <div class="box box-function">
+        <div class="box box-function">
 
     <h2><a name="Ink_Util_Cookie_1-Ink_Util_Cookie-get">
     
@@ -165,15 +177,13 @@
     
 <p class="example-title">Example</p>
   
-<div class="example">
-{% highlight html %}
-{% raw %}
+<div class="example bottom-space">
+{% highlight html %}{% raw %}
     Ink.requireModules(['Ink.Util.Cookie_1'], function( InkCookie ){
         var myCookieValue = InkCookie.get('someVarThere');
         console.log( myCookieValue ); // This will output the value of the cookie 'someVarThere', from the cookie object.
     });
-{% endraw %}
-{% endhighlight %}
+{% endraw %}{% endhighlight %}
 </div>
 
 
@@ -183,8 +193,8 @@
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_Util_Cookie_1-Ink_Util_Cookie-remove">
     
@@ -271,14 +281,12 @@
     
 <p class="example-title">Example</p>
   
-<div class="example">
-{% highlight html %}
-{% raw %}
+<div class="example bottom-space">
+{% highlight html %}{% raw %}
     Ink.requireModules(['Ink.Util.Cookie_1'], function( InkCookie ){
         InkCookie.remove( 'someVarThere' );
     });
-{% endraw %}
-{% endhighlight %}
+{% endraw %}{% endhighlight %}
 </div>
 
 
@@ -288,8 +296,8 @@
 
 </div>
 
-
-    <div class="box box-function">
+    
+        <div class="box box-function">
 
     <h2><a name="Ink_Util_Cookie_1-Ink_Util_Cookie-set">
     
@@ -427,15 +435,13 @@
     
 <p class="example-title">Example</p>
   
-<div class="example">
-{% highlight html %}
-{% raw %}
+<div class="example bottom-space">
+{% highlight html %}{% raw %}
     Ink.requireModules(['Ink.Util.Cookie_1'], function( InkCookie ){
         var expireDate = new Date( 2014,00,01, 0,0,0);
         InkCookie.set( 'someVarThere', 'anyValueHere', expireDate.getTime() );
     });
-{% endraw %}
-{% endhighlight %}
+{% endraw %}{% endhighlight %}
 </div>
 
 
@@ -445,10 +451,10 @@
 
 </div>
 
+    
 
-
-
-
+    
+</section>
     
 
     
