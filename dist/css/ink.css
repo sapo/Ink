@@ -1568,11 +1568,11 @@ a:hover {
  */
 p,
 pre {
-  margin: 1.5em 0; }
+  margin: 0.75em 0; }
 
 blockquote {
   /* Set 1 unit of vertical rhythm on the top and bottom margin. */
-  margin: 1.5em 40px; }
+  margin: 0.75em 40px; }
 
 /**
  * Address variable `h1` font-size and margin within `section` and `article`
@@ -5529,6 +5529,58 @@ body {
   font-family: "Roboto", Arial, sans-serif;
   line-height: 24px; }
 
+.fw-100 {
+  font-weight: 100;
+  font-family: Roboto; }
+
+.fw-300 {
+  font-weight: 300;
+  font-family: Roboto; }
+
+.fw-400 {
+  font-weight: 400;
+  font-family: Roboto; }
+
+.fw-500 {
+  font-weight: 500;
+  font-family: Roboto; }
+
+.fw-700 {
+  font-weight: 700;
+  font-family: Roboto; }
+
+.fw-900 {
+  font-weight: 900;
+  font-family: Roboto; }
+
+.condensed-300 {
+  font-weight: 200;
+  font-family: Roboto_condensed; }
+
+.condensed-400 {
+  font-weight: 400;
+  font-family: Roboto_condensed; }
+
+.condensed-700 {
+  font-weight: 700;
+  font-family: Roboto_condensed; }
+
+.slab-100 {
+  font-weight: 100;
+  font-family: Roboto_slab; }
+
+.slab-300 {
+  font-weight: 300;
+  font-family: Roboto_slab; }
+
+.slab-400 {
+  font-weight: 400;
+  font-family: Roboto_slab; }
+
+.slab-700 {
+  font-weight: 700;
+  font-family: Roboto_slab; }
+
 .sans {
   font-family: "Roboto", Arial, sans-serif; }
 
@@ -5543,6 +5595,9 @@ body {
 
 .slab {
   font-family: Roboto_slab, Arial, sans-serif; }
+
+.italic {
+  font-style: italic; }
 
 .fa {
   font-size: 14px; }
