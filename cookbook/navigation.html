@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base href="./">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>InK - Navigation</title>
+    <meta name="description" content="">
+    <meta name="author" content="SAPO WEB & MEDIA DESIGN">
+
+    <meta property="og:title" content="Ink - Interface Kit"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="http://ink.sapo.pt/"/>
+    <meta property="og:image" content="http://imgs.sapo.pt/ink/assets/imgs/ink_opengraph.png"/>
+    <meta property="og:site_name" content="Ink"/>
+    <meta property="og:description" content="Ink is a set of tools for quick development of web interfaces.  It offers a fluid and responsive grid, common interface elements, interactive components, a design-first approach with ease of use and simplicity at its core. Start integrating Ink in your projects and remove the hassle of building the basics, staying free to focus on what's important. "/>
+    
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+    <link rel="shortcut icon" href="../img/ink-favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="../img/touch-icon.57.png">
+    <link rel="apple-touch-icon-precomposed" href="../img/touch-icon.72.png" sizes="72x72">
+    <link rel="apple-touch-icon-precomposed" href="../img/touch-icon.114.png" sizes="114x114">
+    <link rel="apple-touch-startup-image" href="../img/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
+    <link rel="apple-touch-startup-image" href="../img/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+    <link rel="apple-touch-startup-image" href="../img/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+    
+    <!-- Load Inks' CSS -->
+    <link rel="stylesheet" type="text/css" href="../css/ink.css">
+    <link rel="stylesheet" type="text/css" href="../css/docs.css">
+    
+    <!--[if lt IE 9]>
+        <script type="text/javascript" src="../js/html5shiv-printshiv.js"></script>
+    <![endif]-->
+
+    <!--[if lte IE 7 ]>
+        <link rel="stylesheet" href="../css/ink-ie7.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <![endif]-->
+
+    <!-- Javascript 
+    <script type="text/javascript" src="../dist/js/ink.min.js"></script>
+    <script type="text/javascript" src="../dist/js/ink-ui.min.js"></script>
+    <script type="text/javascript" src="../dist/js/autoload.js"></script>
+    <script type="text/javascript" src="../dist/js/prettify.js"></script>
+    <!-- End of javascript -->
+
+</head>
+<body style="background:#f0f0f0">
+    
+
+    <div class="ink-grid">
+
+        
+        <div class="column-group gutters">
+
+            <nav class="ink-navigation all-50">
+                
+                <ul class="menu horizontal blue half-top-space">
+                    <li class="heading"><a href="#">Menu item 1</a></li>
+                    <li>
+                        <a href="#">Menu item 2</a>
+                        <ul class="submenu">
+                            <li><a href="#">submenu item 1</a></li>
+                            <li><a href="#">submenu item 2</a></li>
+                            <li><a href="#">submenu item 3</a></li>
+                            <li><a href="#">submenu item 4</a></li>
+                        </ul>
+                    </li>
+                    <li class="active"><a href="#">Menu item 3</a></li>
+                    <li><a href="#">Menu item 4</a></li>
+                    <li class="disabled"><a href="#">Menu item 5</a></li>
+                </ul>
+
+                <ul class="menu horizontal green">
+                    <li class="heading"><a href="#">Menu item 1</a></li>
+                    <li>
+                        <a href="#">Menu item 2</a>
+                        <ul class="submenu">
+                            <li><a href="#">submenu item 1</a></li>
+                            <li><a href="#">submenu item 2</a></li>
+                            <li><a href="#">submenu item 3</a></li>
+                            <li><a href="#">submenu item 4</a></li>
+                        </ul>
+                    </li>
+                    <li class="active"><a href="#">Menu item 3</a></li>
+                    <li><a href="#">Menu item 4</a></li>
+                    <li class="disabled"><a href="#">Menu item 5</a></li>
+                </ul>
+
+                <ul class="menu horizontal orange">
+                    <li class="heading"><a href="#">Menu item 1</a></li>
+                    <li>
+                        <a href="#">Menu item 2</a>
+                        <ul class="submenu">
+                            <li><a href="#">submenu item 1</a></li>
+                            <li><a href="#">submenu item 2</a></li>
+                            <li><a href="#">submenu item 3</a></li>
+                            <li><a href="#">submenu item 4</a></li>
+                        </ul>
+                    </li>
+                    <li class="active"><a href="#">Menu item 3</a></li>
+                    <li><a href="#">Menu item 4</a></li>
+                    <li class="disabled"><a href="#">Menu item 5</a></li>
+                </ul>
+
+                <ul class="menu horizontal red">
+                    <li class="heading"><a href="#">Menu item 1</a></li>
+                    <li>
+                        <a href="#">Menu item 2</a>
+                        <ul class="submenu">
+                            <li><a href="#">submenu item 1</a></li>
+                            <li><a href="#">submenu item 2</a></li>
+                            <li><a href="#">submenu item 3</a></li>
+                            <li><a href="#">submenu item 4</a></li>
+                        </ul>
+                    </li>
+                    <li class="active"><a href="#">Menu item 3</a></li>
+                    <li><a href="#">Menu item 4</a></li>
+                    <li class="disabled"><a href="#">Menu item 5</a></li>
+                </ul>
+            </nav>
+
+            <nav class="ink-navigation all-50">
+                <ul class="menu horizontal grey">
+                    <li class="heading"><a href="#">Menu item 1</a></li>
+                    <li>
+                        <a href="#">Menu item 2</a>
+                        <ul class="submenu">
+                            <li><a href="#">submenu item 1</a></li>
+                            <li><a href="#">submenu item 2</a></li>
+                            <li><a href="#">submenu item 3</a></li>
+                            <li><a href="#">submenu item 4</a></li>
+                        </ul>
+                    </li>
+                    <li class="active"><a href="#">Menu item 3</a></li>
+                    <li><a href="#">Menu item 4</a></li>
+                    <li class="disabled"><a href="#">Menu item 5</a></li>
+                </ul>
+
+                <ul class="menu horizontal black">
+                    <li class="heading"><a href="#">Menu item 1</a></li>
+                    <li>
+                        <a href="#">Menu item 2</a>
+                        <ul class="submenu">
+                            <li><a href="#">submenu item 1</a></li>
+                            <li><a href="#">submenu item 2</a></li>
+                            <li><a href="#">submenu item 3</a></li>
+                            <li><a href="#">submenu item 4</a></li>
+                        </ul>
+                    </li>
+                    <li class="active"><a href="#">Menu item 3</a></li>
+                    <li><a href="#">Menu item 4</a></li>
+                    <li class="disabled"><a href="#">Menu item 5</a></li>
+                </ul>
+
+                <ul class="menu horizontal white">
+                    <li class="heading"><a href="#">Menu item 1</a></li>
+                    <li>
+                        <a href="#">Menu item 2</a>
+                        <ul class="submenu">
+                            <li><a href="#">submenu item 1</a></li>
+                            <li><a href="#">submenu item 2</a></li>
+                            <li><a href="#">submenu item 3</a></li>
+                            <li><a href="#">submenu item 4</a></li>
+                        </ul>
+                    </li>
+                    <li class="active"><a href="#">Menu item 3</a></li>
+                    <li><a href="#">Menu item 4</a></li>
+                    <li class="disabled"><a href="#">Menu item 5</a></li>
+                </ul>
+
+                <ul class="menu horizontal">
+                    <li class="heading"><a href="#">Menu item 1</a></li>
+                    <li>
+                        <a href="#">Menu item 2</a>
+                        <ul class="submenu">
+                            <li><a href="#">submenu item 1</a></li>
+                            <li><a href="#">submenu item 2</a></li>
+                            <li><a href="#">submenu item 3</a></li>
+                            <li><a href="#">submenu item 4</a></li>
+                        </ul>
+                    </li>
+                    <li class="active"><a href="#">Menu item 3</a></li>
+                    <li><a href="#">Menu item 4</a></li>
+                    <li class="disabled"><a href="#">Menu item 5</a></li>
+                </ul>
+            </nav>
+
+        </div>
+
+
+    </div>
+
+    <div class="ink-grid">
+
+        <div class="column-group gutters">
+            
+            <nav class="ink-navigation all-25 vertical-space">
+                <ul class="menu vertical blue">
+                    <li class="heading">
+                        <a href="#">Menu item 1</a>
+                        <ul class="submenu flyout left">
+                            <li><a href="#">submenu item 1</a></li>
+                            <li><a href="#">submenu item 2</a></li>
+                            <li><a href="#">submenu item 3</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">Menu item 2</a>
+                        <ul class="submenu flyout right">
+                            <li><a href="#">submenu item 1</a></li>
+                            <li><a href="#">submenu item 2</a></li>
+                            <li><a href="#">submenu item 3</a></li>
+                            <li><a href="#">submenu item 4</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Menu item 3</a></li>
+                    <li><a href="#">Menu item 4</a></li>
+                    <li class="disabled"><a href="#">Menu item 5</a></li>
+                    <li>
+                        <a href="#">Menu item 6</a>
+                        <ul class="submenu flyout">
+                            <li><a href="#">submenu item 1</a></li>
+                            <li><a href="#">submenu item 2</a></li>
+                            <li><a href="#">submenu item 3</a></li>
+                            <li><a href="#">submenu item 4</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+
+            <nav class="ink-navigation all-25 vertical-space">
+                <ul class="menu vertical orange">
+                    <li class="heading">
+                        <a href="#">Menu item 1</a>
+                        <ul class="submenu">
+                            <li><a href="#">submenu item 1</a></li>
+                            <li><a href="#">submenu item 2</a></li>
+                            <li><a href="#">submenu item 3</a></li>
+                            <li><a href="#">submenu item 4</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">Menu item 2</a>
+                        <ul class="submenu">
+                            <li><a href="#">submenu item 1</a></li>
+                            <li><a href="#">submenu item 2</a></li>
+                            <li><a href="#">submenu item 3</a></li>
+                            <li><a href="#">submenu item 4</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Menu item 3</a></li>
+                    <li><a href="#">Menu item 4</a></li>
+                    <li class="disabled"><a href="#">Menu item 5</a></li>
+                    <li>
+                        <a href="#">Menu item 6</a>
+                        <ul class="submenu">
+                            <li><a href="#">submenu item 1</a></li>
+                            <li><a href="#">submenu item 2</a></li>
+                            <li><a href="#">submenu item 3</a></li>
+                            <li><a href="#">submenu item 4</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+
+            <nav class="ink-navigation all-25 vertical-space">
+                <ul class="menu vertical green">
+                    <li class="heading">
+                        <a href="#">Menu item 1</a>
+                        <ul class="submenu">
+                            <li><a href="#">submenu item 1</a></li>
+                            <li><a href="#">submenu item 2</a></li>
+                            <li><a href="#">submenu item 3</a></li>
+                            <li><a href="#">submenu item 4</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">Menu item 2</a>
+                        <ul class="submenu">
+                            <li><a href="#">submenu item 1</a></li>
+                            <li><a href="#">submenu item 2</a></li>
+                            <li><a href="#">submenu item 3</a></li>
+                            <li><a href="#">submenu item 4</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Menu item 3</a></li>
+                    <li><a href="#">Menu item 4</a></li>
+                    <li class="disabled"><a href="#">Menu item 5</a></li>
+                    <li>
+                        <a href="#">Menu item 6</a>
+                        <ul class="submenu">
+                            <li><a href="#">submenu item 1</a></li>
+                            <li><a href="#">submenu item 2</a></li>
+                            <li><a href="#">submenu item 3</a></li>
+                            <li><a href="#">submenu item 4</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+
+            <nav class="ink-navigation all-25 vertical-space">
+                <ul class="menu vertical red">
+                    <li class="heading">
+                        <a href="#">Menu item 1</a>
+                        <ul class="submenu">
+                            <li><a href="#">submenu item 1</a></li>
+                            <li><a href="#">submenu item 2</a></li>
+                            <li><a href="#">submenu item 3</a></li>
+                            <li><a href="#">submenu item 4</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">Menu item 2</a>
+                        <ul class="submenu">
+                            <li><a href="#">submenu item 1</a></li>
+                            <li><a href="#">submenu item 2</a></li>
+                            <li><a href="#">submenu item 3</a></li>
+                            <li><a href="#">submenu item 4</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Menu item 3</a></li>
+                    <li><a href="#">Menu item 4</a></li>
+                    <li class="disabled"><a href="#">Menu item 5</a></li>
+                    <li>
+                        <a href="#">Menu item 6</a>
+                        <ul class="submenu">
+                            <li><a href="#">submenu item 1</a></li>
+                            <li><a href="#">submenu item 2</a></li>
+                            <li><a href="#">submenu item 3</a></li>
+                            <li><a href="#">submenu item 4</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+
+            <nav class="ink-navigation all-25">
+                <ul class="menu vertical grey">
+                    <li class="heading">
+                        <a href="#">Menu item 1</a>
+                        <ul class="submenu">
+                            <li><a href="#">submenu item 1</a></li>
+                            <li><a href="#">submenu item 2</a></li>
+                            <li><a href="#">submenu item 3</a></li>
+                            <li><a href="#">submenu item 4</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">Menu item 2</a>
+                        <ul class="submenu">
+                            <li><a href="#">submenu item 1</a></li>
+                            <li><a href="#">submenu item 2</a></li>
+                            <li><a href="#">submenu item 3</a></li>
+                            <li><a href="#">submenu item 4</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Menu item 3</a></li>
+                    <li><a href="#">Menu item 4</a></li>
+                    <li class="disabled"><a href="#">Menu item 5</a></li>
+                    <li>
+                        <a href="#">Menu item 6</a>
+                        <ul class="submenu">
+                            <li><a href="#">submenu item 1</a></li>
+                            <li><a href="#">submenu item 2</a></li>
+                            <li><a href="#">submenu item 3</a></li>
+                            <li><a href="#">submenu item 4</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <nav class="ink-navigation all-25">
+                <ul class="menu vertical black">
+                    <li class="heading">
+                        <a href="#">Menu item 1</a>
+                        <ul class="submenu">
+                            <li><a href="#">submenu item 1</a></li>
+                            <li><a href="#">submenu item 2</a></li>
+                            <li><a href="#">submenu item 3</a></li>
+                            <li><a href="#">submenu item 4</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">Menu item 2</a>
+                        <ul class="submenu">
+                            <li><a href="#">submenu item 1</a></li>
+                            <li><a href="#">submenu item 2</a></li>
+                            <li><a href="#">submenu item 3</a></li>
+                            <li><a href="#">submenu item 4</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Menu item 3</a></li>
+                    <li><a href="#">Menu item 4</a></li>
+                    <li class="disabled"><a href="#">Menu item 5</a></li>
+                    <li>
+                        <a href="#">Menu item 6</a>
+                        <ul class="submenu">
+                            <li><a href="#">submenu item 1</a></li>
+                            <li><a href="#">submenu item 2</a></li>
+                            <li><a href="#">submenu item 3</a></li>
+                            <li><a href="#">submenu item 4</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <nav class="ink-navigation all-25">
+                <ul class="menu vertical white">
+                    <li class="heading">
+                        <a href="#">Menu item 1</a>
+                        <ul class="submenu">
+                            <li><a href="#">submenu item 1</a></li>
+                            <li><a href="#">submenu item 2</a></li>
+                            <li><a href="#">submenu item 3</a></li>
+                            <li><a href="#">submenu item 4</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">Menu item 2</a>
+                        <ul class="submenu">
+                            <li><a href="#">submenu item 1</a></li>
+                            <li><a href="#">submenu item 2</a></li>
+                            <li><a href="#">submenu item 3</a></li>
+                            <li><a href="#">submenu item 4</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Menu item 3</a></li>
+                    <li><a href="#">Menu item 4</a></li>
+                    <li class="disabled"><a href="#">Menu item 5</a></li>
+                    <li>
+                        <a href="#">Menu item 6</a>
+                        <ul class="submenu">
+                            <li><a href="#">submenu item 1</a></li>
+                            <li><a href="#">submenu item 2</a></li>
+                            <li><a href="#">submenu item 3</a></li>
+                            <li><a href="#">submenu item 4</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <nav class="ink-navigation all-25">
+                <ul class="menu vertical">
+                    <li class="heading">
+                        <a href="#">Menu item 1</a>
+                        <ul class="submenu">
+                            <li><a href="#">submenu item 1</a></li>
+                            <li><a href="#">submenu item 2</a></li>
+                            <li><a href="#">submenu item 3</a></li>
+                            <li><a href="#">submenu item 4</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">Menu item 2</a>
+                        <ul class="submenu">
+                            <li><a href="#">submenu item 1</a></li>
+                            <li><a href="#">submenu item 2</a></li>
+                            <li><a href="#">submenu item 3</a></li>
+                            <li><a href="#">submenu item 4</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Menu item 3</a></li>
+                    <li><a href="#">Menu item 4</a></li>
+                    <li class="disabled"><a href="#">Menu item 5</a></li>
+                    <li>
+                        <a href="#">Menu item 6</a>
+                        <ul class="submenu">
+                            <li><a href="#">submenu item 1</a></li>
+                            <li><a href="#">submenu item 2</a></li>
+                            <li><a href="#">submenu item 3</a></li>
+                            <li><a href="#">submenu item 4</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+
+        <div class="column-group gutters" style="overflow:visible">
+
+        
+            <nav class="ink-navigation all-30">
+
+                <ul class="pagination vertical-space blue">
+                    <li class="previous disabled"><a href="#">Previous</a></li>
+                    <li class="active"><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li class="next"><a href="#">Next</a></li>
+                </ul>
+
+                <ul class="pagination vertical-space green">
+                    <li class="previous disabled"><a href="#">Previous</a></li>
+                    <li class="active"><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li class="next"><a href="#">Next</a></li>
+                </ul>
+
+                <ul class="pagination vertical-space orange">
+                    <li class="previous disabled"><a href="#">Previous</a></li>
+                    <li class="active"><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li class="next"><a href="#">Next</a></li>
+                </ul>
+
+                <ul class="pagination vertical-space red">
+                    <li class="previous disabled"><a href="#">Previous</a></li>
+                    <li class="active"><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li class="next"><a href="#">Next</a></li>
+                </ul>
+
+                <ul class="pagination vertical-space black">
+                    <li class="previous disabled"><a href="#">Previous</a></li>
+                    <li class="active"><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li class="next"><a href="#">Next</a></li>
+                </ul>
+
+                <ul class="pagination vertical-space grey">
+                    <li class="previous disabled"><a href="#">Previous</a></li>
+                    <li class="active"><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li class="next"><a href="#">Next</a></li>
+                </ul>
+
+                <ul class="pagination vertical-space white">
+                    <li class="previous disabled"><a href="#">Previous</a></li>
+                    <li class="active"><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li class="next"><a href="#">Next</a></li>
+                </ul>
+
+                <ul class="pagination vertical-space">
+                    <li class="previous disabled"><a href="#">Previous</a></li>
+                    <li class="active"><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li class="next"><a href="#">Next</a></li>
+                </ul>
+
+            </nav>
+
+            <nav class="ink-navigation all-30">
+
+                <ul class="pills blue">
+                    <li class="active"><a href="#">Pill 1</a></li>
+                    <li><a href="#">Pill 1</a></li>
+                    <li><a href="#">Pill 2</a></li>
+                    <li class="disabled"><a href="#">Pill 3</a></li>
+                </ul>
+
+                <ul class="pills green">
+                    <li class="active"><a href="#">Pill 1</a></li>
+                    <li><a href="#">Pill 1</a></li>
+                    <li><a href="#">Pill 2</a></li>
+                    <li class="disabled"><a href="#">Pill 3</a></li>
+                </ul>
+
+                <ul class="pills orange">
+                    <li class="active"><a href="#">Pill 1</a></li>
+                    <li><a href="#">Pill 1</a></li>
+                    <li><a href="#">Pill 2</a></li>
+                    <li class="disabled"><a href="#">Pill 3</a></li>
+                </ul>
+
+                <ul class="pills red">
+                    <li class="active"><a href="#">Pill 1</a></li>
+                    <li><a href="#">Pill 1</a></li>
+                    <li><a href="#">Pill 2</a></li>
+                    <li class="disabled"><a href="#">Pill 3</a></li>
+                </ul>
+
+                <ul class="pills black">
+                    <li class="active"><a href="#">Pill 1</a></li>
+                    <li><a href="#">Pill 1</a></li>
+                    <li><a href="#">Pill 2</a></li>
+                    <li class="disabled"><a href="#">Pill 3</a></li>
+                </ul>
+
+                <ul class="pills grey">
+                    <li class="active"><a href="#">Pill 1</a></li>
+                    <li><a href="#">Pill 1</a></li>
+                    <li><a href="#">Pill 2</a></li>
+                    <li class="disabled"><a href="#">Pill 3</a></li>
+                </ul>
+
+                <ul class="pills">
+                    <li class="active"><a href="#">Pill 1</a></li>
+                    <li><a href="#">Pill 1</a></li>
+                    <li><a href="#">Pill 2</a></li>
+                    <li class="disabled"><a href="#">Pill 3</a></li>
+                </ul>
+
+            </nav>
+
+            <nav class="ink-navigation all-40">
+                <ul class="breadcrumbs blue">
+                    <li><a href="#">Start</a></li>
+                    <li><a href="#">Level 1</a></li>
+                    <li><a href="#">Level 2</a></li>
+                    <li class="active"><a href="#">Current item</a></li>
+                </ul>
+
+                <ul class="breadcrumbs green">
+                    <li><a href="#">Start</a></li>
+                    <li><a href="#">Level 1</a></li>
+                    <li><a href="#">Level 2</a></li>
+                    <li class="active"><a href="#">Current item</a></li>
+                </ul>
+
+                <ul class="breadcrumbs orange">
+                    <li><a href="#">Start</a></li>
+                    <li><a href="#">Level 1</a></li>
+                    <li><a href="#">Level 2</a></li>
+                    <li class="active"><a href="#">Current item</a></li>
+                </ul>
+
+                <ul class="breadcrumbs red">
+                    <li><a href="#">Start</a></li>
+                    <li><a href="#">Level 1</a></li>
+                    <li><a href="#">Level 2</a></li>
+                    <li class="active"><a href="#">Current item</a></li>
+                </ul>
+
+                <ul class="breadcrumbs black">
+                    <li><a href="#">Start</a></li>
+                    <li><a href="#">Level 1</a></li>
+                    <li><a href="#">Level 2</a></li>
+                    <li class="active"><a href="#">Current item</a></li>
+                </ul>
+
+                <ul class="breadcrumbs grey">
+                    <li><a href="#">Start</a></li>
+                    <li><a href="#">Level 1</a></li>
+                    <li><a href="#">Level 2</a></li>
+                    <li class="active"><a href="#">Current item</a></li>
+                </ul>
+
+                <ul class="breadcrumbs white">
+                    <li><a href="#">Start</a></li>
+                    <li><a href="#">Level 1</a></li>
+                    <li><a href="#">Level 2</a></li>
+                    <li class="active"><a href="#">Current item</a></li>
+                </ul>
+
+                <ul class="breadcrumbs">
+                    <li><a href="#">Start</a></li>
+                    <li><a href="#">Level 1</a></li>
+                    <li><a href="#">Level 2</a></li>
+                    <li class="active"><a href="#">Current item</a></li>
+                </ul>
+
+            </nav>
+
+
+        </div>
+
+                    <section class="top-space">
+
+                <div class="ink-alert basic">
+                    <button class="ink-dismiss">&times;</button>
+                    <p><b>Note:</b> You have 5 minutes to leave, before self-destruction</p>
+                </div>
+
+                <div class="ink-alert basic success">
+                    <button class="ink-dismiss">&times;</button>
+                    <p><b>Note:</b> You have 5 minutes to leave, before self-destruction</p>
+                </div>
+
+                <div class="ink-alert basic info">
+                    <button class="ink-dismiss">&times;</button>
+                    <p><b>Note:</b> You have 5 minutes to leave, before self-destruction</p>
+                </div>
+
+                <div class="ink-alert basic error">
+                    <button class="ink-dismiss">&times;</button>
+                    <p><b>Note:</b> You have 5 minutes to leave, before self-destruction</p>
+                </div>
+
+            </section>
+
+            <section class="top-space">
+            
+                <div class="ink-alert block">
+                    <button class="ink-dismiss">&times;</button>
+                    <h4>Thank you for buying!</h4>
+                    <p>Your payment has been received and your plutonium will be shipped shortly. Check your e-mail for tracking information.</p>
+                </div>
+                <div class="ink-alert block success">
+                    <button class="ink-dismiss">&times;</button>
+                    <h4>Thank you for buying!</h4>
+                    <p>Your payment has been received and your plutonium will be shipped shortly. Check your e-mail for tracking information.</p>
+                </div>
+                <div class="ink-alert block info">
+                    <button class="ink-dismiss">&times;</button>
+                    <h4>Thank you for buying!</h4>
+                    <p>Your payment has been received and your plutonium will be shipped shortly. Check your e-mail for tracking information.</p>
+                </div>
+
+                <div class="ink-alert block error">
+                    <button class="ink-dismiss">&times;</button>
+                    <h4>Thank you for buying!</h4>
+                    <ul>
+                        <li>Do not panic</li>
+                        <li>Do not call our service line</li>
+                        <li>Breathe deep and wait an hour</li>
+                    </ul>
+                </div>
+
+            </section>
+
+
+    </div>
+
+
+</body>
