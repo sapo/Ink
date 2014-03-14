@@ -85,11 +85,12 @@ LazyLoad.prototype = {
         for(var i=0; i < this._aData.length; i++) {
             curElm = this._aData[i];
 
-            if(InkElement.inViewport(curElm, { partial: true, margin: this._options.delta })) {
+            if(InkElement.inViewport(curElm.elm, { partial: true, margin: this._options.delta })) {
                 this._elInViewport(curElm);
                 if (this._options.image) {
                     /* [todo] a seemingly unrelated option creates a branch? Some of this belongs in another module. */
                     this._aData.splice(i, 1);
+                    i -= 1;
                 }
             }
         }
