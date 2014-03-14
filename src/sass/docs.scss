@@ -432,8 +432,8 @@ section {
     @include background-clip(padding-box);
     
     & + section {
-        margin-top: 3em;
-        padding-top: 3em;
+        margin-top: 2em;
+        padding-top: 2em;
         border-top: 1px solid $code-border;
     }
     
@@ -457,6 +457,7 @@ table.props {
     border-collapse: initial;
     background: $code-background;
     @include border-radius($border-radius);
+    margin: 1.5em 0;
 
     tr {            
         &:nth-child(odd){
@@ -509,6 +510,15 @@ ul {
         padding: 0;
         list-style-type: none;
         
+        &.inline {
+            li {
+                padding: 0;
+                & + li {
+                    margin-right: 0.4em;
+                }
+            }
+        }
+
         li.heading {
             @extend .fw-700;
             text-transform: uppercase;            
@@ -562,7 +572,7 @@ span.label {
     &.halves-quarters {
             &:after {
                 color: $orange;
-                content: "Double, Halves & Quarters";
+                content: "Double, Half & Quarter";
                 text-transform: uppercase;
             }
     }
@@ -583,7 +593,11 @@ p.example-title {
     font-weight: 700;
     font-size: 2em;
     line-height: 0.8;
-    margin: 1em 0 0 0;
+    margin: 1.5em 0 0 0;
+}
+
+p + p.example-title {
+    margin-top: 0.7em;
 }
 
 .example, table.props {
@@ -596,7 +610,9 @@ p.example-title {
 html.flexbox .example {
     padding: 1em;
     background: $code-background;
-    @include border-radius($border-radius);    
+    @include border-radius($border-radius);
+    margin-bottom: 1.5em;
+    overflow: hidden;
 
     .ink-grid {
         padding: 0;

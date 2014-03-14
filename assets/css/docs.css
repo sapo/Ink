@@ -713,8 +713,8 @@ section:first-child {
   margin: 0;
 }
 section + section {
-  margin-top: 3em;
-  padding-top: 3em;
+  margin-top: 2em;
+  padding-top: 2em;
   border-top: 1px solid #ded8cc;
 }
 section p, section ul, section ol, section table {
@@ -737,6 +737,7 @@ table.props {
   -ms-border-radius: 2px;
   -o-border-radius: 2px;
   border-radius: 2px;
+  margin: 1.5em 0;
 }
 table.props tr:nth-child(odd) td {
   background: #f2f0eb;
@@ -780,6 +781,12 @@ ul.props {
   padding: 0;
   list-style-type: none;
 }
+ul.props.inline li {
+  padding: 0;
+}
+ul.props.inline li + li {
+  margin-right: 0.4em;
+}
 ul.props li.heading {
   text-transform: uppercase;
 }
@@ -819,7 +826,7 @@ span.label.context-aware:after {
 }
 span.label.halves-quarters:after {
   color: #ff9c00;
-  content: "Double, Halves & Quarters";
+  content: "Double, Half & Quarter";
   text-transform: uppercase;
 }
 span.label.js:after {
@@ -836,7 +843,11 @@ p.example-title {
   font-weight: 700;
   font-size: 2em;
   line-height: 0.8;
-  margin: 1em 0 0 0;
+  margin: 1.5em 0 0 0;
+}
+
+p + p.example-title {
+  margin-top: 0.7em;
 }
 
 .example code, .example pre, table.props code, table.props pre {
@@ -852,6 +863,8 @@ html.flexbox .example {
   -ms-border-radius: 2px;
   -o-border-radius: 2px;
   border-radius: 2px;
+  margin-bottom: 1.5em;
+  overflow: hidden;
 }
 .example .ink-grid,
 html.flexbox .example .ink-grid {

@@ -8,15 +8,7 @@ site_root: ../../
 
 <section id="#basic-principles">
   <h1 class="fw-300">Basic principles</h1>
-  <p class="fw-300">Our layout grid was built to allow precise control on how horizontal space is divided and on targeting several screen sizes. To accomplish this we use percentages as our base units and css @media queries to allow you to decide what width should an element take when viewed in a specific screen size.</p>
-  <p class="fw-300">Our default layout breakpoints are:</p>
-  <ul class="unstyled" id="breakpoints">
-    <li><code>tiny</code> for screens widths up to 320px.</li>
-    <li><code>small</code> for screen widths between 321 and 600 pixels.</li>
-    <li><code>medium</code> for screen widths between 601 and 960 pixels.</li>
-    <li><code>large</code> for screen widths between 961 and 1200 pixels.</li>
-    <li><code>extra-large</code> for screen widths above 1201 pixels.</li>
-  </ul>
+  <p class="fw-300">Ink has a set of css classes that allow you to change several aspects of your user interfaces depending on the breakpoint. This allows for precise control and can help you do more than just change the width of layout blocks.</p>
   <table class="props css">
     <caption>CSS CLASSES</caption>
     <thead>
@@ -27,60 +19,136 @@ site_root: ../../
     </thead>
     <tbody>
         <tr>
-          <td><code>ink-grid</code></td>
-          <td>The grid root class. <span class="label mandatory"></span></td>
+          <td><code>align-left</code></td>
+          <td>Sets text-align css property to 'left'. <span class="label breakpoint-aware"></span></td>
         </tr>
         <tr>
-          <td><code>column-group</code></td>
-          <td>Groups layout columns. <span class="label mandatory"></span></td>
+          <td><code>align-center</code></td>
+          <td>Sets text-align css property to 'center'. <span class="label breakpoint-aware"></span></td>
         </tr>
         <tr>
-          <td><code>gutters</code></td>
-          <td>Add space between layout columns. <span class="label breakpoint-aware"></span><span class="label halves-quarters"></span></td>
+          <td><code>align-right</code></td>
+          <td>Sets text-align css property to 'right'. <span class="label breakpoint-aware"></span></td>
         </tr>
         <tr>
-          <td><code>all-x%</code></td>
-          <td>Sets x% element width for all breakpoints.</td>
+          <td><code>push-left</code></td>
+          <td>Sets float css property to 'left'. <span class="label breakpoint-aware"></span></td>
         </tr>
         <tr>
-          <td><code>tiny-x%</code></td>
-          <td>Sets x% element width for the '<a href="#breakpoints">tiny</a>' breakpoint.</td>
+          <td><code>push-center</code></td>
+          <td>Sets float css property to 'none', and margin to '0 auto'. <span class="label breakpoint-aware"></span></td>
         </tr>
         <tr>
-          <td><code>small-x%</code></td>
-          <td>Sets x% element width for the '<a href="#breakpoints">small</a>' breakpoint.</td>
+          <td><code>push-right</code></td>
+          <td>Sets float css property to 'right'. <span class="label breakpoint-aware"></span></td>
         </tr>
         <tr>
-          <td><code>medium-x%</code></td>
-          <td>Sets x% element width for the '<a href="#breakpoints">medium</a>' breakpoint.</td>            
+          <td><code>top-space</code></td>
+          <td>Sets margin-top to a full gutter space. <span class="label breakpoint-aware"></span><span class="label halves-quarters"></td>
         </tr>
         <tr>
-          <td><code>large-x%</code></td>
-          <td>Sets x% element width for the '<a href="#breakpoints">large</a>' breakpoint.</td>           
+          <td><code>right-space</code></td>
+          <td>Sets margin-right to a full gutter space. <span class="label breakpoint-aware"></span><span class="label halves-quarters"></td>
         </tr>
         <tr>
-          <td><code>extra-large-x%</code></td>
-          <td>Sets element x% width for the '<a href="#breakpoints">extra-large</a>' breakpoint.</td> 
+          <td><code>bottom-space</code></td>
+          <td>Sets margin-bottom to a full gutter space. <span class="label breakpoint-aware"></span><span class="label halves-quarters"></td>
         </tr>
         <tr>
-          <td><code>show</code></td>
-          <td>Shows a previously hidden element. <span class="label breakpoint-aware"></span></td> 
+          <td><code>left-space</code></td>
+          <td>Sets margin-left to a full gutter space. <span class="label breakpoint-aware"></span><span class="label halves-quarters"></td>
+        </tr>
+        <tr>
+          <td><code>vertical-space</code></td>
+          <td>Sets margin-top and margin-bottom to a full gutter space. <span class="label breakpoint-aware"></span><span class="label halves-quarters"></td>
+        </tr>
+        <tr>
+          <td><code>horizontal-space</code></td>
+          <td>Sets margin-left and margin-right to a full gutter space. <span class="label breakpoint-aware"></span><span class="label halves-quarters"></td>
         </tr>
         <tr>
           <td><code>hide</code></td>
-          <td>Hides an element. <span class="label breakpoint-aware"></span></td> 
+          <td>Sets display css property to 'none'. <span class="label breakpoint-aware"></span></td>
+        </tr>
+        <tr>
+          <td><code>show</code></td>
+          <td>Sets display css property to its default visible state. <span class="label breakpoint-aware"></span></td>
         </tr>
     </tbody>    
   </table>
   <ul class="unstyled">
-    <li><span class="label mandatory"></span>: This class must be used for the {{page.title | downcase }} to work.</li>
     <li><span class="label breakpoint-aware"></span>: This class has breakpoint dependent variants, e.g. <code>large-class-name</code>.</li>
-    <li><span class="label halves-quarters"></span>: This class has half and quarter size variants, e.g. <code>half-class-name</code>.</li>
+    <li><span class="label halves-quarters"></span>: This class has double, half and quarter size variants, e.g. <code>half-class-name</code>.</li>
   </ul>
 </section>
+<section id="element-alignment">
+  <h1 class="fw-300">Element alignment</h1>
+  <ul class="css props inline">
+    <li class="heading">Css classes:</li>
+    <li><code>push-left</code> <span class="label breakpoint-aware"></span></li>
+    <li><code>push-center</code> <span class="label breakpoint-aware"></span></li>
+    <li><code>push-right</code> <span class="label breakpoint-aware"></span></li>
+  </ul>
+  <p>Let take two button and align them to the sides of their container:</p>
+  <p class="example-title">Demo</p>
+  <div class="example">
+    <button class="ink-button red">Cancel</button>
+    <button class="ink-button green push-right">Confirm</button>
+  </div>
+<p>Since by default items are aligned to the left we only have to align the 'confirm' button to the right:</p>
+  <p class="example-title">Code</p>
+{% highlight html %}
+<button class="ink-button red">Cancel</button>
+<button class="ink-button green push-right">Confirm</button>
+{% endhighlight %}
+
+<p>We can do the same but for a specific breakpoint, <code>large</code> in this example:</p>
+<p class="example-title">Demo</p>
+<div class="example">
+  <button class="ink-button red">Cancel</button>
+  <button class="ink-button green large-push-right">Confirm</button>
+</div>
+<p></p>
+<p class="example-title">Code</p>
+{% highlight html %}
+<button class="ink-button red">Cancel</button>
+<button class="ink-button green large-push-right">Confirm</button>
+{% endhighlight %}
+<p><i class="fa fa-leaf"></i> Beware that centering elements with <code>push-center</code> uses the <code>margin: 0 auto</code> method and will only work with elements that have a width other than auto, like grid columns.</p>
+<p class="example-title">Demo</p>
+<div class="example">
+  <div class="ink-grid">
+    <div class="column-group">
+    <div class="all-50 small-push-center large-push-center extra-large-push-center">
+      <div class="column align-left">
+        50%
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+</section>
+<section id="content-alignment">
+  <h1 class="fw-300">Content alignment</h1>
+  <ul class="css props inline">
+    <li class="heading">Css classes:</li>
+    <li><code>show</code> <span class="label breakpoint-aware"></span></li>
+    <li><code>hide</code> <span class="label breakpoint-aware"></span></li>
+  </ul>
+  <p>With Ink, you can control the visibility of any element based globally of based on a specific breakpoint.</p>
+</section>
+<section id="element-spacing">
+  <h1 class="fw-300">Element spacing</h1>
+  <ul class="css props inline">
+    <li class="heading">Css classes:</li>
+    <li><code>show</code> <span class="label breakpoint-aware"></span></li>
+    <li><code>hide</code> <span class="label breakpoint-aware"></span></li>
+  </ul>
+  <p>With Ink, you can control the visibility of any element based globally of based on a specific breakpoint.</p>
+</section>
 <section id="visibility">
-  <h1>Visibility</h1>
-  <ul class="css props">
+  <h1 class="fw-300">Visibility</h1>
+  <ul class="css props inline">
     <li class="heading">Css classes:</li>
     <li><code>show</code> <span class="label breakpoint-aware"></span></li>
     <li><code>hide</code> <span class="label breakpoint-aware"></span></li>
