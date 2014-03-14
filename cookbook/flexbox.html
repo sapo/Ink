@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>My InK Page</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="320">
+    
+        <!-- Favicon.ico placeholder -->
+        <link rel="shortcut icon" href="../img/ink-favicon.ico">
+        
+        <!-- Apple icon placeholder -->
+        <link rel="apple-touch-icon-precomposed" href="../img/touch-icon.57.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../img/touch-icon.72.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../img/touch-icon.114.png">
+
+        <!-- Apple splash screen placeholder -->
+        <link rel="apple-touch-startup-image" href="../img/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
+        <link rel="apple-touch-startup-image" href="../img/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+        <link rel="apple-touch-startup-image" href="../img/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+
+        <!--[if IE 7 ]>
+            <link rel="stylesheet" href="../css/ink-ie7.css" type="text/css" media="screen" title="no title" charset="utf-8">
+        <![endif]-->
+
+        <!-- Load Inks' CSS -->
+        <link rel="stylesheet" type="text/css" href="../dist/css/docs.css" >
+
+        <style type="text/css">
+            .box {
+                border-radius: 4px;
+                -webkit-box-shadow: 0 2px 3px 0 #dddddd;
+                -moz-box-shadow: 0 2px 3px 0 #dddddd;
+                box-shadow: 0 2px 3px 0 #dddddd;
+                border: 1px solid #BBB;
+                background-color: #FFF;
+                padding: 1em;
+            }
+
+            .box p { margin: 0; }
+
+        </style>
+
+        <!-- Javascripts -->
+        <script type="text/javascript" src="../dist/js/modernizr.js"></script>
+        <script type="text/javascript">
+            Modernizr.load({
+              test: Modernizr.flexbox,
+              yep : '../dist/css/ink-flex.css',
+              nope: '../dist/css/ink.css'
+            });
+        </script>
+        
+    </head>
+    <body>
+        
+        <!-- Add your site or application content here -->
+        
+        <div class="ink-grid">
+
+            <div class="vertical-space">
+                <h1 class="">Flexifying</h1>
+                <p>Ink is so flexin' awesome!</p>
+            </div>
+
+            <nav class="ink-navigation">
+
+                <ul class="menu horizontal black shadowed rounded">
+                    <li><a href="#">Parent 1</a></li>
+                    <li><a href="#">Parent 2</a></li>
+                    <li>
+                        <a href="#">Parent 3</a>
+                        <ul class="submenu">
+                            <li><a href="#">Child 1</a></li>
+                            <li><a href="#">Child 2</a></li>
+                            <li><a href="#">Child 3</a></li>
+                            <li><a href="#">Child 4</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Parent 4</a></li>
+                </ul>
+
+            </nav>
+
+
+            <section>
+
+                <h2>The Grid</h2>
+                <div class="column-group gutters vertical">
+
+                    <div class="extra-large-33 large-33 medium-50 small-100 small-order-5">
+                        <div class="box content-center">
+                            <p class="quarter-vertical-space">33% COL 1<br>small-order-5</p>
+                        </div>
+                    </div>
+
+                    <div class="extra-large-33 large-33 medium-50 small-100 small-order-4">
+                        <div class="box content-center">
+                            <p class="quarter-vertical-space">33% COL 2<br>small-order-4</p>
+                        </div>
+                    </div>
+
+                    <div class="extra-large-33 large-33 medium-100 small-100 small-order-6">
+                        <div class="box content-center">
+                            <p class="quarter-vertical-space">33% COL 3<br>small-order-3</p>
+                        </div>
+                    </div>
+
+                    <div class="extra-large-33 large-33 medium-100 small-100 small-order-1">
+                        <div class="box content-center">
+                            <p class="quarter-vertical-space">33% COL 3<br>small-order-1</p>
+                        </div>
+                    </div>
+                    <div class="extra-large-33 large-33 medium-100 small-100 small-order-3">
+                        <div class="box content-center">
+                            <p class="quarter-vertical-space">33% COL 3<br>small-order-3</p>
+                        </div>
+                    </div>
+                    <div class="extra-large-33 large-33 medium-100 small-100 small-order-2">
+                        <div class="box content-center">
+                            <p class="quarter-vertical-space">33% COL 3<br>small-order-2</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="column-group gutters">
+
+                    <div class="extra-large-25 large-25 medium-50 small-100">
+                        <div class="box content-center">
+                            <p class="quarter-vertical-space">33%</p>
+                        </div>
+                    </div>
+
+                    <div class="width-auto">
+                        <div class="box content-center">
+                            <p class="quarter-vertical-space">auto</p>
+                        </div>
+                    </div>
+
+                    <div class="extra-large-25 large-25 medium-100 small-100">
+                        <div class="box content-center">
+                            <p class="quarter-vertical-space">33%</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="column-group gutters">
+
+                    <div class="extra-large-25 large-25 medium-50 small-100">
+                        <div class="box content-center">
+                            <p class="quarter-vertical-space">33%</p>
+                        </div>
+                    </div>
+
+                    <div class="width-auto">
+                        <div class="box content-center">
+                            <p class="quarter-vertical-space">auto</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+
+            <section>
+
+                <h2>No more vertical align nightmare</h2>
+
+                <div class="column-group gutters align-bottom">
+ 
+                    <div class="all-33">
+                        <div class="box">
+                            <p>Nullam porta nulla sed lorem sollicitudin, nec commodo dui pretium.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="all-33">
+                        <div class="box">
+                            <p>Nunc et mollis eros. Integer sollicitudin lacinia ipsum quis eleifend. Sed dapibus, nunc at dignissim vehicula, sem eros placerat ligula, nec porttitor sapien est vel nulla. Donec et urna id mauris vehicula ultricies sit amet ac ipsum. Praesent sed nunc dictum, sollicitudin lacus sit amet, tincidunt mi.</p>
+                        </div>
+                    </div>
+
+                    <div class="all-33">
+                        <div class="box">
+                            <p> Quisque vitae pulvinar quam. Vivamus dapibus odio iaculis odio malesuada, eu varius orci bibendum.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="column-group gutters">
+ 
+                    <div class="all-33 align-middle">
+                        <div class="box">
+                            <p>Nullam porta nulla sed lorem sollicitudin, nec commodo dui pretium.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="all-33">
+                        <div class="box">
+                            <p>Nunc et mollis eros. Integer sollicitudin lacinia ipsum quis eleifend. Sed dapibus, nunc at dignissim vehicula, sem eros placerat ligula, nec porttitor sapien est vel nulla. Donec et urna id mauris vehicula ultricies sit amet ac ipsum. Praesent sed nunc dictum, sollicitudin lacus sit amet, tincidunt mi.</p>
+                        </div>
+                    </div>
+
+                    <div class="all-33 align-bottom">
+                        <div class="box">
+                            <p> Quisque vitae pulvinar quam. Vivamus dapibus odio iaculis odio malesuada, eu varius orci bibendum.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+        
+    </body>
+</html>
