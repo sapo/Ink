@@ -723,10 +723,6 @@ p code, ul code {
   font-size: .95em;
 }
 
-code {
-  text-wrap: nowrap;
-}
-
 table.props {
   width: 100%;
   border-collapse: initial;
@@ -830,7 +826,11 @@ p.example-title {
   font-weight: 700;
   font-size: 2em;
   line-height: 0.8;
-  margin: 0;
+  margin: 1em 0 0 0;
+}
+
+.example code, .example pre, table.props code, table.props pre {
+  font-size: 0.9em;
 }
 
 .example,

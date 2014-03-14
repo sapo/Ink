@@ -8,7 +8,7 @@ environment: production
 description: Ink is a set of tools for quick development of web interfaces.
 
 # SITE TITLE
-title: Ink
+title: Ink Interface Kit
 
 # INK LATEST VERSION
 version: 3.0.0

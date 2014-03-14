@@ -448,10 +448,6 @@ p, ul {
     }
 }
 
-code {
-    text-wrap: nowrap;
-}
-
 table.props {
 
     width: 100%;
@@ -583,14 +579,20 @@ p.example-title {
     font-weight: 700;
     font-size: 2em;
     line-height: 0.8;
-    margin: 0;
+    margin: 1em 0 0 0;
+}
+
+.example, table.props {
+    code, pre {
+        font-size: 0.9em;
+    }
 }
 
 .example,
 html.flexbox .example {
     padding: 1em;
     background: $code-background;
-    @include border-radius($border-radius);
+    @include border-radius($border-radius);    
 
     .ink-grid {
         padding: 0;

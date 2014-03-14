@@ -1,11 +1,127 @@
 ---
 layout: documentation
-title: UI Elements
+title: Introduction
 description: Ink gives you a way to implement responsive common user interface elements quickly and simply.
 site_root:  ../
-tags: quick start cookbook recipes examples
+tags: user interface, componenents, elements, responsive, customization
 ---
-<section>
-  <h1>Preamble</h1>
-  <p>Inks UI Elements are made to allow you to create beautiful and responsive user interfaces for the web.</p>
+
+<section id="introduction">
+  <h1 class="fw-300">Introduction</h1>
+
+<p>Our CSS code was built to create a completely fluid and responsive tool set that allows you to get your web projects from start to finish with great ease and control. As you'll find out, as you read our documentation and get familiar with ink, we've taken an approach where verbosity in our css class names creates high code legibility and a quick learning curve.</p>
+<p>The <a href="{{ site.url }}ui-elements/grid/">Grid</a> is the foundation of many of the other components, so we advise you to start by reading it.</p>
+
+  <h2 class="fw-300">CSS Generation and customization</h2>
+  <p>Inks CSS is generated with <a href="http://compass-style.org/">Compass</a> and is modular in its structure. If you wan't to edit and recompile the sass code, you can use our build system, but you'll need to install a couple of tools:</p>
+  <ul>
+    <li><a href="http://compass-style.org/install/">Compass</a></li>
+    <li><a href="http://nodejs.org/">Node.js</a></li>
+  </ul>
+  <p>If you're working on a Windows machine there is <a href="http://mhs.github.io/scout-app/">Scout</a>, a gui compiler that is free.</p>
+  <p>Inside our downloadable zip file you'll find the <code>src/sass</code> folder that contains the code that generates Inks CSS: </p> 
+<p class="example-title">SRC/SASS</p>
+{% highlight bash %}
+/config/ # the files where sass variables are defined, i.e. component class names, colors, font stacks, etc.
+/contrib/ # third party code, like the Compass core and Font Awesome sass source.
+/mixins/ # sass @mixins that we've written to automate some css geration tasks
+/modules/ # modules structure definition, grid, navigation, forms, etc
+/themes/ # themeing code that implementes our color schemes
+ink-flex.scss # generates ink-flex.css which has our flexbox grid system and components. EXPERIMENTAL!
+ink-ie.scss # generates ink-ie.css for Internet Explorer 7 and 8.
+ink.scss # generates ink.css
+quick-start.scss # generates quick-start.css. Contains the media queries for all of our breakpoints to get you started.
+{% endhighlight %}
+
+<p>If you don't need all the suppiled modules you can just go into <code>ink.scss</code>, <code>ink-flex.scss</code>, <code>ink-ie.scss</code>, comment out any unnecessary modules and recompile the css:</p>
+
+<p class="example-title">ink.scss</p>
+{% highlight sass %}
+// Import Compass Core
+@import "contrib/compass/css3";
+@import "contrib/compass/utilities";
+@import "contrib/compass/typography";
+
+// Import Font Awesome
+@import "contrib/font-awesome/font-awesome";
+
+// IMPORT CONFIG FILES (THESE CONTAIN VARIABLE DEFINITIONS)
+@import "config/common";
+@import "config/colors";
+@import "config/alerts";
+@import "config/buttons";
+@import "config/classnames";
+@import "config/forms";
+@import "config/grid";
+@import "config/labels";
+@import "config/navigation";
+@import "config/reset";
+@import "config/tables";
+@import "config/typography";
+@import "config/images";
+
+// IMPORT MIXINS FILES (THESE CONTAIN HELPER FUNCTIONS)
+@import "mixins/alerts";
+@import "mixins/buttons";
+@import "mixins/grid";
+@import "mixins/forms";
+@import "mixins/nav.pills";
+@import "mixins/nav.breadcrumbs";
+@import "mixins/nav.pagination";
+@import "mixins/nav.menu";
+@import "mixins/nav.dropdown";
+@import "mixins/spacing";
+@import "mixins/typography";
+@import "mixins/utils";
+
+// IMPORT MODULE DEFINITION FILES
+@import "modules/reset";
+@import "modules/alerts";
+@import "modules/badges";
+@import "modules/buttons";
+@import "modules/forms";
+@import "modules/grid";
+@import "modules/fonts";
+@import "modules/labels";
+@import "modules/nav.core";
+@import "modules/nav.breadcrumbs";
+@import "modules/nav.dropdown";
+@import "modules/nav.pagination";
+@import "modules/nav.pills";
+@import "modules/nav.menu";
+@import "modules/tables";
+@import "modules/typography";
+@import "modules/images";
+
+// IMPORT THEMING FILES
+@import "themes/alerts";
+@import "themes/badges";
+@import "themes/buttons";
+@import "themes/labels";
+@import "themes/nav.breadcrumbs";
+@import "themes/nav.dropdown";
+@import "themes/nav.menu";
+@import "themes/nav.pagination";
+@import "themes/nav.pills";
+@import "themes/tables";
+
+// IMPORT JS COMPONENTS STYLING
+@import "modules/js/drawer";
+@import "modules/js/carousel";
+{% endhighlight %}
+
+<p>And of course, you can go into our source code and tweak it to your liking. Just bear in mind that upgrading to a future version of Ink will be a lot harder, as you'll have to port your changes by hand.</p>
+<p>Anoter way to customize, <strong>and this is our recomendation</strong>, is to import <code>ink.scss</code> into your own SASS file, and override our variables in that file:</p>
+<p class="example-title">Code</p>
+{% highlight sass %}
+@import ink.scss;
+
+// override link colors
+$link-color                 : blue;
+$link-visited-color         : purple;
+$link-active-color          : red;
+$link-hover-color           : blue;
+$link-focus-color           : blue;
+{% endhighlight %}
+<p>If you use this approach, when a future version is released, you'll just have to update inks code and everything should work.</p>
 </section>
