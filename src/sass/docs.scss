@@ -397,20 +397,14 @@ body.ink-drawer {
 .highlight .il      { color: #009999; } /* Literal.Number.Integer.Long */
 .highlight .lineno  { color: #ccc; } /* Literal.Number.Integer.Long */
 
-
-#page-content {
-    margin-top: 115px;
-}
-
 .page-header {
-    padding: 0 0  2em 0;
+    padding: 3.5em 0 2em;
     font-size: 1.25em;
 
-    h1 { margin-bottom: 0 }
-
     p {
-        margin-top:.5em;
+        margin:.5em 0 1em;
         font-weight: 300;
+        line-height: 1.5;
 
         &.section-title {
             margin: 0 0 0.3em 0;
@@ -428,14 +422,23 @@ body.ink-drawer {
 
 section {
 
-    p, ul, ol, table {
-        font-weight: 300;
+    &:first-child {
+        padding-top: 0;
+        margin: 0;
     }
 
+    padding-top: 5em;
+    margin: -1em 0 0;
+    @include background-clip(padding-box);
+    
     & + section {
-        margin-top: 2em;
-        padding-top: 1.5em;
+        margin-top: 3em;
+        padding-top: 3em;
         border-top: 1px solid $code-border;
+    }
+    
+    p, ul, ol, table {
+        font-weight: 300;
     }
 }
 
@@ -453,6 +456,7 @@ table.props {
     width: 100%;
     border-collapse: initial;
     background: $code-background;
+    @include border-radius($border-radius);
 
     tr {            
         &:nth-child(odd){
