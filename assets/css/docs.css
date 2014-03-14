@@ -677,20 +677,14 @@ body.ink-drawer .right-drawer li:last-child {
 }
 
 /* Literal.Number.Integer.Long */
-#page-content {
-  margin-top: 115px;
-}
-
 .page-header {
-  padding: 0 0  2em 0;
+  padding: 3.5em 0 2em;
   font-size: 1.25em;
 }
-.page-header h1 {
-  margin-bottom: 0;
-}
 .page-header p {
-  margin-top: .5em;
+  margin: .5em 0 1em;
   font-weight: 300;
+  line-height: 1.5;
 }
 .page-header p.section-title {
   margin: 0 0 0.3em 0;
@@ -707,13 +701,24 @@ body.ink-drawer .right-drawer li:last-child {
   height: .3em;
 }
 
-section p, section ul, section ol, section table {
-  font-weight: 300;
+section {
+  padding-top: 5em;
+  margin: -1em 0 0;
+  -webkit-background-clip: padding;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+}
+section:first-child {
+  padding-top: 0;
+  margin: 0;
 }
 section + section {
-  margin-top: 2em;
-  padding-top: 1.5em;
+  margin-top: 3em;
+  padding-top: 3em;
   border-top: 1px solid #ded8cc;
+}
+section p, section ul, section ol, section table {
+  font-weight: 300;
 }
 
 p code, ul code {
@@ -731,6 +736,11 @@ table.props {
   width: 100%;
   border-collapse: initial;
   background: #eeebe5;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
 }
 table.props tr:nth-child(odd) td {
   background: #f2f0eb;
