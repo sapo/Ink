@@ -1,67 +1,109 @@
-<div class="box box-class">
+<section>
 
-    <h2><a name="{{{hash}}}">{{name}} <i>
-    {{#if isNamespace}}
-        namespace
-    {{else}}
-        class
-    {{/if}}
-    </i></a></h2>
+    {{#if functions.length}}
+    <table class="props bottom-space">
+        
+        {{#if isNamespace}}
+        <caption>FUNCTIONS</caption>
+        <thead>
+            <tr>
+                <th>Function name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
 
-    {{!<p>Defined in file: {file}</p>}}
+        {{else}}
+        <caption>METHODS</caption>
+        <thead>
+            <tr>
+                <th>Method name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        {{/if}}
+        
+        <tbody>
+        {{#each functions}}
+            <tr>
+                <td>
+                    <a href="#{{{hash}}}">
+                        {{#if isConstructor}}
+                            {{parent.nam0e}}
+                        {{else}}
+                            .{{name}}
+                        {{/if}}
+                        
+                    </a>
+                </td>
+                <td>
+                    {{#if deprecated}}
+                        <span class="tag">deprecated</span>
+                    {{/if}}
 
-    {{#if author}}
-        <p><label>author:</label>{{author}}</p>
+                    {{#if text}}{{{text}}}{{/if}}
+
+                    {{#if type}}
+                        <pre>{{type}}</pre>
+                    {{/if}}
+                    {{#if description}}{{{description}}}{{/if}}
+                </td>
+            </tr>
+        {{/each}}
+        </tbody>
+    </table>
     {{/if}}
-    {{#if since}}
-        <p><label>since:</label>{{since}}</p>
+
+    {{#if attributes.length}}
+
+    <table class="props">
+        <caption>PROPERTIES</caption>
+        <thead>
+            <tr>
+                <th>Property name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+        {{#each attributes}}
+        <tr>
+            <td><a href="#{{{hash}}}">.{{name}}</a></td>
+            <td>
+                {{#if deprecated}}
+                    <span class="tag">deprecated</span>
+                {{/if}}
+
+                {{#if text}}
+                    {{{text}}}
+                {{/if}}
+
+                {{#if type}}
+                    <code>{{type}}</code>
+                {{/if}}
+                {{#if description}}
+                    <span class="description">{{{description}}}</span>
+                {{/if}}
+            </td>
+        </tr>
+        {{/each}}
+        </tbody>
+    </table>
+
     {{/if}}
-    {{#if version}}
-        <p><label>version:</label>{{version}}</p>
-    {{/if}}
+
 
     {{#if text}}
         <div class="text">{{{text}}}</div>
     {{/if}}
 
-    {{> examples}}
+    {{!--{{{> examples}}}--}}
     {{> samples}}
 
-    {{#if functions.length}}
-        {{#if isNamespace}}
-            <h3>Defined functions:</h3>
-        {{else}}
-            <h3>Defined methods:</h3>
-        {{/if}}
-        
-        <ul>
-        {{#each functions}}
-            <li><a href="#{{{hash}}}">
-            {{#if isConstructor}}
-                {{parent.name}}
-            {{else}}
-                {{parent.name}}.{{name}}
-            {{/if}}
-            ({{#foreach params}}{{#if isFirstLevel}}{{#if isOptional}}[{{/if}}{{name}}{{#if isOptional}}]{{/if}}{{#unless $last}}, {{/unless}}{{/if}}{{/foreach}})</a></li>
-        {{/each}}
-        </ul>
-    {{/if}}
 
-    {{#if attributes.length}}
-        <h3>Defined attributes:</h3>
-        <ul>
-        {{#each attributes}}
-            <li><a href="#{{{hash}}}">{{parent.name}}.{{name}}</a></li>
-        {{/each}}
-        </ul>
-    {{/if}}
+    {{#each functions}}
+        {{> function}}
+    {{/each}}
 
-</div>
-
-{{#each functions}}
-    {{> function}}
-{{/each}}
-
-{{#each attributes}}
-    {{> attribute}}
-{{/each}}
+    {{#each attributes}}
+        {{> attribute}}
+    {{/each}}
+</section>

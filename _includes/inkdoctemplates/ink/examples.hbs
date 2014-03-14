@@ -1,10 +1,8 @@
 {{#if examples}}
 <p class="example-title">Example</p>
 {{#each examples}}  
-<div class="example">
-{% highlight html %}
-{% raw %}{{{this}}}{% endraw %}
-{% endhighlight %}
+<div class="example bottom-space">
+{% highlight html %}{% raw %}{{{this}}}{% endraw %}{% endhighlight %}
 </div>
 {{/each}}
 {{/if}}

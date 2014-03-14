@@ -1,13 +1,46 @@
-<p>Ink.bindEvent is very similar to Ink.bind<code>this</code> </p>
+<p><code>Ink.bindEvent()</code> is very similar to <code>Ink.bind</code> but it is used to keep the <code>this</code> context in event handlers, and <code>event</code> object is passed to callback as first argument.</p>
 
 <p class="example-title">Code</p>
-{% highlight js %}
+{% highlight html %}
+<div>
+    <button id="my_button_a" class="ink-button">Click me A</button>
+    <button id="my_button_b" class="ink-button">Click me B</button>
+</div>
+<script>
+Ink.requireModules(['Ink.Dom.Event_1'], function(InkEvent) {
+
+    var MyObj = {
+
+        _propToAlert: 'Hello World',
+
+        _handlerBinded: null,
+
+        addEvent: function() 
+        {
+            var elmA = Ink.i('my_button_a');
+            var elmB = Ink.i('my_button_b');
+
+            // create a property binded to can be removed later with InkEvent.stopObserving
+            this._handlerBinded = Ink.bindEvent(this._doStuffOnClick, this); 
+            InkEvent.observe(elmA, 'click', this._handlerBinded);
+
+            // Ink.bindEvent can be used directly in an anonymous function 
+            InkEvent.observe(elmB, 'click', Ink.bindEvent(function(event){
+
+                        this._doStuffOnClick(event);
+                    
+                    }, this));
+        },
+
+        _doStuffOnClick: function(event) 
+        {
+            alert(this._propToAlert + ' => ' + event.type);
+        }
+
+    };
+
+    MyObj.addEvent(); 
+});
+</script>
 {% endhighlight %}
-
-<p></p> 
-<p class="example-title">Code</p>
-{% highlight js %}
-
-{% endhighlight %}
-
 
