@@ -43,6 +43,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method get
          * @param {String|DOMElement} elm   Either an ID of an element, or an element.
          * @return {DOMElement|null} The DOM element with the given id or null when it was not found
+         * @sample Ink_Dom_Element_1_get.html
          */
         get: function(elm) {
             if(typeof elm !== 'undefined') {
@@ -60,6 +61,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method create
          * @param {String} tag        tag name
          * @param {Object} properties  object with properties to be set on the element. You can also call other functions in Ink.Dom.Element like this
+         * @sample Ink_Dom_Element_1_create.html
          *
          * @example
          *
@@ -96,6 +98,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          *
          * @method remove
          * @param {DOMElement} elm  The element to remove
+         * @sample Ink_Dom_Element_1_remove.html
          */
         remove: function(el) {
             var parEl;
@@ -109,6 +112,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          *
          * @method scrollTo
          * @param {DOMElement|String} elm  Element where to scroll
+         * @sample Ink_Dom_Element_1_scrollTo.html
          */
         scrollTo: function(elm) {
             elm = InkElement.get(elm);
@@ -141,6 +145,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method offsetTop
          * @param {DOMElement|String} elm  target element
          * @return {Number} Offset from the target element to the top of the document
+         * @sample Ink_Dom_Element_1_offsetTop.html
          */
         offsetTop: function(elm) {
             return InkElement.offset(elm)[1];
@@ -154,6 +159,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method offsetLeft
          * @param {DOMElement|String} elm  target element
          * @return {Number} Offset from the target element to the left of the document
+         * @sample Ink_Dom_Element_1_offsetLeft.html
          */
         offsetLeft: function(elm) {
             return InkElement.offset(elm)[0];
@@ -165,6 +171,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         * @method positionedOffset
         * @param {DOMElement|String} elm  target element
         * @return {Array} Array with the element offsetleft and offsettop relative to the closest positioned ancestor
+        * @sample Ink_Dom_Element_1_positionedOffset.html
         */
         positionedOffset: function(element) {
             var valueTop = 0, valueLeft = 0;
@@ -200,6 +207,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method offset
          * @param {DOMElement|String}   elm     Target element
          * @return {[Number, Number]}   Array with pixel distance from the target element to the top left corner of the document
+         * @sample Ink_Dom_Element_1_offset.html
          */
         offset: function(el) {
             /*jshint boss:true */
@@ -225,6 +233,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method scroll
          * @param {DOMElement|String} [elm] target element or document.body
          * @returns {Array} offset values for x and y scroll
+         * @sample Ink_Dom_Element_1_scroll.html
          */
         scroll: function(elm) {
             elm = elm ? Ink.i(elm) : document.body;
@@ -268,6 +277,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @param {Object} elm   target element
          * @param {String} attr  attribute name
          * @return {Boolean} Boolean based on existance of attribute
+         * @sample Ink_Dom_Element_1_hasAttribute.html
          */
         hasAttribute: function(elm, attr){
             return elm.hasAttribute ? elm.hasAttribute(attr) : !!elm.getAttribute(attr);
@@ -278,6 +288,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method insertAfter
          * @param {DOMElement}         newElm     element to be inserted
          * @param {DOMElement|String}  targetElm  key element
+         * @sample Ink_Dom_Element_1_insertAfter.html
          */
         insertAfter: function(newElm, targetElm) {
             /*jshint boss:true */
@@ -296,6 +307,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method insertBefore
          * @param {DOMElement}         newElm     element to be inserted
          * @param {DOMElement|String}  targetElm  key element
+         * @sample Ink_Dom_Element_1_insertBefore.html
          */
         insertBefore: function (newElm, targetElm) {
             /*jshint boss:true */
@@ -310,6 +322,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method insertTop
          * @param {DOMElement}         newElm     element to be inserted
          * @param {DOMElement|String}  targetElm  key element
+         * @sample Ink_Dom_Element_1_insertTop.html
          */
         insertTop: function(newElm,targetElm) {
             /*jshint boss:true */
@@ -328,18 +341,21 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method insertBottom
          * @param {DOMElement}         newElm     element to be inserted
          * @param {DOMElement|String}  targetElm  key element
+         * @sample Ink_Dom_Element_1_insertBottom.html
          */
-        insertBottom: function(newElm,targetElm) {
+        insertBottom: function(newElm, targetElm) {
             /*jshint boss:true */
+            targetElm = Ink.i(targetElm);
             targetElm.appendChild(newElm);
         },
 
         /**
          * Retrieves textContent from node
          *
-         * @method innerText
+         * @method textContent 
          * @param {DOMNode} node from which to retreive text from. Can be any node type.
          * @return {String} the text
+         * @sample Ink_Dom_Element_1_textContent.html
          */
         textContent: function(node){
             node = Ink.i(node);
@@ -387,6 +403,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method setTextContent
          * @param {DOMNode} node    node to add the text to. Can be any node type.
          * @param {String}  text    text to be appended to the node.
+         * @sample Ink_Dom_Element_1_setTextContent.html
          */
         setTextContent: function(node, text){
             node = Ink.i(node);
