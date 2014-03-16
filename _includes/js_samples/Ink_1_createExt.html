@@ -1,13 +1,117 @@
-<p>Desc... <code>this</code> </p>
-
+<p>With <code>Ink.createExt()</code> you can create your own module to Ink. It works like <code>Ink.createModule()</code> but will expose your module in <code>Ink.Ext</code> namespace. With this method you can contribute to Ink project with new modules and we will promote your module in our page. Read how to contribute to Ink in our <a href="https://github.com/sapo/Ink/blob/develop/CONTRIBUTING.md">CONTRIBUTING.md</a>.  <code>Ink.createExt()</code> can be used to create your modules to your project.  </p>
+<p>Here's an example of <code>Ink.Ext.MyAwesomeModule_1</code></p>
 <p class="example-title">Code</p>
 {% highlight js %}
+Ink.createExt('MyAwesomeModule', 1, ['Ink.Dom.Event_1'], function(InkEvent) {
+
+    var MyAwesomeModule = function() {
+        this._init();
+    }; 
+
+    MyAwesomeModule.prototype = {
+        _init: function()
+        {
+            this._doStuff(); 
+        },
+
+        _doStuff: function() 
+        {
+            alert('Doing stuff in MyAwesomeModule');
+            /* ... */
+        } 
+    };
+
+    return MyAwesomeModule; 
+});
+
+
+Ink.requireModules(['Ink.Ext.MyAwesomeModule_1'], function(MyAwesomeModule) {
+        
+    new MyAwesomeModule(); 
+        
+});
+
 {% endhighlight %}
 
-<p></p> 
-<p class="example-title">Code</p>
+<p>How to create an UI extension that works with data-attributes as options. This is a simple extension. A clickable div that expands from init height to max heigh.</p>
+<p class="example-title">Code HTML</p>
+{% highlight html %}
+
+<!-- Use option with "data-module_name-" prefix to be compatible with other modules -->
+<div id="ext-expands" data-expands-init-height="30" data-expands-max-height="150" style="border:1px solid black;">
+Click Me
+</div>
+{% endhighlight %}
+
+<p class="example-title">Code JavaScript</p>
 {% highlight js %}
 
+// Create extension Expands
+
+Ink.createExt('Expands', 1, ['Ink.UI.Common_1', 'Ink.Dom.Event_1'], function(UICommon, InkEvent) {
+
+    var Expands = function(selector, options) {
+        this._init(selector, options);
+    }; 
+
+    Expands.prototype = {
+        _init: function(selector)
+        {
+            this._rootElm = UICommon.elsOrSelector(selector, 'Ink.Ext.Expands root element')[0] || null;
+
+            this._options = UICommon.options({
+                    expandsInitHeight: ['Number', 10], // default value to init height
+                    expandsMaxHeight: ['Number', 100]  // default value to max height
+                }, arguments[1] || {}, this._rootElm);
+
+            this._stout = false;
+            this._currentHeight = 0;
+
+            this._addEvent(); 
+
+        },
+
+        _addEvent: function()
+        {
+            InkEvent.observe(this._rootElm, 'click', Ink.bindEvent(this._onClickElm, this));
+        },
+
+        _onClickElm: function(event)
+        {
+            InkEvent.stopDefault(event);
+            if(this._stout) {
+                clearTimeout(this._stout);
+            }
+            this._currentHeight = this._options.expandsInitHeight; 
+            this._rootElm.style.height = this._currentHeight+'px';
+
+            this._expands();
+        },
+
+        _expands: function()
+        {
+            if(this._currentHeight >= this._options.expandsMaxHeight) {
+                this._stout = false;
+                return;
+            }
+            this._currentHeight += 5;
+            this._rootElm.style.height = this._currentHeight+'px';
+
+            this._stout = setTimeout(Ink.bind(this._expands, this), 100);
+
+        }
+    };
+
+    return Expands; 
+}); 
+
+
+// Run extension 
+
+Ink.requireModules(['Ink.Ext.Expands_1'], function(Expands){
+
+    new Expands("#ext-expands");
+
+});
+
 {% endhighlight %}
-
-

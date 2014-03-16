@@ -1,13 +1,13 @@
-<p>Desc... <code>this</code> </p>
-
+<p><code>Ink.error()</code> is an alias to <code>console.error()</code> when it is available.</p>
 <p class="example-title">Code</p>
 {% highlight js %}
+function myFunc(a, b) {
+    if(!a || !b) {
+        Ink.error('Missing arguments');
+    }
+    /* ... */
+}
+myFunc('a');
+myFunc(null, 'b');
 {% endhighlight %}
-
-<p></p> 
-<p class="example-title">Code</p>
-{% highlight js %}
-
-{% endhighlight %}
-
 
