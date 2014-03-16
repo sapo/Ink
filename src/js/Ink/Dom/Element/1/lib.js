@@ -101,6 +101,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @sample Ink_Dom_Element_1_remove.html
          */
         remove: function(el) {
+            el = Ink.i(el);
             var parEl;
             if (el && (parEl = el.parentNode)) {
                 parEl.removeChild(el);
