@@ -110,7 +110,8 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          *
          * @static
          *
-         * @param ... (See elOrSelector's params)
+         * @param  {DOMElement|String} elOrSelector DOM Element or CSS Selector
+         * @param  {String}            fieldName    This field is used in the thrown Exception to identify the parameter.
          * @param {Boolean} required If true, accept an empty array as output.
          * @return {Array} The selected DOM Elements.
          * @example

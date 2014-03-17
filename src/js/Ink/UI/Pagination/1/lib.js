@@ -12,16 +12,23 @@ Ink.createModule('Ink.UI.Pagination', '1',
      * Function to create the pagination anchors
      *
      * @method genAel
+     * @private
      * @param  {String} inner HTML to be placed inside the anchor.
      * @return {DOMElement}  Anchor created
      */
-    var genAEl = function(inner, index) {
+    var genAEl = function(inner, index, options) {
         var aEl = document.createElement('a');
         aEl.setAttribute('href', '#');
-        if (index !== undefined) {
+        if (typeof index === 'number') {
             aEl.setAttribute('data-index', index);
         }
-        aEl.innerHTML = inner;
+        if(options && options.wrapText) {
+            var spanEl = document.createElement('span');
+            aEl.appendChild(spanEl);
+            spanEl.innerHTML = inner;
+        } else {
+            aEl.innerHTML = inner;
+        }
         return aEl;
     };
 
@@ -36,8 +43,6 @@ Ink.createModule('Ink.UI.Pagination', '1',
      * @param {Number}   [options.itemsPerPage]      number of items per page.
      * @param {Number}   [options.maxSize]           If passed, only shows at most maxSize items. displays also first|prev page and next page|last buttons
      * @param {Number}   [options.start]             start page. defaults to 1
-     * @param {Boolean}  [options.chevron=false]     whether the pagination is has chevron buttons.
-     * @param {Boolean}  [options.dotted=false]      whether the pagination is dotted. Implies sideButtons=false
      * @param {Boolean}  [options.sideButtons=true]  whether to show the first, last, previous, next, previousPage and lastPage buttons. Do not use together with maxSize.
      * @param {String}   [options.firstLabel]        label to display on first page button
      * @param {String}   [options.lastLabel]         label to display on last page button
@@ -70,9 +75,8 @@ Ink.createModule('Ink.UI.Pagination', '1',
             itemsPerPage:      ['Integer', null],
             maxSize:           ['Integer', null],
             start:             ['Integer', 1],
-            dotted:            ['Boolean', false],
-            chevron:           ['Boolean', false],
             sideButtons:       ['Boolean', true],
+            // TODO add pagination-type which accepts color strings, "chevron" and "dotted". Basically classes to add to the UL.
             firstLabel:        ['String', 'First'],
             lastLabel:         ['String', 'Last'],
             previousLabel:     ['String', 'Previous'],
@@ -116,13 +120,6 @@ Ink.createModule('Ink.UI.Pagination', '1',
             Ink.error('Ink.UI.Pagination: Please supply a size option or totalItemCount and itemsPerPage options.');
             this._size = 0;
         }
-
-        if (this._options.maxSize && this._options.sideButtons === false) {
-            Ink.error('Ink.UI.Pagination: You cannot provide both maxSize and disable the sideButtons option.' +
-                     this._options.dotted ? ' (note: enabling "dotted" option disables sideButtons)' : '');
-        }
-
-        if (this._options.dotted) { this._options.sideButtons = false; }
 
         this.setOnChange(this._options.onChange);
 
@@ -252,40 +249,38 @@ Ink.createModule('Ink.UI.Pagination', '1',
         _generateMarkup: function(el) {
             Css.addClassName(el, 'ink-navigation');
 
-            var ulEl;
+            var ulEl = Ink.s('.' + this._options.paginationClass, el);
             var hasUlAlready = false;
-            if( ( ulEl = Selector.select('.' + this._options.paginationClass,el)).length < 1 ){
+
+            if( !ulEl ){
                 ulEl = document.createElement(this._options.parentTag);
                 Css.addClassName(ulEl, this._options.paginationClass);
             } else {
                 hasUlAlready = true;
-                ulEl = ulEl[0];
             }
 
+            var isChevron = Css.hasClassName(ulEl, 'chevron');
+            var isDotted = Css.hasClassName(ulEl, 'dotted');
+
+            // Creates <li> elements for firstPage, nextPage, first, last, etc.
             var createLiEl = Ink.bind(function (name, options) {
                 var liEl = document.createElement(this._options.childTag);
-                var aEl = genAEl(this._options[name + 'Label']);
-                if (options && options.wrapInSpan) {
-                    var spanEl = Element.create('span');
-                    spanEl.appendChild(aEl);
-                    liEl.appendChild(spanEl);
-                } else {
-                    liEl.appendChild( aEl );
-                }
+                var aEl = genAEl(this._options[name + 'Label'], undefined, { wrapText: options && options.wrapText });
                 Css.addClassName(liEl, this._options[name + 'Class']);
+                liEl.appendChild(aEl);
                 ulEl.appendChild(liEl);
                 return liEl;
             }, this);
 
-            if (!this._options.dotted) {
+            if (!isDotted) {
                 if (this._options.maxSize) {
                     this._firstEl = createLiEl('first');
                     this._prevPageEl = createLiEl('previousPage');
                 }
 
                 if (this._options.sideButtons) {
-                    this._prevEl = createLiEl('previous', { wrapInSpan: this._options.chevron });
-                    this._nextEl = createLiEl('next', { wrapInSpan: this._options.chevron });
+                    this._prevEl = createLiEl('previous', { wrapText: isChevron });
+                    this._nextEl = createLiEl('next', { wrapText: isChevron });
                 }
 
                 if (this._options.maxSize) {
@@ -293,9 +288,6 @@ Ink.createModule('Ink.UI.Pagination', '1',
                     this._lastEl = createLiEl('last');
                 }
             }
-
-            Css.setClassName(ulEl, 'dotted', this._options.dotted);
-            Css.setClassName(ulEl, 'chevron', this._options.chevron);
 
             if( !hasUlAlready ){
                 el.appendChild(ulEl);
@@ -338,8 +330,8 @@ Ink.createModule('Ink.UI.Pagination', '1',
                 this.setCurrent(isPrev ? -1 : 1, true /* relative */);
             }
             else {
-                var aElem = Ink.s('[data-index]', liEl);
-                var nr = parseInt( aElem.getAttribute('data-index'), 10);
+                var aElem = Selector.select('[data-index]', liEl)[0];
+                var nr = aElem && parseInt( aElem.getAttribute('data-index'), 10);
                 this.setCurrent(nr);
             }
         },

@@ -5399,12 +5399,10 @@ table {
         -o-transition: all 140ms ease-in-out;
         transition: all 140ms ease-in-out; }
         .ink-navigation ul.pagination.chevron li.next a span, .ink-navigation ul.pagination.chevron li.previous a span {
-          text-indent: 99999px; }
+          display: inline-block;
+          text-indent: -99999px; }
     .ink-navigation ul.pagination.chevron li.disabled a {
-      color: rgba(255, 255, 255, 0.6);
       text-shadow: none; }
-      .ink-navigation ul.pagination.chevron li.disabled a:hover, .ink-navigation ul.pagination.chevron li.disabled a:focus {
-        color: rgba(255, 255, 255, 0.6); }
     .ink-navigation ul.pagination.chevron li.previous a {
       left: 0; }
       .ink-navigation ul.pagination.chevron li.previous a:after {
@@ -6667,22 +6665,22 @@ figure.ink-image {
     background: #be1c1c; }
   .ink-navigation ul.pagination.chevron li.next a, .ink-navigation ul.pagination.chevron li.previous a {
     color: white;
-    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
-    opacity: 0.6; }
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
+    opacity: 0.7; }
     .ink-navigation ul.pagination.chevron li.next a:hover, .ink-navigation ul.pagination.chevron li.next a:focus, .ink-navigation ul.pagination.chevron li.next a.active, .ink-navigation ul.pagination.chevron li.previous a:hover, .ink-navigation ul.pagination.chevron li.previous a:focus, .ink-navigation ul.pagination.chevron li.previous a.active {
-      filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
-      opacity: 0.8;
+      filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
+      opacity: 0.9;
       text-decoration: none;
       background: none; }
   .ink-navigation ul.pagination.chevron li.disabled a {
     color: white;
-    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
-    opacity: 0.6;
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=40);
+    opacity: 0.4;
     text-shadow: none; }
     .ink-navigation ul.pagination.chevron li.disabled a:hover, .ink-navigation ul.pagination.chevron li.disabled a:focus {
       color: white;
-      filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
-      opacity: 0.6; }
+      filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=40);
+      opacity: 0.4; }
   .ink-navigation ul.pagination.chevron.black li.next a, .ink-navigation ul.pagination.chevron.black li.previous a, .ink-navigation ul.pagination.chevron.black li.disabled a {
     color: #1a1a1a; }
   .ink-navigation ul.pagination.chevron.grey li.next a, .ink-navigation ul.pagination.chevron.grey li.previous a, .ink-navigation ul.pagination.chevron.grey li.disabled a {

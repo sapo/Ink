@@ -739,7 +739,8 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          *
          * @static
          *
-         * @param ... (See elOrSelector's params)
+         * @param  {DOMElement|String} elOrSelector DOM Element or CSS Selector
+         * @param  {String}            fieldName    This field is used in the thrown Exception to identify the parameter.
          * @param {Boolean} required If true, accept an empty array as output.
          * @return {Array} The selected DOM Elements.
          * @example
@@ -1442,7 +1443,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
      *      @param {String}    [options.instance]        unique id for the datepicker
      *      @param {Object}    [options.month]           Hash of month names. Defaults to portuguese month names. January is 1.
      *      @param {String}    [options.nextLinkText]    text to display on the previous button. defaults to '«'
-     *      @param {String}    [options.ofText=' of ']   text to display between month and year. defaults to ' de '
+     *      @param {String}    [options.ofText]          text to display between month and year. defaults to ' of '
      *      @param {Boolean}   [options.onFocus=true]    if the datepicker should open when the target element is focused
      *      @param {Function}  [options.onMonthSelected] callback function to execute when the month is selected
      *      @param {Function}  [options.onSetDate]       callback to execute when set date
@@ -1453,7 +1454,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
      *      @param {Boolean}   [options.showClose]       whether to display the close button or not. defaults to true.
      *      @param {Boolean}   [options.shy=true]        whether the datepicker starts automatically.
      *      @param {String}    [options.startDate]       Date to define init month. Must be in yyyy-mm-dd format
-     *      @param {Number}    [options.startWeekDay]    day to use as first column on the calendar view. Defaults to Monday (1)
+     *      @param {Number}    [options.startWeekDay]    day to use as first column on the calendar view. Sunday is zero. Defaults to Monday (1).
      *      @param {Function}  [options.validYearFn]    callback function to execute when 'rendering' the month (in the month view)
      *      @param {Function}  [options.validMonthFn]    callback function to execute when 'rendering' the month (in the month view)
      *      @param {Function}  [options.validDayFn]      callback function to execute when 'rendering' the day (in the month view)
@@ -1557,6 +1558,11 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             this._day   = today.getDate( );
             this._month = today.getMonth( );
             this._year  = today.getFullYear( );
+        }
+
+        if (this._options.startWeekDay < 0 || this._options.startWeekDay > 6) {
+            Ink.warn('Ink.UI.DatePicker_1: option "startWeekDay" must be between 0 (sunday) and 6 (saturday)');
+            this._options.startWeekDay = clamp(this._options.startWeekDay, 0, 6);
         }
 
         if(this._options.displayInSelect &&
@@ -1997,7 +2003,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                     lim = dateishFromYMDString(data.date);
 
                     lim._month = clamp(lim._month, 0, 11);
-                    lim._day = clamp(lim._day, 1, this._daysInMonth( lim._year, lim._month ));
+                    lim._day = clamp(lim._day, 1, this._daysInMonth( lim._year, lim._month + 1 ));
                 }
 
                 this[data.name] = lim;
@@ -2599,45 +2605,67 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         _renderMonth: function(){
             var month = this._month;
             var year = this._year;
-            
-            // Week day of the first day in the month
-            var wDayFirst = (new Date( year , month , 1 )).getDay();
-
-            var startWeekDay = this._options.startWeekDay || 0;
 
             this._showDefaultView();
 
-            if(startWeekDay > wDayFirst) {
-                wDayFirst = 7 + startWeekDay - wDayFirst;
-            } else {
-                wDayFirst += startWeekDay;
-            }
-
             var html = '';
 
-            html += this._getMonthCalendarHeaderHtml(startWeekDay);
+            html += this._getMonthCalendarHeaderHtml(this._options.startWeekDay);
 
             var counter = 0;
             html+='<ul>';
 
             var emptyHtml = '<li class="ink-calendar-empty">&nbsp;</li>';
 
+            var firstDayIndex = this._getFirstDayIndex(year, month);
+
             // Add padding if the first day of the month is not monday.
-            if(wDayFirst !== 0) {
-                var empties = wDayFirst - startWeekDay - 1;
-                counter += empties;
-                html += strRepeat(empties, emptyHtml);
+            if(firstDayIndex > 0) {
+                counter += firstDayIndex;
+                html += strRepeat(firstDayIndex, emptyHtml);
             }
 
-            html += this._getDayButtonsHtml(counter, year, month);
+            html += this._getDayButtonsHtml(year, month);
 
             html += '</ul>';
 
             this._monthContainer.innerHTML = html;
         },
 
-        _getDayButtonsHtml: function (counter, year, month) {
-            var daysInMonth = this._daysInMonth(year, month);
+        /**
+         * Figure out where the first day of a month lies
+         * in the first row of the calendar.
+         *
+         *      having options.startWeekDay === 0
+         *
+         *      Su Mo Tu We Th Fr Sa  
+         *                         1  <- The "1" is in the 7th day. return 6.
+         *       2  3  4  5  6  7  8  
+         *       9 10 11 12 13 14 15  
+         *      16 17 18 19 20 21 22  
+         *      23 24 25 26 27 28 29  
+         *      30 31
+         *
+         * This obviously changes according to the user option "startWeekDay"
+         **/
+        _getFirstDayIndex: function (year, month) {
+            var wDayFirst = (new Date( year , month , 1 )).getDay();  // Sunday=0
+            var startWeekDay = this._options.startWeekDay || 0;  // Sunday=0
+
+            var result = wDayFirst - startWeekDay;
+
+            result %= 7;
+
+            if (result < 0) {
+                result += 6;
+            }
+
+            return result;
+        },
+
+        _getDayButtonsHtml: function (year, month) {
+            var counter = this._getFirstDayIndex(year, month);
+            var daysInMonth = this._daysInMonth(year, month + 1);
             var ret = '';
             for (var day = 1; day <= daysInMonth; day++) {
                 if (counter === 7){ // new week
@@ -2780,9 +2808,8 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
     return DatePicker;
 });
 
-/*
+/**
  * @module Ink.UI.Draggable_1
- * @author inkdev AT sapo.pt
  * @version 1
  */
 Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", "Ink.Dom.Css_1", "Ink.Dom.Browser_1", "Ink.Dom.Selector_1", "Ink.UI.Common_1"],function( InkElement, InkEvent, Css, Browser, Selector, Common) {
@@ -2806,7 +2833,10 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
      * @param {Object} [options] Optional object for configuring the component
      *     @param {String}            [options.constraint]      Movement constraint. None by default. Can be `vertical`, `horizontal`, or `both`.
      *     @param {String|DomElement} [options.constraintElm]   Constrain dragging to be within this element. None by default.
-     *     @param {Number}            [options.top,left,right,bottom]   Limits for constraining draggable movement.
+     *     @param {Number}            [options.top]             Limits for constraining draggable movement.
+     *     @param {Number}            [options.right]           Limits for constraining draggable movement.
+     *     @param {Number}            [options.bottom]          Limits for constraining draggable movement.
+     *     @param {Number}            [options.left]            Limits for constraining draggable movement.
      *     @param {String|DOMElement} [options.handle]          if specified, this element will be used as a handle for dragging.
      *     @param {Boolean}           [options.revert]          if true, reverts the draggable to the original position when dragging stops
      *     @param {String}            [options.cursor]          cursor type (CSS `cursor` value) used when the mouse is over the draggable object
@@ -2814,7 +2844,7 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
      *     @param {Number}            [options.fps]             if defined, on drag will run every n frames per second only
      *     @param {DomElement}        [options.droppableProxy]  if set, a shallow copy of the droppableProxy will be put on document.body with transparent bg
      *     @param {String}            [options.mouseAnchor]     defaults to mouse cursor. can be 'left|center|right top|center|bottom'
-     *     @param {String}            [options.dragClass='drag'] class to add when the draggable is being dragged.
+     *     @param {String}            [options.dragClass]='drag' class to add when the draggable is being dragged.
      *     @param {Function}          [options.onStart]        callback called when dragging starts
      *     @param {Function}          [options.onEnd]          callback called when dragging stops
      *     @param {Function}          [options.onDrag]         callback called while dragging, prior to position updates
@@ -3222,170 +3252,6 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
 
 });
 
-Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', 'Ink.Dom.Selector_1', 'Ink.Dom.Element_1', 'Ink.Dom.Event_1', 'Ink.Dom.Css_1'], function(Common, Loaded, Selector, Element, Event, Css) { 
-
-  var Drawer = function(options) {
-    this._init(options);
-  }
-
-  Drawer.prototype = {
-
-    _init: function () {
-
-      this._name = 'Ink Drawer',
-
-      this._options = Ink.extendObj(
-      {
-        parentSelector: ['String','.ink-drawer'],
-        leftDrawer: ['String','.left-drawer'],
-        leftTrigger: ['String','.left-drawer-trigger'],
-        rightDrawer: ['String','.right-drawer'],
-        rightTrigger: ['String','.right-drawer-trigger'],
-        contentDrawer: ['String','.content-drawer'],
-        closeOnContentClick: ['Boolean',true],
-        mode: ['String','push'],
-        sides: ['String','both']
-      }, 
-
-      arguments[0] || {} );
-
-      // make sure we have the required elements acording to the config options
-
-      this._contentDrawers = Ink.ss(this._options.contentDrawer[1]);
-
-      this._leftDrawer = Ink.s(this._options.leftDrawer[1]);
-      this._leftTriggers = Ink.ss(this._options.leftTrigger[1]);
-
-      this._rightDrawer = Ink.s(this._options.rightDrawer[1]);
-      this._rightTriggers = Ink.ss(this._options.rightTrigger[1]);
-
-
-
-      if(this._contentDrawers.length == 0) {
-        console.warn( this._name + ': Could not find any "' + this._options.contentDrawer[1] + '" elements on this page. Please make sure you have at least one.' );
-      }
-
-      switch (this._options.sides) {
-
-        case 'both':
-
-        if( !this._leftDrawer ){
-          console.warn( this._name + ': Could not find the "' + this._options.leftDrawer[1] + '" element on this page. Please make sure it exists.' );            
-        } 
-
-        if(this._leftTriggers.length == 0){
-          console.warn( this._name + ': Could not find the "' + this._options.leftTrigger[1] + '" element on this page. Please make sure it exists.' );            
-        } 
-
-        if( !this._rightDrawer ){
-          console.warn( this._name + ': Could not find the "' + this._options.rightDrawer[1] + '" element on this page. Please make sure it exists.' );            
-        } 
-
-        if( this._rightTriggers.length == 0 ){
-          console.warn( this._name + ': Could not find the "' + this._options.rightTrigger[1] + '" element on this page. Please make sure it exists.' );            
-        }
-        this._triggers =  this._options.leftTrigger[1] + ', ' + this._options.rightTrigger[1] + ', ' + this._options.contentDrawer[1];
-        break;
-
-        case 'left':
-        if( !this._leftDrawer ){
-          console.warn( this._name + ': Could not find the "' + this._options.leftDrawer[1] + '" element on this page. Please make sure it exists.' );            
-        } 
-
-        if(this._leftTriggers.length == 0){
-          console.warn( this._name + ': Could not find the "' + this._options.leftTrigger[1] + '" element on this page. Please make sure it exists.' );            
-        }
-        this._triggers = this._options.leftTrigger[1] + ', ' + this._options.contentDrawer[1];
-        break;
-
-        case 'right':
-        if( !this._rightDrawer ){
-          console.warn( this._name + ': Could not find the "' + this._options.rightDrawer[1] + '" element on this page. Please make sure it exists.' );            
-        } 
-
-        if( this._rightTriggers.length == 0 ){
-          console.warn( this._name + ': Could not find the "' + this._options.rightTrigger[1] + '" element on this page. Please make sure it exists.' );            
-        } 
-        this._triggers = this._options.rightTrigger[1] + ', ' + this._options.contentDrawer[1];
-        break;
-      }
-
-
-      this._isOpen = false;
-      this._direction = undefined;
-
-      this._handlers = {
-        click:   Ink.bindEvent(this._onClick, this),
-        afterTransition: Ink.bindEvent(this._afterTransition, this)
-      };
-      this._delay = 10;
-      this._addEvents();
-    },
-
-    _onClick: function(ev){                
-
-      if(Selector.matchesSelector(ev.currentTarget,this._options.leftTrigger[1])){
-        if(this._isOpen) {
-          this.close();
-        } else {
-          this.open('left');
-        }            
-      } else if(Selector.matchesSelector(ev.currentTarget,this._options.rightTrigger[1])){
-        if(this._isOpen) {
-          this.close();
-        } else {
-          this.open('right');
-        }          
-      } else if(Selector.matchesSelector(ev.currentTarget,this._options.contentDrawer[1])){
-        if(this._options.closeOnContentClick && this._isOpen) {
-          this.close();
-        }
-      }
-    },
-
-    _afterTransition: function(){
-      if(!this._isOpen){
-        if(this._direction == 'left') {
-          Css.removeClassName(this._leftDrawer,'show');
-        } else {
-          Css.removeClassName(this._rightDrawer,'show');            
-        }
-      }
-    },
-
-    _addEvents: function(){
-      Event.on(document.body, 'click', this._triggers, this._handlers.click); 
-    },
-
-    open: function(direction) {
-
-      this._isOpen = true;
-      this._direction = direction;
-
-      if(direction == 'left') {
-        var open = this._leftDrawer;
-      } else if (direction == 'right') {
-        var open = this._rightDrawer;
-      }
-
-      Css.addClassName(open,'show');
-      setTimeout(Ink.bind(function(){         
-        Css.addClassName(document.body, this._options.mode + ' '  + direction);
-      },this), this._delay);
-
-    },
-
-    close: function() {
-      this._isOpen = false;   
-      Event.one(document.body, 'transitionend oTransitionEnd transitionend webkitTransitionEnd', this._handlers.afterTransition);
-      Css.removeClassName(document.body, this._options.mode + ' ' + this._direction);
-    }
-
-  };
-
-  return Drawer;
-
-});
 /**
  * @module Ink.UI.Dropdown_1
  *
@@ -3569,8 +3435,8 @@ Ink.createModule('Ink.UI.Dropdown', '1', ['Ink.UI.Common_1', 'Ink.UI.Toggle_1', 
          * call a method given by the user through the options
          *
          * @method _handlerCall
-         * @params handler {String} The handler name in this._options
-         * @params ... Arguments to pass to function
+         * @param handler {String} The handler name in this._options
+         * @param [args*] Arguments to pass to function
          */
         _handlerCall: function (handler/*, ... */) {
             if (this._options[handler]) {
@@ -3791,7 +3657,8 @@ Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
         /**
          * Updates location and size of droppable element
          * 
-         * @method update * @param {String|DOMElement} element - target element
+         * @method update
+         * @param {String|DOMElement} element - target element
          * @private
          */
         update: function(element) {
@@ -4615,7 +4482,6 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
      * Validation Functions to be used
      * Some functions are a port from PHP, others are the 'best' solutions available
      *
-     * @type {Object}
      * @private
      * @static
      */
@@ -4623,8 +4489,8 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
 
         /**
          * Checks if the value is actually defined and is not empty
-         *
-         * @method validationFunctions.required
+         * @
+         * @method required
          * @param  {String} value Value to be checked
          * @return {Boolean}       True case is defined, false if it's empty or not defined.
          */
@@ -4635,7 +4501,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         /**
          * Checks if the value has a minimum length
          *
-         * @method validationFunctions.min_length
+         * @method min_length
          * @param  {String} value   Value to be checked
          * @param  {String|Number} minSize Number of characters that the value at least must have.
          * @return {Boolean}         True if the length of value is equal or bigger than the minimum chars defined. False if not.
@@ -4647,7 +4513,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         /**
          * Checks if the value has a maximum length
          *
-         * @method validationFunctions.max_length
+         * @method max_length
          * @param  {String} value   Value to be checked
          * @param  {String|Number} maxSize Number of characters that the value at maximum can have.
          * @return {Boolean}         True if the length of value is equal or smaller than the maximum chars defined. False if not.
@@ -4659,7 +4525,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         /**
          * Checks if the value has an exact length
          *
-         * @method validationFunctions.exact_length
+         * @method exact_length
          * @param  {String} value   Value to be checked
          * @param  {String|Number} exactSize Number of characters that the value must have.
          * @return {Boolean}         True if the length of value is equal to the size defined. False if not.
@@ -4671,7 +4537,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         /**
          * Checks if the value has a valid e-mail address
          *
-         * @method validationFunctions.email
+         * @method email
          * @param  {String} value   Value to be checked
          * @return {Boolean}         True if the value is a valid e-mail address. False if not.
          */
@@ -4682,7 +4548,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         /**
          * Checks if the value has a valid URL
          *
-         * @method validationFunctions.url
+         * @method url
          * @param  {String} value   Value to be checked
          * @param  {Boolean} fullCheck Flag that specifies if the value must be validated as a full url (with the protocol) or not.
          * @return {Boolean}         True if the URL is considered valid. False if not.
@@ -4695,7 +4561,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         /**
          * Checks if the value is a valid IP. Supports ipv4 and ipv6
          *
-         * @method validationFunctions.ip
+         * @method ip
          * @param  {String} value   Value to be checked
          * @param  {String} ipType Type of IP to be validated. The values are: ipv4, ipv6. By default is ipv4.
          * @return {Boolean}         True if the value is a valid IP address. False if not.
@@ -4711,7 +4577,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         /**
          * Checks if the value is a valid phone number. Supports several countries, based in the Ink.Util.Validator class.
          *
-         * @method validationFunctions.phone
+         * @method phone
          * @param  {String} value   Value to be checked
          * @param  {String} phoneType Country's initials to specify the type of phone number to be validated. Ex: 'AO'.
          * @return {Boolean}         True if it's a valid phone number. False if not.
@@ -4729,7 +4595,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         /**
          * Checks if it's a valid credit card.
          *
-         * @method validationFunctions.credit_card
+         * @method credit_card
          * @param  {String} value   Value to be checked
          * @param  {String} cardType Type of credit card to be validated. The card types available are in the Ink.Util.Validator class.
          * @return {Boolean}         True if the value is a valid credit card number. False if not.
@@ -4745,7 +4611,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         /**
          * Checks if the value is a valid date.
          *
-         * @method validationFunctions.date
+         * @method date
          * @param  {String} value   Value to be checked
          * @param  {String} format Specific format of the date.
          * @return {Boolean}         True if the value is a valid date. False if not.
@@ -4757,7 +4623,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         /**
          * Checks if the value only contains alphabetical values.
          *
-         * @method validationFunctions.alpha
+         * @method alpha
          * @param  {String} value           Value to be checked
          * @param  {Boolean} supportSpaces  Allow whitespace
          * @return {Boolean}                True if the value is alphabetical-only. False if not.
@@ -4771,7 +4637,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
          * from the Basic Multilingual plane (BMP)
          * Optionally allow punctuation and whitespace
          *
-         * @method validationFunctions.text
+         * @method text
          * @param {String} value    Value to be checked
          * @return {Boolean}        Whether the value only contains printable text characters
          **/
@@ -4787,7 +4653,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
          *
          * Optionally allow punctuation and whitespace
          *
-         * @method validationFunctions.text
+         * @method text
          * @param {String} value    Value to be checked
          * @return {Boolean}        Whether the value only contains printable text characters
          **/
@@ -4799,7 +4665,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         /**
          * Checks if the value only contains alphabetical and numerical characters.
          *
-         * @method validationFunctions.alpha_numeric
+         * @method alpha_numeric
          * @param  {String} value   Value to be checked
          * @return {Boolean}         True if the value is a valid alphanumerical. False if not.
          */
@@ -4810,7 +4676,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         /**
          * Checks if the value only contains alphabetical, dash or underscore characteres.
          *
-         * @method validationFunctions.alpha_dashes
+         * @method alpha_dashes
          * @param  {String} value   Value to be checked
          * @return {Boolean}         True if the value is a valid. False if not.
          */
@@ -4821,7 +4687,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         /**
          * Checks if the value is a digit (an integer of length = 1).
          *
-         * @method validationFunctions.digit
+         * @method digit
          * @param  {String} value   Value to be checked
          * @return {Boolean}         True if the value is a valid digit. False if not.
          */
@@ -4832,7 +4698,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         /**
          * Checks if the value is a valid integer.
          *
-         * @method validationFunctions.integer
+         * @method integer
          * @param  {String} value   Value to be checked
          * @param  {String} positive Flag that specifies if the integer is must be positive (unsigned).
          * @return {Boolean}         True if the value is a valid integer. False if not.
@@ -4847,7 +4713,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         /**
          * Checks if the value is a valid decimal number.
          *
-         * @method validationFunctions.decimal
+         * @method decimal
          * @param  {String} value   Value to be checked
          * @param  {String} decimalSeparator Character that splits the integer part from the decimal one. By default is '.'.
          * @param  {String} [decimalPlaces] Maximum number of digits that the decimal part must have.
@@ -4865,7 +4731,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         /**
          * Checks if it is a numeric value.
          *
-         * @method validationFunctions.numeric
+         * @method numeric
          * @param  {String} value   Value to be checked
          * @param  {String} decimalSeparator Verifies if it's a valid decimal. Otherwise checks if it's a valid integer.
          * @param  {String} [decimalPlaces] (when the number is decimal) Maximum number of digits that the decimal part must have.
@@ -4884,7 +4750,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         /**
          * Checks if the value is in a specific range of values. The parameters after the first one are used for specifying the range, and are similar in function to python's range() function.
          *
-         * @method validationFunctions.range
+         * @method range
          * @param  {String} value   Value to be checked
          * @param  {String} minValue Left limit of the range.
          * @param  {String} maxValue Right limit of the range.
@@ -4914,7 +4780,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         /**
          * Checks if the value is a valid color.
          *
-         * @method validationFunctions.color
+         * @method color
          * @param  {String} value   Value to be checked
          * @return {Boolean}         True if the value is a valid color. False if not.
          */
@@ -4925,7 +4791,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         /**
          * Checks if the value matches the value of a different field.
          *
-         * @method validationFunctions.matches
+         * @method matches
          * @param  {String} value   Value to be checked
          * @param  {String} fieldToCompare Name or ID of the field to compare.
          * @return {Boolean}         True if the values match. False if not.
@@ -4938,7 +4804,6 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
 
     /**
      * Error messages for the validation functions above
-     * @type {Object}
      * @private
      * @static
      */
@@ -6377,16 +6242,23 @@ Ink.createModule('Ink.UI.Pagination', '1',
      * Function to create the pagination anchors
      *
      * @method genAel
+     * @private
      * @param  {String} inner HTML to be placed inside the anchor.
      * @return {DOMElement}  Anchor created
      */
-    var genAEl = function(inner, index) {
+    var genAEl = function(inner, index, options) {
         var aEl = document.createElement('a');
         aEl.setAttribute('href', '#');
-        if (index !== undefined) {
+        if (typeof index === 'number') {
             aEl.setAttribute('data-index', index);
         }
-        aEl.innerHTML = inner;
+        if(options && options.wrapText) {
+            var spanEl = document.createElement('span');
+            aEl.appendChild(spanEl);
+            spanEl.innerHTML = inner;
+        } else {
+            aEl.innerHTML = inner;
+        }
         return aEl;
     };
 
@@ -6401,6 +6273,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
      * @param {Number}   [options.itemsPerPage]      number of items per page.
      * @param {Number}   [options.maxSize]           If passed, only shows at most maxSize items. displays also first|prev page and next page|last buttons
      * @param {Number}   [options.start]             start page. defaults to 1
+     * @param {Boolean}  [options.sideButtons=true]  whether to show the first, last, previous, next, previousPage and lastPage buttons. Do not use together with maxSize.
      * @param {String}   [options.firstLabel]        label to display on first page button
      * @param {String}   [options.lastLabel]         label to display on last page button
      * @param {String}   [options.previousLabel]     label to display on previous button
@@ -6432,6 +6305,8 @@ Ink.createModule('Ink.UI.Pagination', '1',
             itemsPerPage:      ['Integer', null],
             maxSize:           ['Integer', null],
             start:             ['Integer', 1],
+            sideButtons:       ['Boolean', true],
+            // TODO add pagination-type which accepts color strings, "chevron" and "dotted". Basically classes to add to the UL.
             firstLabel:        ['String', 'First'],
             lastLabel:         ['String', 'Last'],
             previousLabel:     ['String', 'Previous'],
@@ -6468,23 +6343,12 @@ Ink.createModule('Ink.UI.Pagination', '1',
         };
 
         if (Common.isInteger(this._options.totalItemCount) && Common.isInteger(this._options.itemsPerPage)) {
-            this._size = Math.ceil(this._options.totalItemCount / this._options.itemsPerPage);
+            this._size = this._calculateSize(this._options.totalItemCount, this._options.itemsPerPage);
         } else if (Common.isInteger(this._options.size)) {
             this._size = this._options.size;
         } else {
-            throw new TypeError('Ink.UI.Pagination: Please supply a size option or totalItemCount and itemsPerPage options.');
-        }
-
-        if (!Common.isInteger(this._options.start) && this._options.start > 0 && this._options.start <= this._size) {
-            throw new TypeError('start option is a required integer between 1 and size!');
-        }
-
-        if (this._options.maxSize && !Common.isInteger(this._options.maxSize) && this._options.maxSize > 0) {
-            throw new TypeError('maxSize option is a positive integer!');
-        }
-
-        else if (this._size < 0) {
-            throw new RangeError('size option must be equal or more than 0!');
+            Ink.error('Ink.UI.Pagination: Please supply a size option or totalItemCount and itemsPerPage options.');
+            this._size = 0;
         }
 
         this.setOnChange(this._options.onChange);
@@ -6526,6 +6390,17 @@ Ink.createModule('Ink.UI.Pagination', '1',
         },
 
         /**
+         * Calculate how many pages are necessary for `count` items, and `itemsPerPage` items per page.
+         *
+         * @method _calculateSize
+         * @param count
+         * @param itemsPerPage
+         * @private
+         **/
+        _calculateSize: function (count, itemsPerPage) {
+            return Math.ceil(count / itemsPerPage);
+        },
+        /**
          * Updates the markup everytime there's a change in the Pagination object.
          *
          * @method _updateItems
@@ -6555,6 +6430,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
                 for (i = 0, f = this._size; i < f; ++i) {
                     liEl = document.createElement(this._options.childTag);
                     liEl.appendChild( genAEl( this._options.numberFormatter(i), i) );
+                    // add "active" class if this is the active element.
                     Css.setClassName(liEl, this._options.activeClass, i === this._current);
                     this._ulEl.insertBefore(liEl, this._nextEl);
                     liEls.push(liEl);
@@ -6585,8 +6461,12 @@ Ink.createModule('Ink.UI.Pagination', '1',
             }
 
             // update prev and next
-            Css.setClassName(this._prevEl, this._options.disabledClass, !this.hasPrevious());
-            Css.setClassName(this._nextEl, this._options.disabledClass, !this.hasNext());
+            if (this._prevEl) {
+                Css.setClassName(this._prevEl, this._options.disabledClass, !this.hasPrevious());
+            }
+            if (this._nextEl) {
+                Css.setClassName(this._nextEl, this._options.disabledClass, !this.hasNext());
+            }
         },
 
         /**
@@ -6599,54 +6479,44 @@ Ink.createModule('Ink.UI.Pagination', '1',
         _generateMarkup: function(el) {
             Css.addClassName(el, 'ink-navigation');
 
-            var ulEl,liEl,
-                hasUlAlready = false;
-            if( ( ulEl = Selector.select('.' + this._options.paginationClass,el)).length < 1 ){
+            var ulEl = Ink.s('.' + this._options.paginationClass, el);
+            var hasUlAlready = false;
+
+            if( !ulEl ){
                 ulEl = document.createElement(this._options.parentTag);
                 Css.addClassName(ulEl, this._options.paginationClass);
             } else {
                 hasUlAlready = true;
-                ulEl = ulEl[0];
             }
 
-            if (this._options.maxSize) {
-                liEl = document.createElement(this._options.childTag);
-                liEl.appendChild( genAEl(this._options.firstLabel) );
-                this._firstEl = liEl;
-                Css.addClassName(liEl, this._options.firstClass);
+            var isChevron = Css.hasClassName(ulEl, 'chevron');
+            var isDotted = Css.hasClassName(ulEl, 'dotted');
+
+            // Creates <li> elements for firstPage, nextPage, first, last, etc.
+            var createLiEl = Ink.bind(function (name, options) {
+                var liEl = document.createElement(this._options.childTag);
+                var aEl = genAEl(this._options[name + 'Label'], undefined, { wrapText: options && options.wrapText });
+                Css.addClassName(liEl, this._options[name + 'Class']);
+                liEl.appendChild(aEl);
                 ulEl.appendChild(liEl);
+                return liEl;
+            }, this);
 
-                liEl = document.createElement(this._options.childTag);
-                liEl.appendChild( genAEl(this._options.previousPageLabel) );
-                this._prevPageEl = liEl;
-                Css.addClassName(liEl, this._options.previousPageClass);
-                ulEl.appendChild(liEl);
-            }
+            if (!isDotted) {
+                if (this._options.maxSize) {
+                    this._firstEl = createLiEl('first');
+                    this._prevPageEl = createLiEl('previousPage');
+                }
 
-            liEl = document.createElement(this._options.childTag);
-            liEl.appendChild( genAEl(this._options.previousLabel) );
-            this._prevEl = liEl;
-            Css.addClassName(liEl, this._options.previousClass);
-            ulEl.appendChild(liEl);
+                if (this._options.sideButtons) {
+                    this._prevEl = createLiEl('previous', { wrapText: isChevron });
+                    this._nextEl = createLiEl('next', { wrapText: isChevron });
+                }
 
-            liEl = document.createElement(this._options.childTag);
-            liEl.appendChild( genAEl(this._options.nextLabel) );
-            this._nextEl = liEl;
-            Css.addClassName(liEl, this._options.nextClass);
-            ulEl.appendChild(liEl);
-
-            if (this._options.maxSize) {
-                liEl = document.createElement(this._options.childTag);
-                liEl.appendChild( genAEl(this._options.nextPageLabel) );
-                this._nextPageEl = liEl;
-                Css.addClassName(liEl, this._options.nextPageClass);
-                ulEl.appendChild(liEl);
-
-                liEl = document.createElement(this._options.childTag);
-                liEl.appendChild( genAEl(this._options.lastLabel) );
-                this._lastEl = liEl;
-                Css.addClassName(liEl, this._options.lastClass);
-                ulEl.appendChild(liEl);
+                if (this._options.maxSize) {
+                    this._nextPageEl = createLiEl('nextPage');
+                    this._lastEl = createLiEl('last');
+                }
             }
 
             if( !hasUlAlready ){
@@ -6684,14 +6554,14 @@ Ink.createModule('Ink.UI.Pagination', '1',
                 this.setCurrent(this._size - 1);
             }
             else if (isPrevPage || isNextPage) {
-                this.setCurrent( (isPrevPage ? -1 : 1) * this._options.maxSize, true);
+                this.setCurrent( (isPrevPage ? -1 : 1) * this._options.maxSize, true /* relative */);
             }
             else if (isPrev || isNext) {
-                this.setCurrent(isPrev ? -1 : 1, true);
+                this.setCurrent(isPrev ? -1 : 1, true /* relative */);
             }
             else {
-                var aElem = Ink.s('[data-index]', liEl);
-                var nr = parseInt( aElem.getAttribute('data-index'), 10);
+                var aElem = Selector.select('[data-index]', liEl)[0];
+                var nr = aElem && parseInt( aElem.getAttribute('data-index'), 10);
                 this.setCurrent(nr);
             }
         },
@@ -7589,7 +7459,6 @@ Ink.createModule('Ink.UI.Spy', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Do
      * @param {String|DOMElement} selector
      * @param {Object} [options] Options
      *     @param {DOMElement|String}     options.target          Target menu on where the spy will highlight the right option.
-     *     TODO @xparam {String}                [options.activeClass='active'] Class which marks the "li" as active.
      * @example
      *      <script>
      *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.Spy_1'], function( Selector, Spy ){
@@ -7679,10 +7548,10 @@ Stacker.prototype = {
      * @param [options.item='.stacker-item']     {String}   Select items in your stack
      *
      * @param [options.customBreakPoints]        {Object}   options for each breakpoint name. Use this if you have more breakpoints than Ink by default (`large`, `medium`, `small`)
-     * @param [options.customBreakpoints.(breakpoint)] {Object} 
-     * @param options.customBreakpoints.(breakpoint).max    Maximum screen size as seen in your media query
-     * @param options.customBreakpoints.(breakpoint).min    Minimum screen size as seen in your media query
-     * @param options.customBreakpoints.(breakpoint).cols   Column count for this size.
+     * @param [options.customBreakpoints.BREAKPOINT_NAME] {Object} 
+     * @param options.customBreakpoints.BREAKPOINT_NAME.max    Maximum screen size as seen in your media query
+     * @param options.customBreakpoints.BREAKPOINT_NAME.min    Minimum screen size as seen in your media query
+     * @param options.customBreakpoints.BREAKPOINT_NAME.cols   Column count for this size.
      *
      * @param [options.largeMax]                 {Number}   Upper bound of `large` breakpoint
      * @param [options.largeMin=961]             {Number}   Lower bound of `large` breakpoint
@@ -8504,7 +8373,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
      *      You can return HTML, a DOM element, or a string here.
      *      Arguments you receive: `(column, fieldData, rowIndex)`.
      *
-     *          @param {Function}  [options.processJSONField.(field_name)]
+     *          @param {Function}  [options.processJSONField.FIELD_NAME]
      *           The same as processJSONField, but for a particular field.
      *
      *     @param {Function}  [options.processJSONTotalRows]
@@ -8522,7 +8391,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
      *              return cell.element.getAttribute('data-sort-key');
      *          }
      *
-     *          @param {Function} [options.getSortKey.(field_name)]
+     *          @param {Function} [options.getSortKey.FIELD_NAME]
      *           Same as `options.getSortKey`, but for a particular field.
      *
      *     @param {Object}    [options.tdClassNames]
@@ -10178,23 +10047,24 @@ Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Common_1', 'Ink.Dom.Event_1', '
      *
      * @param {DOMElement|String} target Target element or selector of elements, to display the tooltips on.
      * @param {Object} [options]
-     *     @param [options.text='']             Text content for the tooltip.
-     *     @param [options.html='']             HTML for the tooltip. Same as above, but won't escape HTML.
-     *     @param [options.where='up']          Positioning for the tooltip. Options:
-     *          @param options.where.up/down/left/right     Place above, below, to the left of, or to the right of, the target. Show an arrow.
+     *     @param [options.text]=''             Text content for the tooltip.
+     *     @param [options.html]=''             HTML for the tooltip. Same as above, but won't escape HTML.
+     *     @param [options.where]='up'          Positioning for the tooltip. Options:
+     *          @param options.where.up         Place above, below, to the left of, or to the right of, the target. Show an arrow.
      *          @param options.where.mousemove  Place the tooltip to the bottom and to the right of the mouse when it hovers the element, and follow the mouse as it moves.
      *          @param options.where.mousefix   Place the tooltip to the bottom and to the right of the mouse when it hovers the element, keep the tooltip there motionless.
      *     
-     *     @param [options.color='']            Color of the tooltip. Options are red, orange, blue, green and black. Default is white.
-     *     @param [options.fade=0.3]            Fade time; Duration of the fade in/out effect.
-     *     @param [options.forever=0]           Set to 1/true to prevent the tooltip from being erased when the mouse hovers away from the target
-     *     @param [options.timeout=0]           Time for the tooltip to live. Useful together with [options.forever].
+     *     @param [options.color]=''            Color of the tooltip. Options are red, orange, blue, green and black. Default is white.
+     *     @param [options.fade]=0.3            Fade time; Duration of the fade in/out effect.
+     *     @param [options.forever]=0           Set to 1/true to prevent the tooltip from being erased when the mouse hovers away from the target
+     *     @param [options.timeout]=0           Time for the tooltip to live. Useful together with [options.forever].
      *     @param [options.delay]               Time the tooltip waits until it is displayed. Useful to avoid getting the attention of the user unnecessarily
-     *     @param [options.template=null]       Element or selector containing HTML to be cloned into the tooltips. Can be a hidden element, because CSS `display` is set to `block`.
-     *     @param [options.templatefield=null]  Selector within the template element to choose where the text is inserted into the tooltip. Useful when a wrapper DIV is required.
+     *     @param [options.template]=null       Element or selector containing HTML to be cloned into the tooltips. Can be a hidden element, because CSS `display` is set to `block`.
+     *     @param [options.templatefield]=null  Selector within the template element to choose where the text is inserted into the tooltip. Useful when a wrapper DIV is required.
      *
-     *     @param [options.left,top=10]         (Nitty-gritty) Spacing from the target to the tooltip, when `where` is `mousemove` or `mousefix`
-     *     @param [options.spacing=8]           (Nitty-gritty) Spacing between the tooltip and the target element, when `where` is `up`, `down`, `left`, or `right`
+     *     @param [options.left]=10         (Nitty-gritty) Spacing from the target to the tooltip, when `where` is `mousemove` or `mousefix`
+     *     @param [options.top]=10         (Nitty-gritty) Spacing from the target to the tooltip, when `where` is `mousemove` or `mousefix`
+     *     @param [options.spacing]=8           (Nitty-gritty) Spacing between the tooltip and the target element, when `where` is `up`, `down`, `left`, or `right`
      * 
      * @example
      *     <ul class="buttons">
@@ -10487,7 +10357,7 @@ Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Common_1', 'Ink.Dom.Event_1', '
          * @param bbox {BoundingBox} A bounding box like what you get from getBoundingClientRect ({top, bottom, left, right}) with pixel positions from the top left corner of the viewport.
          * @param viewport {BoundingBox} Bounding box for the viewport. "top" and "left" are omitted because these coordinates are relative to the top-left corner of the viewport so they are zero.
          *
-         * @note: we can't use getBoundingClientRect in this case because it returns {0,0,0,0} on our uncreated tooltip.
+         * @TODO: we can't use getBoundingClientRect in this case because it returns {0,0,0,0} on our uncreated tooltip.
          */
         _getWhereValueInsideViewport: function (where, bbox, viewport) {
             if (where === 'left' && bbox.left < 0) {
@@ -10933,7 +10803,9 @@ Ink.createModule('Ink.UI.Upload', '1', [
 
 
         /**
-         * @function {Public} ? Create new queue list
+         * Create new queue list
+         * @function create
+         * @public
          * @param {String} list name
          * @param {Function} function to iterate on items
          * @return {Object} list id
@@ -10963,7 +10835,9 @@ Ink.createModule('Ink.UI.Upload', '1', [
 
 
         /**
-         * @function {Public} ? Delete list
+         * Delete list
+         * @function purge
+         * @public
          * @param {String} List name
          * @return {Object} removed list
         */
@@ -10989,7 +10863,9 @@ Ink.createModule('Ink.UI.Upload', '1', [
 
 
         /**
-         * @function {Public} ? add an item to a list
+         * add an item to a list
+         * @function add
+         * @public
          * @param {String} name
          * @param {Object} item
          * @return {Number} pid
@@ -11011,7 +10887,9 @@ Ink.createModule('Ink.UI.Upload', '1', [
 
 
         /**
-         * @function {Public} ? view list
+         * View list
+         * @function view
+         * @public
          * @param {Number} list id
          * @param {Number} process id
          * @return {Object} item
@@ -11026,7 +10904,9 @@ Ink.createModule('Ink.UI.Upload', '1', [
 
 
         /**
-         * @function {Public} ? remove an item
+         * Remove an item
+         * @function remove
+         * @public
          * @param {Object} item
          * @return {Object|Boolean} removed item or false if not found
         */
