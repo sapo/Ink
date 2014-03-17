@@ -12,13 +12,14 @@ Ink.createModule('Ink.UI.Pagination', '1',
      * Function to create the pagination anchors
      *
      * @method genAel
+     * @private
      * @param  {String} inner HTML to be placed inside the anchor.
      * @return {DOMElement}  Anchor created
      */
     var genAEl = function(inner, index, options) {
         var aEl = document.createElement('a');
         aEl.setAttribute('href', '#');
-        if (index !== undefined) {
+        if (typeof index === 'number') {
             aEl.setAttribute('data-index', index);
         }
         if(options && options.wrapText) {
@@ -261,10 +262,12 @@ Ink.createModule('Ink.UI.Pagination', '1',
             var isChevron = Css.hasClassName(ulEl, 'chevron');
             var isDotted = Css.hasClassName(ulEl, 'dotted');
 
+            // Creates <li> elements for firstPage, nextPage, first, last, etc.
             var createLiEl = Ink.bind(function (name, options) {
                 var liEl = document.createElement(this._options.childTag);
                 var aEl = genAEl(this._options[name + 'Label'], undefined, { wrapText: options && options.wrapText });
                 Css.addClassName(liEl, this._options[name + 'Class']);
+                liEl.appendChild(aEl);
                 ulEl.appendChild(liEl);
                 return liEl;
             }, this);
@@ -327,8 +330,8 @@ Ink.createModule('Ink.UI.Pagination', '1',
                 this.setCurrent(isPrev ? -1 : 1, true /* relative */);
             }
             else {
-                var aElem = Ink.s('[data-index]', liEl);
-                var nr = parseInt( aElem.getAttribute('data-index'), 10);
+                var aElem = Selector.select('[data-index]', liEl)[0];
+                var nr = aElem && parseInt( aElem.getAttribute('data-index'), 10);
                 this.setCurrent(nr);
             }
         },
