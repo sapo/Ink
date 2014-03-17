@@ -1,11 +1,12 @@
-.#{$dropdown-class-name} {
+.#{$dropdown-class-name},
+.#{$navigation-class-name} {
 
-    position: relative;
-    display: inline-block;
+    // position: relative;
     
-    ul.dropdown-menu {
+    ul.dropdown-menu, 
+    ul.dropdown {
 
-        position: absolute;
+        display: inline-block;
         background: $white;
         z-index: $layer-30;
         border: 1px solid $grey-15;
@@ -112,14 +113,14 @@
                     }
 
                     &:hover {
-                        > ul.dropdown-menu {
+                        > ul.dropdown-menu, > ul.dropdown {
                             display: block;
                         }
                     }
 
                 }
 
-                > ul.dropdown-menu {
+                > ul.dropdown-menu, > ul.dropdown {
                     font-size: inherit;
                     position: absolute;
                     top: -0.36em;

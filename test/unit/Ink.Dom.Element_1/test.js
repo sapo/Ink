@@ -268,4 +268,85 @@ Ink.requireModules(['Ink.Dom.Element_1', 'Ink.Dom.Selector_1', 'Ink.Dom.Css_1'],
         equal(typeof InkElement.outerDimensions(elm)[1], 'number');
 
     });
+
+    test('inViewport', sinon.test(function () {
+        // This test occurs inside a 100 X 100 screen
+        var height = this.stub(InkElement, 'viewportHeight').returns(100);
+        var width = this.stub(InkElement, 'viewportWidth').returns(100);
+
+        var fakeEl = {};
+        var rect = fakeEl.getBoundingClientRect = this.stub();
+
+        // Off to the left
+        rect.returns({left: -101, right: -1, top: 10, bottom: 10})
+        ok(!InkElement.inViewport(fakeEl))
+        ok(rect.called, 'sanity check')
+
+        // Off to the right
+        rect.returns({left: 101, right: 200, top: 10, bottom: 10})
+        ok(!InkElement.inViewport(fakeEl))
+
+        // Off to the top
+        rect.returns({top: -101, bottom: -1, left: 10, right: 10})
+        ok(!InkElement.inViewport(fakeEl))
+
+        // Off to the bottom
+        rect.returns({top: 101, bottom: 200, left: 10, right: 10})
+        ok(!InkElement.inViewport(fakeEl))
+
+        // Partially inside from the left
+        rect.returns({left: -101, right: 1, top: 10, bottom: 10})
+        ok(InkElement.inViewport(fakeEl, true))
+
+        // Partially inside from the right
+        rect.returns({left: 99, right: 200, top: 10, bottom: 10})
+        ok(InkElement.inViewport(fakeEl, true))
+
+        // Partially inside from the top
+        rect.returns({top: -101, bottom: 1, left: 10, right: 10})
+        ok(InkElement.inViewport(fakeEl, true))
+
+        // Partially inside from the bottom
+        rect.returns({top: 99, bottom: 200, left: 10, right: 10})
+        ok(InkElement.inViewport(fakeEl, true))
+
+        function dumbRect(x, y) {
+            return { left: x, right: x, top: y, bottom: y };
+        }
+
+        // Try with partial = false, then with partial = true.
+        for (var partial = false; partial < 2; partial += 1) {
+            partial = !!partial;
+
+
+            ok(true, 'Testing with opts.partial = ' + partial + ', within the margin');
+
+            rect.returns(dumbRect(-3, 3))
+            ok(InkElement.inViewport(fakeEl, { margin: 4, partial: partial }), 'inside from the left, because within margin')
+
+            rect.returns(dumbRect(103, 3))
+            ok(InkElement.inViewport(fakeEl, { margin: 4, partial: partial }), 'inside from the right, because within margin')
+
+            rect.returns(dumbRect(3, -3))
+            ok(InkElement.inViewport(fakeEl, { margin: 4, partial: partial }), 'inside from the top, because within margin')
+
+            rect.returns(dumbRect(3, 103))
+            ok(InkElement.inViewport(fakeEl, { margin: 4, partial: partial }), 'inside from the bottom, because within margin')
+
+
+            ok(true, 'Testing with opts.partial = ' + partial + ', outside the margin');
+
+            rect.returns(dumbRect(-3, 3))
+            ok(!InkElement.inViewport(fakeEl, { margin: 2, partial: partial }), 'outside from the left, because outside margin')
+
+            rect.returns(dumbRect(103, 3))
+            ok(!InkElement.inViewport(fakeEl, { margin: 2, partial: partial }), 'outside from the right, because outside margin')
+
+            rect.returns(dumbRect(3, -3))
+            ok(!InkElement.inViewport(fakeEl, { margin: 2, partial: partial }), 'outside from the top, because outside margin')
+
+            rect.returns(dumbRect(3, 103))
+            ok(!InkElement.inViewport(fakeEl, { margin: 2, partial: partial }), 'outside from the bottom, because outside margin')
+        }
+    }));
 });
