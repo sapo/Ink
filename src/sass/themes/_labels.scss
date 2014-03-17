@@ -1,42 +1,37 @@
 .#{$label-class-name} {
     color: $white;
-    font-weight: bold;
+    font-weight: 300;
     @include border-radius($border-radius);
-    @include text-shadow(rgba(0, 0, 0, 0.25) 0 1px 0);
 
-    &.success { 
-        background-color: $success-bg;
-        &.invert {
-            color: $success-bg;
-            background-color: transparent;
-            @include text-shadow(none);
-        }
+    &.white {
+        background: $white;
+        color: $text-color;
+    }
+    &.black {
+        background: $black;
+    }
+    &.orange {
+        background: $orange;
+    }
+    &.red {
+        background: $red;
+    }
+    &.green {
+        background: $green;
+    }
+    &.blue {
+        background: $blue;
+    }
+    &.yellow {
+        background: $yellow;
+        color: $text-color;
+    }
+    &.grey {
+        background: $grey-50;
     }
 
-    &.warning { 
-        background-color: $warning-bg; 
-        &.invert {
-            color: $warning-bg;
-            background-color: transparent;
-            @include text-shadow(none);
-        }
+    & + .#{$label-class-name} {
+        margin-left: 0.2em;
     }
 
-    &.error { 
-        background-color: $error-bg;
-        &.invert {
-            color: $error-bg;
-            background-color: transparent;
-            @include text-shadow(none);
-        }
-    }
-    
-    &.info { 
-        background-color: $info-bg;
-        &.invert {
-            color: $info-bg;
-            background-color: transparent;
-            @include text-shadow(none);
-        }
-    }
 }
