@@ -671,7 +671,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         inViewport: function (element, opts) {
             var dims = rect(Ink.i(element));
             if (typeof opts === 'boolean') {
-                opts = {partial: opts, margin: 0}
+                opts = {partial: opts, margin: 0};
             }
             opts = Ink.extendObj({ partial: false, margin: 0}, opts || {});
             if (opts.partial) {
