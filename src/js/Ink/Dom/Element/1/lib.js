@@ -281,6 +281,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @sample Ink_Dom_Element_1_hasAttribute.html
          */
         hasAttribute: function(elm, attr){
+            elm = Ink.i(elm);
             return elm.hasAttribute ? elm.hasAttribute(attr) : !!elm.getAttribute(attr);
         },
         /**
