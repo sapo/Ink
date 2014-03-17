@@ -3,6 +3,7 @@
  * Execute code only when the DOM is loaded.
  * @version 1
  */
+ 
 Ink.createModule('Ink.Dom.Loaded', 1, [], function() {
 
     'use strict';
