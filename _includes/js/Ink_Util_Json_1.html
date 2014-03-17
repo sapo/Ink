@@ -1,29 +1,30 @@
 
 
     
+        <section>
         <h1 class="fw-300">Ink.Util.Json_1 </h1>
     
 
-    
-
-    
-
-    
-
-
-    
 
 
     
 
     
 
+    
 
 
     
-        <section>
+
 
     
+
+    
+
+
+
+    
+            
     <table class="props bottom-space">
         
         
@@ -69,8 +70,7 @@
                 <td>
                     
 
-                    <p>serializes a JSON object into a string.</p>
-
+                    serializes a JSON object into a string.
 
                     
                     
@@ -82,39 +82,43 @@
     
 
     
+</section>
 
 
-    
-        <div class="text"><p>Use this class to convert JSON strings to JavaScript objects
-<code>(Json.parse)</code> and also to do the opposite operation <code>(Json.stringify)</code>.
+
+    <div class="text">Use this class to convert JSON strings to JavaScript objects
+`(Json.parse)` and also to do the opposite operation `(Json.stringify)`.
 Internally, the standard JSON implementation is used if available
-Otherwise, the functions mimic the standard implementation.</p>
-<p>Here&#39;s how to produce JSON from an existing object:</p>
-<pre><code> Ink.requireModules([&#39;Ink.Util.Json_1&#39;], function (Json) {
-     var obj = {
-         key1: &#39;value1&#39;,
-         key2: &#39;value2&#39;,
-         keyArray: [&#39;arrayValue1&#39;, &#39;arrayValue2&#39;, &#39;arrayValue3&#39;]
-     };
-     Json.stringify(obj);  // The above object as a JSON string
- });
-</code></pre><p>And here is how to parse JSON:</p>
-<pre><code> Ink.requireModules([&#39;Ink.Util.Json_1&#39;], function (Json) {
-     var source = &#39;{&quot;key&quot;: &quot;value&quot;, &quot;array&quot;: [true, null, false]}&#39;;
-     Json.parse(source);  // The above JSON string as an object
- });
-</code></pre></div>
-    
+Otherwise, the functions mimic the standard implementation.
 
-    
-    
+Here's how to produce JSON from an existing object:
 
+     Ink.requireModules(['Ink.Util.Json_1'], function (Json) {
+         var obj = {
+             key1: 'value1',
+             key2: 'value2',
+             keyArray: ['arrayValue1', 'arrayValue2', 'arrayValue3']
+         };
+         Json.stringify(obj);  // The above object as a JSON string
+     });
+
+And here is how to parse JSON:
+
+     Ink.requireModules(['Ink.Util.Json_1'], function (Json) {
+         var source = '{"key": "value", "array": [true, null, false]}';
+         Json.parse(source);  // The above JSON string as an object
+     });</div>
 
 
-    
-        <div class="box box-function">
 
-    <h2><a name="Ink_Util_Json_1-Ink_Util_Json-parse">
+
+
+
+
+
+    <section class="box box-function">
+
+    <h2>
     
         
             Ink.Util.Json.parse
@@ -126,7 +130,7 @@ Otherwise, the functions mimic the standard implementation.</p>
             <i>method</i>
         
     
-    </a></h2>
+    </h2>
 
     
     
@@ -175,7 +179,6 @@ Otherwise, the functions mimic the standard implementation.</p>
     
 <p class="example-title">Example</p>
   
-<div class="example bottom-space">
 {% highlight html %}{% raw %}
 Simple example:
 
@@ -188,19 +191,17 @@ Simple example:
              }
          }); // -> object: {a: 'NO NUMBERS', numbers: false}
 {% endraw %}{% endhighlight %}
-</div>
 
 
 
 
     
 
-</div>
+</section>
 
-    
-        <div class="box box-function">
+    <section class="box box-function">
 
-    <h2><a name="Ink_Util_Json_1-Ink_Util_Json-stringify">
+    <h2>
     
         
             Ink.Util.Json.stringify
@@ -212,7 +213,7 @@ Simple example:
             <i>method</i>
         
     
-    </a></h2>
+    </h2>
 
     
     
@@ -271,30 +272,25 @@ Simple example:
     
 
     
-        <span class="text"><p>serializes a JSON object into a string.</p>
-</span>
+        <p class="text">serializes a JSON object into a string.</p>
     
 
     
 <p class="example-title">Example</p>
   
-<div class="example bottom-space">
 {% highlight html %}{% raw %}
      Json.stringify({a:1.23}); // -> string: '{"a": 1.23}'
 {% endraw %}{% endhighlight %}
-</div>
 
 
 
 
     
 
-</div>
-
-    
-
-    
 </section>
+
+
+
     
 
     

@@ -1,8 +1,11 @@
 
 
     
+        <section>
         <h1 class="fw-300">Ink.UI.FormValidator_2 <small>version: 2</small></h1>
     
+
+
 
     
 
@@ -170,9 +173,7 @@
 
 
     
-        <section>
-
-    
+            
     <table class="props bottom-space">
         
         
@@ -218,8 +219,7 @@
                 <td>
                     
 
-                    <p>Add to the I18n dictionary. See <code>Ink.Util.I18n.append()</code> documentation.</p>
-
+                    Add to the I18n dictionary. See `Ink.Util.I18n.append()` documentation.
 
                     
                     
@@ -238,9 +238,8 @@
                 <td>
                     
 
-                    <p>Function that searches for the elements of the form, based in the
-this._options.searchFor configuration.</p>
-
+                    Function that searches for the elements of the form, based in the
+this._options.searchFor configuration.
 
                     
                     
@@ -259,8 +258,7 @@ this._options.searchFor configuration.</p>
                 <td>
                     
 
-                    <p>Get the i18n object in charge of the error messages</p>
-
+                    Get the i18n object in charge of the error messages
 
                     
                     
@@ -279,8 +277,7 @@ this._options.searchFor configuration.</p>
                 <td>
                     
 
-                    <p>Method used to get the existing defined validation functions</p>
-
+                    Method used to get the existing defined validation functions
 
                     
                     
@@ -299,8 +296,7 @@ this._options.searchFor configuration.</p>
                 <td>
                     
 
-                    <p>Sets the I18n object for validation error messages</p>
-
+                    Sets the I18n object for validation error messages
 
                     
                     
@@ -319,9 +315,9 @@ this._options.searchFor configuration.</p>
                 <td>
                     
 
-                    <p>Sets the language of the error messages. pt_PT and en_US are available, but you can add new languages by using append()</p>
-<p>See the <code>Ink.Util.I18n.lang()</code> setter</p>
+                    Sets the language of the error messages. pt_PT and en_US are available, but you can add new languages by using append()
 
+See the `Ink.Util.I18n.lang()` setter
 
                     
                     
@@ -340,8 +336,7 @@ this._options.searchFor configuration.</p>
                 <td>
                     
 
-                    <p>Method used to set validation functions (either custom or ovewrite the existent ones)</p>
-
+                    Method used to set validation functions (either custom or ovewrite the existent ones)
 
                     
                     
@@ -360,11 +355,10 @@ this._options.searchFor configuration.</p>
                 <td>
                     
 
-                    <p>Runs the validate function of each FormElement in the this._formElements
+                    Runs the validate function of each FormElement in the this._formElements
 object.
 Also, based on the this._options.beforeValidation, this._options.onError
-and this._options.onSuccess, this callbacks are executed when defined.</p>
-
+and this._options.onSuccess, this callbacks are executed when defined.
 
                     
                     
@@ -376,19 +370,20 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
     
 
     
-
-
-    
-
-    
-    
+</section>
 
 
 
-    
-        <div class="box box-function">
 
-    <h2><a name="Ink_UI_FormValidator_2-Ink_UI_FormValidator_2-FormValidator_2">
+
+
+
+
+
+
+    <section class="box box-function">
+
+    <h2>
     
         Ink.UI.FormValidator_2
     
@@ -396,7 +391,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
     
         <i>constructor</i>
     
-    </a></h2>
+    </h2>
 
     
     
@@ -540,25 +535,22 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
     
 <p class="example-title">Example</p>
   
-<div class="example bottom-space">
 {% highlight html %}{% raw %}
     Ink.requireModules( ['Ink.UI.FormValidator_2'], function( FormValidator ){
         var myValidator = new FormValidator( '#my-form' );
     });
 {% endraw %}{% endhighlight %}
-</div>
 
 
 
 
     
 
-</div>
+</section>
 
-    
-        <div class="box box-function">
+    <section class="box box-function">
 
-    <h2><a name="Ink_UI_FormValidator_2-Ink_UI_FormValidator_2-AppendI18n">
+    <h2>
     
         
             Ink.UI.FormValidator_2.AppendI18n
@@ -570,7 +562,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
             <i>method</i>
         
     
-    </a></h2>
+    </h2>
 
     
     
@@ -580,8 +572,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
     
 
     
-        <span class="text"><p>Add to the I18n dictionary. See <code>Ink.Util.I18n.append()</code> documentation.</p>
-</span>
+        <p class="text">Add to the I18n dictionary. See `Ink.Util.I18n.append()` documentation.</p>
     
 
     
@@ -589,12 +580,11 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
 
     
 
-</div>
+</section>
 
-    
-        <div class="box box-function">
+    <section class="box box-function">
 
-    <h2><a name="Ink_UI_FormValidator_2-Ink_UI_FormValidator_2-getElements">
+    <h2>
     
         
             Ink.UI.FormValidator_2.getElements
@@ -606,7 +596,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
             <i>method</i>
         
     
-    </a></h2>
+    </h2>
 
     
     
@@ -626,9 +616,8 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
     
 
     
-        <span class="text"><p>Function that searches for the elements of the form, based in the
+        <p class="text">Function that searches for the elements of the form, based in the
 this._options.searchFor configuration.</p>
-</span>
     
 
     
@@ -636,12 +625,11 @@ this._options.searchFor configuration.</p>
 
     
 
-</div>
+</section>
 
-    
-        <div class="box box-function">
+    <section class="box box-function">
 
-    <h2><a name="Ink_UI_FormValidator_2-Ink_UI_FormValidator_2-getI18n">
+    <h2>
     
         
             Ink.UI.FormValidator_2.getI18n
@@ -653,7 +641,7 @@ this._options.searchFor configuration.</p>
             <i>method</i>
         
     
-    </a></h2>
+    </h2>
 
     
     
@@ -673,8 +661,7 @@ this._options.searchFor configuration.</p>
     
 
     
-        <span class="text"><p>Get the i18n object in charge of the error messages</p>
-</span>
+        <p class="text">Get the i18n object in charge of the error messages</p>
     
 
     
@@ -682,12 +669,11 @@ this._options.searchFor configuration.</p>
 
     
 
-</div>
+</section>
 
-    
-        <div class="box box-function">
+    <section class="box box-function">
 
-    <h2><a name="Ink_UI_FormValidator_2-Ink_UI_FormValidator_2-getRules">
+    <h2>
     
         
             Ink.UI.FormValidator_2.getRules
@@ -699,7 +685,7 @@ this._options.searchFor configuration.</p>
             <i>method</i>
         
     
-    </a></h2>
+    </h2>
 
     
     
@@ -719,8 +705,7 @@ this._options.searchFor configuration.</p>
     
 
     
-        <span class="text"><p>Method used to get the existing defined validation functions</p>
-</span>
+        <p class="text">Method used to get the existing defined validation functions</p>
     
 
     
@@ -728,12 +713,11 @@ this._options.searchFor configuration.</p>
 
     
 
-</div>
+</section>
 
-    
-        <div class="box box-function">
+    <section class="box box-function">
 
-    <h2><a name="Ink_UI_FormValidator_2-Ink_UI_FormValidator_2-setI18n">
+    <h2>
     
         
             Ink.UI.FormValidator_2.setI18n
@@ -745,7 +729,7 @@ this._options.searchFor configuration.</p>
             <i>method</i>
         
     
-    </a></h2>
+    </h2>
 
     
     
@@ -777,8 +761,7 @@ this._options.searchFor configuration.</p>
     
 
     
-        <span class="text"><p>Sets the I18n object for validation error messages</p>
-</span>
+        <p class="text">Sets the I18n object for validation error messages</p>
     
 
     
@@ -786,12 +769,11 @@ this._options.searchFor configuration.</p>
 
     
 
-</div>
+</section>
 
-    
-        <div class="box box-function">
+    <section class="box box-function">
 
-    <h2><a name="Ink_UI_FormValidator_2-Ink_UI_FormValidator_2-setLanguage">
+    <h2>
     
         
             Ink.UI.FormValidator_2.setLanguage
@@ -803,7 +785,7 @@ this._options.searchFor configuration.</p>
             <i>method</i>
         
     
-    </a></h2>
+    </h2>
 
     
     
@@ -833,9 +815,9 @@ this._options.searchFor configuration.</p>
     
 
     
-        <span class="text"><p>Sets the language of the error messages. pt_PT and en_US are available, but you can add new languages by using append()</p>
-<p>See the <code>Ink.Util.I18n.lang()</code> setter</p>
-</span>
+        <p class="text">Sets the language of the error messages. pt_PT and en_US are available, but you can add new languages by using append()
+
+See the `Ink.Util.I18n.lang()` setter</p>
     
 
     
@@ -843,12 +825,11 @@ this._options.searchFor configuration.</p>
 
     
 
-</div>
+</section>
 
-    
-        <div class="box box-function">
+    <section class="box box-function">
 
-    <h2><a name="Ink_UI_FormValidator_2-Ink_UI_FormValidator_2-setRule">
+    <h2>
     
         
             Ink.UI.FormValidator_2.setRule
@@ -860,7 +841,7 @@ this._options.searchFor configuration.</p>
             <i>method</i>
         
     
-    </a></h2>
+    </h2>
 
     
     
@@ -926,8 +907,7 @@ this._options.searchFor configuration.</p>
     
 
     
-        <span class="text"><p>Method used to set validation functions (either custom or ovewrite the existent ones)</p>
-</span>
+        <p class="text">Method used to set validation functions (either custom or ovewrite the existent ones)</p>
     
 
     
@@ -935,12 +915,11 @@ this._options.searchFor configuration.</p>
 
     
 
-</div>
+</section>
 
-    
-        <div class="box box-function">
+    <section class="box box-function">
 
-    <h2><a name="Ink_UI_FormValidator_2-Ink_UI_FormValidator_2-validate">
+    <h2>
     
         
             Ink.UI.FormValidator_2.validate
@@ -952,7 +931,7 @@ this._options.searchFor configuration.</p>
             <i>method</i>
         
     
-    </a></h2>
+    </h2>
 
     
     
@@ -992,11 +971,10 @@ this._options.searchFor configuration.</p>
     
 
     
-        <span class="text"><p>Runs the validate function of each FormElement in the this._formElements
+        <p class="text">Runs the validate function of each FormElement in the this._formElements
 object.
 Also, based on the this._options.beforeValidation, this._options.onError
 and this._options.onSuccess, this callbacks are executed when defined.</p>
-</span>
     
 
     
@@ -1004,18 +982,16 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
 
     
 
-</div>
-
-    
-
-    
 </section>
+
+
+
     
 
     
-        <div class="box box-function">
+        <section class="box box-function">
 
-    <h2><a name="Ink_UI_FormValidator_2-alpha">
+    <h2>
     
         
             Ink.UI.FormValidator_2.alpha
@@ -1027,7 +1003,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
             <i>function</i>
         
     
-    </a></h2>
+    </h2>
 
     
     
@@ -1086,8 +1062,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
     
 
     
-        <span class="text"><p>Checks if the value only contains alphabetical values.</p>
-</span>
+        <p class="text">Checks if the value only contains alphabetical values.</p>
     
 
     
@@ -1095,12 +1070,11 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
 
     
 
-</div>
-
+</section>
     
-        <div class="box box-function">
+        <section class="box box-function">
 
-    <h2><a name="Ink_UI_FormValidator_2-alpha_dashes">
+    <h2>
     
         
             Ink.UI.FormValidator_2.alpha_dashes
@@ -1112,7 +1086,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
             <i>function</i>
         
     
-    </a></h2>
+    </h2>
 
     
     
@@ -1154,8 +1128,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
     
 
     
-        <span class="text"><p>Checks if the value only contains alphabetical, dash or underscore characteres.</p>
-</span>
+        <p class="text">Checks if the value only contains alphabetical, dash or underscore characteres.</p>
     
 
     
@@ -1163,12 +1136,11 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
 
     
 
-</div>
-
+</section>
     
-        <div class="box box-function">
+        <section class="box box-function">
 
-    <h2><a name="Ink_UI_FormValidator_2-alpha_numeric">
+    <h2>
     
         
             Ink.UI.FormValidator_2.alpha_numeric
@@ -1180,7 +1152,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
             <i>function</i>
         
     
-    </a></h2>
+    </h2>
 
     
     
@@ -1222,8 +1194,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
     
 
     
-        <span class="text"><p>Checks if the value only contains alphabetical and numerical characters.</p>
-</span>
+        <p class="text">Checks if the value only contains alphabetical and numerical characters.</p>
     
 
     
@@ -1231,12 +1202,11 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
 
     
 
-</div>
-
+</section>
     
-        <div class="box box-function">
+        <section class="box box-function">
 
-    <h2><a name="Ink_UI_FormValidator_2-color">
+    <h2>
     
         
             Ink.UI.FormValidator_2.color
@@ -1248,7 +1218,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
             <i>function</i>
         
     
-    </a></h2>
+    </h2>
 
     
     
@@ -1290,8 +1260,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
     
 
     
-        <span class="text"><p>Checks if the value is a valid color.</p>
-</span>
+        <p class="text">Checks if the value is a valid color.</p>
     
 
     
@@ -1299,12 +1268,11 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
 
     
 
-</div>
-
+</section>
     
-        <div class="box box-function">
+        <section class="box box-function">
 
-    <h2><a name="Ink_UI_FormValidator_2-credit_card">
+    <h2>
     
         
             Ink.UI.FormValidator_2.credit_card
@@ -1316,7 +1284,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
             <i>function</i>
         
     
-    </a></h2>
+    </h2>
 
     
     
@@ -1375,8 +1343,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
     
 
     
-        <span class="text"><p>Checks if it&#39;s a valid credit card.</p>
-</span>
+        <p class="text">Checks if it's a valid credit card.</p>
     
 
     
@@ -1384,12 +1351,11 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
 
     
 
-</div>
-
+</section>
     
-        <div class="box box-function">
+        <section class="box box-function">
 
-    <h2><a name="Ink_UI_FormValidator_2-date">
+    <h2>
     
         
             Ink.UI.FormValidator_2.date
@@ -1401,7 +1367,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
             <i>function</i>
         
     
-    </a></h2>
+    </h2>
 
     
     
@@ -1460,8 +1426,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
     
 
     
-        <span class="text"><p>Checks if the value is a valid date.</p>
-</span>
+        <p class="text">Checks if the value is a valid date.</p>
     
 
     
@@ -1469,12 +1434,11 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
 
     
 
-</div>
-
+</section>
     
-        <div class="box box-function">
+        <section class="box box-function">
 
-    <h2><a name="Ink_UI_FormValidator_2-decimal">
+    <h2>
     
         
             Ink.UI.FormValidator_2.decimal
@@ -1486,7 +1450,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
             <i>function</i>
         
     
-    </a></h2>
+    </h2>
 
     
     
@@ -1579,8 +1543,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
     
 
     
-        <span class="text"><p>Checks if the value is a valid decimal number.</p>
-</span>
+        <p class="text">Checks if the value is a valid decimal number.</p>
     
 
     
@@ -1588,12 +1551,11 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
 
     
 
-</div>
-
+</section>
     
-        <div class="box box-function">
+        <section class="box box-function">
 
-    <h2><a name="Ink_UI_FormValidator_2-digit">
+    <h2>
     
         
             Ink.UI.FormValidator_2.digit
@@ -1605,7 +1567,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
             <i>function</i>
         
     
-    </a></h2>
+    </h2>
 
     
     
@@ -1647,8 +1609,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
     
 
     
-        <span class="text"><p>Checks if the value is a digit (an integer of length = 1).</p>
-</span>
+        <p class="text">Checks if the value is a digit (an integer of length = 1).</p>
     
 
     
@@ -1656,12 +1617,11 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
 
     
 
-</div>
-
+</section>
     
-        <div class="box box-function">
+        <section class="box box-function">
 
-    <h2><a name="Ink_UI_FormValidator_2-email">
+    <h2>
     
         
             Ink.UI.FormValidator_2.email
@@ -1673,7 +1633,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
             <i>function</i>
         
     
-    </a></h2>
+    </h2>
 
     
     
@@ -1715,8 +1675,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
     
 
     
-        <span class="text"><p>Checks if the value has a valid e-mail address</p>
-</span>
+        <p class="text">Checks if the value has a valid e-mail address</p>
     
 
     
@@ -1724,12 +1683,11 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
 
     
 
-</div>
-
+</section>
     
-        <div class="box box-function">
+        <section class="box box-function">
 
-    <h2><a name="Ink_UI_FormValidator_2-exact_length">
+    <h2>
     
         
             Ink.UI.FormValidator_2.exact_length
@@ -1741,7 +1699,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
             <i>function</i>
         
     
-    </a></h2>
+    </h2>
 
     
     
@@ -1800,8 +1758,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
     
 
     
-        <span class="text"><p>Checks if the value has an exact length</p>
-</span>
+        <p class="text">Checks if the value has an exact length</p>
     
 
     
@@ -1809,12 +1766,11 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
 
     
 
-</div>
-
+</section>
     
-        <div class="box box-function">
+        <section class="box box-function">
 
-    <h2><a name="Ink_UI_FormValidator_2-getElement">
+    <h2>
     
         
             Ink.UI.FormValidator_2.getElement
@@ -1826,7 +1782,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
             <i>function</i>
         
     
-    </a></h2>
+    </h2>
 
     
     
@@ -1846,8 +1802,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
     
 
     
-        <span class="text"><p>Function that returns the DOM element related to it.</p>
-</span>
+        <p class="text">Function that returns the DOM element related to it.</p>
     
 
     
@@ -1855,12 +1810,11 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
 
     
 
-</div>
-
+</section>
     
-        <div class="box box-function">
+        <section class="box box-function">
 
-    <h2><a name="Ink_UI_FormValidator_2-getErrors">
+    <h2>
     
         
             Ink.UI.FormValidator_2.getErrors
@@ -1872,7 +1826,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
             <i>function</i>
         
     
-    </a></h2>
+    </h2>
 
     
     
@@ -1892,8 +1846,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
     
 
     
-        <span class="text"><p>Function that returns the constructed errors object.</p>
-</span>
+        <p class="text">Function that returns the constructed errors object.</p>
     
 
     
@@ -1901,12 +1854,11 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
 
     
 
-</div>
-
+</section>
     
-        <div class="box box-function">
+        <section class="box box-function">
 
-    <h2><a name="Ink_UI_FormValidator_2-getFormElements">
+    <h2>
     
         
             Ink.UI.FormValidator_2.getFormElements
@@ -1918,7 +1870,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
             <i>function</i>
         
     
-    </a></h2>
+    </h2>
 
     
     
@@ -1938,8 +1890,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
     
 
     
-        <span class="text"><p>Get other elements in the same form.</p>
-</span>
+        <p class="text">Get other elements in the same form.</p>
     
 
     
@@ -1947,12 +1898,11 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
 
     
 
-</div>
-
+</section>
     
-        <div class="box box-function">
+        <section class="box box-function">
 
-    <h2><a name="Ink_UI_FormValidator_2-getValue">
+    <h2>
     
         
             Ink.UI.FormValidator_2.getValue
@@ -1964,7 +1914,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
             <i>function</i>
         
     
-    </a></h2>
+    </h2>
 
     
     
@@ -1984,8 +1934,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
     
 
     
-        <span class="text"><p>Function to retrieve the element&#39;s value</p>
-</span>
+        <p class="text">Function to retrieve the element's value</p>
     
 
     
@@ -1993,12 +1942,11 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
 
     
 
-</div>
-
+</section>
     
-        <div class="box box-function">
+        <section class="box box-function">
 
-    <h2><a name="Ink_UI_FormValidator_2-integer">
+    <h2>
     
         
             Ink.UI.FormValidator_2.integer
@@ -2010,7 +1958,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
             <i>function</i>
         
     
-    </a></h2>
+    </h2>
 
     
     
@@ -2069,8 +2017,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
     
 
     
-        <span class="text"><p>Checks if the value is a valid integer.</p>
-</span>
+        <p class="text">Checks if the value is a valid integer.</p>
     
 
     
@@ -2078,12 +2025,11 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
 
     
 
-</div>
-
+</section>
     
-        <div class="box box-function">
+        <section class="box box-function">
 
-    <h2><a name="Ink_UI_FormValidator_2-ip">
+    <h2>
     
         
             Ink.UI.FormValidator_2.ip
@@ -2095,7 +2041,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
             <i>function</i>
         
     
-    </a></h2>
+    </h2>
 
     
     
@@ -2154,8 +2100,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
     
 
     
-        <span class="text"><p>Checks if the value is a valid IP. Supports ipv4 and ipv6</p>
-</span>
+        <p class="text">Checks if the value is a valid IP. Supports ipv4 and ipv6</p>
     
 
     
@@ -2163,12 +2108,11 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
 
     
 
-</div>
-
+</section>
     
-        <div class="box box-function">
+        <section class="box box-function">
 
-    <h2><a name="Ink_UI_FormValidator_2-max_length">
+    <h2>
     
         
             Ink.UI.FormValidator_2.max_length
@@ -2180,7 +2124,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
             <i>function</i>
         
     
-    </a></h2>
+    </h2>
 
     
     
@@ -2239,8 +2183,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
     
 
     
-        <span class="text"><p>Checks if the value has a maximum length</p>
-</span>
+        <p class="text">Checks if the value has a maximum length</p>
     
 
     
@@ -2248,12 +2191,11 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
 
     
 
-</div>
-
+</section>
     
-        <div class="box box-function">
+        <section class="box box-function">
 
-    <h2><a name="Ink_UI_FormValidator_2-min_length">
+    <h2>
     
         
             Ink.UI.FormValidator_2.min_length
@@ -2265,7 +2207,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
             <i>function</i>
         
     
-    </a></h2>
+    </h2>
 
     
     
@@ -2324,8 +2266,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
     
 
     
-        <span class="text"><p>Checks if the value has a minimum length</p>
-</span>
+        <p class="text">Checks if the value has a minimum length</p>
     
 
     
@@ -2333,12 +2274,11 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
 
     
 
-</div>
-
+</section>
     
-        <div class="box box-function">
+        <section class="box box-function">
 
-    <h2><a name="Ink_UI_FormValidator_2-numeric">
+    <h2>
     
         
             Ink.UI.FormValidator_2.numeric
@@ -2350,7 +2290,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
             <i>function</i>
         
     
-    </a></h2>
+    </h2>
 
     
     
@@ -2443,8 +2383,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
     
 
     
-        <span class="text"><p>Checks if it is a numeric value.</p>
-</span>
+        <p class="text">Checks if it is a numeric value.</p>
     
 
     
@@ -2452,12 +2391,11 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
 
     
 
-</div>
-
+</section>
     
-        <div class="box box-function">
+        <section class="box box-function">
 
-    <h2><a name="Ink_UI_FormValidator_2-phone">
+    <h2>
     
         
             Ink.UI.FormValidator_2.phone
@@ -2469,7 +2407,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
             <i>function</i>
         
     
-    </a></h2>
+    </h2>
 
     
     
@@ -2528,8 +2466,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
     
 
     
-        <span class="text"><p>Checks if the value is a valid phone number. Supports several countries, based in the Ink.Util.Validator class.</p>
-</span>
+        <p class="text">Checks if the value is a valid phone number. Supports several countries, based in the Ink.Util.Validator class.</p>
     
 
     
@@ -2537,12 +2474,11 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
 
     
 
-</div>
-
+</section>
     
-        <div class="box box-function">
+        <section class="box box-function">
 
-    <h2><a name="Ink_UI_FormValidator_2-range">
+    <h2>
     
         
             Ink.UI.FormValidator_2.range
@@ -2554,7 +2490,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
             <i>function</i>
         
     
-    </a></h2>
+    </h2>
 
     
     
@@ -2647,8 +2583,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
     
 
     
-        <span class="text"><p>Checks if the value is in a specific range of values. The parameters after the first one are used for specifying the range, and are similar in function to python&#39;s range() function.</p>
-</span>
+        <p class="text">Checks if the value is in a specific range of values. The parameters after the first one are used for specifying the range, and are similar in function to python's range() function.</p>
     
 
     
@@ -2656,12 +2591,11 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
 
     
 
-</div>
-
+</section>
     
-        <div class="box box-function">
+        <section class="box box-function">
 
-    <h2><a name="Ink_UI_FormValidator_2-required">
+    <h2>
     
         
             Ink.UI.FormValidator_2.required
@@ -2673,7 +2607,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
             <i>function</i>
         
     
-    </a></h2>
+    </h2>
 
     
     
@@ -2715,9 +2649,8 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
     
 
     
-        <span class="text"><p>Checks if the value is actually defined and is not empty
+        <p class="text">Checks if the value is actually defined and is not empty
 @</p>
-</span>
     
 
     
@@ -2725,12 +2658,11 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
 
     
 
-</div>
-
+</section>
     
-        <div class="box box-function">
+        <section class="box box-function">
 
-    <h2><a name="Ink_UI_FormValidator_2-url">
+    <h2>
     
         
             Ink.UI.FormValidator_2.url
@@ -2742,7 +2674,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
             <i>function</i>
         
     
-    </a></h2>
+    </h2>
 
     
     
@@ -2801,8 +2733,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
     
 
     
-        <span class="text"><p>Checks if the value has a valid URL</p>
-</span>
+        <p class="text">Checks if the value has a valid URL</p>
     
 
     
@@ -2810,12 +2741,11 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
 
     
 
-</div>
-
+</section>
     
-        <div class="box box-function">
+        <section class="box box-function">
 
-    <h2><a name="Ink_UI_FormValidator_2-validate">
+    <h2>
     
         
             Ink.UI.FormValidator_2.validate
@@ -2827,7 +2757,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
             <i>function</i>
         
     
-    </a></h2>
+    </h2>
 
     
     
@@ -2847,9 +2777,8 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
     
 
     
-        <span class="text"><p>Function used to validate the element based on the rules defined.
+        <p class="text">Function used to validate the element based on the rules defined.
 It parses the rules defined in the _options.rules property.</p>
-</span>
     
 
     
@@ -2857,8 +2786,7 @@ It parses the rules defined in the _options.rules property.</p>
 
     
 
-</div>
-
+</section>
     
 
     

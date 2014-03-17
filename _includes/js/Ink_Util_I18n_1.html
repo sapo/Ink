@@ -1,29 +1,30 @@
 
 
     
+        <section>
         <h1 class="fw-300">Ink.Util.I18n_1 </h1>
     
 
-    
-
-    
-
-    
-
-
-    
 
 
     
 
     
 
+    
 
 
     
-        <section>
+
 
     
+
+    
+
+
+
+    
+            
     <table class="props bottom-space">
         
         
@@ -69,29 +70,8 @@
                 <td>
                     
 
-                    <p>Returns an alias to <code>text()</code>, for convenience. The resulting function is
-traditionally assigned to &quot;_&quot;.</p>
-
-
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Util_I18n_1-Ink_Util_I18n-append">
-                        
-                            .append
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    <p>Adds translation strings for this helper to use.</p>
-
+                    Returns an alias to `text()`, for convenience. The resulting function is
+traditionally assigned to "_".
 
                     
                     
@@ -110,8 +90,26 @@ traditionally assigned to &quot;_&quot;.</p>
                 <td>
                     
 
-                    <p>Reset I18n global state (global dictionaries, and default language for instances)</p>
+                    Adds translation strings for this helper to use.
 
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Util_I18n_1-Ink_Util_I18n-append">
+                        
+                            .append
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Reset I18n global state (global dictionaries, and default language for instances)
 
                     
                     
@@ -130,27 +128,7 @@ traditionally assigned to &quot;_&quot;.</p>
                 <td>
                     
 
-                    <p>Return an arbitrary key from the current language dictionary</p>
-
-
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Util_I18n_1-Ink_Util_I18n-lang">
-                        
-                            .lang
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    
+                    Return an arbitrary key from the current language dictionary
 
                     
                     
@@ -169,8 +147,26 @@ traditionally assigned to &quot;_&quot;.</p>
                 <td>
                     
 
-                    <p>Get or set the language. If there are more dictionaries available in cache, they will be loaded.</p>
+                    
 
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Util_I18n_1-Ink_Util_I18n-lang">
+                        
+                            .lang
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Get or set the language. If there are more dictionaries available in cache, they will be loaded.
 
                     
                     
@@ -189,9 +185,8 @@ traditionally assigned to &quot;_&quot;.</p>
                 <td>
                     
 
-                    <p>Given a singular string, a plural string, and a number, translates
-either the singular or plural string.</p>
-
+                    Given a singular string, a plural string, and a number, translates
+either the singular or plural string.
 
                     
                     
@@ -210,10 +205,10 @@ either the singular or plural string.</p>
                 <td>
                     
 
-                    <p>Returns the ordinal suffix of <code>num</code> (For example, 1 &gt; &#39;st&#39;, 2 &gt; &#39;nd&#39;, 5 &gt; &#39;th&#39;, ...).</p>
-<p>This works by using transforms (in the form of Objects or Functions) passed into the
-function or found in the special key <code>_ordinals</code> in the active language dictionary.</p>
+                    Returns the ordinal suffix of `num` (For example, 1 > 'st', 2 > 'nd', 5 > 'th', ...).
 
+This works by using transforms (in the form of Objects or Functions) passed into the
+function or found in the special key `_ordinals` in the active language dictionary.
 
                     
                     
@@ -251,10 +246,9 @@ function or found in the special key <code>_ordinals</code> in the active langua
                 <td>
                     
 
-                    <p>Sets or unsets test mode. In test mode, unknown strings are wrapped
-in <code>[ ... ]</code>. This is useful for debugging your application and
-making sure all your translation keys are in place.</p>
-
+                    Sets or unsets test mode. In test mode, unknown strings are wrapped
+in `[ ... ]`. This is useful for debugging your application and
+making sure all your translation keys are in place.
 
                     
                     
@@ -273,9 +267,8 @@ making sure all your translation keys are in place.</p>
                 <td>
                     
 
-                    <p>Given a translation key, return a translated string, with replaced parameters.
-When a translated string is not available, the original string is returned unchanged.</p>
-
+                    Given a translation key, return a translated string, with replaced parameters.
+When a translated string is not available, the original string is returned unchanged.
 
                     
                     
@@ -287,22 +280,22 @@ When a translated string is not available, the original string is returned uncha
     
 
     
-
-
-    
-        <div class="text"><p>Creates a new internationalization helper object</p>
-</div>
-    
-
-    
-    
+</section>
 
 
 
-    
-        <div class="box box-function">
+    <div class="text">Creates a new internationalization helper object</div>
 
-    <h2><a name="Ink_Util_I18n_1-Ink_Util_I18n-I18n">
+
+
+
+
+
+
+
+    <section class="box box-function">
+
+    <h2>
     
         Ink.Util.I18n
     
@@ -310,7 +303,7 @@ When a translated string is not available, the original string is returned uncha
     
         <i>constructor</i>
     
-    </a></h2>
+    </h2>
 
     
     
@@ -380,7 +373,6 @@ When a translated string is not available, the original string is returned uncha
     
 <p class="example-title">Example</p>
   
-<div class="example bottom-space">
 {% highlight html %}{% raw %}
      var dictionaries = {    // This could come from a JSONP request from your server
          'pt_PT': {
@@ -407,26 +399,22 @@ When a translated string is not available, the original string is returned uncha
      });
      
  {% endraw %}{% endhighlight %}
-</div>
   
-<div class="example bottom-space">
 {% highlight html %}{% raw %}
      // The old {%s} syntax from libsapo's i18n is still supported
      i18n.text('hello, {%s}!', 'someone'); // -> 'olá, someone!'
 {% endraw %}{% endhighlight %}
-</div>
 
 
 
 
     
 
-</div>
+</section>
 
-    
-        <div class="box box-function">
+    <section class="box box-function">
 
-    <h2><a name="Ink_Util_I18n_1-Ink_Util_I18n-alias">
+    <h2>
     
         
             Ink.Util.I18n.alias
@@ -438,7 +426,7 @@ When a translated string is not available, the original string is returned uncha
             <i>method</i>
         
     
-    </a></h2>
+    </h2>
 
     
     
@@ -458,15 +446,13 @@ When a translated string is not available, the original string is returned uncha
     
 
     
-        <span class="text"><p>Returns an alias to <code>text()</code>, for convenience. The resulting function is
-traditionally assigned to &quot;_&quot;.</p>
-</span>
+        <p class="text">Returns an alias to `text()`, for convenience. The resulting function is
+traditionally assigned to "_".</p>
     
 
     
 <p class="example-title">Example</p>
   
-<div class="example bottom-space">
 {% highlight html %}{% raw %}
     var i18n = new I18n({
         'pt_PT': {
@@ -485,19 +471,17 @@ traditionally assigned to &quot;_&quot;.</p>
     _.ntext('{} day', '{} days', 1);  // -> '1 dia'
     _.ordinal(3);  // -> 'º'
 {% endraw %}{% endhighlight %}
-</div>
 
 
 
 
     
 
-</div>
+</section>
 
-    
-        <div class="box box-function">
+    <section class="box box-function">
 
-    <h2><a name="Ink_Util_I18n_1-Ink_Util_I18n-append">
+    <h2>
     
         
             Ink.Util.I18n.append
@@ -509,7 +493,7 @@ traditionally assigned to &quot;_&quot;.</p>
             <i>method</i>
         
     
-    </a></h2>
+    </h2>
 
     
     
@@ -541,14 +525,12 @@ traditionally assigned to &quot;_&quot;.</p>
     
 
     
-        <span class="text"><p>Adds translation strings for this helper to use.</p>
-</span>
+        <p class="text">Adds translation strings for this helper to use.</p>
     
 
     
 <p class="example-title">Example</p>
   
-<div class="example bottom-space">
 {% highlight html %}{% raw %}
     var i18n = new I18n({}, 'pt_PT');
     i18n.append({'pt_PT': {
@@ -556,19 +538,17 @@ traditionally assigned to &quot;_&quot;.</p>
     }});
     i18n.text('sfraggles') // -> 'braggles'
 {% endraw %}{% endhighlight %}
-</div>
 
 
 
 
     
 
-</div>
+</section>
 
-    
-        <div class="box box-function">
+    <section class="box box-function">
 
-    <h2><a name="Ink_Util_I18n_1-Ink_Util_I18n-append">
+    <h2>
     
         
             Ink.Util.I18n.append
@@ -580,7 +560,7 @@ traditionally assigned to &quot;_&quot;.</p>
             <i>method</i>
         
     
-    </a></h2>
+    </h2>
 
     
     
@@ -625,8 +605,7 @@ traditionally assigned to &quot;_&quot;.</p>
     
 
     
-        <span class="text"><p>Reset I18n global state (global dictionaries, and default language for instances)</p>
-</span>
+        <p class="text">Reset I18n global state (global dictionaries, and default language for instances)</p>
     
 
     
@@ -634,12 +613,11 @@ traditionally assigned to &quot;_&quot;.</p>
 
     
 
-</div>
+</section>
 
-    
-        <div class="box box-function">
+    <section class="box box-function">
 
-    <h2><a name="Ink_Util_I18n_1-Ink_Util_I18n-getKey">
+    <h2>
     
         
             Ink.Util.I18n.getKey
@@ -651,7 +629,7 @@ traditionally assigned to &quot;_&quot;.</p>
             <i>method</i>
         
     
-    </a></h2>
+    </h2>
 
     
     
@@ -691,32 +669,28 @@ traditionally assigned to &quot;_&quot;.</p>
     
 
     
-        <span class="text"><p>Return an arbitrary key from the current language dictionary</p>
-</span>
+        <p class="text">Return an arbitrary key from the current language dictionary</p>
     
 
     
 <p class="example-title">Example</p>
   
-<div class="example bottom-space">
 {% highlight html %}{% raw %}
      _.getKey('astring'); // -> 'a translated string'
      _.getKey('anobject'); // -> {'a': 'translated object'}
      _.getKey('afunction'); // -> function () { return 'this is a localized function' }
 {% endraw %}{% endhighlight %}
-</div>
 
 
 
 
     
 
-</div>
+</section>
 
-    
-        <div class="box box-function">
+    <section class="box box-function">
 
-    <h2><a name="Ink_Util_I18n_1-Ink_Util_I18n-lang">
+    <h2>
     
         
             Ink.Util.I18n.lang
@@ -728,7 +702,7 @@ traditionally assigned to &quot;_&quot;.</p>
             <i>method</i>
         
     
-    </a></h2>
+    </h2>
 
     
     
@@ -754,12 +728,11 @@ traditionally assigned to &quot;_&quot;.</p>
 
     
 
-</div>
+</section>
 
-    
-        <div class="box box-function">
+    <section class="box box-function">
 
-    <h2><a name="Ink_Util_I18n_1-Ink_Util_I18n-lang">
+    <h2>
     
         
             Ink.Util.I18n.lang
@@ -771,7 +744,7 @@ traditionally assigned to &quot;_&quot;.</p>
             <i>method</i>
         
     
-    </a></h2>
+    </h2>
 
     
     
@@ -801,8 +774,7 @@ traditionally assigned to &quot;_&quot;.</p>
     
 
     
-        <span class="text"><p>Get or set the language. If there are more dictionaries available in cache, they will be loaded.</p>
-</span>
+        <p class="text">Get or set the language. If there are more dictionaries available in cache, they will be loaded.</p>
     
 
     
@@ -810,12 +782,11 @@ traditionally assigned to &quot;_&quot;.</p>
 
     
 
-</div>
+</section>
 
-    
-        <div class="box box-function">
+    <section class="box box-function">
 
-    <h2><a name="Ink_Util_I18n_1-Ink_Util_I18n-ntext">
+    <h2>
     
         
             Ink.Util.I18n.ntext
@@ -827,7 +798,7 @@ traditionally assigned to &quot;_&quot;.</p>
             <i>method</i>
         
     
-    </a></h2>
+    </h2>
 
     
     
@@ -916,41 +887,35 @@ traditionally assigned to &quot;_&quot;.</p>
     
 
     
-        <span class="text"><p>Given a singular string, a plural string, and a number, translates
+        <p class="text">Given a singular string, a plural string, and a number, translates
 either the singular or plural string.</p>
-</span>
     
 
     
 <p class="example-title">Example</p>
   
-<div class="example bottom-space">
 {% highlight html %}{% raw %}
     i18n.ntext('platypus', 'platypuses', 1); // returns 'ornitorrinco'
     i18n.ntext('platypus', 'platypuses', 2); // returns 'ornitorrincos'
 
 {% endraw %}{% endhighlight %}
-</div>
   
-<div class="example bottom-space">
 {% highlight html %}{% raw %}
     // The "count" argument is passed to text()
     i18n.ntext('{} platypus', '{} platypuses', 1); // returns '1 ornitorrinco'
     i18n.ntext('{} platypus', '{} platypuses', 2); // returns '2 ornitorrincos'
 {% endraw %}{% endhighlight %}
-</div>
 
 
 
 
     
 
-</div>
+</section>
 
-    
-        <div class="box box-function">
+    <section class="box box-function">
 
-    <h2><a name="Ink_Util_I18n_1-Ink_Util_I18n-ordinal">
+    <h2>
     
         
             Ink.Util.I18n.ordinal
@@ -962,7 +927,7 @@ either the singular or plural string.</p>
             <i>method</i>
         
     
-    </a></h2>
+    </h2>
 
     
     
@@ -1061,16 +1026,15 @@ either the singular or plural string.</p>
     
 
     
-        <span class="text"><p>Returns the ordinal suffix of <code>num</code> (For example, 1 &gt; &#39;st&#39;, 2 &gt; &#39;nd&#39;, 5 &gt; &#39;th&#39;, ...).</p>
-<p>This works by using transforms (in the form of Objects or Functions) passed into the
-function or found in the special key <code>_ordinals</code> in the active language dictionary.</p>
-</span>
+        <p class="text">Returns the ordinal suffix of `num` (For example, 1 > 'st', 2 > 'nd', 5 > 'th', ...).
+
+This works by using transforms (in the form of Objects or Functions) passed into the
+function or found in the special key `_ordinals` in the active language dictionary.</p>
     
 
     
 <p class="example-title">Example</p>
   
-<div class="example bottom-space">
 {% highlight html %}{% raw %}
     var i18n = new I18n({
         pt_PT: {  // 1º, 2º, 3º, 4º, ...
@@ -1123,19 +1087,17 @@ function or found in the special key <code>_ordinals</code> in the active langua
     i18n.ordinal(5);    // returns 'th'
 
 {% endraw %}{% endhighlight %}
-</div>
 
 
 
 
     
 
-</div>
+</section>
 
-    
-        <div class="box box-function">
+    <section class="box box-function">
 
-    <h2><a name="Ink_Util_I18n_1-Ink_Util_I18n-reset">
+    <h2>
     
         
             Ink.Util.I18n.reset
@@ -1147,7 +1109,7 @@ function or found in the special key <code>_ordinals</code> in the active langua
             <i>method</i>
         
     
-    </a></h2>
+    </h2>
 
     
     
@@ -1163,12 +1125,11 @@ function or found in the special key <code>_ordinals</code> in the active langua
 
     
 
-</div>
+</section>
 
-    
-        <div class="box box-function">
+    <section class="box box-function">
 
-    <h2><a name="Ink_Util_I18n_1-Ink_Util_I18n-testMode">
+    <h2>
     
         
             Ink.Util.I18n.testMode
@@ -1180,7 +1141,7 @@ function or found in the special key <code>_ordinals</code> in the active langua
             <i>method</i>
         
     
-    </a></h2>
+    </h2>
 
     
     
@@ -1212,10 +1173,9 @@ function or found in the special key <code>_ordinals</code> in the active langua
     
 
     
-        <span class="text"><p>Sets or unsets test mode. In test mode, unknown strings are wrapped
-in <code>[ ... ]</code>. This is useful for debugging your application and
+        <p class="text">Sets or unsets test mode. In test mode, unknown strings are wrapped
+in `[ ... ]`. This is useful for debugging your application and
 making sure all your translation keys are in place.</p>
-</span>
     
 
     
@@ -1223,12 +1183,11 @@ making sure all your translation keys are in place.</p>
 
     
 
-</div>
+</section>
 
-    
-        <div class="box box-function">
+    <section class="box box-function">
 
-    <h2><a name="Ink_Util_I18n_1-Ink_Util_I18n-text">
+    <h2>
     
         
             Ink.Util.I18n.text
@@ -1240,7 +1199,7 @@ making sure all your translation keys are in place.</p>
             <i>method</i>
         
     
-    </a></h2>
+    </h2>
 
     
     
@@ -1340,39 +1299,31 @@ making sure all your translation keys are in place.</p>
     
 
     
-        <span class="text"><p>Given a translation key, return a translated string, with replaced parameters.
+        <p class="text">Given a translation key, return a translated string, with replaced parameters.
 When a translated string is not available, the original string is returned unchanged.</p>
-</span>
     
 
     
 <p class="example-title">Example</p>
   
-<div class="example bottom-space">
 {% highlight html %}{% raw %}
      _('Gosto muito de {} e o céu é {}.', 'carros', 'azul');
      // returns 'Gosto muito de carros e o céu é azul.'
 
 {% endraw %}{% endhighlight %}
-</div>
   
-<div class="example bottom-space">
 {% highlight html %}{% raw %}
      _('O {1} é {2} como {2} é a cor do {3}.', 'carro', 'azul', 'FCP');
      // returns 'O carro é azul como azul é o FCP.'
 
  {% endraw %}{% endhighlight %}
-</div>
   
-<div class="example bottom-space">
 {% highlight html %}{% raw %}
      _('O {person1} dava-se com a {person2}', {person1: 'coisinho', person2: 'coisinha'});
      // -> 'O coisinho dava-se com a coisinha'
 
  {% endraw %}{% endhighlight %}
-</div>
   
-<div class="example bottom-space">
 {% highlight html %}{% raw %}
      // This is a bit more complex
      var i18n = make().lang('pt_PT').append({
@@ -1386,19 +1337,16 @@ When a translated string is not available, the original string is returned uncha
      i18n.text('object', 'a'); // -> '-a-'
      i18n.text('func', 'a', 'b'); // -> '[[a,b]]'
 {% endraw %}{% endhighlight %}
-</div>
 
 
 
 
     
 
-</div>
-
-    
-
-    
 </section>
+
+
+
     
 
     
