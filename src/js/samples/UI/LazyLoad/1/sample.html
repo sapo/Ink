@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <title>InkJS - LazyLoad samples</title>
+
+        <link rel="stylesheet" href="../../../../../../dist/css/ink.css">
+        
+        <!--[if IE 7 ]>
+            <link rel="stylesheet" href="../../../../../../dist/css/ink.css" type="text/css" media="screen" title="no title" charset="utf-8">
+        <![endif]-->
+
+        <script type="text/javascript" src="../../../../Ink/1/lib.js"></script>
+        <script>
+            Ink.setPath('Ink', '../../../../Ink/');
+        </script>
+
+        <script type="text/javascript" src="../../../../../../dist/js/prettify.js"></script>
+        <style>
+            pre.prettyprint{
+                font-size: 0.75em;
+            }
+        </style>
+    </head>
+
+    <body onload="prettyPrint()">
+        <div class="ink-grid">
+            <h1>Ink.UI.LazyLoad sample</h1>
+
+            <p>Scroll down (slowly!) and see the images loading only when they come on screen.</p>
+
+            <pre><code>
+Ink.requireModules(['Ink.UI.LazyLoad_1'], function(LazyLoad) {
+    new LazyLoad('.lazyload-container', {
+        delta: -100,
+        placeholder: 'http://cdn.ink.sapo.pt/2.2.1/img/logo_home.png',
+        onInsideViewport: function(data){
+            var newElm = document.createElement('p');
+            newElm.innerHTML = 'image with src="'+data.element.src+'" is now inside the viewport.';
+            data.element.parentNode.insertBefore(newElm, data.element);
+        }
+    });
+});
+            </code></pre>
+
+            <div class="lazyload-container">
+                <div class="large-100 vertical-space"><img border="1" width="400" height="400" data-src="http://cdn.ink.sapo.pt/2.2.1/img/shot_meo.png" class="lazyload-item"></div>
+                <div class="large-100 vertical-space"><img border="1" width="400" height="400" data-src="http://cdn.ink.sapo.pt/2.2.1/img/shot_musicbox.png" class="lazyload-item"></div>
+                <div class="large-100 vertical-space"><img border="1" width="400" height="400" data-src="http://cdn.ink.sapo.pt/2.2.1/img/shot_intra.png" class="lazyload-item"></div>
+                <div class="large-100 vertical-space"><img border="1" width="400" height="400" data-src="http://cdn.ink.sapo.pt/2.2.1/img/shot_ink.png" class="lazyload-item"></div>
+                <div class="large-100 vertical-space"><img border="1" width="400" height="400" data-src="http://cdn.ink.sapo.pt/2.2.1/img/shot_pessoa.png" class="lazyload-item"></div>
+            </div>
+
+            <script type="text/javascript">
+            Ink.requireModules(['Ink.UI.LazyLoad_1'], function(LazyLoad) {
+                new LazyLoad('.lazyload-container', {
+                    delta: -100,
+                    placeholder: 'http://cdn.ink.sapo.pt/2.2.1/img/logo_home.png',
+                    onInsideViewport: function(data){
+                        var newElm = document.createElement('p');
+                        newElm.innerHTML = 'image with src="'+data.element.src+'" is now inside the viewport.';
+                        data.element.parentNode.insertBefore(newElm, data.element);
+                    }
+                });
+            });
+            </script>
+        </div>
+    </body>
+</html>
