@@ -10,8 +10,6 @@
  * @version   3.0.0
  */
 
-
-
 // Import Compass Core
 @import "contrib/compass/css3";
 @import "contrib/compass/utilities";
@@ -38,7 +36,6 @@
 // IMPORT MIXINS FILES (THESE CONTAIN HELPER FUNCTIONS)
 @import "mixins/alerts";
 @import "mixins/buttons";
-@import "mixins/grid";
 @import "mixins/flex-grid";
 @import "mixins/forms";
 @import "mixins/nav.pills";
@@ -83,5 +80,4 @@
 
 // IMPORT JS COMPONENTS STYLING
 @import "modules/js/drawer";
-@import "modules/js/carousel";
 @import "modules/js/flex-carousel";
