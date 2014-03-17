@@ -932,7 +932,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Fills a select element with options
          *
          * @method fillSelect
-         * @param {DomElement|String}  container       Select element which will get filled
+         * @param {DOMElement|String}  container       Select element which will get filled
          * @param {Array}              data            Data to populate the component
          * @param {Boolean}            [skipEmpty]     Flag to skip empty option
          * @param {String|Number}      [defaultValue]  Initial selected value
@@ -977,7 +977,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * This method allows the creation of new values
          *
          * @method fillSelect2
-         * @param {DomElement|String} ctn Select element to get populated
+         * @param {DOMElement|String} ctn Select element to get populated
          * @param {Object} opts
          * @param {Array}                       [opts.data]                 Data to populate the component
          * @param {Boolean}                     [opts.skipEmpty]=false      Flag to skip creation of empty options
@@ -1079,7 +1079,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Creates a set of radio buttons
          *
          * @method fillRadios
-         * @param {DomElement|String}  insertAfterEl    Element after which the input elements will be created
+         * @param {DOMElement|String}  insertAfterEl    Element after which the input elements will be created
          * @param {String}             name             Name for the form field ([] is added if not present as a suffix)
          * @param {Array}              data             Data to populate the component
          * @param {Boolean}            [skipEmpty]      Flag to skip creation of empty options
@@ -1142,7 +1142,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Creates set of checkbox buttons
          *
          * @method fillChecks
-         * @param {DomElement|String}  insertAfterEl   Element after which the input elements will be created
+         * @param {DOMElement|String}  insertAfterEl   Element after which the input elements will be created
          * @param {String}             name            Name for the form field ([] is added if not present as a suffix)
          * @param {Array}              data            Data to populate the component
          * @param {Boolean}            [skipEmpty]     Flag to skip creation of empty options
@@ -1216,7 +1216,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Gets the next siblings of an element
          *
          * @method nextSiblings
-         * @param {String|DomElement} elm Element
+         * @param {String|DOMElement} elm Element
          * @return {Array} Array of next sibling elements
          */
         nextSiblings: function(elm) {
@@ -1242,7 +1242,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Gets the previous siblings of an element
          *
          * @method previousSiblings
-         * @param {String|DomElement} elm Element
+         * @param {String|DOMElement} elm Element
          * @return {Array} Array of previous sibling elements
          */
         previousSiblings: function(elm) {
@@ -1268,7 +1268,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Gets the all siblings of an element
          *
          * @method siblings
-         * @param {String|DomElement} elm Element
+         * @param {String|DOMElement} elm Element
          * @return {Array} Array of sibling elements
          */
         siblings: function(elm) {
@@ -1294,7 +1294,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Counts the number of children of an element
          *
          * @method childElementCount
-         * @param {String|DomElement} elm element
+         * @param {String|DOMElement} elm element
          * @return {Number} number of child elements
          */
         childElementCount: function(elm) {
@@ -1374,7 +1374,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * This method parses the html string and doesn't modify its contents
          *
          * @method appendHTML
-         * @param {String|DomElement} elm   Element
+         * @param {String|DOMElement} elm   Element
          * @param {String}            html  Markup string
          */
         appendHTML: function(elm, html){
@@ -1582,7 +1582,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Gets data attributes from an element
          *
          * @method data
-         * @param {String|DomElement} selector Element or CSS selector
+         * @param {String|DOMElement} selector Element or CSS selector
          * @return {Object} Object with the data-* properties. If no data-attributes are present, an empty object is returned.
         */
         data: function(selector) {
