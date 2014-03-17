@@ -1,5 +1,7 @@
 
 Ink.requireModules(['Ink.UI.LazyLoad_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1', 'Ink.Dom.Event_1', 'Ink.Dom.Selector_1'], function (LazyLoad, InkElement, Css, InkEvent, Selector) {
+    'use strict';
+
     function makeContainer(options) {
         var container = InkElement.create('div', {
             className: 'container ' + (options.className || ''),
@@ -11,7 +13,7 @@ Ink.requireModules(['Ink.UI.LazyLoad_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1', '
     }
 
     function testLazyLoad(name, testBack, options) {
-        options = options || {};
+        options = Ink.extendObj({ disableThrottle: true }, options || {});
         test(name, function () {
             var sandbox = sinon.sandbox.create();
             var container = makeContainer(options);
@@ -39,7 +41,7 @@ Ink.requireModules(['Ink.UI.LazyLoad_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1', '
         this.stub(InkElement, 'inViewport').withArgs(Ink.s('.test-div-0', cont)).returns(true);
         ll.reload();
         equal(ll._elInViewport.callCount, 1, 'One of the elements is in the viewport, so it was called only once');
-    }, { autoInit: false, disableThrottle: true });
+    }, { autoInit: false });
 
     testLazyLoad('When an element is in the viewport, its [data-src] goes to [src]', function (ll, cont) {
         var div2 = Ink.s('.test-div-2', cont);
@@ -47,5 +49,5 @@ Ink.requireModules(['Ink.UI.LazyLoad_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1', '
         this.stub(InkElement, 'inViewport').withArgs(div2).returns(true);
         ll.reload();
         equal(div2.getAttribute('src'), src);
-    }, { autoInit: false, disableThrottle: true });
+    }, { autoInit: false });
 });
