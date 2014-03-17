@@ -85,7 +85,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
      *      You can return HTML, a DOM element, or a string here.
      *      Arguments you receive: `(column, fieldData, rowIndex)`.
      *
-     *          @param {Function}  [options.processJSONField.(field_name)]
+     *          @param {Function}  [options.processJSONField.FIELD_NAME]
      *           The same as processJSONField, but for a particular field.
      *
      *     @param {Function}  [options.processJSONTotalRows]
@@ -103,7 +103,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
      *              return cell.element.getAttribute('data-sort-key');
      *          }
      *
-     *          @param {Function} [options.getSortKey.(field_name)]
+     *          @param {Function} [options.getSortKey.FIELD_NAME]
      *           Same as `options.getSortKey`, but for a particular field.
      *
      *     @param {Object}    [options.tdClassNames]
