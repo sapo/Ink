@@ -8,11 +8,6 @@
 
     'use strict';
 
-    /**
-     * @class Ink
-     */
-
-
     // skip redefinition of Ink core
     if ('Ink' in window) { return; }
 

@@ -33,10 +33,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
      * @module Ink.Dom.Element_1
      */
 
-    /**
-     * @class Ink.Dom.Element
-     */
-
     var InkElement = {
 
         /**
