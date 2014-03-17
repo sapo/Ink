@@ -68,6 +68,10 @@ Ink.createModule('Ink.UI.Carousel', '1',
 
         InkElement.removeTextNodeChildren(ulEl);
 
+        if (this._options.pagination == null) {
+            this._currentPage = this._options.initialPage;
+        }
+
         this.refit(); // recalculate this._numPages
 
         if (this._isY) {
@@ -126,7 +130,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
             if (this._pagination && numPagesChanged) {
                 this._pagination.setSize(this._numPages);
             }
-            this.setPage(limitRange(this.getPage(), 1, this._numPages));
+            this.setPage(limitRange(this.getPage(), 0, this._numPages));
         },
 
         _setUpPagination: function () {
@@ -334,7 +338,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
             if (this._pagination) {
                 return this._pagination.getCurrent();
             } else {
-                return this._currentPage;
+                return this._currentPage || 0;
             }
         },
 
