@@ -75,7 +75,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
             itemsPerPage:      ['Integer', null],
             maxSize:           ['Integer', null],
             start:             ['Integer', 1],
-            sideButtons:       ['Boolean', true],
+            sideButtons:       ['Boolean', 1 /* actually `true` but we want to see if user is using the default or not. */],
             // TODO add pagination-type which accepts color strings, "chevron" and "dotted". Basically classes to add to the UL.
             firstLabel:        ['String', 'First'],
             lastLabel:         ['String', 'Last'],
@@ -272,21 +272,21 @@ Ink.createModule('Ink.UI.Pagination', '1',
                 return liEl;
             }, this);
 
-            if (!isDotted) {
-                if (this._options.maxSize) {
-                    this._firstEl = createLiEl('first');
-                    this._prevPageEl = createLiEl('previousPage');
-                }
+            if (!isDotted && this._options.maxSize) {
+                this._firstEl = createLiEl('first');
+                this._prevPageEl = createLiEl('previousPage');
+            }
 
-                if (this._options.sideButtons) {
-                    this._prevEl = createLiEl('previous', { wrapText: isChevron });
-                    this._nextEl = createLiEl('next', { wrapText: isChevron });
-                }
+            // When we're dotted, the default for sideButtons is `false`. When we're note, it's `true`.
+            // Since the default is actually "1", we do a === true check when we're dotted, and a truthish check when we're not.
+            if ((isDotted && this._options.sideButtons === true) || (!isDotted && this._options.sideButtons)) {
+                this._prevEl = createLiEl('previous', { wrapText: isChevron });
+                this._nextEl = createLiEl('next', { wrapText: isChevron });
+            }
 
-                if (this._options.maxSize) {
-                    this._nextPageEl = createLiEl('nextPage');
-                    this._lastEl = createLiEl('last');
-                }
+            if (!isDotted && this._options.maxSize) {
+                this._nextPageEl = createLiEl('nextPage');
+                this._lastEl = createLiEl('last');
             }
 
             if( !hasUlAlready ){

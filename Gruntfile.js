@@ -288,48 +288,6 @@ module.exports = function (grunt) {
             }
         },
 
-        // COMPILES THE CSS
-        less: {
-            distMin: {
-                files: {
-                    '<%= ink.folders.css.dist %><%= pkg.name %>-min.css': ['<%= ink.folders.css.src %><%= pkg.name %>.less'],
-                },
-                // COMPILES THE MINIFIED CSS
-                options: {
-                    compress: true,
-                    // LESS source maps
-                    // To enable, set sourceMap to true and update sourceMapRootpath based on your install
-                    sourceMap: true,
-                    sourceMapFilename: '<%= ink.folders.css.dist %><%= pkg.name %>-min.css.map',
-                    sourceMapRootpath: '../../'
-                }
-            },
-            IEMin: {
-                files: {
-                    '<%= ink.folders.css.dist %><%= pkg.name %>-ie7-min.css': ['<%= ink.folders.css.src %><%= pkg.name %>-ie7.less']
-                }
-            },
-            dist: {
-                files: {
-                    '<%= ink.folders.css.dist %><%= pkg.name %>.css': ['<%= ink.folders.css.src %><%= pkg.name %>.less'],
-                },
-                // COMPILES THE MINIFIED CSS
-                options: {
-                    compress: false,
-                    // LESS source maps
-                    // To enable, set sourceMap to true and update sourceMapRootpath based on your install
-                    sourceMap: true,
-                    sourceMapFilename: '<%= ink.folders.css.dist %><%= pkg.name %>.css.map',
-                    sourceMapRootpath: '../../'
-                }
-            },
-            IE: {
-                files: {
-                    '<%= ink.folders.css.dist %><%= pkg.name %>-ie7.css': ['<%= ink.folders.css.src %><%= pkg.name %>-ie7.less']
-                }
-            }
-        },
-
         // Runs JSHint on the Ink.js JavaScript source
         jshint: {
             inkjs: {
@@ -345,7 +303,7 @@ module.exports = function (grunt) {
         compass: {                                    
             css: {                                     
                 options: {     
-                    config: "config.rb"
+                    config: "config.rb",
                 }
             },
         },
@@ -358,7 +316,10 @@ module.exports = function (grunt) {
                 dest: '<%= ink.folders.css.dist %>',
                 ext: '.min.css',
                 options: {
-                    report: 'min'
+                    report: 'min',
+                    sourceMap: true,
+                    sourceMapFilename: '<%= ink.folders.css.dist %><%= pkg.name %>-min.css.map',
+                    sourceMapRootpath: '../../'
                 }
             }
         },
@@ -401,7 +362,7 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('js', ['clean:js', 'concat', 'uglify']);
-    grunt.registerTask('css', ['clean:css', 'less', 'compass', 'cssmin']);
+    grunt.registerTask('css', ['clean:css', 'compass', 'cssmin']);
     grunt.registerTask('dependencies', ['bower', 'copy']);
     grunt.registerTask('default', ['dependencies','css','js']);
 	grunt.registerTask('test', 'Run unit tests using phantomjs', function () {

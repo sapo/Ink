@@ -12,16 +12,23 @@ Ink.createModule('Ink.UI.Pagination', '1',
      * Function to create the pagination anchors
      *
      * @method genAel
+     * @private
      * @param  {String} inner HTML to be placed inside the anchor.
      * @return {DOMElement}  Anchor created
      */
-    var genAEl = function(inner, index) {
+    var genAEl = function(inner, index, options) {
         var aEl = document.createElement('a');
         aEl.setAttribute('href', '#');
-        if (index !== undefined) {
+        if (typeof index === 'number') {
             aEl.setAttribute('data-index', index);
         }
-        aEl.innerHTML = inner;
+        if(options && options.wrapText) {
+            var spanEl = document.createElement('span');
+            aEl.appendChild(spanEl);
+            spanEl.innerHTML = inner;
+        } else {
+            aEl.innerHTML = inner;
+        }
         return aEl;
     };
 
@@ -36,6 +43,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
      * @param {Number}   [options.itemsPerPage]      number of items per page.
      * @param {Number}   [options.maxSize]           If passed, only shows at most maxSize items. displays also first|prev page and next page|last buttons
      * @param {Number}   [options.start]             start page. defaults to 1
+     * @param {Boolean}  [options.sideButtons=true]  whether to show the first, last, previous, next, previousPage and lastPage buttons. Do not use together with maxSize.
      * @param {String}   [options.firstLabel]        label to display on first page button
      * @param {String}   [options.lastLabel]         label to display on last page button
      * @param {String}   [options.previousLabel]     label to display on previous button
@@ -67,6 +75,8 @@ Ink.createModule('Ink.UI.Pagination', '1',
             itemsPerPage:      ['Integer', null],
             maxSize:           ['Integer', null],
             start:             ['Integer', 1],
+            sideButtons:       ['Boolean', true],
+            // TODO add pagination-type which accepts color strings, "chevron" and "dotted". Basically classes to add to the UL.
             firstLabel:        ['String', 'First'],
             lastLabel:         ['String', 'Last'],
             previousLabel:     ['String', 'Previous'],
@@ -103,23 +113,12 @@ Ink.createModule('Ink.UI.Pagination', '1',
         };
 
         if (Common.isInteger(this._options.totalItemCount) && Common.isInteger(this._options.itemsPerPage)) {
-            this._size = Math.ceil(this._options.totalItemCount / this._options.itemsPerPage);
+            this._size = this._calculateSize(this._options.totalItemCount, this._options.itemsPerPage);
         } else if (Common.isInteger(this._options.size)) {
             this._size = this._options.size;
         } else {
-            throw new TypeError('Ink.UI.Pagination: Please supply a size option or totalItemCount and itemsPerPage options.');
-        }
-
-        if (!Common.isInteger(this._options.start) && this._options.start > 0 && this._options.start <= this._size) {
-            throw new TypeError('start option is a required integer between 1 and size!');
-        }
-
-        if (this._options.maxSize && !Common.isInteger(this._options.maxSize) && this._options.maxSize > 0) {
-            throw new TypeError('maxSize option is a positive integer!');
-        }
-
-        else if (this._size < 0) {
-            throw new RangeError('size option must be equal or more than 0!');
+            Ink.error('Ink.UI.Pagination: Please supply a size option or totalItemCount and itemsPerPage options.');
+            this._size = 0;
         }
 
         this.setOnChange(this._options.onChange);
@@ -161,6 +160,17 @@ Ink.createModule('Ink.UI.Pagination', '1',
         },
 
         /**
+         * Calculate how many pages are necessary for `count` items, and `itemsPerPage` items per page.
+         *
+         * @method _calculateSize
+         * @param count
+         * @param itemsPerPage
+         * @private
+         **/
+        _calculateSize: function (count, itemsPerPage) {
+            return Math.ceil(count / itemsPerPage);
+        },
+        /**
          * Updates the markup everytime there's a change in the Pagination object.
          *
          * @method _updateItems
@@ -190,6 +200,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
                 for (i = 0, f = this._size; i < f; ++i) {
                     liEl = document.createElement(this._options.childTag);
                     liEl.appendChild( genAEl( this._options.numberFormatter(i), i) );
+                    // add "active" class if this is the active element.
                     Css.setClassName(liEl, this._options.activeClass, i === this._current);
                     this._ulEl.insertBefore(liEl, this._nextEl);
                     liEls.push(liEl);
@@ -220,8 +231,12 @@ Ink.createModule('Ink.UI.Pagination', '1',
             }
 
             // update prev and next
-            Css.setClassName(this._prevEl, this._options.disabledClass, !this.hasPrevious());
-            Css.setClassName(this._nextEl, this._options.disabledClass, !this.hasNext());
+            if (this._prevEl) {
+                Css.setClassName(this._prevEl, this._options.disabledClass, !this.hasPrevious());
+            }
+            if (this._nextEl) {
+                Css.setClassName(this._nextEl, this._options.disabledClass, !this.hasNext());
+            }
         },
 
         /**
@@ -234,54 +249,44 @@ Ink.createModule('Ink.UI.Pagination', '1',
         _generateMarkup: function(el) {
             Css.addClassName(el, 'ink-navigation');
 
-            var ulEl,liEl,
-                hasUlAlready = false;
-            if( ( ulEl = Selector.select('.' + this._options.paginationClass,el)).length < 1 ){
+            var ulEl = Ink.s('.' + this._options.paginationClass, el);
+            var hasUlAlready = false;
+
+            if( !ulEl ){
                 ulEl = document.createElement(this._options.parentTag);
                 Css.addClassName(ulEl, this._options.paginationClass);
             } else {
                 hasUlAlready = true;
-                ulEl = ulEl[0];
             }
 
-            if (this._options.maxSize) {
-                liEl = document.createElement(this._options.childTag);
-                liEl.appendChild( genAEl(this._options.firstLabel) );
-                this._firstEl = liEl;
-                Css.addClassName(liEl, this._options.firstClass);
+            var isChevron = Css.hasClassName(ulEl, 'chevron');
+            var isDotted = Css.hasClassName(ulEl, 'dotted');
+
+            // Creates <li> elements for firstPage, nextPage, first, last, etc.
+            var createLiEl = Ink.bind(function (name, options) {
+                var liEl = document.createElement(this._options.childTag);
+                var aEl = genAEl(this._options[name + 'Label'], undefined, { wrapText: options && options.wrapText });
+                Css.addClassName(liEl, this._options[name + 'Class']);
+                liEl.appendChild(aEl);
                 ulEl.appendChild(liEl);
+                return liEl;
+            }, this);
 
-                liEl = document.createElement(this._options.childTag);
-                liEl.appendChild( genAEl(this._options.previousPageLabel) );
-                this._prevPageEl = liEl;
-                Css.addClassName(liEl, this._options.previousPageClass);
-                ulEl.appendChild(liEl);
-            }
+            if (!isDotted) {
+                if (this._options.maxSize) {
+                    this._firstEl = createLiEl('first');
+                    this._prevPageEl = createLiEl('previousPage');
+                }
 
-            liEl = document.createElement(this._options.childTag);
-            liEl.appendChild( genAEl(this._options.previousLabel) );
-            this._prevEl = liEl;
-            Css.addClassName(liEl, this._options.previousClass);
-            ulEl.appendChild(liEl);
+                if (this._options.sideButtons) {
+                    this._prevEl = createLiEl('previous', { wrapText: isChevron });
+                    this._nextEl = createLiEl('next', { wrapText: isChevron });
+                }
 
-            liEl = document.createElement(this._options.childTag);
-            liEl.appendChild( genAEl(this._options.nextLabel) );
-            this._nextEl = liEl;
-            Css.addClassName(liEl, this._options.nextClass);
-            ulEl.appendChild(liEl);
-
-            if (this._options.maxSize) {
-                liEl = document.createElement(this._options.childTag);
-                liEl.appendChild( genAEl(this._options.nextPageLabel) );
-                this._nextPageEl = liEl;
-                Css.addClassName(liEl, this._options.nextPageClass);
-                ulEl.appendChild(liEl);
-
-                liEl = document.createElement(this._options.childTag);
-                liEl.appendChild( genAEl(this._options.lastLabel) );
-                this._lastEl = liEl;
-                Css.addClassName(liEl, this._options.lastClass);
-                ulEl.appendChild(liEl);
+                if (this._options.maxSize) {
+                    this._nextPageEl = createLiEl('nextPage');
+                    this._lastEl = createLiEl('last');
+                }
             }
 
             if( !hasUlAlready ){
@@ -319,14 +324,14 @@ Ink.createModule('Ink.UI.Pagination', '1',
                 this.setCurrent(this._size - 1);
             }
             else if (isPrevPage || isNextPage) {
-                this.setCurrent( (isPrevPage ? -1 : 1) * this._options.maxSize, true);
+                this.setCurrent( (isPrevPage ? -1 : 1) * this._options.maxSize, true /* relative */);
             }
             else if (isPrev || isNext) {
-                this.setCurrent(isPrev ? -1 : 1, true);
+                this.setCurrent(isPrev ? -1 : 1, true /* relative */);
             }
             else {
-                var aElem = Ink.s('[data-index]', liEl);
-                var nr = parseInt( aElem.getAttribute('data-index'), 10);
+                var aElem = Selector.select('[data-index]', liEl)[0];
+                var nr = aElem && parseInt( aElem.getAttribute('data-index'), 10);
                 this.setCurrent(nr);
             }
         },
