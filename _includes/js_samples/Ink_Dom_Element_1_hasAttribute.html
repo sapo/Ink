@@ -1,0 +1,18 @@
+<p>Check if an element has the given attribute</p>
+<p class="example-title">Code</p>
+{% highlight html %}
+<!-- Initial element -->
+<div id="elm" data-attr="attr_value">
+    Element with attributes
+</div>
+<script>
+Ink.requireModules(['Ink.Dom.Element_1'], function(InkElement) {
+    var elm = Ink.i('elm');
+    InkElement.hasAttribute(elm, 'id');  // true 
+    InkElement.hasAttribute(elm, 'data-attr');  // true 
+    InkElement.hasAttribute(elm, 'name');  // false
+
+});
+</script>
+{% endhighlight %}
+

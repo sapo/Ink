@@ -1,0 +1,23 @@
+<p>Create a new element <code>div</code> and append it to element with id <code>elm_id</code></p>
+<p class="example-title">Code</p>
+{% highlight html %}
+<!-- Element to insert new element -->
+<div id="elm_id"></div>
+<!-- Create Element -->
+<script>
+Ink.requireModules(['Ink.Dom.Element_1'], function(InkElement) {
+    var parentElm = Ink.i('elm_id');
+    var newElm = InkElement.create('div', { 
+            className: 'elm_class',
+            id: 'new_elm_id',
+            setTextContent: 'This is a new div element',
+            insertBottom: parentElm
+        });
+});
+</script>
+<!-- Output -->
+<div id="elm_id">
+    <div id="new_elm_id" class="elm_class">This is a new div element</div>
+</div>
+{% endhighlight %}
+

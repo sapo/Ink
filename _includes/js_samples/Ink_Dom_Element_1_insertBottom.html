@@ -1,0 +1,31 @@
+<p>Create a new <code>li</code> element and insert it on the bottom of <code>ul</code></p>
+<p class="example-title">Code</p>
+{% highlight html %}
+<ul id="ul_elm">
+    <li id="li_a">A</li>
+    <li id="li_b">B</li>
+    <li id="li_c">C</li>
+    <li id="li_d">D</li>
+    <li id="li_e">E</li>
+</ul>
+<!-- Create a new LI and insert it on the bottom of UL -->
+<script>
+Ink.requireModules(['Ink.Dom.Element_1'], function(InkElement) {
+    var refElm = Ink.i('ul_elm');
+    var newElm = InkElement.create('li', { setTextContent: 'New LI on the BOTTOM'});
+
+    InkElement.insertTop(newElm, refElm);
+
+});
+</script>
+<!-- Result -->
+<ul id="ul_elm">
+    <li id="li_a">A</li>
+    <li id="li_b">B</li>
+    <li id="li_c">C</li>
+    <li id="li_d">D</li>
+    <li id="li_e">E</li>
+    <li>New LI on the BOTTOM</li>
+</ul>
+{% endhighlight %}
+

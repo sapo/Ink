@@ -1,15 +1,40 @@
-<p>Ink.requireModules() </p>
-
+<p>Using <code>Ink.requireModules()</code> in a project is a good practice. All dependencies can be controlled, creating aliases to Inks modules making it more easy to use and all variables will keep in a private project scope instead of global scope.</p>
+<p>Here's an example of a <code>MyProject.js</code> file.</p>
 <p class="example-title">Code</p>
 {% highlight js %}
+Ink.requireModules(     // first line of MyProject.js 
+        [               // dependencies array with all needed modules 
+            'Ink.Dom.Loaded_1', 
+            'Ink.Dom.Event_1', 
+            'Ink.Net.Ajax_1'
+        ],
+        function(Loaded, InkEvent, Ajax) {    // aliases to dependencies modules 
+
+        /* 
+         * All project code here 
+         */
+        var MyProjectConfig = {
+            app_name: 'My Awesome Project',
+            ajaxEndpoint: '/ajaxendpoint.php'
+        };
+
+        function aFunction() {
+            InkEvent.observe(document.body, 'click', onClickBody);
+        }
+
+        function onClickBody() {
+            new Ajax(MyProjectConfig.ajaxEndpoint, {});
+        }
+
+        Loaded.run(function() { // run on DOMContentLoaded  
+                
+                aFunction();        
+            
+            });
+
+
+}); // last line of MyProject.js
+
 {% endhighlight %}
-
-<p></p> 
-<p class="example-title">Code</p>
-{% highlight js %}
-
-{% endhighlight %}
-
-
 
 

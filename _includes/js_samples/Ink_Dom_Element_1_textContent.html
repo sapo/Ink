@@ -1,0 +1,17 @@
+<p class="example-title">Code</p>
+{% highlight html %}
+<div id="elm_id_a">This is the div content</div>
+<div id="elm_id_b">This div has a <span>sub element</span></div>
+<script>
+Ink.requireModules(['Ink.Dom.Element_1'], function(InkElement) {
+        var contentA = InkElement.textContent(Ink.i('elm_id_a'));
+
+        var contentB = InkElement.textContent('elm_id_b');
+
+        Ink.log(contentA); // This is the div content
+
+        Ink.log(contentB); // This div has a sub element
+});
+</script>
+{% endhighlight %}
+

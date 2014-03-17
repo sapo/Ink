@@ -142,7 +142,7 @@
         },
 
         /**
-         * Loads a script by creating a `<script>` tag in the `<head>` of the document.
+         * Loads a script by creating a "script" tag in the "head" of the document.
          *
          * Reports errors by listening to 'error' and 'readystatechange' events.
          *

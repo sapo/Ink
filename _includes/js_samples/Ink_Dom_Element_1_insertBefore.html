@@ -1,0 +1,31 @@
+<p>Create a new <code>li</code> element and insert it before element with id <code>li_d</code></p>
+<p class="example-title">Code</p>
+{% highlight html %}
+<ul>
+    <li id="li_a">A</li>
+    <li id="li_b">B</li>
+    <li id="li_d">D</li>
+    <li id="li_e">E</li>
+    <li id="li_f">F</li>
+</ul>
+<!-- Create a new LI and insert it before LI li_d -->
+<script>
+Ink.requireModules(['Ink.Dom.Element_1'], function(InkElement) {
+    var refElm = Ink.i('li_d');
+    var newElm = InkElement.create('li', { setTextContent: 'New LI C'});
+
+    InkElement.insertBefore(newElm, refElm);
+
+});
+</script>
+<!-- Result -->
+<ul>
+    <li id="li_a">A</li>
+    <li id="li_b">B</li>
+    <li>New LI C</li>
+    <li id="li_d">D</li>
+    <li id="li_e">E</li>
+    <li id="li_f">F</li>
+</ul>
+{% endhighlight %}
+
