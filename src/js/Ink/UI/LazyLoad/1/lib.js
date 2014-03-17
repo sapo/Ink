@@ -25,7 +25,7 @@ LazyLoad.prototype = {
             delay: ['Number', 100], // Wait a few milliseconds before trying to load.
             delta: ['Number', 0], // Distance in px from the outside of the viewport. Elements touching within this "margin", items are considered to be inside even if they are outside the viewport limits. Can be negative if you want an element to be considered inside only when it is a certain distance into the viewport.
             image: ['Boolean', true], // Set to false to make this component do nothing to any elements and just give you the onInsideViewport callback.
-            onTouch: ['Boolean', true],  // Subscribe to touch events in addition to scroll events. Useful in mobile safari because 'scroll' events aren't frequent enough.
+            touchEvents: ['Boolean', true],  // Subscribe to touch events in addition to scroll events. Useful in mobile safari because 'scroll' events aren't frequent enough.
             onInsideViewport: ['Function', false], // Called when an `item` is within the viewport. Receives `{ element }`
             onAfterAttributeChange: ['Function', false],  // (advanced) Called after `source` is copied over to `destination`. Receives `{ element }`
             autoInit: ['Boolean', true]  // Set to false if you want LazyLoad to do nothing until you call `reload()`
@@ -65,21 +65,19 @@ LazyLoad.prototype = {
 
     _addEvents: function() 
     {
-        this._onScrollThrottled = InkEvent.throttle(Ink.bindEvent(this._onScroll, this), 400);
-        if('ontouchmove' in document.documentElement && this._options.onTouch) {
+        this._onScrollThrottled = InkEvent.throttle(Ink.bindEvent(this._onScroll, this), this._options.delay);
+        if('ontouchmove' in document.documentElement && this._options.touchEvents) {
             InkEvent.observe(document.documentElement, 'touchmove', this._onScrollThrottled);
-        } else {
-            InkEvent.observe(window, 'scroll', this._onScrollThrottled);
         }
+        InkEvent.observe(window, 'scroll', this._onScrollThrottled);
         this._hasEvents = true;
     },
 
     _removeEvents: function() {
-        if('ontouchmove' in document.documentElement && this._options.onTouch) {
+        if('ontouchmove' in document.documentElement && this._options.touchEvents) {
             InkEvent.stopObserving(document.documentElement, 'touchmove', this._onScrollThrottled);
-        } else {
-            InkEvent.stopObserving(window, 'scroll', this._onScrollThrottled);
         }
+        InkEvent.stopObserving(window, 'scroll', this._onScrollThrottled);
         this._hasEvents = false;
     }, 
 
