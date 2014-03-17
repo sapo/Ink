@@ -7,7 +7,7 @@ Ink.requireModules(['Ink.UI.Pagination_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1',
         });
 
         InkElement.create('ul', {
-            className: 'pagination',
+            className: 'pagination ' + (options.ulClassNames || ''),
             insertBottom: container
         });
 
@@ -51,21 +51,9 @@ Ink.requireModules(['Ink.UI.Pagination_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1',
         equal(Ink.ss('li', container).length, 2, 'no previous nor next elements were created');
     }, { sideButtons: false, size: 2});
 
-    testPagination('When Pagination has the "dotted" option, no previous/next <li> elements are created', function (comp, container) {
-        equal(Ink.ss('.previous,.next', container).length, 0, 'no previous nor next elements were created');
-        equal(Ink.ss('li', container).length, 2, 'no previous nor next elements were created');
-    }, {dotted: true, size: 2});
-
-    testPagination('When Pagination has the "dotted" option the <ul> gets the "dotted" class', function (comp, container) {
-        ok(Css.hasClassName(Ink.s('ul', container), 'dotted'), 'the UL has the "dotted" className');
-    }, {dotted: true});
-
-    testPagination('When Pagination has the "chevron" option, the <ul> gets the "chevron" class', function (_, container) {
-        ok(Css.hasClassName(Ink.s('ul', container), 'chevron'), 'has "chevron" class');
-    }, { chevron: true });
     testPagination('When Pagination has the "chevron" option, the "next" and "previous" <li>s have <span> tags inside their <a> tags', function (_, container) {
-        ok(Ink.s('li.previous span a', container), '.previous is wrapped in a span');
-        ok(Ink.s('li.next span a', container), '.next is wrapped too');
-        ok(!Ink.s('li:not(.previous):not(.next) span a', container), 'sanity check: everything else is not.');
-    }, { chevron: true });
+        ok(Ink.s('li.previous a span', container), '.previous is wrapped in a span');
+        ok(Ink.s('li.next a span', container), '.next is wrapped too');
+        ok(!Ink.s('li:not(.previous):not(.next) a span', container), 'sanity check: everything else is not.');
+    }, { ulClassNames: ' chevron' });
 });
