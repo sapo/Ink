@@ -29,30 +29,29 @@
 // generates the grid column grouping container
 @mixin generate-flex-column-group {
 
+  .#{$flex-class-name},
   .#{$grid-column-group-class-name} {
         flex: 100%;   
         @include experimental-value(display, flex, -moz, -webkit, not -o, not -ms, not -khtml, official);
-        @include experimental(flex-flow, row wrap, -moz, -webkit, not -o, not -ms, not -khtml, official);
+        @include experimental(flex-direction, row, -moz, -webkit, not -o, not -ms, not -khtml, official);
 
-        &.right-to-left     { @include experimental(flex-direction, row-reverse, -moz, -webkit, not -o, not -ms, not -khtml, official); }
-        &.bottom-to-top     { @include experimental(flex-wrap, wrap-reverse, -moz, -webkit, not -o, not -ms, not -khtml, official); }
-        &.reverse           { @include experimental(flex-flow, row-reverse wrap, -moz, -webkit, not -o, not -ms, not -khtml, official); }
-        &.vertical          { @include experimental(flex-flow, column wrap, -moz, -webkit, not -o, not -ms, not -khtml, official); }
-        &.vertical.reverse  { @include experimental(flex-flow, column wrap-reverse, -moz, -webkit, not -o, not -ms, not -khtml, official); }
+        &.reverse           { @include experimental(flex-direction, row-reverse, -moz, -webkit, not -o, not -ms, not -khtml, official); }
+        &.vertical          { @include experimental(flex-direction, column, -moz, -webkit, not -o, not -ms, not -khtml, official); }
+        &.vertical.reverse  { @include experimental(flex-direction, column-reverse, -moz, -webkit, not -o, not -ms, not -khtml, official); }
     }
 }
 
 @mixin generate-flex-grid-utils ($class-name) {
     .#{$grid-column-group-class-name} {
         .#{$class-name}-auto {
-            @include experimental(flex-basis, auto, -moz, -webkit, not -o, not -ms, not -khtml, official);   
+            @include experimental(flex-basis, auto, -moz, -webkit, not -o, not -ms, not -khtml, official); 
             @include experimental(flex-grow, 1, -moz, -webkit, not -o, not -ms, not -khtml, official);   
         }
     }
 
     // Vertical align
-    .align-top,
-    .#{$class-name}-align-top {
+    .push-top,
+    .#{$class-name}-push-top {
         -webkit-box-align: start;
         -webkit-align-items: flex-start;
         -moz-box-align: start;
@@ -63,8 +62,8 @@
         align-self: flex-start;
     }
 
-    .align-bottom,
-    .#{$class-name}-align-bottom {
+    .push-bottom,
+    .#{$class-name}-push-bottom {
         -webkit-box-align: end;
         -webkit-align-items: flex-end;
         -moz-box-align: end;
@@ -75,8 +74,8 @@
         align-self: flex-end;
     }
 
-    .align-middle,
-    .#{$class-name}-align-middle {
+    .push-middle,
+    .#{$class-name}-push-middle {
         -webkit-box-align: center;
         -webkit-align-items: center;
         -moz-box-align: center;
@@ -85,6 +84,22 @@
         -webkit-align-self: flex-center;
         -ms-flex-item-align: center;
         align-self: center;
+    }
+    
+    .push-left,
+    .#{$class-name}-push-left {
+        @include experimental(justify-content, flex-start, -moz, -webkit, not -o, not -ms, not -khtml, official);      
+    }
+
+    .push-center,
+    .#{$class-name}-push-center {
+        float: none !important;
+        @include experimental(justify-content, center, -moz, -webkit, not -o, not -ms, not -khtml, official);      
+    }
+
+    .push-right,
+    .#{$class-name}-push-right {
+        @include experimental(justify-content, flex-end, -moz, -webkit, not -o, not -ms, not -khtml, official);              
     }
 
     //*[class*="#{$class-name}-"].align-top,
@@ -353,18 +368,6 @@
 
 @mixin generate-grid-helper-classes($class-name,$gutter-width) {
 
-    .#{$class-name}-push-left {
-        float: left;        
-    }
-    
-    .#{$class-name}-push-center {
-        float: none;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    .#{$class-name}-push-right {
-        float: right;
-    }
     .#{$class-name}-align-left {
         text-align: left;
     }

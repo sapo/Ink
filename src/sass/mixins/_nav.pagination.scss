@@ -173,12 +173,12 @@
 
                 a {
                     color: $white;
-                    @include opacity(.7);
+                    @include opacity(.6);
                     
                     &:hover,
                     &:focus,
                     &.active {
-                        @include opacity(.9);
+                        @include opacity(.8);
                         text-decoration: none;
                         background: none;
                     }
@@ -188,12 +188,12 @@
             &.disabled {
                 a {
                     color: $white;
-                    @include opacity(.4);
+                    @include opacity(.6);
                     @include text-shadow(none);
                     &:hover,
                     &:focus {
                         color: $white;
-                        @include opacity(.4);
+                        @include opacity(.6);
                     }
                 }
             }
