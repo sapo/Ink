@@ -6727,12 +6727,15 @@ table {
   display: none;
 }
 
-.ink-dropdown {
+.ink-dropdown,
+.ink-navigation {
   position: relative;
   display: inline-block;
 }
-.ink-dropdown ul.dropdown-menu {
-  position: absolute;
+.ink-dropdown ul.dropdown-menu,
+.ink-dropdown ul.dropdown,
+.ink-navigation ul.dropdown-menu,
+.ink-navigation ul.dropdown {
   background: white;
   z-index: 30;
   border: 1px solid #d9d9d9;
@@ -6752,7 +6755,10 @@ table {
   padding: 0.35em 0;
   font-size: 0.85em;
 }
-.ink-dropdown ul.dropdown-menu li {
+.ink-dropdown ul.dropdown-menu li,
+.ink-dropdown ul.dropdown li,
+.ink-navigation ul.dropdown-menu li,
+.ink-navigation ul.dropdown li {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
@@ -6773,65 +6779,113 @@ table {
   position: relative;
   list-style-type: none;
 }
-.ink-dropdown ul.dropdown-menu li.separator-above {
+.ink-dropdown ul.dropdown-menu li.separator-above,
+.ink-dropdown ul.dropdown li.separator-above,
+.ink-navigation ul.dropdown-menu li.separator-above,
+.ink-navigation ul.dropdown li.separator-above {
   padding-top: 0.35em;
   margin-top: 0.35em;
   border-top: 1px solid #d9d9d9;
 }
-.ink-dropdown ul.dropdown-menu li.separator-below {
+.ink-dropdown ul.dropdown-menu li.separator-below,
+.ink-dropdown ul.dropdown li.separator-below,
+.ink-navigation ul.dropdown-menu li.separator-below,
+.ink-navigation ul.dropdown li.separator-below {
   padding-bottom: 0.35em;
   margin-bottom: 0.35em;
   border-bottom: 1px solid #d9d9d9;
 }
-.ink-dropdown ul.dropdown-menu li.heading {
+.ink-dropdown ul.dropdown-menu li.heading,
+.ink-dropdown ul.dropdown li.heading,
+.ink-navigation ul.dropdown-menu li.heading,
+.ink-navigation ul.dropdown li.heading {
   font-weight: 700;
   padding-bottom: 0.35em;
   margin-bottom: 0.35em;
   padding: 0.5em 0.8em;
   color: #333333;
 }
-.ink-dropdown ul.dropdown-menu li a {
+.ink-dropdown ul.dropdown-menu li a,
+.ink-dropdown ul.dropdown li a,
+.ink-navigation ul.dropdown-menu li a,
+.ink-navigation ul.dropdown li a {
   color: #444;
   padding: 0.5em 0.8em;
   display: block;
   clear: both;
 }
-.ink-dropdown ul.dropdown-menu li a:hover {
+.ink-dropdown ul.dropdown-menu li a:hover,
+.ink-dropdown ul.dropdown li a:hover,
+.ink-navigation ul.dropdown-menu li a:hover,
+.ink-navigation ul.dropdown li a:hover {
   background: #f2f2f2;
   text-decoration: none;
 }
-.ink-dropdown ul.dropdown-menu li.active a {
+.ink-dropdown ul.dropdown-menu li.active a,
+.ink-dropdown ul.dropdown li.active a,
+.ink-navigation ul.dropdown-menu li.active a,
+.ink-navigation ul.dropdown li.active a {
   background: #999999;
   color: white;
 }
-.ink-dropdown ul.dropdown-menu li.disabled a {
+.ink-dropdown ul.dropdown-menu li.disabled a,
+.ink-dropdown ul.dropdown li.disabled a,
+.ink-navigation ul.dropdown-menu li.disabled a,
+.ink-navigation ul.dropdown li.disabled a {
   color: #b3b3b3;
 }
-.ink-dropdown ul.dropdown-menu li.disabled a:hover {
+.ink-dropdown ul.dropdown-menu li.disabled a:hover,
+.ink-dropdown ul.dropdown li.disabled a:hover,
+.ink-navigation ul.dropdown-menu li.disabled a:hover,
+.ink-navigation ul.dropdown li.disabled a:hover {
   background: transparent;
   cursor: default;
 }
-.ink-dropdown ul.dropdown-menu li.submenu {
+.ink-dropdown ul.dropdown-menu li.submenu,
+.ink-dropdown ul.dropdown li.submenu,
+.ink-navigation ul.dropdown-menu li.submenu,
+.ink-navigation ul.dropdown li.submenu {
   overflow: visible;
 }
-.ink-dropdown ul.dropdown-menu li.submenu > a {
+.ink-dropdown ul.dropdown-menu li.submenu > a,
+.ink-dropdown ul.dropdown li.submenu > a,
+.ink-navigation ul.dropdown-menu li.submenu > a,
+.ink-navigation ul.dropdown li.submenu > a {
   white-space: nowrap;
 }
-.ink-dropdown ul.dropdown-menu li.submenu > a:after {
+.ink-dropdown ul.dropdown-menu li.submenu > a:after,
+.ink-dropdown ul.dropdown li.submenu > a:after,
+.ink-navigation ul.dropdown-menu li.submenu > a:after,
+.ink-navigation ul.dropdown li.submenu > a:after {
   content: "\f0da";
   width: auto;
   margin-left: 0.8em;
   font-family: FontAwesome;
   color: #b3b3b3;
 }
-.ink-dropdown ul.dropdown-menu li.submenu:hover > a {
+.ink-dropdown ul.dropdown-menu li.submenu:hover > a,
+.ink-dropdown ul.dropdown li.submenu:hover > a,
+.ink-navigation ul.dropdown-menu li.submenu:hover > a,
+.ink-navigation ul.dropdown li.submenu:hover > a {
   background: #f2f2f2;
   text-decoration: none;
 }
-.ink-dropdown ul.dropdown-menu li.submenu:hover:hover > ul.dropdown-menu {
+.ink-dropdown ul.dropdown-menu li.submenu:hover:hover > ul.dropdown-menu, .ink-dropdown ul.dropdown-menu li.submenu:hover:hover > ul.dropdown,
+.ink-dropdown ul.dropdown li.submenu:hover:hover > ul.dropdown-menu,
+.ink-dropdown ul.dropdown li.submenu:hover:hover > ul.dropdown,
+.ink-navigation ul.dropdown-menu li.submenu:hover:hover > ul.dropdown-menu,
+.ink-navigation ul.dropdown-menu li.submenu:hover:hover > ul.dropdown,
+.ink-navigation ul.dropdown li.submenu:hover:hover > ul.dropdown-menu,
+.ink-navigation ul.dropdown li.submenu:hover:hover > ul.dropdown {
   display: block;
 }
-.ink-dropdown ul.dropdown-menu li.submenu > ul.dropdown-menu {
+.ink-dropdown ul.dropdown-menu li.submenu > ul.dropdown-menu, .ink-dropdown ul.dropdown-menu li.submenu > ul.dropdown,
+.ink-dropdown ul.dropdown li.submenu > ul.dropdown-menu,
+.ink-dropdown ul.dropdown li.submenu > ul.dropdown,
+.ink-navigation ul.dropdown-menu li.submenu > ul.dropdown-menu,
+.ink-navigation ul.dropdown-menu li.submenu > ul.dropdown,
+.ink-navigation ul.dropdown li.submenu > ul.dropdown-menu,
+.ink-navigation ul.dropdown li.submenu > ul.dropdown {
   font-size: inherit;
   position: absolute;
   top: -0.36em;

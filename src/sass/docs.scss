@@ -16,6 +16,7 @@ $topbar-colorHover  : $white;
 $img-path           : "../img/";
 $code-background    : #EEEBE5;
 $code-border        : darken($code-background,8%);
+$teal: #009999;
 
 .uppercase { text-transform: uppercase; }
 .fw-100 { font-weight: 100; font-family: Roboto; }
@@ -468,7 +469,7 @@ table.props {
         td, th {
             padding: 0.7em 0;
             &:first-child {
-                padding-left:  1em;
+                padding: 0 1em;
             }
             &:last-child {
                 padding-right:  1em;
@@ -544,42 +545,63 @@ ul {
 }
 
 span.label {
-    font-size: 0.9em;
+
+    font-size: 0.80em;
+
     & + & {
         margin-left: 0.3em;
     }
+
+    &:after {
+        padding: 0 0.35em;
+        @include border-radius(2px);
+    }
+
     &.mandatory {
             &:after {
-                color: $red;
+                background: tint($red,25%);
+                color: $white;
                 content: "Mandatory";
                 text-transform: uppercase;
             }
     }
     &.breakpoint-aware {
             &:after {
-                color: $green;
+                background: tint($green,25%);
+                color: $white;
                 content: "Breakpoint aware";
                 text-transform: uppercase;
             }
     }
     &.context-aware {
             &:after {
-                color: $green;
+                background: tint($green,25%);
+                color: $white;
                 content: "Context aware";
                 text-transform: uppercase;
             }
     }
     &.halves-quarters {
             &:after {
-                color: $orange;
+                background: tint($orange,25%);
+                color: $white;
                 content: "Double, Half & Quarter";
                 text-transform: uppercase;
             }
     }
     &.js {
             &:after {
-                color: $blue;
+                background: tint($blue,25%);
+                color: $white;
                 content: "JavaScript";
+                text-transform: uppercase;
+            }
+    }
+    &.flexbox {
+            &:after {
+                background: tint($teal,25%);
+                color: white;
+                content: "Flexbox";
                 text-transform: uppercase;
             }
     }
@@ -612,7 +634,6 @@ html.flexbox .example {
     background: $code-background;
     @include border-radius($border-radius);
     margin-bottom: 1.5em;
-    overflow: hidden;
 
     .ink-grid {
         padding: 0;

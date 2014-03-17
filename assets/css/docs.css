@@ -746,7 +746,7 @@ table.props tr td, table.props tr th {
   padding: 0.7em 0;
 }
 table.props tr td:first-child, table.props tr th:first-child {
-  padding-left: 1em;
+  padding: 0 1em;
 }
 table.props tr td:last-child, table.props tr th:last-child {
   padding-right: 1em;
@@ -804,34 +804,53 @@ ul.props li.prop.breakpoint-aware:after {
 }
 
 span.label {
-  font-size: 0.9em;
+  font-size: 0.80em;
 }
 span.label + span.label {
   margin-left: 0.3em;
 }
+span.label:after {
+  padding: 0 0.35em;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+}
 span.label.mandatory:after {
-  color: #c91111;
+  background: #d64c4c;
+  color: white;
   content: "Mandatory";
   text-transform: uppercase;
 }
 span.label.breakpoint-aware:after {
-  color: #4a9b17;
+  background: #77b451;
+  color: white;
   content: "Breakpoint aware";
   text-transform: uppercase;
 }
 span.label.context-aware:after {
-  color: #4a9b17;
+  background: #77b451;
+  color: white;
   content: "Context aware";
   text-transform: uppercase;
 }
 span.label.halves-quarters:after {
-  color: #ff9c00;
+  background: #ffb43f;
+  color: white;
   content: "Double, Half & Quarter";
   text-transform: uppercase;
 }
 span.label.js:after {
-  color: #0f75da;
+  background: #4b97e3;
+  color: white;
   content: "JavaScript";
+  text-transform: uppercase;
+}
+span.label.flexbox:after {
+  background: #3fb2b2;
+  color: white;
+  content: "Flexbox";
   text-transform: uppercase;
 }
 
@@ -864,7 +883,6 @@ html.flexbox .example {
   -o-border-radius: 2px;
   border-radius: 2px;
   margin-bottom: 1.5em;
-  overflow: hidden;
 }
 .example .ink-grid,
 html.flexbox .example .ink-grid {

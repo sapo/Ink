@@ -1,0 +1,88 @@
+---
+layout: documentation
+title: Flexbox
+description: As of version 3.0.0 we have an alternative stylesheet that uses the Flexible box layout mode and is packed with new and exciting features.
+tags: flex, flexbox, grid
+site_root: ../../
+---
+
+<section id="#basic-principles">
+  <h1 class="fw-300">Basic principles</h1>
+  <p class="fw-300">
+    The Flexible box layout mode, or flexbox, introduces some very interesting features that we've used in Ink. Most of them are relative to the grid system but as you probably know, or will find out, that means they affect many other components in the framework.
+  </p>
+  <p>These new fetures include:</p>
+  <ul>
+    <li>Control over an elements vertical and horizontal alignment.</li>
+    <li>Control over the content vertical and horizontal alignment.</li>
+    <li>Reordering elements in your layouts independently of their order in the markup.</li>
+    <li>Reversing element flow, i.e. back to front and bottom to top.</li>
+    <li>Automatic width distribution i.e. grids without having to declare widths.</li>
+  </ul>
+  <p>On this page we'll cover all the places where flexbox feature enhacement exists and how to take advantage of them.</p>
+  <table class="props css">
+    <caption>CSS CLASSES</caption>
+    <thead>
+      <tr>
+        <th>Class name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>ink-flex</code></td>
+          <td>Defines an element as a flex container.  <span class="label flexbox"></span> <span class="label mandatory"></span></td>
+        </tr>
+        <tr>
+          <td><code>push-top</code></td>
+          <td>Aligns an element to the top of its flexbox container. <span class="label flexbox"></span></td>
+        </tr>
+        <tr>
+          <td><code>push-middle</code></td>
+          <td>Aligns an element to vertical center of its flexbox container. <span class="label flexbox"></span></td>
+        </tr>
+        <tr>
+          <td><code>push-bottom</code></td>
+          <td>Aligns an element to vertical center of its flexbox container. <span class="label flexbox"></span></td>
+        </tr>
+        <tr>
+          <td><code>push-left</code></td>
+          <td>Aligns an element to the left of its flexbox container. <span class="label flexbox"></span></td>
+        </tr>
+        <tr>
+          <td><code>push-center</code></td>
+          <td>Aligns an element to horizontal center of its flexbox container. <span class="label flexbox"></span></td>
+        </tr>
+        <tr>
+          <td><code>push-right</code></td>
+          <td>Aligns an element to the right its flexbox container. <span class="label flexbox"></span></td>
+        </tr>
+        <tr>
+          <td><code>push-right</code></td>
+          <td>Aligns an element to the right its flexbox container. <span class="label flexbox"></span></td>
+        </tr>
+        <tr>
+          <td><code>order-#</code></td>
+          <td>Sets the display order for up to 10 elements. When used you have to set the order for all elements inside the parent container. <span class="label flexbox"></span></td>
+        </tr>
+        <tr>
+          <td><code>reverse</code></td>
+          <td>Inverts the display order of the flexbox containers childer. Defaults to the x axis. <span class="label flexbox"></span></td>
+        </tr>
+        <tr>
+          <td><code>vertical</code></td>
+          <td>Sets the flow inside a flexbox container to the y axis. Items will display vertically. Can be combined with reverse to invert element order. <span class="label flexbox"></span></td>
+        </tr>
+        <tr>
+          <td><code>width-auto</code></td>
+          <td>Sets the elements <code>width</code> to auto. Horizontal space will be divided evenly between elements as content size allows. <span class="label flexbox"></span></td>
+        </tr>
+    </tbody>    
+  </table>
+  <ul class="unstyled">
+    <li><span class="label mandatory"></span> : This class must be used for the flexbox features to work.</li>
+    <li><span class="label breakpoint-aware"></span> : This class has breakpoint dependent variants, e.g. <code>large-class-name</code>.</li>
+    <li><span class="label halves-quarters"></span> : This class has half and quarter size variants, e.g. <code>half-class-name</code>.</li>
+    <li><span class="label flexbox"></span> : This class defines flexbox features.</li>
+  </ul>
+</section>
