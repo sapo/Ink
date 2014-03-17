@@ -1,6 +1,18 @@
-<p>Desc... <code>this</code> </p>
-
 <p class="example-title">Code</p>
-{% highlight js %}
+{% highlight html %}
+<div id="elm_id_a"></div>
+<div id="elm_id_b">...</div>
+<script>
+Ink.requireModules(['Ink.Dom.Element_1'], function(InkElement) {
+
+        var elmA = Ink.i('elm_id_a');
+        InkElement.setTextContent(elmA, 'This is some text to element A');
+
+        InkElement.setTextContent('elm_id_b', 'This is <a href="#">some text with <span>markup</span></a> to replace element B content');
+});
+</script>
+<!-- Result -->
+<div id="elm_id_a">This is some text to element A</div>
+<div id="elm_id_b">This is &lt;a href="#"&gt;some text with &lt;span&gt;markup&lt;/span&gt;&lt;/a&gt; to replace element B content</div>
 {% endhighlight %}
 
