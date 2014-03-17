@@ -63,6 +63,9 @@ test('getPath, setPath', function () {
     Ink.setPath('Plug.Sub.Sub', 'http://example.com/subsubplug/');
     equal(Ink.getPath('Plug.Sub'), 'http://example.com/subplug/lib.js');
     equal(Ink.getPath('Plug.Sub.Sub'), 'http://example.com/subsubplug/lib.js');
+
+    Ink.setPath('Plug.Sub.Module_1', 'http://example.com/subplugversion1/');
+    equal(Ink.getPath('Plug.Sub.Module_1'), 'http://example.com/subplugversion1/lib.js');
 });
 
 test('setPath supports using no trailing slash', function () {
@@ -282,10 +285,8 @@ if (window.console && window.console.log) {
 
             spy = sinon.spy(window.console, functions[i]);
             Ink[functions[i]]('log!', 'log2!');
-            ok(spy.calledOnce, 'console.' + functions[i] + ' called once');
-            deepEqual(
-                spy.lastCall.args, ['log!', 'log2!'],
-                '(called with arguments given to console.' + functions[i] + ')');
+            deepEqual(spy.calledOnce && spy.lastCall.args, ['log!', 'log2!'],
+                'console.' + functions[i] + ' called once with correct arguments');
 
             spy.restore();
             window.console[functions[i]].restore();
