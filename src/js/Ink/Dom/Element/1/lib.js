@@ -62,17 +62,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @param {String} tag        tag name
          * @param {Object} properties  object with properties to be set on the element. You can also call other functions in Ink.Dom.Element like this
          * @sample Ink_Dom_Element_1_create.html
-         *
-         * @example
-         *
-         *      var myPanel = InkElement.create('div', {
-         *          appendHTML: '<span></span>',
-         *          className: 'classes to add',
-         *          insertAfter: anotherPane
-         *      };
-         *
-         *      myPanel.innerHTML;  // -> '<div class="classes to add"><span></span></div>
-         *      myPanel.parentNode;  // -> anotherPane
          */
         create: function(tag, properties) {
             var el = document.createElement(tag);
