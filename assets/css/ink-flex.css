@@ -8561,6 +8561,37 @@ body.ink-drawer.over.right .right-drawer {
   -o-transition: all 0.5s ease;
   transition: all 0.5s ease;
 }
+.ink-carousel .stage .slide {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  white-space: normal;
+  margin: 0;
+  float: none;
+  zoom: 1;
+  *display: inline;
+}
+
+.ink-carousel {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: block;
+}
+.ink-carousel .stage {
+  left: 0;
+  height: auto !important;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 0;
+  list-style-type: none;
+  white-space: nowrap;
+  position: relative;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
 .ink-carousel .stage.column-group {
   display: -webkit-block;
   display: -moz-block;
