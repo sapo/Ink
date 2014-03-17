@@ -5,7 +5,7 @@
 <div id="parent_elm">
     <div id="elm_to_remove">This element will be removed</div>
 </div>
-<!-- Create Element -->
+<!-- Remove Element -->
 <script>
 Ink.requireModules(['Ink.Dom.Element_1'], function(InkElement) {
     var elmToRemove = Ink.i('elm_to_remove');
@@ -16,7 +16,7 @@ Ink.requireModules(['Ink.Dom.Element_1'], function(InkElement) {
     InkElement.remove('elm_to_remove'); 
 });
 </script>
-<!-- Output -->
+<!-- Result -->
 <div id="parent_elm">
 </div>
 {% endhighlight %}
