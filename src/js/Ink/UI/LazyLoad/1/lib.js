@@ -19,6 +19,7 @@ LazyLoad.prototype = {
 
         this._options = UICommon.options({
             item: ['String', '.lazyload-item'], // Use this to select and define what is to be considered an `item`.
+            placeholder: ['String', null], // Placeholder value for items which are still outside the screen (in case they don't already have a value set)
             source: ['String', 'data-src'], // When an `item` is within the viewport, take the value it has in this attribute then set its `destination` attribute to it.
             destination: ['String', 'src'], // attribute which gets the value in `source` when the element is visible.
             delay: ['Number', 100], // Wait a few milliseconds before trying to load.
@@ -52,6 +53,9 @@ LazyLoad.prototype = {
         var aElms = Ink.ss(this._options.item);
         var attr = null;
         for(var i=0, t=aElms.length; i < t; i++) {
+            if (this._options.placeholder != null && !InkElement.hasAttribute(aElms[i], this._options.destination)) {
+                aElms[i].setAttribute(this._options.destination, this._options.placeholder);
+            }
             attr = aElms[i].getAttribute(this._options.source);
             if(attr !== null || !this._options.image) {
                 this._aData.push({elm: aElms[i], original: attr});

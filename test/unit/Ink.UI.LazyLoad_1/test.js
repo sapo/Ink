@@ -50,4 +50,10 @@ Ink.requireModules(['Ink.UI.LazyLoad_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1', '
         ll.reload();
         equal(div2.getAttribute('src'), src);
     }, { autoInit: false });
+
+    testLazyLoad('When LazyLoad takes a `placeholder` option, it gets added automatically to the [src] of all elements', function (ll, cont) {
+        var relevantElements = Ink.ss('.test-div', cont);
+        equal(Ink.ss('[src$="my-image.jpg"]', cont).length, 3,
+            'All images got my-image.jpg (the placeholder) as their src');
+    }, { placeholder: './my-image.jpg' });
 });
