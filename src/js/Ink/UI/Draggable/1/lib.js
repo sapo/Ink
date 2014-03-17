@@ -1,4 +1,4 @@
-/*
+/**
  * @module Ink.UI.Draggable_1
  * @author inkdev AT sapo.pt
  * @version 1

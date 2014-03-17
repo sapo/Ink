@@ -151,12 +151,12 @@ a:hover {
 
     p,
     pre {
-        margin: rhythm(1) 0;
+        margin: rhythm(0.5) 0;
     }
 
     blockquote {
         /* Set 1 unit of vertical rhythm on the top and bottom margin. */
-        margin: rhythm(1) $indent-amount;
+        margin: rhythm(0.5) $indent-amount;
     }
 }
 

@@ -142,7 +142,7 @@
         },
 
         /**
-         * Loads a script by creating a `<script>` tag in the `<head>` of the document.
+         * Loads a script by creating a "script" tag in the "head" of the document.
          *
          * Reports errors by listening to 'error' and 'readystatechange' events.
          *
@@ -245,6 +245,7 @@
          * @param  {Number}    version  Version number
          * @param  {Array}     deps     Array of module names which are dependencies of the module being created. The order in which they are passed here will define the order they will be passed to the callback function.
          * @param  {Function}  modFn    The callback function to be executed when all the dependencies are resolved. The dependencies are passed as arguments, in the same order they were declared. The function itself should return the module.
+         * @sample Ink_1_createModule.html 
          *
          */
         createModule: function(mod, ver, deps, modFn) { // define
@@ -337,6 +338,7 @@
          * @method requireModules
          * @param  {Array}     deps  Array of module names. The order in which they are passed here will define the order they will be passed to the callback function. 
          * @param  {Function}  cbFn  The callback function to be executed when all the dependencies are resolved. The dependencies are passed as arguments, in the same order they were declared.
+         * @sample Ink_1_requireModules.html 
          */
         requireModules: function(deps, cbFn) { // require
             //console.log(['requireModules([', deps.join(', '), '], ', !!cbFn, ')'].join(''));
@@ -425,6 +427,7 @@
          * @param {String} version  Extension version
          * @param {Array}  dependencies Extension dependencies
          * @param {Function} modFn  Function returning the extension
+         * @sample Ink_1_createExt.html 
          */
         createExt: function (moduleName, version, dependencies, modFn) {
             return Ink.createModule('Ink.Ext.' + moduleName, version, dependencies, modFn);
@@ -459,6 +462,7 @@
          * @param {String}  methodName  The name of the method that will be bound
          * @param {Any}   [args*]     Additional arguments will be sent to the new method as prefix arguments.
          * @return {Function}
+         * @sample Ink_1_bindMethod.html 
          *  
          * @example
          *  // Build a function which calls Ink.Dom.Element.remove on an element.
@@ -487,6 +491,7 @@
          * @param {Object}    context   The value to be passed as the this parameter to the target 
          * @param {Any}     [args*]   Additional arguments will be sent to the original function as prefix arguments
          * @return {Function}
+         * @sample Ink_1_bindEvent.html 
          */
         bindEvent: function(fn, context) {
             var args = Array.prototype.slice.call(arguments, 2);
@@ -578,6 +583,7 @@
          *
          * @method log
          * @param {Any} [args*] Arguments to be evaluated
+         * @sample Ink_1_log.html 
          **/
         log: function () {
             // IE does not have console.log.apply in IE10 emulated mode
@@ -592,6 +598,7 @@
          *
          * @method warn
          * @param {Any} [args*] Arguments to be evaluated
+         * @sample Ink_1_warn.html 
          **/
         warn: function () {
             // IE does not have console.log.apply in IE10 emulated mode
@@ -606,6 +613,7 @@
          *
          * @method error
          * @param {Any} [args*] Arguments to be evaluated
+         * @sample Ink_1_error.html 
          **/
         error: function () {
             // IE does not have console.log.apply in IE10 emulated mode
