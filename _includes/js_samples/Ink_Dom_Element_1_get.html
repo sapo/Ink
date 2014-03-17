@@ -1,0 +1,12 @@
+<p class="example-title">Code</p>
+{% highlight html %}
+<div id="elm_id"></div>
+<script>
+Ink.requireModules(['Ink.Dom.Element_1'], function(InkElement) {
+        // alias to document.getElementById(); 
+        var elm = InkElement.get('elm_id');
+        Ink.log(elm);
+});
+</script>
+{% endhighlight %}
+

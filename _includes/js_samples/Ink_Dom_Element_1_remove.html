@@ -1,0 +1,23 @@
+<p>Remove an element </p>
+<p class="example-title">Code</p>
+{% highlight html %}
+<!-- Initial element -->
+<div id="parent_elm">
+    <div id="elm_to_remove">This element will be removed</div>
+</div>
+<!-- Create Element -->
+<script>
+Ink.requireModules(['Ink.Dom.Element_1'], function(InkElement) {
+    var elmToRemove = Ink.i('elm_to_remove');
+    InkElement.remove(elmToRemove); 
+
+    // or just 
+    
+    InkElement.remove('elm_to_remove'); 
+});
+</script>
+<!-- Output -->
+<div id="parent_elm">
+</div>
+{% endhighlight %}
+
