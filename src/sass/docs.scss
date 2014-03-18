@@ -433,22 +433,22 @@ section {
     @include background-clip(padding-box);
     
     & + section {
-        margin-top: 2em;
-        padding-top: 2em;
+        margin-top: 3em;
+        padding-top: 3em;
         border-top: 1px solid $code-border;
     }
     
-    p, ul, ol, table {
+    p, ul, ol, dl, table {
         font-weight: 300;
     }
 }
 
-p, ul {
+p, ul, dl {
     code {
         margin: 0 2px;
         padding: 0 5px;
         background-color: $code-background;
-        font-size: .95em;        
+        font-size: .938em;
     }
 }
 
@@ -467,9 +467,9 @@ table.props {
             }
         }
         td, th {
-            padding: 0.7em 0;
+            padding: .7em 0;
             &:first-child {
-                padding: 0 1em;
+                padding: .7em 1em;
             }
             &:last-child {
                 padding-right:  1em;
@@ -513,7 +513,6 @@ ul {
         
         &.inline {
             li {
-                padding: 0;
                 & + li {
                     margin-right: 0.4em;
                 }

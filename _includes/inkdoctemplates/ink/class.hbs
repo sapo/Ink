@@ -2,7 +2,7 @@
     <table class="props bottom-space">
         
         {{#if isNamespace}}
-        <caption>FUNCTIONS</caption>
+        <caption>Functions</caption>
         <thead>
             <tr>
                 <th>Function name</th>
@@ -11,7 +11,7 @@
         </thead>
 
         {{else}}
-        <caption>METHODS</caption>
+        <caption>Methods</caption>
         <thead>
             <tr>
                 <th>Method name</th>
@@ -53,7 +53,7 @@
 
     {{#if attributes.length}}
     <table class="props">
-        <caption>PROPERTIES</caption>
+        <caption>Properties</caption>
         <thead>
             <tr>
                 <th>Property name</th>
@@ -74,7 +74,7 @@
                     {{/if}}
 
                     {{#if type}}
-                        <code>{{type}}</code>
+                        <span class="ink-label orange uppercase">{{type}}</span>
                     {{/if}}
                     {{#if description}}
                         <span class="description">{{{description}}}</span>

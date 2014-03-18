@@ -831,7 +831,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          *
          * @method findUpwardsBySelector
          * @param {HtmlElement} element     Element to base the search from
-         * @param {String}      seĺ         CSS selector
+         * @param {String}      sel         CSS selector
          * @returns {HtmlElement|false} The matched element or false if did not match
          */
         findUpwardsBySelector: function(element, sel) {

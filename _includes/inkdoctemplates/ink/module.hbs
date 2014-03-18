@@ -8,11 +8,11 @@
 
 
     {{#if uses}}
-        <h3>uses:</h3>
-        <ul>
-        {{#each uses}}
-            <li>{{this}}</li>
-        {{/each}}
+        <ul class="props inline">
+            <li class="heading">Uses:</li>
+            {{#each uses}}
+            <li class="prop">{{this}}</li>
+            {{/each}}
         </ul>
     {{/if}}
 

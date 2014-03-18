@@ -713,19 +713,19 @@ section:first-child {
   margin: 0;
 }
 section + section {
-  margin-top: 2em;
-  padding-top: 2em;
+  margin-top: 3em;
+  padding-top: 3em;
   border-top: 1px solid #ded8cc;
 }
-section p, section ul, section ol, section table {
+section p, section ul, section ol, section dl, section table {
   font-weight: 300;
 }
 
-p code, ul code {
+p code, ul code, dl code {
   margin: 0 2px;
   padding: 0 5px;
   background-color: #eeebe5;
-  font-size: .95em;
+  font-size: .938em;
 }
 
 table.props {
@@ -743,10 +743,10 @@ table.props tr:nth-child(odd) td {
   background: #f2f0eb;
 }
 table.props tr td, table.props tr th {
-  padding: 0.7em 0;
+  padding: .7em 0;
 }
 table.props tr td:first-child, table.props tr th:first-child {
-  padding: 0 1em;
+  padding: .7em 1em;
 }
 table.props tr td:last-child, table.props tr th:last-child {
   padding-right: 1em;
@@ -780,9 +780,6 @@ ul.props {
   margin: .5em 0;
   padding: 0;
   list-style-type: none;
-}
-ul.props.inline li {
-  padding: 0;
 }
 ul.props.inline li + li {
   margin-right: 0.4em;
