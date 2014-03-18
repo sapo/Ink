@@ -48,11 +48,11 @@ Ink.requireModules(['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1', '
         ok(Common.elsOrSelector(bag)[0] === bag);
     });
 
-    bagTest('Send an actual array of elements, returned as-is', function () {
+    bagTest('Send an actual array of elements, returned as-is', function (bag) {
+        ok(bag.children.length, 'sanity check');
         deepEqual(
-            Common.elsOrSelector(Selector.select('#bag *')),
-            Selector.select('#bag *'),
-            true);
+            Common.elsOrSelector(Selector.select('*', bag)),
+            Selector.select('*', bag));
         deepEqual(Common.elsOrSelector([], '', false), []);
     });
 
@@ -146,7 +146,7 @@ Ink.requireModules(['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1', '
             deepEqual(o.bool, false);
         });
 
-        bagTest('invalid options', function () {
+        bagTest('invalid options', function (bag) {
             bag.setAttribute('data-int', '1.1');
             bag.setAttribute('data-numb', 'NaN');
             bag.setAttribute('data-func', 'somethin');

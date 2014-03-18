@@ -1,3 +1,4 @@
+QUnit.config.testTimeout = 4000;
 
 Ink.requireModules(['Ink.UI.Toggle_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1', 'Ink.Dom.Event_1', 'Ink.Dom.Selector_1'], function (Toggle, InkElement, Css, InkEvent, Selector) {
     'use strict';
@@ -12,7 +13,11 @@ Ink.requireModules(['Ink.UI.Toggle_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1', 'In
             InkElement.create('div', {className: 'targets target-2', insertBottom:parent})
         ];
         test(testName, Ink.bind(callBack, false, parent, trigger, targets));
-        QUnit.testDone(Ink.bindMethod(InkElement, 'remove', false, parent));
+        QUnit.testDone(function () {
+            if (parent) {
+                InkElement.remove(parent);
+            }
+        });
     }
     
     bagTest('option "target" is required', function (bag) {
@@ -29,11 +34,12 @@ Ink.requireModules(['Ink.UI.Toggle_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1', 'In
     bagTest('initialState, when defined, controls the state the toggle shows up on', function (_, trigger, targets) {
         equal(
             new Toggle(trigger, { initialState: true, target: targets })
-            .getState(), true);
+            .getState(), true, '"getState()" = true');
         equal(
             new Toggle(trigger, { initialState: false, target: targets })
-            .getState(), false);
+            .getState(), false, '"getState()" = false');
     });
+
 
     bagTest('the thing adds and removes classes from the target element', function (_, trigger, targets) {
         var toggle = new Toggle(trigger, { target: targets, initialState: true, classNameOn: 'oh-it-is-on', classNameOff: 'oh-it-is-off' });

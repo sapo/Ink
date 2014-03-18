@@ -237,16 +237,6 @@ Ink.requireModules(['Ink.Dom.Element_1', 'Ink.Dom.Selector_1', 'Ink.Dom.Css_1'],
         equal(InkElement.outerDimensions(elm)[0], 40);
         equal(InkElement.outerDimensions(elm)[1], 20);
 
-        elm.style.width = '30.25px';
-        elm.style.paddingRight = '5.25px';
-        elm.style.marginRight = '5.25px';
-        equal(InkElement.outerDimensions(elm)[0], 40.75);
-
-        elm.style.height = '10.25px'
-        elm.style.paddingBottom = '5.25px'
-        elm.style.marginBottom = '5.25px'
-        equal(InkElement.outerDimensions(elm)[1], 20.75);
-
         document.body.removeChild(elm);
     });
 
