@@ -1,6 +1,6 @@
 <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     {{#if isConstructor}}
         {{parent.name}}
     {{else}}
@@ -20,7 +20,7 @@
             <i>function</i>
         {{/ifvalue}}
     {{/if}}
-    </h2>
+    </h1>
 
     {{#if async}}
         <span class="tag">async</span>
@@ -29,15 +29,20 @@
         <span class="tag">deprecated</span>
     {{/if}}
 
-    {{#if params.length}}
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        {{#each params}}
-            <li>
-                {{#if type}}
-                    <pre>{{type}}</pre>
-                {{/if}}
+    {{#if text}}
+        <p class="text">{{{text}}}</p>
+    {{/if}}
 
+    {{#if params.length}}
+        <h3>Accepts</h3>
+        <dl class="params">
+        {{#each params}}
+            <dt>
+                {{#if type}}
+                    <code>{{type}}</code>
+                {{/if}}
+            </dt>
+            <dd>
                 {{#if isOptional}}
                     <label class="optional">[{{name}}]
                 {{else}}
@@ -48,30 +53,31 @@
                     ={{defaultValue}}
                 {{/if}}
                 </label>
-
+            
+            
                 {{#if description}}
                     <span class="description">{{{description}}}</span>
                 {{/if}}
-            </li>
+            </dd>
         {{/each}}
-        </ul>
+        </dl>
+        {{#if return}}
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                {{#if return.type}}<code>{{return.type}}</code>{{/if}}
+            </dt>                
+            <dd>   
+                {{#if return.description}}
+                    {{{description}}}
+                {{/if}}
+            </dd>
+        </dl>
+        {{/if}}
+        
+
     {{/if}}
 
-    {{#if return}}
-        <div class="return">
-            Returns 
-            {{#if return.type}}
-                <pre>{{return.type}}</pre>
-            {{/if}}
-            {{#if return.description}}
-                <span class="description">{{{description}}}</span>
-            {{/if}}
-        </div>
-    {{/if}}
-
-    {{#if text}}
-        <p class="text">{{{text}}}</p>
-    {{/if}}
 
     {{> examples}}
     {{> samples}}
