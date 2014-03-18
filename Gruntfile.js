@@ -32,6 +32,10 @@ module.exports = function (grunt) {
                     src: './src/less/',
                     dist: './dist/css/'
                 }
+            },
+            test: {
+                connect_port: process.env.INK_TEST_CONNECT_PORT || 8000,
+                root: '.',
             }
         },
         // handle 3rd party dependencies
@@ -327,6 +331,14 @@ module.exports = function (grunt) {
             }
         },
 
+        connect: {
+            test: {
+                port: '<%= ink.test.connect_port %>',
+                base: '<%= ink.test.root %>',
+                keepalive: false
+            },
+        },
+
         // Creates a plato report
         plato: {
             inkjs: {
@@ -368,19 +380,28 @@ module.exports = function (grunt) {
     grunt.registerTask('css', ['clean:css', 'compass', 'cssmin']);
     grunt.registerTask('dependencies', ['bower', 'copy']);
     grunt.registerTask('default', ['dependencies','css','js']);
-	grunt.registerTask('test', 'Run unit tests using phantomjs', function () {
+    grunt.registerTask('_phantomjs', function (module) {
+        this.requires('connect:test');
+
+        var options = this.options({
+            module: '**'
+        });
+
         var failures = [];
-        var testFiles = grunt.file.expand('test/unit/**/index.html');
+
+        var testFiles = grunt.file.expand('test/unit/' + options.module + '/index.html');
+
         var done = this.async();
 
         async.eachSeries(testFiles, function (testFile, next) {
-            var url = 'file://' + path.join(__dirname, testFile);
+            var url = 'http://localhost:' + grunt.config.get('ink.test.connect_port') + '/' + testFile;
             var displayName = path.basename(path.dirname(testFile));
 
             console.log('\nrunning tests for ' + testFile);
+            console.log('(visiting ' + url + ')');
             phantomjsProcess = child_process.spawn('./node_modules/phantomjs/bin/phantomjs', [
                     'test/phantomjs-qunit.js',
-                    testFile
+                    url
                 ]);
             phantomjsProcess.on('close', function(exitCode) {
                 if (exitCode) {
@@ -401,7 +422,12 @@ module.exports = function (grunt) {
             done(failures.length);
         });
     });
-
+	grunt.registerTask('test', function (moduleName) {
+        if (moduleName) {
+            grunt.config.set('_phantomjs.options.module', moduleName);
+        }
+        grunt.task.run(['connect:test', '_phantomjs:test']);
+    });
     grunt.registerTask('custom_bundle', 'Create your custom bundle from a json file', function (fileName) {
         if (arguments.length === 0) {
             grunt.log.error('You need to specify a file name');

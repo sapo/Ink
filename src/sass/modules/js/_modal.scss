@@ -3,15 +3,15 @@
     left: 50%;
     width: 90%;
     height: 90%;
-    background:$white;
-    z-index:$layer-100;
+    background: $white;
+    z-index: $layer-100;
     position:absolute;
     border: 1px $grey-60 solid;
-    #ink > #effects > .opacity (1);
-    #ink > #shadows > .box-shadow (0,0,15px,0,rgba(0, 0, 0, 0.8));
-    #ink > #border-radius > .all (4px);
     overflow: hidden;
-    #ink > #utils > .clearfix ();
+    @include opacity(1);
+    @include box-shadow(rgba(0,0,0,0.8) 0 0 15px 0);
+    @include border-radius($border-radius);
+    @include pie-clearfix;
 
     > .modal-body {
         padding: 1em;
@@ -30,7 +30,7 @@
     > .modal-header, > header {
         border-bottom: 1px $grey-10 solid;
         overflow: hidden;
-        #ink > #shadows > .box-shadow (0,1px,2px,0,rgba(175, 175, 175, 0.2));
+        @include box-shadow(rgba(175, 175, 175, 0.2) 0 1px 2px 0);
 
         > .modal-close {
 
@@ -44,11 +44,10 @@
             background: $grey-25;
             font-size: 0;
             
-            
-            #ink > #border-radius > .all (50%);
-            #ink > #shadows > .text-shadow (0,-1px,0,rgba(0,0,0,0.6));
-            #ink > #effects > .opacity (0.6);
-            #ink > #effects > .transition (opacity,125ms);
+            @include border-radius(50%);
+            @include text-shadow(rgba(0,0,0,0.6) 0 -1px 0);
+            @include opacity(.6);
+            @include transition (compact(opacity 125ms ease-in-out));
 
             &:after {
                 content: "\f00d";
@@ -59,7 +58,7 @@
             
 
             &:hover {
-                #ink > #effects > .opacity (1);
+                @include opacity(1);
             }
 
             float: right;
@@ -69,7 +68,7 @@
     > .modal-footer, > footer {
         background: $grey-10;
         margin-bottom: 0;
-        #ink > #shadows > .box-shadow (0,-1px,2px,0,rgba(175, 175, 175, 0.2));
+        @include box-shadow(rgba(175, 175, 175, 0.2) 0 -1px 2px 0);
         position: absolute;
         bottom: 0;
         width: 100%;
