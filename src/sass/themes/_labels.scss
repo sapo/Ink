@@ -1,6 +1,7 @@
 .#{$label-class-name} {
     color: $white;
     font-weight: 300;
+    font-size: $label-font-size;
     @include border-radius($border-radius);
 
     &.white {
