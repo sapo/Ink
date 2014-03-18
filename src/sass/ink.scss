@@ -44,7 +44,7 @@
 @import "mixins/nav.pagination";
 @import "mixins/nav.menu";
 @import "mixins/nav.dropdown";
-@import "mixins/spacing";
+@import "mixins/themeing";
 @import "mixins/typography";
 @import "mixins/utils";
 
@@ -85,3 +85,10 @@
 @import "modules/js/datepicker";
 @import "modules/js/drawer";
 @import "modules/js/modal";
+@import "modules/js/progressbar";
+@import "modules/js/sortable.list";
+@import "modules/js/sticky";
+@import "modules/js/tabs";
+@import "modules/js/tagfield";
+@import "modules/js/treeview";
+

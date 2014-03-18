@@ -14,21 +14,25 @@
     user-drag: none;
 }
 
+.drag {
+    @include box-shadow (0, 0px, 10px, 0, rgba( 0, 0, 0, 0.3));
+}
+
 .ink-sortable-list {
     
     li {
         margin:0;
         border-bottom:1px solid #ccc;
-        line-height: @sortable-list-height;
-        .dragging;
+        line-height: $sortable-list-height;
+        @extend .dragging;
         
         &:hover,
         &.placeholder {
             background: rgb(204,204,204);
-            background:rgba(204,204,204,0.2);
+            background: rgba(204,204,204,0.2);
         }
         &.placeholder {
-            .drag;
+           @extend .drag;
         }
         
         .ink-label {
