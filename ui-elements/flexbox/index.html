@@ -1,0 +1,339 @@
+---
+layout: documentation
+title: Flexbox
+description: As of version 3.0.0 we have an alternative style sheet that uses the Flexible box layout mode and is packed with new and exciting features.
+tags: flex, flexbox, grid
+site_root: ../../
+---
+
+<section id="#basic-principles">
+  <h1 class="fw-300">Basic principles</h1>
+  <p class="fw-300">
+    The Flexible box layout mode, or flexbox, introduces some very interesting features that we've used in Ink. Most of them are relative to the grid system but as you probably know, or will find out, that means they affect many other components in the framework.
+  </p>
+  <p>These new features include:</p>
+  <ul>
+    <li>Control over an elements vertical and horizontal alignment.</li>
+    <li>Control over the content vertical and horizontal alignment.</li>
+    <li>Reordering elements in your layouts independently of their order in the markup.</li>
+    <li>Reversing element flow, i.e. back to front and bottom to top.</li>
+    <li>Automatic width distribution i.e. grids without having to declare widths.</li>
+  </ul>
+  <p>On this page we'll cover all the places where flexbox feature enhancement exists and how to take advantage of them.</p>
+  <p><i class="fa fa-leaf"></i> Be aware that the Flexible box layout mode is still at the <a href="http://www.w3.org/TR/css3-flexbox/#status">Candidate Recommendation</a> stage of the specification and even though the W3C encourages browser makers to implement it, it is subject to change before the final version of the specification.</p>
+  <table class="props css">
+    <caption>CSS CLASSES</caption>
+    <thead>
+      <tr>
+        <th>Class name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>ink-flex</code></td>
+          <td>Defines an element as a flex container. <span class="label mandatory"></span><span class="label flexbox"></span> </td>
+        </tr>
+        <tr>
+          <td><code>push-top</code></td>
+          <td>Aligns an element to the top of its flexbox container. <span class="label breakpoint-aware"></span><span class="label flexbox"></span></td>
+        </tr>
+        <tr>
+          <td><code>push-middle</code></td>
+          <td>Aligns an element to vertical center of its flexbox container. <span class="label flexbox"></span><span class="label breakpoint-aware"></span></td>
+        </tr>
+        <tr>
+          <td><code>push-bottom</code></td>
+          <td>Aligns an element to vertical center of its flexbox container. <span class="label flexbox"></span><span class="label breakpoint-aware"></span></td>
+        </tr>
+        <tr>
+          <td><code>push-left</code></td>
+          <td>Aligns an element to the left of its flexbox container. <span class="label flexbox"></span><span class="label breakpoint-aware"></span></td>
+        </tr>
+        <tr>
+          <td><code>push-center</code></td>
+          <td>Aligns an element to horizontal center of its flexbox container. <span class="label flexbox"></span><span class="label breakpoint-aware"></span></td>
+        </tr>
+        <tr>
+          <td><code>push-right</code></td>
+          <td>Aligns an element to the right its flexbox container. <span class="label flexbox"></span><span class="label breakpoint-aware"></span></td>
+        </tr>
+        <tr>
+          <td><code>order-#</code></td>
+          <td>Sets the display order for up to 10 elements. When used you have to set the order for all elements inside the parent container. <span class="label breakpoint-aware"></span><span class="label flexbox"></span></td>
+        </tr>
+        <tr>
+          <td><code>reverse</code></td>
+          <td>Inverts the display order of the flexbox containers childer. Defaults to the x axis. <span class="label flexbox"></span></td>
+        </tr>
+        <tr>
+          <td><code>vertical</code></td>
+          <td>Sets the flow inside a flexbox container to the y axis. Items will display vertically. Can be combined with reverse to invert element order. <span class="label flexbox"></span></td>
+        </tr>
+        <tr>
+          <td><code>width-auto</code></td>
+          <td>Sets the elements <code>width</code> to auto. Horizontal space will be divided evenly between elements as content size allows. <span class="label flexbox"></span></td>
+        </tr>
+    </tbody>    
+  </table>
+  <ul class="unstyled">
+    <li><span class="label mandatory"></span> : This class must be used for the flexbox features to work.</li>
+    <li><span class="label breakpoint-aware"></span> : This class has breakpoint dependent variants, e.g. <code>large-class-name</code>.</li>
+    <li><span class="label flexbox"></span> : This class defines flexbox features.</li>
+  </ul>
+</section>
+<section id="element-alignment">
+  <h1 class="fw-300">Flex grid</h1>
+  <ul class="css props inline">
+    <li class="heading">Css classes:</li>
+    <li class="prop">ink-flex</li>
+    <li class="prop">push-top</li>
+    <li class="prop">push-middle</li>
+    <li class="prop">push-bottom</li>
+    <li class="prop">push-left</li>
+    <li class="prop">push-center</li>
+    <li class="prop">push-right</li>
+    <li class="prop">order-#</li>
+    <li class="prop">reverse</li>
+    <li class="prop">vertical</li>
+  </ul>
+  <h2>Aligning grid columns</h2>
+  <p>If you're not familiar with our <a href="{{ site.url }}ui-elements/grid">grid system</a>, we advise you to read <a href="{{ site.url }}ui-elements/grid">its documentation</a> before going ahead.</p>
+  <p>When using our flexbox style sheet the <code>column-group</code> element is, by default, a flex container so, you don't need to use the <code>ink-flex</code> css class, in this case:</p>
+<p class="example-title">Code</p>
+{% highlight html %}
+<div class="ink-grid">
+  <div class="column-group push-center">
+    <div class="all-50">
+      50%
+    </div>
+  </div>
+</div>  
+{% endhighlight %}
+<p>Unlike the "default" grid system, and because of the way flexbox works, positioning classes are applied to the <code>column-group</code>, rather that the columns themselves.</p>
+<p class="example-title">Demo</p>
+<div class="example">
+  <div class="ink-grid">
+  <div class="column-group push-center">
+    <div class="all-50">
+      <div class="column">50%</div>
+    </div>
+  </div>
+</div>  
+</div>
+<p>You can also define breakpoint dependent grid column alignment:</p>
+<p class="example-title">Code</p>
+{% highlight html %}
+<div class="ink-grid">
+  <div class="column-group extra-large-push-left large-push-center medium-push-right small-push-center tiny-push-left">
+    <div class="all-50">
+      50%
+    </div>
+  </div>
+</div>  
+{% endhighlight %}
+<p class="example-title">Demo</p>
+<div class="example">
+  <div class="ink-grid">
+  <div class="column-group extra-large-push-left large-push-center medium-push-right small-push-center tiny-push-left">
+    <div class="all-50">
+      <div class="column">50%</div>
+    </div>
+  </div>
+</div>  
+</div>
+<p>You can combine horizontal and vertical alignment classe to center a grid column in both the x and y axis:</p>
+<p class="example-title">Code</p>
+{% highlight html %}
+<div class="ink-grid">
+  <div class="column-group push-center push-middle">
+    <div class="all-50">
+      50%
+    </div>
+  </div>
+</div>  
+{% endhighlight %}
+<p class="example-title">Demo</p>
+<div class="example">
+  <div class="ink-grid">
+  <div class="column-group tall push-center push-middle">
+    <div class="all-50">
+      <div class="column">50%</div>
+    </div>
+  </div>
+</div>  
+</div>
+<h2>Reordering grid columns</h2>
+<p>Flexbox allows us to redefine the order that grid columns are displayed, regardless of their order in the markup.</p>
+<p class="example-title">Code</p>
+{% highlight html %}
+<div class="ink-grid">
+  <div class="column-group horizontal-gutters">
+    <div class="all-33 order-3">
+      column 1
+    </div>
+    <div class="all-33 order-1">
+      column 2
+    </div>
+    <div class="all-33 order-2">
+      column 3
+    </div>
+  </div>
+</div>
+{% endhighlight %}
+<p><span class="fa fa-leaf"></span> The only drawback is that if you want to reorder grid columns, you'll have to set the order for all within the <code>column-group</code>. This is so because setting the <code>order</code> property takes the element out of the normal flexbox flow so, setting the order for just one would result in having that element to be the first and the rest would just be show by their order in the markup.</p>
+<p class="example-title">Demo</p>
+<div class="example">
+<div class="ink-grid">
+  <div class="column-group horizontal-gutters">
+    <div class="all-33 order-3">
+      <div class="column">column 1</div>
+    </div>
+    <div class="all-33 order-1">
+      <div class="column">column 2</div>
+    </div>
+    <div class="all-33 order-2">
+      <div class="column">column 3</div>
+    </div>
+  </div>
+</div>  
+</div>
+<p>Once again you can reorder items based, on the breakpoint:</p>
+<p class="example-title">Code</p>
+{% highlight html %}
+<div class="ink-grid">
+  <div class="column-group horizontal-gutters">
+    <div class="all-33 tiny-order-3 small-order-2 medium-order-1 large-1 extra-large-order-3">
+      <div class="column">column 1</div>
+    </div>
+    <div class="all-33 tiny-order-1 small-order-3 medium-order-3 large-2 extra-large-order-1">
+      <div class="column">column 2</div>
+    </div>
+    <div class="all-33 tiny-order-2 small-order-1 medium-order-2 large-3 extra-large-order-2">
+      <div class="column">column 3</div>
+    </div>
+  </div>
+</div>
+{% endhighlight %}
+<p class="example-title">Demo</p>
+<div class="example">
+  <div class="ink-grid">
+    <div class="column-group horizontal-gutters">
+      <div class="all-33 tiny-order-3 small-order-2 medium-order-1 large-1 extra-large-order-3">
+        <div class="column">column 1</div>
+      </div>
+      <div class="all-33 tiny-order-1 small-order-3 medium-order-3 large-2 extra-large-order-1">
+        <div class="column">column 2</div>
+      </div>
+      <div class="all-33 tiny-order-2 small-order-1 medium-order-2 large-3 extra-large-order-2">
+        <div class="column">column 3</div>
+      </div>
+    </div>
+  </div>
+</div>
+<h2>Reversing order and changing element flow</h2>
+<p>With flex box you can reverse the order of elements inside a <code>column-group</code> without having to specify the order for all columns. Also you can set if elements flow along either the x or y axis of the <code>column-group</code>. In the example below, adding the <code>reverse</code> css class to the <code>column-group</code> will reverse the order of its column along the x axis:</p>
+<p class="example-title">Code</p>
+{% highlight html %}
+<div class="ink-grid">
+  <div class="column-group horizontal-gutters reverse">
+    <div class="all-33">
+      <div class="column">column 1</div>
+    </div>
+    <div class="all-33">
+      <div class="column">column 2</div>
+    </div>
+    <div class="all-33">
+      <div class="column">column 3</div>
+    </div>
+  </div>
+</div>
+{% endhighlight %}
+<p class="example-title">Demo</p>
+<div class="example">
+<div class="ink-grid">
+  <div class="column-group horizontal-gutters reverse">
+    <div class="all-33">
+      <div class="column">column 1</div>
+    </div>
+    <div class="all-33">
+      <div class="column">column 2</div>
+    </div>
+    <div class="all-33">
+      <div class="column">column 3</div>
+    </div>
+  </div>
+</div>
+</div>
+<p>Adding the <code>vertical</code> css class to the <code>column-group</code> will make its child columns flow along the y axis. Basically each column will be in a single "line" regardless of their width. Combined with the <code>reverse</code> css class elements will flow vertically in reverse order:</p>
+<div class="column-group horizontal-gutters">
+<div class="extra-large-50 large-50 medium-100 small-100 tiny-100">
+<p class="example-title">Code</p>
+{% highlight html %}
+<div class="ink-grid">
+  <div class="column-group horizontal-gutters vertical">
+    <div class="all-33">
+      <div class="column">column 1</div>
+    </div>
+    <div class="all-33">
+      <div class="column">column 2</div>
+    </div>
+    <div class="all-33">
+      <div class="column">column 3</div>
+    </div>
+  </div>
+</div>
+{% endhighlight %}
+<p class="example-title">Demo</p>
+<div class="example">
+<div class="ink-grid">
+  <div class="column-group horizontal-gutters large-vertical-gutters large-vertical large-reverse">
+    <div class="all-33 large-auto">
+      <div class="column">column 1</div>
+    </div>
+    <div class="all-33 large-auto">
+      <div class="column">column 2</div>
+    </div>
+    <div class="all-33 large-auto">
+      <div class="column">column 3</div>
+    </div>
+  </div>
+</div>  
+</div>
+  </div>
+  <div class="extra-large-50 large-50 medium-100 small-100 tiny-100">
+    <p class="example-title">Code</p>
+{% highlight html %}
+<div class="ink-grid">
+  <div class="column-group horizontal-gutters vertical">
+    <div class="all-33">
+      <div class="column">column 1</div>
+    </div>
+    <div class="all-33">
+      <div class="column">column 2</div>
+    </div>
+    <div class="all-33">
+      <div class="column">column 3</div>
+    </div>
+  </div>
+</div>
+{% endhighlight %}
+<p class="example-title">Demo</p>
+<div class="example">
+<div class="ink-grid">
+  <div class="column-group horizontal-gutters large-vertical-gutters large-vertical large-reverse">
+    <div class="all-33 large-auto">
+      <div class="column">column 1</div>
+    </div>
+    <div class="all-33 large-auto">
+      <div class="column">column 2</div>
+    </div>
+    <div class="all-33 large-auto">
+      <div class="column">column 3</div>
+    </div>
+  </div>
+</div>  
+</div>
+  </div>
+</div>
+</section>

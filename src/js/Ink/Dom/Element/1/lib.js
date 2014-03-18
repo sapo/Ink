@@ -1,5 +1,7 @@
 /**
- * @author inkdev AT sapo.pt
+ * @module Ink.Dom.Element_1
+ * @version 1
+ * DOM Traversal and manipulation
  */
 
 Ink.createModule('Ink.Dom.Element', 1, [], function() {
@@ -83,7 +85,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * Removes a DOM Element from the DOM
+         * Removes a DOM Element
          *
          * @method remove
          * @param {DOMElement} elm  The element to remove
@@ -128,12 +130,12 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * Gets the top cumulative offset for an element
-         *
-         * Requires Ink.Dom.Browser
+         * Gets the top offset of an element
          *
          * @method offsetTop
-         * @param {DOMElement|String} elm  target element
+         * @uses Ink.Dom.Browser
+         *
+         * @param {DOMElement|String} elm  Target element
          * @return {Number} Offset from the target element to the top of the document
          * @sample Ink_Dom_Element_1_offsetTop.html
          */
@@ -142,12 +144,12 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * Gets the left cumulative offset for an element
-         *
-         * Requires Ink.Dom.Browser
+         * Gets the left offset of an element
          *
          * @method offsetLeft
-         * @param {DOMElement|String} elm  target element
+         * @uses Ink.Dom.Browser
+         *
+         * @param {DOMElement|String} elm  Target element
          * @return {Number} Offset from the target element to the left of the document
          * @sample Ink_Dom_Element_1_offsetLeft.html
          */
@@ -156,10 +158,10 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-        * Gets the element offset relative to its closest positioned ancestor
+        * Gets the relative offset of an element
         *
         * @method positionedOffset
-        * @param {DOMElement|String} elm  target element
+        * @param {DOMElement|String} elm  Target element
         * @return {Array} Array with the element offsetleft and offsettop relative to the closest positioned ancestor
         * @sample Ink_Dom_Element_1_positionedOffset.html
         */
@@ -192,7 +194,8 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          *
          * Returns the top left position of the element on the page
          *
-         * Requires Ink.Dom.Browser
+         * @method offset
+         * @uses Ink.Dom.Browser
          *
          * @method offset
          * @param {DOMElement|String}   elm     Target element
@@ -221,7 +224,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Gets the scroll of the element
          *
          * @method scroll
-         * @param {DOMElement|String} [elm] target element or document.body
+         * @param {DOMElement|String} [elm] Target element or document.body
          * @returns {Array} offset values for x and y scroll
          * @sample Ink_Dom_Element_1_scroll.html
          */
@@ -261,11 +264,11 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * Verifies the existence of an attribute
+         * Checks if an element has an attribute
          *
          * @method hasAttribute
-         * @param {Object} elm   target element
-         * @param {String} attr  attribute name
+         * @param {Object} elm   Target element
+         * @param {String} attr  Attribute name
          * @return {Boolean} Boolean based on existance of attribute
          * @sample Ink_Dom_Element_1_hasAttribute.html
          */
@@ -274,11 +277,11 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
             return elm.hasAttribute ? elm.hasAttribute(attr) : !!elm.getAttribute(attr);
         },
         /**
-         * Inserts a element immediately after a target element
+         * Inserts an element right after another
          *
          * @method insertAfter
-         * @param {DOMElement}         newElm     element to be inserted
-         * @param {DOMElement|String}  targetElm  key element
+         * @param {DOMElement}         newElm     Element to be inserted
+         * @param {DOMElement|String}  targetElm  Key element
          * @sample Ink_Dom_Element_1_insertAfter.html
          */
         insertAfter: function(newElm, targetElm) {
@@ -293,11 +296,11 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * Inserts an element before a target element
+         * Inserts an element before another
          *
          * @method insertBefore
-         * @param {DOMElement}         newElm     element to be inserted
-         * @param {DOMElement|String}  targetElm  key element
+         * @param {DOMElement}         newElm     Element to be inserted
+         * @param {DOMElement|String}  targetElm  Key element
          * @sample Ink_Dom_Element_1_insertBefore.html
          */
         insertBefore: function (newElm, targetElm) {
@@ -308,11 +311,11 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * Inserts a element at the top of the childNodes of a target element
+         * Inserts an element as the first child of another
          *
          * @method insertTop
-         * @param {DOMElement}         newElm     element to be inserted
-         * @param {DOMElement|String}  targetElm  key element
+         * @param {DOMElement}         newElm     Element to be inserted
+         * @param {DOMElement|String}  targetElm  Key element
          * @sample Ink_Dom_Element_1_insertTop.html
          */
         insertTop: function(newElm,targetElm) {
@@ -327,11 +330,11 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * Inserts an element after all the child nodes of another element
+         * Inserts an element as the last child of another
          *
          * @method insertBottom
-         * @param {DOMElement}         newElm     element to be inserted
-         * @param {DOMElement|String}  targetElm  key element
+         * @param {DOMElement}         newElm     Element to be inserted
+         * @param {DOMElement|String}  targetElm  Key element
          * @sample Ink_Dom_Element_1_insertBottom.html
          */
         insertBottom: function(newElm, targetElm) {
@@ -343,8 +346,8 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         /**
          * Retrieves textContent from node
          *
-         * @method textContent 
-         * @param {DOMNode} node from which to retreive text from. Can be any node type.
+         * @method textContent
+         * @param {DOMNode} node Where to retreive text from. Can be any node type.
          * @return {String} the text
          * @sample Ink_Dom_Element_1_textContent.html
          */
@@ -389,11 +392,12 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * Removes all nodes children and adds the text
+         * Replaces text content of a DOM Node
+         * This method removes any child node previously present
          *
          * @method setTextContent
-         * @param {DOMNode} node    node to add the text to. Can be any node type.
-         * @param {String}  text    text to be appended to the node.
+         * @param {DOMNode} node    node Target node where the text will be added.
+         * @param {String}  text    text Text to be added on the node.
          * @sample Ink_Dom_Element_1_setTextContent.html
          */
         setTextContent: function(node, text){
@@ -430,10 +434,10 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * Tells if element is a clickable link
+         * Checks if an element is a link
          *
          * @method isLink
-         * @param {DOMNode} node    node to check if it's link
+         * @param {DOMNode} node    Node to check if it's link
          * @return {Boolean}
          */
         isLink: function(element){
@@ -443,11 +447,11 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * Tells if ancestor is ancestor of node
+         * Checks if a node is an ancestor of another
          *
          * @method isAncestorOf
-         * @param {DOMNode} ancestor  ancestor node
-         * @param {DOMNode} node      descendant node
+         * @param {DOMNode} ancestor  Ancestor node
+         * @param {DOMNode} node      Descendant node
          * @return {Boolean}
          */
         isAncestorOf: function(ancestor, node){
@@ -467,11 +471,11 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * Tells if descendant is descendant of node
+         * Checks if a node is descendant of another
          *
          * @method descendantOf
-         * @param {DOMNode} node        the ancestor
-         * @param {DOMNode} descendant  the descendant
+         * @param {DOMNode} node        The ancestor
+         * @param {DOMNode} descendant  The descendant
          * @return {Boolean} true if 'descendant' is descendant of 'node'
          */
         descendantOf: function(node, descendant){
@@ -479,10 +483,10 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * Get first child in document order of node type 1
+         * Get first child element of another
          * @method firstElementChild
-         * @param {DOMNode} elm parent node
-         * @return {DOMNode} the element child
+         * @param {DOMElement} elm Parent node
+         * @return {DOMElement} the Element child
          */
         firstElementChild: function(elm){
             if(!elm) {
@@ -499,10 +503,10 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * Get last child in document order of node type 1
+         * Get the last child element of another
          * @method lastElementChild
-         * @param {DOMNode} elm parent node
-         * @return {DOMNode} the element child
+         * @param {DOMElement} elm Parent node
+         * @return {DOMElement} the Element child
          */
         lastElementChild: function(elm){
             if(!elm) {
@@ -519,11 +523,11 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * Get the first element sibling after the node
+         * Get the first sibling element after the node
          *
          * @method nextElementSibling
-         * @param {DOMNode} node  current node
-         * @return {DOMNode|Null} the first element sibling after node or null if none is found
+         * @param {DOMNode} node  The current node
+         * @return {DOMElement|Null} The first sibling element after node or null if none is found
          */
         nextElementSibling: function(node){
             var sibling = null;
@@ -545,11 +549,11 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * Get the first element sibling before the node
+         * Get the first sibling element before the node
          *
          * @method previousElementSibling
-         * @param {DOMNode}        node  current node
-         * @return {DOMNode|Null} the first element sibling before node or null if none is found
+         * @param {DOMNode}        node The current node
+         * @return {DOMElement|Null} The first element sibling before node or null if none is found
          */
         previousElementSibling: function(node){
             var sibling = null;
@@ -571,11 +575,11 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * Returns the width of the given element, in pixels
+         * Get an element's width in pixels.
          *
          * @method elementWidth
-         * @param {DOMElement|string} element target DOM element or target ID
-         * @return {Number} the element's width
+         * @param {DOMElement|String} element Target DOM element or target ID
+         * @return {Number} The element's width
          */
         elementWidth: function(element) {
             if(typeof element === "string") {
@@ -585,11 +589,11 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * Returns the height of the given element, in pixels
+         * Get an element's height in pixels.
          *
          * @method elementHeight
-         * @param {DOMElement|string} element target DOM element or target ID
-         * @return {Number} the element's height
+         * @param {DOMElement|String} element DOM element or target ID
+         * @return {Number} The element's height
          */
         elementHeight: function(element) {
             if(typeof element === "string") {
@@ -599,11 +603,11 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * Returns the element's left position in pixels
+         * Get an element's left position in pixels.
          *
          * @method elementLeft
-         * @param {DOMElement|string} element target DOM element or target ID
-         * @return {Number} element's left position
+         * @param {DOMElement|String}       element     DOM element or target ID
+         * @return {Number} Element's left position
          */
         elementLeft: function(element) {
             if(typeof element === "string") {
@@ -613,10 +617,10 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * Returns the element's top position in pixels
+         * Returns the element's top position in pixels.
          *
          * @method elementTop
-         * @param {DOMElement|string} element target DOM element or target ID
+         * @param {DOMElement|string}   element     Target DOM element or target ID
          * @return {Number} element's top position
          */
         elementTop: function(element) {
@@ -627,11 +631,11 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * Returns the dimensions of the given element, in pixels
+         * Get an element's dimensions in pixels.
          *
          * @method elementDimensions
-         * @param {element} element target element
-         * @return {Array} array with element's width and height
+         * @param {DOMElement|string}   element     DOM element or target ID
+         * @return {Array} Array with element's width and height
          */
         elementDimensions: function(element) {
             element = Ink.i(element);
@@ -639,11 +643,11 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * Returns the outer (width + margin + padding included) dimensions of an element, in pixels.
-         *
-         * Requires Ink.Dom.Css
+         * Get the outer dimensions of an element in pixels.
          *
          * @method outerDimensions
+         * @uses Ink.Dom.Css
+         *
          * @param {DOMElement} element Target element
          * @return {Array} Array with element width and height.
          */
@@ -660,30 +664,35 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * Check whether an element is inside the viewport
+         * Check if an element is inside the viewport
          *
          * @method inViewport
-         * @param {DOMElement} element Element to check
-         * @param {Boolean} [partial=false] Return `true` even if it is only partially visible.
+         * @param {DOMElement} element DOM Element
+         * @param {Boolean} [partial]=false Return `true` even if it is only partially visible.
+         * @param {Number}  [opts.margin]=0 Consider a margin all around the viewport with `opts.margin` width a dead zone.
          * @return {Boolean}
          */
-        inViewport: function (element, partial) {
+        inViewport: function (element, opts) {
             var dims = rect(Ink.i(element));
-            if (partial) {
-                return  dims.bottom > 0                        && // from the top
-                        dims.left < InkElement.viewportWidth()    && // from the right
-                        dims.top < InkElement.viewportHeight()    && // from the bottom
-                        dims.right  > 0;                          // from the left
+            if (typeof opts === 'boolean') {
+                opts = {partial: opts, margin: 0};
+            }
+            opts = Ink.extendObj({ partial: false, margin: 0}, opts || {});
+            if (opts.partial) {
+                return  dims.bottom + opts.margin > 0                           && // from the top
+                        dims.left   - opts.margin < InkElement.viewportWidth()  && // from the right
+                        dims.top    - opts.margin < InkElement.viewportHeight() && // from the bottom
+                        dims.right  + opts.margin > 0;                             // from the left
             } else {
-                return  dims.top > 0                           && // from the top
-                        dims.right < InkElement.viewportWidth()   && // from the right
-                        dims.bottom < InkElement.viewportHeight() && // from the bottom
-                        dims.left  > 0;                           // from the left
+                return  dims.top    + opts.margin > 0                           && // from the top
+                        dims.right  - opts.margin < InkElement.viewportWidth()  && // from the right
+                        dims.bottom - opts.margin < InkElement.viewportHeight() && // from the bottom
+                        dims.left   + opts.margin > 0;                             // from the left
             }
         },
 
         /**
-         * Check whether an element is hidden 
+         * Check if an element is hidden.
          * Taken from Mootools Element extras ( https://gist.github.com/cheeaun/73342 )
          * Does not take into account visibility:hidden
          * @method isHidden
@@ -704,9 +713,10 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          },
 
         /**
-         * Check whether an element is visible 
+         * Check if an element is visible 
          *
          * @method isVisible
+         * @uses isHidden
          * @param {DOMElement} element Element to check
          * @return {Boolean}
          */
@@ -716,12 +726,12 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * Applies the cloneFrom's dimensions to cloneTo
+         * Clones an element's position to another
          *
          * @method clonePosition
          * @param {DOMElement} cloneTo    element to be position cloned
          * @param {DOMElement} cloneFrom  element to get the cloned position
-         * @return {DOMElement} the element with positionClone
+         * @return {DOMElement} The element with positionClone
          */
         clonePosition: function(cloneTo, cloneFrom){
             var pos = InkElement.offset(cloneFrom);
@@ -732,12 +742,12 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * Slices off a piece of text at the end of the element and adds the ellipsis
-         * so all text fits in the element.
+         * Text-overflow: ellipsis emulation
+         * Slices off a piece of text at the end of the element and adds the ellipsis so all text fits inside.
          *
          * @method ellipsizeText
-         * @param {DOMElement} element     which text is to add the ellipsis
-         * @param {String}     [ellipsis='\u2026']  String to append to the chopped text
+         * @param {DOMElement} element              Element to modify text content
+         * @param {String}     [ellipsis]='\u2026'  String to append to the chopped text
          */
         ellipsizeText: function(element, ellipsis){
             /*jshint boss:true */
@@ -749,12 +759,13 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * Searches up the DOM tree for an element fulfilling the boolTest function (returning trueish)
+         * Finds the closest ancestor element matching your test function
+         * 
          *
          * @method findUpwardsHaving
-         * @param {HtmlElement} element
-         * @param {Function}    boolTest
-         * @return {HtmlElement|false} the matched element or false if did not match
+         * @param {DOMElement} element     Element to base the search from
+         * @param {Function}    boolTest   Testing function
+         * @return {DOMElement|false} The matched element or false if did not match
          */
         findUpwardsHaving: function(element, boolTest) {
             while (element && element.nodeType === 1) {
@@ -767,12 +778,13 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * Śearches up the DOM tree for an element of specified class name
+         * Finds the closest ancestor by class name
          *
          * @method findUpwardsByClass
-         * @param {HtmlElement} element
-         * @param {String}      className
-         * @returns {HtmlElement|false} the matched element or false if did not match
+         * @uses findUpwardsHaving
+         * @param {DOMElement} element      Element to base the search from
+         * @param {String}      className   Class name to search
+         * @returns {DOMElement|false} The matched element or false if did not match
          */
         findUpwardsByClass: function(element, className) {
             var re = new RegExp("(^|\\s)" + className + "(\\s|$)");
@@ -784,12 +796,12 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * Śearches up the DOM tree for an element of specified tag
+         * Finds the closest ancestor by tag name
          *
          * @method findUpwardsByTag
-         * @param {HtmlElement} element
-         * @param {String}      tag
-         * @returns {HtmlElement|false} the matched element or false if did not match
+         * @param {DOMElement} element  Element to base the search from
+         * @param {String}      tag     Tag to search
+         * @returns {DOMElement|false} the matched element or false if did not match
          */
         findUpwardsByTag: function(element, tag) {
             tag = tag.toUpperCase();
@@ -800,12 +812,12 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * Śearches up the DOM tree for an element of specified id
+         * Finds the closest ancestor by id
          *
          * @method findUpwardsById
-         * @param {HtmlElement} element
-         * @param {String}      id
-         * @returns {HtmlElement|false} the matched element or false if did not match
+         * @param {HtmlElement} element     Element to base the search from
+         * @param {String}      id          ID to search
+         * @returns {HtmlElement|false} The matched element or false if did not match
          */
         findUpwardsById: function(element, id) {
             var tst = function(el) {
@@ -815,12 +827,12 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * Śearches up the DOM tree for an element matching the given selector
+         * Finds the closest ancestor by CSS selector
          *
          * @method findUpwardsBySelector
-         * @param {HtmlElement} element
-         * @param {String}      sel
-         * @returns {HtmlElement|false} the matched element or false if did not match
+         * @param {HtmlElement} element     Element to base the search from
+         * @param {String}      sel         CSS selector
+         * @returns {HtmlElement|false} The matched element or false if did not match
          */
         findUpwardsBySelector: function(element, sel) {
             var Selector = Ink.getModule('Ink.Dom.Selector');
@@ -834,12 +846,12 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * Returns trimmed text content of descendants
+         * Gets the trimmed text of an element
          *
          * @method getChildrenText
-         * @param {DOMElement}  el          element being seeked
-         * @param {Boolean}     [removeIt]  whether to remove the found text nodes or not
-         * @return {String} text found
+         * @param {DOMElement}  el          Element to base the search from
+         * @param {Boolean}     [removeIt]  Flag to remove the text from the element
+         * @return {String} Text found
          */
         getChildrenText: function(el, removeIt) {
             var node,
@@ -882,11 +894,11 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * Returns the values of a select element
+         * Gets value of a select element
          *
          * @method getSelectValues
-         * @param {DomElement|String} select element
-         * @return {Array} selected values
+         * @param {DOMElement|String} select element
+         * @return {Array} The selected values
          */
         getSelectValues: function (select) {
             var selectEl = Ink.i(select);
@@ -917,13 +929,13 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
 
 
         /**
-         * Fills select element with choices
+         * Fills a select element with options
          *
          * @method fillSelect
-         * @param {DomElement|String}  container       select element which will get filled
-         * @param {Array}              data            data which will populate the component
-         * @param {Boolean}            [skipEmpty]     true to skip empty option
-         * @param {String|Number}      [defaultValue]  primitive value to select at beginning
+         * @param {DomElement|String}  container       Select element which will get filled
+         * @param {Array}              data            Data to populate the component
+         * @param {Boolean}            [skipEmpty]     Flag to skip empty option
+         * @param {String|Number}      [defaultValue]  Initial selected value
          */
         fillSelect: function(container, data, skipEmpty, defaultValue) {
             var containerEl = Ink.i(container);
@@ -961,18 +973,19 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
 
 
         /**
-         * Select element on steroids - allows the creation of new values
+         * Fills a select element with options
+         * This method allows the creation of new values
          *
          * @method fillSelect2
-         * @param {DomElement|String} ctn select element which will get filled
+         * @param {DomElement|String} ctn Select element to get populated
          * @param {Object} opts
-         * @param {Array}                      [opts.data]               data which will populate the component
-         * @param {Boolean}                    [opts.skipEmpty]          if true empty option is not created (defaults to false)
-         * @param {String}                     [opts.emptyLabel]         label to display on empty option
-         * @param {String}                     [opts.createLabel]        label to display on create option
-         * @param {String}                     [opts.optionsGroupLabel]  text to display on group surrounding value options
-         * @param {String}                     [opts.defaultValue]       option to select initially
-         * @param {Function(selEl, addOptFn)}  [opts.onCreate]           callback that gets called once user selects the create option
+         * @param {Array}                       [opts.data]                 Data to populate the component
+         * @param {Boolean}                     [opts.skipEmpty]=false      Flag to skip creation of empty options
+         * @param {String}                      [opts.emptyLabel]           Label to display on empty option
+         * @param {String}                      [opts.createLabel]          Label to display on create option
+         * @param {String}                      [opts.optionsGroupLabel]    Text to display on group surrounding value options
+         * @param {String}                      [opts.defaultValue]         Initial selected value
+         * @param {Function}                    [opts.onCreate]             Callback when the user selects the create option
          */
         fillSelect2: function(ctn, opts) {
             ctn = Ink.i(ctn);
@@ -1063,16 +1076,16 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
 
 
         /**
-         * Creates set of radio buttons, returns wrapper
+         * Creates a set of radio buttons
          *
          * @method fillRadios
-         * @param {DomElement|String}  insertAfterEl   element which will precede the input elements
-         * @param {String}             name            name to give to the form field ([] is added if not as suffix already)
-         * @param {Array}              data            data which will populate the component
-         * @param {Boolean}            [skipEmpty]     true to skip empty option
-         * @param {String|Number}      [defaultValue]  primitive value to select at beginning
-         * @param {String}             [splitEl]       name of element to add after each input element (example: 'br')
-         * @return {DOMElement} wrapper element around radio buttons
+         * @param {DomElement|String}  insertAfterEl    Element after which the input elements will be created
+         * @param {String}             name             Name for the form field ([] is added if not present as a suffix)
+         * @param {Array}              data             Data to populate the component
+         * @param {Boolean}            [skipEmpty]      Flag to skip creation of empty options
+         * @param {String|Number}      [defaultValue]   Initial selected value
+         * @param {String}             [splitEl]        Name of element to add after each input element (example: 'br')
+         * @return {DOMElement} Wrapper element around the radio buttons
          */
         fillRadios: function(insertAfterEl, name, data, skipEmpty, defaultValue, splitEl) {
             var afterEl = Ink.i(insertAfterEl);
@@ -1126,16 +1139,16 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
 
 
         /**
-         * Creates set of checkbox buttons, returns wrapper
+         * Creates set of checkbox buttons
          *
          * @method fillChecks
-         * @param {DomElement|String}  insertAfterEl   element which will precede the input elements
-         * @param {String}             name            name to give to the form field ([] is added if not as suffix already)
-         * @param {Array}              data            data which will populate the component
-         * @param {Boolean}            [skipEmpty]     true to skip empty option
-         * @param {String|Number}      [defaultValue]  primitive value to select at beginning
-         * @param {String}             [splitEl]       name of element to add after each input element (example: 'br')
-         * @return {DOMElement} wrapper element around checkboxes
+         * @param {DomElement|String}  insertAfterEl   Element after which the input elements will be created
+         * @param {String}             name            Name for the form field ([] is added if not present as a suffix)
+         * @param {Array}              data            Data to populate the component
+         * @param {Boolean}            [skipEmpty]     Flag to skip creation of empty options
+         * @param {String|Number}      [defaultValue]  Initial selected value
+         * @param {String}             [splitEl]       Name of element to add after each input element (example: 'br')
+         * @return {DOMElement} Wrapper element around the checkboxes
          */
         fillChecks: function(insertAfterEl, name, data, defaultValue, splitEl) {
             var afterEl = Ink.i(insertAfterEl);
@@ -1179,12 +1192,12 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
 
 
         /**
-         * Returns index of element from parent, -1 if not child of parent...
+         * Gets the index of an element relative to a parent
          *
          * @method parentIndexOf
          * @param {DOMElement}  parentEl  Element to parse
          * @param {DOMElement}  childEl   Child Element to look for
-         * @return {Number}
+         * @return {Number} The index of the childEl inside parentEl. Returns -1 if it's not a direct child
          */
         parentIndexOf: function(parentEl, childEl) {
             var node, idx = 0;
@@ -1200,10 +1213,10 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
 
 
         /**
-         * Returns an array of elements - the next siblings
+         * Gets the next siblings of an element
          *
          * @method nextSiblings
-         * @param {String|DomElement} elm element
+         * @param {String|DomElement} elm Element
          * @return {Array} Array of next sibling elements
          */
         nextSiblings: function(elm) {
@@ -1226,10 +1239,10 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
 
 
         /**
-         * Returns an array of elements - the previous siblings
+         * Gets the previous siblings of an element
          *
          * @method previousSiblings
-         * @param {String|DomElement} elm element
+         * @param {String|DomElement} elm Element
          * @return {Array} Array of previous sibling elements
          */
         previousSiblings: function(elm) {
@@ -1252,10 +1265,10 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
 
 
         /**
-         * Returns an array of elements - its siblings
+         * Gets the all siblings of an element
          *
          * @method siblings
-         * @param {String|DomElement} elm element
+         * @param {String|DomElement} elm Element
          * @return {Array} Array of sibling elements
          */
         siblings: function(elm) {
@@ -1278,7 +1291,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * fallback to elem.childElementCount
+         * Counts the number of children of an element
          *
          * @method childElementCount
          * @param {String|DomElement} elm element
@@ -1322,8 +1335,8 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * Gets a wrapper DIV with a certain HTML content for being inserted in `elm`.
-         * Necessary for appendHTML,prependHTML functions, because they need a container element to copy the children from.
+         * Gets a wrapper DIV with a certain HTML content to be inserted inside another element.
+         * This is necessary for appendHTML,prependHTML functions, because they need a container element to copy the children from.
          *
          * Works around IE table quirks
          * @method _getWrapper
@@ -1357,11 +1370,12 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * parses and appends an html string to a container, not destroying its contents
+         * Appends HTML to an element.
+         * This method parses the html string and doesn't modify its contents
          *
          * @method appendHTML
-         * @param {String|DomElement} elm   element
-         * @param {String}            html  markup string
+         * @param {String|DomElement} elm   Element
+         * @param {String}            html  Markup string
          */
         appendHTML: function(elm, html){
             var wrapper = InkElement._getWrapper(elm, html);
@@ -1371,11 +1385,12 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * parses and prepends an html string to a container, not destroying its contents
+         * Prepends HTML to an element.
+         * This method parses the html string and doesn't modify its contents
          *
          * @method prependHTML
-         * @param {String|DomElement} elm   element
-         * @param {String}            html  markup string
+         * @param {String|DOMElement} elm   Element
+         * @param {String}            html  Markup string
          */
         prependHTML: function(elm, html){
             var wrapper = InkElement._getWrapper(elm, html);
@@ -1385,11 +1400,11 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * sets the Inner HTML of an element to the given HTML string
+         * Sets the inner HTML of an element.
          *
          * @method setHTML
-         * @param {String|DomElement} elm   element
-         * @param {String}            html  markup string
+         * @param {String|DOMElement} elm   Element
+         * @param {String}            html  Markup string
          */
         setHTML: function (elm, html) {
             try {
@@ -1409,8 +1424,8 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * The container may or may not be in the document yet.
          *
          * @method wrap
-         * @param {String|DomElement}   target Element to be wrapped
-         * @param {String|DomElement}   container Element to wrap the target
+         * @param {String|DOMElement}   target      Element to be wrapped
+         * @param {String|DOMElement}   container   Element to wrap the target
          * @return Container element
          *
          * @example
@@ -1445,11 +1460,11 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * Pulls an element out of its wrapper.
+         * Places an element outside a wrapper.
          *
          * @method unwrap
-         * @param elem The element you're trying to unwrap. This should be a child of the wrapper.
-         * @param {String} [wrapperSelector] Use this if you want to find your wrapper (if `elem` is inside several layers of wrappers).
+         * @param {DOMElement}  elem                The element you're trying to unwrap. This should be an ancestor of the wrapper.
+         * @param {String}      [wrapperSelector]   CSS Selector for the ancestor. Use this if your wrapper is not the direct parent of elem.
          *
          * @example
          *
@@ -1486,8 +1501,8 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Replaces an element with another.
          *
          * @method replace
-         * @param element The element to be replaced.
-         * @param replacement The new element.
+         * @param element       The element to be replaced.
+         * @param replacement   The new element.
          *
          * @example
          *       var newelement1 = InkElement.create('div');
@@ -1500,11 +1515,11 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * Removes direct children on type text.
+         * Removes direct text children.
          * Useful to remove nasty layout gaps generated by whitespace on the markup.
          *
          * @method removeTextNodeChildren
-         * @param  {DOMElement} el
+         * @param  {DOMElement} el          Element to remove text from
          */
         removeTextNodeChildren: function(el) {
             var prevEl, toRemove, parent = el;
@@ -1520,9 +1535,10 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * Pass an HTML string and receive a documentFragment with the corresponding elements
+         * Creates a documentFragment from an HTML string.
+         *
          * @method htmlToFragment
-         * @param  {String} html  html string
+         * @param  {String} html  HTML string
          * @return {DocumentFragment} DocumentFragment containing all of the elements from the html string
          */
         htmlToFragment: (createContextualFragmentSupport ?
@@ -1563,7 +1579,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * Gets all of the data attributes from an element
+         * Gets data attributes from an element
          *
          * @method data
          * @param {String|DomElement} selector Element or CSS selector
@@ -1609,9 +1625,10 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
+         * Move the cursor on an input or textarea element.
          * @method moveCursorTo
-         * @param  {Input|Textarea}  el
-         * @param  {Number}          t
+         * @param  {DOMElement} el  Input or Textarea element
+         * @param  {Number}     t   Index of the character to move the cursor to
          */
         moveCursorTo: function(el, t) {
             if (el.setSelectionRange) {
@@ -1628,8 +1645,9 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
+         * Get the page's width.
          * @method pageWidth
-         * @return {Number} page width
+         * @return {Number} Page width in pixels
          */
         pageWidth: function() {
             var xScroll;
@@ -1664,8 +1682,9 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
+         * Get the page's height.
          * @method pageHeight
-         * @return {Number} page height
+         * @return {Number} Page height in pixels
          */
         pageHeight: function() {
             var yScroll;
@@ -1696,8 +1715,9 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
        /**
+         * Get the viewport's width.
          * @method viewportWidth
-         * @return {Number} viewport width in pixels
+         * @return {Number} Viewport width in pixels
          */
         viewportWidth: function() {
             if(typeof window.innerWidth !== "undefined") {
@@ -1709,8 +1729,9 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
+         * Get the viewport's height.
          * @method viewportHeight
-         * @return {Number} viewport height
+         * @return {Number} Viewport height in pixels
          */
         viewportHeight: function() {
             if (typeof window.innerHeight !== "undefined") {
@@ -1722,8 +1743,9 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
+         * Get the scroll's width.
          * @method scrollWidth
-         * @return {Number} scroll width
+         * @return {Number} Scroll width
          */
         scrollWidth: function() {
             if (typeof window.self.pageXOffset !== 'undefined') {
@@ -1736,8 +1758,9 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
+         * Get the scroll's height.
          * @method scrollHeight
-         * @return {Number} scroll height
+         * @return {Number} Scroll height
          */
         scrollHeight: function() {
             if (typeof window.self.pageYOffset !== 'undefined') {

@@ -1,29 +1,30 @@
 
 
     
+        <section>
         <h1 class="fw-300">Ink.Util.Cookie_1 <small>version: 1</small></h1>
     
 
-    
-
-    
-
-    
-
-
-    
 
 
     
 
     
 
+    
 
 
     
-        <section>
+
 
     
+
+    
+
+
+
+    
+            
     <table class="props bottom-space">
         
         
@@ -50,8 +51,7 @@
                 <td>
                     
 
-                    <p>Gets an object with current page cookies</p>
-
+                    Gets an object with current page cookies
 
                     
                     
@@ -70,8 +70,7 @@
                 <td>
                     
 
-                    <p>Delete a cookie</p>
-
+                    Delete a cookie
 
                     
                     
@@ -90,8 +89,7 @@
                 <td>
                     
 
-                    <p>Sets a cookie</p>
-
+                    Sets a cookie
 
                     
                     
@@ -103,22 +101,22 @@
     
 
     
-
-
-    
-        <div class="text"><p>Utilities for Cookie handling</p>
-</div>
-    
-
-    
-    
+</section>
 
 
 
-    
-        <div class="box box-function">
+    <div class="text">Utilities for Cookie handling</div>
 
-    <h2><a name="Ink_Util_Cookie_1-Ink_Util_Cookie-get">
+
+
+
+
+
+
+
+    <section class="box box-function">
+
+    <h2>
     
         
             Ink.Util.Cookie.get
@@ -130,7 +128,7 @@
             <i>method</i>
         
     
-    </a></h2>
+    </h2>
 
     
     
@@ -170,33 +168,29 @@
     
 
     
-        <span class="text"><p>Gets an object with current page cookies</p>
-</span>
+        <p class="text">Gets an object with current page cookies</p>
     
 
     
 <p class="example-title">Example</p>
   
-<div class="example bottom-space">
 {% highlight html %}{% raw %}
     Ink.requireModules(['Ink.Util.Cookie_1'], function( InkCookie ){
         var myCookieValue = InkCookie.get('someVarThere');
         console.log( myCookieValue ); // This will output the value of the cookie 'someVarThere', from the cookie object.
     });
 {% endraw %}{% endhighlight %}
-</div>
 
 
 
 
     
 
-</div>
+</section>
 
-    
-        <div class="box box-function">
+    <section class="box box-function">
 
-    <h2><a name="Ink_Util_Cookie_1-Ink_Util_Cookie-remove">
+    <h2>
     
         
             Ink.Util.Cookie.remove
@@ -208,7 +202,7 @@
             <i>method</i>
         
     
-    </a></h2>
+    </h2>
 
     
     
@@ -274,32 +268,28 @@
     
 
     
-        <span class="text"><p>Delete a cookie</p>
-</span>
+        <p class="text">Delete a cookie</p>
     
 
     
 <p class="example-title">Example</p>
   
-<div class="example bottom-space">
 {% highlight html %}{% raw %}
     Ink.requireModules(['Ink.Util.Cookie_1'], function( InkCookie ){
         InkCookie.remove( 'someVarThere' );
     });
 {% endraw %}{% endhighlight %}
-</div>
 
 
 
 
     
 
-</div>
+</section>
 
-    
-        <div class="box box-function">
+    <section class="box box-function">
 
-    <h2><a name="Ink_Util_Cookie_1-Ink_Util_Cookie-set">
+    <h2>
     
         
             Ink.Util.Cookie.set
@@ -311,7 +301,7 @@
             <i>method</i>
         
     
-    </a></h2>
+    </h2>
 
     
     
@@ -428,33 +418,28 @@
     
 
     
-        <span class="text"><p>Sets a cookie</p>
-</span>
+        <p class="text">Sets a cookie</p>
     
 
     
 <p class="example-title">Example</p>
   
-<div class="example bottom-space">
 {% highlight html %}{% raw %}
     Ink.requireModules(['Ink.Util.Cookie_1'], function( InkCookie ){
         var expireDate = new Date( 2014,00,01, 0,0,0);
         InkCookie.set( 'someVarThere', 'anyValueHere', expireDate.getTime() );
     });
 {% endraw %}{% endhighlight %}
-</div>
 
 
 
 
     
 
-</div>
-
-    
-
-    
 </section>
+
+
+
     
 
     

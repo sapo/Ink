@@ -8,6 +8,7 @@ $ink-class-prefix             : ink- !default;
  * Grid class names
  */
 $grid-class-name                : #{$ink-class-prefix}grid !default;
+$flex-class-name                : #{$ink-class-prefix}flex !default;
 $grid-column-group-class-name   : column-group !default;
 $grid-gutters-class-name        : gutters !default;
 $grid-half-gutters-class-name   : half-gutters !default;

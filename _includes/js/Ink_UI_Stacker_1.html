@@ -1,29 +1,30 @@
 
 
     
+        <section>
         <h1 class="fw-300">Ink.UI.Stacker_1 </h1>
     
 
-    
-
-    
-
-    
-
-
-    
 
 
     
 
     
 
+    
 
 
     
-        <section>
+
 
     
+
+    
+
+
+
+    
+            
     <table class="props bottom-space">
         
         
@@ -69,8 +70,7 @@
                 <td>
                     
 
-                    <p>Add an item to the end of your stacks. Call <code>reloadItems()</code> when you are done adding items.</p>
-
+                    Add an item to the end of your stacks. Call `reloadItems()` when you are done adding items.
 
                     
                     
@@ -89,13 +89,12 @@
                 <td>
                     
 
-                    <p>Update the layout of your items.</p>
-<p>Call this when:</p>
-<ul>
-<li>The width has changed, but not because of the window resizing.</li>
-<li>You used addItem to add some items</li>
-</ul>
+                    Update the layout of your items.
 
+Call this when:
+
+ - The width has changed, but not because of the window resizing.
+ - You used addItem to add some items
 
                     
                     
@@ -107,31 +106,37 @@
     
 
     
-
-
-    
-        <div class="text"><p>This module combines several stacks of items together, in smaller screen sizes.</p>
-<p>The purpose is to have several stacks of items which may have different heights and as such cannot be used because of <code>float: left</code> quirks.</p>
-<p>For example, when you have three different columns of information:</p>
-<pre><code>[col. A: 1] [col. B: 1] [col. C: 1]
-[col. B: 2] [col. C: 2] [col. C: 2]
-</code></pre><p>and the screen resizes and you need a layout of 2 columns, Stacker reorders the stacks so that you get:</p>
-<pre><code>[col. A: 1] [col. B: 1]
-[col. C: 1] [col. A: 2]
-[col. B: 2] [col. C: 2]
-</code></pre><p>Note: If you just want to use a different amount of columns for your items in several viewports, but these items are guaranteed to have a fixed height, don&#39;t use this module. Use the <code>small-*</code>, <code>medium-*</code> and <code>large-*</code> classes instead.</p>
-</div>
-    
-
-    
-    
+</section>
 
 
 
-    
-        <div class="box box-function">
+    <div class="text">This module combines several stacks of items together, in smaller screen sizes.
 
-    <h2><a name="Ink_UI_Stacker_1-Ink_UI_Stacker_1-Stacker_1">
+The purpose is to have several stacks of items which may have different heights and as such cannot be used because of `float: left` quirks.
+
+For example, when you have three different columns of information:
+
+    [col. A: 1] [col. B: 1] [col. C: 1]
+    [col. B: 2] [col. C: 2] [col. C: 2]
+
+and the screen resizes and you need a layout of 2 columns, Stacker reorders the stacks so that you get:
+
+    [col. A: 1] [col. B: 1]
+    [col. C: 1] [col. A: 2]
+    [col. B: 2] [col. C: 2]
+
+Note: If you just want to use a different amount of columns for your items in several viewports, but these items are guaranteed to have a fixed height, don't use this module. Use the `small-*`, `medium-*` and `large-*` classes instead.</div>
+
+
+
+
+
+
+
+
+    <section class="box box-function">
+
+    <h2>
     
         Ink.UI.Stacker_1
     
@@ -139,7 +144,7 @@
     
         <i>constructor</i>
     
-    </a></h2>
+    </h2>
 
     
     
@@ -506,7 +511,6 @@
     
 <p class="example-title">Example</p>
   
-<div class="example bottom-space">
 {% highlight html %}{% raw %}
 
 Html:
@@ -536,19 +540,17 @@ Javascript:
         // Keep the "stacker" variable around if you want to call addItem and reloadItems
     });
 {% endraw %}{% endhighlight %}
-</div>
 
 
 
 
     
 
-</div>
+</section>
 
-    
-        <div class="box box-function">
+    <section class="box box-function">
 
-    <h2><a name="Ink_UI_Stacker_1-Ink_UI_Stacker_1-addItem">
+    <h2>
     
         
             Ink.UI.Stacker_1.addItem
@@ -560,7 +562,7 @@ Javascript:
             <i>method</i>
         
     
-    </a></h2>
+    </h2>
 
     
     
@@ -590,8 +592,7 @@ Javascript:
     
 
     
-        <span class="text"><p>Add an item to the end of your stacks. Call <code>reloadItems()</code> when you are done adding items.</p>
-</span>
+        <p class="text">Add an item to the end of your stacks. Call `reloadItems()` when you are done adding items.</p>
     
 
     
@@ -599,12 +600,11 @@ Javascript:
 
     
 
-</div>
+</section>
 
-    
-        <div class="box box-function">
+    <section class="box box-function">
 
-    <h2><a name="Ink_UI_Stacker_1-Ink_UI_Stacker_1-reloadItems">
+    <h2>
     
         
             Ink.UI.Stacker_1.reloadItems
@@ -616,7 +616,7 @@ Javascript:
             <i>method</i>
         
     
-    </a></h2>
+    </h2>
 
     
     
@@ -626,13 +626,12 @@ Javascript:
     
 
     
-        <span class="text"><p>Update the layout of your items.</p>
-<p>Call this when:</p>
-<ul>
-<li>The width has changed, but not because of the window resizing.</li>
-<li>You used addItem to add some items</li>
-</ul>
-</span>
+        <p class="text">Update the layout of your items.
+
+Call this when:
+
+ - The width has changed, but not because of the window resizing.
+ - You used addItem to add some items</p>
     
 
     
@@ -640,12 +639,10 @@ Javascript:
 
     
 
-</div>
-
-    
-
-    
 </section>
+
+
+
     
 
     

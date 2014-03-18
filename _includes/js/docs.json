@@ -64,7 +64,7 @@
 							"kind": "function",
 							"name": "loadScript",
 							"file": "src/js/Ink/1/lib.js",
-							"text": "Loads a script by creating a `<script>` tag in the `<head>` of the document.\n\nReports errors by listening to 'error' and 'readystatechange' events.",
+							"text": "Loads a script by creating a \"script\" tag in the \"head\" of the document.\n\nReports errors by listening to 'error' and 'readystatechange' events.",
 							"params": [
 								{
 									"kind": "param",
@@ -1353,7 +1353,10 @@
 								"kind": "return",
 								"type": "DOMElement|null",
 								"description": "The DOM element with the given id or null when it was not found"
-							}
+							},
+							"samples": [
+								"Ink_Dom_Element_1_get.html"
+							]
 						},
 						{
 							"kind": "function",
@@ -1376,8 +1379,8 @@
 									"description": "object with properties to be set on the element. You can also call other functions in Ink.Dom.Element like this"
 								}
 							],
-							"examples": [
-								"\n\n     var myPanel = InkElement.create('div', {\n         appendHTML: '<span></span>',\n         className: 'classes to add',\n         insertAfter: anotherPane\n     };\n\n     myPanel.innerHTML;  // -> '<div class=\"classes to add\"><span></span></div>\n     myPanel.parentNode;  // -> anotherPane\n"
+							"samples": [
+								"Ink_Dom_Element_1_create.html"
 							]
 						},
 						{
@@ -1393,6 +1396,9 @@
 									"isFirstLevel": true,
 									"description": "The element to remove"
 								}
+							],
+							"samples": [
+								"Ink_Dom_Element_1_remove.html"
 							]
 						},
 						{
@@ -1408,6 +1414,9 @@
 									"isFirstLevel": true,
 									"description": "Element where to scroll"
 								}
+							],
+							"samples": [
+								"Ink_Dom_Element_1_scrollTo.html"
 							]
 						},
 						{
@@ -1428,7 +1437,10 @@
 								"kind": "return",
 								"type": "Number",
 								"description": "Offset from the target element to the top of the document"
-							}
+							},
+							"samples": [
+								"Ink_Dom_Element_1_offsetTop.html"
+							]
 						},
 						{
 							"kind": "function",
@@ -1448,7 +1460,10 @@
 								"kind": "return",
 								"type": "Number",
 								"description": "Offset from the target element to the left of the document"
-							}
+							},
+							"samples": [
+								"Ink_Dom_Element_1_offsetLeft.html"
+							]
 						},
 						{
 							"kind": "function",
@@ -1468,7 +1483,10 @@
 								"kind": "return",
 								"type": "Array",
 								"description": "Array with the element offsetleft and offsettop relative to the closest positioned ancestor"
-							}
+							},
+							"samples": [
+								"Ink_Dom_Element_1_positionedOffset.html"
+							]
 						},
 						{
 							"kind": "function",
@@ -1488,7 +1506,10 @@
 								"kind": "return",
 								"type": "[Number, Number]",
 								"description": "Array with pixel distance from the target element to the top left corner of the document"
-							}
+							},
+							"samples": [
+								"Ink_Dom_Element_1_offset.html"
+							]
 						},
 						{
 							"kind": "function",
@@ -1509,7 +1530,10 @@
 								"kind": "return",
 								"type": "Array",
 								"description": "offset values for x and y scroll"
-							}
+							},
+							"samples": [
+								"Ink_Dom_Element_1_scroll.html"
+							]
 						},
 						{
 							"kind": "function",
@@ -1544,7 +1568,10 @@
 								"kind": "return",
 								"type": "Boolean",
 								"description": "Boolean based on existance of attribute"
-							}
+							},
+							"samples": [
+								"Ink_Dom_Element_1_hasAttribute.html"
+							]
 						},
 						{
 							"kind": "function",
@@ -1566,6 +1593,9 @@
 									"isFirstLevel": true,
 									"description": "key element"
 								}
+							],
+							"samples": [
+								"Ink_Dom_Element_1_insertAfter.html"
 							]
 						},
 						{
@@ -1588,6 +1618,9 @@
 									"isFirstLevel": true,
 									"description": "key element"
 								}
+							],
+							"samples": [
+								"Ink_Dom_Element_1_insertBefore.html"
 							]
 						},
 						{
@@ -1610,6 +1643,9 @@
 									"isFirstLevel": true,
 									"description": "key element"
 								}
+							],
+							"samples": [
+								"Ink_Dom_Element_1_insertTop.html"
 							]
 						},
 						{
@@ -1632,11 +1668,14 @@
 									"isFirstLevel": true,
 									"description": "key element"
 								}
+							],
+							"samples": [
+								"Ink_Dom_Element_1_insertBottom.html"
 							]
 						},
 						{
 							"kind": "function",
-							"name": "innerText",
+							"name": "textContent",
 							"file": "src/js/Ink/Dom/Element/1/lib.js",
 							"text": "Retrieves textContent from node",
 							"params": [
@@ -1652,7 +1691,10 @@
 								"kind": "return",
 								"type": "String",
 								"description": "the text"
-							}
+							},
+							"samples": [
+								"Ink_Dom_Element_1_textContent.html"
+							]
 						},
 						{
 							"kind": "function",
@@ -1674,6 +1716,9 @@
 									"isFirstLevel": true,
 									"description": "text to be appended to the node."
 								}
+							],
+							"samples": [
+								"Ink_Dom_Element_1_setTextContent.html"
 							]
 						},
 						{
@@ -6278,6 +6323,342 @@
 							"type": "Object"
 						}
 					]
+				}
+			],
+			"functions": [],
+			"attributes": [],
+			"uses": [],
+			"author": "inkdev AT sapo.pt",
+			"version": "1"
+		},
+		{
+			"kind": "module",
+			"name": "Ink.UI.Draggable_1",
+			"file": "src/js/Ink/UI/Draggable/1/lib.js",
+			"classes": [
+				{
+					"kind": "class",
+					"name": "Ink.UI.Draggable",
+					"file": "src/js/Ink/UI/Draggable/1/lib.js",
+					"functions": [
+						{
+							"kind": "function",
+							"name": "Draggable",
+							"file": "src/js/Ink/UI/Draggable/1/lib.js",
+							"isConstructor": true,
+							"params": [
+								{
+									"kind": "param",
+									"name": "target",
+									"type": "String|DOMElement",
+									"isFirstLevel": true,
+									"description": "Target element."
+								},
+								{
+									"kind": "param",
+									"name": "options",
+									"type": "Object",
+									"isOptional": true,
+									"isFirstLevel": true,
+									"description": "Optional object for configuring the component"
+								},
+								{
+									"kind": "param",
+									"name": "options.constraint",
+									"type": "String",
+									"isOptional": true,
+									"isFirstLevel": false,
+									"description": "Movement constraint. None by default. Can be `vertical`, `horizontal`, or `both`."
+								},
+								{
+									"kind": "param",
+									"name": "options.constraintElm",
+									"type": "String|DomElement",
+									"isOptional": true,
+									"isFirstLevel": false,
+									"description": "Constrain dragging to be within this element. None by default."
+								},
+								{
+									"kind": "param",
+									"name": "options.top",
+									"type": "Number",
+									"isOptional": true,
+									"isFirstLevel": false,
+									"description": "Limits for constraining draggable movement."
+								},
+								{
+									"kind": "param",
+									"name": "options.right",
+									"type": "Number",
+									"isOptional": true,
+									"isFirstLevel": false,
+									"description": "Limits for constraining draggable movement."
+								},
+								{
+									"kind": "param",
+									"name": "options.bottom",
+									"type": "Number",
+									"isOptional": true,
+									"isFirstLevel": false,
+									"description": "Limits for constraining draggable movement."
+								},
+								{
+									"kind": "param",
+									"name": "options.left",
+									"type": "Number",
+									"isOptional": true,
+									"isFirstLevel": false,
+									"description": "Limits for constraining draggable movement."
+								},
+								{
+									"kind": "param",
+									"name": "options.handle",
+									"type": "String|DOMElement",
+									"isOptional": true,
+									"isFirstLevel": false,
+									"description": "if specified, this element will be used as a handle for dragging."
+								},
+								{
+									"kind": "param",
+									"name": "options.revert",
+									"type": "Boolean",
+									"isOptional": true,
+									"isFirstLevel": false,
+									"description": "if true, reverts the draggable to the original position when dragging stops"
+								},
+								{
+									"kind": "param",
+									"name": "options.cursor",
+									"type": "String",
+									"isOptional": true,
+									"isFirstLevel": false,
+									"description": "cursor type (CSS `cursor` value) used when the mouse is over the draggable object"
+								},
+								{
+									"kind": "param",
+									"name": "options.zIndex",
+									"type": "Number",
+									"isOptional": true,
+									"isFirstLevel": false,
+									"description": "zindex applied to the draggable element while dragged"
+								},
+								{
+									"kind": "param",
+									"name": "options.fps",
+									"type": "Number",
+									"isOptional": true,
+									"isFirstLevel": false,
+									"description": "if defined, on drag will run every n frames per second only"
+								},
+								{
+									"kind": "param",
+									"name": "options.droppableProxy",
+									"type": "DomElement",
+									"isOptional": true,
+									"isFirstLevel": false,
+									"description": "if set, a shallow copy of the droppableProxy will be put on document.body with transparent bg"
+								},
+								{
+									"kind": "param",
+									"name": "options.mouseAnchor",
+									"type": "String",
+									"isOptional": true,
+									"isFirstLevel": false,
+									"description": "defaults to mouse cursor. can be 'left|center|right top|center|bottom'"
+								},
+								{
+									"kind": "param",
+									"name": "options.dragClass",
+									"type": "String",
+									"isOptional": true,
+									"defaultValue": "'drag'",
+									"isFirstLevel": false,
+									"description": "class to add when the draggable is being dragged."
+								},
+								{
+									"kind": "param",
+									"name": "options.onStart",
+									"type": "Function",
+									"isOptional": true,
+									"isFirstLevel": false,
+									"description": "callback called when dragging starts"
+								},
+								{
+									"kind": "param",
+									"name": "options.onEnd",
+									"type": "Function",
+									"isOptional": true,
+									"isFirstLevel": false,
+									"description": "callback called when dragging stops"
+								},
+								{
+									"kind": "param",
+									"name": "options.onDrag",
+									"type": "Function",
+									"isOptional": true,
+									"isFirstLevel": false,
+									"description": "callback called while dragging, prior to position updates"
+								},
+								{
+									"kind": "param",
+									"name": "options.onChange",
+									"type": "Function",
+									"isOptional": true,
+									"isFirstLevel": false,
+									"description": "callback called while dragging, after position updates"
+								}
+							],
+							"examples": [
+								"\n    Ink.requireModules( ['Ink.UI.Draggable_1'], function( Draggable ){\n        new Draggable( '#myElementId' );\n    });\n"
+							]
+						},
+						{
+							"kind": "function",
+							"name": "_init",
+							"file": "src/js/Ink/UI/Draggable/1/lib.js",
+							"text": "Init function called by the constructor",
+							"params": [
+								{
+									"kind": "param",
+									"name": "element",
+									"type": "String|DOMElement",
+									"isFirstLevel": true,
+									"description": "ID of the element or DOM Element."
+								},
+								{
+									"kind": "param",
+									"name": "options",
+									"type": "Object",
+									"isOptional": true,
+									"isFirstLevel": true,
+									"description": "Options object for configuration of the module."
+								}
+							],
+							"private": true
+						},
+						{
+							"kind": "function",
+							"name": "destroy",
+							"file": "src/js/Ink/UI/Draggable/1/lib.js",
+							"text": "Removes the ability of the element of being dragged",
+							"params": []
+						},
+						{
+							"kind": "function",
+							"name": "_getCoords",
+							"file": "src/js/Ink/UI/Draggable/1/lib.js",
+							"text": "Gets coordinates for a given event (with added page scroll)",
+							"params": [
+								{
+									"kind": "param",
+									"name": "e",
+									"type": "Object",
+									"isFirstLevel": true,
+									"description": "window.event object."
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "Array",
+								"description": "Array where the first position is the x coordinate, the second is the y coordinate"
+							},
+							"private": true
+						},
+						{
+							"kind": "function",
+							"name": "_cloneStyle",
+							"file": "src/js/Ink/UI/Draggable/1/lib.js",
+							"text": "Clones src element's relevant properties to dst",
+							"params": [
+								{
+									"kind": "param",
+									"name": "src",
+									"type": "DOMElement",
+									"isFirstLevel": true,
+									"description": "Element from where we're getting the styles"
+								},
+								{
+									"kind": "param",
+									"name": "dst",
+									"type": "DOMElement",
+									"isFirstLevel": true,
+									"description": "Element where we're placing the styles."
+								}
+							],
+							"private": true
+						},
+						{
+							"kind": "function",
+							"name": "_onStart",
+							"file": "src/js/Ink/UI/Draggable/1/lib.js",
+							"text": "onStart event handler",
+							"params": [
+								{
+									"kind": "param",
+									"name": "e",
+									"type": "Object",
+									"isFirstLevel": true,
+									"description": "window.event object"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "Boolean|void",
+								"description": "In some cases return false. Otherwise is void"
+							},
+							"private": true
+						},
+						{
+							"kind": "function",
+							"name": "_onDragFacade",
+							"file": "src/js/Ink/UI/Draggable/1/lib.js",
+							"text": "Function that gets the timestamp of the current run from time to time. (FPS)",
+							"params": [
+								{
+									"kind": "param",
+									"name": "window.event",
+									"type": "Object",
+									"isFirstLevel": false,
+									"description": "object."
+								}
+							],
+							"private": true
+						},
+						{
+							"kind": "function",
+							"name": "_onDrag",
+							"file": "src/js/Ink/UI/Draggable/1/lib.js",
+							"text": "Function that handles the dragging movement",
+							"params": [
+								{
+									"kind": "param",
+									"name": "window.event",
+									"type": "Object",
+									"isFirstLevel": false,
+									"description": "object."
+								}
+							],
+							"private": true
+						},
+						{
+							"kind": "function",
+							"name": "_onEnd",
+							"file": "src/js/Ink/UI/Draggable/1/lib.js",
+							"text": "Function that handles the end of the dragging process",
+							"params": [
+								{
+									"kind": "param",
+									"name": "window.event",
+									"type": "Object",
+									"isFirstLevel": false,
+									"description": "object."
+								}
+							],
+							"private": true
+						}
+					],
+					"attributes": [],
+					"version": "1"
 				}
 			],
 			"functions": [],
@@ -14150,330 +14531,6 @@
 		}
 	],
 	"classes": [
-		{
-			"kind": "class",
-			"name": "Ink.UI.Draggable",
-			"file": "src/js/Ink/UI/Draggable/1/lib.js",
-			"functions": [
-				{
-					"kind": "function",
-					"name": "Draggable",
-					"file": "src/js/Ink/UI/Draggable/1/lib.js",
-					"isConstructor": true,
-					"params": [
-						{
-							"kind": "param",
-							"name": "target",
-							"type": "String|DOMElement",
-							"isFirstLevel": true,
-							"description": "Target element."
-						},
-						{
-							"kind": "param",
-							"name": "options",
-							"type": "Object",
-							"isOptional": true,
-							"isFirstLevel": true,
-							"description": "Optional object for configuring the component"
-						},
-						{
-							"kind": "param",
-							"name": "options.constraint",
-							"type": "String",
-							"isOptional": true,
-							"isFirstLevel": false,
-							"description": "Movement constraint. None by default. Can be `vertical`, `horizontal`, or `both`."
-						},
-						{
-							"kind": "param",
-							"name": "options.constraintElm",
-							"type": "String|DomElement",
-							"isOptional": true,
-							"isFirstLevel": false,
-							"description": "Constrain dragging to be within this element. None by default."
-						},
-						{
-							"kind": "param",
-							"name": "options.top",
-							"type": "Number",
-							"isOptional": true,
-							"isFirstLevel": false,
-							"description": "Limits for constraining draggable movement."
-						},
-						{
-							"kind": "param",
-							"name": "options.right",
-							"type": "Number",
-							"isOptional": true,
-							"isFirstLevel": false,
-							"description": "Limits for constraining draggable movement."
-						},
-						{
-							"kind": "param",
-							"name": "options.bottom",
-							"type": "Number",
-							"isOptional": true,
-							"isFirstLevel": false,
-							"description": "Limits for constraining draggable movement."
-						},
-						{
-							"kind": "param",
-							"name": "options.left",
-							"type": "Number",
-							"isOptional": true,
-							"isFirstLevel": false,
-							"description": "Limits for constraining draggable movement."
-						},
-						{
-							"kind": "param",
-							"name": "options.handle",
-							"type": "String|DOMElement",
-							"isOptional": true,
-							"isFirstLevel": false,
-							"description": "if specified, this element will be used as a handle for dragging."
-						},
-						{
-							"kind": "param",
-							"name": "options.revert",
-							"type": "Boolean",
-							"isOptional": true,
-							"isFirstLevel": false,
-							"description": "if true, reverts the draggable to the original position when dragging stops"
-						},
-						{
-							"kind": "param",
-							"name": "options.cursor",
-							"type": "String",
-							"isOptional": true,
-							"isFirstLevel": false,
-							"description": "cursor type (CSS `cursor` value) used when the mouse is over the draggable object"
-						},
-						{
-							"kind": "param",
-							"name": "options.zIndex",
-							"type": "Number",
-							"isOptional": true,
-							"isFirstLevel": false,
-							"description": "zindex applied to the draggable element while dragged"
-						},
-						{
-							"kind": "param",
-							"name": "options.fps",
-							"type": "Number",
-							"isOptional": true,
-							"isFirstLevel": false,
-							"description": "if defined, on drag will run every n frames per second only"
-						},
-						{
-							"kind": "param",
-							"name": "options.droppableProxy",
-							"type": "DomElement",
-							"isOptional": true,
-							"isFirstLevel": false,
-							"description": "if set, a shallow copy of the droppableProxy will be put on document.body with transparent bg"
-						},
-						{
-							"kind": "param",
-							"name": "options.mouseAnchor",
-							"type": "String",
-							"isOptional": true,
-							"isFirstLevel": false,
-							"description": "defaults to mouse cursor. can be 'left|center|right top|center|bottom'"
-						},
-						{
-							"kind": "param",
-							"name": "options.dragClass",
-							"type": "String",
-							"isOptional": true,
-							"defaultValue": "'drag'",
-							"isFirstLevel": false,
-							"description": "class to add when the draggable is being dragged."
-						},
-						{
-							"kind": "param",
-							"name": "options.onStart",
-							"type": "Function",
-							"isOptional": true,
-							"isFirstLevel": false,
-							"description": "callback called when dragging starts"
-						},
-						{
-							"kind": "param",
-							"name": "options.onEnd",
-							"type": "Function",
-							"isOptional": true,
-							"isFirstLevel": false,
-							"description": "callback called when dragging stops"
-						},
-						{
-							"kind": "param",
-							"name": "options.onDrag",
-							"type": "Function",
-							"isOptional": true,
-							"isFirstLevel": false,
-							"description": "callback called while dragging, prior to position updates"
-						},
-						{
-							"kind": "param",
-							"name": "options.onChange",
-							"type": "Function",
-							"isOptional": true,
-							"isFirstLevel": false,
-							"description": "callback called while dragging, after position updates"
-						}
-					],
-					"examples": [
-						"\n    Ink.requireModules( ['Ink.UI.Draggable_1'], function( Draggable ){\n        new Draggable( '#myElementId' );\n    });\n"
-					]
-				},
-				{
-					"kind": "function",
-					"name": "_init",
-					"file": "src/js/Ink/UI/Draggable/1/lib.js",
-					"text": "Init function called by the constructor",
-					"params": [
-						{
-							"kind": "param",
-							"name": "element",
-							"type": "String|DOMElement",
-							"isFirstLevel": true,
-							"description": "ID of the element or DOM Element."
-						},
-						{
-							"kind": "param",
-							"name": "options",
-							"type": "Object",
-							"isOptional": true,
-							"isFirstLevel": true,
-							"description": "Options object for configuration of the module."
-						}
-					],
-					"private": true
-				},
-				{
-					"kind": "function",
-					"name": "destroy",
-					"file": "src/js/Ink/UI/Draggable/1/lib.js",
-					"text": "Removes the ability of the element of being dragged",
-					"params": []
-				},
-				{
-					"kind": "function",
-					"name": "_getCoords",
-					"file": "src/js/Ink/UI/Draggable/1/lib.js",
-					"text": "Gets coordinates for a given event (with added page scroll)",
-					"params": [
-						{
-							"kind": "param",
-							"name": "e",
-							"type": "Object",
-							"isFirstLevel": true,
-							"description": "window.event object."
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "Array",
-						"description": "Array where the first position is the x coordinate, the second is the y coordinate"
-					},
-					"private": true
-				},
-				{
-					"kind": "function",
-					"name": "_cloneStyle",
-					"file": "src/js/Ink/UI/Draggable/1/lib.js",
-					"text": "Clones src element's relevant properties to dst",
-					"params": [
-						{
-							"kind": "param",
-							"name": "src",
-							"type": "DOMElement",
-							"isFirstLevel": true,
-							"description": "Element from where we're getting the styles"
-						},
-						{
-							"kind": "param",
-							"name": "dst",
-							"type": "DOMElement",
-							"isFirstLevel": true,
-							"description": "Element where we're placing the styles."
-						}
-					],
-					"private": true
-				},
-				{
-					"kind": "function",
-					"name": "_onStart",
-					"file": "src/js/Ink/UI/Draggable/1/lib.js",
-					"text": "onStart event handler",
-					"params": [
-						{
-							"kind": "param",
-							"name": "e",
-							"type": "Object",
-							"isFirstLevel": true,
-							"description": "window.event object"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "Boolean|void",
-						"description": "In some cases return false. Otherwise is void"
-					},
-					"private": true
-				},
-				{
-					"kind": "function",
-					"name": "_onDragFacade",
-					"file": "src/js/Ink/UI/Draggable/1/lib.js",
-					"text": "Function that gets the timestamp of the current run from time to time. (FPS)",
-					"params": [
-						{
-							"kind": "param",
-							"name": "window.event",
-							"type": "Object",
-							"isFirstLevel": false,
-							"description": "object."
-						}
-					],
-					"private": true
-				},
-				{
-					"kind": "function",
-					"name": "_onDrag",
-					"file": "src/js/Ink/UI/Draggable/1/lib.js",
-					"text": "Function that handles the dragging movement",
-					"params": [
-						{
-							"kind": "param",
-							"name": "window.event",
-							"type": "Object",
-							"isFirstLevel": false,
-							"description": "object."
-						}
-					],
-					"private": true
-				},
-				{
-					"kind": "function",
-					"name": "_onEnd",
-					"file": "src/js/Ink/UI/Draggable/1/lib.js",
-					"text": "Function that handles the end of the dragging process",
-					"params": [
-						{
-							"kind": "param",
-							"name": "window.event",
-							"type": "Object",
-							"isFirstLevel": false,
-							"description": "object."
-						}
-					],
-					"private": true
-				}
-			],
-			"attributes": [],
-			"version": "1"
-		},
 		{
 			"kind": "class",
 			"name": "Ink.UI.TagField",

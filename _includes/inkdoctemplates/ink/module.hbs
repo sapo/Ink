@@ -1,17 +1,18 @@
 {{#file hash}}
 
     {{#if name}}
+        <section>
         <h1 class="fw-300">{{name}} {{#if version}}<small>version: {{version}}</small>{{/if}}</h1>
     {{/if}}
 
-    
+
 
     {{#if uses}}
-        <h3>uses:</h3>
-        <ul>
-        {{#each uses}}
-            <li>{{this}}</li>
-        {{/each}}
+        <ul class="props inline">
+            <li class="heading">Uses:</li>
+            {{#each uses}}
+            <li class="prop">{{this}}</li>
+            {{/each}}
         </ul>
     {{/if}}
 

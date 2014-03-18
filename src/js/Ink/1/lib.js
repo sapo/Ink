@@ -1,14 +1,14 @@
+/**
+ * @module Ink_1
+ * Ink Core.
+ * This module provides the necessary methods to create and load the modules using Ink.
+ */
+
 ;(function(window, document) {
 
     'use strict';
 
     /**
-     * @module Ink_1
-     */
-
-    /**
-     * global object
-     *
      * @class Ink
      */
 
@@ -83,7 +83,8 @@
         },
 
         /**
-         * Get the full path of a certain module by looking up the paths given in setPath (and ultimately the default Ink path)
+         * Get the full path of a module.
+         * This method looks up the paths given in setPath (and ultimately the default Ink's path).
          *
          * @method getPath
          * @param {String}  key      Name of the module you want to get the path
@@ -117,8 +118,9 @@
         },
         
         /**
-         * Sets the URL path for a namespace or module. Use this to customize where requireModules (and createModule) will load dependencies from.
-         * This can be useful to set your own CDN for dynamic module loading or simply to avoi
+         * Sets the URL path for a namespace.
+         * Use this to customize where requireModules and createModule will load dependencies from.
+         * This can be useful to set your own CDN for dynamic module loading or simply to change your module folder structure
          * 
          * @method setPath
          *
@@ -142,8 +144,8 @@
         },
 
         /**
-         * Loads a script by creating a "script" tag in the "head" of the document.
-         *
+         * Loads a script URL.
+         * This creates a `<script>` tag in the `<head>` of the document.
          * Reports errors by listening to 'error' and 'readystatechange' events.
          *
          * @method loadScript
@@ -224,6 +226,7 @@
         },
 
         /**
+         * Loads a module.
          * A synchronous method to get the module from the registry. It assumes the module is defined and loaded already!
          *
          * @method getModule
@@ -237,7 +240,8 @@
         },
 
         /**
-         * Creates a new Ink Module. Use this to wrap your code and benefit from the module loading used throughout the Ink library
+         * Creates a new module. 
+         * Use this to wrap your code and benefit from the module loading used throughout the Ink library
          *
          * @method createModule
          * @uses   requireModules
@@ -333,6 +337,7 @@
         },
 
         /**
+         * Requires modules asynchronously 
          * Use this to get modules, even if they're not loaded yet
          *
          * @method requireModules
@@ -390,7 +395,8 @@
         },
 
         /**
-         * List of module names, ordered by loaded time (oldest module comes first)
+         * Lists loaded module names.
+         * The list is ordered by loaded time (oldest module comes first)
          *
          * @method getModulesLoadOrder
          * @return {Array} returns the order in which modules were resolved and correctly loaded
@@ -400,10 +406,11 @@
         },
 
         /**
-         * Get the markup needed to load all the modules.
+         * Builds the markup needed to load the modules.
          * This method builds the script tags needed to load the currently used modules
          * 
          * @method getModuleScripts
+         * @uses getModulesLoadOrder
          * @return {String} The script markup
          */
         getModuleScripts: function() {
@@ -524,6 +531,7 @@
          * Alias for Ink.Dom.Selector
          *
          * @method ss
+         * @uses Ink.Dom.Selector.select
          * @param {String}     rule
          * @param {DOMElement} [from]
          * @return {Array} array of DOMElements
@@ -541,6 +549,7 @@
          * Alias for Ink.Dom.Selector first result
          *
          * @method s
+         * @uses Ink.Dom.Selector.select
          * @param {String}     rule     Selector string
          * @param {DOMElement} [from]   Context element. If set to a DOM element, the rule will only look for descendants of this DOM Element.
          * @return {DOMElement}
@@ -555,6 +564,7 @@
         },
 
         /**
+         * Extends an object with another
          * Copy all of the properties in one or more source objects over to the destination object, and return the destination object. It's in-order, so the last source will override properties of the same name in previous arguments.
          *
          * @method extendObj

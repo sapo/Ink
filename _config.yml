@@ -90,6 +90,12 @@ sections:
           - title: Content alignment
           - title: Element spacing
           - title: Element visibility  
+      - title: Flexbox
+        topics:
+          - title: Basic principles
+          - title: Element alignment
+          - title: Content alignment
+          - title: Reordering
   - title: Javascript
     components: 
       - title: Core
