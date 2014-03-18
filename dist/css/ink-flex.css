@@ -2604,29 +2604,41 @@ table {
   .extra-large-padding {
     padding: 2em; }
 
-  .half-space {
+  .double-space {
     margin: 1em; }
+
+  .extra-large-double-space {
+    margin: 1em; }
+
+  .double-padding {
+    padding: 1em; }
+
+  .extra-large-double-padding {
+    padding: 1em; }
+
+  .half-space {
+    margin: 4em; }
 
   .extra-large-half-space {
-    margin: 1em; }
+    margin: 4em; }
 
   .half-padding {
-    padding: 1em; }
+    padding: 4em; }
 
   .extra-large-half-padding {
-    padding: 1em; }
+    padding: 4em; }
 
   .quarter-space {
-    margin: 0.5em; }
+    margin: 8em; }
 
   .extra-large-quarter-space {
-    margin: 0.5em; }
+    margin: 8em; }
 
   .quarter-padding {
-    padding: 0.5em; }
+    padding: 8em; }
 
   .extra-large-quarter-padding {
-    padding: 0.5em; }
+    padding: 8em; }
 
   .vertical-space {
     margin-top: 2em;
@@ -2643,6 +2655,22 @@ table {
   .extra-large-vertical-padding {
     padding-top: 2em;
     padding-bottom: 2em; }
+
+  .double-vertical-space {
+    margin-top: 4em;
+    margin-bottom: 4em; }
+
+  .extra-large-double-vertical-space {
+    margin-top: 4em;
+    margin-bottom: 4em; }
+
+  .double-vertical-padding {
+    padding-top: 4em;
+    padding-bottom: 4em; }
+
+  .extra-large-double-vertical-padding {
+    padding-top: 4em;
+    padding-bottom: 4em; }
 
   .half-vertical-space {
     margin-top: 1em;
@@ -2692,6 +2720,22 @@ table {
     padding-left: 2em;
     padding-right: 2em; }
 
+  .double-horizontal-space {
+    margin-left: 4em;
+    margin-right: 4em; }
+
+  .extra-large-double-horizontal-space {
+    margin-left: 4em;
+    margin-right: 4em; }
+
+  .double-horizontal-padding {
+    padding-left: 4em;
+    padding-right: 4em; }
+
+  .extra-large-double-horizontal-padding {
+    padding-left: 4em;
+    padding-right: 4em; }
+
   .half-horizontal-space {
     margin-left: 1em;
     margin-right: 1em; }
@@ -2736,6 +2780,18 @@ table {
   .extra-large-top-padding {
     padding-top: 2em; }
 
+  .double-top-space {
+    margin-top: 4em; }
+
+  .extra-large-double-top-space {
+    margin-top: 4em; }
+
+  .double-top-padding {
+    padding-top: 4em; }
+
+  .extra-large-double-top-padding {
+    padding-top: 4em; }
+
   .half-top-space {
     margin-top: 1em; }
 
@@ -2771,6 +2827,18 @@ table {
 
   .extra-large-right-padding {
     padding-right: 2em; }
+
+  .double-right-space {
+    margin-right: 4em; }
+
+  .extra-large-double-right-space {
+    margin-right: 4em; }
+
+  .double-right-padding {
+    padding-right: 4em; }
+
+  .extra-large-double-right-padding {
+    padding-right: 4em; }
 
   .half-right-space {
     margin-right: 1em; }
@@ -2808,6 +2876,18 @@ table {
   .extra-large-bottom-padding {
     padding-bottom: 2em; }
 
+  .double-bottom-space {
+    margin-bottom: 4em; }
+
+  .extra-large-double-bottom-space {
+    margin-bottom: 4em; }
+
+  .double-bottom-padding {
+    padding-bottom: 4em; }
+
+  .extra-large-double-bottom-padding {
+    padding-bottom: 4em; }
+
   .half-bottom-space {
     margin-bottom: 1em; }
 
@@ -2843,6 +2923,18 @@ table {
 
   .extra-large-left-padding {
     padding-left: 2em; }
+
+  .double-left-space {
+    margin-left: 4em; }
+
+  .extra-large-double-left-space {
+    margin-left: 4em; }
+
+  .double-left-padding {
+    padding-left: 4em; }
+
+  .extra-large-double-left-padding {
+    padding-left: 4em; }
 
   .half-left-space {
     margin-left: 1em; }
@@ -3119,29 +3211,41 @@ table {
   .large-padding {
     padding: 1.75em; }
 
-  .half-space {
+  .double-space {
     margin: 0.875em; }
+
+  .large-double-space {
+    margin: 0.875em; }
+
+  .double-padding {
+    padding: 0.875em; }
+
+  .large-double-padding {
+    padding: 0.875em; }
+
+  .half-space {
+    margin: 3.5em; }
 
   .large-half-space {
-    margin: 0.875em; }
+    margin: 3.5em; }
 
   .half-padding {
-    padding: 0.875em; }
+    padding: 3.5em; }
 
   .large-half-padding {
-    padding: 0.875em; }
+    padding: 3.5em; }
 
   .quarter-space {
-    margin: 0.4375em; }
+    margin: 7em; }
 
   .large-quarter-space {
-    margin: 0.4375em; }
+    margin: 7em; }
 
   .quarter-padding {
-    padding: 0.4375em; }
+    padding: 7em; }
 
   .large-quarter-padding {
-    padding: 0.4375em; }
+    padding: 7em; }
 
   .vertical-space {
     margin-top: 1.75em;
@@ -3158,6 +3262,22 @@ table {
   .large-vertical-padding {
     padding-top: 1.75em;
     padding-bottom: 1.75em; }
+
+  .double-vertical-space {
+    margin-top: 3.5em;
+    margin-bottom: 3.5em; }
+
+  .large-double-vertical-space {
+    margin-top: 3.5em;
+    margin-bottom: 3.5em; }
+
+  .double-vertical-padding {
+    padding-top: 3.5em;
+    padding-bottom: 3.5em; }
+
+  .large-double-vertical-padding {
+    padding-top: 3.5em;
+    padding-bottom: 3.5em; }
 
   .half-vertical-space {
     margin-top: 0.875em;
@@ -3207,6 +3327,22 @@ table {
     padding-left: 1.75em;
     padding-right: 1.75em; }
 
+  .double-horizontal-space {
+    margin-left: 3.5em;
+    margin-right: 3.5em; }
+
+  .large-double-horizontal-space {
+    margin-left: 3.5em;
+    margin-right: 3.5em; }
+
+  .double-horizontal-padding {
+    padding-left: 3.5em;
+    padding-right: 3.5em; }
+
+  .large-double-horizontal-padding {
+    padding-left: 3.5em;
+    padding-right: 3.5em; }
+
   .half-horizontal-space {
     margin-left: 0.875em;
     margin-right: 0.875em; }
@@ -3251,6 +3387,18 @@ table {
   .large-top-padding {
     padding-top: 1.75em; }
 
+  .double-top-space {
+    margin-top: 3.5em; }
+
+  .large-double-top-space {
+    margin-top: 3.5em; }
+
+  .double-top-padding {
+    padding-top: 3.5em; }
+
+  .large-double-top-padding {
+    padding-top: 3.5em; }
+
   .half-top-space {
     margin-top: 0.875em; }
 
@@ -3286,6 +3434,18 @@ table {
 
   .large-right-padding {
     padding-right: 1.75em; }
+
+  .double-right-space {
+    margin-right: 3.5em; }
+
+  .large-double-right-space {
+    margin-right: 3.5em; }
+
+  .double-right-padding {
+    padding-right: 3.5em; }
+
+  .large-double-right-padding {
+    padding-right: 3.5em; }
 
   .half-right-space {
     margin-right: 0.875em; }
@@ -3323,6 +3483,18 @@ table {
   .large-bottom-padding {
     padding-bottom: 1.75em; }
 
+  .double-bottom-space {
+    margin-bottom: 3.5em; }
+
+  .large-double-bottom-space {
+    margin-bottom: 3.5em; }
+
+  .double-bottom-padding {
+    padding-bottom: 3.5em; }
+
+  .large-double-bottom-padding {
+    padding-bottom: 3.5em; }
+
   .half-bottom-space {
     margin-bottom: 0.875em; }
 
@@ -3358,6 +3530,18 @@ table {
 
   .large-left-padding {
     padding-left: 1.75em; }
+
+  .double-left-space {
+    margin-left: 3.5em; }
+
+  .large-double-left-space {
+    margin-left: 3.5em; }
+
+  .double-left-padding {
+    padding-left: 3.5em; }
+
+  .large-double-left-padding {
+    padding-left: 3.5em; }
 
   .half-left-space {
     margin-left: 0.875em; }
@@ -3634,29 +3818,41 @@ table {
   .medium-padding {
     padding: 1.5em; }
 
-  .half-space {
+  .double-space {
     margin: 0.75em; }
+
+  .medium-double-space {
+    margin: 0.75em; }
+
+  .double-padding {
+    padding: 0.75em; }
+
+  .medium-double-padding {
+    padding: 0.75em; }
+
+  .half-space {
+    margin: 3em; }
 
   .medium-half-space {
-    margin: 0.75em; }
+    margin: 3em; }
 
   .half-padding {
-    padding: 0.75em; }
+    padding: 3em; }
 
   .medium-half-padding {
-    padding: 0.75em; }
+    padding: 3em; }
 
   .quarter-space {
-    margin: 0.375em; }
+    margin: 6em; }
 
   .medium-quarter-space {
-    margin: 0.375em; }
+    margin: 6em; }
 
   .quarter-padding {
-    padding: 0.375em; }
+    padding: 6em; }
 
   .medium-quarter-padding {
-    padding: 0.375em; }
+    padding: 6em; }
 
   .vertical-space {
     margin-top: 1.5em;
@@ -3673,6 +3869,22 @@ table {
   .medium-vertical-padding {
     padding-top: 1.5em;
     padding-bottom: 1.5em; }
+
+  .double-vertical-space {
+    margin-top: 3em;
+    margin-bottom: 3em; }
+
+  .medium-double-vertical-space {
+    margin-top: 3em;
+    margin-bottom: 3em; }
+
+  .double-vertical-padding {
+    padding-top: 3em;
+    padding-bottom: 3em; }
+
+  .medium-double-vertical-padding {
+    padding-top: 3em;
+    padding-bottom: 3em; }
 
   .half-vertical-space {
     margin-top: 0.75em;
@@ -3722,6 +3934,22 @@ table {
     padding-left: 1.5em;
     padding-right: 1.5em; }
 
+  .double-horizontal-space {
+    margin-left: 3em;
+    margin-right: 3em; }
+
+  .medium-double-horizontal-space {
+    margin-left: 3em;
+    margin-right: 3em; }
+
+  .double-horizontal-padding {
+    padding-left: 3em;
+    padding-right: 3em; }
+
+  .medium-double-horizontal-padding {
+    padding-left: 3em;
+    padding-right: 3em; }
+
   .half-horizontal-space {
     margin-left: 0.75em;
     margin-right: 0.75em; }
@@ -3766,6 +3994,18 @@ table {
   .medium-top-padding {
     padding-top: 1.5em; }
 
+  .double-top-space {
+    margin-top: 3em; }
+
+  .medium-double-top-space {
+    margin-top: 3em; }
+
+  .double-top-padding {
+    padding-top: 3em; }
+
+  .medium-double-top-padding {
+    padding-top: 3em; }
+
   .half-top-space {
     margin-top: 0.75em; }
 
@@ -3801,6 +4041,18 @@ table {
 
   .medium-right-padding {
     padding-right: 1.5em; }
+
+  .double-right-space {
+    margin-right: 3em; }
+
+  .medium-double-right-space {
+    margin-right: 3em; }
+
+  .double-right-padding {
+    padding-right: 3em; }
+
+  .medium-double-right-padding {
+    padding-right: 3em; }
 
   .half-right-space {
     margin-right: 0.75em; }
@@ -3838,6 +4090,18 @@ table {
   .medium-bottom-padding {
     padding-bottom: 1.5em; }
 
+  .double-bottom-space {
+    margin-bottom: 3em; }
+
+  .medium-double-bottom-space {
+    margin-bottom: 3em; }
+
+  .double-bottom-padding {
+    padding-bottom: 3em; }
+
+  .medium-double-bottom-padding {
+    padding-bottom: 3em; }
+
   .half-bottom-space {
     margin-bottom: 0.75em; }
 
@@ -3873,6 +4137,18 @@ table {
 
   .medium-left-padding {
     padding-left: 1.5em; }
+
+  .double-left-space {
+    margin-left: 3em; }
+
+  .medium-double-left-space {
+    margin-left: 3em; }
+
+  .double-left-padding {
+    padding-left: 3em; }
+
+  .medium-double-left-padding {
+    padding-left: 3em; }
 
   .half-left-space {
     margin-left: 0.75em; }
@@ -4149,29 +4425,41 @@ table {
   .small-padding {
     padding: 1.25em; }
 
-  .half-space {
+  .double-space {
     margin: 0.625em; }
+
+  .small-double-space {
+    margin: 0.625em; }
+
+  .double-padding {
+    padding: 0.625em; }
+
+  .small-double-padding {
+    padding: 0.625em; }
+
+  .half-space {
+    margin: 2.5em; }
 
   .small-half-space {
-    margin: 0.625em; }
+    margin: 2.5em; }
 
   .half-padding {
-    padding: 0.625em; }
+    padding: 2.5em; }
 
   .small-half-padding {
-    padding: 0.625em; }
+    padding: 2.5em; }
 
   .quarter-space {
-    margin: 0.3125em; }
+    margin: 5em; }
 
   .small-quarter-space {
-    margin: 0.3125em; }
+    margin: 5em; }
 
   .quarter-padding {
-    padding: 0.3125em; }
+    padding: 5em; }
 
   .small-quarter-padding {
-    padding: 0.3125em; }
+    padding: 5em; }
 
   .vertical-space {
     margin-top: 1.25em;
@@ -4188,6 +4476,22 @@ table {
   .small-vertical-padding {
     padding-top: 1.25em;
     padding-bottom: 1.25em; }
+
+  .double-vertical-space {
+    margin-top: 2.5em;
+    margin-bottom: 2.5em; }
+
+  .small-double-vertical-space {
+    margin-top: 2.5em;
+    margin-bottom: 2.5em; }
+
+  .double-vertical-padding {
+    padding-top: 2.5em;
+    padding-bottom: 2.5em; }
+
+  .small-double-vertical-padding {
+    padding-top: 2.5em;
+    padding-bottom: 2.5em; }
 
   .half-vertical-space {
     margin-top: 0.625em;
@@ -4237,6 +4541,22 @@ table {
     padding-left: 1.25em;
     padding-right: 1.25em; }
 
+  .double-horizontal-space {
+    margin-left: 2.5em;
+    margin-right: 2.5em; }
+
+  .small-double-horizontal-space {
+    margin-left: 2.5em;
+    margin-right: 2.5em; }
+
+  .double-horizontal-padding {
+    padding-left: 2.5em;
+    padding-right: 2.5em; }
+
+  .small-double-horizontal-padding {
+    padding-left: 2.5em;
+    padding-right: 2.5em; }
+
   .half-horizontal-space {
     margin-left: 0.625em;
     margin-right: 0.625em; }
@@ -4281,6 +4601,18 @@ table {
   .small-top-padding {
     padding-top: 1.25em; }
 
+  .double-top-space {
+    margin-top: 2.5em; }
+
+  .small-double-top-space {
+    margin-top: 2.5em; }
+
+  .double-top-padding {
+    padding-top: 2.5em; }
+
+  .small-double-top-padding {
+    padding-top: 2.5em; }
+
   .half-top-space {
     margin-top: 0.625em; }
 
@@ -4316,6 +4648,18 @@ table {
 
   .small-right-padding {
     padding-right: 1.25em; }
+
+  .double-right-space {
+    margin-right: 2.5em; }
+
+  .small-double-right-space {
+    margin-right: 2.5em; }
+
+  .double-right-padding {
+    padding-right: 2.5em; }
+
+  .small-double-right-padding {
+    padding-right: 2.5em; }
 
   .half-right-space {
     margin-right: 0.625em; }
@@ -4353,6 +4697,18 @@ table {
   .small-bottom-padding {
     padding-bottom: 1.25em; }
 
+  .double-bottom-space {
+    margin-bottom: 2.5em; }
+
+  .small-double-bottom-space {
+    margin-bottom: 2.5em; }
+
+  .double-bottom-padding {
+    padding-bottom: 2.5em; }
+
+  .small-double-bottom-padding {
+    padding-bottom: 2.5em; }
+
   .half-bottom-space {
     margin-bottom: 0.625em; }
 
@@ -4388,6 +4744,18 @@ table {
 
   .small-left-padding {
     padding-left: 1.25em; }
+
+  .double-left-space {
+    margin-left: 2.5em; }
+
+  .small-double-left-space {
+    margin-left: 2.5em; }
+
+  .double-left-padding {
+    padding-left: 2.5em; }
+
+  .small-double-left-padding {
+    padding-left: 2.5em; }
 
   .half-left-space {
     margin-left: 0.625em; }
@@ -4664,29 +5032,41 @@ table {
   .tiny-padding {
     padding: 1em; }
 
-  .half-space {
+  .double-space {
     margin: 0.5em; }
+
+  .tiny-double-space {
+    margin: 0.5em; }
+
+  .double-padding {
+    padding: 0.5em; }
+
+  .tiny-double-padding {
+    padding: 0.5em; }
+
+  .half-space {
+    margin: 2em; }
 
   .tiny-half-space {
-    margin: 0.5em; }
+    margin: 2em; }
 
   .half-padding {
-    padding: 0.5em; }
+    padding: 2em; }
 
   .tiny-half-padding {
-    padding: 0.5em; }
+    padding: 2em; }
 
   .quarter-space {
-    margin: 0.25em; }
+    margin: 4em; }
 
   .tiny-quarter-space {
-    margin: 0.25em; }
+    margin: 4em; }
 
   .quarter-padding {
-    padding: 0.25em; }
+    padding: 4em; }
 
   .tiny-quarter-padding {
-    padding: 0.25em; }
+    padding: 4em; }
 
   .vertical-space {
     margin-top: 1em;
@@ -4703,6 +5083,22 @@ table {
   .tiny-vertical-padding {
     padding-top: 1em;
     padding-bottom: 1em; }
+
+  .double-vertical-space {
+    margin-top: 2em;
+    margin-bottom: 2em; }
+
+  .tiny-double-vertical-space {
+    margin-top: 2em;
+    margin-bottom: 2em; }
+
+  .double-vertical-padding {
+    padding-top: 2em;
+    padding-bottom: 2em; }
+
+  .tiny-double-vertical-padding {
+    padding-top: 2em;
+    padding-bottom: 2em; }
 
   .half-vertical-space {
     margin-top: 0.5em;
@@ -4752,6 +5148,22 @@ table {
     padding-left: 1em;
     padding-right: 1em; }
 
+  .double-horizontal-space {
+    margin-left: 2em;
+    margin-right: 2em; }
+
+  .tiny-double-horizontal-space {
+    margin-left: 2em;
+    margin-right: 2em; }
+
+  .double-horizontal-padding {
+    padding-left: 2em;
+    padding-right: 2em; }
+
+  .tiny-double-horizontal-padding {
+    padding-left: 2em;
+    padding-right: 2em; }
+
   .half-horizontal-space {
     margin-left: 0.5em;
     margin-right: 0.5em; }
@@ -4796,6 +5208,18 @@ table {
   .tiny-top-padding {
     padding-top: 1em; }
 
+  .double-top-space {
+    margin-top: 2em; }
+
+  .tiny-double-top-space {
+    margin-top: 2em; }
+
+  .double-top-padding {
+    padding-top: 2em; }
+
+  .tiny-double-top-padding {
+    padding-top: 2em; }
+
   .half-top-space {
     margin-top: 0.5em; }
 
@@ -4831,6 +5255,18 @@ table {
 
   .tiny-right-padding {
     padding-right: 1em; }
+
+  .double-right-space {
+    margin-right: 2em; }
+
+  .tiny-double-right-space {
+    margin-right: 2em; }
+
+  .double-right-padding {
+    padding-right: 2em; }
+
+  .tiny-double-right-padding {
+    padding-right: 2em; }
 
   .half-right-space {
     margin-right: 0.5em; }
@@ -4868,6 +5304,18 @@ table {
   .tiny-bottom-padding {
     padding-bottom: 1em; }
 
+  .double-bottom-space {
+    margin-bottom: 2em; }
+
+  .tiny-double-bottom-space {
+    margin-bottom: 2em; }
+
+  .double-bottom-padding {
+    padding-bottom: 2em; }
+
+  .tiny-double-bottom-padding {
+    padding-bottom: 2em; }
+
   .half-bottom-space {
     margin-bottom: 0.5em; }
 
@@ -4903,6 +5351,18 @@ table {
 
   .tiny-left-padding {
     padding-left: 1em; }
+
+  .double-left-space {
+    margin-left: 2em; }
+
+  .tiny-double-left-space {
+    margin-left: 2em; }
+
+  .double-left-padding {
+    padding-left: 2em; }
+
+  .tiny-double-left-padding {
+    padding-left: 2em; }
 
   .half-left-space {
     margin-left: 0.5em; }
@@ -5005,6 +5465,26 @@ html.flexbox .column-group {
     -webkit-flex-direction: column-reverse;
     -moz-flex-direction: column-reverse;
     flex-direction: column-reverse; }
+html.flexbox .order-1 {
+  order: 1; }
+html.flexbox .order-2 {
+  order: 2; }
+html.flexbox .order-3 {
+  order: 3; }
+html.flexbox .order-4 {
+  order: 4; }
+html.flexbox .order-5 {
+  order: 5; }
+html.flexbox .order-6 {
+  order: 6; }
+html.flexbox .order-7 {
+  order: 7; }
+html.flexbox .order-8 {
+  order: 8; }
+html.flexbox .order-9 {
+  order: 9; }
+html.flexbox .order-10 {
+  order: 10; }
 @media screen and (min-width: 1261px) {
   html.flexbox .ink-grid {
     padding: 0 2em; }
@@ -5259,22 +5739,30 @@ html.flexbox .column-group {
     padding: 2em; }
   html.flexbox .extra-large-padding {
     padding: 2em; }
+  html.flexbox .double-space {
+    margin: 1em; }
+  html.flexbox .extra-large-double-space {
+    margin: 1em; }
+  html.flexbox .double-padding {
+    padding: 1em; }
+  html.flexbox .extra-large-double-padding {
+    padding: 1em; }
   html.flexbox .half-space {
-    margin: 1em; }
+    margin: 4em; }
   html.flexbox .extra-large-half-space {
-    margin: 1em; }
+    margin: 4em; }
   html.flexbox .half-padding {
-    padding: 1em; }
+    padding: 4em; }
   html.flexbox .extra-large-half-padding {
-    padding: 1em; }
+    padding: 4em; }
   html.flexbox .quarter-space {
-    margin: 0.5em; }
+    margin: 8em; }
   html.flexbox .extra-large-quarter-space {
-    margin: 0.5em; }
+    margin: 8em; }
   html.flexbox .quarter-padding {
-    padding: 0.5em; }
+    padding: 8em; }
   html.flexbox .extra-large-quarter-padding {
-    padding: 0.5em; }
+    padding: 8em; }
   html.flexbox .vertical-space {
     margin-top: 2em;
     margin-bottom: 2em; }
@@ -5287,6 +5775,18 @@ html.flexbox .column-group {
   html.flexbox .extra-large-vertical-padding {
     padding-top: 2em;
     padding-bottom: 2em; }
+  html.flexbox .double-vertical-space {
+    margin-top: 4em;
+    margin-bottom: 4em; }
+  html.flexbox .extra-large-double-vertical-space {
+    margin-top: 4em;
+    margin-bottom: 4em; }
+  html.flexbox .double-vertical-padding {
+    padding-top: 4em;
+    padding-bottom: 4em; }
+  html.flexbox .extra-large-double-vertical-padding {
+    padding-top: 4em;
+    padding-bottom: 4em; }
   html.flexbox .half-vertical-space {
     margin-top: 1em;
     margin-bottom: 1em; }
@@ -5323,6 +5823,18 @@ html.flexbox .column-group {
   html.flexbox .extra-large-horizontal-padding {
     padding-left: 2em;
     padding-right: 2em; }
+  html.flexbox .double-horizontal-space {
+    margin-left: 4em;
+    margin-right: 4em; }
+  html.flexbox .extra-large-double-horizontal-space {
+    margin-left: 4em;
+    margin-right: 4em; }
+  html.flexbox .double-horizontal-padding {
+    padding-left: 4em;
+    padding-right: 4em; }
+  html.flexbox .extra-large-double-horizontal-padding {
+    padding-left: 4em;
+    padding-right: 4em; }
   html.flexbox .half-horizontal-space {
     margin-left: 1em;
     margin-right: 1em; }
@@ -5355,6 +5867,14 @@ html.flexbox .column-group {
     padding-top: 2em; }
   html.flexbox .extra-large-top-padding {
     padding-top: 2em; }
+  html.flexbox .double-top-space {
+    margin-top: 4em; }
+  html.flexbox .extra-large-double-top-space {
+    margin-top: 4em; }
+  html.flexbox .double-top-padding {
+    padding-top: 4em; }
+  html.flexbox .extra-large-double-top-padding {
+    padding-top: 4em; }
   html.flexbox .half-top-space {
     margin-top: 1em; }
   html.flexbox .extra-large-half-top-space {
@@ -5379,6 +5899,14 @@ html.flexbox .column-group {
     padding-right: 2em; }
   html.flexbox .extra-large-right-padding {
     padding-right: 2em; }
+  html.flexbox .double-right-space {
+    margin-right: 4em; }
+  html.flexbox .extra-large-double-right-space {
+    margin-right: 4em; }
+  html.flexbox .double-right-padding {
+    padding-right: 4em; }
+  html.flexbox .extra-large-double-right-padding {
+    padding-right: 4em; }
   html.flexbox .half-right-space {
     margin-right: 1em; }
   html.flexbox .extra-large-half-right-space {
@@ -5403,6 +5931,14 @@ html.flexbox .column-group {
     padding-bottom: 2em; }
   html.flexbox .extra-large-bottom-padding {
     padding-bottom: 2em; }
+  html.flexbox .double-bottom-space {
+    margin-bottom: 4em; }
+  html.flexbox .extra-large-double-bottom-space {
+    margin-bottom: 4em; }
+  html.flexbox .double-bottom-padding {
+    padding-bottom: 4em; }
+  html.flexbox .extra-large-double-bottom-padding {
+    padding-bottom: 4em; }
   html.flexbox .half-bottom-space {
     margin-bottom: 1em; }
   html.flexbox .extra-large-half-bottom-space {
@@ -5427,6 +5963,14 @@ html.flexbox .column-group {
     padding-left: 2em; }
   html.flexbox .extra-large-left-padding {
     padding-left: 2em; }
+  html.flexbox .double-left-space {
+    margin-left: 4em; }
+  html.flexbox .extra-large-double-left-space {
+    margin-left: 4em; }
+  html.flexbox .double-left-padding {
+    padding-left: 4em; }
+  html.flexbox .extra-large-double-left-padding {
+    padding-left: 4em; }
   html.flexbox .half-left-space {
     margin-left: 1em; }
   html.flexbox .extra-large-half-left-space {
@@ -5714,22 +6258,30 @@ html.flexbox .column-group {
     padding: 1.75em; }
   html.flexbox .large-padding {
     padding: 1.75em; }
+  html.flexbox .double-space {
+    margin: 0.875em; }
+  html.flexbox .large-double-space {
+    margin: 0.875em; }
+  html.flexbox .double-padding {
+    padding: 0.875em; }
+  html.flexbox .large-double-padding {
+    padding: 0.875em; }
   html.flexbox .half-space {
-    margin: 0.875em; }
+    margin: 3.5em; }
   html.flexbox .large-half-space {
-    margin: 0.875em; }
+    margin: 3.5em; }
   html.flexbox .half-padding {
-    padding: 0.875em; }
+    padding: 3.5em; }
   html.flexbox .large-half-padding {
-    padding: 0.875em; }
+    padding: 3.5em; }
   html.flexbox .quarter-space {
-    margin: 0.4375em; }
+    margin: 7em; }
   html.flexbox .large-quarter-space {
-    margin: 0.4375em; }
+    margin: 7em; }
   html.flexbox .quarter-padding {
-    padding: 0.4375em; }
+    padding: 7em; }
   html.flexbox .large-quarter-padding {
-    padding: 0.4375em; }
+    padding: 7em; }
   html.flexbox .vertical-space {
     margin-top: 1.75em;
     margin-bottom: 1.75em; }
@@ -5742,6 +6294,18 @@ html.flexbox .column-group {
   html.flexbox .large-vertical-padding {
     padding-top: 1.75em;
     padding-bottom: 1.75em; }
+  html.flexbox .double-vertical-space {
+    margin-top: 3.5em;
+    margin-bottom: 3.5em; }
+  html.flexbox .large-double-vertical-space {
+    margin-top: 3.5em;
+    margin-bottom: 3.5em; }
+  html.flexbox .double-vertical-padding {
+    padding-top: 3.5em;
+    padding-bottom: 3.5em; }
+  html.flexbox .large-double-vertical-padding {
+    padding-top: 3.5em;
+    padding-bottom: 3.5em; }
   html.flexbox .half-vertical-space {
     margin-top: 0.875em;
     margin-bottom: 0.875em; }
@@ -5778,6 +6342,18 @@ html.flexbox .column-group {
   html.flexbox .large-horizontal-padding {
     padding-left: 1.75em;
     padding-right: 1.75em; }
+  html.flexbox .double-horizontal-space {
+    margin-left: 3.5em;
+    margin-right: 3.5em; }
+  html.flexbox .large-double-horizontal-space {
+    margin-left: 3.5em;
+    margin-right: 3.5em; }
+  html.flexbox .double-horizontal-padding {
+    padding-left: 3.5em;
+    padding-right: 3.5em; }
+  html.flexbox .large-double-horizontal-padding {
+    padding-left: 3.5em;
+    padding-right: 3.5em; }
   html.flexbox .half-horizontal-space {
     margin-left: 0.875em;
     margin-right: 0.875em; }
@@ -5810,6 +6386,14 @@ html.flexbox .column-group {
     padding-top: 1.75em; }
   html.flexbox .large-top-padding {
     padding-top: 1.75em; }
+  html.flexbox .double-top-space {
+    margin-top: 3.5em; }
+  html.flexbox .large-double-top-space {
+    margin-top: 3.5em; }
+  html.flexbox .double-top-padding {
+    padding-top: 3.5em; }
+  html.flexbox .large-double-top-padding {
+    padding-top: 3.5em; }
   html.flexbox .half-top-space {
     margin-top: 0.875em; }
   html.flexbox .large-half-top-space {
@@ -5834,6 +6418,14 @@ html.flexbox .column-group {
     padding-right: 1.75em; }
   html.flexbox .large-right-padding {
     padding-right: 1.75em; }
+  html.flexbox .double-right-space {
+    margin-right: 3.5em; }
+  html.flexbox .large-double-right-space {
+    margin-right: 3.5em; }
+  html.flexbox .double-right-padding {
+    padding-right: 3.5em; }
+  html.flexbox .large-double-right-padding {
+    padding-right: 3.5em; }
   html.flexbox .half-right-space {
     margin-right: 0.875em; }
   html.flexbox .large-half-right-space {
@@ -5858,6 +6450,14 @@ html.flexbox .column-group {
     padding-bottom: 1.75em; }
   html.flexbox .large-bottom-padding {
     padding-bottom: 1.75em; }
+  html.flexbox .double-bottom-space {
+    margin-bottom: 3.5em; }
+  html.flexbox .large-double-bottom-space {
+    margin-bottom: 3.5em; }
+  html.flexbox .double-bottom-padding {
+    padding-bottom: 3.5em; }
+  html.flexbox .large-double-bottom-padding {
+    padding-bottom: 3.5em; }
   html.flexbox .half-bottom-space {
     margin-bottom: 0.875em; }
   html.flexbox .large-half-bottom-space {
@@ -5882,6 +6482,14 @@ html.flexbox .column-group {
     padding-left: 1.75em; }
   html.flexbox .large-left-padding {
     padding-left: 1.75em; }
+  html.flexbox .double-left-space {
+    margin-left: 3.5em; }
+  html.flexbox .large-double-left-space {
+    margin-left: 3.5em; }
+  html.flexbox .double-left-padding {
+    padding-left: 3.5em; }
+  html.flexbox .large-double-left-padding {
+    padding-left: 3.5em; }
   html.flexbox .half-left-space {
     margin-left: 0.875em; }
   html.flexbox .large-half-left-space {
@@ -6169,22 +6777,30 @@ html.flexbox .column-group {
     padding: 1.5em; }
   html.flexbox .medium-padding {
     padding: 1.5em; }
+  html.flexbox .double-space {
+    margin: 0.75em; }
+  html.flexbox .medium-double-space {
+    margin: 0.75em; }
+  html.flexbox .double-padding {
+    padding: 0.75em; }
+  html.flexbox .medium-double-padding {
+    padding: 0.75em; }
   html.flexbox .half-space {
-    margin: 0.75em; }
+    margin: 3em; }
   html.flexbox .medium-half-space {
-    margin: 0.75em; }
+    margin: 3em; }
   html.flexbox .half-padding {
-    padding: 0.75em; }
+    padding: 3em; }
   html.flexbox .medium-half-padding {
-    padding: 0.75em; }
+    padding: 3em; }
   html.flexbox .quarter-space {
-    margin: 0.375em; }
+    margin: 6em; }
   html.flexbox .medium-quarter-space {
-    margin: 0.375em; }
+    margin: 6em; }
   html.flexbox .quarter-padding {
-    padding: 0.375em; }
+    padding: 6em; }
   html.flexbox .medium-quarter-padding {
-    padding: 0.375em; }
+    padding: 6em; }
   html.flexbox .vertical-space {
     margin-top: 1.5em;
     margin-bottom: 1.5em; }
@@ -6197,6 +6813,18 @@ html.flexbox .column-group {
   html.flexbox .medium-vertical-padding {
     padding-top: 1.5em;
     padding-bottom: 1.5em; }
+  html.flexbox .double-vertical-space {
+    margin-top: 3em;
+    margin-bottom: 3em; }
+  html.flexbox .medium-double-vertical-space {
+    margin-top: 3em;
+    margin-bottom: 3em; }
+  html.flexbox .double-vertical-padding {
+    padding-top: 3em;
+    padding-bottom: 3em; }
+  html.flexbox .medium-double-vertical-padding {
+    padding-top: 3em;
+    padding-bottom: 3em; }
   html.flexbox .half-vertical-space {
     margin-top: 0.75em;
     margin-bottom: 0.75em; }
@@ -6233,6 +6861,18 @@ html.flexbox .column-group {
   html.flexbox .medium-horizontal-padding {
     padding-left: 1.5em;
     padding-right: 1.5em; }
+  html.flexbox .double-horizontal-space {
+    margin-left: 3em;
+    margin-right: 3em; }
+  html.flexbox .medium-double-horizontal-space {
+    margin-left: 3em;
+    margin-right: 3em; }
+  html.flexbox .double-horizontal-padding {
+    padding-left: 3em;
+    padding-right: 3em; }
+  html.flexbox .medium-double-horizontal-padding {
+    padding-left: 3em;
+    padding-right: 3em; }
   html.flexbox .half-horizontal-space {
     margin-left: 0.75em;
     margin-right: 0.75em; }
@@ -6265,6 +6905,14 @@ html.flexbox .column-group {
     padding-top: 1.5em; }
   html.flexbox .medium-top-padding {
     padding-top: 1.5em; }
+  html.flexbox .double-top-space {
+    margin-top: 3em; }
+  html.flexbox .medium-double-top-space {
+    margin-top: 3em; }
+  html.flexbox .double-top-padding {
+    padding-top: 3em; }
+  html.flexbox .medium-double-top-padding {
+    padding-top: 3em; }
   html.flexbox .half-top-space {
     margin-top: 0.75em; }
   html.flexbox .medium-half-top-space {
@@ -6289,6 +6937,14 @@ html.flexbox .column-group {
     padding-right: 1.5em; }
   html.flexbox .medium-right-padding {
     padding-right: 1.5em; }
+  html.flexbox .double-right-space {
+    margin-right: 3em; }
+  html.flexbox .medium-double-right-space {
+    margin-right: 3em; }
+  html.flexbox .double-right-padding {
+    padding-right: 3em; }
+  html.flexbox .medium-double-right-padding {
+    padding-right: 3em; }
   html.flexbox .half-right-space {
     margin-right: 0.75em; }
   html.flexbox .medium-half-right-space {
@@ -6313,6 +6969,14 @@ html.flexbox .column-group {
     padding-bottom: 1.5em; }
   html.flexbox .medium-bottom-padding {
     padding-bottom: 1.5em; }
+  html.flexbox .double-bottom-space {
+    margin-bottom: 3em; }
+  html.flexbox .medium-double-bottom-space {
+    margin-bottom: 3em; }
+  html.flexbox .double-bottom-padding {
+    padding-bottom: 3em; }
+  html.flexbox .medium-double-bottom-padding {
+    padding-bottom: 3em; }
   html.flexbox .half-bottom-space {
     margin-bottom: 0.75em; }
   html.flexbox .medium-half-bottom-space {
@@ -6337,6 +7001,14 @@ html.flexbox .column-group {
     padding-left: 1.5em; }
   html.flexbox .medium-left-padding {
     padding-left: 1.5em; }
+  html.flexbox .double-left-space {
+    margin-left: 3em; }
+  html.flexbox .medium-double-left-space {
+    margin-left: 3em; }
+  html.flexbox .double-left-padding {
+    padding-left: 3em; }
+  html.flexbox .medium-double-left-padding {
+    padding-left: 3em; }
   html.flexbox .half-left-space {
     margin-left: 0.75em; }
   html.flexbox .medium-half-left-space {
@@ -6624,22 +7296,30 @@ html.flexbox .column-group {
     padding: 1.25em; }
   html.flexbox .small-padding {
     padding: 1.25em; }
+  html.flexbox .double-space {
+    margin: 0.625em; }
+  html.flexbox .small-double-space {
+    margin: 0.625em; }
+  html.flexbox .double-padding {
+    padding: 0.625em; }
+  html.flexbox .small-double-padding {
+    padding: 0.625em; }
   html.flexbox .half-space {
-    margin: 0.625em; }
+    margin: 2.5em; }
   html.flexbox .small-half-space {
-    margin: 0.625em; }
+    margin: 2.5em; }
   html.flexbox .half-padding {
-    padding: 0.625em; }
+    padding: 2.5em; }
   html.flexbox .small-half-padding {
-    padding: 0.625em; }
+    padding: 2.5em; }
   html.flexbox .quarter-space {
-    margin: 0.3125em; }
+    margin: 5em; }
   html.flexbox .small-quarter-space {
-    margin: 0.3125em; }
+    margin: 5em; }
   html.flexbox .quarter-padding {
-    padding: 0.3125em; }
+    padding: 5em; }
   html.flexbox .small-quarter-padding {
-    padding: 0.3125em; }
+    padding: 5em; }
   html.flexbox .vertical-space {
     margin-top: 1.25em;
     margin-bottom: 1.25em; }
@@ -6652,6 +7332,18 @@ html.flexbox .column-group {
   html.flexbox .small-vertical-padding {
     padding-top: 1.25em;
     padding-bottom: 1.25em; }
+  html.flexbox .double-vertical-space {
+    margin-top: 2.5em;
+    margin-bottom: 2.5em; }
+  html.flexbox .small-double-vertical-space {
+    margin-top: 2.5em;
+    margin-bottom: 2.5em; }
+  html.flexbox .double-vertical-padding {
+    padding-top: 2.5em;
+    padding-bottom: 2.5em; }
+  html.flexbox .small-double-vertical-padding {
+    padding-top: 2.5em;
+    padding-bottom: 2.5em; }
   html.flexbox .half-vertical-space {
     margin-top: 0.625em;
     margin-bottom: 0.625em; }
@@ -6688,6 +7380,18 @@ html.flexbox .column-group {
   html.flexbox .small-horizontal-padding {
     padding-left: 1.25em;
     padding-right: 1.25em; }
+  html.flexbox .double-horizontal-space {
+    margin-left: 2.5em;
+    margin-right: 2.5em; }
+  html.flexbox .small-double-horizontal-space {
+    margin-left: 2.5em;
+    margin-right: 2.5em; }
+  html.flexbox .double-horizontal-padding {
+    padding-left: 2.5em;
+    padding-right: 2.5em; }
+  html.flexbox .small-double-horizontal-padding {
+    padding-left: 2.5em;
+    padding-right: 2.5em; }
   html.flexbox .half-horizontal-space {
     margin-left: 0.625em;
     margin-right: 0.625em; }
@@ -6720,6 +7424,14 @@ html.flexbox .column-group {
     padding-top: 1.25em; }
   html.flexbox .small-top-padding {
     padding-top: 1.25em; }
+  html.flexbox .double-top-space {
+    margin-top: 2.5em; }
+  html.flexbox .small-double-top-space {
+    margin-top: 2.5em; }
+  html.flexbox .double-top-padding {
+    padding-top: 2.5em; }
+  html.flexbox .small-double-top-padding {
+    padding-top: 2.5em; }
   html.flexbox .half-top-space {
     margin-top: 0.625em; }
   html.flexbox .small-half-top-space {
@@ -6744,6 +7456,14 @@ html.flexbox .column-group {
     padding-right: 1.25em; }
   html.flexbox .small-right-padding {
     padding-right: 1.25em; }
+  html.flexbox .double-right-space {
+    margin-right: 2.5em; }
+  html.flexbox .small-double-right-space {
+    margin-right: 2.5em; }
+  html.flexbox .double-right-padding {
+    padding-right: 2.5em; }
+  html.flexbox .small-double-right-padding {
+    padding-right: 2.5em; }
   html.flexbox .half-right-space {
     margin-right: 0.625em; }
   html.flexbox .small-half-right-space {
@@ -6768,6 +7488,14 @@ html.flexbox .column-group {
     padding-bottom: 1.25em; }
   html.flexbox .small-bottom-padding {
     padding-bottom: 1.25em; }
+  html.flexbox .double-bottom-space {
+    margin-bottom: 2.5em; }
+  html.flexbox .small-double-bottom-space {
+    margin-bottom: 2.5em; }
+  html.flexbox .double-bottom-padding {
+    padding-bottom: 2.5em; }
+  html.flexbox .small-double-bottom-padding {
+    padding-bottom: 2.5em; }
   html.flexbox .half-bottom-space {
     margin-bottom: 0.625em; }
   html.flexbox .small-half-bottom-space {
@@ -6792,6 +7520,14 @@ html.flexbox .column-group {
     padding-left: 1.25em; }
   html.flexbox .small-left-padding {
     padding-left: 1.25em; }
+  html.flexbox .double-left-space {
+    margin-left: 2.5em; }
+  html.flexbox .small-double-left-space {
+    margin-left: 2.5em; }
+  html.flexbox .double-left-padding {
+    padding-left: 2.5em; }
+  html.flexbox .small-double-left-padding {
+    padding-left: 2.5em; }
   html.flexbox .half-left-space {
     margin-left: 0.625em; }
   html.flexbox .small-half-left-space {
@@ -7079,22 +7815,30 @@ html.flexbox .column-group {
     padding: 1em; }
   html.flexbox .tiny-padding {
     padding: 1em; }
+  html.flexbox .double-space {
+    margin: 0.5em; }
+  html.flexbox .tiny-double-space {
+    margin: 0.5em; }
+  html.flexbox .double-padding {
+    padding: 0.5em; }
+  html.flexbox .tiny-double-padding {
+    padding: 0.5em; }
   html.flexbox .half-space {
-    margin: 0.5em; }
+    margin: 2em; }
   html.flexbox .tiny-half-space {
-    margin: 0.5em; }
+    margin: 2em; }
   html.flexbox .half-padding {
-    padding: 0.5em; }
+    padding: 2em; }
   html.flexbox .tiny-half-padding {
-    padding: 0.5em; }
+    padding: 2em; }
   html.flexbox .quarter-space {
-    margin: 0.25em; }
+    margin: 4em; }
   html.flexbox .tiny-quarter-space {
-    margin: 0.25em; }
+    margin: 4em; }
   html.flexbox .quarter-padding {
-    padding: 0.25em; }
+    padding: 4em; }
   html.flexbox .tiny-quarter-padding {
-    padding: 0.25em; }
+    padding: 4em; }
   html.flexbox .vertical-space {
     margin-top: 1em;
     margin-bottom: 1em; }
@@ -7107,6 +7851,18 @@ html.flexbox .column-group {
   html.flexbox .tiny-vertical-padding {
     padding-top: 1em;
     padding-bottom: 1em; }
+  html.flexbox .double-vertical-space {
+    margin-top: 2em;
+    margin-bottom: 2em; }
+  html.flexbox .tiny-double-vertical-space {
+    margin-top: 2em;
+    margin-bottom: 2em; }
+  html.flexbox .double-vertical-padding {
+    padding-top: 2em;
+    padding-bottom: 2em; }
+  html.flexbox .tiny-double-vertical-padding {
+    padding-top: 2em;
+    padding-bottom: 2em; }
   html.flexbox .half-vertical-space {
     margin-top: 0.5em;
     margin-bottom: 0.5em; }
@@ -7143,6 +7899,18 @@ html.flexbox .column-group {
   html.flexbox .tiny-horizontal-padding {
     padding-left: 1em;
     padding-right: 1em; }
+  html.flexbox .double-horizontal-space {
+    margin-left: 2em;
+    margin-right: 2em; }
+  html.flexbox .tiny-double-horizontal-space {
+    margin-left: 2em;
+    margin-right: 2em; }
+  html.flexbox .double-horizontal-padding {
+    padding-left: 2em;
+    padding-right: 2em; }
+  html.flexbox .tiny-double-horizontal-padding {
+    padding-left: 2em;
+    padding-right: 2em; }
   html.flexbox .half-horizontal-space {
     margin-left: 0.5em;
     margin-right: 0.5em; }
@@ -7175,6 +7943,14 @@ html.flexbox .column-group {
     padding-top: 1em; }
   html.flexbox .tiny-top-padding {
     padding-top: 1em; }
+  html.flexbox .double-top-space {
+    margin-top: 2em; }
+  html.flexbox .tiny-double-top-space {
+    margin-top: 2em; }
+  html.flexbox .double-top-padding {
+    padding-top: 2em; }
+  html.flexbox .tiny-double-top-padding {
+    padding-top: 2em; }
   html.flexbox .half-top-space {
     margin-top: 0.5em; }
   html.flexbox .tiny-half-top-space {
@@ -7199,6 +7975,14 @@ html.flexbox .column-group {
     padding-right: 1em; }
   html.flexbox .tiny-right-padding {
     padding-right: 1em; }
+  html.flexbox .double-right-space {
+    margin-right: 2em; }
+  html.flexbox .tiny-double-right-space {
+    margin-right: 2em; }
+  html.flexbox .double-right-padding {
+    padding-right: 2em; }
+  html.flexbox .tiny-double-right-padding {
+    padding-right: 2em; }
   html.flexbox .half-right-space {
     margin-right: 0.5em; }
   html.flexbox .tiny-half-right-space {
@@ -7223,6 +8007,14 @@ html.flexbox .column-group {
     padding-bottom: 1em; }
   html.flexbox .tiny-bottom-padding {
     padding-bottom: 1em; }
+  html.flexbox .double-bottom-space {
+    margin-bottom: 2em; }
+  html.flexbox .tiny-double-bottom-space {
+    margin-bottom: 2em; }
+  html.flexbox .double-bottom-padding {
+    padding-bottom: 2em; }
+  html.flexbox .tiny-double-bottom-padding {
+    padding-bottom: 2em; }
   html.flexbox .half-bottom-space {
     margin-bottom: 0.5em; }
   html.flexbox .tiny-half-bottom-space {
@@ -7247,6 +8039,14 @@ html.flexbox .column-group {
     padding-left: 1em; }
   html.flexbox .tiny-left-padding {
     padding-left: 1em; }
+  html.flexbox .double-left-space {
+    margin-left: 2em; }
+  html.flexbox .tiny-double-left-space {
+    margin-left: 2em; }
+  html.flexbox .double-left-padding {
+    padding-left: 2em; }
+  html.flexbox .tiny-double-left-padding {
+    padding-left: 2em; }
   html.flexbox .half-left-space {
     margin-left: 0.5em; }
   html.flexbox .tiny-half-left-space {
