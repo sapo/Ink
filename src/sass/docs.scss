@@ -529,6 +529,7 @@ ul {
             @extend .slab-400;
             background-color: $code-background;
             font-size: .95em;
+            padding: 0 5px;
             &.breakpoint-aware {
                 &:after {
                     @extend .fw-300;
@@ -615,7 +616,7 @@ p.example-title {
     font-weight: 700;
     font-size: 2em;
     line-height: 0.8;
-    margin: 1.5em 0 0 0;
+    margin: 1em 0 0 0;
 }
 
 p + p.example-title {
@@ -654,7 +655,11 @@ html.flexbox .example {
         display: block; 
 
         a { top: auto; }
-    }
+    }    
+}
+
+.tall {
+    height: 250px;
 }
 
 footer {
