@@ -32,10 +32,12 @@
 @import "config/tables";
 @import "config/typography";
 @import "config/images";
+@import "config/js";
 
 // IMPORT MIXINS FILES (THESE CONTAIN HELPER FUNCTIONS)
 @import "mixins/alerts";
 @import "mixins/buttons";
+@import "mixins/grid";
 @import "mixins/flex-grid";
 @import "mixins/forms";
 @import "mixins/nav.pills";
@@ -43,7 +45,7 @@
 @import "mixins/nav.pagination";
 @import "mixins/nav.menu";
 @import "mixins/nav.dropdown";
-@import "mixins/spacing";
+@import "mixins/themeing";
 @import "mixins/typography";
 @import "mixins/utils";
 
@@ -52,9 +54,10 @@
 @import "modules/alerts";
 @import "modules/badges";
 @import "modules/buttons";
-@import "modules/fonts";
 @import "modules/forms";
+@import "modules/grid";
 @import "modules/flex-grid";
+@import "modules/fonts";
 @import "modules/labels";
 @import "modules/nav.core";
 @import "modules/nav.breadcrumbs";
@@ -79,5 +82,15 @@
 @import "themes/tables";
 
 // IMPORT JS COMPONENTS STYLING
-@import "modules/js/drawer";
+@import "modules/js/animate";
+@import "modules/js/carousel";
 @import "modules/js/flex-carousel";
+@import "modules/js/datepicker";
+@import "modules/js/drawer";
+@import "modules/js/modal";
+@import "modules/js/progressbar";
+@import "modules/js/sortable.list";
+@import "modules/js/sticky";
+@import "modules/js/tabs";
+@import "modules/js/tagfield";
+@import "modules/js/treeview";

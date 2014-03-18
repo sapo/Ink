@@ -1,0 +1,16 @@
+// Classes for selecting animation speed in Ink.UI.Animate
+// For the rest of the animation code, see modules/animate/animate.css, which comes from https://github.com/daneden/animate.css
+
+.animated {
+    &.slow {
+        animation-duration: 1s;
+    }
+
+    &.medium {
+        animation-duration: 0.5s;
+    }
+
+    &.fast {
+        animation-duration: 0.2s;
+    }
+}

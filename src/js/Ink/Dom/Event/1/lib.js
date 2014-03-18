@@ -1,5 +1,7 @@
 /**
- * @author inkdev AT sapo.pt
+ * @module Ink.Dom.Event_1
+ * @version 1
+ * Event management
  */
 
 Ink.createModule('Ink.Dom.Event', 1, [], function() {
@@ -759,14 +761,6 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * object and some properties are readonly in strict mode
      */
     'use strict';
-
-    /**
-     * Instantiate browser native events array
-     */
-
-    /**
-     * @module Ink.Dom.Event_1
-     */
 
     /**
      * @class Ink.Dom.Event

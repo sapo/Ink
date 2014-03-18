@@ -28,14 +28,8 @@
     <link rel="apple-touch-startup-image" href="{{ site.url }}{{  site.images_path  }}splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
         
     <!-- Load Documentation site CSS -->
-    <link rel="stylesheet" type="text/css" href="{{ site.url }}{{  site.css_path  }}ink.css">
-    <link rel="stylesheet" type="text/css" href="{{ site.url }}{{  site.css_path  }}docs.css">
-    <script type="text/javascript">
-        Modernizr.load({
-          test: Modernizr.flexbox,
-          yep : '{{ site.url }}{{ site.css_path }}ink-flex.css'
-        });
-    </script>    
+    <link rel="stylesheet" type="text/css" href="{{ site.url }}{{  site.css_path  }}ink-flex.css">
+    <link rel="stylesheet" type="text/css" href="{{ site.url }}{{  site.css_path  }}docs.css"> 
     <!--[if lte IE 7 ]>
         <link rel="stylesheet" href="{{ site.url }}{{  site.css_path  }}ink-ie7-min.css" type="text/css" media="screen" title="no title" charset="utf-8">
     <![endif]-->    

@@ -1,7 +1,7 @@
 ---
 layout: documentation
 title: Flexbox
-description: As of version 3.0.0 we have an alternative stylesheet that uses the Flexible box layout mode and is packed with new and exciting features.
+description: As of version 3.0.0 we have an alternative style sheet that uses the Flexible box layout mode and is packed with new and exciting features.
 tags: flex, flexbox, grid
 site_root: ../../
 ---
@@ -11,7 +11,7 @@ site_root: ../../
   <p class="fw-300">
     The Flexible box layout mode, or flexbox, introduces some very interesting features that we've used in Ink. Most of them are relative to the grid system but as you probably know, or will find out, that means they affect many other components in the framework.
   </p>
-  <p>These new fetures include:</p>
+  <p>These new features include:</p>
   <ul>
     <li>Control over an elements vertical and horizontal alignment.</li>
     <li>Control over the content vertical and horizontal alignment.</li>
@@ -19,7 +19,8 @@ site_root: ../../
     <li>Reversing element flow, i.e. back to front and bottom to top.</li>
     <li>Automatic width distribution i.e. grids without having to declare widths.</li>
   </ul>
-  <p>On this page we'll cover all the places where flexbox feature enhacement exists and how to take advantage of them.</p>
+  <p>On this page we'll cover all the places where flexbox feature enhancement exists and how to take advantage of them.</p>
+  <p><i class="fa fa-leaf"></i> Be aware that the Flexible box layout mode is still at the <a href="http://www.w3.org/TR/css3-flexbox/#status">Candidate Recommendation</a> stage of the specification and even though the W3C encourages browser makers to implement it, it can be changed before the final version of the specification.</p>
   <table class="props css">
     <caption>CSS CLASSES</caption>
     <thead>
@@ -81,8 +82,42 @@ site_root: ../../
   </table>
   <ul class="unstyled">
     <li><span class="label mandatory"></span> : This class must be used for the flexbox features to work.</li>
-    <li><span class="label breakpoint-aware"></span> : This class has breakpoint dependent variants, e.g. <code>large-class-name</code>.</li>
-    <li><span class="label halves-quarters"></span> : This class has half and quarter size variants, e.g. <code>half-class-name</code>.</li>
     <li><span class="label flexbox"></span> : This class defines flexbox features.</li>
   </ul>
+</section>
+<section id="element-alignment">
+  <h1 class="fw-300">Flex grid</h1>
+  <ul class="css props inline">
+    <li class="heading">Css classes:</li>
+    <li class="prop">ink-flex</li>
+    <li class="prop">push-top</li>
+    <li class="prop">push-middle</li>
+    <li class="prop">push-bottom</li>
+    <li class="prop">push-left</li>
+    <li class="prop">push-center</li>
+    <li class="prop">push-right</li>
+  </ul>
+  <p>If you're not familiar with our <a href="{{ site.url }}ui-elements/grid">grid system</a>, we advise you to read <a href="{{ site.url }}ui-elements/grid">its documentation</a> before going ahead.</p>
+  <p>When using our flexbox style sheet the column-group element becomes a flexbox container. This gives us unprecedented control over element alignment, including the ever illusive vertical alignment:</p>
+  <p class="example-title">Code</p>
+{% highlight html %}
+<div class="ink-grid">
+  <div class="column-group push-center">
+    <div class="all-50">
+      50%
+    </div>
+  </div>
+</div>  
+{% endhighlight %}
+<p>Unlike the "default" grid system, and because of the way flexbox works, positioning classes are applied to the <code>column-group</code>, rather that the columns themselves.</p>
+<p class="example-title">Demo</p>
+<div class="example">
+  <div class="ink-grid">
+  <div class="column-group push-center">
+    <div class="all-50">
+      <div class="column">50%</div>
+    </div>
+  </div>
+</div>  
+</div>
 </section>

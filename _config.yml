@@ -25,12 +25,6 @@ css_path: ./assets/css/
 sections:
   - title: UI Elements
     components: 
-      - title: Flexbox
-        topics:
-          - title: Basic principles
-          - title: Element alignment
-          - title: Content alignment
-          - title: Reordering
       - title: Grid
         topics:
           - title: Basic principles
@@ -96,6 +90,12 @@ sections:
           - title: Content alignment
           - title: Element spacing
           - title: Element visibility  
+      - title: Flexbox
+        topics:
+          - title: Basic principles
+          - title: Element alignment
+          - title: Content alignment
+          - title: Reordering
   - title: Javascript
     components: 
       - title: Core
