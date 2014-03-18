@@ -1,29 +1,30 @@
 
 
     
+        <section>
         <h1 class="fw-300">Ink.Dom.Browser_1 <small>version: 1</small></h1>
     
 
-    
-
-    
-
-    
-
-
-    
 
 
     
 
     
 
+    
 
 
     
-        <section>
+
 
     
+
+    
+
+
+
+    
+            
     <table class="props bottom-space">
         
         
@@ -50,8 +51,7 @@
                 <td>
                     
 
-                    <p>Debug function which displays browser (and Ink.Dom.Browser) information as an alert message.</p>
-
+                    Debug function which displays browser (and Ink.Dom.Browser) information as an alert message.
 
                     
                     
@@ -70,8 +70,7 @@
                 <td>
                     
 
-                    <p>Detects the browser and stores the found properties. Called automatically when this module is loaded.</p>
-
+                    Detects the browser and stores the found properties. Called automatically when this module is loaded.
 
                     
                     
@@ -90,9 +89,9 @@
                 <td>
                     
 
-                    <p>Initialization function for the Browser object.</p>
-<p>Is called automatically when this module is loaded, and calls setDimensions, setBrowser and setReferrer.</p>
+                    Initialization function for the Browser object.
 
+Is called automatically when this module is loaded, and calls setDimensions, setBrowser and setReferrer.
 
                     
                     
@@ -111,8 +110,7 @@
                 <td>
                     
 
-                    <p>Retrieves and stores window dimensions in this object. Called automatically when this module is loaded.</p>
-
+                    Retrieves and stores window dimensions in this object. Called automatically when this module is loaded.
 
                     
                     
@@ -131,8 +129,7 @@
                 <td>
                     
 
-                    <p>Stores the referrer. Called automatically when this module is loaded.</p>
-
+                    Stores the referrer. Called automatically when this module is loaded.
 
                     
                     
@@ -144,7 +141,6 @@
     
 
     
-
     <table class="props">
         <caption>PROPERTIES</caption>
         <thead>
@@ -154,177 +150,168 @@
             </tr>
         </thead>
         <tbody>
-        
-        <tr>
-            <td><a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-CHROME">.CHROME</a></td>
-            <td>
-                
+            
+            <tr>
+                <td><a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-CHROME">.CHROME</a></td>
+                <td>
+                    
 
-                
-                    <p>True if browser is Chrome</p>
+                    
+                        True if browser is Chrome
+                    
 
-                
+                    
+                        <code>Boolean</code>
+                    
+                    
+                </td>
+            </tr>
+            
+            <tr>
+                <td><a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-GECKO">.GECKO</a></td>
+                <td>
+                    
 
-                
-                    <code>Boolean</code>
-                
-                
-            </td>
-        </tr>
-        
-        <tr>
-            <td><a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-GECKO">.GECKO</a></td>
-            <td>
-                
+                    
+                        True if the browser is Gecko based
+                    
 
-                
-                    <p>True if the browser is Gecko based</p>
+                    
+                        <code>Boolean</code>
+                    
+                    
+                </td>
+            </tr>
+            
+            <tr>
+                <td><a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-IE">.IE</a></td>
+                <td>
+                    
 
-                
+                    
+                        True if the browser is Internet Explorer
+                    
 
-                
-                    <code>Boolean</code>
-                
-                
-            </td>
-        </tr>
-        
-        <tr>
-            <td><a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-IE">.IE</a></td>
-            <td>
-                
+                    
+                        <code>Boolean</code>
+                    
+                    
+                </td>
+            </tr>
+            
+            <tr>
+                <td><a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-KONQUEROR">.KONQUEROR</a></td>
+                <td>
+                    
 
-                
-                    <p>True if the browser is Internet Explorer</p>
+                    
+                        True if the browser is Konqueror
+                    
 
-                
+                    
+                        <code>Boolean</code>
+                    
+                    
+                </td>
+            </tr>
+            
+            <tr>
+                <td><a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-OPERA">.OPERA</a></td>
+                <td>
+                    
 
-                
-                    <code>Boolean</code>
-                
-                
-            </td>
-        </tr>
-        
-        <tr>
-            <td><a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-KONQUEROR">.KONQUEROR</a></td>
-            <td>
-                
+                    
+                        True if the browser is Opera
+                    
 
-                
-                    <p>True if the browser is Konqueror</p>
+                    
+                        <code>Boolean</code>
+                    
+                    
+                </td>
+            </tr>
+            
+            <tr>
+                <td><a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-SAFARI">.SAFARI</a></td>
+                <td>
+                    
 
-                
+                    
+                        True if the browser is Safari
+                    
 
-                
-                    <code>Boolean</code>
-                
-                
-            </td>
-        </tr>
-        
-        <tr>
-            <td><a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-OPERA">.OPERA</a></td>
-            <td>
-                
+                    
+                        <code>Boolean</code>
+                    
+                    
+                </td>
+            </tr>
+            
+            <tr>
+                <td><a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-model">.model</a></td>
+                <td>
+                    
 
-                
-                    <p>True if the browser is Opera</p>
+                    
+                        The specific browser model. False if it is unavailable.
+                    
 
-                
+                    
+                        <code>Boolean|String</code>
+                    
+                    
+                </td>
+            </tr>
+            
+            <tr>
+                <td><a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-userAgent">.userAgent</a></td>
+                <td>
+                    
 
-                
-                    <code>Boolean</code>
-                
-                
-            </td>
-        </tr>
-        
-        <tr>
-            <td><a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-SAFARI">.SAFARI</a></td>
-            <td>
-                
+                    
+                        The user agent string. False if it is unavailable.
+                    
 
-                
-                    <p>True if the browser is Safari</p>
+                    
+                        <code>Boolean|String</code>
+                    
+                    
+                </td>
+            </tr>
+            
+            <tr>
+                <td><a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-version">.version</a></td>
+                <td>
+                    
 
-                
+                    
+                        The browser version. False if it is unavailable.
+                    
 
-                
-                    <code>Boolean</code>
-                
-                
-            </td>
-        </tr>
-        
-        <tr>
-            <td><a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-model">.model</a></td>
-            <td>
-                
-
-                
-                    <p>The specific browser model. False if it is unavailable.</p>
-
-                
-
-                
-                    <code>Boolean|String</code>
-                
-                
-            </td>
-        </tr>
-        
-        <tr>
-            <td><a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-userAgent">.userAgent</a></td>
-            <td>
-                
-
-                
-                    <p>The user agent string. False if it is unavailable.</p>
-
-                
-
-                
-                    <code>Boolean|String</code>
-                
-                
-            </td>
-        </tr>
-        
-        <tr>
-            <td><a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-version">.version</a></td>
-            <td>
-                
-
-                
-                    <p>The browser version. False if it is unavailable.</p>
-
-                
-
-                
-                    <code>Boolean|String</code>
-                
-                
-            </td>
-        </tr>
-        
+                    
+                        <code>Boolean|String</code>
+                    
+                    
+                </td>
+            </tr>
+            
         </tbody>
     </table>
-
     
-
-
-    
-
-    
-    
+</section>
 
 
 
-    
-        <div class="box box-function">
 
-    <h2><a name="Ink_Dom_Browser_1-Ink_Dom_Browser-debug">
+
+
+
+
+
+
+    <section class="box box-function">
+
+    <h2>
     
         
             Ink.Dom.Browser.debug
@@ -336,7 +323,7 @@
             <i>method</i>
         
     
-    </a></h2>
+    </h2>
 
     
     
@@ -346,14 +333,12 @@
     
 
     
-        <span class="text"><p>Debug function which displays browser (and Ink.Dom.Browser) information as an alert message.</p>
-</span>
+        <p class="text">Debug function which displays browser (and Ink.Dom.Browser) information as an alert message.</p>
     
 
     
 <p class="example-title">Example</p>
   
-<div class="example bottom-space">
 {% highlight html %}{% raw %}
  
  The following code
@@ -371,19 +356,17 @@
      
      original UA -> Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:22.0) Gecko/20100101 Firefox/22.0
 {% endraw %}{% endhighlight %}
-</div>
 
 
 
 
     
 
-</div>
+</section>
 
-    
-        <div class="box box-function">
+    <section class="box box-function">
 
-    <h2><a name="Ink_Dom_Browser_1-Ink_Dom_Browser-detectBrowser">
+    <h2>
     
         
             Ink.Dom.Browser.detectBrowser
@@ -395,7 +378,7 @@
             <i>method</i>
         
     
-    </a></h2>
+    </h2>
 
     
     
@@ -405,8 +388,7 @@
     
 
     
-        <span class="text"><p>Detects the browser and stores the found properties. Called automatically when this module is loaded.</p>
-</span>
+        <p class="text">Detects the browser and stores the found properties. Called automatically when this module is loaded.</p>
     
 
     
@@ -414,12 +396,11 @@
 
     
 
-</div>
+</section>
 
-    
-        <div class="box box-function">
+    <section class="box box-function">
 
-    <h2><a name="Ink_Dom_Browser_1-Ink_Dom_Browser-init">
+    <h2>
     
         
             Ink.Dom.Browser.init
@@ -431,7 +412,7 @@
             <i>method</i>
         
     
-    </a></h2>
+    </h2>
 
     
     
@@ -441,9 +422,9 @@
     
 
     
-        <span class="text"><p>Initialization function for the Browser object.</p>
-<p>Is called automatically when this module is loaded, and calls setDimensions, setBrowser and setReferrer.</p>
-</span>
+        <p class="text">Initialization function for the Browser object.
+
+Is called automatically when this module is loaded, and calls setDimensions, setBrowser and setReferrer.</p>
     
 
     
@@ -451,12 +432,11 @@
 
     
 
-</div>
+</section>
 
-    
-        <div class="box box-function">
+    <section class="box box-function">
 
-    <h2><a name="Ink_Dom_Browser_1-Ink_Dom_Browser-setDimensions">
+    <h2>
     
         
             Ink.Dom.Browser.setDimensions
@@ -468,7 +448,7 @@
             <i>method</i>
         
     
-    </a></h2>
+    </h2>
 
     
     
@@ -478,8 +458,7 @@
     
 
     
-        <span class="text"><p>Retrieves and stores window dimensions in this object. Called automatically when this module is loaded.</p>
-</span>
+        <p class="text">Retrieves and stores window dimensions in this object. Called automatically when this module is loaded.</p>
     
 
     
@@ -487,12 +466,11 @@
 
     
 
-</div>
+</section>
 
-    
-        <div class="box box-function">
+    <section class="box box-function">
 
-    <h2><a name="Ink_Dom_Browser_1-Ink_Dom_Browser-setReferrer">
+    <h2>
     
         
             Ink.Dom.Browser.setReferrer
@@ -504,7 +482,7 @@
             <i>method</i>
         
     
-    </a></h2>
+    </h2>
 
     
     
@@ -514,8 +492,7 @@
     
 
     
-        <span class="text"><p>Stores the referrer. Called automatically when this module is loaded.</p>
-</span>
+        <p class="text">Stores the referrer. Called automatically when this module is loaded.</p>
     
 
     
@@ -523,12 +500,11 @@
 
     
 
-</div>
+</section>
 
-    
 
-    
-        <div class="box box-attribute">
+
+    <section class="box box-attribute">
 
      <h2>
     
@@ -539,8 +515,7 @@
     
 
     
-        <p class="text"><p>True if browser is Chrome</p>
-</p>
+        <p class="text">True if browser is Chrome</p>
     
 
     
@@ -551,10 +526,9 @@
 
     
 
-</div>
+</section>
 
-    
-        <div class="box box-attribute">
+    <section class="box box-attribute">
 
      <h2>
     
@@ -565,8 +539,7 @@
     
 
     
-        <p class="text"><p>True if the browser is Gecko based</p>
-</p>
+        <p class="text">True if the browser is Gecko based</p>
     
 
     
@@ -577,10 +550,9 @@
 
     
 
-</div>
+</section>
 
-    
-        <div class="box box-attribute">
+    <section class="box box-attribute">
 
      <h2>
     
@@ -591,8 +563,7 @@
     
 
     
-        <p class="text"><p>True if the browser is Internet Explorer</p>
-</p>
+        <p class="text">True if the browser is Internet Explorer</p>
     
 
     
@@ -603,10 +574,9 @@
 
     
 
-</div>
+</section>
 
-    
-        <div class="box box-attribute">
+    <section class="box box-attribute">
 
      <h2>
     
@@ -617,8 +587,7 @@
     
 
     
-        <p class="text"><p>True if the browser is Konqueror</p>
-</p>
+        <p class="text">True if the browser is Konqueror</p>
     
 
     
@@ -629,10 +598,9 @@
 
     
 
-</div>
+</section>
 
-    
-        <div class="box box-attribute">
+    <section class="box box-attribute">
 
      <h2>
     
@@ -643,8 +611,7 @@
     
 
     
-        <p class="text"><p>True if the browser is Opera</p>
-</p>
+        <p class="text">True if the browser is Opera</p>
     
 
     
@@ -655,10 +622,9 @@
 
     
 
-</div>
+</section>
 
-    
-        <div class="box box-attribute">
+    <section class="box box-attribute">
 
      <h2>
     
@@ -669,8 +635,7 @@
     
 
     
-        <p class="text"><p>True if the browser is Safari</p>
-</p>
+        <p class="text">True if the browser is Safari</p>
     
 
     
@@ -681,10 +646,9 @@
 
     
 
-</div>
+</section>
 
-    
-        <div class="box box-attribute">
+    <section class="box box-attribute">
 
      <h2>
     
@@ -695,8 +659,7 @@
     
 
     
-        <p class="text"><p>The specific browser model. False if it is unavailable.</p>
-</p>
+        <p class="text">The specific browser model. False if it is unavailable.</p>
     
 
     
@@ -707,10 +670,9 @@
 
     
 
-</div>
+</section>
 
-    
-        <div class="box box-attribute">
+    <section class="box box-attribute">
 
      <h2>
     
@@ -721,8 +683,7 @@
     
 
     
-        <p class="text"><p>The user agent string. False if it is unavailable.</p>
-</p>
+        <p class="text">The user agent string. False if it is unavailable.</p>
     
 
     
@@ -733,10 +694,9 @@
 
     
 
-</div>
+</section>
 
-    
-        <div class="box box-attribute">
+    <section class="box box-attribute">
 
      <h2>
     
@@ -747,8 +707,7 @@
     
 
     
-        <p class="text"><p>The browser version. False if it is unavailable.</p>
-</p>
+        <p class="text">The browser version. False if it is unavailable.</p>
     
 
     
@@ -759,10 +718,8 @@
 
     
 
-</div>
-
-    
 </section>
+
     
 
     

@@ -645,6 +645,16 @@ html.flexbox .example {
             line-height: 150px;
         }
     }
+
+    &#chevron-example {
+        height:140px; 
+        width: 100%; 
+        position: relative; 
+        overflow: hidden; 
+        display: block; 
+
+        a { top: auto; }
+    }
 }
 
 footer {
