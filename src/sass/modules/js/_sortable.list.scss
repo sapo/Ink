@@ -19,13 +19,13 @@
     li {
         margin:0;
         border-bottom:1px solid #ccc;
-        line-height: @sortable-list-height;
+        line-height: $sortable-list-height;
         .dragging;
         
         &:hover,
         &.placeholder {
             background: rgb(204,204,204);
-            background:rgba(204,204,204,0.2);
+            background: rgba(204,204,204,0.2);
         }
         &.placeholder {
             .drag;

@@ -1,22 +1,4 @@
-// Ink
-//
-// A set of tools for quick development of web interfaces.
-//
-// @package    Ink
-// @subpackage Mixins
-// @author     Sapo Ink Team
-// @license    http://opensource.org/licenses/MIT MIT
-// @link       http://ink.sapo.pt
-// @since      Version 3.0.0
-
-// ---------------------------------------------------------------------------------------------
-
-// Grid Divisions
-// 
-// @package    Ink
-// @subpackage Mixins
-// @category   Layout flex grid
-// @author     Sapo Ink Team
+// Flex grid
 
 // generates the grid main container
 @mixin generate-grid-container ($grid-container-class-name, $gutter-width) {

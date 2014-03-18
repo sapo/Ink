@@ -9,29 +9,29 @@
         
         li {
 
-            line-height: @navigation-line-height;
+            line-height: $navigation-line-height;
             position: relative;
             margin: 0;
             
             a {
-                padding: @navigation-v-padding @navigation-h-padding;
+                padding: $navigation-v-padding $navigation-h-padding;
                 display: block;
                 
                 &:hover {
-                    background: darken(@body-background, 6%);
+                    background: darken($body-background, 6%);
                 }
             }
 
             &.active a {
-                color: @text-color;
+                color: $text-color;
                 cursor: default;
                 text-decoration: none;
-                background: @body-background;
-                border: 1px solid @grey-20;
+                background: $body-background;
+                border: 1px solid $grey-20;
             }
         }
 
-        #ink > #utils > .clearfix ();
+        @include pie-clearfix;
     }
 
     .tabs-content {
@@ -44,7 +44,7 @@
         
         > .tabs-nav {
 
-            border-bottom: 1px solid @grey-20;
+            border-bottom: 1px solid $grey-20;
 
             li {
 
@@ -52,7 +52,7 @@
 
                 a {
                     margin-right: .4em;
-                    #ink > #border-radius > .top (4px);
+                    @include border-top-radius(4px);
                 }
 
                 &.active {
@@ -70,7 +70,7 @@
     &.bottom {
         
         > .tabs-nav {
-            border-top: 1px solid @grey-20;
+            border-top: 1px solid $grey-20;
             
             li {
 
@@ -78,7 +78,7 @@
 
                 a {
                     margin-right: .4em;
-                    #ink > #border-radius > .bottom (4px);
+                    @include border-bottom-radius(4px);
                 }
 
                 &.active {
@@ -96,7 +96,7 @@
     &.left {
         
         > .tabs-nav {
-            border-right: 1px solid @grey-20;
+            border-right: 1px solid $grey-20;
             float: left;
             margin-right: 2em;
 
@@ -107,7 +107,7 @@
 
                 a {
                     margin-bottom: .4em;
-                    #ink > #border-radius > .left (4px);
+                    @include border-left-radius(4px);
                 }
 
                 &.active {
@@ -125,7 +125,7 @@
     &.right {
         
         > .tabs-nav {
-            border-left: 1px solid @grey-20;
+            border-left: 1px solid $grey-20;
             float: right;
             margin-left: 2em;
 
@@ -135,7 +135,7 @@
 
                 a {
                     margin-bottom: .4em;
-                    #ink > #border-radius > .right (4px);
+                    @include border-right-radius(4px);
                 }
 
                 &.active {

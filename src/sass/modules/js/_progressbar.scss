@@ -2,10 +2,10 @@
 .ink-progress-bar {
     margin-bottom: 1em;
     overflow: hidden;
-    background: @progress-bar-bg;
+    background: $progress-bar-bg;
     position: relative;
-    #ink > #border-radius > .all (@border-radius);  
-    #ink > #shadows > .box-shadow (0, 1px, 3px, 0, rgba( 0, 0, 0, 0.2), inset);
+    @include border-radius($border-radius);  
+    @include box-shadow(0, 1px, 3px, 0, rgba( 0, 0, 0, 0.2), inset);
 
     .caption {
         position: absolute;
@@ -15,40 +15,42 @@
         height: 100%;
         line-height: 1.7;
         text-align: center;
-        color: @progress-bar-color;
-        font-size: @progress-bar-fontSize;
-        z-index: @layer-10;
+        color: $progress-bar-color;
+        font-size: $progress-bar-fontSize;
+        z-index: $layer-10;
     }
     
     .bar {
         height: 1.3em;
-        #ink > #shadows > .text-shadow (0, 1px, 0, rgba(0, 0, 0, 0.25));
-        #ink > #shadows > .box-shadow (0, 1px, 1px, 0, rgba(0, 0, 0, 0.1), inset);
-        #ink > #effects > .transition ("width", 0.6s, "ease");
+        @include text-shadow (rgba(0, 0, 0, 0.25), 0, 1px, 0);
+        @include  box-shadow(0, 1px, 1px, 0, rgba(0, 0, 0, 0.1), inset);
 
-        &.grey {
-            #ink > #shadows > .text-shadow (0, -1px, 0, rgba(255, 255, 255, 0.25));
-            #ink > #gradients > .gradient (@grey-10, @grey-20, 150%);
+        @include transition-property(width);
+        @include transition-duration(0.6s);
+        @include transition-timing-function(ease);
+
+        &.grey {            
+            @include themeing($grey-20);
         }
         
         &.green {
-            #ink > #gradients > .gradient (desaturate(@green,10%), darken(desaturate(@green,10%),10%), 150%); 
+            @include themeing($green);
         }
         
         &.blue {
-            #ink > #gradients > .gradient (desaturate(@blue,10%), darken(desaturate(@blue,10%),10%), 150%);                
+            @include themeing($blue);              
         }
         
         &.red {
-            #ink > #gradients > .gradient (desaturate(@red,10%), darken(desaturate(@red,10%),10%), 150%);                
+            @include themeing($red);              
         }
         
         &.orange {
-            #ink > #gradients > .gradient (desaturate(@orange,10%), darken(desaturate(@orange,10%),10%), 150%);
+            @include themeing($orange);
         }
         
         &.black {
-            #ink > #gradients > .gradient (lighten(@black,30%), @black, 150%);
+            @include themeing($black);
         }
     }
 }

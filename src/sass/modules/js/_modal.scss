@@ -3,10 +3,10 @@
     left: 50%;
     width: 90%;
     height: 90%;
-    background:@white;
-    z-index:@layer-100;
+    background:$white;
+    z-index:$layer-100;
     position:absolute;
-    border: 1px @grey-60 solid;
+    border: 1px $grey-60 solid;
     #ink > #effects > .opacity (1);
     #ink > #shadows > .box-shadow (0,0,15px,0,rgba(0, 0, 0, 0.8));
     #ink > #border-radius > .all (4px);
@@ -28,7 +28,7 @@
     }
 
     > .modal-header, > header {
-        border-bottom: 1px @grey-10 solid;
+        border-bottom: 1px $grey-10 solid;
         overflow: hidden;
         #ink > #shadows > .box-shadow (0,1px,2px,0,rgba(175, 175, 175, 0.2));
 
@@ -36,12 +36,12 @@
 
             padding-top: 2px;
             text-align: center;
-            color: @white;
+            color: $white;
             width: 26px;
             height: 26px;
             line-height: 1.2em;
             border: 0;
-            background: @grey-25;
+            background: $grey-25;
             font-size: 0;
             
             
@@ -67,7 +67,7 @@
     }
 
     > .modal-footer, > footer {
-        background: @grey-10;
+        background: $grey-10;
         margin-bottom: 0;
         #ink > #shadows > .box-shadow (0,-1px,2px,0,rgba(175, 175, 175, 0.2));
         position: absolute;
