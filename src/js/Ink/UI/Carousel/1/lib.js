@@ -318,7 +318,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
                 this.setPage(curPage);
 
                 InkEvent.stopPropagation(event);
-                // InkEvent.stopDefault(event);
+                InkEvent.stopDefault(event);
             }
 
             setTransitionProperty(this._ulEl, null /* transition: left, top */);
