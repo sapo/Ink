@@ -28,7 +28,7 @@
     <table class="props bottom-space">
         
         
-        <caption>METHODS</caption>
+        <caption>Methods</caption>
         <thead>
             <tr>
                 <th>Method name</th>
@@ -136,7 +136,7 @@ Note: If you just want to use a different amount of columns for your items in se
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         Ink.UI.Stacker_1
     
@@ -144,369 +144,371 @@ Note: If you just want to use a different amount of columns for your items in se
     
         <i>constructor</i>
     
-    </h2>
+    </h1>
 
     
     
 
     
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-
-                
-                    <label class="optional">[container]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">{DOMElement|String} Element which contains the stacks (identified by the options.column selector)</span>
-                
-            </li>
-        
-            <li>
-                
-
-                
-                    <label class="optional">[options]
-                
-
-                
-                </label>
-
-                
-            </li>
-        
-            <li>
-                
-
-                
-                    <label class="optional">[options.column]
-                
-
-                
-                    =&#x27;.stacker-column&#x27;
-                
-                </label>
-
-                
-                    <span class="description">{String}   Select the columns inside the `container`</span>
-                
-            </li>
-        
-            <li>
-                
-
-                
-                    <label class="optional">[options.item]
-                
-
-                
-                    =&#x27;.stacker-item&#x27;
-                
-                </label>
-
-                
-                    <span class="description">{String}   Select items in your stack</span>
-                
-            </li>
-        
-            <li>
-                
-
-                
-                    <label class="optional">[options.customBreakPoints]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">{Object}   options for each breakpoint name. Use this if you have more breakpoints than Ink by default (`large`, `medium`, `small`)</span>
-                
-            </li>
-        
-            <li>
-                
-
-                
-                    <label class="optional">[options.customBreakpoints.BREAKPOINT_NAME]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">{Object}</span>
-                
-            </li>
-        
-            <li>
-                
-
-                
-                    <label>options.customBreakpoints.BREAKPOINT_NAME.max
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Maximum screen size as seen in your media query</span>
-                
-            </li>
-        
-            <li>
-                
-
-                
-                    <label>options.customBreakpoints.BREAKPOINT_NAME.min
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Minimum screen size as seen in your media query</span>
-                
-            </li>
-        
-            <li>
-                
-
-                
-                    <label>options.customBreakpoints.BREAKPOINT_NAME.cols
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Column count for this size.</span>
-                
-            </li>
-        
-            <li>
-                
-
-                
-                    <label class="optional">[options.largeMax]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">{Number}   Upper bound of `large` breakpoint</span>
-                
-            </li>
-        
-            <li>
-                
-
-                
-                    <label class="optional">[options.largeMin]
-                
-
-                
-                    =961
-                
-                </label>
-
-                
-                    <span class="description">{Number}   Lower bound of `large` breakpoint</span>
-                
-            </li>
-        
-            <li>
-                
-
-                
-                    <label class="optional">[options.mediumMax]
-                
-
-                
-                    =960
-                
-                </label>
-
-                
-                    <span class="description">{Number}   Upper bound of `medium` breakpoint</span>
-                
-            </li>
-        
-            <li>
-                
-
-                
-                    <label class="optional">[options.mediumMin]
-                
-
-                
-                    =651
-                
-                </label>
-
-                
-                    <span class="description">{Number}   Lower bound of `medium` breakpoint</span>
-                
-            </li>
-        
-            <li>
-                
-
-                
-                    <label class="optional">[options.smallMax]
-                
-
-                
-                    =650
-                
-                </label>
-
-                
-                    <span class="description">{Number}   Upper bound of `small` breakpoint</span>
-                
-            </li>
-        
-            <li>
-                
-
-                
-                    <label class="optional">[options.smallMin]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">{Number}   Lower bound of `small` breakpoint</span>
-                
-            </li>
-        
-            <li>
-                
-
-                
-                    <label class="optional">[options.largeCols]
-                
-
-                
-                    =3
-                
-                </label>
-
-                
-                    <span class="description">{Integer}  Number of columns in the `large` viewport</span>
-                
-            </li>
-        
-            <li>
-                
-
-                
-                    <label class="optional">[options.mediumCols]
-                
-
-                
-                    =2
-                
-                </label>
-
-                
-                    <span class="description">{Integer}  Number of columns in the `medium` viewport</span>
-                
-            </li>
-        
-            <li>
-                
-
-                
-                    <label class="optional">[options.smallCols]
-                
-
-                
-                    =1
-                
-                </label>
-
-                
-                    <span class="description">{Integer}  Number of columns in the `small` viewport</span>
-                
-            </li>
-        
-            <li>
-                
-
-                
-                    <label class="optional">[options.isOrdered]
-                
-
-                
-                    =true
-                
-                </label>
-
-                
-                    <span class="description">{Boolean}  When `false`, do not reorder stacks when combining them.</span>
-                
-            </li>
-        
-            <li>
-                
-
-                
-                    <label class="optional">[options.onRunCallback]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">{Function} Called when instantiated</span>
-                
-            </li>
-        
-            <li>
-                
-
-                
-                    <label class="optional">[options.onResizeCallback]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">{Function} Called when resized because the window resized.</span>
-                
-            </li>
-        
-            <li>
-                
-
-                
-                    <label class="optional">[options.onAPIReloadCallback]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">{Function} Called when you ask to reload stack items from the DOM.</span>
-                
-            </li>
-        
-        </ul>
-    
 
     
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[container]
+                
+
+                
+                </label>
+                
+                    {DOMElement|String} Element which contains the stacks (identified by the options.column selector)
+                
+            </dd>
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options]
+                
+
+                
+                </label>
+                
+            </dd>
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.column]
+                
+
+                
+                    &#x27;.stacker-column&#x27;
+                
+                </label>
+                
+                    {String}   Select the columns inside the `container`
+                
+            </dd>
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.item]
+                
+
+                
+                    &#x27;.stacker-item&#x27;
+                
+                </label>
+                
+                    {String}   Select items in your stack
+                
+            </dd>
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.customBreakPoints]
+                
+
+                
+                </label>
+                
+                    {Object}   options for each breakpoint name. Use this if you have more breakpoints than Ink by default (`large`, `medium`, `small`)
+                
+            </dd>
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.customBreakpoints.BREAKPOINT_NAME]
+                
+
+                
+                </label>
+                
+                    {Object}
+                
+            </dd>
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+                <label>options.customBreakpoints.BREAKPOINT_NAME.max
+                
+
+                
+                </label>
+                
+                    Maximum screen size as seen in your media query
+                
+            </dd>
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+                <label>options.customBreakpoints.BREAKPOINT_NAME.min
+                
+
+                
+                </label>
+                
+                    Minimum screen size as seen in your media query
+                
+            </dd>
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+                <label>options.customBreakpoints.BREAKPOINT_NAME.cols
+                
+
+                
+                </label>
+                
+                    Column count for this size.
+                
+            </dd>
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.largeMax]
+                
+
+                
+                </label>
+                
+                    {Number}   Upper bound of `large` breakpoint
+                
+            </dd>
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.largeMin]
+                
+
+                
+                    961
+                
+                </label>
+                
+                    {Number}   Lower bound of `large` breakpoint
+                
+            </dd>
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.mediumMax]
+                
+
+                
+                    960
+                
+                </label>
+                
+                    {Number}   Upper bound of `medium` breakpoint
+                
+            </dd>
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.mediumMin]
+                
+
+                
+                    651
+                
+                </label>
+                
+                    {Number}   Lower bound of `medium` breakpoint
+                
+            </dd>
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.smallMax]
+                
+
+                
+                    650
+                
+                </label>
+                
+                    {Number}   Upper bound of `small` breakpoint
+                
+            </dd>
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.smallMin]
+                
+
+                
+                </label>
+                
+                    {Number}   Lower bound of `small` breakpoint
+                
+            </dd>
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.largeCols]
+                
+
+                
+                    3
+                
+                </label>
+                
+                    {Integer}  Number of columns in the `large` viewport
+                
+            </dd>
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.mediumCols]
+                
+
+                
+                    2
+                
+                </label>
+                
+                    {Integer}  Number of columns in the `medium` viewport
+                
+            </dd>
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.smallCols]
+                
+
+                
+                    1
+                
+                </label>
+                
+                    {Integer}  Number of columns in the `small` viewport
+                
+            </dd>
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.isOrdered]
+                
+
+                
+                    true
+                
+                </label>
+                
+                    {Boolean}  When `false`, do not reorder stacks when combining them.
+                
+            </dd>
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.onRunCallback]
+                
+
+                
+                </label>
+                
+                    {Function} Called when instantiated
+                
+            </dd>
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.onResizeCallback]
+                
+
+                
+                </label>
+                
+                    {Function} Called when resized because the window resized.
+                
+            </dd>
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.onAPIReloadCallback]
+                
+
+                
+                </label>
+                
+                    {Function} Called when you ask to reload stack items from the DOM.
+                
+            </dd>
+        
+        </dl>
+        
+        
 
     
+
 
     
 <p class="example-title">Example</p>
@@ -516,17 +518,17 @@ Note: If you just want to use a different amount of columns for your items in se
 Html:
 
     <div id="stacker-container">  <!-- Stacker element -->
-        <div class="large-33 medium-50 small-100 stacker-column"> <!-- Column element ('.stacker-column' is the default selector) -->
+        <div class="extra-large-33 large-33 medium-50 tiny-100 stacker-column"> <!-- Column element ('.stacker-column' is the default selector) -->
             <div id="a" class="stacker-item">a</div> <!-- Item ('.stacker-item' is the default selector) -->
             <div id="d" class="stacker-item">d</div>
             <div id="g" class="stacker-item">g</div>
         </div>
-        <div class="large-33 medium-50 small-100 hide-small stacker-column">
+        <div class="extra-large-33 large-33 medium-50 tiny-100 hide-small stacker-column">
             <div id="b" class="stacker-item">b</div>
             <div id="e" class="stacker-item">e</div>
             <div id="h" class="stacker-item">h</div>
         </div>
-        <div class="large-33 medium-50 small-100 hide-medium hide-small stacker-column">
+        <div class="extra-large-33 large-33 medium-50 tiny-100 hide-medium hide-small stacker-column">
             <div id="c" class="stacker-item">c</div>
             <div id="f" class="stacker-item">f</div>
             <div id="i" class="stacker-item">i</div>
@@ -550,7 +552,7 @@ Javascript:
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.UI.Stacker_1.addItem
@@ -562,38 +564,40 @@ Javascript:
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>DOMElement</pre>
-                
-
-                
-                    <label>item
-                
-
-                
-                </label>
-
-                
-            </li>
-        
-        </ul>
-    
-
     
 
     
         <p class="text">Add an item to the end of your stacks. Call `reloadItems()` when you are done adding items.</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>DOMElement</code>
+                
+            </dt>
+            <dd>
+                
+                <label>item
+                
+
+                
+                </label>
+                
+            </dd>
+        
+        </dl>
+        
+        
+
+    
+
 
     
 
@@ -604,7 +608,7 @@ Javascript:
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.UI.Stacker_1.reloadItems
@@ -616,13 +620,9 @@ Javascript:
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-
     
 
     
@@ -633,6 +633,9 @@ Call this when:
  - The width has changed, but not because of the window resizing.
  - You used addItem to add some items</p>
     
+
+    
+
 
     
 

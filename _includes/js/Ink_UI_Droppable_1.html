@@ -28,7 +28,7 @@
     <table class="props bottom-space">
         
         
-        <caption>METHODS</caption>
+        <caption>Methods</caption>
         <thead>
             <tr>
                 <th>Method name</th>
@@ -98,7 +98,7 @@ In the following arguments, any events/callbacks you may pass, can be either fun
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.UI.Droppable.add
@@ -110,137 +110,9 @@ In the following arguments, any events/callbacks you may pass, can be either fun
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>String|DOMElement</pre>
-                
-
-                
-                    <label>element
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Target element</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Object</pre>
-                
-
-                
-                    <label class="optional">[options]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">options object</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label class="optional">[options.hoverClass]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Classname(s) applied when an acceptable draggable element is hovering the element</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label class="optional">[options.accept]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Selector for choosing draggables which can be dropped in this droppable.</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Function</pre>
-                
-
-                
-                    <label class="optional">[options.onHover]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">callback called when an acceptable draggable element is hovering the droppable. Gets the draggable and the droppable element as parameters.</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Function|String</pre>
-                
-
-                
-                    <label class="optional">[options.onDrop]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">callback called when an acceptable draggable element is dropped. Gets the draggable, the droppable and the event as parameters.</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Function|String</pre>
-                
-
-                
-                    <label class="optional">[options.onDropOut]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">callback called when a droppable is dropped outside this droppable. Gets the draggable, the droppable and the event as parameters. (see above for string options).</span>
-                
-            </li>
-        
-        </ul>
-    
-
     
 
     
@@ -249,6 +121,136 @@ Can consider it a constructor of droppable elements, but where no Droppable obje
 
 In the following arguments, any events/callbacks you may pass, can be either functions or strings. If the 'move' or 'copy' strings are passed, the draggable gets moved into this droppable. If 'revert' is passed, an acceptable droppable is moved back to the element it came from.</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String|DOMElement</code>
+                
+            </dt>
+            <dd>
+                
+                <label>element
+                
+
+                
+                </label>
+                
+                    Target element
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Object</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options]
+                
+
+                
+                </label>
+                
+                    options object
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.hoverClass]
+                
+
+                
+                </label>
+                
+                    Classname(s) applied when an acceptable draggable element is hovering the element
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.accept]
+                
+
+                
+                </label>
+                
+                    Selector for choosing draggables which can be dropped in this droppable.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Function</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.onHover]
+                
+
+                
+                </label>
+                
+                    callback called when an acceptable draggable element is hovering the droppable. Gets the draggable and the droppable element as parameters.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Function|String</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.onDrop]
+                
+
+                
+                </label>
+                
+                    callback called when an acceptable draggable element is dropped. Gets the draggable, the droppable and the event as parameters.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Function|String</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.onDropOut]
+                
+
+                
+                </label>
+                
+                    callback called when a droppable is dropped outside this droppable. Gets the draggable, the droppable and the event as parameters. (see above for string options).
+                
+            </dd>
+        
+        </dl>
+        
+        
+
+    
+
 
     
 <p class="example-title">Example</p>
@@ -293,7 +295,7 @@ In the following arguments, any events/callbacks you may pass, can be either fun
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.UI.Droppable.remove
@@ -305,50 +307,54 @@ In the following arguments, any events/callbacks you may pass, can be either fun
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>String|DOMElement</pre>
-                
-
-                
-                    <label>elOrSelector
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Droppable element to disable.</span>
-                
-            </li>
-        
-        </ul>
-    
-
-    
-        <div class="return">
-            Returns 
-            
-                <pre>Boolean</pre>
-            
-            
-                <span class="description"></span>
-            
-        </div>
     
 
     
         <p class="text">Removes an element from the droppable stack and removes the droppable behavior</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String|DOMElement</code>
+                
+            </dt>
+            <dd>
+                
+                <label>elOrSelector
+                
+
+                
+                </label>
+                
+                    Droppable element to disable.
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>Boolean</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
 
     
 

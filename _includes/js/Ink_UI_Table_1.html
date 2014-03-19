@@ -28,7 +28,7 @@
     <table class="props bottom-space">
         
         
-        <caption>METHODS</caption>
+        <caption>Methods</caption>
         <thead>
             <tr>
                 <th>Method name</th>
@@ -79,7 +79,7 @@ sortable, paginated component.</div>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         Ink.UI.Table
     
@@ -87,344 +87,346 @@ sortable, paginated component.</div>
     
         <i>constructor</i>
     
-    </h2>
+    </h1>
 
     
     
 
     
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>String|DOMElement</pre>
-                
-
-                
-                    <label>selector
-                
-
-                
-                </label>
-
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Object</pre>
-                
-
-                
-                    <label class="optional">[options]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Options</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Number</pre>
-                
-
-                
-                    <label class="optional">[options.pageSize]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Number of rows per page. Omit to avoid paginating.</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label class="optional">[options.endpoint]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Endpoint to get the records via AJAX. Omit if you don't want to do AJAX</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Function</pre>
-                
-
-                
-                    <label class="optional">[options.createEndpointUrl]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Callback to customise what URL the AJAX endpoint is at. Receives three</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Function</pre>
-                
-
-                
-                    <label class="optional">[options.getDataFromEndPoint]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Callback to allow the user to retrieve the data himself given an URL.</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Function</pre>
-                
-
-                
-                    <label class="optional">[options.processJSONRows]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Retrieve an array of rows from the data which came from AJAX.</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Function</pre>
-                
-
-                
-                    <label class="optional">[options.processJSONHeaders]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Get an object with all the headers' names as keys, and a { label, sortable }</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Function</pre>
-                
-
-                
-                    <label class="optional">[options.processJSONRow]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Process a row object before it gets on the table.</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Function</pre>
-                
-
-                
-                    <label class="optional">[options.processJSONField]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Process the field data before putting it on the table.</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Function</pre>
-                
-
-                
-                    <label class="optional">[options.processJSONField.FIELD_NAME]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">The same as processJSONField, but for a particular field.</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Function</pre>
-                
-
-                
-                    <label class="optional">[options.processJSONTotalRows]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">A callback where you have a chance to say how many rows</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Function</pre>
-                
-
-                
-                    <label class="optional">[options.getSortKey]
-                
-
-                
-                    =null
-                
-                </label>
-
-                
-                    <span class="description">A function taking a `{ columnIndex, columnName, data, element }`</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Function</pre>
-                
-
-                
-                    <label class="optional">[options.getSortKey.FIELD_NAME]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Same as `options.getSortKey`, but for a particular field.</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Object</pre>
-                
-
-                
-                    <label class="optional">[options.tdClassNames]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">An object mapping each field to what classes it gets.</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>String|DomElement|Ink.UI.Pagination</pre>
-                
-
-                
-                    <label class="optional">[options.pagination]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Pagination instance or element.</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Object</pre>
-                
-
-                
-                    <label class="optional">[options.paginationOptions]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Override the options with which we instantiate the Ink.UI.Pagination.</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Boolean</pre>
-                
-
-                
-                    <label class="optional">[options.allowResetSorting]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Allow sort order to be set to "none" in addition to "ascending" and "descending"</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>String|Array</pre>
-                
-
-                
-                    <label class="optional">[options.visibleFields]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Set of fields which get shown on the table</span>
-                
-            </li>
-        
-        </ul>
-    
 
     
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String|DOMElement</code>
+                
+            </dt>
+            <dd>
+                
+                <label>selector
+                
+
+                
+                </label>
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Object</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options]
+                
+
+                
+                </label>
+                
+                    Options
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Number</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.pageSize]
+                
+
+                
+                </label>
+                
+                    Number of rows per page. Omit to avoid paginating.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.endpoint]
+                
+
+                
+                </label>
+                
+                    Endpoint to get the records via AJAX. Omit if you don't want to do AJAX
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Function</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.createEndpointUrl]
+                
+
+                
+                </label>
+                
+                    Callback to customise what URL the AJAX endpoint is at. Receives three
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Function</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.getDataFromEndPoint]
+                
+
+                
+                </label>
+                
+                    Callback to allow the user to retrieve the data himself given an URL.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Function</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.processJSONRows]
+                
+
+                
+                </label>
+                
+                    Retrieve an array of rows from the data which came from AJAX.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Function</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.processJSONHeaders]
+                
+
+                
+                </label>
+                
+                    Get an object with all the headers' names as keys, and a { label, sortable }
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Function</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.processJSONRow]
+                
+
+                
+                </label>
+                
+                    Process a row object before it gets on the table.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Function</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.processJSONField]
+                
+
+                
+                </label>
+                
+                    Process the field data before putting it on the table.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Function</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.processJSONField.FIELD_NAME]
+                
+
+                
+                </label>
+                
+                    The same as processJSONField, but for a particular field.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Function</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.processJSONTotalRows]
+                
+
+                
+                </label>
+                
+                    A callback where you have a chance to say how many rows
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Function</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.getSortKey]
+                
+
+                
+                    null
+                
+                </label>
+                
+                    A function taking a `{ columnIndex, columnName, data, element }`
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Function</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.getSortKey.FIELD_NAME]
+                
+
+                
+                </label>
+                
+                    Same as `options.getSortKey`, but for a particular field.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Object</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.tdClassNames]
+                
+
+                
+                </label>
+                
+                    An object mapping each field to what classes it gets.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String|DomElement|Ink.UI.Pagination</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.pagination]
+                
+
+                
+                </label>
+                
+                    Pagination instance or element.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Object</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.paginationOptions]
+                
+
+                
+                </label>
+                
+                    Override the options with which we instantiate the Ink.UI.Pagination.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Boolean</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.allowResetSorting]
+                
+
+                
+                </label>
+                
+                    Allow sort order to be set to "none" in addition to "ascending" and "descending"
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String|Array</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.visibleFields]
+                
+
+                
+                </label>
+                
+                    Set of fields which get shown on the table
+                
+            </dd>
+        
+        </dl>
+        
+        
 
     
+
 
     
 <p class="example-title">Example</p>

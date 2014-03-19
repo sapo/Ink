@@ -28,7 +28,7 @@
     <table class="props bottom-space">
         
         
-        <caption>METHODS</caption>
+        <caption>Methods</caption>
         <thead>
             <tr>
                 <th>Method name</th>
@@ -99,7 +99,7 @@ Works like PHP 5.2.2 <a href="http://php.net/manual/en/function.date.php" target
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.Date.get
@@ -111,68 +111,72 @@ Works like PHP 5.2.2 <a href="http://php.net/manual/en/function.date.php" target
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label>format
-                
-
-                
-                </label>
-
-                
-                    <span class="description">- as the string in which the date it will be formatted - mandatory</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Date</pre>
-                
-
-                
-                    <label class="optional">[_date]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">- the date to format. If undefined it will do it on now() date. Can receive unix timestamp or a date object</span>
-                
-            </li>
-        
-        </ul>
-    
-
-    
-        <div class="return">
-            Returns 
-            
-                <pre>String</pre>
-            
-            
-                <span class="description"></span>
-            
-        </div>
     
 
     
         <p class="text">Function that works exactly as php date() function
 Works like PHP 5.2.2 <a href="http://php.net/manual/en/function.date.php" target="_blank">PHP Date function</a></p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>format
+                
+
+                
+                </label>
+                
+                    - as the string in which the date it will be formatted - mandatory
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Date</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[_date]
+                
+
+                
+                </label>
+                
+                    - the date to format. If undefined it will do it on now() date. Can receive unix timestamp or a date object
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>String</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
 
     
 <p class="example-title">Example</p>
@@ -194,7 +198,7 @@ Works like PHP 5.2.2 <a href="http://php.net/manual/en/function.date.php" target
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.Date.set
@@ -206,68 +210,72 @@ Works like PHP 5.2.2 <a href="http://php.net/manual/en/function.date.php" target
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label class="optional">[format]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">As the string in which the date it will be formatted. By default is 'Y-m-d'</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label>str_date
-                
-
-                
-                </label>
-
-                
-                    <span class="description">The date formatted - Mandatory.</span>
-                
-            </li>
-        
-        </ul>
-    
-
-    
-        <div class="return">
-            Returns 
-            
-                <pre>Date</pre>
-            
-            
-                <span class="description"></span>
-            
-        </div>
     
 
     
         <p class="text">Functions that works like php date() function but return a date based on the formatted string
 Works like PHP 5.2.2 <a href="http://php.net/manual/en/function.date.php" target="_blank">PHP Date function</a></p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[format]
+                
+
+                
+                </label>
+                
+                    As the string in which the date it will be formatted. By default is 'Y-m-d'
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>str_date
+                
+
+                
+                </label>
+                
+                    The date formatted - Mandatory.
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>Date</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
 
     
 

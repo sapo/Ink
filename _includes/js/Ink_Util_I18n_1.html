@@ -28,7 +28,7 @@
     <table class="props bottom-space">
         
         
-        <caption>METHODS</caption>
+        <caption>Methods</caption>
         <thead>
             <tr>
                 <th>Method name</th>
@@ -70,8 +70,8 @@
                 <td>
                     
 
-                    Returns an alias to `text()`, for convenience. The resulting function is
-traditionally assigned to "_".
+                    Alias for the text method
+Returns an alias to `text()`, for convenience. The resulting function is traditionally assigned to "_".
 
                     
                     
@@ -90,7 +90,7 @@ traditionally assigned to "_".
                 <td>
                     
 
-                    Adds translation strings for this helper to use.
+                    Adds translation strings for the helper to use.
 
                     
                     
@@ -109,7 +109,7 @@ traditionally assigned to "_".
                 <td>
                     
 
-                    Reset I18n global state (global dictionaries, and default language for instances)
+                    Adds a dictionary to be used in all I18n instances for the corresponding language.
 
                     
                     
@@ -128,7 +128,7 @@ traditionally assigned to "_".
                 <td>
                     
 
-                    Return an arbitrary key from the current language dictionary
+                    Return a key from the current dictionary
 
                     
                     
@@ -147,7 +147,7 @@ traditionally assigned to "_".
                 <td>
                     
 
-                    
+                    Get or set the current default language of I18n instances.
 
                     
                     
@@ -166,7 +166,8 @@ traditionally assigned to "_".
                 <td>
                     
 
-                    Get or set the language. If there are more dictionaries available in cache, they will be loaded.
+                    Get or set the language.
+If there are more dictionaries available in cache, they will be loaded.
 
                     
                     
@@ -185,8 +186,8 @@ traditionally assigned to "_".
                 <td>
                     
 
-                    Given a singular string, a plural string, and a number, translates
-either the singular or plural string.
+                    Translates and pluralizes text.
+Given a singular string, a plural string, and a number, translates either the singular or plural string.
 
                     
                     
@@ -205,10 +206,9 @@ either the singular or plural string.
                 <td>
                     
 
-                    Returns the ordinal suffix of `num` (For example, 1 > 'st', 2 > 'nd', 5 > 'th', ...).
+                    Gets the ordinal suffix of a number.
 
-This works by using transforms (in the form of Objects or Functions) passed into the
-function or found in the special key `_ordinals` in the active language dictionary.
+This works by using transforms (in the form of Objects or Functions) passed into the function or found in the special key `_ordinals` in the active language dictionary.
 
                     
                     
@@ -227,7 +227,7 @@ function or found in the special key `_ordinals` in the active language dictiona
                 <td>
                     
 
-                    
+                    Resets I18n global state (global dictionaries, and default language for instances)
 
                     
                     
@@ -246,9 +246,8 @@ function or found in the special key `_ordinals` in the active language dictiona
                 <td>
                     
 
-                    Sets or unsets test mode. In test mode, unknown strings are wrapped
-in `[ ... ]`. This is useful for debugging your application and
-making sure all your translation keys are in place.
+                    Sets or unsets test mode.
+In test mode, unknown strings are wrapped in `[ ... ]`. This is useful for debugging your application and to make sure all your translation keys are in place.
 
                     
                     
@@ -267,7 +266,8 @@ making sure all your translation keys are in place.
                 <td>
                     
 
-                    Given a translation key, return a translated string, with replaced parameters.
+                    Translates a string.
+Given a translation key, return a translated string, with replaced parameters.
 When a translated string is not available, the original string is returned unchanged.
 
                     
@@ -284,7 +284,7 @@ When a translated string is not available, the original string is returned uncha
 
 
 
-    <div class="text">Creates a new internationalization helper object</div>
+    <div class="text">Creates a new I18n helper object</div>
 
 
 
@@ -295,7 +295,7 @@ When a translated string is not available, the original string is returned uncha
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         Ink.Util.I18n
     
@@ -303,72 +303,59 @@ When a translated string is not available, the original string is returned uncha
     
         <i>constructor</i>
     
-    </h2>
+    </h1>
 
     
     
 
     
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
         
-            <li>
+            <dt>
                 
-                    <pre>Object</pre>
+                    <code>Object</code>
                 
-
+            </dt>
+            <dd>
                 
-                    <label>dict
+                <label>dict
                 
 
                 
                 </label>
-
                 
-                    <span class="description">object mapping language codes (in the form of `pt_PT`, `pt_BR`, `fr`, `en_US`, etc.) to their Object dictionaries.</span>
+                    Object mapping language codes (in the form of `pt_PT`, `pt_BR`, `fr`, `en_US`, etc.) to their Object dictionaries.
                 
-            </li>
+            </dd>
         
-            <li>
+            <dt>
                 
-                    <pre>Object</pre>
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[lang]
                 
 
                 
-                    <label>dict.DICTIONARIES
-                
-
+                    &#x27;pt_PT&#x27;s
                 
                 </label>
-
                 
-            </li>
+                    language code of the target language
+                
+            </dd>
         
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label class="optional">[lang]
-                
-
-                
-                    =&#x27;pt_PT&#x27;s
-                
-                </label>
-
-                
-                    <span class="description">language code of the target language</span>
-                
-            </li>
+        </dl>
         
-        </ul>
-    
+        
 
     
 
-    
 
     
 <p class="example-title">Example</p>
@@ -414,7 +401,7 @@ When a translated string is not available, the original string is returned uncha
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.I18n.alias
@@ -426,29 +413,18 @@ When a translated string is not available, the original string is returned uncha
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
     
 
     
-
-    
-        <div class="return">
-            Returns 
-            
-                <pre>Function</pre>
-            
-            
-                <span class="description"></span>
-            
-        </div>
+        <p class="text">Alias for the text method
+Returns an alias to `text()`, for convenience. The resulting function is traditionally assigned to "_".</p>
     
 
     
-        <p class="text">Returns an alias to `text()`, for convenience. The resulting function is
-traditionally assigned to "_".</p>
-    
+
 
     
 <p class="example-title">Example</p>
@@ -481,7 +457,7 @@ traditionally assigned to "_".</p>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.I18n.append
@@ -493,40 +469,42 @@ traditionally assigned to "_".</p>
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
     
 
     
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
+        <p class="text">Adds translation strings for the helper to use.</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
         
-            <li>
+            <dt>
                 
-                    <pre>Object</pre>
+                    <code>Object</code>
                 
-
+            </dt>
+            <dd>
                 
-                    <label>dict
+                <label>dict
                 
 
                 
                 </label>
-
                 
-                    <span class="description">object containing language objects identified by their language code</span>
+                    Object containing language objects identified by their language code
                 
-            </li>
+            </dd>
         
-        </ul>
-    
+        </dl>
+        
+        
 
     
 
-    
-        <p class="text">Adds translation strings for this helper to use.</p>
-    
 
     
 <p class="example-title">Example</p>
@@ -548,7 +526,7 @@ traditionally assigned to "_".</p>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.I18n.append
@@ -560,53 +538,55 @@ traditionally assigned to "_".</p>
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
     
 
     
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
+        <p class="text">Adds a dictionary to be used in all I18n instances for the corresponding language.</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
         
-            <li>
+            <dt>
                 
-
+            </dt>
+            <dd>
                 
-                    <label>dict
+                <label>dict
                 
 
                 
                 </label>
-
                 
-                    <span class="description">{Object}     Dictionary to be added</span>
+                    {Object}     Dictionary to be added
                 
-            </li>
+            </dd>
         
-            <li>
+            <dt>
                 
-
+            </dt>
+            <dd>
                 
-                    <label>lang
+                <label>lang
                 
 
                 
                 </label>
-
                 
-                    <span class="description">{String}     Language to be added to</span>
+                    {String}     Language fo the dictionary being added
                 
-            </li>
+            </dd>
         
-        </ul>
-    
+        </dl>
+        
+        
 
     
 
-    
-        <p class="text">Reset I18n global state (global dictionaries, and default language for instances)</p>
-    
 
     
 
@@ -617,7 +597,7 @@ traditionally assigned to "_".</p>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.I18n.getKey
@@ -629,48 +609,52 @@ traditionally assigned to "_".</p>
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
     
 
     
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
+        <p class="text">Return a key from the current dictionary</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
         
-            <li>
+            <dt>
                 
-                    <pre>String</pre>
+                    <code>String</code>
                 
-
+            </dt>
+            <dd>
                 
-                    <label>key
+                <label>key
                 
 
                 
                 </label>
-
                 
-            </li>
+            </dd>
         
-        </ul>
-    
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>Any</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
 
     
-        <div class="return">
-            Returns 
-            
-                <pre>Any</pre>
-            
-            
-                <span class="description"></span>
-            
-        </div>
-    
 
-    
-        <p class="text">Return an arbitrary key from the current language dictionary</p>
-    
 
     
 <p class="example-title">Example</p>
@@ -690,7 +674,7 @@ traditionally assigned to "_".</p>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.I18n.lang
@@ -702,26 +686,17 @@ traditionally assigned to "_".</p>
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
     
 
     
-
-    
-        <div class="return">
-            Returns 
-            
-                <pre>String</pre>
-            
-            
-                <span class="description"></span>
-            
-        </div>
+        <p class="text">Get or set the current default language of I18n instances.</p>
     
 
     
+
 
     
 
@@ -732,7 +707,7 @@ traditionally assigned to "_".</p>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.I18n.lang
@@ -744,38 +719,41 @@ traditionally assigned to "_".</p>
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
     
 
     
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
+        <p class="text">Get or set the language.
+If there are more dictionaries available in cache, they will be loaded.</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
         
-            <li>
+            <dt>
                 
-
+            </dt>
+            <dd>
                 
-                    <label>lang
+                <label>lang
                 
 
                 
                 </label>
-
                 
-                    <span class="description">{String} Language code to set this instance to.</span>
+                    {String} Language code to set this instance to.
                 
-            </li>
+            </dd>
         
-        </ul>
-    
+        </dl>
+        
+        
 
     
 
-    
-        <p class="text">Get or set the language. If there are more dictionaries available in cache, they will be loaded.</p>
-    
 
     
 
@@ -786,7 +764,7 @@ traditionally assigned to "_".</p>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.I18n.ntext
@@ -798,98 +776,102 @@ traditionally assigned to "_".</p>
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
     
 
     
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
+        <p class="text">Translates and pluralizes text.
+Given a singular string, a plural string, and a number, translates either the singular or plural string.</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
         
-            <li>
+            <dt>
                 
-                    <pre>String</pre>
+                    <code>String</code>
                 
-
+            </dt>
+            <dd>
                 
-                    <label>strSin
+                <label>strSin
                 
 
                 
                 </label>
-
                 
-                    <span class="description">word to use when count is 1</span>
+                    Word to use when count is 1
                 
-            </li>
+            </dd>
         
-            <li>
+            <dt>
                 
-                    <pre>String</pre>
+                    <code>String</code>
                 
-
+            </dt>
+            <dd>
                 
-                    <label>strPlur
+                <label>strPlur
                 
 
                 
                 </label>
-
                 
-                    <span class="description">word to use otherwise</span>
+                    Word to use otherwise
                 
-            </li>
+            </dd>
         
-            <li>
+            <dt>
                 
-                    <pre>Number</pre>
+                    <code>Number</code>
                 
-
+            </dt>
+            <dd>
                 
-                    <label>count
+                <label>count
                 
 
                 
                 </label>
-
                 
-                    <span class="description">number which defines which word to use</span>
+                    Number which defines which word to use
                 
-            </li>
+            </dd>
         
-            <li>
+            <dt>
                 
-
+            </dt>
+            <dd>
                 
-                    <label class="optional">[args*]
+                <label class="optional">[args*]
                 
 
                 
                 </label>
-
                 
-                    <span class="description">extra arguments, to be passed to `text()`</span>
+                    Extra arguments, to be passed to `text()`
                 
-            </li>
+            </dd>
         
-        </ul>
-    
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>String</code>
+            </dt>                
+            <dd>   
+                
+            </dd>
+        </dl>
+        
+        
 
     
-        <div class="return">
-            Returns 
-            
-                <pre>String</pre>
-            
-            
-        </div>
-    
 
-    
-        <p class="text">Given a singular string, a plural string, and a number, translates
-either the singular or plural string.</p>
-    
 
     
 <p class="example-title">Example</p>
@@ -915,7 +897,7 @@ either the singular or plural string.</p>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.I18n.ordinal
@@ -927,110 +909,113 @@ either the singular or plural string.</p>
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
     
 
     
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
+        <p class="text">Gets the ordinal suffix of a number.
+
+This works by using transforms (in the form of Objects or Functions) passed into the function or found in the special key `_ordinals` in the active language dictionary.</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
         
-            <li>
+            <dt>
                 
-                    <pre>Number</pre>
+                    <code>Number</code>
                 
-
+            </dt>
+            <dd>
                 
-                    <label>num
+                <label>num
                 
 
                 
                 </label>
-
                 
-                    <span class="description">Input number</span>
+                    Input number
                 
-            </li>
+            </dd>
         
-            <li>
+            <dt>
                 
-                    <pre>Object|Function</pre>
+                    <code>Object|Function</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options]
                 
 
                 
-                    <label class="optional">[options]
-                
-
-                
-                    ={}
+                    {}
                 
                 </label>
-
                 
-                    <span class="description">Maps for translating. Each of these options' fallback is found in the current</span>
+                    Maps for translating. Each of these options' fallback is found in the current language's dictionary. The lookup order is the following: `exceptions`, `byLastDigit`, `default`. Each of these may be either an `Object` or a `Function`. If it's a function, it is called (with `number` and `digit` for any function except for byLastDigit, which is called with the `lastDigit` of the number in question), and if the function returns a string, that is used. If it's an object, the property is looked up using `[...]`. If what is found is a string, it is used.
                 
-            </li>
+            </dd>
         
-            <li>
+            <dt>
                 
-                    <pre>Object|Function</pre>
+                    <code>Object|Function</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.byLastDigit]
                 
 
                 
-                    <label class="optional">[options.byLastDigit]
-                
-
-                
-                    ={}
+                    {}
                 
                 </label>
-
                 
-                    <span class="description">If the language requires the last digit to be considered, mappings of last digits</span>
+                    If the language requires the last digit to be considered, mappings of last digits to ordinal suffixes can be created here.
                 
-            </li>
+            </dd>
         
-            <li>
+            <dt>
                 
-                    <pre>Object|Function</pre>
+                    <code>Object|Function</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.exceptions]
                 
 
                 
-                    <label class="optional">[options.exceptions]
-                
-
-                
-                    ={}
+                    {}
                 
                 </label>
-
                 
-                    <span class="description">Map unique, special cases to their ordinal suffixes.</span>
+                    Map unique, special cases to their ordinal suffixes.
                 
-            </li>
+            </dd>
         
-        </ul>
-    
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>String</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
 
     
-        <div class="return">
-            Returns 
-            
-                <pre>String</pre>
-            
-            
-                <span class="description"></span>
-            
-        </div>
-    
 
-    
-        <p class="text">Returns the ordinal suffix of `num` (For example, 1 > 'st', 2 > 'nd', 5 > 'th', ...).
-
-This works by using transforms (in the form of Objects or Functions) passed into the
-function or found in the special key `_ordinals` in the active language dictionary.</p>
-    
 
     
 <p class="example-title">Example</p>
@@ -1097,7 +1082,7 @@ function or found in the special key `_ordinals` in the active language dictiona
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.I18n.reset
@@ -1109,16 +1094,17 @@ function or found in the special key `_ordinals` in the active language dictiona
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
     
 
     
-
+        <p class="text">Resets I18n global state (global dictionaries, and default language for instances)</p>
     
 
     
+
 
     
 
@@ -1129,7 +1115,7 @@ function or found in the special key `_ordinals` in the active language dictiona
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.I18n.testMode
@@ -1141,42 +1127,43 @@ function or found in the special key `_ordinals` in the active language dictiona
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
     
 
     
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
+        <p class="text">Sets or unsets test mode.
+In test mode, unknown strings are wrapped in `[ ... ]`. This is useful for debugging your application and to make sure all your translation keys are in place.</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
         
-            <li>
+            <dt>
                 
-                    <pre>Boolean</pre>
+                    <code>Boolean</code>
                 
-
+            </dt>
+            <dd>
                 
-                    <label>bool
+                <label>bool
                 
 
                 
                 </label>
-
                 
-                    <span class="description">boolean value to set the test mode to.</span>
+                    Flag to set the test mode state
                 
-            </li>
+            </dd>
         
-        </ul>
-    
+        </dl>
+        
+        
 
     
 
-    
-        <p class="text">Sets or unsets test mode. In test mode, unknown strings are wrapped
-in `[ ... ]`. This is useful for debugging your application and
-making sure all your translation keys are in place.</p>
-    
 
     
 
@@ -1187,7 +1174,7 @@ making sure all your translation keys are in place.</p>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.I18n.text
@@ -1199,109 +1186,112 @@ making sure all your translation keys are in place.</p>
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
     
 
     
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label>str
-                
-
-                
-                </label>
-
-                
-                    <span class="description">key to look for in i18n dictionary (which is returned verbatim if unknown)</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Object</pre>
-                
-
-                
-                    <label class="optional">[namedParms]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">named replacements. Replaces {named} with values in this object.</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label class="optional">[arg1]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">replacement #1 (replaces first {} and all {1})</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label class="optional">[arg2]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">replacement #2 (replaces second {} and all {2})</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label class="optional">[argn*]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">replacement #n (replaces nth {} and all {n})</span>
-                
-            </li>
-        
-        </ul>
-    
-
-    
-
-    
-        <p class="text">Given a translation key, return a translated string, with replaced parameters.
+        <p class="text">Translates a string.
+Given a translation key, return a translated string, with replaced parameters.
 When a translated string is not available, the original string is returned unchanged.</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>str
+                
+
+                
+                </label>
+                
+                    key to look for in i18n dictionary (which is returned verbatim if unknown)
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Object</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[namedParms]
+                
+
+                
+                </label>
+                
+                    named replacements. Replaces {named} with values in this object.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[arg1]
+                
+
+                
+                </label>
+                
+                    replacement #1 (replaces first {} and all {1})
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[arg2]
+                
+
+                
+                </label>
+                
+                    replacement #2 (replaces second {} and all {2})
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[argn*]
+                
+
+                
+                </label>
+                
+                    replacement #n (replaces nth {} and all {n})
+                
+            </dd>
+        
+        </dl>
+        
+        
+
+    
+
 
     
 <p class="example-title">Example</p>

@@ -28,7 +28,7 @@
     <table class="props bottom-space">
         
         
-        <caption>METHODS</caption>
+        <caption>Methods</caption>
         <thead>
             <tr>
                 <th>Method name</th>
@@ -83,7 +83,7 @@
 
     
     <table class="props">
-        <caption>PROPERTIES</caption>
+        <caption>Properties</caption>
         <thead>
             <tr>
                 <th>Property name</th>
@@ -102,7 +102,7 @@
                     
 
                     
-                        <code>{String}</code>
+                        <span class="ink-label orange uppercase">{String}</span>
                     
                     
                 </td>
@@ -118,7 +118,7 @@
                     
 
                     
-                        <code>{Boolean}</code>
+                        <span class="ink-label orange uppercase">{Boolean}</span>
                     
                     
                 </td>
@@ -140,7 +140,7 @@
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         Ink.UI.Animate_1
     
@@ -148,117 +148,119 @@
     
         <i>constructor</i>
     
-    </h2>
+    </h1>
 
     
     
 
     
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-
-                
-                    <label>element
-                
-
-                
-                </label>
-
-                
-                    <span class="description">{DOMElement} animated element</span>
-                
-            </li>
-        
-            <li>
-                
-
-                
-                    <label>options
-                
-
-                
-                </label>
-
-                
-                    <span class="description">{Object} options object</span>
-                
-            </li>
-        
-            <li>
-                
-
-                
-                    <label>options.animation
-                
-
-                
-                </label>
-
-                
-                    <span class="description">{String} animation name</span>
-                
-            </li>
-        
-            <li>
-                
-
-                
-                    <label class="optional">[options.duration]
-                
-
-                
-                    =medium
-                
-                </label>
-
-                
-                    <span class="description">{String|Number} duration name (fast|medium|slow) or duration in ms</span>
-                
-            </li>
-        
-            <li>
-                
-
-                
-                    <label class="optional">[options.removeClass]
-                
-
-                
-                    =true
-                
-                </label>
-
-                
-                    <span class="description">{Boolean} Whether to remove the `animation` class when finished animating</span>
-                
-            </li>
-        
-            <li>
-                
-
-                
-                    <label class="optional">[options.onEnd]
-                
-
-                
-                    =null
-                
-                </label>
-
-                
-                    <span class="description">{Function} callback for animation end</span>
-                
-            </li>
-        
-        </ul>
-    
 
     
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+                <label>element
+                
+
+                
+                </label>
+                
+                    {DOMElement} animated element
+                
+            </dd>
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+                <label>options
+                
+
+                
+                </label>
+                
+                    {Object} options object
+                
+            </dd>
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+                <label>options.animation
+                
+
+                
+                </label>
+                
+                    {String} animation name
+                
+            </dd>
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.duration]
+                
+
+                
+                    medium
+                
+                </label>
+                
+                    {String|Number} duration name (fast|medium|slow) or duration in ms
+                
+            </dd>
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.removeClass]
+                
+
+                
+                    true
+                
+                </label>
+                
+                    {Boolean} Whether to remove the `animation` class when finished animating
+                
+            </dd>
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.onEnd]
+                
+
+                
+                    null
+                
+                </label>
+                
+                    {Function} callback for animation end
+                
+            </dd>
+        
+        </dl>
+        
+        
 
     
+
 
     
 <p class="example-title">Example</p>
@@ -290,7 +292,7 @@
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.UI.Animate_1.animate
@@ -302,117 +304,119 @@
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
     
 
     
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-
-                
-                    <label>element
-                
-
-                
-                </label>
-
-                
-                    <span class="description">{DOMElement} animated element</span>
-                
-            </li>
-        
-            <li>
-                
-
-                
-                    <label>animation
-                
-
-                
-                </label>
-
-                
-                    <span class="description">{String} animation name</span>
-                
-            </li>
-        
-            <li>
-                
-
-                
-                    <label class="optional">[options]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">{Object}</span>
-                
-            </li>
-        
-            <li>
-                
-
-                
-                    <label class="optional">[options.onEnd]
-                
-
-                
-                    =null
-                
-                </label>
-
-                
-                    <span class="description">{Function} callback for animation end</span>
-                
-            </li>
-        
-            <li>
-                
-
-                
-                    <label class="optional">[options.removeClass]
-                
-
-                
-                    =false
-                
-                </label>
-
-                
-                    <span class="description">{Boolean} whether to remove the Css class when finished</span>
-                
-            </li>
-        
-            <li>
-                
-
-                
-                    <label class="optional">[options.duration]
-                
-
-                
-                    =medium
-                
-                </label>
-
-                
-                    <span class="description">{String|Number} duration name (fast|medium|slow) or duration in ms</span>
-                
-            </li>
-        
-        </ul>
-    
 
     
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+                <label>element
+                
+
+                
+                </label>
+                
+                    {DOMElement} animated element
+                
+            </dd>
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+                <label>animation
+                
+
+                
+                </label>
+                
+                    {String} animation name
+                
+            </dd>
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options]
+                
+
+                
+                </label>
+                
+                    {Object}
+                
+            </dd>
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.onEnd]
+                
+
+                
+                    null
+                
+                </label>
+                
+                    {Function} callback for animation end
+                
+            </dd>
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.removeClass]
+                
+
+                
+                    false
+                
+                </label>
+                
+                    {Boolean} whether to remove the Css class when finished
+                
+            </dd>
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.duration]
+                
+
+                
+                    medium
+                
+                </label>
+                
+                    {String|Number} duration name (fast|medium|slow) or duration in ms
+                
+            </dd>
+        
+        </dl>
+        
+        
 
     
+
 
     
 
@@ -425,11 +429,11 @@
 
     <section class="box box-attribute">
 
-     <h2>
+    <h1 class="fw-300">
     
        Ink.UI.Animate_1.animationEndEventName
     
-    <i>attribute</i></h2>
+    <i>attribute</i></h1>
 
     
 
@@ -449,11 +453,11 @@
 
     <section class="box box-attribute">
 
-     <h2>
+    <h1 class="fw-300">
     
        Ink.UI.Animate_1.animationSupported
     
-    <i>attribute</i></h2>
+    <i>attribute</i></h1>
 
     
 
