@@ -25,7 +25,7 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
      *
      * @example
      *      <div class="ink-dropdown">
-     *          <button class="ink-button toggle" data-target="#dropdown">Dropdown <span class="icon-caret-down"></span></button>
+     *          <button class="ink-button toggle" data-target="#dropdown">Dropdown <span class="fa fa-caret-down"></span></button>
      *          <ul id="dropdown" class="dropdown-menu">
      *              <li class="heading">Heading</li>
      *              <li class="separator-above"><a href="#">Option</a></li>

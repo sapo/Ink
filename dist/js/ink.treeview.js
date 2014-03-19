@@ -6,6 +6,7 @@
 Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Common, Event, Css, Element, Selector, InkArray ) {
     'use strict';
 
+
     /**
      * Shows elements in a tree-like hierarchical structure.
      * 
@@ -16,8 +17,8 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
      * @param {String} [options.node='li'] Selector to define which elements are seen as nodes.
      * @param {String} [options.children='ul'] Selector to define which elements are represented as children.
      * @param {String} [options.parentClass='parent'] Classes to be added to the parent node.
-     * @param {String} [options.openClass='icon icon-minus-circle'] Classes to be added to the icon when a parent is open.
-     * @param {String} [options.closedClass='icon icon-plus-circle'] Classes to be added to the icon when a parent is closed.
+     * @param {String} [options.openClass='fa fa-minus-circle'] Classes to be added to the icon when a parent is open.
+     * @param {String} [options.closedClass='fa fa-plus-circle'] Classes to be added to the icon when a parent is closed.
      * @param {String} [options.hideClass='hide-all'] Class to toggle visibility of the children.
      * @param {String} [options.iconTag='i'] The name of icon tag. The component tries to find a tag with that name as a direct child of the node. If it doesn't find it, it creates it.
      * @param {Boolean} [options.stopDefault=true] Stops the default behavior of the click handler.
@@ -57,12 +58,9 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
             'child':  ['String','ul'],
             'children':  ['String','ul'],
             'parentClass': ['String','parent'],
-            // [3.0.0] use these classes because you'll have font-awesome 4
-            // 'openClass': ['String','fa fa-minus-circle'],
-            // 'closedClass': ['String','fa fa-plus-circle'],
             'openNodeClass': ['String', 'open'],
-            'openClass': ['String','icon-minus-sign'],
-            'closedClass': ['String','icon-plus-sign'],
+            'openClass': ['String','fa fa-minus-circle'],
+            'closedClass': ['String','fa fa-plus-circle'],
             'hideClass': ['String','hide-all'],
             'iconTag': ['String', 'i'],
             'stopDefault' : ['Boolean', true]
@@ -131,8 +129,24 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
 
                 node.setAttribute('data-open', beOpen);
 
-                Css.setClassName(icon, this._options.openClass, beOpen);
-                Css.setClassName(icon, this._options.closedClass, !beOpen);
+                /*
+                 * Don't refactor this to
+                 *
+                 * setClassName(el, className, status); setClassName(el, className, !status);
+                 *
+                 * because it won't work with multiple classes.
+                 *
+                 * Doing:
+                 * setClassName(el, 'fa fa-whatever', true);setClassName(el, 'fa fa-whatever-else', false);
+                 *
+                 * will remove 'fa' although it is a class we want.
+                 */
+
+                var toAdd = beOpen ? this._options.openClass : this._options.closedClass;
+                var toRemove = beOpen ? this._options.closedClass : this._options.openClass;
+                Css.removeClassName(icon, toRemove);
+                Css.addClassName(icon, toAdd);
+
                 Css.setClassName(node, this._options.openNodeClass, beOpen);
             } else {
                 Ink.error('Ink.UI.TreeView: node', node, 'is not a node!');
