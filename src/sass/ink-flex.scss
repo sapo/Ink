@@ -55,7 +55,10 @@
 @import "modules/badges";
 @import "modules/buttons";
 @import "modules/forms";
-@import "modules/grid";
+html.no-flexbox,
+html.no-flexboxlegacy {
+  @import "modules/grid";
+}
 @import "modules/flex-grid";
 @import "modules/fonts";
 @import "modules/labels";
