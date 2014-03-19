@@ -438,7 +438,7 @@ section {
         border-top: 1px solid $code-border;
     }
     
-    p, ul, ol, dl, table {
+    p, ul, ol, dl, dt code, table {
         font-weight: 300;
     }
 }

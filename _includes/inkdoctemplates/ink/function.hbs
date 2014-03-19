@@ -44,19 +44,17 @@
             </dt>
             <dd>
                 {{#if isOptional}}
-                    <label class="optional">[{{name}}]
+                <label class="optional">[{{name}}]
                 {{else}}
-                    <label>{{name}}
+                <label>{{name}}
                 {{/if}}
 
                 {{#if defaultValue}}
-                    ={{defaultValue}}
+                    {{defaultValue}}
                 {{/if}}
                 </label>
-            
-            
                 {{#if description}}
-                    <span class="description">{{{description}}}</span>
+                    {{{description}}}
                 {{/if}}
             </dd>
         {{/each}}
