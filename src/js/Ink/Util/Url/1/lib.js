@@ -10,7 +10,7 @@ Ink.createModule('Ink.Util.Url', '1', [], function() {
     /**
      * Utility functions to use with URLs
      *
-     * @class Ink.Util.Url
+     * @namespace Ink.Util.Url
      * @version 1
      * @static
      */

@@ -15,7 +15,7 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.Dom.Event_1', 'Ink.Dom.Elem
         function (id) { clearTimeout(id); };
 
     /**
-     * @class Ink.UI.SmoothScroller
+     * @namespace Ink.UI.SmoothScroller
      * @version 1
      * @static
      *

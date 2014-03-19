@@ -39,8 +39,11 @@
         return true;
     };
 
-    window.Ink = {
+    /**
+     * @namespace Ink_1
+     */
 
+    window.Ink = {
         _checkPendingRequireModules: function() {
             var I, F, o, dep, mod, cb, pRMs = [];
             for (I = 0, F = pendingRMs.length; I < F; ++I) {

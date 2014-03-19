@@ -18,7 +18,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
         return ret;
     }
     /**
-     * @class Ink.UI.FormValidator
+     * @namespace Ink.UI.FormValidator
      * @version 1
      */
     var FormValidator = {
