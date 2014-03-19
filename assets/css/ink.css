@@ -8306,7 +8306,7 @@ figure.ink-image > figcaption.dark {
 .ink-label {
   color: white;
   font-weight: 300;
-  font-size: 0.813em;
+  font-size: 16px;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   -ms-border-radius: 2px;
