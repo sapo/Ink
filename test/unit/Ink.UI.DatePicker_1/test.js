@@ -162,7 +162,7 @@ test('validDayFn', function () {
     ok(lastCall);
     ok(!spy.getCall(31));
     deepEqual(lastCall.args, [2000, 1, 31], 'called with last day of january');
-    ok(lastCall.thisValue, dt, 'called with this=datepicker');
+    strictEqual(lastCall.thisValue, dt, 'called with this=datepicker');
 });
 
 test('nextValidDateFn', function () {

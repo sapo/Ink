@@ -37,7 +37,7 @@ Ink.requireModules(['Ink.Net.Ajax_1'], function (Ajax) {
         /* different port */
         equal(statics._locationIsCrossDomain(
             statics._locationFromURL('http://www.sapo.pt:80/'),
-            statics._locationFromURL('http://www.sapo.pt:81/')), true);
+            statics._locationFromURL('http://www.sapo.pt:81/')), false);
     });
 
     test('Url parameters', function () {
@@ -49,6 +49,7 @@ Ink.requireModules(['Ink.Net.Ajax_1'], function (Ajax) {
     module('local files (run from server only)');
 
     test('request test.html', function () {
+        expect(3);
         stop();
         new Ajax('test.html', {
             method: 'get',
@@ -59,7 +60,7 @@ Ink.requireModules(['Ink.Net.Ajax_1'], function (Ajax) {
                 start();
             },
             onFailure: function () {
-                ok(false);
+                ok(false, 'failure callback called');
                 start();
             }
         });

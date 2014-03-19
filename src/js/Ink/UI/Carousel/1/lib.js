@@ -51,6 +51,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
             autoAdvance:    ['Integer', 0],
             axis:           ['String', 'x'],
             initialPage:    ['Integer', 0],
+            spaceAfterLastSlide: ['Boolean', true],
             hideLast:       ['Boolean', false],
             center:         ['Boolean', false],
             keyboardSupport:['Boolean', false],
@@ -241,8 +242,8 @@ Ink.createModule('Ink.UI.Carousel', '1',
 
             this._touchMoveIsFirstTouchMove = true;
 
-            // event.preventDefault();
-            event.stopPropagation();
+            // InkEvent.stopDefault(event);
+            InkEvent.stopPropagation(event);
         },
 
         _onTouchMove: function (event) {
@@ -266,12 +267,12 @@ Ink.createModule('Ink.UI.Carousel', '1',
             }
 
             if (!this._scrolling && this._swipeData) {
-                event.preventDefault();
+                InkEvent.stopDefault(event);
 
                 this._swipeData.pointerPos = this._isY ? pointerY : pointerX;
             }
 
-            event.stopPropagation();
+            InkEvent.stopPropagation(event);
         },
 
         _onAnimationFrame: function () {
@@ -316,8 +317,8 @@ Ink.createModule('Ink.UI.Carousel', '1',
 
                 this.setPage(curPage);
 
-                event.stopPropagation();
-                // event.preventDefault();
+                InkEvent.stopPropagation(event);
+                // InkEvent.stopDefault(event);
             }
 
             setTransitionProperty(this._ulEl, null /* transition: left, top */);
@@ -364,8 +365,18 @@ Ink.createModule('Ink.UI.Carousel', '1',
         },
 
         _setPage: function (page) {
+            var _lengthToGo = page * this._deltaLength;
+            var isLastPage = page === (this._numPages - 1);
+
+            if (!this._options.spaceAfterLastSlide && isLastPage && page > 0) { 
+                var _itemsInLastPage = this._liEls.length - (page * this._slidesPerPage);
+                if(_itemsInLastPage < this._slidesPerPage) {
+                    _lengthToGo = ((page - 1) * this._deltaLength) + (_itemsInLastPage * this._elLength);
+                }
+            }
+
             this._ulEl.style[ this._isY ? 'top' : 'left'] =
-                ['-', page * this._deltaLength, 'px'].join('');
+                ['-', _lengthToGo, 'px'].join('');
 
             if (this._options.onChange) {
                 this._options.onChange.call(this, page);

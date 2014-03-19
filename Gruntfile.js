@@ -34,7 +34,7 @@ module.exports = function (grunt) {
                 }
             },
             test: {
-                connect_port: process.env.INK_TEST_CONNECT_PORT || 8000,
+                connect_port: process.env['INK_TEST_CONNECT_PORT'] || 8000,
                 root: '.',
             }
         },
@@ -333,9 +333,11 @@ module.exports = function (grunt) {
 
         connect: {
             test: {
-                port: '<%= ink.test.connect_port %>',
-                base: '<%= ink.test.root %>',
-                keepalive: false
+                options: {
+                    port: '<%= ink.test.connect_port %>',
+                    base: '<%= ink.test.root %>',
+                    keepalive: false
+                }
             },
         },
 

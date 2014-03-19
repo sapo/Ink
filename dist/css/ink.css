@@ -2769,6 +2769,18 @@ table {
   .extra-large-padding {
     padding: 2em; }
 
+  .double-space {
+    margin: 4em; }
+
+  .extra-large-double-space {
+    margin: 4em; }
+
+  .double-padding {
+    padding: 4em; }
+
+  .extra-large-double-padding {
+    padding: 4em; }
+
   .half-space {
     margin: 1em; }
 
@@ -2808,6 +2820,22 @@ table {
   .extra-large-vertical-padding {
     padding-top: 2em;
     padding-bottom: 2em; }
+
+  .double-vertical-space {
+    margin-top: 4em;
+    margin-bottom: 4em; }
+
+  .extra-large-double-vertical-space {
+    margin-top: 4em;
+    margin-bottom: 4em; }
+
+  .double-vertical-padding {
+    padding-top: 4em;
+    padding-bottom: 4em; }
+
+  .extra-large-double-vertical-padding {
+    padding-top: 4em;
+    padding-bottom: 4em; }
 
   .half-vertical-space {
     margin-top: 1em;
@@ -2857,6 +2885,22 @@ table {
     padding-left: 2em;
     padding-right: 2em; }
 
+  .double-horizontal-space {
+    margin-left: 4em;
+    margin-right: 4em; }
+
+  .extra-large-double-horizontal-space {
+    margin-left: 4em;
+    margin-right: 4em; }
+
+  .double-horizontal-padding {
+    padding-left: 4em;
+    padding-right: 4em; }
+
+  .extra-large-double-horizontal-padding {
+    padding-left: 4em;
+    padding-right: 4em; }
+
   .half-horizontal-space {
     margin-left: 1em;
     margin-right: 1em; }
@@ -2901,6 +2945,18 @@ table {
   .extra-large-top-padding {
     padding-top: 2em; }
 
+  .double-top-space {
+    margin-top: 4em; }
+
+  .extra-large-double-top-space {
+    margin-top: 4em; }
+
+  .double-top-padding {
+    padding-top: 4em; }
+
+  .extra-large-double-top-padding {
+    padding-top: 4em; }
+
   .half-top-space {
     margin-top: 1em; }
 
@@ -2936,6 +2992,18 @@ table {
 
   .extra-large-right-padding {
     padding-right: 2em; }
+
+  .double-right-space {
+    margin-right: 4em; }
+
+  .extra-large-double-right-space {
+    margin-right: 4em; }
+
+  .double-right-padding {
+    padding-right: 4em; }
+
+  .extra-large-double-right-padding {
+    padding-right: 4em; }
 
   .half-right-space {
     margin-right: 1em; }
@@ -2973,6 +3041,18 @@ table {
   .extra-large-bottom-padding {
     padding-bottom: 2em; }
 
+  .double-bottom-space {
+    margin-bottom: 4em; }
+
+  .extra-large-double-bottom-space {
+    margin-bottom: 4em; }
+
+  .double-bottom-padding {
+    padding-bottom: 4em; }
+
+  .extra-large-double-bottom-padding {
+    padding-bottom: 4em; }
+
   .half-bottom-space {
     margin-bottom: 1em; }
 
@@ -3008,6 +3088,18 @@ table {
 
   .extra-large-left-padding {
     padding-left: 2em; }
+
+  .double-left-space {
+    margin-left: 4em; }
+
+  .extra-large-double-left-space {
+    margin-left: 4em; }
+
+  .double-left-padding {
+    padding-left: 4em; }
+
+  .extra-large-double-left-padding {
+    padding-left: 4em; }
 
   .half-left-space {
     margin-left: 1em; }
@@ -3298,6 +3390,18 @@ table {
   .large-padding {
     padding: 1.75em; }
 
+  .double-space {
+    margin: 3.5em; }
+
+  .large-double-space {
+    margin: 3.5em; }
+
+  .double-padding {
+    padding: 3.5em; }
+
+  .large-double-padding {
+    padding: 3.5em; }
+
   .half-space {
     margin: 0.875em; }
 
@@ -3337,6 +3441,22 @@ table {
   .large-vertical-padding {
     padding-top: 1.75em;
     padding-bottom: 1.75em; }
+
+  .double-vertical-space {
+    margin-top: 3.5em;
+    margin-bottom: 3.5em; }
+
+  .large-double-vertical-space {
+    margin-top: 3.5em;
+    margin-bottom: 3.5em; }
+
+  .double-vertical-padding {
+    padding-top: 3.5em;
+    padding-bottom: 3.5em; }
+
+  .large-double-vertical-padding {
+    padding-top: 3.5em;
+    padding-bottom: 3.5em; }
 
   .half-vertical-space {
     margin-top: 0.875em;
@@ -3386,6 +3506,22 @@ table {
     padding-left: 1.75em;
     padding-right: 1.75em; }
 
+  .double-horizontal-space {
+    margin-left: 3.5em;
+    margin-right: 3.5em; }
+
+  .large-double-horizontal-space {
+    margin-left: 3.5em;
+    margin-right: 3.5em; }
+
+  .double-horizontal-padding {
+    padding-left: 3.5em;
+    padding-right: 3.5em; }
+
+  .large-double-horizontal-padding {
+    padding-left: 3.5em;
+    padding-right: 3.5em; }
+
   .half-horizontal-space {
     margin-left: 0.875em;
     margin-right: 0.875em; }
@@ -3430,6 +3566,18 @@ table {
   .large-top-padding {
     padding-top: 1.75em; }
 
+  .double-top-space {
+    margin-top: 3.5em; }
+
+  .large-double-top-space {
+    margin-top: 3.5em; }
+
+  .double-top-padding {
+    padding-top: 3.5em; }
+
+  .large-double-top-padding {
+    padding-top: 3.5em; }
+
   .half-top-space {
     margin-top: 0.875em; }
 
@@ -3465,6 +3613,18 @@ table {
 
   .large-right-padding {
     padding-right: 1.75em; }
+
+  .double-right-space {
+    margin-right: 3.5em; }
+
+  .large-double-right-space {
+    margin-right: 3.5em; }
+
+  .double-right-padding {
+    padding-right: 3.5em; }
+
+  .large-double-right-padding {
+    padding-right: 3.5em; }
 
   .half-right-space {
     margin-right: 0.875em; }
@@ -3502,6 +3662,18 @@ table {
   .large-bottom-padding {
     padding-bottom: 1.75em; }
 
+  .double-bottom-space {
+    margin-bottom: 3.5em; }
+
+  .large-double-bottom-space {
+    margin-bottom: 3.5em; }
+
+  .double-bottom-padding {
+    padding-bottom: 3.5em; }
+
+  .large-double-bottom-padding {
+    padding-bottom: 3.5em; }
+
   .half-bottom-space {
     margin-bottom: 0.875em; }
 
@@ -3537,6 +3709,18 @@ table {
 
   .large-left-padding {
     padding-left: 1.75em; }
+
+  .double-left-space {
+    margin-left: 3.5em; }
+
+  .large-double-left-space {
+    margin-left: 3.5em; }
+
+  .double-left-padding {
+    padding-left: 3.5em; }
+
+  .large-double-left-padding {
+    padding-left: 3.5em; }
 
   .half-left-space {
     margin-left: 0.875em; }
@@ -3827,6 +4011,18 @@ table {
   .medium-padding {
     padding: 1.5em; }
 
+  .double-space {
+    margin: 3em; }
+
+  .medium-double-space {
+    margin: 3em; }
+
+  .double-padding {
+    padding: 3em; }
+
+  .medium-double-padding {
+    padding: 3em; }
+
   .half-space {
     margin: 0.75em; }
 
@@ -3866,6 +4062,22 @@ table {
   .medium-vertical-padding {
     padding-top: 1.5em;
     padding-bottom: 1.5em; }
+
+  .double-vertical-space {
+    margin-top: 3em;
+    margin-bottom: 3em; }
+
+  .medium-double-vertical-space {
+    margin-top: 3em;
+    margin-bottom: 3em; }
+
+  .double-vertical-padding {
+    padding-top: 3em;
+    padding-bottom: 3em; }
+
+  .medium-double-vertical-padding {
+    padding-top: 3em;
+    padding-bottom: 3em; }
 
   .half-vertical-space {
     margin-top: 0.75em;
@@ -3915,6 +4127,22 @@ table {
     padding-left: 1.5em;
     padding-right: 1.5em; }
 
+  .double-horizontal-space {
+    margin-left: 3em;
+    margin-right: 3em; }
+
+  .medium-double-horizontal-space {
+    margin-left: 3em;
+    margin-right: 3em; }
+
+  .double-horizontal-padding {
+    padding-left: 3em;
+    padding-right: 3em; }
+
+  .medium-double-horizontal-padding {
+    padding-left: 3em;
+    padding-right: 3em; }
+
   .half-horizontal-space {
     margin-left: 0.75em;
     margin-right: 0.75em; }
@@ -3959,6 +4187,18 @@ table {
   .medium-top-padding {
     padding-top: 1.5em; }
 
+  .double-top-space {
+    margin-top: 3em; }
+
+  .medium-double-top-space {
+    margin-top: 3em; }
+
+  .double-top-padding {
+    padding-top: 3em; }
+
+  .medium-double-top-padding {
+    padding-top: 3em; }
+
   .half-top-space {
     margin-top: 0.75em; }
 
@@ -3994,6 +4234,18 @@ table {
 
   .medium-right-padding {
     padding-right: 1.5em; }
+
+  .double-right-space {
+    margin-right: 3em; }
+
+  .medium-double-right-space {
+    margin-right: 3em; }
+
+  .double-right-padding {
+    padding-right: 3em; }
+
+  .medium-double-right-padding {
+    padding-right: 3em; }
 
   .half-right-space {
     margin-right: 0.75em; }
@@ -4031,6 +4283,18 @@ table {
   .medium-bottom-padding {
     padding-bottom: 1.5em; }
 
+  .double-bottom-space {
+    margin-bottom: 3em; }
+
+  .medium-double-bottom-space {
+    margin-bottom: 3em; }
+
+  .double-bottom-padding {
+    padding-bottom: 3em; }
+
+  .medium-double-bottom-padding {
+    padding-bottom: 3em; }
+
   .half-bottom-space {
     margin-bottom: 0.75em; }
 
@@ -4066,6 +4330,18 @@ table {
 
   .medium-left-padding {
     padding-left: 1.5em; }
+
+  .double-left-space {
+    margin-left: 3em; }
+
+  .medium-double-left-space {
+    margin-left: 3em; }
+
+  .double-left-padding {
+    padding-left: 3em; }
+
+  .medium-double-left-padding {
+    padding-left: 3em; }
 
   .half-left-space {
     margin-left: 0.75em; }
@@ -4356,6 +4632,18 @@ table {
   .small-padding {
     padding: 1.25em; }
 
+  .double-space {
+    margin: 2.5em; }
+
+  .small-double-space {
+    margin: 2.5em; }
+
+  .double-padding {
+    padding: 2.5em; }
+
+  .small-double-padding {
+    padding: 2.5em; }
+
   .half-space {
     margin: 0.625em; }
 
@@ -4395,6 +4683,22 @@ table {
   .small-vertical-padding {
     padding-top: 1.25em;
     padding-bottom: 1.25em; }
+
+  .double-vertical-space {
+    margin-top: 2.5em;
+    margin-bottom: 2.5em; }
+
+  .small-double-vertical-space {
+    margin-top: 2.5em;
+    margin-bottom: 2.5em; }
+
+  .double-vertical-padding {
+    padding-top: 2.5em;
+    padding-bottom: 2.5em; }
+
+  .small-double-vertical-padding {
+    padding-top: 2.5em;
+    padding-bottom: 2.5em; }
 
   .half-vertical-space {
     margin-top: 0.625em;
@@ -4444,6 +4748,22 @@ table {
     padding-left: 1.25em;
     padding-right: 1.25em; }
 
+  .double-horizontal-space {
+    margin-left: 2.5em;
+    margin-right: 2.5em; }
+
+  .small-double-horizontal-space {
+    margin-left: 2.5em;
+    margin-right: 2.5em; }
+
+  .double-horizontal-padding {
+    padding-left: 2.5em;
+    padding-right: 2.5em; }
+
+  .small-double-horizontal-padding {
+    padding-left: 2.5em;
+    padding-right: 2.5em; }
+
   .half-horizontal-space {
     margin-left: 0.625em;
     margin-right: 0.625em; }
@@ -4488,6 +4808,18 @@ table {
   .small-top-padding {
     padding-top: 1.25em; }
 
+  .double-top-space {
+    margin-top: 2.5em; }
+
+  .small-double-top-space {
+    margin-top: 2.5em; }
+
+  .double-top-padding {
+    padding-top: 2.5em; }
+
+  .small-double-top-padding {
+    padding-top: 2.5em; }
+
   .half-top-space {
     margin-top: 0.625em; }
 
@@ -4523,6 +4855,18 @@ table {
 
   .small-right-padding {
     padding-right: 1.25em; }
+
+  .double-right-space {
+    margin-right: 2.5em; }
+
+  .small-double-right-space {
+    margin-right: 2.5em; }
+
+  .double-right-padding {
+    padding-right: 2.5em; }
+
+  .small-double-right-padding {
+    padding-right: 2.5em; }
 
   .half-right-space {
     margin-right: 0.625em; }
@@ -4560,6 +4904,18 @@ table {
   .small-bottom-padding {
     padding-bottom: 1.25em; }
 
+  .double-bottom-space {
+    margin-bottom: 2.5em; }
+
+  .small-double-bottom-space {
+    margin-bottom: 2.5em; }
+
+  .double-bottom-padding {
+    padding-bottom: 2.5em; }
+
+  .small-double-bottom-padding {
+    padding-bottom: 2.5em; }
+
   .half-bottom-space {
     margin-bottom: 0.625em; }
 
@@ -4595,6 +4951,18 @@ table {
 
   .small-left-padding {
     padding-left: 1.25em; }
+
+  .double-left-space {
+    margin-left: 2.5em; }
+
+  .small-double-left-space {
+    margin-left: 2.5em; }
+
+  .double-left-padding {
+    padding-left: 2.5em; }
+
+  .small-double-left-padding {
+    padding-left: 2.5em; }
 
   .half-left-space {
     margin-left: 0.625em; }
@@ -4885,6 +5253,18 @@ table {
   .tiny-padding {
     padding: 1em; }
 
+  .double-space {
+    margin: 2em; }
+
+  .tiny-double-space {
+    margin: 2em; }
+
+  .double-padding {
+    padding: 2em; }
+
+  .tiny-double-padding {
+    padding: 2em; }
+
   .half-space {
     margin: 0.5em; }
 
@@ -4924,6 +5304,22 @@ table {
   .tiny-vertical-padding {
     padding-top: 1em;
     padding-bottom: 1em; }
+
+  .double-vertical-space {
+    margin-top: 2em;
+    margin-bottom: 2em; }
+
+  .tiny-double-vertical-space {
+    margin-top: 2em;
+    margin-bottom: 2em; }
+
+  .double-vertical-padding {
+    padding-top: 2em;
+    padding-bottom: 2em; }
+
+  .tiny-double-vertical-padding {
+    padding-top: 2em;
+    padding-bottom: 2em; }
 
   .half-vertical-space {
     margin-top: 0.5em;
@@ -4973,6 +5369,22 @@ table {
     padding-left: 1em;
     padding-right: 1em; }
 
+  .double-horizontal-space {
+    margin-left: 2em;
+    margin-right: 2em; }
+
+  .tiny-double-horizontal-space {
+    margin-left: 2em;
+    margin-right: 2em; }
+
+  .double-horizontal-padding {
+    padding-left: 2em;
+    padding-right: 2em; }
+
+  .tiny-double-horizontal-padding {
+    padding-left: 2em;
+    padding-right: 2em; }
+
   .half-horizontal-space {
     margin-left: 0.5em;
     margin-right: 0.5em; }
@@ -5017,6 +5429,18 @@ table {
   .tiny-top-padding {
     padding-top: 1em; }
 
+  .double-top-space {
+    margin-top: 2em; }
+
+  .tiny-double-top-space {
+    margin-top: 2em; }
+
+  .double-top-padding {
+    padding-top: 2em; }
+
+  .tiny-double-top-padding {
+    padding-top: 2em; }
+
   .half-top-space {
     margin-top: 0.5em; }
 
@@ -5052,6 +5476,18 @@ table {
 
   .tiny-right-padding {
     padding-right: 1em; }
+
+  .double-right-space {
+    margin-right: 2em; }
+
+  .tiny-double-right-space {
+    margin-right: 2em; }
+
+  .double-right-padding {
+    padding-right: 2em; }
+
+  .tiny-double-right-padding {
+    padding-right: 2em; }
 
   .half-right-space {
     margin-right: 0.5em; }
@@ -5089,6 +5525,18 @@ table {
   .tiny-bottom-padding {
     padding-bottom: 1em; }
 
+  .double-bottom-space {
+    margin-bottom: 2em; }
+
+  .tiny-double-bottom-space {
+    margin-bottom: 2em; }
+
+  .double-bottom-padding {
+    padding-bottom: 2em; }
+
+  .tiny-double-bottom-padding {
+    padding-bottom: 2em; }
+
   .half-bottom-space {
     margin-bottom: 0.5em; }
 
@@ -5124,6 +5572,18 @@ table {
 
   .tiny-left-padding {
     padding-left: 1em; }
+
+  .double-left-space {
+    margin-left: 2em; }
+
+  .tiny-double-left-space {
+    margin-left: 2em; }
+
+  .double-left-padding {
+    padding-left: 2em; }
+
+  .tiny-double-left-padding {
+    padding-left: 2em; }
 
   .half-left-space {
     margin-left: 0.5em; }

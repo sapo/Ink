@@ -308,6 +308,18 @@
 .large-padding {
   padding: 1.75em; }
 
+.double-space {
+  margin: 3.5em; }
+
+.large-double-space {
+  margin: 3.5em; }
+
+.double-padding {
+  padding: 3.5em; }
+
+.large-double-padding {
+  padding: 3.5em; }
+
 .half-space {
   margin: 0.875em; }
 
@@ -347,6 +359,22 @@
 .large-vertical-padding {
   padding-top: 1.75em;
   padding-bottom: 1.75em; }
+
+.double-vertical-space {
+  margin-top: 3.5em;
+  margin-bottom: 3.5em; }
+
+.large-double-vertical-space {
+  margin-top: 3.5em;
+  margin-bottom: 3.5em; }
+
+.double-vertical-padding {
+  padding-top: 3.5em;
+  padding-bottom: 3.5em; }
+
+.large-double-vertical-padding {
+  padding-top: 3.5em;
+  padding-bottom: 3.5em; }
 
 .half-vertical-space {
   margin-top: 0.875em;
@@ -396,6 +424,22 @@
   padding-left: 1.75em;
   padding-right: 1.75em; }
 
+.double-horizontal-space {
+  margin-left: 3.5em;
+  margin-right: 3.5em; }
+
+.large-double-horizontal-space {
+  margin-left: 3.5em;
+  margin-right: 3.5em; }
+
+.double-horizontal-padding {
+  padding-left: 3.5em;
+  padding-right: 3.5em; }
+
+.large-double-horizontal-padding {
+  padding-left: 3.5em;
+  padding-right: 3.5em; }
+
 .half-horizontal-space {
   margin-left: 0.875em;
   margin-right: 0.875em; }
@@ -440,6 +484,18 @@
 .large-top-padding {
   padding-top: 1.75em; }
 
+.double-top-space {
+  margin-top: 3.5em; }
+
+.large-double-top-space {
+  margin-top: 3.5em; }
+
+.double-top-padding {
+  padding-top: 3.5em; }
+
+.large-double-top-padding {
+  padding-top: 3.5em; }
+
 .half-top-space {
   margin-top: 0.875em; }
 
@@ -475,6 +531,18 @@
 
 .large-right-padding {
   padding-right: 1.75em; }
+
+.double-right-space {
+  margin-right: 3.5em; }
+
+.large-double-right-space {
+  margin-right: 3.5em; }
+
+.double-right-padding {
+  padding-right: 3.5em; }
+
+.large-double-right-padding {
+  padding-right: 3.5em; }
 
 .half-right-space {
   margin-right: 0.875em; }
@@ -512,6 +580,18 @@
 .large-bottom-padding {
   padding-bottom: 1.75em; }
 
+.double-bottom-space {
+  margin-bottom: 3.5em; }
+
+.large-double-bottom-space {
+  margin-bottom: 3.5em; }
+
+.double-bottom-padding {
+  padding-bottom: 3.5em; }
+
+.large-double-bottom-padding {
+  padding-bottom: 3.5em; }
+
 .half-bottom-space {
   margin-bottom: 0.875em; }
 
@@ -547,6 +627,18 @@
 
 .large-left-padding {
   padding-left: 1.75em; }
+
+.double-left-space {
+  margin-left: 3.5em; }
+
+.large-double-left-space {
+  margin-left: 3.5em; }
+
+.double-left-padding {
+  padding-left: 3.5em; }
+
+.large-double-left-padding {
+  padding-left: 3.5em; }
 
 .half-left-space {
   margin-left: 0.875em; }
