@@ -1,4 +1,3 @@
-@charset "UTF-8";
 /**
  * Ink
  *
@@ -5659,7 +5658,7 @@ table {
     html:after {
       font-family: '{"name":"tiny",{"min":"","max":"320px"}}'; } }
 .ink-label {
-  padding: 0.2em 0.5em;
+  padding: 0 0.35em;
   white-space: nowrap; }
 
 .ink-navigation {
@@ -6506,6 +6505,7 @@ figure.ink-image {
 .ink-label {
   color: white;
   font-weight: 300;
+  font-size: 0.813em;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   -ms-border-radius: 2px;

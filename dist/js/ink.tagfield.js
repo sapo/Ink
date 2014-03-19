@@ -144,7 +144,7 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
             });
 
             var remove = InkElement.create('span', {
-                className: 'remove icon icon-remove icon-times',  // fontawesome 3 changed icon-remove's name to icon-times
+                className: 'remove fa fa-times',
                 insertBottom: elm
             });
             InkEvent.observe(remove, 'click', Ink.bindEvent(this._removeTag, this, null));
