@@ -790,6 +790,7 @@ ul.props li.heading {
 ul.props li.prop {
   background-color: #eeebe5;
   font-size: .95em;
+  padding: 0 5px;
 }
 ul.props li.prop.breakpoint-aware:after {
   margin-left: 0.2em;
@@ -859,7 +860,7 @@ p.example-title {
   font-weight: 700;
   font-size: 2em;
   line-height: 0.8;
-  margin: 1.5em 0 0 0;
+  margin: 1em 0 0 0;
 }
 
 p + p.example-title {
@@ -904,6 +905,10 @@ html.flexbox .example#chevron-example {
 .example#chevron-example a,
 html.flexbox .example#chevron-example a {
   top: auto;
+}
+
+.tall {
+  height: 250px;
 }
 
 footer {

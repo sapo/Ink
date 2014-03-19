@@ -1,20 +1,13 @@
 /**
  * @module Ink.Dom.Loaded_1
- * @author inkdev AT sapo.pt
+ * Execute code only when the DOM is loaded.
  * @version 1
  */
+ 
 Ink.createModule('Ink.Dom.Loaded', 1, [], function() {
 
     'use strict';
 
-    /**
-     * The Loaded class provides a method that allows developers to queue functions to run when
-     * the page is loaded (document is ready).
-     *
-     * @class Ink.Dom.Loaded
-     * @version 1
-     * @static
-     */
     var Loaded = {
 
         /**
@@ -29,11 +22,11 @@ Ink.createModule('Ink.Dom.Loaded', 1, [], function() {
         _contexts: [], // Callbacks' queue
 
         /**
-         * Adds a new function that will be invoked once the document is ready
+         * Specify a function to execute when the DOM is fully loaded.
          *
          * @method run
-         * @param {Object}   [win=window]   Window object to attach/add the event
-         * @param {Function} fn             Callback function to be run after the page is loaded
+         * @param {Object}   [win]=window   Window object to attach/add the event
+         * @param {Function} fn             Callback function to be executed after the DOM is ready
          * @public
          * @example
          *     Ink.requireModules(['Ink.Dom.Loaded_1'], function(Loaded){

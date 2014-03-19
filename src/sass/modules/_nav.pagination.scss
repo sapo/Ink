@@ -60,16 +60,18 @@
                             font-size: 4em;
                             @include transition(compact(all 140ms ease-in-out));
 
-                            span { 
-                                display: inline-block;
-                                text-indent: -99999px; 
-                            }
+                            span { text-indent: 99999px; }
                         }
                     }
 
                     &.disabled {
                         a {
+                            color: rgba($white,0.6);
                             @include text-shadow(none);
+                            &:hover,
+                            &:focus {
+                                color: rgba($white,0.6);    
+                            }
                         }
                     }
                     
