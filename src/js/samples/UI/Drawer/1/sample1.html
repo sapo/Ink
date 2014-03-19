@@ -30,7 +30,7 @@
         </script>
 
     </head>
-<body>
+<body class="ink-drawer">
 
 <div class="left-drawer">
     <h2>This is the left drawer</h2>
@@ -39,7 +39,7 @@
     <h2>This is the right drawer</h2>
 
     <p>
-        This is a <a href="#">test link</a>
+        This is a <a href="#some-content">test link</a>
     </p>
 </div>
 
@@ -63,15 +63,29 @@
 
         <h3 class="half-vertical-space slab">Drawer</h3>
 
-        <p></p>
+        <p>To use the drawer, just call <code>new Drawer({ /* options... */ })</code>.</p>
 
         <script>
-            Ink.requireModules(['Ink.UI.Drawer_1'], function (Drawer) {
-                new Drawer();
+			Ink.requireModules(['Ink.UI.Drawer_1'], function (Drawer) {
+                new Drawer({  });
             });
         </script>
 
-    </div>
+	</div>
+
+	<div class="vertical-space">&nbsp;</div>
+	<div class="vertical-space">&nbsp;</div>
+	<div class="vertical-space">&nbsp;</div>
+	<div class="vertical-space">&nbsp;</div>
+	<div class="vertical-space">&nbsp;</div>
+	<div class="vertical-space">&nbsp;</div>
+	<div class="vertical-space">&nbsp;</div>
+	<div class="vertical-space">&nbsp;</div>
+	<div class="vertical-space">&nbsp;</div>
+	<div class="vertical-space">&nbsp;</div>
+	<div class="vertical-space">&nbsp;</div>
+	<hr id="some-content">
+	
 </div>
 
 </body>
