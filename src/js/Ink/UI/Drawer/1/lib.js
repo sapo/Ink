@@ -1,3 +1,7 @@
+/**
+ * @module Ink.UI.Drawer_1
+ * @version 1
+ */
 Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', 'Ink.Dom.Selector_1', 'Ink.Dom.Element_1', 'Ink.Dom.Event_1', 'Ink.Dom.Css_1'], function(Common, Loaded, Selector, Element, Event, Css) {
     'use strict';
 
@@ -11,11 +15,23 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
     }
 
     Drawer.prototype = {
-        _init: function () {
-            // TODO take only one drawer. It will be "left" or "right". There can't be a drawer instance for both sides.
-
-            // TODO use Common.options
-            this._options = Ink.extendObj({
+        /**
+         * @class Ink.UI.Drawer_1
+         * @constructor
+         *
+         * @param [options] {Object} object containing the following options:
+         * @param [options.parentSelector]='.ink-drawer'         {String}
+         * @param [options.leftDrawer]='.left-drawer'            {String}
+         * @param [options.leftTrigger]='.left-drawer-trigger'   {String}
+         * @param [options.rightDrawer]='.right-drawer'          {String}
+         * @param [options.rightTrigger]='.right-drawer-trigger' {String}
+         * @param [options.contentDrawer]='.content-drawer'      {String}
+         * @param [options.closeOnContentClick]=true             {Boolean}
+         * @param [options.mode]='push'                          {String}
+         * @param [options.sides]='both'                         {String}
+         */
+        _init: function (options) {
+            this._options = Common.options({
                 parentSelector:     ['String', '.ink-drawer'],
                 leftDrawer:         ['String', '.left-drawer'],
                 leftTrigger:        ['String', '.left-drawer-trigger'],
@@ -25,22 +41,24 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
                 closeOnContentClick: ['Boolean', true],
                 mode:               ['String', 'push'],
                 sides:              ['String', 'both']
-            }, arguments[0] || {});
+            }, null, options || {});
 
             // make sure we have the required elements acording to the config options
 
-            this._contentDrawers = Ink.ss(this._options.contentDrawer[1]);
+            this._contentDrawers = Ink.ss(this._options.contentDrawer);
 
-            this._leftDrawer = Ink.s(this._options.leftDrawer[1]);
-            this._leftTriggers = Ink.ss(this._options.leftTrigger[1]);
+            this._leftDrawer = Ink.s(this._options.leftDrawer);
+            this._leftTriggers = Ink.ss(this._options.leftTrigger);
 
-            this._rightDrawer = Ink.s(this._options.rightDrawer[1]);
-            this._rightTriggers = Ink.ss(this._options.rightTrigger[1]);
+            this._rightDrawer = Ink.s(this._options.rightDrawer);
+            this._rightTriggers = Ink.ss(this._options.rightTrigger);
 
+            // The body might not have it
+            Css.addClassName(document.body, 'ink-drawer');
 
             if(this._contentDrawers.length === 0) {
                 Ink.warn( 'Ink.UI.Drawer_1: Could not find any "' +
-                    this._options.contentDrawer[1] + '" elements on this page. ' +
+                    this._options.contentDrawer + '" elements on this page. ' +
                     'Please make sure you have at least one.' );
             }
 
@@ -48,43 +66,43 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
 
                 case 'both':
                 if( !this._leftDrawer ){
-                    elNotFound(this._options.leftDrawer[1]);
+                    elNotFound(this._options.leftDrawer);
                 }
 
                 if(this._leftTriggers.length === 0){
-                    elNotFound(this._options.leftTrigger[1]);
+                    elNotFound(this._options.leftTrigger);
                 }
 
                 if( !this._rightDrawer ){
-                    elNotFound(this._options.rightDrawer[1]);
+                    elNotFound(this._options.rightDrawer);
                 }
 
                 if( this._rightTriggers.length === 0 ){
-                    elNotFound(this._options.rightTrigger[1]);
+                    elNotFound(this._options.rightTrigger);
                 }
-                this._triggers =    this._options.leftTrigger[1] + ', ' + this._options.rightTrigger[1] + ', ' + this._options.contentDrawer[1];
+                this._triggers = this._options.leftTrigger + ', ' + this._options.rightTrigger + ', ' + this._options.contentDrawer;
                 break;
 
                 case 'left':
                 if( !this._leftDrawer ){
-                    elNotFound(this._options.leftDrawer[1]);
+                    elNotFound(this._options.leftDrawer);
                 }
 
                 if(this._leftTriggers.length === 0){
-                    elNotFound(this._options.leftTrigger[1]);
+                    elNotFound(this._options.leftTrigger);
                 }
-                this._triggers = this._options.leftTrigger[1] + ', ' + this._options.contentDrawer[1];
+                this._triggers = this._options.leftTrigger + ', ' + this._options.contentDrawer;
                 break;
 
                 case 'right':
                 if( !this._rightDrawer ){
-                    elNotFound(this._options.rightDrawer[1]);
+                    elNotFound(this._options.rightDrawer);
                 }
 
                 if( this._rightTriggers.length === 0 ){
-                    elNotFound(this._options.rightTrigger[1]);
+                    elNotFound(this._options.rightTrigger);
                 }
-                this._triggers = this._options.rightTrigger[1] + ', ' + this._options.contentDrawer[1];
+                this._triggers = this._options.rightTrigger + ', ' + this._options.contentDrawer;
                 break;
             }
 
@@ -100,26 +118,34 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
             this._addEvents();
         },
 
+        /**
+         * Click event handler. Listens to the body's click event
+         *
+         * @method _onClick
+         * @private
+         **/
         _onClick: function(ev){
-            if(Selector.matchesSelector(ev.currentTarget,this._options.leftTrigger[1])){
-                if(this._isOpen) {
+            var triggerClicked = Ink.bind(function (side) {
+                if (this._isOpen) {
                     this.close();
                 } else {
-                    this.open('left');
+                    this.open(side);
                 }
-            } else if(Selector.matchesSelector(ev.currentTarget,this._options.rightTrigger[1])){
-                if(this._isOpen) {
-                    this.close();
-                } else {
-                    this.open('right');
-                }
-            } else if(Selector.matchesSelector(ev.currentTarget,this._options.contentDrawer[1])){
+            }, this);
+
+            if(Selector.matchesSelector(ev.currentTarget,this._options.leftTrigger)){
+                triggerClicked('left');
+            } else if(Selector.matchesSelector(ev.currentTarget,this._options.rightTrigger)){
+                triggerClicked('right');
+            } else if(Selector.matchesSelector(ev.currentTarget,this._options.contentDrawer)){
                 if(this._options.closeOnContentClick && this._isOpen) {
                     this.close();
                 }
             }
 
-            // TODO if clicked on a link, close it before the event goes default
+            if (Element.isLink(ev.currentTarget)) {
+                this.close();
+            }
         },
 
         _afterTransition: function(){
