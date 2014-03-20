@@ -139,6 +139,7 @@ a.visited {
   margin-right: .8em;
   padding: .46em 0;
   font-size: 21px;
+  background: none;
 }
 #topbar .ink-navigation ul.black li a.fa-bars:hover {
   background: none;
@@ -361,8 +362,10 @@ body.ink-drawer .right-drawer li:last-child {
 
 .highlight pre {
   margin: 0;
-  font-size: .9em;
+  font-size: .913em;
   overflow-x: auto;
+  white-space: pre;
+  word-wrap: normal;
 }
 
 .highlight .c {
@@ -720,7 +723,7 @@ section + section {
   padding-top: 3em;
   border-top: 1px solid #ded8cc;
 }
-section p, section ul, section ol, section dl, section table {
+section p, section ul, section ol, section dl, section dt code, section table {
   font-weight: 300;
 }
 
@@ -774,25 +777,28 @@ table.props td, table.props th {
 table.props tr:last-child td {
   border-bottom: none;
 }
+table.props .ink-label {
+  font-size: .813em;
+}
 
 span.tip {
   display: none;
 }
 
 ul.props {
-  margin: .5em 0;
+  margin: 0;
   padding: 0;
   list-style-type: none;
 }
 ul.props.inline li + li {
-  margin-right: 0.4em;
+  margin: 0 0.4em 0.5em 0;
 }
 ul.props li.heading {
   text-transform: uppercase;
 }
 ul.props li.prop {
   background-color: #eeebe5;
-  font-size: .95em;
+  font-size: .938em;
   padding: 0 5px;
 }
 ul.props li.prop.breakpoint-aware:after {
@@ -872,7 +878,7 @@ p + p.example-title {
 }
 
 .example code, .example pre, table.props code, table.props pre {
-  font-size: 0.9em;
+  font-size: 0.913em;
 }
 
 .example,
@@ -960,6 +966,10 @@ footer .ink-navigation ul.menu.horizontal li a.license {
   padding: .5em 0;
 }
 
+#home a {
+  color: white;
+  text-decoration: underline;
+}
 #home section {
   border: none;
 }
@@ -969,11 +979,11 @@ footer .ink-navigation ul.menu.horizontal li a.license {
 #home section.ink {
   padding: 5em 0;
   margin-top: 44px;
-  background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, color-stop(0%, #77c453), color-stop(100%, #5eaa3a));
-  background-image: -webkit-radial-gradient(#77c453, #5eaa3a);
-  background-image: -moz-radial-gradient(#77c453, #5eaa3a);
-  background-image: -o-radial-gradient(#77c453, #5eaa3a);
-  background-image: radial-gradient(#77c453, #5eaa3a);
+  background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, color-stop(0%, #bcb098), color-stop(100%, #907f5e));
+  background-image: -webkit-radial-gradient(#bcb098, #907f5e);
+  background-image: -moz-radial-gradient(#bcb098, #907f5e);
+  background-image: -o-radial-gradient(#bcb098, #907f5e);
+  background-image: radial-gradient(#bcb098, #907f5e);
 }
 #home section.ink h1, #home section.ink h2, #home section.ink h3, #home section.ink p, #home section.ink ul {
   color: white;
@@ -985,17 +995,25 @@ footer .ink-navigation ul.menu.horizontal li a.license {
   height: inherit;
 }
 #home section.ink a.ink-button.download {
-  color: #5EAA3A;
+  color: #bcb098;
   background: white;
-  font-size: 2em;
+  font-size: 1.1em;
+  padding: .5em 1em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+#home section.ink a.ink-button.download:hover {
+  background: #907f5e;
+  color: white;
+  border-color: #867758;
 }
 #home section.what {
   padding: 5em 0;
-  background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, color-stop(0%, #85aae0), color-stop(100%, #5c8dd6));
-  background-image: -webkit-radial-gradient(#85aae0, #5c8dd6);
-  background-image: -moz-radial-gradient(#85aae0, #5c8dd6);
-  background-image: -o-radial-gradient(#85aae0, #5c8dd6);
-  background-image: radial-gradient(#85aae0, #5c8dd6);
+  background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, color-stop(0%, #85aae0), color-stop(100%, #3371cc));
+  background-image: -webkit-radial-gradient(#85aae0, #3371cc);
+  background-image: -moz-radial-gradient(#85aae0, #3371cc);
+  background-image: -o-radial-gradient(#85aae0, #3371cc);
+  background-image: radial-gradient(#85aae0, #3371cc);
 }
 #home section.what h1, #home section.what h2, #home section.what h3, #home section.what p, #home section.what ul {
   color: white;
@@ -1008,11 +1026,11 @@ footer .ink-navigation ul.menu.horizontal li a.license {
 }
 #home section.why {
   padding: 5em 0;
-  background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, color-stop(0%, #aa8ad3), color-stop(100%, #8f65c5));
-  background-image: -webkit-radial-gradient(#aa8ad3, #8f65c5);
-  background-image: -moz-radial-gradient(#aa8ad3, #8f65c5);
-  background-image: -o-radial-gradient(#aa8ad3, #8f65c5);
-  background-image: radial-gradient(#aa8ad3, #8f65c5);
+  background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, color-stop(0%, #aa8ad3), color-stop(100%, #7544b3));
+  background-image: -webkit-radial-gradient(#aa8ad3, #7544b3);
+  background-image: -moz-radial-gradient(#aa8ad3, #7544b3);
+  background-image: -o-radial-gradient(#aa8ad3, #7544b3);
+  background-image: radial-gradient(#aa8ad3, #7544b3);
 }
 #home section.why h1, #home section.why h2, #home section.why h3, #home section.why p, #home section.why ul {
   color: white;
@@ -1025,11 +1043,11 @@ footer .ink-navigation ul.menu.horizontal li a.license {
 }
 #home section.how {
   padding: 5em 0;
-  background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, color-stop(0%, #cd6969), color-stop(100%, #c04343));
-  background-image: -webkit-radial-gradient(#cd6969, #c04343);
-  background-image: -moz-radial-gradient(#cd6969, #c04343);
-  background-image: -o-radial-gradient(#cd6969, #c04343);
-  background-image: radial-gradient(#cd6969, #c04343);
+  background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, color-stop(0%, #cd6969), color-stop(100%, #9c3434));
+  background-image: -webkit-radial-gradient(#cd6969, #9c3434);
+  background-image: -moz-radial-gradient(#cd6969, #9c3434);
+  background-image: -o-radial-gradient(#cd6969, #9c3434);
+  background-image: radial-gradient(#cd6969, #9c3434);
 }
 #home section.how h1, #home section.how h2, #home section.how h3, #home section.how p, #home section.how ul {
   color: white;
@@ -1042,11 +1060,11 @@ footer .ink-navigation ul.menu.horizontal li a.license {
 }
 #home section.who {
   padding: 5em 0;
-  background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, color-stop(0%, #d6a475), color-stop(100%, #ca8a4e));
-  background-image: -webkit-radial-gradient(#d6a475, #ca8a4e);
-  background-image: -moz-radial-gradient(#d6a475, #ca8a4e);
-  background-image: -o-radial-gradient(#d6a475, #ca8a4e);
-  background-image: radial-gradient(#d6a475, #ca8a4e);
+  background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, color-stop(0%, #d6a475), color-stop(100%, #b07135));
+  background-image: -webkit-radial-gradient(#d6a475, #b07135);
+  background-image: -moz-radial-gradient(#d6a475, #b07135);
+  background-image: -o-radial-gradient(#d6a475, #b07135);
+  background-image: radial-gradient(#d6a475, #b07135);
 }
 #home section.who h1, #home section.who h2, #home section.who h3, #home section.who p, #home section.who ul {
   color: white;

@@ -7255,7 +7255,7 @@ table {
   }
 }
 .ink-label {
-  padding: 0.2em 0.5em;
+  padding: 0 0.35em;
   white-space: nowrap;
 }
 
@@ -8328,6 +8328,7 @@ figure.ink-image > figcaption.dark {
 .ink-label {
   color: white;
   font-weight: 300;
+  font-size: 0.813em;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   -ms-border-radius: 2px;
