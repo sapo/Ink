@@ -28,7 +28,7 @@
     <table class="props bottom-space">
         
         
-        <caption>METHODS</caption>
+        <caption>Methods</caption>
         <thead>
             <tr>
                 <th>Method name</th>
@@ -83,7 +83,7 @@
 
     
     <table class="props">
-        <caption>PROPERTIES</caption>
+        <caption>Properties</caption>
         <thead>
             <tr>
                 <th>Property name</th>
@@ -102,7 +102,7 @@
                     
 
                     
-                        <code>Object</code>
+                        <span class="ink-label orange uppercase">Object</span>
                     
                     
                 </td>
@@ -118,7 +118,7 @@
                     
 
                     
-                        <code>Object</code>
+                        <span class="ink-label orange uppercase">Object</span>
                     
                     
                 </td>
@@ -135,7 +135,7 @@ true/false specifying if it has the class ink-fv-confirm.
                     
 
                     
-                        <code>Object</code>
+                        <span class="ink-label orange uppercase">Object</span>
                     
                     
                 </td>
@@ -151,7 +151,7 @@ true/false specifying if it has the class ink-fv-confirm.
                     
 
                     
-                        <code>String</code>
+                        <span class="ink-label orange uppercase">String</span>
                     
                     
                 </td>
@@ -173,7 +173,7 @@ true/false specifying if it has the class ink-fv-confirm.
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.UI.FormValidator.reset
@@ -185,13 +185,9 @@ true/false specifying if it has the class ink-fv-confirm.
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-
     
 
     
@@ -203,11 +199,14 @@ true/false specifying if it has the class ink-fv-confirm.
 
     
 
+
+    
+
 </section>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.UI.FormValidator.validate
@@ -219,118 +218,122 @@ true/false specifying if it has the class ink-fv-confirm.
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>DOMElement|String</pre>
-                
-
-                
-                    <label>elm
-                
-
-                
-                </label>
-
-                
-                    <span class="description">DOM form element or form id</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Object</pre>
-                
-
-                
-                    <label>options
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Options for</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Function</pre>
-                
-
-                
-                    <label class="optional">[options.onSuccess]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">function to run when form is valid</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Function</pre>
-                
-
-                
-                    <label class="optional">[options.onError]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">function to run when form is not valid</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Array</pre>
-                
-
-                
-                    <label class="optional">[options.customFlag]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">custom flags to use to validate form fields</span>
-                
-            </li>
-        
-        </ul>
-    
-
-    
-        <div class="return">
-            Returns 
-            
-                <pre>Boolean</pre>
-            
-            
-                <span class="description"></span>
-            
-        </div>
     
 
     
         <p class="text">Check if a form is valid or not</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>DOMElement|String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>elm
+                
+
+                
+                </label>
+                
+                    DOM form element or form id
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Object</code>
+                
+            </dt>
+            <dd>
+                
+                <label>options
+                
+
+                
+                </label>
+                
+                    Options for
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Function</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.onSuccess]
+                
+
+                
+                </label>
+                
+                    function to run when form is valid
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Function</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.onError]
+                
+
+                
+                </label>
+                
+                    function to run when form is not valid
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Array</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.customFlag]
+                
+
+                
+                </label>
+                
+                    custom flags to use to validate form fields
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>Boolean</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
 
     
 <p class="example-title">Example</p>
@@ -411,11 +414,11 @@ option to this function, like so:
 
     <section class="box box-attribute">
 
-     <h2>
+    <h1 class="fw-300">
     
        Ink.UI.FormValidator.confirmElms
     
-    <i>attribute</i></h2>
+    <i>attribute</i></h1>
 
     
 
@@ -435,11 +438,11 @@ option to this function, like so:
 
     <section class="box box-attribute">
 
-     <h2>
+    <h1 class="fw-300">
     
        Ink.UI.FormValidator.elements
     
-    <i>attribute</i></h2>
+    <i>attribute</i></h1>
 
     
 
@@ -459,11 +462,11 @@ option to this function, like so:
 
     <section class="box box-attribute">
 
-     <h2>
+    <h1 class="fw-300">
     
        Ink.UI.FormValidator.hasConfirm
     
-    <i>attribute</i></h2>
+    <i>attribute</i></h1>
 
     
 
@@ -484,11 +487,11 @@ true/false specifying if it has the class ink-fv-confirm.</p>
 
     <section class="box box-attribute">
 
-     <h2>
+    <h1 class="fw-300">
     
        Ink.UI.FormValidator.version
     
-    <i>attribute</i></h2>
+    <i>attribute</i></h1>
 
     
 

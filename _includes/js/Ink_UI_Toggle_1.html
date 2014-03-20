@@ -28,7 +28,7 @@
     <table class="props bottom-space">
         
         
-        <caption>METHODS</caption>
+        <caption>Methods</caption>
         <thead>
             <tr>
                 <th>Method name</th>
@@ -116,7 +116,7 @@
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         Ink.UI.Toggle
     
@@ -124,210 +124,212 @@
     
         <i>constructor</i>
     
-    </h2>
+    </h1>
 
     
     
 
     
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>String|DOMElement</pre>
-                
-
-                
-                    <label>selector
-                
-
-                
-                </label>
-
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Object</pre>
-                
-
-                
-                    <label class="optional">[options]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Options</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label>options.target
-                
-
-                
-                </label>
-
-                
-                    <span class="description">CSS Selector that specifies the elements that this component will toggle</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label class="optional">[options.classNameOn]
-                
-
-                
-                    =&#x27;show-all&#x27;
-                
-                </label>
-
-                
-                    <span class="description">className when toggle is On</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label class="optional">[options.classNameOff]
-                
-
-                
-                    =&#x27;hide-all&#x27;
-                
-                </label>
-
-                
-                    <span class="description">className when toggle is Off.</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label class="optional">[options.triggerEvent]
-                
-
-                
-                    =&#x27;click&#x27;
-                
-                </label>
-
-                
-                    <span class="description">Event that will trigger the toggling.</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Boolean</pre>
-                
-
-                
-                    <label class="optional">[options.closeOnClick]
-                
-
-                
-                    =true
-                
-                </label>
-
-                
-                    <span class="description">When this is on, if the user clicks outside of the toggled content, the target is toggled off.</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Selector</pre>
-                
-
-                
-                    <label class="optional">[options.closeOnInsideClick]
-                
-
-                
-                    =&#x27;a[href]&#x27;
-                
-                </label>
-
-                
-                    <span class="description">Toggle off when an element matching this selector is clicked. Set to null to deactivate the check. Default: 'a[href]' (finds links)</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Boolean</pre>
-                
-
-                
-                    <label class="optional">[options.initialState]
-                
-
-                
-                    =null
-                
-                </label>
-
-                
-                    <span class="description">Whether to start toggled off, on, or as found in the markup. (false: off, true: on, null: markup)</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Function</pre>
-                
-
-                
-                    <label class="optional">[options.onChangeState]
-                
-
-                
-                    =null
-                
-                </label>
-
-                
-                    <span class="description">Callback to be called when the toggle state changes. Return `false` to cancel the event.</span>
-                
-            </li>
-        
-        </ul>
-    
 
     
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String|DOMElement</code>
+                
+            </dt>
+            <dd>
+                
+                <label>selector
+                
+
+                
+                </label>
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Object</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options]
+                
+
+                
+                </label>
+                
+                    Options
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>options.target
+                
+
+                
+                </label>
+                
+                    CSS Selector that specifies the elements that this component will toggle
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.classNameOn]
+                
+
+                
+                    &#x27;show-all&#x27;
+                
+                </label>
+                
+                    className when toggle is On
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.classNameOff]
+                
+
+                
+                    &#x27;hide-all&#x27;
+                
+                </label>
+                
+                    className when toggle is Off.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.triggerEvent]
+                
+
+                
+                    &#x27;click&#x27;
+                
+                </label>
+                
+                    Event that will trigger the toggling.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Boolean</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.closeOnClick]
+                
+
+                
+                    true
+                
+                </label>
+                
+                    When this is on, if the user clicks outside of the toggled content, the target is toggled off.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Selector</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.closeOnInsideClick]
+                
+
+                
+                    &#x27;a[href]&#x27;
+                
+                </label>
+                
+                    Toggle off when an element matching this selector is clicked. Set to null to deactivate the check. Default: 'a[href]' (finds links)
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Boolean</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.initialState]
+                
+
+                
+                    null
+                
+                </label>
+                
+                    Whether to start toggled off, on, or as found in the markup. (false: off, true: on, null: markup)
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Function</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.onChangeState]
+                
+
+                
+                    null
+                
+                </label>
+                
+                    Callback to be called when the toggle state changes. Return `false` to cancel the event.
+                
+            </dd>
+        
+        </dl>
+        
+        
 
     
+
 
     
 <p class="example-title">Example</p>
   
 {% highlight html %}{% raw %}
      <div class="ink-dropdown">
-         <button class="ink-button toggle" data-target="#dropdown">Dropdown <span class="icon-caret-down"></span></button>
+         <button class="ink-button toggle" data-target="#dropdown">Dropdown <span class="fa fa-caret-down"></span></button>
          <ul id="dropdown" class="dropdown-menu">
              <li class="heading">Heading</li>
              <li class="separator-above"><a href="#">Option</a></li>
@@ -368,7 +370,7 @@
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.UI.Toggle.getState
@@ -380,23 +382,9 @@
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-
-    
-        <div class="return">
-            Returns 
-            
-                <pre>Boolean</pre>
-            
-            
-                <span class="description"></span>
-            
-        </div>
     
 
     
@@ -408,11 +396,14 @@
 
     
 
+
+    
+
 </section>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.UI.Toggle.setState
@@ -424,7 +415,7 @@
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
     
@@ -433,7 +424,6 @@
 
     
 
-    
 
     
 

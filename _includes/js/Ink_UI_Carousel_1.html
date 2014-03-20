@@ -28,7 +28,7 @@
     <table class="props bottom-space">
         
         
-        <caption>METHODS</caption>
+        <caption>Methods</caption>
         <thead>
             <tr>
                 <th>Method name</th>
@@ -173,7 +173,7 @@ cater for changes from responsive media queries, for instance.
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         Ink.UI.Carousel_1
     
@@ -181,199 +181,201 @@ cater for changes from responsive media queries, for instance.
     
         <i>constructor</i>
     
-    </h2>
+    </h1>
 
     
     
 
     
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>String|DOMElement</pre>
-                
-
-                
-                    <label>selector
-                
-
-                
-                </label>
-
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Object</pre>
-                
-
-                
-                    <label class="optional">[options]
-                
-
-                
-                </label>
-
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Integer</pre>
-                
-
-                
-                    <label class="optional">[autoAdvance]
-                
-
-                
-                    =0
-                
-                </label>
-
-                
-                    <span class="description">The number of milliseconds to wait between auto-advancing pages. Set to 0 to disable auto-advance.</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label class="optional">[options.axis]
-                
-
-                
-                    =&#x27;x&#x27;
-                
-                </label>
-
-                
-                    <span class="description">Can be `'x'` or `'y'`, for a horizontal or vertical carousel</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Boolean</pre>
-                
-
-                
-                    <label class="optional">[options.center]
-                
-
-                
-                    =false
-                
-                </label>
-
-                
-                    <span class="description">Center the carousel.</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Number</pre>
-                
-
-                
-                    <label class="optional">[options.initialPage]
-                
-
-                
-                    =0
-                
-                </label>
-
-                
-                    <span class="description">When initialized, set the page to this.</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Boolean</pre>
-                
-
-                
-                    <label class="optional">[options.keyboardSupport]
-                
-
-                
-                    =false
-                
-                </label>
-
-                
-                    <span class="description">Enable keyboard support</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Boolean</pre>
-                
-
-                
-                    <label class="optional">[options.swipe]
-                
-
-                
-                    =true
-                
-                </label>
-
-                
-                    <span class="description">Enable swipe support where available</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>String|DOMElement|Ink.UI.Pagination_1</pre>
-                
-
-                
-                    <label class="optional">[options.pagination]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Either an `<ul>` element to add pagination markup to, or an `Ink.UI.Pagination` instance to use.</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Function</pre>
-                
-
-                
-                    <label class="optional">[options.onChange]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Callback for when the page is changed.</span>
-                
-            </li>
-        
-        </ul>
-    
 
     
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String|DOMElement</code>
+                
+            </dt>
+            <dd>
+                
+                <label>selector
+                
+
+                
+                </label>
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Object</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options]
+                
+
+                
+                </label>
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Integer</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[autoAdvance]
+                
+
+                
+                    0
+                
+                </label>
+                
+                    The number of milliseconds to wait between auto-advancing pages. Set to 0 to disable auto-advance.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.axis]
+                
+
+                
+                    &#x27;x&#x27;
+                
+                </label>
+                
+                    Can be `'x'` or `'y'`, for a horizontal or vertical carousel
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Boolean</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.center]
+                
+
+                
+                    false
+                
+                </label>
+                
+                    Center the carousel.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Number</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.initialPage]
+                
+
+                
+                    0
+                
+                </label>
+                
+                    When initialized, set the page to this.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Boolean</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.keyboardSupport]
+                
+
+                
+                    false
+                
+                </label>
+                
+                    Enable keyboard support
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Boolean</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.swipe]
+                
+
+                
+                    true
+                
+                </label>
+                
+                    Enable swipe support where available
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String|DOMElement|Ink.UI.Pagination_1</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.pagination]
+                
+
+                
+                </label>
+                
+                    Either an `<ul>` element to add pagination markup to, or an `Ink.UI.Pagination` instance to use.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Function</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.onChange]
+                
+
+                
+                </label>
+                
+                    Callback for when the page is changed.
+                
+            </dd>
+        
+        </dl>
+        
+        
 
     
+
 
     
 
@@ -384,7 +386,7 @@ cater for changes from responsive media queries, for instance.
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.UI.Carousel_1.getPage
@@ -396,13 +398,9 @@ cater for changes from responsive media queries, for instance.
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-
     
 
     
@@ -414,11 +412,14 @@ cater for changes from responsive media queries, for instance.
 
     
 
+
+    
+
 </section>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.UI.Carousel_1.nextPage
@@ -430,42 +431,44 @@ cater for changes from responsive media queries, for instance.
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>Boolean</pre>
-                
-
-                
-                    <label class="optional">[wrap]
-                
-
-                
-                    =false
-                
-                </label>
-
-                
-                    <span class="description">If true, going to the page after the last page takes you to the first page.</span>
-                
-            </li>
-        
-        </ul>
-    
-
     
 
     
         <p class="text">Change to the next page</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>Boolean</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[wrap]
+                
+
+                
+                    false
+                
+                </label>
+                
+                    If true, going to the page after the last page takes you to the first page.
+                
+            </dd>
+        
+        </dl>
+        
+        
+
+    
+
 
     
 
@@ -476,7 +479,7 @@ cater for changes from responsive media queries, for instance.
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.UI.Carousel_1.previousPage
@@ -488,42 +491,44 @@ cater for changes from responsive media queries, for instance.
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>Boolean</pre>
-                
-
-                
-                    <label class="optional">[wrap]
-                
-
-                
-                    =false
-                
-                </label>
-
-                
-                    <span class="description">If true, going to the page after the last page takes you to the first page.</span>
-                
-            </li>
-        
-        </ul>
-    
-
     
 
     
         <p class="text">Change to the previous page</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>Boolean</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[wrap]
+                
+
+                
+                    false
+                
+                </label>
+                
+                    If true, going to the page after the last page takes you to the first page.
+                
+            </dd>
+        
+        </dl>
+        
+        
+
+    
+
 
     
 
@@ -534,7 +539,7 @@ cater for changes from responsive media queries, for instance.
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.UI.Carousel_1.refit
@@ -546,13 +551,9 @@ cater for changes from responsive media queries, for instance.
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-
     
 
     
@@ -566,11 +567,14 @@ cater for changes from responsive media queries, for instance.</p>
 
     
 
+
+    
+
 </section>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.UI.Carousel_1.setPage
@@ -582,53 +586,55 @@ cater for changes from responsive media queries, for instance.</p>
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-
-                
-                    <label>page
-                
-
-                
-                </label>
-
-                
-            </li>
-        
-            <li>
-                
-
-                
-                    <label class="optional">[wrap]
-                
-
-                
-                    =false
-                
-                </label>
-
-                
-                    <span class="description">Wrap over the first and last pages. (For example, going to the 5th page when there are only 4 pages goes to the 1st page)</span>
-                
-            </li>
-        
-        </ul>
-    
-
     
 
     
         <p class="text">Set the current page to `page`</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+                <label>page
+                
+
+                
+                </label>
+                
+            </dd>
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[wrap]
+                
+
+                
+                    false
+                
+                </label>
+                
+                    Wrap over the first and last pages. (For example, going to the 5th page when there are only 4 pages goes to the 1st page)
+                
+            </dd>
+        
+        </dl>
+        
+        
+
+    
+
 
     
 

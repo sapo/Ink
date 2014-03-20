@@ -28,7 +28,7 @@
     <table class="props bottom-space">
         
         
-        <caption>METHODS</caption>
+        <caption>Methods</caption>
         <thead>
             <tr>
                 <th>Method name</th>
@@ -171,7 +171,7 @@
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         Ink.UI.Modal
     
@@ -179,297 +179,299 @@
     
         <i>constructor</i>
     
-    </h2>
+    </h1>
 
     
     
 
     
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>String|DOMElement</pre>
-                
-
-                
-                    <label>selector
-                
-
-                
-                </label>
-
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Object</pre>
-                
-
-                
-                    <label class="optional">[options]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Options</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label class="optional">[options.width]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Default/Initial width. Ex: '600px'</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label class="optional">[options.height]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Default/Initial height. Ex: '400px'</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label class="optional">[options.shadeClass]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Custom class to be added to the div.ink-shade</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label class="optional">[options.modalClass]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Custom class to be added to the div.ink-modal</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label class="optional">[options.trigger]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">CSS Selector to target elements that will trigger the Modal.</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label class="optional">[options.triggerEvent]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Trigger's event to be listened. 'click' is the default value. Ex: 'mouseover', 'touchstart'...</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Boolean</pre>
-                
-
-                
-                    <label class="optional">[options.autoDisplay]
-                
-
-                
-                    =true
-                
-                </label>
-
-                
-                    <span class="description">Display the Modal automatically when constructed.</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label class="optional">[options.markup]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Markup to be placed in the Modal when created</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Function</pre>
-                
-
-                
-                    <label class="optional">[options.onShow]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Callback function to run when the Modal is opened.</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Function</pre>
-                
-
-                
-                    <label class="optional">[options.onDismiss]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Callback function to run when the Modal is closed. Return `false` to cancel dismissing the Modal.</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Boolean</pre>
-                
-
-                
-                    <label class="optional">[options.closeOnClick]
-                
-
-                
-                    =false
-                
-                </label>
-
-                
-                    <span class="description">Determines if the Modal should close when clicked outside of it.</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Boolean</pre>
-                
-
-                
-                    <label class="optional">[options.closeOnEscape]
-                
-
-                
-                    =true
-                
-                </label>
-
-                
-                    <span class="description">Determines if the Modal should close when "Esc" key is pressed.</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Boolean</pre>
-                
-
-                
-                    <label class="optional">[options.responsive]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Determines if the Modal should behave responsively (adapt to smaller viewports).</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Boolean</pre>
-                
-
-                
-                    <label class="optional">[options.disableScroll]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Determines if the Modal should 'disable' the page's scroll (not the Modal's body).</span>
-                
-            </li>
-        
-        </ul>
-    
 
     
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String|DOMElement</code>
+                
+            </dt>
+            <dd>
+                
+                <label>selector
+                
+
+                
+                </label>
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Object</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options]
+                
+
+                
+                </label>
+                
+                    Options
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.width]
+                
+
+                
+                </label>
+                
+                    Default/Initial width. Ex: '600px'
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.height]
+                
+
+                
+                </label>
+                
+                    Default/Initial height. Ex: '400px'
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.shadeClass]
+                
+
+                
+                </label>
+                
+                    Custom class to be added to the div.ink-shade
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.modalClass]
+                
+
+                
+                </label>
+                
+                    Custom class to be added to the div.ink-modal
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.trigger]
+                
+
+                
+                </label>
+                
+                    CSS Selector to target elements that will trigger the Modal.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.triggerEvent]
+                
+
+                
+                </label>
+                
+                    Trigger's event to be listened. 'click' is the default value. Ex: 'mouseover', 'touchstart'...
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Boolean</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.autoDisplay]
+                
+
+                
+                    true
+                
+                </label>
+                
+                    Display the Modal automatically when constructed.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.markup]
+                
+
+                
+                </label>
+                
+                    Markup to be placed in the Modal when created
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Function</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.onShow]
+                
+
+                
+                </label>
+                
+                    Callback function to run when the Modal is opened.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Function</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.onDismiss]
+                
+
+                
+                </label>
+                
+                    Callback function to run when the Modal is closed. Return `false` to cancel dismissing the Modal.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Boolean</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.closeOnClick]
+                
+
+                
+                    false
+                
+                </label>
+                
+                    Determines if the Modal should close when clicked outside of it.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Boolean</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.closeOnEscape]
+                
+
+                
+                    true
+                
+                </label>
+                
+                    Determines if the Modal should close when "Esc" key is pressed.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Boolean</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.responsive]
+                
+
+                
+                </label>
+                
+                    Determines if the Modal should behave responsively (adapt to smaller viewports).
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Boolean</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.disableScroll]
+                
+
+                
+                </label>
+                
+                    Determines if the Modal should 'disable' the page's scroll (not the Modal's body).
+                
+            </dd>
+        
+        </dl>
+        
+        
 
     
+
 
     
 <p class="example-title">Example</p>
@@ -516,7 +518,7 @@
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.UI.Modal.destroy
@@ -528,13 +530,9 @@
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-
     
 
     
@@ -546,11 +544,14 @@
 
     
 
+
+    
+
 </section>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.UI.Modal.dismiss
@@ -562,13 +563,9 @@
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-
     
 
     
@@ -580,11 +577,14 @@
 
     
 
+
+    
+
 </section>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.UI.Modal.getContentElement
@@ -596,23 +596,9 @@
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-
-    
-        <div class="return">
-            Returns 
-            
-                <pre>DOMElement</pre>
-            
-            
-                <span class="description"></span>
-            
-        </div>
     
 
     
@@ -624,11 +610,14 @@
 
     
 
+
+    
+
 </section>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.UI.Modal.open
@@ -640,40 +629,42 @@
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>Event</pre>
-                
-
-                
-                    <label class="optional">[event]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">(internal) In case its fired by the internal trigger.</span>
-                
-            </li>
-        
-        </ul>
-    
-
     
 
     
         <p class="text">Display this Modal. Useful if you have initialized the modal</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>Event</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[event]
+                
+
+                
+                </label>
+                
+                    (internal) In case its fired by the internal trigger.
+                
+            </dd>
+        
+        </dl>
+        
+        
+
+    
+
 
     
 
@@ -684,7 +675,7 @@
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.UI.Modal.setContentMarkup
@@ -696,38 +687,40 @@
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label>contentMarkup
-                
-
-                
-                </label>
-
-                
-            </li>
-        
-        </ul>
-    
-
     
 
     
         <p class="text">Replaces the content markup</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>contentMarkup
+                
+
+                
+                </label>
+                
+            </dd>
+        
+        </dl>
+        
+        
+
+    
+
 
     
 

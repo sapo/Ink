@@ -28,7 +28,7 @@
     <table class="props bottom-space">
         
         
-        <caption>METHODS</caption>
+        <caption>Methods</caption>
         <thead>
             <tr>
                 <th>Method name</th>
@@ -440,7 +440,7 @@ resultant of the previous function 'storeIdAndClasses'.
 
     
     <table class="props">
-        <caption>PROPERTIES</caption>
+        <caption>Properties</caption>
         <thead>
             <tr>
                 <th>Property name</th>
@@ -459,7 +459,7 @@ resultant of the previous function 'storeIdAndClasses'.
                     
 
                     
-                        <code>Object</code>
+                        <span class="ink-label orange uppercase">Object</span>
                     
                     
                 </td>
@@ -483,7 +483,7 @@ resultant of the previous function 'storeIdAndClasses'.
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.UI.Common.ajaxJSON
@@ -495,7 +495,7 @@ resultant of the previous function 'storeIdAndClasses'.
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
         <span class="tag">async</span>
@@ -503,52 +503,54 @@ resultant of the previous function 'storeIdAndClasses'.
     
 
     
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label>endpoint
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Valid URL to be used as target by the request.</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Object</pre>
-                
-
-                
-                    <label>params
-                
-
-                
-                </label>
-
-                
-                    <span class="description">This field is used in the thrown Exception to identify the parameter.</span>
-                
-            </li>
-        
-        </ul>
-    
-
-    
-
-    
         <p class="text">This method provides a more convenient way to do an async AJAX request and expect a JSON response.
 It offers a callback option, as third paramenter, for a better async handling.</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>endpoint
+                
+
+                
+                </label>
+                
+                    Valid URL to be used as target by the request.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Object</code>
+                
+            </dt>
+            <dd>
+                
+                <label>params
+                
+
+                
+                </label>
+                
+                    This field is used in the thrown Exception to identify the parameter.
+                
+            </dd>
+        
+        </dl>
+        
+        
+
+    
+
 
     
 <p class="example-title">Example</p>
@@ -567,7 +569,7 @@ It offers a callback option, as third paramenter, for a better async handling.</
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.UI.Common.childIndex
@@ -579,50 +581,54 @@ It offers a callback option, as third paramenter, for a better async handling.</
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>DOMElement</pre>
-                
-
-                
-                    <label>childEl
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Valid DOM Element.</span>
-                
-            </li>
-        
-        </ul>
-    
-
-    
-        <div class="return">
-            Returns 
-            
-                <pre>Number</pre>
-            
-            
-                <span class="description"></span>
-            
-        </div>
     
 
     
         <p class="text">Method to return the 'nth' position that an element occupies relatively to its parent.</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>DOMElement</code>
+                
+            </dt>
+            <dd>
+                
+                <label>childEl
+                
+
+                
+                </label>
+                
+                    Valid DOM Element.
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>Number</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
 
     
 <p class="example-title">Example</p>
@@ -651,7 +657,7 @@ It offers a callback option, as third paramenter, for a better async handling.</
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.UI.Common.cleanChildren
@@ -663,35 +669,9 @@ It offers a callback option, as third paramenter, for a better async handling.</
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>DOMElement</pre>
-                
-
-                
-                    <label>parentEl
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Valid DOM Element</span>
-                
-            </li>
-        
-        </ul>
-    
-
     
 
     
@@ -699,6 +679,34 @@ It offers a callback option, as third paramenter, for a better async handling.</
 This method was initially created to help solve a problem in Internet Explorer(s) that occurred when trying
 to set the innerHTML of some specific elements like 'table'.</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>DOMElement</code>
+                
+            </dt>
+            <dd>
+                
+                <label>parentEl
+                
+
+                
+                </label>
+                
+                    Valid DOM Element
+                
+            </dd>
+        
+        </dl>
+        
+        
+
+    
+
 
     
 <p class="example-title">Example</p>
@@ -729,7 +737,7 @@ to set the innerHTML of some specific elements like 'table'.</p>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.UI.Common.clone
@@ -741,51 +749,55 @@ to set the innerHTML of some specific elements like 'table'.</p>
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>Object</pre>
-                
-
-                
-                    <label>o
-                
-
-                
-                </label>
-
-                
-                    <span class="description">The object to be cloned/copied.</span>
-                
-            </li>
-        
-        </ul>
-    
-
-    
-        <div class="return">
-            Returns 
-            
-                <pre>Object</pre>
-            
-            
-                <span class="description"></span>
-            
-        </div>
     
 
     
         <p class="text">Method to make a deep copy (clone) of an object.
 Note: The object cannot have loops.</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>Object</code>
+                
+            </dt>
+            <dd>
+                
+                <label>o
+                
+
+                
+                </label>
+                
+                    The object to be cloned/copied.
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>Object</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
 
     
 <p class="example-title">Example</p>
@@ -808,7 +820,7 @@ Note: The object cannot have loops.</p>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.UI.Common.currentLayout
@@ -820,28 +832,17 @@ Note: The object cannot have loops.</p>
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-
-    
-        <div class="return">
-            Returns 
-            
-                <pre>String</pre>
-            
-            
-                <span class="description"></span>
-            
-        </div>
     
 
     
         <p class="text">Method to get the current Ink layout applied.</p>
     
+
+    
+
 
     
 <p class="example-title">Example</p>
@@ -862,7 +863,7 @@ Note: The object cannot have loops.</p>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.UI.Common.destroyComponent
@@ -874,13 +875,9 @@ Note: The object cannot have loops.</p>
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-
     
 
     
@@ -893,11 +890,14 @@ Components should copy this method as its destroy method.</p>
 
     
 
+
+    
+
 </section>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.UI.Common.elOrSelector
@@ -909,68 +909,72 @@ Components should copy this method as its destroy method.</p>
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>DOMElement|String</pre>
-                
-
-                
-                    <label>elOrSelector
-                
-
-                
-                </label>
-
-                
-                    <span class="description">DOM Element or CSS Selector</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label>fieldName
-                
-
-                
-                </label>
-
-                
-                    <span class="description">This field is used in the thrown Exception to identify the parameter.</span>
-                
-            </li>
-        
-        </ul>
-    
-
-    
-        <div class="return">
-            Returns 
-            
-                <pre>DOMElement</pre>
-            
-            
-                <span class="description"></span>
-            
-        </div>
     
 
     
         <p class="text">Method to get a DOM Element. The first parameter should be either a DOM Element or a valid CSS Selector.
 If not, then it will throw an exception. Otherwise, it returns a DOM Element.</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>DOMElement|String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>elOrSelector
+                
+
+                
+                </label>
+                
+                    DOM Element or CSS Selector
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>fieldName
+                
+
+                
+                </label>
+                
+                    This field is used in the thrown Exception to identify the parameter.
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>DOMElement</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
 
     
 <p class="example-title">Example</p>
@@ -989,7 +993,7 @@ If not, then it will throw an exception. Otherwise, it returns a DOM Element.</p
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.UI.Common.elsOrSelector
@@ -1001,79 +1005,9 @@ If not, then it will throw an exception. Otherwise, it returns a DOM Element.</p
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>DOMElement|String</pre>
-                
-
-                
-                    <label>elOrSelector
-                
-
-                
-                </label>
-
-                
-                    <span class="description">DOM Element or CSS Selector</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label>fieldName
-                
-
-                
-                </label>
-
-                
-                    <span class="description">This field is used in the thrown Exception to identify the parameter.</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Boolean</pre>
-                
-
-                
-                    <label>required
-                
-
-                
-                </label>
-
-                
-                    <span class="description">If true, accept an empty array as output.</span>
-                
-            </li>
-        
-        </ul>
-    
-
-    
-        <div class="return">
-            Returns 
-            
-                <pre>Array</pre>
-            
-            
-                <span class="description"></span>
-            
-        </div>
     
 
     
@@ -1081,6 +1015,80 @@ If not, then it will throw an exception. Otherwise, it returns a DOM Element.</p
 
 see elOrSelector</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>DOMElement|String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>elOrSelector
+                
+
+                
+                </label>
+                
+                    DOM Element or CSS Selector
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>fieldName
+                
+
+                
+                </label>
+                
+                    This field is used in the thrown Exception to identify the parameter.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Boolean</code>
+                
+            </dt>
+            <dd>
+                
+                <label>required
+                
+
+                
+                </label>
+                
+                    If true, accept an empty array as output.
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>Array</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
 
     
 <p class="example-title">Example</p>
@@ -1098,7 +1106,7 @@ see elOrSelector</p>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.UI.Common.getInstance
@@ -1110,50 +1118,54 @@ see elOrSelector</p>
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>String|DOMElement</pre>
-                
-
-                
-                    <label>instanceIdOrElement
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Instance's id or DOM Element from which we want the instances.</span>
-                
-            </li>
-        
-        </ul>
-    
-
-    
-        <div class="return">
-            Returns 
-            
-                <pre>Object|Object[]</pre>
-            
-            
-                <span class="description"></span>
-            
-        </div>
     
 
     
         <p class="text">This method retrieves the registered instance(s) of a given element or instance id.</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String|DOMElement</code>
+                
+            </dt>
+            <dd>
+                
+                <label>instanceIdOrElement
+                
+
+                
+                </label>
+                
+                    Instance's id or DOM Element from which we want the instances.
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>Object|Object[]</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
 
     
 
@@ -1164,7 +1176,7 @@ see elOrSelector</p>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.UI.Common.getInstanceFromSelector
@@ -1176,50 +1188,54 @@ see elOrSelector</p>
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label>selector
-                
-
-                
-                </label>
-
-                
-                    <span class="description">CSS selector to define the element from which it'll get the instance(s).</span>
-                
-            </li>
-        
-        </ul>
-    
-
-    
-        <div class="return">
-            Returns 
-            
-                <pre>Object|Object[]</pre>
-            
-            
-                <span class="description"></span>
-            
-        </div>
     
 
     
         <p class="text">This method retrieves the registered instance(s) of an element based on the given selector.</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>selector
+                
+
+                
+                </label>
+                
+                    CSS selector to define the element from which it'll get the instance(s).
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>Object|Object[]</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
 
     
 
@@ -1230,7 +1246,7 @@ see elOrSelector</p>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.UI.Common.getInstanceIds
@@ -1242,23 +1258,9 @@ see elOrSelector</p>
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-
-    
-        <div class="return">
-            Returns 
-            
-                <pre>String[]</pre>
-            
-            
-                <span class="description"></span>
-            
-        </div>
     
 
     
@@ -1270,11 +1272,14 @@ see elOrSelector</p>
 
     
 
+
+    
+
 </section>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.UI.Common.getInstances
@@ -1286,23 +1291,9 @@ see elOrSelector</p>
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-
-    
-        <div class="return">
-            Returns 
-            
-                <pre>Object[]</pre>
-            
-            
-                <span class="description"></span>
-            
-        </div>
     
 
     
@@ -1314,11 +1305,14 @@ see elOrSelector</p>
 
     
 
+
+    
+
 </section>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.UI.Common.hashSet
@@ -1330,40 +1324,42 @@ see elOrSelector</p>
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>Object</pre>
-                
-
-                
-                    <label>o
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Object with the info to be placed in the location's hash.</span>
-                
-            </li>
-        
-        </ul>
-    
-
     
 
     
         <p class="text">Method to set the location's hash (window.location.hash).</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>Object</code>
+                
+            </dt>
+            <dd>
+                
+                <label>o
+                
+
+                
+                </label>
+                
+                    Object with the info to be placed in the location's hash.
+                
+            </dd>
+        
+        </dl>
+        
+        
+
+    
+
 
     
 <p class="example-title">Example</p>
@@ -1386,7 +1382,7 @@ see elOrSelector</p>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.UI.Common.isDOMElement
@@ -1398,50 +1394,54 @@ see elOrSelector</p>
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>Mixed</pre>
-                
-
-                
-                    <label>o
-                
-
-                
-                </label>
-
-                
-                    <span class="description">The object to be checked.</span>
-                
-            </li>
-        
-        </ul>
-    
-
-    
-        <div class="return">
-            Returns 
-            
-                <pre>Boolean</pre>
-            
-            
-                <span class="description"></span>
-            
-        </div>
     
 
     
         <p class="text">Method to check if an item is a valid DOM Element.</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>Mixed</code>
+                
+            </dt>
+            <dd>
+                
+                <label>o
+                
+
+                
+                </label>
+                
+                    The object to be checked.
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>Boolean</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
 
     
 <p class="example-title">Example</p>
@@ -1464,7 +1464,7 @@ see elOrSelector</p>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.UI.Common.isInteger
@@ -1476,50 +1476,54 @@ see elOrSelector</p>
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>Mixed</pre>
-                
-
-                
-                    <label>n
-                
-
-                
-                </label>
-
-                
-                    <span class="description">The value to be checked.</span>
-                
-            </li>
-        
-        </ul>
-    
-
-    
-        <div class="return">
-            Returns 
-            
-                <pre>Boolean</pre>
-            
-            
-                <span class="description"></span>
-            
-        </div>
     
 
     
         <p class="text">Method to check if an item is a valid integer.</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>Mixed</code>
+                
+            </dt>
+            <dd>
+                
+                <label>n
+                
+
+                
+                </label>
+                
+                    The value to be checked.
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>Boolean</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
 
     
 <p class="example-title">Example</p>
@@ -1542,7 +1546,7 @@ see elOrSelector</p>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.UI.Common.options
@@ -1554,88 +1558,9 @@ see elOrSelector</p>
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>Object</pre>
-                
-
-                
-                    <label class="optional">[fieldId]
-                
-
-                
-                    =&#x27;&#x27;
-                
-                </label>
-
-                
-                    <span class="description">Tag used in thrown exceptions: "<fieldId>: ..."</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Object</pre>
-                
-
-                
-                    <label>defaults
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Object with arrays of option defaults</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Object</pre>
-                
-
-                
-                    <label>overrides
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Object containing options given from user through JavaScript</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>DOMElement</pre>
-                
-
-                
-                    <label class="optional">[element]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Element with data-attributes</span>
-                
-            </li>
-        
-        </ul>
-    
-
     
 
     
@@ -1647,6 +1572,87 @@ Values from the element's data-atrributes are coerced into the required type.
 
 Mainly for Ink UI.* modules</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>Object</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[fieldId]
+                
+
+                
+                    &#x27;&#x27;
+                
+                </label>
+                
+                    Tag used in thrown exceptions: "<fieldId>: ..."
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Object</code>
+                
+            </dt>
+            <dd>
+                
+                <label>defaults
+                
+
+                
+                </label>
+                
+                    Object with arrays of option defaults
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Object</code>
+                
+            </dt>
+            <dd>
+                
+                <label>overrides
+                
+
+                
+                </label>
+                
+                    Object containing options given from user through JavaScript
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>DOMElement</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[element]
+                
+
+                
+                </label>
+                
+                    Element with data-attributes
+                
+            </dd>
+        
+        </dl>
+        
+        
+
+    
+
 
     
 <p class="example-title">Example</p>
@@ -1700,7 +1706,7 @@ Options which go to default:
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.UI.Common.registerInstance
@@ -1712,74 +1718,76 @@ Options which go to default:
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>Object</pre>
-                
-
-                
-                    <label>inst
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Object that holds the instance.</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>DOMElement</pre>
-                
-
-                
-                    <label>el
-                
-
-                
-                </label>
-
-                
-                    <span class="description">DOM Element to associate with the object.</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Object</pre>
-                
-
-                
-                    <label class="optional">[optionalPrefix]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Defaults to 'instance'</span>
-                
-            </li>
-        
-        </ul>
-    
-
     
 
     
         <p class="text">This method saves a component's instance reference for later retrieval.</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>Object</code>
+                
+            </dt>
+            <dd>
+                
+                <label>inst
+                
+
+                
+                </label>
+                
+                    Object that holds the instance.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>DOMElement</code>
+                
+            </dt>
+            <dd>
+                
+                <label>el
+                
+
+                
+                </label>
+                
+                    DOM Element to associate with the object.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Object</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[optionalPrefix]
+                
+
+                
+                </label>
+                
+                    Defaults to 'instance'
+                
+            </dd>
+        
+        </dl>
+        
+        
+
+    
+
 
     
 
@@ -1790,7 +1798,7 @@ Options which go to default:
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.UI.Common.restoreIdAndClasses
@@ -1802,58 +1810,60 @@ Options which go to default:
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>DOMElement</pre>
-                
-
-                
-                    <label>toEl
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Valid DOM Element to set the id and classes on.</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Object</pre>
-                
-
-                
-                    <label>inObj
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Object where the id and classes to be set are.</span>
-                
-            </li>
-        
-        </ul>
-    
-
     
 
     
         <p class="text">This method sets the id and className properties of a given DOM Element based on a given similar object
 resultant of the previous function 'storeIdAndClasses'.</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>DOMElement</code>
+                
+            </dt>
+            <dd>
+                
+                <label>toEl
+                
+
+                
+                </label>
+                
+                    Valid DOM Element to set the id and classes on.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Object</code>
+                
+            </dt>
+            <dd>
+                
+                <label>inObj
+                
+
+                
+                </label>
+                
+                    Object where the id and classes to be set are.
+                
+            </dd>
+        
+        </dl>
+        
+        
+
+    
+
 
     
 <p class="example-title">Example</p>
@@ -1883,7 +1893,7 @@ resultant of the previous function 'storeIdAndClasses'.</p>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.UI.Common.storeIdAndClasses
@@ -1895,57 +1905,59 @@ resultant of the previous function 'storeIdAndClasses'.</p>
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>DOMElement</pre>
-                
-
-                
-                    <label>fromEl
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Valid DOM Element to get the id and classes from.</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Object</pre>
-                
-
-                
-                    <label>inObj
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Object where the id and classes will be saved.</span>
-                
-            </li>
-        
-        </ul>
-    
-
     
 
     
         <p class="text">This method stores the id and/or the classes of a given element in a given object.</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>DOMElement</code>
+                
+            </dt>
+            <dd>
+                
+                <label>fromEl
+                
+
+                
+                </label>
+                
+                    Valid DOM Element to get the id and classes from.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Object</code>
+                
+            </dt>
+            <dd>
+                
+                <label>inObj
+                
+
+                
+                </label>
+                
+                    Object where the id and classes will be saved.
+                
+            </dd>
+        
+        </dl>
+        
+        
+
+    
+
 
     
 <p class="example-title">Example</p>
@@ -1973,7 +1985,7 @@ resultant of the previous function 'storeIdAndClasses'.</p>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.UI.Common.unregisterInstance
@@ -1985,40 +1997,42 @@ resultant of the previous function 'storeIdAndClasses'.</p>
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label>id
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Id of the instance to be destroyed.</span>
-                
-            </li>
-        
-        </ul>
-    
-
     
 
     
         <p class="text">This method deletes/destroy an instance with a given id.</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>id
+                
+
+                
+                </label>
+                
+                    Id of the instance to be destroyed.
+                
+            </dd>
+        
+        </dl>
+        
+        
+
+    
+
 
     
 
@@ -2031,11 +2045,11 @@ resultant of the previous function 'storeIdAndClasses'.</p>
 
     <section class="box box-attribute">
 
-     <h2>
+    <h1 class="fw-300">
     
        Ink.UI.Common.Layouts
     
-    <i>attribute</i></h2>
+    <i>attribute</i></h1>
 
     
 

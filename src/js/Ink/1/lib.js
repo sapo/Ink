@@ -8,11 +8,6 @@
 
     'use strict';
 
-    /**
-     * @class Ink
-     */
-
-
     // skip redefinition of Ink core
     if ('Ink' in window) { return; }
 
@@ -145,7 +140,7 @@
 
         /**
          * Loads a script URL.
-         * This creates a `<script>` tag in the `<head>` of the document.
+         * This creates a `script` tag in the `head` of the document.
          * Reports errors by listening to 'error' and 'readystatechange' events.
          *
          * @method loadScript

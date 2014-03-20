@@ -335,8 +335,8 @@ body.ink-drawer {
 
 
 // Code highlight
-.highlight          { padding: 1em; background: $code-background; margin-bottom: 1.5em; @include border-radius($border-radius); }
-.highlight pre      { margin: 0; font-size: .9em; overflow-x: auto; }
+.highlight          { padding: 1em; background: $code-background; margin-bottom: 1.5em; @include border-radius($border-radius);}
+.highlight pre      { margin: 0; font-size: .9em; overflow-x: auto;}
 .highlight .c       { color: #999988; font-style: italic; } /* Comment */
 .highlight .err     { background-color: #e3d2d2; color: #a61717; } /* Error */
 .highlight .k       { font-weight: bold; } /* Keyword */
@@ -438,7 +438,7 @@ section {
         border-top: 1px solid $code-border;
     }
     
-    p, ul, ol, dl, table {
+    p, ul, ol, dl, dt code, table {
         font-weight: 300;
     }
 }
@@ -499,6 +499,10 @@ table.props {
     tr:last-child td {
         border-bottom: none;
     }
+
+    .ink-label {
+        font-size: .813em;
+    }
 }
 
 span.tip {
@@ -507,14 +511,14 @@ span.tip {
 
 ul {
     &.props {
-        margin: .5em 0;
+        margin: 0;
         padding: 0;
         list-style-type: none;
         
         &.inline {
             li {
                 & + li {
-                    margin-right: 0.4em;
+                    margin: 0 0.4em 0.5em 0;
                 }
             }
         }
@@ -527,7 +531,7 @@ ul {
         li.prop {
             @extend .slab-400;
             background-color: $code-background;
-            font-size: .95em;
+            font-size: .938em;
             padding: 0 5px;
             &.breakpoint-aware {
                 &:after {
@@ -626,7 +630,7 @@ p + p.example-title {
 
 .example, table.props {
     code, pre {
-        font-size: 0.9em;
+        font-size: 0.913em;
     }
 }
 

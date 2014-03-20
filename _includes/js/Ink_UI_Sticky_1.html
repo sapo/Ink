@@ -28,7 +28,7 @@
     <table class="props bottom-space">
         
         
-        <caption>METHODS</caption>
+        <caption>Methods</caption>
         <thead>
             <tr>
                 <th>Method name</th>
@@ -79,7 +79,7 @@ to fixed and maintain it until the user scrolls back to the same place.</div>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         Ink.UI.Sticky
     
@@ -87,220 +87,222 @@ to fixed and maintain it until the user scrolls back to the same place.</div>
     
         <i>constructor</i>
     
-    </h2>
+    </h1>
 
     
     
 
     
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>String|DOMElement</pre>
-                
-
-                
-                    <label>selector
-                
-
-                
-                </label>
-
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Object</pre>
-                
-
-                
-                    <label class="optional">[options]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Options</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Number</pre>
-                
-
-                
-                    <label class="optional">[options.offsetBottom]
-                
-
-                
-                    =0
-                
-                </label>
-
-                
-                    <span class="description">Number of pixels of distance from the bottomElement.</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Number</pre>
-                
-
-                
-                    <label class="optional">[options.offsetTop]
-                
-
-                
-                    =0
-                
-                </label>
-
-                
-                    <span class="description">Number of pixels of distance from the topElement.</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Boolean</pre>
-                
-
-                
-                    <label class="optional">[options.inlineDimensions]
-                
-
-                
-                    =true
-                
-                </label>
-
-                
-                    <span class="description">Whether to set "style.height" and "style.width" in the stuck element. Turn this off when your `stickyClass` has its own height and width and you don't want this to be dealt with through javascript.</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Boolean</pre>
-                
-
-                
-                    <label class="optional">[options.inlinePosition]
-                
-
-                
-                    =true
-                
-                </label>
-
-                
-                    <span class="description">Whether to set "style.left" in the stuck element. Turn this off when your `stickyClass` has its own "left" position and you don't want this to be dealt with through javascript.</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label class="optional">[options.wrapperClass]
-                
-
-                
-                    =&quot;ink-sticky-wrapper&quot;
-                
-                </label>
-
-                
-                    <span class="description">Css class for the wrapper element.</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label class="optional">[options.stickyClass]
-                
-
-                
-                    =&quot;ink-sticky-stuck&quot;
-                
-                </label>
-
-                
-                    <span class="description">Css class for sticking the sticky to the screen. Add your own "stuck" class to define your own sticky behaviour.</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label class="optional">[options.topElement]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">CSS Selector that specifies a top element with which the component could collide.</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label class="optional">[options.bottomElement]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">CSS Selector that specifies a bottom element with which the component could collide.</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Array|String</pre>
-                
-
-                
-                    <label class="optional">[options.activateInLayouts]
-                
-
-                
-                    =&#x27;medium,large&#x27;
-                
-                </label>
-
-                
-                    <span class="description">Layouts in which the sticky behaviour is present. Pass an array or comma-separated string.</span>
-                
-            </li>
-        
-        </ul>
-    
 
     
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String|DOMElement</code>
+                
+            </dt>
+            <dd>
+                
+                <label>selector
+                
+
+                
+                </label>
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Object</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options]
+                
+
+                
+                </label>
+                
+                    Options
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Number</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.offsetBottom]
+                
+
+                
+                    0
+                
+                </label>
+                
+                    Number of pixels of distance from the bottomElement.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Number</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.offsetTop]
+                
+
+                
+                    0
+                
+                </label>
+                
+                    Number of pixels of distance from the topElement.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Boolean</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.inlineDimensions]
+                
+
+                
+                    true
+                
+                </label>
+                
+                    Whether to set "style.height" and "style.width" in the stuck element. Turn this off when your `stickyClass` has its own height and width and you don't want this to be dealt with through javascript.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Boolean</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.inlinePosition]
+                
+
+                
+                    true
+                
+                </label>
+                
+                    Whether to set "style.left" in the stuck element. Turn this off when your `stickyClass` has its own "left" position and you don't want this to be dealt with through javascript.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.wrapperClass]
+                
+
+                
+                    &quot;ink-sticky-wrapper&quot;
+                
+                </label>
+                
+                    Css class for the wrapper element.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.stickyClass]
+                
+
+                
+                    &quot;ink-sticky-stuck&quot;
+                
+                </label>
+                
+                    Css class for sticking the sticky to the screen. Add your own "stuck" class to define your own sticky behaviour.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.topElement]
+                
+
+                
+                </label>
+                
+                    CSS Selector that specifies a top element with which the component could collide.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.bottomElement]
+                
+
+                
+                </label>
+                
+                    CSS Selector that specifies a bottom element with which the component could collide.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Array|String</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.activateInLayouts]
+                
+
+                
+                    &#x27;medium,large&#x27;
+                
+                </label>
+                
+                    Layouts in which the sticky behaviour is present. Pass an array or comma-separated string.
+                
+            </dd>
+        
+        </dl>
+        
+        
 
     
+
 
     
 <p class="example-title">Example</p>

@@ -28,7 +28,7 @@
     <table class="props bottom-space">
         
         
-        <caption>METHODS</caption>
+        <caption>Methods</caption>
         <thead>
             <tr>
                 <th>Method name</th>
@@ -463,7 +463,7 @@ options object for further configuration
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.Validator.ascii
@@ -475,54 +475,9 @@ options object for further configuration
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label>s
-                
-
-                
-                </label>
-
-                
-                    <span class="description">The validation string</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Object</pre>
-                
-
-                
-                    <label class="optional">[options]
-                
-
-                
-                    ={}
-                
-                </label>
-
-                
-                    <span class="description">Optional configuration object. See createRegexp</span>
-                
-            </li>
-        
-        </ul>
-    
-
     
 
     
@@ -530,6 +485,53 @@ options object for further configuration
 characters. Takes options for allowing singleline whitespace,
 cross-line whitespace and punctuation.</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>s
+                
+
+                
+                </label>
+                
+                    The validation string
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Object</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options]
+                
+
+                
+                    {}
+                
+                </label>
+                
+                    Optional configuration object. See createRegexp
+                
+            </dd>
+        
+        </dl>
+        
+        
+
+    
+
 
     
 
@@ -540,7 +542,7 @@ cross-line whitespace and punctuation.</p>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.Validator.checkCharacterGroups
@@ -552,59 +554,61 @@ cross-line whitespace and punctuation.</p>
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label>s
-                
-
-                
-                </label>
-
-                
-                    <span class="description">The validation string</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Object</pre>
-                
-
-                
-                    <label class="optional">[groups]
-                
-
-                
-                    ={}
-                
-                </label>
-
-                
-                    <span class="description">What groups are included. See createRegexp</span>
-                
-            </li>
-        
-        </ul>
-    
-
     
 
     
         <p class="text">Checks if a field has the required groups. Takes an options object for further configuration.</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>s
+                
+
+                
+                </label>
+                
+                    The validation string
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Object</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[groups]
+                
+
+                
+                    {}
+                
+                </label>
+                
+                    What groups are included. See createRegexp
+                
+            </dd>
+        
+        </dl>
+        
+        
+
+    
+
 
     
 
@@ -615,7 +619,7 @@ cross-line whitespace and punctuation.</p>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.Validator.codPostal
@@ -627,78 +631,82 @@ cross-line whitespace and punctuation.</p>
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>Number|String</pre>
-                
-
-                
-                    <label>cp1
-                
-
-                
-                </label>
-
-                
-            </li>
-        
-            <li>
-                
-                    <pre>optional Number|String</pre>
-                
-
-                
-                    <label>cp2
-                
-
-                
-                </label>
-
-                
-            </li>
-        
-            <li>
-                
-                    <pre>optional Boolean</pre>
-                
-
-                
-                    <label>returnBothResults
-                
-
-                
-                </label>
-
-                
-            </li>
-        
-        </ul>
-    
-
-    
-        <div class="return">
-            Returns 
-            
-                <pre>Boolean</pre>
-            
-            
-                <span class="description"></span>
-            
-        </div>
     
 
     
         <p class="text">Validates if a zip code is valid in Portugal</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>Number|String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>cp1
+                
+
+                
+                </label>
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>optional Number|String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>cp2
+                
+
+                
+                </label>
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>optional Boolean</code>
+                
+            </dt>
+            <dd>
+                
+                <label>returnBothResults
+                
+
+                
+                </label>
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>Boolean</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
 
     
 <p class="example-title">Example</p>
@@ -720,7 +728,7 @@ cross-line whitespace and punctuation.</p>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.Validator.createRegExp
@@ -732,38 +740,40 @@ cross-line whitespace and punctuation.</p>
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-
-                
-                    <label>Groups*
-                
-
-                
-                </label>
-
-                
-                    <span class="description">{Object}</span>
-                
-            </li>
-        
-        </ul>
-    
-
     
 
     
         <p class="text">Create a regular expression for several character groups.</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+                <label>Groups*
+                
+
+                
+                </label>
+                
+                    {Object}
+                
+            </dd>
+        
+        </dl>
+        
+        
+
+    
+
 
     
 
@@ -774,7 +784,7 @@ cross-line whitespace and punctuation.</p>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.Validator.isAOPhone
@@ -786,50 +796,54 @@ cross-line whitespace and punctuation.</p>
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>Number</pre>
-                
-
-                
-                    <label>phone
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Phone number to be checked</span>
-                
-            </li>
-        
-        </ul>
-    
-
-    
-        <div class="return">
-            Returns 
-            
-                <pre>Boolean</pre>
-            
-            
-                <span class="description"></span>
-            
-        </div>
     
 
     
         <p class="text">Checks if a phone is valid in Angola</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>Number</code>
+                
+            </dt>
+            <dd>
+                
+                <label>phone
+                
+
+                
+                </label>
+                
+                    Phone number to be checked
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>Boolean</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
 
     
 <p class="example-title">Example</p>
@@ -852,7 +866,7 @@ cross-line whitespace and punctuation.</p>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.Validator.isCVPhone
@@ -864,50 +878,54 @@ cross-line whitespace and punctuation.</p>
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>Number</pre>
-                
-
-                
-                    <label>phone
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Phone number to be checked</span>
-                
-            </li>
-        
-        </ul>
-    
-
-    
-        <div class="return">
-            Returns 
-            
-                <pre>Boolean</pre>
-            
-            
-                <span class="description"></span>
-            
-        </div>
     
 
     
         <p class="text">Checks if a phone is valid in Cabo Verde</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>Number</code>
+                
+            </dt>
+            <dd>
+                
+                <label>phone
+                
+
+                
+                </label>
+                
+                    Phone number to be checked
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>Boolean</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
 
     
 <p class="example-title">Example</p>
@@ -930,7 +948,7 @@ cross-line whitespace and punctuation.</p>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.Validator.isColor
@@ -942,50 +960,54 @@ cross-line whitespace and punctuation.</p>
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label>str
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Color string to be checked</span>
-                
-            </li>
-        
-        </ul>
-    
-
-    
-        <div class="return">
-            Returns 
-            
-                <pre>Boolean</pre>
-            
-            
-                <span class="description"></span>
-            
-        </div>
     
 
     
         <p class="text">Checks if a string is a valid color</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>str
+                
+
+                
+                </label>
+                
+                    Color string to be checked
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>Boolean</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
 
     
 <p class="example-title">Example</p>
@@ -1006,7 +1028,7 @@ cross-line whitespace and punctuation.</p>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.Validator.isCreditCard
@@ -1018,65 +1040,69 @@ cross-line whitespace and punctuation.</p>
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label>num
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Number to be validates</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>String|Array</pre>
-                
-
-                
-                    <label>creditCardType
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Credit card type. See _creditCardSpecs for the list of supported values.</span>
-                
-            </li>
-        
-        </ul>
-    
-
-    
-        <div class="return">
-            Returns 
-            
-                <pre>Boolean</pre>
-            
-            
-        </div>
     
 
     
         <p class="text">Validates if a number is of a specific credit card</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>num
+                
+
+                
+                </label>
+                
+                    Number to be validates
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String|Array</code>
+                
+            </dt>
+            <dd>
+                
+                <label>creditCardType
+                
+
+                
+                </label>
+                
+                    Credit card type. See _creditCardSpecs for the list of supported values.
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>Boolean</code>
+            </dt>                
+            <dd>   
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
 
     
 
@@ -1087,7 +1113,7 @@ cross-line whitespace and punctuation.</p>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.Validator.isDate
@@ -1099,67 +1125,71 @@ cross-line whitespace and punctuation.</p>
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label>format
-                
-
-                
-                </label>
-
-                
-                    <span class="description">- defined in _dateParsers</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label>dateStr
-                
-
-                
-                </label>
-
-                
-                    <span class="description">- date string</span>
-                
-            </li>
-        
-        </ul>
-    
-
-    
-        <div class="return">
-            Returns 
-            
-                <pre>Boolean</pre>
-            
-            
-                <span class="description"></span>
-            
-        </div>
     
 
     
         <p class="text">Checks is a date is valid in a given format</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>format
+                
+
+                
+                </label>
+                
+                    - defined in _dateParsers
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>dateStr
+                
+
+                
+                </label>
+                
+                    - date string
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>Boolean</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
 
     
 <p class="example-title">Example</p>
@@ -1179,7 +1209,7 @@ cross-line whitespace and punctuation.</p>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.Validator.isIP
@@ -1191,67 +1221,71 @@ cross-line whitespace and punctuation.</p>
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label>value
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Value to be checked</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label>ipType
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Type of IP to be validated. The values are: ipv4, ipv6. By default is ipv4.</span>
-                
-            </li>
-        
-        </ul>
-    
-
-    
-        <div class="return">
-            Returns 
-            
-                <pre>Boolean</pre>
-            
-            
-                <span class="description"></span>
-            
-        </div>
     
 
     
         <p class="text">Checks if the value is a valid IP. Supports ipv4 and ipv6</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>value
+                
+
+                
+                </label>
+                
+                    Value to be checked
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>ipType
+                
+
+                
+                </label>
+                
+                    Type of IP to be validated. The values are: ipv4, ipv6. By default is ipv4.
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>Boolean</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
 
     
 
@@ -1262,7 +1296,7 @@ cross-line whitespace and punctuation.</p>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.Validator.isMZPhone
@@ -1274,50 +1308,54 @@ cross-line whitespace and punctuation.</p>
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>Number</pre>
-                
-
-                
-                    <label>phone
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Phone number to be checked</span>
-                
-            </li>
-        
-        </ul>
-    
-
-    
-        <div class="return">
-            Returns 
-            
-                <pre>Boolean</pre>
-            
-            
-                <span class="description"></span>
-            
-        </div>
     
 
     
         <p class="text">Checks if a phone is valid in Mozambique</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>Number</code>
+                
+            </dt>
+            <dd>
+                
+                <label>phone
+                
+
+                
+                </label>
+                
+                    Phone number to be checked
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>Boolean</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
 
     
 <p class="example-title">Example</p>
@@ -1340,7 +1378,7 @@ cross-line whitespace and punctuation.</p>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.Validator.isPTPhone
@@ -1352,50 +1390,54 @@ cross-line whitespace and punctuation.</p>
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>Number</pre>
-                
-
-                
-                    <label>phone
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Phone number to be checked</span>
-                
-            </li>
-        
-        </ul>
-    
-
-    
-        <div class="return">
-            Returns 
-            
-                <pre>Boolean</pre>
-            
-            
-                <span class="description"></span>
-            
-        </div>
     
 
     
         <p class="text">Checks if a phone is valid in Portugal</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>Number</code>
+                
+            </dt>
+            <dd>
+                
+                <label>phone
+                
+
+                
+                </label>
+                
+                    Phone number to be checked
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>Boolean</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
 
     
 <p class="example-title">Example</p>
@@ -1418,7 +1460,7 @@ cross-line whitespace and punctuation.</p>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.Validator.isPhone
@@ -1430,67 +1472,71 @@ cross-line whitespace and punctuation.</p>
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label>phone
-                
-
-                
-                </label>
-
-                
-                    <span class="description">number</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>optional String|Array</pre>
-                
-
-                
-                    <label>country
-                
-
-                
-                </label>
-
-                
-                    <span class="description">or array of countries to validate</span>
-                
-            </li>
-        
-        </ul>
-    
-
-    
-        <div class="return">
-            Returns 
-            
-                <pre>Boolean</pre>
-            
-            
-                <span class="description"></span>
-            
-        </div>
     
 
     
         <p class="text">Validates the function in all country codes available or in the ones set in the second param</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>phone
+                
+
+                
+                </label>
+                
+                    number
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>optional String|Array</code>
+                
+            </dt>
+            <dd>
+                
+                <label>country
+                
+
+                
+                </label>
+                
+                    or array of countries to validate
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>Boolean</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
 
     
 <p class="example-title">Example</p>
@@ -1510,7 +1556,7 @@ cross-line whitespace and punctuation.</p>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.Validator.isPortuguesePhone
@@ -1522,50 +1568,54 @@ cross-line whitespace and punctuation.</p>
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>Number</pre>
-                
-
-                
-                    <label>phone
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Phone number to be checked</span>
-                
-            </li>
-        
-        </ul>
-    
-
-    
-        <div class="return">
-            Returns 
-            
-                <pre>Boolean</pre>
-            
-            
-                <span class="description"></span>
-            
-        </div>
     
 
     
         <p class="text">Alias function for isPTPhone</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>Number</code>
+                
+            </dt>
+            <dd>
+                
+                <label>phone
+                
+
+                
+                </label>
+                
+                    Phone number to be checked
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>Boolean</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
 
     
 <p class="example-title">Example</p>
@@ -1588,7 +1638,7 @@ cross-line whitespace and punctuation.</p>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.Validator.isTLPhone
@@ -1600,50 +1650,54 @@ cross-line whitespace and punctuation.</p>
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>Number</pre>
-                
-
-                
-                    <label>phone
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Phone number to be checked</span>
-                
-            </li>
-        
-        </ul>
-    
-
-    
-        <div class="return">
-            Returns 
-            
-                <pre>Boolean</pre>
-            
-            
-                <span class="description"></span>
-            
-        </div>
     
 
     
         <p class="text">Checks if a phone is valid in Timor</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>Number</code>
+                
+            </dt>
+            <dd>
+                
+                <label>phone
+                
+
+                
+                </label>
+                
+                    Phone number to be checked
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>Boolean</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
 
     
 <p class="example-title">Example</p>
@@ -1666,7 +1720,7 @@ cross-line whitespace and punctuation.</p>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.Validator.latin1
@@ -1678,54 +1732,9 @@ cross-line whitespace and punctuation.</p>
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label>s
-                
-
-                
-                </label>
-
-                
-                    <span class="description">The validation string</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Object</pre>
-                
-
-                
-                    <label class="optional">[options]
-                
-
-                
-                    ={}
-                
-                </label>
-
-                
-                    <span class="description">Optional configuration object. See createRegexp</span>
-                
-            </li>
-        
-        </ul>
-    
-
     
 
     
@@ -1733,6 +1742,53 @@ cross-line whitespace and punctuation.</p>
 characters. Takes options for allowing singleline whitespace,
 cross-line whitespace and punctuation.</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>s
+                
+
+                
+                </label>
+                
+                    The validation string
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Object</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options]
+                
+
+                
+                    {}
+                
+                </label>
+                
+                    Optional configuration object. See createRegexp
+                
+            </dd>
+        
+        </dl>
+        
+        
+
+    
+
 
     
 
@@ -1743,7 +1799,7 @@ cross-line whitespace and punctuation.</p>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.Validator.mail
@@ -1755,13 +1811,9 @@ cross-line whitespace and punctuation.</p>
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-
     
 
     
@@ -1773,11 +1825,14 @@ cross-line whitespace and punctuation.</p>
 
     
 
+
+    
+
 </section>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.Validator.mail
@@ -1789,48 +1844,52 @@ cross-line whitespace and punctuation.</p>
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label>email
-                
-
-                
-                </label>
-
-                
-            </li>
-        
-        </ul>
-    
-
-    
-        <div class="return">
-            Returns 
-            
-                <pre>Boolean</pre>
-            
-            
-                <span class="description"></span>
-            
-        </div>
     
 
     
         <p class="text">Checks if a email is valid</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>email
+                
+
+                
+                </label>
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>Boolean</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
 
     
 <p class="example-title">Example</p>
@@ -1851,7 +1910,7 @@ cross-line whitespace and punctuation.</p>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.Validator.number
@@ -1863,176 +1922,178 @@ cross-line whitespace and punctuation.</p>
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label>numb
-                
-
-                
-                </label>
-
-                
-                    <span class="description">The number</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Object</pre>
-                
-
-                
-                    <label class="optional">[options]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Further options</span>
-                
-            </li>
-        
-            <li>
-                
-
-                
-                    <label class="optional">[options.decimalSep]
-                
-
-                
-                    =&#x27;.&#x27;
-                
-                </label>
-
-                
-                    <span class="description">Allow decimal separator.</span>
-                
-            </li>
-        
-            <li>
-                
-
-                
-                    <label class="optional">[options.thousandSep]
-                
-
-                
-                    =&quot;,&quot;
-                
-                </label>
-
-                
-                    <span class="description">Strip this character from the number.</span>
-                
-            </li>
-        
-            <li>
-                
-
-                
-                    <label class="optional">[options.negative]
-                
-
-                
-                    =false
-                
-                </label>
-
-                
-                    <span class="description">Allow negative numbers.</span>
-                
-            </li>
-        
-            <li>
-                
-
-                
-                    <label class="optional">[options.decimalPlaces]
-                
-
-                
-                    =null
-                
-                </label>
-
-                
-                    <span class="description">Maximum number of decimal places. Use `0` for an integer number.</span>
-                
-            </li>
-        
-            <li>
-                
-
-                
-                    <label class="optional">[options.max]
-                
-
-                
-                    =null
-                
-                </label>
-
-                
-                    <span class="description">Maximum number</span>
-                
-            </li>
-        
-            <li>
-                
-
-                
-                    <label class="optional">[options.min]
-                
-
-                
-                    =null
-                
-                </label>
-
-                
-                    <span class="description">Minimum number</span>
-                
-            </li>
-        
-            <li>
-                
-
-                
-                    <label class="optional">[options.returnNumber]
-                
-
-                
-                    =false
-                
-                </label>
-
-                
-                    <span class="description">When this option is true, return the number itself when the value is valid.</span>
-                
-            </li>
-        
-        </ul>
-    
-
     
 
     
         <p class="text">Checks that the number is a valid number</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>numb
+                
+
+                
+                </label>
+                
+                    The number
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Object</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options]
+                
+
+                
+                </label>
+                
+                    Further options
+                
+            </dd>
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.decimalSep]
+                
+
+                
+                    &#x27;.&#x27;
+                
+                </label>
+                
+                    Allow decimal separator.
+                
+            </dd>
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.thousandSep]
+                
+
+                
+                    &quot;,&quot;
+                
+                </label>
+                
+                    Strip this character from the number.
+                
+            </dd>
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.negative]
+                
+
+                
+                    false
+                
+                </label>
+                
+                    Allow negative numbers.
+                
+            </dd>
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.decimalPlaces]
+                
+
+                
+                    null
+                
+                </label>
+                
+                    Maximum number of decimal places. Use `0` for an integer number.
+                
+            </dd>
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.max]
+                
+
+                
+                    null
+                
+                </label>
+                
+                    Maximum number
+                
+            </dd>
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.min]
+                
+
+                
+                    null
+                
+                </label>
+                
+                    Minimum number
+                
+            </dd>
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.returnNumber]
+                
+
+                
+                    false
+                
+                </label>
+                
+                    When this option is true, return the number itself when the value is valid.
+                
+            </dd>
+        
+        </dl>
+        
+        
+
+    
+
 
     
 
@@ -2043,7 +2104,7 @@ cross-line whitespace and punctuation.</p>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.Validator.unicode
@@ -2055,60 +2116,62 @@ cross-line whitespace and punctuation.</p>
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label>s
-                
-
-                
-                </label>
-
-                
-                    <span class="description">The validation string</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Object</pre>
-                
-
-                
-                    <label class="optional">[options]
-                
-
-                
-                    ={}
-                
-                </label>
-
-                
-                    <span class="description">Optional configuration object. See createRegexp</span>
-                
-            </li>
-        
-        </ul>
-    
-
     
 
     
         <p class="text">Checks whether a field contains unicode printable characters. Takes an
 options object for further configuration</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>s
+                
+
+                
+                </label>
+                
+                    The validation string
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Object</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options]
+                
+
+                
+                    {}
+                
+                </label>
+                
+                    Optional configuration object. See createRegexp
+                
+            </dd>
+        
+        </dl>
+        
+        
+
+    
+
 
     
 
@@ -2119,7 +2182,7 @@ options object for further configuration</p>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.Validator.url
@@ -2131,67 +2194,71 @@ options object for further configuration</p>
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label>url
-                
-
-                
-                </label>
-
-                
-                    <span class="description">URL to be checked</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Boolean</pre>
-                
-
-                
-                    <label class="optional">[full]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">If true, validates a full URL (one that should start with 'http')</span>
-                
-            </li>
-        
-        </ul>
-    
-
-    
-        <div class="return">
-            Returns 
-            
-                <pre>Boolean</pre>
-            
-            
-                <span class="description"></span>
-            
-        </div>
     
 
     
         <p class="text">Checks if a url is valid</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>url
+                
+
+                
+                </label>
+                
+                    URL to be checked
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Boolean</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[full]
+                
+
+                
+                </label>
+                
+                    If true, validates a full URL (one that should start with 'http')
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>Boolean</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
 
     
 <p class="example-title">Example</p>

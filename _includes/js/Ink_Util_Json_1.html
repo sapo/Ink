@@ -28,7 +28,7 @@
     <table class="props bottom-space">
         
         
-        <caption>METHODS</caption>
+        <caption>Methods</caption>
         <thead>
             <tr>
                 <th>Method name</th>
@@ -118,7 +118,7 @@ And here is how to parse JSON:
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.Json.parse
@@ -130,51 +130,53 @@ And here is how to parse JSON:
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
     
 
     
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
         
-            <li>
+            <dt>
                 
-
+            </dt>
+            <dd>
                 
-                    <label>text
+                <label>text
                 
 
                 
                 </label>
-
                 
-                    <span class="description">{String}    Input string</span>
+                    {String}    Input string
                 
-            </li>
+            </dd>
         
-            <li>
+            <dt>
                 
-
+            </dt>
+            <dd>
                 
-                    <label>reviver
+                <label>reviver
                 
 
                 
                 </label>
-
                 
-                    <span class="description">{Function}  Function receiving `(key, value)`, and `this`=(containing object), used to walk objects.</span>
+                    {Function}  Function receiving `(key, value)`, and `this`=(containing object), used to walk objects.
                 
-            </li>
+            </dd>
         
-        </ul>
-    
+        </dl>
+        
+        
 
     
 
-    
 
     
 <p class="example-title">Example</p>
@@ -201,7 +203,7 @@ Simple example:
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.Json.stringify
@@ -213,67 +215,71 @@ Simple example:
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>Object</pre>
-                
-
-                
-                    <label>input
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Data to be serialized into JSON</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Boolean</pre>
-                
-
-                
-                    <label>convertToUnicode
-                
-
-                
-                </label>
-
-                
-                    <span class="description">When `true`, converts string contents to unicode \uXXXX</span>
-                
-            </li>
-        
-        </ul>
-    
-
-    
-        <div class="return">
-            Returns 
-            
-                <pre>String</pre>
-            
-            
-                <span class="description"></span>
-            
-        </div>
     
 
     
         <p class="text">serializes a JSON object into a string.</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>Object</code>
+                
+            </dt>
+            <dd>
+                
+                <label>input
+                
+
+                
+                </label>
+                
+                    Data to be serialized into JSON
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Boolean</code>
+                
+            </dt>
+            <dd>
+                
+                <label>convertToUnicode
+                
+
+                
+                </label>
+                
+                    When `true`, converts string contents to unicode \uXXXX
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>String</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
 
     
 <p class="example-title">Example</p>

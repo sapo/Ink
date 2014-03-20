@@ -2,11 +2,21 @@
 
     
         <section>
-        <h1 class="fw-300">Ink.Dom.Css_1 </h1>
+        <h1 class="fw-300">Ink.Dom.Css_1 <small>version: 1
+CSS Utilities and toolbox</small></h1>
     
 
 
 
+    
+        <ul class="props inline">
+            <li class="heading">Uses:</li>
+            
+            <li class="prop">addRemoveClassName</li>
+            
+            <li class="prop">addRemoveClassName</li>
+            
+        </ul>
     
 
     
@@ -28,7 +38,7 @@
     <table class="props bottom-space">
         
         
-        <caption>METHODS</caption>
+        <caption>Methods</caption>
         <thead>
             <tr>
                 <th>Method name</th>
@@ -51,7 +61,7 @@
                 <td>
                     
 
-                    add a class to a given element
+                    Adds a class to a given element
 
                     
                     
@@ -70,7 +80,8 @@
                 <td>
                     
 
-                    adds or removes a class to the given element according to addRemState
+                    Adds of removes a class.
+Depending on addRemState, this method either adds a class if it's true or removes if if false.
 
                     
                     
@@ -89,7 +100,7 @@
                 <td>
                     
 
-                    Adds css style tags to the head section of a page
+                    Injects style tags with rules to the page.
 
                     
                     
@@ -108,7 +119,8 @@
                 <td>
                     
 
-                    Adds a link tag for a stylesheet to the head section of a page
+                    Injects an external link tag.
+This method add a stylesheet to the head of a page
 
                     
                     
@@ -127,7 +139,8 @@
                 <td>
                     
 
-                    Loads CSS via LINK element inclusion in HEAD (skips append if already there)
+                    Injects an external link tag.
+Loads CSS via LINK element inclusion in HEAD (skips append if already there)
 
 Works similarly to appendStylesheet but:
   a) supports all browsers;
@@ -150,7 +163,8 @@ Works similarly to appendStylesheet but:
                 <td>
                     
 
-                    Add and removes the class from the element with a timeout, so it blinks
+                    Blinks a class from an element
+Add and removes the class from the element with a timeout, so it blinks
 
                     
                     
@@ -169,7 +183,8 @@ Works similarly to appendStylesheet but:
                 <td>
                     
 
-                    Changes the font size of the elements which match the given CSS rule
+                    Change the font size of elements.
+Changes the font size of the elements which match the given CSS rule
 For this function to work, the CSS file must be in the same domain than the host page, otherwise JS can't access it.
 
                     
@@ -189,7 +204,8 @@ For this function to work, the CSS file must be in the same domain than the host
                 <td>
                     
 
-                    Converts decimal to hexadecimal values, for use with colors
+                    Converts decimal to hexadecimal values
+Useful to convert colors to their hexadecimal representation.
 
                     
                     
@@ -208,7 +224,8 @@ For this function to work, the CSS file must be in the same domain than the host
                 <td>
                     
 
-                    use this to obtain the value of a CSS property (searched from loaded CSS documents)
+                    Get a single property from a stylesheet.
+Use this to obtain the value of a CSS property (searched from loaded CSS documents)
 
                     
                     
@@ -246,7 +263,8 @@ For this function to work, the CSS file must be in the same domain than the host
                 <td>
                     
 
-                    
+                    Checks if an element has a class.
+This method verifies if an element has ONE of a list of classes. If the last argument is flagged as true, instead checks if the element has ALL the classes
 
                     
                     
@@ -265,7 +283,8 @@ For this function to work, the CSS file must be in the same domain than the host
                 <td>
                     
 
-                    Converts hexadecimal values to decimal, for use with colors
+                    Converts hexadecimal values to decimal
+Useful to use with CSS colors
 
                     
                     
@@ -284,7 +303,7 @@ For this function to work, the CSS file must be in the same domain than the host
                 <td>
                     
 
-                    Hides an element
+                    Hides an element.
 
                     
                     
@@ -303,7 +322,7 @@ For this function to work, the CSS file must be in the same domain than the host
                 <td>
                     
 
-                    removes a class from a given element
+                    Removes a class from a given element
 
                     
                     
@@ -322,7 +341,8 @@ For this function to work, the CSS file must be in the same domain than the host
                 <td>
                     
 
-                    Alias to addRemoveClassName. Utility function, saves many if/elses.
+                    Alias to addRemoveClassName. 
+Utility function, saves many if/elses.
 
                     
                     
@@ -341,7 +361,7 @@ For this function to work, the CSS file must be in the same domain than the host
                 <td>
                     
 
-                    sets the opacity of given client a given element
+                    Sets the opacity of given element
 
                     
                     
@@ -379,7 +399,8 @@ For this function to work, the CSS file must be in the same domain than the host
                 <td>
                     
 
-                    Makes an element visible
+                    Shows an element.
+Internally it unsets the display property of an element. You can force a specific display property using forceDisplayProperty
 
                     
                     
@@ -398,7 +419,8 @@ For this function to work, the CSS file must be in the same domain than the host
                 <td>
                     
 
-                    shows or hides according to param show
+                    Shows or hides an element.
+If the show parameter is true, it shows the element. Otherwise, hides it.
 
                     
                     
@@ -417,7 +439,7 @@ For this function to work, the CSS file must be in the same domain than the host
                 <td>
                     
 
-                    Shows or hides an element depending on current state
+                    Toggles an element visibility.
 
                     
                     
@@ -436,7 +458,7 @@ For this function to work, the CSS file must be in the same domain than the host
                 <td>
                     
 
-                    Add or remove a class name from a given element
+                    Toggles a class name from a given element
 
                     
                     
@@ -461,7 +483,7 @@ For this function to work, the CSS file must be in the same domain than the host
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Dom.Css.addClassName
@@ -473,55 +495,59 @@ For this function to work, the CSS file must be in the same domain than the host
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
     
 
     
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
+        <p class="text">Adds a class to a given element</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
         
-            <li>
+            <dt>
                 
-                    <pre>DOMElement|String</pre>
+                    <code>DOMElement|String</code>
                 
-
+            </dt>
+            <dd>
                 
-                    <label>elm
+                <label>elm
                 
 
                 
                 </label>
-
                 
-                    <span class="description">DOM element or element id</span>
+                    DOM element or element id
                 
-            </li>
+            </dd>
         
-            <li>
+            <dt>
                 
-                    <pre>String</pre>
+                    <code>String|Array</code>
                 
-
+            </dt>
+            <dd>
                 
-                    <label>className
+                <label>className
                 
 
                 
                 </label>
-
                 
-            </li>
+                    Classes
+                
+            </dd>
         
-        </ul>
-    
+        </dl>
+        
+        
 
     
 
-    
-        <p class="text">add a class to a given element</p>
-    
 
     
 
@@ -532,7 +558,7 @@ For this function to work, the CSS file must be in the same domain than the host
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Dom.Css.addRemoveClassName
@@ -544,74 +570,77 @@ For this function to work, the CSS file must be in the same domain than the host
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
     
 
     
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
+        <p class="text">Adds of removes a class.
+Depending on addRemState, this method either adds a class if it's true or removes if if false.</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
         
-            <li>
+            <dt>
                 
-                    <pre>DOMElement|string</pre>
+                    <code>DOMElement|string</code>
                 
-
+            </dt>
+            <dd>
                 
-                    <label>elm
+                <label>elm
                 
 
                 
                 </label>
-
                 
-                    <span class="description">DOM element or element id</span>
+                    DOM element or element id
                 
-            </li>
+            </dd>
         
-            <li>
+            <dt>
                 
-                    <pre>string</pre>
+                    <code>string</code>
                 
-
+            </dt>
+            <dd>
                 
-                    <label>className
+                <label>className
                 
 
                 
                 </label>
-
                 
-                    <span class="description">class name to add or remove.</span>
+                    class name to add or remove.
                 
-            </li>
+            </dd>
         
-            <li>
+            <dt>
                 
-                    <pre>boolean</pre>
+                    <code>boolean</code>
                 
-
+            </dt>
+            <dd>
                 
-                    <label>addRemState
+                <label>addRemState
                 
 
                 
                 </label>
-
                 
-                    <span class="description">Whether to add or remove. `true` to add, `false` to remove.</span>
+                    Whether to add or remove. `true` to add, `false` to remove.
                 
-            </li>
+            </dd>
         
-        </ul>
-    
+        </dl>
+        
+        
 
     
 
-    
-        <p class="text">adds or removes a class to the given element according to addRemState</p>
-    
 
     
 <p class="example-title">Example</p>
@@ -632,7 +661,7 @@ For this function to work, the CSS file must be in the same domain than the host
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Dom.Css.appendStyleTag
@@ -644,108 +673,114 @@ For this function to work, the CSS file must be in the same domain than the host
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
     
 
     
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
+        <p class="text">Injects style tags with rules to the page.</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
         
-            <li>
+            <dt>
                 
-                    <pre>String</pre>
+                    <code>String</code>
                 
-
+            </dt>
+            <dd>
                 
-                    <label>selector
+                <label>selector
                 
 
                 
                 </label>
-
                 
-                    <span class="description">The css selector for the rule</span>
+                    The css selector for the rule
                 
-            </li>
+            </dd>
         
-            <li>
+            <dt>
                 
-                    <pre>String</pre>
+                    <code>String</code>
                 
-
+            </dt>
+            <dd>
                 
-                    <label>style
+                <label>style
                 
 
                 
                 </label>
-
                 
-                    <span class="description">The content of the style rule</span>
+                    The content of the style rule
                 
-            </li>
+            </dd>
         
-            <li>
+            <dt>
                 
-                    <pre>Object</pre>
+                    <code>Object</code>
                 
-
+            </dt>
+            <dd>
                 
-                    <label>options
+                <label>options
                 
 
                 
                 </label>
-
                 
-                    <span class="description">Options for the tag</span>
+                    Options for the tag
                 
-            </li>
+            </dd>
         
-            <li>
+            <dt>
                 
-                    <pre>String</pre>
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.type]
                 
 
                 
-                    <label class="optional">[options.type]
-                
-
+                    &#x27;text/css&#x27;
                 
                 </label>
-
                 
-                    <span class="description">file type</span>
+                    File type
                 
-            </li>
+            </dd>
         
-            <li>
+            <dt>
                 
-                    <pre>Boolean</pre>
+                    <code>Boolean</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.force]
                 
 
                 
-                    <label class="optional">[options.force]
-                
-
+                    false
                 
                 </label>
-
                 
-                    <span class="description">if true, style tag will be appended to end of head</span>
+                    If true, the style tag will be appended to end of head
                 
-            </li>
+            </dd>
         
-        </ul>
-    
+        </dl>
+        
+        
 
     
 
-    
-        <p class="text">Adds css style tags to the head section of a page</p>
-    
 
     
 
@@ -756,7 +791,7 @@ For this function to work, the CSS file must be in the same domain than the host
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Dom.Css.appendStylesheet
@@ -768,114 +803,117 @@ For this function to work, the CSS file must be in the same domain than the host
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
     
 
     
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
+        <p class="text">Injects an external link tag.
+This method add a stylesheet to the head of a page</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
         
-            <li>
+            <dt>
                 
-                    <pre>String</pre>
+                    <code>String</code>
                 
-
+            </dt>
+            <dd>
                 
-                    <label>path
+                <label>path
                 
 
                 
                 </label>
-
                 
-                    <span class="description">File path</span>
+                    File path
                 
-            </li>
+            </dd>
         
-            <li>
+            <dt>
                 
-                    <pre>Object</pre>
+                    <code>Object</code>
                 
-
+            </dt>
+            <dd>
                 
-                    <label>options
+                <label>options
                 
 
                 
                 </label>
-
                 
-                    <span class="description">Options for the tag</span>
+                    Options for the tag
                 
-            </li>
+            </dd>
         
-            <li>
+            <dt>
                 
-                    <pre>String</pre>
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.media]
                 
 
                 
-                    <label class="optional">[options.media]
-                
-
-                
-                    =&#x27;screen&#x27;
+                    &#x27;screen&#x27;
                 
                 </label>
-
                 
-                    <span class="description">media type</span>
+                    Media type
                 
-            </li>
+            </dd>
         
-            <li>
+            <dt>
                 
-                    <pre>String</pre>
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.type]
                 
 
                 
-                    <label class="optional">[options.type]
-                
-
-                
-                    =&#x27;text/css&#x27;
+                    &#x27;text/css&#x27;
                 
                 </label>
-
                 
-                    <span class="description">file type</span>
+                    File type
                 
-            </li>
+            </dd>
         
-            <li>
+            <dt>
                 
-                    <pre>Boolean</pre>
+                    <code>Boolean</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.force]
                 
 
                 
-                    <label class="optional">[options.force]
-                
-
-                
-                    =false
+                    false
                 
                 </label>
-
                 
-                    <span class="description">if true, tag will be appended to end of head</span>
+                    If true, tag will be appended to end of head
                 
-            </li>
+            </dd>
         
-        </ul>
-    
+        </dl>
+        
+        
 
     
 
-    
-        <p class="text">Adds a link tag for a stylesheet to the head section of a page</p>
-    
 
     
 
@@ -886,7 +924,7 @@ For this function to work, the CSS file must be in the same domain than the host
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Dom.Css.appendStylesheetCb
@@ -898,61 +936,64 @@ For this function to work, the CSS file must be in the same domain than the host
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
     
 
     
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label>cssURI
-                
-
-                
-                </label>
-
-                
-                    <span class="description">URI of the CSS to load, if empty ignores and just calls back directly</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Function(cssURI)</pre>
-                
-
-                
-                    <label class="optional">[callback]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">optional callback which will be called once the CSS is loaded</span>
-                
-            </li>
-        
-        </ul>
-    
-
-    
-
-    
-        <p class="text">Loads CSS via LINK element inclusion in HEAD (skips append if already there)
+        <p class="text">Injects an external link tag.
+Loads CSS via LINK element inclusion in HEAD (skips append if already there)
 
 Works similarly to appendStylesheet but:
   a) supports all browsers;
   b) supports optional callback which gets invoked once the CSS has been applied</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>cssURI
+                
+
+                
+                </label>
+                
+                    URI of the CSS to load, if empty ignores and just calls back directly
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Function(cssURI)</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[callback]
+                
+
+                
+                </label>
+                
+                    optional callback which will be called once the CSS is loaded
+                
+            </dd>
+        
+        </dl>
+        
+        
+
+    
+
 
     
 
@@ -963,7 +1004,7 @@ Works similarly to appendStylesheet but:
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Dom.Css.blinkClass
@@ -975,91 +1016,94 @@ Works similarly to appendStylesheet but:
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
     
 
     
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
+        <p class="text">Blinks a class from an element
+Add and removes the class from the element with a timeout, so it blinks</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
         
-            <li>
+            <dt>
                 
-                    <pre>DOMElement|String</pre>
+                    <code>DOMElement|String</code>
                 
-
+            </dt>
+            <dd>
                 
-                    <label>elm
+                <label>elm
                 
 
                 
                 </label>
-
                 
-                    <span class="description">DOM element or element id</span>
+                    DOM element or element id
                 
-            </li>
+            </dd>
         
-            <li>
+            <dt>
                 
-                    <pre>String</pre>
+                    <code>String|Array</code>
                 
-
+            </dt>
+            <dd>
                 
-                    <label>className
+                <label>className
                 
 
                 
                 </label>
-
                 
-                    <span class="description">class name</span>
+                    Class name(s) to blink
                 
-            </li>
+            </dd>
         
-            <li>
+            <dt>
                 
-                    <pre>Boolean</pre>
+                    <code>Boolean</code>
                 
-
+            </dt>
+            <dd>
                 
-                    <label>timeout
+                <label>timeout
                 
 
                 
                 </label>
-
                 
-                    <span class="description">timeout in ms between adding and removing, default 100 ms</span>
+                    timeout in ms between adding and removing, default 100 ms
                 
-            </li>
+            </dd>
         
-            <li>
+            <dt>
                 
-                    <pre>Boolean</pre>
+                    <code>Boolean</code>
                 
-
+            </dt>
+            <dd>
                 
-                    <label>negate
+                <label>negate
                 
 
                 
                 </label>
-
                 
-                    <span class="description">is true, class is removed then added</span>
+                    is true, class is removed then added
                 
-            </li>
+            </dd>
         
-        </ul>
-    
+        </dl>
+        
+        
 
     
 
-    
-        <p class="text">Add and removes the class from the element with a timeout, so it blinks</p>
-    
 
     
 
@@ -1070,7 +1114,7 @@ Works similarly to appendStylesheet but:
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Dom.Css.changeFontSize
@@ -1082,109 +1126,112 @@ Works similarly to appendStylesheet but:
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
     
 
     
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label>selector
-                
-
-                
-                </label>
-
-                
-                    <span class="description">CSS selector rule</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Number</pre>
-                
-
-                
-                    <label>delta
-                
-
-                
-                </label>
-
-                
-                    <span class="description">number of pixels to change on font-size</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label class="optional">[op]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">supported operations are '+' and '*'. defaults to '+'</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Number</pre>
-                
-
-                
-                    <label class="optional">[minVal]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">if result gets smaller than minVal, change does not occurr</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Number</pre>
-                
-
-                
-                    <label class="optional">[maxVal]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">if result gets bigger  than maxVal, change does not occurr</span>
-                
-            </li>
-        
-        </ul>
-    
-
-    
-
-    
-        <p class="text">Changes the font size of the elements which match the given CSS rule
+        <p class="text">Change the font size of elements.
+Changes the font size of the elements which match the given CSS rule
 For this function to work, the CSS file must be in the same domain than the host page, otherwise JS can't access it.</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>selector
+                
+
+                
+                </label>
+                
+                    CSS selector rule
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Number</code>
+                
+            </dt>
+            <dd>
+                
+                <label>delta
+                
+
+                
+                </label>
+                
+                    Number of pixels to change on font-size
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[op]
+                
+
+                
+                </label>
+                
+                    Supported operations are '+' and '*'. defaults to '+'
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Number</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[minVal]
+                
+
+                
+                </label>
+                
+                    If result gets smaller than minVal, change does not occurr
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Number</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[maxVal]
+                
+
+                
+                </label>
+                
+                    If result gets bigger  than maxVal, change does not occurr
+                
+            </dd>
+        
+        </dl>
+        
+        
+
+    
+
 
     
 
@@ -1195,7 +1242,7 @@ For this function to work, the CSS file must be in the same domain than the host
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Dom.Css.decToHex
@@ -1207,48 +1254,55 @@ For this function to work, the CSS file must be in the same domain than the host
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
     
 
     
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
+        <p class="text">Converts decimal to hexadecimal values
+Useful to convert colors to their hexadecimal representation.</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
         
-            <li>
+            <dt>
                 
-                    <pre>String</pre>
+                    <code>String</code>
                 
-
+            </dt>
+            <dd>
                 
-                    <label>dec
+                <label>dec
                 
 
                 
                 </label>
-
                 
-                    <span class="description">Either a single decimal value,</span>
+                    Either a single decimal value, an rgb(r, g, b) string or an Object with r, g and b properties
                 
-            </li>
+            </dd>
         
-        </ul>
-    
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
 
     
-        <div class="return">
-            Returns 
-            
-            
-                <span class="description"></span>
-            
-        </div>
-    
 
-    
-        <p class="text">Converts decimal to hexadecimal values, for use with colors</p>
-    
 
     
 
@@ -1259,7 +1313,7 @@ For this function to work, the CSS file must be in the same domain than the host
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Dom.Css.getPropertyFromStylesheet
@@ -1271,67 +1325,72 @@ For this function to work, the CSS file must be in the same domain than the host
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
     
 
     
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
+        <p class="text">Get a single property from a stylesheet.
+Use this to obtain the value of a CSS property (searched from loaded CSS documents)</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
         
-            <li>
+            <dt>
                 
-                    <pre>String</pre>
+                    <code>String</code>
                 
-
+            </dt>
+            <dd>
                 
-                    <label>selector
+                <label>selector
                 
 
                 
                 </label>
-
                 
-                    <span class="description">a CSS rule. must be an exact match</span>
+                    a CSS rule. must be an exact match
                 
-            </li>
+            </dd>
         
-            <li>
+            <dt>
                 
-                    <pre>String</pre>
+                    <code>String</code>
                 
-
+            </dt>
+            <dd>
                 
-                    <label>property
+                <label>property
                 
 
                 
                 </label>
-
                 
-                    <span class="description">a CSS property</span>
+                    a CSS property
                 
-            </li>
+            </dd>
         
-        </ul>
-    
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>String</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
 
     
-        <div class="return">
-            Returns 
-            
-                <pre>String</pre>
-            
-            
-                <span class="description"></span>
-            
-        </div>
-    
 
-    
-        <p class="text">use this to obtain the value of a CSS property (searched from loaded CSS documents)</p>
-    
 
     
 
@@ -1342,7 +1401,7 @@ For this function to work, the CSS file must be in the same domain than the host
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Dom.Css.getStyle
@@ -1354,60 +1413,9 @@ For this function to work, the CSS file must be in the same domain than the host
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>DOMElement|String</pre>
-                
-
-                
-                    <label>elm
-                
-
-                
-                </label>
-
-                
-                    <span class="description">DOM element or element id</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label>style
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Which css attribute to fetch</span>
-                
-            </li>
-        
-        </ul>
-    
-
-    
-        <div class="return">
-            Returns 
-            
-            
-                <span class="description"></span>
-            
-        </div>
     
 
     
@@ -1415,6 +1423,63 @@ For this function to work, the CSS file must be in the same domain than the host
     
 
     
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>DOMElement|String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>elm
+                
+
+                
+                </label>
+                
+                    DOM element or element id
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>style
+                
+
+                
+                </label>
+                
+                    Which css attribute to fetch
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
+
+    
 
 
     
@@ -1423,96 +1488,103 @@ For this function to work, the CSS file must be in the same domain than the host
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Dom.Css.hasClassName
         
     
-    (elm, classNames, [all])
+    (elm, className, [all])
     
         
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
     
 
     
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
+        <p class="text">Checks if an element has a class.
+This method verifies if an element has ONE of a list of classes. If the last argument is flagged as true, instead checks if the element has ALL the classes</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
         
-            <li>
+            <dt>
                 
-                    <pre>DOMElement|String</pre>
+                    <code>DOMElement|String</code>
                 
-
+            </dt>
+            <dd>
                 
-                    <label>elm
+                <label>elm
                 
 
                 
                 </label>
-
                 
-                    <span class="description">DOM element or element id</span>
+                    DOM element or element id
                 
-            </li>
+            </dd>
         
-            <li>
+            <dt>
                 
-                    <pre>String|Array</pre>
+                    <code>String|Array</code>
                 
-
+            </dt>
+            <dd>
                 
-                    <label>classNames
+                <label>className
                 
 
                 
                 </label>
-
                 
-                    <span class="description">classNames to test</span>
+                    Class names to test
                 
-            </li>
+            </dd>
         
-            <li>
+            <dt>
                 
-                    <pre>Boolean</pre>
+                    <code>Boolean</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[all]
                 
 
                 
-                    <label class="optional">[all]
-                
-
-                
-                    =false
+                    false
                 
                 </label>
-
                 
-                    <span class="description">if true, return whether all classes in classNames are there. Otherwise, return true if any is present.</span>
+                    If flagged as true, it will check if the element contains ALL the CSS classes
                 
-            </li>
+            </dd>
         
-        </ul>
-    
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>Boolean</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
 
     
-        <div class="return">
-            Returns 
-            
-                <pre>Boolean</pre>
-            
-            
-                <span class="description"></span>
-            
-        </div>
-    
 
-    
 
     
 
@@ -1523,7 +1595,7 @@ For this function to work, the CSS file must be in the same domain than the host
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Dom.Css.hexToDec
@@ -1535,50 +1607,55 @@ For this function to work, the CSS file must be in the same domain than the host
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
     
 
     
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
+        <p class="text">Converts hexadecimal values to decimal
+Useful to use with CSS colors</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
         
-            <li>
+            <dt>
                 
-                    <pre>String</pre>
+                    <code>String</code>
                 
-
+            </dt>
+            <dd>
                 
-                    <label>hex
+                <label>hex
                 
 
                 
                 </label>
-
                 
-                    <span class="description">hexadecimal value with 6, 3, 2 or 1 characters</span>
+                    hexadecimal Value with 6, 3, 2 or 1 characters
                 
-            </li>
+            </dd>
         
-        </ul>
-    
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>Number</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
 
     
-        <div class="return">
-            Returns 
-            
-                <pre>Number</pre>
-            
-            
-                <span class="description"></span>
-            
-        </div>
-    
 
-    
-        <p class="text">Converts hexadecimal values to decimal, for use with colors</p>
-    
 
     
 
@@ -1589,7 +1666,7 @@ For this function to work, the CSS file must be in the same domain than the host
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Dom.Css.hide
@@ -1601,40 +1678,42 @@ For this function to work, the CSS file must be in the same domain than the host
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
     
 
     
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
+        <p class="text">Hides an element.</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
         
-            <li>
+            <dt>
                 
-                    <pre>DOMElement|String</pre>
+                    <code>DOMElement|String</code>
                 
-
+            </dt>
+            <dd>
                 
-                    <label>elm
+                <label>elm
                 
 
                 
                 </label>
-
                 
-                    <span class="description">DOM element or element id</span>
+                    DOM element or element id
                 
-            </li>
+            </dd>
         
-        </ul>
-    
+        </dl>
+        
+        
 
     
 
-    
-        <p class="text">Hides an element</p>
-    
 
     
 
@@ -1645,7 +1724,7 @@ For this function to work, the CSS file must be in the same domain than the host
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Dom.Css.removeClassName
@@ -1657,55 +1736,59 @@ For this function to work, the CSS file must be in the same domain than the host
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
     
 
     
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
+        <p class="text">Removes a class from a given element</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
         
-            <li>
+            <dt>
                 
-                    <pre>DOMElement|String</pre>
+                    <code>DOMElement|String</code>
                 
-
+            </dt>
+            <dd>
                 
-                    <label>elm
+                <label>elm
                 
 
                 
                 </label>
-
                 
-                    <span class="description">DOM element or element id</span>
+                    DOM element or element id
                 
-            </li>
+            </dd>
         
-            <li>
+            <dt>
                 
-                    <pre>String</pre>
+                    <code>String|Array</code>
                 
-
+            </dt>
+            <dd>
                 
-                    <label>className
+                <label>className
                 
 
                 
                 </label>
-
                 
-            </li>
+                    Class names to remove. You can either use a space separated string of classnames, comma-separated list or an array
+                
+            </dd>
         
-        </ul>
-    
+        </dl>
+        
+        
 
     
 
-    
-        <p class="text">removes a class from a given element</p>
-    
 
     
 
@@ -1716,84 +1799,91 @@ For this function to work, the CSS file must be in the same domain than the host
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Dom.Css.setClassName
         
     
-    (elm, className, add)
+    (elm, className, [add])
     
         
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
     
 
     
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
+        <p class="text">Alias to addRemoveClassName. 
+Utility function, saves many if/elses.</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
         
-            <li>
+            <dt>
                 
-                    <pre>DOMElement|String</pre>
+                    <code>DOMElement|String</code>
                 
-
+            </dt>
+            <dd>
                 
-                    <label>elm
+                <label>elm
                 
 
                 
                 </label>
-
                 
-                    <span class="description">DOM element or element id</span>
+                    DOM element or element id
                 
-            </li>
+            </dd>
         
-            <li>
+            <dt>
                 
-                    <pre>String</pre>
+                    <code>String|Array</code>
                 
-
+            </dt>
+            <dd>
                 
-                    <label>className
+                <label>className
                 
 
                 
                 </label>
-
                 
-            </li>
+                    Class names to add\remove. Comma separated, space separated or simply an Array
+                
+            </dd>
         
-            <li>
+            <dt>
                 
-                    <pre>Boolean</pre>
+                    <code>Boolean</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[add]
                 
 
                 
-                    <label>add
-                
-
+                    false
                 
                 </label>
-
                 
-                    <span class="description">true to add, false to remove</span>
+                    Flag to switch behavior from removal to addition. true to add, false to remove
                 
-            </li>
+            </dd>
         
-        </ul>
-    
+        </dl>
+        
+        
 
     
 
-    
-        <p class="text">Alias to addRemoveClassName. Utility function, saves many if/elses.</p>
-    
 
     
 
@@ -1804,7 +1894,7 @@ For this function to work, the CSS file must be in the same domain than the host
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Dom.Css.setOpacity
@@ -1816,57 +1906,59 @@ For this function to work, the CSS file must be in the same domain than the host
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
     
 
     
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
+        <p class="text">Sets the opacity of given element</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
         
-            <li>
+            <dt>
                 
-                    <pre>DOMElement|String</pre>
+                    <code>DOMElement|String</code>
                 
-
+            </dt>
+            <dd>
                 
-                    <label>elm
+                <label>elm
                 
 
                 
                 </label>
-
                 
-                    <span class="description">DOM element or element id</span>
+                    DOM element or element id
                 
-            </li>
+            </dd>
         
-            <li>
+            <dt>
                 
-                    <pre>Number</pre>
+                    <code>Number</code>
                 
-
+            </dt>
+            <dd>
                 
-                    <label>value
+                <label>value
                 
 
                 
                 </label>
-
                 
-                    <span class="description">allows 0 to 1(default mode decimal) or percentage (warning using 0 or 1 will reset to default mode)</span>
+                    allows 0 to 1(default mode decimal) or percentage (warning using 0 or 1 will reset to default mode)
                 
-            </li>
+            </dd>
         
-        </ul>
-    
+        </dl>
+        
+        
 
     
 
-    
-        <p class="text">sets the opacity of given client a given element</p>
-    
 
     
 
@@ -1877,7 +1969,7 @@ For this function to work, the CSS file must be in the same domain than the host
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Dom.Css.setStyle
@@ -1889,57 +1981,59 @@ For this function to work, the CSS file must be in the same domain than the host
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>DOMElement|String</pre>
-                
-
-                
-                    <label>elm
-                
-
-                
-                </label>
-
-                
-                    <span class="description">DOM element or element id</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label>style
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Which css attribute to set</span>
-                
-            </li>
-        
-        </ul>
-    
-
     
 
     
         <p class="text">Adds CSS rules to an element's style attribute.</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>DOMElement|String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>elm
+                
+
+                
+                </label>
+                
+                    DOM element or element id
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>style
+                
+
+                
+                </label>
+                
+                    Which css attribute to set
+                
+            </dd>
+        
+        </dl>
+        
+        
+
+    
+
 
     
 <p class="example-title">Example</p>
@@ -1969,69 +2063,72 @@ For this function to work, the CSS file must be in the same domain than the host
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Dom.Css.show
         
     
-    (elm, forceDisplayProperty)
+    (elm, [forceDisplayProperty])
     
         
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
     
 
     
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
+        <p class="text">Shows an element.
+Internally it unsets the display property of an element. You can force a specific display property using forceDisplayProperty</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
         
-            <li>
+            <dt>
                 
-                    <pre>DOMElement|String</pre>
+                    <code>DOMElement|String</code>
                 
-
+            </dt>
+            <dd>
                 
-                    <label>elm
+                <label>elm
                 
 
                 
                 </label>
-
                 
-                    <span class="description">DOM element or element id</span>
+                    DOM element or element id
                 
-            </li>
+            </dd>
         
-            <li>
+            <dt>
                 
-                    <pre>String</pre>
+                    <code>String</code>
                 
-
+            </dt>
+            <dd>
                 
-                    <label>forceDisplayProperty
+                <label class="optional">[forceDisplayProperty]
                 
 
                 
                 </label>
-
                 
-                    <span class="description">Css display property to apply on show</span>
+                    Css display property to apply on show
                 
-            </li>
+            </dd>
         
-        </ul>
-    
+        </dl>
+        
+        
 
     
 
-    
-        <p class="text">Makes an element visible</p>
-    
 
     
 
@@ -2042,7 +2139,7 @@ For this function to work, the CSS file must be in the same domain than the host
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Dom.Css.showHide
@@ -2054,59 +2151,62 @@ For this function to work, the CSS file must be in the same domain than the host
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
     
 
     
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
+        <p class="text">Shows or hides an element.
+If the show parameter is true, it shows the element. Otherwise, hides it.</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
         
-            <li>
+            <dt>
                 
-                    <pre>DOMElement|String</pre>
+                    <code>DOMElement|String</code>
                 
-
+            </dt>
+            <dd>
                 
-                    <label>elm
+                <label>elm
                 
 
                 
                 </label>
-
                 
-                    <span class="description">DOM element or element id</span>
+                    DOM element or element id
                 
-            </li>
+            </dd>
         
-            <li>
+            <dt>
                 
-                    <pre>boolean</pre>
+                    <code>boolean</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[show]
                 
 
                 
-                    <label class="optional">[show]
-                
-
-                
-                    =false
+                    false
                 
                 </label>
-
                 
-                    <span class="description">Whether to show or hide `elm`.</span>
+                    Whether to show or hide `elm`.
                 
-            </li>
+            </dd>
         
-        </ul>
-    
+        </dl>
+        
+        
 
     
 
-    
-        <p class="text">shows or hides according to param show</p>
-    
 
     
 
@@ -2117,7 +2217,7 @@ For this function to work, the CSS file must be in the same domain than the host
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Dom.Css.toggle
@@ -2129,57 +2229,59 @@ For this function to work, the CSS file must be in the same domain than the host
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
     
 
     
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
+        <p class="text">Toggles an element visibility.</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
         
-            <li>
+            <dt>
                 
-                    <pre>DOMElement|String</pre>
+                    <code>DOMElement|String</code>
                 
-
+            </dt>
+            <dd>
                 
-                    <label>elm
+                <label>elm
                 
 
                 
                 </label>
-
                 
-                    <span class="description">DOM element or element id</span>
+                    DOM element or element id
                 
-            </li>
+            </dd>
         
-            <li>
+            <dt>
                 
-                    <pre>Boolean</pre>
+                    <code>Boolean</code>
                 
-
+            </dt>
+            <dd>
                 
-                    <label>forceShow
+                <label>forceShow
                 
 
                 
                 </label>
-
                 
-                    <span class="description">Forces showing if element is hidden</span>
+                    Forces showing if element is hidden
                 
-            </li>
+            </dd>
         
-        </ul>
-    
+        </dl>
+        
+        
 
     
 
-    
-        <p class="text">Shows or hides an element depending on current state</p>
-    
 
     
 
@@ -2190,86 +2292,88 @@ For this function to work, the CSS file must be in the same domain than the host
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Dom.Css.toggleClassName
         
     
-    (elm, className, forceAdd)
+    (elm, className, [forceAdd])
     
         
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
     
 
     
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
+        <p class="text">Toggles a class name from a given element</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
         
-            <li>
+            <dt>
                 
-                    <pre>DOMElement|String</pre>
+                    <code>DOMElement|String</code>
                 
-
+            </dt>
+            <dd>
                 
-                    <label>elm
+                <label>elm
                 
 
                 
                 </label>
-
                 
-                    <span class="description">DOM element or element id</span>
+                    DOM element or element id
                 
-            </li>
+            </dd>
         
-            <li>
+            <dt>
                 
-                    <pre>String</pre>
+                    <code>String</code>
                 
-
+            </dt>
+            <dd>
                 
-                    <label>className
+                <label>className
                 
 
                 
                 </label>
-
                 
-                    <span class="description">class name</span>
+                    Class name
                 
-            </li>
+            </dd>
         
-            <li>
+            <dt>
                 
-                    <pre>Boolean</pre>
+                    <code>Boolean</code>
                 
-
+            </dt>
+            <dd>
                 
-                    <label>forceAdd
+                <label class="optional">[forceAdd]
                 
 
                 
                 </label>
-
                 
-                    <span class="description">forces the addition of the class if it doesn't exists</span>
+                    Flag to force adding the the classe names if they don't exist yet.
                 
-            </li>
+            </dd>
         
-        </ul>
-    
+        </dl>
+        
+        
 
     
 
-    
-        <p class="text">Add or remove a class name from a given element</p>
-    
 
     
 

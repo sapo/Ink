@@ -28,7 +28,7 @@
     <table class="props bottom-space">
         
         
-        <caption>METHODS</caption>
+        <caption>Methods</caption>
         <thead>
             <tr>
                 <th>Method name</th>
@@ -467,7 +467,7 @@ If param as more than one word, it converts first letter of all words that have 
 
     
     <table class="props">
-        <caption>PROPERTIES</caption>
+        <caption>Properties</caption>
         <thead>
             <tr>
                 <th>Property name</th>
@@ -486,7 +486,7 @@ If param as more than one word, it converts first letter of all words that have 
                     
 
                     
-                        <code>Regex</code>
+                        <span class="ink-label orange uppercase">Regex</span>
                     
                     
                 </td>
@@ -510,7 +510,7 @@ If param as more than one word, it converts first letter of all words that have 
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.String.escape
@@ -522,67 +522,71 @@ If param as more than one word, it converts first letter of all words that have 
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label>c
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Char</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label>c
-                
-
-                
-                </label>
-
-                
-                    <span class="description">char</span>
-                
-            </li>
-        
-        </ul>
-    
-
-    
-        <div class="return">
-            Returns 
-            
-                <pre>String</pre>
-            
-            
-                <span class="description"></span>
-            
-        </div>
     
 
     
         <p class="text">Escapes a unicode character. returns \xXX if hex smaller than 0x100, otherwise \uXXXX</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>c
+                
+
+                
+                </label>
+                
+                    Char
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>c
+                
+
+                
+                </label>
+                
+                    char
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>String</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
 
     
 
@@ -593,7 +597,7 @@ If param as more than one word, it converts first letter of all words that have 
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.String.escapeText
@@ -605,63 +609,67 @@ If param as more than one word, it converts first letter of all words that have 
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label>txt
-                
-
-                
-                </label>
-
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Array</pre>
-                
-
-                
-                    <label class="optional">[whiteList]
-                
-
-                
-                </label>
-
-                
-            </li>
-        
-        </ul>
-    
-
-    
-        <div class="return">
-            Returns 
-            
-                <pre>String</pre>
-            
-            
-                <span class="description"></span>
-            
-        </div>
     
 
     
         <p class="text">Escapes a string to unicode characters</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>txt
+                
+
+                
+                </label>
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Array</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[whiteList]
+                
+
+                
+                </label>
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>String</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
 
     
 
@@ -672,7 +680,7 @@ If param as more than one word, it converts first letter of all words that have 
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.String.evalJSON
@@ -684,63 +692,67 @@ If param as more than one word, it converts first letter of all words that have 
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label>strJSON
-                
-
-                
-                </label>
-
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Boolean</pre>
-                
-
-                
-                    <label>sanitize
-                
-
-                
-                </label>
-
-                
-            </li>
-        
-        </ul>
-    
-
-    
-        <div class="return">
-            Returns 
-            
-                <pre>Object</pre>
-            
-            
-                <span class="description"></span>
-            
-        </div>
     
 
     
         <p class="text">Eval a JSON string to a JS object</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>strJSON
+                
+
+                
+                </label>
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Boolean</code>
+                
+            </dt>
+            <dd>
+                
+                <label>sanitize
+                
+
+                
+                </label>
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>Object</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
 
     
 
@@ -751,7 +763,7 @@ If param as more than one word, it converts first letter of all words that have 
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.String.htmlEntitiesDecode
@@ -763,48 +775,52 @@ If param as more than one word, it converts first letter of all words that have 
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label>string
-                
-
-                
-                </label>
-
-                
-            </li>
-        
-        </ul>
-    
-
-    
-        <div class="return">
-            Returns 
-            
-                <pre>String</pre>
-            
-            
-                <span class="description"></span>
-            
-        </div>
     
 
     
         <p class="text">Convert listed HTML entities to character</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>string
+                
+
+                
+                </label>
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>String</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
 
     
 
@@ -815,7 +831,7 @@ If param as more than one word, it converts first letter of all words that have 
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.String.htmlEntitiesEncode
@@ -827,48 +843,52 @@ If param as more than one word, it converts first letter of all words that have 
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label>string
-                
-
-                
-                </label>
-
-                
-            </li>
-        
-        </ul>
-    
-
-    
-        <div class="return">
-            Returns 
-            
-                <pre>String</pre>
-            
-            
-                <span class="description"></span>
-            
-        </div>
     
 
     
         <p class="text">Convert listed characters to HTML entities</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>string
+                
+
+                
+                </label>
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>String</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
 
     
 
@@ -879,7 +899,7 @@ If param as more than one word, it converts first letter of all words that have 
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.String.htmlEscapeUnsafe
@@ -891,50 +911,54 @@ If param as more than one word, it converts first letter of all words that have 
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label>str
-                
-
-                
-                </label>
-
-                
-                    <span class="description">String to escape</span>
-                
-            </li>
-        
-        </ul>
-    
-
-    
-        <div class="return">
-            Returns 
-            
-                <pre>String</pre>
-            
-            
-                <span class="description"></span>
-            
-        </div>
     
 
     
         <p class="text">Escapes unsafe html chars to their entities</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>str
+                
+
+                
+                </label>
+                
+                    String to escape
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>String</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
 
     
 
@@ -945,7 +969,7 @@ If param as more than one word, it converts first letter of all words that have 
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.String.isJSON
@@ -957,46 +981,50 @@ If param as more than one word, it converts first letter of all words that have 
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label>str
-                
-
-                
-                </label>
-
-                
-            </li>
-        
-        </ul>
-    
-
-    
-        <div class="return">
-            Returns 
-            
-                <pre>Boolean</pre>
-            
-            
-        </div>
     
 
     
         <p class="text">Checks if a string is a valid JSON object (string encoded)</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>str
+                
+
+                
+                </label>
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>Boolean</code>
+            </dt>                
+            <dd>   
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
 
     
 
@@ -1007,7 +1035,7 @@ If param as more than one word, it converts first letter of all words that have 
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.String.normalizeWhitespace
@@ -1019,45 +1047,9 @@ If param as more than one word, it converts first letter of all words that have 
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label>str
-                
-
-                
-                </label>
-
-                
-                    <span class="description">String to normalize</span>
-                
-            </li>
-        
-        </ul>
-    
-
-    
-        <div class="return">
-            Returns 
-            
-                <pre>String</pre>
-            
-            
-                <span class="description"></span>
-            
-        </div>
     
 
     
@@ -1065,6 +1057,46 @@ If param as more than one word, it converts first letter of all words that have 
 String is trimmed and sequences of many
 Whitespaces are collapsed.</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>str
+                
+
+                
+                </label>
+                
+                    String to normalize
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>String</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
 
     
 
@@ -1075,7 +1107,7 @@ Whitespaces are collapsed.</p>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.String.packetize
@@ -1087,68 +1119,72 @@ Whitespaces are collapsed.</p>
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label>string
-                
-
-                
-                </label>
-
-                
-                    <span class="description">string to divide</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Number</pre>
-                
-
-                
-                    <label>maxLen
-                
-
-                
-                </label>
-
-                
-                    <span class="description">packet size</span>
-                
-            </li>
-        
-        </ul>
-    
-
-    
-        <div class="return">
-            Returns 
-            
-                <pre>Array</pre>
-            
-            
-                <span class="description"></span>
-            
-        </div>
     
 
     
         <p class="text">Splits long string into string of, at most, maxLen (that is, all but last have length maxLen,
 last can measure maxLen or less)</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>string
+                
+
+                
+                </label>
+                
+                    string to divide
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Number</code>
+                
+            </dt>
+            <dd>
+                
+                <label>maxLen
+                
+
+                
+                </label>
+                
+                    packet size
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>Array</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
 
     
 
@@ -1159,7 +1195,7 @@ last can measure maxLen or less)</p>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.String.removeAccentedChars
@@ -1171,48 +1207,52 @@ last can measure maxLen or less)</p>
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label>string
-                
-
-                
-                </label>
-
-                
-            </li>
-        
-        </ul>
-    
-
-    
-        <div class="return">
-            Returns 
-            
-                <pre>String</pre>
-            
-            
-                <span class="description"></span>
-            
-        </div>
     
 
     
         <p class="text">Convert all accented chars to char without accent.</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>string
+                
+
+                
+                </label>
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>String</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
 
     
 
@@ -1223,7 +1263,7 @@ last can measure maxLen or less)</p>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.String.shortString
@@ -1235,65 +1275,69 @@ last can measure maxLen or less)</p>
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label>str
-                
-
-                
-                </label>
-
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Number</pre>
-                
-
-                
-                    <label>n
-                
-
-                
-                </label>
-
-                
-                    <span class="description">- number of chars of the short string</span>
-                
-            </li>
-        
-        </ul>
-    
-
-    
-        <div class="return">
-            Returns 
-            
-                <pre>String</pre>
-            
-            
-                <span class="description"></span>
-            
-        </div>
     
 
     
         <p class="text">Make a string shorter without cutting words</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>str
+                
+
+                
+                </label>
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Number</code>
+                
+            </dt>
+            <dd>
+                
+                <label>n
+                
+
+                
+                </label>
+                
+                    - number of chars of the short string
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>String</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
 
     
 
@@ -1304,7 +1348,7 @@ last can measure maxLen or less)</p>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.String.strcmp
@@ -1316,61 +1360,65 @@ last can measure maxLen or less)</p>
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label>str1
-                
-
-                
-                </label>
-
-                
-            </li>
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label>str2
-                
-
-                
-                </label>
-
-                
-            </li>
-        
-        </ul>
-    
-
-    
-        <div class="return">
-            Returns 
-            
-                <pre>Number</pre>
-            
-            
-        </div>
     
 
     
         <p class="text">Compares two strings</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>str1
+                
+
+                
+                </label>
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>str2
+                
+
+                
+                </label>
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>Number</code>
+            </dt>                
+            <dd>   
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
 
     
 
@@ -1381,7 +1429,7 @@ last can measure maxLen or less)</p>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.String.stripTags
@@ -1393,63 +1441,67 @@ last can measure maxLen or less)</p>
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label>string
-                
-
-                
-                </label>
-
-                
-            </li>
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label>allowed
-                
-
-                
-                </label>
-
-                
-            </li>
-        
-        </ul>
-    
-
-    
-        <div class="return">
-            Returns 
-            
-                <pre>String</pre>
-            
-            
-                <span class="description"></span>
-            
-        </div>
     
 
     
         <p class="text">Removes HTML tags of string</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>string
+                
+
+                
+                </label>
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>allowed
+                
+
+                
+                </label>
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>String</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
 
     
 <p class="example-title">Example</p>
@@ -1470,7 +1522,7 @@ last can measure maxLen or less)</p>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.String.substrCount
@@ -1482,63 +1534,67 @@ last can measure maxLen or less)</p>
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label>haystack
-                
-
-                
-                </label>
-
-                
-            </li>
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label>needle
-                
-
-                
-                </label>
-
-                
-            </li>
-        
-        </ul>
-    
-
-    
-        <div class="return">
-            Returns 
-            
-                <pre>Number</pre>
-            
-            
-                <span class="description"></span>
-            
-        </div>
     
 
     
         <p class="text">Count the number of occurrences of a specific needle in a haystack</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>haystack
+                
+
+                
+                </label>
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>needle
+                
+
+                
+                </label>
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>Number</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
 
     
 
@@ -1549,7 +1605,7 @@ last can measure maxLen or less)</p>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.String.toUnicode
@@ -1561,48 +1617,52 @@ last can measure maxLen or less)</p>
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label>str
-                
-
-                
-                </label>
-
-                
-            </li>
-        
-        </ul>
-    
-
-    
-        <div class="return">
-            Returns 
-            
-                <pre>String</pre>
-            
-            
-                <span class="description"></span>
-            
-        </div>
     
 
     
         <p class="text">Converts string to unicode</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>str
+                
+
+                
+                </label>
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>String</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
 
     
 
@@ -1613,7 +1673,7 @@ last can measure maxLen or less)</p>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.String.trim
@@ -1625,48 +1685,52 @@ last can measure maxLen or less)</p>
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label>string
-                
-
-                
-                </label>
-
-                
-            </li>
-        
-        </ul>
-    
-
-    
-        <div class="return">
-            Returns 
-            
-                <pre>String</pre>
-            
-            
-                <span class="description"></span>
-            
-        </div>
     
 
     
         <p class="text">Remove spaces and new line from biggin and ends of string</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>string
+                
+
+                
+                </label>
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>String</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
 
     
 
@@ -1677,7 +1741,7 @@ last can measure maxLen or less)</p>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.String.truncateString
@@ -1689,65 +1753,69 @@ last can measure maxLen or less)</p>
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label>str
-                
-
-                
-                </label>
-
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Number</pre>
-                
-
-                
-                    <label>length
-                
-
-                
-                </label>
-
-                
-                    <span class="description">- length limit for the string. String will be</span>
-                
-            </li>
-        
-        </ul>
-    
-
-    
-        <div class="return">
-            Returns 
-            
-                <pre>String</pre>
-            
-            
-                <span class="description"></span>
-            
-        </div>
     
 
     
         <p class="text">Truncates a string, breaking words and adding ... at the end</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>str
+                
+
+                
+                </label>
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Number</code>
+                
+            </dt>
+            <dd>
+                
+                <label>length
+                
+
+                
+                </label>
+                
+                    - length limit for the string. String will be
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>String</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
 
     
 
@@ -1758,7 +1826,7 @@ last can measure maxLen or less)</p>
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.String.ucFirst
@@ -1770,68 +1838,72 @@ last can measure maxLen or less)</p>
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label>string
-                
-
-                
-                </label>
-
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Boolean</pre>
-                
-
-                
-                    <label class="optional">[firstWordOnly]
-                
-
-                
-                    =false
-                
-                </label>
-
-                
-                    <span class="description">capitalize only first word.</span>
-                
-            </li>
-        
-        </ul>
-    
-
-    
-        <div class="return">
-            Returns 
-            
-                <pre>String</pre>
-            
-            
-                <span class="description"></span>
-            
-        </div>
     
 
     
         <p class="text">Convert first letter of a word to upper case <br />
 If param as more than one word, it converts first letter of all words that have more than 2 letters</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>string
+                
+
+                
+                </label>
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Boolean</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[firstWordOnly]
+                
+
+                
+                    false
+                
+                </label>
+                
+                    capitalize only first word.
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>String</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
 
     
 <p class="example-title">Example</p>
@@ -1850,7 +1922,7 @@ If param as more than one word, it converts first letter of all words that have 
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.String.unescape
@@ -1862,50 +1934,54 @@ If param as more than one word, it converts first letter of all words that have 
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label>es
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Escape sequence</span>
-                
-            </li>
-        
-        </ul>
-    
-
-    
-        <div class="return">
-            Returns 
-            
-                <pre>String</pre>
-            
-            
-                <span class="description"></span>
-            
-        </div>
     
 
     
         <p class="text">Unescapes a unicode character escape sequence</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>es
+                
+
+                
+                </label>
+                
+                    Escape sequence
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>String</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
 
     
 
@@ -1916,7 +1992,7 @@ If param as more than one word, it converts first letter of all words that have 
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.String.unescapeText
@@ -1928,48 +2004,52 @@ If param as more than one word, it converts first letter of all words that have 
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label>txt
-                
-
-                
-                </label>
-
-                
-            </li>
-        
-        </ul>
-    
-
-    
-        <div class="return">
-            Returns 
-            
-                <pre>String</pre>
-            
-            
-                <span class="description"></span>
-            
-        </div>
     
 
     
         <p class="text">Unescapes a string</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>txt
+                
+
+                
+                </label>
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>String</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
 
     
 
@@ -1980,7 +2060,7 @@ If param as more than one word, it converts first letter of all words that have 
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.String.utf8Decode
@@ -1992,48 +2072,52 @@ If param as more than one word, it converts first letter of all words that have 
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label>string
-                
-
-                
-                </label>
-
-                
-            </li>
-        
-        </ul>
-    
-
-    
-        <div class="return">
-            Returns 
-            
-                <pre>String</pre>
-            
-            
-                <span class="description"></span>
-            
-        </div>
     
 
     
         <p class="text">Decode a string from UTF8</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>string
+                
+
+                
+                </label>
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>String</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
 
     
 
@@ -2044,7 +2128,7 @@ If param as more than one word, it converts first letter of all words that have 
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.String.utf8Encode
@@ -2056,48 +2140,52 @@ If param as more than one word, it converts first letter of all words that have 
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label>string
-                
-
-                
-                </label>
-
-                
-            </li>
-        
-        </ul>
-    
-
-    
-        <div class="return">
-            Returns 
-            
-                <pre>String</pre>
-            
-            
-                <span class="description"></span>
-            
-        </div>
     
 
     
         <p class="text">Encode a string to UTF8</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>string
+                
+
+                
+                </label>
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>String</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
 
     
 
@@ -2110,11 +2198,11 @@ If param as more than one word, it converts first letter of all words that have 
 
     <section class="box box-attribute">
 
-     <h2>
+    <h1 class="fw-300">
     
        Ink.Util.String.escapedCharRegex
     
-    <i>attribute</i></h2>
+    <i>attribute</i></h1>
 
     
 

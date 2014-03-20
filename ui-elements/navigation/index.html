@@ -12,7 +12,7 @@ site_root: ../../
         Like other Ink components, our navigation elements have an easy and intuitive implementation and their structure is a combination of simple and semantic markup with natural language class naming.
     </p>
     
-    <p class="fw-300">We have four types of navigation elements that are:</p>
+    <p class="fw-300">We have five types of navigation elements that are:</p>
     <ul class="unstyled" id="breakpoints">
         <li>
             <code>menu</code>
@@ -115,9 +115,7 @@ site_root: ../../
         <li class="prop">red</li>
     </ul>
 
-
-
-    <p>Horizontal menu bars are created by adding the <code>menu</code> and <code>horizontal</code> css classes to the <code>ul</code> element within our base structure. By default no styling is added to make customization easier, but you can use on of our themes by adding <code>white</code>, <code>grey</code>, <code>black</code>, <code>blue</code>, <code>green</code>, <code>orange</code> or <code>red</code> css class to the <code>ul</code> element.</p>
+    <p>Horizontal menu bars are created by adding the <code>menu</code> and <code>horizontal</code> CSS classes to the <code>ul</code> element within our base structure. By default no styling is added to make customization easier, but you can use one of our themes by adding <code>white</code>, <code>grey</code>, <code>black</code>, <code>blue</code>, <code>green</code>, <code>orange</code> or <code>red</code> CSS class to the <code>ul</code> element.</p>
     <p>Menu items are created by adding list items containing links.</p>
 
 <p class="example-title">Code</p>
@@ -140,7 +138,7 @@ site_root: ../../
     </nav>
 </div>
 
-<p>You can add extra emphasis to a link by adding the <code>heading</code>css class to the corresponding list item.</p>
+<p>You can add extra emphasis to a link by adding the <code>heading</code> CSS class to the corresponding list item.</p>
 
 <p class="example-title">Code</p>
 {% highlight html %}
@@ -250,7 +248,7 @@ site_root: ../../
         <li class="prop">red</li>
     </ul>
 
-    <p>Vertical menus are created by using the <code>vertical</code> css class instead of <code>horizontal</code>.</p>
+    <p>Vertical menus are created by using the <code>vertical</code> CSS class instead of <code>horizontal</code>.</p>
 
 <p class="example-title">Code</p>
 {% highlight html %}
@@ -273,7 +271,7 @@ site_root: ../../
 
 <div class="column-group horizontal-gutters">
     <div class="all-50 small-100 tiny-100">
-            <p class="example-title">Example</p>
+    <p class="example-title">Example</p>
     <div class="example">
           <nav class="ink-navigation">
     <ul class="menu vertical black">
@@ -291,28 +289,28 @@ site_root: ../../
     </ul>
 </nav>
 </div>
-<p>By default, in the vertical variant, sub menus behave like an accordion, pushing any items after them down, but you can choose to use a fly out sub menu style by adding the <code>flyout</code> css class to the sub menu <code>ul</code> element.</p>
+<p>By default, in the vertical variant, sub menus behave like an accordion, pushing any items after them down, but you can choose to use a fly out sub menu style by adding the <code>flyout</code> CSS class to the sub menu <code>&ltul&gt</code> element.</p>
     </div>
     <div class="all-50 small-100 tiny-100">
     <p class="example-title">Example</p>
     <div class="example">
-          <nav class="ink-navigation">
-    <ul class="menu vertical black">
-        <li class="heading active"><a href="#">Home</a></li>
-        <li>
-            <a href="#">Post archive</a>
-            <ul class="submenu flyout left">
-                <li><a href="#">January</a></li>
-                <li><a href="#">February</a></li>
-                <li><a href="#">March</a></li>
-                <li><a href="#">...</a></li>
+        <nav class="ink-navigation">
+            <ul class="menu vertical black">
+                <li class="heading active"><a href="#">Home</a></li>
+                <li>
+                    <a href="#">Post archive</a>
+                    <ul class="submenu flyout left">
+                        <li><a href="#">January</a></li>
+                        <li><a href="#">February</a></li>
+                        <li><a href="#">March</a></li>
+                        <li><a href="#">...</a></li>
+                    </ul>
+                </li>
+                <li class="disabled"><a href="#">About</a></li>
             </ul>
-        </li>
-        <li class="disabled"><a href="#">About</a></li>
-    </ul>
-</nav>
-</div>
-<p>You can choose to which side the sub menu will open to, by adding either the <code>left</code> or <code>right</code> css class.</p>
+        </nav>
+    </div>
+<p>You can choose to which side the sub menu will open to, by adding either the <code>left</code> or <code>right</code> CSS class.</p>
     </div>
 </div>
 <p class="example-title">Code</p>
@@ -351,7 +349,7 @@ site_root: ../../
         <li class="prop">orange</li>
         <li class="prop">red</li>
     </ul>
-<p>Breadcrumb navigation is created by using the <code>breadcrumbs</code> css class in the <code>ul</code> element:</p>
+<p>Breadcrumb navigation is created by using the <code>breadcrumbs</code> CSS class in the <code>&ltul&gt</code> element:</p>
     {% highlight html %}
 <nav class="ink-navigation">
     <ul class="breadcrumbs black">
@@ -373,7 +371,7 @@ site_root: ../../
             </ul>
         </nav>
     </div>
-<p>Link separators are added automatically and are made with css and can be overridden like this:</p>
+<p>Link separators are added automatically and are made with CSS and can be overridden like this:</p>
 <p class="example-title">Code</p>
 {% highlight css %}
 .ink-navigation .breadcrumbs li:after {
@@ -406,7 +404,7 @@ site_root: ../../
     </ul>
 
 
-<p>Pagination type navigation is created by using the <code>pagination</code> css class in the <code>ul</code> element, and by default has a button bar presentation:</p>
+<p>Pagination type navigation is created by using the <code>pagination</code> CSS class in the <code>&ltul&gt</code> element, and by default has a button bar presentation:</p>
 
 <p class="example-title">Code</p>
 {% highlight html %}
@@ -435,7 +433,7 @@ site_root: ../../
 </div>
 
 <h2 class="half-top-space">Dotted</h2>
-<p>To get a dotted style of pagination, add the <code>dotted</code> css class to the <code>ul</code> element:</p>
+<p>To get a dotted style of pagination, add the <code>dotted</code> CSS class to the <code>&ltul&gt</code> element:</p>
 
 <p class="example-title">Code</p>
 {% highlight html %}
@@ -466,7 +464,7 @@ site_root: ../../
 </div>
 
 <h2 class="half-top-space">Chevron</h2>
-<p>To get a chevron style of pagination, add the <code>dotted</code> css class to the <code>ul</code> element:</p>
+<p>To get a chevron style of pagination, add the <code>dotted</code> CSS class to the <code>&ltul&gt</code> element:</p>
 
 <p class="example-title">Code</p>
 {% highlight html %}
@@ -510,7 +508,7 @@ site_root: ../../
         <li class="prop">red</li>
     </ul>
 
-<p>Pills type navigation is created by using the <code>pills</code> css class in the <code>ul</code> element, and by default has a button bar presentation:</p>
+<p>Pills type navigation is created by using the <code>pills</code> CSS class in the <code>&ltul&gt</code> element, and by default has a button bar presentation:</p>
 
 <p class="example-title">Code</p>
 {% highlight html %}
@@ -561,7 +559,7 @@ site_root: ../../
         <li class="prop">red</li>
     </ul>
 
-<p>Dropdowns use the same base structure as the other navigation types, but have a few extra classes to handle its higher complexity. Adding the <code>dropdown</code> css class to the top <code>ul</code> element will set the basic styling and behaviour of the dropdown menu.</p>
+<p>Dropdowns use the same base structure as the other navigation types, but have a few extra classes to handle its higher complexity. Adding the <code>dropdown</code> CSS class to the top <code>&ltul&gt</code> element will set the basic styling and behaviour of the dropdown menu.</p>
 
 <div class="column-group horizontal-gutters">
     <div class="extra-large-50 large-50 medium-50 small-100 tiny-100">

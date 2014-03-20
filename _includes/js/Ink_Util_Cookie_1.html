@@ -28,7 +28,7 @@
     <table class="props bottom-space">
         
         
-        <caption>METHODS</caption>
+        <caption>Methods</caption>
         <thead>
             <tr>
                 <th>Method name</th>
@@ -116,7 +116,7 @@
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.Cookie.get
@@ -128,48 +128,52 @@
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label>name
-                
-
-                
-                </label>
-
-                
-            </li>
-        
-        </ul>
-    
-
-    
-        <div class="return">
-            Returns 
-            
-                <pre>String|Object</pre>
-            
-            
-                <span class="description"></span>
-            
-        </div>
     
 
     
         <p class="text">Gets an object with current page cookies</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>name
+                
+
+                
+                </label>
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>String|Object</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
 
     
 <p class="example-title">Example</p>
@@ -190,7 +194,7 @@
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.Cookie.remove
@@ -202,74 +206,76 @@
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label>cookieName
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Cookie name</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label class="optional">[path]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Path of the cookie (default '/')</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label class="optional">[domain]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Domain of the cookie (default current hostname)</span>
-                
-            </li>
-        
-        </ul>
-    
-
     
 
     
         <p class="text">Delete a cookie</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>cookieName
+                
+
+                
+                </label>
+                
+                    Cookie name
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[path]
+                
+
+                
+                </label>
+                
+                    Path of the cookie (default '/')
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[domain]
+                
+
+                
+                </label>
+                
+                    Domain of the cookie (default current hostname)
+                
+            </dd>
+        
+        </dl>
+        
+        
+
+    
+
 
     
 <p class="example-title">Example</p>
@@ -289,7 +295,7 @@
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         
             Ink.Util.Cookie.set
@@ -301,125 +307,127 @@
             <i>method</i>
         
     
-    </h2>
+    </h1>
 
     
-    
-
-    
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label>name
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Cookie name</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label>value
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Cookie value</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Number</pre>
-                
-
-                
-                    <label class="optional">[expires]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Number to add to current Date in seconds</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label class="optional">[path]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Path to sets cookie (default '/')</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label class="optional">[domain]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Domain to sets cookie (default current hostname)</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Boolean</pre>
-                
-
-                
-                    <label class="optional">[secure]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">True if wants secure, default 'false'</span>
-                
-            </li>
-        
-        </ul>
-    
-
     
 
     
         <p class="text">Sets a cookie</p>
     
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>name
+                
+
+                
+                </label>
+                
+                    Cookie name
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label>value
+                
+
+                
+                </label>
+                
+                    Cookie value
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Number</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[expires]
+                
+
+                
+                </label>
+                
+                    Number to add to current Date in seconds
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[path]
+                
+
+                
+                </label>
+                
+                    Path to sets cookie (default '/')
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[domain]
+                
+
+                
+                </label>
+                
+                    Domain to sets cookie (default current hostname)
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Boolean</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[secure]
+                
+
+                
+                </label>
+                
+                    True if wants secure, default 'false'
+                
+            </dd>
+        
+        </dl>
+        
+        
+
+    
+
 
     
 <p class="example-title">Example</p>

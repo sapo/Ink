@@ -28,7 +28,7 @@
     <table class="props bottom-space">
         
         
-        <caption>METHODS</caption>
+        <caption>Methods</caption>
         <thead>
             <tr>
                 <th>Method name</th>
@@ -76,7 +76,7 @@
 
     <section class="box box-function">
 
-    <h2>
+    <h1 class="fw-300">
     
         Ink.UI.ImageQuery
     
@@ -84,195 +84,197 @@
     
         <i>constructor</i>
     
-    </h2>
+    </h1>
 
     
     
 
     
-        <!--<h3>Parameters:</h3>-->
-        <ul class="params">
-        
-            <li>
-                
-                    <pre>String|DOMElement</pre>
-                
-
-                
-                    <label>selector
-                
-
-                
-                </label>
-
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Object</pre>
-                
-
-                
-                    <label class="optional">[options]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Options</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>String|Function</pre>
-                
-
-                
-                    <label class="optional">[options.src]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">String or Callback function (that returns a string) with the path to be used to get the images.</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>String|Function</pre>
-                
-
-                
-                    <label class="optional">[options.retina]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">String or Callback function (that returns a string) with the path to be used to get RETINA specific images.</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Array</pre>
-                
-
-                
-                    <label class="optional">[options.queries]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Array of queries</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>String</pre>
-                
-
-                
-                    <label class="optional">[options.queries.label]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Label of the query. Ex. 'small'</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Number</pre>
-                
-
-                
-                    <label class="optional">[options.queries.width]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Min-width to use this query</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>Function</pre>
-                
-
-                
-                    <label class="optional">[options.onLoad]
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Date format string</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>array</pre>
-                
-
-                
-                    <label>queries
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Array of objects that determine the label/name and its min-width to be applied.</span>
-                
-            </li>
-        
-            <li>
-                
-                    <pre>boolean</pre>
-                
-
-                
-                    <label>allowFirstLoad
-                
-
-                
-                </label>
-
-                
-                    <span class="description">Boolean flag to allow the loading of the first element.</span>
-                
-            </li>
-        
-        </ul>
-    
 
     
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String|DOMElement</code>
+                
+            </dt>
+            <dd>
+                
+                <label>selector
+                
+
+                
+                </label>
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Object</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options]
+                
+
+                
+                </label>
+                
+                    Options
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String|Function</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.src]
+                
+
+                
+                </label>
+                
+                    String or Callback function (that returns a string) with the path to be used to get the images.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String|Function</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.retina]
+                
+
+                
+                </label>
+                
+                    String or Callback function (that returns a string) with the path to be used to get RETINA specific images.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Array</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.queries]
+                
+
+                
+                </label>
+                
+                    Array of queries
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.queries.label]
+                
+
+                
+                </label>
+                
+                    Label of the query. Ex. 'small'
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Number</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.queries.width]
+                
+
+                
+                </label>
+                
+                    Min-width to use this query
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Function</code>
+                
+            </dt>
+            <dd>
+                
+                <label class="optional">[options.onLoad]
+                
+
+                
+                </label>
+                
+                    Date format string
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>array</code>
+                
+            </dt>
+            <dd>
+                
+                <label>queries
+                
+
+                
+                </label>
+                
+                    Array of objects that determine the label/name and its min-width to be applied.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>boolean</code>
+                
+            </dt>
+            <dd>
+                
+                <label>allowFirstLoad
+                
+
+                
+                </label>
+                
+                    Boolean flag to allow the loading of the first element.
+                
+            </dd>
+        
+        </dl>
+        
+        
 
     
+
 
     
 <p class="example-title">Example</p>
   
 {% highlight html %}{% raw %}
-     <div class="imageQueryExample large-100 medium-100 small-100 content-center clearfix vspace">
+     <div class="imageQueryExample all-100 content-center clearfix vspace">
          <img src="/assets/imgs/imagequery/small/image.jpg" />
      </div>
      <script type="text/javascript">
