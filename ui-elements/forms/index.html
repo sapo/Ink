@@ -16,7 +16,7 @@ site_root: ../../
     <p>
         Forms are a tough thing to implement, especially if you want to include them in a fluid layout, so we made everything work as painlessly as possible while giving you multiple layout choices as you build your forms.
     </p>
-    <p>Please note that forms, like other components in Ink, use the <a href="{{ site.url }}ui-elements/grid/" class="fw-700">grid</a> css classes to create form layouts. So if you haven't looked at the <a href="{{ site.url }}ui-elements/grid/" class="fw-700">grid</a> documentation yet, we suggest that you give <a href="{{ site.url }}ui-elements/grid/" class="fw-700">it</a> read.</p>
+    <p>Please note that forms, like other components in Ink, use the <a href="{{ site.url }}ui-elements/grid/">grid</a> css classes to create form layouts. So if you haven't looked at the <a href="{{ site.url }}ui-elements/grid/">grid</a> documentation yet, we suggest that you give <a href="{{ site.url }}ui-elements/grid/">it</a> a read.</p>
 
     <table class="props css">
         <caption>CSS CLASSES</caption>
@@ -66,7 +66,7 @@ site_root: ../../
     </table>
 
     <ul class="unstyled">
-        <li><span class="label mandatory"></span>: These classes must be used to make any kind of {{page.title | downcase }} work.</li>
+        <li><span class="label mandatory"></span> These classes must be used to make any kind of {{page.title | downcase }} work.</li>
     </ul>
 
 </section>
@@ -127,7 +127,7 @@ site_root: ../../
 
 {% highlight html %}
 <form class="ink-form">
-    <fieldset class="column-group gutters">
+    <div class="column-group gutters">
         <div class="control-group all-33">
             <label for="name">Name</label>
             <div class="control">
@@ -146,13 +146,17 @@ site_root: ../../
                 <input type="text" id="email">
             </div>
         </div>
-    </fieldset>
+    </div>
 </form>{% endhighlight %}
+
+    <p>
+        <i class="fa fa-leaf"></i> Note that the <code>control-group</code> elements are wrapped in a <code>&ltdiv&gt</code> instead of a <code>&ltfieldset&gt</code>. This is only required if you're using a <a href="{{ site.url }}ui-elements/flexbox/">flexgrid</a>. The reason for this is that the <code>&ltfieldset&gt</code>, such as other form elements, don't recognise the <code>display:flex</code> property, so you need to use one that does.
+    </p>
 
     <p class="example-title">Example</p>
     <div class="example">
         <form class="ink-form">
-            <fieldset class="column-group gutters">
+            <div class="column-group gutters">
                 <div class="control-group all-33 tiny-100">
                     <label for="name">Name</label>
                     <div class="control">
@@ -171,7 +175,7 @@ site_root: ../../
                         <input type="text" id="email">
                     </div>
                 </div>
-            </fieldset>
+            </div>
         </form>
     </div>
 
@@ -239,7 +243,7 @@ site_root: ../../
 
 {% highlight html %}
 <form class="ink-form">
-    <fieldset class="column-group gutters">
+    <div class="column-group gutters">
         <div class="control-group all-33">
             <div class="column-group gutters">
                 <label for="name" class="all-20 align-right">Name</label>
@@ -264,13 +268,13 @@ site_root: ../../
                 </div>
             </div>
         </div>
-    </fieldset>
+    </div>
 </form>{% endhighlight %}
 
     <p class="example-title">Example</p>
     <div class="example">
         <form class="ink-form half-top-space">
-            <fieldset class="column-group horizontal-gutters">
+            <div class="column-group horizontal-gutters">
                 <div class="control-group all-33 small-100 tiny-100">
                     <div class="column-group horizontal-gutters">
                         <label for="name" class="all-20 align-right">Name</label>
@@ -296,8 +300,7 @@ site_root: ../../
                         </div>
                     </div>
                 </div>
-
-            </fieldset>
+            </div>
         </form>
     </div>
 
@@ -458,7 +461,7 @@ site_root: ../../
     
 {% highlight html %}
 <form class="ink-form">
-    <fieldset class="column-group gutters">
+    <div class="column-group gutters">
         <!-- Prepended button -->
         <div class="control-group all-50 small-100 tiny-100">
             <div class="column-group gutters">
@@ -479,13 +482,13 @@ site_root: ../../
                 </div>
             </div>
         </div>
-    </fieldset>
+    </div>
 </form>{% endhighlight %}
 
     <p class="example-title">Example</p>
     <div class="example bottom-space">
         <form class="ink-form half-top-space">
-            <fieldset class="column-group horizontal-gutters">
+            <div class="column-group horizontal-gutters">
                 <div class="control-group all-50 small-100 tiny-100">
                     <div class="column-group horizontal-gutters">
                         <label for="name" class="all-20 align-right">Label</label>
@@ -505,7 +508,7 @@ site_root: ../../
                         
                     </div>
                 </div>
-            </fieldset>
+            </div>
         </form>
     </div>
 
@@ -521,7 +524,7 @@ site_root: ../../
 
 {% highlight html %}
 <form class="ink-form">
-    <fieldset class="column-group gutters">
+    <div class="column-group gutters">
         <!-- Prepended symbol -->
         <div class="control-group all-50 small-100 tiny-100">
             <div class="column-group gutters">
@@ -546,13 +549,13 @@ site_root: ../../
                 </div>
             </div>
         </div>
-    </fieldset>
+    </div>
 </form>{% endhighlight %}
 
     <p class="example-title">Example</p>
     <div class="example">
         <form class="ink-form half-top-space">
-            <fieldset class="column-group horizontal-gutters">
+            <div class="column-group horizontal-gutters">
                 <div class="control-group all-50 small-100 tiny-100">
                     <div class="column-group horizontal-gutters">
                         <label for="email" class="all-20 align-right">Email</label>
@@ -575,7 +578,7 @@ site_root: ../../
                         </div>
                     </div>
                 </div>
-            </fieldset>
+            </div>
         </form>
     </div>
 
@@ -592,7 +595,7 @@ site_root: ../../
         <li class="prop">label</li>
     </ul>
     <p>
-        Lists of checkboxes or radio buttons follow the same structure as the previous examples, only here your inputs should be wrapped by an <code>&ltul&gt</code> with the <code>control</code> class, in place of the <code>&ltdiv&gt</code>. Then, each of your checkbox/label pairs needs to be inside a <code>&ltli&gt</code>.
+        Lists of checkboxes or radio buttons follow the same structure as the previous examples, only here your inputs should be wrapped by an <code>&ltul&gt</code> with the <code>control</code> class, in place of the <code>&ltdiv&gt</code>. Then, each of your checkbox/label pair needs to be inside a <code>&ltli&gt</code>.
     </p>
 
     <h2>Checkboxes</h2>
@@ -604,11 +607,11 @@ site_root: ../../
         <div class="control-group">
             <p class="label">Please select one or more options</p>
             <ul class="control unstyled">
-                <li><input type="checkbox" id="cb4" name="cb4" value=""><label for="cb4">Chimaira</label></li>
-                <li><input type="checkbox" id="cb3" name="cb3" value=""><label for="cb3">Metallica</label></li>
-                <li><input type="checkbox" id="cb4" name="cb4" value=""><label for="cb4">Motörhead</label></li>
-                <li><input type="checkbox" id="cb2" name="cb2" value=""><label for="cb2">Pantera</label></li>
-                <li><input type="checkbox" id="cb1" name="cb1" value=""><label for="cb1">Slayer</label></li>
+                <li><input type="checkbox" id="cb4" name="cb4" value="Chimaira"><label for="cb4">Chimaira</label></li>
+                <li><input type="checkbox" id="cb3" name="cb3" value="Metallica"><label for="cb3">Metallica</label></li>
+                <li><input type="checkbox" id="cb4" name="cb4" value="Motorhead"><label for="cb4">Motörhead</label></li>
+                <li><input type="checkbox" id="cb2" name="cb2" value="Pantera"><label for="cb2">Pantera</label></li>
+                <li><input type="checkbox" id="cb1" name="cb1" value="Slayer"><label for="cb1">Slayer</label></li>
             </ul>
         </div>
     </fieldset>
@@ -622,11 +625,11 @@ site_root: ../../
                 <div class="control-group">
                     <p class="label">Please select one or more options</p>
                     <ul class="control unstyled">
-                        <li><input type="checkbox" id="cb4" name="cb4" value=""><label for="cb4">Chimaira</label></li>
-                        <li><input type="checkbox" id="cb3" name="cb3" value=""><label for="cb3">Metallica</label></li>
-                        <li><input type="checkbox" id="cb4" name="cb4" value=""><label for="cb4">Motörhead</label></li>
-                        <li><input type="checkbox" id="cb2" name="cb2" value=""><label for="cb2">Pantera</label></li>
-                        <li><input type="checkbox" id="cb1" name="cb1" value=""><label for="cb1">Slayer</label></li>
+                        <li><input type="checkbox" id="cb4" name="cb4" value="Chimaira"><label for="cb4">Chimaira</label></li>
+                        <li><input type="checkbox" id="cb3" name="cb3" value="Metallica"><label for="cb3">Metallica</label></li>
+                        <li><input type="checkbox" id="cb4" name="cb4" value="Motorhead"><label for="cb4">Motörhead</label></li>
+                        <li><input type="checkbox" id="cb2" name="cb2" value="Pantera"><label for="cb2">Pantera</label></li>
+                        <li><input type="checkbox" id="cb1" name="cb1" value="Slayer"><label for="cb1">Slayer</label></li>
                     </ul>
                 </div>
             </fieldset>
@@ -642,11 +645,11 @@ site_root: ../../
             <div class="control-group">
                 <p class="label">Please select one of these options</p>
                 <ul class="control unstyled">
-                    <li><input type="radio" id="rb1" name="rb" value=""><label for="rb1">Ace of Spades</label></li>
-                    <li><input type="radio" id="rb2" name="rb" value=""><label for="rb2">Queen of Diamonds</label></li>
-                    <li><input type="radio" id="rb2" name="rb" value=""><label for="rb2">Queen of Spades</label></li>
-                    <li><input type="radio" id="rb3" name="rb" value=""><label for="rb3">Jack of Hearts</label></li>
-                    <li><input type="radio" id="rb4" name="rb" value=""><label for="rb4">King of Clubs</label></li>
+                    <li><input type="radio" id="rb1" name="rb" value="Ace of Spades"><label for="rb1">Ace of Spades</label></li>
+                    <li><input type="radio" id="rb2" name="rb" value="Queen of Diamonds"><label for="rb2">Queen of Diamonds</label></li>
+                    <li><input type="radio" id="rb2" name="rb" value="Queen of Spades"><label for="rb2">Queen of Spades</label></li>
+                    <li><input type="radio" id="rb3" name="rb" value="Jack of Hearts"><label for="rb3">Jack of Hearts</label></li>
+                    <li><input type="radio" id="rb4" name="rb" value="King of Clubs"><label for="rb4">King of Clubs</label></li>
                 </ul>
             </div>
         </fieldset>
@@ -661,11 +664,11 @@ site_root: ../../
                 <div class="control-group">
                     <p class="label">Please select one of these options</p>
                     <ul class="control unstyled">
-                        <li><input type="radio" id="rb1" name="rb" value=""><label for="rb1">Ace of Spades</label></li>
-                        <li><input type="radio" id="rb2" name="rb" value=""><label for="rb2">Queen of Diamonds</label></li>
-                        <li><input type="radio" id="rb2" name="rb" value=""><label for="rb2">Queen of Spades</label></li>
-                        <li><input type="radio" id="rb3" name="rb" value=""><label for="rb3">Jack of Hearts</label></li>
-                        <li><input type="radio" id="rb4" name="rb" value=""><label for="rb4">King of Clubs</label></li>
+                        <li><input type="radio" id="rb1" name="rb" value="Ace of Spades"><label for="rb1">Ace of Spades</label></li>
+                        <li><input type="radio" id="rb2" name="rb" value="Queen of Diamonds"><label for="rb2">Queen of Diamonds</label></li>
+                        <li><input type="radio" id="rb2" name="rb" value="Queen of Spades"><label for="rb2">Queen of Spades</label></li>
+                        <li><input type="radio" id="rb3" name="rb" value="Jack of Hearts"><label for="rb3">Jack of Hearts</label></li>
+                        <li><input type="radio" id="rb4" name="rb" value="King of Clubs"><label for="rb4">King of Clubs</label></li>
                     </ul>
                 </div>
             </fieldset>
