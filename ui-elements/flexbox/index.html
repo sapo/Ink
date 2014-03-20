@@ -21,6 +21,21 @@ site_root: ../../
   </ul>
   <p>On this page we'll cover all the places where flexbox feature enhancement exists and how to take advantage of them.</p>
   <p><i class="fa fa-leaf"></i> Be aware that the Flexible box layout mode is still at the <a href="http://www.w3.org/TR/css3-flexbox/#status">Candidate Recommendation</a> stage of the specification and even though the W3C encourages browser makers to implement it, it is subject to change before the final version of the specification.</p>
+  <h2 class="fw-300">How to use</h2>
+  <p>The <code>ink-flex.css</code> file contains both the new flexbox grid system and the "normal" one. To to make sure that the flexbox code only is used on capable browsers, we've wrapped both in css selectors:</p>
+<p class="example-title">Code</p>
+{% highlight css %}
+html.flexbox,
+html.flexboxlegacy {
+  // flexbox code
+}
+
+html.no-flexbox,
+html.no-flexboxlegacy {
+  // non flexbox code
+}
+{% endhighlight %}
+<p>From version 3.0.0 onward, we're distributing and using <a href="http://modernizr.com/" target="_blank">modernizr.js</a> to detect browser support for flexbox. <a href="http://modernizr.com/" target="_blank">Modernizr</a> will write the <code>flexbox</code>,<code>no-flexbox</code>,<code>flexboxlegacy</code> or <code>no-flexboxlegacy</code> on your pages html tag for you.</p>
   <table class="props css">
     <caption>CSS CLASSES</caption>
     <thead>
@@ -271,14 +286,14 @@ site_root: ../../
 <p class="example-title">Code</p>
 {% highlight html %}
 <div class="ink-grid">
-  <div class="column-group horizontal-gutters vertical">
-    <div class="all-33">
+  <div class="column-group vertical-gutters vertical">
+    <div class="all-auto">
       <div class="column">column 1</div>
     </div>
-    <div class="all-33">
+    <div class="all-auto">
       <div class="column">column 2</div>
     </div>
-    <div class="all-33">
+    <div class="all-auto">
       <div class="column">column 3</div>
     </div>
   </div>
@@ -287,14 +302,14 @@ site_root: ../../
 <p class="example-title">Demo</p>
 <div class="example">
 <div class="ink-grid">
-  <div class="column-group horizontal-gutters large-vertical-gutters large-vertical large-reverse">
-    <div class="all-33 large-auto">
+  <div class="column-group vertical-gutters vertical">
+    <div class="all-auto">
       <div class="column">column 1</div>
     </div>
-    <div class="all-33 large-auto">
+    <div class="all-auto">
       <div class="column">column 2</div>
     </div>
-    <div class="all-33 large-auto">
+    <div class="all-auto">
       <div class="column">column 3</div>
     </div>
   </div>
@@ -305,14 +320,14 @@ site_root: ../../
     <p class="example-title">Code</p>
 {% highlight html %}
 <div class="ink-grid">
-  <div class="column-group horizontal-gutters vertical">
-    <div class="all-33">
+  <div class="column-group vertical-gutters vertical reverse">
+    <div class="all-auto">
       <div class="column">column 1</div>
     </div>
-    <div class="all-33">
+    <div class="all-auto">
       <div class="column">column 2</div>
     </div>
-    <div class="all-33">
+    <div class="all-auto">
       <div class="column">column 3</div>
     </div>
   </div>
@@ -321,14 +336,14 @@ site_root: ../../
 <p class="example-title">Demo</p>
 <div class="example">
 <div class="ink-grid">
-  <div class="column-group horizontal-gutters large-vertical-gutters large-vertical large-reverse">
-    <div class="all-33 large-auto">
+  <div class="column-group vertical-gutters vertical reverse">
+    <div class="all-auto">
       <div class="column">column 1</div>
     </div>
-    <div class="all-33 large-auto">
+    <div class="all-auto">
       <div class="column">column 2</div>
     </div>
-    <div class="all-33 large-auto">
+    <div class="all-auto">
       <div class="column">column 3</div>
     </div>
   </div>

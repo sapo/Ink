@@ -7687,32 +7687,26 @@ body {
 
 .fw-100, .fw-light {
   font-weight: 100;
-  font-family: "Roboto", Arial, sans-serif;
 }
 
 .fw-300, .fw-thin {
   font-weight: 300;
-  font-family: "Roboto", Arial, sans-serif;
 }
 
 .fw-400, .fw-regular {
   font-weight: 400;
-  font-family: "Roboto", Arial, sans-serif;
 }
 
 .fw-500, .fw-medium {
   font-weight: 500;
-  font-family: "Roboto", Arial, sans-serif;
 }
 
 .fw-700, .fw-bold {
   font-weight: 700;
-  font-family: "Roboto", Arial, sans-serif;
 }
 
 .fw-900, .fw-black {
   font-weight: 900;
-  font-family: "Roboto", Arial, sans-serif;
 }
 
 .condensed-300, .condensed-thin {
@@ -7780,6 +7774,10 @@ body {
 
 .lowercase {
   text-transform: lowercase;
+}
+
+.capitalizer {
+  text-transform: capitalize;
 }
 
 .fa {
@@ -8297,6 +8295,30 @@ figure.ink-image > figcaption.dark {
   border: none;
 }
 .ink-button.black[disabled]:hover {
+  border: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+.ink-button.white {
+  color: #555555;
+  background: white;
+  border-color: #d8d8d8;
+}
+.ink-button.white:hover, .ink-button.white:active {
+  background: #f2f2f2;
+  border-color: #cbcbcb;
+  color: #555555;
+  text-decoration: none;
+}
+.ink-button.white:focus {
+  background: #f2f2f2;
+}
+.ink-button.white[disabled] {
+  background: rgba(255, 255, 255, 0.6);
+  border: none;
+}
+.ink-button.white[disabled]:hover {
   border: none;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;

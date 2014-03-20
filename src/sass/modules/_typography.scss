@@ -8,12 +8,12 @@ body {
     line-height: $base-line-height;
 }
 
-.fw-100, .fw-light { font-weight: 100; font-family: $sans-serif-font-stack; }
-.fw-300, .fw-thin { font-weight: 300; font-family: $sans-serif-font-stack; }
-.fw-400, .fw-regular { font-weight: 400; font-family: $sans-serif-font-stack; }
-.fw-500, .fw-medium { font-weight: 500; font-family: $sans-serif-font-stack; }
-.fw-700, .fw-bold { font-weight: 700; font-family: $sans-serif-font-stack; }
-.fw-900, .fw-black { font-weight: 900; font-family: $sans-serif-font-stack; }
+.fw-100, .fw-light { font-weight: 100; }
+.fw-300, .fw-thin { font-weight: 300; }
+.fw-400, .fw-regular { font-weight: 400; }
+.fw-500, .fw-medium { font-weight: 500; }
+.fw-700, .fw-bold { font-weight: 700; }
+.fw-900, .fw-black { font-weight: 900; }
 
 .condensed-300, .condensed-thin { font-weight: 200; font-family: $condensed-font-stack; }
 .condensed-400, .condensed-regular { font-weight: 400; font-family: $condensed-font-stack; }
@@ -33,8 +33,9 @@ body {
 .italic { font-style: italic; }
 .uppercase { text-transform: uppercase; }
 .lowercase { text-transform: lowercase; }
+.capitalizer { text-transform: capitalize; }
 
-.fa { font-size: 14px }
+.fa { font-size: 14px; }
 
 a {
     color: $link-color; 

@@ -335,8 +335,8 @@ body.ink-drawer {
 
 
 // Code highlight
-.highlight          { padding: 1em; background: $code-background; margin-bottom: 1.5em; @include border-radius($border-radius);}
-.highlight pre      { margin: 0; font-size: .9em; }
+.highlight          { padding: 1em; background: $code-background; margin-bottom: 1.5em; @include border-radius($border-radius); }
+.highlight pre      { margin: 0; font-size: .9em; overflow-x: auto; }
 .highlight .c       { color: #999988; font-style: italic; } /* Comment */
 .highlight .err     { background-color: #e3d2d2; color: #a61717; } /* Error */
 .highlight .k       { font-weight: bold; } /* Keyword */
@@ -541,11 +541,13 @@ ul {
                 }
             }
         }
+        
     }
 }
 
 span.label {
 
+    white-space: nowrap;
     font-size: 0.80em;
 
     & + & {
@@ -639,10 +641,12 @@ html.flexbox .example {
         padding: 0;
         .column {
             height: 150px;
-            border: 1px darken(#E5EBF0,10%) solid;
-            background: #E5EBF0;
+            border: 1px darken($code-background,15%) solid;
+            background: darken($code-background,7%);
             text-align: center;
             line-height: 150px;
+            @extend .fw-300;
+            @extend .uppercase;
         }
     }
 
@@ -714,5 +718,118 @@ footer {
                 }
             }
         }
+    }
+}
+
+// homepage
+
+$ink: lighten(#5EAA3A,10%);
+$what: lighten(#5C8DD6,10%);
+$why: lighten(#8F65C5,10%);
+$how: lighten(#C04343,10%);
+$who: lighten(#CA8A4E,10%);
+
+#home {
+
+@mixin text-color($color,$elements...) {
+  #{$elements} {
+    color: $color;
+  }
+}
+
+  section {
+    border: none;
+    & + section {
+      margin-top: 0;
+    }
+  }
+
+  section.ink {
+
+      padding: 5em 0;
+      margin-top: 44px;
+      @include background-image(radial-gradient($ink, darken($ink,10%)));
+      @include text-color($white,h1,h2,h3,p,ul);
+
+      .ink-grid {
+        height: 100%;
+        .column-group {
+            height: inherit;
+        }
+      }
+
+      a.ink-button.download {
+        color: #5EAA3A;
+        background: white;
+        font-size: 2em;
+        @extend .fw-300;
+      }
+
+    }
+
+    section.what {
+      padding: 5em 0;
+
+      
+
+      @include background-image(radial-gradient($what, darken($what,10%)));
+      @include text-color($white,h1,h2,h3,p,ul);
+      
+      
+      .ink-grid {
+        height: 100%;
+        .column-group {
+            height: inherit;
+        }
+      }
+
+    }
+
+    section.why {
+      padding: 5em 0;
+
+      @include background-image(radial-gradient($why, darken($why,10%)));
+      @include text-color($white,h1,h2,h3,p,ul);
+      
+      
+      .ink-grid {
+        height: 100%;
+        .column-group {
+            height: inherit;
+        }
+      }
+
+    }
+
+    section.how {
+      padding: 5em 0;
+
+      @include background-image(radial-gradient($how, darken($how,10%)));
+      @include text-color($white,h1,h2,h3,p,ul);
+      
+      
+      .ink-grid {
+        height: 100%;
+        .column-group {
+            height: inherit;
+        }
+      }
+
+    }
+
+    section.who {
+      padding: 5em 0;
+
+      @include background-image(radial-gradient($who, darken($who,10%)));
+      @include text-color($white,h1,h2,h3,p,ul);
+      
+      
+      .ink-grid {
+        height: 100%;
+        .column-group {
+            height: inherit;
+        }
+      }
+
     }
 }
