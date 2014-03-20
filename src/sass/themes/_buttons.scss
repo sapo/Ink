@@ -74,5 +74,9 @@
     &.black {
         @include ink-button($grey-90, $white);
     }
+
+    &.white {
+        @include ink-button($white, $text-color);
+    }
   
 }
