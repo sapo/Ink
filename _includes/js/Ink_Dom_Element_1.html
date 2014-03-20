@@ -36,428 +36,1351 @@ DOM Traversal and manipulation</small></h1>
 
 
     
-        <h2>Defined functions:</h2>
-        <ul class="unstyled">
-        
-            <li><a href="#Ink_Dom_Element_1-appendHTML">
-            
-                Ink.Dom.Element_1.appendHTML
-            
-            (elm, html)</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-childElementCount">
-            
-                Ink.Dom.Element_1.childElementCount
-            
-            (elm)</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-clonePosition">
-            
-                Ink.Dom.Element_1.clonePosition
-            
-            (cloneTo, cloneFrom)</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-create">
-            
-                Ink.Dom.Element_1.create
-            
-            (tag, properties)</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-data">
-            
-                Ink.Dom.Element_1.data
-            
-            (selector)</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-descendantOf">
-            
-                Ink.Dom.Element_1.descendantOf
-            
-            (node, descendant)</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-elementDimensions">
-            
-                Ink.Dom.Element_1.elementDimensions
-            
-            (element)</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-elementHeight">
-            
-                Ink.Dom.Element_1.elementHeight
-            
-            (element)</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-elementLeft">
-            
-                Ink.Dom.Element_1.elementLeft
-            
-            (element)</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-elementTop">
-            
-                Ink.Dom.Element_1.elementTop
-            
-            (element)</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-elementWidth">
-            
-                Ink.Dom.Element_1.elementWidth
-            
-            (element)</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-ellipsizeText">
-            
-                Ink.Dom.Element_1.ellipsizeText
-            
-            (element, [ellipsis])</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-fillChecks">
-            
-                Ink.Dom.Element_1.fillChecks
-            
-            (insertAfterEl, name, data, [skipEmpty], [defaultValue], [splitEl])</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-fillRadios">
-            
-                Ink.Dom.Element_1.fillRadios
-            
-            (insertAfterEl, name, data, [skipEmpty], [defaultValue], [splitEl])</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-fillSelect">
-            
-                Ink.Dom.Element_1.fillSelect
-            
-            (container, data, [skipEmpty], [defaultValue])</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-fillSelect2">
-            
-                Ink.Dom.Element_1.fillSelect2
-            
-            (ctn, opts, )</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-findUpwardsByClass">
-            
-                Ink.Dom.Element_1.findUpwardsByClass
-            
-            (element, className)</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-findUpwardsById">
-            
-                Ink.Dom.Element_1.findUpwardsById
-            
-            (element, id)</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-findUpwardsBySelector">
-            
-                Ink.Dom.Element_1.findUpwardsBySelector
-            
-            (element, sel)</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-findUpwardsByTag">
-            
-                Ink.Dom.Element_1.findUpwardsByTag
-            
-            (element, tag)</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-findUpwardsHaving">
-            
-                Ink.Dom.Element_1.findUpwardsHaving
-            
-            (element, boolTest)</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-firstElementChild">
-            
-                Ink.Dom.Element_1.firstElementChild
-            
-            (elm)</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-get">
-            
-                Ink.Dom.Element_1.get
-            
-            (elm)</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-getChildrenText">
-            
-                Ink.Dom.Element_1.getChildrenText
-            
-            (el, [removeIt])</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-getSelectValues">
-            
-                Ink.Dom.Element_1.getSelectValues
-            
-            (select)</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-hasAttribute">
-            
-                Ink.Dom.Element_1.hasAttribute
-            
-            (elm, attr)</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-htmlToFragment">
-            
-                Ink.Dom.Element_1.htmlToFragment
-            
-            (html)</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-inViewport">
-            
-                Ink.Dom.Element_1.inViewport
-            
-            (element, [partial], )</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-insertAfter">
-            
-                Ink.Dom.Element_1.insertAfter
-            
-            (newElm, targetElm)</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-insertBefore">
-            
-                Ink.Dom.Element_1.insertBefore
-            
-            (newElm, targetElm)</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-insertBottom">
-            
-                Ink.Dom.Element_1.insertBottom
-            
-            (newElm, targetElm)</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-insertTop">
-            
-                Ink.Dom.Element_1.insertTop
-            
-            (newElm, targetElm)</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-isAncestorOf">
-            
-                Ink.Dom.Element_1.isAncestorOf
-            
-            (ancestor, node)</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-isHidden">
-            
-                Ink.Dom.Element_1.isHidden
-            
-            (element)</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-isLink">
-            
-                Ink.Dom.Element_1.isLink
-            
-            (node)</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-isVisible">
-            
-                Ink.Dom.Element_1.isVisible
-            
-            (element)</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-lastElementChild">
-            
-                Ink.Dom.Element_1.lastElementChild
-            
-            (elm)</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-moveCursorTo">
-            
-                Ink.Dom.Element_1.moveCursorTo
-            
-            (el, t)</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-nextElementSibling">
-            
-                Ink.Dom.Element_1.nextElementSibling
-            
-            (node)</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-nextSiblings">
-            
-                Ink.Dom.Element_1.nextSiblings
-            
-            (elm)</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-offset">
-            
-                Ink.Dom.Element_1.offset
-            
-            (elm)</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-offset">
-            
-                Ink.Dom.Element_1.offset
-            
-            ()</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-offset2">
-            
-                Ink.Dom.Element_1.offset2
-            
-            ()</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-offsetLeft">
-            
-                Ink.Dom.Element_1.offsetLeft
-            
-            (elm)</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-offsetTop">
-            
-                Ink.Dom.Element_1.offsetTop
-            
-            (elm)</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-outerDimensions">
-            
-                Ink.Dom.Element_1.outerDimensions
-            
-            (element)</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-pageHeight">
-            
-                Ink.Dom.Element_1.pageHeight
-            
-            ()</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-pageWidth">
-            
-                Ink.Dom.Element_1.pageWidth
-            
-            ()</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-parentIndexOf">
-            
-                Ink.Dom.Element_1.parentIndexOf
-            
-            (parentEl, childEl)</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-positionedOffset">
-            
-                Ink.Dom.Element_1.positionedOffset
-            
-            (elm)</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-prependHTML">
-            
-                Ink.Dom.Element_1.prependHTML
-            
-            (elm, html)</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-previousElementSibling">
-            
-                Ink.Dom.Element_1.previousElementSibling
-            
-            (node)</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-previousSiblings">
-            
-                Ink.Dom.Element_1.previousSiblings
-            
-            (elm)</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-remove">
-            
-                Ink.Dom.Element_1.remove
-            
-            (elm)</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-removeTextNodeChildren">
-            
-                Ink.Dom.Element_1.removeTextNodeChildren
-            
-            (el)</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-replace">
-            
-                Ink.Dom.Element_1.replace
-            
-            (element, replacement)</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-scroll">
-            
-                Ink.Dom.Element_1.scroll
-            
-            ([elm])</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-scrollHeight">
-            
-                Ink.Dom.Element_1.scrollHeight
-            
-            ()</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-scrollTo">
-            
-                Ink.Dom.Element_1.scrollTo
-            
-            (elm)</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-scrollWidth">
-            
-                Ink.Dom.Element_1.scrollWidth
-            
-            ()</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-setHTML">
-            
-                Ink.Dom.Element_1.setHTML
-            
-            (elm, html)</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-setTextContent">
-            
-                Ink.Dom.Element_1.setTextContent
-            
-            (node, text)</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-siblings">
-            
-                Ink.Dom.Element_1.siblings
-            
-            (elm)</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-textContent">
-            
-                Ink.Dom.Element_1.textContent
-            
-            (node)</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-unwrap">
-            
-                Ink.Dom.Element_1.unwrap
-            
-            (elem, [wrapperSelector])</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-viewportHeight">
-            
-                Ink.Dom.Element_1.viewportHeight
-            
-            ()</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-viewportWidth">
-            
-                Ink.Dom.Element_1.viewportWidth
-            
-            ()</a></li>
-        
-            <li><a href="#Ink_Dom_Element_1-wrap">
-            
-                Ink.Dom.Element_1.wrap
-            
-            (target, container)</a></li>
-        
-        </ul>
-    
 
     
 
 
 
     
+            
+    <table class="props bottom-space">
+        
+        
+        <caption>Functions</caption>
+        <thead>
+            <tr>
+                <th>Function name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+
+        
+        
+        <tbody>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-appendHTML">
+                        
+                            .appendHTML
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Appends HTML to an element.
+This method parses the html string and doesn't modify its contents
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-childElementCount">
+                        
+                            .childElementCount
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Counts the number of children of an element
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-clonePosition">
+                        
+                            .clonePosition
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Clones an element's position to another
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-create">
+                        
+                            .create
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Creates a DOM element
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-data">
+                        
+                            .data
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Gets data attributes from an element
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-descendantOf">
+                        
+                            .descendantOf
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Checks if a node is descendant of another
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-elementDimensions">
+                        
+                            .elementDimensions
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Get an element's dimensions in pixels.
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-elementHeight">
+                        
+                            .elementHeight
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Get an element's height in pixels.
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-elementLeft">
+                        
+                            .elementLeft
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Get an element's left position in pixels.
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-elementTop">
+                        
+                            .elementTop
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Returns the element's top position in pixels.
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-elementWidth">
+                        
+                            .elementWidth
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Get an element's width in pixels.
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-ellipsizeText">
+                        
+                            .ellipsizeText
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Text-overflow: ellipsis emulation
+Slices off a piece of text at the end of the element and adds the ellipsis so all text fits inside.
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-fillChecks">
+                        
+                            .fillChecks
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Creates set of checkbox buttons
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-fillRadios">
+                        
+                            .fillRadios
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Creates a set of radio buttons
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-fillSelect">
+                        
+                            .fillSelect
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Fills a select element with options
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-fillSelect2">
+                        
+                            .fillSelect2
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Fills a select element with options
+This method allows the creation of new values
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-findUpwardsByClass">
+                        
+                            .findUpwardsByClass
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Finds the closest ancestor by class name
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-findUpwardsById">
+                        
+                            .findUpwardsById
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Finds the closest ancestor by id
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-findUpwardsBySelector">
+                        
+                            .findUpwardsBySelector
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Finds the closest ancestor by CSS selector
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-findUpwardsByTag">
+                        
+                            .findUpwardsByTag
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Finds the closest ancestor by tag name
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-findUpwardsHaving">
+                        
+                            .findUpwardsHaving
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Finds the closest ancestor element matching your test function
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-firstElementChild">
+                        
+                            .firstElementChild
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Get first child element of another
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-get">
+                        
+                            .get
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Shortcut for `document.getElementById`
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-getChildrenText">
+                        
+                            .getChildrenText
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Gets the trimmed text of an element
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-getSelectValues">
+                        
+                            .getSelectValues
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Gets value of a select element
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-hasAttribute">
+                        
+                            .hasAttribute
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Checks if an element has an attribute
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-htmlToFragment">
+                        
+                            .htmlToFragment
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Creates a documentFragment from an HTML string.
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-inViewport">
+                        
+                            .inViewport
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Check if an element is inside the viewport
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-insertAfter">
+                        
+                            .insertAfter
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Inserts an element right after another
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-insertBefore">
+                        
+                            .insertBefore
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Inserts an element before another
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-insertBottom">
+                        
+                            .insertBottom
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Inserts an element as the last child of another
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-insertTop">
+                        
+                            .insertTop
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Inserts an element as the first child of another
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-isAncestorOf">
+                        
+                            .isAncestorOf
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Checks if a node is an ancestor of another
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-isHidden">
+                        
+                            .isHidden
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Check if an element is hidden.
+Taken from Mootools Element extras ( https://gist.github.com/cheeaun/73342 )
+Does not take into account visibility:hidden
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-isLink">
+                        
+                            .isLink
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Checks if an element is a link
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-isVisible">
+                        
+                            .isVisible
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Check if an element is visible
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-lastElementChild">
+                        
+                            .lastElementChild
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Get the last child element of another
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-moveCursorTo">
+                        
+                            .moveCursorTo
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Move the cursor on an input or textarea element.
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-nextElementSibling">
+                        
+                            .nextElementSibling
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Get the first sibling element after the node
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-nextSiblings">
+                        
+                            .nextSiblings
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Gets the next siblings of an element
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-offset">
+                        
+                            .offset
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-offset">
+                        
+                            .offset
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Gets the cumulative offset for an element
+
+Returns the top left position of the element on the page
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-offset2">
+                        
+                            .offset2
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                        <span class="tag">deprecated</span>
+                    
+
+                    Alias for offset()
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-offsetLeft">
+                        
+                            .offsetLeft
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Gets the left offset of an element
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-offsetTop">
+                        
+                            .offsetTop
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Gets the top offset of an element
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-outerDimensions">
+                        
+                            .outerDimensions
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Get the outer dimensions of an element in pixels.
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-pageHeight">
+                        
+                            .pageHeight
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Get the page's height.
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-pageWidth">
+                        
+                            .pageWidth
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Get the page's width.
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-parentIndexOf">
+                        
+                            .parentIndexOf
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Gets the index of an element relative to a parent
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-positionedOffset">
+                        
+                            .positionedOffset
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Gets the relative offset of an element
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-prependHTML">
+                        
+                            .prependHTML
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Prepends HTML to an element.
+This method parses the html string and doesn't modify its contents
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-previousElementSibling">
+                        
+                            .previousElementSibling
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Get the first sibling element before the node
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-previousSiblings">
+                        
+                            .previousSiblings
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Gets the previous siblings of an element
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-remove">
+                        
+                            .remove
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Removes a DOM Element
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-removeTextNodeChildren">
+                        
+                            .removeTextNodeChildren
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Removes direct text children.
+Useful to remove nasty layout gaps generated by whitespace on the markup.
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-replace">
+                        
+                            .replace
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Replaces an element with another.
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-scroll">
+                        
+                            .scroll
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Gets the scroll of the element
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-scrollHeight">
+                        
+                            .scrollHeight
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Get the scroll's height.
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-scrollTo">
+                        
+                            .scrollTo
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Scrolls the window to an element
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-scrollWidth">
+                        
+                            .scrollWidth
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Get the scroll's width.
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-setHTML">
+                        
+                            .setHTML
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Sets the inner HTML of an element.
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-setTextContent">
+                        
+                            .setTextContent
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Replaces text content of a DOM Node
+This method removes any child node previously present
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-siblings">
+                        
+                            .siblings
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Gets the all siblings of an element
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-textContent">
+                        
+                            .textContent
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Retrieves textContent from node
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-unwrap">
+                        
+                            .unwrap
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Places an element outside a wrapper.
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-viewportHeight">
+                        
+                            .viewportHeight
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Get the viewport's height.
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-viewportWidth">
+                        
+                            .viewportWidth
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Get the viewport's width.
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-wrap">
+                        
+                            .wrap
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Wraps an element inside a container.
+
+The container may or may not be in the document yet.
+
+                    
+                    
+                </td>
+            </tr>
+        
+        </tbody>
+    </table>
+    
 
     
-        <section class="box box-function">
+</section>
+
+
+
+
+
+
+
+
+
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -468,7 +1391,7 @@ DOM Traversal and manipulation</small></h1>
     (elm, html)
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -536,8 +1459,8 @@ This method parses the html string and doesn't modify its contents</p>
     
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -548,7 +1471,7 @@ This method parses the html string and doesn't modify its contents</p>
     (elm)
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -608,8 +1531,8 @@ This method parses the html string and doesn't modify its contents</p>
     
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -620,7 +1543,7 @@ This method parses the html string and doesn't modify its contents</p>
     (cloneTo, cloneFrom)
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -699,8 +1622,8 @@ This method parses the html string and doesn't modify its contents</p>
     
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -711,7 +1634,7 @@ This method parses the html string and doesn't modify its contents</p>
     (tag, properties)
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -784,8 +1707,8 @@ This method parses the html string and doesn't modify its contents</p>
 
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -796,7 +1719,7 @@ This method parses the html string and doesn't modify its contents</p>
     (selector)
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -856,8 +1779,8 @@ This method parses the html string and doesn't modify its contents</p>
     
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -868,7 +1791,7 @@ This method parses the html string and doesn't modify its contents</p>
     (node, descendant)
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -947,8 +1870,8 @@ This method parses the html string and doesn't modify its contents</p>
     
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -959,7 +1882,7 @@ This method parses the html string and doesn't modify its contents</p>
     (element)
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -1019,8 +1942,8 @@ This method parses the html string and doesn't modify its contents</p>
     
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -1031,7 +1954,7 @@ This method parses the html string and doesn't modify its contents</p>
     (element)
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -1091,8 +2014,8 @@ This method parses the html string and doesn't modify its contents</p>
     
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -1103,7 +2026,7 @@ This method parses the html string and doesn't modify its contents</p>
     (element)
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -1163,8 +2086,8 @@ This method parses the html string and doesn't modify its contents</p>
     
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -1175,7 +2098,7 @@ This method parses the html string and doesn't modify its contents</p>
     (element)
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -1235,8 +2158,8 @@ This method parses the html string and doesn't modify its contents</p>
     
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -1247,7 +2170,7 @@ This method parses the html string and doesn't modify its contents</p>
     (element)
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -1307,8 +2230,8 @@ This method parses the html string and doesn't modify its contents</p>
     
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -1319,7 +2242,7 @@ This method parses the html string and doesn't modify its contents</p>
     (element, [ellipsis])
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -1389,8 +2312,8 @@ Slices off a piece of text at the end of the element and adds the ellipsis so al
     
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -1401,7 +2324,7 @@ Slices off a piece of text at the end of the element and adds the ellipsis so al
     (insertAfterEl, name, data, [skipEmpty], [defaultValue], [splitEl])
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -1556,8 +2479,8 @@ Slices off a piece of text at the end of the element and adds the ellipsis so al
     
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -1568,7 +2491,7 @@ Slices off a piece of text at the end of the element and adds the ellipsis so al
     (insertAfterEl, name, data, [skipEmpty], [defaultValue], [splitEl])
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -1723,8 +2646,8 @@ Slices off a piece of text at the end of the element and adds the ellipsis so al
     
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -1735,7 +2658,7 @@ Slices off a piece of text at the end of the element and adds the ellipsis so al
     (container, data, [skipEmpty], [defaultValue])
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -1840,8 +2763,8 @@ Slices off a piece of text at the end of the element and adds the ellipsis so al
     
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -1852,7 +2775,7 @@ Slices off a piece of text at the end of the element and adds the ellipsis so al
     (ctn, opts, )
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -2067,8 +2990,8 @@ This method allows the creation of new values</p>
     
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -2079,7 +3002,7 @@ This method allows the creation of new values</p>
     (element, className)
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -2158,8 +3081,8 @@ This method allows the creation of new values</p>
     
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -2170,7 +3093,7 @@ This method allows the creation of new values</p>
     (element, id)
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -2249,8 +3172,8 @@ This method allows the creation of new values</p>
     
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -2261,7 +3184,7 @@ This method allows the creation of new values</p>
     (element, sel)
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -2340,8 +3263,8 @@ This method allows the creation of new values</p>
     
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -2352,7 +3275,7 @@ This method allows the creation of new values</p>
     (element, tag)
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -2431,8 +3354,8 @@ This method allows the creation of new values</p>
     
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -2443,7 +3366,7 @@ This method allows the creation of new values</p>
     (element, boolTest)
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -2522,8 +3445,8 @@ This method allows the creation of new values</p>
     
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -2534,7 +3457,7 @@ This method allows the creation of new values</p>
     (elm)
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -2594,8 +3517,8 @@ This method allows the creation of new values</p>
     
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -2606,7 +3529,7 @@ This method allows the creation of new values</p>
     (elm)
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -2672,8 +3595,8 @@ This method allows the creation of new values</p>
 
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -2684,7 +3607,7 @@ This method allows the creation of new values</p>
     (el, [removeIt])
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -2763,8 +3686,8 @@ This method allows the creation of new values</p>
     
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -2775,7 +3698,7 @@ This method allows the creation of new values</p>
     (select)
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -2835,8 +3758,8 @@ This method allows the creation of new values</p>
     
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -2847,7 +3770,7 @@ This method allows the creation of new values</p>
     (elm, attr)
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -2932,8 +3855,8 @@ This method allows the creation of new values</p>
 
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -2944,7 +3867,7 @@ This method allows the creation of new values</p>
     (html)
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -3004,8 +3927,8 @@ This method allows the creation of new values</p>
     
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -3016,7 +3939,7 @@ This method allows the creation of new values</p>
     (element, [partial], )
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -3118,8 +4041,8 @@ This method allows the creation of new values</p>
     
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -3130,7 +4053,7 @@ This method allows the creation of new values</p>
     (newElm, targetElm)
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -3203,8 +4126,8 @@ This method allows the creation of new values</p>
 
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -3215,7 +4138,7 @@ This method allows the creation of new values</p>
     (newElm, targetElm)
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -3288,8 +4211,8 @@ This method allows the creation of new values</p>
 
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -3300,7 +4223,7 @@ This method allows the creation of new values</p>
     (newElm, targetElm)
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -3373,8 +4296,8 @@ This method allows the creation of new values</p>
 
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -3385,7 +4308,7 @@ This method allows the creation of new values</p>
     (newElm, targetElm)
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -3458,8 +4381,8 @@ This method allows the creation of new values</p>
 
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -3470,7 +4393,7 @@ This method allows the creation of new values</p>
     (ancestor, node)
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -3547,8 +4470,8 @@ This method allows the creation of new values</p>
     
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -3559,7 +4482,7 @@ This method allows the creation of new values</p>
     (element)
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -3619,8 +4542,8 @@ Does not take into account visibility:hidden</p>
     
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -3631,7 +4554,7 @@ Does not take into account visibility:hidden</p>
     (node)
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -3689,8 +4612,8 @@ Does not take into account visibility:hidden</p>
     
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -3701,7 +4624,7 @@ Does not take into account visibility:hidden</p>
     (element)
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -3759,8 +4682,8 @@ Does not take into account visibility:hidden</p>
     
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -3771,7 +4694,7 @@ Does not take into account visibility:hidden</p>
     (elm)
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -3831,8 +4754,8 @@ Does not take into account visibility:hidden</p>
     
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -3843,7 +4766,7 @@ Does not take into account visibility:hidden</p>
     (el, t)
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -3910,8 +4833,8 @@ Does not take into account visibility:hidden</p>
     
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -3922,7 +4845,7 @@ Does not take into account visibility:hidden</p>
     (node)
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -3982,8 +4905,8 @@ Does not take into account visibility:hidden</p>
     
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -3994,7 +4917,7 @@ Does not take into account visibility:hidden</p>
     (elm)
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -4054,8 +4977,8 @@ Does not take into account visibility:hidden</p>
     
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -4066,7 +4989,7 @@ Does not take into account visibility:hidden</p>
     (elm)
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -4130,8 +5053,8 @@ Does not take into account visibility:hidden</p>
 
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -4142,7 +5065,7 @@ Does not take into account visibility:hidden</p>
     ()
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -4165,8 +5088,8 @@ Returns the top left position of the element on the page</p>
     
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -4177,7 +5100,7 @@ Returns the top left position of the element on the page</p>
     ()
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -4200,8 +5123,8 @@ Returns the top left position of the element on the page</p>
     
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -4212,7 +5135,7 @@ Returns the top left position of the element on the page</p>
     (elm)
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -4278,8 +5201,8 @@ Returns the top left position of the element on the page</p>
 
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -4290,7 +5213,7 @@ Returns the top left position of the element on the page</p>
     (elm)
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -4356,8 +5279,8 @@ Returns the top left position of the element on the page</p>
 
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -4368,7 +5291,7 @@ Returns the top left position of the element on the page</p>
     (element)
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -4428,8 +5351,8 @@ Returns the top left position of the element on the page</p>
     
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -4440,7 +5363,7 @@ Returns the top left position of the element on the page</p>
     ()
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -4461,8 +5384,8 @@ Returns the top left position of the element on the page</p>
     
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -4473,7 +5396,7 @@ Returns the top left position of the element on the page</p>
     ()
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -4494,8 +5417,8 @@ Returns the top left position of the element on the page</p>
     
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -4506,7 +5429,7 @@ Returns the top left position of the element on the page</p>
     (parentEl, childEl)
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -4585,8 +5508,8 @@ Returns the top left position of the element on the page</p>
     
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -4597,7 +5520,7 @@ Returns the top left position of the element on the page</p>
     (elm)
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -4663,8 +5586,8 @@ Returns the top left position of the element on the page</p>
 
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -4675,7 +5598,7 @@ Returns the top left position of the element on the page</p>
     (elm, html)
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -4743,8 +5666,8 @@ This method parses the html string and doesn't modify its contents</p>
     
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -4755,7 +5678,7 @@ This method parses the html string and doesn't modify its contents</p>
     (node)
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -4815,8 +5738,8 @@ This method parses the html string and doesn't modify its contents</p>
     
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -4827,7 +5750,7 @@ This method parses the html string and doesn't modify its contents</p>
     (elm)
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -4887,8 +5810,8 @@ This method parses the html string and doesn't modify its contents</p>
     
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -4899,7 +5822,7 @@ This method parses the html string and doesn't modify its contents</p>
     (elm)
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -4953,8 +5876,8 @@ This method parses the html string and doesn't modify its contents</p>
 
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -4965,7 +5888,7 @@ This method parses the html string and doesn't modify its contents</p>
     (el)
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -5014,8 +5937,8 @@ Useful to remove nasty layout gaps generated by whitespace on the markup.</p>
     
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -5026,7 +5949,7 @@ Useful to remove nasty layout gaps generated by whitespace on the markup.</p>
     (element, replacement)
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -5098,8 +6021,8 @@ Useful to remove nasty layout gaps generated by whitespace on the markup.</p>
     
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -5110,7 +6033,7 @@ Useful to remove nasty layout gaps generated by whitespace on the markup.</p>
     ([elm])
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -5176,8 +6099,8 @@ Useful to remove nasty layout gaps generated by whitespace on the markup.</p>
 
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -5188,7 +6111,7 @@ Useful to remove nasty layout gaps generated by whitespace on the markup.</p>
     ()
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -5209,8 +6132,8 @@ Useful to remove nasty layout gaps generated by whitespace on the markup.</p>
     
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -5221,7 +6144,7 @@ Useful to remove nasty layout gaps generated by whitespace on the markup.</p>
     (elm)
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -5275,8 +6198,8 @@ Useful to remove nasty layout gaps generated by whitespace on the markup.</p>
 
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -5287,7 +6210,7 @@ Useful to remove nasty layout gaps generated by whitespace on the markup.</p>
     ()
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -5308,8 +6231,8 @@ Useful to remove nasty layout gaps generated by whitespace on the markup.</p>
     
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -5320,7 +6243,7 @@ Useful to remove nasty layout gaps generated by whitespace on the markup.</p>
     (elm, html)
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -5387,8 +6310,8 @@ Useful to remove nasty layout gaps generated by whitespace on the markup.</p>
     
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -5399,7 +6322,7 @@ Useful to remove nasty layout gaps generated by whitespace on the markup.</p>
     (node, text)
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -5473,8 +6396,8 @@ This method removes any child node previously present</p>
 
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -5485,7 +6408,7 @@ This method removes any child node previously present</p>
     (elm)
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -5545,8 +6468,8 @@ This method removes any child node previously present</p>
     
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -5557,7 +6480,7 @@ This method removes any child node previously present</p>
     (node)
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -5623,8 +6546,8 @@ This method removes any child node previously present</p>
 
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -5635,7 +6558,7 @@ This method removes any child node previously present</p>
     (elem, [wrapperSelector])
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -5724,8 +6647,8 @@ You get this:
     
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -5736,7 +6659,7 @@ You get this:
     ()
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -5757,8 +6680,8 @@ You get this:
     
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -5769,7 +6692,7 @@ You get this:
     ()
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -5790,8 +6713,8 @@ You get this:
     
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -5802,7 +6725,7 @@ You get this:
     (target, container)
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -5900,6 +6823,11 @@ after:
     
 
 </section>
+
+
+
+    
+
     
 
     

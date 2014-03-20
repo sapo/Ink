@@ -5,554 +5,564 @@
 			"kind": "module",
 			"name": "Ink_1",
 			"file": "src/js/Ink/1/lib.js",
-			"classes": [],
-			"functions": [
+			"classes": [
 				{
-					"kind": "function",
-					"name": "getPath",
+					"kind": "class",
+					"name": "Ink_1",
+					"text": "Ink Core.\nThis module provides the necessary methods to create and load the modules using Ink.",
 					"file": "src/js/Ink/1/lib.js",
-					"text": "Get the full path of a module.\nThis method looks up the paths given in setPath (and ultimately the default Ink's path).",
-					"params": [
+					"functions": [
 						{
-							"kind": "param",
-							"name": "key",
-							"type": "String",
-							"isFirstLevel": true,
-							"description": "Name of the module you want to get the path"
+							"kind": "function",
+							"name": "getPath",
+							"file": "src/js/Ink/1/lib.js",
+							"text": "Get the full path of a module.\nThis method looks up the paths given in setPath (and ultimately the default Ink's path).",
+							"params": [
+								{
+									"kind": "param",
+									"name": "key",
+									"type": "String",
+									"isFirstLevel": true,
+									"description": "Name of the module you want to get the path"
+								},
+								{
+									"kind": "param",
+									"name": "noLib",
+									"type": "Boolean",
+									"isOptional": true,
+									"isFirstLevel": true,
+									"description": "Flag to skip appending 'lib.js' to the returned path."
+								}
+							]
 						},
 						{
-							"kind": "param",
-							"name": "noLib",
-							"type": "Boolean",
-							"isOptional": true,
-							"isFirstLevel": true,
-							"description": "Flag to skip appending 'lib.js' to the returned path."
-						}
-					]
-				},
-				{
-					"kind": "function",
-					"name": "setPath",
-					"file": "src/js/Ink/1/lib.js",
-					"text": "Sets the URL path for a namespace.\nUse this to customize where requireModules and createModule will load dependencies from.\nThis can be useful to set your own CDN for dynamic module loading or simply to change your module folder structure",
-					"params": [
-						{
-							"kind": "param",
-							"name": "key",
-							"type": "String",
-							"isFirstLevel": true,
-							"description": "Module or namespace"
+							"kind": "function",
+							"name": "setPath",
+							"file": "src/js/Ink/1/lib.js",
+							"text": "Sets the URL path for a namespace.\nUse this to customize where requireModules and createModule will load dependencies from.\nThis can be useful to set your own CDN for dynamic module loading or simply to change your module folder structure",
+							"params": [
+								{
+									"kind": "param",
+									"name": "key",
+									"type": "String",
+									"isFirstLevel": true,
+									"description": "Module or namespace"
+								},
+								{
+									"kind": "param",
+									"name": "rootURI",
+									"type": "String",
+									"isFirstLevel": true,
+									"description": "Base URL path and schema to be appended to the module or namespace"
+								}
+							],
+							"examples": [
+								"\n     Ink.setPath('Ink', 'http://my-cdn/Ink/');\n     Ink.setPath('Lol', 'http://my-cdn/Lol/');\n\n     // Loads from http://my-cdn/Ink/Dom/Whatever/lib.js\n     Ink.requireModules(['Ink.Dom.Whatever'], function () { ... });\n     // Loads from http://my-cdn/Lol/Whatever/lib.js\n     Ink.requireModules(['Lol.Whatever'], function () { ... });\n"
+							]
 						},
 						{
-							"kind": "param",
-							"name": "rootURI",
-							"type": "String",
-							"isFirstLevel": true,
-							"description": "Base URL path and schema to be appended to the module or namespace"
+							"kind": "function",
+							"name": "loadScript",
+							"file": "src/js/Ink/1/lib.js",
+							"text": "Loads a script URL.\nThis creates a `script` tag in the `head` of the document.\nReports errors by listening to 'error' and 'readystatechange' events.",
+							"params": [
+								{
+									"kind": "param",
+									"name": "uri",
+									"type": "String",
+									"isFirstLevel": true,
+									"description": "Can be an external URL or a module name"
+								},
+								{
+									"kind": "param",
+									"name": "contentType",
+									"type": "String",
+									"isOptional": true,
+									"defaultValue": "'text/javascript'",
+									"isFirstLevel": true,
+									"description": "The `type` attribute of the new script tag."
+								}
+							]
+						},
+						{
+							"kind": "function",
+							"name": "namespace",
+							"file": "src/js/Ink/1/lib.js",
+							"text": "Defines a module namespace.",
+							"params": [
+								{
+									"kind": "param",
+									"name": "ns",
+									"type": "String",
+									"isFirstLevel": true,
+									"description": "Namespace to define."
+								},
+								{
+									"kind": "param",
+									"name": "returnParentAndKey",
+									"type": "Boolean",
+									"isOptional": true,
+									"isFirstLevel": true,
+									"description": "Flag to change the return value to an array containing the namespace parent and the namespace key"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "Object|Array",
+								"description": "Returns the created namespace object"
+							}
+						},
+						{
+							"kind": "function",
+							"name": "getModule",
+							"file": "src/js/Ink/1/lib.js",
+							"text": "Loads a module.\nA synchronous method to get the module from the registry. It assumes the module is defined and loaded already!",
+							"params": [
+								{
+									"kind": "param",
+									"name": "mod",
+									"type": "String",
+									"isFirstLevel": true,
+									"description": "Module name"
+								},
+								{
+									"kind": "param",
+									"name": "version",
+									"type": "Number",
+									"isOptional": true,
+									"isFirstLevel": true,
+									"description": "Version number of the module"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "Object|Function",
+								"description": "Module object or function, depending how the module is defined"
+							}
+						},
+						{
+							"kind": "function",
+							"name": "createModule",
+							"file": "src/js/Ink/1/lib.js",
+							"text": "Creates a new module. \nUse this to wrap your code and benefit from the module loading used throughout the Ink library",
+							"params": [
+								{
+									"kind": "param",
+									"name": "mod",
+									"type": "String",
+									"isFirstLevel": true,
+									"description": "Module name, separated by dots. Like Ink.Dom.Selector, Ink.UI.Modal"
+								},
+								{
+									"kind": "param",
+									"name": "version",
+									"type": "Number",
+									"isFirstLevel": true,
+									"description": "Version number"
+								},
+								{
+									"kind": "param",
+									"name": "deps",
+									"type": "Array",
+									"isFirstLevel": true,
+									"description": "Array of module names which are dependencies of the module being created. The order in which they are passed here will define the order they will be passed to the callback function."
+								},
+								{
+									"kind": "param",
+									"name": "modFn",
+									"type": "Function",
+									"isFirstLevel": true,
+									"description": "The callback function to be executed when all the dependencies are resolved. The dependencies are passed as arguments, in the same order they were declared. The function itself should return the module."
+								}
+							],
+							"samples": [
+								"Ink_1_createModule.html"
+							]
+						},
+						{
+							"kind": "function",
+							"name": "requireModules",
+							"file": "src/js/Ink/1/lib.js",
+							"text": "Requires modules asynchronously \nUse this to get modules, even if they're not loaded yet",
+							"params": [
+								{
+									"kind": "param",
+									"name": "deps",
+									"type": "Array",
+									"isFirstLevel": true,
+									"description": "Array of module names. The order in which they are passed here will define the order they will be passed to the callback function."
+								},
+								{
+									"kind": "param",
+									"name": "cbFn",
+									"type": "Function",
+									"isFirstLevel": true,
+									"description": "The callback function to be executed when all the dependencies are resolved. The dependencies are passed as arguments, in the same order they were declared."
+								}
+							],
+							"samples": [
+								"Ink_1_requireModules.html"
+							]
+						},
+						{
+							"kind": "function",
+							"name": "getModulesLoadOrder",
+							"file": "src/js/Ink/1/lib.js",
+							"text": "Lists loaded module names.\nThe list is ordered by loaded time (oldest module comes first)",
+							"params": [],
+							"return": {
+								"kind": "return",
+								"type": "Array",
+								"description": "returns the order in which modules were resolved and correctly loaded"
+							}
+						},
+						{
+							"kind": "function",
+							"name": "getModuleScripts",
+							"file": "src/js/Ink/1/lib.js",
+							"text": "Builds the markup needed to load the modules.\nThis method builds the script tags needed to load the currently used modules",
+							"params": [],
+							"return": {
+								"kind": "return",
+								"type": "String",
+								"description": "The script markup"
+							}
+						},
+						{
+							"kind": "function",
+							"name": "createExt",
+							"file": "src/js/Ink/1/lib.js",
+							"text": "Creates an Ink.Ext module\n\nDoes exactly the same as createModule but creates the module in the Ink.Ext namespace",
+							"params": [
+								{
+									"kind": "param",
+									"name": "moduleName",
+									"type": "String",
+									"isFirstLevel": true,
+									"description": "Extension name"
+								},
+								{
+									"kind": "param",
+									"name": "version",
+									"type": "String",
+									"isFirstLevel": true,
+									"description": "Extension version"
+								},
+								{
+									"kind": "param",
+									"name": "dependencies",
+									"type": "Array",
+									"isFirstLevel": true,
+									"description": "Extension dependencies"
+								},
+								{
+									"kind": "param",
+									"name": "modFn",
+									"type": "Function",
+									"isFirstLevel": true,
+									"description": "Function returning the extension"
+								}
+							],
+							"samples": [
+								"Ink_1_createExt.html"
+							]
+						},
+						{
+							"kind": "function",
+							"name": "bind",
+							"file": "src/js/Ink/1/lib.js",
+							"text": "Function.prototype.bind alternative.\nCreates a new function that, when called, has its this keyword set to the provided value, with a given sequence of arguments preceding any provided when the new function is called.",
+							"params": [
+								{
+									"kind": "param",
+									"name": "fn",
+									"type": "Function",
+									"isFirstLevel": true,
+									"description": "The function"
+								},
+								{
+									"kind": "param",
+									"name": "context",
+									"type": "Object",
+									"isFirstLevel": true,
+									"description": "The value to be passed as the this parameter to the target function when the bound function is called. If used as false, it preserves the original context and just binds the arguments."
+								},
+								{
+									"kind": "param",
+									"name": "args*",
+									"type": "Any",
+									"isOptional": true,
+									"isFirstLevel": true,
+									"description": "Additional arguments will be sent to the original function as prefix arguments."
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "Function"
+							},
+							"samples": [
+								"Ink_1_bind.html"
+							]
+						},
+						{
+							"kind": "function",
+							"name": "bindMethod",
+							"file": "src/js/Ink/1/lib.js",
+							"text": "Function.prototype.bind alternative for class methods\nCreates a new function that, when called, has this k",
+							"params": [
+								{
+									"kind": "param",
+									"name": "object",
+									"type": "Object",
+									"isFirstLevel": true,
+									"description": "The object that contains the method to bind"
+								},
+								{
+									"kind": "param",
+									"name": "methodName",
+									"type": "String",
+									"isFirstLevel": true,
+									"description": "The name of the method that will be bound"
+								},
+								{
+									"kind": "param",
+									"name": "args*",
+									"type": "Any",
+									"isOptional": true,
+									"isFirstLevel": true,
+									"description": "Additional arguments will be sent to the new method as prefix arguments."
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "Function"
+							},
+							"samples": [
+								"Ink_1_bindMethod.html"
+							],
+							"examples": [
+								"\n // Build a function which calls Ink.Dom.Element.remove on an element.\n var removeMyElem = Ink.bindMethod(Ink.Dom.Element, 'remove', someElement);\n\n removeMyElem();  // no arguments, nor Ink.Dom.Element, needed\n",
+								"\n // (comparison with using Ink.bind to the same effect).\n // The following two calls are equivalent\n\n Ink.bind(this.remove, this, myElem);\n Ink.bindMethod(this, 'remove', myElem);\n"
+							]
+						},
+						{
+							"kind": "function",
+							"name": "bindEvent",
+							"file": "src/js/Ink/1/lib.js",
+							"text": "Function.prototype.bind alternative for event handlers.\nSame as bind but keeps first argument of the call the original event.\nSet \"context\" to `false` to preserve the original context of the function and just bind the arguments.",
+							"params": [
+								{
+									"kind": "param",
+									"name": "fn",
+									"type": "Function",
+									"isFirstLevel": true,
+									"description": "The function"
+								},
+								{
+									"kind": "param",
+									"name": "context",
+									"type": "Object",
+									"isFirstLevel": true,
+									"description": "The value to be passed as the this parameter to the target"
+								},
+								{
+									"kind": "param",
+									"name": "args*",
+									"type": "Any",
+									"isOptional": true,
+									"isFirstLevel": true,
+									"description": "Additional arguments will be sent to the original function as prefix arguments"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "Function"
+							},
+							"samples": [
+								"Ink_1_bindEvent.html"
+							]
+						},
+						{
+							"kind": "function",
+							"name": "i",
+							"file": "src/js/Ink/1/lib.js",
+							"text": "Alias to document.getElementById",
+							"params": [
+								{
+									"kind": "param",
+									"name": "id",
+									"type": "String",
+									"isFirstLevel": true,
+									"description": "Element ID"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "DOMElement"
+							},
+							"samples": [
+								"Ink_1_i.html"
+							]
+						},
+						{
+							"kind": "function",
+							"name": "ss",
+							"file": "src/js/Ink/1/lib.js",
+							"text": "Alias for Ink.Dom.Selector",
+							"params": [
+								{
+									"kind": "param",
+									"name": "rule",
+									"type": "String",
+									"isFirstLevel": true
+								},
+								{
+									"kind": "param",
+									"name": "from",
+									"type": "DOMElement",
+									"isOptional": true,
+									"isFirstLevel": true
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "Array",
+								"description": "array of DOMElements"
+							},
+							"samples": [
+								"Ink_1_ss.html"
+							]
+						},
+						{
+							"kind": "function",
+							"name": "s",
+							"file": "src/js/Ink/1/lib.js",
+							"text": "Alias for Ink.Dom.Selector first result",
+							"params": [
+								{
+									"kind": "param",
+									"name": "rule",
+									"type": "String",
+									"isFirstLevel": true,
+									"description": "Selector string"
+								},
+								{
+									"kind": "param",
+									"name": "from",
+									"type": "DOMElement",
+									"isOptional": true,
+									"isFirstLevel": true,
+									"description": "Context element. If set to a DOM element, the rule will only look for descendants of this DOM Element."
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "DOMElement"
+							},
+							"samples": [
+								"Ink_1_s.html"
+							]
+						},
+						{
+							"kind": "function",
+							"name": "extendObj",
+							"file": "src/js/Ink/1/lib.js",
+							"text": "Extends an object with another\nCopy all of the properties in one or more source objects over to the destination object, and return the destination object. It's in-order, so the last source will override properties of the same name in previous arguments.",
+							"params": [
+								{
+									"kind": "param",
+									"name": "destination",
+									"type": "Object",
+									"isFirstLevel": true,
+									"description": "The object that will receive the new/updated properties"
+								},
+								{
+									"kind": "param",
+									"name": "source",
+									"type": "Object",
+									"isFirstLevel": true,
+									"description": "The object whose properties will be copied over to the destination object"
+								},
+								{
+									"kind": "param",
+									"name": "args*",
+									"type": "Object",
+									"isOptional": true,
+									"isFirstLevel": true,
+									"description": "Additional source objects. The last source will override properties of the same name in the previous defined sources"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"description": "destination object, enriched with defaults from the sources"
+							},
+							"samples": [
+								"Ink_1_extendObj.html"
+							]
+						},
+						{
+							"kind": "function",
+							"name": "log",
+							"file": "src/js/Ink/1/lib.js",
+							"text": "Calls native console.log if available.",
+							"params": [
+								{
+									"kind": "param",
+									"name": "args*",
+									"type": "Any",
+									"isOptional": true,
+									"isFirstLevel": true,
+									"description": "Arguments to be evaluated"
+								}
+							],
+							"samples": [
+								"Ink_1_log.html"
+							]
+						},
+						{
+							"kind": "function",
+							"name": "warn",
+							"file": "src/js/Ink/1/lib.js",
+							"text": "Calls native console.warn if available.",
+							"params": [
+								{
+									"kind": "param",
+									"name": "args*",
+									"type": "Any",
+									"isOptional": true,
+									"isFirstLevel": true,
+									"description": "Arguments to be evaluated"
+								}
+							],
+							"samples": [
+								"Ink_1_warn.html"
+							]
+						},
+						{
+							"kind": "function",
+							"name": "error",
+							"file": "src/js/Ink/1/lib.js",
+							"text": "Calls native console.error if available.",
+							"params": [
+								{
+									"kind": "param",
+									"name": "args*",
+									"type": "Any",
+									"isOptional": true,
+									"isFirstLevel": true,
+									"description": "Arguments to be evaluated"
+								}
+							],
+							"samples": [
+								"Ink_1_error.html"
+							]
 						}
 					],
-					"examples": [
-						"\n     Ink.setPath('Ink', 'http://my-cdn/Ink/');\n     Ink.setPath('Lol', 'http://my-cdn/Lol/');\n\n     // Loads from http://my-cdn/Ink/Dom/Whatever/lib.js\n     Ink.requireModules(['Ink.Dom.Whatever'], function () { ... });\n     // Loads from http://my-cdn/Lol/Whatever/lib.js\n     Ink.requireModules(['Lol.Whatever'], function () { ... });\n"
-					]
-				},
-				{
-					"kind": "function",
-					"name": "loadScript",
-					"file": "src/js/Ink/1/lib.js",
-					"text": "Loads a script URL.\nThis creates a `script` tag in the `head` of the document.\nReports errors by listening to 'error' and 'readystatechange' events.",
-					"params": [
-						{
-							"kind": "param",
-							"name": "uri",
-							"type": "String",
-							"isFirstLevel": true,
-							"description": "Can be an external URL or a module name"
-						},
-						{
-							"kind": "param",
-							"name": "contentType",
-							"type": "String",
-							"isOptional": true,
-							"defaultValue": "'text/javascript'",
-							"isFirstLevel": true,
-							"description": "The `type` attribute of the new script tag."
-						}
-					]
-				},
-				{
-					"kind": "function",
-					"name": "namespace",
-					"file": "src/js/Ink/1/lib.js",
-					"text": "Defines a module namespace.",
-					"params": [
-						{
-							"kind": "param",
-							"name": "ns",
-							"type": "String",
-							"isFirstLevel": true,
-							"description": "Namespace to define."
-						},
-						{
-							"kind": "param",
-							"name": "returnParentAndKey",
-							"type": "Boolean",
-							"isOptional": true,
-							"isFirstLevel": true,
-							"description": "Flag to change the return value to an array containing the namespace parent and the namespace key"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "Object|Array",
-						"description": "Returns the created namespace object"
-					}
-				},
-				{
-					"kind": "function",
-					"name": "getModule",
-					"file": "src/js/Ink/1/lib.js",
-					"text": "Loads a module.\nA synchronous method to get the module from the registry. It assumes the module is defined and loaded already!",
-					"params": [
-						{
-							"kind": "param",
-							"name": "mod",
-							"type": "String",
-							"isFirstLevel": true,
-							"description": "Module name"
-						},
-						{
-							"kind": "param",
-							"name": "version",
-							"type": "Number",
-							"isOptional": true,
-							"isFirstLevel": true,
-							"description": "Version number of the module"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "Object|Function",
-						"description": "Module object or function, depending how the module is defined"
-					}
-				},
-				{
-					"kind": "function",
-					"name": "createModule",
-					"file": "src/js/Ink/1/lib.js",
-					"text": "Creates a new module. \nUse this to wrap your code and benefit from the module loading used throughout the Ink library",
-					"params": [
-						{
-							"kind": "param",
-							"name": "mod",
-							"type": "String",
-							"isFirstLevel": true,
-							"description": "Module name, separated by dots. Like Ink.Dom.Selector, Ink.UI.Modal"
-						},
-						{
-							"kind": "param",
-							"name": "version",
-							"type": "Number",
-							"isFirstLevel": true,
-							"description": "Version number"
-						},
-						{
-							"kind": "param",
-							"name": "deps",
-							"type": "Array",
-							"isFirstLevel": true,
-							"description": "Array of module names which are dependencies of the module being created. The order in which they are passed here will define the order they will be passed to the callback function."
-						},
-						{
-							"kind": "param",
-							"name": "modFn",
-							"type": "Function",
-							"isFirstLevel": true,
-							"description": "The callback function to be executed when all the dependencies are resolved. The dependencies are passed as arguments, in the same order they were declared. The function itself should return the module."
-						}
-					],
-					"samples": [
-						"Ink_1_createModule.html"
-					]
-				},
-				{
-					"kind": "function",
-					"name": "requireModules",
-					"file": "src/js/Ink/1/lib.js",
-					"text": "Requires modules asynchronously \nUse this to get modules, even if they're not loaded yet",
-					"params": [
-						{
-							"kind": "param",
-							"name": "deps",
-							"type": "Array",
-							"isFirstLevel": true,
-							"description": "Array of module names. The order in which they are passed here will define the order they will be passed to the callback function."
-						},
-						{
-							"kind": "param",
-							"name": "cbFn",
-							"type": "Function",
-							"isFirstLevel": true,
-							"description": "The callback function to be executed when all the dependencies are resolved. The dependencies are passed as arguments, in the same order they were declared."
-						}
-					],
-					"samples": [
-						"Ink_1_requireModules.html"
-					]
-				},
-				{
-					"kind": "function",
-					"name": "getModulesLoadOrder",
-					"file": "src/js/Ink/1/lib.js",
-					"text": "Lists loaded module names.\nThe list is ordered by loaded time (oldest module comes first)",
-					"params": [],
-					"return": {
-						"kind": "return",
-						"type": "Array",
-						"description": "returns the order in which modules were resolved and correctly loaded"
-					}
-				},
-				{
-					"kind": "function",
-					"name": "getModuleScripts",
-					"file": "src/js/Ink/1/lib.js",
-					"text": "Builds the markup needed to load the modules.\nThis method builds the script tags needed to load the currently used modules",
-					"params": [],
-					"return": {
-						"kind": "return",
-						"type": "String",
-						"description": "The script markup"
-					}
-				},
-				{
-					"kind": "function",
-					"name": "createExt",
-					"file": "src/js/Ink/1/lib.js",
-					"text": "Creates an Ink.Ext module\n\nDoes exactly the same as createModule but creates the module in the Ink.Ext namespace",
-					"params": [
-						{
-							"kind": "param",
-							"name": "moduleName",
-							"type": "String",
-							"isFirstLevel": true,
-							"description": "Extension name"
-						},
-						{
-							"kind": "param",
-							"name": "version",
-							"type": "String",
-							"isFirstLevel": true,
-							"description": "Extension version"
-						},
-						{
-							"kind": "param",
-							"name": "dependencies",
-							"type": "Array",
-							"isFirstLevel": true,
-							"description": "Extension dependencies"
-						},
-						{
-							"kind": "param",
-							"name": "modFn",
-							"type": "Function",
-							"isFirstLevel": true,
-							"description": "Function returning the extension"
-						}
-					],
-					"samples": [
-						"Ink_1_createExt.html"
-					]
-				},
-				{
-					"kind": "function",
-					"name": "bind",
-					"file": "src/js/Ink/1/lib.js",
-					"text": "Function.prototype.bind alternative.\nCreates a new function that, when called, has its this keyword set to the provided value, with a given sequence of arguments preceding any provided when the new function is called.",
-					"params": [
-						{
-							"kind": "param",
-							"name": "fn",
-							"type": "Function",
-							"isFirstLevel": true,
-							"description": "The function"
-						},
-						{
-							"kind": "param",
-							"name": "context",
-							"type": "Object",
-							"isFirstLevel": true,
-							"description": "The value to be passed as the this parameter to the target function when the bound function is called. If used as false, it preserves the original context and just binds the arguments."
-						},
-						{
-							"kind": "param",
-							"name": "args*",
-							"type": "Any",
-							"isOptional": true,
-							"isFirstLevel": true,
-							"description": "Additional arguments will be sent to the original function as prefix arguments."
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "Function"
-					},
-					"samples": [
-						"Ink_1_bind.html"
-					]
-				},
-				{
-					"kind": "function",
-					"name": "bindMethod",
-					"file": "src/js/Ink/1/lib.js",
-					"text": "Function.prototype.bind alternative for class methods\nCreates a new function that, when called, has this k",
-					"params": [
-						{
-							"kind": "param",
-							"name": "object",
-							"type": "Object",
-							"isFirstLevel": true,
-							"description": "The object that contains the method to bind"
-						},
-						{
-							"kind": "param",
-							"name": "methodName",
-							"type": "String",
-							"isFirstLevel": true,
-							"description": "The name of the method that will be bound"
-						},
-						{
-							"kind": "param",
-							"name": "args*",
-							"type": "Any",
-							"isOptional": true,
-							"isFirstLevel": true,
-							"description": "Additional arguments will be sent to the new method as prefix arguments."
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "Function"
-					},
-					"samples": [
-						"Ink_1_bindMethod.html"
-					],
-					"examples": [
-						"\n // Build a function which calls Ink.Dom.Element.remove on an element.\n var removeMyElem = Ink.bindMethod(Ink.Dom.Element, 'remove', someElement);\n\n removeMyElem();  // no arguments, nor Ink.Dom.Element, needed\n",
-						"\n // (comparison with using Ink.bind to the same effect).\n // The following two calls are equivalent\n\n Ink.bind(this.remove, this, myElem);\n Ink.bindMethod(this, 'remove', myElem);\n"
-					]
-				},
-				{
-					"kind": "function",
-					"name": "bindEvent",
-					"file": "src/js/Ink/1/lib.js",
-					"text": "Function.prototype.bind alternative for event handlers.\nSame as bind but keeps first argument of the call the original event.\nSet \"context\" to `false` to preserve the original context of the function and just bind the arguments.",
-					"params": [
-						{
-							"kind": "param",
-							"name": "fn",
-							"type": "Function",
-							"isFirstLevel": true,
-							"description": "The function"
-						},
-						{
-							"kind": "param",
-							"name": "context",
-							"type": "Object",
-							"isFirstLevel": true,
-							"description": "The value to be passed as the this parameter to the target"
-						},
-						{
-							"kind": "param",
-							"name": "args*",
-							"type": "Any",
-							"isOptional": true,
-							"isFirstLevel": true,
-							"description": "Additional arguments will be sent to the original function as prefix arguments"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "Function"
-					},
-					"samples": [
-						"Ink_1_bindEvent.html"
-					]
-				},
-				{
-					"kind": "function",
-					"name": "i",
-					"file": "src/js/Ink/1/lib.js",
-					"text": "Alias to document.getElementById",
-					"params": [
-						{
-							"kind": "param",
-							"name": "id",
-							"type": "String",
-							"isFirstLevel": true,
-							"description": "Element ID"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "DOMElement"
-					},
-					"samples": [
-						"Ink_1_i.html"
-					]
-				},
-				{
-					"kind": "function",
-					"name": "ss",
-					"file": "src/js/Ink/1/lib.js",
-					"text": "Alias for Ink.Dom.Selector",
-					"params": [
-						{
-							"kind": "param",
-							"name": "rule",
-							"type": "String",
-							"isFirstLevel": true
-						},
-						{
-							"kind": "param",
-							"name": "from",
-							"type": "DOMElement",
-							"isOptional": true,
-							"isFirstLevel": true
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "Array",
-						"description": "array of DOMElements"
-					},
-					"samples": [
-						"Ink_1_ss.html"
-					]
-				},
-				{
-					"kind": "function",
-					"name": "s",
-					"file": "src/js/Ink/1/lib.js",
-					"text": "Alias for Ink.Dom.Selector first result",
-					"params": [
-						{
-							"kind": "param",
-							"name": "rule",
-							"type": "String",
-							"isFirstLevel": true,
-							"description": "Selector string"
-						},
-						{
-							"kind": "param",
-							"name": "from",
-							"type": "DOMElement",
-							"isOptional": true,
-							"isFirstLevel": true,
-							"description": "Context element. If set to a DOM element, the rule will only look for descendants of this DOM Element."
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "DOMElement"
-					},
-					"samples": [
-						"Ink_1_s.html"
-					]
-				},
-				{
-					"kind": "function",
-					"name": "extendObj",
-					"file": "src/js/Ink/1/lib.js",
-					"text": "Extends an object with another\nCopy all of the properties in one or more source objects over to the destination object, and return the destination object. It's in-order, so the last source will override properties of the same name in previous arguments.",
-					"params": [
-						{
-							"kind": "param",
-							"name": "destination",
-							"type": "Object",
-							"isFirstLevel": true,
-							"description": "The object that will receive the new/updated properties"
-						},
-						{
-							"kind": "param",
-							"name": "source",
-							"type": "Object",
-							"isFirstLevel": true,
-							"description": "The object whose properties will be copied over to the destination object"
-						},
-						{
-							"kind": "param",
-							"name": "args*",
-							"type": "Object",
-							"isOptional": true,
-							"isFirstLevel": true,
-							"description": "Additional source objects. The last source will override properties of the same name in the previous defined sources"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"description": "destination object, enriched with defaults from the sources"
-					},
-					"samples": [
-						"Ink_1_extendObj.html"
-					]
-				},
-				{
-					"kind": "function",
-					"name": "log",
-					"file": "src/js/Ink/1/lib.js",
-					"text": "Calls native console.log if available.",
-					"params": [
-						{
-							"kind": "param",
-							"name": "args*",
-							"type": "Any",
-							"isOptional": true,
-							"isFirstLevel": true,
-							"description": "Arguments to be evaluated"
-						}
-					],
-					"samples": [
-						"Ink_1_log.html"
-					]
-				},
-				{
-					"kind": "function",
-					"name": "warn",
-					"file": "src/js/Ink/1/lib.js",
-					"text": "Calls native console.warn if available.",
-					"params": [
-						{
-							"kind": "param",
-							"name": "args*",
-							"type": "Any",
-							"isOptional": true,
-							"isFirstLevel": true,
-							"description": "Arguments to be evaluated"
-						}
-					],
-					"samples": [
-						"Ink_1_warn.html"
-					]
-				},
-				{
-					"kind": "function",
-					"name": "error",
-					"file": "src/js/Ink/1/lib.js",
-					"text": "Calls native console.error if available.",
-					"params": [
-						{
-							"kind": "param",
-							"name": "args*",
-							"type": "Any",
-							"isOptional": true,
-							"isFirstLevel": true,
-							"description": "Arguments to be evaluated"
-						}
-					],
-					"samples": [
-						"Ink_1_error.html"
-					]
+					"attributes": [],
+					"isNamespace": true
 				}
 			],
+			"functions": [],
 			"attributes": [],
 			"uses": [
 				"requireModules",
@@ -562,6 +572,26 @@
 				"Ink.Dom.Selector.select",
 				"Ink.Dom.Selector.select"
 			]
+		},
+		{
+			"kind": "module",
+			"name": "Ink.Autoload",
+			"file": "src/js/Ink/Autoload/1/lib.js",
+			"classes": [
+				{
+					"kind": "class",
+					"name": "Ink.Autoload",
+					"file": "src/js/Ink/Autoload/1/lib.js",
+					"functions": [],
+					"attributes": [],
+					"isNamespace": true,
+					"static": true
+				}
+			],
+			"functions": [],
+			"attributes": [],
+			"uses": [],
+			"version": "1"
 		},
 		{
 			"kind": "module",
@@ -677,6 +707,7 @@
 							"static": true
 						}
 					],
+					"isNamespace": true,
 					"version": "1",
 					"static": true,
 					"examples": [
@@ -1319,6 +1350,7 @@
 						}
 					],
 					"attributes": [],
+					"isNamespace": true,
 					"static": true
 				}
 			],
@@ -1334,1633 +1366,1642 @@
 			"kind": "module",
 			"name": "Ink.Dom.Element_1",
 			"file": "src/js/Ink/Dom/Element/1/lib.js",
-			"classes": [],
-			"functions": [
+			"classes": [
 				{
-					"kind": "function",
-					"name": "get",
+					"kind": "class",
+					"name": "Ink.Dom.Element_1",
 					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Shortcut for `document.getElementById`",
-					"params": [
+					"functions": [
 						{
-							"kind": "param",
-							"name": "elm",
-							"type": "String|DOMElement",
-							"isFirstLevel": true,
-							"description": "Either an ID of an element, or an element."
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "DOMElement|null",
-						"description": "The DOM element with the given id or null when it was not found"
-					},
-					"samples": [
-						"Ink_Dom_Element_1_get.html"
-					]
-				},
-				{
-					"kind": "function",
-					"name": "create",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Creates a DOM element",
-					"params": [
-						{
-							"kind": "param",
-							"name": "tag",
-							"type": "String",
-							"isFirstLevel": true,
-							"description": "tag name"
+							"kind": "function",
+							"name": "get",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Shortcut for `document.getElementById`",
+							"params": [
+								{
+									"kind": "param",
+									"name": "elm",
+									"type": "String|DOMElement",
+									"isFirstLevel": true,
+									"description": "Either an ID of an element, or an element."
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "DOMElement|null",
+								"description": "The DOM element with the given id or null when it was not found"
+							},
+							"samples": [
+								"Ink_Dom_Element_1_get.html"
+							]
 						},
 						{
-							"kind": "param",
-							"name": "properties",
-							"type": "Object",
-							"isFirstLevel": true,
-							"description": "object with properties to be set on the element. You can also call other functions in Ink.Dom.Element like this"
-						}
-					],
-					"samples": [
-						"Ink_Dom_Element_1_create.html"
-					]
-				},
-				{
-					"kind": "function",
-					"name": "remove",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Removes a DOM Element",
-					"params": [
-						{
-							"kind": "param",
-							"name": "elm",
-							"type": "DOMElement",
-							"isFirstLevel": true,
-							"description": "The element to remove"
-						}
-					],
-					"samples": [
-						"Ink_Dom_Element_1_remove.html"
-					]
-				},
-				{
-					"kind": "function",
-					"name": "scrollTo",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Scrolls the window to an element",
-					"params": [
-						{
-							"kind": "param",
-							"name": "elm",
-							"type": "DOMElement|String",
-							"isFirstLevel": true,
-							"description": "Element where to scroll"
-						}
-					],
-					"samples": [
-						"Ink_Dom_Element_1_scrollTo.html"
-					]
-				},
-				{
-					"kind": "function",
-					"name": "offsetTop",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Gets the top offset of an element",
-					"params": [
-						{
-							"kind": "param",
-							"name": "elm",
-							"type": "DOMElement|String",
-							"isFirstLevel": true,
-							"description": "Target element"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "Number",
-						"description": "Offset from the target element to the top of the document"
-					},
-					"samples": [
-						"Ink_Dom_Element_1_offsetTop.html"
-					]
-				},
-				{
-					"kind": "function",
-					"name": "offsetLeft",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Gets the left offset of an element",
-					"params": [
-						{
-							"kind": "param",
-							"name": "elm",
-							"type": "DOMElement|String",
-							"isFirstLevel": true,
-							"description": "Target element"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "Number",
-						"description": "Offset from the target element to the left of the document"
-					},
-					"samples": [
-						"Ink_Dom_Element_1_offsetLeft.html"
-					]
-				},
-				{
-					"kind": "function",
-					"name": "positionedOffset",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Gets the relative offset of an element",
-					"params": [
-						{
-							"kind": "param",
-							"name": "elm",
-							"type": "DOMElement|String",
-							"isFirstLevel": true,
-							"description": "Target element"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "Array",
-						"description": "Array with the element offsetleft and offsettop relative to the closest positioned ancestor"
-					},
-					"samples": [
-						"Ink_Dom_Element_1_positionedOffset.html"
-					]
-				},
-				{
-					"kind": "function",
-					"name": "offset",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Gets the cumulative offset for an element\n\nReturns the top left position of the element on the page",
-					"params": []
-				},
-				{
-					"kind": "function",
-					"name": "offset",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"params": [
-						{
-							"kind": "param",
-							"name": "elm",
-							"type": "DOMElement|String",
-							"isFirstLevel": true,
-							"description": "Target element"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "[Number, Number]",
-						"description": "Array with pixel distance from the target element to the top left corner of the document"
-					},
-					"samples": [
-						"Ink_Dom_Element_1_offset.html"
-					]
-				},
-				{
-					"kind": "function",
-					"name": "scroll",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Gets the scroll of the element",
-					"params": [
-						{
-							"kind": "param",
-							"name": "elm",
-							"type": "DOMElement|String",
-							"isOptional": true,
-							"isFirstLevel": true,
-							"description": "Target element or document.body"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "Array",
-						"description": "offset values for x and y scroll"
-					},
-					"samples": [
-						"Ink_Dom_Element_1_scroll.html"
-					]
-				},
-				{
-					"kind": "function",
-					"name": "offset2",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Alias for offset()",
-					"params": [],
-					"deprecated": true
-				},
-				{
-					"kind": "function",
-					"name": "hasAttribute",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Checks if an element has an attribute",
-					"params": [
-						{
-							"kind": "param",
-							"name": "elm",
-							"type": "Object",
-							"isFirstLevel": true,
-							"description": "Target element"
+							"kind": "function",
+							"name": "create",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Creates a DOM element",
+							"params": [
+								{
+									"kind": "param",
+									"name": "tag",
+									"type": "String",
+									"isFirstLevel": true,
+									"description": "tag name"
+								},
+								{
+									"kind": "param",
+									"name": "properties",
+									"type": "Object",
+									"isFirstLevel": true,
+									"description": "object with properties to be set on the element. You can also call other functions in Ink.Dom.Element like this"
+								}
+							],
+							"samples": [
+								"Ink_Dom_Element_1_create.html"
+							]
 						},
 						{
-							"kind": "param",
-							"name": "attr",
-							"type": "String",
-							"isFirstLevel": true,
-							"description": "Attribute name"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "Boolean",
-						"description": "Boolean based on existance of attribute"
-					},
-					"samples": [
-						"Ink_Dom_Element_1_hasAttribute.html"
-					]
-				},
-				{
-					"kind": "function",
-					"name": "insertAfter",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Inserts an element right after another",
-					"params": [
-						{
-							"kind": "param",
-							"name": "newElm",
-							"type": "DOMElement",
-							"isFirstLevel": true,
-							"description": "Element to be inserted"
+							"kind": "function",
+							"name": "remove",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Removes a DOM Element",
+							"params": [
+								{
+									"kind": "param",
+									"name": "elm",
+									"type": "DOMElement",
+									"isFirstLevel": true,
+									"description": "The element to remove"
+								}
+							],
+							"samples": [
+								"Ink_Dom_Element_1_remove.html"
+							]
 						},
 						{
-							"kind": "param",
-							"name": "targetElm",
-							"type": "DOMElement|String",
-							"isFirstLevel": true,
-							"description": "Key element"
-						}
-					],
-					"samples": [
-						"Ink_Dom_Element_1_insertAfter.html"
-					]
-				},
-				{
-					"kind": "function",
-					"name": "insertBefore",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Inserts an element before another",
-					"params": [
-						{
-							"kind": "param",
-							"name": "newElm",
-							"type": "DOMElement",
-							"isFirstLevel": true,
-							"description": "Element to be inserted"
+							"kind": "function",
+							"name": "scrollTo",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Scrolls the window to an element",
+							"params": [
+								{
+									"kind": "param",
+									"name": "elm",
+									"type": "DOMElement|String",
+									"isFirstLevel": true,
+									"description": "Element where to scroll"
+								}
+							],
+							"samples": [
+								"Ink_Dom_Element_1_scrollTo.html"
+							]
 						},
 						{
-							"kind": "param",
-							"name": "targetElm",
-							"type": "DOMElement|String",
-							"isFirstLevel": true,
-							"description": "Key element"
-						}
-					],
-					"samples": [
-						"Ink_Dom_Element_1_insertBefore.html"
-					]
-				},
-				{
-					"kind": "function",
-					"name": "insertTop",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Inserts an element as the first child of another",
-					"params": [
-						{
-							"kind": "param",
-							"name": "newElm",
-							"type": "DOMElement",
-							"isFirstLevel": true,
-							"description": "Element to be inserted"
+							"kind": "function",
+							"name": "offsetTop",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Gets the top offset of an element",
+							"params": [
+								{
+									"kind": "param",
+									"name": "elm",
+									"type": "DOMElement|String",
+									"isFirstLevel": true,
+									"description": "Target element"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "Number",
+								"description": "Offset from the target element to the top of the document"
+							},
+							"samples": [
+								"Ink_Dom_Element_1_offsetTop.html"
+							]
 						},
 						{
-							"kind": "param",
-							"name": "targetElm",
-							"type": "DOMElement|String",
-							"isFirstLevel": true,
-							"description": "Key element"
-						}
-					],
-					"samples": [
-						"Ink_Dom_Element_1_insertTop.html"
-					]
-				},
-				{
-					"kind": "function",
-					"name": "insertBottom",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Inserts an element as the last child of another",
-					"params": [
-						{
-							"kind": "param",
-							"name": "newElm",
-							"type": "DOMElement",
-							"isFirstLevel": true,
-							"description": "Element to be inserted"
+							"kind": "function",
+							"name": "offsetLeft",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Gets the left offset of an element",
+							"params": [
+								{
+									"kind": "param",
+									"name": "elm",
+									"type": "DOMElement|String",
+									"isFirstLevel": true,
+									"description": "Target element"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "Number",
+								"description": "Offset from the target element to the left of the document"
+							},
+							"samples": [
+								"Ink_Dom_Element_1_offsetLeft.html"
+							]
 						},
 						{
-							"kind": "param",
-							"name": "targetElm",
-							"type": "DOMElement|String",
-							"isFirstLevel": true,
-							"description": "Key element"
-						}
-					],
-					"samples": [
-						"Ink_Dom_Element_1_insertBottom.html"
-					]
-				},
-				{
-					"kind": "function",
-					"name": "textContent",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Retrieves textContent from node",
-					"params": [
-						{
-							"kind": "param",
-							"name": "node",
-							"type": "DOMNode",
-							"isFirstLevel": true,
-							"description": "Where to retreive text from. Can be any node type."
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "String",
-						"description": "the text"
-					},
-					"samples": [
-						"Ink_Dom_Element_1_textContent.html"
-					]
-				},
-				{
-					"kind": "function",
-					"name": "setTextContent",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Replaces text content of a DOM Node\nThis method removes any child node previously present",
-					"params": [
-						{
-							"kind": "param",
-							"name": "node",
-							"type": "DOMNode",
-							"isFirstLevel": true,
-							"description": "node Target node where the text will be added."
+							"kind": "function",
+							"name": "positionedOffset",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Gets the relative offset of an element",
+							"params": [
+								{
+									"kind": "param",
+									"name": "elm",
+									"type": "DOMElement|String",
+									"isFirstLevel": true,
+									"description": "Target element"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "Array",
+								"description": "Array with the element offsetleft and offsettop relative to the closest positioned ancestor"
+							},
+							"samples": [
+								"Ink_Dom_Element_1_positionedOffset.html"
+							]
 						},
 						{
-							"kind": "param",
-							"name": "text",
-							"type": "String",
-							"isFirstLevel": true,
-							"description": "text Text to be added on the node."
-						}
-					],
-					"samples": [
-						"Ink_Dom_Element_1_setTextContent.html"
-					]
-				},
-				{
-					"kind": "function",
-					"name": "isLink",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Checks if an element is a link",
-					"params": [
-						{
-							"kind": "param",
-							"name": "node",
-							"type": "DOMNode",
-							"isFirstLevel": true,
-							"description": "Node to check if it's link"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "Boolean"
-					}
-				},
-				{
-					"kind": "function",
-					"name": "isAncestorOf",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Checks if a node is an ancestor of another",
-					"params": [
-						{
-							"kind": "param",
-							"name": "ancestor",
-							"type": "DOMNode",
-							"isFirstLevel": true,
-							"description": "Ancestor node"
+							"kind": "function",
+							"name": "offset",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Gets the cumulative offset for an element\n\nReturns the top left position of the element on the page",
+							"params": []
 						},
 						{
-							"kind": "param",
-							"name": "node",
-							"type": "DOMNode",
-							"isFirstLevel": true,
-							"description": "Descendant node"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "Boolean"
-					}
-				},
-				{
-					"kind": "function",
-					"name": "descendantOf",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Checks if a node is descendant of another",
-					"params": [
-						{
-							"kind": "param",
-							"name": "node",
-							"type": "DOMNode",
-							"isFirstLevel": true,
-							"description": "The ancestor"
+							"kind": "function",
+							"name": "offset",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"params": [
+								{
+									"kind": "param",
+									"name": "elm",
+									"type": "DOMElement|String",
+									"isFirstLevel": true,
+									"description": "Target element"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "[Number, Number]",
+								"description": "Array with pixel distance from the target element to the top left corner of the document"
+							},
+							"samples": [
+								"Ink_Dom_Element_1_offset.html"
+							]
 						},
 						{
-							"kind": "param",
-							"name": "descendant",
-							"type": "DOMNode",
-							"isFirstLevel": true,
-							"description": "The descendant"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "Boolean",
-						"description": "true if 'descendant' is descendant of 'node'"
-					}
-				},
-				{
-					"kind": "function",
-					"name": "firstElementChild",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Get first child element of another",
-					"params": [
-						{
-							"kind": "param",
-							"name": "elm",
-							"type": "DOMElement",
-							"isFirstLevel": true,
-							"description": "Parent node"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "DOMElement",
-						"description": "the Element child"
-					}
-				},
-				{
-					"kind": "function",
-					"name": "lastElementChild",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Get the last child element of another",
-					"params": [
-						{
-							"kind": "param",
-							"name": "elm",
-							"type": "DOMElement",
-							"isFirstLevel": true,
-							"description": "Parent node"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "DOMElement",
-						"description": "the Element child"
-					}
-				},
-				{
-					"kind": "function",
-					"name": "nextElementSibling",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Get the first sibling element after the node",
-					"params": [
-						{
-							"kind": "param",
-							"name": "node",
-							"type": "DOMNode",
-							"isFirstLevel": true,
-							"description": "The current node"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "DOMElement|Null",
-						"description": "The first sibling element after node or null if none is found"
-					}
-				},
-				{
-					"kind": "function",
-					"name": "previousElementSibling",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Get the first sibling element before the node",
-					"params": [
-						{
-							"kind": "param",
-							"name": "node",
-							"type": "DOMNode",
-							"isFirstLevel": true,
-							"description": "The current node"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "DOMElement|Null",
-						"description": "The first element sibling before node or null if none is found"
-					}
-				},
-				{
-					"kind": "function",
-					"name": "elementWidth",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Get an element's width in pixels.",
-					"params": [
-						{
-							"kind": "param",
-							"name": "element",
-							"type": "DOMElement|String",
-							"isFirstLevel": true,
-							"description": "Target DOM element or target ID"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "Number",
-						"description": "The element's width"
-					}
-				},
-				{
-					"kind": "function",
-					"name": "elementHeight",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Get an element's height in pixels.",
-					"params": [
-						{
-							"kind": "param",
-							"name": "element",
-							"type": "DOMElement|String",
-							"isFirstLevel": true,
-							"description": "DOM element or target ID"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "Number",
-						"description": "The element's height"
-					}
-				},
-				{
-					"kind": "function",
-					"name": "elementLeft",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Get an element's left position in pixels.",
-					"params": [
-						{
-							"kind": "param",
-							"name": "element",
-							"type": "DOMElement|String",
-							"isFirstLevel": true,
-							"description": "DOM element or target ID"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "Number",
-						"description": "Element's left position"
-					}
-				},
-				{
-					"kind": "function",
-					"name": "elementTop",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Returns the element's top position in pixels.",
-					"params": [
-						{
-							"kind": "param",
-							"name": "element",
-							"type": "DOMElement|string",
-							"isFirstLevel": true,
-							"description": "Target DOM element or target ID"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "Number",
-						"description": "element's top position"
-					}
-				},
-				{
-					"kind": "function",
-					"name": "elementDimensions",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Get an element's dimensions in pixels.",
-					"params": [
-						{
-							"kind": "param",
-							"name": "element",
-							"type": "DOMElement|string",
-							"isFirstLevel": true,
-							"description": "DOM element or target ID"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "Array",
-						"description": "Array with element's width and height"
-					}
-				},
-				{
-					"kind": "function",
-					"name": "outerDimensions",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Get the outer dimensions of an element in pixels.",
-					"params": [
-						{
-							"kind": "param",
-							"name": "element",
-							"type": "DOMElement",
-							"isFirstLevel": true,
-							"description": "Target element"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "Array",
-						"description": "Array with element width and height."
-					}
-				},
-				{
-					"kind": "function",
-					"name": "inViewport",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Check if an element is inside the viewport",
-					"params": [
-						{
-							"kind": "param",
-							"name": "element",
-							"type": "DOMElement",
-							"isFirstLevel": true,
-							"description": "DOM Element"
+							"kind": "function",
+							"name": "scroll",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Gets the scroll of the element",
+							"params": [
+								{
+									"kind": "param",
+									"name": "elm",
+									"type": "DOMElement|String",
+									"isOptional": true,
+									"isFirstLevel": true,
+									"description": "Target element or document.body"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "Array",
+								"description": "offset values for x and y scroll"
+							},
+							"samples": [
+								"Ink_Dom_Element_1_scroll.html"
+							]
 						},
 						{
-							"kind": "param",
-							"name": "partial",
-							"type": "Boolean",
-							"isOptional": true,
-							"defaultValue": "false",
-							"isFirstLevel": true,
-							"description": "Return `true` even if it is only partially visible."
+							"kind": "function",
+							"name": "offset2",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Alias for offset()",
+							"params": [],
+							"deprecated": true
 						},
 						{
-							"kind": "param",
-							"name": "opts.margin",
-							"type": "Number",
-							"isOptional": true,
-							"defaultValue": "0",
-							"isFirstLevel": false,
-							"description": "Consider a margin all around the viewport with `opts.margin` width a dead zone."
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "Boolean"
-					}
-				},
-				{
-					"kind": "function",
-					"name": "isHidden",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Check if an element is hidden.\nTaken from Mootools Element extras ( https://gist.github.com/cheeaun/73342 )\nDoes not take into account visibility:hidden",
-					"params": [
-						{
-							"kind": "param",
-							"name": "element",
-							"type": "DOMElement",
-							"isFirstLevel": true,
-							"description": "Element to check"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "Boolean"
-					}
-				},
-				{
-					"kind": "function",
-					"name": "isVisible",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Check if an element is visible",
-					"params": [
-						{
-							"kind": "param",
-							"name": "element",
-							"type": "DOMElement",
-							"isFirstLevel": true,
-							"description": "Element to check"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "Boolean"
-					}
-				},
-				{
-					"kind": "function",
-					"name": "clonePosition",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Clones an element's position to another",
-					"params": [
-						{
-							"kind": "param",
-							"name": "cloneTo",
-							"type": "DOMElement",
-							"isFirstLevel": true,
-							"description": "element to be position cloned"
+							"kind": "function",
+							"name": "hasAttribute",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Checks if an element has an attribute",
+							"params": [
+								{
+									"kind": "param",
+									"name": "elm",
+									"type": "Object",
+									"isFirstLevel": true,
+									"description": "Target element"
+								},
+								{
+									"kind": "param",
+									"name": "attr",
+									"type": "String",
+									"isFirstLevel": true,
+									"description": "Attribute name"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "Boolean",
+								"description": "Boolean based on existance of attribute"
+							},
+							"samples": [
+								"Ink_Dom_Element_1_hasAttribute.html"
+							]
 						},
 						{
-							"kind": "param",
-							"name": "cloneFrom",
-							"type": "DOMElement",
-							"isFirstLevel": true,
-							"description": "element to get the cloned position"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "DOMElement",
-						"description": "The element with positionClone"
-					}
-				},
-				{
-					"kind": "function",
-					"name": "ellipsizeText",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Text-overflow: ellipsis emulation\nSlices off a piece of text at the end of the element and adds the ellipsis so all text fits inside.",
-					"params": [
-						{
-							"kind": "param",
-							"name": "element",
-							"type": "DOMElement",
-							"isFirstLevel": true,
-							"description": "Element to modify text content"
+							"kind": "function",
+							"name": "insertAfter",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Inserts an element right after another",
+							"params": [
+								{
+									"kind": "param",
+									"name": "newElm",
+									"type": "DOMElement",
+									"isFirstLevel": true,
+									"description": "Element to be inserted"
+								},
+								{
+									"kind": "param",
+									"name": "targetElm",
+									"type": "DOMElement|String",
+									"isFirstLevel": true,
+									"description": "Key element"
+								}
+							],
+							"samples": [
+								"Ink_Dom_Element_1_insertAfter.html"
+							]
 						},
 						{
-							"kind": "param",
-							"name": "ellipsis",
-							"type": "String",
-							"isOptional": true,
-							"defaultValue": "'\\u2026'",
-							"isFirstLevel": true,
-							"description": "String to append to the chopped text"
-						}
-					]
-				},
-				{
-					"kind": "function",
-					"name": "findUpwardsHaving",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Finds the closest ancestor element matching your test function",
-					"params": [
-						{
-							"kind": "param",
-							"name": "element",
-							"type": "DOMElement",
-							"isFirstLevel": true,
-							"description": "Element to base the search from"
+							"kind": "function",
+							"name": "insertBefore",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Inserts an element before another",
+							"params": [
+								{
+									"kind": "param",
+									"name": "newElm",
+									"type": "DOMElement",
+									"isFirstLevel": true,
+									"description": "Element to be inserted"
+								},
+								{
+									"kind": "param",
+									"name": "targetElm",
+									"type": "DOMElement|String",
+									"isFirstLevel": true,
+									"description": "Key element"
+								}
+							],
+							"samples": [
+								"Ink_Dom_Element_1_insertBefore.html"
+							]
 						},
 						{
-							"kind": "param",
-							"name": "boolTest",
-							"type": "Function",
-							"isFirstLevel": true,
-							"description": "Testing function"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "DOMElement|false",
-						"description": "The matched element or false if did not match"
-					}
-				},
-				{
-					"kind": "function",
-					"name": "findUpwardsByClass",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Finds the closest ancestor by class name",
-					"params": [
-						{
-							"kind": "param",
-							"name": "element",
-							"type": "DOMElement",
-							"isFirstLevel": true,
-							"description": "Element to base the search from"
+							"kind": "function",
+							"name": "insertTop",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Inserts an element as the first child of another",
+							"params": [
+								{
+									"kind": "param",
+									"name": "newElm",
+									"type": "DOMElement",
+									"isFirstLevel": true,
+									"description": "Element to be inserted"
+								},
+								{
+									"kind": "param",
+									"name": "targetElm",
+									"type": "DOMElement|String",
+									"isFirstLevel": true,
+									"description": "Key element"
+								}
+							],
+							"samples": [
+								"Ink_Dom_Element_1_insertTop.html"
+							]
 						},
 						{
-							"kind": "param",
-							"name": "className",
-							"type": "String",
-							"isFirstLevel": true,
-							"description": "Class name to search"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "DOMElement|false",
-						"description": "The matched element or false if did not match"
-					}
-				},
-				{
-					"kind": "function",
-					"name": "findUpwardsByTag",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Finds the closest ancestor by tag name",
-					"params": [
-						{
-							"kind": "param",
-							"name": "element",
-							"type": "DOMElement",
-							"isFirstLevel": true,
-							"description": "Element to base the search from"
+							"kind": "function",
+							"name": "insertBottom",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Inserts an element as the last child of another",
+							"params": [
+								{
+									"kind": "param",
+									"name": "newElm",
+									"type": "DOMElement",
+									"isFirstLevel": true,
+									"description": "Element to be inserted"
+								},
+								{
+									"kind": "param",
+									"name": "targetElm",
+									"type": "DOMElement|String",
+									"isFirstLevel": true,
+									"description": "Key element"
+								}
+							],
+							"samples": [
+								"Ink_Dom_Element_1_insertBottom.html"
+							]
 						},
 						{
-							"kind": "param",
-							"name": "tag",
-							"type": "String",
-							"isFirstLevel": true,
-							"description": "Tag to search"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "DOMElement|false",
-						"description": "the matched element or false if did not match"
-					}
-				},
-				{
-					"kind": "function",
-					"name": "findUpwardsById",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Finds the closest ancestor by id",
-					"params": [
-						{
-							"kind": "param",
-							"name": "element",
-							"type": "HtmlElement",
-							"isFirstLevel": true,
-							"description": "Element to base the search from"
+							"kind": "function",
+							"name": "textContent",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Retrieves textContent from node",
+							"params": [
+								{
+									"kind": "param",
+									"name": "node",
+									"type": "DOMNode",
+									"isFirstLevel": true,
+									"description": "Where to retreive text from. Can be any node type."
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "String",
+								"description": "the text"
+							},
+							"samples": [
+								"Ink_Dom_Element_1_textContent.html"
+							]
 						},
 						{
-							"kind": "param",
-							"name": "id",
-							"type": "String",
-							"isFirstLevel": true,
-							"description": "ID to search"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "HtmlElement|false",
-						"description": "The matched element or false if did not match"
-					}
-				},
-				{
-					"kind": "function",
-					"name": "findUpwardsBySelector",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Finds the closest ancestor by CSS selector",
-					"params": [
-						{
-							"kind": "param",
-							"name": "element",
-							"type": "HtmlElement",
-							"isFirstLevel": true,
-							"description": "Element to base the search from"
+							"kind": "function",
+							"name": "setTextContent",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Replaces text content of a DOM Node\nThis method removes any child node previously present",
+							"params": [
+								{
+									"kind": "param",
+									"name": "node",
+									"type": "DOMNode",
+									"isFirstLevel": true,
+									"description": "node Target node where the text will be added."
+								},
+								{
+									"kind": "param",
+									"name": "text",
+									"type": "String",
+									"isFirstLevel": true,
+									"description": "text Text to be added on the node."
+								}
+							],
+							"samples": [
+								"Ink_Dom_Element_1_setTextContent.html"
+							]
 						},
 						{
-							"kind": "param",
-							"name": "sel",
-							"type": "String",
-							"isFirstLevel": true,
-							"description": "CSS selector"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "HtmlElement|false",
-						"description": "The matched element or false if did not match"
-					}
-				},
-				{
-					"kind": "function",
-					"name": "getChildrenText",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Gets the trimmed text of an element",
-					"params": [
-						{
-							"kind": "param",
-							"name": "el",
-							"type": "DOMElement",
-							"isFirstLevel": true,
-							"description": "Element to base the search from"
+							"kind": "function",
+							"name": "isLink",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Checks if an element is a link",
+							"params": [
+								{
+									"kind": "param",
+									"name": "node",
+									"type": "DOMNode",
+									"isFirstLevel": true,
+									"description": "Node to check if it's link"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "Boolean"
+							}
 						},
 						{
-							"kind": "param",
-							"name": "removeIt",
-							"type": "Boolean",
-							"isOptional": true,
-							"isFirstLevel": true,
-							"description": "Flag to remove the text from the element"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "String",
-						"description": "Text found"
-					}
-				},
-				{
-					"kind": "function",
-					"name": "getSelectValues",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Gets value of a select element",
-					"params": [
-						{
-							"kind": "param",
-							"name": "select",
-							"type": "DOMElement|String",
-							"isFirstLevel": true,
-							"description": "element"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "Array",
-						"description": "The selected values"
-					}
-				},
-				{
-					"kind": "function",
-					"name": "fillSelect",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Fills a select element with options",
-					"params": [
-						{
-							"kind": "param",
-							"name": "container",
-							"type": "DOMElement|String",
-							"isFirstLevel": true,
-							"description": "Select element which will get filled"
+							"kind": "function",
+							"name": "isAncestorOf",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Checks if a node is an ancestor of another",
+							"params": [
+								{
+									"kind": "param",
+									"name": "ancestor",
+									"type": "DOMNode",
+									"isFirstLevel": true,
+									"description": "Ancestor node"
+								},
+								{
+									"kind": "param",
+									"name": "node",
+									"type": "DOMNode",
+									"isFirstLevel": true,
+									"description": "Descendant node"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "Boolean"
+							}
 						},
 						{
-							"kind": "param",
+							"kind": "function",
+							"name": "descendantOf",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Checks if a node is descendant of another",
+							"params": [
+								{
+									"kind": "param",
+									"name": "node",
+									"type": "DOMNode",
+									"isFirstLevel": true,
+									"description": "The ancestor"
+								},
+								{
+									"kind": "param",
+									"name": "descendant",
+									"type": "DOMNode",
+									"isFirstLevel": true,
+									"description": "The descendant"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "Boolean",
+								"description": "true if 'descendant' is descendant of 'node'"
+							}
+						},
+						{
+							"kind": "function",
+							"name": "firstElementChild",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Get first child element of another",
+							"params": [
+								{
+									"kind": "param",
+									"name": "elm",
+									"type": "DOMElement",
+									"isFirstLevel": true,
+									"description": "Parent node"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "DOMElement",
+								"description": "the Element child"
+							}
+						},
+						{
+							"kind": "function",
+							"name": "lastElementChild",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Get the last child element of another",
+							"params": [
+								{
+									"kind": "param",
+									"name": "elm",
+									"type": "DOMElement",
+									"isFirstLevel": true,
+									"description": "Parent node"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "DOMElement",
+								"description": "the Element child"
+							}
+						},
+						{
+							"kind": "function",
+							"name": "nextElementSibling",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Get the first sibling element after the node",
+							"params": [
+								{
+									"kind": "param",
+									"name": "node",
+									"type": "DOMNode",
+									"isFirstLevel": true,
+									"description": "The current node"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "DOMElement|Null",
+								"description": "The first sibling element after node or null if none is found"
+							}
+						},
+						{
+							"kind": "function",
+							"name": "previousElementSibling",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Get the first sibling element before the node",
+							"params": [
+								{
+									"kind": "param",
+									"name": "node",
+									"type": "DOMNode",
+									"isFirstLevel": true,
+									"description": "The current node"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "DOMElement|Null",
+								"description": "The first element sibling before node or null if none is found"
+							}
+						},
+						{
+							"kind": "function",
+							"name": "elementWidth",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Get an element's width in pixels.",
+							"params": [
+								{
+									"kind": "param",
+									"name": "element",
+									"type": "DOMElement|String",
+									"isFirstLevel": true,
+									"description": "Target DOM element or target ID"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "Number",
+								"description": "The element's width"
+							}
+						},
+						{
+							"kind": "function",
+							"name": "elementHeight",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Get an element's height in pixels.",
+							"params": [
+								{
+									"kind": "param",
+									"name": "element",
+									"type": "DOMElement|String",
+									"isFirstLevel": true,
+									"description": "DOM element or target ID"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "Number",
+								"description": "The element's height"
+							}
+						},
+						{
+							"kind": "function",
+							"name": "elementLeft",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Get an element's left position in pixels.",
+							"params": [
+								{
+									"kind": "param",
+									"name": "element",
+									"type": "DOMElement|String",
+									"isFirstLevel": true,
+									"description": "DOM element or target ID"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "Number",
+								"description": "Element's left position"
+							}
+						},
+						{
+							"kind": "function",
+							"name": "elementTop",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Returns the element's top position in pixels.",
+							"params": [
+								{
+									"kind": "param",
+									"name": "element",
+									"type": "DOMElement|string",
+									"isFirstLevel": true,
+									"description": "Target DOM element or target ID"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "Number",
+								"description": "element's top position"
+							}
+						},
+						{
+							"kind": "function",
+							"name": "elementDimensions",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Get an element's dimensions in pixels.",
+							"params": [
+								{
+									"kind": "param",
+									"name": "element",
+									"type": "DOMElement|string",
+									"isFirstLevel": true,
+									"description": "DOM element or target ID"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "Array",
+								"description": "Array with element's width and height"
+							}
+						},
+						{
+							"kind": "function",
+							"name": "outerDimensions",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Get the outer dimensions of an element in pixels.",
+							"params": [
+								{
+									"kind": "param",
+									"name": "element",
+									"type": "DOMElement",
+									"isFirstLevel": true,
+									"description": "Target element"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "Array",
+								"description": "Array with element width and height."
+							}
+						},
+						{
+							"kind": "function",
+							"name": "inViewport",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Check if an element is inside the viewport",
+							"params": [
+								{
+									"kind": "param",
+									"name": "element",
+									"type": "DOMElement",
+									"isFirstLevel": true,
+									"description": "DOM Element"
+								},
+								{
+									"kind": "param",
+									"name": "partial",
+									"type": "Boolean",
+									"isOptional": true,
+									"defaultValue": "false",
+									"isFirstLevel": true,
+									"description": "Return `true` even if it is only partially visible."
+								},
+								{
+									"kind": "param",
+									"name": "opts.margin",
+									"type": "Number",
+									"isOptional": true,
+									"defaultValue": "0",
+									"isFirstLevel": false,
+									"description": "Consider a margin all around the viewport with `opts.margin` width a dead zone."
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "Boolean"
+							}
+						},
+						{
+							"kind": "function",
+							"name": "isHidden",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Check if an element is hidden.\nTaken from Mootools Element extras ( https://gist.github.com/cheeaun/73342 )\nDoes not take into account visibility:hidden",
+							"params": [
+								{
+									"kind": "param",
+									"name": "element",
+									"type": "DOMElement",
+									"isFirstLevel": true,
+									"description": "Element to check"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "Boolean"
+							}
+						},
+						{
+							"kind": "function",
+							"name": "isVisible",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Check if an element is visible",
+							"params": [
+								{
+									"kind": "param",
+									"name": "element",
+									"type": "DOMElement",
+									"isFirstLevel": true,
+									"description": "Element to check"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "Boolean"
+							}
+						},
+						{
+							"kind": "function",
+							"name": "clonePosition",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Clones an element's position to another",
+							"params": [
+								{
+									"kind": "param",
+									"name": "cloneTo",
+									"type": "DOMElement",
+									"isFirstLevel": true,
+									"description": "element to be position cloned"
+								},
+								{
+									"kind": "param",
+									"name": "cloneFrom",
+									"type": "DOMElement",
+									"isFirstLevel": true,
+									"description": "element to get the cloned position"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "DOMElement",
+								"description": "The element with positionClone"
+							}
+						},
+						{
+							"kind": "function",
+							"name": "ellipsizeText",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Text-overflow: ellipsis emulation\nSlices off a piece of text at the end of the element and adds the ellipsis so all text fits inside.",
+							"params": [
+								{
+									"kind": "param",
+									"name": "element",
+									"type": "DOMElement",
+									"isFirstLevel": true,
+									"description": "Element to modify text content"
+								},
+								{
+									"kind": "param",
+									"name": "ellipsis",
+									"type": "String",
+									"isOptional": true,
+									"defaultValue": "'\\u2026'",
+									"isFirstLevel": true,
+									"description": "String to append to the chopped text"
+								}
+							]
+						},
+						{
+							"kind": "function",
+							"name": "findUpwardsHaving",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Finds the closest ancestor element matching your test function",
+							"params": [
+								{
+									"kind": "param",
+									"name": "element",
+									"type": "DOMElement",
+									"isFirstLevel": true,
+									"description": "Element to base the search from"
+								},
+								{
+									"kind": "param",
+									"name": "boolTest",
+									"type": "Function",
+									"isFirstLevel": true,
+									"description": "Testing function"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "DOMElement|false",
+								"description": "The matched element or false if did not match"
+							}
+						},
+						{
+							"kind": "function",
+							"name": "findUpwardsByClass",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Finds the closest ancestor by class name",
+							"params": [
+								{
+									"kind": "param",
+									"name": "element",
+									"type": "DOMElement",
+									"isFirstLevel": true,
+									"description": "Element to base the search from"
+								},
+								{
+									"kind": "param",
+									"name": "className",
+									"type": "String",
+									"isFirstLevel": true,
+									"description": "Class name to search"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "DOMElement|false",
+								"description": "The matched element or false if did not match"
+							}
+						},
+						{
+							"kind": "function",
+							"name": "findUpwardsByTag",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Finds the closest ancestor by tag name",
+							"params": [
+								{
+									"kind": "param",
+									"name": "element",
+									"type": "DOMElement",
+									"isFirstLevel": true,
+									"description": "Element to base the search from"
+								},
+								{
+									"kind": "param",
+									"name": "tag",
+									"type": "String",
+									"isFirstLevel": true,
+									"description": "Tag to search"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "DOMElement|false",
+								"description": "the matched element or false if did not match"
+							}
+						},
+						{
+							"kind": "function",
+							"name": "findUpwardsById",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Finds the closest ancestor by id",
+							"params": [
+								{
+									"kind": "param",
+									"name": "element",
+									"type": "HtmlElement",
+									"isFirstLevel": true,
+									"description": "Element to base the search from"
+								},
+								{
+									"kind": "param",
+									"name": "id",
+									"type": "String",
+									"isFirstLevel": true,
+									"description": "ID to search"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "HtmlElement|false",
+								"description": "The matched element or false if did not match"
+							}
+						},
+						{
+							"kind": "function",
+							"name": "findUpwardsBySelector",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Finds the closest ancestor by CSS selector",
+							"params": [
+								{
+									"kind": "param",
+									"name": "element",
+									"type": "HtmlElement",
+									"isFirstLevel": true,
+									"description": "Element to base the search from"
+								},
+								{
+									"kind": "param",
+									"name": "sel",
+									"type": "String",
+									"isFirstLevel": true,
+									"description": "CSS selector"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "HtmlElement|false",
+								"description": "The matched element or false if did not match"
+							}
+						},
+						{
+							"kind": "function",
+							"name": "getChildrenText",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Gets the trimmed text of an element",
+							"params": [
+								{
+									"kind": "param",
+									"name": "el",
+									"type": "DOMElement",
+									"isFirstLevel": true,
+									"description": "Element to base the search from"
+								},
+								{
+									"kind": "param",
+									"name": "removeIt",
+									"type": "Boolean",
+									"isOptional": true,
+									"isFirstLevel": true,
+									"description": "Flag to remove the text from the element"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "String",
+								"description": "Text found"
+							}
+						},
+						{
+							"kind": "function",
+							"name": "getSelectValues",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Gets value of a select element",
+							"params": [
+								{
+									"kind": "param",
+									"name": "select",
+									"type": "DOMElement|String",
+									"isFirstLevel": true,
+									"description": "element"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "Array",
+								"description": "The selected values"
+							}
+						},
+						{
+							"kind": "function",
+							"name": "fillSelect",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Fills a select element with options",
+							"params": [
+								{
+									"kind": "param",
+									"name": "container",
+									"type": "DOMElement|String",
+									"isFirstLevel": true,
+									"description": "Select element which will get filled"
+								},
+								{
+									"kind": "param",
+									"name": "data",
+									"type": "Array",
+									"isFirstLevel": true,
+									"description": "Data to populate the component"
+								},
+								{
+									"kind": "param",
+									"name": "skipEmpty",
+									"type": "Boolean",
+									"isOptional": true,
+									"isFirstLevel": true,
+									"description": "Flag to skip empty option"
+								},
+								{
+									"kind": "param",
+									"name": "defaultValue",
+									"type": "String|Number",
+									"isOptional": true,
+									"isFirstLevel": true,
+									"description": "Initial selected value"
+								}
+							]
+						},
+						{
+							"kind": "function",
+							"name": "fillSelect2",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Fills a select element with options\nThis method allows the creation of new values",
+							"params": [
+								{
+									"kind": "param",
+									"name": "ctn",
+									"type": "DOMElement|String",
+									"isFirstLevel": true,
+									"description": "Select element to get populated"
+								},
+								{
+									"kind": "param",
+									"name": "opts",
+									"type": "Object",
+									"isFirstLevel": true
+								},
+								{
+									"kind": "param",
+									"name": "opts.data",
+									"type": "Array",
+									"isOptional": true,
+									"isFirstLevel": false,
+									"description": "Data to populate the component"
+								},
+								{
+									"kind": "param",
+									"name": "opts.skipEmpty",
+									"type": "Boolean",
+									"isOptional": true,
+									"defaultValue": "false",
+									"isFirstLevel": false,
+									"description": "Flag to skip creation of empty options"
+								},
+								{
+									"kind": "param",
+									"name": "opts.emptyLabel",
+									"type": "String",
+									"isOptional": true,
+									"isFirstLevel": false,
+									"description": "Label to display on empty option"
+								},
+								{
+									"kind": "param",
+									"name": "opts.createLabel",
+									"type": "String",
+									"isOptional": true,
+									"isFirstLevel": false,
+									"description": "Label to display on create option"
+								},
+								{
+									"kind": "param",
+									"name": "opts.optionsGroupLabel",
+									"type": "String",
+									"isOptional": true,
+									"isFirstLevel": false,
+									"description": "Text to display on group surrounding value options"
+								},
+								{
+									"kind": "param",
+									"name": "opts.defaultValue",
+									"type": "String",
+									"isOptional": true,
+									"isFirstLevel": false,
+									"description": "Initial selected value"
+								},
+								{
+									"kind": "param",
+									"name": "opts.onCreate",
+									"type": "Function",
+									"isOptional": true,
+									"isFirstLevel": false,
+									"description": "Callback when the user selects the create option"
+								}
+							]
+						},
+						{
+							"kind": "function",
+							"name": "fillRadios",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Creates a set of radio buttons",
+							"params": [
+								{
+									"kind": "param",
+									"name": "insertAfterEl",
+									"type": "DOMElement|String",
+									"isFirstLevel": true,
+									"description": "Element after which the input elements will be created"
+								},
+								{
+									"kind": "param",
+									"name": "name",
+									"type": "String",
+									"isFirstLevel": true,
+									"description": "Name for the form field ([] is added if not present as a suffix)"
+								},
+								{
+									"kind": "param",
+									"name": "data",
+									"type": "Array",
+									"isFirstLevel": true,
+									"description": "Data to populate the component"
+								},
+								{
+									"kind": "param",
+									"name": "skipEmpty",
+									"type": "Boolean",
+									"isOptional": true,
+									"isFirstLevel": true,
+									"description": "Flag to skip creation of empty options"
+								},
+								{
+									"kind": "param",
+									"name": "defaultValue",
+									"type": "String|Number",
+									"isOptional": true,
+									"isFirstLevel": true,
+									"description": "Initial selected value"
+								},
+								{
+									"kind": "param",
+									"name": "splitEl",
+									"type": "String",
+									"isOptional": true,
+									"isFirstLevel": true,
+									"description": "Name of element to add after each input element (example: 'br')"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "DOMElement",
+								"description": "Wrapper element around the radio buttons"
+							}
+						},
+						{
+							"kind": "function",
+							"name": "fillChecks",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Creates set of checkbox buttons",
+							"params": [
+								{
+									"kind": "param",
+									"name": "insertAfterEl",
+									"type": "DOMElement|String",
+									"isFirstLevel": true,
+									"description": "Element after which the input elements will be created"
+								},
+								{
+									"kind": "param",
+									"name": "name",
+									"type": "String",
+									"isFirstLevel": true,
+									"description": "Name for the form field ([] is added if not present as a suffix)"
+								},
+								{
+									"kind": "param",
+									"name": "data",
+									"type": "Array",
+									"isFirstLevel": true,
+									"description": "Data to populate the component"
+								},
+								{
+									"kind": "param",
+									"name": "skipEmpty",
+									"type": "Boolean",
+									"isOptional": true,
+									"isFirstLevel": true,
+									"description": "Flag to skip creation of empty options"
+								},
+								{
+									"kind": "param",
+									"name": "defaultValue",
+									"type": "String|Number",
+									"isOptional": true,
+									"isFirstLevel": true,
+									"description": "Initial selected value"
+								},
+								{
+									"kind": "param",
+									"name": "splitEl",
+									"type": "String",
+									"isOptional": true,
+									"isFirstLevel": true,
+									"description": "Name of element to add after each input element (example: 'br')"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "DOMElement",
+								"description": "Wrapper element around the checkboxes"
+							}
+						},
+						{
+							"kind": "function",
+							"name": "parentIndexOf",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Gets the index of an element relative to a parent",
+							"params": [
+								{
+									"kind": "param",
+									"name": "parentEl",
+									"type": "DOMElement",
+									"isFirstLevel": true,
+									"description": "Element to parse"
+								},
+								{
+									"kind": "param",
+									"name": "childEl",
+									"type": "DOMElement",
+									"isFirstLevel": true,
+									"description": "Child Element to look for"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "Number",
+								"description": "The index of the childEl inside parentEl. Returns -1 if it's not a direct child"
+							}
+						},
+						{
+							"kind": "function",
+							"name": "nextSiblings",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Gets the next siblings of an element",
+							"params": [
+								{
+									"kind": "param",
+									"name": "elm",
+									"type": "String|DOMElement",
+									"isFirstLevel": true,
+									"description": "Element"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "Array",
+								"description": "Array of next sibling elements"
+							}
+						},
+						{
+							"kind": "function",
+							"name": "previousSiblings",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Gets the previous siblings of an element",
+							"params": [
+								{
+									"kind": "param",
+									"name": "elm",
+									"type": "String|DOMElement",
+									"isFirstLevel": true,
+									"description": "Element"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "Array",
+								"description": "Array of previous sibling elements"
+							}
+						},
+						{
+							"kind": "function",
+							"name": "siblings",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Gets the all siblings of an element",
+							"params": [
+								{
+									"kind": "param",
+									"name": "elm",
+									"type": "String|DOMElement",
+									"isFirstLevel": true,
+									"description": "Element"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "Array",
+								"description": "Array of sibling elements"
+							}
+						},
+						{
+							"kind": "function",
+							"name": "childElementCount",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Counts the number of children of an element",
+							"params": [
+								{
+									"kind": "param",
+									"name": "elm",
+									"type": "String|DOMElement",
+									"isFirstLevel": true,
+									"description": "element"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "Number",
+								"description": "number of child elements"
+							}
+						},
+						{
+							"kind": "function",
+							"name": "_getWrapper",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Gets a wrapper DIV with a certain HTML content to be inserted inside another element.\nThis is necessary for appendHTML,prependHTML functions, because they need a container element to copy the children from.\n\nWorks around IE table quirks",
+							"params": [
+								{
+									"kind": "param",
+									"name": "elm",
+									"isFirstLevel": true
+								},
+								{
+									"kind": "param",
+									"name": "html",
+									"isFirstLevel": true
+								}
+							],
+							"private": true
+						},
+						{
+							"kind": "function",
+							"name": "appendHTML",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Appends HTML to an element.\nThis method parses the html string and doesn't modify its contents",
+							"params": [
+								{
+									"kind": "param",
+									"name": "elm",
+									"type": "String|DOMElement",
+									"isFirstLevel": true,
+									"description": "Element"
+								},
+								{
+									"kind": "param",
+									"name": "html",
+									"type": "String",
+									"isFirstLevel": true,
+									"description": "Markup string"
+								}
+							]
+						},
+						{
+							"kind": "function",
+							"name": "prependHTML",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Prepends HTML to an element.\nThis method parses the html string and doesn't modify its contents",
+							"params": [
+								{
+									"kind": "param",
+									"name": "elm",
+									"type": "String|DOMElement",
+									"isFirstLevel": true,
+									"description": "Element"
+								},
+								{
+									"kind": "param",
+									"name": "html",
+									"type": "String",
+									"isFirstLevel": true,
+									"description": "Markup string"
+								}
+							]
+						},
+						{
+							"kind": "function",
+							"name": "setHTML",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Sets the inner HTML of an element.",
+							"params": [
+								{
+									"kind": "param",
+									"name": "elm",
+									"type": "String|DOMElement",
+									"isFirstLevel": true,
+									"description": "Element"
+								},
+								{
+									"kind": "param",
+									"name": "html",
+									"type": "String",
+									"isFirstLevel": true,
+									"description": "Markup string"
+								}
+							]
+						},
+						{
+							"kind": "function",
+							"name": "wrap",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Wraps an element inside a container.\n\nThe container may or may not be in the document yet.",
+							"params": [
+								{
+									"kind": "param",
+									"name": "target",
+									"type": "String|DOMElement",
+									"isFirstLevel": true,
+									"description": "Element to be wrapped"
+								},
+								{
+									"kind": "param",
+									"name": "container",
+									"type": "String|DOMElement",
+									"isFirstLevel": true,
+									"description": "Element to wrap the target"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"description": "Container element"
+							},
+							"examples": [
+								"\nbefore:\n\n    <div id=\"target\"></div>\n\ncall this function to wrap #target with a wrapper div.\n\n    InkElement.wrap('target', InkElement.create('div', {id: 'container'});\n\nafter: \n\n    <div id=\"container\"><div id=\"target\"></div></div>\n"
+							]
+						},
+						{
+							"kind": "function",
+							"name": "unwrap",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Places an element outside a wrapper.",
+							"params": [
+								{
+									"kind": "param",
+									"name": "elem",
+									"type": "DOMElement",
+									"isFirstLevel": true,
+									"description": "The element you're trying to unwrap. This should be an ancestor of the wrapper."
+								},
+								{
+									"kind": "param",
+									"name": "wrapperSelector",
+									"type": "String",
+									"isOptional": true,
+									"isFirstLevel": true,
+									"description": "CSS Selector for the ancestor. Use this if your wrapper is not the direct parent of elem."
+								}
+							],
+							"examples": [
+								"\n\nWhen you have this:\n\n     <div id=\"wrapper\">\n         <div id=\"unwrapMe\"></div>\n     </div>\n\nIf you do this:\n\n     InkElement.unwrap('unwrapMe');\n\nYou get this:\n\n     <div id=\"unwrapMe\"></div>\n     <div id=\"wrapper\"></div>\n     \n"
+							]
+						},
+						{
+							"kind": "function",
+							"name": "replace",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Replaces an element with another.",
+							"params": [
+								{
+									"kind": "param",
+									"name": "element",
+									"isFirstLevel": true,
+									"description": "The element to be replaced."
+								},
+								{
+									"kind": "param",
+									"name": "replacement",
+									"isFirstLevel": true,
+									"description": "The new element."
+								}
+							],
+							"examples": [
+								"\n      var newelement1 = InkElement.create('div');\n      // ...\n      replace(Ink.i('element1'), newelement1);\n"
+							]
+						},
+						{
+							"kind": "function",
+							"name": "removeTextNodeChildren",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Removes direct text children.\nUseful to remove nasty layout gaps generated by whitespace on the markup.",
+							"params": [
+								{
+									"kind": "param",
+									"name": "el",
+									"type": "DOMElement",
+									"isFirstLevel": true,
+									"description": "Element to remove text from"
+								}
+							]
+						},
+						{
+							"kind": "function",
+							"name": "htmlToFragment",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Creates a documentFragment from an HTML string.",
+							"params": [
+								{
+									"kind": "param",
+									"name": "html",
+									"type": "String",
+									"isFirstLevel": true,
+									"description": "HTML string"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "DocumentFragment",
+								"description": "DocumentFragment containing all of the elements from the html string"
+							}
+						},
+						{
+							"kind": "function",
 							"name": "data",
-							"type": "Array",
-							"isFirstLevel": true,
-							"description": "Data to populate the component"
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Gets data attributes from an element",
+							"params": [
+								{
+									"kind": "param",
+									"name": "selector",
+									"type": "String|DOMElement",
+									"isFirstLevel": true,
+									"description": "Element or CSS selector"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "Object",
+								"description": "Object with the data-* properties. If no data-attributes are present, an empty object is returned."
+							}
 						},
 						{
-							"kind": "param",
-							"name": "skipEmpty",
-							"type": "Boolean",
-							"isOptional": true,
-							"isFirstLevel": true,
-							"description": "Flag to skip empty option"
+							"kind": "function",
+							"name": "moveCursorTo",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Move the cursor on an input or textarea element.",
+							"params": [
+								{
+									"kind": "param",
+									"name": "el",
+									"type": "DOMElement",
+									"isFirstLevel": true,
+									"description": "Input or Textarea element"
+								},
+								{
+									"kind": "param",
+									"name": "t",
+									"type": "Number",
+									"isFirstLevel": true,
+									"description": "Index of the character to move the cursor to"
+								}
+							]
 						},
 						{
-							"kind": "param",
-							"name": "defaultValue",
-							"type": "String|Number",
-							"isOptional": true,
-							"isFirstLevel": true,
-							"description": "Initial selected value"
-						}
-					]
-				},
-				{
-					"kind": "function",
-					"name": "fillSelect2",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Fills a select element with options\nThis method allows the creation of new values",
-					"params": [
-						{
-							"kind": "param",
-							"name": "ctn",
-							"type": "DOMElement|String",
-							"isFirstLevel": true,
-							"description": "Select element to get populated"
+							"kind": "function",
+							"name": "pageWidth",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Get the page's width.",
+							"params": [],
+							"return": {
+								"kind": "return",
+								"type": "Number",
+								"description": "Page width in pixels"
+							}
 						},
 						{
-							"kind": "param",
-							"name": "opts",
-							"type": "Object",
-							"isFirstLevel": true
+							"kind": "function",
+							"name": "pageHeight",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Get the page's height.",
+							"params": [],
+							"return": {
+								"kind": "return",
+								"type": "Number",
+								"description": "Page height in pixels"
+							}
 						},
 						{
-							"kind": "param",
-							"name": "opts.data",
-							"type": "Array",
-							"isOptional": true,
-							"isFirstLevel": false,
-							"description": "Data to populate the component"
+							"kind": "function",
+							"name": "viewportWidth",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Get the viewport's width.",
+							"params": [],
+							"return": {
+								"kind": "return",
+								"type": "Number",
+								"description": "Viewport width in pixels"
+							}
 						},
 						{
-							"kind": "param",
-							"name": "opts.skipEmpty",
-							"type": "Boolean",
-							"isOptional": true,
-							"defaultValue": "false",
-							"isFirstLevel": false,
-							"description": "Flag to skip creation of empty options"
+							"kind": "function",
+							"name": "viewportHeight",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Get the viewport's height.",
+							"params": [],
+							"return": {
+								"kind": "return",
+								"type": "Number",
+								"description": "Viewport height in pixels"
+							}
 						},
 						{
-							"kind": "param",
-							"name": "opts.emptyLabel",
-							"type": "String",
-							"isOptional": true,
-							"isFirstLevel": false,
-							"description": "Label to display on empty option"
+							"kind": "function",
+							"name": "scrollWidth",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Get the scroll's width.",
+							"params": [],
+							"return": {
+								"kind": "return",
+								"type": "Number",
+								"description": "Scroll width"
+							}
 						},
 						{
-							"kind": "param",
-							"name": "opts.createLabel",
-							"type": "String",
-							"isOptional": true,
-							"isFirstLevel": false,
-							"description": "Label to display on create option"
-						},
-						{
-							"kind": "param",
-							"name": "opts.optionsGroupLabel",
-							"type": "String",
-							"isOptional": true,
-							"isFirstLevel": false,
-							"description": "Text to display on group surrounding value options"
-						},
-						{
-							"kind": "param",
-							"name": "opts.defaultValue",
-							"type": "String",
-							"isOptional": true,
-							"isFirstLevel": false,
-							"description": "Initial selected value"
-						},
-						{
-							"kind": "param",
-							"name": "opts.onCreate",
-							"type": "Function",
-							"isOptional": true,
-							"isFirstLevel": false,
-							"description": "Callback when the user selects the create option"
-						}
-					]
-				},
-				{
-					"kind": "function",
-					"name": "fillRadios",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Creates a set of radio buttons",
-					"params": [
-						{
-							"kind": "param",
-							"name": "insertAfterEl",
-							"type": "DOMElement|String",
-							"isFirstLevel": true,
-							"description": "Element after which the input elements will be created"
-						},
-						{
-							"kind": "param",
-							"name": "name",
-							"type": "String",
-							"isFirstLevel": true,
-							"description": "Name for the form field ([] is added if not present as a suffix)"
-						},
-						{
-							"kind": "param",
-							"name": "data",
-							"type": "Array",
-							"isFirstLevel": true,
-							"description": "Data to populate the component"
-						},
-						{
-							"kind": "param",
-							"name": "skipEmpty",
-							"type": "Boolean",
-							"isOptional": true,
-							"isFirstLevel": true,
-							"description": "Flag to skip creation of empty options"
-						},
-						{
-							"kind": "param",
-							"name": "defaultValue",
-							"type": "String|Number",
-							"isOptional": true,
-							"isFirstLevel": true,
-							"description": "Initial selected value"
-						},
-						{
-							"kind": "param",
-							"name": "splitEl",
-							"type": "String",
-							"isOptional": true,
-							"isFirstLevel": true,
-							"description": "Name of element to add after each input element (example: 'br')"
+							"kind": "function",
+							"name": "scrollHeight",
+							"file": "src/js/Ink/Dom/Element/1/lib.js",
+							"text": "Get the scroll's height.",
+							"params": [],
+							"return": {
+								"kind": "return",
+								"type": "Number",
+								"description": "Scroll height"
+							}
 						}
 					],
-					"return": {
-						"kind": "return",
-						"type": "DOMElement",
-						"description": "Wrapper element around the radio buttons"
-					}
-				},
-				{
-					"kind": "function",
-					"name": "fillChecks",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Creates set of checkbox buttons",
-					"params": [
-						{
-							"kind": "param",
-							"name": "insertAfterEl",
-							"type": "DOMElement|String",
-							"isFirstLevel": true,
-							"description": "Element after which the input elements will be created"
-						},
-						{
-							"kind": "param",
-							"name": "name",
-							"type": "String",
-							"isFirstLevel": true,
-							"description": "Name for the form field ([] is added if not present as a suffix)"
-						},
-						{
-							"kind": "param",
-							"name": "data",
-							"type": "Array",
-							"isFirstLevel": true,
-							"description": "Data to populate the component"
-						},
-						{
-							"kind": "param",
-							"name": "skipEmpty",
-							"type": "Boolean",
-							"isOptional": true,
-							"isFirstLevel": true,
-							"description": "Flag to skip creation of empty options"
-						},
-						{
-							"kind": "param",
-							"name": "defaultValue",
-							"type": "String|Number",
-							"isOptional": true,
-							"isFirstLevel": true,
-							"description": "Initial selected value"
-						},
-						{
-							"kind": "param",
-							"name": "splitEl",
-							"type": "String",
-							"isOptional": true,
-							"isFirstLevel": true,
-							"description": "Name of element to add after each input element (example: 'br')"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "DOMElement",
-						"description": "Wrapper element around the checkboxes"
-					}
-				},
-				{
-					"kind": "function",
-					"name": "parentIndexOf",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Gets the index of an element relative to a parent",
-					"params": [
-						{
-							"kind": "param",
-							"name": "parentEl",
-							"type": "DOMElement",
-							"isFirstLevel": true,
-							"description": "Element to parse"
-						},
-						{
-							"kind": "param",
-							"name": "childEl",
-							"type": "DOMElement",
-							"isFirstLevel": true,
-							"description": "Child Element to look for"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "Number",
-						"description": "The index of the childEl inside parentEl. Returns -1 if it's not a direct child"
-					}
-				},
-				{
-					"kind": "function",
-					"name": "nextSiblings",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Gets the next siblings of an element",
-					"params": [
-						{
-							"kind": "param",
-							"name": "elm",
-							"type": "String|DOMElement",
-							"isFirstLevel": true,
-							"description": "Element"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "Array",
-						"description": "Array of next sibling elements"
-					}
-				},
-				{
-					"kind": "function",
-					"name": "previousSiblings",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Gets the previous siblings of an element",
-					"params": [
-						{
-							"kind": "param",
-							"name": "elm",
-							"type": "String|DOMElement",
-							"isFirstLevel": true,
-							"description": "Element"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "Array",
-						"description": "Array of previous sibling elements"
-					}
-				},
-				{
-					"kind": "function",
-					"name": "siblings",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Gets the all siblings of an element",
-					"params": [
-						{
-							"kind": "param",
-							"name": "elm",
-							"type": "String|DOMElement",
-							"isFirstLevel": true,
-							"description": "Element"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "Array",
-						"description": "Array of sibling elements"
-					}
-				},
-				{
-					"kind": "function",
-					"name": "childElementCount",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Counts the number of children of an element",
-					"params": [
-						{
-							"kind": "param",
-							"name": "elm",
-							"type": "String|DOMElement",
-							"isFirstLevel": true,
-							"description": "element"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "Number",
-						"description": "number of child elements"
-					}
-				},
-				{
-					"kind": "function",
-					"name": "_getWrapper",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Gets a wrapper DIV with a certain HTML content to be inserted inside another element.\nThis is necessary for appendHTML,prependHTML functions, because they need a container element to copy the children from.\n\nWorks around IE table quirks",
-					"params": [
-						{
-							"kind": "param",
-							"name": "elm",
-							"isFirstLevel": true
-						},
-						{
-							"kind": "param",
-							"name": "html",
-							"isFirstLevel": true
-						}
-					],
-					"private": true
-				},
-				{
-					"kind": "function",
-					"name": "appendHTML",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Appends HTML to an element.\nThis method parses the html string and doesn't modify its contents",
-					"params": [
-						{
-							"kind": "param",
-							"name": "elm",
-							"type": "String|DOMElement",
-							"isFirstLevel": true,
-							"description": "Element"
-						},
-						{
-							"kind": "param",
-							"name": "html",
-							"type": "String",
-							"isFirstLevel": true,
-							"description": "Markup string"
-						}
-					]
-				},
-				{
-					"kind": "function",
-					"name": "prependHTML",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Prepends HTML to an element.\nThis method parses the html string and doesn't modify its contents",
-					"params": [
-						{
-							"kind": "param",
-							"name": "elm",
-							"type": "String|DOMElement",
-							"isFirstLevel": true,
-							"description": "Element"
-						},
-						{
-							"kind": "param",
-							"name": "html",
-							"type": "String",
-							"isFirstLevel": true,
-							"description": "Markup string"
-						}
-					]
-				},
-				{
-					"kind": "function",
-					"name": "setHTML",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Sets the inner HTML of an element.",
-					"params": [
-						{
-							"kind": "param",
-							"name": "elm",
-							"type": "String|DOMElement",
-							"isFirstLevel": true,
-							"description": "Element"
-						},
-						{
-							"kind": "param",
-							"name": "html",
-							"type": "String",
-							"isFirstLevel": true,
-							"description": "Markup string"
-						}
-					]
-				},
-				{
-					"kind": "function",
-					"name": "wrap",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Wraps an element inside a container.\n\nThe container may or may not be in the document yet.",
-					"params": [
-						{
-							"kind": "param",
-							"name": "target",
-							"type": "String|DOMElement",
-							"isFirstLevel": true,
-							"description": "Element to be wrapped"
-						},
-						{
-							"kind": "param",
-							"name": "container",
-							"type": "String|DOMElement",
-							"isFirstLevel": true,
-							"description": "Element to wrap the target"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"description": "Container element"
-					},
-					"examples": [
-						"\nbefore:\n\n    <div id=\"target\"></div>\n\ncall this function to wrap #target with a wrapper div.\n\n    InkElement.wrap('target', InkElement.create('div', {id: 'container'});\n\nafter: \n\n    <div id=\"container\"><div id=\"target\"></div></div>\n"
-					]
-				},
-				{
-					"kind": "function",
-					"name": "unwrap",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Places an element outside a wrapper.",
-					"params": [
-						{
-							"kind": "param",
-							"name": "elem",
-							"type": "DOMElement",
-							"isFirstLevel": true,
-							"description": "The element you're trying to unwrap. This should be an ancestor of the wrapper."
-						},
-						{
-							"kind": "param",
-							"name": "wrapperSelector",
-							"type": "String",
-							"isOptional": true,
-							"isFirstLevel": true,
-							"description": "CSS Selector for the ancestor. Use this if your wrapper is not the direct parent of elem."
-						}
-					],
-					"examples": [
-						"\n\nWhen you have this:\n\n     <div id=\"wrapper\">\n         <div id=\"unwrapMe\"></div>\n     </div>\n\nIf you do this:\n\n     InkElement.unwrap('unwrapMe');\n\nYou get this:\n\n     <div id=\"unwrapMe\"></div>\n     <div id=\"wrapper\"></div>\n     \n"
-					]
-				},
-				{
-					"kind": "function",
-					"name": "replace",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Replaces an element with another.",
-					"params": [
-						{
-							"kind": "param",
-							"name": "element",
-							"isFirstLevel": true,
-							"description": "The element to be replaced."
-						},
-						{
-							"kind": "param",
-							"name": "replacement",
-							"isFirstLevel": true,
-							"description": "The new element."
-						}
-					],
-					"examples": [
-						"\n      var newelement1 = InkElement.create('div');\n      // ...\n      replace(Ink.i('element1'), newelement1);\n"
-					]
-				},
-				{
-					"kind": "function",
-					"name": "removeTextNodeChildren",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Removes direct text children.\nUseful to remove nasty layout gaps generated by whitespace on the markup.",
-					"params": [
-						{
-							"kind": "param",
-							"name": "el",
-							"type": "DOMElement",
-							"isFirstLevel": true,
-							"description": "Element to remove text from"
-						}
-					]
-				},
-				{
-					"kind": "function",
-					"name": "htmlToFragment",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Creates a documentFragment from an HTML string.",
-					"params": [
-						{
-							"kind": "param",
-							"name": "html",
-							"type": "String",
-							"isFirstLevel": true,
-							"description": "HTML string"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "DocumentFragment",
-						"description": "DocumentFragment containing all of the elements from the html string"
-					}
-				},
-				{
-					"kind": "function",
-					"name": "data",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Gets data attributes from an element",
-					"params": [
-						{
-							"kind": "param",
-							"name": "selector",
-							"type": "String|DOMElement",
-							"isFirstLevel": true,
-							"description": "Element or CSS selector"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "Object",
-						"description": "Object with the data-* properties. If no data-attributes are present, an empty object is returned."
-					}
-				},
-				{
-					"kind": "function",
-					"name": "moveCursorTo",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Move the cursor on an input or textarea element.",
-					"params": [
-						{
-							"kind": "param",
-							"name": "el",
-							"type": "DOMElement",
-							"isFirstLevel": true,
-							"description": "Input or Textarea element"
-						},
-						{
-							"kind": "param",
-							"name": "t",
-							"type": "Number",
-							"isFirstLevel": true,
-							"description": "Index of the character to move the cursor to"
-						}
-					]
-				},
-				{
-					"kind": "function",
-					"name": "pageWidth",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Get the page's width.",
-					"params": [],
-					"return": {
-						"kind": "return",
-						"type": "Number",
-						"description": "Page width in pixels"
-					}
-				},
-				{
-					"kind": "function",
-					"name": "pageHeight",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Get the page's height.",
-					"params": [],
-					"return": {
-						"kind": "return",
-						"type": "Number",
-						"description": "Page height in pixels"
-					}
-				},
-				{
-					"kind": "function",
-					"name": "viewportWidth",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Get the viewport's width.",
-					"params": [],
-					"return": {
-						"kind": "return",
-						"type": "Number",
-						"description": "Viewport width in pixels"
-					}
-				},
-				{
-					"kind": "function",
-					"name": "viewportHeight",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Get the viewport's height.",
-					"params": [],
-					"return": {
-						"kind": "return",
-						"type": "Number",
-						"description": "Viewport height in pixels"
-					}
-				},
-				{
-					"kind": "function",
-					"name": "scrollWidth",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Get the scroll's width.",
-					"params": [],
-					"return": {
-						"kind": "return",
-						"type": "Number",
-						"description": "Scroll width"
-					}
-				},
-				{
-					"kind": "function",
-					"name": "scrollHeight",
-					"file": "src/js/Ink/Dom/Element/1/lib.js",
-					"text": "Get the scroll's height.",
-					"params": [],
-					"return": {
-						"kind": "return",
-						"type": "Number",
-						"description": "Scroll height"
-					}
+					"attributes": [],
+					"isNamespace": true
 				}
 			],
+			"functions": [],
 			"attributes": [],
 			"uses": [
 				"Ink.Dom.Browser",
@@ -2976,714 +3017,724 @@
 			"kind": "module",
 			"name": "Ink.Dom.Event_1",
 			"file": "src/js/Ink/Dom/Event/1/lib.js",
-			"classes": [],
-			"functions": [
+			"classes": [
 				{
-					"kind": "function",
-					"name": "throttle",
+					"kind": "class",
+					"name": "Ink.Dom.Event_1",
 					"file": "src/js/Ink/Dom/Event/1/lib.js",
-					"text": "Creates a debounced version of a function.\nReturns a function which calls `func`, waiting at least `wait` milliseconds between calls. This is useful for events such as `scroll` or `resize`, which can be triggered too many times per second, slowing down the browser with needless function calls.\n\n*note:* This does not delay the first function call to the function.",
-					"params": [
+					"functions": [
 						{
-							"kind": "param",
-							"name": "func",
-							"type": "Function",
-							"isFirstLevel": true,
-							"description": "Function to call. Arguments and context are both passed."
+							"kind": "function",
+							"name": "throttle",
+							"file": "src/js/Ink/Dom/Event/1/lib.js",
+							"text": "Creates a debounced version of a function.\nReturns a function which calls `func`, waiting at least `wait` milliseconds between calls. This is useful for events such as `scroll` or `resize`, which can be triggered too many times per second, slowing down the browser with needless function calls.\n\n*note:* This does not delay the first function call to the function.",
+							"params": [
+								{
+									"kind": "param",
+									"name": "func",
+									"type": "Function",
+									"isFirstLevel": true,
+									"description": "Function to call. Arguments and context are both passed."
+								},
+								{
+									"kind": "param",
+									"name": "wait",
+									"type": "Number",
+									"isOptional": true,
+									"defaultValue": "0",
+									"isFirstLevel": true,
+									"description": "Milliseconds to wait between calls."
+								}
+							],
+							"examples": [
+								"\n \nSuppose you are observing the `scroll` event, but your application is lagging because `scroll` is triggered too many times.\n\n    // BEFORE\n    InkEvent.observe(window, 'scroll', function () {\n        ...\n    }); // When scrolling on mobile devices or on firefox's smooth scroll\n        // this is expensive because onscroll is called many times\n\n    // AFTER\n    InkEvent.observe(window, 'scroll', InkEvent.throttle(function () {\n        ...\n    }, 100)); // The event handler is called only every 100ms. Problem solved.\n\n",
+								"\n    var handler = InkEvent.throttle(function () {\n        ...\n    }, 100);\n\n    InkEvent.observe(window, 'scroll', handler);\n    InkEvent.observe(window, 'resize', handler);\n\n    // on resize, both the \"scroll\" and the \"resize\" events are triggered\n    // a LOT of times. This prevents both of them being called a lot of\n    // times when the window is being resized by a user.\n\n"
+							]
 						},
 						{
-							"kind": "param",
-							"name": "wait",
-							"type": "Number",
-							"isOptional": true,
-							"defaultValue": "0",
-							"isFirstLevel": true,
-							"description": "Milliseconds to wait between calls."
-						}
-					],
-					"examples": [
-						"\n \nSuppose you are observing the `scroll` event, but your application is lagging because `scroll` is triggered too many times.\n\n    // BEFORE\n    InkEvent.observe(window, 'scroll', function () {\n        ...\n    }); // When scrolling on mobile devices or on firefox's smooth scroll\n        // this is expensive because onscroll is called many times\n\n    // AFTER\n    InkEvent.observe(window, 'scroll', InkEvent.throttle(function () {\n        ...\n    }, 100)); // The event handler is called only every 100ms. Problem solved.\n\n",
-						"\n    var handler = InkEvent.throttle(function () {\n        ...\n    }, 100);\n\n    InkEvent.observe(window, 'scroll', handler);\n    InkEvent.observe(window, 'resize', handler);\n\n    // on resize, both the \"scroll\" and the \"resize\" events are triggered\n    // a LOT of times. This prevents both of them being called a lot of\n    // times when the window is being resized by a user.\n\n"
-					]
-				},
-				{
-					"kind": "function",
-					"name": "element",
-					"file": "src/js/Ink/Dom/Event/1/lib.js",
-					"text": "Gets the event's target element.",
-					"params": [
-						{
-							"kind": "param",
-							"name": "ev",
-							"type": "Object",
-							"isFirstLevel": true,
-							"description": "Event object"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "DOMNode",
-						"description": "The target"
-					}
-				},
-				{
-					"kind": "function",
-					"name": "relatedTarget",
-					"file": "src/js/Ink/Dom/Event/1/lib.js",
-					"text": "Gets the event's related target element.",
-					"params": [
-						{
-							"kind": "param",
-							"name": "ev",
-							"type": "Object",
-							"isFirstLevel": true,
-							"description": "event object"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "DOMNode",
-						"description": "The related target"
-					}
-				},
-				{
-					"kind": "function",
-					"name": "findElement",
-					"file": "src/js/Ink/Dom/Event/1/lib.js",
-					"text": "Find closest ancestor element by tag name related to the event target.\nNavigate up the DOM tree, looking for a tag with the name `elmTagName`.\n\nIf such tag is not found, `document` is returned.",
-					"params": [
-						{
-							"kind": "param",
-							"name": "ev",
-							"type": "Object",
-							"isFirstLevel": true,
-							"description": "Event object"
-						},
-						{
-							"kind": "param",
-							"name": "elmTagName",
-							"type": "String",
-							"isFirstLevel": true,
-							"description": "Tag name to find"
-						},
-						{
-							"kind": "param",
-							"name": "force",
-							"type": "Boolean",
-							"isOptional": true,
-							"defaultValue": "false",
-							"isFirstLevel": true,
-							"description": "Flag to skip returning `document` and to return `false` instead."
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "DOMElement",
-						"description": "the first element which matches given tag name or the document element if the wanted tag is not found"
-					}
-				},
-				{
-					"kind": "function",
-					"name": "observe",
-					"file": "src/js/Ink/Dom/Event/1/lib.js",
-					"text": "Attaches an event to element",
-					"params": [
-						{
-							"kind": "param",
+							"kind": "function",
 							"name": "element",
-							"type": "DOMElement|String",
-							"isFirstLevel": true,
-							"description": "Element id or element"
+							"file": "src/js/Ink/Dom/Event/1/lib.js",
+							"text": "Gets the event's target element.",
+							"params": [
+								{
+									"kind": "param",
+									"name": "ev",
+									"type": "Object",
+									"isFirstLevel": true,
+									"description": "Event object"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "DOMNode",
+								"description": "The target"
+							}
 						},
 						{
-							"kind": "param",
-							"name": "eventName",
-							"type": "String",
-							"isFirstLevel": true,
-							"description": "Event name"
+							"kind": "function",
+							"name": "relatedTarget",
+							"file": "src/js/Ink/Dom/Event/1/lib.js",
+							"text": "Gets the event's related target element.",
+							"params": [
+								{
+									"kind": "param",
+									"name": "ev",
+									"type": "Object",
+									"isFirstLevel": true,
+									"description": "event object"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "DOMNode",
+								"description": "The related target"
+							}
 						},
 						{
-							"kind": "param",
-							"name": "callBack",
-							"type": "Function",
-							"isFirstLevel": true,
-							"description": "Receives the event object as a parameter. If you're manually firing custom events, check it's eventName property to make sure you're handling the right event."
+							"kind": "function",
+							"name": "findElement",
+							"file": "src/js/Ink/Dom/Event/1/lib.js",
+							"text": "Find closest ancestor element by tag name related to the event target.\nNavigate up the DOM tree, looking for a tag with the name `elmTagName`.\n\nIf such tag is not found, `document` is returned.",
+							"params": [
+								{
+									"kind": "param",
+									"name": "ev",
+									"type": "Object",
+									"isFirstLevel": true,
+									"description": "Event object"
+								},
+								{
+									"kind": "param",
+									"name": "elmTagName",
+									"type": "String",
+									"isFirstLevel": true,
+									"description": "Tag name to find"
+								},
+								{
+									"kind": "param",
+									"name": "force",
+									"type": "Boolean",
+									"isOptional": true,
+									"defaultValue": "false",
+									"isFirstLevel": true,
+									"description": "Flag to skip returning `document` and to return `false` instead."
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "DOMElement",
+								"description": "the first element which matches given tag name or the document element if the wanted tag is not found"
+							}
 						},
 						{
-							"kind": "param",
-							"name": "useCapture",
-							"type": "Boolean",
-							"isOptional": true,
-							"isFirstLevel": true,
-							"description": "Flag to change event listening from bubbling to capture."
+							"kind": "function",
+							"name": "observe",
+							"file": "src/js/Ink/Dom/Event/1/lib.js",
+							"text": "Attaches an event to element",
+							"params": [
+								{
+									"kind": "param",
+									"name": "element",
+									"type": "DOMElement|String",
+									"isFirstLevel": true,
+									"description": "Element id or element"
+								},
+								{
+									"kind": "param",
+									"name": "eventName",
+									"type": "String",
+									"isFirstLevel": true,
+									"description": "Event name"
+								},
+								{
+									"kind": "param",
+									"name": "callBack",
+									"type": "Function",
+									"isFirstLevel": true,
+									"description": "Receives the event object as a parameter. If you're manually firing custom events, check it's eventName property to make sure you're handling the right event."
+								},
+								{
+									"kind": "param",
+									"name": "useCapture",
+									"type": "Boolean",
+									"isOptional": true,
+									"isFirstLevel": true,
+									"description": "Flag to change event listening from bubbling to capture."
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "Function",
+								"description": "The event handler used. Hang on to this if you want to `stopObserving` later."
+							}
+						},
+						{
+							"kind": "function",
+							"name": "observeOnce",
+							"file": "src/js/Ink/Dom/Event/1/lib.js",
+							"text": "Like observe, but listen to the event only once.",
+							"params": [
+								{
+									"kind": "param",
+									"name": "element",
+									"type": "DOMElement|String",
+									"isFirstLevel": true,
+									"description": "Element id or element"
+								},
+								{
+									"kind": "param",
+									"name": "eventName",
+									"type": "String",
+									"isFirstLevel": true,
+									"description": "Event name"
+								},
+								{
+									"kind": "param",
+									"name": "callBack",
+									"type": "Function",
+									"isFirstLevel": true,
+									"description": "Receives the event object as a parameter. If you're manually firing custom events, check it's eventName property to make sure you're handling the right event."
+								},
+								{
+									"kind": "param",
+									"name": "useCapture",
+									"type": "Boolean",
+									"isOptional": true,
+									"isFirstLevel": true,
+									"description": "Flag to change event listening from bubbling to capture."
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "Function",
+								"description": "The event handler used. Hang on to this if you want to `stopObserving` later."
+							}
+						},
+						{
+							"kind": "function",
+							"name": "observeMulti",
+							"file": "src/js/Ink/Dom/Event/1/lib.js",
+							"text": "Attaches an event to a selector or array of elements.",
+							"params": [
+								{
+									"kind": "param",
+									"name": "elements",
+									"type": "Array|String",
+									"isFirstLevel": true
+								},
+								{
+									"kind": "param",
+									"name": "eventName",
+									"type": "String",
+									"isFirstLevel": true,
+									"description": "Event name"
+								},
+								{
+									"kind": "param",
+									"name": "callBack",
+									"type": "Function",
+									"isFirstLevel": true,
+									"description": "Receives the event object as a parameter. If you're manually firing custom events, check it's eventName property to make sure you're handling the right event."
+								},
+								{
+									"kind": "param",
+									"name": "useCapture",
+									"type": "Boolean",
+									"isOptional": true,
+									"isFirstLevel": true,
+									"description": "Flag change event listening from bubbling to capture."
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "Function",
+								"description": "The used callback."
+							}
+						},
+						{
+							"kind": "function",
+							"name": "observeDelegated",
+							"file": "src/js/Ink/Dom/Event/1/lib.js",
+							"text": "Observes an event on an element and its descendants matching the selector.\n\nRequires Ink.Dom.Selector if you need to use a selector.",
+							"params": [
+								{
+									"kind": "param",
+									"name": "element",
+									"type": "DOMElement|String",
+									"isFirstLevel": true,
+									"description": "Element to observe."
+								},
+								{
+									"kind": "param",
+									"name": "eventName",
+									"type": "String",
+									"isFirstLevel": true,
+									"description": "Event name to observe."
+								},
+								{
+									"kind": "param",
+									"name": "selector",
+									"type": "String",
+									"isFirstLevel": true,
+									"description": "Child element selector. When null, finds any element."
+								},
+								{
+									"kind": "param",
+									"name": "callback",
+									"type": "Function",
+									"isFirstLevel": true,
+									"description": "Callback to be called when the event is fired"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "Function",
+								"description": "The used callback, for ceasing to listen to the event later."
+							}
+						},
+						{
+							"kind": "function",
+							"name": "stopObserving",
+							"file": "src/js/Ink/Dom/Event/1/lib.js",
+							"text": "Removes an event attached to an element.",
+							"params": [
+								{
+									"kind": "param",
+									"name": "element",
+									"type": "DOMElement|String",
+									"isFirstLevel": true,
+									"description": "Element id or element"
+								},
+								{
+									"kind": "param",
+									"name": "eventName",
+									"type": "String",
+									"isFirstLevel": true,
+									"description": "Event name"
+								},
+								{
+									"kind": "param",
+									"name": "callBack",
+									"type": "Function",
+									"isFirstLevel": true,
+									"description": "Callback function"
+								},
+								{
+									"kind": "param",
+									"name": "useCapture",
+									"type": "Boolean",
+									"isOptional": true,
+									"isFirstLevel": true,
+									"description": "Set to true if the event was being observed with useCapture set to true as well."
+								}
+							]
+						},
+						{
+							"kind": "function",
+							"name": "stop",
+							"file": "src/js/Ink/Dom/Event/1/lib.js",
+							"text": "Stops event propagation and bubbling.",
+							"params": [
+								{
+									"kind": "param",
+									"name": "event",
+									"type": "Object",
+									"isFirstLevel": true,
+									"description": "Event handle"
+								}
+							]
+						},
+						{
+							"kind": "function",
+							"name": "stopPropagation",
+							"file": "src/js/Ink/Dom/Event/1/lib.js",
+							"text": "Stops event propagation.",
+							"params": [
+								{
+									"kind": "param",
+									"name": "event",
+									"type": "Object",
+									"isFirstLevel": true,
+									"description": "Event handle"
+								}
+							]
+						},
+						{
+							"kind": "function",
+							"name": "stopDefault",
+							"file": "src/js/Ink/Dom/Event/1/lib.js",
+							"text": "Stops event default behaviour.",
+							"params": [
+								{
+									"kind": "param",
+									"name": "event",
+									"type": "Object",
+									"isFirstLevel": true,
+									"description": "Event handle"
+								}
+							]
+						},
+						{
+							"kind": "function",
+							"name": "pointer",
+							"file": "src/js/Ink/Dom/Event/1/lib.js",
+							"text": "Gets the pointer's coordinates from the event object.",
+							"params": [
+								{
+									"kind": "param",
+									"name": "ev",
+									"type": "Object",
+									"isFirstLevel": true,
+									"description": "Event object"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "Object",
+								"description": "An object with the mouse X and Y position"
+							}
+						},
+						{
+							"kind": "function",
+							"name": "pointerX",
+							"file": "src/js/Ink/Dom/Event/1/lib.js",
+							"text": "Gets the pointer's X coordinate.",
+							"params": [
+								{
+									"kind": "param",
+									"name": "ev",
+									"type": "Object",
+									"isFirstLevel": true,
+									"description": "Event object"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "Number",
+								"description": "Mouse X position"
+							}
+						},
+						{
+							"kind": "function",
+							"name": "pointerY",
+							"file": "src/js/Ink/Dom/Event/1/lib.js",
+							"text": "Gets the pointer's Y coordinate.",
+							"params": [
+								{
+									"kind": "param",
+									"name": "ev",
+									"type": "Object",
+									"isFirstLevel": true,
+									"description": "Event object"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "Number",
+								"description": "Mouse Y position"
+							}
+						},
+						{
+							"kind": "function",
+							"name": "isLeftClick",
+							"file": "src/js/Ink/Dom/Event/1/lib.js",
+							"text": "Checks if an event is a left click.",
+							"params": [
+								{
+									"kind": "param",
+									"name": "ev",
+									"type": "Object",
+									"isFirstLevel": true,
+									"description": "Event object"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "Boolean",
+								"description": "True if the event is a left click"
+							}
+						},
+						{
+							"kind": "function",
+							"name": "isRightClick",
+							"file": "src/js/Ink/Dom/Event/1/lib.js",
+							"text": "Checks if an event is a right click.",
+							"params": [
+								{
+									"kind": "param",
+									"name": "ev",
+									"type": "Object",
+									"isFirstLevel": true,
+									"description": "Event object"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "Boolean",
+								"description": "True if the event is a right click"
+							}
+						},
+						{
+							"kind": "function",
+							"name": "isMiddleClick",
+							"file": "src/js/Ink/Dom/Event/1/lib.js",
+							"text": "Checks if an event is a middle click.",
+							"params": [
+								{
+									"kind": "param",
+									"name": "ev",
+									"type": "Object",
+									"isFirstLevel": true,
+									"description": "Event object"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "Boolean",
+								"description": "True if the event is a middle click"
+							}
+						},
+						{
+							"kind": "function",
+							"name": "getCharFromKeyboardEvent",
+							"file": "src/js/Ink/Dom/Event/1/lib.js",
+							"text": "Gets character from an event.\nUsed in SAPO.Component.MaskedInput",
+							"params": [
+								{
+									"kind": "param",
+									"name": "event",
+									"type": "Object",
+									"isFirstLevel": true,
+									"description": "Keyboard event"
+								},
+								{
+									"kind": "param",
+									"name": "changeCasing",
+									"type": "Boolean",
+									"isOptional": true,
+									"isFirstLevel": true,
+									"description": "If true uppercases, if false lowercases, otherwise keeps casing"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "String",
+								"description": "Character representation of pressed key combination"
+							}
+						},
+						{
+							"kind": "function",
+							"name": "on",
+							"file": "src/js/Ink/Dom/Event/1/lib.js",
+							"text": "Lets you attach event listeners to both elements and objects.\nhttp://github.com/fat/bean#on",
+							"params": [
+								{
+									"kind": "param",
+									"name": "element",
+									"type": "DOMElement|Object",
+									"isFirstLevel": true,
+									"description": "An HTML DOM element or any JavaScript Object"
+								},
+								{
+									"kind": "param",
+									"name": "eventType",
+									"type": "String",
+									"isFirstLevel": true,
+									"description": "An Event (or multiple events, space separated) to listen to"
+								},
+								{
+									"kind": "param",
+									"name": "selector",
+									"type": "String",
+									"isOptional": true,
+									"isFirstLevel": true,
+									"description": "A CSS DOM Element selector string to bind the listener to child elements matching the selector"
+								},
+								{
+									"kind": "param",
+									"name": "handler",
+									"type": "Function",
+									"isOptional": true,
+									"isFirstLevel": true,
+									"description": "The callback function"
+								},
+								{
+									"kind": "param",
+									"name": "args...",
+									"type": "Object",
+									"isOptional": true,
+									"isFirstLevel": false,
+									"description": "Additional arguments to pass to the callback function when triggered"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "DOMElement|Object",
+								"description": "Returns the original DOM Element or Javascript Object"
+							}
+						},
+						{
+							"kind": "function",
+							"name": "one",
+							"file": "src/js/Ink/Dom/Event/1/lib.js",
+							"text": "Alias for `on` but will only be executed once.\nbean.one() is an alias for bean.on() except that the handler will only be executed once and then removed for the event type(s).\nhttp://github.com/fat/bean#one",
+							"params": [
+								{
+									"kind": "param",
+									"name": "element",
+									"type": "DOMElement|Object",
+									"isFirstLevel": true,
+									"description": "An HTML DOM element or any JavaScript Object"
+								},
+								{
+									"kind": "param",
+									"name": "eventType",
+									"type": "String",
+									"isFirstLevel": true,
+									"description": "An Event (or multiple events, space separated) to listen to"
+								},
+								{
+									"kind": "param",
+									"name": "selector",
+									"type": "String",
+									"isOptional": true,
+									"isFirstLevel": true,
+									"description": "A CSS DOM Element selector string to bind the listener to child elements matching the selector"
+								},
+								{
+									"kind": "param",
+									"name": "handler",
+									"type": "Function",
+									"isOptional": true,
+									"isFirstLevel": true,
+									"description": "The callback function"
+								},
+								{
+									"kind": "param",
+									"name": "args...",
+									"isOptional": true,
+									"isFirstLevel": false,
+									"description": "Additional arguments to pass to the callback function when triggered"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "DOMElement|Object",
+								"description": "Returns the original DOM Element or Javascript Object"
+							}
+						},
+						{
+							"kind": "function",
+							"name": "off",
+							"file": "src/js/Ink/Dom/Event/1/lib.js",
+							"text": "Removes event handlers.\nbean.off() is how you get rid of handlers once you no longer want them active. It's also a good idea to call off on elements before you remove them from your DOM; this gives Bean a chance to clean up some things and prevents memory leaks.\nhttp://github.com/fat/bean#off",
+							"params": [
+								{
+									"kind": "param",
+									"name": "element",
+									"type": "DOMElement|Object",
+									"isFirstLevel": true,
+									"description": "An HTML DOM element or any JavaScript Object"
+								},
+								{
+									"kind": "param",
+									"name": "eventType",
+									"type": "String",
+									"isFirstLevel": true,
+									"description": "An Event (or multiple events, space separated) to remove"
+								},
+								{
+									"kind": "param",
+									"name": "handler",
+									"type": "Function",
+									"isOptional": true,
+									"isFirstLevel": true,
+									"description": "The specific callback function to remove"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "DOMElement|Object",
+								"description": "Returns the original DOM Element or Javascript Object"
+							}
+						},
+						{
+							"kind": "function",
+							"name": "clone",
+							"file": "src/js/Ink/Dom/Event/1/lib.js",
+							"text": "Clones events from one object to another\nbean.clone() is a method for cloning events from one DOM element or object to another.\nhttp://github.com/fat/bean#clone",
+							"params": [
+								{
+									"kind": "param",
+									"name": "destElement",
+									"type": "DOMElement|Object",
+									"isFirstLevel": true,
+									"description": "An HTML DOM element or any JavaScript Object to copy events to"
+								},
+								{
+									"kind": "param",
+									"name": "srcElement",
+									"type": "String",
+									"isFirstLevel": true,
+									"description": "An HTML DOM element or any JavaScript Object to copy events from"
+								},
+								{
+									"kind": "param",
+									"name": "eventType",
+									"type": "String",
+									"isOptional": true,
+									"isFirstLevel": true,
+									"description": "An Event (or multiple events, space separated) to clone"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "DOMElement|Object",
+								"description": "Returns the original DOM Element or Javascript Object"
+							}
+						},
+						{
+							"kind": "function",
+							"name": "fire",
+							"file": "src/js/Ink/Dom/Event/1/lib.js",
+							"text": "Triggers events.\nhttp://github.com/fat/bean#fire",
+							"params": [
+								{
+									"kind": "param",
+									"name": "destElement",
+									"type": "DOMElement|Object",
+									"isFirstLevel": true,
+									"description": "An HTML DOM element or any JavaScript Object fire the event on"
+								},
+								{
+									"kind": "param",
+									"name": "eventType",
+									"type": "String",
+									"isFirstLevel": true,
+									"description": "An Event (or multiple events, space separated) to fire"
+								},
+								{
+									"kind": "param",
+									"name": "args...",
+									"isOptional": true,
+									"isFirstLevel": false,
+									"description": "Additional arguments to pass to the callback function when triggered"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "DOMElement|Object",
+								"description": "Returns the original DOM Element or Javascript Object"
+							}
 						}
 					],
-					"return": {
-						"kind": "return",
-						"type": "Function",
-						"description": "The event handler used. Hang on to this if you want to `stopObserving` later."
-					}
-				},
-				{
-					"kind": "function",
-					"name": "observeOnce",
-					"file": "src/js/Ink/Dom/Event/1/lib.js",
-					"text": "Like observe, but listen to the event only once.",
-					"params": [
-						{
-							"kind": "param",
-							"name": "element",
-							"type": "DOMElement|String",
-							"isFirstLevel": true,
-							"description": "Element id or element"
-						},
-						{
-							"kind": "param",
-							"name": "eventName",
-							"type": "String",
-							"isFirstLevel": true,
-							"description": "Event name"
-						},
-						{
-							"kind": "param",
-							"name": "callBack",
-							"type": "Function",
-							"isFirstLevel": true,
-							"description": "Receives the event object as a parameter. If you're manually firing custom events, check it's eventName property to make sure you're handling the right event."
-						},
-						{
-							"kind": "param",
-							"name": "useCapture",
-							"type": "Boolean",
-							"isOptional": true,
-							"isFirstLevel": true,
-							"description": "Flag to change event listening from bubbling to capture."
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "Function",
-						"description": "The event handler used. Hang on to this if you want to `stopObserving` later."
-					}
-				},
-				{
-					"kind": "function",
-					"name": "observeMulti",
-					"file": "src/js/Ink/Dom/Event/1/lib.js",
-					"text": "Attaches an event to a selector or array of elements.",
-					"params": [
-						{
-							"kind": "param",
-							"name": "elements",
-							"type": "Array|String",
-							"isFirstLevel": true
-						},
-						{
-							"kind": "param",
-							"name": "eventName",
-							"type": "String",
-							"isFirstLevel": true,
-							"description": "Event name"
-						},
-						{
-							"kind": "param",
-							"name": "callBack",
-							"type": "Function",
-							"isFirstLevel": true,
-							"description": "Receives the event object as a parameter. If you're manually firing custom events, check it's eventName property to make sure you're handling the right event."
-						},
-						{
-							"kind": "param",
-							"name": "useCapture",
-							"type": "Boolean",
-							"isOptional": true,
-							"isFirstLevel": true,
-							"description": "Flag change event listening from bubbling to capture."
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "Function",
-						"description": "The used callback."
-					}
-				},
-				{
-					"kind": "function",
-					"name": "observeDelegated",
-					"file": "src/js/Ink/Dom/Event/1/lib.js",
-					"text": "Observes an event on an element and its descendants matching the selector.\n\nRequires Ink.Dom.Selector if you need to use a selector.",
-					"params": [
-						{
-							"kind": "param",
-							"name": "element",
-							"type": "DOMElement|String",
-							"isFirstLevel": true,
-							"description": "Element to observe."
-						},
-						{
-							"kind": "param",
-							"name": "eventName",
-							"type": "String",
-							"isFirstLevel": true,
-							"description": "Event name to observe."
-						},
-						{
-							"kind": "param",
-							"name": "selector",
-							"type": "String",
-							"isFirstLevel": true,
-							"description": "Child element selector. When null, finds any element."
-						},
-						{
-							"kind": "param",
-							"name": "callback",
-							"type": "Function",
-							"isFirstLevel": true,
-							"description": "Callback to be called when the event is fired"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "Function",
-						"description": "The used callback, for ceasing to listen to the event later."
-					}
-				},
-				{
-					"kind": "function",
-					"name": "stopObserving",
-					"file": "src/js/Ink/Dom/Event/1/lib.js",
-					"text": "Removes an event attached to an element.",
-					"params": [
-						{
-							"kind": "param",
-							"name": "element",
-							"type": "DOMElement|String",
-							"isFirstLevel": true,
-							"description": "Element id or element"
-						},
-						{
-							"kind": "param",
-							"name": "eventName",
-							"type": "String",
-							"isFirstLevel": true,
-							"description": "Event name"
-						},
-						{
-							"kind": "param",
-							"name": "callBack",
-							"type": "Function",
-							"isFirstLevel": true,
-							"description": "Callback function"
-						},
-						{
-							"kind": "param",
-							"name": "useCapture",
-							"type": "Boolean",
-							"isOptional": true,
-							"isFirstLevel": true,
-							"description": "Set to true if the event was being observed with useCapture set to true as well."
-						}
-					]
-				},
-				{
-					"kind": "function",
-					"name": "stop",
-					"file": "src/js/Ink/Dom/Event/1/lib.js",
-					"text": "Stops event propagation and bubbling.",
-					"params": [
-						{
-							"kind": "param",
-							"name": "event",
-							"type": "Object",
-							"isFirstLevel": true,
-							"description": "Event handle"
-						}
-					]
-				},
-				{
-					"kind": "function",
-					"name": "stopPropagation",
-					"file": "src/js/Ink/Dom/Event/1/lib.js",
-					"text": "Stops event propagation.",
-					"params": [
-						{
-							"kind": "param",
-							"name": "event",
-							"type": "Object",
-							"isFirstLevel": true,
-							"description": "Event handle"
-						}
-					]
-				},
-				{
-					"kind": "function",
-					"name": "stopDefault",
-					"file": "src/js/Ink/Dom/Event/1/lib.js",
-					"text": "Stops event default behaviour.",
-					"params": [
-						{
-							"kind": "param",
-							"name": "event",
-							"type": "Object",
-							"isFirstLevel": true,
-							"description": "Event handle"
-						}
-					]
-				},
-				{
-					"kind": "function",
-					"name": "pointer",
-					"file": "src/js/Ink/Dom/Event/1/lib.js",
-					"text": "Gets the pointer's coordinates from the event object.",
-					"params": [
-						{
-							"kind": "param",
-							"name": "ev",
-							"type": "Object",
-							"isFirstLevel": true,
-							"description": "Event object"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "Object",
-						"description": "An object with the mouse X and Y position"
-					}
-				},
-				{
-					"kind": "function",
-					"name": "pointerX",
-					"file": "src/js/Ink/Dom/Event/1/lib.js",
-					"text": "Gets the pointer's X coordinate.",
-					"params": [
-						{
-							"kind": "param",
-							"name": "ev",
-							"type": "Object",
-							"isFirstLevel": true,
-							"description": "Event object"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "Number",
-						"description": "Mouse X position"
-					}
-				},
-				{
-					"kind": "function",
-					"name": "pointerY",
-					"file": "src/js/Ink/Dom/Event/1/lib.js",
-					"text": "Gets the pointer's Y coordinate.",
-					"params": [
-						{
-							"kind": "param",
-							"name": "ev",
-							"type": "Object",
-							"isFirstLevel": true,
-							"description": "Event object"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "Number",
-						"description": "Mouse Y position"
-					}
-				},
-				{
-					"kind": "function",
-					"name": "isLeftClick",
-					"file": "src/js/Ink/Dom/Event/1/lib.js",
-					"text": "Checks if an event is a left click.",
-					"params": [
-						{
-							"kind": "param",
-							"name": "ev",
-							"type": "Object",
-							"isFirstLevel": true,
-							"description": "Event object"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "Boolean",
-						"description": "True if the event is a left click"
-					}
-				},
-				{
-					"kind": "function",
-					"name": "isRightClick",
-					"file": "src/js/Ink/Dom/Event/1/lib.js",
-					"text": "Checks if an event is a right click.",
-					"params": [
-						{
-							"kind": "param",
-							"name": "ev",
-							"type": "Object",
-							"isFirstLevel": true,
-							"description": "Event object"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "Boolean",
-						"description": "True if the event is a right click"
-					}
-				},
-				{
-					"kind": "function",
-					"name": "isMiddleClick",
-					"file": "src/js/Ink/Dom/Event/1/lib.js",
-					"text": "Checks if an event is a middle click.",
-					"params": [
-						{
-							"kind": "param",
-							"name": "ev",
-							"type": "Object",
-							"isFirstLevel": true,
-							"description": "Event object"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "Boolean",
-						"description": "True if the event is a middle click"
-					}
-				},
-				{
-					"kind": "function",
-					"name": "getCharFromKeyboardEvent",
-					"file": "src/js/Ink/Dom/Event/1/lib.js",
-					"text": "Gets character from an event.\nUsed in SAPO.Component.MaskedInput",
-					"params": [
-						{
-							"kind": "param",
-							"name": "event",
-							"type": "Object",
-							"isFirstLevel": true,
-							"description": "Keyboard event"
-						},
-						{
-							"kind": "param",
-							"name": "changeCasing",
-							"type": "Boolean",
-							"isOptional": true,
-							"isFirstLevel": true,
-							"description": "If true uppercases, if false lowercases, otherwise keeps casing"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "String",
-						"description": "Character representation of pressed key combination"
-					}
-				},
-				{
-					"kind": "function",
-					"name": "on",
-					"file": "src/js/Ink/Dom/Event/1/lib.js",
-					"text": "Lets you attach event listeners to both elements and objects.\nhttp://github.com/fat/bean#on",
-					"params": [
-						{
-							"kind": "param",
-							"name": "element",
-							"type": "DOMElement|Object",
-							"isFirstLevel": true,
-							"description": "An HTML DOM element or any JavaScript Object"
-						},
-						{
-							"kind": "param",
-							"name": "eventType",
-							"type": "String",
-							"isFirstLevel": true,
-							"description": "An Event (or multiple events, space separated) to listen to"
-						},
-						{
-							"kind": "param",
-							"name": "selector",
-							"type": "String",
-							"isOptional": true,
-							"isFirstLevel": true,
-							"description": "A CSS DOM Element selector string to bind the listener to child elements matching the selector"
-						},
-						{
-							"kind": "param",
-							"name": "handler",
-							"type": "Function",
-							"isOptional": true,
-							"isFirstLevel": true,
-							"description": "The callback function"
-						},
-						{
-							"kind": "param",
-							"name": "args...",
-							"type": "Object",
-							"isOptional": true,
-							"isFirstLevel": false,
-							"description": "Additional arguments to pass to the callback function when triggered"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "DOMElement|Object",
-						"description": "Returns the original DOM Element or Javascript Object"
-					}
-				},
-				{
-					"kind": "function",
-					"name": "one",
-					"file": "src/js/Ink/Dom/Event/1/lib.js",
-					"text": "Alias for `on` but will only be executed once.\nbean.one() is an alias for bean.on() except that the handler will only be executed once and then removed for the event type(s).\nhttp://github.com/fat/bean#one",
-					"params": [
-						{
-							"kind": "param",
-							"name": "element",
-							"type": "DOMElement|Object",
-							"isFirstLevel": true,
-							"description": "An HTML DOM element or any JavaScript Object"
-						},
-						{
-							"kind": "param",
-							"name": "eventType",
-							"type": "String",
-							"isFirstLevel": true,
-							"description": "An Event (or multiple events, space separated) to listen to"
-						},
-						{
-							"kind": "param",
-							"name": "selector",
-							"type": "String",
-							"isOptional": true,
-							"isFirstLevel": true,
-							"description": "A CSS DOM Element selector string to bind the listener to child elements matching the selector"
-						},
-						{
-							"kind": "param",
-							"name": "handler",
-							"type": "Function",
-							"isOptional": true,
-							"isFirstLevel": true,
-							"description": "The callback function"
-						},
-						{
-							"kind": "param",
-							"name": "args...",
-							"isOptional": true,
-							"isFirstLevel": false,
-							"description": "Additional arguments to pass to the callback function when triggered"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "DOMElement|Object",
-						"description": "Returns the original DOM Element or Javascript Object"
-					}
-				},
-				{
-					"kind": "function",
-					"name": "off",
-					"file": "src/js/Ink/Dom/Event/1/lib.js",
-					"text": "Removes event handlers.\nbean.off() is how you get rid of handlers once you no longer want them active. It's also a good idea to call off on elements before you remove them from your DOM; this gives Bean a chance to clean up some things and prevents memory leaks.\nhttp://github.com/fat/bean#off",
-					"params": [
-						{
-							"kind": "param",
-							"name": "element",
-							"type": "DOMElement|Object",
-							"isFirstLevel": true,
-							"description": "An HTML DOM element or any JavaScript Object"
-						},
-						{
-							"kind": "param",
-							"name": "eventType",
-							"type": "String",
-							"isFirstLevel": true,
-							"description": "An Event (or multiple events, space separated) to remove"
-						},
-						{
-							"kind": "param",
-							"name": "handler",
-							"type": "Function",
-							"isOptional": true,
-							"isFirstLevel": true,
-							"description": "The specific callback function to remove"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "DOMElement|Object",
-						"description": "Returns the original DOM Element or Javascript Object"
-					}
-				},
-				{
-					"kind": "function",
-					"name": "clone",
-					"file": "src/js/Ink/Dom/Event/1/lib.js",
-					"text": "Clones events from one object to another\nbean.clone() is a method for cloning events from one DOM element or object to another.\nhttp://github.com/fat/bean#clone",
-					"params": [
-						{
-							"kind": "param",
-							"name": "destElement",
-							"type": "DOMElement|Object",
-							"isFirstLevel": true,
-							"description": "An HTML DOM element or any JavaScript Object to copy events to"
-						},
-						{
-							"kind": "param",
-							"name": "srcElement",
-							"type": "String",
-							"isFirstLevel": true,
-							"description": "An HTML DOM element or any JavaScript Object to copy events from"
-						},
-						{
-							"kind": "param",
-							"name": "eventType",
-							"type": "String",
-							"isOptional": true,
-							"isFirstLevel": true,
-							"description": "An Event (or multiple events, space separated) to clone"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "DOMElement|Object",
-						"description": "Returns the original DOM Element or Javascript Object"
-					}
-				},
-				{
-					"kind": "function",
-					"name": "fire",
-					"file": "src/js/Ink/Dom/Event/1/lib.js",
-					"text": "Triggers events.\nhttp://github.com/fat/bean#fire",
-					"params": [
-						{
-							"kind": "param",
-							"name": "destElement",
-							"type": "DOMElement|Object",
-							"isFirstLevel": true,
-							"description": "An HTML DOM element or any JavaScript Object fire the event on"
-						},
-						{
-							"kind": "param",
-							"name": "eventType",
-							"type": "String",
-							"isFirstLevel": true,
-							"description": "An Event (or multiple events, space separated) to fire"
-						},
-						{
-							"kind": "param",
-							"name": "args...",
-							"isOptional": true,
-							"isFirstLevel": false,
-							"description": "Additional arguments to pass to the callback function when triggered"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "DOMElement|Object",
-						"description": "Returns the original DOM Element or Javascript Object"
-					}
+					"attributes": [],
+					"isNamespace": true,
+					"static": true
 				}
 			],
+			"functions": [],
 			"attributes": [],
 			"uses": [],
 			"version": "1\nEvent management"
@@ -3692,57 +3743,68 @@
 			"kind": "module",
 			"name": "Ink.Dom.FormSerialize",
 			"file": "src/js/Ink/Dom/FormSerialize/1/lib.js",
-			"classes": [],
-			"functions": [
+			"classes": [
 				{
-					"kind": "function",
-					"name": "serialize",
+					"kind": "class",
+					"name": "Ink.Dom.FormSerialize",
+					"text": "Two way serialization of form data and javascript objects.\nValid applications are ad hoc AJAX/syndicated submission of forms, restoring form values from server side state, etc.",
 					"file": "src/js/Ink/Dom/FormSerialize/1/lib.js",
-					"text": "Serializes a form element into a JS object\nIt turns field names into keys and field values into values.\n\nnote: Multi-select and checkboxes with multiple values will result in arrays",
-					"params": [
+					"functions": [
 						{
-							"kind": "param",
-							"name": "form",
-							"type": "DOMElement|String",
-							"isFirstLevel": true,
-							"description": "Form element to extract data"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "Object",
-						"description": "Map of fieldName -> String|String[]|Boolean"
-					},
-					"examples": [
-						"\n    <form id=\"frm\">\n        <input type=\"text\" name=\"field1\">\n        <button type=\"submit\">Submit</button>\n    </form>\n    <script type=\"text/javascript\">\n        Ink.requireModules(['Ink.Dom.FormSerialize_1', 'Ink.Dom.Event_1'], function (FormSerialize, InkEvent) {\n            InkEvent.observe('frm', 'submit', function (event) {\n                var formData = FormSerialize.serialize('frm'); // -> {field1:\"123\"}\n                InkEvent.stop(event);\n            });\n        });\n    </script>\n"
-					]
-				},
-				{
-					"kind": "function",
-					"name": "fillIn",
-					"file": "src/js/Ink/Dom/FormSerialize/1/lib.js",
-					"text": "Sets form elements' values with values from an object\n\nNote: You can't set the values of an input with `type=\"file\"` (browser prohibits it)",
-					"params": [
-						{
-							"kind": "param",
-							"name": "form",
-							"type": "DOMElement|String",
-							"isFirstLevel": true,
-							"description": "Form element to be populated"
+							"kind": "function",
+							"name": "serialize",
+							"file": "src/js/Ink/Dom/FormSerialize/1/lib.js",
+							"text": "Serializes a form element into a JS object\nIt turns field names into keys and field values into values.\n\nnote: Multi-select and checkboxes with multiple values will result in arrays",
+							"params": [
+								{
+									"kind": "param",
+									"name": "form",
+									"type": "DOMElement|String",
+									"isFirstLevel": true,
+									"description": "Form element to extract data"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "Object",
+								"description": "Map of fieldName -> String|String[]|Boolean"
+							},
+							"examples": [
+								"\n    <form id=\"frm\">\n        <input type=\"text\" name=\"field1\">\n        <button type=\"submit\">Submit</button>\n    </form>\n    <script type=\"text/javascript\">\n        Ink.requireModules(['Ink.Dom.FormSerialize_1', 'Ink.Dom.Event_1'], function (FormSerialize, InkEvent) {\n            InkEvent.observe('frm', 'submit', function (event) {\n                var formData = FormSerialize.serialize('frm'); // -> {field1:\"123\"}\n                InkEvent.stop(event);\n            });\n        });\n    </script>\n"
+							]
 						},
 						{
-							"kind": "param",
-							"name": "map2",
-							"type": "Object",
-							"isFirstLevel": true,
-							"description": "Map of fieldName -> String|String[]|Boolean"
+							"kind": "function",
+							"name": "fillIn",
+							"file": "src/js/Ink/Dom/FormSerialize/1/lib.js",
+							"text": "Sets form elements' values with values from an object\n\nNote: You can't set the values of an input with `type=\"file\"` (browser prohibits it)",
+							"params": [
+								{
+									"kind": "param",
+									"name": "form",
+									"type": "DOMElement|String",
+									"isFirstLevel": true,
+									"description": "Form element to be populated"
+								},
+								{
+									"kind": "param",
+									"name": "map2",
+									"type": "Object",
+									"isFirstLevel": true,
+									"description": "Map of fieldName -> String|String[]|Boolean"
+								}
+							],
+							"examples": [
+								"\n    <form id=\"frm\">\n        <input type=\"text\" name=\"field1\">\n        <button type=\"submit\">Submit</button>\n    </form>\n    <script type=\"text/javascript\">\n        Ink.requireModules(['Ink.Dom.FormSerialize_1'], function (FormSerialize) {\n            var values = {field1: 'CTHULHU'};\n            FormSerialize.fillIn('frm', values);\n            // At this point the form is pre-filled with the values above.\n        });\n    </script>\n"
+							]
 						}
 					],
-					"examples": [
-						"\n    <form id=\"frm\">\n        <input type=\"text\" name=\"field1\">\n        <button type=\"submit\">Submit</button>\n    </form>\n    <script type=\"text/javascript\">\n        Ink.requireModules(['Ink.Dom.FormSerialize_1'], function (FormSerialize) {\n            var values = {field1: 'CTHULHU'};\n            FormSerialize.fillIn('frm', values);\n            // At this point the form is pre-filled with the values above.\n        });\n    </script>\n"
-					]
+					"attributes": [],
+					"isNamespace": true,
+					"static": true
 				}
 			],
+			"functions": [],
 			"attributes": [],
 			"uses": []
 		},
@@ -3750,77 +3812,86 @@
 			"kind": "module",
 			"name": "Ink.Dom.Loaded_1",
 			"file": "src/js/Ink/Dom/Loaded/1/lib.js",
-			"classes": [],
-			"functions": [
+			"classes": [
 				{
-					"kind": "function",
-					"name": "run",
+					"kind": "class",
+					"name": "Ink.Dom.Loaded_1",
 					"file": "src/js/Ink/Dom/Loaded/1/lib.js",
-					"text": "Specify a function to execute when the DOM is fully loaded.",
-					"params": [
+					"functions": [
 						{
-							"kind": "param",
-							"name": "win",
-							"type": "Object",
-							"isOptional": true,
-							"defaultValue": "window",
-							"isFirstLevel": true,
-							"description": "Window object to attach/add the event"
+							"kind": "function",
+							"name": "run",
+							"file": "src/js/Ink/Dom/Loaded/1/lib.js",
+							"text": "Specify a function to execute when the DOM is fully loaded.",
+							"params": [
+								{
+									"kind": "param",
+									"name": "win",
+									"type": "Object",
+									"isOptional": true,
+									"defaultValue": "window",
+									"isFirstLevel": true,
+									"description": "Window object to attach/add the event"
+								},
+								{
+									"kind": "param",
+									"name": "fn",
+									"type": "Function",
+									"isFirstLevel": true,
+									"description": "Callback function to be executed after the DOM is ready"
+								}
+							],
+							"examples": [
+								"\n    Ink.requireModules(['Ink.Dom.Loaded_1'], function(Loaded){\n        Loaded.run(function(){\n            console.log('This will run when the page/document is ready/loaded');\n        });\n    });\n"
+							]
 						},
 						{
-							"kind": "param",
-							"name": "fn",
-							"type": "Function",
-							"isFirstLevel": true,
-							"description": "Callback function to be executed after the DOM is ready"
-						}
-					],
-					"examples": [
-						"\n    Ink.requireModules(['Ink.Dom.Loaded_1'], function(Loaded){\n        Loaded.run(function(){\n            console.log('This will run when the page/document is ready/loaded');\n        });\n    });\n"
-					]
-				},
-				{
-					"kind": "function",
-					"name": "_checkState",
-					"file": "src/js/Ink/Dom/Loaded/1/lib.js",
-					"text": "Function that will be running the callbacks after the page is loaded",
-					"params": [
+							"kind": "function",
+							"name": "_checkState",
+							"file": "src/js/Ink/Dom/Loaded/1/lib.js",
+							"text": "Function that will be running the callbacks after the page is loaded",
+							"params": [
+								{
+									"kind": "param",
+									"name": "event",
+									"type": "Event",
+									"isFirstLevel": true,
+									"description": "Triggered event"
+								}
+							],
+							"private": true
+						},
 						{
-							"kind": "param",
-							"name": "event",
-							"type": "Event",
-							"isFirstLevel": true,
-							"description": "Triggered event"
+							"kind": "function",
+							"name": "_poll",
+							"file": "src/js/Ink/Dom/Loaded/1/lib.js",
+							"text": "Polls the load progress of the page to see if it has already loaded or not",
+							"params": [],
+							"private": true
+						},
+						{
+							"kind": "function",
+							"name": "_ready",
+							"file": "src/js/Ink/Dom/Loaded/1/lib.js",
+							"text": "Function that runs the callbacks from the queue when the document is ready.",
+							"params": [],
+							"private": true
 						}
 					],
-					"private": true
-				},
-				{
-					"kind": "function",
-					"name": "_poll",
-					"file": "src/js/Ink/Dom/Loaded/1/lib.js",
-					"text": "Polls the load progress of the page to see if it has already loaded or not",
-					"params": [],
-					"private": true
-				},
-				{
-					"kind": "function",
-					"name": "_ready",
-					"file": "src/js/Ink/Dom/Loaded/1/lib.js",
-					"text": "Function that runs the callbacks from the queue when the document is ready.",
-					"params": [],
-					"private": true
+					"attributes": [
+						{
+							"kind": "attribute",
+							"name": "_contexts",
+							"text": "Callbacks and their contexts. Array of 2-arrays.\n\n[]",
+							"description": "Array",
+							"private": true
+						}
+					],
+					"isNamespace": true
 				}
 			],
-			"attributes": [
-				{
-					"kind": "attribute",
-					"name": "_contexts",
-					"text": "Callbacks and their contexts. Array of 2-arrays.\n\n[]",
-					"description": "Array",
-					"private": true
-				}
-			],
+			"functions": [],
+			"attributes": [],
 			"uses": [],
 			"version": "1"
 		},
@@ -3828,99 +3899,109 @@
 			"kind": "module",
 			"name": "Ink.Dom.Selector_1",
 			"file": "src/js/Ink/Dom/Selector/1/lib.js",
-			"classes": [],
-			"functions": [
+			"classes": [
 				{
-					"kind": "function",
-					"name": "select",
+					"kind": "class",
+					"name": "Ink.Dom.Selector",
 					"file": "src/js/Ink/Dom/Selector/1/lib.js",
-					"text": "Alias for the Sizzle selector engine",
-					"params": [
+					"functions": [
 						{
-							"kind": "param",
-							"name": "selector",
-							"type": "String",
-							"isFirstLevel": true,
-							"description": "CSS selector to search for elements"
+							"kind": "function",
+							"name": "select",
+							"file": "src/js/Ink/Dom/Selector/1/lib.js",
+							"text": "Alias for the Sizzle selector engine",
+							"params": [
+								{
+									"kind": "param",
+									"name": "selector",
+									"type": "String",
+									"isFirstLevel": true,
+									"description": "CSS selector to search for elements"
+								},
+								{
+									"kind": "param",
+									"name": "context",
+									"type": "DOMElement",
+									"isOptional": true,
+									"isFirstLevel": true,
+									"description": "By default the search is done in the document element. However, you can specify an element as search context"
+								},
+								{
+									"kind": "param",
+									"name": "results",
+									"type": "Array",
+									"isOptional": true,
+									"isFirstLevel": true,
+									"description": "By default this is considered an empty array. But if you want to merge it with other searches you did, pass their result array through here."
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "Array",
+								"description": "Array of resulting DOM Elements"
+							}
 						},
 						{
-							"kind": "param",
-							"name": "context",
-							"type": "DOMElement",
-							"isOptional": true,
-							"isFirstLevel": true,
-							"description": "By default the search is done in the document element. However, you can specify an element as search context"
-						},
-						{
-							"kind": "param",
-							"name": "results",
-							"type": "Array",
-							"isOptional": true,
-							"isFirstLevel": true,
-							"description": "By default this is considered an empty array. But if you want to merge it with other searches you did, pass their result array through here."
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "Array",
-						"description": "Array of resulting DOM Elements"
-					}
-				},
-				{
-					"kind": "function",
-					"name": "matches",
-					"file": "src/js/Ink/Dom/Selector/1/lib.js",
-					"text": "Filters elements that match a CSS selector.",
-					"params": [
-						{
-							"kind": "param",
-							"name": "selector",
-							"type": "String",
-							"isFirstLevel": true,
-							"description": "CSS selector to search for elements"
-						},
-						{
-							"kind": "param",
+							"kind": "function",
 							"name": "matches",
-							"type": "Array",
-							"isFirstLevel": true,
-							"description": "Elements to be 'matched' with"
-						}
-					],
-					"return": {
-						"kind": "return",
-						"type": "Array",
-						"description": "Elements that matched"
-					}
-				},
-				{
-					"kind": "function",
-					"name": "matchesSelector",
-					"file": "src/js/Ink/Dom/Selector/1/lib.js",
-					"text": "Checks if an element matches a given selector",
-					"params": [
-						{
-							"kind": "param",
-							"name": "element",
-							"type": "DOMElement",
-							"isFirstLevel": true,
-							"description": "Element to test"
+							"file": "src/js/Ink/Dom/Selector/1/lib.js",
+							"text": "Filters elements that match a CSS selector.",
+							"params": [
+								{
+									"kind": "param",
+									"name": "selector",
+									"type": "String",
+									"isFirstLevel": true,
+									"description": "CSS selector to search for elements"
+								},
+								{
+									"kind": "param",
+									"name": "matches",
+									"type": "Array",
+									"isFirstLevel": true,
+									"description": "Elements to be 'matched' with"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "Array",
+								"description": "Elements that matched"
+							}
 						},
 						{
-							"kind": "param",
-							"name": "selector",
-							"type": "String",
-							"isFirstLevel": true,
-							"description": "CSS selector to test the element with"
+							"kind": "function",
+							"name": "matchesSelector",
+							"file": "src/js/Ink/Dom/Selector/1/lib.js",
+							"text": "Checks if an element matches a given selector",
+							"params": [
+								{
+									"kind": "param",
+									"name": "element",
+									"type": "DOMElement",
+									"isFirstLevel": true,
+									"description": "Element to test"
+								},
+								{
+									"kind": "param",
+									"name": "selector",
+									"type": "String",
+									"isFirstLevel": true,
+									"description": "CSS selector to test the element with"
+								}
+							],
+							"return": {
+								"kind": "return",
+								"type": "Boolean",
+								"description": "True if element matches the CSS selector"
+							}
 						}
 					],
-					"return": {
-						"kind": "return",
-						"type": "Boolean",
-						"description": "True if element matches the CSS selector"
-					}
+					"attributes": [],
+					"isNamespace": true,
+					"static": true
 				}
 			],
+			"functions": [],
 			"attributes": [],
 			"uses": [],
 			"version": "1"
@@ -4053,6 +4134,7 @@
 							"text": ""
 						}
 					],
+					"isNamespace": true,
 					"static": true
 				}
 			],
@@ -4701,7 +4783,8 @@
 							]
 						}
 					],
-					"attributes": []
+					"attributes": [],
+					"isNamespace": true
 				}
 			],
 			"functions": [],
@@ -4886,11 +4969,11 @@
 								},
 								{
 									"kind": "param",
-									"name": "autoAdvance",
+									"name": "options.autoAdvance",
 									"type": "Integer",
 									"isOptional": true,
 									"defaultValue": "0",
-									"isFirstLevel": true,
+									"isFirstLevel": false,
 									"description": "The number of milliseconds to wait between auto-advancing pages. Set to 0 to disable auto-advance."
 								},
 								{
@@ -5557,6 +5640,7 @@
 							"type": "Object"
 						}
 					],
+					"isNamespace": true,
 					"version": "1",
 					"static": true
 				}
@@ -6673,6 +6757,76 @@
 		},
 		{
 			"kind": "module",
+			"name": "Ink.UI.Drawer_1",
+			"file": "src/js/Ink/UI/Drawer/1/lib.js",
+			"classes": [
+				{
+					"kind": "class",
+					"name": "Ink.UI.Drawer_1",
+					"text": "Displays off-canvas (to the left and to the right) content which can be triggered by clicking elements with the 'left-drawer-trigger' and 'right-drawer-trigger', respectively.\n\nThe left drawer has the 'left-drawer' class, and the right drawer has the 'right-drawer' class.\n\nThe content drawer (EG your `<div id=\"main\">`) must have the 'content-drawer' class.\n\nFor more, see the example below, or try the sample.",
+					"file": "src/js/Ink/UI/Drawer/1/lib.js",
+					"functions": [
+						{
+							"kind": "function",
+							"name": "Drawer_1",
+							"file": "src/js/Ink/UI/Drawer/1/lib.js",
+							"isConstructor": true,
+							"params": [
+								{
+									"kind": "param",
+									"name": "options",
+									"isOptional": true,
+									"isFirstLevel": true,
+									"description": "{Object} object containing the following options:"
+								},
+								{
+									"kind": "param",
+									"name": "options.closeOnContentClick",
+									"isOptional": true,
+									"defaultValue": "true",
+									"isFirstLevel": false,
+									"description": "{Boolean}"
+								},
+								{
+									"kind": "param",
+									"name": "options.mode",
+									"isOptional": true,
+									"defaultValue": "'push'",
+									"isFirstLevel": false,
+									"description": "{String}"
+								},
+								{
+									"kind": "param",
+									"name": "options.sides",
+									"isOptional": true,
+									"defaultValue": "'both'",
+									"isFirstLevel": false,
+									"description": "{String}"
+								}
+							],
+							"examples": [
+								"\n\n     <body class=\"ink-drawer\">\n         <div class=\"left-drawer\">\n             Right drawer content...\n         </div>\n         <div class=\"right-drawer\">\n             Left drawer content...\n         </div>\n         <div id=\"main-content\" class=\"content-drawer ink-grid\">\n             <a class=\"left-drawer-trigger\" href=\"\">Open left drawer</a>\n             <a class=\"right-drawer-trigger\" href=\"\">Open right drawer</a>\n             Content...\n         </div>\n     </body>\n\n     <script>\n         Ink.requireModules(['Ink.UI.Drawer_1'], function (Drawer) {\n             new Drawer();\n         });\n     </script>\n"
+							]
+						},
+						{
+							"kind": "function",
+							"name": "_onClick",
+							"file": "src/js/Ink/UI/Drawer/1/lib.js",
+							"text": "Click event handler. Listens to the body's click event",
+							"params": [],
+							"private": true
+						}
+					],
+					"attributes": []
+				}
+			],
+			"functions": [],
+			"attributes": [],
+			"uses": [],
+			"version": "1"
+		},
+		{
+			"kind": "module",
 			"name": "Ink.UI.Dropdown_1",
 			"file": "src/js/Ink/UI/Dropdown/1/lib.js",
 			"classes": [
@@ -7050,6 +7204,7 @@
 							"private": true
 						}
 					],
+					"isNamespace": true,
 					"version": "1",
 					"static": true
 				}
@@ -7376,6 +7531,7 @@
 							"private": true
 						}
 					],
+					"isNamespace": true,
 					"version": "1"
 				}
 			],
@@ -9540,10 +9696,11 @@
 							"static": true
 						}
 					],
+					"isNamespace": true,
 					"version": "1",
 					"static": true,
 					"examples": [
-						"\n\n     <a href=\"#part1\" class=\"ink-smooth-scroll\">go to Part 1</a>\n\n     [lots and lots of content...]\n\n     <h1 id=\"part1\">Part 1</h1>\n\n     <script>\n         // ...Although you don't need to do this if you have autoload.js\n         Ink.requireModules(['Ink.UI.SmoothScroller_1'], function (SmoothScroller) {\n             SmoothScroller.init('.ink-smooth-scroll');\n         })\n     </script>\n"
+						"\n\n     <a href=\"#part1\" class=\"ink-smooth-scroll\" data-margin=\"10\">go to Part 1</a>\n\n     [lots and lots of content...]\n\n     <h1 id=\"part1\">Part 1</h1>\n\n     <script>\n         // ...Although you don't need to do this if you have autoload.js\n         Ink.requireModules(['Ink.UI.SmoothScroller_1'], function (SmoothScroller) {\n             SmoothScroller.init('.ink-smooth-scroll');\n         })\n     </script>\n"
 					]
 				}
 			],
@@ -11957,6 +12114,7 @@
 						}
 					],
 					"attributes": [],
+					"isNamespace": true,
 					"version": "1",
 					"static": true
 				}
@@ -12024,6 +12182,7 @@
 						}
 					],
 					"attributes": [],
+					"isNamespace": true,
 					"version": "1",
 					"static": true
 				}
@@ -12163,6 +12322,7 @@
 						}
 					],
 					"attributes": [],
+					"isNamespace": true,
 					"version": "1",
 					"static": true
 				}
@@ -12379,6 +12539,7 @@
 						}
 					],
 					"attributes": [],
+					"isNamespace": true,
 					"version": "1",
 					"static": true
 				}
@@ -12553,6 +12714,7 @@
 							"static": true
 						}
 					],
+					"isNamespace": true,
 					"version": "1",
 					"static": true
 				}
@@ -12949,6 +13111,7 @@
 						}
 					],
 					"attributes": [],
+					"isNamespace": true,
 					"static": true
 				}
 			],
@@ -13535,6 +13698,7 @@
 							"static": true
 						}
 					],
+					"isNamespace": true,
 					"version": "1",
 					"static": true
 				}
@@ -13760,6 +13924,7 @@
 							"private": true
 						}
 					],
+					"isNamespace": true,
 					"version": "1",
 					"static": true
 				}
@@ -14558,6 +14723,7 @@
 							"private": true
 						}
 					],
+					"isNamespace": true,
 					"version": "1",
 					"static": true
 				}

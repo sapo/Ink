@@ -35,140 +35,445 @@
 
 
     
-        <h2>Defined functions:</h2>
-        <ul class="unstyled">
-        
-            <li><a href="#Ink_1-bind">
-            
-                Ink_1.bind
-            
-            (fn, context, [args*])</a></li>
-        
-            <li><a href="#Ink_1-bindEvent">
-            
-                Ink_1.bindEvent
-            
-            (fn, context, [args*])</a></li>
-        
-            <li><a href="#Ink_1-bindMethod">
-            
-                Ink_1.bindMethod
-            
-            (object, methodName, [args*])</a></li>
-        
-            <li><a href="#Ink_1-createExt">
-            
-                Ink_1.createExt
-            
-            (moduleName, version, dependencies, modFn)</a></li>
-        
-            <li><a href="#Ink_1-createModule">
-            
-                Ink_1.createModule
-            
-            (mod, version, deps, modFn)</a></li>
-        
-            <li><a href="#Ink_1-error">
-            
-                Ink_1.error
-            
-            ([args*])</a></li>
-        
-            <li><a href="#Ink_1-extendObj">
-            
-                Ink_1.extendObj
-            
-            (destination, source, [args*])</a></li>
-        
-            <li><a href="#Ink_1-getModule">
-            
-                Ink_1.getModule
-            
-            (mod, [version])</a></li>
-        
-            <li><a href="#Ink_1-getModuleScripts">
-            
-                Ink_1.getModuleScripts
-            
-            ()</a></li>
-        
-            <li><a href="#Ink_1-getModulesLoadOrder">
-            
-                Ink_1.getModulesLoadOrder
-            
-            ()</a></li>
-        
-            <li><a href="#Ink_1-getPath">
-            
-                Ink_1.getPath
-            
-            (key, [noLib])</a></li>
-        
-            <li><a href="#Ink_1-i">
-            
-                Ink_1.i
-            
-            (id)</a></li>
-        
-            <li><a href="#Ink_1-loadScript">
-            
-                Ink_1.loadScript
-            
-            (uri, [contentType])</a></li>
-        
-            <li><a href="#Ink_1-log">
-            
-                Ink_1.log
-            
-            ([args*])</a></li>
-        
-            <li><a href="#Ink_1-namespace">
-            
-                Ink_1.namespace
-            
-            (ns, [returnParentAndKey])</a></li>
-        
-            <li><a href="#Ink_1-requireModules">
-            
-                Ink_1.requireModules
-            
-            (deps, cbFn)</a></li>
-        
-            <li><a href="#Ink_1-s">
-            
-                Ink_1.s
-            
-            (rule, [from])</a></li>
-        
-            <li><a href="#Ink_1-setPath">
-            
-                Ink_1.setPath
-            
-            (key, rootURI)</a></li>
-        
-            <li><a href="#Ink_1-ss">
-            
-                Ink_1.ss
-            
-            (rule, [from])</a></li>
-        
-            <li><a href="#Ink_1-warn">
-            
-                Ink_1.warn
-            
-            ([args*])</a></li>
-        
-        </ul>
-    
 
     
 
 
 
     
+            
+    <table class="props bottom-space">
+        
+        
+        <caption>Functions</caption>
+        <thead>
+            <tr>
+                <th>Function name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+
+        
+        
+        <tbody>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_1-Ink_1-bind">
+                        
+                            .bind
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Function.prototype.bind alternative.
+Creates a new function that, when called, has its this keyword set to the provided value, with a given sequence of arguments preceding any provided when the new function is called.
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_1-Ink_1-bindEvent">
+                        
+                            .bindEvent
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Function.prototype.bind alternative for event handlers.
+Same as bind but keeps first argument of the call the original event.
+Set "context" to `false` to preserve the original context of the function and just bind the arguments.
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_1-Ink_1-bindMethod">
+                        
+                            .bindMethod
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Function.prototype.bind alternative for class methods
+Creates a new function that, when called, has this k
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_1-Ink_1-createExt">
+                        
+                            .createExt
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Creates an Ink.Ext module
+
+Does exactly the same as createModule but creates the module in the Ink.Ext namespace
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_1-Ink_1-createModule">
+                        
+                            .createModule
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Creates a new module. 
+Use this to wrap your code and benefit from the module loading used throughout the Ink library
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_1-Ink_1-error">
+                        
+                            .error
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Calls native console.error if available.
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_1-Ink_1-extendObj">
+                        
+                            .extendObj
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Extends an object with another
+Copy all of the properties in one or more source objects over to the destination object, and return the destination object. It's in-order, so the last source will override properties of the same name in previous arguments.
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_1-Ink_1-getModule">
+                        
+                            .getModule
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Loads a module.
+A synchronous method to get the module from the registry. It assumes the module is defined and loaded already!
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_1-Ink_1-getModuleScripts">
+                        
+                            .getModuleScripts
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Builds the markup needed to load the modules.
+This method builds the script tags needed to load the currently used modules
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_1-Ink_1-getModulesLoadOrder">
+                        
+                            .getModulesLoadOrder
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Lists loaded module names.
+The list is ordered by loaded time (oldest module comes first)
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_1-Ink_1-getPath">
+                        
+                            .getPath
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Get the full path of a module.
+This method looks up the paths given in setPath (and ultimately the default Ink's path).
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_1-Ink_1-i">
+                        
+                            .i
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Alias to document.getElementById
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_1-Ink_1-loadScript">
+                        
+                            .loadScript
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Loads a script URL.
+This creates a `script` tag in the `head` of the document.
+Reports errors by listening to 'error' and 'readystatechange' events.
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_1-Ink_1-log">
+                        
+                            .log
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Calls native console.log if available.
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_1-Ink_1-namespace">
+                        
+                            .namespace
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Defines a module namespace.
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_1-Ink_1-requireModules">
+                        
+                            .requireModules
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Requires modules asynchronously 
+Use this to get modules, even if they're not loaded yet
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_1-Ink_1-s">
+                        
+                            .s
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Alias for Ink.Dom.Selector first result
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_1-Ink_1-setPath">
+                        
+                            .setPath
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Sets the URL path for a namespace.
+Use this to customize where requireModules and createModule will load dependencies from.
+This can be useful to set your own CDN for dynamic module loading or simply to change your module folder structure
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_1-Ink_1-ss">
+                        
+                            .ss
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Alias for Ink.Dom.Selector
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_1-Ink_1-warn">
+                        
+                            .warn
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    Calls native console.warn if available.
+
+                    
+                    
+                </td>
+            </tr>
+        
+        </tbody>
+    </table>
+    
 
     
-        <section class="box box-function">
+</section>
+
+
+
+    <div class="text">Ink Core.
+This module provides the necessary methods to create and load the modules using Ink.</div>
+
+
+
+
+
+
+
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -179,7 +484,7 @@
     (fn, context, [args*])
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -282,8 +587,8 @@ Creates a new function that, when called, has its this keyword set to the provid
 
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -294,7 +599,7 @@ Creates a new function that, when called, has its this keyword set to the provid
     (fn, context, [args*])
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -398,8 +703,8 @@ Set "context" to `false` to preserve the original context of the function and ju
 
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -410,7 +715,7 @@ Set "context" to `false` to preserve the original context of the function and ju
     (object, methodName, [args*])
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -531,8 +836,8 @@ Creates a new function that, when called, has this k</p>
 
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -543,7 +848,7 @@ Creates a new function that, when called, has this k</p>
     (moduleName, version, dependencies, modFn)
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -656,8 +961,8 @@ Does exactly the same as createModule but creates the module in the Ink.Ext name
 
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -668,7 +973,7 @@ Does exactly the same as createModule but creates the module in the Ink.Ext name
     (mod, version, deps, modFn)
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -780,8 +1085,8 @@ Use this to wrap your code and benefit from the module loading used throughout t
 
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -792,7 +1097,7 @@ Use this to wrap your code and benefit from the module loading used throughout t
     ([args*])
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -846,8 +1151,8 @@ Use this to wrap your code and benefit from the module loading used throughout t
 
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -858,7 +1163,7 @@ Use this to wrap your code and benefit from the module loading used throughout t
     (destination, source, [args*])
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -963,8 +1268,8 @@ Copy all of the properties in one or more source objects over to the destination
 
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -975,7 +1280,7 @@ Copy all of the properties in one or more source objects over to the destination
     (mod, [version])
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -1055,8 +1360,8 @@ A synchronous method to get the module from the registry. It assumes the module 
     
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -1067,7 +1372,7 @@ A synchronous method to get the module from the registry. It assumes the module 
     ()
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -1089,8 +1394,8 @@ This method builds the script tags needed to load the currently used modules</p>
     
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -1101,7 +1406,7 @@ This method builds the script tags needed to load the currently used modules</p>
     ()
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -1123,8 +1428,8 @@ The list is ordered by loaded time (oldest module comes first)</p>
     
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -1135,7 +1440,7 @@ The list is ordered by loaded time (oldest module comes first)</p>
     (key, [noLib])
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -1203,8 +1508,8 @@ This method looks up the paths given in setPath (and ultimately the default Ink'
     
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -1215,7 +1520,7 @@ This method looks up the paths given in setPath (and ultimately the default Ink'
     (id)
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -1279,8 +1584,8 @@ This method looks up the paths given in setPath (and ultimately the default Ink'
 
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -1291,7 +1596,7 @@ This method looks up the paths given in setPath (and ultimately the default Ink'
     (uri, [contentType])
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -1362,8 +1667,8 @@ Reports errors by listening to 'error' and 'readystatechange' events.</p>
     
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -1374,7 +1679,7 @@ Reports errors by listening to 'error' and 'readystatechange' events.</p>
     ([args*])
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -1428,8 +1733,8 @@ Reports errors by listening to 'error' and 'readystatechange' events.</p>
 
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -1440,7 +1745,7 @@ Reports errors by listening to 'error' and 'readystatechange' events.</p>
     (ns, [returnParentAndKey])
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -1519,8 +1824,8 @@ Reports errors by listening to 'error' and 'readystatechange' events.</p>
     
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -1531,7 +1836,7 @@ Reports errors by listening to 'error' and 'readystatechange' events.</p>
     (deps, cbFn)
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -1605,8 +1910,8 @@ Use this to get modules, even if they're not loaded yet</p>
 
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -1617,7 +1922,7 @@ Use this to get modules, even if they're not loaded yet</p>
     (rule, [from])
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -1700,8 +2005,8 @@ Use this to get modules, even if they're not loaded yet</p>
 
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -1712,7 +2017,7 @@ Use this to get modules, even if they're not loaded yet</p>
     (key, rootURI)
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -1794,8 +2099,8 @@ This can be useful to set your own CDN for dynamic module loading or simply to c
     
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -1806,7 +2111,7 @@ This can be useful to set your own CDN for dynamic module loading or simply to c
     (rule, [from])
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -1887,8 +2192,8 @@ This can be useful to set your own CDN for dynamic module loading or simply to c
 
 
 </section>
-    
-        <section class="box box-function">
+
+    <section class="box box-function">
 
     <h1 class="fw-300">
     
@@ -1899,7 +2204,7 @@ This can be useful to set your own CDN for dynamic module loading or simply to c
     ([args*])
     
         
-            <i>function</i>
+            <i>method</i>
         
     
     </h1>
@@ -1953,6 +2258,11 @@ This can be useful to set your own CDN for dynamic module loading or simply to c
 
 
 </section>
+
+
+
+    
+
     
 
     
