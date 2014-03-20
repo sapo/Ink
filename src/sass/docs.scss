@@ -336,7 +336,13 @@ body.ink-drawer {
 
 // Code highlight
 .highlight          { padding: 1em; background: $code-background; margin-bottom: 1.5em; @include border-radius($border-radius);}
-.highlight pre      { margin: 0; font-size: .9em; overflow-x: auto;}
+.highlight pre      { 
+    margin: 0; 
+    font-size: .913em; 
+    overflow-x: auto;
+    white-space: pre;
+    word-wrap: normal;
+}
 .highlight .c       { color: #999988; font-style: italic; } /* Comment */
 .highlight .err     { background-color: #e3d2d2; color: #a61717; } /* Error */
 .highlight .k       { font-weight: bold; } /* Keyword */
