@@ -360,6 +360,7 @@ body.ink-drawer .right-drawer li:last-child {
 .highlight pre {
   margin: 0;
   font-size: .9em;
+  overflow-x: auto;
 }
 
 .highlight .c {
@@ -780,12 +781,12 @@ span.tip {
 }
 
 ul.props {
-  margin: .5em 0;
+  margin: 0;
   padding: 0;
   list-style-type: none;
 }
 ul.props.inline li + li {
-  margin-right: 0.4em;
+  margin: 0 0.4em 0.5em 0;
 }
 ul.props li.heading {
   text-transform: uppercase;

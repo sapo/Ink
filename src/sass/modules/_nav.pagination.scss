@@ -60,7 +60,10 @@
                             font-size: 4em;
                             @include transition(compact(all 140ms ease-in-out));
 
-                            span { text-indent: 99999px; }
+                            span { 
+                                text-indent: -99999px; 
+                                display: inline-block;
+                            }
                         }
                     }
 
