@@ -1,88 +1,150 @@
-Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', 'Ink.Dom.Selector_1', 'Ink.Dom.Element_1', 'Ink.Dom.Event_1', 'Ink.Dom.Css_1'], function(Common, Loaded, Selector, Element, Event, Css) { 
+/**
+ * @module Ink.UI.Drawer_1
+ * @version 1
+ */
+Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', 'Ink.Dom.Selector_1', 'Ink.Dom.Element_1', 'Ink.Dom.Event_1', 'Ink.Dom.Css_1'], function(Common, Loaded, Selector, Element, Event, Css) {
+    'use strict';
 
-    var Drawer = function(options) {
+    function elNotFound(el) {
+        Ink.warn( 'Ink.UI.Drawer_1: Could not find the "' +
+            el + '" element on this page. Please make sure it exists.' );
+    }
+
+    function Drawer(options) {
         this._init(options);
     }
 
     Drawer.prototype = {
-
-        _init: function () {
-
-            this._name = 'Ink Drawer',
-
-            this._options = Ink.extendObj(
-            {
-                parentSelector: ['String','.ink-drawer'],
-                leftDrawer: ['String','.left-drawer'],
-                leftTrigger: ['String','.left-drawer-trigger'],
-                rightDrawer: ['String','.right-drawer'],
-                rightTrigger: ['String','.right-drawer-trigger'],
-                contentDrawer: ['String','.content-drawer'],
-                closeOnContentClick: ['Boolean',true],
-                mode: ['String','push'],
-                sides: ['String','both']
-            }, 
-
-            arguments[0] || {} );
+        /**
+         * Displays off-canvas (to the left and to the right) content which can be triggered by clicking elements with the 'left-drawer-trigger' and 'right-drawer-trigger', respectively.
+         *
+         * The left drawer has the 'left-drawer' class, and the right drawer has the 'right-drawer' class.
+         *
+         * The content drawer (EG your `<div id="main">`) must have the 'content-drawer' class.
+         *
+         * For more, see the example below, or try the sample.
+         *
+         * @class Ink.UI.Drawer_1
+         * @constructor
+         *
+         * @param [options] {Object} object containing the following options:
+         * @xparam [options.parentSelector]='.ink-drawer'         {Selector}
+         *   The class you are using in your wrapper (in the example below, it's the
+         *   `<body>` tag.
+         * @xparam [options.leftDrawer]='.left-drawer'            {Selector}
+         *   Selector for the left drawer element. This element is placed outside the
+         *   screen and shown when you click the `leftTrigger` element.
+         * @xparam [options.leftTrigger]='.left-drawer-trigger'   {Selector}
+         *   Selector for the left drawer trigger(s). When you click this trigger, the
+         *   `leftDrawer` is shown.
+         * @xparam [options.rightDrawer]='.right-drawer'          {Selector}
+         *   Right drawer selector. (see `options.leftDrawer`)
+         * @xparam [options.rightTrigger]='.right-drawer-trigger' {Selector}
+         *   Right trigger selector (see `options.leftTrigger`)
+         * @xparam [options.contentDrawer]='.content-drawer'      {Selector}
+         *   Selector for the content drawer.
+         * @param [options.closeOnContentClick]=true             {Boolean}
+         *   Whether to close the drawer when someone clicks on the `contentDrawer`
+         * @param [options.mode]='push'                          {String}
+         *   This can be 'push' or 'hide'
+         * @param [options.sides]='both'                         {String}
+         *     Can be 'left', 'right', or 'both'. Controls from which sides the content
+         *
+         * @example
+         *
+         *      <body class="ink-drawer">
+         *          <div class="left-drawer">
+         *              Right drawer content...
+         *          </div>
+         *          <div class="right-drawer">
+         *              Left drawer content...
+         *          </div>
+         *          <div id="main-content" class="content-drawer ink-grid">
+         *              <a class="left-drawer-trigger" href="">Open left drawer</a>
+         *              <a class="right-drawer-trigger" href="">Open right drawer</a>
+         *              Content...
+         *          </div>
+         *      </body>
+         *
+         *      <script>
+         *          Ink.requireModules(['Ink.UI.Drawer_1'], function (Drawer) {
+         *              new Drawer();
+         *          });
+         *      </script>
+         */
+        _init: function (options) {
+            this._options = Common.options({
+                parentSelector:     ['String', '.ink-drawer'],
+                leftDrawer:         ['String', '.left-drawer'],
+                leftTrigger:        ['String', '.left-drawer-trigger'],
+                rightDrawer:        ['String', '.right-drawer'],
+                rightTrigger:       ['String', '.right-drawer-trigger'],
+                contentDrawer:      ['String', '.content-drawer'],
+                closeOnContentClick: ['Boolean', true],
+                closeOnLinkClick:    ['Boolean', true],
+                mode:               ['String', 'push'],
+                sides:              ['String', 'both']
+            }, options || {});
 
             // make sure we have the required elements acording to the config options
 
-            this._contentDrawers = Ink.ss(this._options.contentDrawer[1]);
+            this._contentDrawers = Ink.ss(this._options.contentDrawer);
 
-            this._leftDrawer = Ink.s(this._options.leftDrawer[1]);
-            this._leftTriggers = Ink.ss(this._options.leftTrigger[1]);
+            this._leftDrawer = Ink.s(this._options.leftDrawer);
+            this._leftTriggers = Ink.ss(this._options.leftTrigger);
 
-            this._rightDrawer = Ink.s(this._options.rightDrawer[1]);
-            this._rightTriggers = Ink.ss(this._options.rightTrigger[1]);
+            this._rightDrawer = Ink.s(this._options.rightDrawer);
+            this._rightTriggers = Ink.ss(this._options.rightTrigger);
 
+            // The body might not have it
+            Css.addClassName(document.body, 'ink-drawer');
 
-
-            if(this._contentDrawers.length == 0) {
-                console.warn( this._name + ': Could not find any "' + this._options.contentDrawer[1] + '" elements on this page. Please make sure you have at least one.' );
+            if(this._contentDrawers.length === 0) {
+                Ink.warn( 'Ink.UI.Drawer_1: Could not find any "' +
+                    this._options.contentDrawer + '" elements on this page. ' +
+                    'Please make sure you have at least one.' );
             }
 
             switch (this._options.sides) {
-
                 case 'both':
-
                 if( !this._leftDrawer ){
-                    console.warn( this._name + ': Could not find the "' + this._options.leftDrawer[1] + '" element on this page. Please make sure it exists.' );                        
-                } 
+                    elNotFound(this._options.leftDrawer);
+                }
 
-                if(this._leftTriggers.length == 0){
-                    console.warn( this._name + ': Could not find the "' + this._options.leftTrigger[1] + '" element on this page. Please make sure it exists.' );                        
-                } 
+                if(this._leftTriggers.length === 0){
+                    elNotFound(this._options.leftTrigger);
+                }
 
                 if( !this._rightDrawer ){
-                    console.warn( this._name + ': Could not find the "' + this._options.rightDrawer[1] + '" element on this page. Please make sure it exists.' );                        
-                } 
-
-                if( this._rightTriggers.length == 0 ){
-                    console.warn( this._name + ': Could not find the "' + this._options.rightTrigger[1] + '" element on this page. Please make sure it exists.' );                        
+                    elNotFound(this._options.rightDrawer);
                 }
-                this._triggers =    this._options.leftTrigger[1] + ', ' + this._options.rightTrigger[1] + ', ' + this._options.contentDrawer[1];
+
+                if( this._rightTriggers.length === 0 ){
+                    elNotFound(this._options.rightTrigger);
+                }
+                this._triggers = this._options.leftTrigger + ', ' + this._options.rightTrigger + ', ' + this._options.contentDrawer;
                 break;
 
                 case 'left':
                 if( !this._leftDrawer ){
-                    console.warn( this._name + ': Could not find the "' + this._options.leftDrawer[1] + '" element on this page. Please make sure it exists.' );                        
-                } 
-
-                if(this._leftTriggers.length == 0){
-                    console.warn( this._name + ': Could not find the "' + this._options.leftTrigger[1] + '" element on this page. Please make sure it exists.' );                        
+                    elNotFound(this._options.leftDrawer);
                 }
-                this._triggers = this._options.leftTrigger[1] + ', ' + this._options.contentDrawer[1];
+
+                if(this._leftTriggers.length === 0){
+                    elNotFound(this._options.leftTrigger);
+                }
+                this._triggers = this._options.leftTrigger + ', ' + this._options.contentDrawer;
                 break;
 
                 case 'right':
                 if( !this._rightDrawer ){
-                    console.warn( this._name + ': Could not find the "' + this._options.rightDrawer[1] + '" element on this page. Please make sure it exists.' );                        
-                } 
+                    elNotFound(this._options.rightDrawer);
+                }
 
-                if( this._rightTriggers.length == 0 ){
-                    console.warn( this._name + ': Could not find the "' + this._options.rightTrigger[1] + '" element on this page. Please make sure it exists.' );                        
-                } 
-                this._triggers = this._options.rightTrigger[1] + ', ' + this._options.contentDrawer[1];
+                if( this._rightTriggers.length === 0 ){
+                    elNotFound(this._options.rightTrigger);
+                }
+                this._triggers = this._options.rightTrigger + ', ' + this._options.contentDrawer;
                 break;
             }
 
@@ -98,67 +160,77 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
             this._addEvents();
         },
 
-        _onClick: function(ev){                                
+        /**
+         * Click event handler. Listens to the body's click event
+         *
+         * @method _onClick
+         * @private
+         **/
+        _onClick: function(ev){
+            var triggerClicked = Ink.bind(function (side) {
+                // When clicking on the trigger, the corresponding side is toggled.
+                if (this._isOpen) {
+                    this.close();
+                } else {
+                    this.open(side);
+                }
+            }, this);
 
-            if(Selector.matchesSelector(ev.currentTarget,this._options.leftTrigger[1])){
-                if(this._isOpen) {
-                    this.close();
-                } else {
-                    this.open('left');
-                }                        
-            } else if(Selector.matchesSelector(ev.currentTarget,this._options.rightTrigger[1])){
-                if(this._isOpen) {
-                    this.close();
-                } else {
-                    this.open('right');
-                }                    
-            } else if(Selector.matchesSelector(ev.currentTarget,this._options.contentDrawer[1])){
-                if(this._options.closeOnContentClick && this._isOpen) {
+            if(Selector.matchesSelector(ev.currentTarget,this._options.leftTrigger)){
+                // Clicked on the left trigger
+                triggerClicked('left');
+            } else if(Selector.matchesSelector(ev.currentTarget,this._options.rightTrigger)){
+                triggerClicked('right');
+            } else if(Selector.matchesSelector(ev.currentTarget,this._options.contentDrawer)){
+                // Clicked on the rest of the body
+                if(this._options.closeOnContentClick) {
                     this.close();
                 }
+            }
+
+            // Clicked on a link
+            if (this._options.closeOnLinkClick && Element.isLink(ev.target)) {
+                this.close();
             }
         },
 
         _afterTransition: function(){
             if(!this._isOpen){
-                if(this._direction == 'left') {
-                    Css.removeClassName(this._leftDrawer,'show');
+                if(this._direction === 'left') {
+                    Css.removeClassName(this._leftDrawer, 'show');
                 } else {
-                    Css.removeClassName(this._rightDrawer,'show');                        
+                    Css.removeClassName(this._rightDrawer, 'show');
                 }
             }
         },
 
         _addEvents: function(){
-            Event.on(document.body, 'click', this._triggers, this._handlers.click); 
+            Event.on(document.body, 'click', this._triggers + ', a[href*="#"]', this._handlers.click);
         },
 
         open: function(direction) {
-
             this._isOpen = true;
             this._direction = direction;
 
-            if(direction == 'left') {
-                var open = this._leftDrawer;
-            } else if (direction == 'right') {
-                var open = this._rightDrawer;
-            }
+            var open = direction === 'left' ?
+                this._leftDrawer :
+                this._rightDrawer;
 
             Css.addClassName(open,'show');
-            setTimeout(Ink.bind(function(){                 
-                Css.addClassName(document.body, this._options.mode + ' '    + direction);
+            setTimeout(Ink.bind(function(){
+                Css.addClassName(document.body, [this._options.mode, direction]);
             },this), this._delay);
-
         },
 
         close: function() {
-            this._isOpen = false;     
+            if (this._isOpen === false) { return; }
+            this._isOpen = false;
+            // TODO detect transitionEnd exists, otherwise don't rely on it
             Event.one(document.body, 'transitionend oTransitionEnd transitionend webkitTransitionEnd', this._handlers.afterTransition);
-            Css.removeClassName(document.body, this._options.mode + ' ' + this._direction);
+            Css.removeClassName(document.body, [this._options.mode, this._direction]);
         }
 
     };
 
     return Drawer;
-
 });

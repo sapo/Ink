@@ -22,7 +22,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
     /**
      * The Common class provides auxiliar methods to ease some of the most common/repetitive UI tasks.
      *
-     * @class Ink.UI.Common
+     * @namespace Ink.UI.Common
      * @version 1
      * @static
      */

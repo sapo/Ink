@@ -30,7 +30,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
     }
 
     /**
-     * @module Ink.Dom.Element_1
+     * @namespace Ink.Dom.Element_1
      */
 
     var InkElement = {

@@ -12,7 +12,7 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
     /**
      * Utility functions to use with Arrays
      *
-     * @class Ink.Util.Array
+     * @namespace Ink.Util.Array
      * @version 1
      * @static
      */

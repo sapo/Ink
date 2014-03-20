@@ -1,5 +1,14 @@
+/**
+ * @module Ink.Autoload
+ * @version 1
+ */
 Ink.createModule('Ink.Autoload', 1, ['Ink.Dom.Selector_1', 'Ink.Dom.Loaded_1', 'Ink.UI.SmoothScroller_1', 'Ink.UI.Close_1'], function( Selector, Loaded, Scroller, Close ){
     'use strict';
+
+    /**
+     * @namespace Ink.Autoload
+     * @static
+     */
 
     var Autoload = {
         selectors: {

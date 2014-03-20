@@ -10,7 +10,7 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
     /**
      * String Manipulation Utilities
      *
-     * @class Ink.Util.String
+     * @namespace Ink.Util.String
      * @version 1
      * @static
      */

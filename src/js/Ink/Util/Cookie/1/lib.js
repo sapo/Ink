@@ -10,7 +10,7 @@ Ink.createModule('Ink.Util.Cookie', '1', [], function() {
     /**
      * Utilities for Cookie handling
      *
-     * @class Ink.Util.Cookie
+     * @namespace Ink.Util.Cookie
      * @version 1
      * @static
      */

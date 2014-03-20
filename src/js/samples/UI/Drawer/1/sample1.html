@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Ink - JS Components</title>
+        <meta name="description" content="">
+        <meta name="author" content="ink, cookbook, recipes">
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="320">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <link rel="shortcut icon" href="../img/ink-favicon.ico">
+        <link rel="apple-touch-icon-precomposed" href="../img/touch-icon.57.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../img/touch-icon.72.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../img/touch-icon.114.png">
+        <link rel="apple-touch-startup-image" href="../img/splash.320x460.png"
+        media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
+        <link rel="apple-touch-startup-image" href="../img/splash.768x1004.png"
+        media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+        <link rel="apple-touch-startup-image" href="../img/splash.1024x748.png"
+        media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+        
+        <link rel="stylesheet" type="text/css" href="../../../../../../dist/css/ink.css">
+        <link rel="stylesheet" type="text/css" href="../../../../../../dist/css/docs.css">
+
+        <script type="text/javascript" src="../../../../Ink/1/lib.js"></script>
+        <script>
+            Ink.setPath('Ink', '../../../../Ink/');
+        </script>
+
+    </head>
+<body class="ink-drawer">
+
+<div class="left-drawer">
+    <h2>This is the left drawer</h2>
+</div>
+<div class="right-drawer">
+    <h2>This is the right drawer</h2>
+
+    <p>
+        This is a <a href="#some-content">test link</a>
+    </p>
+</div>
+
+<div class="ink-grid content-drawer">
+    <div class="vertical-space">
+        <div class="left-drawer-trigger push-left">
+            <span>Open left drawer</span>
+        </div>
+        <div class="right-drawer-trigger push-right">
+            <span>
+                Open right drawer
+            </span>
+        </div>
+    </div>
+
+    <br style="clear:both">
+
+    <h1 class="half-vertical-space slab">JS Components</h1>
+
+    <div class="bottom-space">
+
+        <h3 class="half-vertical-space slab">Drawer</h3>
+
+        <p>To use the drawer, just call <code>new Drawer({ /* options... */ })</code>.</p>
+
+        <script>
+			Ink.requireModules(['Ink.UI.Drawer_1'], function (Drawer) {
+                new Drawer({  });
+            });
+        </script>
+
+	</div>
+
+	<div class="vertical-space">&nbsp;</div>
+	<div class="vertical-space">&nbsp;</div>
+	<div class="vertical-space">&nbsp;</div>
+	<div class="vertical-space">&nbsp;</div>
+	<div class="vertical-space">&nbsp;</div>
+	<div class="vertical-space">&nbsp;</div>
+	<div class="vertical-space">&nbsp;</div>
+	<div class="vertical-space">&nbsp;</div>
+	<div class="vertical-space">&nbsp;</div>
+	<div class="vertical-space">&nbsp;</div>
+	<div class="vertical-space">&nbsp;</div>
+	<hr id="some-content">
+	
+</div>
+
+</body>
+</html>

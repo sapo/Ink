@@ -1,4 +1,5 @@
-.uppercase, .mosaic .title {
+.uppercase, .mosaic .title, .example .ink-grid .column,
+html.flexbox .example .ink-grid .column {
   text-transform: uppercase;
 }
 
@@ -7,7 +8,8 @@
   font-family: Roboto;
 }
 
-.fw-300, ul.props li.prop.breakpoint-aware:after {
+.fw-300, ul.props li.prop.breakpoint-aware:after, .example .ink-grid .column,
+html.flexbox .example .ink-grid .column, #home section.ink a.ink-button.download {
   font-weight: 300;
   font-family: Roboto;
 }
@@ -718,7 +720,7 @@ section + section {
   padding-top: 3em;
   border-top: 1px solid #ded8cc;
 }
-section p, section ul, section ol, section dl, section dt code, section table {
+section p, section ul, section ol, section dl, section table {
   font-weight: 300;
 }
 
@@ -772,28 +774,25 @@ table.props td, table.props th {
 table.props tr:last-child td {
   border-bottom: none;
 }
-table.props .ink-label {
-  font-size: .813em;
-}
 
 span.tip {
   display: none;
 }
 
 ul.props {
-  margin: 0;
+  margin: .5em 0;
   padding: 0;
   list-style-type: none;
 }
 ul.props.inline li + li {
-  margin: 0 0.4em 0.5em 0;
+  margin-right: 0.4em;
 }
 ul.props li.heading {
   text-transform: uppercase;
 }
 ul.props li.prop {
   background-color: #eeebe5;
-  font-size: .938em;
+  font-size: .95em;
   padding: 0 5px;
 }
 ul.props li.prop.breakpoint-aware:after {
@@ -806,7 +805,8 @@ ul.props li.prop.breakpoint-aware:after {
 }
 
 span.label {
-  font-size: 0.8em;
+  white-space: nowrap;
+  font-size: 0.80em;
 }
 span.label + span.label {
   margin-left: 0.3em;
@@ -872,7 +872,7 @@ p + p.example-title {
 }
 
 .example code, .example pre, table.props code, table.props pre {
-  font-size: 0.913em;
+  font-size: 0.9em;
 }
 
 .example,
@@ -893,8 +893,8 @@ html.flexbox .example .ink-grid {
 .example .ink-grid .column,
 html.flexbox .example .ink-grid .column {
   height: 150px;
-  border: 1px #c5d2dd solid;
-  background: #E5EBF0;
+  border: 1px #d0c7b7 solid;
+  background: #e0dacf;
   text-align: center;
   line-height: 150px;
 }
@@ -958,4 +958,102 @@ footer .ink-navigation ul.menu.horizontal li a {
 }
 footer .ink-navigation ul.menu.horizontal li a.license {
   padding: .5em 0;
+}
+
+#home section {
+  border: none;
+}
+#home section + section {
+  margin-top: 0;
+}
+#home section.ink {
+  padding: 5em 0;
+  margin-top: 44px;
+  background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, color-stop(0%, #77c453), color-stop(100%, #5eaa3a));
+  background-image: -webkit-radial-gradient(#77c453, #5eaa3a);
+  background-image: -moz-radial-gradient(#77c453, #5eaa3a);
+  background-image: -o-radial-gradient(#77c453, #5eaa3a);
+  background-image: radial-gradient(#77c453, #5eaa3a);
+}
+#home section.ink h1, #home section.ink h2, #home section.ink h3, #home section.ink p, #home section.ink ul {
+  color: white;
+}
+#home section.ink .ink-grid {
+  height: 100%;
+}
+#home section.ink .ink-grid .column-group {
+  height: inherit;
+}
+#home section.ink a.ink-button.download {
+  color: #5EAA3A;
+  background: white;
+  font-size: 2em;
+}
+#home section.what {
+  padding: 5em 0;
+  background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, color-stop(0%, #85aae0), color-stop(100%, #5c8dd6));
+  background-image: -webkit-radial-gradient(#85aae0, #5c8dd6);
+  background-image: -moz-radial-gradient(#85aae0, #5c8dd6);
+  background-image: -o-radial-gradient(#85aae0, #5c8dd6);
+  background-image: radial-gradient(#85aae0, #5c8dd6);
+}
+#home section.what h1, #home section.what h2, #home section.what h3, #home section.what p, #home section.what ul {
+  color: white;
+}
+#home section.what .ink-grid {
+  height: 100%;
+}
+#home section.what .ink-grid .column-group {
+  height: inherit;
+}
+#home section.why {
+  padding: 5em 0;
+  background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, color-stop(0%, #aa8ad3), color-stop(100%, #8f65c5));
+  background-image: -webkit-radial-gradient(#aa8ad3, #8f65c5);
+  background-image: -moz-radial-gradient(#aa8ad3, #8f65c5);
+  background-image: -o-radial-gradient(#aa8ad3, #8f65c5);
+  background-image: radial-gradient(#aa8ad3, #8f65c5);
+}
+#home section.why h1, #home section.why h2, #home section.why h3, #home section.why p, #home section.why ul {
+  color: white;
+}
+#home section.why .ink-grid {
+  height: 100%;
+}
+#home section.why .ink-grid .column-group {
+  height: inherit;
+}
+#home section.how {
+  padding: 5em 0;
+  background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, color-stop(0%, #cd6969), color-stop(100%, #c04343));
+  background-image: -webkit-radial-gradient(#cd6969, #c04343);
+  background-image: -moz-radial-gradient(#cd6969, #c04343);
+  background-image: -o-radial-gradient(#cd6969, #c04343);
+  background-image: radial-gradient(#cd6969, #c04343);
+}
+#home section.how h1, #home section.how h2, #home section.how h3, #home section.how p, #home section.how ul {
+  color: white;
+}
+#home section.how .ink-grid {
+  height: 100%;
+}
+#home section.how .ink-grid .column-group {
+  height: inherit;
+}
+#home section.who {
+  padding: 5em 0;
+  background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, color-stop(0%, #d6a475), color-stop(100%, #ca8a4e));
+  background-image: -webkit-radial-gradient(#d6a475, #ca8a4e);
+  background-image: -moz-radial-gradient(#d6a475, #ca8a4e);
+  background-image: -o-radial-gradient(#d6a475, #ca8a4e);
+  background-image: radial-gradient(#d6a475, #ca8a4e);
+}
+#home section.who h1, #home section.who h2, #home section.who h3, #home section.who p, #home section.who ul {
+  color: white;
+}
+#home section.who .ink-grid {
+  height: 100%;
+}
+#home section.who .ink-grid .column-group {
+  height: inherit;
 }
