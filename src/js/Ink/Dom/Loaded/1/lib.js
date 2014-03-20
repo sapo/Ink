@@ -8,6 +8,9 @@ Ink.createModule('Ink.Dom.Loaded', 1, [], function() {
 
     'use strict';
 
+    /**
+     * @namespace Ink.Dom.Loaded_1
+     **/
     var Loaded = {
 
         /**

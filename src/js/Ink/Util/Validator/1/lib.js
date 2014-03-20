@@ -10,7 +10,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
     /**
      * Set of functions to provide validation
      *
-     * @class Ink.Util.Validator
+     * @namespace Ink.Util.Validator
      * @version 1
      * @static
      */
