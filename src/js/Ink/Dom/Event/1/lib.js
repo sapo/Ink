@@ -16,6 +16,11 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
            expr:true
            */
 
+    /**
+     * @namespace Ink.Dom.Event_1
+     * @static
+     */
+
     /*!
       * Bean - copyright (c) Jacob Thornton 2011-2012
       * https://github.com/fat/bean

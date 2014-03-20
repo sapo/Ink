@@ -7,6 +7,10 @@
 Ink.createModule('Ink.Dom.FormSerialize', 1, [], function () {
     'use strict';
 
+    /**
+     * @namespace Ink.Dom.FormSerialize
+     * @static
+     **/
     var FormSerialize = {
 
         /**

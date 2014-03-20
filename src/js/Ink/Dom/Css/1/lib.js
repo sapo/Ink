@@ -12,7 +12,7 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
      var getCs = ("defaultView" in document) && ("getComputedStyle" in document.defaultView) ? document.defaultView.getComputedStyle : window.getComputedStyle;
 
     /**
-     * @class Ink.Dom.Css
+     * @namespace Ink.Dom.Css
      * @static
      */
 

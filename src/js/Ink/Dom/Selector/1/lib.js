@@ -1914,6 +1914,11 @@ support.detectDuplicates = hasDuplicate;
 // EXPOSE
 
 /**
+ * @namespace Ink.Dom.Selector
+ * @static
+ */
+
+/**
  * Alias for the Sizzle selector engine
  *
  * @method select

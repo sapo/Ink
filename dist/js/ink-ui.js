@@ -227,6 +227,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
             autoAdvance:    ['Integer', 0],
             axis:           ['String', 'x'],
             initialPage:    ['Integer', 0],
+            spaceAfterLastSlide: ['Boolean', true],
             hideLast:       ['Boolean', false],
             center:         ['Boolean', false],
             keyboardSupport:['Boolean', false],
@@ -243,6 +244,10 @@ Ink.createModule('Ink.UI.Carousel', '1',
         this._ulEl = ulEl;
 
         InkElement.removeTextNodeChildren(ulEl);
+
+        if (this._options.pagination == null) {
+            this._currentPage = this._options.initialPage;
+        }
 
         this.refit(); // recalculate this._numPages
 
@@ -302,7 +307,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
             if (this._pagination && numPagesChanged) {
                 this._pagination.setSize(this._numPages);
             }
-            this.setPage(limitRange(this.getPage(), 1, this._numPages));
+            this.setPage(limitRange(this.getPage(), 0, this._numPages));
         },
 
         _setUpPagination: function () {
@@ -413,8 +418,8 @@ Ink.createModule('Ink.UI.Carousel', '1',
 
             this._touchMoveIsFirstTouchMove = true;
 
-            // event.preventDefault();
-            event.stopPropagation();
+            // InkEvent.stopDefault(event);
+            InkEvent.stopPropagation(event);
         },
 
         _onTouchMove: function (event) {
@@ -438,12 +443,12 @@ Ink.createModule('Ink.UI.Carousel', '1',
             }
 
             if (!this._scrolling && this._swipeData) {
-                event.preventDefault();
+                InkEvent.stopDefault(event);
 
                 this._swipeData.pointerPos = this._isY ? pointerY : pointerX;
             }
 
-            event.stopPropagation();
+            InkEvent.stopPropagation(event);
         },
 
         _onAnimationFrame: function () {
@@ -488,8 +493,8 @@ Ink.createModule('Ink.UI.Carousel', '1',
 
                 this.setPage(curPage);
 
-                event.stopPropagation();
-                // event.preventDefault();
+                InkEvent.stopPropagation(event);
+                // InkEvent.stopDefault(event);
             }
 
             setTransitionProperty(this._ulEl, null /* transition: left, top */);
@@ -510,7 +515,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
             if (this._pagination) {
                 return this._pagination.getCurrent();
             } else {
-                return this._currentPage;
+                return this._currentPage || 0;
             }
         },
 
@@ -536,8 +541,18 @@ Ink.createModule('Ink.UI.Carousel', '1',
         },
 
         _setPage: function (page) {
+            var _lengthToGo = page * this._deltaLength;
+            var isLastPage = page === (this._numPages - 1);
+
+            if (!this._options.spaceAfterLastSlide && isLastPage && page > 0) { 
+                var _itemsInLastPage = this._liEls.length - (page * this._slidesPerPage);
+                if(_itemsInLastPage < this._slidesPerPage) {
+                    _lengthToGo = ((page - 1) * this._deltaLength) + (_itemsInLastPage * this._elLength);
+                }
+            }
+
             this._ulEl.style[ this._isY ? 'top' : 'left'] =
-                ['-', page * this._deltaLength, 'px'].join('');
+                ['-', _lengthToGo, 'px'].join('');
 
             if (this._options.onChange) {
                 this._options.onChange.call(this, page);
@@ -724,7 +739,10 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
         elOrSelector: function(elOrSelector, fieldName) {
             if (!this.isDOMElement(elOrSelector)) {
                 var t = Selector.select(elOrSelector);
-                if (t.length === 0) { throw new TypeError(fieldName + ' must either be a DOM Element or a selector expression!\nThe script element must also be after the DOM Element itself.'); }
+                if (t.length === 0) {
+                    Ink.warn(fieldName + ' must either be a DOM Element or a selector expression!\nThe script element must also be after the DOM Element itself.');
+                    return null;
+                }
                 return t[0];
             }
             return elOrSelector;
@@ -5422,7 +5440,7 @@ Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
      *      @param {Function}           [options.onLoad]          Date format string
      *
      * @example
-     *      <div class="imageQueryExample large-100 medium-100 small-100 content-center clearfix vspace">
+     *      <div class="imageQueryExample all-100 content-center clearfix vspace">
      *          <img src="/assets/imgs/imagequery/small/image.jpg" />
      *      </div>
      *      <script type="text/javascript">
@@ -5608,6 +5626,157 @@ Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
     };
 
     return ImageQuery;
+
+});
+
+/**
+ * @module Ink.UI.LazyLoad_1
+ */
+
+Ink.createModule('Ink.UI.LazyLoad', '1', ['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1'], function(UICommon, InkEvent, InkElement) {
+'use strict';
+
+var LazyLoad = function(selector, options) {
+    this._init(selector, options);
+};
+
+LazyLoad.prototype = {
+    /**
+     * @class Ink.UI.LazyLoad_1
+     * @constructor
+     */
+    _init: function(selector) {
+        this._rootElm = UICommon.elsOrSelector(selector, 'Ink.UI.LazyLoad root element')[0] || null;
+
+        this._options = UICommon.options({
+            item: ['String', '.lazyload-item'], // Use this to select and define what is to be considered an `item`.
+            placeholder: ['String', null], // Placeholder value for items which are still outside the screen (in case they don't already have a value set)
+            source: ['String', 'data-src'], // When an `item` is within the viewport, take the value it has in this attribute then set its `destination` attribute to it.
+            destination: ['String', 'src'], // attribute which gets the value in `source` when the element is visible.
+            delay: ['Number', 100], // Wait a few milliseconds before trying to load.
+            delta: ['Number', 0], // Distance in px from the outside of the viewport. Elements touching within this "margin", items are considered to be inside even if they are outside the viewport limits. Can be negative if you want an element to be considered inside only when it is a certain distance into the viewport.
+            image: ['Boolean', true], // Set to false to make this component do nothing to any elements and just give you the onInsideViewport callback.
+            touchEvents: ['Boolean', true],  // Subscribe to touch events in addition to scroll events. Useful in mobile safari because 'scroll' events aren't frequent enough.
+            onInsideViewport: ['Function', false], // Called when an `item` is within the viewport. Receives `{ element }`
+            onAfterAttributeChange: ['Function', false],  // (advanced) Called after `source` is copied over to `destination`. Receives `{ element }`
+            autoInit: ['Boolean', true]  // Set to false if you want LazyLoad to do nothing until you call `reload()`
+        }, arguments[1] || {}, this._rootElm);
+
+        this._aData = [];
+        this._hasEvents = false;
+   
+        if(this._options.autoInit) {
+            this._activate();
+        } 
+    },
+
+    _activate: function() 
+    {
+        this._getData();
+        if(!this._hasEvents) {
+            this._addEvents(); 
+        }
+        this._onScrollThrottled();
+    },
+
+    _getData: function()
+    {
+        var aElms = Ink.ss(this._options.item);
+        var attr = null;
+        for(var i=0, t=aElms.length; i < t; i++) {
+            if (this._options.placeholder != null && !InkElement.hasAttribute(aElms[i], this._options.destination)) {
+                aElms[i].setAttribute(this._options.destination, this._options.placeholder);
+            }
+            attr = aElms[i].getAttribute(this._options.source);
+            if(attr !== null || !this._options.image) {
+                this._aData.push({elm: aElms[i], original: attr});
+            }
+        }
+    },
+
+    _addEvents: function() 
+    {
+        this._onScrollThrottled = InkEvent.throttle(Ink.bindEvent(this._onScroll, this), this._options.delay);
+        if('ontouchmove' in document.documentElement && this._options.touchEvents) {
+            InkEvent.observe(document.documentElement, 'touchmove', this._onScrollThrottled);
+        }
+        InkEvent.observe(window, 'scroll', this._onScrollThrottled);
+        this._hasEvents = true;
+    },
+
+    _removeEvents: function() {
+        if('ontouchmove' in document.documentElement && this._options.touchEvents) {
+            InkEvent.stopObserving(document.documentElement, 'touchmove', this._onScrollThrottled);
+        }
+        InkEvent.stopObserving(window, 'scroll', this._onScrollThrottled);
+        this._hasEvents = false;
+    }, 
+
+    _onScroll: function() {
+        var curElm;
+
+        for(var i=0; i < this._aData.length; i++) {
+            curElm = this._aData[i];
+
+            if(InkElement.inViewport(curElm.elm, { partial: true, margin: this._options.delta })) {
+                this._elInViewport(curElm);
+                if (this._options.image) {
+                    /* [todo] a seemingly unrelated option creates a branch? Some of this belongs in another module. */
+                    this._aData.splice(i, 1);
+                    i -= 1;
+                }
+            }
+        }
+
+        if (this._aData.length === 0) {
+            this._removeEvents();
+        }
+    },
+
+    /**
+     * Called when an element is detected inside the viewport
+     *
+     * @method _elInViewport
+     * @param {LazyLoadInternalElementData} curElm
+     * @private
+     **/
+    _elInViewport: function (curElm) {
+        this._userCallback('onInsideViewport', { element: curElm.elm });
+
+        if(this._options.image) {
+            curElm.elm.setAttribute(this._options.destination, curElm.original);
+            curElm.elm.removeAttribute(this._options.source);
+        }
+
+        this._userCallback('onAfterAttributeChange', { element: curElm.elm });
+    },
+
+    /**
+     * Call a callback if it exists and its `typeof` is `"function"`.
+     * @method _userCallback
+     * @param name {String} Callback name in this._options.
+     * @private
+     **/
+    _userCallback: function (name) {
+        if (typeof this._options[name] === 'function') {
+            this._options[name].apply(this, [].slice.call(arguments, 1));
+        }
+    },
+
+    // API 
+    reload: function() {
+        this._activate(); 
+    },
+
+    destroy: function() {
+        if(this._hasEvents) {
+            this._removeEvents();
+        }
+        UICommon.destroyComponent.call(this);
+    }
+};
+
+return LazyLoad;
 
 });
 
@@ -6305,7 +6474,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
             itemsPerPage:      ['Integer', null],
             maxSize:           ['Integer', null],
             start:             ['Integer', 1],
-            sideButtons:       ['Boolean', true],
+            sideButtons:       ['Boolean', 1 /* actually `true` but we want to see if user is using the default or not. */],
             // TODO add pagination-type which accepts color strings, "chevron" and "dotted". Basically classes to add to the UL.
             firstLabel:        ['String', 'First'],
             lastLabel:         ['String', 'Last'],
@@ -6502,21 +6671,21 @@ Ink.createModule('Ink.UI.Pagination', '1',
                 return liEl;
             }, this);
 
-            if (!isDotted) {
-                if (this._options.maxSize) {
-                    this._firstEl = createLiEl('first');
-                    this._prevPageEl = createLiEl('previousPage');
-                }
+            if (!isDotted && this._options.maxSize) {
+                this._firstEl = createLiEl('first');
+                this._prevPageEl = createLiEl('previousPage');
+            }
 
-                if (this._options.sideButtons) {
-                    this._prevEl = createLiEl('previous', { wrapText: isChevron });
-                    this._nextEl = createLiEl('next', { wrapText: isChevron });
-                }
+            // When we're dotted, the default for sideButtons is `false`. When we're note, it's `true`.
+            // Since the default is actually "1", we do a === true check when we're dotted, and a truthish check when we're not.
+            if ((isDotted && this._options.sideButtons === true) || (!isDotted && this._options.sideButtons)) {
+                this._prevEl = createLiEl('previous', { wrapText: isChevron });
+                this._nextEl = createLiEl('next', { wrapText: isChevron });
+            }
 
-                if (this._options.maxSize) {
-                    this._nextPageEl = createLiEl('nextPage');
-                    this._lastEl = createLiEl('last');
-                }
+            if (!isDotted && this._options.maxSize) {
+                this._nextPageEl = createLiEl('nextPage');
+                this._lastEl = createLiEl('last');
             }
 
             if( !hasUlAlready ){
@@ -6867,7 +7036,7 @@ Ink.createModule('Ink.UI.ProgressBar', '1', ['Ink.Dom.Selector_1','Ink.Dom.Eleme
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.Dom.Event_1','Ink.Dom.Selector_1','Ink.Dom.Loaded_1'], function(Event, Selector, Loaded) {
+Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1','Ink.Dom.Loaded_1'], function(Event, InkElement, Selector, Loaded) {
     'use strict';
 
     var requestAnimationFrame =
@@ -6987,24 +7156,28 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.Dom.Event_1','Ink.Dom.Selec
          * @public
          * @static
          */
-        scroll: function(d) {
+        scroll: function(d, options) {
             var a = SmoothScroller.scrollTop();
-            if (d > a) {
-                a += Math.ceil((d - a) / SmoothScroller.speed);
-            } else {
-                a = a + (d - a) / SmoothScroller.speed;
-            }
+            var margin = options.margin || 0;
 
-            window.scrollTo(0, a);
+            var endPos = d - margin;
+
+            if (endPos > a) {
+                a += Math.ceil((endPos - a) / SmoothScroller.speed);
+            } else {
+                a = a + (endPos - a) / SmoothScroller.speed;
+            }
 
             cancelAnimationFrame(SmoothScroller.interval);
 
-            if (!((a) === d || SmoothScroller.offsetTop === a)) {
+            if (!((a) === endPos || SmoothScroller.offsetTop === a)) {
                 SmoothScroller.interval = requestAnimationFrame(
-                    Ink.bindMethod(SmoothScroller, 'scroll', d), document.body);
+                    Ink.bindMethod(SmoothScroller, 'scroll', d, options), document.body);
             } else {
                 SmoothScroller.onDone();
             }
+
+            window.scrollTo(0, a);
             SmoothScroller.offsetTop = a;
         },
 
@@ -7049,11 +7222,13 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.Dom.Event_1','Ink.Dom.Selec
          */
         onClick: function(event, _elm) {
             SmoothScroller.end(event);
-            if(_elm !== null && _elm.getAttribute('href') !== null) {
+            if(_elm != null && _elm.getAttribute('href') !== null) {
                 var hashIndex = _elm.href.indexOf('#');
                 if (hashIndex === -1) {
                     return;
                 }
+
+                var data = InkElement.data(_elm);
                 var hash = _elm.href.substr((hashIndex + 1));
                 var activeLiSelector = 'ul > li.active > ' + selector;
 
@@ -7070,7 +7245,11 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.Dom.Event_1','Ink.Dom.Selec
                         _elm.parentNode.className += " active";
                     }
                     SmoothScroller.hash = hash;
-                    SmoothScroller.scroll(SmoothScroller.getTop(elm));
+                    var options = {};
+                    if (parseFloat(data.margin)) {
+                        options.margin = parseFloat(data.margin);
+                    }
+                    SmoothScroller.scroll(SmoothScroller.getTop(elm), options);
                 }
             }
         },
@@ -7472,7 +7651,7 @@ Ink.createModule('Ink.UI.Spy', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Do
      */
     var Spy = function( selector, options ){
 
-        this._rootElement = Common.elOrSelector(selector,'1st argument');
+        this._rootElement = Common.elOrSelector( selector, 'Ink.UI.Spy_1: Link element' );
 
         /**
          * Setting default options and - if needed - overriding it with the data attributes
@@ -7487,7 +7666,7 @@ Ink.createModule('Ink.UI.Spy', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Do
          */
         this._options = Ink.extendObj(this._options,options || {});
 
-        this._options.target = Common.elOrSelector( this._options.target, 'Target' );
+        this._options.target = Common.elOrSelector( this._options.target, 'Ink.UI.Spy_1: Target element' );
 
         this._init();
     };
@@ -7574,17 +7753,17 @@ Stacker.prototype = {
      * Html:
      *
      *     <div id="stacker-container">  <!-- Stacker element -->
-     *         <div class="large-33 medium-50 small-100 stacker-column"> <!-- Column element ('.stacker-column' is the default selector) -->
+     *         <div class="extra-large-33 large-33 medium-50 tiny-100 stacker-column"> <!-- Column element ('.stacker-column' is the default selector) -->
      *             <div id="a" class="stacker-item">a</div> <!-- Item ('.stacker-item' is the default selector) -->
      *             <div id="d" class="stacker-item">d</div>
      *             <div id="g" class="stacker-item">g</div>
      *         </div>
-     *         <div class="large-33 medium-50 small-100 hide-small stacker-column">
+     *         <div class="extra-large-33 large-33 medium-50 tiny-100 hide-small stacker-column">
      *             <div id="b" class="stacker-item">b</div>
      *             <div id="e" class="stacker-item">e</div>
      *             <div id="h" class="stacker-item">h</div>
      *         </div>
-     *         <div class="large-33 medium-50 small-100 hide-medium hide-small stacker-column">
+     *         <div class="extra-large-33 large-33 medium-50 tiny-100 hide-medium hide-small stacker-column">
      *             <div id="c" class="stacker-item">c</div>
      *             <div id="f" class="stacker-item">f</div>
      *             <div id="i" class="stacker-item">i</div>
@@ -8489,6 +8668,8 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
 
         this._options = Common.options({
             pageSize: ['Integer', null],
+            caretUpClass: ['String', 'fa fa-caret-up'],
+            caretDownClass: ['String', 'fa fa-caret-down'],
             endpoint: ['String', null],
             createEndpointUrl: ['Function', null /* default func uses above option */],
             getDataFromEndPoint: ['Function', null /* by default use plain ajax for JSON */],
@@ -8654,19 +8835,19 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
 
         _setSortOrderOfColumn: function(index, up) {
             var header = this._headers[index];
-            var caretHtml = '';
+            var caretHtml = [''];
             var order = 'none';
 
             if (up === true) {
-                caretHtml = '<i class="icon-caret-up"></i>';
+                caretHtml = ['<i class="', this._options.caretUpClass, '"></i>'];
                 order = 'asc';
             } else if (up === false) {
-                caretHtml = '<i class="icon-caret-down"></i>';
+                caretHtml = ['<i class="', this._options.caretDownClass, '"></i>'];
                 order = 'desc';
             }
 
             this._sortableFields[index] = order;
-            header.innerHTML = Element.textContent(header) + caretHtml;
+            header.innerHTML = Element.textContent(header) + caretHtml.join('');
         },
 
         /**
@@ -9638,7 +9819,7 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
             });
 
             var remove = InkElement.create('span', {
-                className: 'remove icon icon-remove icon-times',  // fontawesome 3 changed icon-remove's name to icon-times
+                className: 'remove fa fa-times',
                 insertBottom: elm
             });
             InkEvent.observe(remove, 'click', Ink.bindEvent(this._removeTag, this, null));
@@ -9786,7 +9967,7 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
      *
      * @example
      *      <div class="ink-dropdown">
-     *          <button class="ink-button toggle" data-target="#dropdown">Dropdown <span class="icon-caret-down"></span></button>
+     *          <button class="ink-button toggle" data-target="#dropdown">Dropdown <span class="fa fa-caret-down"></span></button>
      *          <ul id="dropdown" class="dropdown-menu">
      *              <li class="heading">Heading</li>
      *              <li class="separator-above"><a href="#">Option</a></li>
@@ -10506,6 +10687,7 @@ Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Common_1', 'Ink.Dom.Event_1', '
 Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Common, Event, Css, Element, Selector, InkArray ) {
     'use strict';
 
+
     /**
      * Shows elements in a tree-like hierarchical structure.
      * 
@@ -10516,8 +10698,8 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
      * @param {String} [options.node='li'] Selector to define which elements are seen as nodes.
      * @param {String} [options.children='ul'] Selector to define which elements are represented as children.
      * @param {String} [options.parentClass='parent'] Classes to be added to the parent node.
-     * @param {String} [options.openClass='icon icon-minus-circle'] Classes to be added to the icon when a parent is open.
-     * @param {String} [options.closedClass='icon icon-plus-circle'] Classes to be added to the icon when a parent is closed.
+     * @param {String} [options.openClass='fa fa-minus-circle'] Classes to be added to the icon when a parent is open.
+     * @param {String} [options.closedClass='fa fa-plus-circle'] Classes to be added to the icon when a parent is closed.
      * @param {String} [options.hideClass='hide-all'] Class to toggle visibility of the children.
      * @param {String} [options.iconTag='i'] The name of icon tag. The component tries to find a tag with that name as a direct child of the node. If it doesn't find it, it creates it.
      * @param {Boolean} [options.stopDefault=true] Stops the default behavior of the click handler.
@@ -10557,12 +10739,9 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
             'child':  ['String','ul'],
             'children':  ['String','ul'],
             'parentClass': ['String','parent'],
-            // [3.0.0] use these classes because you'll have font-awesome 4
-            // 'openClass': ['String','fa fa-minus-circle'],
-            // 'closedClass': ['String','fa fa-plus-circle'],
             'openNodeClass': ['String', 'open'],
-            'openClass': ['String','icon-minus-sign'],
-            'closedClass': ['String','icon-plus-sign'],
+            'openClass': ['String','fa fa-minus-circle'],
+            'closedClass': ['String','fa fa-plus-circle'],
             'hideClass': ['String','hide-all'],
             'iconTag': ['String', 'i'],
             'stopDefault' : ['Boolean', true]
@@ -10631,8 +10810,24 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
 
                 node.setAttribute('data-open', beOpen);
 
-                Css.setClassName(icon, this._options.openClass, beOpen);
-                Css.setClassName(icon, this._options.closedClass, !beOpen);
+                /*
+                 * Don't refactor this to
+                 *
+                 * setClassName(el, className, status); setClassName(el, className, !status);
+                 *
+                 * because it won't work with multiple classes.
+                 *
+                 * Doing:
+                 * setClassName(el, 'fa fa-whatever', true);setClassName(el, 'fa fa-whatever-else', false);
+                 *
+                 * will remove 'fa' although it is a class we want.
+                 */
+
+                var toAdd = beOpen ? this._options.openClass : this._options.closedClass;
+                var toRemove = beOpen ? this._options.closedClass : this._options.openClass;
+                Css.removeClassName(icon, toRemove);
+                Css.addClassName(icon, toAdd);
+
                 Css.setClassName(node, this._options.openNodeClass, beOpen);
             } else {
                 Ink.error('Ink.UI.TreeView: node', node, 'is not a node!');
