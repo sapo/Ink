@@ -92,10 +92,8 @@
     > .modal-footer, > footer {
         background: $grey-10;
         margin-bottom: 0;
+        zoom: 1;  // IE7 needs layout...
         @include box-shadow(rgba(175, 175, 175, 0.2) 0 -1px 2px 0);
-        position: absolute;
-        bottom: 0;
-        width: 100%;
     }
 
     > .modal-header, > header, > .modal-footer, > footer {
