@@ -1,6 +1,22 @@
-<p>Desc... <code>this</code> </p>
-
+<p>Get the offset (left and top) position of a given element relative to the closest positioned parent element</p>
 <p class="example-title">Code</p>
-{% highlight js %}
-{% endhighlight %}
+{% highlight html %}
+<body>
+<div id="container_a" style="padding:30px;">
+    <div id="container_b" style="padding: 30px; position: relative;">
+        <div id="container_c" style="position: absolute; top: 0px; left: 0px;">
+        </div>
+    </div>
+</div>
 
+</body>
+<script>
+Ink.requireModules(['Ink.Dom.Element_1'], function(InkElement) {
+    
+    var aPositionedOffset = InkElement.positionedOffset('container_c');
+
+    Ink.log(aPositionedOffset); // [0, 0]  
+
+});
+</script>
+{% endhighlight %}
