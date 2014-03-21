@@ -1823,16 +1823,25 @@
 
 .push-left {
   float: left;
+  -webkit-justify-content: flex-start;
+  -moz-justify-content: flex-start;
+  justify-content: flex-start;
 }
 
 .push-center {
   float: none !important;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  justify-content: center;
   margin-left: auto;
   margin-right: auto;
 }
 
 .push-right {
   float: right;
+  -webkit-justify-content: flex-end;
+  -moz-justify-content: flex-end;
+  justify-content: flex-end;
 }
 
 .align-left {
@@ -1862,6 +1871,8 @@ html {
   /* 2 */
 }
 html * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 
@@ -7597,6 +7608,7 @@ html.flexbox .order-10 {
     -webkit-justify-content: flex-start;
     -moz-justify-content: flex-start;
     justify-content: flex-start;
+    float: left;
   }
   html.flexbox .push-center,
   html.flexbox .extra-large-push-center {
@@ -7604,12 +7616,15 @@ html.flexbox .order-10 {
     -webkit-justify-content: center;
     -moz-justify-content: center;
     justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
   }
   html.flexbox .push-right,
   html.flexbox .extra-large-push-right {
     -webkit-justify-content: flex-end;
     -moz-justify-content: flex-end;
     justify-content: flex-end;
+    float: right;
   }
   html.flexbox .extra-large-align-left {
     text-align: left;
@@ -8464,6 +8479,7 @@ html.flexbox .order-10 {
     -webkit-justify-content: flex-start;
     -moz-justify-content: flex-start;
     justify-content: flex-start;
+    float: left;
   }
   html.flexbox .push-center,
   html.flexbox .large-push-center {
@@ -8471,12 +8487,15 @@ html.flexbox .order-10 {
     -webkit-justify-content: center;
     -moz-justify-content: center;
     justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
   }
   html.flexbox .push-right,
   html.flexbox .large-push-right {
     -webkit-justify-content: flex-end;
     -moz-justify-content: flex-end;
     justify-content: flex-end;
+    float: right;
   }
   html.flexbox .large-align-left {
     text-align: left;
@@ -9331,6 +9350,7 @@ html.flexbox .order-10 {
     -webkit-justify-content: flex-start;
     -moz-justify-content: flex-start;
     justify-content: flex-start;
+    float: left;
   }
   html.flexbox .push-center,
   html.flexbox .medium-push-center {
@@ -9338,12 +9358,15 @@ html.flexbox .order-10 {
     -webkit-justify-content: center;
     -moz-justify-content: center;
     justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
   }
   html.flexbox .push-right,
   html.flexbox .medium-push-right {
     -webkit-justify-content: flex-end;
     -moz-justify-content: flex-end;
     justify-content: flex-end;
+    float: right;
   }
   html.flexbox .medium-align-left {
     text-align: left;
@@ -10198,6 +10221,7 @@ html.flexbox .order-10 {
     -webkit-justify-content: flex-start;
     -moz-justify-content: flex-start;
     justify-content: flex-start;
+    float: left;
   }
   html.flexbox .push-center,
   html.flexbox .small-push-center {
@@ -10205,12 +10229,15 @@ html.flexbox .order-10 {
     -webkit-justify-content: center;
     -moz-justify-content: center;
     justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
   }
   html.flexbox .push-right,
   html.flexbox .small-push-right {
     -webkit-justify-content: flex-end;
     -moz-justify-content: flex-end;
     justify-content: flex-end;
+    float: right;
   }
   html.flexbox .small-align-left {
     text-align: left;
@@ -11065,6 +11092,7 @@ html.flexbox .order-10 {
     -webkit-justify-content: flex-start;
     -moz-justify-content: flex-start;
     justify-content: flex-start;
+    float: left;
   }
   html.flexbox .push-center,
   html.flexbox .tiny-push-center {
@@ -11072,12 +11100,15 @@ html.flexbox .order-10 {
     -webkit-justify-content: center;
     -moz-justify-content: center;
     justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
   }
   html.flexbox .push-right,
   html.flexbox .tiny-push-right {
     -webkit-justify-content: flex-end;
     -moz-justify-content: flex-end;
     justify-content: flex-end;
+    float: right;
   }
   html.flexbox .tiny-align-left {
     text-align: left;
@@ -11959,7 +11990,8 @@ html.flexbox .order-10 {
   transition: all 140ms ease-in-out;
 }
 .ink-navigation ul.pagination.chevron li.next a span, .ink-navigation ul.pagination.chevron li.previous a span {
-  text-indent: 99999px;
+  text-indent: -99999px;
+  display: inline-block;
 }
 .ink-navigation ul.pagination.chevron li.disabled a {
   color: rgba(255, 255, 255, 0.6);
@@ -12249,45 +12281,45 @@ a:hover {
 }
 
 h1 {
-  font-size: 2em;
+  font-size: 2.2em;
   margin-top: 0;
-  margin-bottom: 0.5em;
+  margin-bottom: 0.5357em;
 }
 
 h2 {
   font-size: 1.75em;
   margin-top: 0;
-  margin-bottom: 0.575em;
+  margin-bottom: 0.67346em;
 }
 
 h3 {
   font-size: 1.5em;
   margin-top: 0;
-  margin-bottom: 0.667em;
+  margin-bottom: 0.7857em;
 }
 
 h4 {
   font-size: 1.25em;
   margin-top: 0;
-  margin-bottom: 0.8em;
+  margin-bottom: 0.94284em;
 }
 
 h5 {
   font-size: 1.1em;
   margin-top: 0;
-  margin-bottom: 0.91em;
+  margin-bottom: 1.07141em;
 }
 
 h6 {
   font-size: 1.1em;
   margin-top: 0;
-  margin-bottom: 1.1em;
+  margin-bottom: 1.07141em;
 }
 
 p {
   font-size: 1em;
   margin-top: 0;
-  margin-bottom: 1em;
+  margin-bottom: 1.17855em;
 }
 
 h1:first-child, h2:first-child, h3:first-child, h4:first-child, h5:first-child, h6:first-child, p:first-child {

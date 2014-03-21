@@ -367,7 +367,7 @@ body.ink-drawer .right-drawer li:last-child {
 
 .highlight pre {
   margin: 0;
-  font-size: .913em;
+  font-size: 0.85em;
   overflow-x: auto;
   white-space: pre;
   word-wrap: normal;
@@ -698,7 +698,7 @@ body.ink-drawer .right-drawer li:last-child {
   line-height: 1.5;
 }
 .page-header p.section-title {
-  margin: 0 0 0.3em 0;
+  margin: 0;
 }
 .page-header .border {
   background-image: url("../img/home_bkg.png") center 0px;
@@ -725,7 +725,7 @@ section:first-child {
 }
 section + section {
   margin-top: 3em;
-  padding-top: 3em;
+  padding-top: 2em;
   border-top: 1px solid #ded8cc;
 }
 section p, section ul, section ol, section dl, section dt code, section table {
@@ -736,7 +736,7 @@ p code, ul code, dl code {
   margin: 0 2px;
   padding: 0 5px;
   background-color: #eeebe5;
-  font-size: .938em;
+  font-size: 0.85em;
 }
 
 table.props {
@@ -803,7 +803,7 @@ ul.props li.heading {
 }
 ul.props li.prop {
   background-color: #eeebe5;
-  font-size: .938em;
+  font-size: 0.85em;
   padding: 0 5px;
 }
 ul.props li.prop.breakpoint-aware:after {
@@ -883,7 +883,7 @@ p + p.example-title {
 }
 
 .example code, .example pre, table.props code, table.props pre {
-  font-size: 0.913em;
+  font-size: 0.85em;
 }
 
 .example,
@@ -1019,14 +1019,14 @@ footer .ink-navigation ul.menu.horizontal li a.license {
   border-color: #867758;
 }
 #home section.what {
-  background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, color-stop(0%, #ffffff), color-stop(100%, #cccccc));
-  background-image: -webkit-radial-gradient(#ffffff, #cccccc);
-  background-image: -moz-radial-gradient(#ffffff, #cccccc);
-  background-image: -o-radial-gradient(#ffffff, #cccccc);
-  background-image: radial-gradient(#ffffff, #cccccc);
+  background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, color-stop(0%, #709dc7), color-stop(100%, #4b84b9));
+  background-image: -webkit-radial-gradient(#709dc7, #4b84b9);
+  background-image: -moz-radial-gradient(#709dc7, #4b84b9);
+  background-image: -o-radial-gradient(#709dc7, #4b84b9);
+  background-image: radial-gradient(#709dc7, #4b84b9);
 }
 #home section.what h1, #home section.what h2, #home section.what h3, #home section.what p, #home section.what ul {
-  color: #555555;
+  color: white;
 }
 #home section.what .ink-grid {
   height: 100%;

@@ -1829,6 +1829,9 @@
 
 .push-right {
   float: right;
+  -webkit-justify-content: flex-end;
+  -moz-justify-content: flex-end;
+  justify-content: flex-end;
 }
 
 .align-left {
@@ -1858,6 +1861,8 @@ html {
   /* 2 */
 }
 html * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 
@@ -7373,7 +7378,8 @@ th {
   transition: all 140ms ease-in-out;
 }
 .ink-navigation ul.pagination.chevron li.next a span, .ink-navigation ul.pagination.chevron li.previous a span {
-  text-indent: 99999px;
+  text-indent: -99999px;
+  display: inline-block;
 }
 .ink-navigation ul.pagination.chevron li.disabled a {
   color: rgba(255, 255, 255, 0.6);
@@ -7663,45 +7669,45 @@ a:hover {
 }
 
 h1 {
-  font-size: 2em;
+  font-size: 2.2em;
   margin-top: 0;
-  margin-bottom: 0.5em;
+  margin-bottom: 0.5357em;
 }
 
 h2 {
   font-size: 1.75em;
   margin-top: 0;
-  margin-bottom: 0.575em;
+  margin-bottom: 0.67346em;
 }
 
 h3 {
   font-size: 1.5em;
   margin-top: 0;
-  margin-bottom: 0.667em;
+  margin-bottom: 0.7857em;
 }
 
 h4 {
   font-size: 1.25em;
   margin-top: 0;
-  margin-bottom: 0.8em;
+  margin-bottom: 0.94284em;
 }
 
 h5 {
   font-size: 1.1em;
   margin-top: 0;
-  margin-bottom: 0.91em;
+  margin-bottom: 1.07141em;
 }
 
 h6 {
   font-size: 1.1em;
   margin-top: 0;
-  margin-bottom: 1.1em;
+  margin-bottom: 1.07141em;
 }
 
 p {
   font-size: 1em;
   margin-top: 0;
-  margin-bottom: 1em;
+  margin-bottom: 1.17855em;
 }
 
 h1:first-child, h2:first-child, h3:first-child, h4:first-child, h5:first-child, h6:first-child, p:first-child {

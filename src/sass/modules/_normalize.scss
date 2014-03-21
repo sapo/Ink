@@ -11,7 +11,7 @@ html {
   -ms-text-size-adjust: 100%; /* 2 */
   -webkit-text-size-adjust: 100%; /* 2 */
   & * {
-    box-sizing: border-box;
+    @include experimental(box-sizing, border-box, -moz, -webkit, not -o, not -ms, not -khtml, official);
   }
 }
 
