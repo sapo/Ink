@@ -1,5 +1,6 @@
 html {
-    //@include body-font-size($base-font-size);
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -49,10 +50,11 @@ a {
     }
 }
 
+@include vertical-rhythm();
+
 /* Headings  */
 h1, h2, h3, h4, h5, h6 {
     color: $headings-color;
-    margin: 0;
     font-weight: 700;
 }
 
