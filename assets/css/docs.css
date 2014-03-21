@@ -367,7 +367,11 @@ body.ink-drawer .right-drawer li:last-child {
 
 .highlight pre {
   margin: 0;
+<<<<<<< HEAD
   font-size: 0.85em;
+=======
+  font-size: .875em;
+>>>>>>> 187522658b27b024f040a797bc548ac0a5a659d4
   overflow-x: auto;
   white-space: pre;
   word-wrap: normal;
@@ -800,6 +804,7 @@ ul.props.inline li + li {
 }
 ul.props li.heading {
   text-transform: uppercase;
+  margin: 0 0 .5em;
 }
 ul.props li.prop {
   background-color: #eeebe5;

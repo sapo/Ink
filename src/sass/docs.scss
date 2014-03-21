@@ -345,7 +345,11 @@ body.ink-drawer {
 .highlight          { padding: 1em; background: $code-background; margin-bottom: 1.5em; @include border-radius($border-radius);}
 .highlight pre      { 
     margin: 0; 
+<<<<<<< HEAD
     font-size: $code-font-size; 
+=======
+    font-size: .875em; 
+>>>>>>> 187522658b27b024f040a797bc548ac0a5a659d4
     overflow-x: auto;
     white-space: pre;
     word-wrap: normal;
@@ -538,7 +542,8 @@ ul {
 
         li.heading {
             @extend .fw-700;
-            text-transform: uppercase;            
+            text-transform: uppercase;
+            margin: 0 0 .5em;
         }
         
         li.prop {

@@ -1,3 +1,27 @@
+.ink-shade {
+    background: rgba(0, 0, 0, 0.8);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin-top: 0;
+    position: fixed;
+    z-index: 100;
+    display: none;
+
+    @include opacity(0);
+
+    &.fade {
+        @include transition (opacity 300ms);
+    }
+
+    &.visible {
+        @include opacity(1);
+    }
+}
+
 .ink-modal {
     top: 50%;
     left: 50%;
@@ -68,10 +92,8 @@
     > .modal-footer, > footer {
         background: $grey-10;
         margin-bottom: 0;
+        zoom: 1;  // IE7 needs layout...
         @include box-shadow(rgba(175, 175, 175, 0.2) 0 -1px 2px 0);
-        position: absolute;
-        bottom: 0;
-        width: 100%;
     }
 
     > .modal-header, > header, > .modal-footer, > footer {
