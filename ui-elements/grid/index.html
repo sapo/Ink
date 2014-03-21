@@ -1,14 +1,14 @@
 ---
 layout: documentation
 title: "Grid"
-description: Ink provides a layout grid system that is flexible, responsive and uses a human readable syntax, that makes creating complex layouts that adapt to multiple screen sizes incredibly simple and intuitive.
+description: Ink provides a layout grid system that is flexible, responsive and uses a human readable syntax.
 tags: grid
 site_root: ../../
 ---
 
 <section id="#basic-principles">
   <h1 class="fw-300">Basic principles</h1>
-  <p class="fw-300">Our layout grid was built to allow precise control on how horizontal space is divided and on targeting several screen sizes. To accomplish this we use percentages as our base units and css @media queries to allow you to decide what width should an element take when viewed in a specific screen size.</p>
+  <p class="fw-300">Our layout grid was built to allow precise control on how horizontal space is divided and on targeting several screen sizes. To accomplish this, we use percentages as our base units and CSS @media queries to allow you to decide what width should an element take when viewed in a specific screen size.</p>
   <p class="fw-300">Our default layout breakpoints are:</p>
   <ul class="unstyled" id="breakpoints">
     <li><code>tiny</code> for screens widths up to 320px.</li>
@@ -65,9 +65,9 @@ site_root: ../../
     </tbody>    
   </table>
   <ul class="unstyled">
-    <li><span class="label mandatory"></span> : This class must be used for the {{page.title | downcase }} to work.</li>
-    <li><span class="label breakpoint-aware"></span> : This class has breakpoint dependent variants, e.g. <code>large-class-name</code>.</li>
-    <li><span class="label halves-quarters"></span> : This class has half and quarter size variants, e.g. <code>half-class-name</code>.</li>
+    <li><span class="label mandatory"></span> This class must be used for the {{page.title | downcase }} to work.</li>
+    <li><span class="label breakpoint-aware"></span> This class has breakpoint dependent variants, e.g. <code>large-class-name</code>.</li>
+    <li><span class="label halves-quarters"></span> This class has half and quarter size variants, e.g. <code>half-class-name</code>.</li>
   </ul>
 </section>
 <section id="dividing-space">
@@ -181,7 +181,9 @@ site_root: ../../
   <h1 class="fw-300">Gutters</h1>
   <ul class="css props inline">
     <li class="heading">Css classes:</li>
-    <li><code>gutters</code> <span class="label breakpoint-aware"></span><span class="label halves-quarters"></span></li>
+    <li class="prop">gutters</li>
+    <li><span class="label breakpoint-aware"></span></li>
+    <li><span class="label halves-quarters"></span></li>
   </ul>
   <blockquote>
     Gutters are the space between columns of printed text.
@@ -295,8 +297,4 @@ site_root: ../../
 <p><i class="fa fa-leaf"></i> If you need your layout to work on multiple screens, you'll have to declare the width for all available breakpoints.</p>
 <p>You can also set a width for all breakpoints by using the <code>all-</code> prefix: {% highlight html %}<div class="all-50 small-100"></div>{% endhighlight %}</p>
 <p>Try resizing your browser window to see it working.</p>
-</section>
-<section id="flexbox">
-  <h1 class="fw-300">Flexbox</h1>
-  <p>To use ou</p>
 </section>
