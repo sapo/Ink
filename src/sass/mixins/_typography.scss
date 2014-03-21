@@ -21,39 +21,46 @@
     }
 }
 
-@mixin text-vertical-spacing($font-size,$multiplier) {
+@mixin text-vertical-spacing($font-size) {
   margin-top: 0;
-  margin-bottom: $font-size * $multiplier;
-} 
+  margin-bottom: ((($base-font-size / $font-size) * $vertical-rhythm-unit) / 100) * 1em;
+}
+
 
 @mixin vertical-rhythm() {
   h1 {
     font-size: $h1-font-size;
-    @include text-vertical-spacing($h1-font-size,(0.5)/2);
+    @include text-vertical-spacing($h1-font-size);
   }
+
   h2 {
     font-size: $h2-font-size;
-    @include text-vertical-spacing($h2-font-size,(0.575)/1.75);
+    @include text-vertical-spacing($h2-font-size);
   }
+
   h3 {
     font-size: $h3-font-size;
-    @include text-vertical-spacing($h3-font-size,(0.667)/1.5);
+    @include text-vertical-spacing($h3-font-size);
   }
+
   h4 {
     font-size: $h4-font-size;
-    @include text-vertical-spacing($h4-font-size,(0.8)/1.25);
+    @include text-vertical-spacing($h4-font-size);
   }
+
   h5 {
     font-size: $h5-font-size;
-    @include text-vertical-spacing($h5-font-size,(0.91)/1.1);
+    @include text-vertical-spacing($h5-font-size);
   }
+
   h6 {
     font-size: $h5-font-size;
-    @include text-vertical-spacing($h5-font-size,1);
+    @include text-vertical-spacing($h5-font-size);
   }
+
   p {
     font-size: $p-font-size;
-    @include text-vertical-spacing($p-font-size,1);
+    @include text-vertical-spacing($p-font-size);
   }
 
   h1,h2,h3,h4,h5,h6,p {

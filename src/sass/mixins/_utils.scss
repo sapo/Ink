@@ -23,6 +23,7 @@
 }
 .push-right {
     float: right;
+    @include experimental(justify-content, flex-end, -moz, -webkit, not -o, not -ms, not -khtml, official);
 }
 .align-left {
     text-align: left;
