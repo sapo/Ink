@@ -1,6 +1,18 @@
-<p>Desc... <code>this</code> </p>
+<p>How to scroll to an element position</p>
 
 <p class="example-title">Code</p>
-{% highlight js %}
+{% highlight html %}
+<body>
+    <!-- ,,,, -->
+    <div id="scroll_to_this">Scroll to this element</div>
+    <!-- ,,, -->
+</body>
+<script>
+Ink.requireModules(['Ink.Dom.Element_1'], function(InkElement) {
+    
+    InkElement.scrollTo('scroll_to_this');
+
+});
+</script>
 {% endhighlight %}
 

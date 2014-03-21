@@ -28,7 +28,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
      *
      * @param {String|DOMElement} selector
      * @param {Object} [options]
-     *  @param {Integer} [autoAdvance=0] The number of milliseconds to wait between auto-advancing pages. Set to 0 to disable auto-advance.
+     *  @param {Integer} [options.autoAdvance=0] The number of milliseconds to wait between auto-advancing pages. Set to 0 to disable auto-advance.
      *  @param {String} [options.axis='x'] Can be `'x'` or `'y'`, for a horizontal or vertical carousel
      *  @param {Boolean} [options.center=false] Center the carousel.
      *  @param {Number} [options.initialPage=0] When initialized, set the page to this.
