@@ -746,11 +746,10 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @param {String}     [ellipsis]='\u2026'  String to append to the chopped text
          */
         ellipsizeText: function(element, ellipsis){
-            /*jshint boss:true */
-            if (element = Ink.i(element)){
-                while (element && element.scrollHeight > (element.offsetHeight + 8)) {
-                    element.textContent = element.textContent.replace(/(\s+\S+)\s*$/, ellipsis || '\u2026');
-                }
+            if ((element = Ink.i(element))) {
+                element.style.overflow = 'hidden';
+                element.style.whiteSpace = 'nowrap';
+                element.style.textOverflow = 'ellipsis';
             }
         },
 

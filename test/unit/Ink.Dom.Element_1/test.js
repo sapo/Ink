@@ -339,4 +339,18 @@ Ink.requireModules(['Ink.Dom.Element_1', 'Ink.Dom.Selector_1', 'Ink.Dom.Css_1'],
             ok(!InkElement.inViewport(fakeEl, { margin: 2, partial: partial }), 'outside from the bottom, because outside margin')
         }
     }));
+
+    test('ellipsizeText', function () {
+        var elem = document.createElement('div');
+        elem.innerHTML = (new Array(100)).join('text ')
+        elem.style.width = '100px';
+        document.body.appendChild(elem);
+        var rectng = elem.getBoundingClientRect();
+        var h = rectng.bottom - rectng.top;
+        InkElement.ellipsizeText(elem);
+        rectng = elem.getBoundingClientRect();
+        var newH = rectng.bottom - rectng.top;
+        ok(newH < h);
+        document.body.removeChild(elem);
+    });
 });
