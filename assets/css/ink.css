@@ -7373,7 +7373,8 @@ th {
   transition: all 140ms ease-in-out;
 }
 .ink-navigation ul.pagination.chevron li.next a span, .ink-navigation ul.pagination.chevron li.previous a span {
-  text-indent: 99999px;
+  text-indent: -99999px;
+  display: inline-block;
 }
 .ink-navigation ul.pagination.chevron li.disabled a {
   color: rgba(255, 255, 255, 0.6);
