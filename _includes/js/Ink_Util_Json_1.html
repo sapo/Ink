@@ -5,10 +5,6 @@
         <h1 class="fw-300">Ink.Util.Json_1 </h1>
     
 
-
-
-    
-
     
 
     
@@ -25,6 +21,35 @@
 
     
             
+
+    
+    <p>Use this class to convert JSON strings to JavaScript objects
+`(Json.parse)` and also to do the opposite operation `(Json.stringify)`.
+Internally, the standard JSON implementation is used if available
+Otherwise, the functions mimic the standard implementation.
+
+Here's how to produce JSON from an existing object:
+
+     Ink.requireModules(['Ink.Util.Json_1'], function (Json) {
+         var obj = {
+             key1: 'value1',
+             key2: 'value2',
+             keyArray: ['arrayValue1', 'arrayValue2', 'arrayValue3']
+         };
+         Json.stringify(obj);  // The above object as a JSON string
+     });
+
+And here is how to parse JSON:
+
+     Ink.requireModules(['Ink.Util.Json_1'], function (Json) {
+         var source = '{"key": "value", "array": [true, null, false]}';
+         Json.parse(source);  // The above JSON string as an object
+     });</p>
+    
+    
+    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p>
+
+    
     <table class="props bottom-space">
         
         
@@ -87,42 +112,16 @@
 
 
 
-    <div class="text">Use this class to convert JSON strings to JavaScript objects
-`(Json.parse)` and also to do the opposite operation `(Json.stringify)`.
-Internally, the standard JSON implementation is used if available
-Otherwise, the functions mimic the standard implementation.
-
-Here's how to produce JSON from an existing object:
-
-     Ink.requireModules(['Ink.Util.Json_1'], function (Json) {
-         var obj = {
-             key1: 'value1',
-             key2: 'value2',
-             keyArray: ['arrayValue1', 'arrayValue2', 'arrayValue3']
-         };
-         Json.stringify(obj);  // The above object as a JSON string
-     });
-
-And here is how to parse JSON:
-
-     Ink.requireModules(['Ink.Util.Json_1'], function (Json) {
-         var source = '{"key": "value", "array": [true, null, false]}';
-         Json.parse(source);  // The above JSON string as an object
-     });</div>
 
 
 
 
-
-
-
-
-    <section class="box box-function">
+    <section id="Ink_Util_Json_1-Ink_Util_Json-parse" class="box box-function">
 
     <h1 class="fw-300">
     
         
-            Ink.Util.Json.parse
+            .parse
         
     
     (text, reviver)
@@ -132,6 +131,27 @@ And here is how to parse JSON:
         
     
     </h1>
+
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        text
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        
+        reviver
+        
+        
+        </li>
+        
+    </ul>
 
     
     
@@ -206,12 +226,12 @@ Simple example:
 
 </section>
 
-    <section class="box box-function">
+    <section id="Ink_Util_Json_1-Ink_Util_Json-stringify" class="box box-function">
 
     <h1 class="fw-300">
     
         
-            Ink.Util.Json.stringify
+            .stringify
         
     
     (input, convertToUnicode)
@@ -221,6 +241,27 @@ Simple example:
         
     
     </h1>
+
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        input
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        
+        convertToUnicode
+        
+        
+        </li>
+        
+    </ul>
 
     
     

@@ -5,10 +5,6 @@
         <h1 class="fw-300">Ink.UI.Stacker_1 </h1>
     
 
-
-
-    
-
     
 
     
@@ -25,6 +21,29 @@
 
     
             
+
+    
+    <p>This module combines several stacks of items together, in smaller screen sizes.
+
+The purpose is to have several stacks of items which may have different heights and as such cannot be used because of `float: left` quirks.
+
+For example, when you have three different columns of information:
+
+    [col. A: 1] [col. B: 1] [col. C: 1]
+    [col. B: 2] [col. C: 2] [col. C: 2]
+
+and the screen resizes and you need a layout of 2 columns, Stacker reorders the stacks so that you get:
+
+    [col. A: 1] [col. B: 1]
+    [col. C: 1] [col. A: 2]
+    [col. B: 2] [col. C: 2]
+
+Note: If you just want to use a different amount of columns for your items in several viewports, but these items are guaranteed to have a fixed height, don't use this module. Use the `small-*`, `medium-*` and `large-*` classes instead.</p>
+    
+    
+    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p>
+
+    
     <table class="props bottom-space">
         
         
@@ -110,31 +129,11 @@ Call this when:
 
 
 
-    <div class="text">This module combines several stacks of items together, in smaller screen sizes.
-
-The purpose is to have several stacks of items which may have different heights and as such cannot be used because of `float: left` quirks.
-
-For example, when you have three different columns of information:
-
-    [col. A: 1] [col. B: 1] [col. C: 1]
-    [col. B: 2] [col. C: 2] [col. C: 2]
-
-and the screen resizes and you need a layout of 2 columns, Stacker reorders the stacks so that you get:
-
-    [col. A: 1] [col. B: 1]
-    [col. C: 1] [col. A: 2]
-    [col. B: 2] [col. C: 2]
-
-Note: If you just want to use a different amount of columns for your items in several viewports, but these items are guaranteed to have a fixed height, don't use this module. Use the `small-*`, `medium-*` and `large-*` classes instead.</div>
 
 
 
 
-
-
-
-
-    <section class="box box-function">
+    <section id="Ink_UI_Stacker_1-Ink_UI_Stacker_1-Stacker_1" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -145,6 +144,107 @@ Note: If you just want to use a different amount of columns for your items in se
         <i>constructor</i>
     
     </h1>
+
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        [
+        container
+        ]
+        
+        </li>
+        
+        <li class="prop">
+        
+        [
+        options
+        ]
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+    </ul>
 
     
     
@@ -634,12 +734,12 @@ Javascript:
 
 </section>
 
-    <section class="box box-function">
+    <section id="Ink_UI_Stacker_1-Ink_UI_Stacker_1-addItem" class="box box-function">
 
     <h1 class="fw-300">
     
         
-            Ink.UI.Stacker_1.addItem
+            .addItem
         
     
     (item)
@@ -649,6 +749,19 @@ Javascript:
         
     
     </h1>
+
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        item
+        
+        
+        </li>
+        
+    </ul>
 
     
     
@@ -692,12 +805,12 @@ Javascript:
 
 </section>
 
-    <section class="box box-function">
+    <section id="Ink_UI_Stacker_1-Ink_UI_Stacker_1-reloadItems" class="box box-function">
 
     <h1 class="fw-300">
     
         
-            Ink.UI.Stacker_1.reloadItems
+            .reloadItems
         
     
     ()
@@ -707,6 +820,11 @@ Javascript:
         
     
     </h1>
+
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+    </ul>
 
     
     

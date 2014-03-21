@@ -6,19 +6,6 @@
 CSS Utilities and toolbox</small></h1>
     
 
-
-
-    
-        <ul class="props inline">
-            <li class="heading">Uses:</li>
-            
-            <li class="prop">addRemoveClassName</li>
-            
-            <li class="prop">addRemoveClassName</li>
-            
-        </ul>
-    
-
     
 
     
@@ -35,6 +22,12 @@ CSS Utilities and toolbox</small></h1>
 
     
             
+
+    
+    
+    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p>
+
+    
     <table class="props bottom-space">
         
         
@@ -479,15 +472,12 @@ If the show parameter is true, it shows the element. Otherwise, hides it.
 
 
 
-
-
-
-    <section class="box box-function">
+    <section id="Ink_Dom_Css_1-Ink_Dom_Css-addClassName" class="box box-function">
 
     <h1 class="fw-300">
     
         
-            Ink.Dom.Css.addClassName
+            .addClassName
         
     
     (elm, className)
@@ -497,6 +487,27 @@ If the show parameter is true, it shows the element. Otherwise, hides it.
         
     
     </h1>
+
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        elm
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        
+        className
+        
+        
+        </li>
+        
+    </ul>
 
     
     
@@ -561,12 +572,12 @@ If the show parameter is true, it shows the element. Otherwise, hides it.
 
 </section>
 
-    <section class="box box-function">
+    <section id="Ink_Dom_Css_1-Ink_Dom_Css-addRemoveClassName" class="box box-function">
 
     <h1 class="fw-300">
     
         
-            Ink.Dom.Css.addRemoveClassName
+            .addRemoveClassName
         
     
     (elm, className, addRemState)
@@ -576,6 +587,35 @@ If the show parameter is true, it shows the element. Otherwise, hides it.
         
     
     </h1>
+
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        elm
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        
+        className
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        
+        addRemState
+        
+        
+        </li>
+        
+    </ul>
 
     
     
@@ -670,12 +710,12 @@ Depending on addRemState, this method either adds a class if it's true or remove
 
 </section>
 
-    <section class="box box-function">
+    <section id="Ink_Dom_Css_1-Ink_Dom_Css-appendStyleTag" class="box box-function">
 
     <h1 class="fw-300">
     
         
-            Ink.Dom.Css.appendStyleTag
+            .appendStyleTag
         
     
     (selector, style, options, )
@@ -685,6 +725,43 @@ Depending on addRemState, this method either adds a class if it's true or remove
         
     
     </h1>
+
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        selector
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        
+        style
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        
+        options
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+    </ul>
 
     
     
@@ -814,12 +891,12 @@ Depending on addRemState, this method either adds a class if it's true or remove
 
 </section>
 
-    <section class="box box-function">
+    <section id="Ink_Dom_Css_1-Ink_Dom_Css-appendStylesheet" class="box box-function">
 
     <h1 class="fw-300">
     
         
-            Ink.Dom.Css.appendStylesheet
+            .appendStylesheet
         
     
     (path, options, )
@@ -829,6 +906,39 @@ Depending on addRemState, this method either adds a class if it's true or remove
         
     
     </h1>
+
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        path
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        
+        options
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+    </ul>
 
     
     
@@ -963,12 +1073,12 @@ This method add a stylesheet to the head of a page</p>
 
 </section>
 
-    <section class="box box-function">
+    <section id="Ink_Dom_Css_1-Ink_Dom_Css-appendStylesheetCb" class="box box-function">
 
     <h1 class="fw-300">
     
         
-            Ink.Dom.Css.appendStylesheetCb
+            .appendStylesheetCb
         
     
     (cssURI, [callback])
@@ -978,6 +1088,27 @@ This method add a stylesheet to the head of a page</p>
         
     
     </h1>
+
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        cssURI
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        [
+        callback
+        ]
+        
+        </li>
+        
+    </ul>
 
     
     
@@ -1047,12 +1178,12 @@ Works similarly to appendStylesheet but:
 
 </section>
 
-    <section class="box box-function">
+    <section id="Ink_Dom_Css_1-Ink_Dom_Css-blinkClass" class="box box-function">
 
     <h1 class="fw-300">
     
         
-            Ink.Dom.Css.blinkClass
+            .blinkClass
         
     
     (elm, className, timeout, negate)
@@ -1062,6 +1193,43 @@ Works similarly to appendStylesheet but:
         
     
     </h1>
+
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        elm
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        
+        className
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        
+        timeout
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        
+        negate
+        
+        
+        </li>
+        
+    </ul>
 
     
     
@@ -1165,12 +1333,12 @@ Add and removes the class from the element with a timeout, so it blinks</p>
 
 </section>
 
-    <section class="box box-function">
+    <section id="Ink_Dom_Css_1-Ink_Dom_Css-changeFontSize" class="box box-function">
 
     <h1 class="fw-300">
     
         
-            Ink.Dom.Css.changeFontSize
+            .changeFontSize
         
     
     (selector, delta, [op], [minVal], [maxVal])
@@ -1180,6 +1348,51 @@ Add and removes the class from the element with a timeout, so it blinks</p>
         
     
     </h1>
+
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        selector
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        
+        delta
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        [
+        op
+        ]
+        
+        </li>
+        
+        <li class="prop">
+        
+        [
+        minVal
+        ]
+        
+        </li>
+        
+        <li class="prop">
+        
+        [
+        maxVal
+        ]
+        
+        </li>
+        
+    </ul>
 
     
     
@@ -1303,12 +1516,12 @@ For this function to work, the CSS file must be in the same domain than the host
 
 </section>
 
-    <section class="box box-function">
+    <section id="Ink_Dom_Css_1-Ink_Dom_Css-decToHex" class="box box-function">
 
     <h1 class="fw-300">
     
         
-            Ink.Dom.Css.decToHex
+            .decToHex
         
     
     (dec)
@@ -1318,6 +1531,19 @@ For this function to work, the CSS file must be in the same domain than the host
         
     
     </h1>
+
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        dec
+        
+        
+        </li>
+        
+    </ul>
 
     
     
@@ -1376,12 +1602,12 @@ Useful to convert colors to their hexadecimal representation.</p>
 
 </section>
 
-    <section class="box box-function">
+    <section id="Ink_Dom_Css_1-Ink_Dom_Css-getPropertyFromStylesheet" class="box box-function">
 
     <h1 class="fw-300">
     
         
-            Ink.Dom.Css.getPropertyFromStylesheet
+            .getPropertyFromStylesheet
         
     
     (selector, property)
@@ -1391,6 +1617,27 @@ Useful to convert colors to their hexadecimal representation.</p>
         
     
     </h1>
+
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        selector
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        
+        property
+        
+        
+        </li>
+        
+    </ul>
 
     
     
@@ -1468,12 +1715,12 @@ Use this to obtain the value of a CSS property (searched from loaded CSS documen
 
 </section>
 
-    <section class="box box-function">
+    <section id="Ink_Dom_Css_1-Ink_Dom_Css-getStyle" class="box box-function">
 
     <h1 class="fw-300">
     
         
-            Ink.Dom.Css.getStyle
+            .getStyle
         
     
     (elm, style)
@@ -1483,6 +1730,27 @@ Use this to obtain the value of a CSS property (searched from loaded CSS documen
         
     
     </h1>
+
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        elm
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        
+        style
+        
+        
+        </li>
+        
+    </ul>
 
     
     
@@ -1559,12 +1827,12 @@ Use this to obtain the value of a CSS property (searched from loaded CSS documen
 
 </section>
 
-    <section class="box box-function">
+    <section id="Ink_Dom_Css_1-Ink_Dom_Css-hasClassName" class="box box-function">
 
     <h1 class="fw-300">
     
         
-            Ink.Dom.Css.hasClassName
+            .hasClassName
         
     
     (elm, className, [all])
@@ -1574,6 +1842,35 @@ Use this to obtain the value of a CSS property (searched from loaded CSS documen
         
     
     </h1>
+
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        elm
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        
+        className
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        [
+        all
+        ]
+        
+        </li>
+        
+    </ul>
 
     
     
@@ -1672,12 +1969,12 @@ This method verifies if an element has ONE of a list of classes. If the last arg
 
 </section>
 
-    <section class="box box-function">
+    <section id="Ink_Dom_Css_1-Ink_Dom_Css-hexToDec" class="box box-function">
 
     <h1 class="fw-300">
     
         
-            Ink.Dom.Css.hexToDec
+            .hexToDec
         
     
     (hex)
@@ -1687,6 +1984,19 @@ This method verifies if an element has ONE of a list of classes. If the last arg
         
     
     </h1>
+
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        hex
+        
+        
+        </li>
+        
+    </ul>
 
     
     
@@ -1745,12 +2055,12 @@ Useful to use with CSS colors</p>
 
 </section>
 
-    <section class="box box-function">
+    <section id="Ink_Dom_Css_1-Ink_Dom_Css-hide" class="box box-function">
 
     <h1 class="fw-300">
     
         
-            Ink.Dom.Css.hide
+            .hide
         
     
     (elm)
@@ -1760,6 +2070,19 @@ Useful to use with CSS colors</p>
         
     
     </h1>
+
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        elm
+        
+        
+        </li>
+        
+    </ul>
 
     
     
@@ -1805,12 +2128,12 @@ Useful to use with CSS colors</p>
 
 </section>
 
-    <section class="box box-function">
+    <section id="Ink_Dom_Css_1-Ink_Dom_Css-removeClassName" class="box box-function">
 
     <h1 class="fw-300">
     
         
-            Ink.Dom.Css.removeClassName
+            .removeClassName
         
     
     (elm, className)
@@ -1820,6 +2143,27 @@ Useful to use with CSS colors</p>
         
     
     </h1>
+
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        elm
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        
+        className
+        
+        
+        </li>
+        
+    </ul>
 
     
     
@@ -1884,12 +2228,12 @@ Useful to use with CSS colors</p>
 
 </section>
 
-    <section class="box box-function">
+    <section id="Ink_Dom_Css_1-Ink_Dom_Css-setClassName" class="box box-function">
 
     <h1 class="fw-300">
     
         
-            Ink.Dom.Css.setClassName
+            .setClassName
         
     
     (elm, className, [add])
@@ -1899,6 +2243,35 @@ Useful to use with CSS colors</p>
         
     
     </h1>
+
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        elm
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        
+        className
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        [
+        add
+        ]
+        
+        </li>
+        
+    </ul>
 
     
     
@@ -1985,12 +2358,12 @@ Utility function, saves many if/elses.</p>
 
 </section>
 
-    <section class="box box-function">
+    <section id="Ink_Dom_Css_1-Ink_Dom_Css-setOpacity" class="box box-function">
 
     <h1 class="fw-300">
     
         
-            Ink.Dom.Css.setOpacity
+            .setOpacity
         
     
     (elm, value)
@@ -2000,6 +2373,27 @@ Utility function, saves many if/elses.</p>
         
     
     </h1>
+
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        elm
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        
+        value
+        
+        
+        </li>
+        
+    </ul>
 
     
     
@@ -2064,12 +2458,12 @@ Utility function, saves many if/elses.</p>
 
 </section>
 
-    <section class="box box-function">
+    <section id="Ink_Dom_Css_1-Ink_Dom_Css-setStyle" class="box box-function">
 
     <h1 class="fw-300">
     
         
-            Ink.Dom.Css.setStyle
+            .setStyle
         
     
     (elm, style)
@@ -2079,6 +2473,27 @@ Utility function, saves many if/elses.</p>
         
     
     </h1>
+
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        elm
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        
+        style
+        
+        
+        </li>
+        
+    </ul>
 
     
     
@@ -2162,12 +2577,12 @@ Utility function, saves many if/elses.</p>
 
 </section>
 
-    <section class="box box-function">
+    <section id="Ink_Dom_Css_1-Ink_Dom_Css-show" class="box box-function">
 
     <h1 class="fw-300">
     
         
-            Ink.Dom.Css.show
+            .show
         
     
     (elm, [forceDisplayProperty])
@@ -2177,6 +2592,27 @@ Utility function, saves many if/elses.</p>
         
     
     </h1>
+
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        elm
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        [
+        forceDisplayProperty
+        ]
+        
+        </li>
+        
+    </ul>
 
     
     
@@ -2242,12 +2678,12 @@ Internally it unsets the display property of an element. You can force a specifi
 
 </section>
 
-    <section class="box box-function">
+    <section id="Ink_Dom_Css_1-Ink_Dom_Css-showHide" class="box box-function">
 
     <h1 class="fw-300">
     
         
-            Ink.Dom.Css.showHide
+            .showHide
         
     
     (elm, [show])
@@ -2257,6 +2693,27 @@ Internally it unsets the display property of an element. You can force a specifi
         
     
     </h1>
+
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        elm
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        [
+        show
+        ]
+        
+        </li>
+        
+    </ul>
 
     
     
@@ -2324,12 +2781,12 @@ If the show parameter is true, it shows the element. Otherwise, hides it.</p>
 
 </section>
 
-    <section class="box box-function">
+    <section id="Ink_Dom_Css_1-Ink_Dom_Css-toggle" class="box box-function">
 
     <h1 class="fw-300">
     
         
-            Ink.Dom.Css.toggle
+            .toggle
         
     
     (elm, forceShow)
@@ -2339,6 +2796,27 @@ If the show parameter is true, it shows the element. Otherwise, hides it.</p>
         
     
     </h1>
+
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        elm
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        
+        forceShow
+        
+        
+        </li>
+        
+    </ul>
 
     
     
@@ -2403,12 +2881,12 @@ If the show parameter is true, it shows the element. Otherwise, hides it.</p>
 
 </section>
 
-    <section class="box box-function">
+    <section id="Ink_Dom_Css_1-Ink_Dom_Css-toggleClassName" class="box box-function">
 
     <h1 class="fw-300">
     
         
-            Ink.Dom.Css.toggleClassName
+            .toggleClassName
         
     
     (elm, className, [forceAdd])
@@ -2418,6 +2896,35 @@ If the show parameter is true, it shows the element. Otherwise, hides it.</p>
         
     
     </h1>
+
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        elm
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        
+        className
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        [
+        forceAdd
+        ]
+        
+        </li>
+        
+    </ul>
 
     
     
