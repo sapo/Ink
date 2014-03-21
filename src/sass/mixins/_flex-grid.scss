@@ -688,10 +688,9 @@
         @if $i > 30 and $i <= 35 {
             .all-33,
             .#{$class-name}-33 {
-            width: 33.33%;
-            @include experimental(flex-basis, 33.33333%, -moz, -webkit, not -o, not -ms, not -khtml, official);
-            @include experimental(flex-grow, 0, not -moz, -webkit, not -o, not -ms, not -khtml, official);
-            //min-height: 100%;  
+                width: 33,33333%;
+                @include experimental(flex-basis, 33.33333%, -moz, -webkit, not -o, not -ms, not -khtml, official);
+                @include experimental(flex-grow, 0, not -moz, -webkit, not -o, not -ms, not -khtml, official);
             }
         }
 
@@ -699,10 +698,9 @@
         @if $i > 65 and $i <= 70 {
             .all-66,
             .#{$class-name}-66 {
-                width: 66.66%;
+                width: 66,66666%;
                 @include experimental(flex-basis, 66.66666%, -moz, -webkit, not -o, not -ms, not -khtml, official);
                 @include experimental(flex-grow, 0, not -moz, -webkit, not -o, not -ms, not -khtml, official);
-                //min-height: 100%;
             }
         }
 
@@ -712,7 +710,6 @@
             width: $i * 1%;
             @include experimental(flex-basis, $i * 1%, -moz, -webkit, not -o, not -ms, not -khtml, official);
             @include experimental(flex-grow, 0, not -moz, -webkit, not -o, not -ms, not -khtml, official);
-            //min-height: 100%;      
         }
 
         // increment the counter
@@ -721,6 +718,7 @@
 
     .all-auto,
     .#{$class-name}-auto {
+        width: auto;
         @include experimental(flex-basis, auto, not -moz, -webkit, not -o, not -ms, not -khtml, official); 
         @include experimental(flex-grow, 1, not -moz, -webkit, not -o, not -ms, not -khtml, official);  
     }
