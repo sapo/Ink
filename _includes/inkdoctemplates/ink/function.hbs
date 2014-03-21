@@ -1,13 +1,13 @@
-<section class="box box-function">
+<section id="{{{hash}}}" class="box box-function">
 
     <h1 class="fw-300">
     {{#if isConstructor}}
         {{parent.name}}
     {{else}}
         {{#ifvalue parent.kind value="class"}}
-            {{parent.name}}.{{name}}
+            .{{name}}
         {{else}}
-            {{parent.name}}.{{name}}
+            .{{name}}
         {{/ifvalue}}
     {{/if}}
     ({{#foreach params}}{{#if isFirstLevel}}{{#if isOptional}}[{{/if}}{{name}}{{#if isOptional}}]{{/if}}{{#unless $last}}, {{/unless}}{{/if}}{{/foreach}})
@@ -21,6 +21,19 @@
         {{/ifvalue}}
     {{/if}}
     </h1>
+
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        {{#foreach params}}
+        <li class="prop">
+        {{#if isFirstLevel}}
+        {{#if isOptional}}[{{/if}}
+        {{name}}
+        {{#if isOptional}}]{{/if}}
+        {{/if}}
+        </li>
+        {{/foreach}}
+    </ul>
 
     {{#if async}}
         <span class="tag">async</span>

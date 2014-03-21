@@ -5,17 +5,6 @@
         <h1 class="fw-300">{{name}} {{#if version}}<small>version: {{version}}</small>{{/if}}</h1>
     {{/if}}
 
-
-
-    {{#if uses}}
-        <ul class="props inline">
-            <li class="heading">Uses:</li>
-            {{#each uses}}
-            <li class="prop">{{this}}</li>
-            {{/each}}
-        </ul>
-    {{/if}}
-
     {{#if text}}
         <p class="text">{{{text}}}</p>
     {{/if}}
