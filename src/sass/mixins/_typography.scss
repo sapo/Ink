@@ -20,3 +20,46 @@
       font-family: $mono-font-stack;
     }
 }
+
+@mixin text-vertical-spacing($font-size,$multiplier) {
+  margin-top: 0;
+  margin-bottom: $font-size * $multiplier;
+} 
+
+@mixin vertical-rhythm() {
+  h1 {
+    font-size: $h1-font-size;
+    @include text-vertical-spacing($h1-font-size,(0.5)/2);
+  }
+  h2 {
+    font-size: $h2-font-size;
+    @include text-vertical-spacing($h2-font-size,(0.575)/1.75);
+  }
+  h3 {
+    font-size: $h3-font-size;
+    @include text-vertical-spacing($h3-font-size,(0.667)/1.5);
+  }
+  h4 {
+    font-size: $h4-font-size;
+    @include text-vertical-spacing($h4-font-size,(0.8)/1.25);
+  }
+  h5 {
+    font-size: $h5-font-size;
+    @include text-vertical-spacing($h5-font-size,(0.91)/1.1);
+  }
+  h6 {
+    font-size: $h5-font-size;
+    @include text-vertical-spacing($h5-font-size,1);
+  }
+  p {
+    font-size: $p-font-size;
+    @include text-vertical-spacing($p-font-size,1);
+  }
+
+  h1,h2,h3,h4,h5,h6,p {
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+}
