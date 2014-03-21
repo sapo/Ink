@@ -2,17 +2,24 @@ QUnit.config.testTimeout = 4000;
 
 Ink.requireModules(['Ink.UI.Toggle_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1', 'Ink.Dom.Event_1', 'Ink.Dom.Selector_1'], function (Toggle, InkElement, Css, InkEvent, Selector) {
     'use strict';
-    function bagTest(testName, callBack) {
+
+    function createBag(options) {
+        options = options || {};
         var parent = InkElement.create('div', {insertBottom: document.body});
         var trigger = InkElement.create('div', {
-            className: 'trigger',
+            className: options.triggerClassName || 'trigger',
             insertBottom: parent
         });
         var targets = [
-            InkElement.create('div', {className: 'targets target-1', insertBottom:parent}),
-            InkElement.create('div', {className: 'targets target-2', insertBottom:parent})
+            InkElement.create('div', {className: (options.targetClassName || 'targets') + ' target-1', insertBottom:parent}),
+            InkElement.create('div', {className: (options.targetClassName || 'targets') + ' target-2', insertBottom:parent})
         ];
-        test(testName, Ink.bind(callBack, false, parent, trigger, targets));
+        return { parent: parent, trigger: trigger, targets: targets };
+    }
+
+    function bagTest(testName, callBack) {
+        var bag = createBag();
+        test(testName, Ink.bind(callBack, false, bag.parent, bag.trigger, bag.targets));
         QUnit.testDone(function () {
             if (parent) {
                 InkElement.remove(parent);
@@ -147,6 +154,25 @@ Ink.requireModules(['Ink.UI.Toggle_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1', 'In
         var somethingElse = InkElement.create('div', { insertBottom: bag });
         InkEvent.fire(somethingElse, 'click');
         ok(!toggle.getState());
+    });
+
+    bagTest('doesn\'t close other things', function (bag, trigger, targets) {
+        var toggle = new Toggle(trigger, {
+            target: targets,
+            initialState: true,
+            closeOnClick: true
+        });
+
+        ok(toggle.getState(), 'sanity check -- before fire, toggle1 is open');
+        var bag2 = createBag({ triggerClassName: 'trigger-2', targetClassName: 'targets-2' });
+        var toggle2 = new Toggle(bag2.trigger, {
+            target: bag2.targets,
+            initialState: true,
+            closeOnClick: true
+        });
+        InkEvent.fire(bag2.trigger, 'click');
+        ok(!toggle2.getState(), 'sanity check -- toggle2 should be closed now');
+        ok(toggle.getState(), '... but toggle1 should be still open.');
     });
     bagTest('can be canceled by the onchangestate callback', function (bag, trigger, targets) {
         var doCancel = false;

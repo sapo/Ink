@@ -55,7 +55,7 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
         this._options = Common.options('Treeview', {
             'node':   ['String', 'li'],
             // [3.0.1] Deprecate this terrible, terrible name
-            'child':  ['String','ul'],
+            'child':  ['String',null],
             'children':  ['String','ul'],
             'parentClass': ['String','parent'],
             'openNodeClass': ['String', 'open'],
@@ -170,7 +170,7 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
         },
 
         _getChild: function (node) {
-            return Selector.select(this._options.child, node)[0] || null;
+            return Selector.select(this._options.children, node)[0] || null;
         },
 
         /**
@@ -189,7 +189,7 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
 
             if (!this.isParent(ev.currentTarget) ||
                     Selector.matchesSelector(ev.target, this._options.node) ||
-                    Selector.matchesSelector(ev.target, this._options.child)) {
+                    Selector.matchesSelector(ev.target, this._options.children)) {
                 return;
             }
 
