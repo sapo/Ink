@@ -850,7 +850,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @sample Ink_Dom_Element_1_findUpwardsBySelector.html 
          */
         findUpwardsBySelector: function(element, sel) {
-            var Selector = Ink.getModule('Ink.Dom.Selector');
+            var Selector = Ink.getModule('Ink.Dom.Selector', '1');
             if (!Selector) {
                 throw new Error('This method requires Ink.Dom.Selector');
             }
@@ -1239,9 +1239,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @sample Ink_Dom_Element_1_nextSiblings.html 
          */
         nextSiblings: function(elm) {
-            if(typeof(elm) === "string") {
-                elm = document.getElementById(elm);
-            }
+            elm = Ink.i(elm);
             if(typeof(elm) === 'object' && elm !== null && elm.nodeType && elm.nodeType === 1) {
                 var elements = [],
                     siblings = elm.parentNode.children,
@@ -1266,9 +1264,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @sample Ink_Dom_Element_1_previousSiblings.html 
          */
         previousSiblings: function(elm) {
-            if(typeof(elm) === "string") {
-                elm = document.getElementById(elm);
-            }
+            elm = Ink.i(elm);
             if(typeof(elm) === 'object' && elm !== null && elm.nodeType && elm.nodeType === 1) {
                 var elements    = [],
                     siblings    = elm.parentNode.children,
@@ -1293,9 +1289,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @sample Ink_Dom_Element_1_siblings.html 
          */
         siblings: function(elm) {
-            if(typeof(elm) === "string") {
-                elm = document.getElementById(elm);
-            }
+            elm = Ink.i(elm);
             if(typeof(elm) === 'object' && elm !== null && elm.nodeType && elm.nodeType === 1) {
                 var elements   = [],
                     siblings   = elm.parentNode.children;
@@ -1401,9 +1395,12 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @sample Ink_Dom_Element_1_appendHTML.html 
          */
         appendHTML: function(elm, html){
-            var wrapper = InkElement._getWrapper(elm, html);
-            while (wrapper.firstChild) {
-                elm.appendChild(wrapper.firstChild);
+            elm = Ink.i(elm);
+            if(elm !== null) {
+                var wrapper = InkElement._getWrapper(elm, html);
+                while (wrapper.firstChild) {
+                    elm.appendChild(wrapper.firstChild);
+                }
             }
         },
 
@@ -1417,9 +1414,12 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @sample Ink_Dom_Element_1_prependHTML.html 
          */
         prependHTML: function(elm, html){
-            var wrapper = InkElement._getWrapper(elm, html);
-            while (wrapper.lastChild) {
-                elm.insertBefore(wrapper.lastChild, elm.firstChild);
+            elm = Ink.i(elm);
+            if(elm !== null) {
+                var wrapper = InkElement._getWrapper(elm, html);
+                while (wrapper.lastChild) {
+                    elm.insertBefore(wrapper.lastChild, elm.firstChild);
+                }
             }
         },
 
@@ -1432,14 +1432,17 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @sample Ink_Dom_Element_1_setHTML.html 
          */
         setHTML: function (elm, html) {
-            try {
-                elm.innerHTML = html;
-            } catch (e) {
-                // Tables in IE7
-                while (elm.firstChild) {
-                    elm.removeChild(elm.firstChild);
+            elm = Ink.i(elm);
+            if(elm !== null) {
+                try {
+                    elm.innerHTML = html;
+                } catch (e) {
+                    // Tables in IE7
+                    while (elm.firstChild) {
+                        elm.removeChild(elm.firstChild);
+                    }
+                    InkElement.appendHTML(elm, html);
                 }
-                InkElement.appendHTML(elm, html);
             }
         },
 
@@ -1538,8 +1541,14 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          *       replace(Ink.i('element1'), newelement1);
          */
         replace: function (element, replacement) {
+            /*
             InkElement.insertBefore(replacement, element);
             InkElement.remove(element);
+            */
+            element = Ink.i(element);
+            if(element !== null) {
+                element.parentNode.replaceChild(replacement, element);
+            }
         },
 
         /**
@@ -1551,14 +1560,17 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @sample Ink_Dom_Element_1_removeTextNodeChildren.html 
          */
         removeTextNodeChildren: function(el) {
-            var prevEl, toRemove, parent = el;
-            el = el.firstChild;
-            while (el) {
-                toRemove = (el.nodeType === 3);
-                prevEl = el;
-                el = el.nextSibling;
-                if (toRemove) {
-                    parent.removeChild(prevEl);
+            el = Ink.i(el);
+            if(el !== null) {
+                var prevEl, toRemove, parent = el;
+                el = el.firstChild;
+                while (el) {
+                    toRemove = (el.nodeType === 3);
+                    prevEl = el;
+                    el = el.nextSibling;
+                    if (toRemove) {
+                        parent.removeChild(prevEl);
+                    }
                 }
             }
         },
@@ -1663,16 +1675,19 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @sample Ink_Dom_Element_1_moveCursorTo.html 
          */
         moveCursorTo: function(el, t) {
-            if (el.setSelectionRange) {
-                el.setSelectionRange(t, t);
-                //el.focus();
-            }
-            else {
-                var range = el.createTextRange();
-                range.collapse(true);
-                range.moveEnd(  'character', t);
-                range.moveStart('character', t);
-                range.select();
+            el = Ink.i(el);
+            if(el !== null) {
+                if (el.setSelectionRange) {
+                    el.setSelectionRange(t, t);
+                    //el.focus();
+                }
+                else {
+                    var range = el.createTextRange();
+                    range.collapse(true);
+                    range.moveEnd(  'character', t);
+                    range.moveStart('character', t);
+                    range.select();
+                }
             }
         },
 
