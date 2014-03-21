@@ -9,7 +9,8 @@ html.flexbox .example .ink-grid .column {
 }
 
 .fw-300, ul.props li.prop.breakpoint-aware:after, .example .ink-grid .column,
-html.flexbox .example .ink-grid .column, #home section.ink a.ink-button.download {
+html.flexbox .example .ink-grid .column, #home section.ink a.ink-button.download,
+#home section.ink a.ink-button.repo {
   font-weight: 300;
   font-family: Roboto;
 }
@@ -135,14 +136,18 @@ a.visited {
 #topbar .ink-navigation ul.black li a.logoPlaceholder:hover {
   background: none;
 }
-#topbar .ink-navigation ul.black li a.fa-bars {
-  margin-right: .8em;
+#topbar .ink-navigation ul.black li button.fa-bars {
   padding: .46em 0;
   font-size: 21px;
   background: none;
+  font-size: 1.2em;
+  color: #bbbbbb;
+  border: none;
+  padding: 0.8em;
 }
-#topbar .ink-navigation ul.black li a.fa-bars:hover {
-  background: none;
+#topbar .ink-navigation ul.black li button.fa-bars:hover, #topbar .ink-navigation ul.black li button.fa-bars:active, #topbar .ink-navigation ul.black li button.fa-bars:focus {
+  color: white;
+  outline: none;
 }
 #topbar .ink-navigation ul.black li.active a {
   color: white;
@@ -972,18 +977,20 @@ footer .ink-navigation ul.menu.horizontal li a.license {
 }
 #home section {
   border: none;
+  padding: 2em 0;
 }
 #home section + section {
   margin-top: 0;
 }
-#home section.ink {
-  padding: 5em 0;
+#home section:first-child {
   margin-top: 44px;
-  background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, color-stop(0%, #bcb098), color-stop(100%, #907f5e));
-  background-image: -webkit-radial-gradient(#bcb098, #907f5e);
-  background-image: -moz-radial-gradient(#bcb098, #907f5e);
-  background-image: -o-radial-gradient(#bcb098, #907f5e);
-  background-image: radial-gradient(#bcb098, #907f5e);
+}
+#home section.ink {
+  background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, color-stop(0%, #bcb098), color-stop(100%, #a79879));
+  background-image: -webkit-radial-gradient(#bcb098, #a79879);
+  background-image: -moz-radial-gradient(#bcb098, #a79879);
+  background-image: -o-radial-gradient(#bcb098, #a79879);
+  background-image: radial-gradient(#bcb098, #a79879);
 }
 #home section.ink h1, #home section.ink h2, #home section.ink h3, #home section.ink p, #home section.ink ul {
   color: white;
@@ -994,7 +1001,8 @@ footer .ink-navigation ul.menu.horizontal li a.license {
 #home section.ink .ink-grid .column-group {
   height: inherit;
 }
-#home section.ink a.ink-button.download {
+#home section.ink a.ink-button.download,
+#home section.ink a.ink-button.repo {
   color: #bcb098;
   background: white;
   font-size: 1.1em;
@@ -1002,21 +1010,23 @@ footer .ink-navigation ul.menu.horizontal li a.license {
   text-decoration: none;
   text-transform: uppercase;
 }
-#home section.ink a.ink-button.download:hover {
+#home section.ink a.ink-button.download:hover, #home section.ink a.ink-button.download:focus, #home section.ink a.ink-button.download:active,
+#home section.ink a.ink-button.repo:hover,
+#home section.ink a.ink-button.repo:focus,
+#home section.ink a.ink-button.repo:active {
   background: #907f5e;
   color: white;
   border-color: #867758;
 }
 #home section.what {
-  padding: 5em 0;
-  background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, color-stop(0%, #85aae0), color-stop(100%, #3371cc));
-  background-image: -webkit-radial-gradient(#85aae0, #3371cc);
-  background-image: -moz-radial-gradient(#85aae0, #3371cc);
-  background-image: -o-radial-gradient(#85aae0, #3371cc);
-  background-image: radial-gradient(#85aae0, #3371cc);
+  background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, color-stop(0%, #ffffff), color-stop(100%, #cccccc));
+  background-image: -webkit-radial-gradient(#ffffff, #cccccc);
+  background-image: -moz-radial-gradient(#ffffff, #cccccc);
+  background-image: -o-radial-gradient(#ffffff, #cccccc);
+  background-image: radial-gradient(#ffffff, #cccccc);
 }
 #home section.what h1, #home section.what h2, #home section.what h3, #home section.what p, #home section.what ul {
-  color: white;
+  color: #555555;
 }
 #home section.what .ink-grid {
   height: 100%;
@@ -1025,7 +1035,6 @@ footer .ink-navigation ul.menu.horizontal li a.license {
   height: inherit;
 }
 #home section.why {
-  padding: 5em 0;
   background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, color-stop(0%, #aa8ad3), color-stop(100%, #7544b3));
   background-image: -webkit-radial-gradient(#aa8ad3, #7544b3);
   background-image: -moz-radial-gradient(#aa8ad3, #7544b3);
@@ -1042,7 +1051,6 @@ footer .ink-navigation ul.menu.horizontal li a.license {
   height: inherit;
 }
 #home section.how {
-  padding: 5em 0;
   background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, color-stop(0%, #cd6969), color-stop(100%, #9c3434));
   background-image: -webkit-radial-gradient(#cd6969, #9c3434);
   background-image: -moz-radial-gradient(#cd6969, #9c3434);
@@ -1059,7 +1067,6 @@ footer .ink-navigation ul.menu.horizontal li a.license {
   height: inherit;
 }
 #home section.who {
-  padding: 5em 0;
   background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, color-stop(0%, #d6a475), color-stop(100%, #b07135));
   background-image: -webkit-radial-gradient(#d6a475, #b07135);
   background-image: -moz-radial-gradient(#d6a475, #b07135);

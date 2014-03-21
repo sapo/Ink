@@ -1,7 +1,7 @@
 .#{$badge-class-name} {
 
-    padding: .2em .6em;
-    font-size: .875em;
+    padding: $badge-padding;
+    font-size: $badge-font-size;
     margin-left: .6em;
     
 }

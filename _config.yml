@@ -1,5 +1,5 @@
 # JEKYLL
-exclude: [".gitignore", ".git", "config.rb", "package.json", "Gruntfile.js", ".travis.yml", "ai", "src", "VERSION", "LICENSE", "README.md", "icon.png", "node_modules"]
+exclude: [".gitignore", ".git", "config.rb", "package.json", "Gruntfile.js", "bower_components",".travis.yml", "ai", "src", "VERSION", "LICENSE", "README.md", "icon.png", "node_modules"]
 
 destination: ./_site
 
