@@ -380,7 +380,7 @@ site_root: ../../
         </form>
     </div>
 
-    <h2 class="top-space">Field with warning</h2>
+    <h2>Field with warning</h2>
 
 {% highlight html %}
 <form class="ink-form">
@@ -406,7 +406,7 @@ site_root: ../../
         </form>
     </div>
     
-    <h2 class="top-space">Field with errors</h2>
+    <h2>Field with errors</h2>
 {% highlight html %}
 <form class="ink-form">
     <div class="control-group required validation error">
@@ -461,25 +461,19 @@ site_root: ../../
     
 {% highlight html %}
 <form class="ink-form">
-    <div class="column-group gutters">
-        <!-- Prepended button -->
+    <div class="column-group horizontal-gutters">
+        // Prepend button
         <div class="control-group all-50 small-100 tiny-100">
-            <div class="column-group gutters">
-                <label for="name" class="all-20 align-right">Label</label>
-                <div class="control all-80 prepend-button">
-                    <input type="submit" value="Search" class="ink-button">
-                    <span><input type="text" id="phone"></span>
-                </div>
+            <div class="control prepend-button">
+                <input type="submit" value="Search" class="ink-button">
+                <span><input type="text" id="phone"></span>
             </div>
         </div>
-        <!-- Appended button -->
+        // Append button
         <div class="control-group all-50 small-100 tiny-100">
-            <div class="column-group gutters">
-                <label for="name" class="all-20 align-right">Label</label>
-                <div class="control all-80 append-button">
-                    <span><input type="text" id="name"></span>
-                    <button class="ink-button"><i class="icon-search"></i> Search</button>
-                </div>
+            <div class="control append-button">
+                <span><input type="text" id="name"></span>
+                <button class="ink-button"><i class="icon-search"></i> Search</button>
             </div>
         </div>
     </div>
@@ -490,22 +484,15 @@ site_root: ../../
         <form class="ink-form half-top-space">
             <div class="column-group horizontal-gutters">
                 <div class="control-group all-50 small-100 tiny-100">
-                    <div class="column-group horizontal-gutters">
-                        <label for="name" class="all-20 align-right">Label</label>
-                        <div class="control all-80 prepend-button">
-                            <input type="submit" value="Search" class="ink-button">
-                            <span><input type="text" id="phone"></span>
-                        </div>
+                    <div class="control prepend-button">
+                        <input type="submit" value="Search" class="ink-button">
+                        <span><input type="text" id="phone"></span>
                     </div>
                 </div>
                 <div class="control-group all-50 small-100 tiny-100">
-                    <div class="column-group horizontal-gutters">
-                        <label for="name" class="all-20 align-right">Label</label>
-                        <div class="control all-80 append-button">
-                            <span><input type="text" id="name"></span>
-                            <button class="ink-button"><i class="icon-search"></i> Search</button>
-                        </div>
-                        
+                    <div class="control append-button">
+                        <span><input type="text" id="name"></span>
+                        <button class="ink-button"><i class="icon-search"></i> Search</button>
                     </div>
                 </div>
             </div>
@@ -524,29 +511,23 @@ site_root: ../../
 
 {% highlight html %}
 <form class="ink-form">
-    <div class="column-group gutters">
-        <!-- Prepended symbol -->
+    <div class="column-group horizontal-gutters">
+        // Append symbol
         <div class="control-group all-50 small-100 tiny-100">
-            <div class="column-group gutters">
-                <label for="email" class="all-20 align-right">Email</label>
-                <div class="control all-80 append-symbol">
-                    <span>
-                        <input type="text" id="email">
-                        <i class="fa fa-envelope-o"></i>
-                    </span>
-                </div>
+            <div class="control append-symbol">
+                <span>
+                    <input type="text" id="email" placeholder="email">
+                    <i class="fa fa-envelope-o"></i>
+                </span>
             </div>
         </div>
-        <!-- Appended symbol -->
+        // Prepend symbol
         <div class="control-group all-50 small-100 tiny-100">
-            <div class="column-group gutters">
-                <label for="email" class="all-20 align-right">Email</label>
-                <div class="control all-80 prepend-symbol">
-                    <span>
-                        <input type="text" id="email">
-                        <i class="fa fa-envelope-o"></i>
-                    </span>
-                </div>
+            <div class="control prepend-symbol">
+                <span>
+                    <input type="text" id="email" placeholder="email">
+                    <i class="fa fa-envelope-o"></i>
+                </span>
             </div>
         </div>
     </div>
@@ -557,25 +538,19 @@ site_root: ../../
         <form class="ink-form half-top-space">
             <div class="column-group horizontal-gutters">
                 <div class="control-group all-50 small-100 tiny-100">
-                    <div class="column-group horizontal-gutters">
-                        <label for="email" class="all-20 align-right">Email</label>
-                        <div class="control all-80 append-symbol">
-                            <span>
-                                <input type="text" id="email">
-                                <i class="fa fa-envelope-o"></i>
-                            </span>
-                        </div>
+                    <div class="control append-symbol">
+                        <span>
+                            <input type="text" id="email" placeholder="email address">
+                            <i class="fa fa-envelope-o"></i>
+                        </span>
                     </div>
                 </div>
                 <div class="control-group all-50 small-100 tiny-100">
-                    <div class="column-group horizontal-gutters">
-                        <label for="email" class="all-20 align-right">Email</label>
-                        <div class="control all-80 prepend-symbol">
-                            <span>
-                                <input type="text" id="email">
-                                <i class="fa fa-envelope-o"></i>
-                            </span>
-                        </div>
+                    <div class="control prepend-symbol">
+                        <span>
+                            <input type="text" id="email" placeholder="email address">
+                            <i class="fa fa-envelope-o"></i>
+                        </span>
                     </div>
                 </div>
             </div>

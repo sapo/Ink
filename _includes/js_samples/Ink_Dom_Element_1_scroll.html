@@ -1,6 +1,13 @@
-<p>Desc... <code>this</code> </p>
+<p>How to get the scroll position in a page</p>
 
 <p class="example-title">Code</p>
 {% highlight js %}
+Ink.requireModules(['Ink.Dom.Element_1'], function(InkElement) {
+    
+    var scrollPosition = InkElement.scroll();
+
+    Ink.log(scrollPosition); // [0, 0]  
+
+});
 {% endhighlight %}
 

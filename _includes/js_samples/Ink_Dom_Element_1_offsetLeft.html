@@ -1,6 +1,21 @@
-<p>Desc... <code>this</code> </p>
-
+<p>Get the left offset position of a given element</p>
 <p class="example-title">Code</p>
-{% highlight js %}
-{% endhighlight %}
+{% highlight html %}
+<body>
+    <div class="ink-grid">
+        <div class="column-group">
+            <div id="left_col" class="all-50"></div>
+            <div id="right_col" class="all-50"></div>
+        </div>
+    </div>
+</body>
+<script>
+Ink.requireModules(['Ink.Dom.Element_1'], function(InkElement) {
+    
+    var offsetLeft = InkElement.offsetLeft('right_col');
 
+    Ink.log(offsetLeft); // 320
+
+});
+</script>
+{% endhighlight %}
