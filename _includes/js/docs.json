@@ -1781,7 +1781,10 @@
 							"return": {
 								"kind": "return",
 								"type": "Boolean"
-							}
+							},
+							"samples": [
+								"Ink_Dom_Element_1_isLink.html"
+							]
 						},
 						{
 							"kind": "function",
@@ -1807,7 +1810,10 @@
 							"return": {
 								"kind": "return",
 								"type": "Boolean"
-							}
+							},
+							"samples": [
+								"Ink_Dom_Element_1_isAncestorOf.html"
+							]
 						},
 						{
 							"kind": "function",
@@ -1834,7 +1840,10 @@
 								"kind": "return",
 								"type": "Boolean",
 								"description": "true if 'descendant' is descendant of 'node'"
-							}
+							},
+							"samples": [
+								"Ink_Dom_Element_1_descendantOf.html"
+							]
 						},
 						{
 							"kind": "function",
@@ -1854,7 +1863,10 @@
 								"kind": "return",
 								"type": "DOMElement",
 								"description": "the Element child"
-							}
+							},
+							"samples": [
+								"Ink_Dom_Element_1_firstElementChild.html"
+							]
 						},
 						{
 							"kind": "function",
@@ -1874,7 +1886,10 @@
 								"kind": "return",
 								"type": "DOMElement",
 								"description": "the Element child"
-							}
+							},
+							"samples": [
+								"Ink_Dom_Element_1_lastElementChild.html"
+							]
 						},
 						{
 							"kind": "function",
@@ -1894,7 +1909,10 @@
 								"kind": "return",
 								"type": "DOMElement|Null",
 								"description": "The first sibling element after node or null if none is found"
-							}
+							},
+							"samples": [
+								"Ink_Dom_Element_1_nextElementSibling.html"
+							]
 						},
 						{
 							"kind": "function",
@@ -1914,7 +1932,10 @@
 								"kind": "return",
 								"type": "DOMElement|Null",
 								"description": "The first element sibling before node or null if none is found"
-							}
+							},
+							"samples": [
+								"Ink_Dom_Element_1_previousElementSibling.html"
+							]
 						},
 						{
 							"kind": "function",
@@ -1934,7 +1955,10 @@
 								"kind": "return",
 								"type": "Number",
 								"description": "The element's width"
-							}
+							},
+							"samples": [
+								"Ink_Dom_Element_1_elementWidth.html"
+							]
 						},
 						{
 							"kind": "function",
@@ -1954,7 +1978,10 @@
 								"kind": "return",
 								"type": "Number",
 								"description": "The element's height"
-							}
+							},
+							"samples": [
+								"Ink_Dom_Element_1_elementHeight.html"
+							]
 						},
 						{
 							"kind": "function",
@@ -2014,7 +2041,10 @@
 								"kind": "return",
 								"type": "Array",
 								"description": "Array with element's width and height"
-							}
+							},
+							"samples": [
+								"Ink_Dom_Element_1_elementDimensions.html"
+							]
 						},
 						{
 							"kind": "function",
@@ -2034,7 +2064,10 @@
 								"kind": "return",
 								"type": "Array",
 								"description": "Array with element width and height."
-							}
+							},
+							"samples": [
+								"Ink_Dom_Element_1_outerDimensions.html"
+							]
 						},
 						{
 							"kind": "function",
@@ -2071,7 +2104,10 @@
 							"return": {
 								"kind": "return",
 								"type": "Boolean"
-							}
+							},
+							"samples": [
+								"Ink_Dom_Element_1_inViewport.html"
+							]
 						},
 						{
 							"kind": "function",
@@ -2090,7 +2126,10 @@
 							"return": {
 								"kind": "return",
 								"type": "Boolean"
-							}
+							},
+							"samples": [
+								"Ink_Dom_Element_1_isHidden.html"
+							]
 						},
 						{
 							"kind": "function",
@@ -2109,7 +2148,10 @@
 							"return": {
 								"kind": "return",
 								"type": "Boolean"
-							}
+							},
+							"samples": [
+								"Ink_Dom_Element_1_isVisible.html"
+							]
 						},
 						{
 							"kind": "function",
@@ -2136,7 +2178,10 @@
 								"kind": "return",
 								"type": "DOMElement",
 								"description": "The element with positionClone"
-							}
+							},
+							"samples": [
+								"Ink_Dom_Element_1_clonePosition.html"
+							]
 						},
 						{
 							"kind": "function",
@@ -2187,7 +2232,10 @@
 								"kind": "return",
 								"type": "DOMElement|false",
 								"description": "The matched element or false if did not match"
-							}
+							},
+							"samples": [
+								"Ink_Dom_Element_1_findUpwardsHaving.html"
+							]
 						},
 						{
 							"kind": "function",
@@ -2214,7 +2262,10 @@
 								"kind": "return",
 								"type": "DOMElement|false",
 								"description": "The matched element or false if did not match"
-							}
+							},
+							"samples": [
+								"Ink_Dom_Element_1_findUpwardsByClass.html"
+							]
 						},
 						{
 							"kind": "function",
@@ -2241,7 +2292,10 @@
 								"kind": "return",
 								"type": "DOMElement|false",
 								"description": "the matched element or false if did not match"
-							}
+							},
+							"samples": [
+								"Ink_Dom_Element_1_findUpwardsByTag.html"
+							]
 						},
 						{
 							"kind": "function",
@@ -2268,7 +2322,10 @@
 								"kind": "return",
 								"type": "HtmlElement|false",
 								"description": "The matched element or false if did not match"
-							}
+							},
+							"samples": [
+								"Ink_Dom_Element_1_findUpwardsById.html"
+							]
 						},
 						{
 							"kind": "function",
@@ -2295,7 +2352,10 @@
 								"kind": "return",
 								"type": "HtmlElement|false",
 								"description": "The matched element or false if did not match"
-							}
+							},
+							"samples": [
+								"Ink_Dom_Element_1_findUpwardsBySelector.html"
+							]
 						},
 						{
 							"kind": "function",
@@ -2323,7 +2383,10 @@
 								"kind": "return",
 								"type": "String",
 								"description": "Text found"
-							}
+							},
+							"samples": [
+								"Ink_Dom_Element_1_getChildrenText.html"
+							]
 						},
 						{
 							"kind": "function",
@@ -2343,7 +2406,10 @@
 								"kind": "return",
 								"type": "Array",
 								"description": "The selected values"
-							}
+							},
+							"samples": [
+								"Ink_Dom_Element_1_getSelectValues.html"
+							]
 						},
 						{
 							"kind": "function",
@@ -2602,7 +2668,10 @@
 								"kind": "return",
 								"type": "Number",
 								"description": "The index of the childEl inside parentEl. Returns -1 if it's not a direct child"
-							}
+							},
+							"samples": [
+								"Ink_Dom_Element_1_parentIndexOf.html"
+							]
 						},
 						{
 							"kind": "function",
@@ -2622,7 +2691,10 @@
 								"kind": "return",
 								"type": "Array",
 								"description": "Array of next sibling elements"
-							}
+							},
+							"samples": [
+								"Ink_Dom_Element_1_nextSiblings.html"
+							]
 						},
 						{
 							"kind": "function",
@@ -2642,7 +2714,10 @@
 								"kind": "return",
 								"type": "Array",
 								"description": "Array of previous sibling elements"
-							}
+							},
+							"samples": [
+								"Ink_Dom_Element_1_previousSiblings.html"
+							]
 						},
 						{
 							"kind": "function",
@@ -2662,7 +2737,10 @@
 								"kind": "return",
 								"type": "Array",
 								"description": "Array of sibling elements"
-							}
+							},
+							"samples": [
+								"Ink_Dom_Element_1_siblings.html"
+							]
 						},
 						{
 							"kind": "function",
@@ -2682,7 +2760,10 @@
 								"kind": "return",
 								"type": "Number",
 								"description": "number of child elements"
-							}
+							},
+							"samples": [
+								"Ink_Dom_Element_1_childElementCount.html"
+							]
 						},
 						{
 							"kind": "function",
@@ -2723,6 +2804,9 @@
 									"isFirstLevel": true,
 									"description": "Markup string"
 								}
+							],
+							"samples": [
+								"Ink_Dom_Element_1_appendHTML.html"
 							]
 						},
 						{
@@ -2745,6 +2829,9 @@
 									"isFirstLevel": true,
 									"description": "Markup string"
 								}
+							],
+							"samples": [
+								"Ink_Dom_Element_1_prependHTML.html"
 							]
 						},
 						{
@@ -2767,6 +2854,9 @@
 									"isFirstLevel": true,
 									"description": "Markup string"
 								}
+							],
+							"samples": [
+								"Ink_Dom_Element_1_setHTML.html"
 							]
 						},
 						{
@@ -2794,6 +2884,9 @@
 								"kind": "return",
 								"description": "Container element"
 							},
+							"samples": [
+								"Ink_Dom_Element_1_wrap.html"
+							],
 							"examples": [
 								"\nbefore:\n\n    <div id=\"target\"></div>\n\ncall this function to wrap #target with a wrapper div.\n\n    InkElement.wrap('target', InkElement.create('div', {id: 'container'});\n\nafter: \n\n    <div id=\"container\"><div id=\"target\"></div></div>\n"
 							]
@@ -2820,6 +2913,9 @@
 									"description": "CSS Selector for the ancestor. Use this if your wrapper is not the direct parent of elem."
 								}
 							],
+							"samples": [
+								"Ink_Dom_Element_1_unwrap.html"
+							],
 							"examples": [
 								"\n\nWhen you have this:\n\n     <div id=\"wrapper\">\n         <div id=\"unwrapMe\"></div>\n     </div>\n\nIf you do this:\n\n     InkElement.unwrap('unwrapMe');\n\nYou get this:\n\n     <div id=\"unwrapMe\"></div>\n     <div id=\"wrapper\"></div>\n     \n"
 							]
@@ -2843,6 +2939,9 @@
 									"description": "The new element."
 								}
 							],
+							"samples": [
+								"Ink_Dom_Element_1_replace.html"
+							],
 							"examples": [
 								"\n      var newelement1 = InkElement.create('div');\n      // ...\n      replace(Ink.i('element1'), newelement1);\n"
 							]
@@ -2860,6 +2959,9 @@
 									"isFirstLevel": true,
 									"description": "Element to remove text from"
 								}
+							],
+							"samples": [
+								"Ink_Dom_Element_1_removeTextNodeChildren.html"
 							]
 						},
 						{
@@ -2880,7 +2982,10 @@
 								"kind": "return",
 								"type": "DocumentFragment",
 								"description": "DocumentFragment containing all of the elements from the html string"
-							}
+							},
+							"samples": [
+								"Ink_Dom_Element_1_htmlToFragment.html"
+							]
 						},
 						{
 							"kind": "function",
@@ -2900,7 +3005,10 @@
 								"kind": "return",
 								"type": "Object",
 								"description": "Object with the data-* properties. If no data-attributes are present, an empty object is returned."
-							}
+							},
+							"samples": [
+								"Ink_Dom_Element_1_data.html"
+							]
 						},
 						{
 							"kind": "function",
@@ -2922,6 +3030,9 @@
 									"isFirstLevel": true,
 									"description": "Index of the character to move the cursor to"
 								}
+							],
+							"samples": [
+								"Ink_Dom_Element_1_moveCursorTo.html"
 							]
 						},
 						{
@@ -2934,7 +3045,10 @@
 								"kind": "return",
 								"type": "Number",
 								"description": "Page width in pixels"
-							}
+							},
+							"samples": [
+								"Ink_Dom_Element_1_pageWidth.html"
+							]
 						},
 						{
 							"kind": "function",
@@ -2946,7 +3060,10 @@
 								"kind": "return",
 								"type": "Number",
 								"description": "Page height in pixels"
-							}
+							},
+							"samples": [
+								"Ink_Dom_Element_1_pageHeight.html"
+							]
 						},
 						{
 							"kind": "function",
@@ -2958,7 +3075,10 @@
 								"kind": "return",
 								"type": "Number",
 								"description": "Viewport width in pixels"
-							}
+							},
+							"samples": [
+								"Ink_Dom_Element_1_viewportWidth.html"
+							]
 						},
 						{
 							"kind": "function",
@@ -2970,7 +3090,10 @@
 								"kind": "return",
 								"type": "Number",
 								"description": "Viewport height in pixels"
-							}
+							},
+							"samples": [
+								"Ink_Dom_Element_1_viewportHeight.html"
+							]
 						},
 						{
 							"kind": "function",
@@ -2982,7 +3105,10 @@
 								"kind": "return",
 								"type": "Number",
 								"description": "Scroll width"
-							}
+							},
+							"samples": [
+								"Ink_Dom_Element_1_scrollWidth.html"
+							]
 						},
 						{
 							"kind": "function",
@@ -2994,7 +3120,10 @@
 								"kind": "return",
 								"type": "Number",
 								"description": "Scroll height"
-							}
+							},
+							"samples": [
+								"Ink_Dom_Element_1_scrollHeight.html"
+							]
 						}
 					],
 					"attributes": [],
