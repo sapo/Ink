@@ -435,6 +435,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method isLink
          * @param {DOMNode} node    Node to check if it's link
          * @return {Boolean}
+         * @sample Ink_Dom_Element_1_isLink.html
          */
         isLink: function(element){
             var b = element && element.nodeType === 1 && ((/^a|area$/i).test(element.tagName) ||
@@ -449,6 +450,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @param {DOMNode} ancestor  Ancestor node
          * @param {DOMNode} node      Descendant node
          * @return {Boolean}
+         * @sample Ink_Dom_Element_1_isAncestorOf.html
          */
         isAncestorOf: function(ancestor, node){
             /*jshint boss:true */
@@ -473,6 +475,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @param {DOMNode} node        The ancestor
          * @param {DOMNode} descendant  The descendant
          * @return {Boolean} true if 'descendant' is descendant of 'node'
+         * @sample Ink_Dom_Element_1_descendantOf.html
          */
         descendantOf: function(node, descendant){
             return node !== descendant && InkElement.isAncestorOf(node, descendant);
@@ -483,6 +486,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method firstElementChild
          * @param {DOMElement} elm Parent node
          * @return {DOMElement} the Element child
+         * @sample Ink_Dom_Element_1_firstElementChild.html
          */
         firstElementChild: function(elm){
             if(!elm) {
@@ -503,6 +507,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method lastElementChild
          * @param {DOMElement} elm Parent node
          * @return {DOMElement} the Element child
+         * @sample Ink_Dom_Element_1_lastElementChild.html
          */
         lastElementChild: function(elm){
             if(!elm) {
@@ -524,6 +529,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method nextElementSibling
          * @param {DOMNode} node  The current node
          * @return {DOMElement|Null} The first sibling element after node or null if none is found
+         * @sample Ink_Dom_Element_1_nextElementSibling.html 
          */
         nextElementSibling: function(node){
             var sibling = null;
@@ -550,6 +556,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method previousElementSibling
          * @param {DOMNode}        node The current node
          * @return {DOMElement|Null} The first element sibling before node or null if none is found
+         * @sample Ink_Dom_Element_1_previousElementSibling.html 
          */
         previousElementSibling: function(node){
             var sibling = null;
@@ -576,6 +583,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method elementWidth
          * @param {DOMElement|String} element Target DOM element or target ID
          * @return {Number} The element's width
+         * @sample Ink_Dom_Element_1_elementWidth.html 
          */
         elementWidth: function(element) {
             if(typeof element === "string") {
@@ -590,6 +598,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method elementHeight
          * @param {DOMElement|String} element DOM element or target ID
          * @return {Number} The element's height
+         * @sample Ink_Dom_Element_1_elementHeight.html 
          */
         elementHeight: function(element) {
             if(typeof element === "string") {
@@ -632,6 +641,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method elementDimensions
          * @param {DOMElement|string}   element     DOM element or target ID
          * @return {Array} Array with element's width and height
+         * @sample Ink_Dom_Element_1_elementDimensions.html 
          */
         elementDimensions: function(element) {
             element = Ink.i(element);
@@ -646,6 +656,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          *
          * @param {DOMElement} element Target element
          * @return {Array} Array with element width and height.
+         * @sample Ink_Dom_Element_1_outerDimensions.html 
          */
         outerDimensions: function (element) {
             var bbox = rect(element);
@@ -667,6 +678,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @param {Boolean} [partial]=false Return `true` even if it is only partially visible.
          * @param {Number}  [opts.margin]=0 Consider a margin all around the viewport with `opts.margin` width a dead zone.
          * @return {Boolean}
+         * @sample Ink_Dom_Element_1_inViewport.html 
          */
         inViewport: function (element, opts) {
             var dims = rect(Ink.i(element));
@@ -694,6 +706,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method isHidden
          * @param {DOMElement} element Element to check
          * @return {Boolean}
+         * @sample Ink_Dom_Element_1_isHidden.html 
          */
 
         isHidden: function (element) {
@@ -715,6 +728,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @uses isHidden
          * @param {DOMElement} element Element to check
          * @return {Boolean}
+         * @sample Ink_Dom_Element_1_isVisible.html 
          */
 
         isVisible: function (element) {
@@ -728,6 +742,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @param {DOMElement} cloneTo    element to be position cloned
          * @param {DOMElement} cloneFrom  element to get the cloned position
          * @return {DOMElement} The element with positionClone
+         * @sample Ink_Dom_Element_1_clonePosition.html 
          */
         clonePosition: function(cloneTo, cloneFrom){
             var pos = InkElement.offset(cloneFrom);
@@ -762,6 +777,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @param {DOMElement} element     Element to base the search from
          * @param {Function}    boolTest   Testing function
          * @return {DOMElement|false} The matched element or false if did not match
+         * @sample Ink_Dom_Element_1_findUpwardsHaving.html 
          */
         findUpwardsHaving: function(element, boolTest) {
             while (element && element.nodeType === 1) {
@@ -781,6 +797,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @param {DOMElement} element      Element to base the search from
          * @param {String}      className   Class name to search
          * @returns {DOMElement|false} The matched element or false if did not match
+         * @sample Ink_Dom_Element_1_findUpwardsByClass.html 
          */
         findUpwardsByClass: function(element, className) {
             var re = new RegExp("(^|\\s)" + className + "(\\s|$)");
@@ -798,6 +815,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @param {DOMElement} element  Element to base the search from
          * @param {String}      tag     Tag to search
          * @returns {DOMElement|false} the matched element or false if did not match
+         * @sample Ink_Dom_Element_1_findUpwardsByTag.html 
          */
         findUpwardsByTag: function(element, tag) {
             tag = tag.toUpperCase();
@@ -814,6 +832,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @param {HtmlElement} element     Element to base the search from
          * @param {String}      id          ID to search
          * @returns {HtmlElement|false} The matched element or false if did not match
+         * @sample Ink_Dom_Element_1_findUpwardsById.html 
          */
         findUpwardsById: function(element, id) {
             var tst = function(el) {
@@ -829,6 +848,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @param {HtmlElement} element     Element to base the search from
          * @param {String}      sel         CSS selector
          * @returns {HtmlElement|false} The matched element or false if did not match
+         * @sample Ink_Dom_Element_1_findUpwardsBySelector.html 
          */
         findUpwardsBySelector: function(element, sel) {
             var Selector = Ink.getModule('Ink.Dom.Selector');
@@ -848,6 +868,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @param {DOMElement}  el          Element to base the search from
          * @param {Boolean}     [removeIt]  Flag to remove the text from the element
          * @return {String} Text found
+         * @sample Ink_Dom_Element_1_getChildrenText.html 
          */
         getChildrenText: function(el, removeIt) {
             var node,
@@ -895,6 +916,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method getSelectValues
          * @param {DOMElement|String} select element
          * @return {Array} The selected values
+         * @sample Ink_Dom_Element_1_getSelectValues.html 
          */
         getSelectValues: function (select) {
             var selectEl = Ink.i(select);
@@ -1194,6 +1216,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @param {DOMElement}  parentEl  Element to parse
          * @param {DOMElement}  childEl   Child Element to look for
          * @return {Number} The index of the childEl inside parentEl. Returns -1 if it's not a direct child
+         * @sample Ink_Dom_Element_1_parentIndexOf.html 
          */
         parentIndexOf: function(parentEl, childEl) {
             var node, idx = 0;
@@ -1214,6 +1237,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method nextSiblings
          * @param {String|DOMElement} elm Element
          * @return {Array} Array of next sibling elements
+         * @sample Ink_Dom_Element_1_nextSiblings.html 
          */
         nextSiblings: function(elm) {
             if(typeof(elm) === "string") {
@@ -1240,6 +1264,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method previousSiblings
          * @param {String|DOMElement} elm Element
          * @return {Array} Array of previous sibling elements
+         * @sample Ink_Dom_Element_1_previousSiblings.html 
          */
         previousSiblings: function(elm) {
             if(typeof(elm) === "string") {
@@ -1266,6 +1291,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method siblings
          * @param {String|DOMElement} elm Element
          * @return {Array} Array of sibling elements
+         * @sample Ink_Dom_Element_1_siblings.html 
          */
         siblings: function(elm) {
             if(typeof(elm) === "string") {
@@ -1292,6 +1318,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method childElementCount
          * @param {String|DOMElement} elm element
          * @return {Number} number of child elements
+         * @sample Ink_Dom_Element_1_childElementCount.html 
          */
         childElementCount: function(elm) {
             elm = Ink.i(elm);
@@ -1372,6 +1399,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method appendHTML
          * @param {String|DOMElement} elm   Element
          * @param {String}            html  Markup string
+         * @sample Ink_Dom_Element_1_appendHTML.html 
          */
         appendHTML: function(elm, html){
             var wrapper = InkElement._getWrapper(elm, html);
@@ -1387,6 +1415,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method prependHTML
          * @param {String|DOMElement} elm   Element
          * @param {String}            html  Markup string
+         * @sample Ink_Dom_Element_1_prependHTML.html 
          */
         prependHTML: function(elm, html){
             var wrapper = InkElement._getWrapper(elm, html);
@@ -1401,6 +1430,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method setHTML
          * @param {String|DOMElement} elm   Element
          * @param {String}            html  Markup string
+         * @sample Ink_Dom_Element_1_setHTML.html 
          */
         setHTML: function (elm, html) {
             try {
@@ -1423,6 +1453,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @param {String|DOMElement}   target      Element to be wrapped
          * @param {String|DOMElement}   container   Element to wrap the target
          * @return Container element
+         * @sample Ink_Dom_Element_1_wrap.html 
          *
          * @example
          * before:
@@ -1461,6 +1492,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method unwrap
          * @param {DOMElement}  elem                The element you're trying to unwrap. This should be an ancestor of the wrapper.
          * @param {String}      [wrapperSelector]   CSS Selector for the ancestor. Use this if your wrapper is not the direct parent of elem.
+         * @sample Ink_Dom_Element_1_unwrap.html 
          *
          * @example
          *
@@ -1499,6 +1531,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method replace
          * @param element       The element to be replaced.
          * @param replacement   The new element.
+         * @sample Ink_Dom_Element_1_replace.html 
          *
          * @example
          *       var newelement1 = InkElement.create('div');
@@ -1516,6 +1549,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          *
          * @method removeTextNodeChildren
          * @param  {DOMElement} el          Element to remove text from
+         * @sample Ink_Dom_Element_1_removeTextNodeChildren.html 
          */
         removeTextNodeChildren: function(el) {
             var prevEl, toRemove, parent = el;
@@ -1536,6 +1570,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method htmlToFragment
          * @param  {String} html  HTML string
          * @return {DocumentFragment} DocumentFragment containing all of the elements from the html string
+         * @sample Ink_Dom_Element_1_htmlToFragment.html 
          */
         htmlToFragment: (createContextualFragmentSupport ?
             function(html){
@@ -1580,6 +1615,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method data
          * @param {String|DOMElement} selector Element or CSS selector
          * @return {Object} Object with the data-* properties. If no data-attributes are present, an empty object is returned.
+         * @sample Ink_Dom_Element_1_data.html 
         */
         data: function(selector) {
             var el;
@@ -1625,6 +1661,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method moveCursorTo
          * @param  {DOMElement} el  Input or Textarea element
          * @param  {Number}     t   Index of the character to move the cursor to
+         * @sample Ink_Dom_Element_1_moveCursorTo.html 
          */
         moveCursorTo: function(el, t) {
             if (el.setSelectionRange) {
@@ -1644,6 +1681,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Get the page's width.
          * @method pageWidth
          * @return {Number} Page width in pixels
+         * @sample Ink_Dom_Element_1_pageWidth.html 
          */
         pageWidth: function() {
             var xScroll;
@@ -1681,6 +1719,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Get the page's height.
          * @method pageHeight
          * @return {Number} Page height in pixels
+         * @sample Ink_Dom_Element_1_pageHeight.html 
          */
         pageHeight: function() {
             var yScroll;
@@ -1714,6 +1753,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Get the viewport's width.
          * @method viewportWidth
          * @return {Number} Viewport width in pixels
+         * @sample Ink_Dom_Element_1_viewportWidth.html 
          */
         viewportWidth: function() {
             if(typeof window.innerWidth !== "undefined") {
@@ -1728,6 +1768,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Get the viewport's height.
          * @method viewportHeight
          * @return {Number} Viewport height in pixels
+         * @sample Ink_Dom_Element_1_viewportHeight.html 
          */
         viewportHeight: function() {
             if (typeof window.innerHeight !== "undefined") {
@@ -1742,6 +1783,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Get the scroll's width.
          * @method scrollWidth
          * @return {Number} Scroll width
+         * @sample Ink_Dom_Element_1_scrollWidth.html 
          */
         scrollWidth: function() {
             if (typeof window.self.pageXOffset !== 'undefined') {
@@ -1757,6 +1799,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Get the scroll's height.
          * @method scrollHeight
          * @return {Number} Scroll height
+         * @sample Ink_Dom_Element_1_scrollHeight.html 
          */
         scrollHeight: function() {
             if (typeof window.self.pageYOffset !== 'undefined') {
