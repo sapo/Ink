@@ -1,17 +1,23 @@
-<p>Desc... <code>this</code> </p>
+<p>Replace an element by another one</p>
 
 <p class="example-title">Code</p>
 {% highlight html %}
-<div>
+<!-- Original markup -->
+<div id="container">
+    <p id="elm">Element to be replaced</p>
 </div>
 <script>
 Ink.requireModules(['Ink.Dom.Element_1'], function(InkElement) {
     
-    var ... = InkElement.('');
+    var oldElm = Ink.i('elm');
+    var newElm = InkElement.create('div', {setTextContent: 'New element'});
 
-    Ink.log(aPositionedOffset); // [0, 0]  
-
+    InkElement.replace(oldElm, newElm);
 });
 </script>
+<!-- Result -->
+<div id="container">
+    <div>New element</div>
+</div>
 {% endhighlight %}
 

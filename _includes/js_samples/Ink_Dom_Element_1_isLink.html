@@ -1,16 +1,18 @@
-<p>Desc... <code>this</code> </p>
+<p>Check if an element is a link</p>
 
 <p class="example-title">Code</p>
 {% highlight html %}
-<div>
+<div id="elm_1">
+    <p>Text with a <a id="elm_2" href="#">link</a></p>
 </div>
 <script>
 Ink.requireModules(['Ink.Dom.Element_1'], function(InkElement) {
-    
-    var ... = InkElement.('');
+    var elm1 = Ink.i('elm_1'); 
+    var elm2 = Ink.i('elm_2'); 
 
-    Ink.log(aPositionedOffset); // [0, 0]  
+    InkElement.isLink(elm1); // false
 
+    InkElement.isLink(elm2); // true
 });
 </script>
 {% endhighlight %}

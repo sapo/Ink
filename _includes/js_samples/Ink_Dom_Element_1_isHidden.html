@@ -1,16 +1,24 @@
-<p>Desc... <code>this</code> </p>
+<p>Check if an element is hidden</p>
 
 <p class="example-title">Code</p>
 {% highlight html %}
-<div>
+<style type="text/css">
+#elm_2{
+display: none;
+}
+</style>
+<div id="elm_1">
+    <p>Text with an <a id="elm_2" href="#">hidden link</a></p>
 </div>
 <script>
 Ink.requireModules(['Ink.Dom.Element_1'], function(InkElement) {
     
-    var ... = InkElement.('');
+    var elm1 = Ink.i('elm_1'); 
+    var elm2 = Ink.i('elm_2'); 
 
-    Ink.log(aPositionedOffset); // [0, 0]  
+    InkElement.isHidden(elm1); // false
 
+    InkElement.isHidden(elm2); // true
 });
 </script>
 {% endhighlight %}
