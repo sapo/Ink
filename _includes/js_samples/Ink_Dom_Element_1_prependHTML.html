@@ -1,17 +1,24 @@
-<p>Desc... <code>this</code> </p>
+<p>Insert a HTML string in the begining of an element.</p>
 
 <p class="example-title">Code</p>
 {% highlight html %}
-<div>
+<!-- Original markup -->
+<div id="container">
+    <p id="elm">Original paragraph</p>
 </div>
+
 <script>
 Ink.requireModules(['Ink.Dom.Element_1'], function(InkElement) {
-    
-    var ... = InkElement.('');
-
-    Ink.log(aPositionedOffset); // [0, 0]  
-
+    var container = Ink.i('container');
+    InkElement.prependHTML(container, '<p>First paragraph with <span>markup</span></p><p>Second paragraph</p>'); 
 });
 </script>
+
+<!-- Result -->
+<div id="container">
+   <p>First paragraph with <span>markup</span></p>
+   <p>Second paragraph</p>
+   <p id="elm">Original paragraph</p>
+</div>
 {% endhighlight %}
 

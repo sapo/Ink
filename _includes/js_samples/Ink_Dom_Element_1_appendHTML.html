@@ -1,17 +1,23 @@
-<p>Desc... <code>this</code> </p>
+<p>Append a HTML string to an element</p>
 
 <p class="example-title">Code</p>
 {% highlight html %}
-<div>
+<!-- Init markup -->
+<div id="container">
+    <p>First paragraph</p>
 </div>
+
 <script>
 Ink.requireModules(['Ink.Dom.Element_1'], function(InkElement) {
-    
-    var ... = InkElement.('');
-
-    Ink.log(aPositionedOffset); // [0, 0]  
-
+    var container = Ink.i('container');
+    InkElement.appendHTML(container, '<p>This is a paragraph with <span>markup</span> <a href="#">inside</a></p>');    
 });
 </script>
+
+<!-- Result-->
+<div id="container">
+    <p>First paragraph</p>
+    <p>This is a paragraph with <span>markup</span> <a href="#">inside</a></p>
+</div>
 {% endhighlight %}
 

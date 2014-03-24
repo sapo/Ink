@@ -14,24 +14,22 @@
 }
 
 .push-left {
-    float: left;     
-    @include experimental(justify-content, flex-start, -moz, -webkit, not -o, not -ms, not -khtml, official);   
+    float: left;
+    @include experimental(justify-content, flex-start, -moz, -webkit, not -o, not -ms, not -khtml, official);
 }
 .push-center {
     float: none !important;
-    @include experimental(justify-content, center, -moz, -webkit, not -o, not -ms, not -khtml, official);
     margin-left: auto;
     margin-right: auto;
+    @include experimental(justify-content, center, -moz, -webkit, not -o, not -ms, not -khtml, official);
 }
 .push-right {
     float: right;
     @include experimental(justify-content, flex-end, -moz, -webkit, not -o, not -ms, not -khtml, official);
 }
-
 .align-left {
     text-align: left;
 }
-
 .align-center {
     text-align: center;
 }

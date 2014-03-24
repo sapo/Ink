@@ -1,16 +1,22 @@
-<p>Desc... <code>this</code> </p>
+<p>Get number of child nodes of an element.</p>
 
 <p class="example-title">Code</p>
 {% highlight html %}
-<div>
+<div id="container">
+    Text node
+    <h2>Child 1</h2>
+    <div>Child 2</div>
+    <p>Child 3</p>
 </div>
 <script>
 Ink.requireModules(['Ink.Dom.Element_1'], function(InkElement) {
-    
-    var ... = InkElement.('');
 
-    Ink.log(aPositionedOffset); // [0, 0]  
+    var container = Ink.i('container');
 
+    var numChilds = InkElement.childElementCount(container);
+
+    Ink.log(numChilds); // 3 
+    Ink.log(container.childNodes.length); // 7 
 });
 </script>
 {% endhighlight %}
