@@ -1,16 +1,25 @@
-<p>Desc... <code>this</code> </p>
+<p>Get all option values from a select element</p>
 
 <p class="example-title">Code</p>
 {% highlight html %}
-<div>
-</div>
+<select id="select">
+    <option>--select--</option>
+    <option value="1">Mon</option>
+    <option value="2">Tue</option>
+    <option value="3">Wed</option>
+    <option value="4">Thu</option>
+    <option value="5">Fri</option>
+    <option value="6">Sat</option>
+    <option value="7">Sun</option>
+</select>
 <script>
 Ink.requireModules(['Ink.Dom.Element_1'], function(InkElement) {
-    
-    var ... = InkElement.('');
 
-    Ink.log(aPositionedOffset); // [0, 0]  
+    var select = Ink.i('select'); 
 
+    var aOptions = InkElement.getSelectValues(select); 
+
+    Ink.log(aOptions); // ['--select--', '1', '2', '3', '4', '5', '6', '7']
 });
 </script>
 {% endhighlight %}
