@@ -36,10 +36,10 @@ Stacker.prototype = {
      * @param [options.item='.stacker-item']     {String}   Select items in your stack
      *
      * @param [options.customBreakPoints]        {Object}   options for each breakpoint name. Use this if you have more breakpoints than Ink by default (`large`, `medium`, `small`)
-     * @param [options.customBreakpoints.BREAKPOINT_NAME] {Object} 
-     * @param options.customBreakpoints.BREAKPOINT_NAME.max    Maximum screen size as seen in your media query
-     * @param options.customBreakpoints.BREAKPOINT_NAME.min    Minimum screen size as seen in your media query
-     * @param options.customBreakpoints.BREAKPOINT_NAME.cols   Column count for this size.
+     * @param [options.customBreakpoints.(breakpoint)] {Object} 
+     * @param options.customBreakpoints.(breakpoint).max    Maximum screen size as seen in your media query
+     * @param options.customBreakpoints.(breakpoint).min    Minimum screen size as seen in your media query
+     * @param options.customBreakpoints.(breakpoint).cols   Column count for this size.
      *
      * @param [options.largeMax]                 {Number}   Upper bound of `large` breakpoint
      * @param [options.largeMin=961]             {Number}   Lower bound of `large` breakpoint
@@ -62,17 +62,17 @@ Stacker.prototype = {
      * Html:
      *
      *     <div id="stacker-container">  <!-- Stacker element -->
-     *         <div class="extra-large-33 large-33 medium-50 tiny-100 stacker-column"> <!-- Column element ('.stacker-column' is the default selector) -->
+     *         <div class="large-33 medium-50 small-100 stacker-column"> <!-- Column element ('.stacker-column' is the default selector) -->
      *             <div id="a" class="stacker-item">a</div> <!-- Item ('.stacker-item' is the default selector) -->
      *             <div id="d" class="stacker-item">d</div>
      *             <div id="g" class="stacker-item">g</div>
      *         </div>
-     *         <div class="extra-large-33 large-33 medium-50 tiny-100 hide-small stacker-column">
+     *         <div class="large-33 medium-50 small-100 hide-small stacker-column">
      *             <div id="b" class="stacker-item">b</div>
      *             <div id="e" class="stacker-item">e</div>
      *             <div id="h" class="stacker-item">h</div>
      *         </div>
-     *         <div class="extra-large-33 large-33 medium-50 tiny-100 hide-medium hide-small stacker-column">
+     *         <div class="large-33 medium-50 small-100 hide-medium hide-small stacker-column">
      *             <div id="c" class="stacker-item">c</div>
      *             <div id="f" class="stacker-item">f</div>
      *             <div id="i" class="stacker-item">i</div>

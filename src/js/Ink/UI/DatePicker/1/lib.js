@@ -56,7 +56,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
      *      @param {String}    [options.instance]        unique id for the datepicker
      *      @param {Object}    [options.month]           Hash of month names. Defaults to portuguese month names. January is 1.
      *      @param {String}    [options.nextLinkText]    text to display on the previous button. defaults to '«'
-     *      @param {String}    [options.ofText]          text to display between month and year. defaults to ' of '
+     *      @param {String}    [options.ofText=' of ']   text to display between month and year. defaults to ' de '
      *      @param {Boolean}   [options.onFocus=true]    if the datepicker should open when the target element is focused
      *      @param {Function}  [options.onMonthSelected] callback function to execute when the month is selected
      *      @param {Function}  [options.onSetDate]       callback to execute when set date
@@ -67,7 +67,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
      *      @param {Boolean}   [options.showClose]       whether to display the close button or not. defaults to true.
      *      @param {Boolean}   [options.shy=true]        whether the datepicker starts automatically.
      *      @param {String}    [options.startDate]       Date to define init month. Must be in yyyy-mm-dd format
-     *      @param {Number}    [options.startWeekDay]    day to use as first column on the calendar view. Sunday is zero. Defaults to Monday (1).
+     *      @param {Number}    [options.startWeekDay]    day to use as first column on the calendar view. Defaults to Monday (1)
      *      @param {Function}  [options.validYearFn]    callback function to execute when 'rendering' the month (in the month view)
      *      @param {Function}  [options.validMonthFn]    callback function to execute when 'rendering' the month (in the month view)
      *      @param {Function}  [options.validDayFn]      callback function to execute when 'rendering' the day (in the month view)
@@ -94,7 +94,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             cleanText:       ['String', 'Clear'],
             closeText:       ['String', 'Close'],
             containerElement:['Element', null],
-            cssClass:        ['String', 'ink-calendar bottom'],
+            cssClass:        ['String', 'ink-calendar right'],
             dateRange:       ['String', null],
             
             // use this in a <select>
@@ -171,11 +171,6 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             this._day   = today.getDate( );
             this._month = today.getMonth( );
             this._year  = today.getFullYear( );
-        }
-
-        if (this._options.startWeekDay < 0 || this._options.startWeekDay > 6) {
-            Ink.warn('Ink.UI.DatePicker_1: option "startWeekDay" must be between 0 (sunday) and 6 (saturday)');
-            this._options.startWeekDay = clamp(this._options.startWeekDay, 0, 6);
         }
 
         if(this._options.displayInSelect &&
@@ -404,21 +399,14 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         },
 
         _appendDatePickerToDom: function () {
+            this._wrapper = InkElement.create('div', { className: 'ink-datepicker-wrapper' });
             if(this._options.containerElement) {
                 var appendTarget =
                     Ink.i(this._options.containerElement) ||  // [2.3.0] maybe id; small backwards compatibility thing
                     Common.elOrSelector(this._options.containerElement);
                 appendTarget.appendChild(this._containerObject);
             }
-
-            if (InkElement.findUpwardsBySelector(this._element, '.ink-form .control-group .control') === this._element.parentNode) {
-                // [3.0.0] Check if the <input> must be a direct child of .control, and if not, remove this block.
-                this._wrapper = this._element.parentNode;
-                this._wrapperIsControl = true;
-            } else {
-                this._wrapper = InkElement.create('div', { className: 'ink-datepicker-wrapper' });
-                InkElement.wrap(this._element, this._wrapper);
-            }
+            InkElement.wrap(this._element, this._wrapper);
             InkElement.insertAfter(this._containerObject, this._element);
         },
 
@@ -616,7 +604,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                     lim = dateishFromYMDString(data.date);
 
                     lim._month = clamp(lim._month, 0, 11);
-                    lim._day = clamp(lim._day, 1, this._daysInMonth( lim._year, lim._month + 1 ));
+                    lim._day = clamp(lim._day, 1, this._daysInMonth( lim._year, lim._month ));
                 }
 
                 this[data.name] = lim;
@@ -1218,67 +1206,45 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         _renderMonth: function(){
             var month = this._month;
             var year = this._year;
+            
+            // Week day of the first day in the month
+            var wDayFirst = (new Date( year , month , 1 )).getDay();
+
+            var startWeekDay = this._options.startWeekDay || 0;
 
             this._showDefaultView();
 
+            if(startWeekDay > wDayFirst) {
+                wDayFirst = 7 + startWeekDay - wDayFirst;
+            } else {
+                wDayFirst += startWeekDay;
+            }
+
             var html = '';
 
-            html += this._getMonthCalendarHeaderHtml(this._options.startWeekDay);
+            html += this._getMonthCalendarHeaderHtml(startWeekDay);
 
             var counter = 0;
             html+='<ul>';
 
             var emptyHtml = '<li class="ink-calendar-empty">&nbsp;</li>';
 
-            var firstDayIndex = this._getFirstDayIndex(year, month);
-
             // Add padding if the first day of the month is not monday.
-            if(firstDayIndex > 0) {
-                counter += firstDayIndex;
-                html += strRepeat(firstDayIndex, emptyHtml);
+            if(wDayFirst !== 0) {
+                var empties = wDayFirst - startWeekDay - 1;
+                counter += empties;
+                html += strRepeat(empties, emptyHtml);
             }
 
-            html += this._getDayButtonsHtml(year, month);
+            html += this._getDayButtonsHtml(counter, year, month);
 
             html += '</ul>';
 
             this._monthContainer.innerHTML = html;
         },
 
-        /**
-         * Figure out where the first day of a month lies
-         * in the first row of the calendar.
-         *
-         *      having options.startWeekDay === 0
-         *
-         *      Su Mo Tu We Th Fr Sa  
-         *                         1  <- The "1" is in the 7th day. return 6.
-         *       2  3  4  5  6  7  8  
-         *       9 10 11 12 13 14 15  
-         *      16 17 18 19 20 21 22  
-         *      23 24 25 26 27 28 29  
-         *      30 31
-         *
-         * This obviously changes according to the user option "startWeekDay"
-         **/
-        _getFirstDayIndex: function (year, month) {
-            var wDayFirst = (new Date( year , month , 1 )).getDay();  // Sunday=0
-            var startWeekDay = this._options.startWeekDay || 0;  // Sunday=0
-
-            var result = wDayFirst - startWeekDay;
-
-            result %= 7;
-
-            if (result < 0) {
-                result += 6;
-            }
-
-            return result;
-        },
-
-        _getDayButtonsHtml: function (year, month) {
-            var counter = this._getFirstDayIndex(year, month);
-            var daysInMonth = this._daysInMonth(year, month + 1);
+        _getDayButtonsHtml: function (counter, year, month) {
+            var daysInMonth = this._daysInMonth(year, month);
             var ret = '';
             for (var day = 1; day <= daysInMonth; day++) {
                 if (counter === 7){ // new week

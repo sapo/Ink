@@ -56,7 +56,7 @@ Ink.createModule('Ink.Util.Json', '1', [], function() {
      *          var source = '{"key": "value", "array": [true, null, false]}';
      *          Json.parse(source);  // The above JSON string as an object
      *      });
-     * @namespace Ink.Util.Json
+     * @class Ink.Util.Json
      * @static
      * 
      */

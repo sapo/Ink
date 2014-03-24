@@ -1,5 +1,6 @@
-/**
+/*
  * @module Ink.UI.Draggable_1
+ * @author inkdev AT sapo.pt
  * @version 1
  */
 Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", "Ink.Dom.Css_1", "Ink.Dom.Browser_1", "Ink.Dom.Selector_1", "Ink.UI.Common_1"],function( InkElement, InkEvent, Css, Browser, Selector, Common) {
@@ -23,10 +24,7 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
      * @param {Object} [options] Optional object for configuring the component
      *     @param {String}            [options.constraint]      Movement constraint. None by default. Can be `vertical`, `horizontal`, or `both`.
      *     @param {String|DomElement} [options.constraintElm]   Constrain dragging to be within this element. None by default.
-     *     @param {Number}            [options.top]             Limits for constraining draggable movement.
-     *     @param {Number}            [options.right]           Limits for constraining draggable movement.
-     *     @param {Number}            [options.bottom]          Limits for constraining draggable movement.
-     *     @param {Number}            [options.left]            Limits for constraining draggable movement.
+     *     @param {Number}            [options.top,left,right,bottom]   Limits for constraining draggable movement.
      *     @param {String|DOMElement} [options.handle]          if specified, this element will be used as a handle for dragging.
      *     @param {Boolean}           [options.revert]          if true, reverts the draggable to the original position when dragging stops
      *     @param {String}            [options.cursor]          cursor type (CSS `cursor` value) used when the mouse is over the draggable object
@@ -34,7 +32,7 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
      *     @param {Number}            [options.fps]             if defined, on drag will run every n frames per second only
      *     @param {DomElement}        [options.droppableProxy]  if set, a shallow copy of the droppableProxy will be put on document.body with transparent bg
      *     @param {String}            [options.mouseAnchor]     defaults to mouse cursor. can be 'left|center|right top|center|bottom'
-     *     @param {String}            [options.dragClass]='drag' class to add when the draggable is being dragged.
+     *     @param {String}            [options.dragClass='drag'] class to add when the draggable is being dragged.
      *     @param {Function}          [options.onStart]        callback called when dragging starts
      *     @param {Function}          [options.onEnd]          callback called when dragging stops
      *     @param {Function}          [options.onDrag]         callback called while dragging, prior to position updates

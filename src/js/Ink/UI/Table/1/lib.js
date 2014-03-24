@@ -16,18 +16,19 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
         }
         return value;
     }
-    function cmp (a, b) {
-        if( a === b ){
-            return 0;
-        }
-        return ( ( a > b ) ? 1 : -1 );
-    }
     // cmp function for comparing data which might be a number.
-    function numberishEnabledCmp (a, b) {
-        var aValue = maybeTurnIntoNumber(Element.textContent(a));
-        var bValue = maybeTurnIntoNumber(Element.textContent(b));
+    function numberishEnabledCmp (index, a, b) {
+        var aValue = Element.textContent(Selector.select('td',a)[index]),
+            bValue = Element.textContent(Selector.select('td',b)[index]);
 
-        return cmp(aValue, bValue);
+        aValue = maybeTurnIntoNumber(aValue);
+        bValue = maybeTurnIntoNumber(bValue);
+
+        if( aValue === bValue ){
+            return 0;
+        } else {
+            return ( ( aValue > bValue ) ? 1 : -1 );
+        }
     }
     // Object.keys polyfill
     function keys(obj) {
@@ -52,75 +53,21 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
      * @version 1
      * @param {String|DOMElement} selector
      * @param {Object} [options] Options
-     *     @param {Number}    [options.pageSize]
-     *      Number of rows per page. Omit to avoid paginating.
-     *
-     *     @param {String}    [options.endpoint]
-     *      Endpoint to get the records via AJAX. Omit if you don't want to do AJAX
-     *
-     *     @param {Function}  [options.createEndpointUrl]
-     *      Callback to customise what URL the AJAX endpoint is at. Receives three
-     *      arguments: base (the "endpoint" option), sort (`{ order: 'asc' or 'desc', field: fieldname }`)
-     *      and page ({ page: page number, size: items per page })
-     *
-     *     @param {Function}  [options.getDataFromEndPoint]
-     *      Callback to allow the user to retrieve the data himself given an URL.
-     *      Must accept two arguments: `url` and `callback`. This `callback` will
-     *      take as a single argument a JavaScript object.
-     *
-     *     @param {Function}  [options.processJSONRows]
-     *      Retrieve an array of rows from the data which came from AJAX.
-     *
-     *     @param {Function}  [options.processJSONHeaders]
-     *      Get an object with all the headers' names as keys, and a { label, sortable }
-     *      object as value.
-     *      Example: `{col1: {label: "Column 1"}, col2: {label: "Column 2", sortable: true}`.
-     *      Takes a single argument, the JSON response.
-     *
-     *     @param {Function}  [options.processJSONRow]
-     *      Process a row object before it gets on the table.
-     *
-     *     @param {Function}  [options.processJSONField]
-     *      Process the field data before putting it on the table.
-     *      You can return HTML, a DOM element, or a string here.
-     *      Arguments you receive: `(column, fieldData, rowIndex)`.
-     *
-     *          @param {Function}  [options.processJSONField.FIELD_NAME]
-     *           The same as processJSONField, but for a particular field.
-     *
-     *     @param {Function}  [options.processJSONTotalRows]
-     *      A callback where you have a chance to say how many rows
-     *      are in the dataset (not only on this page) you have on the
-     *      collection. You get as an argument the JSON response.
-     *
-     *     @param {Function}  [options.getSortKey=null]
-     *      A function taking a `{ columnIndex, columnName, data, element }`
-     *      object and returning a value which serves as a sort key for the
-     *      sorting operation. For example, if you want to sort by a
-     *      `data-sort-key` atribute, set `getSortKey` to:
-     *
-     *          function (cell) {
-     *              return cell.element.getAttribute('data-sort-key');
-     *          }
-     *
-     *          @param {Function} [options.getSortKey.FIELD_NAME]
-     *           Same as `options.getSortKey`, but for a particular field.
-     *
-     *     @param {Object}    [options.tdClassNames]
-     *      An object mapping each field to what classes it gets.
-     *      Example: `{ name: "large-10", isBoss: "hide-small" }`
-     *
-     *     @param {String|DomElement|Ink.UI.Pagination} [options.pagination]
-     *      Pagination instance or element.
-     *
-     *     @param {Object}    [options.paginationOptions]
-     *      Override the options with which we instantiate the Ink.UI.Pagination.
-     *
-     *     @param {Boolean}   [options.allowResetSorting]
-     *      Allow sort order to be set to "none" in addition to "ascending" and "descending"
-     *
-     *     @param {String|Array} [options.visibleFields]
-     *      Set of fields which get shown on the table
+     *     @param {Number}    [options.pageSize]      Number of rows per page. Omit to avoid paginating.
+     *     @param {String}    [options.endpoint]      Endpoint to get the records via AJAX. Omit if you don't want to do AJAX
+     *     @param {Function}  [options.createEndpointUrl] Callback to customise what URL the AJAX endpoint is at. Receives three arguments: base (the "endpoint" option), sort ({ order: 'asc' or 'desc', field: fieldname }) and page ({ page: page number, size: items per page })
+     *     @param {Function}  [options.getDataFromEndPoint] Callback to allow the user to retrieve the data himself given an URL. Must accept two arguments: `url` and `callback`. This `callback` will take as a single argument a JavaScript object.
+     *     @param {Function}  [options.processJSONRows] Retrieve an array of rows from the data which came from AJAX.
+     *     @param {Function}  [options.processJSONHeaders] Get an object with all the headers' names as keys, and a { label, sortable } object as value. Example: `{col1: {label: "Column 1"}, col2: {label: "Column 2", sortable: true}`. Takes an argument, the JSON response.
+     *     @param {Function}  [options.processJSONRow] Process a row object before it gets on the table.
+     *     @param {Function}  [options.processJSONField] Process the field data before putting it on the table. You can return HTML, a DOM element, or a string here. Arguments you receive: `(column, fieldData, rowIndex)`.
+     *     @param {Function}  [options.processJSONField.(field_name)] The same as processJSONField, but for each field.
+     *     @param {Function}  [options.processJSONTotalRows] A callback where you have a chance to say how many rows are in the dataset (not only on this page) you have on the collection. You get as an argument the JSON response.
+     *     @param {Object}    [options.tdClassNames] An object mapping each field to what classes it gets. Example: `{ name: "large-10", isBoss: "hide-small" }`
+     *     @param {String|DomElement|Ink.UI.Pagination} [options.pagination] Pagination instance or element.
+     *     @param {Object}    [options.paginationOptions] Override the options with which we instantiate the Ink.UI.Pagination.
+     *     @param {Boolean}   [options.allowResetSorting] Allow sort order to be set to "none" in addition to "ascending" and "descending"
+     *     @param {String|Array} [options.visibleFields] Set of fields which get shown on the table
      * @example
      *      <table class="ink-table alternating" data-page-size="6">
      *          <thead>
@@ -196,13 +143,11 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
         this._rootElement = Common.elOrSelector(selector, 'Ink.UI.Table :');
 
         if( this._rootElement.nodeName.toLowerCase() !== 'table' ){
-            throw new Error('[Ink.UI.Table] :: The element is not a table');
+            throw '[Ink.UI.Table] :: The element is not a table';
         }
 
         this._options = Common.options({
             pageSize: ['Integer', null],
-            caretUpClass: ['String', 'fa fa-caret-up'],
-            caretDownClass: ['String', 'fa fa-caret-down'],
             endpoint: ['String', null],
             createEndpointUrl: ['Function', null /* default func uses above option */],
             getDataFromEndPoint: ['Function', null /* by default use plain ajax for JSON */],
@@ -211,7 +156,6 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
             processJSONField: ['Function', sameSame],
             processJSONHeaders: ['Function', function (dt) { return dt.fields; }],
             processJSONTotalRows: ['Function', function (dt) { return dt.length || dt.totalRows; }],
-            getSortKey: ['Function', null],
             pagination: ['Element', null],
             allowResetSorting: ['Boolean', false],
             visibleFields: ['String', null],
@@ -225,7 +169,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
         this._markupMode = !this._options.endpoint;
 
         if( this._options.visibleFields ){
-            this._options.visibleFields = this._options.visibleFields.toString().split(/[, ]+/g);
+            this._options.visibleFields = this._options.visibleFields.split(/[, ]+/g);
         }
 
         this._thead = this._rootElement.tHead || this._rootElement.createTHead();
@@ -342,10 +286,8 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
                 Common.cleanChildren(tbody);
                 InkArray.each(this._data, Ink.bindMethod(tbody, 'appendChild'));
 
-                if (this._pagination) {
-                    this._pagination.setCurrent(0);
-                    this._paginate(1);
-                }
+                this._pagination.setCurrent(0);
+                this._paginate(1);
             }
         },
 
@@ -368,19 +310,19 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
 
         _setSortOrderOfColumn: function(index, up) {
             var header = this._headers[index];
-            var caretHtml = [''];
+            var caretHtml = '';
             var order = 'none';
 
             if (up === true) {
-                caretHtml = ['<i class="', this._options.caretUpClass, '"></i>'];
+                caretHtml = '<i class="icon-caret-up"></i>';
                 order = 'asc';
             } else if (up === false) {
-                caretHtml = ['<i class="', this._options.caretDownClass, '"></i>'];
+                caretHtml = '<i class="icon-caret-down"></i>';
                 order = 'desc';
             }
 
             this._sortableFields[index] = order;
-            header.innerHTML = Element.textContent(header) + caretHtml.join('');
+            header.innerHTML = Element.textContent(header) + caretHtml;
         },
 
         /**
@@ -438,39 +380,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
          * @private
          */
         _sort: function( index ){
-            // TODO this is THE worst way to declare field names. Incompatible with i18n and a lot of other things.
-            var fieldName = Element.textContent(this._headers[index]);
-            var keyFunction = this._options.getSortKey;
-
-            if (keyFunction) {
-                keyFunction =
-                    typeof keyFunction[fieldName] === 'function' ?
-                        keyFunction[fieldName] :
-                    typeof keyFunction === 'function' ?
-                        keyFunction :
-                        null;
-            }
-
-            var self = this;
-
-            this._data.sort(function (trA, trB) {
-                var elementA = Ink.ss('td', trA)[index];
-                var elementB = Ink.ss('td', trB)[index];
-                if (keyFunction) {
-                    return cmp(userKey(elementA), userKey(elementB));
-                } else {
-                    return numberishEnabledCmp(elementA, elementB, index);
-                }
-            });
-
-            function userKey(element) {
-                return keyFunction.call(self, {
-                    columnIndex: index,
-                    columnName: fieldName,
-                    data: Element.textContent(element),
-                    element: element
-                });
-            }
+            this._data.sort(Ink.bind(numberishEnabledCmp, false, index));
         },
 
         /**
@@ -621,9 +531,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
         setEndpoint: function( endpoint, currentPage ){
             if( !this._markupMode ){
                 this._options.endpoint = endpoint;
-                if (this._pagination) {
-                    this._pagination.setCurrent((!!currentPage) ? parseInt(currentPage,10) : 0 );
-                }
+                this._pagination.setCurrent((!!currentPage) ? parseInt(currentPage,10) : 0 );
             }
         },
 
