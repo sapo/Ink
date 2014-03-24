@@ -16,8 +16,8 @@ $topbar-colorHover  : $white;
 $img-path           : "../img/";
 $code-background    : #EEEBE5;
 $code-border        : darken($code-background,8%);
-$teal: #009999;
-$code-font-size: .85em;
+$teal               : #009999;
+$code-font-size        : .85em;
 
 .uppercase { text-transform: uppercase; }
 .fw-100 { font-weight: 100; font-family: Roboto; }
@@ -313,7 +313,7 @@ body.ink-drawer {
 
 .mosaic {
     padding: 1em;
-    display: block;
+    // display: block;
     border: 1px solid $grey-15;
     @include border-radius($border-radius);
 
