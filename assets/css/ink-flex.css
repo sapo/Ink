@@ -2431,6 +2431,8 @@ th {
 .ink-form input[type="search"],
 .ink-form input[type="tel"],
 .ink-form input[type="color"] {
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
+  font-weight: 300;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   -ms-border-radius: 2px;
