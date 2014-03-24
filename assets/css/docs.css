@@ -367,11 +367,7 @@ body.ink-drawer .right-drawer li:last-child {
 
 .highlight pre {
   margin: 0;
-<<<<<<< HEAD
   font-size: 0.85em;
-=======
-  font-size: .875em;
->>>>>>> 187522658b27b024f040a797bc548ac0a5a659d4
   overflow-x: auto;
   white-space: pre;
   word-wrap: normal;
@@ -718,7 +714,6 @@ body.ink-drawer .right-drawer li:last-child {
 
 section {
   padding-top: 5em;
-  margin: -1em 0 0;
   -webkit-background-clip: padding;
   -moz-background-clip: padding;
   background-clip: padding-box;
@@ -729,7 +724,7 @@ section:first-child {
 }
 section + section {
   margin-top: 3em;
-  padding-top: 2em;
+  padding-top: 3em;
   border-top: 1px solid #ded8cc;
 }
 section p, section ul, section ol, section dl, section dt code, section table {
@@ -1019,9 +1014,9 @@ footer .ink-navigation ul.menu.horizontal li a.license {
 #home section.ink a.ink-button.repo:hover,
 #home section.ink a.ink-button.repo:focus,
 #home section.ink a.ink-button.repo:active {
-  background: #907f5e;
+  background: black;
+  border-color: black;
   color: white;
-  border-color: #867758;
 }
 #home section.what {
   background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, color-stop(0%, #709dc7), color-stop(100%, #4b84b9));

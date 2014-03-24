@@ -345,11 +345,7 @@ body.ink-drawer {
 .highlight          { padding: 1em; background: $code-background; margin-bottom: 1.5em; @include border-radius($border-radius);}
 .highlight pre      { 
     margin: 0; 
-<<<<<<< HEAD
     font-size: $code-font-size; 
-=======
-    font-size: .875em; 
->>>>>>> 187522658b27b024f040a797bc548ac0a5a659d4
     overflow-x: auto;
     white-space: pre;
     word-wrap: normal;
@@ -446,12 +442,12 @@ section {
     }
 
     padding-top: 5em;
-    margin: -1em 0 0;
+    //margin: -1em 0 0;
     @include background-clip(padding-box);
     
     & + section {
         margin-top: 3em;
-        padding-top: 2em;
+        padding-top: 3em;
         border-top: 1px solid $code-border;
     }
     
@@ -799,9 +795,11 @@ $who: lighten(#CA8A4E,10%);
         text-decoration: none;
         text-transform: uppercase;
         &:hover,&:focus,&:active {
-          background: darken($ink,20%);
+          // background: darken($ink,20%);
+          background: black;
+          // border-color: darken($ink,23%); 
+          border-color: black;
           color: $white;
-          border-color: darken($ink,23%); 
         }
       }
 
