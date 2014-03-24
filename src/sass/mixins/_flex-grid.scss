@@ -730,7 +730,7 @@
 
 @mixin generate-flex-grid ($breakpoints) {
 
-    // html.flexbox {
+    html.flexbox {
 
         .#{$grid-class-name} {
           width: auto;
@@ -790,5 +790,5 @@
                 }
             }
         }
-    // }
+    }
 }

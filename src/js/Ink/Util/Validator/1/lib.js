@@ -10,7 +10,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
     /**
      * Set of functions to provide validation
      *
-     * @class Ink.Util.Validator
+     * @namespace Ink.Util.Validator
      * @version 1
      * @static
      */
@@ -264,7 +264,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
          *
          * @method createRegExp
          *
-         * @param Groups... {Object}
+         * @param Groups* {Object}
          *  Groups to build regular expressions for. Possible keys are:
          *
          * - **numbers**: 0-9
@@ -300,8 +300,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
          *
          * @method checkCharacterGroups
          * @param {String}  s               The validation string
-         * @param {Object}  [groups={}]     What groups are included.
-         *  @param [options.*]              See createRegexp
+         * @param {Object}  [groups]={}     What groups are included. See createRegexp
          */
         checkCharacterGroups: function (s, groups) {
             return Validator.createRegExp(groups).test(s);
@@ -313,8 +312,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
          *
          * @method unicode
          * @param {String}  s               The validation string
-         * @param {Object}  [options={}]    Optional configuration object
-         *  @param [options.*]              See createRegexp
+         * @param {Object}  [options]={}    Optional configuration object. See createRegexp
          */
         unicode: function (s, options) {
             return Validator.checkCharacterGroups(s, Ink.extendObj({
@@ -329,8 +327,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
          * @method latin1
          *
          * @param {String}  s               The validation string
-         * @param {Object}  [options={}]    Optional configuration object
-         *  @param [options.*]              See createRegexp
+         * @param {Object}  [options]={}    Optional configuration object. See createRegexp
          */
         latin1: function (s, options) {
             return Validator.checkCharacterGroups(s, Ink.extendObj({
@@ -345,8 +342,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
          * @method ascii
          *
          * @param {String}  s               The validation string
-         * @param {Object}  [options={}]    Optional configuration object
-         *  @param [options.*]              See createRegexp
+         * @param {Object}  [options]={}    Optional configuration object. See createRegexp
          */
         ascii: function (s, options) {
             return Validator.checkCharacterGroups(s, Ink.extendObj({
@@ -359,13 +355,13 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
          * @method number
          * @param {String} numb         The number
          * @param {Object} [options]    Further options
-         *  @param  [options.decimalSep='.']    Allow decimal separator.
-         *  @param  [options.thousandSep=","]   Strip this character from the number.
-         *  @param  [options.negative=false]    Allow negative numbers.
-         *  @param  [options.decimalPlaces=null]   Maximum number of decimal places. Use `0` for an integer number.
-         *  @param  [options.max=null]          Maximum number
-         *  @param  [options.min=null]          Minimum number
-         *  @param  [options.returnNumber=false] When this option is true, return the number itself when the value is valid.
+         *  @param  [options.decimalSep]='.'    Allow decimal separator.
+         *  @param  [options.thousandSep]=","   Strip this character from the number.
+         *  @param  [options.negative]=false    Allow negative numbers.
+         *  @param  [options.decimalPlaces]=null   Maximum number of decimal places. Use `0` for an integer number.
+         *  @param  [options.max]=null          Maximum number
+         *  @param  [options.min]=null          Minimum number
+         *  @param  [options.returnNumber]=false When this option is true, return the number itself when the value is valid.
          */
         number: function (numb, inOptions) {
             numb = numb + '';
@@ -1130,7 +1126,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
         /**
          * Checks if the value is a valid IP. Supports ipv4 and ipv6
          *
-         * @method validationFunctions.ip
+         * @method isIP
          * @param  {String} value   Value to be checked
          * @param  {String} ipType Type of IP to be validated. The values are: ipv4, ipv6. By default is ipv4.
          * @return {Boolean}         True if the value is a valid IP address. False if not.
@@ -1252,7 +1248,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
 
         /**
          * Validates if a number is of a specific credit card
-         *
+         * @method isCreditCard
          * @param  {String}  num            Number to be validates
          * @param  {String|Array}  creditCardType Credit card type. See _creditCardSpecs for the list of supported values.
          * @return {Boolean}
