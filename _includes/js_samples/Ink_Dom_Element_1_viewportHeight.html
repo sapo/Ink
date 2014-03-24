@@ -1,17 +1,12 @@
-<p>Desc... <code>this</code> </p>
+<p>Get viewport height</p>
 
 <p class="example-title">Code</p>
-{% highlight html %}
-<div>
-</div>
-<script>
+{% highlight js %}
 Ink.requireModules(['Ink.Dom.Element_1'], function(InkElement) {
     
-    var ... = InkElement.('');
+    var viewPortHeight = InkElement.viewportHeight();
 
-    Ink.log(aPositionedOffset); // [0, 0]  
-
+    Ink.log(viewPortHeight); // 768
 });
-</script>
 {% endhighlight %}
 

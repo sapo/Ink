@@ -54,10 +54,10 @@
   @import "modules/buttons";
   @import "modules/fonts";
   @import "modules/forms";
-  // html.no-flexbox,
-  // html.no-flexboxlegacy {
+  html.no-flexbox,
+  html.no-flexboxlegacy {
   @import "modules/grid";
-  // }
+  }
   @import "modules/labels";
   @import "modules/nav.core";
   @import "modules/nav.breadcrumbs";

@@ -1,17 +1,38 @@
-<p>Desc... <code>this</code> </p>
+<p>Create a document fragment from a HTML string. Can be append to an element</p>
 
 <p class="example-title">Code</p>
 {% highlight html %}
-<div>
+<div id="target">
 </div>
 <script>
 Ink.requireModules(['Ink.Dom.Element_1'], function(InkElement) {
-    
-    var ... = InkElement.('');
 
-    Ink.log(aPositionedOffset); // [0, 0]  
+    var str = [
+        '<div id="container">',
+        '<div>',
+        '<p>',
+        'Text content',
+        '</p>',
+        '</div>',
+        '</div>'
+    ].join('');
 
+    var html = InkElement.htmlToFragment(str); 
+
+    Ink.log(InkElement.firstElementChild(html));    
+    // <div id="container"> ... </div>
+
+    var target = Ink.i('target');
+    target.appendChild(html);  // html fragment can be appended to an element 
 });
 </script>
+<!-- Result -->
+<div id="target">
+    <div id="container">
+        <div>
+            <p>Text content</p>
+        </div>
+    </div>
+</div>
 {% endhighlight %}
 
