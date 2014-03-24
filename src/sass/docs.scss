@@ -442,12 +442,12 @@ section {
     }
 
     padding-top: 5em;
-    margin: -1em 0 0;
+    //margin: -1em 0 0;
     @include background-clip(padding-box);
     
     & + section {
         margin-top: 3em;
-        padding-top: 2em;
+        padding-top: 3em;
         border-top: 1px solid $code-border;
     }
     
