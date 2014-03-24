@@ -208,7 +208,7 @@ This method parses the html string and doesn't modify its contents
                 <td>
                     
 
-                    Get an element's left position in pixels.
+                    Deprecated. Alias for offsetLeft()
 
                     
                     
@@ -227,7 +227,7 @@ This method parses the html string and doesn't modify its contents
                 <td>
                     
 
-                    Returns the element's top position in pixels.
+                    Deprecated. Alias for offsetTop()
 
                     
                     
@@ -304,7 +304,7 @@ Slices off a piece of text at the end of the element and adds the ellipsis so al
                 <td>
                     
 
-                    Creates a set of radio buttons
+                    Creates a set of radio buttons from an array of data
 
                     
                     
@@ -324,26 +324,6 @@ Slices off a piece of text at the end of the element and adds the ellipsis so al
                     
 
                     Fills a select element with options
-
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-fillSelect2">
-                        
-                            .fillSelect2
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    Fills a select element with options
-This method allows the creation of new values
 
                     
                     
@@ -2208,7 +2188,7 @@ This method parses the html string and doesn't modify its contents</p>
     
 
     
-        <p class="text">Get an element's left position in pixels.</p>
+        <p class="text">Deprecated. Alias for offsetLeft()</p>
     
 
     
@@ -2293,7 +2273,7 @@ This method parses the html string and doesn't modify its contents</p>
     
 
     
-        <p class="text">Returns the element's top position in pixels.</p>
+        <p class="text">Deprecated. Alias for offsetTop()</p>
     
 
     
@@ -2832,7 +2812,7 @@ Slices off a piece of text at the end of the element and adds the ellipsis so al
     
 
     
-        <p class="text">Creates a set of radio buttons</p>
+        <p class="text">Creates a set of radio buttons from an array of data</p>
     
 
     
@@ -3130,282 +3110,12 @@ Slices off a piece of text at the end of the element and adds the ellipsis so al
 
 
     
+	<h3>Samples</h3>
 
-</section>
+	
+		{% include js_samples/Ink_Dom_Element_1_fillSelect.html %}
+	
 
-    <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-fillSelect2" class="box box-function">
-
-    <h1 class="fw-300">
-    
-        
-            .fillSelect2
-        
-    
-    (ctn, opts, )
-    
-        
-            <i>method</i>
-        
-    
-    </h1>
-
-    <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        
-        <li class="prop">
-        
-        
-        ctn
-        
-        
-        </li>
-        
-        <li class="prop">
-        
-        
-        opts
-        
-        
-        </li>
-        
-        <li class="prop">
-        
-        </li>
-        
-        <li class="prop">
-        
-        </li>
-        
-        <li class="prop">
-        
-        </li>
-        
-        <li class="prop">
-        
-        </li>
-        
-        <li class="prop">
-        
-        </li>
-        
-        <li class="prop">
-        
-        </li>
-        
-        <li class="prop">
-        
-        </li>
-        
-    </ul>
-
-    
-    
-
-    
-        <p class="text">Fills a select element with options
-This method allows the creation of new values</p>
-    
-
-    
-        <h3>Accepts</h3>
-        <dl class="params">
-        
-            <dt>
-                
-                    <code>DOMElement|String</code>
-                
-            </dt>
-            <dd>
-                
-                
-                
-                <label>ctn
-                
-
-                
-                </label>
-                
-                    Select element to get populated
-                
-            </dd>
-        
-            <dt>
-                
-                    <code>Object</code>
-                
-            </dt>
-            <dd>
-                
-                
-                
-                <label>opts
-                
-
-                
-                </label>
-                
-            </dd>
-        
-            <dt>
-                
-                    <code>Array</code>
-                
-            </dt>
-            <dd>
-                
-                    teste
-                
-                
-                
-                <label class="optional">[opts.data]
-                
-
-                
-                </label>
-                
-                    Data to populate the component
-                
-            </dd>
-        
-            <dt>
-                
-                    <code>Boolean</code>
-                
-            </dt>
-            <dd>
-                
-                    teste
-                
-                
-                
-                <label class="optional">[opts.skipEmpty]
-                
-
-                
-                    false
-                
-                </label>
-                
-                    Flag to skip creation of empty options
-                
-            </dd>
-        
-            <dt>
-                
-                    <code>String</code>
-                
-            </dt>
-            <dd>
-                
-                    teste
-                
-                
-                
-                <label class="optional">[opts.emptyLabel]
-                
-
-                
-                </label>
-                
-                    Label to display on empty option
-                
-            </dd>
-        
-            <dt>
-                
-                    <code>String</code>
-                
-            </dt>
-            <dd>
-                
-                    teste
-                
-                
-                
-                <label class="optional">[opts.createLabel]
-                
-
-                
-                </label>
-                
-                    Label to display on create option
-                
-            </dd>
-        
-            <dt>
-                
-                    <code>String</code>
-                
-            </dt>
-            <dd>
-                
-                    teste
-                
-                
-                
-                <label class="optional">[opts.optionsGroupLabel]
-                
-
-                
-                </label>
-                
-                    Text to display on group surrounding value options
-                
-            </dd>
-        
-            <dt>
-                
-                    <code>String</code>
-                
-            </dt>
-            <dd>
-                
-                    teste
-                
-                
-                
-                <label class="optional">[opts.defaultValue]
-                
-
-                
-                </label>
-                
-                    Initial selected value
-                
-            </dd>
-        
-            <dt>
-                
-                    <code>Function</code>
-                
-            </dt>
-            <dd>
-                
-                    teste
-                
-                
-                
-                <label class="optional">[opts.onCreate]
-                
-
-                
-                </label>
-                
-                    Callback when the user selects the create option
-                
-            </dd>
-        
-        </dl>
-        
-        
-
-    
-
-
-    
-
-
-    
 
 </section>
 
@@ -4607,7 +4317,7 @@ This method allows the creation of new values</p>
             .inViewport
         
     
-    (element, [partial], )
+    (element, [options], )
     
         
             <i>method</i>
@@ -4629,8 +4339,12 @@ This method allows the creation of new values</p>
         <li class="prop">
         
         [
-        partial
+        options
         ]
+        
+        </li>
+        
+        <li class="prop">
         
         </li>
         
@@ -4672,14 +4386,35 @@ This method allows the creation of new values</p>
         
             <dt>
                 
-                    <code>Boolean</code>
+                    <code>Object</code>
                 
             </dt>
             <dd>
                 
                 
                 
-                <label class="optional">[partial]
+                <label class="optional">[options]
+                
+
+                
+                </label>
+                
+                    Options object. If you pass a Boolean value here, it is interpreted as `options.partial`
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Boolean</code>
+                
+            </dt>
+            <dd>
+                
+                    teste
+                
+                
+                
+                <label class="optional">[options.partial]
                 
 
                 
@@ -4702,7 +4437,7 @@ This method allows the creation of new values</p>
                 
                 
                 
-                <label class="optional">[opts.margin]
+                <label class="optional">[options.margin]
                 
 
                 
@@ -7356,12 +7091,6 @@ Useful to remove nasty layout gaps generated by whitespace on the markup.</p>
 
 
     
-	<h3>Samples</h3>
-
-	
-		{% include js_samples/Ink_Dom_Element_1_scrollHeight.html %}
-	
-
 
 </section>
 
@@ -7479,12 +7208,6 @@ Useful to remove nasty layout gaps generated by whitespace on the markup.</p>
 
 
     
-	<h3>Samples</h3>
-
-	
-		{% include js_samples/Ink_Dom_Element_1_scrollWidth.html %}
-	
-
 
 </section>
 

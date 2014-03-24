@@ -14,90 +14,32 @@
 
 
     
-
-    
-
-
-
-    
+        <h2>Defined functions:</h2>
+        <ul class="unstyled">
+        
+            <li><a href="#Ink_Util_Date_1-get">
             
-
-    
-    <p>Class to provide the same features that php date does</p>
-    
-    
-    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p>
-
-    
-    <table class="props bottom-space">
+                Ink.Util.Date_1.get
+            
+            (format, [_date])</a></li>
         
+            <li><a href="#Ink_Util_Date_1-set">
+            
+                Ink.Util.Date_1.set
+            
+            ([format], str_date)</a></li>
         
-        <caption>Functions</caption>
-        <thead>
-            <tr>
-                <th>Function name</th>
-                <th>Description</th>
-            </tr>
-        </thead>
-
-        
-        
-        <tbody>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Util_Date_1-Ink_Util_Date-get">
-                        
-                            .get
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    Function that works exactly as php date() function
-Works like PHP 5.2.2 <a href="http://php.net/manual/en/function.date.php" target="_blank">PHP Date function</a>
-
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Util_Date_1-Ink_Util_Date-set">
-                        
-                            .set
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    Functions that works like php date() function but return a date based on the formatted string
-Works like PHP 5.2.2 <a href="http://php.net/manual/en/function.date.php" target="_blank">PHP Date function</a>
-
-                    
-                    
-                </td>
-            </tr>
-        
-        </tbody>
-    </table>
+        </ul>
     
 
     
-</section>
 
 
 
+    
 
-
-
-
-    <section id="Ink_Util_Date_1-Ink_Util_Date-get" class="box box-function">
+    
+        <section id="Ink_Util_Date_1-get" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -108,7 +50,7 @@ Works like PHP 5.2.2 <a href="http://php.net/manual/en/function.date.php" target
     (format, [_date])
     
         
-            <i>method</i>
+            <i>function</i>
         
     
     </h1>
@@ -138,8 +80,8 @@ Works like PHP 5.2.2 <a href="http://php.net/manual/en/function.date.php" target
     
 
     
-        <p class="text">Function that works exactly as php date() function
-Works like PHP 5.2.2 <a href="http://php.net/manual/en/function.date.php" target="_blank">PHP Date function</a></p>
+        <p class="text">Formats a date object.
+This works exactly as php date() function. http://php.net/manual/en/function.date.php</p>
     
 
     
@@ -161,7 +103,7 @@ Works like PHP 5.2.2 <a href="http://php.net/manual/en/function.date.php" target
                 
                 </label>
                 
-                    - as the string in which the date it will be formatted - mandatory
+                    The format in which the date it will be formatted.
                 
             </dd>
         
@@ -180,7 +122,7 @@ Works like PHP 5.2.2 <a href="http://php.net/manual/en/function.date.php" target
                 
                 </label>
                 
-                    - the date to format. If undefined it will do it on now() date. Can receive unix timestamp or a date object
+                    The date to format. Can receive unix timestamp or a date object. Defaults to current time.
                 
             </dd>
         
@@ -220,8 +162,8 @@ Works like PHP 5.2.2 <a href="http://php.net/manual/en/function.date.php" target
     
 
 </section>
-
-    <section id="Ink_Util_Date_1-Ink_Util_Date-set" class="box box-function">
+    
+        <section id="Ink_Util_Date_1-set" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -232,7 +174,7 @@ Works like PHP 5.2.2 <a href="http://php.net/manual/en/function.date.php" target
     ([format], str_date)
     
         
-            <i>method</i>
+            <i>function</i>
         
     
     </h1>
@@ -262,8 +204,8 @@ Works like PHP 5.2.2 <a href="http://php.net/manual/en/function.date.php" target
     
 
     
-        <p class="text">Functions that works like php date() function but return a date based on the formatted string
-Works like PHP 5.2.2 <a href="http://php.net/manual/en/function.date.php" target="_blank">PHP Date function</a></p>
+        <p class="text">Creates a date object based on a format string.
+This works exactly as php date() function. http://php.net/manual/en/function.date.php</p>
     
 
     
@@ -285,7 +227,7 @@ Works like PHP 5.2.2 <a href="http://php.net/manual/en/function.date.php" target
                 
                 </label>
                 
-                    As the string in which the date it will be formatted. By default is 'Y-m-d'
+                    The format in which the date will be formatted. Defaults to 'Y-m-d'
                 
             </dd>
         
@@ -304,7 +246,7 @@ Works like PHP 5.2.2 <a href="http://php.net/manual/en/function.date.php" target
                 
                 </label>
                 
-                    The date formatted - Mandatory.
+                    The date formatted.
                 
             </dd>
         
@@ -333,11 +275,6 @@ Works like PHP 5.2.2 <a href="http://php.net/manual/en/function.date.php" target
     
 
 </section>
-
-
-
-    
-
     
 
     

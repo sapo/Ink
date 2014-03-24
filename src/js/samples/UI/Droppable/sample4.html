@@ -40,11 +40,13 @@
 
             .droppable_hover {
                 border: 2px solid #FAA;
+                box-shadow: 0 0 8px;
             }
         </style>
     </head>
 
-<body>
+    <body>
+        <div class="ink-grid">
     <h1>Droppable - 4</h1>
     <h2>onDrop named event handlers</h2>
 
@@ -55,19 +57,25 @@
         border: 1px solid red;
     }
     .left, .right {
-        float: left; width: 50%;
-        outline: 1px solid gray;
-        min-height: 2em;
+        background-color: #eee;
+        padding-bottom: 1em;
     }
 </style>
 <p>Drag list items from the left box to the right box.</p>
- <ul class="left">
-     <li>Draggable 1</li>
-     <li>Draggable 2</li>
-     <li>Draggable 3</li>
- </ul>
- <ul class="right">
- </ul>
+
+ <div class="column-group gutters">
+  <div class="all-40">
+   <ul class="left">
+       <li>Draggable 1</li>
+       <li>Draggable 2</li>
+       <li>Draggable 3</li>
+   </ul>
+  </div>
+  <div class="all-40">
+   <ul class="right">
+   </ul>
+  </div>
+ </div>
  <script type="text/javascript">
      Ink.requireModules(['Ink.UI.Draggable_1', 'Ink.UI.Droppable_1'], function (Draggable, Droppable) {
          new Draggable('.left li:eq(0)', {});
@@ -84,6 +92,6 @@
      })
  </script>
 
-
+        </div>
     </body>
 </html>

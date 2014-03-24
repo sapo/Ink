@@ -1,5 +1,7 @@
 /**
- * @author inkdev AT sapo.pt
+ * @module Ink.Net.Ajax_1
+ * Cross Browser Ajax requests
+ * @version 1
  */
 
 Ink.createModule('Ink.Net.Ajax', '1', [], function() {
@@ -7,39 +9,32 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
     'use strict';
 
     /**
-     * @module Ink.Net.Ajax_1
-     */
-
-    /**
-     * Creates a new cross browser XMLHttpRequest object
+     * Creates a new XMLHttpRequest object
      *
      * @class Ink.Net.Ajax
      * @constructor
      *
-     * @param {String}  url      request url
-     * @param {Object}  options  request options
-     * @param {Boolean}        [options.asynchronous]    if the request should be asynchronous. true by default.
-     * @param {Boolean}        [options.cors]            set this to true if you're doing a cross-origin request
-     * @param {String}         [options.method]          HTTP request method. POST by default.
-     * @param {Object|String}  [options.parameters]      Request parameters which should be sent with the request
-     * @param {Number}         [options.timeout]         Request timeout
-     * @param {Number}         [options.delay]           Artificial delay. If request is completed in time lower than this, then wait a bit before calling the callbacks
-     * @param {String}         [options.postBody]        POST request body. If not specified, it's filled with the contents from parameters
-     * @param {String}         [options.contentType]     Content-type header to be sent. Defaults to 'application/x-www-form-urlencoded'
-     * @param {Object}         [options.requestHeaders]  key-value pairs for additional request headers
-     * @param {Function}       [options.onComplete]      Callback executed after the request is completed, no matter what happens during the request.
-     * @param {Function}       [options.onSuccess]       Callback executed if the request is successful (requests with 2xx status codes)
-     * @param {Function}       [options.onFailure]       Callback executed if the request fails (requests with status codes different from 2xx)
-     * @param {Function}       [options.onException]     Callback executed if an exception  occurs. Receives the exception as a parameter.
-     * @param {Function}       [options.onCreate]        Callback executed after object initialization but before the request is made
-     * @param {Function}       [options.onInit]          Callback executed before any initialization
-     * @param {Function}       [options.onTimeout]       Callback executed if the request times out
-     * @param {Boolean|String} [options.evalJS]          If the request Content-type header is application/json, evaluates the response and populates responseJSON. Use 'force' if you want to force the response evaluation, no matter what Content-type it's using. Defaults to true.
-     * @param {Boolean}        [options.sanitizeJSON]    Sanitize the content of responseText before evaluation
-     * @param {String}         [options.xhrProxy]        URI for proxy service hosted on the same server as the web app, that can fetch documents from other domains.
-     *                                             The service must pipe all input and output untouched (some input sanitization is allowed, like clearing cookies).
-     *                                             e.g., requesting http://example.org/doc can become /proxy/http%3A%2F%2Fexample.org%2Fdoc The proxy service will
-     *                                             be used for cross-domain requests, if set, else a network error is returned as exception.
+     * @param {String}          url                             Request URL
+     * @param {Object}          options                         Request options
+     * @param {Boolean}         [options.asynchronous]=true     If false, the request synchronous.
+     * @param {Boolean}         [options.cors]                  Flag to activate CORS. Set this to true if you're doing a cross-origin request
+     * @param {String}          [options.method]='POST'         HTTP request method. POST by default.
+     * @param {Object|String}   [options.parameters]            Request parameters to be sent with the request
+     * @param {Number}          [options.timeout]               Request timeout in seconds
+     * @param {Number}          [options.delay]                 Artificial delay. If the request is completed faster than this delay, wait the remaining time before executing the callbacks
+     * @param {String}          [options.postBody]              POST request body. If not specified, it's filled with the contents from parameters
+     * @param {String}          [options.contentType]           Content-type header to be sent. Defaults to 'application/x-www-form-urlencoded'
+     * @param {Object}          [options.requestHeaders]        Key-value pairs for additional request headers
+     * @param {Function}        [options.onComplete]            Callback executed after the request is completed, regardless of what happened during the request.
+     * @param {Function}        [options.onSuccess]             Callback executed if the request is successful (requests with 2xx status codes)
+     * @param {Function}        [options.onFailure]             Callback executed if the request fails (requests with status codes different from 2xx)
+     * @param {Function}        [options.onException]           Callback executed if an exception occurs. Receives the exception as a parameter.
+     * @param {Function}        [options.onCreate]              Callback executed after object initialization but before the request is made
+     * @param {Function}        [options.onInit]                Callback executed before any initialization
+     * @param {Function}        [options.onTimeout]             Callback executed if the request times out
+     * @param {Boolean|String}  [options.evalJS]=true           If the request Content-type header is application/json, evaluates the response and populates responseJSON. Use 'force' if you want to force the response evaluation, no matter what Content-type it's using.
+     * @param {Boolean}         [options.sanitizeJSON]          Flag to sanitize the content of responseText before evaluation
+     * @param {String}          [options.xhrProxy]              URI for proxy service hosted on the same server as the web app, that can fetch documents from other domains. The service must pipe all input and output untouched (some input sanitization is allowed, like clearing cookies). e.g., requesting http://example.org/doc can become /proxy/http%3A%2F%2Fexample.org%2Fdoc The proxy service will be used for cross-domain requests, if set, else a network error is returned as exception.
      *
      * @example
      *     new Ajax('test.json', {
@@ -72,8 +67,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
     };
 
     /**
-    * Options for all requests. These can then be
-    * overriden for individual ones.
+    * Options for all requests. These can then be overriden for individual ones.
     */
     Ajax.globalOptions = {
         parameters: {},
@@ -230,7 +224,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
          * Set the necessary headers for an ajax request
          *
          * @method setHeaders
-         * @param {String} url - url for the request
+         * @param {String} url The url for the request
          */
         setHeaders: function()
         {
@@ -311,7 +305,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
         },
 
         /**
-         * set the url parameters for a GET request
+         * Set the url parameters for a GET request
          *
          * @method setParams
          */
@@ -335,11 +329,11 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
         },
 
         /**
-         * Retrieves HTTP header from response
+         * Gets an HTTP header from the response
          *
          * @method getHeader
-         * @param {String}  name  header name
-         * @return {String} header content
+         * @param {String}  name    Header name
+         * @return {String} header  Content
          */
         getHeader: function(name)
         {
@@ -354,10 +348,10 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
         },
 
         /**
-         * Returns all http headers from the response
+         * Gets all the HTTP headers from the response
          *
          * @method getAllHeaders
-         * @return {String} the headers, each separated by a newline
+         * @return {String} The headers, each separated by a newline
          */
         getAllHeaders: function()
         {
@@ -369,7 +363,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
         },
 
         /**
-         * Setup the response object
+         * Sets the response object
          *
          * @method getResponse
          * @return {Object} the response object
@@ -510,8 +504,8 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
          * Last step after XHR is complete. Call onComplete and cleanup object
          *
          * @method finish
-         * @param {} response
-         * @param {} responseContent
+         * @param {Any} response
+         * @param {Any} responseContent
          */
         finish: function(response, responseContent){
             if (response) {
@@ -565,7 +559,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
         },
 
         /**
-         * Sets new request header for the subsequent http request
+         * Sets a new request header for the next http request
          *
          * @method setRequestHeader
          * @param {String} name
@@ -579,7 +573,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
         },
 
         /**
-         * Execute the request
+         * Executes the request
          *
          * @method request
          */
@@ -670,11 +664,11 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
         },
 
         /**
-         * Returns new exception object that can be thrown
+         * Returns a new exception object that can be thrown
          *
          * @method makeError
-         * @param code
-         * @param message
+         * @param code      Error Code
+         * @param message   Message
          * @returns {Object}
          */
         makeError: function(code, message){
@@ -691,7 +685,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
          *
          * @method isJSON
          * @param {String} str  String to be evaluated
-         * @return {Boolean} True if the string is valid JSON
+         * @return {Boolean}    True if the string is valid JSON
          */
         isJSON: function(str)
         {
@@ -704,9 +698,9 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
          * Evaluates a given string as JSON
          *
          * @method evalJSON
-         * @param {String}  str       String to be evaluated
-         * @param {Boolean} sanitize  whether to sanitize the content or not
-         * @return {Object} Json content as an object
+         * @param {String}  str         String to be evaluated
+         * @param {Boolean} sanitize    Flag to sanitize the content
+         * @return {Object}             JSON content as an object
          */
         evalJSON: function(strJSON, sanitize)
         {
@@ -726,16 +720,14 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
     };
 
     /**
-     * Loads content from a given url through a XMLHttpRequest.
+     * Loads content from a given url through an XMLHttpRequest.
      *
-     * Shortcut function for simple AJAX use cases.
-     *
-     * Works with JSON, XML and plain text.
+     * Shortcut function for simple AJAX use cases. Works with JSON, XML and plain text.
      *
      * @method load
-     * @param {String}   url       request url
-     * @param {Function} callback  callback to be executed if the request is successful
-     * @return {Object} XMLHttpRequest object
+     * @param {String}   url        Request URL
+     * @param {Function} callback   Callback to be executed if the request is successful
+     * @return {Object}             XMLHttpRequest object
      *
      * @example
      *      Ajax.load('some/text/file', function (responseText) {
@@ -759,13 +751,13 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
     };
 
     /**
-     * Loads content from a given url through a XMLHttpRequest.
+     * Loads content from a given url through an XMLHttpRequest.
      * Shortcut function for simple AJAX use cases.
      *
      * @method ping
-     * @param {String}   url       request url
-     * @param {Function} callback  callback to be executed if the request is successful
-     * @return {Object} XMLHttpRequest object
+     * @param {String}   url        Request url
+     * @param {Function} callback   Callback to be executed if the request is successful
+     * @return {Object}             XMLHttpRequest object
      */
     Ajax.ping = function(url, callback){
         return new Ajax(url, {

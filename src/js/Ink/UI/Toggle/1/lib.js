@@ -25,7 +25,7 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
      *
      * @example
      *      <div class="ink-dropdown">
-     *          <button class="ink-button toggle" data-target="#dropdown">Dropdown <span class="icon-caret-down"></span></button>
+     *          <button class="ink-button toggle" data-target="#dropdown">Dropdown <span class="fa fa-caret-down"></span></button>
      *          <ul id="dropdown" class="dropdown-menu">
      *              <li class="heading">Heading</li>
      *              <li class="separator-above"><a href="#">Option</a></li>
@@ -121,6 +121,8 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
                     this._targets[i].style.display = '';  // becomes default
                 }
             }
+
+            this._rootElement.setAttribute('data-is-toggle-trigger', 'true');
         },
 
         /**
@@ -137,7 +139,7 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
             if( this._options.closeOnClick ){
                 InkEvent.observe( document, 'click', Ink.bind(this._onOutsideClick, this));
             }
-            if( this._options.closeOnInsideClick ) {
+            if( this._options.closeOnInsideClick && this._options.closeOnInsideClick !== 'false') {
                 var sel = this._options.closeOnInsideClick;
                 if (sel.toString() === 'true') {
                     sel = '*';
@@ -218,11 +220,13 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
             var tgtEl = InkEvent.element(event),
                 shades;
 
+            if (InkElement.findUpwardsBySelector(tgtEl, '[data-is-toggle-trigger="true"]')) return;
+
             var ancestorOfTargets = InkArray.some(this._targets, function (target) {
                 return InkElement.isAncestorOf(target, tgtEl) || target === tgtEl;
             });
 
-            if( (this._rootElement === tgtEl) || InkElement.isAncestorOf(this._rootElement, tgtEl) || ancestorOfTargets /*|| this._firstTime (I forgot what this last check was for) */) {
+            if( (this._rootElement === tgtEl) || InkElement.isAncestorOf(this._rootElement, tgtEl) || ancestorOfTargets) {
                 return;
             } else if( (shades = Ink.ss('.ink-shade')).length ) {
                 var shadesLength = shades.length;

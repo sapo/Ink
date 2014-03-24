@@ -1987,7 +1987,7 @@
 							"kind": "function",
 							"name": "elementLeft",
 							"file": "src/js/Ink/Dom/Element/1/lib.js",
-							"text": "Get an element's left position in pixels.",
+							"text": "Deprecated. Alias for offsetLeft()",
 							"params": [
 								{
 									"kind": "param",
@@ -2007,7 +2007,7 @@
 							"kind": "function",
 							"name": "elementTop",
 							"file": "src/js/Ink/Dom/Element/1/lib.js",
-							"text": "Returns the element's top position in pixels.",
+							"text": "Deprecated. Alias for offsetTop()",
 							"params": [
 								{
 									"kind": "param",
@@ -2084,16 +2084,24 @@
 								},
 								{
 									"kind": "param",
-									"name": "partial",
+									"name": "options",
+									"type": "Object",
+									"isOptional": true,
+									"isFirstLevel": true,
+									"description": "Options object. If you pass a Boolean value here, it is interpreted as `options.partial`"
+								},
+								{
+									"kind": "param",
+									"name": "options.partial",
 									"type": "Boolean",
 									"isOptional": true,
 									"defaultValue": "false",
-									"isFirstLevel": true,
+									"isFirstLevel": false,
 									"description": "Return `true` even if it is only partially visible."
 								},
 								{
 									"kind": "param",
-									"name": "opts.margin",
+									"name": "options.margin",
 									"type": "Number",
 									"isOptional": true,
 									"defaultValue": "0",
@@ -2447,91 +2455,16 @@
 									"isFirstLevel": true,
 									"description": "Initial selected value"
 								}
-							]
-						},
-						{
-							"kind": "function",
-							"name": "fillSelect2",
-							"file": "src/js/Ink/Dom/Element/1/lib.js",
-							"text": "Fills a select element with options\nThis method allows the creation of new values",
-							"params": [
-								{
-									"kind": "param",
-									"name": "ctn",
-									"type": "DOMElement|String",
-									"isFirstLevel": true,
-									"description": "Select element to get populated"
-								},
-								{
-									"kind": "param",
-									"name": "opts",
-									"type": "Object",
-									"isFirstLevel": true
-								},
-								{
-									"kind": "param",
-									"name": "opts.data",
-									"type": "Array",
-									"isOptional": true,
-									"isFirstLevel": false,
-									"description": "Data to populate the component"
-								},
-								{
-									"kind": "param",
-									"name": "opts.skipEmpty",
-									"type": "Boolean",
-									"isOptional": true,
-									"defaultValue": "false",
-									"isFirstLevel": false,
-									"description": "Flag to skip creation of empty options"
-								},
-								{
-									"kind": "param",
-									"name": "opts.emptyLabel",
-									"type": "String",
-									"isOptional": true,
-									"isFirstLevel": false,
-									"description": "Label to display on empty option"
-								},
-								{
-									"kind": "param",
-									"name": "opts.createLabel",
-									"type": "String",
-									"isOptional": true,
-									"isFirstLevel": false,
-									"description": "Label to display on create option"
-								},
-								{
-									"kind": "param",
-									"name": "opts.optionsGroupLabel",
-									"type": "String",
-									"isOptional": true,
-									"isFirstLevel": false,
-									"description": "Text to display on group surrounding value options"
-								},
-								{
-									"kind": "param",
-									"name": "opts.defaultValue",
-									"type": "String",
-									"isOptional": true,
-									"isFirstLevel": false,
-									"description": "Initial selected value"
-								},
-								{
-									"kind": "param",
-									"name": "opts.onCreate",
-									"type": "Function",
-									"isOptional": true,
-									"isFirstLevel": false,
-									"description": "Callback when the user selects the create option"
-								}
+							],
+							"samples": [
+								"Ink_Dom_Element_1_fillSelect.html"
 							]
 						},
 						{
 							"kind": "function",
 							"name": "fillRadios",
 							"file": "src/js/Ink/Dom/Element/1/lib.js",
-							"text": "Creates a set of radio buttons",
+							"text": "Creates a set of radio buttons from an array of data",
 							"params": [
 								{
 									"kind": "param",
@@ -3105,10 +3038,7 @@
 								"kind": "return",
 								"type": "Number",
 								"description": "Scroll width"
-							},
-							"samples": [
-								"Ink_Dom_Element_1_scrollWidth.html"
-							]
+							}
 						},
 						{
 							"kind": "function",
@@ -3120,10 +3050,7 @@
 								"kind": "return",
 								"type": "Number",
 								"description": "Scroll height"
-							},
-							"samples": [
-								"Ink_Dom_Element_1_scrollHeight.html"
-							]
+							}
 						}
 					],
 					"attributes": [],
@@ -4282,7 +4209,7 @@
 				{
 					"kind": "class",
 					"name": "Ink.Net.Ajax",
-					"text": "Creates a new cross browser XMLHttpRequest object",
+					"text": "Creates a new XMLHttpRequest object",
 					"file": "src/js/Ink/Net/Ajax/1/lib.js",
 					"functions": [
 						{
@@ -4296,14 +4223,14 @@
 									"name": "url",
 									"type": "String",
 									"isFirstLevel": true,
-									"description": "request url"
+									"description": "Request URL"
 								},
 								{
 									"kind": "param",
 									"name": "options",
 									"type": "Object",
 									"isFirstLevel": true,
-									"description": "request options"
+									"description": "Request options"
 								},
 								{
 									"kind": "param",
@@ -4377,7 +4304,7 @@
 									"type": "Object",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "key-value pairs for additional request headers"
+									"description": "Key-value pairs for additional request headers"
 								},
 								{
 									"kind": "param",
@@ -4748,7 +4675,7 @@
 									"name": "sanitize",
 									"type": "Boolean",
 									"isFirstLevel": true,
-									"description": "whether to sanitize the content or not"
+									"description": "Flag to sanitize the content"
 								}
 							],
 							"return": {
@@ -4761,7 +4688,7 @@
 							"kind": "function",
 							"name": "load",
 							"file": "src/js/Ink/Net/Ajax/1/lib.js",
-							"text": "Loads content from a given url through a XMLHttpRequest.\n\nShortcut function for simple AJAX use cases.\n\nWorks with JSON, XML and plain text.",
+							"text": "Loads content from a given url through an XMLHttpRequest.\n\nShortcut function for simple AJAX use cases. Works with JSON, XML and plain text.",
 							"params": [
 								{
 									"kind": "param",
@@ -4791,21 +4718,21 @@
 							"kind": "function",
 							"name": "ping",
 							"file": "src/js/Ink/Net/Ajax/1/lib.js",
-							"text": "Loads content from a given url through a XMLHttpRequest.\nShortcut function for simple AJAX use cases.",
+							"text": "Loads content from a given url through an XMLHttpRequest.\nShortcut function for simple AJAX use cases.",
 							"params": [
 								{
 									"kind": "param",
 									"name": "url",
 									"type": "String",
 									"isFirstLevel": true,
-									"description": "request url"
+									"description": "Request url"
 								},
 								{
 									"kind": "param",
 									"name": "callback",
 									"type": "Function",
 									"isFirstLevel": true,
-									"description": "callback to be executed if the request is successful"
+									"description": "Callback to be executed if the request is successful"
 								}
 							],
 							"return": {
@@ -4820,7 +4747,8 @@
 			],
 			"functions": [],
 			"attributes": [],
-			"uses": []
+			"uses": [],
+			"version": "1"
 		},
 		{
 			"kind": "module",
@@ -4830,7 +4758,7 @@
 				{
 					"kind": "class",
 					"name": "Ink.Net.JsonP",
-					"text": "This class takes care of the nitty-gritty details of doing jsonp requests: Storing\na callback in a globally accessible manner, waiting for the timeout or completion\nof the request, and passing extra GET parameters to the server, is not so complicated\nbut it's boring and repetitive to code and tricky to get right.",
+					"text": "Executes a JSONP request",
 					"file": "src/js/Ink/Net/JsonP/1/lib.js",
 					"functions": [
 						{
@@ -4843,20 +4771,22 @@
 									"kind": "param",
 									"name": "uri",
 									"type": "String",
-									"isFirstLevel": true
+									"isFirstLevel": true,
+									"description": "Request URL"
 								},
 								{
 									"kind": "param",
 									"name": "options",
 									"type": "Object",
-									"isFirstLevel": true
+									"isFirstLevel": true,
+									"description": "Request options"
 								},
 								{
 									"kind": "param",
 									"name": "options.onSuccess",
 									"type": "Function",
 									"isFirstLevel": false,
-									"description": "success callback"
+									"description": "Success callback"
 								},
 								{
 									"kind": "param",
@@ -4864,7 +4794,7 @@
 									"type": "Function",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "failure callback"
+									"description": "Failure callback"
 								},
 								{
 									"kind": "param",
@@ -4872,7 +4802,7 @@
 									"type": "Object",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "object to be passed as argument to failure callback"
+									"description": "Object to be passed as argument to failure callback"
 								},
 								{
 									"kind": "param",
@@ -4880,7 +4810,7 @@
 									"type": "Number",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "timeout for request fail, in seconds. defaults to 10"
+									"description": "Timeout for request fail, in seconds. defaults to 10"
 								},
 								{
 									"kind": "param",
@@ -4888,7 +4818,7 @@
 									"type": "Object",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "object with the parameters and respective values to unfold"
+									"description": "Object with the parameters and respective values to unfold"
 								},
 								{
 									"kind": "param",
@@ -4896,7 +4826,7 @@
 									"type": "String",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "parameter to use as callback. defaults to 'jsoncallback'"
+									"description": "Parameter to use as callback. defaults to 'jsoncallback'"
 								},
 								{
 									"kind": "param",
@@ -4904,7 +4834,7 @@
 									"type": "String",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "*Advanced*: name of the callback function stored in the Ink.Net.JsonP object."
+									"description": "Name of the callback function stored in the Ink.Net.JsonP object."
 								}
 							],
 							"examples": [
@@ -4912,13 +4842,13 @@
 							]
 						}
 					],
-					"attributes": [],
-					"isNamespace": true
+					"attributes": []
 				}
 			],
 			"functions": [],
 			"attributes": [],
-			"uses": []
+			"uses": [],
+			"version": "1"
 		},
 		{
 			"kind": "module",
@@ -11850,408 +11780,399 @@
 			"kind": "module",
 			"name": "Ink.Util.Array_1",
 			"file": "src/js/Ink/Util/Array/1/lib.js",
-			"classes": [
+			"classes": [],
+			"functions": [
 				{
-					"kind": "class",
-					"name": "Ink.Util.Array",
-					"text": "Utility functions to use with Arrays",
+					"kind": "function",
+					"name": "inArray",
 					"file": "src/js/Ink/Util/Array/1/lib.js",
-					"functions": [
+					"text": "Checks if a value exists in array",
+					"params": [
 						{
-							"kind": "function",
-							"name": "inArray",
-							"file": "src/js/Ink/Util/Array/1/lib.js",
-							"text": "Checks if value exists in array",
-							"params": [
-								{
-									"kind": "param",
-									"name": "value",
-									"type": "Mixed",
-									"isFirstLevel": true
-								},
-								{
-									"kind": "param",
-									"name": "arr",
-									"type": "Array",
-									"isFirstLevel": true
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "Boolean",
-								"description": "True if value exists in the array"
-							},
-							"static": true,
-							"examples": [
-								"\n    Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){\n        var testArray = [ 'value1', 'value2', 'value3' ];\n        if( InkArray.inArray( 'value2', testArray ) === true ){\n            console.log( \"Yep it's in the array.\" );\n        } else {\n            console.log( \"No it's NOT in the array.\" );\n        }\n    });\n"
-							]
+							"kind": "param",
+							"name": "value",
+							"type": "Mixed",
+							"isFirstLevel": true,
+							"description": "Value to check"
 						},
 						{
-							"kind": "function",
-							"name": "sortMulti",
-							"file": "src/js/Ink/Util/Array/1/lib.js",
-							"text": "Sorts an array of object by an object property",
-							"params": [
-								{
-									"kind": "param",
-									"name": "arr",
-									"type": "Array",
-									"isFirstLevel": true,
-									"description": "array of objects to sort"
-								},
-								{
-									"kind": "param",
-									"name": "key",
-									"type": "String",
-									"isFirstLevel": true,
-									"description": "property to sort by"
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "Array|Boolean",
-								"description": "False if it's not an array, returns a sorted array if it's an array."
-							},
-							"static": true,
-							"examples": [
-								"\n    Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){\n        var testArray = [\n            { 'myKey': 'value1' },\n            { 'myKey': 'value2' },\n            { 'myKey': 'value3' }\n        ];\n\n        InkArray.sortMulti( testArray, 'myKey' );\n    });\n"
-							]
-						},
-						{
-							"kind": "function",
-							"name": "keyValue",
-							"file": "src/js/Ink/Util/Array/1/lib.js",
-							"text": "Returns the associated key of an array value",
-							"params": [
-								{
-									"kind": "param",
-									"name": "value",
-									"type": "String",
-									"isFirstLevel": true,
-									"description": "Value to search for"
-								},
-								{
-									"kind": "param",
-									"name": "arr",
-									"type": "Array",
-									"isFirstLevel": true,
-									"description": "Array where the search will run"
-								},
-								{
-									"kind": "param",
-									"name": "first",
-									"type": "Boolean",
-									"isOptional": true,
-									"isFirstLevel": true,
-									"description": "Flag that determines if the search stops at first occurrence. It also returns an index number instead of an array of indexes."
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "Boolean|Number|Array",
-								"description": "False if not exists | number if exists and 3rd input param is true | array if exists and 3rd input param is not set or it is !== true"
-							},
-							"static": true,
-							"examples": [
-								"\n    Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){\n        var testArray = [ 'value1', 'value2', 'value3', 'value2' ];\n        console.log( InkArray.keyValue( 'value2', testArray, true ) ); // Result: 1\n        console.log( InkArray.keyValue( 'value2', testArray ) ); // Result: [1, 3]\n    });\n"
-							]
-						},
-						{
-							"kind": "function",
-							"name": "shuffle",
-							"file": "src/js/Ink/Util/Array/1/lib.js",
-							"text": "Returns the array shuffled, false if the param is not an array",
-							"params": [
-								{
-									"kind": "param",
-									"name": "arr",
-									"type": "Array",
-									"isFirstLevel": true,
-									"description": "Array to shuffle"
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "Boolean|Number|Array",
-								"description": "False if not an array | Array shuffled"
-							},
-							"static": true,
-							"examples": [
-								"\n    Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){\n        var testArray = [ 'value1', 'value2', 'value3', 'value2' ];\n        console.log( InkArray.shuffle( testArray ) ); // Result example: [ 'value3', 'value2', 'value2', 'value1' ]\n    });\n"
-							]
-						},
-						{
-							"kind": "function",
-							"name": "forEach",
-							"file": "src/js/Ink/Util/Array/1/lib.js",
-							"text": "Runs a function through each of the elements of an array",
-							"params": [
-								{
-									"kind": "param",
-									"name": "arr",
-									"type": "Array",
-									"isFirstLevel": true,
-									"description": "Array to be cycled/iterated"
-								},
-								{
-									"kind": "param",
-									"name": "cb",
-									"type": "Function",
-									"isFirstLevel": true,
-									"description": "The function receives as arguments the value, index and array."
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "Array",
-								"description": "Array iterated."
-							},
-							"static": true,
-							"examples": [
-								"\n    Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){\n        var testArray = [ 'value1', 'value2', 'value3', 'value2' ];\n        InkArray.forEach( testArray, function( value, index, arr ){\n            console.log( 'The value is: ' + value + ' | The index is: ' + index );\n        });\n    });\n"
-							]
-						},
-						{
-							"kind": "function",
-							"name": "forEach",
-							"file": "src/js/Ink/Util/Array/1/lib.js",
-							"text": "Alias for backwards compatibility. See forEach",
-							"params": []
-						},
-						{
-							"kind": "function",
-							"name": "map",
-							"file": "src/js/Ink/Util/Array/1/lib.js",
-							"text": "Run a `map` function for each item in the array. The function will receive each item as argument and its return value will change the corresponding array item.",
-							"params": [
-								{
-									"kind": "param",
-									"name": "array",
-									"type": "Array",
-									"isFirstLevel": true,
-									"description": "The array to map over"
-								},
-								{
-									"kind": "param",
-									"name": "map",
-									"type": "Function",
-									"isFirstLevel": true,
-									"description": "The map function. Will take `(item, index, array)` and `this` will be the `context` argument."
-								},
-								{
-									"kind": "param",
-									"name": "context",
-									"type": "Object",
-									"isOptional": true,
-									"isFirstLevel": true,
-									"description": "Object to be `this` in the map function."
-								},
-								{
-									"kind": "param",
-									"name": "array",
-									"type": "Array",
-									"isFirstLevel": true
-								},
-								{
-									"kind": "param",
-									"name": "test",
-									"type": "Function",
-									"isFirstLevel": true,
-									"description": "A test function taking `(item, index, array)`"
-								},
-								{
-									"kind": "param",
-									"name": "context",
-									"type": "Object",
-									"isOptional": true,
-									"isFirstLevel": true,
-									"description": "Object to be `this` in the test function."
-								}
-							],
-							"examples": [
-								"\n     InkArray.map([1, 2, 3, 4], function (item) {\n         return item + 1;\n     }); // -> [2, 3, 4, 5]\n",
-								"\n     InkArray.filter([1, 2, 3, 4, 5], function (val) {\n         return val > 2;\n     })  // -> [3, 4, 5]\n"
-							],
-							"return": {
-								"kind": "return",
-								"description": "filtered array"
-							}
-						},
-						{
-							"kind": "function",
-							"name": "some",
-							"file": "src/js/Ink/Util/Array/1/lib.js",
-							"text": "Runs a callback function, which should return true or false.\nIf one of the 'runs' returns true, it will return. Otherwise if none returns true, it will return false.\nSee more at: https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Array/some (MDN)",
-							"params": [
-								{
-									"kind": "param",
-									"name": "arr",
-									"type": "Array",
-									"isFirstLevel": true,
-									"description": "The array you walk to iterate through"
-								},
-								{
-									"kind": "param",
-									"name": "cb",
-									"type": "Function",
-									"isFirstLevel": true,
-									"description": "The callback that will be called on the array's elements. It receives the value, the index and the array as arguments."
-								},
-								{
-									"kind": "param",
-									"name": "Context",
-									"type": "Object",
-									"isFirstLevel": true,
-									"description": "object of the callback function"
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "Boolean",
-								"description": "True if the callback returns true at any point, false otherwise"
-							},
-							"static": true,
-							"examples": [
-								"\n    Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){\n        var testArray1 = [ 10, 20, 50, 100, 30 ];\n        var testArray2 = [ 1, 2, 3, 4, 5 ];\n\n        function myTestFunction( value, index, arr ){\n            if( value > 90 ){\n                return true;\n            }\n            return false;\n        }\n        console.log( InkArray.some( testArray1, myTestFunction, null ) ); // Result: true\n        console.log( InkArray.some( testArray2, myTestFunction, null ) ); // Result: false\n    });\n"
-							]
-						},
-						{
-							"kind": "function",
-							"name": "intersect",
-							"file": "src/js/Ink/Util/Array/1/lib.js",
-							"text": "Returns an array containing every item that is shared between the two given arrays",
-							"params": [
-								{
-									"kind": "param",
-									"name": "arr",
-									"type": "Array",
-									"isFirstLevel": true,
-									"description": "Array1 to be intersected with Array2"
-								},
-								{
-									"kind": "param",
-									"name": "arr",
-									"type": "Array",
-									"isFirstLevel": true,
-									"description": "Array2 to be intersected with Array1"
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "Array",
-								"description": "Empty array if one of the arrays is false (or do not intersect) | Array with the intersected values"
-							},
-							"static": true,
-							"examples": [
-								"\n    Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){\n        var testArray1 = [ 'value1', 'value2', 'value3' ];\n        var testArray2 = [ 'value2', 'value3', 'value4', 'value5', 'value6' ];\n        console.log( InkArray.intersect( testArray1,testArray2 ) ); // Result: [ 'value2', 'value3' ]\n    });\n"
-							]
-						},
-						{
-							"kind": "function",
-							"name": "convert",
-							"file": "src/js/Ink/Util/Array/1/lib.js",
-							"text": "Convert lists type to type array",
-							"params": [
-								{
-									"kind": "param",
-									"name": "arr",
-									"type": "Array",
-									"isFirstLevel": true,
-									"description": "Array to be converted"
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "Array",
-								"description": "Array resulting of the conversion"
-							},
-							"static": true,
-							"examples": [
-								"\n    Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){\n        var testArray = [ 'value1', 'value2' ];\n        testArray.myMethod = function(){\n            console.log('stuff');\n        }\n\n        console.log( InkArray.convert( testArray ) ); // Result: [ 'value1', 'value2' ]\n    });\n"
-							]
-						},
-						{
-							"kind": "function",
-							"name": "insert",
-							"file": "src/js/Ink/Util/Array/1/lib.js",
-							"text": "Insert value into the array on specified idx",
-							"params": [
-								{
-									"kind": "param",
-									"name": "arr",
-									"type": "Array",
-									"isFirstLevel": true,
-									"description": "Array where the value will be inserted"
-								},
-								{
-									"kind": "param",
-									"name": "idx",
-									"type": "Number",
-									"isFirstLevel": true,
-									"description": "Index of the array where the value should be inserted"
-								},
-								{
-									"kind": "param",
-									"name": "value",
-									"type": "Mixed",
-									"isFirstLevel": true,
-									"description": "Value to be inserted"
-								}
-							],
-							"static": true,
-							"examples": [
-								"\n    Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){\n        var testArray = [ 'value1', 'value2' ];\n        console.log( InkArray.insert( testArray, 1, 'value3' ) ); // Result: [ 'value1', 'value3', 'value2' ]\n    });\n"
-							]
-						},
-						{
-							"kind": "function",
-							"name": "remove",
-							"file": "src/js/Ink/Util/Array/1/lib.js",
-							"text": "Remove a range of values from the array",
-							"params": [
-								{
-									"kind": "param",
-									"name": "arr",
-									"type": "Array",
-									"isFirstLevel": true,
-									"description": "Array where the value will be inserted"
-								},
-								{
-									"kind": "param",
-									"name": "from",
-									"type": "Number",
-									"isFirstLevel": true,
-									"description": "Index of the array where the removal will start removing."
-								},
-								{
-									"kind": "param",
-									"name": "rLen",
-									"type": "Number",
-									"isFirstLevel": true,
-									"description": "Number of items to be removed from the index onwards."
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "Array",
-								"description": "An array with the remaining values"
-							},
-							"static": true,
-							"examples": [
-								"\n    Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){\n        var testArray = [ 'value1', 'value2', 'value3', 'value4', 'value5' ];\n        console.log( InkArray.remove( testArray, 1, 3 ) ); // Result: [ 'value1', 'value4', 'value5' ]\n    });\n"
-							]
+							"kind": "param",
+							"name": "arr",
+							"type": "Array",
+							"isFirstLevel": true,
+							"description": "Array to search in"
 						}
 					],
-					"attributes": [],
-					"isNamespace": true,
-					"version": "1",
-					"static": true
+					"static": true,
+					"return": {
+						"kind": "return",
+						"type": "Boolean",
+						"description": "True if value exists in the array"
+					},
+					"examples": [
+						"\n    Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){\n        var testArray = [ 'value1', 'value2', 'value3' ];\n        if( InkArray.inArray( 'value2', testArray ) === true ){\n            console.log( \"Yep it's in the array.\" );\n        } else {\n            console.log( \"No it's NOT in the array.\" );\n        }\n    });\n"
+					]
+				},
+				{
+					"kind": "function",
+					"name": "sortMulti",
+					"file": "src/js/Ink/Util/Array/1/lib.js",
+					"text": "Sorts an array of objects by an object property",
+					"params": [
+						{
+							"kind": "param",
+							"name": "arr",
+							"type": "Array",
+							"isFirstLevel": true,
+							"description": "Array of objects to sort"
+						},
+						{
+							"kind": "param",
+							"name": "key",
+							"type": "String",
+							"isFirstLevel": true,
+							"description": "Property to sort by"
+						}
+					],
+					"return": {
+						"kind": "return",
+						"type": "Array|Boolean",
+						"description": "False if it's not an array, returns a sorted array if it's an array."
+					},
+					"static": true,
+					"examples": [
+						"\n    Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){\n        var testArray = [\n            { 'myKey': 'value1' },\n            { 'myKey': 'value2' },\n            { 'myKey': 'value3' }\n        ];\n\n        InkArray.sortMulti( testArray, 'myKey' );\n    });\n"
+					]
+				},
+				{
+					"kind": "function",
+					"name": "keyValue",
+					"file": "src/js/Ink/Util/Array/1/lib.js",
+					"text": "Gets the indexes of a value in an array",
+					"params": [
+						{
+							"kind": "param",
+							"name": "value",
+							"type": "String",
+							"isFirstLevel": true,
+							"description": "Value to search for."
+						},
+						{
+							"kind": "param",
+							"name": "arr",
+							"type": "Array",
+							"isFirstLevel": true,
+							"description": "Array to run the search in."
+						},
+						{
+							"kind": "param",
+							"name": "first",
+							"type": "Boolean",
+							"isOptional": true,
+							"isFirstLevel": true,
+							"description": "Flag to stop the search at the first match. It also returns an index number instead of an array of indexes."
+						}
+					],
+					"return": {
+						"kind": "return",
+						"type": "Boolean|Number|Array",
+						"description": "False for no matches. Array of matches or first match index."
+					},
+					"static": true,
+					"examples": [
+						"\n    Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){\n        var testArray = [ 'value1', 'value2', 'value3', 'value2' ];\n        console.log( InkArray.keyValue( 'value2', testArray, true ) ); // Result: 1\n        console.log( InkArray.keyValue( 'value2', testArray ) ); // Result: [1, 3]\n    });\n"
+					]
+				},
+				{
+					"kind": "function",
+					"name": "shuffle",
+					"file": "src/js/Ink/Util/Array/1/lib.js",
+					"text": "Shuffles an array.",
+					"params": [
+						{
+							"kind": "param",
+							"name": "arr",
+							"type": "Array",
+							"isFirstLevel": true,
+							"description": "Array to shuffle"
+						}
+					],
+					"return": {
+						"kind": "return",
+						"type": "Array|Boolean",
+						"description": "Shuffled Array or false if not an array."
+					},
+					"static": true,
+					"examples": [
+						"\n    Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){\n        var testArray = [ 'value1', 'value2', 'value3', 'value2' ];\n        console.log( InkArray.shuffle( testArray ) ); // Result example: [ 'value3', 'value2', 'value2', 'value1' ]\n    });\n"
+					]
+				},
+				{
+					"kind": "function",
+					"name": "forEach",
+					"file": "src/js/Ink/Util/Array/1/lib.js",
+					"text": "Runs a function through each of the elements of an array",
+					"params": [
+						{
+							"kind": "param",
+							"name": "arr",
+							"type": "Array",
+							"isFirstLevel": true,
+							"description": "The array to be cycled/iterated"
+						},
+						{
+							"kind": "param",
+							"name": "cb",
+							"type": "Function",
+							"isFirstLevel": true,
+							"description": "The function receives as arguments the value, index and array."
+						}
+					],
+					"return": {
+						"kind": "return",
+						"type": "Array",
+						"description": "Iterated array."
+					},
+					"static": true,
+					"examples": [
+						"\n    Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){\n        var testArray = [ 'value1', 'value2', 'value3', 'value2' ];\n        InkArray.forEach( testArray, function( value, index, arr ){\n            console.log( 'The value is: ' + value + ' | The index is: ' + index );\n        });\n    });\n"
+					]
+				},
+				{
+					"kind": "function",
+					"name": "each",
+					"file": "src/js/Ink/Util/Array/1/lib.js",
+					"text": "Alias for backwards compatibility. See forEach",
+					"params": []
+				},
+				{
+					"kind": "function",
+					"name": "map",
+					"file": "src/js/Ink/Util/Array/1/lib.js",
+					"text": "Runs a function for each item in the array. \nThat function will receive each item as an argument and its return value will change the corresponding array item.",
+					"params": [
+						{
+							"kind": "param",
+							"name": "array",
+							"type": "Array",
+							"isFirstLevel": true,
+							"description": "The array to map over"
+						},
+						{
+							"kind": "param",
+							"name": "map",
+							"type": "Function",
+							"isFirstLevel": true,
+							"description": "The map function. Will take `(item, index, array)` as arguments and `this` will be the `context` argument."
+						},
+						{
+							"kind": "param",
+							"name": "context",
+							"type": "Object",
+							"isOptional": true,
+							"isFirstLevel": true,
+							"description": "Object to be `this` in the map function."
+						},
+						{
+							"kind": "param",
+							"name": "array",
+							"type": "Array",
+							"isFirstLevel": true,
+							"description": "The array to filter"
+						},
+						{
+							"kind": "param",
+							"name": "test",
+							"type": "Function",
+							"isFirstLevel": true,
+							"description": "A test function taking `(item, index, array)`"
+						},
+						{
+							"kind": "param",
+							"name": "context",
+							"type": "Object",
+							"isOptional": true,
+							"isFirstLevel": true,
+							"description": "Object to be `this` in the test function."
+						}
+					],
+					"examples": [
+						"\n     InkArray.map([1, 2, 3, 4], function (item) {\n         return item + 1;\n     }); // -> [2, 3, 4, 5]\n",
+						"\n     InkArray.filter([1, 2, 3, 4, 5], function (val) {\n         return val > 2;\n     })  // -> [3, 4, 5]\n"
+					],
+					"return": {
+						"kind": "return",
+						"type": "Array",
+						"description": "Returns the filtered array"
+					}
+				},
+				{
+					"kind": "function",
+					"name": "some",
+					"file": "src/js/Ink/Util/Array/1/lib.js",
+					"text": "Checks if some element in the array passes a truth test",
+					"params": [
+						{
+							"kind": "param",
+							"name": "arr",
+							"type": "Array",
+							"isFirstLevel": true,
+							"description": "The array to iterate through"
+						},
+						{
+							"kind": "param",
+							"name": "cb",
+							"type": "Function",
+							"isFirstLevel": true,
+							"description": "The callback to be called on the array's elements. It receives the value, the index and the array as arguments."
+						},
+						{
+							"kind": "param",
+							"name": "context",
+							"type": "Object",
+							"isFirstLevel": true,
+							"description": "Object of the callback function"
+						}
+					],
+					"return": {
+						"kind": "return",
+						"type": "Boolean",
+						"description": "True if the callback returns true at any point, false otherwise"
+					},
+					"static": true,
+					"examples": [
+						"\n    Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){\n        var testArray1 = [ 10, 20, 50, 100, 30 ];\n        var testArray2 = [ 1, 2, 3, 4, 5 ];\n\n        function myTestFunction( value, index, arr ){\n            if( value > 90 ){\n                return true;\n            }\n            return false;\n        }\n        console.log( InkArray.some( testArray1, myTestFunction, null ) ); // Result: true\n        console.log( InkArray.some( testArray2, myTestFunction, null ) ); // Result: false\n    });\n"
+					]
+				},
+				{
+					"kind": "function",
+					"name": "intersect",
+					"file": "src/js/Ink/Util/Array/1/lib.js",
+					"text": "Compares the values of two arrays and return the matches",
+					"params": [
+						{
+							"kind": "param",
+							"name": "arr1",
+							"type": "Array",
+							"isFirstLevel": true,
+							"description": "First array"
+						},
+						{
+							"kind": "param",
+							"name": "arr2",
+							"type": "Array",
+							"isFirstLevel": true,
+							"description": "Second array"
+						}
+					],
+					"return": {
+						"kind": "return",
+						"type": "Array",
+						"description": "Empty array if one of the arrays is false (or do not intersect) | Array with the intersected values"
+					},
+					"static": true,
+					"examples": [
+						"\n    Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){\n        var testArray1 = [ 'value1', 'value2', 'value3' ];\n        var testArray2 = [ 'value2', 'value3', 'value4', 'value5', 'value6' ];\n        console.log( InkArray.intersect( testArray1,testArray2 ) ); // Result: [ 'value2', 'value3' ]\n    });\n"
+					]
+				},
+				{
+					"kind": "function",
+					"name": "convert",
+					"file": "src/js/Ink/Util/Array/1/lib.js",
+					"text": "Converts an array-like object to an array",
+					"params": [
+						{
+							"kind": "param",
+							"name": "arr",
+							"type": "Array",
+							"isFirstLevel": true,
+							"description": "Array to be converted"
+						}
+					],
+					"return": {
+						"kind": "return",
+						"type": "Array",
+						"description": "Array resulting of the conversion"
+					},
+					"static": true,
+					"examples": [
+						"\n    Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){\n        var testArray = [ 'value1', 'value2' ];\n        testArray.myMethod = function(){\n            console.log('stuff');\n        }\n\n        console.log( InkArray.convert( testArray ) ); // Result: [ 'value1', 'value2' ]\n    });\n"
+					]
+				},
+				{
+					"kind": "function",
+					"name": "insert",
+					"file": "src/js/Ink/Util/Array/1/lib.js",
+					"text": "Inserts a value on a specified index",
+					"params": [
+						{
+							"kind": "param",
+							"name": "arr",
+							"type": "Array",
+							"isFirstLevel": true,
+							"description": "Array where the value will be inserted"
+						},
+						{
+							"kind": "param",
+							"name": "idx",
+							"type": "Number",
+							"isFirstLevel": true,
+							"description": "Index of the array where the value should be inserted"
+						},
+						{
+							"kind": "param",
+							"name": "value",
+							"type": "Mixed",
+							"isFirstLevel": true,
+							"description": "Value to be inserted"
+						}
+					],
+					"static": true,
+					"examples": [
+						"\n    Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){\n        var testArray = [ 'value1', 'value2' ];\n        console.log( InkArray.insert( testArray, 1, 'value3' ) ); // Result: [ 'value1', 'value3', 'value2' ]\n    });\n"
+					]
+				},
+				{
+					"kind": "function",
+					"name": "remove",
+					"file": "src/js/Ink/Util/Array/1/lib.js",
+					"text": "Removes a range of values from the array",
+					"params": [
+						{
+							"kind": "param",
+							"name": "arr",
+							"type": "Array",
+							"isFirstLevel": true,
+							"description": "Array where the value will be removed"
+						},
+						{
+							"kind": "param",
+							"name": "from",
+							"type": "Number",
+							"isFirstLevel": true,
+							"description": "Index of the array where the removal will start removing."
+						},
+						{
+							"kind": "param",
+							"name": "rLen",
+							"type": "Number",
+							"isFirstLevel": true,
+							"description": "Number of items to be removed from the index onwards."
+						}
+					],
+					"return": {
+						"kind": "return",
+						"type": "Array",
+						"description": "An array with the remaining values"
+					},
+					"static": true,
+					"examples": [
+						"\n    Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){\n        var testArray = [ 'value1', 'value2', 'value3', 'value4', 'value5' ];\n        console.log( InkArray.remove( testArray, 1, 3 ) ); // Result: [ 'value1', 'value4', 'value5' ]\n    });\n"
+					]
 				}
 			],
-			"functions": [],
 			"attributes": [],
 			"uses": [],
-			"author": "inkdev AT sapo.pt",
 			"version": "1"
 		},
 		{
@@ -12276,22 +12197,22 @@
 									"name": "o",
 									"type": "Object",
 									"isFirstLevel": true,
-									"description": "options"
+									"description": "Options"
 								},
 								{
 									"kind": "param",
 									"name": "o.blocks",
-									"type": "Object[]",
+									"type": "Array",
 									"isFirstLevel": false,
-									"description": "array of items with w and h integer attributes."
+									"description": "Array of items with width and height integer attributes."
 								},
 								{
 									"kind": "param",
 									"name": "o.dimensions",
-									"type": "Number[2]",
+									"type": "Array",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "if passed, container has fixed dimensions"
+									"description": "Flag to fix container dimensions"
 								},
 								{
 									"kind": "param",
@@ -12299,13 +12220,13 @@
 									"type": "String",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "sorter function. one of: random, height, width, area, maxside"
+									"description": "Sorting function. One of: random, height, width, area, maxside"
 								}
 							],
 							"return": {
 								"kind": "return",
 								"type": "Object",
-								"description": "* {Number[2]} dimensions - resulted container size,"
+								"description": "Returns an object containing container dimensions, filled ratio, fitted blocks, unfitted blocks and all blocks"
 							},
 							"static": true
 						}
@@ -12319,539 +12240,505 @@
 			"functions": [],
 			"attributes": [],
 			"uses": [],
-			"author": "inkdev AT sapo.pt",
 			"version": "1"
 		},
 		{
 			"kind": "module",
 			"name": "Ink.Util.Cookie_1",
 			"file": "src/js/Ink/Util/Cookie/1/lib.js",
-			"classes": [
+			"classes": [],
+			"functions": [
 				{
-					"kind": "class",
-					"name": "Ink.Util.Cookie",
-					"text": "Utilities for Cookie handling",
+					"kind": "function",
+					"name": "get",
 					"file": "src/js/Ink/Util/Cookie/1/lib.js",
-					"functions": [
+					"text": "Gets an object with the current page cookies.",
+					"params": [
 						{
-							"kind": "function",
-							"name": "get",
-							"file": "src/js/Ink/Util/Cookie/1/lib.js",
-							"text": "Gets an object with current page cookies",
-							"params": [
-								{
-									"kind": "param",
-									"name": "name",
-									"type": "String",
-									"isFirstLevel": true
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "String|Object",
-								"description": "If the name is specified, it returns the value related to that property. Otherwise it returns the full cookie object"
-							},
-							"static": true,
-							"examples": [
-								"\n    Ink.requireModules(['Ink.Util.Cookie_1'], function( InkCookie ){\n        var myCookieValue = InkCookie.get('someVarThere');\n        console.log( myCookieValue ); // This will output the value of the cookie 'someVarThere', from the cookie object.\n    });\n"
-							]
-						},
-						{
-							"kind": "function",
-							"name": "set",
-							"file": "src/js/Ink/Util/Cookie/1/lib.js",
-							"text": "Sets a cookie",
-							"params": [
-								{
-									"kind": "param",
-									"name": "name",
-									"type": "String",
-									"isFirstLevel": true,
-									"description": "Cookie name"
-								},
-								{
-									"kind": "param",
-									"name": "value",
-									"type": "String",
-									"isFirstLevel": true,
-									"description": "Cookie value"
-								},
-								{
-									"kind": "param",
-									"name": "expires",
-									"type": "Number",
-									"isOptional": true,
-									"isFirstLevel": true,
-									"description": "Number to add to current Date in seconds"
-								},
-								{
-									"kind": "param",
-									"name": "path",
-									"type": "String",
-									"isOptional": true,
-									"isFirstLevel": true,
-									"description": "Path to sets cookie (default '/')"
-								},
-								{
-									"kind": "param",
-									"name": "domain",
-									"type": "String",
-									"isOptional": true,
-									"isFirstLevel": true,
-									"description": "Domain to sets cookie (default current hostname)"
-								},
-								{
-									"kind": "param",
-									"name": "secure",
-									"type": "Boolean",
-									"isOptional": true,
-									"isFirstLevel": true,
-									"description": "True if wants secure, default 'false'"
-								}
-							],
-							"static": true,
-							"examples": [
-								"\n    Ink.requireModules(['Ink.Util.Cookie_1'], function( InkCookie ){\n        var expireDate = new Date( 2014,00,01, 0,0,0);\n        InkCookie.set( 'someVarThere', 'anyValueHere', expireDate.getTime() );\n    });\n"
-							]
-						},
-						{
-							"kind": "function",
-							"name": "remove",
-							"file": "src/js/Ink/Util/Cookie/1/lib.js",
-							"text": "Delete a cookie",
-							"params": [
-								{
-									"kind": "param",
-									"name": "cookieName",
-									"type": "String",
-									"isFirstLevel": true,
-									"description": "Cookie name"
-								},
-								{
-									"kind": "param",
-									"name": "path",
-									"type": "String",
-									"isOptional": true,
-									"isFirstLevel": true,
-									"description": "Path of the cookie (default '/')"
-								},
-								{
-									"kind": "param",
-									"name": "domain",
-									"type": "String",
-									"isOptional": true,
-									"isFirstLevel": true,
-									"description": "Domain of the cookie (default current hostname)"
-								}
-							],
-							"static": true,
-							"examples": [
-								"\n    Ink.requireModules(['Ink.Util.Cookie_1'], function( InkCookie ){\n        InkCookie.remove( 'someVarThere' );\n    });\n"
-							]
+							"kind": "param",
+							"name": "name",
+							"type": "String",
+							"isFirstLevel": true,
+							"description": "The cookie name."
 						}
 					],
-					"attributes": [],
-					"isNamespace": true,
-					"version": "1",
-					"static": true
+					"return": {
+						"kind": "return",
+						"type": "String|Object",
+						"description": "If the name is specified, it returns the value of that key. Otherwise it returns the full cookie object"
+					},
+					"static": true,
+					"examples": [
+						"\n    Ink.requireModules(['Ink.Util.Cookie_1'], function( InkCookie ){\n        var myCookieValue = InkCookie.get('someVarThere');\n        console.log( myCookieValue ); // This will output the value of the cookie 'someVarThere', from the cookie object.\n    });\n"
+					]
+				},
+				{
+					"kind": "function",
+					"name": "set",
+					"file": "src/js/Ink/Util/Cookie/1/lib.js",
+					"text": "Sets a cookie.",
+					"params": [
+						{
+							"kind": "param",
+							"name": "name",
+							"type": "String",
+							"isFirstLevel": true,
+							"description": "Cookie name."
+						},
+						{
+							"kind": "param",
+							"name": "value",
+							"type": "String",
+							"isFirstLevel": true,
+							"description": "Cookie value."
+						},
+						{
+							"kind": "param",
+							"name": "expires",
+							"type": "Number",
+							"isOptional": true,
+							"isFirstLevel": true,
+							"description": "Number of seconds the cookie will be valid for."
+						},
+						{
+							"kind": "param",
+							"name": "path",
+							"type": "String",
+							"isOptional": true,
+							"isFirstLevel": true,
+							"description": "Path for the cookie. Defaults to '/'."
+						},
+						{
+							"kind": "param",
+							"name": "domain",
+							"type": "String",
+							"isOptional": true,
+							"isFirstLevel": true,
+							"description": "Domain for the cookie. Defaults to current hostname."
+						},
+						{
+							"kind": "param",
+							"name": "secure",
+							"type": "Boolean",
+							"isOptional": true,
+							"isFirstLevel": true,
+							"description": "Flag for secure. Default 'false'."
+						}
+					],
+					"static": true,
+					"examples": [
+						"\n    Ink.requireModules(['Ink.Util.Cookie_1'], function( InkCookie ){\n        var expireDate = new Date( 2014,00,01, 0,0,0);\n        InkCookie.set( 'someVarThere', 'anyValueHere', expireDate.getTime() );\n    });\n"
+					]
+				},
+				{
+					"kind": "function",
+					"name": "remove",
+					"file": "src/js/Ink/Util/Cookie/1/lib.js",
+					"text": "Deletes a cookie.",
+					"params": [
+						{
+							"kind": "param",
+							"name": "cookieName",
+							"type": "String",
+							"isFirstLevel": true,
+							"description": "Cookie name."
+						},
+						{
+							"kind": "param",
+							"name": "path",
+							"type": "String",
+							"isOptional": true,
+							"isFirstLevel": true,
+							"description": "Path of the cookie. Defaults to '/'."
+						},
+						{
+							"kind": "param",
+							"name": "domain",
+							"type": "String",
+							"isOptional": true,
+							"isFirstLevel": true,
+							"description": "Domain of the cookie. Defaults to current hostname."
+						}
+					],
+					"static": true,
+					"examples": [
+						"\n    Ink.requireModules(['Ink.Util.Cookie_1'], function( InkCookie ){\n        InkCookie.remove( 'someVarThere' );\n    });\n"
+					]
 				}
 			],
-			"functions": [],
 			"attributes": [],
 			"uses": [],
-			"author": "inkdev AT sapo.pt",
 			"version": "1"
 		},
 		{
 			"kind": "module",
 			"name": "Ink.Util.Date_1",
 			"file": "src/js/Ink/Util/Date/1/lib.js",
-			"classes": [
+			"classes": [],
+			"functions": [
 				{
-					"kind": "class",
-					"name": "Ink.Util.Date",
-					"text": "Class to provide the same features that php date does",
+					"kind": "function",
+					"name": "_months",
 					"file": "src/js/Ink/Util/Date/1/lib.js",
-					"functions": [
+					"text": "Function that returns the string representation of the month [PT only]",
+					"params": [
 						{
-							"kind": "function",
-							"name": "_months",
-							"file": "src/js/Ink/Util/Date/1/lib.js",
-							"text": "Function that returns the string representation of the month [PT only]",
-							"params": [
-								{
-									"kind": "param",
-									"name": "index",
-									"type": "Number",
-									"isFirstLevel": true,
-									"description": "Month javascript (0 to 11)"
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "String",
-								"description": "The month's name"
-							},
-							"private": true,
-							"static": true,
-							"examples": [
-								"\n    console.log( InkDate._months(0) ); // Result: Janeiro\n"
-							]
-						},
-						{
-							"kind": "function",
-							"name": "_iMonth",
-							"file": "src/js/Ink/Util/Date/1/lib.js",
-							"text": "Function that returns the month [PT only] ( 0 to 11 )",
-							"params": [
-								{
-									"kind": "param",
-									"name": "month",
-									"type": "String",
-									"isFirstLevel": true,
-									"description": "Month javascript (0 to 11)"
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "Number",
-								"description": "The month's number"
-							},
-							"private": true,
-							"static": true,
-							"examples": [
-								"\n    console.log( InkDate._iMonth('maio') ); // Result: 4\n"
-							]
-						},
-						{
-							"kind": "function",
-							"name": "_wDays",
-							"file": "src/js/Ink/Util/Date/1/lib.js",
-							"text": "Function that returns the representation the day of the week [PT Only]",
-							"params": [
-								{
-									"kind": "param",
-									"name": "index",
-									"type": "Number",
-									"isFirstLevel": true,
-									"description": "Week's day index"
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "String",
-								"description": "The week's day name"
-							},
-							"private": true,
-							"static": true,
-							"examples": [
-								"\n    console.log( InkDate._wDays(0) ); // Result: Domingo\n"
-							]
-						},
-						{
-							"kind": "function",
-							"name": "_iWeek",
-							"file": "src/js/Ink/Util/Date/1/lib.js",
-							"text": "Function that returns day of the week in javascript 1 to 7",
-							"params": [
-								{
-									"kind": "param",
-									"name": "week",
-									"type": "String",
-									"isFirstLevel": true,
-									"description": "Week's day name"
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "Number",
-								"description": "The week's day index"
-							},
-							"private": true,
-							"static": true,
-							"examples": [
-								"\n    console.log( InkDate._iWeek('quarta') ); // Result: 3\n"
-							]
-						},
-						{
-							"kind": "function",
-							"name": "_daysInMonth",
-							"file": "src/js/Ink/Util/Date/1/lib.js",
-							"text": "Function that returns the number of days of a given month (m) on a given year (y)",
-							"params": [
-								{
-									"kind": "param",
-									"name": "_m",
-									"type": "Number",
-									"isFirstLevel": true,
-									"description": "Month"
-								},
-								{
-									"kind": "param",
-									"name": "_y",
-									"type": "Number",
-									"isFirstLevel": true,
-									"description": "Year"
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "Number",
-								"description": "Number of days of a give month on a given year"
-							},
-							"private": true,
-							"static": true,
-							"examples": [
-								"\n    console.log( InkDate._daysInMonth(2,2013) ); // Result: 28\n"
-							]
-						},
-						{
-							"kind": "function",
-							"name": "get",
-							"file": "src/js/Ink/Util/Date/1/lib.js",
-							"text": "Function that works exactly as php date() function\nWorks like PHP 5.2.2 <a href=\"http://php.net/manual/en/function.date.php\" target=\"_blank\">PHP Date function</a>",
-							"params": [
-								{
-									"kind": "param",
-									"name": "format",
-									"type": "String",
-									"isFirstLevel": true,
-									"description": "- as the string in which the date it will be formatted - mandatory"
-								},
-								{
-									"kind": "param",
-									"name": "_date",
-									"type": "Date",
-									"isOptional": true,
-									"isFirstLevel": true,
-									"description": "- the date to format. If undefined it will do it on now() date. Can receive unix timestamp or a date object"
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "String",
-								"description": "Formatted date"
-							},
-							"static": true,
-							"examples": [
-								"\n    <script>\n        Ink.requireModules( ['Ink.Util.Date_1'], function( InkDate ){\n            console.log( InkDate.get('Y-m-d') ); // Result (at the time of writing): 2013-05-07\n        });\n    </script>\n"
-							]
-						},
-						{
-							"kind": "function",
-							"name": "set",
-							"file": "src/js/Ink/Util/Date/1/lib.js",
-							"text": "Functions that works like php date() function but return a date based on the formatted string\nWorks like PHP 5.2.2 <a href=\"http://php.net/manual/en/function.date.php\" target=\"_blank\">PHP Date function</a>",
-							"params": [
-								{
-									"kind": "param",
-									"name": "format",
-									"type": "String",
-									"isOptional": true,
-									"isFirstLevel": true,
-									"description": "As the string in which the date it will be formatted. By default is 'Y-m-d'"
-								},
-								{
-									"kind": "param",
-									"name": "str_date",
-									"type": "String",
-									"isFirstLevel": true,
-									"description": "The date formatted - Mandatory."
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "Date",
-								"description": "Date object based on the formatted date"
-							},
-							"static": true
+							"kind": "param",
+							"name": "index",
+							"type": "Number",
+							"isFirstLevel": true,
+							"description": "Month javascript (0 to 11)"
 						}
 					],
-					"attributes": [],
-					"isNamespace": true,
-					"version": "1",
+					"return": {
+						"kind": "return",
+						"type": "String",
+						"description": "The month's name"
+					},
+					"private": true,
+					"static": true,
+					"examples": [
+						"\n    console.log( InkDate._months(0) ); // Result: Janeiro\n"
+					]
+				},
+				{
+					"kind": "function",
+					"name": "_iMonth",
+					"file": "src/js/Ink/Util/Date/1/lib.js",
+					"text": "Function that returns the month [PT only] ( 0 to 11 )",
+					"params": [
+						{
+							"kind": "param",
+							"name": "month",
+							"type": "String",
+							"isFirstLevel": true,
+							"description": "Month javascript (0 to 11)"
+						}
+					],
+					"return": {
+						"kind": "return",
+						"type": "Number",
+						"description": "The month's number"
+					},
+					"private": true,
+					"static": true,
+					"examples": [
+						"\n    console.log( InkDate._iMonth('maio') ); // Result: 4\n"
+					]
+				},
+				{
+					"kind": "function",
+					"name": "_wDays",
+					"file": "src/js/Ink/Util/Date/1/lib.js",
+					"text": "Function that returns the representation the day of the week [PT Only]",
+					"params": [
+						{
+							"kind": "param",
+							"name": "index",
+							"type": "Number",
+							"isFirstLevel": true,
+							"description": "Week's day index"
+						}
+					],
+					"return": {
+						"kind": "return",
+						"type": "String",
+						"description": "The week's day name"
+					},
+					"private": true,
+					"static": true,
+					"examples": [
+						"\n    console.log( InkDate._wDays(0) ); // Result: Domingo\n"
+					]
+				},
+				{
+					"kind": "function",
+					"name": "_iWeek",
+					"file": "src/js/Ink/Util/Date/1/lib.js",
+					"text": "Function that returns day of the week in javascript 1 to 7",
+					"params": [
+						{
+							"kind": "param",
+							"name": "week",
+							"type": "String",
+							"isFirstLevel": true,
+							"description": "Week's day name"
+						}
+					],
+					"return": {
+						"kind": "return",
+						"type": "Number",
+						"description": "The week's day index"
+					},
+					"private": true,
+					"static": true,
+					"examples": [
+						"\n    console.log( InkDate._iWeek('quarta') ); // Result: 3\n"
+					]
+				},
+				{
+					"kind": "function",
+					"name": "_daysInMonth",
+					"file": "src/js/Ink/Util/Date/1/lib.js",
+					"text": "Function that returns the number of days of a given month (m) on a given year (y)",
+					"params": [
+						{
+							"kind": "param",
+							"name": "_m",
+							"type": "Number",
+							"isFirstLevel": true,
+							"description": "Month"
+						},
+						{
+							"kind": "param",
+							"name": "_y",
+							"type": "Number",
+							"isFirstLevel": true,
+							"description": "Year"
+						}
+					],
+					"return": {
+						"kind": "return",
+						"type": "Number",
+						"description": "Number of days of a give month on a given year"
+					},
+					"private": true,
+					"static": true,
+					"examples": [
+						"\n    console.log( InkDate._daysInMonth(2,2013) ); // Result: 28\n"
+					]
+				},
+				{
+					"kind": "function",
+					"name": "get",
+					"file": "src/js/Ink/Util/Date/1/lib.js",
+					"text": "Formats a date object.\nThis works exactly as php date() function. http://php.net/manual/en/function.date.php",
+					"params": [
+						{
+							"kind": "param",
+							"name": "format",
+							"type": "String",
+							"isFirstLevel": true,
+							"description": "The format in which the date it will be formatted."
+						},
+						{
+							"kind": "param",
+							"name": "_date",
+							"type": "Date",
+							"isOptional": true,
+							"isFirstLevel": true,
+							"description": "The date to format. Can receive unix timestamp or a date object. Defaults to current time."
+						}
+					],
+					"return": {
+						"kind": "return",
+						"type": "String",
+						"description": "Formatted date"
+					},
+					"static": true,
+					"examples": [
+						"\n    <script>\n        Ink.requireModules( ['Ink.Util.Date_1'], function( InkDate ){\n            console.log( InkDate.get('Y-m-d') ); // Result (at the time of writing): 2013-05-07\n        });\n    </script>\n"
+					]
+				},
+				{
+					"kind": "function",
+					"name": "set",
+					"file": "src/js/Ink/Util/Date/1/lib.js",
+					"text": "Creates a date object based on a format string.\nThis works exactly as php date() function. http://php.net/manual/en/function.date.php",
+					"params": [
+						{
+							"kind": "param",
+							"name": "format",
+							"type": "String",
+							"isOptional": true,
+							"isFirstLevel": true,
+							"description": "The format in which the date will be formatted. Defaults to 'Y-m-d'"
+						},
+						{
+							"kind": "param",
+							"name": "str_date",
+							"type": "String",
+							"isFirstLevel": true,
+							"description": "The date formatted."
+						}
+					],
+					"return": {
+						"kind": "return",
+						"type": "Date",
+						"description": "Date object based on the formatted date and format"
+					},
 					"static": true
 				}
 			],
-			"functions": [],
 			"attributes": [],
 			"uses": [],
-			"author": "inkdev AT sapo.pt",
 			"version": "1"
 		},
 		{
 			"kind": "module",
 			"name": "Ink.Util.Dumper_1",
 			"file": "src/js/Ink/Util/Dumper/1/lib.js",
-			"classes": [
+			"classes": [],
+			"functions": [
 				{
-					"kind": "class",
-					"name": "Ink.Util.Dumper",
-					"text": "Dump/Profiling Utilities",
+					"kind": "function",
+					"name": "_formatParam",
 					"file": "src/js/Ink/Util/Dumper/1/lib.js",
-					"functions": [
+					"text": "Function that returns the argument passed formatted",
+					"params": [
 						{
-							"kind": "function",
-							"name": "_formatParam",
-							"file": "src/js/Ink/Util/Dumper/1/lib.js",
-							"text": "Function that returns the argument passed formatted",
-							"params": [
-								{
-									"kind": "param",
-									"name": "param",
-									"type": "Mixed",
-									"isFirstLevel": true
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "String",
-								"description": "The argument passed formatted"
-							},
-							"private": true,
-							"static": true
-						},
-						{
-							"kind": "function",
-							"name": "_getTabs",
-							"file": "src/js/Ink/Util/Dumper/1/lib.js",
-							"text": "Function that returns the tabs concatenated",
-							"params": [
-								{
-									"kind": "param",
-									"name": "numberOfTabs",
-									"type": "Number",
-									"isFirstLevel": true,
-									"description": "Number of Tabs"
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "String",
-								"description": "Tabs concatenated"
-							},
-							"private": true,
-							"static": true
-						},
-						{
-							"kind": "function",
-							"name": "_outputFormat",
-							"file": "src/js/Ink/Util/Dumper/1/lib.js",
-							"text": "Function that formats the parameter to display",
-							"params": [
-								{
-									"kind": "param",
-									"name": "param",
-									"type": "Any",
-									"isFirstLevel": true
-								},
-								{
-									"kind": "param",
-									"name": "dim",
-									"type": "Number",
-									"isFirstLevel": true
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "String",
-								"description": "The parameter passed formatted to displat"
-							},
-							"private": true,
-							"static": true
-						},
-						{
-							"kind": "function",
-							"name": "printDump",
-							"file": "src/js/Ink/Util/Dumper/1/lib.js",
-							"text": "Print variable structure. Can be passed an output target",
-							"params": [
-								{
-									"kind": "param",
-									"name": "param",
-									"type": "Object|String|Boolean",
-									"isFirstLevel": true
-								},
-								{
-									"kind": "param",
-									"name": "target",
-									"type": "optional String|Object",
-									"isFirstLevel": true,
-									"description": "(can be an element ID or an element)"
-								}
-							],
-							"static": true
-						},
-						{
-							"kind": "function",
-							"name": "returnDump",
-							"file": "src/js/Ink/Util/Dumper/1/lib.js",
-							"text": "Function that returns the variable's structure",
-							"params": [
-								{
-									"kind": "param",
-									"name": "param",
-									"type": "Object|String|Boolean",
-									"isFirstLevel": true
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "String",
-								"description": "The variable structure"
-							},
-							"static": true
-						},
-						{
-							"kind": "function",
-							"name": "alertDump",
-							"file": "src/js/Ink/Util/Dumper/1/lib.js",
-							"text": "Function that alerts the variable structure",
-							"params": [
-								{
-									"kind": "param",
-									"name": "param",
-									"type": "Object|String|Boolean",
-									"isFirstLevel": true
-								}
-							],
-							"static": true
-						},
-						{
-							"kind": "function",
-							"name": "windowDump",
-							"file": "src/js/Ink/Util/Dumper/1/lib.js",
-							"text": "Print to new window the variable structure",
-							"params": [
-								{
-									"kind": "param",
-									"name": "param",
-									"type": "Object|String|Boolean",
-									"isFirstLevel": true
-								}
-							],
-							"static": true
+							"kind": "param",
+							"name": "param",
+							"type": "Mixed",
+							"isFirstLevel": true
 						}
 					],
-					"attributes": [
+					"return": {
+						"kind": "return",
+						"type": "String",
+						"description": "The argument passed formatted"
+					},
+					"private": true,
+					"static": true
+				},
+				{
+					"kind": "function",
+					"name": "_getTabs",
+					"file": "src/js/Ink/Util/Dumper/1/lib.js",
+					"text": "Function that returns the tabs concatenated",
+					"params": [
 						{
-							"kind": "attribute",
-							"name": "_tab",
-							"text": "Hex code for the 'tab'",
-							"type": "String",
-							"private": true,
-							"static": true
+							"kind": "param",
+							"name": "numberOfTabs",
+							"type": "Number",
+							"isFirstLevel": true,
+							"description": "Number of Tabs"
 						}
 					],
-					"isNamespace": true,
-					"version": "1",
+					"return": {
+						"kind": "return",
+						"type": "String",
+						"description": "Tabs concatenated"
+					},
+					"private": true,
+					"static": true
+				},
+				{
+					"kind": "function",
+					"name": "_outputFormat",
+					"file": "src/js/Ink/Util/Dumper/1/lib.js",
+					"text": "Function that formats the parameter to display.",
+					"params": [
+						{
+							"kind": "param",
+							"name": "param",
+							"type": "Any",
+							"isFirstLevel": true
+						},
+						{
+							"kind": "param",
+							"name": "dim",
+							"type": "Number",
+							"isFirstLevel": true
+						}
+					],
+					"return": {
+						"kind": "return",
+						"type": "String",
+						"description": "The parameter passed formatted to displat"
+					},
+					"private": true,
+					"static": true
+				},
+				{
+					"kind": "function",
+					"name": "printDump",
+					"file": "src/js/Ink/Util/Dumper/1/lib.js",
+					"text": "Prints variable structure.",
+					"params": [
+						{
+							"kind": "param",
+							"name": "param",
+							"type": "Any",
+							"isFirstLevel": true,
+							"description": "Variable to be dumped."
+						},
+						{
+							"kind": "param",
+							"name": "target",
+							"type": "DOMElement|String",
+							"isOptional": true,
+							"isFirstLevel": true,
+							"description": "Element to print the dump on."
+						}
+					],
+					"static": true
+				},
+				{
+					"kind": "function",
+					"name": "returnDump",
+					"file": "src/js/Ink/Util/Dumper/1/lib.js",
+					"text": "Get a variable's structure.",
+					"params": [
+						{
+							"kind": "param",
+							"name": "param",
+							"type": "Any",
+							"isFirstLevel": true,
+							"description": "Variable to get the structure."
+						}
+					],
+					"return": {
+						"kind": "return",
+						"type": "String",
+						"description": "The variable's structure."
+					},
+					"static": true
+				},
+				{
+					"kind": "function",
+					"name": "alertDump",
+					"file": "src/js/Ink/Util/Dumper/1/lib.js",
+					"text": "Alert a variable's structure.",
+					"params": [
+						{
+							"kind": "param",
+							"name": "param",
+							"type": "Any",
+							"isFirstLevel": true,
+							"description": "Variable to be dumped."
+						}
+					],
+					"static": true
+				},
+				{
+					"kind": "function",
+					"name": "windowDump",
+					"file": "src/js/Ink/Util/Dumper/1/lib.js",
+					"text": "Prints the variable structure to a new window.",
+					"params": [
+						{
+							"kind": "param",
+							"name": "param",
+							"type": "Any",
+							"isFirstLevel": true,
+							"description": "Variable to be dumped."
+						}
+					],
 					"static": true
 				}
 			],
-			"functions": [],
-			"attributes": [],
+			"attributes": [
+				{
+					"kind": "attribute",
+					"name": "_tab",
+					"text": "Hex code for the 'tab'",
+					"type": "String",
+					"private": true,
+					"static": true
+				}
+			],
 			"uses": [],
-			"author": "inkdev AT sapo.pt",
 			"version": "1"
 		},
 		{
@@ -12908,20 +12795,21 @@
 								}
 							],
 							"examples": [
-								"\n    var i18n = new I18n({}, 'pt_PT');\n    i18n.append({'pt_PT': {\n        'sfraggles': 'braggles'\n    }});\n    i18n.text('sfraggles') // -> 'braggles'\n"
+								" \n    var i18n = new I18n({}, 'pt_PT');\n    i18n.append({'pt_PT': {\n        'sfraggles': 'braggles'\n    }});\n    i18n.text('sfraggles') // -> 'braggles'\n"
 							]
 						},
 						{
 							"kind": "function",
 							"name": "lang",
 							"file": "src/js/Ink/Util/I18n/1/lib.js",
-							"text": "Get or set the language.\nIf there are more dictionaries available in cache, they will be loaded.",
+							"text": "Gets or sets the language.\nIf there are more dictionaries available in cache, they will be loaded.",
 							"params": [
 								{
 									"kind": "param",
 									"name": "lang",
+									"type": "String",
 									"isFirstLevel": true,
-									"description": "{String} Language code to set this instance to."
+									"description": "Language code to set this instance to."
 								}
 							]
 						},
@@ -12944,7 +12832,7 @@
 							"kind": "function",
 							"name": "getKey",
 							"file": "src/js/Ink/Util/I18n/1/lib.js",
-							"text": "Return a key from the current dictionary",
+							"text": "Gest a key from the current dictionary",
 							"params": [
 								{
 									"kind": "param",
@@ -12973,7 +12861,7 @@
 									"name": "str",
 									"type": "String",
 									"isFirstLevel": true,
-									"description": "key to look for in i18n dictionary (which is returned verbatim if unknown)"
+									"description": "Key to look for in i18n dictionary (which is returned verbatim if unknown)"
 								},
 								{
 									"kind": "param",
@@ -12981,15 +12869,15 @@
 									"type": "Object",
 									"isOptional": true,
 									"isFirstLevel": true,
-									"description": "named replacements. Replaces {named} with values in this object."
+									"description": "Named replacements. Replaces {named} with values in this object."
 								},
 								{
 									"kind": "param",
-									"name": "arg1",
+									"name": "args",
 									"type": "String",
 									"isOptional": true,
 									"isFirstLevel": true,
-									"description": "replacement #1 (replaces first {} and all {1})"
+									"description": "Replacement #1 (replaces first {} and all {1})"
 								},
 								{
 									"kind": "param",
@@ -12997,7 +12885,7 @@
 									"type": "String",
 									"isOptional": true,
 									"isFirstLevel": true,
-									"description": "replacement #2 (replaces second {} and all {2})"
+									"description": "Replacement #2 (replaces second {} and all {2})"
 								},
 								{
 									"kind": "param",
@@ -13005,7 +12893,7 @@
 									"type": "String",
 									"isOptional": true,
 									"isFirstLevel": true,
-									"description": "replacement #n (replaces nth {} and all {n})"
+									"description": "Replacement #n (replaces nth {} and all {n})"
 								}
 							],
 							"examples": [
@@ -13019,7 +12907,7 @@
 							"kind": "function",
 							"name": "ntext",
 							"file": "src/js/Ink/Util/I18n/1/lib.js",
-							"text": "Translates and pluralizes text.\nGiven a singular string, a plural string, and a number, translates either the singular or plural string.",
+							"text": "Translates and pluralizes text.\nGiven a singular string, a plural string and a number, translates either the singular or plural string.",
 							"params": [
 								{
 									"kind": "param",
@@ -13113,7 +13001,7 @@
 							"kind": "function",
 							"name": "alias",
 							"file": "src/js/Ink/Util/I18n/1/lib.js",
-							"text": "Alias for the text method\nReturns an alias to `text()`, for convenience. The resulting function is traditionally assigned to \"_\".",
+							"text": "Alias for the text method.\nReturns an alias to `text()`, for convenience. The resulting function is traditionally assigned to \"_\".",
 							"params": [],
 							"return": {
 								"kind": "return",
@@ -13157,7 +13045,7 @@
 							"kind": "function",
 							"name": "lang",
 							"file": "src/js/Ink/Util/I18n/1/lib.js",
-							"text": "Get or set the current default language of I18n instances.",
+							"text": "Gets or sets the current default language of I18n instances.",
 							"params": [],
 							"static": true,
 							"return": {
@@ -13173,7 +13061,7 @@
 			"functions": [],
 			"attributes": [],
 			"uses": [],
-			"author": "inkdev AT sapo.pt"
+			"version": "1"
 		},
 		{
 			"kind": "module",
@@ -13190,7 +13078,7 @@
 							"kind": "function",
 							"name": "stringify",
 							"file": "src/js/Ink/Util/Json/1/lib.js",
-							"text": "serializes a JSON object into a string.",
+							"text": "Serializes a JSON object into a string.",
 							"params": [
 								{
 									"kind": "param",
@@ -13210,7 +13098,7 @@
 							"return": {
 								"kind": "return",
 								"type": "String",
-								"description": "serialized string"
+								"description": "Serialized string"
 							},
 							"examples": [
 								"\n     Json.stringify({a:1.23}); // -> string: '{\"a\": 1.23}'\n"
@@ -13220,6 +13108,7 @@
 							"kind": "function",
 							"name": "parse",
 							"file": "src/js/Ink/Util/Json/1/lib.js",
+							"text": "Parses a JSON text through a function",
 							"params": [
 								{
 									"kind": "param",
@@ -13234,6 +13123,11 @@
 									"description": "{Function}  Function receiving `(key, value)`, and `this`=(containing object), used to walk objects."
 								}
 							],
+							"return": {
+								"kind": "return",
+								"type": "Object",
+								"description": "JSON object"
+							},
 							"examples": [
 								"\nSimple example:\n\n     Json.parse('{\"a\": \"3\",\"numbers\":false}',\n         function (key, value) {\n             if (!this.numbers && key === 'a') {\n                 return \"NO NUMBERS\";\n             } else {\n                 return value;\n             }\n         }); // -> object: {a: 'NO NUMBERS', numbers: false}\n"
 							]
@@ -13247,1620 +13141,1603 @@
 			"functions": [],
 			"attributes": [],
 			"uses": [],
-			"author": "inkdev AT sapo.pt"
+			"version": "1"
 		},
 		{
 			"kind": "module",
 			"name": "Ink.Util.String_1",
 			"file": "src/js/Ink/Util/String/1/lib.js",
-			"classes": [
+			"classes": [],
+			"functions": [
 				{
-					"kind": "class",
-					"name": "Ink.Util.String",
-					"text": "String Manipulation Utilities",
+					"kind": "function",
+					"name": "ucFirst",
 					"file": "src/js/Ink/Util/String/1/lib.js",
-					"functions": [
+					"text": "Capitalizes a word.\nIf param as more than one word, it converts first letter of all words that have more than 2 letters",
+					"params": [
 						{
-							"kind": "function",
-							"name": "ucFirst",
-							"file": "src/js/Ink/Util/String/1/lib.js",
-							"text": "Convert first letter of a word to upper case <br />\nIf param as more than one word, it converts first letter of all words that have more than 2 letters",
-							"params": [
-								{
-									"kind": "param",
-									"name": "string",
-									"type": "String",
-									"isFirstLevel": true
-								},
-								{
-									"kind": "param",
-									"name": "firstWordOnly",
-									"type": "Boolean",
-									"isOptional": true,
-									"defaultValue": "false",
-									"isFirstLevel": true,
-									"description": "capitalize only first word."
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "String",
-								"description": "string camel cased"
-							},
-							"static": true,
-							"examples": [
-								"\n     InkString.ucFirst('hello world'); // -> 'Hello World'\n     InkString.ucFirst('hello world', true); // -> 'Hello world'\n"
-							]
+							"kind": "param",
+							"name": "string",
+							"type": "String",
+							"isFirstLevel": true,
+							"description": "String to capitalize."
 						},
 						{
-							"kind": "function",
-							"name": "trim",
-							"file": "src/js/Ink/Util/String/1/lib.js",
-							"text": "Remove spaces and new line from biggin and ends of string",
-							"params": [
-								{
-									"kind": "param",
-									"name": "string",
-									"type": "String",
-									"isFirstLevel": true
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "String",
-								"description": "string trimmed"
-							},
-							"static": true
-						},
-						{
-							"kind": "function",
-							"name": "stripTags",
-							"file": "src/js/Ink/Util/String/1/lib.js",
-							"text": "Removes HTML tags of string",
-							"params": [
-								{
-									"kind": "param",
-									"name": "string",
-									"type": "String",
-									"isFirstLevel": true
-								},
-								{
-									"kind": "param",
-									"name": "allowed",
-									"type": "String",
-									"isFirstLevel": true
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "String",
-								"description": "String stripped from HTML tags, leaving only the allowed ones (if any)"
-							},
-							"static": true,
-							"examples": [
-								"\n    <script>\n         var myvar='isto e um texto <b>bold</b> com imagem <img src=\"\"> e br <br /> um <p>paragrafo</p>';\n         SAPO.Utility.String.stripTags(myvar, 'b,u');\n    </script>\n"
-							]
-						},
-						{
-							"kind": "function",
-							"name": "htmlEntitiesEncode",
-							"file": "src/js/Ink/Util/String/1/lib.js",
-							"text": "Convert listed characters to HTML entities",
-							"params": [
-								{
-									"kind": "param",
-									"name": "string",
-									"type": "String",
-									"isFirstLevel": true
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "String",
-								"description": "string encoded"
-							},
-							"static": true
-						},
-						{
-							"kind": "function",
-							"name": "htmlEntitiesDecode",
-							"file": "src/js/Ink/Util/String/1/lib.js",
-							"text": "Convert listed HTML entities to character",
-							"params": [
-								{
-									"kind": "param",
-									"name": "string",
-									"type": "String",
-									"isFirstLevel": true
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "String",
-								"description": "string decoded"
-							},
-							"static": true
-						},
-						{
-							"kind": "function",
-							"name": "utf8Encode",
-							"file": "src/js/Ink/Util/String/1/lib.js",
-							"text": "Encode a string to UTF8",
-							"params": [
-								{
-									"kind": "param",
-									"name": "string",
-									"type": "String",
-									"isFirstLevel": true
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "String",
-								"description": "string utf8 encoded"
-							},
-							"static": true
-						},
-						{
-							"kind": "function",
-							"name": "shortString",
-							"file": "src/js/Ink/Util/String/1/lib.js",
-							"text": "Make a string shorter without cutting words",
-							"params": [
-								{
-									"kind": "param",
-									"name": "str",
-									"type": "String",
-									"isFirstLevel": true
-								},
-								{
-									"kind": "param",
-									"name": "n",
-									"type": "Number",
-									"isFirstLevel": true,
-									"description": "- number of chars of the short string"
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "String",
-								"description": "string shortened"
-							},
-							"static": true
-						},
-						{
-							"kind": "function",
-							"name": "truncateString",
-							"file": "src/js/Ink/Util/String/1/lib.js",
-							"text": "Truncates a string, breaking words and adding ... at the end",
-							"params": [
-								{
-									"kind": "param",
-									"name": "str",
-									"type": "String",
-									"isFirstLevel": true
-								},
-								{
-									"kind": "param",
-									"name": "length",
-									"type": "Number",
-									"isFirstLevel": true,
-									"description": "- length limit for the string. String will be"
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "String",
-								"description": "string truncated"
-							},
-							"static": true
-						},
-						{
-							"kind": "function",
-							"name": "utf8Decode",
-							"file": "src/js/Ink/Util/String/1/lib.js",
-							"text": "Decode a string from UTF8",
-							"params": [
-								{
-									"kind": "param",
-									"name": "string",
-									"type": "String",
-									"isFirstLevel": true
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "String",
-								"description": "string utf8 decoded"
-							},
-							"static": true
-						},
-						{
-							"kind": "function",
-							"name": "removeAccentedChars",
-							"file": "src/js/Ink/Util/String/1/lib.js",
-							"text": "Convert all accented chars to char without accent.",
-							"params": [
-								{
-									"kind": "param",
-									"name": "string",
-									"type": "String",
-									"isFirstLevel": true
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "String",
-								"description": "string without accented chars"
-							},
-							"static": true
-						},
-						{
-							"kind": "function",
-							"name": "substrCount",
-							"file": "src/js/Ink/Util/String/1/lib.js",
-							"text": "Count the number of occurrences of a specific needle in a haystack",
-							"params": [
-								{
-									"kind": "param",
-									"name": "haystack",
-									"type": "String",
-									"isFirstLevel": true
-								},
-								{
-									"kind": "param",
-									"name": "needle",
-									"type": "String",
-									"isFirstLevel": true
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "Number",
-								"description": "Number of occurrences"
-							},
-							"static": true
-						},
-						{
-							"kind": "function",
-							"name": "evalJSON",
-							"file": "src/js/Ink/Util/String/1/lib.js",
-							"text": "Eval a JSON string to a JS object",
-							"params": [
-								{
-									"kind": "param",
-									"name": "strJSON",
-									"type": "String",
-									"isFirstLevel": true
-								},
-								{
-									"kind": "param",
-									"name": "sanitize",
-									"type": "Boolean",
-									"isFirstLevel": true
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "Object",
-								"description": "JS Object"
-							},
-							"static": true
-						},
-						{
-							"kind": "function",
-							"name": "isJSON",
-							"file": "src/js/Ink/Util/String/1/lib.js",
-							"text": "Checks if a string is a valid JSON object (string encoded)",
-							"params": [
-								{
-									"kind": "param",
-									"name": "str",
-									"type": "String",
-									"isFirstLevel": true
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "Boolean"
-							},
-							"static": true
-						},
-						{
-							"kind": "function",
-							"name": "htmlEscapeUnsafe",
-							"file": "src/js/Ink/Util/String/1/lib.js",
-							"text": "Escapes unsafe html chars to their entities",
-							"params": [
-								{
-									"kind": "param",
-									"name": "str",
-									"type": "String",
-									"isFirstLevel": true,
-									"description": "String to escape"
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "String",
-								"description": "Escaped string"
-							},
-							"static": true
-						},
-						{
-							"kind": "function",
-							"name": "normalizeWhitespace",
-							"file": "src/js/Ink/Util/String/1/lib.js",
-							"text": "Normalizes whitespace in string.\nString is trimmed and sequences of many\nWhitespaces are collapsed.",
-							"params": [
-								{
-									"kind": "param",
-									"name": "str",
-									"type": "String",
-									"isFirstLevel": true,
-									"description": "String to normalize"
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "String",
-								"description": "string normalized"
-							},
-							"static": true
-						},
-						{
-							"kind": "function",
-							"name": "toUnicode",
-							"file": "src/js/Ink/Util/String/1/lib.js",
-							"text": "Converts string to unicode",
-							"params": [
-								{
-									"kind": "param",
-									"name": "str",
-									"type": "String",
-									"isFirstLevel": true
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "String",
-								"description": "string unicoded"
-							},
-							"static": true
-						},
-						{
-							"kind": "function",
-							"name": "escape",
-							"file": "src/js/Ink/Util/String/1/lib.js",
-							"text": "Escapes a unicode character. returns \\xXX if hex smaller than 0x100, otherwise \\uXXXX",
-							"params": [
-								{
-									"kind": "param",
-									"name": "c",
-									"type": "String",
-									"isFirstLevel": true,
-									"description": "Char"
-								},
-								{
-									"kind": "param",
-									"name": "c",
-									"type": "String",
-									"isFirstLevel": true,
-									"description": "char"
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "String",
-								"description": "escaped char"
-							},
-							"static": true
-						},
-						{
-							"kind": "function",
-							"name": "unescape",
-							"file": "src/js/Ink/Util/String/1/lib.js",
-							"text": "Unescapes a unicode character escape sequence",
-							"params": [
-								{
-									"kind": "param",
-									"name": "es",
-									"type": "String",
-									"isFirstLevel": true,
-									"description": "Escape sequence"
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "String",
-								"description": "String des-unicoded"
-							},
-							"static": true
-						},
-						{
-							"kind": "function",
-							"name": "escapeText",
-							"file": "src/js/Ink/Util/String/1/lib.js",
-							"text": "Escapes a string to unicode characters",
-							"params": [
-								{
-									"kind": "param",
-									"name": "txt",
-									"type": "String",
-									"isFirstLevel": true
-								},
-								{
-									"kind": "param",
-									"name": "whiteList",
-									"type": "Array",
-									"isOptional": true,
-									"isFirstLevel": true
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "String",
-								"description": "Escaped to Unicoded string"
-							},
-							"static": true
-						},
-						{
-							"kind": "function",
-							"name": "unescapeText",
-							"file": "src/js/Ink/Util/String/1/lib.js",
-							"text": "Unescapes a string",
-							"params": [
-								{
-									"kind": "param",
-									"name": "txt",
-									"type": "String",
-									"isFirstLevel": true
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "String",
-								"description": "Unescaped string"
-							},
-							"static": true
-						},
-						{
-							"kind": "function",
-							"name": "strcmp",
-							"file": "src/js/Ink/Util/String/1/lib.js",
-							"text": "Compares two strings",
-							"params": [
-								{
-									"kind": "param",
-									"name": "str1",
-									"type": "String",
-									"isFirstLevel": true
-								},
-								{
-									"kind": "param",
-									"name": "str2",
-									"type": "String",
-									"isFirstLevel": true
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "Number"
-							},
-							"static": true
-						},
-						{
-							"kind": "function",
-							"name": "packetize",
-							"file": "src/js/Ink/Util/String/1/lib.js",
-							"text": "Splits long string into string of, at most, maxLen (that is, all but last have length maxLen,\nlast can measure maxLen or less)",
-							"params": [
-								{
-									"kind": "param",
-									"name": "string",
-									"type": "String",
-									"isFirstLevel": true,
-									"description": "string to divide"
-								},
-								{
-									"kind": "param",
-									"name": "maxLen",
-									"type": "Number",
-									"isFirstLevel": true,
-									"description": "packet size"
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "Array",
-								"description": "string divided"
-							},
-							"static": true
+							"kind": "param",
+							"name": "firstWordOnly",
+							"type": "Boolean",
+							"isOptional": true,
+							"defaultValue": "false",
+							"isFirstLevel": true,
+							"description": "Flag to capitalize only the first word."
 						}
 					],
-					"attributes": [
+					"return": {
+						"kind": "return",
+						"type": "String",
+						"description": "Camel cased string."
+					},
+					"static": true,
+					"examples": [
+						"\n     InkString.ucFirst('hello world'); // -> 'Hello World'\n     InkString.ucFirst('hello world', true); // -> 'Hello world'\n"
+					]
+				},
+				{
+					"kind": "function",
+					"name": "trim",
+					"file": "src/js/Ink/Util/String/1/lib.js",
+					"text": "Trims whitespace from strings",
+					"params": [
 						{
-							"kind": "attribute",
-							"name": "_chars",
-							"text": "List of special chars",
-							"type": "Array",
-							"private": true,
-							"static": true
-						},
-						{
-							"kind": "attribute",
-							"name": "_entities",
-							"text": "List of the special characters' html entities",
-							"type": "Array",
-							"private": true,
-							"static": true
-						},
-						{
-							"kind": "attribute",
-							"name": "_accentedChars",
-							"text": "List of accented chars",
-							"type": "Array",
-							"private": true,
-							"static": true
-						},
-						{
-							"kind": "attribute",
-							"name": "_accentedRemovedChars",
-							"text": "List of the accented chars (above), but without the accents",
-							"type": "Array",
-							"private": true,
-							"static": true
-						},
-						{
-							"kind": "attribute",
-							"name": "_htmlUnsafeChars",
-							"text": "Object that contains the basic HTML unsafe chars, as keys, and their HTML entities as values",
-							"type": "Object",
-							"private": true,
-							"static": true
-						},
-						{
-							"kind": "attribute",
-							"name": "escapedCharRegex",
-							"text": "Regex to check escaped strings",
-							"type": "Regex",
-							"static": true
+							"kind": "param",
+							"name": "string",
+							"type": "String",
+							"isFirstLevel": true,
+							"description": "String to be trimmed"
 						}
 					],
-					"isNamespace": true,
-					"version": "1",
+					"return": {
+						"kind": "return",
+						"type": "String",
+						"description": "Trimmed string"
+					},
+					"static": true
+				},
+				{
+					"kind": "function",
+					"name": "stripTags",
+					"file": "src/js/Ink/Util/String/1/lib.js",
+					"text": "Strips HTML tags from strings",
+					"params": [
+						{
+							"kind": "param",
+							"name": "string",
+							"type": "String",
+							"isFirstLevel": true,
+							"description": "String to strip tags from."
+						},
+						{
+							"kind": "param",
+							"name": "allowed",
+							"type": "String",
+							"isFirstLevel": true,
+							"description": "Comma separated list of allowed tags."
+						}
+					],
+					"return": {
+						"kind": "return",
+						"type": "String",
+						"description": "Stripped string"
+					},
+					"static": true,
+					"examples": [
+						"\n    <script>\n         var myvar='isto e um texto <b>bold</b> com imagem <img src=\"\"> e br <br /> um <p>paragrafo</p>';\n         SAPO.Utility.String.stripTags(myvar, 'b,u');\n    </script>\n"
+					]
+				},
+				{
+					"kind": "function",
+					"name": "htmlEntitiesEncode",
+					"file": "src/js/Ink/Util/String/1/lib.js",
+					"text": "Encodes string into HTML entities.",
+					"params": [
+						{
+							"kind": "param",
+							"name": "string",
+							"type": "String",
+							"isFirstLevel": true
+						}
+					],
+					"return": {
+						"kind": "return",
+						"type": "String",
+						"description": "string encoded"
+					},
+					"static": true
+				},
+				{
+					"kind": "function",
+					"name": "htmlEntitiesDecode",
+					"file": "src/js/Ink/Util/String/1/lib.js",
+					"text": "Decodes string from HTML entities.",
+					"params": [
+						{
+							"kind": "param",
+							"name": "string",
+							"type": "String",
+							"isFirstLevel": true,
+							"description": "String to be decoded"
+						}
+					],
+					"return": {
+						"kind": "return",
+						"type": "String",
+						"description": "Decoded string"
+					},
+					"static": true
+				},
+				{
+					"kind": "function",
+					"name": "utf8Encode",
+					"file": "src/js/Ink/Util/String/1/lib.js",
+					"text": "Encode a string to UTF-8.",
+					"params": [
+						{
+							"kind": "param",
+							"name": "string",
+							"type": "String",
+							"isFirstLevel": true,
+							"description": "String to be encoded"
+						}
+					],
+					"return": {
+						"kind": "return",
+						"type": "String",
+						"description": "string      UTF-8 encoded string"
+					},
+					"static": true
+				},
+				{
+					"kind": "function",
+					"name": "shortString",
+					"file": "src/js/Ink/Util/String/1/lib.js",
+					"text": "Truncates a string without breaking words.",
+					"params": [
+						{
+							"kind": "param",
+							"name": "str",
+							"type": "String",
+							"isFirstLevel": true,
+							"description": "String to truncate"
+						},
+						{
+							"kind": "param",
+							"name": "n",
+							"type": "Number",
+							"isFirstLevel": true,
+							"description": "Number of chars of the short string"
+						}
+					],
+					"return": {
+						"kind": "return",
+						"type": "String"
+					},
+					"static": true
+				},
+				{
+					"kind": "function",
+					"name": "truncateString",
+					"file": "src/js/Ink/Util/String/1/lib.js",
+					"text": "Truncates a string, breaking words and adding ... at the end.",
+					"params": [
+						{
+							"kind": "param",
+							"name": "str",
+							"type": "String",
+							"isFirstLevel": true,
+							"description": "String to truncate"
+						},
+						{
+							"kind": "param",
+							"name": "length",
+							"type": "Number",
+							"isFirstLevel": true,
+							"description": "Limit for the returned string, ellipsis included."
+						}
+					],
+					"return": {
+						"kind": "return",
+						"type": "String",
+						"description": "Truncated String"
+					},
+					"static": true
+				},
+				{
+					"kind": "function",
+					"name": "utf8Decode",
+					"file": "src/js/Ink/Util/String/1/lib.js",
+					"text": "Decodes a string from UTF-8.",
+					"params": [
+						{
+							"kind": "param",
+							"name": "string",
+							"type": "String",
+							"isFirstLevel": true,
+							"description": "String to be decoded"
+						}
+					],
+					"return": {
+						"kind": "return",
+						"type": "String",
+						"description": "Decoded string"
+					},
+					"static": true
+				},
+				{
+					"kind": "function",
+					"name": "removeAccentedChars",
+					"file": "src/js/Ink/Util/String/1/lib.js",
+					"text": "Removes all accented characters from a string.",
+					"params": [
+						{
+							"kind": "param",
+							"name": "string",
+							"type": "String",
+							"isFirstLevel": true,
+							"description": "String to remove accents from"
+						}
+					],
+					"return": {
+						"kind": "return",
+						"type": "String",
+						"description": "String without accented chars"
+					},
+					"static": true
+				},
+				{
+					"kind": "function",
+					"name": "substrCount",
+					"file": "src/js/Ink/Util/String/1/lib.js",
+					"text": "Count the number of occurrences of a specific needle in a haystack",
+					"params": [
+						{
+							"kind": "param",
+							"name": "haystack",
+							"type": "String",
+							"isFirstLevel": true,
+							"description": "String to search in"
+						},
+						{
+							"kind": "param",
+							"name": "needle",
+							"type": "String",
+							"isFirstLevel": true,
+							"description": "String to search for"
+						}
+					],
+					"return": {
+						"kind": "return",
+						"type": "Number",
+						"description": "Number of occurrences"
+					},
+					"static": true
+				},
+				{
+					"kind": "function",
+					"name": "evalJSON",
+					"file": "src/js/Ink/Util/String/1/lib.js",
+					"text": "Eval a JSON string to a JS object",
+					"params": [
+						{
+							"kind": "param",
+							"name": "strJSON",
+							"type": "String",
+							"isFirstLevel": true,
+							"description": "JSON string to eval"
+						},
+						{
+							"kind": "param",
+							"name": "sanitize",
+							"type": "Boolean",
+							"isFirstLevel": true,
+							"description": "Flag to sanitize input"
+						}
+					],
+					"return": {
+						"kind": "return",
+						"type": "Object",
+						"description": "JS Object"
+					},
+					"static": true
+				},
+				{
+					"kind": "function",
+					"name": "isJSON",
+					"file": "src/js/Ink/Util/String/1/lib.js",
+					"text": "Checks if a string is a valid JSON object (string encoded)",
+					"params": [
+						{
+							"kind": "param",
+							"name": "str",
+							"type": "String",
+							"isFirstLevel": true,
+							"description": "String to check"
+						}
+					],
+					"return": {
+						"kind": "return",
+						"type": "Boolean"
+					},
+					"static": true
+				},
+				{
+					"kind": "function",
+					"name": "htmlEscapeUnsafe",
+					"file": "src/js/Ink/Util/String/1/lib.js",
+					"text": "Escapes unsafe html chars as HTML entities",
+					"params": [
+						{
+							"kind": "param",
+							"name": "str",
+							"type": "String",
+							"isFirstLevel": true,
+							"description": "String to escape"
+						}
+					],
+					"return": {
+						"kind": "return",
+						"type": "String",
+						"description": "Escaped string"
+					},
+					"static": true
+				},
+				{
+					"kind": "function",
+					"name": "normalizeWhitespace",
+					"file": "src/js/Ink/Util/String/1/lib.js",
+					"text": "Normalizes whitespace in string.\nString is trimmed and sequences of whitespaces are collapsed.",
+					"params": [
+						{
+							"kind": "param",
+							"name": "str",
+							"type": "String",
+							"isFirstLevel": true,
+							"description": "String to normalize"
+						}
+					],
+					"return": {
+						"kind": "return",
+						"type": "String",
+						"description": "Normalized string"
+					},
+					"static": true
+				},
+				{
+					"kind": "function",
+					"name": "toUnicode",
+					"file": "src/js/Ink/Util/String/1/lib.js",
+					"text": "Converts string to unicode.",
+					"params": [
+						{
+							"kind": "param",
+							"name": "str",
+							"type": "String",
+							"isFirstLevel": true,
+							"description": "String to convert"
+						}
+					],
+					"return": {
+						"kind": "return",
+						"type": "String",
+						"description": "Unicoded String"
+					},
+					"static": true
+				},
+				{
+					"kind": "function",
+					"name": "escape",
+					"file": "src/js/Ink/Util/String/1/lib.js",
+					"text": "Escapes a unicode character.",
+					"params": [
+						{
+							"kind": "param",
+							"name": "c",
+							"type": "String",
+							"isFirstLevel": true,
+							"description": "Character to escape"
+						},
+						{
+							"kind": "param",
+							"name": "c",
+							"type": "String",
+							"isFirstLevel": true,
+							"description": "char"
+						}
+					],
+					"return": {
+						"kind": "return",
+						"type": "String",
+						"description": "Escaped character. Returns \\xXX if hex smaller than 0x100, otherwise \\uXXXX"
+					},
+					"static": true
+				},
+				{
+					"kind": "function",
+					"name": "unescape",
+					"file": "src/js/Ink/Util/String/1/lib.js",
+					"text": "Unescapes a unicode character escape sequence",
+					"params": [
+						{
+							"kind": "param",
+							"name": "es",
+							"type": "String",
+							"isFirstLevel": true,
+							"description": "Escape sequence"
+						}
+					],
+					"return": {
+						"kind": "return",
+						"type": "String",
+						"description": "String un-unicoded"
+					},
+					"static": true
+				},
+				{
+					"kind": "function",
+					"name": "escapeText",
+					"file": "src/js/Ink/Util/String/1/lib.js",
+					"text": "Escapes a string to unicode characters",
+					"params": [
+						{
+							"kind": "param",
+							"name": "txt",
+							"type": "String",
+							"isFirstLevel": true
+						},
+						{
+							"kind": "param",
+							"name": "whiteList",
+							"type": "Array",
+							"isOptional": true,
+							"isFirstLevel": true,
+							"description": "Whitelist of characters"
+						}
+					],
+					"return": {
+						"kind": "return",
+						"type": "String",
+						"description": "String escaped to Unicode"
+					},
+					"static": true
+				},
+				{
+					"kind": "function",
+					"name": "unescapeText",
+					"file": "src/js/Ink/Util/String/1/lib.js",
+					"text": "Unescapes a string",
+					"params": [
+						{
+							"kind": "param",
+							"name": "txt",
+							"type": "String",
+							"isFirstLevel": true
+						}
+					],
+					"return": {
+						"kind": "return",
+						"type": "String",
+						"description": "Unescaped string"
+					},
+					"static": true
+				},
+				{
+					"kind": "function",
+					"name": "strcmp",
+					"file": "src/js/Ink/Util/String/1/lib.js",
+					"text": "Compares two strings.",
+					"params": [
+						{
+							"kind": "param",
+							"name": "str1",
+							"type": "String",
+							"isFirstLevel": true,
+							"description": "First String"
+						},
+						{
+							"kind": "param",
+							"name": "str2",
+							"type": "String",
+							"isFirstLevel": true,
+							"description": "Second String"
+						}
+					],
+					"return": {
+						"kind": "return",
+						"type": "Number"
+					},
+					"static": true
+				},
+				{
+					"kind": "function",
+					"name": "packetize",
+					"file": "src/js/Ink/Util/String/1/lib.js",
+					"text": "Splits a string into smaller chunks",
+					"params": [
+						{
+							"kind": "param",
+							"name": "str",
+							"type": "String",
+							"isFirstLevel": true,
+							"description": "String to divide"
+						},
+						{
+							"kind": "param",
+							"name": "maxLen",
+							"type": "Number",
+							"isFirstLevel": true,
+							"description": "Maximum chunk size (in characters)"
+						}
+					],
+					"return": {
+						"kind": "return",
+						"type": "Array",
+						"description": "Chunks of the original string"
+					},
 					"static": true
 				}
 			],
-			"functions": [],
-			"attributes": [],
+			"attributes": [
+				{
+					"kind": "attribute",
+					"name": "_chars",
+					"text": "List of special chars",
+					"type": "Array",
+					"private": true,
+					"static": true
+				},
+				{
+					"kind": "attribute",
+					"name": "_entities",
+					"text": "List of the special characters' html entities",
+					"type": "Array",
+					"private": true,
+					"static": true
+				},
+				{
+					"kind": "attribute",
+					"name": "_accentedChars",
+					"text": "List of accented chars",
+					"type": "Array",
+					"private": true,
+					"static": true
+				},
+				{
+					"kind": "attribute",
+					"name": "_accentedRemovedChars",
+					"text": "List of the accented chars (above), but without the accents",
+					"type": "Array",
+					"private": true,
+					"static": true
+				},
+				{
+					"kind": "attribute",
+					"name": "_htmlUnsafeChars",
+					"text": "Object that contains the basic HTML unsafe chars, as keys, and their HTML entities as values",
+					"type": "Object",
+					"private": true,
+					"static": true
+				},
+				{
+					"kind": "attribute",
+					"name": "escapedCharRegex",
+					"text": "Regex to check escaped strings",
+					"type": "Regex",
+					"static": true
+				}
+			],
 			"uses": [],
-			"author": "inkdev AT sapo.pt",
 			"version": "1"
 		},
 		{
 			"kind": "module",
 			"name": "Ink.Util.Url_1",
 			"file": "src/js/Ink/Util/Url/1/lib.js",
-			"classes": [
+			"classes": [],
+			"functions": [
 				{
-					"kind": "class",
-					"name": "Ink.Util.Url",
-					"text": "Utility functions to use with URLs",
+					"kind": "function",
+					"name": "getUrl",
 					"file": "src/js/Ink/Util/Url/1/lib.js",
-					"functions": [
+					"text": "Gets URL of current page",
+					"params": [],
+					"return": {
+						"kind": "return",
+						"type": "String",
+						"description": "Current URL"
+					},
+					"static": true,
+					"examples": [
+						"\n    Ink.requireModules(['Ink.Util.Url_1'], function( InkUrl ){\n        console.log( InkUrl.getUrl() ); // Will return it's window URL\n    });\n"
+					]
+				},
+				{
+					"kind": "function",
+					"name": "genQueryString",
+					"file": "src/js/Ink/Util/Url/1/lib.js",
+					"text": "Generates an URL string.",
+					"params": [
 						{
-							"kind": "function",
-							"name": "getUrl",
-							"file": "src/js/Ink/Util/Url/1/lib.js",
-							"text": "Get current URL of page",
-							"params": [],
-							"return": {
-								"kind": "return",
-								"type": "String",
-								"description": "Current URL"
-							},
-							"static": true,
-							"examples": [
-								"\n    Ink.requireModules(['Ink.Util.Url_1'], function( InkUrl ){\n        console.log( InkUrl.getUrl() ); // Will return it's window URL\n    });\n"
-							]
-						},
-						{
-							"kind": "function",
-							"name": "genQueryString",
-							"file": "src/js/Ink/Util/Url/1/lib.js",
-							"text": "Generates an uri with query string based on the parameters object given",
-							"params": [
-								{
-									"kind": "param",
-									"name": "uri",
-									"type": "String",
-									"isFirstLevel": true
-								},
-								{
-									"kind": "param",
-									"name": "params",
-									"type": "Object",
-									"isFirstLevel": true
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "String",
-								"description": "URI with query string set"
-							},
-							"static": true,
-							"examples": [
-								"\n    Ink.requireModules(['Ink.Util.Url_1'], function( InkUrl ){\n        var queryString = InkUrl.genQueryString( 'http://www.sapo.pt/', {\n            'param1': 'valueParam1',\n            'param2': 'valueParam2'\n        });\n\n        console.log( queryString ); // Result: http://www.sapo.pt/?param1=valueParam1&param2=valueParam2\n    });\n"
-							]
-						},
-						{
-							"kind": "function",
-							"name": "getQueryString",
-							"file": "src/js/Ink/Util/Url/1/lib.js",
-							"text": "Get query string of current or passed URL",
-							"params": [
-								{
-									"kind": "param",
-									"name": "str",
-									"type": "String",
-									"isOptional": true,
-									"isFirstLevel": true,
-									"description": "URL String. When not specified it uses the current URL."
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "Object",
-								"description": "Key-Value object with the pairs variable: value"
-							},
-							"static": true,
-							"examples": [
-								"\n    Ink.requireModules(['Ink.Util.Url_1'], function( InkUrl ){\n        var queryStringParams = InkUrl.getQueryString( 'http://www.sapo.pt/?var1=valueVar1&var2=valueVar2' );\n        console.log( queryStringParams );\n        // Result:\n        // {\n        //    var1: 'valueVar1',\n        //    var2: 'valueVar2'\n        // }\n    });\n"
-							]
-						},
-						{
-							"kind": "function",
-							"name": "getAnchor",
-							"file": "src/js/Ink/Util/Url/1/lib.js",
-							"text": "Get URL hash",
-							"params": [
-								{
-									"kind": "param",
-									"name": "str",
-									"type": "String",
-									"isOptional": true,
-									"isFirstLevel": true,
-									"description": "URL String. If not set, it will get the current URL."
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "String|Boolean",
-								"description": "Hash in the URL. If there's no hash, returns false."
-							},
-							"static": true,
-							"examples": [
-								"\n    Ink.requireModules(['Ink.Util.Url_1'], function( InkUrl ){\n        var anchor = InkUrl.getAnchor( 'http://www.sapo.pt/page.php#TEST' );\n        console.log( anchor ); // Result: TEST\n    });\n"
-							]
-						},
-						{
-							"kind": "function",
-							"name": "getAnchorString",
-							"file": "src/js/Ink/Util/Url/1/lib.js",
-							"text": "Get anchor string of current or passed URL",
-							"params": [
-								{
-									"kind": "param",
-									"name": "string",
-									"type": "String",
-									"isOptional": true,
-									"isFirstLevel": true,
-									"description": "If not provided it uses the current URL."
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "Object",
-								"description": "Returns a key-value object of the 'variables' available in the hashtag of the URL"
-							},
-							"static": true,
-							"examples": [
-								"\n    Ink.requireModules(['Ink.Util.Url_1'], function( InkUrl ){\n        var hashParams = InkUrl.getAnchorString( 'http://www.sapo.pt/#var1=valueVar1&var2=valueVar2' );\n        console.log( hashParams );\n        // Result:\n        // {\n        //    var1: 'valueVar1',\n        //    var2: 'valueVar2'\n        // }\n    });\n"
-							]
-						},
-						{
-							"kind": "function",
-							"name": "parseUrl",
-							"file": "src/js/Ink/Util/Url/1/lib.js",
-							"text": "Parse passed URL",
-							"params": [
-								{
-									"kind": "param",
-									"name": "url",
-									"type": "String",
-									"isFirstLevel": true,
-									"description": "URL to be parsed"
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "Object",
-								"description": "Parsed URL as a key-value object."
-							},
-							"static": true,
-							"examples": [
-								"\n    Ink.requireModules(['Ink.Util.Url_1'], function( InkUrl ){\n        var parsedURL = InkUrl.parseUrl( 'http://www.sapo.pt/index.html?var1=value1#anchor' )\n        console.log( parsedURL );\n        // Result:\n        // {\n        //   'scheme'    => 'http',\n        //   'host'      => 'www.sapo.pt',\n        //   'path'      => '/index.html',\n        //   'query'     => 'var1=value1',\n        //   'fragment'  => 'anchor'\n        // }\n    });\n\n"
-							]
-						},
-						{
-							"kind": "function",
-							"name": "format",
-							"file": "src/js/Ink/Util/Url/1/lib.js",
-							"text": "Take a URL object from Ink.Util.Url.parseUrl or a window.location\nobject and returns a URL string.",
-							"params": [
-								{
-									"kind": "param",
-									"name": "urlObj",
-									"isFirstLevel": true,
-									"description": "window.location, a.href, or parseUrl object to format"
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "String",
-								"description": "Full URL."
-							}
-						},
-						{
-							"kind": "function",
-							"name": "currentScriptElement",
-							"file": "src/js/Ink/Util/Url/1/lib.js",
-							"text": "Get last loaded script element",
-							"params": [
-								{
-									"kind": "param",
-									"name": "match",
-									"type": "String",
-									"isOptional": true,
-									"isFirstLevel": true,
-									"description": "String to match against the script src attribute"
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "DOMElement|Boolean",
-								"description": "Returns the <script> DOM Element or false if unable to find it."
-							},
-							"static": true
-						},
-						{
-							"kind": "function",
-							"name": "_debug",
-							"file": "src/js/Ink/Util/Url/1/lib.js",
-							"text": "Debug function ?",
-							"params": [],
-							"private": true,
-							"static": true
-						}
-					],
-					"attributes": [
-						{
-							"kind": "attribute",
-							"name": "_keyStr",
-							"text": "Auxiliary string for encoding",
+							"kind": "param",
+							"name": "uri",
 							"type": "String",
-							"private": true
+							"isFirstLevel": true,
+							"description": "Base URL"
+						},
+						{
+							"kind": "param",
+							"name": "params",
+							"type": "Object",
+							"isFirstLevel": true,
+							"description": "Object to transform to query string"
 						}
 					],
-					"isNamespace": true,
-					"version": "1",
+					"return": {
+						"kind": "return",
+						"type": "String",
+						"description": "URI with query string set"
+					},
+					"static": true,
+					"examples": [
+						"\n    Ink.requireModules(['Ink.Util.Url_1'], function( InkUrl ){\n        var queryString = InkUrl.genQueryString( 'http://www.sapo.pt/', {\n            'param1': 'valueParam1',\n            'param2': 'valueParam2'\n        });\n\n        console.log( queryString ); // Result: http://www.sapo.pt/?param1=valueParam1&param2=valueParam2\n    });\n"
+					]
+				},
+				{
+					"kind": "function",
+					"name": "getQueryString",
+					"file": "src/js/Ink/Util/Url/1/lib.js",
+					"text": "Gets an object from an URL encoded string.",
+					"params": [
+						{
+							"kind": "param",
+							"name": "str",
+							"type": "String",
+							"isOptional": true,
+							"isFirstLevel": true,
+							"description": "URL String. When not specified it uses the current URL."
+						}
+					],
+					"return": {
+						"kind": "return",
+						"type": "Object",
+						"description": "Key-Value pair object"
+					},
+					"static": true,
+					"examples": [
+						"\n    Ink.requireModules(['Ink.Util.Url_1'], function( InkUrl ){\n        var queryStringParams = InkUrl.getQueryString( 'http://www.sapo.pt/?var1=valueVar1&var2=valueVar2' );\n        console.log( queryStringParams );\n        // Result:\n        // {\n        //    var1: 'valueVar1',\n        //    var2: 'valueVar2'\n        // }\n    });\n"
+					]
+				},
+				{
+					"kind": "function",
+					"name": "getAnchor",
+					"file": "src/js/Ink/Util/Url/1/lib.js",
+					"text": "Gets the URL hash value",
+					"params": [
+						{
+							"kind": "param",
+							"name": "str",
+							"type": "String",
+							"isOptional": true,
+							"isFirstLevel": true,
+							"description": "URL String. Defaults to current page URL."
+						}
+					],
+					"return": {
+						"kind": "return",
+						"type": "String|Boolean",
+						"description": "Hash in the URL. If there's no hash, returns false."
+					},
+					"static": true,
+					"examples": [
+						"\n    Ink.requireModules(['Ink.Util.Url_1'], function( InkUrl ){\n        var anchor = InkUrl.getAnchor( 'http://www.sapo.pt/page.php#TEST' );\n        console.log( anchor ); // Result: TEST\n    });\n"
+					]
+				},
+				{
+					"kind": "function",
+					"name": "getAnchorString",
+					"file": "src/js/Ink/Util/Url/1/lib.js",
+					"text": "Gets the anchor string of an URL",
+					"params": [
+						{
+							"kind": "param",
+							"name": "string",
+							"type": "String",
+							"isOptional": true,
+							"isFirstLevel": true,
+							"description": "URL to parse. Defaults to current URL."
+						}
+					],
+					"return": {
+						"kind": "return",
+						"type": "Object",
+						"description": "Key-value pair object of the URL's hashtag 'variables'"
+					},
+					"static": true,
+					"examples": [
+						"\n    Ink.requireModules(['Ink.Util.Url_1'], function( InkUrl ){\n        var hashParams = InkUrl.getAnchorString( 'http://www.sapo.pt/#var1=valueVar1&var2=valueVar2' );\n        console.log( hashParams );\n        // Result:\n        // {\n        //    var1: 'valueVar1',\n        //    var2: 'valueVar2'\n        // }\n    });\n"
+					]
+				},
+				{
+					"kind": "function",
+					"name": "parseUrl",
+					"file": "src/js/Ink/Util/Url/1/lib.js",
+					"text": "Parses URL string into URL parts",
+					"params": [
+						{
+							"kind": "param",
+							"name": "url",
+							"type": "String",
+							"isFirstLevel": true,
+							"description": "URL to be parsed"
+						}
+					],
+					"return": {
+						"kind": "return",
+						"type": "Object",
+						"description": "Parsed URL as a key-value object."
+					},
+					"static": true,
+					"examples": [
+						"\n    Ink.requireModules(['Ink.Util.Url_1'], function( InkUrl ){\n        var parsedURL = InkUrl.parseUrl( 'http://www.sapo.pt/index.html?var1=value1#anchor' )\n        console.log( parsedURL );\n        // Result:\n        // {\n        //   'scheme'    => 'http',\n        //   'host'      => 'www.sapo.pt',\n        //   'path'      => '/index.html',\n        //   'query'     => 'var1=value1',\n        //   'fragment'  => 'anchor'\n        // }\n    });\n\n"
+					]
+				},
+				{
+					"kind": "function",
+					"name": "format",
+					"file": "src/js/Ink/Util/Url/1/lib.js",
+					"text": "Formats an URL object into an URL string.",
+					"params": [
+						{
+							"kind": "param",
+							"name": "urlObj",
+							"isFirstLevel": true,
+							"description": "Window.location, a.href, or parseUrl object to format"
+						}
+					],
+					"return": {
+						"kind": "return",
+						"type": "String",
+						"description": "Full URL."
+					}
+				},
+				{
+					"kind": "function",
+					"name": "currentScriptElement",
+					"file": "src/js/Ink/Util/Url/1/lib.js",
+					"text": "Gets the last loaded script element",
+					"params": [
+						{
+							"kind": "param",
+							"name": "match",
+							"type": "String",
+							"isOptional": true,
+							"isFirstLevel": true,
+							"description": "String to match against the script src attribute"
+						}
+					],
+					"return": {
+						"kind": "return",
+						"type": "DOMElement|Boolean",
+						"description": "Returns the <script> DOM Element or false if unable to find it."
+					},
+					"static": true
+				},
+				{
+					"kind": "function",
+					"name": "_debug",
+					"file": "src/js/Ink/Util/Url/1/lib.js",
+					"text": "Debug function ?",
+					"params": [],
+					"private": true,
 					"static": true
 				}
 			],
-			"functions": [],
-			"attributes": [],
+			"attributes": [
+				{
+					"kind": "attribute",
+					"name": "_keyStr",
+					"text": "Auxiliary string for encoding",
+					"type": "String",
+					"private": true
+				}
+			],
 			"uses": [],
-			"author": "inkdev AT sapo.pt",
 			"version": "1"
 		},
 		{
 			"kind": "module",
 			"name": "Ink.Util.Validator_1",
 			"file": "src/js/Ink/Util/Validator/1/lib.js",
-			"classes": [
+			"classes": [],
+			"functions": [
 				{
-					"kind": "class",
-					"name": "Ink.Util.Validator",
-					"text": "Set of functions to provide validation",
+					"kind": "function",
+					"name": "createRegExp",
 					"file": "src/js/Ink/Util/Validator/1/lib.js",
-					"functions": [
+					"text": "Creates a regular expression for several character groups.",
+					"params": [
 						{
-							"kind": "function",
-							"name": "createRegExp",
-							"file": "src/js/Ink/Util/Validator/1/lib.js",
-							"text": "Create a regular expression for several character groups.",
-							"params": [
-								{
-									"kind": "param",
-									"name": "Groups*",
-									"isFirstLevel": true,
-									"description": "{Object}"
-								}
-							]
+							"kind": "param",
+							"name": "Groups*",
+							"isFirstLevel": true,
+							"description": "{Object}"
+						}
+					]
+				},
+				{
+					"kind": "function",
+					"name": "checkCharacterGroups",
+					"file": "src/js/Ink/Util/Validator/1/lib.js",
+					"text": "Checks if a field has the required groups.",
+					"params": [
+						{
+							"kind": "param",
+							"name": "s",
+							"type": "String",
+							"isFirstLevel": true,
+							"description": "The validation string"
 						},
 						{
-							"kind": "function",
-							"name": "checkCharacterGroups",
-							"file": "src/js/Ink/Util/Validator/1/lib.js",
-							"text": "Checks if a field has the required groups. Takes an options object for further configuration.",
-							"params": [
-								{
-									"kind": "param",
-									"name": "s",
-									"type": "String",
-									"isFirstLevel": true,
-									"description": "The validation string"
-								},
-								{
-									"kind": "param",
-									"name": "groups",
-									"type": "Object",
-									"isOptional": true,
-									"defaultValue": "{}",
-									"isFirstLevel": true,
-									"description": "What groups are included. See createRegexp"
-								}
-							]
+							"kind": "param",
+							"name": "groups",
+							"type": "Object",
+							"isOptional": true,
+							"defaultValue": "{}",
+							"isFirstLevel": true,
+							"description": "What groups are included. See createRegexp"
+						}
+					]
+				},
+				{
+					"kind": "function",
+					"name": "unicode",
+					"file": "src/js/Ink/Util/Validator/1/lib.js",
+					"text": "Checks if a field contains unicode printable characters.",
+					"params": [
+						{
+							"kind": "param",
+							"name": "s",
+							"type": "String",
+							"isFirstLevel": true,
+							"description": "The validation string"
 						},
 						{
-							"kind": "function",
-							"name": "unicode",
-							"file": "src/js/Ink/Util/Validator/1/lib.js",
-							"text": "Checks whether a field contains unicode printable characters. Takes an\noptions object for further configuration",
-							"params": [
-								{
-									"kind": "param",
-									"name": "s",
-									"type": "String",
-									"isFirstLevel": true,
-									"description": "The validation string"
-								},
-								{
-									"kind": "param",
-									"name": "options",
-									"type": "Object",
-									"isOptional": true,
-									"defaultValue": "{}",
-									"isFirstLevel": true,
-									"description": "Optional configuration object. See createRegexp"
-								}
-							]
+							"kind": "param",
+							"name": "options",
+							"type": "Object",
+							"isOptional": true,
+							"defaultValue": "{}",
+							"isFirstLevel": true,
+							"description": "Optional configuration object. See createRegexp"
+						}
+					]
+				},
+				{
+					"kind": "function",
+					"name": "latin1",
+					"file": "src/js/Ink/Util/Validator/1/lib.js",
+					"text": "Checks if a field only contains latin-1 alphanumeric characters. \nTakes options for allowing singleline whitespace, cross-line whitespace and punctuation.",
+					"params": [
+						{
+							"kind": "param",
+							"name": "s",
+							"type": "String",
+							"isFirstLevel": true,
+							"description": "The validation string"
 						},
 						{
-							"kind": "function",
-							"name": "latin1",
-							"file": "src/js/Ink/Util/Validator/1/lib.js",
-							"text": "Checks that a field only contains only latin-1 alphanumeric\ncharacters. Takes options for allowing singleline whitespace,\ncross-line whitespace and punctuation.",
-							"params": [
-								{
-									"kind": "param",
-									"name": "s",
-									"type": "String",
-									"isFirstLevel": true,
-									"description": "The validation string"
-								},
-								{
-									"kind": "param",
-									"name": "options",
-									"type": "Object",
-									"isOptional": true,
-									"defaultValue": "{}",
-									"isFirstLevel": true,
-									"description": "Optional configuration object. See createRegexp"
-								}
-							]
+							"kind": "param",
+							"name": "options",
+							"type": "Object",
+							"isOptional": true,
+							"defaultValue": "{}",
+							"isFirstLevel": true,
+							"description": "Optional configuration object. See createRegexp"
+						}
+					]
+				},
+				{
+					"kind": "function",
+					"name": "ascii",
+					"file": "src/js/Ink/Util/Validator/1/lib.js",
+					"text": "Checks if a field only contains only ASCII alphanumeric characters. \nTakes options for allowing singleline whitespace, cross-line whitespace and punctuation.",
+					"params": [
+						{
+							"kind": "param",
+							"name": "s",
+							"type": "String",
+							"isFirstLevel": true,
+							"description": "The validation string"
 						},
 						{
-							"kind": "function",
-							"name": "ascii",
-							"file": "src/js/Ink/Util/Validator/1/lib.js",
-							"text": "Checks that a field only contains only ASCII alphanumeric\ncharacters. Takes options for allowing singleline whitespace,\ncross-line whitespace and punctuation.",
-							"params": [
-								{
-									"kind": "param",
-									"name": "s",
-									"type": "String",
-									"isFirstLevel": true,
-									"description": "The validation string"
-								},
-								{
-									"kind": "param",
-									"name": "options",
-									"type": "Object",
-									"isOptional": true,
-									"defaultValue": "{}",
-									"isFirstLevel": true,
-									"description": "Optional configuration object. See createRegexp"
-								}
-							]
+							"kind": "param",
+							"name": "options",
+							"type": "Object",
+							"isOptional": true,
+							"defaultValue": "{}",
+							"isFirstLevel": true,
+							"description": "Optional configuration object. See createRegexp"
+						}
+					]
+				},
+				{
+					"kind": "function",
+					"name": "number",
+					"file": "src/js/Ink/Util/Validator/1/lib.js",
+					"text": "Checks if a number is a valid",
+					"params": [
+						{
+							"kind": "param",
+							"name": "numb",
+							"type": "String",
+							"isFirstLevel": true,
+							"description": "The number"
 						},
 						{
-							"kind": "function",
-							"name": "number",
-							"file": "src/js/Ink/Util/Validator/1/lib.js",
-							"text": "Checks that the number is a valid number",
-							"params": [
-								{
-									"kind": "param",
-									"name": "numb",
-									"type": "String",
-									"isFirstLevel": true,
-									"description": "The number"
-								},
-								{
-									"kind": "param",
-									"name": "options",
-									"type": "Object",
-									"isOptional": true,
-									"isFirstLevel": true,
-									"description": "Further options"
-								},
-								{
-									"kind": "param",
-									"name": "options.decimalSep",
-									"isOptional": true,
-									"defaultValue": "'.'",
-									"isFirstLevel": false,
-									"description": "Allow decimal separator."
-								},
-								{
-									"kind": "param",
-									"name": "options.thousandSep",
-									"isOptional": true,
-									"defaultValue": "\",\"",
-									"isFirstLevel": false,
-									"description": "Strip this character from the number."
-								},
-								{
-									"kind": "param",
-									"name": "options.negative",
-									"isOptional": true,
-									"defaultValue": "false",
-									"isFirstLevel": false,
-									"description": "Allow negative numbers."
-								},
-								{
-									"kind": "param",
-									"name": "options.decimalPlaces",
-									"isOptional": true,
-									"defaultValue": "null",
-									"isFirstLevel": false,
-									"description": "Maximum number of decimal places. Use `0` for an integer number."
-								},
-								{
-									"kind": "param",
-									"name": "options.max",
-									"isOptional": true,
-									"defaultValue": "null",
-									"isFirstLevel": false,
-									"description": "Maximum number"
-								},
-								{
-									"kind": "param",
-									"name": "options.min",
-									"isOptional": true,
-									"defaultValue": "null",
-									"isFirstLevel": false,
-									"description": "Minimum number"
-								},
-								{
-									"kind": "param",
-									"name": "options.returnNumber",
-									"isOptional": true,
-									"defaultValue": "false",
-									"isFirstLevel": false,
-									"description": "When this option is true, return the number itself when the value is valid."
-								}
-							]
+							"kind": "param",
+							"name": "options",
+							"type": "Object",
+							"isOptional": true,
+							"isFirstLevel": true,
+							"description": "Further options"
 						},
 						{
-							"kind": "function",
-							"name": "_isLeapYear",
-							"file": "src/js/Ink/Util/Validator/1/lib.js",
-							"text": "Checks if a year is Leap \"Bissexto\"",
-							"params": [
-								{
-									"kind": "param",
-									"name": "year",
-									"type": "Number",
-									"isFirstLevel": true,
-									"description": "Year to be checked"
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "Boolean",
-								"description": "True if it is a leap year."
-							},
-							"private": true,
-							"static": true,
-							"examples": [
-								"\n    Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){\n        console.log( InkValidator._isLeapYear( 2004 ) ); // Result: true\n        console.log( InkValidator._isLeapYear( 2006 ) ); // Result: false\n    });\n"
-							]
+							"kind": "param",
+							"name": "options.decimalSep",
+							"isOptional": true,
+							"defaultValue": "'.'",
+							"isFirstLevel": false,
+							"description": "Allow decimal separator."
 						},
 						{
-							"kind": "function",
-							"name": "_daysInMonth",
-							"file": "src/js/Ink/Util/Validator/1/lib.js",
-							"text": "Calculates the number of days in a given month of a given year",
-							"params": [
-								{
-									"kind": "param",
-									"name": "_m",
-									"type": "Number",
-									"isFirstLevel": true,
-									"description": "- month (1 to 12)"
-								},
-								{
-									"kind": "param",
-									"name": "_y",
-									"type": "Number",
-									"isFirstLevel": true,
-									"description": "- year"
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "Number",
-								"description": "Returns the number of days in a given month of a given year"
-							},
-							"private": true,
-							"static": true,
-							"examples": [
-								"\n    Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){\n        console.log( InkValidator._daysInMonth( 2, 2004 ) ); // Result: 29\n        console.log( InkValidator._daysInMonth( 2, 2006 ) ); // Result: 28\n    });\n"
-							]
+							"kind": "param",
+							"name": "options.thousandSep",
+							"isOptional": true,
+							"defaultValue": "\",\"",
+							"isFirstLevel": false,
+							"description": "Strip this character from the number."
 						},
 						{
-							"kind": "function",
-							"name": "_isValidDate",
-							"file": "src/js/Ink/Util/Validator/1/lib.js",
-							"text": "Checks if a date is valid",
-							"params": [
-								{
-									"kind": "param",
-									"name": "year",
-									"type": "Number",
-									"isFirstLevel": true
-								},
-								{
-									"kind": "param",
-									"name": "month",
-									"type": "Number",
-									"isFirstLevel": true
-								},
-								{
-									"kind": "param",
-									"name": "day",
-									"type": "Number",
-									"isFirstLevel": true
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "Boolean",
-								"description": "True if it's a valid date"
-							},
-							"private": true,
-							"static": true,
-							"examples": [
-								"\n    Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){\n        console.log( InkValidator._isValidDate( 2004, 2, 29 ) ); // Result: true\n        console.log( InkValidator._isValidDate( 2006, 2, 29 ) ); // Result: false\n    });\n"
-							]
+							"kind": "param",
+							"name": "options.negative",
+							"isOptional": true,
+							"defaultValue": "false",
+							"isFirstLevel": false,
+							"description": "Allow negative numbers."
 						},
 						{
-							"kind": "function",
-							"name": "mail",
-							"file": "src/js/Ink/Util/Validator/1/lib.js",
-							"text": "Checks if a email is valid",
-							"params": [
-								{
-									"kind": "param",
-									"name": "email",
-									"type": "String",
-									"isFirstLevel": true
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "Boolean",
-								"description": "True if it's a valid e-mail"
-							},
-							"static": true,
-							"examples": [
-								"\n    Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){\n        console.log( InkValidator.email( 'agfsdfgfdsgdsf' ) ); // Result: false\n        console.log( InkValidator.email( 'inkdev\\u0040sapo.pt' ) ); // Result: true (where \\u0040 is at sign)\n    });\n"
-							]
+							"kind": "param",
+							"name": "options.decimalPlaces",
+							"isOptional": true,
+							"defaultValue": "null",
+							"isFirstLevel": false,
+							"description": "Maximum number of decimal places. Use `0` for an integer number."
 						},
 						{
-							"kind": "function",
-							"name": "mail",
-							"file": "src/js/Ink/Util/Validator/1/lib.js",
-							"text": "Deprecated. Alias for email(). Use it instead.",
-							"params": [],
-							"static": true
+							"kind": "param",
+							"name": "options.max",
+							"isOptional": true,
+							"defaultValue": "null",
+							"isFirstLevel": false,
+							"description": "Maximum number"
 						},
 						{
-							"kind": "function",
+							"kind": "param",
+							"name": "options.min",
+							"isOptional": true,
+							"defaultValue": "null",
+							"isFirstLevel": false,
+							"description": "Minimum number"
+						},
+						{
+							"kind": "param",
+							"name": "options.returnNumber",
+							"isOptional": true,
+							"defaultValue": "false",
+							"isFirstLevel": false,
+							"description": "When this option is true, return the number itself when the value is valid."
+						}
+					]
+				},
+				{
+					"kind": "function",
+					"name": "_isLeapYear",
+					"file": "src/js/Ink/Util/Validator/1/lib.js",
+					"text": "Checks if a year is Leap \"Bissexto\"",
+					"params": [
+						{
+							"kind": "param",
+							"name": "year",
+							"type": "Number",
+							"isFirstLevel": true,
+							"description": "Year to be checked"
+						}
+					],
+					"return": {
+						"kind": "return",
+						"type": "Boolean",
+						"description": "True if it is a leap year."
+					},
+					"private": true,
+					"static": true,
+					"examples": [
+						"\n    Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){\n        console.log( InkValidator._isLeapYear( 2004 ) ); // Result: true\n        console.log( InkValidator._isLeapYear( 2006 ) ); // Result: false\n    });\n"
+					]
+				},
+				{
+					"kind": "function",
+					"name": "_daysInMonth",
+					"file": "src/js/Ink/Util/Validator/1/lib.js",
+					"text": "Gets the number of days in a given month of a given year",
+					"params": [
+						{
+							"kind": "param",
+							"name": "_m",
+							"type": "Number",
+							"isFirstLevel": true,
+							"description": "Month (1 to 12)"
+						},
+						{
+							"kind": "param",
+							"name": "_y",
+							"type": "Number",
+							"isFirstLevel": true,
+							"description": "Year"
+						}
+					],
+					"return": {
+						"kind": "return",
+						"type": "Number",
+						"description": "Returns the number of days in a given month of a given year"
+					},
+					"private": true,
+					"static": true,
+					"examples": [
+						"\n    Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){\n        console.log( InkValidator._daysInMonth( 2, 2004 ) ); // Result: 29\n        console.log( InkValidator._daysInMonth( 2, 2006 ) ); // Result: 28\n    });\n"
+					]
+				},
+				{
+					"kind": "function",
+					"name": "_isValidDate",
+					"file": "src/js/Ink/Util/Validator/1/lib.js",
+					"text": "Checks if a date is valid",
+					"params": [
+						{
+							"kind": "param",
+							"name": "year",
+							"type": "Number",
+							"isFirstLevel": true
+						},
+						{
+							"kind": "param",
+							"name": "month",
+							"type": "Number",
+							"isFirstLevel": true
+						},
+						{
+							"kind": "param",
+							"name": "day",
+							"type": "Number",
+							"isFirstLevel": true
+						}
+					],
+					"return": {
+						"kind": "return",
+						"type": "Boolean",
+						"description": "True if valid"
+					},
+					"private": true,
+					"static": true,
+					"examples": [
+						"\n    Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){\n        console.log( InkValidator._isValidDate( 2004, 2, 29 ) ); // Result: true\n        console.log( InkValidator._isValidDate( 2006, 2, 29 ) ); // Result: false\n    });\n"
+					]
+				},
+				{
+					"kind": "function",
+					"name": "mail",
+					"file": "src/js/Ink/Util/Validator/1/lib.js",
+					"text": "Checks if an email is valid",
+					"params": [
+						{
+							"kind": "param",
+							"name": "email",
+							"type": "String",
+							"isFirstLevel": true
+						}
+					],
+					"return": {
+						"kind": "return",
+						"type": "Boolean",
+						"description": "True if it's valid"
+					},
+					"static": true,
+					"examples": [
+						"\n    Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){\n        console.log( InkValidator.email( 'agfsdfgfdsgdsf' ) ); // Result: false\n        console.log( InkValidator.email( 'inkdev\\u0040sapo.pt' ) ); // Result: true (where \\u0040 is at sign)\n    });\n"
+					]
+				},
+				{
+					"kind": "function",
+					"name": "mail",
+					"file": "src/js/Ink/Util/Validator/1/lib.js",
+					"text": "Deprecated. Alias for email(). Use it instead.",
+					"params": [],
+					"static": true,
+					"private": true
+				},
+				{
+					"kind": "function",
+					"name": "url",
+					"file": "src/js/Ink/Util/Validator/1/lib.js",
+					"text": "Checks if an url is valid",
+					"params": [
+						{
+							"kind": "param",
 							"name": "url",
-							"file": "src/js/Ink/Util/Validator/1/lib.js",
-							"text": "Checks if a url is valid",
-							"params": [
-								{
-									"kind": "param",
-									"name": "url",
-									"type": "String",
-									"isFirstLevel": true,
-									"description": "URL to be checked"
-								},
-								{
-									"kind": "param",
-									"name": "full",
-									"type": "Boolean",
-									"isOptional": true,
-									"isFirstLevel": true,
-									"description": "If true, validates a full URL (one that should start with 'http')"
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "Boolean",
-								"description": "True if the given URL is valid"
-							},
-							"static": true,
-							"examples": [
-								"\n    Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){\n        console.log( InkValidator.url( 'www.sapo.pt' ) );                // Result: true\n        console.log( InkValidator.url( 'http://www.sapo.pt', true ) );   // Result: true\n        console.log( InkValidator.url( 'meh' ) );                        // Result: false\n    });\n"
-							]
+							"type": "String",
+							"isFirstLevel": true,
+							"description": "URL to be checked"
 						},
 						{
-							"kind": "function",
-							"name": "isPTPhone",
-							"file": "src/js/Ink/Util/Validator/1/lib.js",
-							"text": "Checks if a phone is valid in Portugal",
-							"params": [
-								{
-									"kind": "param",
-									"name": "phone",
-									"type": "Number",
-									"isFirstLevel": true,
-									"description": "Phone number to be checked"
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "Boolean",
-								"description": "True if it's a valid Portuguese Phone"
-							},
-							"static": true,
-							"examples": [
-								"\n    Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){\n        console.log( InkValidator.isPTPhone( '213919264' ) );        // Result: true\n        console.log( InkValidator.isPTPhone( '00351213919264' ) );   // Result: true\n        console.log( InkValidator.isPTPhone( '+351213919264' ) );    // Result: true\n        console.log( InkValidator.isPTPhone( '1' ) );                // Result: false\n    });\n"
-							]
-						},
-						{
-							"kind": "function",
-							"name": "isPortuguesePhone",
-							"file": "src/js/Ink/Util/Validator/1/lib.js",
-							"text": "Alias function for isPTPhone",
-							"params": [
-								{
-									"kind": "param",
-									"name": "phone",
-									"type": "Number",
-									"isFirstLevel": true,
-									"description": "Phone number to be checked"
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "Boolean",
-								"description": "True if it's a valid Portuguese Phone"
-							},
-							"static": true,
-							"examples": [
-								"\n    Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){\n        console.log( InkValidator.isPortuguesePhone( '213919264' ) );        // Result: true\n        console.log( InkValidator.isPortuguesePhone( '00351213919264' ) );   // Result: true\n        console.log( InkValidator.isPortuguesePhone( '+351213919264' ) );    // Result: true\n        console.log( InkValidator.isPortuguesePhone( '1' ) );                // Result: false\n    });\n"
-							]
-						},
-						{
-							"kind": "function",
-							"name": "isCVPhone",
-							"file": "src/js/Ink/Util/Validator/1/lib.js",
-							"text": "Checks if a phone is valid in Cabo Verde",
-							"params": [
-								{
-									"kind": "param",
-									"name": "phone",
-									"type": "Number",
-									"isFirstLevel": true,
-									"description": "Phone number to be checked"
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "Boolean",
-								"description": "True if it's a valid Cape Verdean Phone"
-							},
-							"static": true,
-							"examples": [
-								"\n    Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){\n        console.log( InkValidator.isCVPhone( '2610303' ) );        // Result: true\n        console.log( InkValidator.isCVPhone( '002382610303' ) );   // Result: true\n        console.log( InkValidator.isCVPhone( '+2382610303' ) );    // Result: true\n        console.log( InkValidator.isCVPhone( '1' ) );              // Result: false\n    });\n"
-							]
-						},
-						{
-							"kind": "function",
-							"name": "isAOPhone",
-							"file": "src/js/Ink/Util/Validator/1/lib.js",
-							"text": "Checks if a phone is valid in Angola",
-							"params": [
-								{
-									"kind": "param",
-									"name": "phone",
-									"type": "Number",
-									"isFirstLevel": true,
-									"description": "Phone number to be checked"
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "Boolean",
-								"description": "True if it's a valid Angolan Phone"
-							},
-							"static": true,
-							"examples": [
-								"\n    Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){\n        console.log( InkValidator.isAOPhone( '244222396385' ) );     // Result: true\n        console.log( InkValidator.isAOPhone( '00244222396385' ) );   // Result: true\n        console.log( InkValidator.isAOPhone( '+244222396385' ) );    // Result: true\n        console.log( InkValidator.isAOPhone( '1' ) );                // Result: false\n    });\n"
-							]
-						},
-						{
-							"kind": "function",
-							"name": "isMZPhone",
-							"file": "src/js/Ink/Util/Validator/1/lib.js",
-							"text": "Checks if a phone is valid in Mozambique",
-							"params": [
-								{
-									"kind": "param",
-									"name": "phone",
-									"type": "Number",
-									"isFirstLevel": true,
-									"description": "Phone number to be checked"
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "Boolean",
-								"description": "True if it's a valid Mozambican Phone"
-							},
-							"static": true,
-							"examples": [
-								"\n    Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){\n        console.log( InkValidator.isMZPhone( '21426861' ) );        // Result: true\n        console.log( InkValidator.isMZPhone( '0025821426861' ) );   // Result: true\n        console.log( InkValidator.isMZPhone( '+25821426861' ) );    // Result: true\n        console.log( InkValidator.isMZPhone( '1' ) );              // Result: false\n    });\n"
-							]
-						},
-						{
-							"kind": "function",
-							"name": "isTLPhone",
-							"file": "src/js/Ink/Util/Validator/1/lib.js",
-							"text": "Checks if a phone is valid in Timor",
-							"params": [
-								{
-									"kind": "param",
-									"name": "phone",
-									"type": "Number",
-									"isFirstLevel": true,
-									"description": "Phone number to be checked"
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "Boolean",
-								"description": "True if it's a valid phone from Timor-Leste"
-							},
-							"static": true,
-							"examples": [
-								"\n    Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){\n        console.log( InkValidator.isTLPhone( '6703331234' ) );     // Result: true\n        console.log( InkValidator.isTLPhone( '006703331234' ) );   // Result: true\n        console.log( InkValidator.isTLPhone( '+6703331234' ) );    // Result: true\n        console.log( InkValidator.isTLPhone( '1' ) );              // Result: false\n    });\n"
-							]
-						},
-						{
-							"kind": "function",
-							"name": "isPhone",
-							"file": "src/js/Ink/Util/Validator/1/lib.js",
-							"text": "Validates the function in all country codes available or in the ones set in the second param",
-							"params": [
-								{
-									"kind": "param",
-									"name": "phone",
-									"type": "String",
-									"isFirstLevel": true,
-									"description": "number"
-								},
-								{
-									"kind": "param",
-									"name": "country",
-									"type": "optional String|Array",
-									"isFirstLevel": true,
-									"description": "or array of countries to validate"
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "Boolean",
-								"description": "True if it's a valid phone in any country available"
-							},
-							"static": true,
-							"examples": [
-								"\n    Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){\n        console.log( InkValidator.isPhone( '6703331234' ) );        // Result: true\n    });\n"
-							]
-						},
-						{
-							"kind": "function",
-							"name": "codPostal",
-							"file": "src/js/Ink/Util/Validator/1/lib.js",
-							"text": "Validates if a zip code is valid in Portugal",
-							"params": [
-								{
-									"kind": "param",
-									"name": "cp1",
-									"type": "Number|String",
-									"isFirstLevel": true
-								},
-								{
-									"kind": "param",
-									"name": "cp2",
-									"type": "optional Number|String",
-									"isFirstLevel": true
-								},
-								{
-									"kind": "param",
-									"name": "returnBothResults",
-									"type": "optional Boolean",
-									"isFirstLevel": true
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "Boolean",
-								"description": "True if it's a valid zip code"
-							},
-							"static": true,
-							"examples": [
-								"\n    Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){\n        console.log( InkValidator.codPostal( '1069', '300' ) );        // Result: true\n        console.log( InkValidator.codPostal( '1069', '300', true ) );  // Result: [true, true]\n    });\n\n"
-							]
-						},
-						{
-							"kind": "function",
-							"name": "isDate",
-							"file": "src/js/Ink/Util/Validator/1/lib.js",
-							"text": "Checks is a date is valid in a given format",
-							"params": [
-								{
-									"kind": "param",
-									"name": "format",
-									"type": "String",
-									"isFirstLevel": true,
-									"description": "- defined in _dateParsers"
-								},
-								{
-									"kind": "param",
-									"name": "dateStr",
-									"type": "String",
-									"isFirstLevel": true,
-									"description": "- date string"
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "Boolean",
-								"description": "True if it's a valid date and in the specified format"
-							},
-							"static": true,
-							"examples": [
-								"\n    Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){\n        console.log( InkValidator.isDate( 'yyyy-mm-dd', '2012-05-21' ) );        // Result: true\n    });\n"
-							]
-						},
-						{
-							"kind": "function",
-							"name": "isColor",
-							"file": "src/js/Ink/Util/Validator/1/lib.js",
-							"text": "Checks if a string is a valid color",
-							"params": [
-								{
-									"kind": "param",
-									"name": "str",
-									"type": "String",
-									"isFirstLevel": true,
-									"description": "Color string to be checked"
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "Boolean",
-								"description": "True if it's a valid color string"
-							},
-							"static": true,
-							"examples": [
-								"\n    Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){\n        console.log( InkValidator.isColor( '#FF00FF' ) );        // Result: true\n        console.log( InkValidator.isColor( 'amdafasfs' ) );      // Result: false\n    });\n"
-							]
-						},
-						{
-							"kind": "function",
-							"name": "isIP",
-							"file": "src/js/Ink/Util/Validator/1/lib.js",
-							"text": "Checks if the value is a valid IP. Supports ipv4 and ipv6",
-							"params": [
-								{
-									"kind": "param",
-									"name": "value",
-									"type": "String",
-									"isFirstLevel": true,
-									"description": "Value to be checked"
-								},
-								{
-									"kind": "param",
-									"name": "ipType",
-									"type": "String",
-									"isFirstLevel": true,
-									"description": "Type of IP to be validated. The values are: ipv4, ipv6. By default is ipv4."
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "Boolean",
-								"description": "True if the value is a valid IP address. False if not."
-							}
-						},
-						{
-							"kind": "function",
-							"name": "isCreditCard",
-							"file": "src/js/Ink/Util/Validator/1/lib.js",
-							"text": "Validates if a number is of a specific credit card",
-							"params": [
-								{
-									"kind": "param",
-									"name": "num",
-									"type": "String",
-									"isFirstLevel": true,
-									"description": "Number to be validates"
-								},
-								{
-									"kind": "param",
-									"name": "creditCardType",
-									"type": "String|Array",
-									"isFirstLevel": true,
-									"description": "Credit card type. See _creditCardSpecs for the list of supported values."
-								}
-							],
-							"return": {
-								"kind": "return",
-								"type": "Boolean"
-							}
+							"kind": "param",
+							"name": "full",
+							"type": "Boolean",
+							"isOptional": true,
+							"isFirstLevel": true,
+							"description": "If true, validates a full URL (one that should start with 'http')"
 						}
 					],
-					"attributes": [
+					"return": {
+						"kind": "return",
+						"type": "Boolean",
+						"description": "True if valid"
+					},
+					"static": true,
+					"examples": [
+						"\n    Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){\n        console.log( InkValidator.url( 'www.sapo.pt' ) );                // Result: true\n        console.log( InkValidator.url( 'http://www.sapo.pt', true ) );   // Result: true\n        console.log( InkValidator.url( 'meh' ) );                        // Result: false\n    });\n"
+					]
+				},
+				{
+					"kind": "function",
+					"name": "isPTPhone",
+					"file": "src/js/Ink/Util/Validator/1/lib.js",
+					"text": "Checks if a phone is valid in Portugal",
+					"params": [
 						{
-							"kind": "attribute",
-							"name": "_countryCodes",
-							"text": "List of country codes avaible for isPhone function",
-							"type": "Array",
-							"private": true,
-							"static": true
-						},
-						{
-							"kind": "attribute",
-							"name": "_internacionalPT",
-							"text": "International number for portugal",
+							"kind": "param",
+							"name": "phone",
 							"type": "Number",
-							"private": true,
-							"static": true
-						},
-						{
-							"kind": "attribute",
-							"name": "_indicativosPT",
-							"text": "List of all portuguese number prefixes",
-							"type": "Object",
-							"private": true,
-							"static": true
-						},
-						{
-							"kind": "attribute",
-							"name": "_internacionalCV",
-							"text": "International number for Cabo Verde",
-							"type": "Number",
-							"private": true,
-							"static": true
-						},
-						{
-							"kind": "attribute",
-							"name": "_indicativosCV",
-							"text": "List of all Cabo Verde number prefixes",
-							"type": "Object",
-							"private": true,
-							"static": true
-						},
-						{
-							"kind": "attribute",
-							"name": "_internacionalAO",
-							"text": "International number for angola",
-							"type": "Number",
-							"private": true,
-							"static": true
-						},
-						{
-							"kind": "attribute",
-							"name": "_indicativosAO",
-							"text": "List of all Angola number prefixes",
-							"type": "Object",
-							"private": true,
-							"static": true
-						},
-						{
-							"kind": "attribute",
-							"name": "_internacionalMZ",
-							"text": "International number for mozambique",
-							"type": "Number",
-							"private": true,
-							"static": true
-						},
-						{
-							"kind": "attribute",
-							"name": "_indicativosMZ",
-							"text": "List of all Mozambique number prefixes",
-							"type": "Object",
-							"private": true,
-							"static": true
-						},
-						{
-							"kind": "attribute",
-							"name": "_internacionalTL",
-							"text": "International number for Timor",
-							"type": "Number",
-							"private": true,
-							"static": true
-						},
-						{
-							"kind": "attribute",
-							"name": "_indicativosTL",
-							"text": "List of all Timor number prefixes",
-							"type": "Object",
-							"private": true,
-							"static": true
-						},
-						{
-							"kind": "attribute",
-							"name": "_characterGroups",
-							"text": "Regular expression groups for several groups of characters\n\nhttp://en.wikipedia.org/wiki/C0_Controls_and_Basic_Latin\nhttp://en.wikipedia.org/wiki/Plane_%28Unicode%29#Basic_Multilingual_Plane\nhttp://en.wikipedia.org/wiki/ISO_8859-1",
-							"type": "Object",
-							"private": true,
-							"static": true
-						},
-						{
-							"kind": "attribute",
-							"name": "_dateParsers",
-							"text": "Object with the date formats available for validation",
-							"type": "Object",
-							"private": true,
-							"static": true
-						},
-						{
-							"kind": "attribute",
-							"name": "_creditCardSpecs",
-							"text": "Credit Card specifications, to be used in the credit card verification.",
-							"type": "Object",
-							"private": true
+							"isFirstLevel": true,
+							"description": "Phone number to be checked"
 						}
 					],
-					"isNamespace": true,
-					"version": "1",
-					"static": true
+					"return": {
+						"kind": "return",
+						"type": "Boolean",
+						"description": "True if it's a valid Portuguese Phone"
+					},
+					"static": true,
+					"examples": [
+						"\n    Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){\n        console.log( InkValidator.isPTPhone( '213919264' ) );        // Result: true\n        console.log( InkValidator.isPTPhone( '00351213919264' ) );   // Result: true\n        console.log( InkValidator.isPTPhone( '+351213919264' ) );    // Result: true\n        console.log( InkValidator.isPTPhone( '1' ) );                // Result: false\n    });\n"
+					]
+				},
+				{
+					"kind": "function",
+					"name": "isPortuguesePhone",
+					"file": "src/js/Ink/Util/Validator/1/lib.js",
+					"text": "Alias function for isPTPhone",
+					"params": [
+						{
+							"kind": "param",
+							"name": "phone",
+							"type": "Number",
+							"isFirstLevel": true,
+							"description": "Phone number to be checked"
+						}
+					],
+					"return": {
+						"kind": "return",
+						"type": "Boolean",
+						"description": "True if it's a valid Portuguese Phone"
+					},
+					"static": true,
+					"examples": [
+						"\n    Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){\n        console.log( InkValidator.isPortuguesePhone( '213919264' ) );        // Result: true\n        console.log( InkValidator.isPortuguesePhone( '00351213919264' ) );   // Result: true\n        console.log( InkValidator.isPortuguesePhone( '+351213919264' ) );    // Result: true\n        console.log( InkValidator.isPortuguesePhone( '1' ) );                // Result: false\n    });\n"
+					]
+				},
+				{
+					"kind": "function",
+					"name": "isCVPhone",
+					"file": "src/js/Ink/Util/Validator/1/lib.js",
+					"text": "Checks if a phone is valid in Cabo Verde",
+					"params": [
+						{
+							"kind": "param",
+							"name": "phone",
+							"type": "Number",
+							"isFirstLevel": true,
+							"description": "Phone number to be checked"
+						}
+					],
+					"return": {
+						"kind": "return",
+						"type": "Boolean",
+						"description": "True if it's a valid Cape Verdean Phone"
+					},
+					"static": true,
+					"examples": [
+						"\n    Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){\n        console.log( InkValidator.isCVPhone( '2610303' ) );        // Result: true\n        console.log( InkValidator.isCVPhone( '002382610303' ) );   // Result: true\n        console.log( InkValidator.isCVPhone( '+2382610303' ) );    // Result: true\n        console.log( InkValidator.isCVPhone( '1' ) );              // Result: false\n    });\n"
+					]
+				},
+				{
+					"kind": "function",
+					"name": "isAOPhone",
+					"file": "src/js/Ink/Util/Validator/1/lib.js",
+					"text": "Checks if a phone is valid in Angola",
+					"params": [
+						{
+							"kind": "param",
+							"name": "phone",
+							"type": "Number",
+							"isFirstLevel": true,
+							"description": "Phone number to be checked"
+						}
+					],
+					"return": {
+						"kind": "return",
+						"type": "Boolean",
+						"description": "True if it's a valid Angolan Phone"
+					},
+					"static": true,
+					"examples": [
+						"\n    Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){\n        console.log( InkValidator.isAOPhone( '244222396385' ) );     // Result: true\n        console.log( InkValidator.isAOPhone( '00244222396385' ) );   // Result: true\n        console.log( InkValidator.isAOPhone( '+244222396385' ) );    // Result: true\n        console.log( InkValidator.isAOPhone( '1' ) );                // Result: false\n    });\n"
+					]
+				},
+				{
+					"kind": "function",
+					"name": "isMZPhone",
+					"file": "src/js/Ink/Util/Validator/1/lib.js",
+					"text": "Checks if a phone is valid in Mozambique",
+					"params": [
+						{
+							"kind": "param",
+							"name": "phone",
+							"type": "Number",
+							"isFirstLevel": true,
+							"description": "Phone number to be checked"
+						}
+					],
+					"return": {
+						"kind": "return",
+						"type": "Boolean",
+						"description": "True if it's a valid Mozambican Phone"
+					},
+					"static": true,
+					"examples": [
+						"\n    Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){\n        console.log( InkValidator.isMZPhone( '21426861' ) );        // Result: true\n        console.log( InkValidator.isMZPhone( '0025821426861' ) );   // Result: true\n        console.log( InkValidator.isMZPhone( '+25821426861' ) );    // Result: true\n        console.log( InkValidator.isMZPhone( '1' ) );              // Result: false\n    });\n"
+					]
+				},
+				{
+					"kind": "function",
+					"name": "isTLPhone",
+					"file": "src/js/Ink/Util/Validator/1/lib.js",
+					"text": "Checks if a phone is valid in Timor",
+					"params": [
+						{
+							"kind": "param",
+							"name": "phone",
+							"type": "Number",
+							"isFirstLevel": true,
+							"description": "Phone number to be checked"
+						}
+					],
+					"return": {
+						"kind": "return",
+						"type": "Boolean",
+						"description": "True if it's a valid phone from Timor-Leste"
+					},
+					"static": true,
+					"examples": [
+						"\n    Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){\n        console.log( InkValidator.isTLPhone( '6703331234' ) );     // Result: true\n        console.log( InkValidator.isTLPhone( '006703331234' ) );   // Result: true\n        console.log( InkValidator.isTLPhone( '+6703331234' ) );    // Result: true\n        console.log( InkValidator.isTLPhone( '1' ) );              // Result: false\n    });\n"
+					]
+				},
+				{
+					"kind": "function",
+					"name": "isPhone",
+					"file": "src/js/Ink/Util/Validator/1/lib.js",
+					"text": "Checks if a number is a phone number.\nThis method validates the number in all country codes available the ones set in the second param",
+					"params": [
+						{
+							"kind": "param",
+							"name": "phone",
+							"type": "String",
+							"isFirstLevel": true,
+							"description": "Phone number to validate"
+						},
+						{
+							"kind": "param",
+							"name": "countryCode",
+							"type": "String|Array",
+							"isOptional": true,
+							"isFirstLevel": true,
+							"description": "Country code or  array of countries to validate"
+						}
+					],
+					"return": {
+						"kind": "return",
+						"type": "Boolean",
+						"description": "True if it's a valid phone in any country available"
+					},
+					"static": true,
+					"examples": [
+						"\n    Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){\n        console.log( InkValidator.isPhone( '6703331234' ) );        // Result: true\n    });\n"
+					]
+				},
+				{
+					"kind": "function",
+					"name": "codPostal",
+					"file": "src/js/Ink/Util/Validator/1/lib.js",
+					"text": "Validates if a zip code is valid in Portugal",
+					"params": [
+						{
+							"kind": "param",
+							"name": "cp1",
+							"type": "Number|String",
+							"isFirstLevel": true
+						},
+						{
+							"kind": "param",
+							"name": "cp2",
+							"type": "optional Number|String",
+							"isFirstLevel": true
+						},
+						{
+							"kind": "param",
+							"name": "returnBothResults",
+							"type": "optional Boolean",
+							"isFirstLevel": true
+						}
+					],
+					"return": {
+						"kind": "return",
+						"type": "Boolean",
+						"description": "True if it's a valid zip code"
+					},
+					"static": true,
+					"examples": [
+						"\n    Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){\n        console.log( InkValidator.codPostal( '1069', '300' ) );        // Result: true\n        console.log( InkValidator.codPostal( '1069', '300', true ) );  // Result: [true, true]\n    });\n\n"
+					]
+				},
+				{
+					"kind": "function",
+					"name": "isDate",
+					"file": "src/js/Ink/Util/Validator/1/lib.js",
+					"text": "Checks if a date is valid in a given format",
+					"params": [
+						{
+							"kind": "param",
+							"name": "format",
+							"type": "String",
+							"isFirstLevel": true,
+							"description": "Format defined in _dateParsers"
+						},
+						{
+							"kind": "param",
+							"name": "dateStr",
+							"type": "String",
+							"isFirstLevel": true,
+							"description": "Date string"
+						}
+					],
+					"return": {
+						"kind": "return",
+						"type": "Boolean",
+						"description": "True if it's a valid date and in the specified format"
+					},
+					"static": true,
+					"examples": [
+						"\n    Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){\n        console.log( InkValidator.isDate( 'yyyy-mm-dd', '2012-05-21' ) );        // Result: true\n    });\n"
+					]
+				},
+				{
+					"kind": "function",
+					"name": "isColor",
+					"file": "src/js/Ink/Util/Validator/1/lib.js",
+					"text": "Checks if a string is a valid color",
+					"params": [
+						{
+							"kind": "param",
+							"name": "str",
+							"type": "String",
+							"isFirstLevel": true,
+							"description": "Color string to be checked"
+						}
+					],
+					"return": {
+						"kind": "return",
+						"type": "Boolean",
+						"description": "True if it's a valid color string"
+					},
+					"static": true,
+					"examples": [
+						"\n    Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){\n        console.log( InkValidator.isColor( '#FF00FF' ) );        // Result: true\n        console.log( InkValidator.isColor( 'amdafasfs' ) );      // Result: false\n    });\n"
+					]
+				},
+				{
+					"kind": "function",
+					"name": "isIP",
+					"file": "src/js/Ink/Util/Validator/1/lib.js",
+					"text": "Checks if the value is a valid IP.",
+					"params": [
+						{
+							"kind": "param",
+							"name": "value",
+							"type": "String",
+							"isFirstLevel": true,
+							"description": "Value to be checked"
+						},
+						{
+							"kind": "param",
+							"name": "ipType",
+							"type": "String",
+							"isFirstLevel": true,
+							"description": "Type of IP to be validated. The values are: ipv4, ipv6. By default is ipv4."
+						}
+					],
+					"return": {
+						"kind": "return",
+						"type": "Boolean",
+						"description": "True if the value is a valid IP address. False if not."
+					}
+				},
+				{
+					"kind": "function",
+					"name": "isCreditCard",
+					"file": "src/js/Ink/Util/Validator/1/lib.js",
+					"text": "Checks if a number is of a specific credit card type",
+					"params": [
+						{
+							"kind": "param",
+							"name": "num",
+							"type": "String",
+							"isFirstLevel": true,
+							"description": "Number to be validates"
+						},
+						{
+							"kind": "param",
+							"name": "creditCardType",
+							"type": "String|Array",
+							"isFirstLevel": true,
+							"description": "Credit card type. See _creditCardSpecs for the list of supported values."
+						}
+					],
+					"return": {
+						"kind": "return",
+						"type": "Boolean"
+					}
 				}
 			],
-			"functions": [],
-			"attributes": [],
+			"attributes": [
+				{
+					"kind": "attribute",
+					"name": "_countryCodes",
+					"text": "List of country codes avaible for the isPhone method",
+					"type": "Array",
+					"private": true,
+					"static": true
+				},
+				{
+					"kind": "attribute",
+					"name": "_internacionalPT",
+					"text": "International number for portugal",
+					"type": "Number",
+					"private": true,
+					"static": true
+				},
+				{
+					"kind": "attribute",
+					"name": "_indicativosPT",
+					"text": "List of all portuguese number prefixes",
+					"type": "Object",
+					"private": true,
+					"static": true
+				},
+				{
+					"kind": "attribute",
+					"name": "_internacionalCV",
+					"text": "International number for Cabo Verde",
+					"type": "Number",
+					"private": true,
+					"static": true
+				},
+				{
+					"kind": "attribute",
+					"name": "_indicativosCV",
+					"text": "List of all Cabo Verde number prefixes",
+					"type": "Object",
+					"private": true,
+					"static": true
+				},
+				{
+					"kind": "attribute",
+					"name": "_internacionalAO",
+					"text": "International number for Angola",
+					"type": "Number",
+					"private": true,
+					"static": true
+				},
+				{
+					"kind": "attribute",
+					"name": "_indicativosAO",
+					"text": "List of all Angola number prefixes",
+					"type": "Object",
+					"private": true,
+					"static": true
+				},
+				{
+					"kind": "attribute",
+					"name": "_internacionalMZ",
+					"text": "International number for Mozambique",
+					"type": "Number",
+					"private": true,
+					"static": true
+				},
+				{
+					"kind": "attribute",
+					"name": "_indicativosMZ",
+					"text": "List of all Mozambique number prefixes",
+					"type": "Object",
+					"private": true,
+					"static": true
+				},
+				{
+					"kind": "attribute",
+					"name": "_internacionalTL",
+					"text": "International number for Timor",
+					"type": "Number",
+					"private": true,
+					"static": true
+				},
+				{
+					"kind": "attribute",
+					"name": "_indicativosTL",
+					"text": "List of all Timor number prefixes",
+					"type": "Object",
+					"private": true,
+					"static": true
+				},
+				{
+					"kind": "attribute",
+					"name": "_characterGroups",
+					"text": "Regular expression groups for several groups of characters\n\nhttp://en.wikipedia.org/wiki/C0_Controls_and_Basic_Latin\nhttp://en.wikipedia.org/wiki/Plane_%28Unicode%29#Basic_Multilingual_Plane\nhttp://en.wikipedia.org/wiki/ISO_8859-1",
+					"type": "Object",
+					"private": true,
+					"static": true
+				},
+				{
+					"kind": "attribute",
+					"name": "_dateParsers",
+					"text": "Object with the date formats available for validation",
+					"type": "Object",
+					"private": true,
+					"static": true
+				},
+				{
+					"kind": "attribute",
+					"name": "_creditCardSpecs",
+					"text": "Credit Card specifications, to be used in the credit card verification.",
+					"type": "Object",
+					"private": true
+				}
+			],
 			"uses": [],
-			"author": "inkdev AT sapo.pt",
 			"version": "1"
 		}
 	],
@@ -15089,6 +14966,5 @@
 			}
 		}
 	],
-	"attributes": [],
-	"author": "inkdev AT sapo.pt"
+	"attributes": []
 }

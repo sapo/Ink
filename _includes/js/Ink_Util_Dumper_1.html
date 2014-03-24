@@ -14,126 +14,44 @@
 
 
     
-
-    
-
-
-
-    
+        <h2>Defined functions:</h2>
+        <ul class="unstyled">
+        
+            <li><a href="#Ink_Util_Dumper_1-alertDump">
             
-
-    
-    <p>Dump/Profiling Utilities</p>
-    
-    
-    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p>
-
-    
-    <table class="props bottom-space">
+                Ink.Util.Dumper_1.alertDump
+            
+            (param)</a></li>
         
+            <li><a href="#Ink_Util_Dumper_1-printDump">
+            
+                Ink.Util.Dumper_1.printDump
+            
+            (param, [target])</a></li>
         
-        <caption>Functions</caption>
-        <thead>
-            <tr>
-                <th>Function name</th>
-                <th>Description</th>
-            </tr>
-        </thead>
-
+            <li><a href="#Ink_Util_Dumper_1-returnDump">
+            
+                Ink.Util.Dumper_1.returnDump
+            
+            (param)</a></li>
         
+            <li><a href="#Ink_Util_Dumper_1-windowDump">
+            
+                Ink.Util.Dumper_1.windowDump
+            
+            (param)</a></li>
         
-        <tbody>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Util_Dumper_1-Ink_Util_Dumper-alertDump">
-                        
-                            .alertDump
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    Function that alerts the variable structure
-
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Util_Dumper_1-Ink_Util_Dumper-printDump">
-                        
-                            .printDump
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    Print variable structure. Can be passed an output target
-
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Util_Dumper_1-Ink_Util_Dumper-returnDump">
-                        
-                            .returnDump
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    Function that returns the variable's structure
-
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Util_Dumper_1-Ink_Util_Dumper-windowDump">
-                        
-                            .windowDump
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    Print to new window the variable structure
-
-                    
-                    
-                </td>
-            </tr>
-        
-        </tbody>
-    </table>
+        </ul>
     
 
     
-</section>
 
 
 
+    
 
-
-
-
-    <section id="Ink_Util_Dumper_1-Ink_Util_Dumper-alertDump" class="box box-function">
+    
+        <section id="Ink_Util_Dumper_1-alertDump" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -144,7 +62,7 @@
     (param)
     
         
-            <i>method</i>
+            <i>function</i>
         
     
     </h1>
@@ -166,7 +84,7 @@
     
 
     
-        <p class="text">Function that alerts the variable structure</p>
+        <p class="text">Alert a variable's structure.</p>
     
 
     
@@ -175,7 +93,7 @@
         
             <dt>
                 
-                    <code>Object|String|Boolean</code>
+                    <code>Any</code>
                 
             </dt>
             <dd>
@@ -187,6 +105,8 @@
 
                 
                 </label>
+                
+                    Variable to be dumped.
                 
             </dd>
         
@@ -203,8 +123,8 @@
     
 
 </section>
-
-    <section id="Ink_Util_Dumper_1-Ink_Util_Dumper-printDump" class="box box-function">
+    
+        <section id="Ink_Util_Dumper_1-printDump" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -212,10 +132,10 @@
             .printDump
         
     
-    (param, target)
+    (param, [target])
     
         
-            <i>method</i>
+            <i>function</i>
         
     
     </h1>
@@ -233,9 +153,9 @@
         
         <li class="prop">
         
-        
+        [
         target
-        
+        ]
         
         </li>
         
@@ -245,7 +165,7 @@
     
 
     
-        <p class="text">Print variable structure. Can be passed an output target</p>
+        <p class="text">Prints variable structure.</p>
     
 
     
@@ -254,7 +174,7 @@
         
             <dt>
                 
-                    <code>Object|String|Boolean</code>
+                    <code>Any</code>
                 
             </dt>
             <dd>
@@ -267,24 +187,26 @@
                 
                 </label>
                 
+                    Variable to be dumped.
+                
             </dd>
         
             <dt>
                 
-                    <code>optional String|Object</code>
+                    <code>DOMElement|String</code>
                 
             </dt>
             <dd>
                 
                 
                 
-                <label>target
+                <label class="optional">[target]
                 
 
                 
                 </label>
                 
-                    (can be an element ID or an element)
+                    Element to print the dump on.
                 
             </dd>
         
@@ -301,8 +223,8 @@
     
 
 </section>
-
-    <section id="Ink_Util_Dumper_1-Ink_Util_Dumper-returnDump" class="box box-function">
+    
+        <section id="Ink_Util_Dumper_1-returnDump" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -313,7 +235,7 @@
     (param)
     
         
-            <i>method</i>
+            <i>function</i>
         
     
     </h1>
@@ -335,7 +257,7 @@
     
 
     
-        <p class="text">Function that returns the variable's structure</p>
+        <p class="text">Get a variable's structure.</p>
     
 
     
@@ -344,7 +266,7 @@
         
             <dt>
                 
-                    <code>Object|String|Boolean</code>
+                    <code>Any</code>
                 
             </dt>
             <dd>
@@ -356,6 +278,8 @@
 
                 
                 </label>
+                
+                    Variable to get the structure.
                 
             </dd>
         
@@ -384,8 +308,8 @@
     
 
 </section>
-
-    <section id="Ink_Util_Dumper_1-Ink_Util_Dumper-windowDump" class="box box-function">
+    
+        <section id="Ink_Util_Dumper_1-windowDump" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -396,7 +320,7 @@
     (param)
     
         
-            <i>method</i>
+            <i>function</i>
         
     
     </h1>
@@ -418,7 +342,7 @@
     
 
     
-        <p class="text">Print to new window the variable structure</p>
+        <p class="text">Prints the variable structure to a new window.</p>
     
 
     
@@ -427,7 +351,7 @@
         
             <dt>
                 
-                    <code>Object|String|Boolean</code>
+                    <code>Any</code>
                 
             </dt>
             <dd>
@@ -439,6 +363,8 @@
 
                 
                 </label>
+                
+                    Variable to be dumped.
                 
             </dd>
         
@@ -455,11 +381,6 @@
     
 
 </section>
-
-
-
-    
-
     
 
     

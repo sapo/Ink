@@ -85,7 +85,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
      *      You can return HTML, a DOM element, or a string here.
      *      Arguments you receive: `(column, fieldData, rowIndex)`.
      *
-     *          @param {Function}  [options.processJSONField.(field_name)]
+     *          @param {Function}  [options.processJSONField.FIELD_NAME]
      *           The same as processJSONField, but for a particular field.
      *
      *     @param {Function}  [options.processJSONTotalRows]
@@ -103,7 +103,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
      *              return cell.element.getAttribute('data-sort-key');
      *          }
      *
-     *          @param {Function} [options.getSortKey.(field_name)]
+     *          @param {Function} [options.getSortKey.FIELD_NAME]
      *           Same as `options.getSortKey`, but for a particular field.
      *
      *     @param {Object}    [options.tdClassNames]
@@ -201,6 +201,8 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
 
         this._options = Common.options({
             pageSize: ['Integer', null],
+            caretUpClass: ['String', 'fa fa-caret-up'],
+            caretDownClass: ['String', 'fa fa-caret-down'],
             endpoint: ['String', null],
             createEndpointUrl: ['Function', null /* default func uses above option */],
             getDataFromEndPoint: ['Function', null /* by default use plain ajax for JSON */],
@@ -366,19 +368,19 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
 
         _setSortOrderOfColumn: function(index, up) {
             var header = this._headers[index];
-            var caretHtml = '';
+            var caretHtml = [''];
             var order = 'none';
 
             if (up === true) {
-                caretHtml = '<i class="icon-caret-up"></i>';
+                caretHtml = ['<i class="', this._options.caretUpClass, '"></i>'];
                 order = 'asc';
             } else if (up === false) {
-                caretHtml = '<i class="icon-caret-down"></i>';
+                caretHtml = ['<i class="', this._options.caretDownClass, '"></i>'];
                 order = 'desc';
             }
 
             this._sortableFields[index] = order;
-            header.innerHTML = Element.textContent(header) + caretHtml;
+            header.innerHTML = Element.textContent(header) + caretHtml.join('');
         },
 
         /**

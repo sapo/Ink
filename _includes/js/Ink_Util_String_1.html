@@ -14,501 +14,159 @@
 
 
     
-
-    
-
-
-
-    
+        <h2>Defined functions:</h2>
+        <ul class="unstyled">
+        
+            <li><a href="#Ink_Util_String_1-escape">
             
-
-    
-    <p>String Manipulation Utilities</p>
-    
-    
-    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p>
-
-    
-    <table class="props bottom-space">
-        
-        
-        <caption>Functions</caption>
-        <thead>
-            <tr>
-                <th>Function name</th>
-                <th>Description</th>
-            </tr>
-        </thead>
-
-        
-        
-        <tbody>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Util_String_1-Ink_Util_String-escape">
-                        
-                            .escape
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    Escapes a unicode character. returns \xXX if hex smaller than 0x100, otherwise \uXXXX
-
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Util_String_1-Ink_Util_String-escapeText">
-                        
-                            .escapeText
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    Escapes a string to unicode characters
-
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Util_String_1-Ink_Util_String-evalJSON">
-                        
-                            .evalJSON
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    Eval a JSON string to a JS object
-
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Util_String_1-Ink_Util_String-htmlEntitiesDecode">
-                        
-                            .htmlEntitiesDecode
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    Convert listed HTML entities to character
-
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Util_String_1-Ink_Util_String-htmlEntitiesEncode">
-                        
-                            .htmlEntitiesEncode
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    Convert listed characters to HTML entities
-
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Util_String_1-Ink_Util_String-htmlEscapeUnsafe">
-                        
-                            .htmlEscapeUnsafe
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    Escapes unsafe html chars to their entities
-
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Util_String_1-Ink_Util_String-isJSON">
-                        
-                            .isJSON
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    Checks if a string is a valid JSON object (string encoded)
-
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Util_String_1-Ink_Util_String-normalizeWhitespace">
-                        
-                            .normalizeWhitespace
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    Normalizes whitespace in string.
-String is trimmed and sequences of many
-Whitespaces are collapsed.
-
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Util_String_1-Ink_Util_String-packetize">
-                        
-                            .packetize
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    Splits long string into string of, at most, maxLen (that is, all but last have length maxLen,
-last can measure maxLen or less)
-
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Util_String_1-Ink_Util_String-removeAccentedChars">
-                        
-                            .removeAccentedChars
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    Convert all accented chars to char without accent.
-
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Util_String_1-Ink_Util_String-shortString">
-                        
-                            .shortString
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    Make a string shorter without cutting words
-
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Util_String_1-Ink_Util_String-strcmp">
-                        
-                            .strcmp
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    Compares two strings
-
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Util_String_1-Ink_Util_String-stripTags">
-                        
-                            .stripTags
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    Removes HTML tags of string
-
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Util_String_1-Ink_Util_String-substrCount">
-                        
-                            .substrCount
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    Count the number of occurrences of a specific needle in a haystack
-
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Util_String_1-Ink_Util_String-toUnicode">
-                        
-                            .toUnicode
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    Converts string to unicode
-
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Util_String_1-Ink_Util_String-trim">
-                        
-                            .trim
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    Remove spaces and new line from biggin and ends of string
-
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Util_String_1-Ink_Util_String-truncateString">
-                        
-                            .truncateString
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    Truncates a string, breaking words and adding ... at the end
-
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Util_String_1-Ink_Util_String-ucFirst">
-                        
-                            .ucFirst
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    Convert first letter of a word to upper case <br />
-If param as more than one word, it converts first letter of all words that have more than 2 letters
-
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Util_String_1-Ink_Util_String-unescape">
-                        
-                            .unescape
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    Unescapes a unicode character escape sequence
-
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Util_String_1-Ink_Util_String-unescapeText">
-                        
-                            .unescapeText
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    Unescapes a string
-
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Util_String_1-Ink_Util_String-utf8Decode">
-                        
-                            .utf8Decode
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    Decode a string from UTF8
-
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Util_String_1-Ink_Util_String-utf8Encode">
-                        
-                            .utf8Encode
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    Encode a string to UTF8
-
-                    
-                    
-                </td>
-            </tr>
-        
-        </tbody>
-    </table>
-    
-
-    
-    <table class="props">
-        <caption>Properties</caption>
-        <thead>
-            <tr>
-                <th>Property name</th>
-                <th>Description</th>
-            </tr>
-        </thead>
-        <tbody>
+                Ink.Util.String_1.escape
             
-            <tr>
-                <td><a href="#Ink_Util_String_1-Ink_Util_String-escapedCharRegex">.escapedCharRegex</a></td>
-                <td>
-                    
-
-                    
-                        Regex to check escaped strings
-                    
-
-                    
-                        <span class="ink-label orange uppercase">Regex</span>
-                    
-                    
-                </td>
-            </tr>
+            (c, c)</a></li>
+        
+            <li><a href="#Ink_Util_String_1-escapeText">
             
-        </tbody>
-    </table>
+                Ink.Util.String_1.escapeText
+            
+            (txt, [whiteList])</a></li>
+        
+            <li><a href="#Ink_Util_String_1-evalJSON">
+            
+                Ink.Util.String_1.evalJSON
+            
+            (strJSON, sanitize)</a></li>
+        
+            <li><a href="#Ink_Util_String_1-htmlEntitiesDecode">
+            
+                Ink.Util.String_1.htmlEntitiesDecode
+            
+            (string)</a></li>
+        
+            <li><a href="#Ink_Util_String_1-htmlEntitiesEncode">
+            
+                Ink.Util.String_1.htmlEntitiesEncode
+            
+            (string)</a></li>
+        
+            <li><a href="#Ink_Util_String_1-htmlEscapeUnsafe">
+            
+                Ink.Util.String_1.htmlEscapeUnsafe
+            
+            (str)</a></li>
+        
+            <li><a href="#Ink_Util_String_1-isJSON">
+            
+                Ink.Util.String_1.isJSON
+            
+            (str)</a></li>
+        
+            <li><a href="#Ink_Util_String_1-normalizeWhitespace">
+            
+                Ink.Util.String_1.normalizeWhitespace
+            
+            (str)</a></li>
+        
+            <li><a href="#Ink_Util_String_1-packetize">
+            
+                Ink.Util.String_1.packetize
+            
+            (str, maxLen)</a></li>
+        
+            <li><a href="#Ink_Util_String_1-removeAccentedChars">
+            
+                Ink.Util.String_1.removeAccentedChars
+            
+            (string)</a></li>
+        
+            <li><a href="#Ink_Util_String_1-shortString">
+            
+                Ink.Util.String_1.shortString
+            
+            (str, n)</a></li>
+        
+            <li><a href="#Ink_Util_String_1-strcmp">
+            
+                Ink.Util.String_1.strcmp
+            
+            (str1, str2)</a></li>
+        
+            <li><a href="#Ink_Util_String_1-stripTags">
+            
+                Ink.Util.String_1.stripTags
+            
+            (string, allowed)</a></li>
+        
+            <li><a href="#Ink_Util_String_1-substrCount">
+            
+                Ink.Util.String_1.substrCount
+            
+            (haystack, needle)</a></li>
+        
+            <li><a href="#Ink_Util_String_1-toUnicode">
+            
+                Ink.Util.String_1.toUnicode
+            
+            (str)</a></li>
+        
+            <li><a href="#Ink_Util_String_1-trim">
+            
+                Ink.Util.String_1.trim
+            
+            (string)</a></li>
+        
+            <li><a href="#Ink_Util_String_1-truncateString">
+            
+                Ink.Util.String_1.truncateString
+            
+            (str, length)</a></li>
+        
+            <li><a href="#Ink_Util_String_1-ucFirst">
+            
+                Ink.Util.String_1.ucFirst
+            
+            (string, [firstWordOnly])</a></li>
+        
+            <li><a href="#Ink_Util_String_1-unescape">
+            
+                Ink.Util.String_1.unescape
+            
+            (es)</a></li>
+        
+            <li><a href="#Ink_Util_String_1-unescapeText">
+            
+                Ink.Util.String_1.unescapeText
+            
+            (txt)</a></li>
+        
+            <li><a href="#Ink_Util_String_1-utf8Decode">
+            
+                Ink.Util.String_1.utf8Decode
+            
+            (string)</a></li>
+        
+            <li><a href="#Ink_Util_String_1-utf8Encode">
+            
+                Ink.Util.String_1.utf8Encode
+            
+            (string)</a></li>
+        
+        </ul>
     
-</section>
+
+    
+        <h2>Defined attributes:</h2>
+        <ul class="unstyled">
+        
+            <li><a href="#Ink_Util_String_1-escapedCharRegex">escapedCharRegex</a></li>
+        
+        </ul>
+    
 
 
 
+    
 
-
-
-
-    <section id="Ink_Util_String_1-Ink_Util_String-escape" class="box box-function">
+    
+        <section id="Ink_Util_String_1-escape" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -519,7 +177,7 @@ If param as more than one word, it converts first letter of all words that have 
     (c, c)
     
         
-            <i>method</i>
+            <i>function</i>
         
     
     </h1>
@@ -549,7 +207,7 @@ If param as more than one word, it converts first letter of all words that have 
     
 
     
-        <p class="text">Escapes a unicode character. returns \xXX if hex smaller than 0x100, otherwise \uXXXX</p>
+        <p class="text">Escapes a unicode character.</p>
     
 
     
@@ -571,7 +229,7 @@ If param as more than one word, it converts first letter of all words that have 
                 
                 </label>
                 
-                    Char
+                    Character to escape
                 
             </dd>
         
@@ -619,8 +277,8 @@ If param as more than one word, it converts first letter of all words that have 
     
 
 </section>
-
-    <section id="Ink_Util_String_1-Ink_Util_String-escapeText" class="box box-function">
+    
+        <section id="Ink_Util_String_1-escapeText" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -631,7 +289,7 @@ If param as more than one word, it converts first letter of all words that have 
     (txt, [whiteList])
     
         
-            <i>method</i>
+            <i>function</i>
         
     
     </h1>
@@ -700,6 +358,8 @@ If param as more than one word, it converts first letter of all words that have 
                 
                 </label>
                 
+                    Whitelist of characters
+                
             </dd>
         
         </dl>
@@ -727,8 +387,8 @@ If param as more than one word, it converts first letter of all words that have 
     
 
 </section>
-
-    <section id="Ink_Util_String_1-Ink_Util_String-evalJSON" class="box box-function">
+    
+        <section id="Ink_Util_String_1-evalJSON" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -739,7 +399,7 @@ If param as more than one word, it converts first letter of all words that have 
     (strJSON, sanitize)
     
         
-            <i>method</i>
+            <i>function</i>
         
     
     </h1>
@@ -791,6 +451,8 @@ If param as more than one word, it converts first letter of all words that have 
                 
                 </label>
                 
+                    JSON string to eval
+                
             </dd>
         
             <dt>
@@ -807,6 +469,8 @@ If param as more than one word, it converts first letter of all words that have 
 
                 
                 </label>
+                
+                    Flag to sanitize input
                 
             </dd>
         
@@ -835,8 +499,8 @@ If param as more than one word, it converts first letter of all words that have 
     
 
 </section>
-
-    <section id="Ink_Util_String_1-Ink_Util_String-htmlEntitiesDecode" class="box box-function">
+    
+        <section id="Ink_Util_String_1-htmlEntitiesDecode" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -847,7 +511,7 @@ If param as more than one word, it converts first letter of all words that have 
     (string)
     
         
-            <i>method</i>
+            <i>function</i>
         
     
     </h1>
@@ -869,7 +533,7 @@ If param as more than one word, it converts first letter of all words that have 
     
 
     
-        <p class="text">Convert listed HTML entities to character</p>
+        <p class="text">Decodes string from HTML entities.</p>
     
 
     
@@ -890,6 +554,8 @@ If param as more than one word, it converts first letter of all words that have 
 
                 
                 </label>
+                
+                    String to be decoded
                 
             </dd>
         
@@ -918,8 +584,8 @@ If param as more than one word, it converts first letter of all words that have 
     
 
 </section>
-
-    <section id="Ink_Util_String_1-Ink_Util_String-htmlEntitiesEncode" class="box box-function">
+    
+        <section id="Ink_Util_String_1-htmlEntitiesEncode" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -930,7 +596,7 @@ If param as more than one word, it converts first letter of all words that have 
     (string)
     
         
-            <i>method</i>
+            <i>function</i>
         
     
     </h1>
@@ -952,7 +618,7 @@ If param as more than one word, it converts first letter of all words that have 
     
 
     
-        <p class="text">Convert listed characters to HTML entities</p>
+        <p class="text">Encodes string into HTML entities.</p>
     
 
     
@@ -1001,8 +667,8 @@ If param as more than one word, it converts first letter of all words that have 
     
 
 </section>
-
-    <section id="Ink_Util_String_1-Ink_Util_String-htmlEscapeUnsafe" class="box box-function">
+    
+        <section id="Ink_Util_String_1-htmlEscapeUnsafe" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -1013,7 +679,7 @@ If param as more than one word, it converts first letter of all words that have 
     (str)
     
         
-            <i>method</i>
+            <i>function</i>
         
     
     </h1>
@@ -1035,7 +701,7 @@ If param as more than one word, it converts first letter of all words that have 
     
 
     
-        <p class="text">Escapes unsafe html chars to their entities</p>
+        <p class="text">Escapes unsafe html chars as HTML entities</p>
     
 
     
@@ -1086,8 +752,8 @@ If param as more than one word, it converts first letter of all words that have 
     
 
 </section>
-
-    <section id="Ink_Util_String_1-Ink_Util_String-isJSON" class="box box-function">
+    
+        <section id="Ink_Util_String_1-isJSON" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -1098,7 +764,7 @@ If param as more than one word, it converts first letter of all words that have 
     (str)
     
         
-            <i>method</i>
+            <i>function</i>
         
     
     </h1>
@@ -1142,6 +808,8 @@ If param as more than one word, it converts first letter of all words that have 
                 
                 </label>
                 
+                    String to check
+                
             </dd>
         
         </dl>
@@ -1167,8 +835,8 @@ If param as more than one word, it converts first letter of all words that have 
     
 
 </section>
-
-    <section id="Ink_Util_String_1-Ink_Util_String-normalizeWhitespace" class="box box-function">
+    
+        <section id="Ink_Util_String_1-normalizeWhitespace" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -1179,7 +847,7 @@ If param as more than one word, it converts first letter of all words that have 
     (str)
     
         
-            <i>method</i>
+            <i>function</i>
         
     
     </h1>
@@ -1202,8 +870,7 @@ If param as more than one word, it converts first letter of all words that have 
 
     
         <p class="text">Normalizes whitespace in string.
-String is trimmed and sequences of many
-Whitespaces are collapsed.</p>
+String is trimmed and sequences of whitespaces are collapsed.</p>
     
 
     
@@ -1254,8 +921,8 @@ Whitespaces are collapsed.</p>
     
 
 </section>
-
-    <section id="Ink_Util_String_1-Ink_Util_String-packetize" class="box box-function">
+    
+        <section id="Ink_Util_String_1-packetize" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -1263,10 +930,10 @@ Whitespaces are collapsed.</p>
             .packetize
         
     
-    (string, maxLen)
+    (str, maxLen)
     
         
-            <i>method</i>
+            <i>function</i>
         
     
     </h1>
@@ -1277,7 +944,7 @@ Whitespaces are collapsed.</p>
         <li class="prop">
         
         
-        string
+        str
         
         
         </li>
@@ -1296,8 +963,7 @@ Whitespaces are collapsed.</p>
     
 
     
-        <p class="text">Splits long string into string of, at most, maxLen (that is, all but last have length maxLen,
-last can measure maxLen or less)</p>
+        <p class="text">Splits a string into smaller chunks</p>
     
 
     
@@ -1313,13 +979,13 @@ last can measure maxLen or less)</p>
                 
                 
                 
-                <label>string
+                <label>str
                 
 
                 
                 </label>
                 
-                    string to divide
+                    String to divide
                 
             </dd>
         
@@ -1338,7 +1004,7 @@ last can measure maxLen or less)</p>
                 
                 </label>
                 
-                    packet size
+                    Maximum chunk size (in characters)
                 
             </dd>
         
@@ -1367,8 +1033,8 @@ last can measure maxLen or less)</p>
     
 
 </section>
-
-    <section id="Ink_Util_String_1-Ink_Util_String-removeAccentedChars" class="box box-function">
+    
+        <section id="Ink_Util_String_1-removeAccentedChars" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -1379,7 +1045,7 @@ last can measure maxLen or less)</p>
     (string)
     
         
-            <i>method</i>
+            <i>function</i>
         
     
     </h1>
@@ -1401,7 +1067,7 @@ last can measure maxLen or less)</p>
     
 
     
-        <p class="text">Convert all accented chars to char without accent.</p>
+        <p class="text">Removes all accented characters from a string.</p>
     
 
     
@@ -1422,6 +1088,8 @@ last can measure maxLen or less)</p>
 
                 
                 </label>
+                
+                    String to remove accents from
                 
             </dd>
         
@@ -1450,8 +1118,8 @@ last can measure maxLen or less)</p>
     
 
 </section>
-
-    <section id="Ink_Util_String_1-Ink_Util_String-shortString" class="box box-function">
+    
+        <section id="Ink_Util_String_1-shortString" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -1462,7 +1130,7 @@ last can measure maxLen or less)</p>
     (str, n)
     
         
-            <i>method</i>
+            <i>function</i>
         
     
     </h1>
@@ -1492,7 +1160,7 @@ last can measure maxLen or less)</p>
     
 
     
-        <p class="text">Make a string shorter without cutting words</p>
+        <p class="text">Truncates a string without breaking words.</p>
     
 
     
@@ -1514,6 +1182,8 @@ last can measure maxLen or less)</p>
                 
                 </label>
                 
+                    String to truncate
+                
             </dd>
         
             <dt>
@@ -1531,7 +1201,7 @@ last can measure maxLen or less)</p>
                 
                 </label>
                 
-                    - number of chars of the short string
+                    Number of chars of the short string
                 
             </dd>
         
@@ -1543,8 +1213,6 @@ last can measure maxLen or less)</p>
                 <code>String</code>
             </dt>                
             <dd>   
-                
-                    
                 
             </dd>
         </dl>
@@ -1560,8 +1228,8 @@ last can measure maxLen or less)</p>
     
 
 </section>
-
-    <section id="Ink_Util_String_1-Ink_Util_String-strcmp" class="box box-function">
+    
+        <section id="Ink_Util_String_1-strcmp" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -1572,7 +1240,7 @@ last can measure maxLen or less)</p>
     (str1, str2)
     
         
-            <i>method</i>
+            <i>function</i>
         
     
     </h1>
@@ -1602,7 +1270,7 @@ last can measure maxLen or less)</p>
     
 
     
-        <p class="text">Compares two strings</p>
+        <p class="text">Compares two strings.</p>
     
 
     
@@ -1624,6 +1292,8 @@ last can measure maxLen or less)</p>
                 
                 </label>
                 
+                    First String
+                
             </dd>
         
             <dt>
@@ -1640,6 +1310,8 @@ last can measure maxLen or less)</p>
 
                 
                 </label>
+                
+                    Second String
                 
             </dd>
         
@@ -1666,8 +1338,8 @@ last can measure maxLen or less)</p>
     
 
 </section>
-
-    <section id="Ink_Util_String_1-Ink_Util_String-stripTags" class="box box-function">
+    
+        <section id="Ink_Util_String_1-stripTags" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -1678,7 +1350,7 @@ last can measure maxLen or less)</p>
     (string, allowed)
     
         
-            <i>method</i>
+            <i>function</i>
         
     
     </h1>
@@ -1708,7 +1380,7 @@ last can measure maxLen or less)</p>
     
 
     
-        <p class="text">Removes HTML tags of string</p>
+        <p class="text">Strips HTML tags from strings</p>
     
 
     
@@ -1730,6 +1402,8 @@ last can measure maxLen or less)</p>
                 
                 </label>
                 
+                    String to strip tags from.
+                
             </dd>
         
             <dt>
@@ -1746,6 +1420,8 @@ last can measure maxLen or less)</p>
 
                 
                 </label>
+                
+                    Comma separated list of allowed tags.
                 
             </dd>
         
@@ -1784,8 +1460,8 @@ last can measure maxLen or less)</p>
     
 
 </section>
-
-    <section id="Ink_Util_String_1-Ink_Util_String-substrCount" class="box box-function">
+    
+        <section id="Ink_Util_String_1-substrCount" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -1796,7 +1472,7 @@ last can measure maxLen or less)</p>
     (haystack, needle)
     
         
-            <i>method</i>
+            <i>function</i>
         
     
     </h1>
@@ -1848,6 +1524,8 @@ last can measure maxLen or less)</p>
                 
                 </label>
                 
+                    String to search in
+                
             </dd>
         
             <dt>
@@ -1864,6 +1542,8 @@ last can measure maxLen or less)</p>
 
                 
                 </label>
+                
+                    String to search for
                 
             </dd>
         
@@ -1892,8 +1572,8 @@ last can measure maxLen or less)</p>
     
 
 </section>
-
-    <section id="Ink_Util_String_1-Ink_Util_String-toUnicode" class="box box-function">
+    
+        <section id="Ink_Util_String_1-toUnicode" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -1904,7 +1584,7 @@ last can measure maxLen or less)</p>
     (str)
     
         
-            <i>method</i>
+            <i>function</i>
         
     
     </h1>
@@ -1926,7 +1606,7 @@ last can measure maxLen or less)</p>
     
 
     
-        <p class="text">Converts string to unicode</p>
+        <p class="text">Converts string to unicode.</p>
     
 
     
@@ -1948,6 +1628,8 @@ last can measure maxLen or less)</p>
                 
                 </label>
                 
+                    String to convert
+                
             </dd>
         
         </dl>
@@ -1975,8 +1657,8 @@ last can measure maxLen or less)</p>
     
 
 </section>
-
-    <section id="Ink_Util_String_1-Ink_Util_String-trim" class="box box-function">
+    
+        <section id="Ink_Util_String_1-trim" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -1987,7 +1669,7 @@ last can measure maxLen or less)</p>
     (string)
     
         
-            <i>method</i>
+            <i>function</i>
         
     
     </h1>
@@ -2009,7 +1691,7 @@ last can measure maxLen or less)</p>
     
 
     
-        <p class="text">Remove spaces and new line from biggin and ends of string</p>
+        <p class="text">Trims whitespace from strings</p>
     
 
     
@@ -2030,6 +1712,8 @@ last can measure maxLen or less)</p>
 
                 
                 </label>
+                
+                    String to be trimmed
                 
             </dd>
         
@@ -2058,8 +1742,8 @@ last can measure maxLen or less)</p>
     
 
 </section>
-
-    <section id="Ink_Util_String_1-Ink_Util_String-truncateString" class="box box-function">
+    
+        <section id="Ink_Util_String_1-truncateString" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -2070,7 +1754,7 @@ last can measure maxLen or less)</p>
     (str, length)
     
         
-            <i>method</i>
+            <i>function</i>
         
     
     </h1>
@@ -2100,7 +1784,7 @@ last can measure maxLen or less)</p>
     
 
     
-        <p class="text">Truncates a string, breaking words and adding ... at the end</p>
+        <p class="text">Truncates a string, breaking words and adding ... at the end.</p>
     
 
     
@@ -2122,6 +1806,8 @@ last can measure maxLen or less)</p>
                 
                 </label>
                 
+                    String to truncate
+                
             </dd>
         
             <dt>
@@ -2139,7 +1825,7 @@ last can measure maxLen or less)</p>
                 
                 </label>
                 
-                    - length limit for the string. String will be
+                    Limit for the returned string, ellipsis included.
                 
             </dd>
         
@@ -2168,8 +1854,8 @@ last can measure maxLen or less)</p>
     
 
 </section>
-
-    <section id="Ink_Util_String_1-Ink_Util_String-ucFirst" class="box box-function">
+    
+        <section id="Ink_Util_String_1-ucFirst" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -2180,7 +1866,7 @@ last can measure maxLen or less)</p>
     (string, [firstWordOnly])
     
         
-            <i>method</i>
+            <i>function</i>
         
     
     </h1>
@@ -2210,7 +1896,7 @@ last can measure maxLen or less)</p>
     
 
     
-        <p class="text">Convert first letter of a word to upper case <br />
+        <p class="text">Capitalizes a word.
 If param as more than one word, it converts first letter of all words that have more than 2 letters</p>
     
 
@@ -2233,6 +1919,8 @@ If param as more than one word, it converts first letter of all words that have 
                 
                 </label>
                 
+                    String to capitalize.
+                
             </dd>
         
             <dt>
@@ -2252,7 +1940,7 @@ If param as more than one word, it converts first letter of all words that have 
                 
                 </label>
                 
-                    capitalize only first word.
+                    Flag to capitalize only the first word.
                 
             </dd>
         
@@ -2289,8 +1977,8 @@ If param as more than one word, it converts first letter of all words that have 
     
 
 </section>
-
-    <section id="Ink_Util_String_1-Ink_Util_String-unescape" class="box box-function">
+    
+        <section id="Ink_Util_String_1-unescape" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -2301,7 +1989,7 @@ If param as more than one word, it converts first letter of all words that have 
     (es)
     
         
-            <i>method</i>
+            <i>function</i>
         
     
     </h1>
@@ -2374,8 +2062,8 @@ If param as more than one word, it converts first letter of all words that have 
     
 
 </section>
-
-    <section id="Ink_Util_String_1-Ink_Util_String-unescapeText" class="box box-function">
+    
+        <section id="Ink_Util_String_1-unescapeText" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -2386,7 +2074,7 @@ If param as more than one word, it converts first letter of all words that have 
     (txt)
     
         
-            <i>method</i>
+            <i>function</i>
         
     
     </h1>
@@ -2457,8 +2145,8 @@ If param as more than one word, it converts first letter of all words that have 
     
 
 </section>
-
-    <section id="Ink_Util_String_1-Ink_Util_String-utf8Decode" class="box box-function">
+    
+        <section id="Ink_Util_String_1-utf8Decode" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -2469,7 +2157,7 @@ If param as more than one word, it converts first letter of all words that have 
     (string)
     
         
-            <i>method</i>
+            <i>function</i>
         
     
     </h1>
@@ -2491,7 +2179,7 @@ If param as more than one word, it converts first letter of all words that have 
     
 
     
-        <p class="text">Decode a string from UTF8</p>
+        <p class="text">Decodes a string from UTF-8.</p>
     
 
     
@@ -2512,6 +2200,8 @@ If param as more than one word, it converts first letter of all words that have 
 
                 
                 </label>
+                
+                    String to be decoded
                 
             </dd>
         
@@ -2540,8 +2230,8 @@ If param as more than one word, it converts first letter of all words that have 
     
 
 </section>
-
-    <section id="Ink_Util_String_1-Ink_Util_String-utf8Encode" class="box box-function">
+    
+        <section id="Ink_Util_String_1-utf8Encode" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -2552,7 +2242,7 @@ If param as more than one word, it converts first letter of all words that have 
     (string)
     
         
-            <i>method</i>
+            <i>function</i>
         
     
     </h1>
@@ -2574,7 +2264,7 @@ If param as more than one word, it converts first letter of all words that have 
     
 
     
-        <p class="text">Encode a string to UTF8</p>
+        <p class="text">Encode a string to UTF-8.</p>
     
 
     
@@ -2595,6 +2285,8 @@ If param as more than one word, it converts first letter of all words that have 
 
                 
                 </label>
+                
+                    String to be encoded
                 
             </dd>
         
@@ -2623,14 +2315,14 @@ If param as more than one word, it converts first letter of all words that have 
     
 
 </section>
+    
 
-
-
-    <section class="box box-attribute">
+    
+        <section class="box box-attribute">
 
     <h1 class="fw-300">
     
-       Ink.Util.String.escapedCharRegex
+        escapedCharRegex
     
     <i>attribute</i></h1>
 
@@ -2649,10 +2341,5 @@ If param as more than one word, it converts first letter of all words that have 
     
 
 </section>
-
-    
-
-    
-
     
 

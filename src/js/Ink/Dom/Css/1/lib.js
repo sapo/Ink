@@ -1,26 +1,25 @@
 /**
- * @author inkdev AT sapo.pt
+ * @module Ink.Dom.Css_1
+ * @version 1
+ * CSS Utilities and toolbox
  */
 
 Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
 
     'use strict';
 
-    /**
-     * @module Ink.Dom.Css_1
-     */
-
      // getComputedStyle feature detection.
      var getCs = ("defaultView" in document) && ("getComputedStyle" in document.defaultView) ? document.defaultView.getComputedStyle : window.getComputedStyle;
 
     /**
-     * @class Ink.Dom.Css
+     * @namespace Ink.Dom.Css
      * @static
      */
 
     var Css = {
         /**
-         * adds or removes a class to the given element according to addRemState
+         * Adds of removes a class.
+         * Depending on addRemState, this method either adds a class if it's true or removes if if false.
          *
          * @method addRemoveClassName
          * @param {DOMElement|string}   elm          DOM element or element id
@@ -41,11 +40,11 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
         },
 
         /**
-         * add a class to a given element
+         * Adds a class to a given element
          *
          * @method addClassName
-         * @param {DOMElement|String}  elm        DOM element or element id
-         * @param {String}             className
+         * @param {DOMElement|String}   elm          DOM element or element id
+         * @param {String|Array}        className    Classes 
          */
         addClassName: function(elm, className) {
             elm = Ink.i(elm);
@@ -64,11 +63,11 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
         },
 
         /**
-         * removes a class from a given element
+         * Removes a class from a given element
          *
          * @method removeClassName
-         * @param {DOMElement|String} elm        DOM element or element id
-         * @param {String}            className
+         * @param {DOMElement|String}   elm        DOM element or element id
+         * @param {String|Array}        className  Class names to remove. You can either use a space separated string of classnames, comma-separated list or an array
          */
         removeClassName: function(elm, className) {
             elm = Ink.i(elm);
@@ -96,22 +95,27 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
         },
 
         /**
-         * Alias to addRemoveClassName. Utility function, saves many if/elses.
+         * Alias to addRemoveClassName. 
+         * Utility function, saves many if/elses.
          *
          * @method setClassName
-         * @param {DOMElement|String}  elm        DOM element or element id
-         * @param {String}             className
-         * @param {Boolean}            add        true to add, false to remove
+         * @uses addRemoveClassName
+         * @param {DOMElement|String}  elm          DOM element or element id
+         * @param {String|Array}       className    Class names to add\remove. Comma separated, space separated or simply an Array
+         * @param {Boolean}            [add]=false  Flag to switch behavior from removal to addition. true to add, false to remove
          */
         setClassName: function(elm, className, add) {
             this.addRemoveClassName(elm, className, add || false);
         },
 
         /**
+         * Checks if an element has a class.
+         * This method verifies if an element has ONE of a list of classes. If the last argument is flagged as true, instead checks if the element has ALL the classes
+         * 
          * @method hasClassName
-         * @param {DOMElement|String}  elm        DOM element or element id
-         * @param {String|Array}       classNames classNames to test
-         * @param {Boolean}            [all=false] if true, return whether all classes in classNames are there. Otherwise, return true if any is present.
+         * @param {DOMElement|String}  elm         DOM element or element id
+         * @param {String|Array}       className   Class names to test
+         * @param {Boolean}            [all]=false If flagged as true, it will check if the element contains ALL the CSS classes
          * @return {Boolean} true if a given class is applied to a given element
          */
         hasClassName: function(elm, className, all) {
@@ -150,11 +154,13 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
         },
 
         /**
+         * Blinks a class from an element
          * Add and removes the class from the element with a timeout, so it blinks
          *
          * @method blinkClass
+         * @uses addRemoveClassName
          * @param {DOMElement|String}  elm        DOM element or element id
-         * @param {String}             className  class name
+         * @param {String|Array}       className  Class name(s) to blink
          * @param {Boolean}            timeout    timeout in ms between adding and removing, default 100 ms
          * @param {Boolean}            negate     is true, class is removed then added
          */
@@ -167,12 +173,12 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
         },
 
         /**
-         * Add or remove a class name from a given element
+         * Toggles a class name from a given element
          *
          * @method toggleClassName
          * @param {DOMElement|String}  elm        DOM element or element id
-         * @param {String}             className  class name
-         * @param {Boolean}            forceAdd   forces the addition of the class if it doesn't exists
+         * @param {String}             className  Class name
+         * @param {Boolean}            [forceAdd] Flag to force adding the the classe names if they don't exist yet.
          */
         toggleClassName: function(elm, className, forceAdd) {
             if (elm && className){
@@ -202,7 +208,7 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
         },
 
         /**
-         * sets the opacity of given client a given element
+         * Sets the opacity of given element 
          *
          * @method setOpacity
          * @param {DOMElement|String}  elm    DOM element or element id
@@ -339,11 +345,12 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
 
 
         /**
-         * Makes an element visible
+         * Shows an element.
+         * Internally it unsets the display property of an element. You can force a specific display property using forceDisplayProperty
          *
          * @method show
-         * @param {DOMElement|String}  elm                   DOM element or element id
-         * @param {String}             forceDisplayProperty  Css display property to apply on show
+         * @param {DOMElement|String}  elm                      DOM element or element id
+         * @param {String}             [forceDisplayProperty]   Css display property to apply on show
          */
         show: function(elm, forceDisplayProperty) {
             elm = Ink.i(elm);
@@ -353,7 +360,7 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
         },
 
         /**
-         * Hides an element
+         * Hides an element.
          *
          * @method hide
          * @param {DOMElement|String}  elm  DOM element or element id
@@ -366,11 +373,12 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
         },
 
         /**
-         * shows or hides according to param show
+         * Shows or hides an element.
+         * If the show parameter is true, it shows the element. Otherwise, hides it.
          *
          * @method showHide
          * @param {DOMElement|String}  elm          DOM element or element id
-         * @param {boolean}            [show=false] Whether to show or hide `elm`.
+         * @param {boolean}            [show]=false Whether to show or hide `elm`.
          */
         showHide: function(elm, show) {
             elm = Ink.i(elm);
@@ -380,7 +388,8 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
         },
 
         /**
-         * Shows or hides an element depending on current state
+         * Toggles an element visibility.
+         * 
          * @method toggle
          * @param {DOMElement|String}  elm        DOM element or element id
          * @param {Boolean}            forceShow  Forces showing if element is hidden
@@ -419,14 +428,14 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
         },
 
         /**
-         * Adds css style tags to the head section of a page
+         * Injects style tags with rules to the page.
          *
          * @method appendStyleTag
          * @param {String}  selector  The css selector for the rule
          * @param {String}  style     The content of the style rule
          * @param {Object}  options   Options for the tag
-         *    @param {String}  [options.type]   file type
-         *    @param {Boolean} [options.force]  if true, style tag will be appended to end of head
+         *    @param {String}  [options.type]='text/css'   File type
+         *    @param {Boolean} [options.force]=false  If true, the style tag will be appended to end of head
          */
         appendStyleTag: function(selector, style, options){
             options = Ink.extendObj({
@@ -473,14 +482,15 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
         },
 
         /**
-         * Adds a link tag for a stylesheet to the head section of a page
+         * Injects an external link tag.
+         * This method add a stylesheet to the head of a page
          *
          * @method appendStylesheet
          * @param {String}  path     File path
          * @param {Object}  options  Options for the tag
-         *    @param {String}   [options.media='screen']    media type
-         *    @param {String}   [options.type='text/css']   file type
-         *    @param {Boolean}  [options.force=false]       if true, tag will be appended to end of head
+         *    @param {String}   [options.media]='screen'    Media type
+         *    @param {String}   [options.type]='text/css'   File type
+         *    @param {Boolean}  [options.force]=false       If true, tag will be appended to end of head
          */
         appendStylesheet: function(path, options){
             options = Ink.extendObj({
@@ -510,6 +520,7 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
         },
 
         /**
+         * Injects an external link tag.
          * Loads CSS via LINK element inclusion in HEAD (skips append if already there)
          *
          * Works similarly to appendStylesheet but:
@@ -576,11 +587,11 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
         },
 
         /**
-         * Converts decimal to hexadecimal values, for use with colors
+         * Converts decimal to hexadecimal values
+         * Useful to convert colors to their hexadecimal representation.
          *
          * @method decToHex
-         * @param {String} dec Either a single decimal value,
-         * an rgb(r, g, b) string or an Object with r, g and b properties
+         * @param {String} dec Either a single decimal value, an rgb(r, g, b) string or an Object with r, g and b properties
          * @return Hexadecimal value
          */
         decToHex: function(dec) {
@@ -613,10 +624,11 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
         },
 
         /**
-         * Converts hexadecimal values to decimal, for use with colors
+         * Converts hexadecimal values to decimal
+         * Useful to use with CSS colors
          *
          * @method hexToDec
-         * @param {String}  hex  hexadecimal value with 6, 3, 2 or 1 characters
+         * @param {String}  hex  hexadecimal Value with 6, 3, 2 or 1 characters
          * @return {Number} Object with properties r, g, b if length of number is >= 3 or decimal value instead.
          */
         hexToDec: function(hex){
@@ -643,7 +655,8 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
         },
 
         /**
-         * use this to obtain the value of a CSS property (searched from loaded CSS documents)
+         * Get a single property from a stylesheet.
+         * Use this to obtain the value of a CSS property (searched from loaded CSS documents)
          *
          * @method getPropertyFromStylesheet
          * @param {String}  selector  a CSS rule. must be an exact match
@@ -798,15 +811,16 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
         },
 
         /**
+         * Change the font size of elements.
          * Changes the font size of the elements which match the given CSS rule
          * For this function to work, the CSS file must be in the same domain than the host page, otherwise JS can't access it.
          *
          * @method changeFontSize
          * @param {String}  selector  CSS selector rule
-         * @param {Number}  delta     number of pixels to change on font-size
-         * @param {String}  [op]      supported operations are '+' and '*'. defaults to '+'
-         * @param {Number}  [minVal]  if result gets smaller than minVal, change does not occurr
-         * @param {Number}  [maxVal]  if result gets bigger  than maxVal, change does not occurr
+         * @param {Number}  delta     Number of pixels to change on font-size
+         * @param {String}  [op]      Supported operations are '+' and '*'. defaults to '+'
+         * @param {Number}  [minVal]  If result gets smaller than minVal, change does not occurr
+         * @param {Number}  [maxVal]  If result gets bigger  than maxVal, change does not occurr
          */
         changeFontSize: function(selector, delta, op, minVal, maxVal) {
             var that = this;
