@@ -1,16 +1,18 @@
-<p>Desc... <code>this</code> </p>
+<p>Check if an element is total or partial visible in viewport.</p>
 
 <p class="example-title">Code</p>
 {% highlight html %}
-<div>
+<div id="container">
+    <p>Text content</p>
 </div>
 <script>
 Ink.requireModules(['Ink.Dom.Element_1'], function(InkElement) {
     
-    var ... = InkElement.('');
-
-    Ink.log(aPositionedOffset); // [0, 0]  
-
+    var container = Ink.i('container'); 
+    
+    InkElement.inViewport(container); // true / false 
+    InkElement.inViewport(container, true); // 2nd argument true to partial visibility
+    InkElement.inViewport(container, {partial:true, margin:10}); // 2nd argument true to partial visibility
 });
 </script>
 {% endhighlight %}
