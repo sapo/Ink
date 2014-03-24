@@ -1417,7 +1417,10 @@
   -moz-justify-content: center;
   justify-content: center;
   margin-left: auto;
-  margin-right: auto; }
+  margin-right: auto;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  justify-content: center; }
 
 .push-right {
   float: right;
