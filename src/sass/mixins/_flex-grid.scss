@@ -79,18 +79,22 @@
     
     .push-left,
     .#{$class-name}-push-left {
-        @include experimental(justify-content, flex-start, -moz, -webkit, not -o, not -ms, not -khtml, official);      
+        @include experimental(justify-content, flex-start, -moz, -webkit, not -o, not -ms, not -khtml, official);
+        float: left;    
     }
 
     .push-center,
     .#{$class-name}-push-center {
         float: none !important;
-        @include experimental(justify-content, center, -moz, -webkit, not -o, not -ms, not -khtml, official);      
+        @include experimental(justify-content, center, -moz, -webkit, not -o, not -ms, not -khtml, official);
+        margin-left: auto;
+        margin-right: auto;     
     }
 
     .push-right,
     .#{$class-name}-push-right {
         @include experimental(justify-content, flex-end, -moz, -webkit, not -o, not -ms, not -khtml, official);              
+        float: right;    
     }
 
 }

@@ -35,7 +35,7 @@
 
 // IMPORT MIXINS FILES (THESE CONTAIN HELPER FUNCTIONS)
 @import "mixins/alerts";
-@import "mixins/buttons";
+@import "mixins/buttons"; 
 @import "mixins/grid";
 @import "mixins/flex-grid";
 @import "mixins/forms";
@@ -46,7 +46,7 @@
 @import "mixins/nav.dropdown";
 @import "mixins/themeing";
 @import "mixins/typography";
-@import "mixins/utils";
+@import "mixins/flex-utils";
 
 // IMPORT MODULE DEFINITION FILES
 @import "modules/normalize";
