@@ -107,6 +107,7 @@ sections:
           - title: Ink.Dom.Css
           - title: Ink.Dom.Element
           - title: Ink.Dom.Event
+          - title: Ink.Dom.FormSerialize
           - title: Ink.Dom.Loaded
           - title: Ink.Dom.Selector
       - title: Network communication
@@ -115,13 +116,14 @@ sections:
           - title: Ink.Net.JsonP
       - title: User interface
         topics:
-          - title: Ink.UI.Common
           - title: Ink.UI.Carousel
           - title: Ink.UI.Close
+          - title: Ink.UI.Common
           - title: Ink.UI.DatePicker
           - title: Ink.UI.Draggable
           - title: Ink.UI.Droppable
           - title: Ink.UI.FormValidator
+          - title: Ink.UI.FormValidator_2
           - title: Ink.UI.ImageQuery
           - title: Ink.UI.Modal
           - title: Ink.UI.Pagination
