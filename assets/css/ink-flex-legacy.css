@@ -1805,10 +1805,6 @@
  *                 outside a @media query let's you use the grid in IE8.
  *  
  */
-.grid-order {
-  flex: 100%;
-}
-
 .show-all {
   display: inherit;
 }
@@ -1821,24 +1817,14 @@
   margin: 0 !important;
 }
 
-.no-padding {
-  padding: 0 !important;
-}
-
 .push-left {
   float: left;
-  -webkit-justify-content: flex-start;
-  -moz-justify-content: flex-start;
-  justify-content: flex-start;
 }
 
 .push-center {
   float: none !important;
   margin-left: auto;
   margin-right: auto;
-  -webkit-justify-content: center;
-  -moz-justify-content: center;
-  justify-content: center;
 }
 
 .push-right {
@@ -2387,6 +2373,182 @@ th {
   clear: both;
 }
 
+@font-face {
+  font-family: "Roboto";
+  src: url('../fonts/Roboto/roboto-thin-webfont.eot');
+  src: url('../fonts/Roboto/roboto-thin-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto/roboto-thin-webfont.woff') format('woff'), url('../fonts/Roboto/roboto-thin-webfont.ttf') format('truetype'), url('../fonts/Roboto/roboto-thin-webfont.svg') format('svg');
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url('../fonts/Roboto/roboto-thinitalic-webfont.eot');
+  src: url('../fonts/Roboto/roboto-thinitalic-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto/roboto-thinitalic-webfont.woff') format('woff'), url('../fonts/Roboto/roboto-thinitalic-webfont.ttf') format('truetype'), url('../fonts/Roboto/roboto-thinitalic-webfont.svg') format('svg');
+  font-weight: 100;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url('../fonts/Roboto/roboto-light-webfont.eot');
+  src: url('../fonts/Roboto/roboto-light-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto/roboto-light-webfont.woff') format('woff'), url('../fonts/Roboto/roboto-light-webfont.ttf') format('truetype'), url('../fonts/Roboto/roboto-light-webfont.svg') format('svg');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url('../fonts/Roboto/roboto-lightitalic-webfont.eot');
+  src: url('../fonts/Roboto/roboto-lightitalic-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto/roboto-lightitalic-webfont.woff') format('woff'), url('../fonts/Roboto/roboto-lightitalic-webfont.ttf') format('truetype'), url('../fonts/Roboto/roboto-lightitalic-webfont.svg') format('svg');
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url('../fonts/Roboto/roboto-regular-webfont.eot');
+  src: url('../fonts/Roboto/roboto-regular-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto/roboto-regular-webfont.woff') format('woff'), url('../fonts/Roboto/roboto-regular-webfont.ttf') format('truetype'), url('../fonts/Roboto/roboto-regular-webfont.svg') format('svg');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url('../fonts/Roboto/roboto-italic-webfont.eot');
+  src: url('../fonts/Roboto/roboto-italic-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto/roboto-italic-webfont.woff') format('woff'), url('../fonts/Roboto/roboto-italic-webfont.ttf') format('truetype'), url('../fonts/Roboto/roboto-italic-webfont.svg') format('svg');
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url('../fonts/Roboto/roboto-medium-webfont.eot');
+  src: url('../fonts/Roboto/roboto-medium-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto/roboto-medium-webfont.woff') format('woff'), url('../fonts/Roboto/roboto-medium-webfont.ttf') format('truetype'), url('../fonts/Roboto/roboto-medium-webfont.svg') format('svg');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url('../fonts/Roboto/roboto-mediumitalic-webfont.eot');
+  src: url('../fonts/Roboto/roboto-mediumitalic-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto/roboto-mediumitalic-webfont.woff') format('woff'), url('../fonts/Roboto/roboto-mediumitalic-webfont.ttf') format('truetype'), url('../fonts/Roboto/roboto-mediumitalic-webfont.svg') format('svg');
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url('../fonts/Roboto/roboto-bold-webfont.eot');
+  src: url('../fonts/Roboto/roboto-bold-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto/roboto-bold-webfont.woff') format('woff'), url('../fonts/Roboto/roboto-bold-webfont.ttf') format('truetype'), url('../fonts/Roboto/roboto-bold-webfont.svg') format('svg');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url('../fonts/Roboto/roboto-bolditalic-webfont.eot');
+  src: url('../fonts/Roboto/roboto-bolditalic-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto/roboto-bolditalic-webfont.woff') format('woff'), url('../fonts/Roboto/roboto-bolditalic-webfont.ttf') format('truetype'), url('../fonts/Roboto/roboto-bolditalic-webfont.svg') format('svg');
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url('../fonts/Roboto/roboto-black-webfont.eot');
+  src: url('../fonts/Roboto/roboto-black-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto/roboto-black-webfont.woff') format('woff'), url('../fonts/Roboto/roboto-black-webfont.ttf') format('truetype'), url('../fonts/Roboto/roboto-black-webfont.svg') format('svg');
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url('../fonts/Roboto/roboto-blackitalic-webfont.eot');
+  src: url('../fonts/Roboto/roboto-blackitalic-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto/roboto-blackitalic-webfont.woff') format('woff'), url('../fonts/Roboto/roboto-blackitalic-webfont.ttf') format('truetype'), url('../fonts/Roboto/roboto-blackitalic-webfont.svg') format('svg');
+  font-weight: 900;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Roboto_condensed";
+  src: url('../fonts/Roboto_condensed/robotocondensed-light-webfont.eot');
+  src: url('../fonts/Roboto_condensed/robotocondensed-light-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto_condensed/robotocondensed-light-webfont.woff') format('woff'), url('../fonts/Roboto_condensed/robotocondensed-light-webfont.ttf') format('truetype'), url('../fonts/Roboto_condensed/robotocondensed-light-webfont.svg') format('svg');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Roboto_condensed";
+  src: url('../fonts/Roboto_condensed/robotocondensed-lightitalic-webfont.eot');
+  src: url('../fonts/Roboto_condensed/robotocondensed-lightitalic-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto_condensed/robotocondensed-lightitalic-webfont.woff') format('woff'), url('../fonts/Roboto_condensed/robotocondensed-lightitalic-webfont.ttf') format('truetype'), url('../fonts/Roboto_condensed/robotocondensed-lightitalic-webfont.svg') format('svg');
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Roboto_condensed";
+  src: url('../fonts/Roboto_condensed/robotocondensed-regular-webfont.eot');
+  src: url('../fonts/Roboto_condensed/robotocondensed-regular-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto_condensed/robotocondensed-regular-webfont.woff') format('woff'), url('../fonts/Roboto_condensed/robotocondensed-regular-webfont.ttf') format('truetype'), url('../fonts/Roboto_condensed/robotocondensed-regular-webfont.svg') format('svg');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Roboto_condensed";
+  src: url('../fonts/Roboto_condensed/robotocondensed-italic-webfont.eot');
+  src: url('../fonts/Roboto_condensed/robotocondensed-italic-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto_condensed/robotocondensed-italic-webfont.woff') format('woff'), url('../fonts/Roboto_condensed/robotocondensed-italic-webfont.ttf') format('truetype'), url('../fonts/Roboto_condensed/robotocondensed-italic-webfont.svg') format('svg');
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Roboto_condensed";
+  src: url('../fonts/Roboto_condensed/robotocondensed-bold-webfont.eot');
+  src: url('../fonts/Roboto_condensed/robotocondensed-bold-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto_condensed/robotocondensed-bold-webfont.woff') format('woff'), url('../fonts/Roboto_condensed/robotocondensed-bold-webfont.ttf') format('truetype'), url('../fonts/Roboto_condensed/robotocondensed-bold-webfont.svg') format('svg');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Roboto_condensed";
+  src: url('../fonts/Roboto_condensed/robotocondensed-bolditalic-webfont.eot');
+  src: url('../fonts/Roboto_condensed/robotocondensed-bolditalic-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto_condensed/robotocondensed-bolditalic-webfont.woff') format('woff'), url('../fonts/Roboto_condensed/robotocondensed-bolditalic-webfont.ttf') format('truetype'), url('../fonts/Roboto_condensed/robotocondensed-bolditalic-webfont.svg') format('svg');
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Roboto_slab";
+  src: url('../fonts/Roboto_slab/robotoslab-thin-webfont.eot');
+  src: url('../fonts/Roboto_slab/robotoslab-thin-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto_slab/robotoslab-thin-webfont.woff') format('woff'), url('../fonts/Roboto_slab/robotoslab-thin-webfont.ttf') format('truetype'), url('../fonts/Roboto_slab/robotoslab-thin-webfont.svg') format('svg');
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Roboto_slab";
+  src: url('../fonts/Roboto_slab/robotoslab-light-webfont.eot');
+  src: url('../fonts/Roboto_slab/robotoslab-light-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto_slab/robotoslab-light-webfont.woff') format('woff'), url('../fonts/Roboto_slab/robotoslab-light-webfont.ttf') format('truetype'), url('../fonts/Roboto_slab/robotoslab-light-webfont.svg') format('svg');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Roboto_slab";
+  src: url('../fonts/Roboto_slab/robotoslab-regular-webfont.eot');
+  src: url('../fonts/Roboto_slab/robotoslab-regular-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto_slab/robotoslab-regular-webfont.woff') format('woff'), url('../fonts/Roboto_slab/robotoslab-regular-webfont.ttf') format('truetype'), url('../fonts/Roboto_slab/robotoslab-regular-webfont.svg') format('svg');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Roboto_slab";
+  src: url('../fonts/Roboto_slab/robotoslab-bold-webfont.eot');
+  src: url('../fonts/Roboto_slab/robotoslab-bold-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto_slab/robotoslab-bold-webfont.woff') format('woff'), url('../fonts/Roboto_slab/robotoslab-bold-webfont.ttf') format('truetype'), url('../fonts/Roboto_slab/robotoslab-bold-webfont.svg') format('svg');
+  font-weight: 700;
+  font-style: normal;
+}
+
 .ink-form fieldset {
   border: none;
   margin-bottom: 1.5em;
@@ -2431,8 +2593,6 @@ th {
 .ink-form input[type="search"],
 .ink-form input[type="tel"],
 .ink-form input[type="color"] {
-  font-family: "Roboto", Arial, Helvetica, sans-serif;
-  font-weight: 300;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   -ms-border-radius: 2px;
@@ -2719,4397 +2879,4205 @@ th {
   content: "";
 }
 
-html.flexbox .ink-grid {
+.ink-grid {
   width: auto;
   max-width: 1440px;
   margin: 0 auto;
 }
-html.flexbox .order-1 {
-  order: 1;
+
+.column-group > [class*=all-] {
+  float: left;
+  clear: none;
 }
-html.flexbox .order-2 {
-  order: 2;
+
+.all-5 {
+  width: 5%;
 }
-html.flexbox .order-3 {
-  order: 3;
+
+.all-10 {
+  width: 10%;
 }
-html.flexbox .order-4 {
-  order: 4;
+
+.all-15 {
+  width: 15%;
 }
-html.flexbox .order-5 {
-  order: 5;
+
+.all-20 {
+  width: 20%;
 }
-html.flexbox .order-6 {
-  order: 6;
+
+.all-25 {
+  width: 25%;
 }
-html.flexbox .order-7 {
-  order: 7;
+
+.all-30 {
+  width: 30%;
 }
-html.flexbox .order-8 {
-  order: 8;
+
+.all-33 {
+  width: 33.33%;
 }
-html.flexbox .order-9 {
-  order: 9;
+
+.all-35 {
+  width: 35%;
 }
-html.flexbox .order-10 {
-  order: 10;
+
+.all-40 {
+  width: 40%;
 }
+
+.all-45 {
+  width: 45%;
+}
+
+.all-50 {
+  width: 50%;
+}
+
+.all-55 {
+  width: 55%;
+}
+
+.all-60 {
+  width: 60%;
+}
+
+.all-65 {
+  width: 65%;
+}
+
+.all-66 {
+  width: 66.66%;
+}
+
+.all-70 {
+  width: 70%;
+}
+
+.all-75 {
+  width: 75%;
+}
+
+.all-80 {
+  width: 80%;
+}
+
+.all-85 {
+  width: 85%;
+}
+
+.all-90 {
+  width: 90%;
+}
+
+.all-95 {
+  width: 95%;
+}
+
+.all-100 {
+  width: 100%;
+}
+
+[class*=all-100] {
+  float: none;
+  clear: both;
+}
+
 @media screen and (min-width: 1261px) {
-  html.flexbox .ink-grid {
+  .ink-grid {
     padding: 0 2em;
   }
-  html.flexbox .column-group.gutters {
+
+  .column-group > [class*=extra-large-] {
+    float: left;
+    clear: none;
+  }
+
+  .extra-large-5 {
+    width: 5%;
+  }
+
+  .extra-large-10 {
+    width: 10%;
+  }
+
+  .extra-large-15 {
+    width: 15%;
+  }
+
+  .extra-large-20 {
+    width: 20%;
+  }
+
+  .extra-large-25 {
+    width: 25%;
+  }
+
+  .extra-large-30 {
+    width: 30%;
+  }
+
+  .extra-large-33 {
+    width: 33.33%;
+  }
+
+  .extra-large-35 {
+    width: 35%;
+  }
+
+  .extra-large-40 {
+    width: 40%;
+  }
+
+  .extra-large-45 {
+    width: 45%;
+  }
+
+  .extra-large-50 {
+    width: 50%;
+  }
+
+  .extra-large-55 {
+    width: 55%;
+  }
+
+  .extra-large-60 {
+    width: 60%;
+  }
+
+  .extra-large-65 {
+    width: 65%;
+  }
+
+  .extra-large-66 {
+    width: 66.66%;
+  }
+
+  .extra-large-70 {
+    width: 70%;
+  }
+
+  .extra-large-75 {
+    width: 75%;
+  }
+
+  .extra-large-80 {
+    width: 80%;
+  }
+
+  .extra-large-85 {
+    width: 85%;
+  }
+
+  .extra-large-90 {
+    width: 90%;
+  }
+
+  .extra-large-95 {
+    width: 95%;
+  }
+
+  .extra-large-100 {
+    width: 100%;
+  }
+
+  [class*=extra-large-100] {
+    float: none;
+    clear: both;
+  }
+
+  .column-group {
+    *zoom: 1;
+  }
+  .column-group:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  .column-group.gutters {
     margin-left: -2em;
   }
-  html.flexbox .column-group.gutters > [class*=extra-large-], html.flexbox .column-group.gutters > [class*=all-], html.flexbox .column-group.gutters > .all-auto {
+  .column-group.gutters > [class*=extra-large-], .column-group.gutters > [class*=all-] {
     padding-left: 2em;
     margin-bottom: 2em;
   }
-  html.flexbox .column-group.horizontal-gutters {
+
+  .column-group.horizontal-gutters {
     margin-left: -2em;
   }
-  html.flexbox .column-group.horizontal-gutters > [class*=extra-large-], html.flexbox .column-group.horizontal-gutters > [class*=all-], html.flexbox .column-group.horizontal-gutters > .all-auto {
+  .column-group.horizontal-gutters > [class*=extra-large-], .column-group.horizontal-gutters > [class*=all-] {
     padding-left: 2em;
   }
-  html.flexbox .column-group.vertical-gutters > [class*=extra-large-], html.flexbox .column-group.vertical-gutters > [class*=all-], html.flexbox .column-group.vertical-gutters > .all-auto {
+
+  .column-group.vertical-gutters > [class*=extra-large-], .column-group.vertical-gutters > [class*=all-] {
     margin-bottom: 2em;
   }
-  html.flexbox .column-group.double-gutters {
+
+  .column-group.double-gutters {
     margin-left: -4em;
   }
-  html.flexbox .column-group.double-gutters > [class*=extra-large-], html.flexbox .column-group.double-gutters > [class*=all-], html.flexbox .column-group.double-gutters > .all-auto {
+  .column-group.double-gutters > [class*=extra-large-], .column-group.double-gutters > [class*=all-] {
     padding-left: 4em;
     margin-bottom: 4em;
   }
-  html.flexbox .column-group.double-horizontal-gutters {
+
+  .column-group.double-horizontal-gutters {
     margin-left: -4em;
   }
-  html.flexbox .column-group.double-horizontal-gutters > [class*=extra-large-], html.flexbox .column-group.double-horizontal-gutters > [class*=all-], html.flexbox .column-group.double-horizontal-gutters > .all-auto {
+  .column-group.double-horizontal-gutters > [class*=extra-large-], .column-group.double-horizontal-gutters > [class*=all-] {
     padding-left: 4em;
   }
-  html.flexbox .column-group.double-vertical-gutters > [class*=extra-large-], html.flexbox .column-group.double-vertical-gutters > [class*=all-], html.flexbox .column-group.double-vertical-gutters > .all-auto {
+
+  .column-group.double-vertical-gutters > [class*=extra-large-], .column-group.double-vertical-gutters > [class*=all-] {
     margin-bottom: 4em;
   }
-  html.flexbox .column-group.half-gutters {
+
+  .column-group.half-gutters {
     margin-left: -1em;
   }
-  html.flexbox .column-group.half-gutters > [class*=extra-large-], html.flexbox .column-group.half-gutters > [class*=all-], html.flexbox .column-group.half-gutters > .all-auto {
+  .column-group.half-gutters > [class*=extra-large-], .column-group.half-gutters > [class*=all-] {
     padding-left: 1em;
     margin-bottom: 1em;
   }
-  html.flexbox .column-group.half-horizontal-gutters {
+
+  .column-group.half-horizontal-gutters {
     margin-left: -1em;
   }
-  html.flexbox .column-group.half-horizontal-gutters > [class*=extra-large-], html.flexbox .column-group.half-horizontal-gutters > [class*=all-], html.flexbox .column-group.half-horizontal-gutters > .all-auto {
+  .column-group.half-horizontal-gutters > [class*=extra-large-], .column-group.half-horizontal-gutters > [class*=all-] {
     padding-left: 1em;
   }
-  html.flexbox .column-group.half-vertical-gutters > [class*=extra-large-], html.flexbox .column-group.half-vertical-gutters > [class*=all-], html.flexbox .column-group.half-vertical-gutters > .all-auto {
+
+  .column-group.half-vertical-gutters > [class*=extra-large-], .column-group.half-vertical-gutters > [class*=all-] {
     margin-bottom: 1em;
   }
-  html.flexbox .column-group.quarter-gutters {
+
+  .column-group.quarter-gutters {
     margin-left: -0.5em;
   }
-  html.flexbox .column-group.quarter-gutters > [class*=extra-large-], html.flexbox .column-group.quarter-gutters > [class*=all-], html.flexbox .column-group.quarter-gutters > .all-auto {
+  .column-group.quarter-gutters > [class*=extra-large-], .column-group.quarter-gutters > [class*=all-] {
     padding-left: 0.5em;
     margin-bottom: 0.5em;
   }
-  html.flexbox .column-group.quarter-horizontal-gutters {
+
+  .column-group.quarter-horizontal-gutters {
     margin-left: -0.5em;
   }
-  html.flexbox .column-group.quarter-horizontal-gutters > [class*=extra-large-], html.flexbox .column-group.quarter-horizontal-gutters > [class*=all-], html.flexbox .column-group.quarter-horizontal-gutters > .all-auto {
+  .column-group.quarter-horizontal-gutters > [class*=extra-large-], .column-group.quarter-horizontal-gutters > [class*=all-] {
     padding-left: 0.5em;
   }
-  html.flexbox .column-group.quarter-vertical-gutters > [class*=extra-large-], html.flexbox .column-group.quarter-vertical-gutters > [class*=all-], html.flexbox .column-group.quarter-vertical-gutters > .all-auto {
+
+  .column-group.quarter-vertical-gutters > [class*=extra-large-], .column-group.quarter-vertical-gutters > [class*=all-] {
     margin-bottom: 0.5em;
   }
-  html.flexbox .column-group.extra-large-gutters {
+
+  .column-group.extra-large-gutters {
     margin-left: -2em;
   }
-  html.flexbox .column-group.extra-large-gutters > [class*=extra-large-], html.flexbox .column-group.extra-large-gutters > [class*=all-], html.flexbox .column-group.extra-large-gutters > .all-auto {
+  .column-group.extra-large-gutters > [class*=extra-large-], .column-group.extra-large-gutters > [class*=all-] {
     padding-left: 0.5em;
     margin-bottom: 0.5em;
   }
-  html.flexbox .column-group.extra-large-horizontal-gutters {
+
+  .column-group.extra-large-horizontal-gutters {
     margin-left: -2em;
   }
-  html.flexbox .column-group.extra-large-horizontal-gutters > [class*=extra-large-], html.flexbox .column-group.extra-large-horizontal-gutters > [class*=all-], html.flexbox .column-group.extra-large-horizontal-gutters > .all-auto {
+  .column-group.extra-large-horizontal-gutters > [class*=extra-large-], .column-group.extra-large-horizontal-gutters > [class*=all-] {
     padding-left: 2em;
   }
-  html.flexbox .column-group.extra-large-vertical-gutters > [class*=extra-large-], html.flexbox .column-group.extra-large-vertical-gutters > [class*=all-], html.flexbox .column-group.extra-large-vertical-gutters > .all-auto {
+
+  .column-group.extra-large-vertical-gutters > [class*=extra-large-], .column-group.extra-large-vertical-gutters > [class*=all-] {
     margin-bottom: 2em;
   }
-  html.flexbox .column-group.extra-large-double-gutters {
+
+  .column-group.extra-large-double-gutters {
     margin-left: -4em;
   }
-  html.flexbox .column-group.extra-large-double-gutters > [class*=extra-large-], html.flexbox .column-group.extra-large-double-gutters > [class*=all-], html.flexbox .column-group.extra-large-double-gutters > .all-auto {
+  .column-group.extra-large-double-gutters > [class*=extra-large-], .column-group.extra-large-double-gutters > [class*=all-] {
     padding-left: 4em;
     margin-bottom: 4em;
   }
-  html.flexbox .column-group.extra-large-double-horizontal-gutters {
+
+  .column-group.extra-large-double-horizontal-gutters {
     margin-left: -4em;
   }
-  html.flexbox .column-group.extra-large-double-horizontal-gutters > [class*=extra-large-], html.flexbox .column-group.extra-large-double-horizontal-gutters > [class*=all-], html.flexbox .column-group.extra-large-double-horizontal-gutters > .all-auto {
+  .column-group.extra-large-double-horizontal-gutters > [class*=extra-large-], .column-group.extra-large-double-horizontal-gutters > [class*=all-] {
     padding-left: 4em;
   }
-  html.flexbox .column-group.extra-large-double-vertical-gutters > [class*=extra-large-], html.flexbox .column-group.extra-large-double-vertical-gutters > [class*=all-], html.flexbox .column-group.extra-large-double-vertical-gutters > .all-auto {
+
+  .column-group.extra-large-double-vertical-gutters > [class*=extra-large-], .column-group.extra-large-double-vertical-gutters > [class*=all-] {
     margin-bottom: 4em;
   }
-  html.flexbox .column-group.extra-large-half-gutters {
+
+  .column-group.extra-large-half-gutters {
     margin-left: -1em;
   }
-  html.flexbox .column-group.extra-large-half-gutters > [class*=extra-large-], html.flexbox .column-group.extra-large-half-gutters > [class*=all-], html.flexbox .column-group.extra-large-half-gutters > .all-auto {
+  .column-group.extra-large-half-gutters > [class*=extra-large-], .column-group.extra-large-half-gutters > [class*=all-] {
     padding-left: 1em;
     margin-bottom: 1em;
   }
-  html.flexbox .column-group.extra-large-half-horizontal-gutters {
+
+  .column-group.extra-large-half-horizontal-gutters {
     margin-left: -1em;
   }
-  html.flexbox .column-group.extra-large-half-horizontal-gutters > [class*=extra-large-], html.flexbox .column-group.extra-large-half-horizontal-gutters > [class*=all-], html.flexbox .column-group.extra-large-half-horizontal-gutters > .all-auto {
+  .column-group.extra-large-half-horizontal-gutters > [class*=extra-large-], .column-group.extra-large-half-horizontal-gutters > [class*=all-] {
     padding-left: 1em;
   }
-  html.flexbox .column-group.extra-large-half-vertical-gutters > [class*=extra-large-], html.flexbox .column-group.extra-large-half-vertical-gutters > [class*=all-], html.flexbox .column-group.extra-large-half-vertical-gutters > .all-auto {
+
+  .column-group.extra-large-half-vertical-gutters > [class*=extra-large-], .column-group.extra-large-half-vertical-gutters > [class*=all-] {
     margin-bottom: 1em;
   }
-  html.flexbox .column-group.extra-large-quarter-gutters {
+
+  .column-group.extra-large-quarter-gutters {
     margin-left: -0.5em;
   }
-  html.flexbox .column-group.extra-large-quarter-gutters > [class*=extra-large-], html.flexbox .column-group.extra-large-quarter-gutters > [class*=all-], html.flexbox .column-group.extra-large-quarter-gutters > .all-auto {
+  .column-group.extra-large-quarter-gutters > [class*=extra-large-], .column-group.extra-large-quarter-gutters > [class*=all-] {
     padding-left: 0.5em;
     margin-bottom: 0.5em;
   }
-  html.flexbox .column-group.extra-large-quarter-horizontal-gutters {
+
+  .column-group.extra-large-quarter-horizontal-gutters {
     margin-left: -0.5em;
   }
-  html.flexbox .column-group.extra-large-quarter-horizontal-gutters > [class*=extra-large-], html.flexbox .column-group.extra-large-quarter-horizontal-gutters > [class*=all-], html.flexbox .column-group.extra-large-quarter-horizontal-gutters > .all-auto {
+  .column-group.extra-large-quarter-horizontal-gutters > [class*=extra-large-], .column-group.extra-large-quarter-horizontal-gutters > [class*=all-] {
     padding-left: 0.5em;
   }
-  html.flexbox .column-group.extra-large-quarter-vertical-gutters > [class*=extra-large-], html.flexbox .column-group.extra-large-quarter-vertical-gutters > [class*=all-], html.flexbox .column-group.extra-large-quarter-vertical-gutters > .all-auto {
+
+  .column-group.extra-large-quarter-vertical-gutters > [class*=extra-large-], .column-group.extra-large-quarter-vertical-gutters > [class*=all-] {
     margin-bottom: 0.5em;
   }
-  html.flexbox .column-group.extra-large-no-gutters {
+
+  .column-group.extra-large-no-gutters {
     margin-left: 0;
   }
-  html.flexbox .column-group.extra-large-no-gutters > [class*=extra-large-], html.flexbox .column-group.extra-large-no-gutters > [class*=all-], html.flexbox .column-group.extra-large-no-gutters > .all-auto {
+  .column-group.extra-large-no-gutters > [class*=extra-large-], .column-group.extra-large-no-gutters > [class*=all-] {
     padding-left: 0;
     margin-bottom: 0;
   }
-  html.flexbox .all-5,
-  html.flexbox .extra-large-5 {
-    width: 5%;
-    -webkit-flex-basis: 5%;
-    -moz-flex-basis: 5%;
-    flex-basis: 5%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
+
+  .ink-table td[class*=extra-large-], .ink-table th[class*=extra-large-], .ink-table tr[class*=extra-large-], .ink-table thead[class*=extra-large-], .ink-table tbody[class*=extra-large-], .ink-table tfoot[class*=extra-large-] {
+    float: none;
   }
-  html.flexbox .all-10,
-  html.flexbox .extra-large-10 {
-    width: 10%;
-    -webkit-flex-basis: 10%;
-    -moz-flex-basis: 10%;
-    flex-basis: 10%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-15,
-  html.flexbox .extra-large-15 {
-    width: 15%;
-    -webkit-flex-basis: 15%;
-    -moz-flex-basis: 15%;
-    flex-basis: 15%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-20,
-  html.flexbox .extra-large-20 {
-    width: 20%;
-    -webkit-flex-basis: 20%;
-    -moz-flex-basis: 20%;
-    flex-basis: 20%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-25,
-  html.flexbox .extra-large-25 {
-    width: 25%;
-    -webkit-flex-basis: 25%;
-    -moz-flex-basis: 25%;
-    flex-basis: 25%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-30,
-  html.flexbox .extra-large-30 {
-    width: 30%;
-    -webkit-flex-basis: 30%;
-    -moz-flex-basis: 30%;
-    flex-basis: 30%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-33,
-  html.flexbox .extra-large-33 {
-    width: 33,33333%;
-    -webkit-flex-basis: 33.33333%;
-    -moz-flex-basis: 33.33333%;
-    flex-basis: 33.33333%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-35,
-  html.flexbox .extra-large-35 {
-    width: 35%;
-    -webkit-flex-basis: 35%;
-    -moz-flex-basis: 35%;
-    flex-basis: 35%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-40,
-  html.flexbox .extra-large-40 {
-    width: 40%;
-    -webkit-flex-basis: 40%;
-    -moz-flex-basis: 40%;
-    flex-basis: 40%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-45,
-  html.flexbox .extra-large-45 {
-    width: 45%;
-    -webkit-flex-basis: 45%;
-    -moz-flex-basis: 45%;
-    flex-basis: 45%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-50,
-  html.flexbox .extra-large-50 {
-    width: 50%;
-    -webkit-flex-basis: 50%;
-    -moz-flex-basis: 50%;
-    flex-basis: 50%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-55,
-  html.flexbox .extra-large-55 {
-    width: 55%;
-    -webkit-flex-basis: 55%;
-    -moz-flex-basis: 55%;
-    flex-basis: 55%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-60,
-  html.flexbox .extra-large-60 {
-    width: 60%;
-    -webkit-flex-basis: 60%;
-    -moz-flex-basis: 60%;
-    flex-basis: 60%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-65,
-  html.flexbox .extra-large-65 {
-    width: 65%;
-    -webkit-flex-basis: 65%;
-    -moz-flex-basis: 65%;
-    flex-basis: 65%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-66,
-  html.flexbox .extra-large-66 {
-    width: 66,66666%;
-    -webkit-flex-basis: 66.66666%;
-    -moz-flex-basis: 66.66666%;
-    flex-basis: 66.66666%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-70,
-  html.flexbox .extra-large-70 {
-    width: 70%;
-    -webkit-flex-basis: 70%;
-    -moz-flex-basis: 70%;
-    flex-basis: 70%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-75,
-  html.flexbox .extra-large-75 {
-    width: 75%;
-    -webkit-flex-basis: 75%;
-    -moz-flex-basis: 75%;
-    flex-basis: 75%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-80,
-  html.flexbox .extra-large-80 {
-    width: 80%;
-    -webkit-flex-basis: 80%;
-    -moz-flex-basis: 80%;
-    flex-basis: 80%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-85,
-  html.flexbox .extra-large-85 {
-    width: 85%;
-    -webkit-flex-basis: 85%;
-    -moz-flex-basis: 85%;
-    flex-basis: 85%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-90,
-  html.flexbox .extra-large-90 {
-    width: 90%;
-    -webkit-flex-basis: 90%;
-    -moz-flex-basis: 90%;
-    flex-basis: 90%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-95,
-  html.flexbox .extra-large-95 {
-    width: 95%;
-    -webkit-flex-basis: 95%;
-    -moz-flex-basis: 95%;
-    flex-basis: 95%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-100,
-  html.flexbox .extra-large-100 {
-    width: 100%;
-    -webkit-flex-basis: 100%;
-    -moz-flex-basis: 100%;
-    flex-basis: 100%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-auto,
-  html.flexbox .extra-large-auto {
-    width: auto;
-    -webkit-flex-basis: auto;
-    flex-basis: auto;
-    -webkit-flex-grow: 1;
-    flex-grow: 1;
-  }
-  html.flexbox .ink-flex,
-  html.flexbox .column-group {
-    display: -webkit-flex;
-    display: flex;
-    -webkit-flex-wrap: wrap;
-    flex-wrap: wrap;
-    -webkit-flex-direction: row;
-    flex-direction: row;
-    list-style: none;
-  }
-  html.flexbox .ink-flex.extra-large-reverse, html.flexbox .ink-flex.reverse,
-  html.flexbox .column-group.extra-large-reverse,
-  html.flexbox .column-group.reverse {
-    -webkit-flex-direction: row-reverse;
-    -moz-flex-direction: row-reverse;
-    flex-direction: row-reverse;
-  }
-  html.flexbox .ink-flex.extra-large-vertical, html.flexbox .ink-flex.vertical,
-  html.flexbox .column-group.extra-large-vertical,
-  html.flexbox .column-group.vertical {
-    -webkit-flex-direction: column;
-    -moz-flex-direction: column;
-    flex-direction: column;
-  }
-  html.flexbox .ink-flex.extra-large-vertical.extra-large-reverse, html.flexbox .ink-flex.vertical.reverse,
-  html.flexbox .column-group.extra-large-vertical.extra-large-reverse,
-  html.flexbox .column-group.vertical.reverse {
-    -webkit-flex-direction: column-reverse;
-    -moz-flex-direction: column-reverse;
-    flex-direction: column-reverse;
-  }
-  html.flexbox .extra-large-order-1 {
-    order: 1;
-  }
-  html.flexbox .extra-large-order-2 {
-    order: 2;
-  }
-  html.flexbox .extra-large-order-3 {
-    order: 3;
-  }
-  html.flexbox .extra-large-order-4 {
-    order: 4;
-  }
-  html.flexbox .extra-large-order-5 {
-    order: 5;
-  }
-  html.flexbox .extra-large-order-6 {
-    order: 6;
-  }
-  html.flexbox .extra-large-order-7 {
-    order: 7;
-  }
-  html.flexbox .extra-large-order-8 {
-    order: 8;
-  }
-  html.flexbox .extra-large-order-9 {
-    order: 9;
-  }
-  html.flexbox .extra-large-order-10 {
-    order: 10;
-  }
-  html.flexbox .column-group .extra-large-auto {
-    -webkit-flex-basis: auto;
-    flex-basis: auto;
-    -webkit-flex-grow: 1;
-    flex-grow: 1;
-  }
-  html.flexbox .push-top,
-  html.flexbox .extra-large-push-top {
-    -webkit-box-align: start;
-    -webkit-align-items: flex-start;
-    -moz-box-align: start;
-    -ms-flex-align: start;
-    align-items: flex-start;
-    -webkit-align-self: flex-start;
-    -ms-flex-item-align: start;
-    align-self: flex-start;
-  }
-  html.flexbox .push-bottom,
-  html.flexbox .extra-large-push-bottom {
-    -webkit-box-align: end;
-    -webkit-align-items: flex-end;
-    -moz-box-align: end;
-    -ms-flex-align: end;
-    align-items: flex-end;
-    -webkit-align-self: flex-end;
-    -ms-flex-item-align: end;
-    align-self: flex-end;
-  }
-  html.flexbox .push-middle,
-  html.flexbox .extra-large-push-middle {
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-    -moz-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-align-self: flex-center;
-    -ms-flex-item-align: center;
-    align-self: center;
-  }
-  html.flexbox .push-left,
-  html.flexbox .extra-large-push-left {
-    -webkit-justify-content: flex-start;
-    -moz-justify-content: flex-start;
-    justify-content: flex-start;
+
+  .extra-large-push-left {
     float: left;
   }
-  html.flexbox .push-center,
-  html.flexbox .extra-large-push-center {
-    float: none !important;
-    -webkit-justify-content: center;
-    -moz-justify-content: center;
-    justify-content: center;
+
+  .extra-large-push-center {
+    float: none;
     margin-left: auto;
     margin-right: auto;
   }
-  html.flexbox .push-right,
-  html.flexbox .extra-large-push-right {
-    -webkit-justify-content: flex-end;
-    -moz-justify-content: flex-end;
-    justify-content: flex-end;
+
+  .extra-large-push-right {
     float: right;
   }
-  html.flexbox .extra-large-align-left {
+
+  .extra-large-align-left {
     text-align: left;
   }
-  html.flexbox .extra-large-align-center {
+
+  .extra-large-align-center {
     text-align: center;
   }
-  html.flexbox .extra-large-align-right {
+
+  .extra-large-align-right {
     text-align: right;
   }
-  html.flexbox .space {
+
+  .extra-large-no-margin {
+    margin: 0 !important;
+  }
+
+  .space {
     margin: 2em;
   }
-  html.flexbox .extra-large-space {
+
+  .extra-large-space {
     margin: 2em;
   }
-  html.flexbox .padding {
+
+  .padding {
     padding: 2em;
   }
-  html.flexbox .extra-large-padding {
+
+  .extra-large-padding {
     padding: 2em;
   }
-  html.flexbox .double-space {
-    margin: 1em;
-  }
-  html.flexbox .extra-large-double-space {
-    margin: 1em;
-  }
-  html.flexbox .double-padding {
-    padding: 1em;
-  }
-  html.flexbox .extra-large-double-padding {
-    padding: 1em;
-  }
-  html.flexbox .half-space {
+
+  .double-space {
     margin: 4em;
   }
-  html.flexbox .extra-large-half-space {
+
+  .extra-large-double-space {
     margin: 4em;
   }
-  html.flexbox .half-padding {
+
+  .double-padding {
     padding: 4em;
   }
-  html.flexbox .extra-large-half-padding {
+
+  .extra-large-double-padding {
     padding: 4em;
   }
-  html.flexbox .quarter-space {
-    margin: 8em;
+
+  .half-space {
+    margin: 1em;
   }
-  html.flexbox .extra-large-quarter-space {
-    margin: 8em;
+
+  .extra-large-half-space {
+    margin: 1em;
   }
-  html.flexbox .quarter-padding {
-    padding: 8em;
+
+  .half-padding {
+    padding: 1em;
   }
-  html.flexbox .extra-large-quarter-padding {
-    padding: 8em;
+
+  .extra-large-half-padding {
+    padding: 1em;
   }
-  html.flexbox .vertical-space {
+
+  .quarter-space {
+    margin: 0.5em;
+  }
+
+  .extra-large-quarter-space {
+    margin: 0.5em;
+  }
+
+  .quarter-padding {
+    padding: 0.5em;
+  }
+
+  .extra-large-quarter-padding {
+    padding: 0.5em;
+  }
+
+  .vertical-space {
     margin-top: 2em;
     margin-bottom: 2em;
   }
-  html.flexbox .extra-large-vertical-space {
+
+  .extra-large-vertical-space {
     margin-top: 2em;
     margin-bottom: 2em;
   }
-  html.flexbox .vertical-padding {
+
+  .vertical-padding {
     padding-top: 2em;
     padding-bottom: 2em;
   }
-  html.flexbox .extra-large-vertical-padding {
+
+  .extra-large-vertical-padding {
     padding-top: 2em;
     padding-bottom: 2em;
   }
-  html.flexbox .double-vertical-space {
+
+  .double-vertical-space {
     margin-top: 4em;
     margin-bottom: 4em;
   }
-  html.flexbox .extra-large-double-vertical-space {
+
+  .extra-large-double-vertical-space {
     margin-top: 4em;
     margin-bottom: 4em;
   }
-  html.flexbox .double-vertical-padding {
+
+  .double-vertical-padding {
     padding-top: 4em;
     padding-bottom: 4em;
   }
-  html.flexbox .extra-large-double-vertical-padding {
+
+  .extra-large-double-vertical-padding {
     padding-top: 4em;
     padding-bottom: 4em;
   }
-  html.flexbox .half-vertical-space {
+
+  .half-vertical-space {
     margin-top: 1em;
     margin-bottom: 1em;
   }
-  html.flexbox .extra-large-half-vertical-space {
+
+  .extra-large-half-vertical-space {
     margin-top: 1em;
     margin-bottom: 1em;
   }
-  html.flexbox .half-vertical-padding {
+
+  .half-vertical-padding {
     padding-top: 1em;
     padding-bottom: 1em;
   }
-  html.flexbox .extra-large-half-vertical-padding {
+
+  .extra-large-half-vertical-padding {
     padding-top: 1em;
     padding-bottom: 1em;
   }
-  html.flexbox .quarter-vertical-space {
+
+  .quarter-vertical-space {
     margin-top: 0.5em;
     margin-bottom: 0.5em;
   }
-  html.flexbox .extra-large-quarter-vertical-space {
+
+  .extra-large-quarter-vertical-space {
     margin-top: 0.5em;
     margin-bottom: 0.5em;
   }
-  html.flexbox .quarter-vertical-padding {
+
+  .quarter-vertical-padding {
     padding-top: 0.5em;
     padding-bottom: 0.5em;
   }
-  html.flexbox .extra-large-quarter-vertical-padding {
+
+  .extra-large-quarter-vertical-padding {
     padding-top: 0.5em;
     padding-bottom: 0.5em;
   }
-  html.flexbox .horizontal-space {
+
+  .horizontal-space {
     margin-left: 2em;
     margin-right: 2em;
   }
-  html.flexbox .extra-large-horizontal-space {
+
+  .extra-large-horizontal-space {
     margin-left: 2em;
     margin-right: 2em;
   }
-  html.flexbox .horizontal-padding {
+
+  .horizontal-padding {
     padding-left: 2em;
     padding-right: 2em;
   }
-  html.flexbox .extra-large-horizontal-padding {
+
+  .extra-large-horizontal-padding {
     padding-left: 2em;
     padding-right: 2em;
   }
-  html.flexbox .double-horizontal-space {
+
+  .double-horizontal-space {
     margin-left: 4em;
     margin-right: 4em;
   }
-  html.flexbox .extra-large-double-horizontal-space {
+
+  .extra-large-double-horizontal-space {
     margin-left: 4em;
     margin-right: 4em;
   }
-  html.flexbox .double-horizontal-padding {
+
+  .double-horizontal-padding {
     padding-left: 4em;
     padding-right: 4em;
   }
-  html.flexbox .extra-large-double-horizontal-padding {
+
+  .extra-large-double-horizontal-padding {
     padding-left: 4em;
     padding-right: 4em;
   }
-  html.flexbox .half-horizontal-space {
+
+  .half-horizontal-space {
     margin-left: 1em;
     margin-right: 1em;
   }
-  html.flexbox .extra-large-half-horizontal-space {
+
+  .extra-large-half-horizontal-space {
     margin-left: 1em;
     margin-right: 1em;
   }
-  html.flexbox .half-horizontal-padding {
+
+  .half-horizontal-padding {
     padding-left: 1em;
     padding-right: 1em;
   }
-  html.flexbox .extra-large-half-horizontal-padding {
+
+  .extra-large-half-horizontal-padding {
     padding-left: 1em;
     padding-right: 1em;
   }
-  html.flexbox .quarter-horizontal-space {
+
+  .quarter-horizontal-space {
     margin-left: 0.5em;
     margin-right: 0.5em;
   }
-  html.flexbox .extra-large-quarter-horizontal-space {
+
+  .extra-large-quarter-horizontal-space {
     margin-left: 0.5em;
     margin-right: 0.5em;
   }
-  html.flexbox .quarter-horizontal-padding {
+
+  .quarter-horizontal-padding {
     padding-left: 0.5em;
     padding-right: 0.5em;
   }
-  html.flexbox .extra-large-quarter-horizontal-padding {
+
+  .extra-large-quarter-horizontal-padding {
     padding-left: 0.5em;
     padding-right: 0.5em;
   }
-  html.flexbox .top-space {
+
+  .top-space {
     margin-top: 2em;
   }
-  html.flexbox .extra-large-top-space {
+
+  .extra-large-top-space {
     margin-top: 2em;
   }
-  html.flexbox .top-padding {
+
+  .top-padding {
     padding-top: 2em;
   }
-  html.flexbox .extra-large-top-padding {
+
+  .extra-large-top-padding {
     padding-top: 2em;
   }
-  html.flexbox .double-top-space {
+
+  .double-top-space {
     margin-top: 4em;
   }
-  html.flexbox .extra-large-double-top-space {
+
+  .extra-large-double-top-space {
     margin-top: 4em;
   }
-  html.flexbox .double-top-padding {
+
+  .double-top-padding {
     padding-top: 4em;
   }
-  html.flexbox .extra-large-double-top-padding {
+
+  .extra-large-double-top-padding {
     padding-top: 4em;
   }
-  html.flexbox .half-top-space {
+
+  .half-top-space {
     margin-top: 1em;
   }
-  html.flexbox .extra-large-half-top-space {
+
+  .extra-large-half-top-space {
     margin-top: 1em;
   }
-  html.flexbox .half-top-padding {
+
+  .half-top-padding {
     padding-top: 1em;
   }
-  html.flexbox .extra-large-half-top-padding {
+
+  .extra-large-half-top-padding {
     padding-top: 1em;
   }
-  html.flexbox .quarter-top-space {
+
+  .quarter-top-space {
     margin-top: 0.5em;
   }
-  html.flexbox .extra-large-quarter-top-space {
+
+  .extra-large-quarter-top-space {
     margin-top: 0.5em;
   }
-  html.flexbox .quarter-top-padding {
+
+  .quarter-top-padding {
     padding-top: 0.5em;
   }
-  html.flexbox .extra-large-quarter-top-padding {
+
+  .extra-large-quarter-top-padding {
     padding-top: 0.5em;
   }
-  html.flexbox .right-space {
+
+  .right-space {
     margin-right: 2em;
   }
-  html.flexbox .extra-large-right-space {
+
+  .extra-large-right-space {
     margin-right: 2em;
   }
-  html.flexbox .right-padding {
+
+  .right-padding {
     padding-right: 2em;
   }
-  html.flexbox .extra-large-right-padding {
+
+  .extra-large-right-padding {
     padding-right: 2em;
   }
-  html.flexbox .double-right-space {
+
+  .double-right-space {
     margin-right: 4em;
   }
-  html.flexbox .extra-large-double-right-space {
+
+  .extra-large-double-right-space {
     margin-right: 4em;
   }
-  html.flexbox .double-right-padding {
+
+  .double-right-padding {
     padding-right: 4em;
   }
-  html.flexbox .extra-large-double-right-padding {
+
+  .extra-large-double-right-padding {
     padding-right: 4em;
   }
-  html.flexbox .half-right-space {
+
+  .half-right-space {
     margin-right: 1em;
   }
-  html.flexbox .extra-large-half-right-space {
+
+  .extra-large-half-right-space {
     margin-right: 1em;
   }
-  html.flexbox .half-right-padding {
+
+  .half-right-padding {
     padding-right: 1em;
   }
-  html.flexbox .extra-large-half-right-padding {
+
+  .extra-large-half-right-padding {
     padding-right: 1em;
   }
-  html.flexbox .quarter-right-space {
+
+  .quarter-right-space {
     margin-right: 0.5em;
   }
-  html.flexbox .extra-large-quarter-right-space {
+
+  .extra-large-quarter-right-space {
     margin-right: 0.5em;
   }
-  html.flexbox .quarter-right-padding {
+
+  .quarter-right-padding {
     padding-right: 0.5em;
   }
-  html.flexbox .extra-large-quarter-right-padding {
+
+  .extra-large-quarter-right-padding {
     padding-right: 0.5em;
   }
-  html.flexbox .bottom-space {
+
+  .bottom-space {
     margin-bottom: 2em;
   }
-  html.flexbox .extra-large-bottom-space {
+
+  .extra-large-bottom-space {
     margin-bottom: 2em;
   }
-  html.flexbox .bottom-padding {
+
+  .bottom-padding {
     padding-bottom: 2em;
   }
-  html.flexbox .extra-large-bottom-padding {
+
+  .extra-large-bottom-padding {
     padding-bottom: 2em;
   }
-  html.flexbox .double-bottom-space {
+
+  .double-bottom-space {
     margin-bottom: 4em;
   }
-  html.flexbox .extra-large-double-bottom-space {
+
+  .extra-large-double-bottom-space {
     margin-bottom: 4em;
   }
-  html.flexbox .double-bottom-padding {
+
+  .double-bottom-padding {
     padding-bottom: 4em;
   }
-  html.flexbox .extra-large-double-bottom-padding {
+
+  .extra-large-double-bottom-padding {
     padding-bottom: 4em;
   }
-  html.flexbox .half-bottom-space {
+
+  .half-bottom-space {
     margin-bottom: 1em;
   }
-  html.flexbox .extra-large-half-bottom-space {
+
+  .extra-large-half-bottom-space {
     margin-bottom: 1em;
   }
-  html.flexbox .half-bottom-padding {
+
+  .half-bottom-padding {
     padding-bottom: 1em;
   }
-  html.flexbox .extra-large-half-bottom-padding {
+
+  .extra-large-half-bottom-padding {
     padding-bottom: 1em;
   }
-  html.flexbox .quarter-bottom-space {
+
+  .quarter-bottom-space {
     margin-bottom: 0.5em;
   }
-  html.flexbox .extra-large-quarter-bottom-space {
+
+  .extra-large-quarter-bottom-space {
     margin-bottom: 0.5em;
   }
-  html.flexbox .quarter-bottom-padding {
+
+  .quarter-bottom-padding {
     padding-bottom: 0.5em;
   }
-  html.flexbox .extra-large-quarter-bottom-padding {
+
+  .extra-large-quarter-bottom-padding {
     padding-bottom: 0.5em;
   }
-  html.flexbox .left-space {
+
+  .left-space {
     margin-left: 2em;
   }
-  html.flexbox .extra-large-left-space {
+
+  .extra-large-left-space {
     margin-left: 2em;
   }
-  html.flexbox .left-padding {
+
+  .left-padding {
     padding-left: 2em;
   }
-  html.flexbox .extra-large-left-padding {
+
+  .extra-large-left-padding {
     padding-left: 2em;
   }
-  html.flexbox .double-left-space {
+
+  .double-left-space {
     margin-left: 4em;
   }
-  html.flexbox .extra-large-double-left-space {
+
+  .extra-large-double-left-space {
     margin-left: 4em;
   }
-  html.flexbox .double-left-padding {
+
+  .double-left-padding {
     padding-left: 4em;
   }
-  html.flexbox .extra-large-double-left-padding {
+
+  .extra-large-double-left-padding {
     padding-left: 4em;
   }
-  html.flexbox .half-left-space {
+
+  .half-left-space {
     margin-left: 1em;
   }
-  html.flexbox .extra-large-half-left-space {
+
+  .extra-large-half-left-space {
     margin-left: 1em;
   }
-  html.flexbox .half-left-padding {
+
+  .half-left-padding {
     padding-left: 1em;
   }
-  html.flexbox .extra-large-half-left-padding {
+
+  .extra-large-half-left-padding {
     padding-left: 1em;
   }
-  html.flexbox .quarter-left-space {
+
+  .quarter-left-space {
     margin-left: 0.5em;
   }
-  html.flexbox .extra-large-quarter-left-space {
+
+  .extra-large-quarter-left-space {
     margin-left: 0.5em;
   }
-  html.flexbox .quarter-left-padding {
+
+  .quarter-left-padding {
     padding-left: 0.5em;
   }
-  html.flexbox .extra-large-quarter-left-padding {
+
+  .extra-large-quarter-left-padding {
     padding-left: 0.5em;
   }
-  html.flexbox .hide-extra-large {
+
+  .hide-extra-large {
     display: none !important;
   }
-  html.flexbox .show-extra-large {
+
+  .show-extra-large {
     display: inherit !important;
   }
-  html.flexbox table.show-extra-large {
+
+  table.show-extra-large {
     display: table;
   }
-  html.flexbox thead.show-extra-large {
+
+  thead.show-extra-large {
     display: table-header-group;
   }
-  html.flexbox tbody.show-extra-large {
+
+  tbody.show-extra-large {
     display: table-row-group;
   }
-  html.flexbox tfoot.show-extra-large {
+
+  tfoot.show-extra-large {
     display: table-footer-group;
   }
-  html.flexbox tr.show-extra-large {
+
+  tr.show-extra-large {
     display: table-row;
   }
-  html.flexbox th.show-extra-large,
-  html.flexbox td.show-extra-large {
+
+  th.show-extra-large,
+  td.show-extra-large {
     display: table-cell;
   }
 }
 @media screen and (min-width: 961px) and (max-width: 1260px) {
-  html.flexbox .ink-grid {
+  .ink-grid {
     padding: 0 1.75em;
   }
-  html.flexbox .column-group.gutters {
+
+  .column-group > [class*=large-] {
+    float: left;
+    clear: none;
+  }
+
+  .large-5 {
+    width: 5%;
+  }
+
+  .large-10 {
+    width: 10%;
+  }
+
+  .large-15 {
+    width: 15%;
+  }
+
+  .large-20 {
+    width: 20%;
+  }
+
+  .large-25 {
+    width: 25%;
+  }
+
+  .large-30 {
+    width: 30%;
+  }
+
+  .large-33 {
+    width: 33.33%;
+  }
+
+  .large-35 {
+    width: 35%;
+  }
+
+  .large-40 {
+    width: 40%;
+  }
+
+  .large-45 {
+    width: 45%;
+  }
+
+  .large-50 {
+    width: 50%;
+  }
+
+  .large-55 {
+    width: 55%;
+  }
+
+  .large-60 {
+    width: 60%;
+  }
+
+  .large-65 {
+    width: 65%;
+  }
+
+  .large-66 {
+    width: 66.66%;
+  }
+
+  .large-70 {
+    width: 70%;
+  }
+
+  .large-75 {
+    width: 75%;
+  }
+
+  .large-80 {
+    width: 80%;
+  }
+
+  .large-85 {
+    width: 85%;
+  }
+
+  .large-90 {
+    width: 90%;
+  }
+
+  .large-95 {
+    width: 95%;
+  }
+
+  .large-100 {
+    width: 100%;
+  }
+
+  [class*=large-100] {
+    float: none;
+    clear: both;
+  }
+
+  .column-group {
+    *zoom: 1;
+  }
+  .column-group:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  .column-group.gutters {
     margin-left: -1.75em;
   }
-  html.flexbox .column-group.gutters > [class*=large-], html.flexbox .column-group.gutters > [class*=all-], html.flexbox .column-group.gutters > .all-auto {
+  .column-group.gutters > [class*=large-], .column-group.gutters > [class*=all-] {
     padding-left: 1.75em;
     margin-bottom: 1.75em;
   }
-  html.flexbox .column-group.horizontal-gutters {
+
+  .column-group.horizontal-gutters {
     margin-left: -1.75em;
   }
-  html.flexbox .column-group.horizontal-gutters > [class*=large-], html.flexbox .column-group.horizontal-gutters > [class*=all-], html.flexbox .column-group.horizontal-gutters > .all-auto {
+  .column-group.horizontal-gutters > [class*=large-], .column-group.horizontal-gutters > [class*=all-] {
     padding-left: 1.75em;
   }
-  html.flexbox .column-group.vertical-gutters > [class*=large-], html.flexbox .column-group.vertical-gutters > [class*=all-], html.flexbox .column-group.vertical-gutters > .all-auto {
+
+  .column-group.vertical-gutters > [class*=large-], .column-group.vertical-gutters > [class*=all-] {
     margin-bottom: 1.75em;
   }
-  html.flexbox .column-group.double-gutters {
+
+  .column-group.double-gutters {
     margin-left: -3.5em;
   }
-  html.flexbox .column-group.double-gutters > [class*=large-], html.flexbox .column-group.double-gutters > [class*=all-], html.flexbox .column-group.double-gutters > .all-auto {
+  .column-group.double-gutters > [class*=large-], .column-group.double-gutters > [class*=all-] {
     padding-left: 3.5em;
     margin-bottom: 3.5em;
   }
-  html.flexbox .column-group.double-horizontal-gutters {
+
+  .column-group.double-horizontal-gutters {
     margin-left: -3.5em;
   }
-  html.flexbox .column-group.double-horizontal-gutters > [class*=large-], html.flexbox .column-group.double-horizontal-gutters > [class*=all-], html.flexbox .column-group.double-horizontal-gutters > .all-auto {
+  .column-group.double-horizontal-gutters > [class*=large-], .column-group.double-horizontal-gutters > [class*=all-] {
     padding-left: 3.5em;
   }
-  html.flexbox .column-group.double-vertical-gutters > [class*=large-], html.flexbox .column-group.double-vertical-gutters > [class*=all-], html.flexbox .column-group.double-vertical-gutters > .all-auto {
+
+  .column-group.double-vertical-gutters > [class*=large-], .column-group.double-vertical-gutters > [class*=all-] {
     margin-bottom: 3.5em;
   }
-  html.flexbox .column-group.half-gutters {
+
+  .column-group.half-gutters {
     margin-left: -0.875em;
   }
-  html.flexbox .column-group.half-gutters > [class*=large-], html.flexbox .column-group.half-gutters > [class*=all-], html.flexbox .column-group.half-gutters > .all-auto {
+  .column-group.half-gutters > [class*=large-], .column-group.half-gutters > [class*=all-] {
     padding-left: 0.875em;
     margin-bottom: 0.875em;
   }
-  html.flexbox .column-group.half-horizontal-gutters {
+
+  .column-group.half-horizontal-gutters {
     margin-left: -0.875em;
   }
-  html.flexbox .column-group.half-horizontal-gutters > [class*=large-], html.flexbox .column-group.half-horizontal-gutters > [class*=all-], html.flexbox .column-group.half-horizontal-gutters > .all-auto {
+  .column-group.half-horizontal-gutters > [class*=large-], .column-group.half-horizontal-gutters > [class*=all-] {
     padding-left: 0.875em;
   }
-  html.flexbox .column-group.half-vertical-gutters > [class*=large-], html.flexbox .column-group.half-vertical-gutters > [class*=all-], html.flexbox .column-group.half-vertical-gutters > .all-auto {
+
+  .column-group.half-vertical-gutters > [class*=large-], .column-group.half-vertical-gutters > [class*=all-] {
     margin-bottom: 0.875em;
   }
-  html.flexbox .column-group.quarter-gutters {
+
+  .column-group.quarter-gutters {
     margin-left: -0.4375em;
   }
-  html.flexbox .column-group.quarter-gutters > [class*=large-], html.flexbox .column-group.quarter-gutters > [class*=all-], html.flexbox .column-group.quarter-gutters > .all-auto {
+  .column-group.quarter-gutters > [class*=large-], .column-group.quarter-gutters > [class*=all-] {
     padding-left: 0.4375em;
     margin-bottom: 0.4375em;
   }
-  html.flexbox .column-group.quarter-horizontal-gutters {
+
+  .column-group.quarter-horizontal-gutters {
     margin-left: -0.4375em;
   }
-  html.flexbox .column-group.quarter-horizontal-gutters > [class*=large-], html.flexbox .column-group.quarter-horizontal-gutters > [class*=all-], html.flexbox .column-group.quarter-horizontal-gutters > .all-auto {
+  .column-group.quarter-horizontal-gutters > [class*=large-], .column-group.quarter-horizontal-gutters > [class*=all-] {
     padding-left: 0.4375em;
   }
-  html.flexbox .column-group.quarter-vertical-gutters > [class*=large-], html.flexbox .column-group.quarter-vertical-gutters > [class*=all-], html.flexbox .column-group.quarter-vertical-gutters > .all-auto {
+
+  .column-group.quarter-vertical-gutters > [class*=large-], .column-group.quarter-vertical-gutters > [class*=all-] {
     margin-bottom: 0.4375em;
   }
-  html.flexbox .column-group.large-gutters {
+
+  .column-group.large-gutters {
     margin-left: -1.75em;
   }
-  html.flexbox .column-group.large-gutters > [class*=large-], html.flexbox .column-group.large-gutters > [class*=all-], html.flexbox .column-group.large-gutters > .all-auto {
+  .column-group.large-gutters > [class*=large-], .column-group.large-gutters > [class*=all-] {
     padding-left: 0.4375em;
     margin-bottom: 0.4375em;
   }
-  html.flexbox .column-group.large-horizontal-gutters {
+
+  .column-group.large-horizontal-gutters {
     margin-left: -1.75em;
   }
-  html.flexbox .column-group.large-horizontal-gutters > [class*=large-], html.flexbox .column-group.large-horizontal-gutters > [class*=all-], html.flexbox .column-group.large-horizontal-gutters > .all-auto {
+  .column-group.large-horizontal-gutters > [class*=large-], .column-group.large-horizontal-gutters > [class*=all-] {
     padding-left: 1.75em;
   }
-  html.flexbox .column-group.large-vertical-gutters > [class*=large-], html.flexbox .column-group.large-vertical-gutters > [class*=all-], html.flexbox .column-group.large-vertical-gutters > .all-auto {
+
+  .column-group.large-vertical-gutters > [class*=large-], .column-group.large-vertical-gutters > [class*=all-] {
     margin-bottom: 1.75em;
   }
-  html.flexbox .column-group.large-double-gutters {
+
+  .column-group.large-double-gutters {
     margin-left: -3.5em;
   }
-  html.flexbox .column-group.large-double-gutters > [class*=large-], html.flexbox .column-group.large-double-gutters > [class*=all-], html.flexbox .column-group.large-double-gutters > .all-auto {
+  .column-group.large-double-gutters > [class*=large-], .column-group.large-double-gutters > [class*=all-] {
     padding-left: 3.5em;
     margin-bottom: 3.5em;
   }
-  html.flexbox .column-group.large-double-horizontal-gutters {
+
+  .column-group.large-double-horizontal-gutters {
     margin-left: -3.5em;
   }
-  html.flexbox .column-group.large-double-horizontal-gutters > [class*=large-], html.flexbox .column-group.large-double-horizontal-gutters > [class*=all-], html.flexbox .column-group.large-double-horizontal-gutters > .all-auto {
+  .column-group.large-double-horizontal-gutters > [class*=large-], .column-group.large-double-horizontal-gutters > [class*=all-] {
     padding-left: 3.5em;
   }
-  html.flexbox .column-group.large-double-vertical-gutters > [class*=large-], html.flexbox .column-group.large-double-vertical-gutters > [class*=all-], html.flexbox .column-group.large-double-vertical-gutters > .all-auto {
+
+  .column-group.large-double-vertical-gutters > [class*=large-], .column-group.large-double-vertical-gutters > [class*=all-] {
     margin-bottom: 3.5em;
   }
-  html.flexbox .column-group.large-half-gutters {
+
+  .column-group.large-half-gutters {
     margin-left: -0.875em;
   }
-  html.flexbox .column-group.large-half-gutters > [class*=large-], html.flexbox .column-group.large-half-gutters > [class*=all-], html.flexbox .column-group.large-half-gutters > .all-auto {
+  .column-group.large-half-gutters > [class*=large-], .column-group.large-half-gutters > [class*=all-] {
     padding-left: 0.875em;
     margin-bottom: 0.875em;
   }
-  html.flexbox .column-group.large-half-horizontal-gutters {
+
+  .column-group.large-half-horizontal-gutters {
     margin-left: -0.875em;
   }
-  html.flexbox .column-group.large-half-horizontal-gutters > [class*=large-], html.flexbox .column-group.large-half-horizontal-gutters > [class*=all-], html.flexbox .column-group.large-half-horizontal-gutters > .all-auto {
+  .column-group.large-half-horizontal-gutters > [class*=large-], .column-group.large-half-horizontal-gutters > [class*=all-] {
     padding-left: 0.875em;
   }
-  html.flexbox .column-group.large-half-vertical-gutters > [class*=large-], html.flexbox .column-group.large-half-vertical-gutters > [class*=all-], html.flexbox .column-group.large-half-vertical-gutters > .all-auto {
+
+  .column-group.large-half-vertical-gutters > [class*=large-], .column-group.large-half-vertical-gutters > [class*=all-] {
     margin-bottom: 0.875em;
   }
-  html.flexbox .column-group.large-quarter-gutters {
+
+  .column-group.large-quarter-gutters {
     margin-left: -0.4375em;
   }
-  html.flexbox .column-group.large-quarter-gutters > [class*=large-], html.flexbox .column-group.large-quarter-gutters > [class*=all-], html.flexbox .column-group.large-quarter-gutters > .all-auto {
+  .column-group.large-quarter-gutters > [class*=large-], .column-group.large-quarter-gutters > [class*=all-] {
     padding-left: 0.4375em;
     margin-bottom: 0.4375em;
   }
-  html.flexbox .column-group.large-quarter-horizontal-gutters {
+
+  .column-group.large-quarter-horizontal-gutters {
     margin-left: -0.4375em;
   }
-  html.flexbox .column-group.large-quarter-horizontal-gutters > [class*=large-], html.flexbox .column-group.large-quarter-horizontal-gutters > [class*=all-], html.flexbox .column-group.large-quarter-horizontal-gutters > .all-auto {
+  .column-group.large-quarter-horizontal-gutters > [class*=large-], .column-group.large-quarter-horizontal-gutters > [class*=all-] {
     padding-left: 0.4375em;
   }
-  html.flexbox .column-group.large-quarter-vertical-gutters > [class*=large-], html.flexbox .column-group.large-quarter-vertical-gutters > [class*=all-], html.flexbox .column-group.large-quarter-vertical-gutters > .all-auto {
+
+  .column-group.large-quarter-vertical-gutters > [class*=large-], .column-group.large-quarter-vertical-gutters > [class*=all-] {
     margin-bottom: 0.4375em;
   }
-  html.flexbox .column-group.large-no-gutters {
+
+  .column-group.large-no-gutters {
     margin-left: 0;
   }
-  html.flexbox .column-group.large-no-gutters > [class*=large-], html.flexbox .column-group.large-no-gutters > [class*=all-], html.flexbox .column-group.large-no-gutters > .all-auto {
+  .column-group.large-no-gutters > [class*=large-], .column-group.large-no-gutters > [class*=all-] {
     padding-left: 0;
     margin-bottom: 0;
   }
-  html.flexbox .all-5,
-  html.flexbox .large-5 {
-    width: 5%;
-    -webkit-flex-basis: 5%;
-    -moz-flex-basis: 5%;
-    flex-basis: 5%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
+
+  .ink-table td[class*=large-], .ink-table th[class*=large-], .ink-table tr[class*=large-], .ink-table thead[class*=large-], .ink-table tbody[class*=large-], .ink-table tfoot[class*=large-] {
+    float: none;
   }
-  html.flexbox .all-10,
-  html.flexbox .large-10 {
-    width: 10%;
-    -webkit-flex-basis: 10%;
-    -moz-flex-basis: 10%;
-    flex-basis: 10%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-15,
-  html.flexbox .large-15 {
-    width: 15%;
-    -webkit-flex-basis: 15%;
-    -moz-flex-basis: 15%;
-    flex-basis: 15%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-20,
-  html.flexbox .large-20 {
-    width: 20%;
-    -webkit-flex-basis: 20%;
-    -moz-flex-basis: 20%;
-    flex-basis: 20%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-25,
-  html.flexbox .large-25 {
-    width: 25%;
-    -webkit-flex-basis: 25%;
-    -moz-flex-basis: 25%;
-    flex-basis: 25%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-30,
-  html.flexbox .large-30 {
-    width: 30%;
-    -webkit-flex-basis: 30%;
-    -moz-flex-basis: 30%;
-    flex-basis: 30%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-33,
-  html.flexbox .large-33 {
-    width: 33,33333%;
-    -webkit-flex-basis: 33.33333%;
-    -moz-flex-basis: 33.33333%;
-    flex-basis: 33.33333%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-35,
-  html.flexbox .large-35 {
-    width: 35%;
-    -webkit-flex-basis: 35%;
-    -moz-flex-basis: 35%;
-    flex-basis: 35%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-40,
-  html.flexbox .large-40 {
-    width: 40%;
-    -webkit-flex-basis: 40%;
-    -moz-flex-basis: 40%;
-    flex-basis: 40%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-45,
-  html.flexbox .large-45 {
-    width: 45%;
-    -webkit-flex-basis: 45%;
-    -moz-flex-basis: 45%;
-    flex-basis: 45%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-50,
-  html.flexbox .large-50 {
-    width: 50%;
-    -webkit-flex-basis: 50%;
-    -moz-flex-basis: 50%;
-    flex-basis: 50%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-55,
-  html.flexbox .large-55 {
-    width: 55%;
-    -webkit-flex-basis: 55%;
-    -moz-flex-basis: 55%;
-    flex-basis: 55%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-60,
-  html.flexbox .large-60 {
-    width: 60%;
-    -webkit-flex-basis: 60%;
-    -moz-flex-basis: 60%;
-    flex-basis: 60%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-65,
-  html.flexbox .large-65 {
-    width: 65%;
-    -webkit-flex-basis: 65%;
-    -moz-flex-basis: 65%;
-    flex-basis: 65%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-66,
-  html.flexbox .large-66 {
-    width: 66,66666%;
-    -webkit-flex-basis: 66.66666%;
-    -moz-flex-basis: 66.66666%;
-    flex-basis: 66.66666%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-70,
-  html.flexbox .large-70 {
-    width: 70%;
-    -webkit-flex-basis: 70%;
-    -moz-flex-basis: 70%;
-    flex-basis: 70%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-75,
-  html.flexbox .large-75 {
-    width: 75%;
-    -webkit-flex-basis: 75%;
-    -moz-flex-basis: 75%;
-    flex-basis: 75%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-80,
-  html.flexbox .large-80 {
-    width: 80%;
-    -webkit-flex-basis: 80%;
-    -moz-flex-basis: 80%;
-    flex-basis: 80%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-85,
-  html.flexbox .large-85 {
-    width: 85%;
-    -webkit-flex-basis: 85%;
-    -moz-flex-basis: 85%;
-    flex-basis: 85%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-90,
-  html.flexbox .large-90 {
-    width: 90%;
-    -webkit-flex-basis: 90%;
-    -moz-flex-basis: 90%;
-    flex-basis: 90%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-95,
-  html.flexbox .large-95 {
-    width: 95%;
-    -webkit-flex-basis: 95%;
-    -moz-flex-basis: 95%;
-    flex-basis: 95%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-100,
-  html.flexbox .large-100 {
-    width: 100%;
-    -webkit-flex-basis: 100%;
-    -moz-flex-basis: 100%;
-    flex-basis: 100%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-auto,
-  html.flexbox .large-auto {
-    width: auto;
-    -webkit-flex-basis: auto;
-    flex-basis: auto;
-    -webkit-flex-grow: 1;
-    flex-grow: 1;
-  }
-  html.flexbox .ink-flex,
-  html.flexbox .column-group {
-    display: -webkit-flex;
-    display: flex;
-    -webkit-flex-wrap: wrap;
-    flex-wrap: wrap;
-    -webkit-flex-direction: row;
-    flex-direction: row;
-    list-style: none;
-  }
-  html.flexbox .ink-flex.large-reverse, html.flexbox .ink-flex.reverse,
-  html.flexbox .column-group.large-reverse,
-  html.flexbox .column-group.reverse {
-    -webkit-flex-direction: row-reverse;
-    -moz-flex-direction: row-reverse;
-    flex-direction: row-reverse;
-  }
-  html.flexbox .ink-flex.large-vertical, html.flexbox .ink-flex.vertical,
-  html.flexbox .column-group.large-vertical,
-  html.flexbox .column-group.vertical {
-    -webkit-flex-direction: column;
-    -moz-flex-direction: column;
-    flex-direction: column;
-  }
-  html.flexbox .ink-flex.large-vertical.large-reverse, html.flexbox .ink-flex.vertical.reverse,
-  html.flexbox .column-group.large-vertical.large-reverse,
-  html.flexbox .column-group.vertical.reverse {
-    -webkit-flex-direction: column-reverse;
-    -moz-flex-direction: column-reverse;
-    flex-direction: column-reverse;
-  }
-  html.flexbox .large-order-1 {
-    order: 1;
-  }
-  html.flexbox .large-order-2 {
-    order: 2;
-  }
-  html.flexbox .large-order-3 {
-    order: 3;
-  }
-  html.flexbox .large-order-4 {
-    order: 4;
-  }
-  html.flexbox .large-order-5 {
-    order: 5;
-  }
-  html.flexbox .large-order-6 {
-    order: 6;
-  }
-  html.flexbox .large-order-7 {
-    order: 7;
-  }
-  html.flexbox .large-order-8 {
-    order: 8;
-  }
-  html.flexbox .large-order-9 {
-    order: 9;
-  }
-  html.flexbox .large-order-10 {
-    order: 10;
-  }
-  html.flexbox .column-group .large-auto {
-    -webkit-flex-basis: auto;
-    flex-basis: auto;
-    -webkit-flex-grow: 1;
-    flex-grow: 1;
-  }
-  html.flexbox .push-top,
-  html.flexbox .large-push-top {
-    -webkit-box-align: start;
-    -webkit-align-items: flex-start;
-    -moz-box-align: start;
-    -ms-flex-align: start;
-    align-items: flex-start;
-    -webkit-align-self: flex-start;
-    -ms-flex-item-align: start;
-    align-self: flex-start;
-  }
-  html.flexbox .push-bottom,
-  html.flexbox .large-push-bottom {
-    -webkit-box-align: end;
-    -webkit-align-items: flex-end;
-    -moz-box-align: end;
-    -ms-flex-align: end;
-    align-items: flex-end;
-    -webkit-align-self: flex-end;
-    -ms-flex-item-align: end;
-    align-self: flex-end;
-  }
-  html.flexbox .push-middle,
-  html.flexbox .large-push-middle {
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-    -moz-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-align-self: flex-center;
-    -ms-flex-item-align: center;
-    align-self: center;
-  }
-  html.flexbox .push-left,
-  html.flexbox .large-push-left {
-    -webkit-justify-content: flex-start;
-    -moz-justify-content: flex-start;
-    justify-content: flex-start;
+
+  .large-push-left {
     float: left;
   }
-  html.flexbox .push-center,
-  html.flexbox .large-push-center {
-    float: none !important;
-    -webkit-justify-content: center;
-    -moz-justify-content: center;
-    justify-content: center;
+
+  .large-push-center {
+    float: none;
     margin-left: auto;
     margin-right: auto;
   }
-  html.flexbox .push-right,
-  html.flexbox .large-push-right {
-    -webkit-justify-content: flex-end;
-    -moz-justify-content: flex-end;
-    justify-content: flex-end;
+
+  .large-push-right {
     float: right;
   }
-  html.flexbox .large-align-left {
+
+  .large-align-left {
     text-align: left;
   }
-  html.flexbox .large-align-center {
+
+  .large-align-center {
     text-align: center;
   }
-  html.flexbox .large-align-right {
+
+  .large-align-right {
     text-align: right;
   }
-  html.flexbox .space {
+
+  .large-no-margin {
+    margin: 0 !important;
+  }
+
+  .space {
     margin: 1.75em;
   }
-  html.flexbox .large-space {
+
+  .large-space {
     margin: 1.75em;
   }
-  html.flexbox .padding {
+
+  .padding {
     padding: 1.75em;
   }
-  html.flexbox .large-padding {
+
+  .large-padding {
     padding: 1.75em;
   }
-  html.flexbox .double-space {
-    margin: 0.875em;
-  }
-  html.flexbox .large-double-space {
-    margin: 0.875em;
-  }
-  html.flexbox .double-padding {
-    padding: 0.875em;
-  }
-  html.flexbox .large-double-padding {
-    padding: 0.875em;
-  }
-  html.flexbox .half-space {
+
+  .double-space {
     margin: 3.5em;
   }
-  html.flexbox .large-half-space {
+
+  .large-double-space {
     margin: 3.5em;
   }
-  html.flexbox .half-padding {
+
+  .double-padding {
     padding: 3.5em;
   }
-  html.flexbox .large-half-padding {
+
+  .large-double-padding {
     padding: 3.5em;
   }
-  html.flexbox .quarter-space {
-    margin: 7em;
+
+  .half-space {
+    margin: 0.875em;
   }
-  html.flexbox .large-quarter-space {
-    margin: 7em;
+
+  .large-half-space {
+    margin: 0.875em;
   }
-  html.flexbox .quarter-padding {
-    padding: 7em;
+
+  .half-padding {
+    padding: 0.875em;
   }
-  html.flexbox .large-quarter-padding {
-    padding: 7em;
+
+  .large-half-padding {
+    padding: 0.875em;
   }
-  html.flexbox .vertical-space {
+
+  .quarter-space {
+    margin: 0.4375em;
+  }
+
+  .large-quarter-space {
+    margin: 0.4375em;
+  }
+
+  .quarter-padding {
+    padding: 0.4375em;
+  }
+
+  .large-quarter-padding {
+    padding: 0.4375em;
+  }
+
+  .vertical-space {
     margin-top: 1.75em;
     margin-bottom: 1.75em;
   }
-  html.flexbox .large-vertical-space {
+
+  .large-vertical-space {
     margin-top: 1.75em;
     margin-bottom: 1.75em;
   }
-  html.flexbox .vertical-padding {
+
+  .vertical-padding {
     padding-top: 1.75em;
     padding-bottom: 1.75em;
   }
-  html.flexbox .large-vertical-padding {
+
+  .large-vertical-padding {
     padding-top: 1.75em;
     padding-bottom: 1.75em;
   }
-  html.flexbox .double-vertical-space {
+
+  .double-vertical-space {
     margin-top: 3.5em;
     margin-bottom: 3.5em;
   }
-  html.flexbox .large-double-vertical-space {
+
+  .large-double-vertical-space {
     margin-top: 3.5em;
     margin-bottom: 3.5em;
   }
-  html.flexbox .double-vertical-padding {
+
+  .double-vertical-padding {
     padding-top: 3.5em;
     padding-bottom: 3.5em;
   }
-  html.flexbox .large-double-vertical-padding {
+
+  .large-double-vertical-padding {
     padding-top: 3.5em;
     padding-bottom: 3.5em;
   }
-  html.flexbox .half-vertical-space {
+
+  .half-vertical-space {
     margin-top: 0.875em;
     margin-bottom: 0.875em;
   }
-  html.flexbox .large-half-vertical-space {
+
+  .large-half-vertical-space {
     margin-top: 0.875em;
     margin-bottom: 0.875em;
   }
-  html.flexbox .half-vertical-padding {
+
+  .half-vertical-padding {
     padding-top: 0.875em;
     padding-bottom: 0.875em;
   }
-  html.flexbox .large-half-vertical-padding {
+
+  .large-half-vertical-padding {
     padding-top: 0.875em;
     padding-bottom: 0.875em;
   }
-  html.flexbox .quarter-vertical-space {
+
+  .quarter-vertical-space {
     margin-top: 0.4375em;
     margin-bottom: 0.4375em;
   }
-  html.flexbox .large-quarter-vertical-space {
+
+  .large-quarter-vertical-space {
     margin-top: 0.4375em;
     margin-bottom: 0.4375em;
   }
-  html.flexbox .quarter-vertical-padding {
+
+  .quarter-vertical-padding {
     padding-top: 0.4375em;
     padding-bottom: 0.4375em;
   }
-  html.flexbox .large-quarter-vertical-padding {
+
+  .large-quarter-vertical-padding {
     padding-top: 0.4375em;
     padding-bottom: 0.4375em;
   }
-  html.flexbox .horizontal-space {
+
+  .horizontal-space {
     margin-left: 1.75em;
     margin-right: 1.75em;
   }
-  html.flexbox .large-horizontal-space {
+
+  .large-horizontal-space {
     margin-left: 1.75em;
     margin-right: 1.75em;
   }
-  html.flexbox .horizontal-padding {
+
+  .horizontal-padding {
     padding-left: 1.75em;
     padding-right: 1.75em;
   }
-  html.flexbox .large-horizontal-padding {
+
+  .large-horizontal-padding {
     padding-left: 1.75em;
     padding-right: 1.75em;
   }
-  html.flexbox .double-horizontal-space {
+
+  .double-horizontal-space {
     margin-left: 3.5em;
     margin-right: 3.5em;
   }
-  html.flexbox .large-double-horizontal-space {
+
+  .large-double-horizontal-space {
     margin-left: 3.5em;
     margin-right: 3.5em;
   }
-  html.flexbox .double-horizontal-padding {
+
+  .double-horizontal-padding {
     padding-left: 3.5em;
     padding-right: 3.5em;
   }
-  html.flexbox .large-double-horizontal-padding {
+
+  .large-double-horizontal-padding {
     padding-left: 3.5em;
     padding-right: 3.5em;
   }
-  html.flexbox .half-horizontal-space {
+
+  .half-horizontal-space {
     margin-left: 0.875em;
     margin-right: 0.875em;
   }
-  html.flexbox .large-half-horizontal-space {
+
+  .large-half-horizontal-space {
     margin-left: 0.875em;
     margin-right: 0.875em;
   }
-  html.flexbox .half-horizontal-padding {
+
+  .half-horizontal-padding {
     padding-left: 0.875em;
     padding-right: 0.875em;
   }
-  html.flexbox .large-half-horizontal-padding {
+
+  .large-half-horizontal-padding {
     padding-left: 0.875em;
     padding-right: 0.875em;
   }
-  html.flexbox .quarter-horizontal-space {
+
+  .quarter-horizontal-space {
     margin-left: 0.4375em;
     margin-right: 0.4375em;
   }
-  html.flexbox .large-quarter-horizontal-space {
+
+  .large-quarter-horizontal-space {
     margin-left: 0.4375em;
     margin-right: 0.4375em;
   }
-  html.flexbox .quarter-horizontal-padding {
+
+  .quarter-horizontal-padding {
     padding-left: 0.4375em;
     padding-right: 0.4375em;
   }
-  html.flexbox .large-quarter-horizontal-padding {
+
+  .large-quarter-horizontal-padding {
     padding-left: 0.4375em;
     padding-right: 0.4375em;
   }
-  html.flexbox .top-space {
+
+  .top-space {
     margin-top: 1.75em;
   }
-  html.flexbox .large-top-space {
+
+  .large-top-space {
     margin-top: 1.75em;
   }
-  html.flexbox .top-padding {
+
+  .top-padding {
     padding-top: 1.75em;
   }
-  html.flexbox .large-top-padding {
+
+  .large-top-padding {
     padding-top: 1.75em;
   }
-  html.flexbox .double-top-space {
+
+  .double-top-space {
     margin-top: 3.5em;
   }
-  html.flexbox .large-double-top-space {
+
+  .large-double-top-space {
     margin-top: 3.5em;
   }
-  html.flexbox .double-top-padding {
+
+  .double-top-padding {
     padding-top: 3.5em;
   }
-  html.flexbox .large-double-top-padding {
+
+  .large-double-top-padding {
     padding-top: 3.5em;
   }
-  html.flexbox .half-top-space {
+
+  .half-top-space {
     margin-top: 0.875em;
   }
-  html.flexbox .large-half-top-space {
+
+  .large-half-top-space {
     margin-top: 0.875em;
   }
-  html.flexbox .half-top-padding {
+
+  .half-top-padding {
     padding-top: 0.875em;
   }
-  html.flexbox .large-half-top-padding {
+
+  .large-half-top-padding {
     padding-top: 0.875em;
   }
-  html.flexbox .quarter-top-space {
+
+  .quarter-top-space {
     margin-top: 0.4375em;
   }
-  html.flexbox .large-quarter-top-space {
+
+  .large-quarter-top-space {
     margin-top: 0.4375em;
   }
-  html.flexbox .quarter-top-padding {
+
+  .quarter-top-padding {
     padding-top: 0.4375em;
   }
-  html.flexbox .large-quarter-top-padding {
+
+  .large-quarter-top-padding {
     padding-top: 0.4375em;
   }
-  html.flexbox .right-space {
+
+  .right-space {
     margin-right: 1.75em;
   }
-  html.flexbox .large-right-space {
+
+  .large-right-space {
     margin-right: 1.75em;
   }
-  html.flexbox .right-padding {
+
+  .right-padding {
     padding-right: 1.75em;
   }
-  html.flexbox .large-right-padding {
+
+  .large-right-padding {
     padding-right: 1.75em;
   }
-  html.flexbox .double-right-space {
+
+  .double-right-space {
     margin-right: 3.5em;
   }
-  html.flexbox .large-double-right-space {
+
+  .large-double-right-space {
     margin-right: 3.5em;
   }
-  html.flexbox .double-right-padding {
+
+  .double-right-padding {
     padding-right: 3.5em;
   }
-  html.flexbox .large-double-right-padding {
+
+  .large-double-right-padding {
     padding-right: 3.5em;
   }
-  html.flexbox .half-right-space {
+
+  .half-right-space {
     margin-right: 0.875em;
   }
-  html.flexbox .large-half-right-space {
+
+  .large-half-right-space {
     margin-right: 0.875em;
   }
-  html.flexbox .half-right-padding {
+
+  .half-right-padding {
     padding-right: 0.875em;
   }
-  html.flexbox .large-half-right-padding {
+
+  .large-half-right-padding {
     padding-right: 0.875em;
   }
-  html.flexbox .quarter-right-space {
+
+  .quarter-right-space {
     margin-right: 0.4375em;
   }
-  html.flexbox .large-quarter-right-space {
+
+  .large-quarter-right-space {
     margin-right: 0.4375em;
   }
-  html.flexbox .quarter-right-padding {
+
+  .quarter-right-padding {
     padding-right: 0.4375em;
   }
-  html.flexbox .large-quarter-right-padding {
+
+  .large-quarter-right-padding {
     padding-right: 0.4375em;
   }
-  html.flexbox .bottom-space {
+
+  .bottom-space {
     margin-bottom: 1.75em;
   }
-  html.flexbox .large-bottom-space {
+
+  .large-bottom-space {
     margin-bottom: 1.75em;
   }
-  html.flexbox .bottom-padding {
+
+  .bottom-padding {
     padding-bottom: 1.75em;
   }
-  html.flexbox .large-bottom-padding {
+
+  .large-bottom-padding {
     padding-bottom: 1.75em;
   }
-  html.flexbox .double-bottom-space {
+
+  .double-bottom-space {
     margin-bottom: 3.5em;
   }
-  html.flexbox .large-double-bottom-space {
+
+  .large-double-bottom-space {
     margin-bottom: 3.5em;
   }
-  html.flexbox .double-bottom-padding {
+
+  .double-bottom-padding {
     padding-bottom: 3.5em;
   }
-  html.flexbox .large-double-bottom-padding {
+
+  .large-double-bottom-padding {
     padding-bottom: 3.5em;
   }
-  html.flexbox .half-bottom-space {
+
+  .half-bottom-space {
     margin-bottom: 0.875em;
   }
-  html.flexbox .large-half-bottom-space {
+
+  .large-half-bottom-space {
     margin-bottom: 0.875em;
   }
-  html.flexbox .half-bottom-padding {
+
+  .half-bottom-padding {
     padding-bottom: 0.875em;
   }
-  html.flexbox .large-half-bottom-padding {
+
+  .large-half-bottom-padding {
     padding-bottom: 0.875em;
   }
-  html.flexbox .quarter-bottom-space {
+
+  .quarter-bottom-space {
     margin-bottom: 0.4375em;
   }
-  html.flexbox .large-quarter-bottom-space {
+
+  .large-quarter-bottom-space {
     margin-bottom: 0.4375em;
   }
-  html.flexbox .quarter-bottom-padding {
+
+  .quarter-bottom-padding {
     padding-bottom: 0.4375em;
   }
-  html.flexbox .large-quarter-bottom-padding {
+
+  .large-quarter-bottom-padding {
     padding-bottom: 0.4375em;
   }
-  html.flexbox .left-space {
+
+  .left-space {
     margin-left: 1.75em;
   }
-  html.flexbox .large-left-space {
+
+  .large-left-space {
     margin-left: 1.75em;
   }
-  html.flexbox .left-padding {
+
+  .left-padding {
     padding-left: 1.75em;
   }
-  html.flexbox .large-left-padding {
+
+  .large-left-padding {
     padding-left: 1.75em;
   }
-  html.flexbox .double-left-space {
+
+  .double-left-space {
     margin-left: 3.5em;
   }
-  html.flexbox .large-double-left-space {
+
+  .large-double-left-space {
     margin-left: 3.5em;
   }
-  html.flexbox .double-left-padding {
+
+  .double-left-padding {
     padding-left: 3.5em;
   }
-  html.flexbox .large-double-left-padding {
+
+  .large-double-left-padding {
     padding-left: 3.5em;
   }
-  html.flexbox .half-left-space {
+
+  .half-left-space {
     margin-left: 0.875em;
   }
-  html.flexbox .large-half-left-space {
+
+  .large-half-left-space {
     margin-left: 0.875em;
   }
-  html.flexbox .half-left-padding {
+
+  .half-left-padding {
     padding-left: 0.875em;
   }
-  html.flexbox .large-half-left-padding {
+
+  .large-half-left-padding {
     padding-left: 0.875em;
   }
-  html.flexbox .quarter-left-space {
+
+  .quarter-left-space {
     margin-left: 0.4375em;
   }
-  html.flexbox .large-quarter-left-space {
+
+  .large-quarter-left-space {
     margin-left: 0.4375em;
   }
-  html.flexbox .quarter-left-padding {
+
+  .quarter-left-padding {
     padding-left: 0.4375em;
   }
-  html.flexbox .large-quarter-left-padding {
+
+  .large-quarter-left-padding {
     padding-left: 0.4375em;
   }
-  html.flexbox .hide-large {
+
+  .hide-large {
     display: none !important;
   }
-  html.flexbox .show-large {
+
+  .show-large {
     display: inherit !important;
   }
-  html.flexbox table.show-large {
+
+  table.show-large {
     display: table;
   }
-  html.flexbox thead.show-large {
+
+  thead.show-large {
     display: table-header-group;
   }
-  html.flexbox tbody.show-large {
+
+  tbody.show-large {
     display: table-row-group;
   }
-  html.flexbox tfoot.show-large {
+
+  tfoot.show-large {
     display: table-footer-group;
   }
-  html.flexbox tr.show-large {
+
+  tr.show-large {
     display: table-row;
   }
-  html.flexbox th.show-large,
-  html.flexbox td.show-large {
+
+  th.show-large,
+  td.show-large {
     display: table-cell;
   }
 }
 @media screen and (min-width: 641px) and (max-width: 960px) {
-  html.flexbox .ink-grid {
+  .ink-grid {
     padding: 0 1.5em;
   }
-  html.flexbox .column-group.gutters {
+
+  .column-group > [class*=medium-] {
+    float: left;
+    clear: none;
+  }
+
+  .medium-5 {
+    width: 5%;
+  }
+
+  .medium-10 {
+    width: 10%;
+  }
+
+  .medium-15 {
+    width: 15%;
+  }
+
+  .medium-20 {
+    width: 20%;
+  }
+
+  .medium-25 {
+    width: 25%;
+  }
+
+  .medium-30 {
+    width: 30%;
+  }
+
+  .medium-33 {
+    width: 33.33%;
+  }
+
+  .medium-35 {
+    width: 35%;
+  }
+
+  .medium-40 {
+    width: 40%;
+  }
+
+  .medium-45 {
+    width: 45%;
+  }
+
+  .medium-50 {
+    width: 50%;
+  }
+
+  .medium-55 {
+    width: 55%;
+  }
+
+  .medium-60 {
+    width: 60%;
+  }
+
+  .medium-65 {
+    width: 65%;
+  }
+
+  .medium-66 {
+    width: 66.66%;
+  }
+
+  .medium-70 {
+    width: 70%;
+  }
+
+  .medium-75 {
+    width: 75%;
+  }
+
+  .medium-80 {
+    width: 80%;
+  }
+
+  .medium-85 {
+    width: 85%;
+  }
+
+  .medium-90 {
+    width: 90%;
+  }
+
+  .medium-95 {
+    width: 95%;
+  }
+
+  .medium-100 {
+    width: 100%;
+  }
+
+  [class*=medium-100] {
+    float: none;
+    clear: both;
+  }
+
+  .column-group {
+    *zoom: 1;
+  }
+  .column-group:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  .column-group.gutters {
     margin-left: -1.5em;
   }
-  html.flexbox .column-group.gutters > [class*=medium-], html.flexbox .column-group.gutters > [class*=all-], html.flexbox .column-group.gutters > .all-auto {
+  .column-group.gutters > [class*=medium-], .column-group.gutters > [class*=all-] {
     padding-left: 1.5em;
     margin-bottom: 1.5em;
   }
-  html.flexbox .column-group.horizontal-gutters {
+
+  .column-group.horizontal-gutters {
     margin-left: -1.5em;
   }
-  html.flexbox .column-group.horizontal-gutters > [class*=medium-], html.flexbox .column-group.horizontal-gutters > [class*=all-], html.flexbox .column-group.horizontal-gutters > .all-auto {
+  .column-group.horizontal-gutters > [class*=medium-], .column-group.horizontal-gutters > [class*=all-] {
     padding-left: 1.5em;
   }
-  html.flexbox .column-group.vertical-gutters > [class*=medium-], html.flexbox .column-group.vertical-gutters > [class*=all-], html.flexbox .column-group.vertical-gutters > .all-auto {
+
+  .column-group.vertical-gutters > [class*=medium-], .column-group.vertical-gutters > [class*=all-] {
     margin-bottom: 1.5em;
   }
-  html.flexbox .column-group.double-gutters {
+
+  .column-group.double-gutters {
     margin-left: -3em;
   }
-  html.flexbox .column-group.double-gutters > [class*=medium-], html.flexbox .column-group.double-gutters > [class*=all-], html.flexbox .column-group.double-gutters > .all-auto {
+  .column-group.double-gutters > [class*=medium-], .column-group.double-gutters > [class*=all-] {
     padding-left: 3em;
     margin-bottom: 3em;
   }
-  html.flexbox .column-group.double-horizontal-gutters {
+
+  .column-group.double-horizontal-gutters {
     margin-left: -3em;
   }
-  html.flexbox .column-group.double-horizontal-gutters > [class*=medium-], html.flexbox .column-group.double-horizontal-gutters > [class*=all-], html.flexbox .column-group.double-horizontal-gutters > .all-auto {
+  .column-group.double-horizontal-gutters > [class*=medium-], .column-group.double-horizontal-gutters > [class*=all-] {
     padding-left: 3em;
   }
-  html.flexbox .column-group.double-vertical-gutters > [class*=medium-], html.flexbox .column-group.double-vertical-gutters > [class*=all-], html.flexbox .column-group.double-vertical-gutters > .all-auto {
+
+  .column-group.double-vertical-gutters > [class*=medium-], .column-group.double-vertical-gutters > [class*=all-] {
     margin-bottom: 3em;
   }
-  html.flexbox .column-group.half-gutters {
+
+  .column-group.half-gutters {
     margin-left: -0.75em;
   }
-  html.flexbox .column-group.half-gutters > [class*=medium-], html.flexbox .column-group.half-gutters > [class*=all-], html.flexbox .column-group.half-gutters > .all-auto {
+  .column-group.half-gutters > [class*=medium-], .column-group.half-gutters > [class*=all-] {
     padding-left: 0.75em;
     margin-bottom: 0.75em;
   }
-  html.flexbox .column-group.half-horizontal-gutters {
+
+  .column-group.half-horizontal-gutters {
     margin-left: -0.75em;
   }
-  html.flexbox .column-group.half-horizontal-gutters > [class*=medium-], html.flexbox .column-group.half-horizontal-gutters > [class*=all-], html.flexbox .column-group.half-horizontal-gutters > .all-auto {
+  .column-group.half-horizontal-gutters > [class*=medium-], .column-group.half-horizontal-gutters > [class*=all-] {
     padding-left: 0.75em;
   }
-  html.flexbox .column-group.half-vertical-gutters > [class*=medium-], html.flexbox .column-group.half-vertical-gutters > [class*=all-], html.flexbox .column-group.half-vertical-gutters > .all-auto {
+
+  .column-group.half-vertical-gutters > [class*=medium-], .column-group.half-vertical-gutters > [class*=all-] {
     margin-bottom: 0.75em;
   }
-  html.flexbox .column-group.quarter-gutters {
+
+  .column-group.quarter-gutters {
     margin-left: -0.375em;
   }
-  html.flexbox .column-group.quarter-gutters > [class*=medium-], html.flexbox .column-group.quarter-gutters > [class*=all-], html.flexbox .column-group.quarter-gutters > .all-auto {
+  .column-group.quarter-gutters > [class*=medium-], .column-group.quarter-gutters > [class*=all-] {
     padding-left: 0.375em;
     margin-bottom: 0.375em;
   }
-  html.flexbox .column-group.quarter-horizontal-gutters {
+
+  .column-group.quarter-horizontal-gutters {
     margin-left: -0.375em;
   }
-  html.flexbox .column-group.quarter-horizontal-gutters > [class*=medium-], html.flexbox .column-group.quarter-horizontal-gutters > [class*=all-], html.flexbox .column-group.quarter-horizontal-gutters > .all-auto {
+  .column-group.quarter-horizontal-gutters > [class*=medium-], .column-group.quarter-horizontal-gutters > [class*=all-] {
     padding-left: 0.375em;
   }
-  html.flexbox .column-group.quarter-vertical-gutters > [class*=medium-], html.flexbox .column-group.quarter-vertical-gutters > [class*=all-], html.flexbox .column-group.quarter-vertical-gutters > .all-auto {
+
+  .column-group.quarter-vertical-gutters > [class*=medium-], .column-group.quarter-vertical-gutters > [class*=all-] {
     margin-bottom: 0.375em;
   }
-  html.flexbox .column-group.medium-gutters {
+
+  .column-group.medium-gutters {
     margin-left: -1.5em;
   }
-  html.flexbox .column-group.medium-gutters > [class*=medium-], html.flexbox .column-group.medium-gutters > [class*=all-], html.flexbox .column-group.medium-gutters > .all-auto {
+  .column-group.medium-gutters > [class*=medium-], .column-group.medium-gutters > [class*=all-] {
     padding-left: 0.375em;
     margin-bottom: 0.375em;
   }
-  html.flexbox .column-group.medium-horizontal-gutters {
+
+  .column-group.medium-horizontal-gutters {
     margin-left: -1.5em;
   }
-  html.flexbox .column-group.medium-horizontal-gutters > [class*=medium-], html.flexbox .column-group.medium-horizontal-gutters > [class*=all-], html.flexbox .column-group.medium-horizontal-gutters > .all-auto {
+  .column-group.medium-horizontal-gutters > [class*=medium-], .column-group.medium-horizontal-gutters > [class*=all-] {
     padding-left: 1.5em;
   }
-  html.flexbox .column-group.medium-vertical-gutters > [class*=medium-], html.flexbox .column-group.medium-vertical-gutters > [class*=all-], html.flexbox .column-group.medium-vertical-gutters > .all-auto {
+
+  .column-group.medium-vertical-gutters > [class*=medium-], .column-group.medium-vertical-gutters > [class*=all-] {
     margin-bottom: 1.5em;
   }
-  html.flexbox .column-group.medium-double-gutters {
+
+  .column-group.medium-double-gutters {
     margin-left: -3em;
   }
-  html.flexbox .column-group.medium-double-gutters > [class*=medium-], html.flexbox .column-group.medium-double-gutters > [class*=all-], html.flexbox .column-group.medium-double-gutters > .all-auto {
+  .column-group.medium-double-gutters > [class*=medium-], .column-group.medium-double-gutters > [class*=all-] {
     padding-left: 3em;
     margin-bottom: 3em;
   }
-  html.flexbox .column-group.medium-double-horizontal-gutters {
+
+  .column-group.medium-double-horizontal-gutters {
     margin-left: -3em;
   }
-  html.flexbox .column-group.medium-double-horizontal-gutters > [class*=medium-], html.flexbox .column-group.medium-double-horizontal-gutters > [class*=all-], html.flexbox .column-group.medium-double-horizontal-gutters > .all-auto {
+  .column-group.medium-double-horizontal-gutters > [class*=medium-], .column-group.medium-double-horizontal-gutters > [class*=all-] {
     padding-left: 3em;
   }
-  html.flexbox .column-group.medium-double-vertical-gutters > [class*=medium-], html.flexbox .column-group.medium-double-vertical-gutters > [class*=all-], html.flexbox .column-group.medium-double-vertical-gutters > .all-auto {
+
+  .column-group.medium-double-vertical-gutters > [class*=medium-], .column-group.medium-double-vertical-gutters > [class*=all-] {
     margin-bottom: 3em;
   }
-  html.flexbox .column-group.medium-half-gutters {
+
+  .column-group.medium-half-gutters {
     margin-left: -0.75em;
   }
-  html.flexbox .column-group.medium-half-gutters > [class*=medium-], html.flexbox .column-group.medium-half-gutters > [class*=all-], html.flexbox .column-group.medium-half-gutters > .all-auto {
+  .column-group.medium-half-gutters > [class*=medium-], .column-group.medium-half-gutters > [class*=all-] {
     padding-left: 0.75em;
     margin-bottom: 0.75em;
   }
-  html.flexbox .column-group.medium-half-horizontal-gutters {
+
+  .column-group.medium-half-horizontal-gutters {
     margin-left: -0.75em;
   }
-  html.flexbox .column-group.medium-half-horizontal-gutters > [class*=medium-], html.flexbox .column-group.medium-half-horizontal-gutters > [class*=all-], html.flexbox .column-group.medium-half-horizontal-gutters > .all-auto {
+  .column-group.medium-half-horizontal-gutters > [class*=medium-], .column-group.medium-half-horizontal-gutters > [class*=all-] {
     padding-left: 0.75em;
   }
-  html.flexbox .column-group.medium-half-vertical-gutters > [class*=medium-], html.flexbox .column-group.medium-half-vertical-gutters > [class*=all-], html.flexbox .column-group.medium-half-vertical-gutters > .all-auto {
+
+  .column-group.medium-half-vertical-gutters > [class*=medium-], .column-group.medium-half-vertical-gutters > [class*=all-] {
     margin-bottom: 0.75em;
   }
-  html.flexbox .column-group.medium-quarter-gutters {
+
+  .column-group.medium-quarter-gutters {
     margin-left: -0.375em;
   }
-  html.flexbox .column-group.medium-quarter-gutters > [class*=medium-], html.flexbox .column-group.medium-quarter-gutters > [class*=all-], html.flexbox .column-group.medium-quarter-gutters > .all-auto {
+  .column-group.medium-quarter-gutters > [class*=medium-], .column-group.medium-quarter-gutters > [class*=all-] {
     padding-left: 0.375em;
     margin-bottom: 0.375em;
   }
-  html.flexbox .column-group.medium-quarter-horizontal-gutters {
+
+  .column-group.medium-quarter-horizontal-gutters {
     margin-left: -0.375em;
   }
-  html.flexbox .column-group.medium-quarter-horizontal-gutters > [class*=medium-], html.flexbox .column-group.medium-quarter-horizontal-gutters > [class*=all-], html.flexbox .column-group.medium-quarter-horizontal-gutters > .all-auto {
+  .column-group.medium-quarter-horizontal-gutters > [class*=medium-], .column-group.medium-quarter-horizontal-gutters > [class*=all-] {
     padding-left: 0.375em;
   }
-  html.flexbox .column-group.medium-quarter-vertical-gutters > [class*=medium-], html.flexbox .column-group.medium-quarter-vertical-gutters > [class*=all-], html.flexbox .column-group.medium-quarter-vertical-gutters > .all-auto {
+
+  .column-group.medium-quarter-vertical-gutters > [class*=medium-], .column-group.medium-quarter-vertical-gutters > [class*=all-] {
     margin-bottom: 0.375em;
   }
-  html.flexbox .column-group.medium-no-gutters {
+
+  .column-group.medium-no-gutters {
     margin-left: 0;
   }
-  html.flexbox .column-group.medium-no-gutters > [class*=medium-], html.flexbox .column-group.medium-no-gutters > [class*=all-], html.flexbox .column-group.medium-no-gutters > .all-auto {
+  .column-group.medium-no-gutters > [class*=medium-], .column-group.medium-no-gutters > [class*=all-] {
     padding-left: 0;
     margin-bottom: 0;
   }
-  html.flexbox .all-5,
-  html.flexbox .medium-5 {
-    width: 5%;
-    -webkit-flex-basis: 5%;
-    -moz-flex-basis: 5%;
-    flex-basis: 5%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
+
+  .ink-table td[class*=medium-], .ink-table th[class*=medium-], .ink-table tr[class*=medium-], .ink-table thead[class*=medium-], .ink-table tbody[class*=medium-], .ink-table tfoot[class*=medium-] {
+    float: none;
   }
-  html.flexbox .all-10,
-  html.flexbox .medium-10 {
-    width: 10%;
-    -webkit-flex-basis: 10%;
-    -moz-flex-basis: 10%;
-    flex-basis: 10%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-15,
-  html.flexbox .medium-15 {
-    width: 15%;
-    -webkit-flex-basis: 15%;
-    -moz-flex-basis: 15%;
-    flex-basis: 15%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-20,
-  html.flexbox .medium-20 {
-    width: 20%;
-    -webkit-flex-basis: 20%;
-    -moz-flex-basis: 20%;
-    flex-basis: 20%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-25,
-  html.flexbox .medium-25 {
-    width: 25%;
-    -webkit-flex-basis: 25%;
-    -moz-flex-basis: 25%;
-    flex-basis: 25%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-30,
-  html.flexbox .medium-30 {
-    width: 30%;
-    -webkit-flex-basis: 30%;
-    -moz-flex-basis: 30%;
-    flex-basis: 30%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-33,
-  html.flexbox .medium-33 {
-    width: 33,33333%;
-    -webkit-flex-basis: 33.33333%;
-    -moz-flex-basis: 33.33333%;
-    flex-basis: 33.33333%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-35,
-  html.flexbox .medium-35 {
-    width: 35%;
-    -webkit-flex-basis: 35%;
-    -moz-flex-basis: 35%;
-    flex-basis: 35%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-40,
-  html.flexbox .medium-40 {
-    width: 40%;
-    -webkit-flex-basis: 40%;
-    -moz-flex-basis: 40%;
-    flex-basis: 40%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-45,
-  html.flexbox .medium-45 {
-    width: 45%;
-    -webkit-flex-basis: 45%;
-    -moz-flex-basis: 45%;
-    flex-basis: 45%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-50,
-  html.flexbox .medium-50 {
-    width: 50%;
-    -webkit-flex-basis: 50%;
-    -moz-flex-basis: 50%;
-    flex-basis: 50%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-55,
-  html.flexbox .medium-55 {
-    width: 55%;
-    -webkit-flex-basis: 55%;
-    -moz-flex-basis: 55%;
-    flex-basis: 55%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-60,
-  html.flexbox .medium-60 {
-    width: 60%;
-    -webkit-flex-basis: 60%;
-    -moz-flex-basis: 60%;
-    flex-basis: 60%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-65,
-  html.flexbox .medium-65 {
-    width: 65%;
-    -webkit-flex-basis: 65%;
-    -moz-flex-basis: 65%;
-    flex-basis: 65%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-66,
-  html.flexbox .medium-66 {
-    width: 66,66666%;
-    -webkit-flex-basis: 66.66666%;
-    -moz-flex-basis: 66.66666%;
-    flex-basis: 66.66666%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-70,
-  html.flexbox .medium-70 {
-    width: 70%;
-    -webkit-flex-basis: 70%;
-    -moz-flex-basis: 70%;
-    flex-basis: 70%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-75,
-  html.flexbox .medium-75 {
-    width: 75%;
-    -webkit-flex-basis: 75%;
-    -moz-flex-basis: 75%;
-    flex-basis: 75%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-80,
-  html.flexbox .medium-80 {
-    width: 80%;
-    -webkit-flex-basis: 80%;
-    -moz-flex-basis: 80%;
-    flex-basis: 80%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-85,
-  html.flexbox .medium-85 {
-    width: 85%;
-    -webkit-flex-basis: 85%;
-    -moz-flex-basis: 85%;
-    flex-basis: 85%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-90,
-  html.flexbox .medium-90 {
-    width: 90%;
-    -webkit-flex-basis: 90%;
-    -moz-flex-basis: 90%;
-    flex-basis: 90%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-95,
-  html.flexbox .medium-95 {
-    width: 95%;
-    -webkit-flex-basis: 95%;
-    -moz-flex-basis: 95%;
-    flex-basis: 95%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-100,
-  html.flexbox .medium-100 {
-    width: 100%;
-    -webkit-flex-basis: 100%;
-    -moz-flex-basis: 100%;
-    flex-basis: 100%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-auto,
-  html.flexbox .medium-auto {
-    width: auto;
-    -webkit-flex-basis: auto;
-    flex-basis: auto;
-    -webkit-flex-grow: 1;
-    flex-grow: 1;
-  }
-  html.flexbox .ink-flex,
-  html.flexbox .column-group {
-    display: -webkit-flex;
-    display: flex;
-    -webkit-flex-wrap: wrap;
-    flex-wrap: wrap;
-    -webkit-flex-direction: row;
-    flex-direction: row;
-    list-style: none;
-  }
-  html.flexbox .ink-flex.medium-reverse, html.flexbox .ink-flex.reverse,
-  html.flexbox .column-group.medium-reverse,
-  html.flexbox .column-group.reverse {
-    -webkit-flex-direction: row-reverse;
-    -moz-flex-direction: row-reverse;
-    flex-direction: row-reverse;
-  }
-  html.flexbox .ink-flex.medium-vertical, html.flexbox .ink-flex.vertical,
-  html.flexbox .column-group.medium-vertical,
-  html.flexbox .column-group.vertical {
-    -webkit-flex-direction: column;
-    -moz-flex-direction: column;
-    flex-direction: column;
-  }
-  html.flexbox .ink-flex.medium-vertical.medium-reverse, html.flexbox .ink-flex.vertical.reverse,
-  html.flexbox .column-group.medium-vertical.medium-reverse,
-  html.flexbox .column-group.vertical.reverse {
-    -webkit-flex-direction: column-reverse;
-    -moz-flex-direction: column-reverse;
-    flex-direction: column-reverse;
-  }
-  html.flexbox .medium-order-1 {
-    order: 1;
-  }
-  html.flexbox .medium-order-2 {
-    order: 2;
-  }
-  html.flexbox .medium-order-3 {
-    order: 3;
-  }
-  html.flexbox .medium-order-4 {
-    order: 4;
-  }
-  html.flexbox .medium-order-5 {
-    order: 5;
-  }
-  html.flexbox .medium-order-6 {
-    order: 6;
-  }
-  html.flexbox .medium-order-7 {
-    order: 7;
-  }
-  html.flexbox .medium-order-8 {
-    order: 8;
-  }
-  html.flexbox .medium-order-9 {
-    order: 9;
-  }
-  html.flexbox .medium-order-10 {
-    order: 10;
-  }
-  html.flexbox .column-group .medium-auto {
-    -webkit-flex-basis: auto;
-    flex-basis: auto;
-    -webkit-flex-grow: 1;
-    flex-grow: 1;
-  }
-  html.flexbox .push-top,
-  html.flexbox .medium-push-top {
-    -webkit-box-align: start;
-    -webkit-align-items: flex-start;
-    -moz-box-align: start;
-    -ms-flex-align: start;
-    align-items: flex-start;
-    -webkit-align-self: flex-start;
-    -ms-flex-item-align: start;
-    align-self: flex-start;
-  }
-  html.flexbox .push-bottom,
-  html.flexbox .medium-push-bottom {
-    -webkit-box-align: end;
-    -webkit-align-items: flex-end;
-    -moz-box-align: end;
-    -ms-flex-align: end;
-    align-items: flex-end;
-    -webkit-align-self: flex-end;
-    -ms-flex-item-align: end;
-    align-self: flex-end;
-  }
-  html.flexbox .push-middle,
-  html.flexbox .medium-push-middle {
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-    -moz-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-align-self: flex-center;
-    -ms-flex-item-align: center;
-    align-self: center;
-  }
-  html.flexbox .push-left,
-  html.flexbox .medium-push-left {
-    -webkit-justify-content: flex-start;
-    -moz-justify-content: flex-start;
-    justify-content: flex-start;
+
+  .medium-push-left {
     float: left;
   }
-  html.flexbox .push-center,
-  html.flexbox .medium-push-center {
-    float: none !important;
-    -webkit-justify-content: center;
-    -moz-justify-content: center;
-    justify-content: center;
+
+  .medium-push-center {
+    float: none;
     margin-left: auto;
     margin-right: auto;
   }
-  html.flexbox .push-right,
-  html.flexbox .medium-push-right {
-    -webkit-justify-content: flex-end;
-    -moz-justify-content: flex-end;
-    justify-content: flex-end;
+
+  .medium-push-right {
     float: right;
   }
-  html.flexbox .medium-align-left {
+
+  .medium-align-left {
     text-align: left;
   }
-  html.flexbox .medium-align-center {
+
+  .medium-align-center {
     text-align: center;
   }
-  html.flexbox .medium-align-right {
+
+  .medium-align-right {
     text-align: right;
   }
-  html.flexbox .space {
+
+  .medium-no-margin {
+    margin: 0 !important;
+  }
+
+  .space {
     margin: 1.5em;
   }
-  html.flexbox .medium-space {
+
+  .medium-space {
     margin: 1.5em;
   }
-  html.flexbox .padding {
+
+  .padding {
     padding: 1.5em;
   }
-  html.flexbox .medium-padding {
+
+  .medium-padding {
     padding: 1.5em;
   }
-  html.flexbox .double-space {
-    margin: 0.75em;
-  }
-  html.flexbox .medium-double-space {
-    margin: 0.75em;
-  }
-  html.flexbox .double-padding {
-    padding: 0.75em;
-  }
-  html.flexbox .medium-double-padding {
-    padding: 0.75em;
-  }
-  html.flexbox .half-space {
+
+  .double-space {
     margin: 3em;
   }
-  html.flexbox .medium-half-space {
+
+  .medium-double-space {
     margin: 3em;
   }
-  html.flexbox .half-padding {
+
+  .double-padding {
     padding: 3em;
   }
-  html.flexbox .medium-half-padding {
+
+  .medium-double-padding {
     padding: 3em;
   }
-  html.flexbox .quarter-space {
-    margin: 6em;
+
+  .half-space {
+    margin: 0.75em;
   }
-  html.flexbox .medium-quarter-space {
-    margin: 6em;
+
+  .medium-half-space {
+    margin: 0.75em;
   }
-  html.flexbox .quarter-padding {
-    padding: 6em;
+
+  .half-padding {
+    padding: 0.75em;
   }
-  html.flexbox .medium-quarter-padding {
-    padding: 6em;
+
+  .medium-half-padding {
+    padding: 0.75em;
   }
-  html.flexbox .vertical-space {
+
+  .quarter-space {
+    margin: 0.375em;
+  }
+
+  .medium-quarter-space {
+    margin: 0.375em;
+  }
+
+  .quarter-padding {
+    padding: 0.375em;
+  }
+
+  .medium-quarter-padding {
+    padding: 0.375em;
+  }
+
+  .vertical-space {
     margin-top: 1.5em;
     margin-bottom: 1.5em;
   }
-  html.flexbox .medium-vertical-space {
+
+  .medium-vertical-space {
     margin-top: 1.5em;
     margin-bottom: 1.5em;
   }
-  html.flexbox .vertical-padding {
+
+  .vertical-padding {
     padding-top: 1.5em;
     padding-bottom: 1.5em;
   }
-  html.flexbox .medium-vertical-padding {
+
+  .medium-vertical-padding {
     padding-top: 1.5em;
     padding-bottom: 1.5em;
   }
-  html.flexbox .double-vertical-space {
+
+  .double-vertical-space {
     margin-top: 3em;
     margin-bottom: 3em;
   }
-  html.flexbox .medium-double-vertical-space {
+
+  .medium-double-vertical-space {
     margin-top: 3em;
     margin-bottom: 3em;
   }
-  html.flexbox .double-vertical-padding {
+
+  .double-vertical-padding {
     padding-top: 3em;
     padding-bottom: 3em;
   }
-  html.flexbox .medium-double-vertical-padding {
+
+  .medium-double-vertical-padding {
     padding-top: 3em;
     padding-bottom: 3em;
   }
-  html.flexbox .half-vertical-space {
+
+  .half-vertical-space {
     margin-top: 0.75em;
     margin-bottom: 0.75em;
   }
-  html.flexbox .medium-half-vertical-space {
+
+  .medium-half-vertical-space {
     margin-top: 0.75em;
     margin-bottom: 0.75em;
   }
-  html.flexbox .half-vertical-padding {
+
+  .half-vertical-padding {
     padding-top: 0.75em;
     padding-bottom: 0.75em;
   }
-  html.flexbox .medium-half-vertical-padding {
+
+  .medium-half-vertical-padding {
     padding-top: 0.75em;
     padding-bottom: 0.75em;
   }
-  html.flexbox .quarter-vertical-space {
+
+  .quarter-vertical-space {
     margin-top: 0.375em;
     margin-bottom: 0.375em;
   }
-  html.flexbox .medium-quarter-vertical-space {
+
+  .medium-quarter-vertical-space {
     margin-top: 0.375em;
     margin-bottom: 0.375em;
   }
-  html.flexbox .quarter-vertical-padding {
+
+  .quarter-vertical-padding {
     padding-top: 0.375em;
     padding-bottom: 0.375em;
   }
-  html.flexbox .medium-quarter-vertical-padding {
+
+  .medium-quarter-vertical-padding {
     padding-top: 0.375em;
     padding-bottom: 0.375em;
   }
-  html.flexbox .horizontal-space {
+
+  .horizontal-space {
     margin-left: 1.5em;
     margin-right: 1.5em;
   }
-  html.flexbox .medium-horizontal-space {
+
+  .medium-horizontal-space {
     margin-left: 1.5em;
     margin-right: 1.5em;
   }
-  html.flexbox .horizontal-padding {
+
+  .horizontal-padding {
     padding-left: 1.5em;
     padding-right: 1.5em;
   }
-  html.flexbox .medium-horizontal-padding {
+
+  .medium-horizontal-padding {
     padding-left: 1.5em;
     padding-right: 1.5em;
   }
-  html.flexbox .double-horizontal-space {
+
+  .double-horizontal-space {
     margin-left: 3em;
     margin-right: 3em;
   }
-  html.flexbox .medium-double-horizontal-space {
+
+  .medium-double-horizontal-space {
     margin-left: 3em;
     margin-right: 3em;
   }
-  html.flexbox .double-horizontal-padding {
+
+  .double-horizontal-padding {
     padding-left: 3em;
     padding-right: 3em;
   }
-  html.flexbox .medium-double-horizontal-padding {
+
+  .medium-double-horizontal-padding {
     padding-left: 3em;
     padding-right: 3em;
   }
-  html.flexbox .half-horizontal-space {
+
+  .half-horizontal-space {
     margin-left: 0.75em;
     margin-right: 0.75em;
   }
-  html.flexbox .medium-half-horizontal-space {
+
+  .medium-half-horizontal-space {
     margin-left: 0.75em;
     margin-right: 0.75em;
   }
-  html.flexbox .half-horizontal-padding {
+
+  .half-horizontal-padding {
     padding-left: 0.75em;
     padding-right: 0.75em;
   }
-  html.flexbox .medium-half-horizontal-padding {
+
+  .medium-half-horizontal-padding {
     padding-left: 0.75em;
     padding-right: 0.75em;
   }
-  html.flexbox .quarter-horizontal-space {
+
+  .quarter-horizontal-space {
     margin-left: 0.375em;
     margin-right: 0.375em;
   }
-  html.flexbox .medium-quarter-horizontal-space {
+
+  .medium-quarter-horizontal-space {
     margin-left: 0.375em;
     margin-right: 0.375em;
   }
-  html.flexbox .quarter-horizontal-padding {
+
+  .quarter-horizontal-padding {
     padding-left: 0.375em;
     padding-right: 0.375em;
   }
-  html.flexbox .medium-quarter-horizontal-padding {
+
+  .medium-quarter-horizontal-padding {
     padding-left: 0.375em;
     padding-right: 0.375em;
   }
-  html.flexbox .top-space {
+
+  .top-space {
     margin-top: 1.5em;
   }
-  html.flexbox .medium-top-space {
+
+  .medium-top-space {
     margin-top: 1.5em;
   }
-  html.flexbox .top-padding {
+
+  .top-padding {
     padding-top: 1.5em;
   }
-  html.flexbox .medium-top-padding {
+
+  .medium-top-padding {
     padding-top: 1.5em;
   }
-  html.flexbox .double-top-space {
+
+  .double-top-space {
     margin-top: 3em;
   }
-  html.flexbox .medium-double-top-space {
+
+  .medium-double-top-space {
     margin-top: 3em;
   }
-  html.flexbox .double-top-padding {
+
+  .double-top-padding {
     padding-top: 3em;
   }
-  html.flexbox .medium-double-top-padding {
+
+  .medium-double-top-padding {
     padding-top: 3em;
   }
-  html.flexbox .half-top-space {
+
+  .half-top-space {
     margin-top: 0.75em;
   }
-  html.flexbox .medium-half-top-space {
+
+  .medium-half-top-space {
     margin-top: 0.75em;
   }
-  html.flexbox .half-top-padding {
+
+  .half-top-padding {
     padding-top: 0.75em;
   }
-  html.flexbox .medium-half-top-padding {
+
+  .medium-half-top-padding {
     padding-top: 0.75em;
   }
-  html.flexbox .quarter-top-space {
+
+  .quarter-top-space {
     margin-top: 0.375em;
   }
-  html.flexbox .medium-quarter-top-space {
+
+  .medium-quarter-top-space {
     margin-top: 0.375em;
   }
-  html.flexbox .quarter-top-padding {
+
+  .quarter-top-padding {
     padding-top: 0.375em;
   }
-  html.flexbox .medium-quarter-top-padding {
+
+  .medium-quarter-top-padding {
     padding-top: 0.375em;
   }
-  html.flexbox .right-space {
+
+  .right-space {
     margin-right: 1.5em;
   }
-  html.flexbox .medium-right-space {
+
+  .medium-right-space {
     margin-right: 1.5em;
   }
-  html.flexbox .right-padding {
+
+  .right-padding {
     padding-right: 1.5em;
   }
-  html.flexbox .medium-right-padding {
+
+  .medium-right-padding {
     padding-right: 1.5em;
   }
-  html.flexbox .double-right-space {
+
+  .double-right-space {
     margin-right: 3em;
   }
-  html.flexbox .medium-double-right-space {
+
+  .medium-double-right-space {
     margin-right: 3em;
   }
-  html.flexbox .double-right-padding {
+
+  .double-right-padding {
     padding-right: 3em;
   }
-  html.flexbox .medium-double-right-padding {
+
+  .medium-double-right-padding {
     padding-right: 3em;
   }
-  html.flexbox .half-right-space {
+
+  .half-right-space {
     margin-right: 0.75em;
   }
-  html.flexbox .medium-half-right-space {
+
+  .medium-half-right-space {
     margin-right: 0.75em;
   }
-  html.flexbox .half-right-padding {
+
+  .half-right-padding {
     padding-right: 0.75em;
   }
-  html.flexbox .medium-half-right-padding {
+
+  .medium-half-right-padding {
     padding-right: 0.75em;
   }
-  html.flexbox .quarter-right-space {
+
+  .quarter-right-space {
     margin-right: 0.375em;
   }
-  html.flexbox .medium-quarter-right-space {
+
+  .medium-quarter-right-space {
     margin-right: 0.375em;
   }
-  html.flexbox .quarter-right-padding {
+
+  .quarter-right-padding {
     padding-right: 0.375em;
   }
-  html.flexbox .medium-quarter-right-padding {
+
+  .medium-quarter-right-padding {
     padding-right: 0.375em;
   }
-  html.flexbox .bottom-space {
+
+  .bottom-space {
     margin-bottom: 1.5em;
   }
-  html.flexbox .medium-bottom-space {
+
+  .medium-bottom-space {
     margin-bottom: 1.5em;
   }
-  html.flexbox .bottom-padding {
+
+  .bottom-padding {
     padding-bottom: 1.5em;
   }
-  html.flexbox .medium-bottom-padding {
+
+  .medium-bottom-padding {
     padding-bottom: 1.5em;
   }
-  html.flexbox .double-bottom-space {
+
+  .double-bottom-space {
     margin-bottom: 3em;
   }
-  html.flexbox .medium-double-bottom-space {
+
+  .medium-double-bottom-space {
     margin-bottom: 3em;
   }
-  html.flexbox .double-bottom-padding {
+
+  .double-bottom-padding {
     padding-bottom: 3em;
   }
-  html.flexbox .medium-double-bottom-padding {
+
+  .medium-double-bottom-padding {
     padding-bottom: 3em;
   }
-  html.flexbox .half-bottom-space {
+
+  .half-bottom-space {
     margin-bottom: 0.75em;
   }
-  html.flexbox .medium-half-bottom-space {
+
+  .medium-half-bottom-space {
     margin-bottom: 0.75em;
   }
-  html.flexbox .half-bottom-padding {
+
+  .half-bottom-padding {
     padding-bottom: 0.75em;
   }
-  html.flexbox .medium-half-bottom-padding {
+
+  .medium-half-bottom-padding {
     padding-bottom: 0.75em;
   }
-  html.flexbox .quarter-bottom-space {
+
+  .quarter-bottom-space {
     margin-bottom: 0.375em;
   }
-  html.flexbox .medium-quarter-bottom-space {
+
+  .medium-quarter-bottom-space {
     margin-bottom: 0.375em;
   }
-  html.flexbox .quarter-bottom-padding {
+
+  .quarter-bottom-padding {
     padding-bottom: 0.375em;
   }
-  html.flexbox .medium-quarter-bottom-padding {
+
+  .medium-quarter-bottom-padding {
     padding-bottom: 0.375em;
   }
-  html.flexbox .left-space {
+
+  .left-space {
     margin-left: 1.5em;
   }
-  html.flexbox .medium-left-space {
+
+  .medium-left-space {
     margin-left: 1.5em;
   }
-  html.flexbox .left-padding {
+
+  .left-padding {
     padding-left: 1.5em;
   }
-  html.flexbox .medium-left-padding {
+
+  .medium-left-padding {
     padding-left: 1.5em;
   }
-  html.flexbox .double-left-space {
+
+  .double-left-space {
     margin-left: 3em;
   }
-  html.flexbox .medium-double-left-space {
+
+  .medium-double-left-space {
     margin-left: 3em;
   }
-  html.flexbox .double-left-padding {
+
+  .double-left-padding {
     padding-left: 3em;
   }
-  html.flexbox .medium-double-left-padding {
+
+  .medium-double-left-padding {
     padding-left: 3em;
   }
-  html.flexbox .half-left-space {
+
+  .half-left-space {
     margin-left: 0.75em;
   }
-  html.flexbox .medium-half-left-space {
+
+  .medium-half-left-space {
     margin-left: 0.75em;
   }
-  html.flexbox .half-left-padding {
+
+  .half-left-padding {
     padding-left: 0.75em;
   }
-  html.flexbox .medium-half-left-padding {
+
+  .medium-half-left-padding {
     padding-left: 0.75em;
   }
-  html.flexbox .quarter-left-space {
+
+  .quarter-left-space {
     margin-left: 0.375em;
   }
-  html.flexbox .medium-quarter-left-space {
+
+  .medium-quarter-left-space {
     margin-left: 0.375em;
   }
-  html.flexbox .quarter-left-padding {
+
+  .quarter-left-padding {
     padding-left: 0.375em;
   }
-  html.flexbox .medium-quarter-left-padding {
+
+  .medium-quarter-left-padding {
     padding-left: 0.375em;
   }
-  html.flexbox .hide-medium {
+
+  .hide-medium {
     display: none !important;
   }
-  html.flexbox .show-medium {
+
+  .show-medium {
     display: inherit !important;
   }
-  html.flexbox table.show-medium {
+
+  table.show-medium {
     display: table;
   }
-  html.flexbox thead.show-medium {
+
+  thead.show-medium {
     display: table-header-group;
   }
-  html.flexbox tbody.show-medium {
+
+  tbody.show-medium {
     display: table-row-group;
   }
-  html.flexbox tfoot.show-medium {
+
+  tfoot.show-medium {
     display: table-footer-group;
   }
-  html.flexbox tr.show-medium {
+
+  tr.show-medium {
     display: table-row;
   }
-  html.flexbox th.show-medium,
-  html.flexbox td.show-medium {
+
+  th.show-medium,
+  td.show-medium {
     display: table-cell;
   }
 }
 @media screen and (min-width: 321px) and (max-width: 640px) {
-  html.flexbox .ink-grid {
+  .ink-grid {
     padding: 0 1.25em;
   }
-  html.flexbox .column-group.gutters {
+
+  .column-group > [class*=small-] {
+    float: left;
+    clear: none;
+  }
+
+  .small-5 {
+    width: 5%;
+  }
+
+  .small-10 {
+    width: 10%;
+  }
+
+  .small-15 {
+    width: 15%;
+  }
+
+  .small-20 {
+    width: 20%;
+  }
+
+  .small-25 {
+    width: 25%;
+  }
+
+  .small-30 {
+    width: 30%;
+  }
+
+  .small-33 {
+    width: 33.33%;
+  }
+
+  .small-35 {
+    width: 35%;
+  }
+
+  .small-40 {
+    width: 40%;
+  }
+
+  .small-45 {
+    width: 45%;
+  }
+
+  .small-50 {
+    width: 50%;
+  }
+
+  .small-55 {
+    width: 55%;
+  }
+
+  .small-60 {
+    width: 60%;
+  }
+
+  .small-65 {
+    width: 65%;
+  }
+
+  .small-66 {
+    width: 66.66%;
+  }
+
+  .small-70 {
+    width: 70%;
+  }
+
+  .small-75 {
+    width: 75%;
+  }
+
+  .small-80 {
+    width: 80%;
+  }
+
+  .small-85 {
+    width: 85%;
+  }
+
+  .small-90 {
+    width: 90%;
+  }
+
+  .small-95 {
+    width: 95%;
+  }
+
+  .small-100 {
+    width: 100%;
+  }
+
+  [class*=small-100] {
+    float: none;
+    clear: both;
+  }
+
+  .column-group {
+    *zoom: 1;
+  }
+  .column-group:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  .column-group.gutters {
     margin-left: -1.25em;
   }
-  html.flexbox .column-group.gutters > [class*=small-], html.flexbox .column-group.gutters > [class*=all-], html.flexbox .column-group.gutters > .all-auto {
+  .column-group.gutters > [class*=small-], .column-group.gutters > [class*=all-] {
     padding-left: 1.25em;
     margin-bottom: 1.25em;
   }
-  html.flexbox .column-group.horizontal-gutters {
+
+  .column-group.horizontal-gutters {
     margin-left: -1.25em;
   }
-  html.flexbox .column-group.horizontal-gutters > [class*=small-], html.flexbox .column-group.horizontal-gutters > [class*=all-], html.flexbox .column-group.horizontal-gutters > .all-auto {
+  .column-group.horizontal-gutters > [class*=small-], .column-group.horizontal-gutters > [class*=all-] {
     padding-left: 1.25em;
   }
-  html.flexbox .column-group.vertical-gutters > [class*=small-], html.flexbox .column-group.vertical-gutters > [class*=all-], html.flexbox .column-group.vertical-gutters > .all-auto {
+
+  .column-group.vertical-gutters > [class*=small-], .column-group.vertical-gutters > [class*=all-] {
     margin-bottom: 1.25em;
   }
-  html.flexbox .column-group.double-gutters {
+
+  .column-group.double-gutters {
     margin-left: -2.5em;
   }
-  html.flexbox .column-group.double-gutters > [class*=small-], html.flexbox .column-group.double-gutters > [class*=all-], html.flexbox .column-group.double-gutters > .all-auto {
+  .column-group.double-gutters > [class*=small-], .column-group.double-gutters > [class*=all-] {
     padding-left: 2.5em;
     margin-bottom: 2.5em;
   }
-  html.flexbox .column-group.double-horizontal-gutters {
+
+  .column-group.double-horizontal-gutters {
     margin-left: -2.5em;
   }
-  html.flexbox .column-group.double-horizontal-gutters > [class*=small-], html.flexbox .column-group.double-horizontal-gutters > [class*=all-], html.flexbox .column-group.double-horizontal-gutters > .all-auto {
+  .column-group.double-horizontal-gutters > [class*=small-], .column-group.double-horizontal-gutters > [class*=all-] {
     padding-left: 2.5em;
   }
-  html.flexbox .column-group.double-vertical-gutters > [class*=small-], html.flexbox .column-group.double-vertical-gutters > [class*=all-], html.flexbox .column-group.double-vertical-gutters > .all-auto {
+
+  .column-group.double-vertical-gutters > [class*=small-], .column-group.double-vertical-gutters > [class*=all-] {
     margin-bottom: 2.5em;
   }
-  html.flexbox .column-group.half-gutters {
+
+  .column-group.half-gutters {
     margin-left: -0.625em;
   }
-  html.flexbox .column-group.half-gutters > [class*=small-], html.flexbox .column-group.half-gutters > [class*=all-], html.flexbox .column-group.half-gutters > .all-auto {
+  .column-group.half-gutters > [class*=small-], .column-group.half-gutters > [class*=all-] {
     padding-left: 0.625em;
     margin-bottom: 0.625em;
   }
-  html.flexbox .column-group.half-horizontal-gutters {
+
+  .column-group.half-horizontal-gutters {
     margin-left: -0.625em;
   }
-  html.flexbox .column-group.half-horizontal-gutters > [class*=small-], html.flexbox .column-group.half-horizontal-gutters > [class*=all-], html.flexbox .column-group.half-horizontal-gutters > .all-auto {
+  .column-group.half-horizontal-gutters > [class*=small-], .column-group.half-horizontal-gutters > [class*=all-] {
     padding-left: 0.625em;
   }
-  html.flexbox .column-group.half-vertical-gutters > [class*=small-], html.flexbox .column-group.half-vertical-gutters > [class*=all-], html.flexbox .column-group.half-vertical-gutters > .all-auto {
+
+  .column-group.half-vertical-gutters > [class*=small-], .column-group.half-vertical-gutters > [class*=all-] {
     margin-bottom: 0.625em;
   }
-  html.flexbox .column-group.quarter-gutters {
+
+  .column-group.quarter-gutters {
     margin-left: -0.3125em;
   }
-  html.flexbox .column-group.quarter-gutters > [class*=small-], html.flexbox .column-group.quarter-gutters > [class*=all-], html.flexbox .column-group.quarter-gutters > .all-auto {
+  .column-group.quarter-gutters > [class*=small-], .column-group.quarter-gutters > [class*=all-] {
     padding-left: 0.3125em;
     margin-bottom: 0.3125em;
   }
-  html.flexbox .column-group.quarter-horizontal-gutters {
+
+  .column-group.quarter-horizontal-gutters {
     margin-left: -0.3125em;
   }
-  html.flexbox .column-group.quarter-horizontal-gutters > [class*=small-], html.flexbox .column-group.quarter-horizontal-gutters > [class*=all-], html.flexbox .column-group.quarter-horizontal-gutters > .all-auto {
+  .column-group.quarter-horizontal-gutters > [class*=small-], .column-group.quarter-horizontal-gutters > [class*=all-] {
     padding-left: 0.3125em;
   }
-  html.flexbox .column-group.quarter-vertical-gutters > [class*=small-], html.flexbox .column-group.quarter-vertical-gutters > [class*=all-], html.flexbox .column-group.quarter-vertical-gutters > .all-auto {
+
+  .column-group.quarter-vertical-gutters > [class*=small-], .column-group.quarter-vertical-gutters > [class*=all-] {
     margin-bottom: 0.3125em;
   }
-  html.flexbox .column-group.small-gutters {
+
+  .column-group.small-gutters {
     margin-left: -1.25em;
   }
-  html.flexbox .column-group.small-gutters > [class*=small-], html.flexbox .column-group.small-gutters > [class*=all-], html.flexbox .column-group.small-gutters > .all-auto {
+  .column-group.small-gutters > [class*=small-], .column-group.small-gutters > [class*=all-] {
     padding-left: 0.3125em;
     margin-bottom: 0.3125em;
   }
-  html.flexbox .column-group.small-horizontal-gutters {
+
+  .column-group.small-horizontal-gutters {
     margin-left: -1.25em;
   }
-  html.flexbox .column-group.small-horizontal-gutters > [class*=small-], html.flexbox .column-group.small-horizontal-gutters > [class*=all-], html.flexbox .column-group.small-horizontal-gutters > .all-auto {
+  .column-group.small-horizontal-gutters > [class*=small-], .column-group.small-horizontal-gutters > [class*=all-] {
     padding-left: 1.25em;
   }
-  html.flexbox .column-group.small-vertical-gutters > [class*=small-], html.flexbox .column-group.small-vertical-gutters > [class*=all-], html.flexbox .column-group.small-vertical-gutters > .all-auto {
+
+  .column-group.small-vertical-gutters > [class*=small-], .column-group.small-vertical-gutters > [class*=all-] {
     margin-bottom: 1.25em;
   }
-  html.flexbox .column-group.small-double-gutters {
+
+  .column-group.small-double-gutters {
     margin-left: -2.5em;
   }
-  html.flexbox .column-group.small-double-gutters > [class*=small-], html.flexbox .column-group.small-double-gutters > [class*=all-], html.flexbox .column-group.small-double-gutters > .all-auto {
+  .column-group.small-double-gutters > [class*=small-], .column-group.small-double-gutters > [class*=all-] {
     padding-left: 2.5em;
     margin-bottom: 2.5em;
   }
-  html.flexbox .column-group.small-double-horizontal-gutters {
+
+  .column-group.small-double-horizontal-gutters {
     margin-left: -2.5em;
   }
-  html.flexbox .column-group.small-double-horizontal-gutters > [class*=small-], html.flexbox .column-group.small-double-horizontal-gutters > [class*=all-], html.flexbox .column-group.small-double-horizontal-gutters > .all-auto {
+  .column-group.small-double-horizontal-gutters > [class*=small-], .column-group.small-double-horizontal-gutters > [class*=all-] {
     padding-left: 2.5em;
   }
-  html.flexbox .column-group.small-double-vertical-gutters > [class*=small-], html.flexbox .column-group.small-double-vertical-gutters > [class*=all-], html.flexbox .column-group.small-double-vertical-gutters > .all-auto {
+
+  .column-group.small-double-vertical-gutters > [class*=small-], .column-group.small-double-vertical-gutters > [class*=all-] {
     margin-bottom: 2.5em;
   }
-  html.flexbox .column-group.small-half-gutters {
+
+  .column-group.small-half-gutters {
     margin-left: -0.625em;
   }
-  html.flexbox .column-group.small-half-gutters > [class*=small-], html.flexbox .column-group.small-half-gutters > [class*=all-], html.flexbox .column-group.small-half-gutters > .all-auto {
+  .column-group.small-half-gutters > [class*=small-], .column-group.small-half-gutters > [class*=all-] {
     padding-left: 0.625em;
     margin-bottom: 0.625em;
   }
-  html.flexbox .column-group.small-half-horizontal-gutters {
+
+  .column-group.small-half-horizontal-gutters {
     margin-left: -0.625em;
   }
-  html.flexbox .column-group.small-half-horizontal-gutters > [class*=small-], html.flexbox .column-group.small-half-horizontal-gutters > [class*=all-], html.flexbox .column-group.small-half-horizontal-gutters > .all-auto {
+  .column-group.small-half-horizontal-gutters > [class*=small-], .column-group.small-half-horizontal-gutters > [class*=all-] {
     padding-left: 0.625em;
   }
-  html.flexbox .column-group.small-half-vertical-gutters > [class*=small-], html.flexbox .column-group.small-half-vertical-gutters > [class*=all-], html.flexbox .column-group.small-half-vertical-gutters > .all-auto {
+
+  .column-group.small-half-vertical-gutters > [class*=small-], .column-group.small-half-vertical-gutters > [class*=all-] {
     margin-bottom: 0.625em;
   }
-  html.flexbox .column-group.small-quarter-gutters {
+
+  .column-group.small-quarter-gutters {
     margin-left: -0.3125em;
   }
-  html.flexbox .column-group.small-quarter-gutters > [class*=small-], html.flexbox .column-group.small-quarter-gutters > [class*=all-], html.flexbox .column-group.small-quarter-gutters > .all-auto {
+  .column-group.small-quarter-gutters > [class*=small-], .column-group.small-quarter-gutters > [class*=all-] {
     padding-left: 0.3125em;
     margin-bottom: 0.3125em;
   }
-  html.flexbox .column-group.small-quarter-horizontal-gutters {
+
+  .column-group.small-quarter-horizontal-gutters {
     margin-left: -0.3125em;
   }
-  html.flexbox .column-group.small-quarter-horizontal-gutters > [class*=small-], html.flexbox .column-group.small-quarter-horizontal-gutters > [class*=all-], html.flexbox .column-group.small-quarter-horizontal-gutters > .all-auto {
+  .column-group.small-quarter-horizontal-gutters > [class*=small-], .column-group.small-quarter-horizontal-gutters > [class*=all-] {
     padding-left: 0.3125em;
   }
-  html.flexbox .column-group.small-quarter-vertical-gutters > [class*=small-], html.flexbox .column-group.small-quarter-vertical-gutters > [class*=all-], html.flexbox .column-group.small-quarter-vertical-gutters > .all-auto {
+
+  .column-group.small-quarter-vertical-gutters > [class*=small-], .column-group.small-quarter-vertical-gutters > [class*=all-] {
     margin-bottom: 0.3125em;
   }
-  html.flexbox .column-group.small-no-gutters {
+
+  .column-group.small-no-gutters {
     margin-left: 0;
   }
-  html.flexbox .column-group.small-no-gutters > [class*=small-], html.flexbox .column-group.small-no-gutters > [class*=all-], html.flexbox .column-group.small-no-gutters > .all-auto {
+  .column-group.small-no-gutters > [class*=small-], .column-group.small-no-gutters > [class*=all-] {
     padding-left: 0;
     margin-bottom: 0;
   }
-  html.flexbox .all-5,
-  html.flexbox .small-5 {
-    width: 5%;
-    -webkit-flex-basis: 5%;
-    -moz-flex-basis: 5%;
-    flex-basis: 5%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
+
+  .ink-table td[class*=small-], .ink-table th[class*=small-], .ink-table tr[class*=small-], .ink-table thead[class*=small-], .ink-table tbody[class*=small-], .ink-table tfoot[class*=small-] {
+    float: none;
   }
-  html.flexbox .all-10,
-  html.flexbox .small-10 {
-    width: 10%;
-    -webkit-flex-basis: 10%;
-    -moz-flex-basis: 10%;
-    flex-basis: 10%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-15,
-  html.flexbox .small-15 {
-    width: 15%;
-    -webkit-flex-basis: 15%;
-    -moz-flex-basis: 15%;
-    flex-basis: 15%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-20,
-  html.flexbox .small-20 {
-    width: 20%;
-    -webkit-flex-basis: 20%;
-    -moz-flex-basis: 20%;
-    flex-basis: 20%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-25,
-  html.flexbox .small-25 {
-    width: 25%;
-    -webkit-flex-basis: 25%;
-    -moz-flex-basis: 25%;
-    flex-basis: 25%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-30,
-  html.flexbox .small-30 {
-    width: 30%;
-    -webkit-flex-basis: 30%;
-    -moz-flex-basis: 30%;
-    flex-basis: 30%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-33,
-  html.flexbox .small-33 {
-    width: 33,33333%;
-    -webkit-flex-basis: 33.33333%;
-    -moz-flex-basis: 33.33333%;
-    flex-basis: 33.33333%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-35,
-  html.flexbox .small-35 {
-    width: 35%;
-    -webkit-flex-basis: 35%;
-    -moz-flex-basis: 35%;
-    flex-basis: 35%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-40,
-  html.flexbox .small-40 {
-    width: 40%;
-    -webkit-flex-basis: 40%;
-    -moz-flex-basis: 40%;
-    flex-basis: 40%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-45,
-  html.flexbox .small-45 {
-    width: 45%;
-    -webkit-flex-basis: 45%;
-    -moz-flex-basis: 45%;
-    flex-basis: 45%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-50,
-  html.flexbox .small-50 {
-    width: 50%;
-    -webkit-flex-basis: 50%;
-    -moz-flex-basis: 50%;
-    flex-basis: 50%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-55,
-  html.flexbox .small-55 {
-    width: 55%;
-    -webkit-flex-basis: 55%;
-    -moz-flex-basis: 55%;
-    flex-basis: 55%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-60,
-  html.flexbox .small-60 {
-    width: 60%;
-    -webkit-flex-basis: 60%;
-    -moz-flex-basis: 60%;
-    flex-basis: 60%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-65,
-  html.flexbox .small-65 {
-    width: 65%;
-    -webkit-flex-basis: 65%;
-    -moz-flex-basis: 65%;
-    flex-basis: 65%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-66,
-  html.flexbox .small-66 {
-    width: 66,66666%;
-    -webkit-flex-basis: 66.66666%;
-    -moz-flex-basis: 66.66666%;
-    flex-basis: 66.66666%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-70,
-  html.flexbox .small-70 {
-    width: 70%;
-    -webkit-flex-basis: 70%;
-    -moz-flex-basis: 70%;
-    flex-basis: 70%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-75,
-  html.flexbox .small-75 {
-    width: 75%;
-    -webkit-flex-basis: 75%;
-    -moz-flex-basis: 75%;
-    flex-basis: 75%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-80,
-  html.flexbox .small-80 {
-    width: 80%;
-    -webkit-flex-basis: 80%;
-    -moz-flex-basis: 80%;
-    flex-basis: 80%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-85,
-  html.flexbox .small-85 {
-    width: 85%;
-    -webkit-flex-basis: 85%;
-    -moz-flex-basis: 85%;
-    flex-basis: 85%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-90,
-  html.flexbox .small-90 {
-    width: 90%;
-    -webkit-flex-basis: 90%;
-    -moz-flex-basis: 90%;
-    flex-basis: 90%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-95,
-  html.flexbox .small-95 {
-    width: 95%;
-    -webkit-flex-basis: 95%;
-    -moz-flex-basis: 95%;
-    flex-basis: 95%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-100,
-  html.flexbox .small-100 {
-    width: 100%;
-    -webkit-flex-basis: 100%;
-    -moz-flex-basis: 100%;
-    flex-basis: 100%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-auto,
-  html.flexbox .small-auto {
-    width: auto;
-    -webkit-flex-basis: auto;
-    flex-basis: auto;
-    -webkit-flex-grow: 1;
-    flex-grow: 1;
-  }
-  html.flexbox .ink-flex,
-  html.flexbox .column-group {
-    display: -webkit-flex;
-    display: flex;
-    -webkit-flex-wrap: wrap;
-    flex-wrap: wrap;
-    -webkit-flex-direction: row;
-    flex-direction: row;
-    list-style: none;
-  }
-  html.flexbox .ink-flex.small-reverse, html.flexbox .ink-flex.reverse,
-  html.flexbox .column-group.small-reverse,
-  html.flexbox .column-group.reverse {
-    -webkit-flex-direction: row-reverse;
-    -moz-flex-direction: row-reverse;
-    flex-direction: row-reverse;
-  }
-  html.flexbox .ink-flex.small-vertical, html.flexbox .ink-flex.vertical,
-  html.flexbox .column-group.small-vertical,
-  html.flexbox .column-group.vertical {
-    -webkit-flex-direction: column;
-    -moz-flex-direction: column;
-    flex-direction: column;
-  }
-  html.flexbox .ink-flex.small-vertical.small-reverse, html.flexbox .ink-flex.vertical.reverse,
-  html.flexbox .column-group.small-vertical.small-reverse,
-  html.flexbox .column-group.vertical.reverse {
-    -webkit-flex-direction: column-reverse;
-    -moz-flex-direction: column-reverse;
-    flex-direction: column-reverse;
-  }
-  html.flexbox .small-order-1 {
-    order: 1;
-  }
-  html.flexbox .small-order-2 {
-    order: 2;
-  }
-  html.flexbox .small-order-3 {
-    order: 3;
-  }
-  html.flexbox .small-order-4 {
-    order: 4;
-  }
-  html.flexbox .small-order-5 {
-    order: 5;
-  }
-  html.flexbox .small-order-6 {
-    order: 6;
-  }
-  html.flexbox .small-order-7 {
-    order: 7;
-  }
-  html.flexbox .small-order-8 {
-    order: 8;
-  }
-  html.flexbox .small-order-9 {
-    order: 9;
-  }
-  html.flexbox .small-order-10 {
-    order: 10;
-  }
-  html.flexbox .column-group .small-auto {
-    -webkit-flex-basis: auto;
-    flex-basis: auto;
-    -webkit-flex-grow: 1;
-    flex-grow: 1;
-  }
-  html.flexbox .push-top,
-  html.flexbox .small-push-top {
-    -webkit-box-align: start;
-    -webkit-align-items: flex-start;
-    -moz-box-align: start;
-    -ms-flex-align: start;
-    align-items: flex-start;
-    -webkit-align-self: flex-start;
-    -ms-flex-item-align: start;
-    align-self: flex-start;
-  }
-  html.flexbox .push-bottom,
-  html.flexbox .small-push-bottom {
-    -webkit-box-align: end;
-    -webkit-align-items: flex-end;
-    -moz-box-align: end;
-    -ms-flex-align: end;
-    align-items: flex-end;
-    -webkit-align-self: flex-end;
-    -ms-flex-item-align: end;
-    align-self: flex-end;
-  }
-  html.flexbox .push-middle,
-  html.flexbox .small-push-middle {
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-    -moz-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-align-self: flex-center;
-    -ms-flex-item-align: center;
-    align-self: center;
-  }
-  html.flexbox .push-left,
-  html.flexbox .small-push-left {
-    -webkit-justify-content: flex-start;
-    -moz-justify-content: flex-start;
-    justify-content: flex-start;
+
+  .small-push-left {
     float: left;
   }
-  html.flexbox .push-center,
-  html.flexbox .small-push-center {
-    float: none !important;
-    -webkit-justify-content: center;
-    -moz-justify-content: center;
-    justify-content: center;
+
+  .small-push-center {
+    float: none;
     margin-left: auto;
     margin-right: auto;
   }
-  html.flexbox .push-right,
-  html.flexbox .small-push-right {
-    -webkit-justify-content: flex-end;
-    -moz-justify-content: flex-end;
-    justify-content: flex-end;
+
+  .small-push-right {
     float: right;
   }
-  html.flexbox .small-align-left {
+
+  .small-align-left {
     text-align: left;
   }
-  html.flexbox .small-align-center {
+
+  .small-align-center {
     text-align: center;
   }
-  html.flexbox .small-align-right {
+
+  .small-align-right {
     text-align: right;
   }
-  html.flexbox .space {
+
+  .small-no-margin {
+    margin: 0 !important;
+  }
+
+  .space {
     margin: 1.25em;
   }
-  html.flexbox .small-space {
+
+  .small-space {
     margin: 1.25em;
   }
-  html.flexbox .padding {
+
+  .padding {
     padding: 1.25em;
   }
-  html.flexbox .small-padding {
+
+  .small-padding {
     padding: 1.25em;
   }
-  html.flexbox .double-space {
-    margin: 0.625em;
-  }
-  html.flexbox .small-double-space {
-    margin: 0.625em;
-  }
-  html.flexbox .double-padding {
-    padding: 0.625em;
-  }
-  html.flexbox .small-double-padding {
-    padding: 0.625em;
-  }
-  html.flexbox .half-space {
+
+  .double-space {
     margin: 2.5em;
   }
-  html.flexbox .small-half-space {
+
+  .small-double-space {
     margin: 2.5em;
   }
-  html.flexbox .half-padding {
+
+  .double-padding {
     padding: 2.5em;
   }
-  html.flexbox .small-half-padding {
+
+  .small-double-padding {
     padding: 2.5em;
   }
-  html.flexbox .quarter-space {
-    margin: 5em;
+
+  .half-space {
+    margin: 0.625em;
   }
-  html.flexbox .small-quarter-space {
-    margin: 5em;
+
+  .small-half-space {
+    margin: 0.625em;
   }
-  html.flexbox .quarter-padding {
-    padding: 5em;
+
+  .half-padding {
+    padding: 0.625em;
   }
-  html.flexbox .small-quarter-padding {
-    padding: 5em;
+
+  .small-half-padding {
+    padding: 0.625em;
   }
-  html.flexbox .vertical-space {
+
+  .quarter-space {
+    margin: 0.3125em;
+  }
+
+  .small-quarter-space {
+    margin: 0.3125em;
+  }
+
+  .quarter-padding {
+    padding: 0.3125em;
+  }
+
+  .small-quarter-padding {
+    padding: 0.3125em;
+  }
+
+  .vertical-space {
     margin-top: 1.25em;
     margin-bottom: 1.25em;
   }
-  html.flexbox .small-vertical-space {
+
+  .small-vertical-space {
     margin-top: 1.25em;
     margin-bottom: 1.25em;
   }
-  html.flexbox .vertical-padding {
+
+  .vertical-padding {
     padding-top: 1.25em;
     padding-bottom: 1.25em;
   }
-  html.flexbox .small-vertical-padding {
+
+  .small-vertical-padding {
     padding-top: 1.25em;
     padding-bottom: 1.25em;
   }
-  html.flexbox .double-vertical-space {
+
+  .double-vertical-space {
     margin-top: 2.5em;
     margin-bottom: 2.5em;
   }
-  html.flexbox .small-double-vertical-space {
+
+  .small-double-vertical-space {
     margin-top: 2.5em;
     margin-bottom: 2.5em;
   }
-  html.flexbox .double-vertical-padding {
+
+  .double-vertical-padding {
     padding-top: 2.5em;
     padding-bottom: 2.5em;
   }
-  html.flexbox .small-double-vertical-padding {
+
+  .small-double-vertical-padding {
     padding-top: 2.5em;
     padding-bottom: 2.5em;
   }
-  html.flexbox .half-vertical-space {
+
+  .half-vertical-space {
     margin-top: 0.625em;
     margin-bottom: 0.625em;
   }
-  html.flexbox .small-half-vertical-space {
+
+  .small-half-vertical-space {
     margin-top: 0.625em;
     margin-bottom: 0.625em;
   }
-  html.flexbox .half-vertical-padding {
+
+  .half-vertical-padding {
     padding-top: 0.625em;
     padding-bottom: 0.625em;
   }
-  html.flexbox .small-half-vertical-padding {
+
+  .small-half-vertical-padding {
     padding-top: 0.625em;
     padding-bottom: 0.625em;
   }
-  html.flexbox .quarter-vertical-space {
+
+  .quarter-vertical-space {
     margin-top: 0.3125em;
     margin-bottom: 0.3125em;
   }
-  html.flexbox .small-quarter-vertical-space {
+
+  .small-quarter-vertical-space {
     margin-top: 0.3125em;
     margin-bottom: 0.3125em;
   }
-  html.flexbox .quarter-vertical-padding {
+
+  .quarter-vertical-padding {
     padding-top: 0.3125em;
     padding-bottom: 0.3125em;
   }
-  html.flexbox .small-quarter-vertical-padding {
+
+  .small-quarter-vertical-padding {
     padding-top: 0.3125em;
     padding-bottom: 0.3125em;
   }
-  html.flexbox .horizontal-space {
+
+  .horizontal-space {
     margin-left: 1.25em;
     margin-right: 1.25em;
   }
-  html.flexbox .small-horizontal-space {
+
+  .small-horizontal-space {
     margin-left: 1.25em;
     margin-right: 1.25em;
   }
-  html.flexbox .horizontal-padding {
+
+  .horizontal-padding {
     padding-left: 1.25em;
     padding-right: 1.25em;
   }
-  html.flexbox .small-horizontal-padding {
+
+  .small-horizontal-padding {
     padding-left: 1.25em;
     padding-right: 1.25em;
   }
-  html.flexbox .double-horizontal-space {
+
+  .double-horizontal-space {
     margin-left: 2.5em;
     margin-right: 2.5em;
   }
-  html.flexbox .small-double-horizontal-space {
+
+  .small-double-horizontal-space {
     margin-left: 2.5em;
     margin-right: 2.5em;
   }
-  html.flexbox .double-horizontal-padding {
+
+  .double-horizontal-padding {
     padding-left: 2.5em;
     padding-right: 2.5em;
   }
-  html.flexbox .small-double-horizontal-padding {
+
+  .small-double-horizontal-padding {
     padding-left: 2.5em;
     padding-right: 2.5em;
   }
-  html.flexbox .half-horizontal-space {
+
+  .half-horizontal-space {
     margin-left: 0.625em;
     margin-right: 0.625em;
   }
-  html.flexbox .small-half-horizontal-space {
+
+  .small-half-horizontal-space {
     margin-left: 0.625em;
     margin-right: 0.625em;
   }
-  html.flexbox .half-horizontal-padding {
+
+  .half-horizontal-padding {
     padding-left: 0.625em;
     padding-right: 0.625em;
   }
-  html.flexbox .small-half-horizontal-padding {
+
+  .small-half-horizontal-padding {
     padding-left: 0.625em;
     padding-right: 0.625em;
   }
-  html.flexbox .quarter-horizontal-space {
+
+  .quarter-horizontal-space {
     margin-left: 0.3125em;
     margin-right: 0.3125em;
   }
-  html.flexbox .small-quarter-horizontal-space {
+
+  .small-quarter-horizontal-space {
     margin-left: 0.3125em;
     margin-right: 0.3125em;
   }
-  html.flexbox .quarter-horizontal-padding {
+
+  .quarter-horizontal-padding {
     padding-left: 0.3125em;
     padding-right: 0.3125em;
   }
-  html.flexbox .small-quarter-horizontal-padding {
+
+  .small-quarter-horizontal-padding {
     padding-left: 0.3125em;
     padding-right: 0.3125em;
   }
-  html.flexbox .top-space {
+
+  .top-space {
     margin-top: 1.25em;
   }
-  html.flexbox .small-top-space {
+
+  .small-top-space {
     margin-top: 1.25em;
   }
-  html.flexbox .top-padding {
+
+  .top-padding {
     padding-top: 1.25em;
   }
-  html.flexbox .small-top-padding {
+
+  .small-top-padding {
     padding-top: 1.25em;
   }
-  html.flexbox .double-top-space {
+
+  .double-top-space {
     margin-top: 2.5em;
   }
-  html.flexbox .small-double-top-space {
+
+  .small-double-top-space {
     margin-top: 2.5em;
   }
-  html.flexbox .double-top-padding {
+
+  .double-top-padding {
     padding-top: 2.5em;
   }
-  html.flexbox .small-double-top-padding {
+
+  .small-double-top-padding {
     padding-top: 2.5em;
   }
-  html.flexbox .half-top-space {
+
+  .half-top-space {
     margin-top: 0.625em;
   }
-  html.flexbox .small-half-top-space {
+
+  .small-half-top-space {
     margin-top: 0.625em;
   }
-  html.flexbox .half-top-padding {
+
+  .half-top-padding {
     padding-top: 0.625em;
   }
-  html.flexbox .small-half-top-padding {
+
+  .small-half-top-padding {
     padding-top: 0.625em;
   }
-  html.flexbox .quarter-top-space {
+
+  .quarter-top-space {
     margin-top: 0.3125em;
   }
-  html.flexbox .small-quarter-top-space {
+
+  .small-quarter-top-space {
     margin-top: 0.3125em;
   }
-  html.flexbox .quarter-top-padding {
+
+  .quarter-top-padding {
     padding-top: 0.3125em;
   }
-  html.flexbox .small-quarter-top-padding {
+
+  .small-quarter-top-padding {
     padding-top: 0.3125em;
   }
-  html.flexbox .right-space {
+
+  .right-space {
     margin-right: 1.25em;
   }
-  html.flexbox .small-right-space {
+
+  .small-right-space {
     margin-right: 1.25em;
   }
-  html.flexbox .right-padding {
+
+  .right-padding {
     padding-right: 1.25em;
   }
-  html.flexbox .small-right-padding {
+
+  .small-right-padding {
     padding-right: 1.25em;
   }
-  html.flexbox .double-right-space {
+
+  .double-right-space {
     margin-right: 2.5em;
   }
-  html.flexbox .small-double-right-space {
+
+  .small-double-right-space {
     margin-right: 2.5em;
   }
-  html.flexbox .double-right-padding {
+
+  .double-right-padding {
     padding-right: 2.5em;
   }
-  html.flexbox .small-double-right-padding {
+
+  .small-double-right-padding {
     padding-right: 2.5em;
   }
-  html.flexbox .half-right-space {
+
+  .half-right-space {
     margin-right: 0.625em;
   }
-  html.flexbox .small-half-right-space {
+
+  .small-half-right-space {
     margin-right: 0.625em;
   }
-  html.flexbox .half-right-padding {
+
+  .half-right-padding {
     padding-right: 0.625em;
   }
-  html.flexbox .small-half-right-padding {
+
+  .small-half-right-padding {
     padding-right: 0.625em;
   }
-  html.flexbox .quarter-right-space {
+
+  .quarter-right-space {
     margin-right: 0.3125em;
   }
-  html.flexbox .small-quarter-right-space {
+
+  .small-quarter-right-space {
     margin-right: 0.3125em;
   }
-  html.flexbox .quarter-right-padding {
+
+  .quarter-right-padding {
     padding-right: 0.3125em;
   }
-  html.flexbox .small-quarter-right-padding {
+
+  .small-quarter-right-padding {
     padding-right: 0.3125em;
   }
-  html.flexbox .bottom-space {
+
+  .bottom-space {
     margin-bottom: 1.25em;
   }
-  html.flexbox .small-bottom-space {
+
+  .small-bottom-space {
     margin-bottom: 1.25em;
   }
-  html.flexbox .bottom-padding {
+
+  .bottom-padding {
     padding-bottom: 1.25em;
   }
-  html.flexbox .small-bottom-padding {
+
+  .small-bottom-padding {
     padding-bottom: 1.25em;
   }
-  html.flexbox .double-bottom-space {
+
+  .double-bottom-space {
     margin-bottom: 2.5em;
   }
-  html.flexbox .small-double-bottom-space {
+
+  .small-double-bottom-space {
     margin-bottom: 2.5em;
   }
-  html.flexbox .double-bottom-padding {
+
+  .double-bottom-padding {
     padding-bottom: 2.5em;
   }
-  html.flexbox .small-double-bottom-padding {
+
+  .small-double-bottom-padding {
     padding-bottom: 2.5em;
   }
-  html.flexbox .half-bottom-space {
+
+  .half-bottom-space {
     margin-bottom: 0.625em;
   }
-  html.flexbox .small-half-bottom-space {
+
+  .small-half-bottom-space {
     margin-bottom: 0.625em;
   }
-  html.flexbox .half-bottom-padding {
+
+  .half-bottom-padding {
     padding-bottom: 0.625em;
   }
-  html.flexbox .small-half-bottom-padding {
+
+  .small-half-bottom-padding {
     padding-bottom: 0.625em;
   }
-  html.flexbox .quarter-bottom-space {
+
+  .quarter-bottom-space {
     margin-bottom: 0.3125em;
   }
-  html.flexbox .small-quarter-bottom-space {
+
+  .small-quarter-bottom-space {
     margin-bottom: 0.3125em;
   }
-  html.flexbox .quarter-bottom-padding {
+
+  .quarter-bottom-padding {
     padding-bottom: 0.3125em;
   }
-  html.flexbox .small-quarter-bottom-padding {
+
+  .small-quarter-bottom-padding {
     padding-bottom: 0.3125em;
   }
-  html.flexbox .left-space {
+
+  .left-space {
     margin-left: 1.25em;
   }
-  html.flexbox .small-left-space {
+
+  .small-left-space {
     margin-left: 1.25em;
   }
-  html.flexbox .left-padding {
+
+  .left-padding {
     padding-left: 1.25em;
   }
-  html.flexbox .small-left-padding {
+
+  .small-left-padding {
     padding-left: 1.25em;
   }
-  html.flexbox .double-left-space {
+
+  .double-left-space {
     margin-left: 2.5em;
   }
-  html.flexbox .small-double-left-space {
+
+  .small-double-left-space {
     margin-left: 2.5em;
   }
-  html.flexbox .double-left-padding {
+
+  .double-left-padding {
     padding-left: 2.5em;
   }
-  html.flexbox .small-double-left-padding {
+
+  .small-double-left-padding {
     padding-left: 2.5em;
   }
-  html.flexbox .half-left-space {
+
+  .half-left-space {
     margin-left: 0.625em;
   }
-  html.flexbox .small-half-left-space {
+
+  .small-half-left-space {
     margin-left: 0.625em;
   }
-  html.flexbox .half-left-padding {
+
+  .half-left-padding {
     padding-left: 0.625em;
   }
-  html.flexbox .small-half-left-padding {
+
+  .small-half-left-padding {
     padding-left: 0.625em;
   }
-  html.flexbox .quarter-left-space {
+
+  .quarter-left-space {
     margin-left: 0.3125em;
   }
-  html.flexbox .small-quarter-left-space {
+
+  .small-quarter-left-space {
     margin-left: 0.3125em;
   }
-  html.flexbox .quarter-left-padding {
+
+  .quarter-left-padding {
     padding-left: 0.3125em;
   }
-  html.flexbox .small-quarter-left-padding {
+
+  .small-quarter-left-padding {
     padding-left: 0.3125em;
   }
-  html.flexbox .hide-small {
+
+  .hide-small {
     display: none !important;
   }
-  html.flexbox .show-small {
+
+  .show-small {
     display: inherit !important;
   }
-  html.flexbox table.show-small {
+
+  table.show-small {
     display: table;
   }
-  html.flexbox thead.show-small {
+
+  thead.show-small {
     display: table-header-group;
   }
-  html.flexbox tbody.show-small {
+
+  tbody.show-small {
     display: table-row-group;
   }
-  html.flexbox tfoot.show-small {
+
+  tfoot.show-small {
     display: table-footer-group;
   }
-  html.flexbox tr.show-small {
+
+  tr.show-small {
     display: table-row;
   }
-  html.flexbox th.show-small,
-  html.flexbox td.show-small {
+
+  th.show-small,
+  td.show-small {
     display: table-cell;
   }
 }
 @media screen and (max-width: 320px) {
-  html.flexbox .ink-grid {
+  .ink-grid {
     padding: 0 1em;
   }
-  html.flexbox .column-group.gutters {
+
+  .column-group > [class*=tiny-] {
+    float: left;
+    clear: none;
+  }
+
+  .tiny-5 {
+    width: 5%;
+  }
+
+  .tiny-10 {
+    width: 10%;
+  }
+
+  .tiny-15 {
+    width: 15%;
+  }
+
+  .tiny-20 {
+    width: 20%;
+  }
+
+  .tiny-25 {
+    width: 25%;
+  }
+
+  .tiny-30 {
+    width: 30%;
+  }
+
+  .tiny-33 {
+    width: 33.33%;
+  }
+
+  .tiny-35 {
+    width: 35%;
+  }
+
+  .tiny-40 {
+    width: 40%;
+  }
+
+  .tiny-45 {
+    width: 45%;
+  }
+
+  .tiny-50 {
+    width: 50%;
+  }
+
+  .tiny-55 {
+    width: 55%;
+  }
+
+  .tiny-60 {
+    width: 60%;
+  }
+
+  .tiny-65 {
+    width: 65%;
+  }
+
+  .tiny-66 {
+    width: 66.66%;
+  }
+
+  .tiny-70 {
+    width: 70%;
+  }
+
+  .tiny-75 {
+    width: 75%;
+  }
+
+  .tiny-80 {
+    width: 80%;
+  }
+
+  .tiny-85 {
+    width: 85%;
+  }
+
+  .tiny-90 {
+    width: 90%;
+  }
+
+  .tiny-95 {
+    width: 95%;
+  }
+
+  .tiny-100 {
+    width: 100%;
+  }
+
+  [class*=tiny-100] {
+    float: none;
+    clear: both;
+  }
+
+  .column-group {
+    *zoom: 1;
+  }
+  .column-group:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  .column-group.gutters {
     margin-left: -1em;
   }
-  html.flexbox .column-group.gutters > [class*=tiny-], html.flexbox .column-group.gutters > [class*=all-], html.flexbox .column-group.gutters > .all-auto {
+  .column-group.gutters > [class*=tiny-], .column-group.gutters > [class*=all-] {
     padding-left: 1em;
     margin-bottom: 1em;
   }
-  html.flexbox .column-group.horizontal-gutters {
+
+  .column-group.horizontal-gutters {
     margin-left: -1em;
   }
-  html.flexbox .column-group.horizontal-gutters > [class*=tiny-], html.flexbox .column-group.horizontal-gutters > [class*=all-], html.flexbox .column-group.horizontal-gutters > .all-auto {
+  .column-group.horizontal-gutters > [class*=tiny-], .column-group.horizontal-gutters > [class*=all-] {
     padding-left: 1em;
   }
-  html.flexbox .column-group.vertical-gutters > [class*=tiny-], html.flexbox .column-group.vertical-gutters > [class*=all-], html.flexbox .column-group.vertical-gutters > .all-auto {
+
+  .column-group.vertical-gutters > [class*=tiny-], .column-group.vertical-gutters > [class*=all-] {
     margin-bottom: 1em;
   }
-  html.flexbox .column-group.double-gutters {
+
+  .column-group.double-gutters {
     margin-left: -2em;
   }
-  html.flexbox .column-group.double-gutters > [class*=tiny-], html.flexbox .column-group.double-gutters > [class*=all-], html.flexbox .column-group.double-gutters > .all-auto {
+  .column-group.double-gutters > [class*=tiny-], .column-group.double-gutters > [class*=all-] {
     padding-left: 2em;
     margin-bottom: 2em;
   }
-  html.flexbox .column-group.double-horizontal-gutters {
+
+  .column-group.double-horizontal-gutters {
     margin-left: -2em;
   }
-  html.flexbox .column-group.double-horizontal-gutters > [class*=tiny-], html.flexbox .column-group.double-horizontal-gutters > [class*=all-], html.flexbox .column-group.double-horizontal-gutters > .all-auto {
+  .column-group.double-horizontal-gutters > [class*=tiny-], .column-group.double-horizontal-gutters > [class*=all-] {
     padding-left: 2em;
   }
-  html.flexbox .column-group.double-vertical-gutters > [class*=tiny-], html.flexbox .column-group.double-vertical-gutters > [class*=all-], html.flexbox .column-group.double-vertical-gutters > .all-auto {
+
+  .column-group.double-vertical-gutters > [class*=tiny-], .column-group.double-vertical-gutters > [class*=all-] {
     margin-bottom: 2em;
   }
-  html.flexbox .column-group.half-gutters {
+
+  .column-group.half-gutters {
     margin-left: -0.5em;
   }
-  html.flexbox .column-group.half-gutters > [class*=tiny-], html.flexbox .column-group.half-gutters > [class*=all-], html.flexbox .column-group.half-gutters > .all-auto {
+  .column-group.half-gutters > [class*=tiny-], .column-group.half-gutters > [class*=all-] {
     padding-left: 0.5em;
     margin-bottom: 0.5em;
   }
-  html.flexbox .column-group.half-horizontal-gutters {
+
+  .column-group.half-horizontal-gutters {
     margin-left: -0.5em;
   }
-  html.flexbox .column-group.half-horizontal-gutters > [class*=tiny-], html.flexbox .column-group.half-horizontal-gutters > [class*=all-], html.flexbox .column-group.half-horizontal-gutters > .all-auto {
+  .column-group.half-horizontal-gutters > [class*=tiny-], .column-group.half-horizontal-gutters > [class*=all-] {
     padding-left: 0.5em;
   }
-  html.flexbox .column-group.half-vertical-gutters > [class*=tiny-], html.flexbox .column-group.half-vertical-gutters > [class*=all-], html.flexbox .column-group.half-vertical-gutters > .all-auto {
+
+  .column-group.half-vertical-gutters > [class*=tiny-], .column-group.half-vertical-gutters > [class*=all-] {
     margin-bottom: 0.5em;
   }
-  html.flexbox .column-group.quarter-gutters {
+
+  .column-group.quarter-gutters {
     margin-left: -0.25em;
   }
-  html.flexbox .column-group.quarter-gutters > [class*=tiny-], html.flexbox .column-group.quarter-gutters > [class*=all-], html.flexbox .column-group.quarter-gutters > .all-auto {
+  .column-group.quarter-gutters > [class*=tiny-], .column-group.quarter-gutters > [class*=all-] {
     padding-left: 0.25em;
     margin-bottom: 0.25em;
   }
-  html.flexbox .column-group.quarter-horizontal-gutters {
+
+  .column-group.quarter-horizontal-gutters {
     margin-left: -0.25em;
   }
-  html.flexbox .column-group.quarter-horizontal-gutters > [class*=tiny-], html.flexbox .column-group.quarter-horizontal-gutters > [class*=all-], html.flexbox .column-group.quarter-horizontal-gutters > .all-auto {
+  .column-group.quarter-horizontal-gutters > [class*=tiny-], .column-group.quarter-horizontal-gutters > [class*=all-] {
     padding-left: 0.25em;
   }
-  html.flexbox .column-group.quarter-vertical-gutters > [class*=tiny-], html.flexbox .column-group.quarter-vertical-gutters > [class*=all-], html.flexbox .column-group.quarter-vertical-gutters > .all-auto {
+
+  .column-group.quarter-vertical-gutters > [class*=tiny-], .column-group.quarter-vertical-gutters > [class*=all-] {
     margin-bottom: 0.25em;
   }
-  html.flexbox .column-group.tiny-gutters {
+
+  .column-group.tiny-gutters {
     margin-left: -1em;
   }
-  html.flexbox .column-group.tiny-gutters > [class*=tiny-], html.flexbox .column-group.tiny-gutters > [class*=all-], html.flexbox .column-group.tiny-gutters > .all-auto {
+  .column-group.tiny-gutters > [class*=tiny-], .column-group.tiny-gutters > [class*=all-] {
     padding-left: 0.25em;
     margin-bottom: 0.25em;
   }
-  html.flexbox .column-group.tiny-horizontal-gutters {
+
+  .column-group.tiny-horizontal-gutters {
     margin-left: -1em;
   }
-  html.flexbox .column-group.tiny-horizontal-gutters > [class*=tiny-], html.flexbox .column-group.tiny-horizontal-gutters > [class*=all-], html.flexbox .column-group.tiny-horizontal-gutters > .all-auto {
+  .column-group.tiny-horizontal-gutters > [class*=tiny-], .column-group.tiny-horizontal-gutters > [class*=all-] {
     padding-left: 1em;
   }
-  html.flexbox .column-group.tiny-vertical-gutters > [class*=tiny-], html.flexbox .column-group.tiny-vertical-gutters > [class*=all-], html.flexbox .column-group.tiny-vertical-gutters > .all-auto {
+
+  .column-group.tiny-vertical-gutters > [class*=tiny-], .column-group.tiny-vertical-gutters > [class*=all-] {
     margin-bottom: 1em;
   }
-  html.flexbox .column-group.tiny-double-gutters {
+
+  .column-group.tiny-double-gutters {
     margin-left: -2em;
   }
-  html.flexbox .column-group.tiny-double-gutters > [class*=tiny-], html.flexbox .column-group.tiny-double-gutters > [class*=all-], html.flexbox .column-group.tiny-double-gutters > .all-auto {
+  .column-group.tiny-double-gutters > [class*=tiny-], .column-group.tiny-double-gutters > [class*=all-] {
     padding-left: 2em;
     margin-bottom: 2em;
   }
-  html.flexbox .column-group.tiny-double-horizontal-gutters {
+
+  .column-group.tiny-double-horizontal-gutters {
     margin-left: -2em;
   }
-  html.flexbox .column-group.tiny-double-horizontal-gutters > [class*=tiny-], html.flexbox .column-group.tiny-double-horizontal-gutters > [class*=all-], html.flexbox .column-group.tiny-double-horizontal-gutters > .all-auto {
+  .column-group.tiny-double-horizontal-gutters > [class*=tiny-], .column-group.tiny-double-horizontal-gutters > [class*=all-] {
     padding-left: 2em;
   }
-  html.flexbox .column-group.tiny-double-vertical-gutters > [class*=tiny-], html.flexbox .column-group.tiny-double-vertical-gutters > [class*=all-], html.flexbox .column-group.tiny-double-vertical-gutters > .all-auto {
+
+  .column-group.tiny-double-vertical-gutters > [class*=tiny-], .column-group.tiny-double-vertical-gutters > [class*=all-] {
     margin-bottom: 2em;
   }
-  html.flexbox .column-group.tiny-half-gutters {
+
+  .column-group.tiny-half-gutters {
     margin-left: -0.5em;
   }
-  html.flexbox .column-group.tiny-half-gutters > [class*=tiny-], html.flexbox .column-group.tiny-half-gutters > [class*=all-], html.flexbox .column-group.tiny-half-gutters > .all-auto {
+  .column-group.tiny-half-gutters > [class*=tiny-], .column-group.tiny-half-gutters > [class*=all-] {
     padding-left: 0.5em;
     margin-bottom: 0.5em;
   }
-  html.flexbox .column-group.tiny-half-horizontal-gutters {
+
+  .column-group.tiny-half-horizontal-gutters {
     margin-left: -0.5em;
   }
-  html.flexbox .column-group.tiny-half-horizontal-gutters > [class*=tiny-], html.flexbox .column-group.tiny-half-horizontal-gutters > [class*=all-], html.flexbox .column-group.tiny-half-horizontal-gutters > .all-auto {
+  .column-group.tiny-half-horizontal-gutters > [class*=tiny-], .column-group.tiny-half-horizontal-gutters > [class*=all-] {
     padding-left: 0.5em;
   }
-  html.flexbox .column-group.tiny-half-vertical-gutters > [class*=tiny-], html.flexbox .column-group.tiny-half-vertical-gutters > [class*=all-], html.flexbox .column-group.tiny-half-vertical-gutters > .all-auto {
+
+  .column-group.tiny-half-vertical-gutters > [class*=tiny-], .column-group.tiny-half-vertical-gutters > [class*=all-] {
     margin-bottom: 0.5em;
   }
-  html.flexbox .column-group.tiny-quarter-gutters {
+
+  .column-group.tiny-quarter-gutters {
     margin-left: -0.25em;
   }
-  html.flexbox .column-group.tiny-quarter-gutters > [class*=tiny-], html.flexbox .column-group.tiny-quarter-gutters > [class*=all-], html.flexbox .column-group.tiny-quarter-gutters > .all-auto {
+  .column-group.tiny-quarter-gutters > [class*=tiny-], .column-group.tiny-quarter-gutters > [class*=all-] {
     padding-left: 0.25em;
     margin-bottom: 0.25em;
   }
-  html.flexbox .column-group.tiny-quarter-horizontal-gutters {
+
+  .column-group.tiny-quarter-horizontal-gutters {
     margin-left: -0.25em;
   }
-  html.flexbox .column-group.tiny-quarter-horizontal-gutters > [class*=tiny-], html.flexbox .column-group.tiny-quarter-horizontal-gutters > [class*=all-], html.flexbox .column-group.tiny-quarter-horizontal-gutters > .all-auto {
+  .column-group.tiny-quarter-horizontal-gutters > [class*=tiny-], .column-group.tiny-quarter-horizontal-gutters > [class*=all-] {
     padding-left: 0.25em;
   }
-  html.flexbox .column-group.tiny-quarter-vertical-gutters > [class*=tiny-], html.flexbox .column-group.tiny-quarter-vertical-gutters > [class*=all-], html.flexbox .column-group.tiny-quarter-vertical-gutters > .all-auto {
+
+  .column-group.tiny-quarter-vertical-gutters > [class*=tiny-], .column-group.tiny-quarter-vertical-gutters > [class*=all-] {
     margin-bottom: 0.25em;
   }
-  html.flexbox .column-group.tiny-no-gutters {
+
+  .column-group.tiny-no-gutters {
     margin-left: 0;
   }
-  html.flexbox .column-group.tiny-no-gutters > [class*=tiny-], html.flexbox .column-group.tiny-no-gutters > [class*=all-], html.flexbox .column-group.tiny-no-gutters > .all-auto {
+  .column-group.tiny-no-gutters > [class*=tiny-], .column-group.tiny-no-gutters > [class*=all-] {
     padding-left: 0;
     margin-bottom: 0;
   }
-  html.flexbox .all-5,
-  html.flexbox .tiny-5 {
-    width: 5%;
-    -webkit-flex-basis: 5%;
-    -moz-flex-basis: 5%;
-    flex-basis: 5%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
+
+  .ink-table td[class*=tiny-], .ink-table th[class*=tiny-], .ink-table tr[class*=tiny-], .ink-table thead[class*=tiny-], .ink-table tbody[class*=tiny-], .ink-table tfoot[class*=tiny-] {
+    float: none;
   }
-  html.flexbox .all-10,
-  html.flexbox .tiny-10 {
-    width: 10%;
-    -webkit-flex-basis: 10%;
-    -moz-flex-basis: 10%;
-    flex-basis: 10%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-15,
-  html.flexbox .tiny-15 {
-    width: 15%;
-    -webkit-flex-basis: 15%;
-    -moz-flex-basis: 15%;
-    flex-basis: 15%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-20,
-  html.flexbox .tiny-20 {
-    width: 20%;
-    -webkit-flex-basis: 20%;
-    -moz-flex-basis: 20%;
-    flex-basis: 20%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-25,
-  html.flexbox .tiny-25 {
-    width: 25%;
-    -webkit-flex-basis: 25%;
-    -moz-flex-basis: 25%;
-    flex-basis: 25%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-30,
-  html.flexbox .tiny-30 {
-    width: 30%;
-    -webkit-flex-basis: 30%;
-    -moz-flex-basis: 30%;
-    flex-basis: 30%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-33,
-  html.flexbox .tiny-33 {
-    width: 33,33333%;
-    -webkit-flex-basis: 33.33333%;
-    -moz-flex-basis: 33.33333%;
-    flex-basis: 33.33333%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-35,
-  html.flexbox .tiny-35 {
-    width: 35%;
-    -webkit-flex-basis: 35%;
-    -moz-flex-basis: 35%;
-    flex-basis: 35%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-40,
-  html.flexbox .tiny-40 {
-    width: 40%;
-    -webkit-flex-basis: 40%;
-    -moz-flex-basis: 40%;
-    flex-basis: 40%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-45,
-  html.flexbox .tiny-45 {
-    width: 45%;
-    -webkit-flex-basis: 45%;
-    -moz-flex-basis: 45%;
-    flex-basis: 45%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-50,
-  html.flexbox .tiny-50 {
-    width: 50%;
-    -webkit-flex-basis: 50%;
-    -moz-flex-basis: 50%;
-    flex-basis: 50%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-55,
-  html.flexbox .tiny-55 {
-    width: 55%;
-    -webkit-flex-basis: 55%;
-    -moz-flex-basis: 55%;
-    flex-basis: 55%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-60,
-  html.flexbox .tiny-60 {
-    width: 60%;
-    -webkit-flex-basis: 60%;
-    -moz-flex-basis: 60%;
-    flex-basis: 60%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-65,
-  html.flexbox .tiny-65 {
-    width: 65%;
-    -webkit-flex-basis: 65%;
-    -moz-flex-basis: 65%;
-    flex-basis: 65%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-66,
-  html.flexbox .tiny-66 {
-    width: 66,66666%;
-    -webkit-flex-basis: 66.66666%;
-    -moz-flex-basis: 66.66666%;
-    flex-basis: 66.66666%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-70,
-  html.flexbox .tiny-70 {
-    width: 70%;
-    -webkit-flex-basis: 70%;
-    -moz-flex-basis: 70%;
-    flex-basis: 70%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-75,
-  html.flexbox .tiny-75 {
-    width: 75%;
-    -webkit-flex-basis: 75%;
-    -moz-flex-basis: 75%;
-    flex-basis: 75%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-80,
-  html.flexbox .tiny-80 {
-    width: 80%;
-    -webkit-flex-basis: 80%;
-    -moz-flex-basis: 80%;
-    flex-basis: 80%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-85,
-  html.flexbox .tiny-85 {
-    width: 85%;
-    -webkit-flex-basis: 85%;
-    -moz-flex-basis: 85%;
-    flex-basis: 85%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-90,
-  html.flexbox .tiny-90 {
-    width: 90%;
-    -webkit-flex-basis: 90%;
-    -moz-flex-basis: 90%;
-    flex-basis: 90%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-95,
-  html.flexbox .tiny-95 {
-    width: 95%;
-    -webkit-flex-basis: 95%;
-    -moz-flex-basis: 95%;
-    flex-basis: 95%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-100,
-  html.flexbox .tiny-100 {
-    width: 100%;
-    -webkit-flex-basis: 100%;
-    -moz-flex-basis: 100%;
-    flex-basis: 100%;
-    -webkit-flex-grow: 0;
-    flex-grow: 0;
-  }
-  html.flexbox .all-auto,
-  html.flexbox .tiny-auto {
-    width: auto;
-    -webkit-flex-basis: auto;
-    flex-basis: auto;
-    -webkit-flex-grow: 1;
-    flex-grow: 1;
-  }
-  html.flexbox .ink-flex,
-  html.flexbox .column-group {
-    display: -webkit-flex;
-    display: flex;
-    -webkit-flex-wrap: wrap;
-    flex-wrap: wrap;
-    -webkit-flex-direction: row;
-    flex-direction: row;
-    list-style: none;
-  }
-  html.flexbox .ink-flex.tiny-reverse, html.flexbox .ink-flex.reverse,
-  html.flexbox .column-group.tiny-reverse,
-  html.flexbox .column-group.reverse {
-    -webkit-flex-direction: row-reverse;
-    -moz-flex-direction: row-reverse;
-    flex-direction: row-reverse;
-  }
-  html.flexbox .ink-flex.tiny-vertical, html.flexbox .ink-flex.vertical,
-  html.flexbox .column-group.tiny-vertical,
-  html.flexbox .column-group.vertical {
-    -webkit-flex-direction: column;
-    -moz-flex-direction: column;
-    flex-direction: column;
-  }
-  html.flexbox .ink-flex.tiny-vertical.tiny-reverse, html.flexbox .ink-flex.vertical.reverse,
-  html.flexbox .column-group.tiny-vertical.tiny-reverse,
-  html.flexbox .column-group.vertical.reverse {
-    -webkit-flex-direction: column-reverse;
-    -moz-flex-direction: column-reverse;
-    flex-direction: column-reverse;
-  }
-  html.flexbox .tiny-order-1 {
-    order: 1;
-  }
-  html.flexbox .tiny-order-2 {
-    order: 2;
-  }
-  html.flexbox .tiny-order-3 {
-    order: 3;
-  }
-  html.flexbox .tiny-order-4 {
-    order: 4;
-  }
-  html.flexbox .tiny-order-5 {
-    order: 5;
-  }
-  html.flexbox .tiny-order-6 {
-    order: 6;
-  }
-  html.flexbox .tiny-order-7 {
-    order: 7;
-  }
-  html.flexbox .tiny-order-8 {
-    order: 8;
-  }
-  html.flexbox .tiny-order-9 {
-    order: 9;
-  }
-  html.flexbox .tiny-order-10 {
-    order: 10;
-  }
-  html.flexbox .column-group .tiny-auto {
-    -webkit-flex-basis: auto;
-    flex-basis: auto;
-    -webkit-flex-grow: 1;
-    flex-grow: 1;
-  }
-  html.flexbox .push-top,
-  html.flexbox .tiny-push-top {
-    -webkit-box-align: start;
-    -webkit-align-items: flex-start;
-    -moz-box-align: start;
-    -ms-flex-align: start;
-    align-items: flex-start;
-    -webkit-align-self: flex-start;
-    -ms-flex-item-align: start;
-    align-self: flex-start;
-  }
-  html.flexbox .push-bottom,
-  html.flexbox .tiny-push-bottom {
-    -webkit-box-align: end;
-    -webkit-align-items: flex-end;
-    -moz-box-align: end;
-    -ms-flex-align: end;
-    align-items: flex-end;
-    -webkit-align-self: flex-end;
-    -ms-flex-item-align: end;
-    align-self: flex-end;
-  }
-  html.flexbox .push-middle,
-  html.flexbox .tiny-push-middle {
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-    -moz-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-align-self: flex-center;
-    -ms-flex-item-align: center;
-    align-self: center;
-  }
-  html.flexbox .push-left,
-  html.flexbox .tiny-push-left {
-    -webkit-justify-content: flex-start;
-    -moz-justify-content: flex-start;
-    justify-content: flex-start;
+
+  .tiny-push-left {
     float: left;
   }
-  html.flexbox .push-center,
-  html.flexbox .tiny-push-center {
-    float: none !important;
-    -webkit-justify-content: center;
-    -moz-justify-content: center;
-    justify-content: center;
+
+  .tiny-push-center {
+    float: none;
     margin-left: auto;
     margin-right: auto;
   }
-  html.flexbox .push-right,
-  html.flexbox .tiny-push-right {
-    -webkit-justify-content: flex-end;
-    -moz-justify-content: flex-end;
-    justify-content: flex-end;
+
+  .tiny-push-right {
     float: right;
   }
-  html.flexbox .tiny-align-left {
+
+  .tiny-align-left {
     text-align: left;
   }
-  html.flexbox .tiny-align-center {
+
+  .tiny-align-center {
     text-align: center;
   }
-  html.flexbox .tiny-align-right {
+
+  .tiny-align-right {
     text-align: right;
   }
-  html.flexbox .space {
+
+  .tiny-no-margin {
+    margin: 0 !important;
+  }
+
+  .space {
     margin: 1em;
   }
-  html.flexbox .tiny-space {
+
+  .tiny-space {
     margin: 1em;
   }
-  html.flexbox .padding {
+
+  .padding {
     padding: 1em;
   }
-  html.flexbox .tiny-padding {
+
+  .tiny-padding {
     padding: 1em;
   }
-  html.flexbox .double-space {
-    margin: 0.5em;
-  }
-  html.flexbox .tiny-double-space {
-    margin: 0.5em;
-  }
-  html.flexbox .double-padding {
-    padding: 0.5em;
-  }
-  html.flexbox .tiny-double-padding {
-    padding: 0.5em;
-  }
-  html.flexbox .half-space {
+
+  .double-space {
     margin: 2em;
   }
-  html.flexbox .tiny-half-space {
+
+  .tiny-double-space {
     margin: 2em;
   }
-  html.flexbox .half-padding {
+
+  .double-padding {
     padding: 2em;
   }
-  html.flexbox .tiny-half-padding {
+
+  .tiny-double-padding {
     padding: 2em;
   }
-  html.flexbox .quarter-space {
-    margin: 4em;
+
+  .half-space {
+    margin: 0.5em;
   }
-  html.flexbox .tiny-quarter-space {
-    margin: 4em;
+
+  .tiny-half-space {
+    margin: 0.5em;
   }
-  html.flexbox .quarter-padding {
-    padding: 4em;
+
+  .half-padding {
+    padding: 0.5em;
   }
-  html.flexbox .tiny-quarter-padding {
-    padding: 4em;
+
+  .tiny-half-padding {
+    padding: 0.5em;
   }
-  html.flexbox .vertical-space {
+
+  .quarter-space {
+    margin: 0.25em;
+  }
+
+  .tiny-quarter-space {
+    margin: 0.25em;
+  }
+
+  .quarter-padding {
+    padding: 0.25em;
+  }
+
+  .tiny-quarter-padding {
+    padding: 0.25em;
+  }
+
+  .vertical-space {
     margin-top: 1em;
     margin-bottom: 1em;
   }
-  html.flexbox .tiny-vertical-space {
+
+  .tiny-vertical-space {
     margin-top: 1em;
     margin-bottom: 1em;
   }
-  html.flexbox .vertical-padding {
+
+  .vertical-padding {
     padding-top: 1em;
     padding-bottom: 1em;
   }
-  html.flexbox .tiny-vertical-padding {
+
+  .tiny-vertical-padding {
     padding-top: 1em;
     padding-bottom: 1em;
   }
-  html.flexbox .double-vertical-space {
+
+  .double-vertical-space {
     margin-top: 2em;
     margin-bottom: 2em;
   }
-  html.flexbox .tiny-double-vertical-space {
+
+  .tiny-double-vertical-space {
     margin-top: 2em;
     margin-bottom: 2em;
   }
-  html.flexbox .double-vertical-padding {
+
+  .double-vertical-padding {
     padding-top: 2em;
     padding-bottom: 2em;
   }
-  html.flexbox .tiny-double-vertical-padding {
+
+  .tiny-double-vertical-padding {
     padding-top: 2em;
     padding-bottom: 2em;
   }
-  html.flexbox .half-vertical-space {
+
+  .half-vertical-space {
     margin-top: 0.5em;
     margin-bottom: 0.5em;
   }
-  html.flexbox .tiny-half-vertical-space {
+
+  .tiny-half-vertical-space {
     margin-top: 0.5em;
     margin-bottom: 0.5em;
   }
-  html.flexbox .half-vertical-padding {
+
+  .half-vertical-padding {
     padding-top: 0.5em;
     padding-bottom: 0.5em;
   }
-  html.flexbox .tiny-half-vertical-padding {
+
+  .tiny-half-vertical-padding {
     padding-top: 0.5em;
     padding-bottom: 0.5em;
   }
-  html.flexbox .quarter-vertical-space {
+
+  .quarter-vertical-space {
     margin-top: 0.25em;
     margin-bottom: 0.25em;
   }
-  html.flexbox .tiny-quarter-vertical-space {
+
+  .tiny-quarter-vertical-space {
     margin-top: 0.25em;
     margin-bottom: 0.25em;
   }
-  html.flexbox .quarter-vertical-padding {
+
+  .quarter-vertical-padding {
     padding-top: 0.25em;
     padding-bottom: 0.25em;
   }
-  html.flexbox .tiny-quarter-vertical-padding {
+
+  .tiny-quarter-vertical-padding {
     padding-top: 0.25em;
     padding-bottom: 0.25em;
   }
-  html.flexbox .horizontal-space {
+
+  .horizontal-space {
     margin-left: 1em;
     margin-right: 1em;
   }
-  html.flexbox .tiny-horizontal-space {
+
+  .tiny-horizontal-space {
     margin-left: 1em;
     margin-right: 1em;
   }
-  html.flexbox .horizontal-padding {
+
+  .horizontal-padding {
     padding-left: 1em;
     padding-right: 1em;
   }
-  html.flexbox .tiny-horizontal-padding {
+
+  .tiny-horizontal-padding {
     padding-left: 1em;
     padding-right: 1em;
   }
-  html.flexbox .double-horizontal-space {
+
+  .double-horizontal-space {
     margin-left: 2em;
     margin-right: 2em;
   }
-  html.flexbox .tiny-double-horizontal-space {
+
+  .tiny-double-horizontal-space {
     margin-left: 2em;
     margin-right: 2em;
   }
-  html.flexbox .double-horizontal-padding {
+
+  .double-horizontal-padding {
     padding-left: 2em;
     padding-right: 2em;
   }
-  html.flexbox .tiny-double-horizontal-padding {
+
+  .tiny-double-horizontal-padding {
     padding-left: 2em;
     padding-right: 2em;
   }
-  html.flexbox .half-horizontal-space {
+
+  .half-horizontal-space {
     margin-left: 0.5em;
     margin-right: 0.5em;
   }
-  html.flexbox .tiny-half-horizontal-space {
+
+  .tiny-half-horizontal-space {
     margin-left: 0.5em;
     margin-right: 0.5em;
   }
-  html.flexbox .half-horizontal-padding {
+
+  .half-horizontal-padding {
     padding-left: 0.5em;
     padding-right: 0.5em;
   }
-  html.flexbox .tiny-half-horizontal-padding {
+
+  .tiny-half-horizontal-padding {
     padding-left: 0.5em;
     padding-right: 0.5em;
   }
-  html.flexbox .quarter-horizontal-space {
+
+  .quarter-horizontal-space {
     margin-left: 0.25em;
     margin-right: 0.25em;
   }
-  html.flexbox .tiny-quarter-horizontal-space {
+
+  .tiny-quarter-horizontal-space {
     margin-left: 0.25em;
     margin-right: 0.25em;
   }
-  html.flexbox .quarter-horizontal-padding {
+
+  .quarter-horizontal-padding {
     padding-left: 0.25em;
     padding-right: 0.25em;
   }
-  html.flexbox .tiny-quarter-horizontal-padding {
+
+  .tiny-quarter-horizontal-padding {
     padding-left: 0.25em;
     padding-right: 0.25em;
   }
-  html.flexbox .top-space {
+
+  .top-space {
     margin-top: 1em;
   }
-  html.flexbox .tiny-top-space {
+
+  .tiny-top-space {
     margin-top: 1em;
   }
-  html.flexbox .top-padding {
+
+  .top-padding {
     padding-top: 1em;
   }
-  html.flexbox .tiny-top-padding {
+
+  .tiny-top-padding {
     padding-top: 1em;
   }
-  html.flexbox .double-top-space {
+
+  .double-top-space {
     margin-top: 2em;
   }
-  html.flexbox .tiny-double-top-space {
+
+  .tiny-double-top-space {
     margin-top: 2em;
   }
-  html.flexbox .double-top-padding {
+
+  .double-top-padding {
     padding-top: 2em;
   }
-  html.flexbox .tiny-double-top-padding {
+
+  .tiny-double-top-padding {
     padding-top: 2em;
   }
-  html.flexbox .half-top-space {
+
+  .half-top-space {
     margin-top: 0.5em;
   }
-  html.flexbox .tiny-half-top-space {
+
+  .tiny-half-top-space {
     margin-top: 0.5em;
   }
-  html.flexbox .half-top-padding {
+
+  .half-top-padding {
     padding-top: 0.5em;
   }
-  html.flexbox .tiny-half-top-padding {
+
+  .tiny-half-top-padding {
     padding-top: 0.5em;
   }
-  html.flexbox .quarter-top-space {
+
+  .quarter-top-space {
     margin-top: 0.25em;
   }
-  html.flexbox .tiny-quarter-top-space {
+
+  .tiny-quarter-top-space {
     margin-top: 0.25em;
   }
-  html.flexbox .quarter-top-padding {
+
+  .quarter-top-padding {
     padding-top: 0.25em;
   }
-  html.flexbox .tiny-quarter-top-padding {
+
+  .tiny-quarter-top-padding {
     padding-top: 0.25em;
   }
-  html.flexbox .right-space {
+
+  .right-space {
     margin-right: 1em;
   }
-  html.flexbox .tiny-right-space {
+
+  .tiny-right-space {
     margin-right: 1em;
   }
-  html.flexbox .right-padding {
+
+  .right-padding {
     padding-right: 1em;
   }
-  html.flexbox .tiny-right-padding {
+
+  .tiny-right-padding {
     padding-right: 1em;
   }
-  html.flexbox .double-right-space {
+
+  .double-right-space {
     margin-right: 2em;
   }
-  html.flexbox .tiny-double-right-space {
+
+  .tiny-double-right-space {
     margin-right: 2em;
   }
-  html.flexbox .double-right-padding {
+
+  .double-right-padding {
     padding-right: 2em;
   }
-  html.flexbox .tiny-double-right-padding {
+
+  .tiny-double-right-padding {
     padding-right: 2em;
   }
-  html.flexbox .half-right-space {
+
+  .half-right-space {
     margin-right: 0.5em;
   }
-  html.flexbox .tiny-half-right-space {
+
+  .tiny-half-right-space {
     margin-right: 0.5em;
   }
-  html.flexbox .half-right-padding {
+
+  .half-right-padding {
     padding-right: 0.5em;
   }
-  html.flexbox .tiny-half-right-padding {
+
+  .tiny-half-right-padding {
     padding-right: 0.5em;
   }
-  html.flexbox .quarter-right-space {
+
+  .quarter-right-space {
     margin-right: 0.25em;
   }
-  html.flexbox .tiny-quarter-right-space {
+
+  .tiny-quarter-right-space {
     margin-right: 0.25em;
   }
-  html.flexbox .quarter-right-padding {
+
+  .quarter-right-padding {
     padding-right: 0.25em;
   }
-  html.flexbox .tiny-quarter-right-padding {
+
+  .tiny-quarter-right-padding {
     padding-right: 0.25em;
   }
-  html.flexbox .bottom-space {
+
+  .bottom-space {
     margin-bottom: 1em;
   }
-  html.flexbox .tiny-bottom-space {
+
+  .tiny-bottom-space {
     margin-bottom: 1em;
   }
-  html.flexbox .bottom-padding {
+
+  .bottom-padding {
     padding-bottom: 1em;
   }
-  html.flexbox .tiny-bottom-padding {
+
+  .tiny-bottom-padding {
     padding-bottom: 1em;
   }
-  html.flexbox .double-bottom-space {
+
+  .double-bottom-space {
     margin-bottom: 2em;
   }
-  html.flexbox .tiny-double-bottom-space {
+
+  .tiny-double-bottom-space {
     margin-bottom: 2em;
   }
-  html.flexbox .double-bottom-padding {
+
+  .double-bottom-padding {
     padding-bottom: 2em;
   }
-  html.flexbox .tiny-double-bottom-padding {
+
+  .tiny-double-bottom-padding {
     padding-bottom: 2em;
   }
-  html.flexbox .half-bottom-space {
+
+  .half-bottom-space {
     margin-bottom: 0.5em;
   }
-  html.flexbox .tiny-half-bottom-space {
+
+  .tiny-half-bottom-space {
     margin-bottom: 0.5em;
   }
-  html.flexbox .half-bottom-padding {
+
+  .half-bottom-padding {
     padding-bottom: 0.5em;
   }
-  html.flexbox .tiny-half-bottom-padding {
+
+  .tiny-half-bottom-padding {
     padding-bottom: 0.5em;
   }
-  html.flexbox .quarter-bottom-space {
+
+  .quarter-bottom-space {
     margin-bottom: 0.25em;
   }
-  html.flexbox .tiny-quarter-bottom-space {
+
+  .tiny-quarter-bottom-space {
     margin-bottom: 0.25em;
   }
-  html.flexbox .quarter-bottom-padding {
+
+  .quarter-bottom-padding {
     padding-bottom: 0.25em;
   }
-  html.flexbox .tiny-quarter-bottom-padding {
+
+  .tiny-quarter-bottom-padding {
     padding-bottom: 0.25em;
   }
-  html.flexbox .left-space {
+
+  .left-space {
     margin-left: 1em;
   }
-  html.flexbox .tiny-left-space {
+
+  .tiny-left-space {
     margin-left: 1em;
   }
-  html.flexbox .left-padding {
+
+  .left-padding {
     padding-left: 1em;
   }
-  html.flexbox .tiny-left-padding {
+
+  .tiny-left-padding {
     padding-left: 1em;
   }
-  html.flexbox .double-left-space {
+
+  .double-left-space {
     margin-left: 2em;
   }
-  html.flexbox .tiny-double-left-space {
+
+  .tiny-double-left-space {
     margin-left: 2em;
   }
-  html.flexbox .double-left-padding {
+
+  .double-left-padding {
     padding-left: 2em;
   }
-  html.flexbox .tiny-double-left-padding {
+
+  .tiny-double-left-padding {
     padding-left: 2em;
   }
-  html.flexbox .half-left-space {
+
+  .half-left-space {
     margin-left: 0.5em;
   }
-  html.flexbox .tiny-half-left-space {
+
+  .tiny-half-left-space {
     margin-left: 0.5em;
   }
-  html.flexbox .half-left-padding {
+
+  .half-left-padding {
     padding-left: 0.5em;
   }
-  html.flexbox .tiny-half-left-padding {
+
+  .tiny-half-left-padding {
     padding-left: 0.5em;
   }
-  html.flexbox .quarter-left-space {
+
+  .quarter-left-space {
     margin-left: 0.25em;
   }
-  html.flexbox .tiny-quarter-left-space {
+
+  .tiny-quarter-left-space {
     margin-left: 0.25em;
   }
-  html.flexbox .quarter-left-padding {
+
+  .quarter-left-padding {
     padding-left: 0.25em;
   }
-  html.flexbox .tiny-quarter-left-padding {
+
+  .tiny-quarter-left-padding {
     padding-left: 0.25em;
   }
-  html.flexbox .hide-tiny {
+
+  .hide-tiny {
     display: none !important;
   }
-  html.flexbox .show-tiny {
+
+  .show-tiny {
     display: inherit !important;
   }
-  html.flexbox table.show-tiny {
+
+  table.show-tiny {
     display: table;
   }
-  html.flexbox thead.show-tiny {
+
+  thead.show-tiny {
     display: table-header-group;
   }
-  html.flexbox tbody.show-tiny {
+
+  tbody.show-tiny {
     display: table-row-group;
   }
-  html.flexbox tfoot.show-tiny {
+
+  tfoot.show-tiny {
     display: table-footer-group;
   }
-  html.flexbox tr.show-tiny {
+
+  tr.show-tiny {
     display: table-row;
   }
-  html.flexbox th.show-tiny,
-  html.flexbox td.show-tiny {
+
+  th.show-tiny,
+  td.show-tiny {
     display: table-cell;
   }
 }
-
 @media screen and (min-width: 1261px) {
   html {
     font-size: 1.08em;
@@ -7150,182 +7118,6 @@ html.flexbox .order-10 {
     font-family: '{"name":"tiny",{"min":"","max":"320px"}}';
   }
 }
-@font-face {
-  font-family: "Roboto";
-  src: url('../fonts/Roboto/roboto-thin-webfont.eot');
-  src: url('../fonts/Roboto/roboto-thin-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto/roboto-thin-webfont.woff') format('woff'), url('../fonts/Roboto/roboto-thin-webfont.ttf') format('truetype'), url('../fonts/Roboto/roboto-thin-webfont.svg') format('svg');
-  font-weight: 100;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Roboto";
-  src: url('../fonts/Roboto/roboto-thinitalic-webfont.eot');
-  src: url('../fonts/Roboto/roboto-thinitalic-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto/roboto-thinitalic-webfont.woff') format('woff'), url('../fonts/Roboto/roboto-thinitalic-webfont.ttf') format('truetype'), url('../fonts/Roboto/roboto-thinitalic-webfont.svg') format('svg');
-  font-weight: 100;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "Roboto";
-  src: url('../fonts/Roboto/roboto-light-webfont.eot');
-  src: url('../fonts/Roboto/roboto-light-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto/roboto-light-webfont.woff') format('woff'), url('../fonts/Roboto/roboto-light-webfont.ttf') format('truetype'), url('../fonts/Roboto/roboto-light-webfont.svg') format('svg');
-  font-weight: 300;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Roboto";
-  src: url('../fonts/Roboto/roboto-lightitalic-webfont.eot');
-  src: url('../fonts/Roboto/roboto-lightitalic-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto/roboto-lightitalic-webfont.woff') format('woff'), url('../fonts/Roboto/roboto-lightitalic-webfont.ttf') format('truetype'), url('../fonts/Roboto/roboto-lightitalic-webfont.svg') format('svg');
-  font-weight: 300;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "Roboto";
-  src: url('../fonts/Roboto/roboto-regular-webfont.eot');
-  src: url('../fonts/Roboto/roboto-regular-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto/roboto-regular-webfont.woff') format('woff'), url('../fonts/Roboto/roboto-regular-webfont.ttf') format('truetype'), url('../fonts/Roboto/roboto-regular-webfont.svg') format('svg');
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Roboto";
-  src: url('../fonts/Roboto/roboto-italic-webfont.eot');
-  src: url('../fonts/Roboto/roboto-italic-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto/roboto-italic-webfont.woff') format('woff'), url('../fonts/Roboto/roboto-italic-webfont.ttf') format('truetype'), url('../fonts/Roboto/roboto-italic-webfont.svg') format('svg');
-  font-weight: 400;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "Roboto";
-  src: url('../fonts/Roboto/roboto-medium-webfont.eot');
-  src: url('../fonts/Roboto/roboto-medium-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto/roboto-medium-webfont.woff') format('woff'), url('../fonts/Roboto/roboto-medium-webfont.ttf') format('truetype'), url('../fonts/Roboto/roboto-medium-webfont.svg') format('svg');
-  font-weight: 500;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Roboto";
-  src: url('../fonts/Roboto/roboto-mediumitalic-webfont.eot');
-  src: url('../fonts/Roboto/roboto-mediumitalic-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto/roboto-mediumitalic-webfont.woff') format('woff'), url('../fonts/Roboto/roboto-mediumitalic-webfont.ttf') format('truetype'), url('../fonts/Roboto/roboto-mediumitalic-webfont.svg') format('svg');
-  font-weight: 500;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "Roboto";
-  src: url('../fonts/Roboto/roboto-bold-webfont.eot');
-  src: url('../fonts/Roboto/roboto-bold-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto/roboto-bold-webfont.woff') format('woff'), url('../fonts/Roboto/roboto-bold-webfont.ttf') format('truetype'), url('../fonts/Roboto/roboto-bold-webfont.svg') format('svg');
-  font-weight: 700;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Roboto";
-  src: url('../fonts/Roboto/roboto-bolditalic-webfont.eot');
-  src: url('../fonts/Roboto/roboto-bolditalic-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto/roboto-bolditalic-webfont.woff') format('woff'), url('../fonts/Roboto/roboto-bolditalic-webfont.ttf') format('truetype'), url('../fonts/Roboto/roboto-bolditalic-webfont.svg') format('svg');
-  font-weight: 700;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "Roboto";
-  src: url('../fonts/Roboto/roboto-black-webfont.eot');
-  src: url('../fonts/Roboto/roboto-black-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto/roboto-black-webfont.woff') format('woff'), url('../fonts/Roboto/roboto-black-webfont.ttf') format('truetype'), url('../fonts/Roboto/roboto-black-webfont.svg') format('svg');
-  font-weight: 900;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Roboto";
-  src: url('../fonts/Roboto/roboto-blackitalic-webfont.eot');
-  src: url('../fonts/Roboto/roboto-blackitalic-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto/roboto-blackitalic-webfont.woff') format('woff'), url('../fonts/Roboto/roboto-blackitalic-webfont.ttf') format('truetype'), url('../fonts/Roboto/roboto-blackitalic-webfont.svg') format('svg');
-  font-weight: 900;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "Roboto_condensed";
-  src: url('../fonts/Roboto_condensed/robotocondensed-light-webfont.eot');
-  src: url('../fonts/Roboto_condensed/robotocondensed-light-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto_condensed/robotocondensed-light-webfont.woff') format('woff'), url('../fonts/Roboto_condensed/robotocondensed-light-webfont.ttf') format('truetype'), url('../fonts/Roboto_condensed/robotocondensed-light-webfont.svg') format('svg');
-  font-weight: 300;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Roboto_condensed";
-  src: url('../fonts/Roboto_condensed/robotocondensed-lightitalic-webfont.eot');
-  src: url('../fonts/Roboto_condensed/robotocondensed-lightitalic-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto_condensed/robotocondensed-lightitalic-webfont.woff') format('woff'), url('../fonts/Roboto_condensed/robotocondensed-lightitalic-webfont.ttf') format('truetype'), url('../fonts/Roboto_condensed/robotocondensed-lightitalic-webfont.svg') format('svg');
-  font-weight: 300;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "Roboto_condensed";
-  src: url('../fonts/Roboto_condensed/robotocondensed-regular-webfont.eot');
-  src: url('../fonts/Roboto_condensed/robotocondensed-regular-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto_condensed/robotocondensed-regular-webfont.woff') format('woff'), url('../fonts/Roboto_condensed/robotocondensed-regular-webfont.ttf') format('truetype'), url('../fonts/Roboto_condensed/robotocondensed-regular-webfont.svg') format('svg');
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Roboto_condensed";
-  src: url('../fonts/Roboto_condensed/robotocondensed-italic-webfont.eot');
-  src: url('../fonts/Roboto_condensed/robotocondensed-italic-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto_condensed/robotocondensed-italic-webfont.woff') format('woff'), url('../fonts/Roboto_condensed/robotocondensed-italic-webfont.ttf') format('truetype'), url('../fonts/Roboto_condensed/robotocondensed-italic-webfont.svg') format('svg');
-  font-weight: 400;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "Roboto_condensed";
-  src: url('../fonts/Roboto_condensed/robotocondensed-bold-webfont.eot');
-  src: url('../fonts/Roboto_condensed/robotocondensed-bold-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto_condensed/robotocondensed-bold-webfont.woff') format('woff'), url('../fonts/Roboto_condensed/robotocondensed-bold-webfont.ttf') format('truetype'), url('../fonts/Roboto_condensed/robotocondensed-bold-webfont.svg') format('svg');
-  font-weight: 700;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Roboto_condensed";
-  src: url('../fonts/Roboto_condensed/robotocondensed-bolditalic-webfont.eot');
-  src: url('../fonts/Roboto_condensed/robotocondensed-bolditalic-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto_condensed/robotocondensed-bolditalic-webfont.woff') format('woff'), url('../fonts/Roboto_condensed/robotocondensed-bolditalic-webfont.ttf') format('truetype'), url('../fonts/Roboto_condensed/robotocondensed-bolditalic-webfont.svg') format('svg');
-  font-weight: 700;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "Roboto_slab";
-  src: url('../fonts/Roboto_slab/robotoslab-thin-webfont.eot');
-  src: url('../fonts/Roboto_slab/robotoslab-thin-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto_slab/robotoslab-thin-webfont.woff') format('woff'), url('../fonts/Roboto_slab/robotoslab-thin-webfont.ttf') format('truetype'), url('../fonts/Roboto_slab/robotoslab-thin-webfont.svg') format('svg');
-  font-weight: 100;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Roboto_slab";
-  src: url('../fonts/Roboto_slab/robotoslab-light-webfont.eot');
-  src: url('../fonts/Roboto_slab/robotoslab-light-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto_slab/robotoslab-light-webfont.woff') format('woff'), url('../fonts/Roboto_slab/robotoslab-light-webfont.ttf') format('truetype'), url('../fonts/Roboto_slab/robotoslab-light-webfont.svg') format('svg');
-  font-weight: 300;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Roboto_slab";
-  src: url('../fonts/Roboto_slab/robotoslab-regular-webfont.eot');
-  src: url('../fonts/Roboto_slab/robotoslab-regular-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto_slab/robotoslab-regular-webfont.woff') format('woff'), url('../fonts/Roboto_slab/robotoslab-regular-webfont.ttf') format('truetype'), url('../fonts/Roboto_slab/robotoslab-regular-webfont.svg') format('svg');
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Roboto_slab";
-  src: url('../fonts/Roboto_slab/robotoslab-bold-webfont.eot');
-  src: url('../fonts/Roboto_slab/robotoslab-bold-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto_slab/robotoslab-bold-webfont.woff') format('woff'), url('../fonts/Roboto_slab/robotoslab-bold-webfont.ttf') format('truetype'), url('../fonts/Roboto_slab/robotoslab-bold-webfont.svg') format('svg');
-  font-weight: 700;
-  font-style: normal;
-}
-
 .ink-label {
   padding: 0 0.35em;
   white-space: nowrap;
@@ -8457,7 +8249,7 @@ img {
 .ink-label {
   color: white;
   font-weight: 300;
-  font-size: 0.938em;
+  font-size: 1em;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   -ms-border-radius: 2px;
@@ -9615,45 +9407,6 @@ table.ink-table tbody > tr.yellow td {
   -moz-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
   transition: all 0.5s ease;
-}
-.ink-carousel .stage .slide {
-  position: relative;
-  display: inline-block;
-  vertical-align: top;
-  white-space: normal;
-  margin: 0;
-  float: none;
-  zoom: 1;
-  *display: inline;
-}
-
-.ink-carousel {
-  width: 100%;
-  position: relative;
-  overflow: hidden;
-  display: block;
-}
-.ink-carousel .stage {
-  left: 0;
-  height: auto !important;
-  margin-top: 0;
-  margin-bottom: 0;
-  padding-left: 0;
-  list-style-type: none;
-  white-space: nowrap;
-  position: relative;
-  -webkit-transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-  transition: all 0.5s ease;
-}
-.ink-carousel .stage.column-group {
-  display: -webkit-block;
-  display: -moz-block;
-  display: block;
-  -webkit-flex-flow: none;
-  -moz-flex-flow: none;
-  flex-flow: none;
 }
 .ink-carousel .stage .slide {
   position: relative;
