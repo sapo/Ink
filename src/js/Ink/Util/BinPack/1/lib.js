@@ -226,7 +226,7 @@ Ink.createModule('Ink.Util.BinPack', '1', [], function() {
      *
      * see https://github.com/jakesgordon/bin-packing/
      *
-     * @namespace Ink.Util.BinPack
+     * @class Ink.Util.BinPack
      * @version 1
      * @static
      */

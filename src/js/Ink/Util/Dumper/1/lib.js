@@ -10,7 +10,7 @@ Ink.createModule('Ink.Util.Dumper', '1', [], function() {
     /**
      * Dump/Profiling Utilities
      *
-     * @namespace Ink.Util.Dumper
+     * @class Ink.Util.Dumper
      * @version 1
      * @static
      */

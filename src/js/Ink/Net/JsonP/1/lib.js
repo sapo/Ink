@@ -16,7 +16,7 @@ Ink.createModule('Ink.Net.JsonP', '1', [], function() {
      * of the request, and passing extra GET parameters to the server, is not so complicated
      * but it's boring and repetitive to code and tricky to get right.
      *
-     * @namespace Ink.Net.JsonP
+     * @class Ink.Net.JsonP
      * @constructor
      * @param {String} uri
      * @param {Object} options

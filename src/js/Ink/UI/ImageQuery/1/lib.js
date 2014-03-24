@@ -21,7 +21,7 @@ Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
      *      @param {Function}           [options.onLoad]          Date format string
      *
      * @example
-     *      <div class="imageQueryExample all-100 content-center clearfix vspace">
+     *      <div class="imageQueryExample large-100 medium-100 small-100 content-center clearfix vspace">
      *          <img src="/assets/imgs/imagequery/small/image.jpg" />
      *      </div>
      *      <script type="text/javascript">
