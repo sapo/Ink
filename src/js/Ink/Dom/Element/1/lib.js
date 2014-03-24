@@ -999,7 +999,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @return {DOMElement} Wrapper element around the radio buttons
          */
         fillRadios: function(insertAfterEl, name, data, skipEmpty, defaultValue, splitEl) {
-            var afterEl = Ink.i(insertAfterEl);
+            insertAfterEl = Ink.i(insertAfterEl);
             var containerEl = document.createElement('span');
             InkElement.insertAfter(containerEl, insertAfterEl);
 
@@ -1056,7 +1056,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @return {DOMElement} Wrapper element around the checkboxes
          */
         fillChecks: function(insertAfterEl, name, data, defaultValue, splitEl) {
-            var afterEl = Ink.i(insertAfterEl);
+            insertAfterEl = Ink.i(insertAfterEl);
             var containerEl = document.createElement('span');
             InkElement.insertAfter(containerEl, insertAfterEl);
 
