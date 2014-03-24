@@ -10,6 +10,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
      * Validation Functions to be used
      * Some functions are a port from PHP, others are the 'best' solutions available
      *
+     * @type {Object}
      * @private
      * @static
      */
@@ -17,8 +18,8 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
 
         /**
          * Checks if the value is actually defined and is not empty
-         * @
-         * @method required
+         *
+         * @method validationFunctions.required
          * @param  {String} value Value to be checked
          * @return {Boolean}       True case is defined, false if it's empty or not defined.
          */
@@ -29,7 +30,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         /**
          * Checks if the value has a minimum length
          *
-         * @method min_length
+         * @method validationFunctions.min_length
          * @param  {String} value   Value to be checked
          * @param  {String|Number} minSize Number of characters that the value at least must have.
          * @return {Boolean}         True if the length of value is equal or bigger than the minimum chars defined. False if not.
@@ -41,7 +42,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         /**
          * Checks if the value has a maximum length
          *
-         * @method max_length
+         * @method validationFunctions.max_length
          * @param  {String} value   Value to be checked
          * @param  {String|Number} maxSize Number of characters that the value at maximum can have.
          * @return {Boolean}         True if the length of value is equal or smaller than the maximum chars defined. False if not.
@@ -53,7 +54,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         /**
          * Checks if the value has an exact length
          *
-         * @method exact_length
+         * @method validationFunctions.exact_length
          * @param  {String} value   Value to be checked
          * @param  {String|Number} exactSize Number of characters that the value must have.
          * @return {Boolean}         True if the length of value is equal to the size defined. False if not.
@@ -65,7 +66,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         /**
          * Checks if the value has a valid e-mail address
          *
-         * @method email
+         * @method validationFunctions.email
          * @param  {String} value   Value to be checked
          * @return {Boolean}         True if the value is a valid e-mail address. False if not.
          */
@@ -76,7 +77,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         /**
          * Checks if the value has a valid URL
          *
-         * @method url
+         * @method validationFunctions.url
          * @param  {String} value   Value to be checked
          * @param  {Boolean} fullCheck Flag that specifies if the value must be validated as a full url (with the protocol) or not.
          * @return {Boolean}         True if the URL is considered valid. False if not.
@@ -89,7 +90,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         /**
          * Checks if the value is a valid IP. Supports ipv4 and ipv6
          *
-         * @method ip
+         * @method validationFunctions.ip
          * @param  {String} value   Value to be checked
          * @param  {String} ipType Type of IP to be validated. The values are: ipv4, ipv6. By default is ipv4.
          * @return {Boolean}         True if the value is a valid IP address. False if not.
@@ -105,7 +106,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         /**
          * Checks if the value is a valid phone number. Supports several countries, based in the Ink.Util.Validator class.
          *
-         * @method phone
+         * @method validationFunctions.phone
          * @param  {String} value   Value to be checked
          * @param  {String} phoneType Country's initials to specify the type of phone number to be validated. Ex: 'AO'.
          * @return {Boolean}         True if it's a valid phone number. False if not.
@@ -123,7 +124,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         /**
          * Checks if it's a valid credit card.
          *
-         * @method credit_card
+         * @method validationFunctions.credit_card
          * @param  {String} value   Value to be checked
          * @param  {String} cardType Type of credit card to be validated. The card types available are in the Ink.Util.Validator class.
          * @return {Boolean}         True if the value is a valid credit card number. False if not.
@@ -139,7 +140,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         /**
          * Checks if the value is a valid date.
          *
-         * @method date
+         * @method validationFunctions.date
          * @param  {String} value   Value to be checked
          * @param  {String} format Specific format of the date.
          * @return {Boolean}         True if the value is a valid date. False if not.
@@ -151,7 +152,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         /**
          * Checks if the value only contains alphabetical values.
          *
-         * @method alpha
+         * @method validationFunctions.alpha
          * @param  {String} value           Value to be checked
          * @param  {Boolean} supportSpaces  Allow whitespace
          * @return {Boolean}                True if the value is alphabetical-only. False if not.
@@ -165,7 +166,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
          * from the Basic Multilingual plane (BMP)
          * Optionally allow punctuation and whitespace
          *
-         * @method text
+         * @method validationFunctions.text
          * @param {String} value    Value to be checked
          * @return {Boolean}        Whether the value only contains printable text characters
          **/
@@ -181,7 +182,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
          *
          * Optionally allow punctuation and whitespace
          *
-         * @method text
+         * @method validationFunctions.text
          * @param {String} value    Value to be checked
          * @return {Boolean}        Whether the value only contains printable text characters
          **/
@@ -193,7 +194,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         /**
          * Checks if the value only contains alphabetical and numerical characters.
          *
-         * @method alpha_numeric
+         * @method validationFunctions.alpha_numeric
          * @param  {String} value   Value to be checked
          * @return {Boolean}         True if the value is a valid alphanumerical. False if not.
          */
@@ -204,7 +205,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         /**
          * Checks if the value only contains alphabetical, dash or underscore characteres.
          *
-         * @method alpha_dashes
+         * @method validationFunctions.alpha_dashes
          * @param  {String} value   Value to be checked
          * @return {Boolean}         True if the value is a valid. False if not.
          */
@@ -215,7 +216,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         /**
          * Checks if the value is a digit (an integer of length = 1).
          *
-         * @method digit
+         * @method validationFunctions.digit
          * @param  {String} value   Value to be checked
          * @return {Boolean}         True if the value is a valid digit. False if not.
          */
@@ -226,7 +227,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         /**
          * Checks if the value is a valid integer.
          *
-         * @method integer
+         * @method validationFunctions.integer
          * @param  {String} value   Value to be checked
          * @param  {String} positive Flag that specifies if the integer is must be positive (unsigned).
          * @return {Boolean}         True if the value is a valid integer. False if not.
@@ -241,7 +242,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         /**
          * Checks if the value is a valid decimal number.
          *
-         * @method decimal
+         * @method validationFunctions.decimal
          * @param  {String} value   Value to be checked
          * @param  {String} decimalSeparator Character that splits the integer part from the decimal one. By default is '.'.
          * @param  {String} [decimalPlaces] Maximum number of digits that the decimal part must have.
@@ -259,7 +260,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         /**
          * Checks if it is a numeric value.
          *
-         * @method numeric
+         * @method validationFunctions.numeric
          * @param  {String} value   Value to be checked
          * @param  {String} decimalSeparator Verifies if it's a valid decimal. Otherwise checks if it's a valid integer.
          * @param  {String} [decimalPlaces] (when the number is decimal) Maximum number of digits that the decimal part must have.
@@ -278,7 +279,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         /**
          * Checks if the value is in a specific range of values. The parameters after the first one are used for specifying the range, and are similar in function to python's range() function.
          *
-         * @method range
+         * @method validationFunctions.range
          * @param  {String} value   Value to be checked
          * @param  {String} minValue Left limit of the range.
          * @param  {String} maxValue Right limit of the range.
@@ -308,7 +309,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         /**
          * Checks if the value is a valid color.
          *
-         * @method color
+         * @method validationFunctions.color
          * @param  {String} value   Value to be checked
          * @return {Boolean}         True if the value is a valid color. False if not.
          */
@@ -319,7 +320,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         /**
          * Checks if the value matches the value of a different field.
          *
-         * @method matches
+         * @method validationFunctions.matches
          * @param  {String} value   Value to be checked
          * @param  {String} fieldToCompare Name or ID of the field to compare.
          * @return {Boolean}         True if the values match. False if not.
@@ -332,6 +333,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
 
     /**
      * Error messages for the validation functions above
+     * @type {Object}
      * @private
      * @static
      */

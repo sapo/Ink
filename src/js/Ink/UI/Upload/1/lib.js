@@ -111,9 +111,7 @@ Ink.createModule('Ink.UI.Upload', '1', [
 
 
         /**
-         * Create new queue list
-         * @function create
-         * @public
+         * @function {Public} ? Create new queue list
          * @param {String} list name
          * @param {Function} function to iterate on items
          * @return {Object} list id
@@ -143,9 +141,7 @@ Ink.createModule('Ink.UI.Upload', '1', [
 
 
         /**
-         * Delete list
-         * @function purge
-         * @public
+         * @function {Public} ? Delete list
          * @param {String} List name
          * @return {Object} removed list
         */
@@ -171,9 +167,7 @@ Ink.createModule('Ink.UI.Upload', '1', [
 
 
         /**
-         * add an item to a list
-         * @function add
-         * @public
+         * @function {Public} ? add an item to a list
          * @param {String} name
          * @param {Object} item
          * @return {Number} pid
@@ -195,9 +189,7 @@ Ink.createModule('Ink.UI.Upload', '1', [
 
 
         /**
-         * View list
-         * @function view
-         * @public
+         * @function {Public} ? view list
          * @param {Number} list id
          * @param {Number} process id
          * @return {Object} item
@@ -212,9 +204,7 @@ Ink.createModule('Ink.UI.Upload', '1', [
 
 
         /**
-         * Remove an item
-         * @function remove
-         * @public
+         * @function {Public} ? remove an item
          * @param {Object} item
          * @return {Object|Boolean} removed item or false if not found
         */

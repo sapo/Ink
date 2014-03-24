@@ -10,7 +10,7 @@ Ink.createModule('Ink.Util.Date', '1', [], function() {
     /**
      * Class to provide the same features that php date does
      *
-     * @namespace Ink.Util.Date
+     * @class Ink.Util.Date
      * @version 1
      * @static
      */

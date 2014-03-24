@@ -49,7 +49,7 @@
     Ink.requireModules(['Ink.UI.ProgressBar_1'],function(ProgressBar){
         var myFirstProgressBar = new ProgressBar('#progressbar1');
         var myFirstInterval = setInterval(function(){
-            var myPercentage = ((Math.random() * 100)+1);
+            var myPercentage = ((Math.random(0,1)*100)+1);
             myFirstProgressBar.setValue( myPercentage );
         },3000);
     });
@@ -83,7 +83,7 @@
             }
         });
         var mySecondInterval = setInterval(function(){
-            var myPercentage = ((Math.random()*100)+1);
+            var myPercentage = ((Math.random(0,1)*100)+1);
             mySecondProgressBar.setValue( myPercentage );
         },3000);
     });
@@ -94,7 +94,7 @@
                 Ink.requireModules(['Ink.UI.ProgressBar_1'],function(ProgressBar){
                     var myFirstProgressBar = new ProgressBar('#progressbar1');
                     var myFirstInterval = setInterval(function(){
-                        var myPercentage = ((Math.random()*100)+1);
+                        var myPercentage = ((Math.random(0,1)*100)+1);
                         myFirstProgressBar.setValue( myPercentage );
                     },3000);
 
@@ -109,7 +109,7 @@
                         }
                     });
                     var mySecondInterval = setInterval(function(){
-                        var myPercentage = ((Math.random()*100)+1);
+                        var myPercentage = ((Math.random(0,1)*100)+1);
                         mySecondProgressBar.setValue( myPercentage );
                     },3000);
                 });

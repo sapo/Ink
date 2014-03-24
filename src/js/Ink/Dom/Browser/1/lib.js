@@ -1,16 +1,17 @@
 /**
  * @module Ink.Dom.Browser_1
+ * @author inkdev AT sapo.pt
  * @version 1
- * Browser Detection and User Agent sniffing
  */
 Ink.createModule('Ink.Dom.Browser', '1', [], function() {
     'use strict';    
 
     /**
-     * @namespace Ink.Dom.Browser
+     * @class Ink.Dom.Browser
      * @version 1
      * @static
      * @example
+     *     <input type="text" id="dPicker" />
      *     <script>
      *         Ink.requireModules(['Ink.Dom.Browser_1'],function( InkBrowser ){
      *             if( InkBrowser.CHROME ){
@@ -81,8 +82,7 @@ Ink.createModule('Ink.Dom.Browser', '1', [], function() {
         CHROME: false,
 
         /**
-         * The specific browser model.
-         * False if it is unavailable.
+         * The specific browser model. False if it is unavailable.
          *
          * @property model
          * @type {Boolean|String}
@@ -92,8 +92,7 @@ Ink.createModule('Ink.Dom.Browser', '1', [], function() {
         model: false,
 
         /**
-         * The browser version.
-         * False if it is unavailable.
+         * The browser version. False if it is unavailable.
          *
          * @property version
          * @type {Boolean|String}
@@ -103,8 +102,7 @@ Ink.createModule('Ink.Dom.Browser', '1', [], function() {
         version: false,
 
         /**
-         * The user agent string.
-         * False if it is unavailable.
+         * The user agent string. False if it is unavailable.
          *
          * @property userAgent
          * @type {Boolean|String}

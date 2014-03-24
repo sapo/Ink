@@ -181,8 +181,8 @@ Ink.createModule('Ink.UI.Dropdown', '1', ['Ink.UI.Common_1', 'Ink.UI.Toggle_1', 
          * call a method given by the user through the options
          *
          * @method _handlerCall
-         * @param handler {String} The handler name in this._options
-         * @param [args*] Arguments to pass to function
+         * @params handler {String} The handler name in this._options
+         * @params ... Arguments to pass to function
          */
         _handlerCall: function (handler/*, ... */) {
             if (this._options[handler]) {
