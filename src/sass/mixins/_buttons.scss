@@ -28,4 +28,10 @@
     }
 }
 
+@mixin button-group($button-background-color) {
 
+    &:first-child {
+        border-left: shade($button-background-color, 15%);
+    }
+
+}

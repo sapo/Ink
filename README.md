@@ -12,7 +12,7 @@ Ink is an interface kit for quick development of web interfaces, simple to use a
 Read the full documentation here: [http://ink.sapo.pt](http://ink.sapo.pt). The Ink.js documentation is in [http://js.ink.sapo.pt/docs/](http://js.ink.sapo.pt/docs/) (note: this documentation is for the most recent release, but the development version may have additions).
 
 
-## Current Version: 2.3.0
+## Current Version: 2.3.1
 
 *This version is the end of the line for the 2.x.x series*
 
@@ -94,8 +94,8 @@ Ink is built with help from these wonderfull projects:
 + [Bower](http://bower.io/)
 
 ## Versions
-
-* [Ink v2.3.0](https://github.com/sapo/Ink/archive/2.3.0.zip) (current)
+* [Ink v2.3.1](https://github.com/sapo/Ink/archive/2.3.1.zip) (current)
+* [Ink v2.3.0](https://github.com/sapo/Ink/archive/2.3.0.zip)
 * [Ink v2.2.1](https://github.com/sapo/Ink/archive/2.2.1.zip)
 * [Ink v2.2.0](https://github.com/sapo/Ink/archive/2.2.0.zip)
 * [Ink v2.1.1](https://github.com/sapo/Ink/archive/2.1.1.zip)
