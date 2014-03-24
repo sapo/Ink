@@ -1,32 +1,26 @@
 /**
  * @module Ink.Util.Array_1
- * @author inkdev AT sapo.pt
+ * Array utilities
  * @version 1
  */
+
 Ink.createModule('Ink.Util.Array', '1', [], function() {
 
     'use strict';
 
     var arrayProto = Array.prototype;
 
-    /**
-     * Utility functions to use with Arrays
-     *
-     * @namespace Ink.Util.Array
-     * @version 1
-     * @static
-     */
     var InkArray = {
 
         /**
-         * Checks if value exists in array
+         * Checks if a value exists in array
          *
          * @method inArray
-         * @param {Mixed} value
-         * @param {Array} arr
-         * @return {Boolean}    True if value exists in the array
          * @public
          * @static
+         * @param {Mixed} value     Value to check
+         * @param {Array} arr       Array to search in
+         * @return {Boolean}        True if value exists in the array
          * @example
          *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
          *         var testArray = [ 'value1', 'value2', 'value3' ];
@@ -49,12 +43,12 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
         },
 
         /**
-         * Sorts an array of object by an object property
+         * Sorts an array of objects by an object property
          *
          * @method sortMulti
-         * @param {Array} arr array of objects to sort
-         * @param {String} key property to sort by
-         * @return {Array|Boolean} False if it's not an array, returns a sorted array if it's an array.
+         * @param {Array}           arr         Array of objects to sort
+         * @param {String}  key         Property to sort by
+         * @return {Array|Boolean}      False if it's not an array, returns a sorted array if it's an array.
          * @public
          * @static
          * @example
@@ -83,13 +77,13 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
         },
 
         /**
-         * Returns the associated key of an array value
+         * Gets the indexes of a value in an array
          *
          * @method keyValue
-         * @param {String} value Value to search for
-         * @param {Array} arr Array where the search will run
-         * @param {Boolean} [first] Flag that determines if the search stops at first occurrence. It also returns an index number instead of an array of indexes.
-         * @return {Boolean|Number|Array} False if not exists | number if exists and 3rd input param is true | array if exists and 3rd input param is not set or it is !== true
+         * @param   {String}      value     Value to search for.
+         * @param   {Array}       arr       Array to run the search in.
+         * @param   {Boolean}     [first]   Flag to stop the search at the first match. It also returns an index number instead of an array of indexes.
+         * @return  {Boolean|Number|Array}  False for no matches. Array of matches or first match index.
          * @public
          * @static
          * @example
@@ -117,11 +111,11 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
         },
 
         /**
-         * Returns the array shuffled, false if the param is not an array
+         * Shuffles an array.
          *
          * @method shuffle
-         * @param {Array} arr Array to shuffle
-         * @return {Boolean|Number|Array} False if not an array | Array shuffled
+         * @param   {Array}       arr    Array to shuffle
+         * @return  {Array|Boolean}      Shuffled Array or false if not an array.
          * @public
          * @static
          * @example
@@ -149,9 +143,9 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          * Runs a function through each of the elements of an array
          *
          * @method forEach
-         * @param {Array} arr Array to be cycled/iterated
-         * @param {Function} cb The function receives as arguments the value, index and array.
-         * @return {Array} Array iterated.
+         * @param   {Array}     arr     The array to be cycled/iterated
+         * @param   {Function}  cb      The function receives as arguments the value, index and array.
+         * @return  {Array}             Iterated array.
          * @public
          * @static
          * @example
@@ -174,18 +168,19 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
         /**
          * Alias for backwards compatibility. See forEach
          *
-         * @method forEach
+         * @method each
          */
         each: function () {
             InkArray.forEach.apply(InkArray, [].slice.call(arguments));
         },
 
         /**
-         * Run a `map` function for each item in the array. The function will receive each item as argument and its return value will change the corresponding array item.
+         * Runs a function for each item in the array. 
+         * That function will receive each item as an argument and its return value will change the corresponding array item.
          * @method map
-         * @param {Array} array     The array to map over
-         * @param {Function} map    The map function. Will take `(item, index, array)` and `this` will be the `context` argument.
-         * @param {Object} [context]    Object to be `this` in the map function.
+         * @param {Array}       array       The array to map over
+         * @param {Function}    map         The map function. Will take `(item, index, array)` as arguments and `this` will be the `context` argument.
+         * @param {Object}      [context]   Object to be `this` in the map function.
          *
          * @example
          *      InkArray.map([1, 2, 3, 4], function (item) {
@@ -204,11 +199,12 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
         },
 
         /**
-         * Run a test function through all the input array. Items which pass the test function (for which the test function returned `true`) are kept in the array. Other items are removed.
-         * @param {Array} array
-         * @param {Function} test       A test function taking `(item, index, array)`
-         * @param {Object} [context]    Object to be `this` in the test function.
-         * @return filtered array
+         * Filters an array based on a truth test.
+         * This method runs a test function on all the array values and returns a new array with all the values that pass the test.
+         * @param {Array}       array       The array to filter
+         * @param {Function}    test        A test function taking `(item, index, array)`
+         * @param {Object}      [context]   Object to be `this` in the test function.
+         * @return {Array}                  Returns the filtered array
          *
          * @example
          *      InkArray.filter([1, 2, 3, 4, 5], function (val) {
@@ -231,15 +227,13 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
         },
 
         /**
-         * Runs a callback function, which should return true or false.
-         * If one of the 'runs' returns true, it will return. Otherwise if none returns true, it will return false.
-         * See more at: https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Array/some (MDN)
+         * Checks if some element in the array passes a truth test
          *
          * @method some
-         * @param {Array} arr The array you walk to iterate through
-         * @param {Function} cb The callback that will be called on the array's elements. It receives the value, the index and the array as arguments.
-         * @param {Object} Context object of the callback function
-         * @return {Boolean} True if the callback returns true at any point, false otherwise
+         * @param   {Array}       arr       The array to iterate through
+         * @param   {Function}    cb        The callback to be called on the array's elements. It receives the value, the index and the array as arguments.
+         * @param   {Object}      context   Object of the callback function
+         * @return  {Boolean}               True if the callback returns true at any point, false otherwise
          * @public
          * @static
          * @example
@@ -275,12 +269,12 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
         },
 
         /**
-         * Returns an array containing every item that is shared between the two given arrays
+         * Compares the values of two arrays and return the matches
          *
          * @method intersect
-         * @param {Array} arr Array1 to be intersected with Array2
-         * @param {Array} arr Array2 to be intersected with Array1
-         * @return {Array} Empty array if one of the arrays is false (or do not intersect) | Array with the intersected values
+         * @param   {Array}   arr1      First array
+         * @param   {Array}   arr2      Second array
+         * @return  {Array}             Empty array if one of the arrays is false (or do not intersect) | Array with the intersected values
          * @public
          * @static
          * @example
@@ -308,11 +302,11 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
         },
 
         /**
-         * Convert lists type to type array
+         * Converts an array-like object to an array
          *
          * @method convert
-         * @param {Array} arr Array to be converted
-         * @return {Array} Array resulting of the conversion
+         * @param   {Array}   arr   Array to be converted
+         * @return  {Array}         Array resulting of the conversion
          * @public
          * @static
          * @example
@@ -330,12 +324,12 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
         },
 
         /**
-         * Insert value into the array on specified idx
+         * Inserts a value on a specified index
          *
          * @method insert
-         * @param {Array} arr Array where the value will be inserted
-         * @param {Number} idx Index of the array where the value should be inserted
-         * @param {Mixed} value Value to be inserted
+         * @param {Array}   arr     Array where the value will be inserted
+         * @param {Number}  idx     Index of the array where the value should be inserted
+         * @param {Mixed}   value   Value to be inserted
          * @public
          * @static
          * @example
@@ -349,13 +343,13 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
         },
 
         /**
-         * Remove a range of values from the array
+         * Removes a range of values from the array
          *
          * @method remove
-         * @param {Array} arr Array where the value will be inserted
-         * @param {Number} from Index of the array where the removal will start removing.
-         * @param {Number} rLen Number of items to be removed from the index onwards.
-         * @return {Array} An array with the remaining values
+         * @param   {Array}     arr     Array where the value will be removed
+         * @param   {Number}    from    Index of the array where the removal will start removing.
+         * @param   {Number}    rLen    Number of items to be removed from the index onwards.
+         * @return  {Array}             An array with the remaining values
          * @public
          * @static
          * @example
@@ -382,5 +376,3 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
     return InkArray;
 
 });
-
-
