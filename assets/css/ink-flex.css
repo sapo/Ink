@@ -1821,6 +1821,10 @@
   margin: 0 !important;
 }
 
+.no-padding {
+  padding: 0 !important;
+}
+
 .push-left {
   float: left;
   -webkit-justify-content: flex-start;
@@ -12861,7 +12865,7 @@ img {
 .ink-label {
   color: white;
   font-weight: 300;
-  font-size: 1em;
+  font-size: 0.938em;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   -ms-border-radius: 2px;

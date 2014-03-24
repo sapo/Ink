@@ -714,7 +714,6 @@ body.ink-drawer .right-drawer li:last-child {
 
 section {
   padding-top: 5em;
-  margin: -1em 0 0;
   -webkit-background-clip: padding;
   -moz-background-clip: padding;
   background-clip: padding-box;
@@ -725,7 +724,7 @@ section:first-child {
 }
 section + section {
   margin-top: 3em;
-  padding-top: 2em;
+  padding-top: 3em;
   border-top: 1px solid #ded8cc;
 }
 section p, section ul, section ol, section dl, section dt code, section table {
