@@ -8,27 +8,52 @@ tags:
 <section class="ink">
   <div class="ink-grid">
     <div class="column-group push-middle push-center">
-      <div class="all-60 align-center">
-        <img src="{{ site.images_path }}/ink.png" alt="Ink" class="bottom-space">
-        <h1 class="fw-light">Create responsive web interfaces with a rock solid code base.</h1>
-        <p class="align-center top-space"><a href="{{site.download_url}}{{site.version}}.zip" class="ink-button download">Download</a><a href="{{site.repo_url}}" class="ink-button repo">Ink on Github</a></p>
+      <div class="extra-large-65 large-65 all-80 align-center">
+        <p><img src="{{ site.images_path }}/ink.png" alt="Ink"></p>
+        <h1 class="fw-light">A quick and efficient toolkit to create responsive web interfaces.</h1>
+        <div class="column-group">
+          <div class="all-50">
+            <a href="{{site.download_url}}{{site.version}}.zip" class="ink-button download">Download</a>
+          </div>
+          <div class="all-50">
+            <a href="{{site.repo_url}}" class="ink-button repo">Ink on Github</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 <section class="what">
   <div class="ink-grid">
-    <h1 class="fw-light">What?</h1>
-    <div class="column-group horizontal-gutters push-top push-center">
-      <div class="all-100">
-      <ul>
-        <li>Completely fluid and responsive.</li>
-        <li>Human readable syntax.</li>
-        <li>Modular and high performance Javascript library.</li>
-        <li>Absolute control over the layout depending on the screen size.</li>
-        <li>Flex grid. Give modern browsers and their users the love they deserve.</li>
-        <img src="{{site.images_path}}grid.png" alt="">
-      </ul>
+    <h1 class="fw-light uppercase align-center small-align-left tiny-align-left">Lightning fast responsive web development</h1>
+    <div class="column-group horizontal-gutters push-top">
+      <div class="extra-large-50 large-50 medium-50 small-100 tiny-100">
+        <h2 class="fw-light">Responsive from the ground up</h2>
+        <p>Our grid system is percentage based. Nesting grid elements gives you infinite possibilities. Version 3.0.0 introduces a flex based grid system that gives you unprecedented control over your layouts.</p>
+      </div>
+      <div class="extra-large-50 large-50 medium-50 small-100 tiny-100">
+        <h2 class="fw-light">Easy to code and easy to read</h2>
+        <p>Our syntax was designed to be clean and readable like a human language, creating legible code that both designers and developers can understand, helping to make your work accessible to anyone on your teams.</p>
+{% highlight html %}
+<nav class="ink-navigation">
+  <ul class="horizontal menu">
+    <li>...</li>
+  </ul>
+</nav>
+{% endhighlight %}
+      </div>
+      <div class="extra-large-50 large-50 medium-100 small-100 tiny-100">
+        <h2 class="fw-light">More than HTML and CSS</h2>
+        <p>We've developed our own Javascript library based on the latest coding standards and a modular architecture. Using <a href="http://localhost:4000/javascript/ink/#Ink_1-Ink_1-requireModules">Ink.requireModules()</a> method make sure all of Ink power is at your finger tips.</p>
+{% highlight js %}
+Ink.requireModules(
+  ['Ink.Dom.CSS_1', 'Ink.Dom.Selector_1'], 
+  function(c, s) {    
+    var myDiv = Ink.s('#intro');
+    c.addClass(myDiv,'hot');
+  }
+);
+{% endhighlight %}        
       </div>
     </div>
   </div>

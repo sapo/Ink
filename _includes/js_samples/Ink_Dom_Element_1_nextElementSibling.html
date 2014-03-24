@@ -1,16 +1,29 @@
-<p>Desc... <code>this</code> </p>
+<p>Get next node of a given element</p>
 
 <p class="example-title">Code</p>
 {% highlight html %}
-<div>
+<div id="container">
+    Text node, 
+    <h2 id="elm_1">Child 1</h2>
+    <div id="elm_2">Child 2</div>
+    Another Text node
+    <p id="elm_3">Child 3</p>
 </div>
+
 <script>
 Ink.requireModules(['Ink.Dom.Element_1'], function(InkElement) {
-    
-    var ... = InkElement.('');
 
-    Ink.log(aPositionedOffset); // [0, 0]  
+    var elm1 = Ink.i('elm_1');
+    var elm2 = Ink.i('elm_2');
+    var elm3 = Ink.i('elm_3');
 
+    var nextSibling1 = InkElement.nextElementSibling(elm1);
+    var nextSibling2 = InkElement.nextElementSibling(elm2);
+    var nextSibling3 = InkElement.nextElementSibling(elm3);
+
+    Ink.log(nextSibling1); // <div id="elm_2">Child 2</div>
+    Ink.log(nextSibling2); // <p id="elm_3">Child 3</p> 
+    Ink.log(nextSibling3); // null 
 });
 </script>
 {% endhighlight %}

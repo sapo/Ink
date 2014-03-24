@@ -1,16 +1,22 @@
-<p>Desc... <code>this</code> </p>
+<p>Check if an element is descendant of a given node.</p>
 
 <p class="example-title">Code</p>
 {% highlight html %}
-<div>
+<div id="container">
+    <div id="level_1">
+        <div id="level_2"></div>
+    </div>
 </div>
 <script>
 Ink.requireModules(['Ink.Dom.Element_1'], function(InkElement) {
-    
-    var ... = InkElement.('');
 
-    Ink.log(aPositionedOffset); // [0, 0]  
+    var container = Ink.i('container');
+    var levelElm1 = Ink.i('level_1');
+    var levelElm2 = Ink.i('level_2');
 
+    InkElement.descendantOf(container, levelElm1); // true 
+    InkElement.descendantOf(container, levelElm2); // true 
+    InkElement.descendantOf(levelElm2, levelElm1); // false 
 });
 </script>
 {% endhighlight %}

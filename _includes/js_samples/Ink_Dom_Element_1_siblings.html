@@ -1,16 +1,23 @@
-<p>Desc... <code>this</code> </p>
+<p>Get sibling nodes of a given element</p>
 
 <p class="example-title">Code</p>
 {% highlight html %}
-<div>
+<div id="container">
+    Text node, 
+    <h2>Child 1</h2>
+    <div id="elm_2">Child 2</div>
+    Another Text node
+    <p>Child 3</p>
 </div>
+
 <script>
 Ink.requireModules(['Ink.Dom.Element_1'], function(InkElement) {
-    
-    var ... = InkElement.('');
 
-    Ink.log(aPositionedOffset); // [0, 0]  
+    var elm2 = Ink.i('elm_2');
 
+    var siblings = InkElement.siblings(elm2);
+
+    Ink.log(siblings); // [<h2>Child 1</h2>, <p>Child 3</p>] 
 });
 </script>
 {% endhighlight %}

@@ -17,6 +17,7 @@ $img-path           : "../img/";
 $code-background    : #EEEBE5;
 $code-border        : darken($code-background,8%);
 $teal: #009999;
+$code-font-size: .85em;
 
 .uppercase { text-transform: uppercase; }
 .fw-100 { font-weight: 100; font-family: Roboto; }
@@ -344,7 +345,11 @@ body.ink-drawer {
 .highlight          { padding: 1em; background: $code-background; margin-bottom: 1.5em; @include border-radius($border-radius);}
 .highlight pre      { 
     margin: 0; 
+<<<<<<< HEAD
+    font-size: $code-font-size; 
+=======
     font-size: .875em; 
+>>>>>>> 187522658b27b024f040a797bc548ac0a5a659d4
     overflow-x: auto;
     white-space: pre;
     word-wrap: normal;
@@ -420,7 +425,7 @@ body.ink-drawer {
         line-height: 1.5;
 
         &.section-title {
-            margin: 0 0 0.3em 0;
+            margin: 0;
         }
     }
 
@@ -446,7 +451,7 @@ section {
     
     & + section {
         margin-top: 3em;
-        padding-top: 3em;
+        padding-top: 2em;
         border-top: 1px solid $code-border;
     }
     
@@ -460,7 +465,7 @@ p, ul, dl {
         margin: 0 2px;
         padding: 0 5px;
         background-color: $code-background;
-        font-size: .938em;
+        font-size: $code-font-size;
     }
 }
 
@@ -544,7 +549,7 @@ ul {
         li.prop {
             @extend .slab-400;
             background-color: $code-background;
-            font-size: .938em;
+            font-size: $code-font-size;
             padding: 0 5px;
             &.breakpoint-aware {
                 &:after {
@@ -643,7 +648,7 @@ p + p.example-title {
 
 .example, table.props {
     code, pre {
-        font-size: 0.913em;
+        font-size: $code-font-size;
     }
 }
 
@@ -741,7 +746,7 @@ footer {
 // homepage
 
 $ink: darken($code-background,25%);
-$what: #fff;
+$what: #709DC7;
 $why: lighten(#8F65C5,10%);
 $how: lighten(#C04343,10%);
 $who: lighten(#CA8A4E,10%);
@@ -805,8 +810,8 @@ $who: lighten(#CA8A4E,10%);
     section.what {
       
 
-      @include background-image(radial-gradient($what, darken($what,20%)));
-      @include text-color($text-color,h1,h2,h3,p,ul);
+      @include background-image(radial-gradient($what, darken($what,10%)));
+      @include text-color($white,h1,h2,h3,p,ul);
       
       
       .ink-grid {

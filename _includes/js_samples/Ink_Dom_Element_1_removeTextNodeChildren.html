@@ -1,17 +1,27 @@
-<p>Desc... <code>this</code> </p>
-
+<p>Remove text node childs of an element</p>
 <p class="example-title">Code</p>
 {% highlight html %}
-<div>
+<!-- Original markup -->
+<div id="container">
+    Text node, 
+    <h2>Child 1</h2>
+    <div>Child 2</div>
+    <p>Child 3</p>
+    Another text node
 </div>
 <script>
 Ink.requireModules(['Ink.Dom.Element_1'], function(InkElement) {
-    
-    var ... = InkElement.('');
 
-    Ink.log(aPositionedOffset); // [0, 0]  
+    var container = Ink.i('container');
 
+    InkElement.removeTextNodeChildren(container);
 });
 </script>
+<!-- Result -->
+<div id="container">
+    <h2>Child 1</h2>
+    <div>Child 2</div>
+    <p>Child 3</p>
+</div>
 {% endhighlight %}
 

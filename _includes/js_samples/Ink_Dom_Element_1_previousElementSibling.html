@@ -1,16 +1,29 @@
-<p>Desc... <code>this</code> </p>
+<p>Get de previous node of a given element</p>
 
 <p class="example-title">Code</p>
 {% highlight html %}
-<div>
+<div id="container">
+    Text node, 
+    <h2 id="elm_1">Child 1</h2>
+    <div id="elm_2">Child 2</div>
+    Another Text node
+    <p id="elm_3">Child 3</p>
 </div>
+
 <script>
 Ink.requireModules(['Ink.Dom.Element_1'], function(InkElement) {
-    
-    var ... = InkElement.('');
 
-    Ink.log(aPositionedOffset); // [0, 0]  
+    var elm1 = Ink.i('elm_1');
+    var elm2 = Ink.i('elm_2');
+    var elm3 = Ink.i('elm_3');
 
+    var previousSibling1 = InkElement.previousElementSibling(elm1);
+    var previousSibling2 = InkElement.previousElementSibling(elm2);
+    var previousSibling3 = InkElement.previousElementSibling(elm3);
+
+    Ink.log(previousSibling1); // null 
+    Ink.log(previousSibling2); // <h2>Child 1</h2> 
+    Ink.log(previousSibling3); // <div id="elm_2">Child 2</div> 
 });
 </script>
 {% endhighlight %}
