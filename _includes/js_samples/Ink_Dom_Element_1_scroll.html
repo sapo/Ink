@@ -1,13 +1,25 @@
-<p>How to get the scroll position in a page</p>
+<p>How to get the scroll position in a page or in an element.</p>
 
 <p class="example-title">Code</p>
-{% highlight js %}
+{% highlight html %}
+<div id="container" style="height:100px;overflow:scroll;">
+    <p>line 1</p>
+    <p>line 2</p>
+    <p>line 3</p>
+    <p>line 4</p>
+    <p>line 5</p>
+    <p>line 7</p>
+</div>
+<script>
 Ink.requireModules(['Ink.Dom.Element_1'], function(InkElement) {
     
-    var scrollPosition = InkElement.scroll();
+    var pageScrollPosition = InkElement.scroll();
+    Ink.log(pageScrollPosition); // [0, 0]  
 
-    Ink.log(scrollPosition); // [0, 0]  
-
+    var container = Ink.i('container');
+    var elementScrollPosition = InkElement.scroll(container);
+    Ink.log(elementScrollPosition); // [0, 42]  - after scoll element container  
 });
+</script>
 {% endhighlight %}
 

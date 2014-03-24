@@ -1,15 +1,20 @@
-<p>Desc... <code>this</code> </p>
+<p>Find a parent element that matches with given id.</p>
 
 <p class="example-title">Code</p>
 {% highlight html %}
-<div>
+<div id="container" class="container_class">
+    <div>
+        <p id="target">Target content</p>
+    </div>
 </div>
 <script>
 Ink.requireModules(['Ink.Dom.Element_1'], function(InkElement) {
     
-    var ... = InkElement.('');
+    var target = Ink.i('target');
+    var upElement = InkElement.findUpwardsBySelector(target, '#container > div');
 
-    Ink.log(aPositionedOffset); // [0, 0]  
+    Ink.log(upElement);
+    // <div><p id="target">Target content</p></div> 
 
 });
 </script>

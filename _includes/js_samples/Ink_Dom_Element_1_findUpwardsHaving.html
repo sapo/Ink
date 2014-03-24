@@ -1,15 +1,26 @@
-<p>Desc... <code>this</code> </p>
+<p>Find a parent element that matches with the rule in test function</p>
 
 <p class="example-title">Code</p>
 {% highlight html %}
-<div>
+<div id="container" data-attr="attr_val" class="container_class">
+    <div>
+        <p id="target">Target content</p>
+    </div>
 </div>
 <script>
 Ink.requireModules(['Ink.Dom.Element_1'], function(InkElement) {
     
-    var ... = InkElement.('');
+    var target = Ink.i('target');
+    var matchFunction = function(elm) { // will receive parent element as argument 
+        if(elm && elm.getAttribute('data-attr') === 'attr_val') {
+            return true;
+        }
+        return false;
+    };
+    var upElement = InkElement.findUpwardsHaving(target, matchFunction);
 
-    Ink.log(aPositionedOffset); // [0, 0]  
+    Ink.log(upElement);
+    // <div id="container" data-attr="attr_val" class="container_class"><div><p id="target">Target content</p></div></div>
 
 });
 </script>
