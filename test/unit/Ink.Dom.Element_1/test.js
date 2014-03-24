@@ -197,9 +197,23 @@ Ink.requireModules(['Ink.Dom.Element_1', 'Ink.Dom.Selector_1', 'Ink.Dom.Css_1'],
         var theParent = InkElement.create('div');
         var wrapper = InkElement.create('div', { insertBottom: theParent, className: 'outer-wrapper'});
         var anotherWrapper = InkElement.create('div', { insertBottom: wrapper, className: 'another-wrapper'});
-        var child = InkElement.create('div', { insertBottom: wrapper });
+        var child = InkElement.create('div', { insertBottom: anotherWrapper });
 
         InkElement.unwrap(child, '.outer-wrapper');
+
+        strictEqual(child.parentNode, theParent);
+        strictEqual(child.nextSibling, wrapper);
+        strictEqual(wrapper.firstChild, anotherWrapper);
+        strictEqual(anotherWrapper.firstChild, null);
+    });
+
+    test('unwrap(elem, elem)', function () {
+        var theParent = InkElement.create('div');
+        var wrapper = InkElement.create('div', { insertBottom: theParent, className: 'outer-wrapper'});
+        var anotherWrapper = InkElement.create('div', { insertBottom: wrapper, className: 'another-wrapper'});
+        var child = InkElement.create('div', { insertBottom: anotherWrapper });
+
+        InkElement.unwrap(child, wrapper);
 
         strictEqual(child.parentNode, theParent);
         strictEqual(child.nextSibling, wrapper);
@@ -353,4 +367,21 @@ Ink.requireModules(['Ink.Dom.Element_1', 'Ink.Dom.Selector_1', 'Ink.Dom.Css_1'],
         ok(newH < h);
         document.body.removeChild(elem);
     });
+
+    test('fillSelect', function () {
+        var container = document.createElement('select');
+        var data = [
+            ['1', 'a'],
+            ['2', 'b'],
+            ['3', 'c']
+        ];
+        InkElement.fillSelect(container, data, true);
+        equal(container.children.length, 3);
+
+        for (var i = 0, len = container.children.length; i < len; i++) {
+            strictEqual(container.children[i].getAttribute('value'), data[i][0]);
+            strictEqual(InkElement.textContent(container.children[i]), data[i][1]);
+        }
+    });
 });
+
