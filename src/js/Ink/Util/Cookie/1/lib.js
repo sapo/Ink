@@ -1,6 +1,6 @@
 /**
  * @module Ink.Util.Cookie_1
- * Utilities for Cookie handling
+ * Cookie Utilities
  * @version 1
  */
 
