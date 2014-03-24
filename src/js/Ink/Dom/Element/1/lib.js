@@ -1676,7 +1676,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Get the scroll's width.
          * @method scrollWidth
          * @return {Number} Scroll width
-         * @sample Ink_Dom_Element_1_scrollWidth.html 
          */
         scrollWidth: function() {
             if (typeof window.self.pageXOffset !== 'undefined') {
@@ -1692,7 +1691,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Get the scroll's height.
          * @method scrollHeight
          * @return {Number} Scroll height
-         * @sample Ink_Dom_Element_1_scrollHeight.html 
          */
         scrollHeight: function() {
             if (typeof window.self.pageYOffset !== 'undefined') {
