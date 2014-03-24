@@ -1,5 +1,5 @@
   {% if site.environment == 'production' %}
-    <script type="text/javascript" src="http://js.sapo.pt/SAPOWebAnalytics/"></script>         
+    <script type="text/javascript" src="http://js.sapo.pt/SAPOWebAnalytics/"></script>    
     <script>
       SAPO.WebAnalytics.track({swakt:"FC2C65EF-D60C-4BC2-9D76-251A50DADC3D"}); 
       SAPO.WebAnalytics.registerClick();
@@ -15,6 +15,13 @@
     {% endif %}
     <script>
       var inkDrawer = new Ink.UI.Drawer_1({ sides: 'left', mode: 'push' });
+    </script>
+    <script type="text/javascript" src="{{ site.url }}{{ site.js_path }}modernizr.js"></script>
+    <script type="text/javascript">
+        Modernizr.load({
+          test: Modernizr.flexbox,
+          nope : '{{ site.url }}{{  site.css_path  }}ink-flex-legacy.min.css',
+        });
     </script>
   </body>
 </html>
