@@ -55,7 +55,6 @@ Ink.createModule('Ink.Autoload', 1, ['Ink.Dom.Selector_1', 'Ink.Dom.Loaded_1', '
             }
 
             function findElements(mod) {
-                debugger
                 var modName = 'Ink.UI.' + mod;
                 var elements = Selector.select( Autoload.selectors[mod], parentEl );
                 if( elements.length ){
