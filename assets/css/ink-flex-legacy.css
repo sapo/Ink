@@ -1817,6 +1817,10 @@
   margin: 0 !important;
 }
 
+.no-padding {
+  padding: 0 !important;
+}
+
 .push-left {
   float: left;
 }
@@ -2593,6 +2597,8 @@ th {
 .ink-form input[type="search"],
 .ink-form input[type="tel"],
 .ink-form input[type="color"] {
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
+  font-weight: 300;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   -ms-border-radius: 2px;
@@ -8249,7 +8255,7 @@ img {
 .ink-label {
   color: white;
   font-weight: 300;
-  font-size: 1em;
+  font-size: 0.938em;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   -ms-border-radius: 2px;
