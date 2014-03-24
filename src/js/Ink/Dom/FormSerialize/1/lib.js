@@ -1,28 +1,27 @@
 /**
  * @module Ink.Dom.FormSerialize
- * @author inkdev AT sapo.pt
+ * Two way serialization of form data and javascript objects.
+ * Valid applications are ad hoc AJAX/syndicated submission of forms, restoring form values from server side state, etc.
  */
 
 Ink.createModule('Ink.Dom.FormSerialize', 1, [], function () {
     'use strict';
+
     /**
-     * Supports serialization of form data to/from javascript Objects.
-     *
-     * Valid applications are ad hoc AJAX/syndicated submission of forms, restoring form values from server side state, etc.
-     *
-     * @class Ink.Dom.FormSerialize
-     *
-     */
+     * @namespace Ink.Dom.FormSerialize
+     * @static
+     **/
     var FormSerialize = {
 
         /**
-         * Serializes a form into an object, turning field names into keys, and field values into values.
+         * Serializes a form element into a JS object
+         * It turns field names into keys and field values into values.
          *
-         * note: Multi-select and checkboxes with multiple values will yield arrays
+         * note: Multi-select and checkboxes with multiple values will result in arrays
          *
          * @method serialize
-         * @return {Object} map of fieldName -> String|String[]|Boolean
-         * @param {DomElement|String}   form    form element from which the extraction is to occur
+         * @param {DOMElement|String}   form    Form element to extract data
+         * @return {Object} Map of fieldName -> String|String[]|Boolean
          *
          * @example
          *     <form id="frm">
@@ -60,13 +59,13 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, [], function () {
 
 
         /**
-         * Sets form elements's values with values given from object
+         * Sets form elements' values with values from an object
          *
-         * One cannot restore the values of an input with `type="file"` (browser prohibits it)
+         * Note: You can't set the values of an input with `type="file"` (browser prohibits it)
          *
          * @method fillIn 
-         * @param {DomElement|String}   form    form element which is to be populated
-         * @param {Object}              map2    map of fieldName -> String|String[]|Boolean
+         * @param {DOMElement|String}   form    Form element to be populated
+         * @param {Object}              map2    Map of fieldName -> String|String[]|Boolean
          * @example
          *     <form id="frm">
          *         <input type="text" name="field1">

@@ -112,7 +112,6 @@ Ink.createModule('Ink.UI.Spy', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Do
      * @param {String|DOMElement} selector
      * @param {Object} [options] Options
      *     @param {DOMElement|String}     options.target          Target menu on where the spy will highlight the right option.
-     *     TODO @xparam {String}                [options.activeClass='active'] Class which marks the "li" as active.
      * @example
      *      <script>
      *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.Spy_1'], function( Selector, Spy ){
@@ -126,7 +125,7 @@ Ink.createModule('Ink.UI.Spy', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Do
      */
     var Spy = function( selector, options ){
 
-        this._rootElement = Common.elOrSelector(selector,'1st argument');
+        this._rootElement = Common.elOrSelector( selector, 'Ink.UI.Spy_1: Link element' );
 
         /**
          * Setting default options and - if needed - overriding it with the data attributes
@@ -141,7 +140,7 @@ Ink.createModule('Ink.UI.Spy', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Do
          */
         this._options = Ink.extendObj(this._options,options || {});
 
-        this._options.target = Common.elOrSelector( this._options.target, 'Target' );
+        this._options.target = Common.elOrSelector( this._options.target, 'Ink.UI.Spy_1: Target element' );
 
         this._init();
     };

@@ -22,7 +22,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
     /**
      * The Common class provides auxiliar methods to ease some of the most common/repetitive UI tasks.
      *
-     * @class Ink.UI.Common
+     * @namespace Ink.UI.Common
      * @version 1
      * @static
      */
@@ -95,7 +95,10 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
         elOrSelector: function(elOrSelector, fieldName) {
             if (!this.isDOMElement(elOrSelector)) {
                 var t = Selector.select(elOrSelector);
-                if (t.length === 0) { throw new TypeError(fieldName + ' must either be a DOM Element or a selector expression!\nThe script element must also be after the DOM Element itself.'); }
+                if (t.length === 0) {
+                    Ink.warn(fieldName + ' must either be a DOM Element or a selector expression!\nThe script element must also be after the DOM Element itself.');
+                    return null;
+                }
                 return t[0];
             }
             return elOrSelector;
@@ -110,7 +113,8 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          *
          * @static
          *
-         * @param ... (See elOrSelector's params)
+         * @param  {DOMElement|String} elOrSelector DOM Element or CSS Selector
+         * @param  {String}            fieldName    This field is used in the thrown Exception to identify the parameter.
          * @param {Boolean} required If true, accept an empty array as output.
          * @return {Array} The selected DOM Elements.
          * @example
@@ -204,57 +208,75 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
             var type;
             var lType;
             var defaultVal;
-            var key;
 
-            var invalid = function (str) {
-                if (fieldId) { str = fieldId + ': ' + str; }
-                throw new Error(str);
+			var invalidStr = function (str) {
+                if (fieldId) { str = fieldId + ': "' + ('' + str).replace(/"/, '\\"') + '"'; }
+				return str;
+			};
+
+			var quote = function (str) {
+				return '"' + ('' + str).replace(/"/, '\\"') + '"';
+			};
+
+            var invalidThrow = function (str) {
+                throw new Error(invalidStr(str));
             };
 
-            for (key in defaults) {
-                if (defaults.hasOwnProperty(key)) {
-                    type = defaults[key][0];
-                    lType = type.toLowerCase();
-                    defaultVal = defaults[key].length === 2 ? defaults[key][1] : nothing;
+            var invalid = function (str) {
+                Ink.error(invalidStr(str) + '. Ignoring option.');
+            };
 
-                    if (!type) {
-                        invalid('Ink.UI.Common.options: Always specify a type!');
-                    }
-                    if (!(lType in Common._coerce_funcs)) {
-                        invalid('Ink.UI.Common.options: ' + defaults[key][0] + ' is not a valid type. Use one of ' + keys(Common._coerce_funcs).join(', '));
+            function optionValue(key) {
+                type = defaults[key][0];
+                lType = type.toLowerCase();
+                defaultVal = defaults[key].length === 2 ? defaults[key][1] : nothing;
 
-                    }
-                    if (!defaults[key].length || defaults[key].length > 2) {
-                        invalid('the "defaults" argument must be an object mapping option names to [typestring, optional] arrays.');
-                    }
+                if (!type) {
+                    invalidThrow('Ink.UI.Common.options: Always specify a type!');
+                }
+                if (!(lType in Common._coerce_funcs)) {
+                    invalidThrow('Ink.UI.Common.options: ' + defaults[key][0] + ' is not a valid type. Use one of ' + keys(Common._coerce_funcs).join(', '));
 
-                    if (key in dataAttrs) {
-                        fromDataAttrs = Common._coerce_from_string(lType, dataAttrs[key]);
-                        // (above can return `nothing`)
+                }
+                if (!defaults[key].length || defaults[key].length > 2) {
+                    invalidThrow('the "defaults" argument must be an object mapping option names to [typestring, optional] arrays.');
+                }
+
+                if (key in dataAttrs) {
+                    fromDataAttrs = Common._coerce_from_string(lType, dataAttrs[key], key, fieldId);
+                    // (above can return `nothing`)
+                } else {
+                    fromDataAttrs = nothing;
+                }
+
+                if (fromDataAttrs !== nothing) {
+                    if (!Common._options_validate(fromDataAttrs, lType)) {
+                        invalid('(' + key + ' option) Invalid ' + lType + ' ' + quote(fromDataAttrs));
+                        return defaultVal;
                     } else {
-                        fromDataAttrs = nothing;
+                        return fromDataAttrs;
                     }
-
-                    if (fromDataAttrs !== nothing) {
-                        if (!Common._options_validate(fromDataAttrs, lType)) {
-                            invalid('Invalid ' + lType + ': ' + fromDataAttrs);
-                        }
-                        out[key] = fromDataAttrs;
-                    } else if (key in overrides) {
-                        out[key] = overrides[key];
-                    } else if (defaultVal !== nothing) {
-                        out[key] = defaultVal;
-                    } else {
-                        invalid('Option ' + key + ' is required!');
-                    }
+                } else if (key in overrides) {
+                    return overrides[key];
+                } else if (defaultVal !== nothing) {
+                    return defaultVal;
+                } else {
+                    invalidThrow('Option ' + key + ' is required!');
                 }
             }
+
+            for (var key in defaults) {
+                if (defaults.hasOwnProperty(key)) {
+					out[key] = optionValue(key);
+                }
+            }
+
             return out;
         },
 
-        _coerce_from_string: function (type, val) {
+        _coerce_from_string: function (type, val, paramName, fieldId) {
             if (type in Common._coerce_funcs) {
-                return Common._coerce_funcs[type](val);
+                return Common._coerce_funcs[type](val, paramName, fieldId);
             } else {
                 return val;
             }
@@ -284,8 +306,9 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
                     return !(val === 'false' || val === '' || val === null);
                 },
                 string: function (val) { return val; },
-                'function': function () {
-                    throw new Error('This parameter is a function. Do not specify it through data-attributes! It\'s eval!');
+                'function': function (val, paramName, fieldId) {
+					Ink.error(fieldId + ': You cannot specify the option "' + paramName + '" through data-attributes because it\'s a function');
+					return nothing;
                 }
             };
             ret['float'] = ret.integer = ret.number;

@@ -15,7 +15,7 @@ Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
     };
 
     /**
-     * @class Ink.UI.Droppable
+     * @namespace Ink.UI.Droppable
      * @version 1
      * @static
      */
@@ -206,7 +206,8 @@ Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
         /**
          * Updates location and size of droppable element
          * 
-         * @method update * @param {String|DOMElement} element - target element
+         * @method update
+         * @param {String|DOMElement} element - target element
          * @private
          */
         update: function(element) {

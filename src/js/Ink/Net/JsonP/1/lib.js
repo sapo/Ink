@@ -1,5 +1,7 @@
 /**
- * @author inkdev AT sapo.pt
+ * @module Ink.Net.JsonP_1
+ * Cross Browser Ajax requests
+ * @version 1
  */
 
 Ink.createModule('Ink.Net.JsonP', '1', [], function() {
@@ -7,26 +9,20 @@ Ink.createModule('Ink.Net.JsonP', '1', [], function() {
     'use strict';
 
     /**
-     * @module Ink.Net.JsonP_1
-     */
-
-    /**
-     * This class takes care of the nitty-gritty details of doing jsonp requests: Storing
-     * a callback in a globally accessible manner, waiting for the timeout or completion
-     * of the request, and passing extra GET parameters to the server, is not so complicated
-     * but it's boring and repetitive to code and tricky to get right.
+     * Executes a JSONP request
      *
      * @class Ink.Net.JsonP
      * @constructor
-     * @param {String} uri
-     * @param {Object} options
-     * @param {Function}  options.onSuccess         success callback
-     * @param {Function}  [options.onFailure]       failure callback
-     * @param {Object}    [options.failureObj]      object to be passed as argument to failure callback
-     * @param {Number}    [options.timeout]         timeout for request fail, in seconds. defaults to 10
-     * @param {Object}    [options.params]          object with the parameters and respective values to unfold
-     * @param {String}    [options.callbackParam]   parameter to use as callback. defaults to 'jsoncallback'
-     * @param {String}    [options.internalCallback] *Advanced*: name of the callback function stored in the Ink.Net.JsonP object.
+     *
+     * @param {String}      uri                         Request URL
+     * @param {Object}      options                     Request options
+     * @param {Function}    options.onSuccess           Success callback
+     * @param {Function}    [options.onFailure]         Failure callback
+     * @param {Object}      [options.failureObj]        Object to be passed as argument to failure callback
+     * @param {Number}      [options.timeout]           Timeout for request fail, in seconds. defaults to 10
+     * @param {Object}      [options.params]            Object with the parameters and respective values to unfold
+     * @param {String}      [options.callbackParam]     Parameter to use as callback. defaults to 'jsoncallback'
+     * @param {String}      [options.internalCallback]  Name of the callback function stored in the Ink.Net.JsonP object.
      *
      * @example
      *      Ink.requireModules(['Ink.Net.JsonP_1'], function (JsonP) {
