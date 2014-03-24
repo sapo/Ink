@@ -36,7 +36,6 @@
 // IMPORT MIXINS FILES (THESE CONTAIN HELPER FUNCTIONS)
 @import "mixins/alerts";
 @import "mixins/buttons";
-@import "mixins/grid";
 @import "mixins/flex-grid";
 @import "mixins/forms";
 @import "mixins/nav.pills";
@@ -54,10 +53,6 @@
 @import "modules/badges";
 @import "modules/buttons";
 @import "modules/forms";
-html.no-flexbox,
-html.no-flexboxlegacy {
-  @import "modules/grid";
-}
 @import "modules/flex-grid";
 @import "modules/fonts";
 @import "modules/labels";
