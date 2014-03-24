@@ -1541,10 +1541,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          *       replace(Ink.i('element1'), newelement1);
          */
         replace: function (element, replacement) {
-            /*
-            InkElement.insertBefore(replacement, element);
-            InkElement.remove(element);
-            */
             element = Ink.i(element);
             if(element !== null) {
                 element.parentNode.replaceChild(replacement, element);
