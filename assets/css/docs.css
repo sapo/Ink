@@ -1014,9 +1014,9 @@ footer .ink-navigation ul.menu.horizontal li a.license {
 #home section.ink a.ink-button.repo:hover,
 #home section.ink a.ink-button.repo:focus,
 #home section.ink a.ink-button.repo:active {
-  background: #907f5e;
+  background: black;
+  border-color: black;
   color: white;
-  border-color: #867758;
 }
 #home section.what {
   background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, color-stop(0%, #709dc7), color-stop(100%, #4b84b9));

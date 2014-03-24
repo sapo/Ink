@@ -28,4 +28,4 @@ $grid-breakpoints: (
     ('medium', 641px, 960px, 1.5em, 1em, false),
     ('small', 321px, 640px, 1.25em, 0.98em, false),
     ('tiny', null, 320px, 1em, 0.97em, false)
-);
+) !default;

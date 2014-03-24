@@ -795,9 +795,11 @@ $who: lighten(#CA8A4E,10%);
         text-decoration: none;
         text-transform: uppercase;
         &:hover,&:focus,&:active {
-          background: darken($ink,20%);
+          // background: darken($ink,20%);
+          background: black;
+          // border-color: darken($ink,23%); 
+          border-color: black;
           color: $white;
-          border-color: darken($ink,23%); 
         }
       }
 
