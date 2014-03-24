@@ -12,6 +12,7 @@ Ink.createModule('Ink.Net.JsonP', '1', [], function() {
      * Executes a JSONP request
      *
      * @class Ink.Net.JsonP
+     * @constructor
      *
      * @param {String}      uri                         Request URL
      * @param {Object}      options                     Request options
