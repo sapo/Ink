@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .fw-100 {
   font-weight: 100;
   font-family: Roboto;
@@ -179,8 +180,6 @@ a.visited {
 .sidebar.ink-navigation ul.menu.vertical li.search input[type=search] {
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
   border-radius: 2px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -207,8 +206,6 @@ a.visited {
 .panel {
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
   border-radius: 2px;
   -webkit-box-shadow: #dddddd 0 1px 1px 0;
   -moz-box-shadow: #dddddd 0 1px 1px 0;
@@ -243,8 +240,6 @@ body.ink-drawer .left-drawer li.search input[type=search],
 body.ink-drawer .right-drawer li.search input[type=search] {
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
   border-radius: 2px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -332,8 +327,6 @@ body.ink-drawer .right-drawer li:last-child {
   border: 1px solid #d9d9d9;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
   border-radius: 2px;
 }
 .mosaic .title {
@@ -359,8 +352,6 @@ body.ink-drawer .right-drawer li:last-child {
   margin-bottom: 1.5em;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
   border-radius: 2px;
 }
 
@@ -746,8 +737,6 @@ table.props {
   background: #eeebe5;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
   border-radius: 2px;
   margin: 1.5em 0;
 }
@@ -828,8 +817,6 @@ span.label:after {
   padding: 0 0.35em;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
   border-radius: 2px;
 }
 span.label.mandatory:after {
@@ -894,8 +881,6 @@ html.flexbox .example {
   background: #eeebe5;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
   border-radius: 2px;
   margin-bottom: 1.5em;
 }
@@ -938,8 +923,6 @@ footer .socialplugins {
   border: 1px solid #afafaf;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
   border-radius: 2px;
 }
 footer .copyright .SAPOlogo {
