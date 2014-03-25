@@ -22,6 +22,7 @@
     {{/if}}
     </h1>
 
+    {{#if params}}
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         {{#foreach params}}
@@ -34,6 +35,7 @@
         </li>
         {{/foreach}}
     </ul>
+    {{/if}}
 
     {{#if async}}
         <span class="tag">async</span>

@@ -2,7 +2,7 @@
 
     
         <section>
-        <h1 class="fw-300">Ink.Util.I18n_1 </h1>
+        <h1 class="fw-300">Ink.Util.I18n_1 <small>version: 1</small></h1>
     
 
     
@@ -74,7 +74,7 @@
                 <td>
                     
 
-                    Alias for the text method
+                    Alias for the text method.
 Returns an alias to `text()`, for convenience. The resulting function is traditionally assigned to "_".
 
                     
@@ -132,7 +132,7 @@ Returns an alias to `text()`, for convenience. The resulting function is traditi
                 <td>
                     
 
-                    Return a key from the current dictionary
+                    Gest a key from the current dictionary
 
                     
                     
@@ -151,7 +151,7 @@ Returns an alias to `text()`, for convenience. The resulting function is traditi
                 <td>
                     
 
-                    Get or set the current default language of I18n instances.
+                    Gets or sets the current default language of I18n instances.
 
                     
                     
@@ -170,7 +170,7 @@ Returns an alias to `text()`, for convenience. The resulting function is traditi
                 <td>
                     
 
-                    Get or set the language.
+                    Gets or sets the language.
 If there are more dictionaries available in cache, they will be loaded.
 
                     
@@ -191,7 +191,7 @@ If there are more dictionaries available in cache, they will be loaded.
                     
 
                     Translates and pluralizes text.
-Given a singular string, a plural string, and a number, translates either the singular or plural string.
+Given a singular string, a plural string and a number, translates either the singular or plural string.
 
                     
                     
@@ -304,6 +304,7 @@ When a translated string is not available, the original string is returned uncha
     
     </h1>
 
+    
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         
@@ -324,6 +325,7 @@ When a translated string is not available, the original string is returned uncha
         </li>
         
     </ul>
+    
 
     
     
@@ -439,16 +441,13 @@ When a translated string is not available, the original string is returned uncha
     
     </h1>
 
-    <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        
-    </ul>
+    
 
     
     
 
     
-        <p class="text">Alias for the text method
+        <p class="text">Alias for the text method.
 Returns an alias to `text()`, for convenience. The resulting function is traditionally assigned to "_".</p>
     
 
@@ -500,6 +499,7 @@ Returns an alias to `text()`, for convenience. The resulting function is traditi
     
     </h1>
 
+    
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         
@@ -512,6 +512,7 @@ Returns an alias to `text()`, for convenience. The resulting function is traditi
         </li>
         
     </ul>
+    
 
     
     
@@ -553,7 +554,7 @@ Returns an alias to `text()`, for convenience. The resulting function is traditi
     
 <p class="example-title">Example</p>
   
-{% highlight html %}{% raw %}
+{% highlight html %}{% raw %} 
     var i18n = new I18n({}, 'pt_PT');
     i18n.append({'pt_PT': {
         'sfraggles': 'braggles'
@@ -584,6 +585,7 @@ Returns an alias to `text()`, for convenience. The resulting function is traditi
     
     </h1>
 
+    
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         
@@ -604,6 +606,7 @@ Returns an alias to `text()`, for convenience. The resulting function is traditi
         </li>
         
     </ul>
+    
 
     
     
@@ -680,6 +683,7 @@ Returns an alias to `text()`, for convenience. The resulting function is traditi
     
     </h1>
 
+    
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         
@@ -692,12 +696,13 @@ Returns an alias to `text()`, for convenience. The resulting function is traditi
         </li>
         
     </ul>
-
-    
     
 
     
-        <p class="text">Return a key from the current dictionary</p>
+    
+
+    
+        <p class="text">Gest a key from the current dictionary</p>
     
 
     
@@ -772,16 +777,13 @@ Returns an alias to `text()`, for convenience. The resulting function is traditi
     
     </h1>
 
-    <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        
-    </ul>
+    
 
     
     
 
     
-        <p class="text">Get or set the current default language of I18n instances.</p>
+        <p class="text">Gets or sets the current default language of I18n instances.</p>
     
 
     
@@ -810,6 +812,7 @@ Returns an alias to `text()`, for convenience. The resulting function is traditi
     
     </h1>
 
+    
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         
@@ -822,12 +825,13 @@ Returns an alias to `text()`, for convenience. The resulting function is traditi
         </li>
         
     </ul>
-
-    
     
 
     
-        <p class="text">Get or set the language.
+    
+
+    
+        <p class="text">Gets or sets the language.
 If there are more dictionaries available in cache, they will be loaded.</p>
     
 
@@ -836,6 +840,8 @@ If there are more dictionaries available in cache, they will be loaded.</p>
         <dl class="params">
         
             <dt>
+                
+                    <code>String</code>
                 
             </dt>
             <dd>
@@ -848,7 +854,7 @@ If there are more dictionaries available in cache, they will be loaded.</p>
                 
                 </label>
                 
-                    {String} Language code to set this instance to.
+                    Language code to set this instance to.
                 
             </dd>
         
@@ -882,6 +888,7 @@ If there are more dictionaries available in cache, they will be loaded.</p>
     
     </h1>
 
+    
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         
@@ -918,13 +925,14 @@ If there are more dictionaries available in cache, they will be loaded.</p>
         </li>
         
     </ul>
+    
 
     
     
 
     
         <p class="text">Translates and pluralizes text.
-Given a singular string, a plural string, and a number, translates either the singular or plural string.</p>
+Given a singular string, a plural string and a number, translates either the singular or plural string.</p>
     
 
     
@@ -1060,6 +1068,7 @@ Given a singular string, a plural string, and a number, translates either the si
     
     </h1>
 
+    
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         
@@ -1088,6 +1097,7 @@ Given a singular string, a plural string, and a number, translates either the si
         </li>
         
     </ul>
+    
 
     
     
@@ -1286,10 +1296,7 @@ This works by using transforms (in the form of Objects or Functions) passed into
     
     </h1>
 
-    <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        
-    </ul>
+    
 
     
     
@@ -1324,6 +1331,7 @@ This works by using transforms (in the form of Objects or Functions) passed into
     
     </h1>
 
+    
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         
@@ -1336,6 +1344,7 @@ This works by using transforms (in the form of Objects or Functions) passed into
         </li>
         
     </ul>
+    
 
     
     
@@ -1390,7 +1399,7 @@ In test mode, unknown strings are wrapped in `[ ... ]`. This is useful for debug
             .text
         
     
-    (str, [namedParms], [arg1], [arg2], [argn*])
+    (str, [namedParms], [args], [arg2], [argn*])
     
         
             <i>method</i>
@@ -1398,6 +1407,7 @@ In test mode, unknown strings are wrapped in `[ ... ]`. This is useful for debug
     
     </h1>
 
+    
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         
@@ -1420,7 +1430,7 @@ In test mode, unknown strings are wrapped in `[ ... ]`. This is useful for debug
         <li class="prop">
         
         [
-        arg1
+        args
         ]
         
         </li>
@@ -1442,6 +1452,7 @@ In test mode, unknown strings are wrapped in `[ ... ]`. This is useful for debug
         </li>
         
     </ul>
+    
 
     
     
@@ -1471,7 +1482,7 @@ When a translated string is not available, the original string is returned uncha
                 
                 </label>
                 
-                    key to look for in i18n dictionary (which is returned verbatim if unknown)
+                    Key to look for in i18n dictionary (which is returned verbatim if unknown)
                 
             </dd>
         
@@ -1490,7 +1501,7 @@ When a translated string is not available, the original string is returned uncha
                 
                 </label>
                 
-                    named replacements. Replaces {named} with values in this object.
+                    Named replacements. Replaces {named} with values in this object.
                 
             </dd>
         
@@ -1503,13 +1514,13 @@ When a translated string is not available, the original string is returned uncha
                 
                 
                 
-                <label class="optional">[arg1]
+                <label class="optional">[args]
                 
 
                 
                 </label>
                 
-                    replacement #1 (replaces first {} and all {1})
+                    Replacement #1 (replaces first {} and all {1})
                 
             </dd>
         
@@ -1528,7 +1539,7 @@ When a translated string is not available, the original string is returned uncha
                 
                 </label>
                 
-                    replacement #2 (replaces second {} and all {2})
+                    Replacement #2 (replaces second {} and all {2})
                 
             </dd>
         
@@ -1547,7 +1558,7 @@ When a translated string is not available, the original string is returned uncha
                 
                 </label>
                 
-                    replacement #n (replaces nth {} and all {n})
+                    Replacement #n (replaces nth {} and all {n})
                 
             </dd>
         

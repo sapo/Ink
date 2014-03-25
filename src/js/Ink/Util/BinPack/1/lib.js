@@ -1,8 +1,9 @@
 /**
  * @module Ink.Util.BinPack_1
- * @author inkdev AT sapo.pt
+ * Binary Packing algorithm implementation
  * @version 1
  */
+
 Ink.createModule('Ink.Util.BinPack', '1', [], function() {
 
     'use strict';
@@ -234,16 +235,11 @@ Ink.createModule('Ink.Util.BinPack', '1', [], function() {
 
         /**
         * @method binPack
-        * @param {Object}      o              options
-        * @param {Object[]}    o.blocks       array of items with w and h integer attributes.
-        * @param {Number[2]}  [o.dimensions]  if passed, container has fixed dimensions
-        * @param {String}     [o.sorter]      sorter function. one of: random, height, width, area, maxside
-        * @return {Object}
-        *     * {Number[2]} dimensions - resulted container size,
-        *     * {Number}    filled     - filled ratio,
-        *     * {Object[]}  fitted,
-        *     * {Object[]}  unfitted,
-        *     * {Object[]}  blocks
+        * @param {Object}       o               Options
+        * @param {Array}        o.blocks        Array of items with width and height integer attributes.
+        * @param {Array}        [o.dimensions]  Flag to fix container dimensions
+        * @param {String}       [o.sorter]      Sorting function. One of: random, height, width, area, maxside
+        * @return {Object}                      Returns an object containing container dimensions, filled ratio, fitted blocks, unfitted blocks and all blocks
         * @static
         */
         binPack: function(o) {

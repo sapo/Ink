@@ -14,107 +14,38 @@
 
 
     
-
-    
-
-
-
-    
+        <h2>Defined functions:</h2>
+        <ul class="unstyled">
+        
+            <li><a href="#Ink_Util_Cookie_1-get">
             
-
-    
-    <p>Utilities for Cookie handling</p>
-    
-    
-    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p>
-
-    
-    <table class="props bottom-space">
+                Ink.Util.Cookie_1.get
+            
+            (name)</a></li>
         
+            <li><a href="#Ink_Util_Cookie_1-remove">
+            
+                Ink.Util.Cookie_1.remove
+            
+            (cookieName, [path], [domain])</a></li>
         
-        <caption>Functions</caption>
-        <thead>
-            <tr>
-                <th>Function name</th>
-                <th>Description</th>
-            </tr>
-        </thead>
-
+            <li><a href="#Ink_Util_Cookie_1-set">
+            
+                Ink.Util.Cookie_1.set
+            
+            (name, value, [expires], [path], [domain], [secure])</a></li>
         
-        
-        <tbody>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Util_Cookie_1-Ink_Util_Cookie-get">
-                        
-                            .get
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    Gets an object with current page cookies
-
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Util_Cookie_1-Ink_Util_Cookie-remove">
-                        
-                            .remove
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    Delete a cookie
-
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Util_Cookie_1-Ink_Util_Cookie-set">
-                        
-                            .set
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    Sets a cookie
-
-                    
-                    
-                </td>
-            </tr>
-        
-        </tbody>
-    </table>
+        </ul>
     
 
     
-</section>
 
 
 
+    
 
-
-
-
-    <section id="Ink_Util_Cookie_1-Ink_Util_Cookie-get" class="box box-function">
+    
+        <section id="Ink_Util_Cookie_1-get" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -125,11 +56,12 @@
     (name)
     
         
-            <i>method</i>
+            <i>function</i>
         
     
     </h1>
 
+    
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         
@@ -142,12 +74,13 @@
         </li>
         
     </ul>
-
-    
     
 
     
-        <p class="text">Gets an object with current page cookies</p>
+    
+
+    
+        <p class="text">Gets an object with the current page cookies.</p>
     
 
     
@@ -168,6 +101,8 @@
 
                 
                 </label>
+                
+                    The cookie name.
                 
             </dd>
         
@@ -206,8 +141,8 @@
     
 
 </section>
-
-    <section id="Ink_Util_Cookie_1-Ink_Util_Cookie-remove" class="box box-function">
+    
+        <section id="Ink_Util_Cookie_1-remove" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -218,11 +153,12 @@
     (cookieName, [path], [domain])
     
         
-            <i>method</i>
+            <i>function</i>
         
     
     </h1>
 
+    
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         
@@ -251,12 +187,13 @@
         </li>
         
     </ul>
-
-    
     
 
     
-        <p class="text">Delete a cookie</p>
+    
+
+    
+        <p class="text">Deletes a cookie.</p>
     
 
     
@@ -278,7 +215,7 @@
                 
                 </label>
                 
-                    Cookie name
+                    Cookie name.
                 
             </dd>
         
@@ -297,7 +234,7 @@
                 
                 </label>
                 
-                    Path of the cookie (default '/')
+                    Path of the cookie. Defaults to '/'.
                 
             </dd>
         
@@ -316,7 +253,7 @@
                 
                 </label>
                 
-                    Domain of the cookie (default current hostname)
+                    Domain of the cookie. Defaults to current hostname.
                 
             </dd>
         
@@ -342,8 +279,8 @@
     
 
 </section>
-
-    <section id="Ink_Util_Cookie_1-Ink_Util_Cookie-set" class="box box-function">
+    
+        <section id="Ink_Util_Cookie_1-set" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -354,11 +291,12 @@
     (name, value, [expires], [path], [domain], [secure])
     
         
-            <i>method</i>
+            <i>function</i>
         
     
     </h1>
 
+    
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         
@@ -411,12 +349,13 @@
         </li>
         
     </ul>
-
-    
     
 
     
-        <p class="text">Sets a cookie</p>
+    
+
+    
+        <p class="text">Sets a cookie.</p>
     
 
     
@@ -438,7 +377,7 @@
                 
                 </label>
                 
-                    Cookie name
+                    Cookie name.
                 
             </dd>
         
@@ -457,7 +396,7 @@
                 
                 </label>
                 
-                    Cookie value
+                    Cookie value.
                 
             </dd>
         
@@ -476,7 +415,7 @@
                 
                 </label>
                 
-                    Number to add to current Date in seconds
+                    Number of seconds the cookie will be valid for.
                 
             </dd>
         
@@ -495,7 +434,7 @@
                 
                 </label>
                 
-                    Path to sets cookie (default '/')
+                    Path for the cookie. Defaults to '/'.
                 
             </dd>
         
@@ -514,7 +453,7 @@
                 
                 </label>
                 
-                    Domain to sets cookie (default current hostname)
+                    Domain for the cookie. Defaults to current hostname.
                 
             </dd>
         
@@ -533,7 +472,7 @@
                 
                 </label>
                 
-                    True if wants secure, default 'false'
+                    Flag for secure. Default 'false'.
                 
             </dd>
         
@@ -560,11 +499,6 @@
     
 
 </section>
-
-
-
-    
-
     
 
     

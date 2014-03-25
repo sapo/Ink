@@ -2,7 +2,7 @@
 
     
         <section>
-        <h1 class="fw-300">Ink.Net.JsonP_1 </h1>
+        <h1 class="fw-300">Ink.Net.JsonP_1 <small>version: 1</small></h1>
     
 
     
@@ -23,10 +23,7 @@
             
 
     
-    <p>This class takes care of the nitty-gritty details of doing jsonp requests: Storing
-a callback in a globally accessible manner, waiting for the timeout or completion
-of the request, and passing extra GET parameters to the server, is not so complicated
-but it's boring and repetitive to code and tricky to get right.</p>
+    <p>Executes a JSONP request</p>
     
     
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p>
@@ -35,14 +32,13 @@ but it's boring and repetitive to code and tricky to get right.</p>
     <table class="props bottom-space">
         
         
-        <caption>Functions</caption>
+        <caption>Methods</caption>
         <thead>
             <tr>
-                <th>Function name</th>
+                <th>Method name</th>
                 <th>Description</th>
             </tr>
         </thead>
-
         
         
         <tbody>
@@ -91,6 +87,7 @@ but it's boring and repetitive to code and tricky to get right.</p>
     
     </h1>
 
+    
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         
@@ -139,6 +136,7 @@ but it's boring and repetitive to code and tricky to get right.</p>
         </li>
         
     </ul>
+    
 
     
     
@@ -164,6 +162,8 @@ but it's boring and repetitive to code and tricky to get right.</p>
                 
                 </label>
                 
+                    Request URL
+                
             </dd>
         
             <dt>
@@ -180,6 +180,8 @@ but it's boring and repetitive to code and tricky to get right.</p>
 
                 
                 </label>
+                
+                    Request options
                 
             </dd>
         
@@ -200,7 +202,7 @@ but it's boring and repetitive to code and tricky to get right.</p>
                 
                 </label>
                 
-                    success callback
+                    Success callback
                 
             </dd>
         
@@ -221,7 +223,7 @@ but it's boring and repetitive to code and tricky to get right.</p>
                 
                 </label>
                 
-                    failure callback
+                    Failure callback
                 
             </dd>
         
@@ -242,7 +244,7 @@ but it's boring and repetitive to code and tricky to get right.</p>
                 
                 </label>
                 
-                    object to be passed as argument to failure callback
+                    Object to be passed as argument to failure callback
                 
             </dd>
         
@@ -263,7 +265,7 @@ but it's boring and repetitive to code and tricky to get right.</p>
                 
                 </label>
                 
-                    timeout for request fail, in seconds. defaults to 10
+                    Timeout for request fail, in seconds. defaults to 10
                 
             </dd>
         
@@ -284,7 +286,7 @@ but it's boring and repetitive to code and tricky to get right.</p>
                 
                 </label>
                 
-                    object with the parameters and respective values to unfold
+                    Object with the parameters and respective values to unfold
                 
             </dd>
         
@@ -305,7 +307,7 @@ but it's boring and repetitive to code and tricky to get right.</p>
                 
                 </label>
                 
-                    parameter to use as callback. defaults to 'jsoncallback'
+                    Parameter to use as callback. defaults to 'jsoncallback'
                 
             </dd>
         
@@ -326,7 +328,7 @@ but it's boring and repetitive to code and tricky to get right.</p>
                 
                 </label>
                 
-                    *Advanced*: name of the callback function stored in the Ink.Net.JsonP object.
+                    Name of the callback function stored in the Ink.Net.JsonP object.
                 
             </dd>
         

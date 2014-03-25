@@ -14,203 +14,68 @@
 
 
     
-
-    
-
-
-
-    
+        <h2>Defined functions:</h2>
+        <ul class="unstyled">
+        
+            <li><a href="#Ink_Util_Url_1-currentScriptElement">
             
-
-    
-    <p>Utility functions to use with URLs</p>
-    
-    
-    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p>
-
-    
-    <table class="props bottom-space">
+                Ink.Util.Url_1.currentScriptElement
+            
+            ([match])</a></li>
         
+            <li><a href="#Ink_Util_Url_1-format">
+            
+                Ink.Util.Url_1.format
+            
+            (urlObj)</a></li>
         
-        <caption>Functions</caption>
-        <thead>
-            <tr>
-                <th>Function name</th>
-                <th>Description</th>
-            </tr>
-        </thead>
-
+            <li><a href="#Ink_Util_Url_1-genQueryString">
+            
+                Ink.Util.Url_1.genQueryString
+            
+            (uri, params)</a></li>
         
+            <li><a href="#Ink_Util_Url_1-getAnchor">
+            
+                Ink.Util.Url_1.getAnchor
+            
+            ([str])</a></li>
         
-        <tbody>
+            <li><a href="#Ink_Util_Url_1-getAnchorString">
+            
+                Ink.Util.Url_1.getAnchorString
+            
+            ([string])</a></li>
         
-            <tr>
-                <td>
-                    <a href="#Ink_Util_Url_1-Ink_Util_Url-currentScriptElement">
-                        
-                            .currentScriptElement
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    Get last loaded script element
-
-                    
-                    
-                </td>
-            </tr>
+            <li><a href="#Ink_Util_Url_1-getQueryString">
+            
+                Ink.Util.Url_1.getQueryString
+            
+            ([str])</a></li>
         
-            <tr>
-                <td>
-                    <a href="#Ink_Util_Url_1-Ink_Util_Url-format">
-                        
-                            .format
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    Take a URL object from Ink.Util.Url.parseUrl or a window.location
-object and returns a URL string.
-
-                    
-                    
-                </td>
-            </tr>
+            <li><a href="#Ink_Util_Url_1-getUrl">
+            
+                Ink.Util.Url_1.getUrl
+            
+            ()</a></li>
         
-            <tr>
-                <td>
-                    <a href="#Ink_Util_Url_1-Ink_Util_Url-genQueryString">
-                        
-                            .genQueryString
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    Generates an uri with query string based on the parameters object given
-
-                    
-                    
-                </td>
-            </tr>
+            <li><a href="#Ink_Util_Url_1-parseUrl">
+            
+                Ink.Util.Url_1.parseUrl
+            
+            (url)</a></li>
         
-            <tr>
-                <td>
-                    <a href="#Ink_Util_Url_1-Ink_Util_Url-getAnchor">
-                        
-                            .getAnchor
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    Get URL hash
-
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Util_Url_1-Ink_Util_Url-getAnchorString">
-                        
-                            .getAnchorString
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    Get anchor string of current or passed URL
-
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Util_Url_1-Ink_Util_Url-getQueryString">
-                        
-                            .getQueryString
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    Get query string of current or passed URL
-
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Util_Url_1-Ink_Util_Url-getUrl">
-                        
-                            .getUrl
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    Get current URL of page
-
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Util_Url_1-Ink_Util_Url-parseUrl">
-                        
-                            .parseUrl
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    Parse passed URL
-
-                    
-                    
-                </td>
-            </tr>
-        
-        </tbody>
-    </table>
+        </ul>
     
 
     
-</section>
 
 
 
+    
 
-
-
-
-    <section id="Ink_Util_Url_1-Ink_Util_Url-currentScriptElement" class="box box-function">
+    
+        <section id="Ink_Util_Url_1-currentScriptElement" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -221,11 +86,12 @@ object and returns a URL string.
     ([match])
     
         
-            <i>method</i>
+            <i>function</i>
         
     
     </h1>
 
+    
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         
@@ -238,12 +104,13 @@ object and returns a URL string.
         </li>
         
     </ul>
-
-    
     
 
     
-        <p class="text">Get last loaded script element</p>
+    
+
+    
+        <p class="text">Gets the last loaded script element</p>
     
 
     
@@ -294,8 +161,8 @@ object and returns a URL string.
     
 
 </section>
-
-    <section id="Ink_Util_Url_1-Ink_Util_Url-format" class="box box-function">
+    
+        <section id="Ink_Util_Url_1-format" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -306,11 +173,12 @@ object and returns a URL string.
     (urlObj)
     
         
-            <i>method</i>
+            <i>function</i>
         
     
     </h1>
 
+    
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         
@@ -323,13 +191,13 @@ object and returns a URL string.
         </li>
         
     </ul>
-
-    
     
 
     
-        <p class="text">Take a URL object from Ink.Util.Url.parseUrl or a window.location
-object and returns a URL string.</p>
+    
+
+    
+        <p class="text">Formats an URL object into an URL string.</p>
     
 
     
@@ -349,7 +217,7 @@ object and returns a URL string.</p>
                 
                 </label>
                 
-                    window.location, a.href, or parseUrl object to format
+                    Window.location, a.href, or parseUrl object to format
                 
             </dd>
         
@@ -378,8 +246,8 @@ object and returns a URL string.</p>
     
 
 </section>
-
-    <section id="Ink_Util_Url_1-Ink_Util_Url-genQueryString" class="box box-function">
+    
+        <section id="Ink_Util_Url_1-genQueryString" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -390,11 +258,12 @@ object and returns a URL string.</p>
     (uri, params)
     
         
-            <i>method</i>
+            <i>function</i>
         
     
     </h1>
 
+    
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         
@@ -415,12 +284,13 @@ object and returns a URL string.</p>
         </li>
         
     </ul>
-
-    
     
 
     
-        <p class="text">Generates an uri with query string based on the parameters object given</p>
+    
+
+    
+        <p class="text">Generates an URL string.</p>
     
 
     
@@ -442,6 +312,8 @@ object and returns a URL string.</p>
                 
                 </label>
                 
+                    Base URL
+                
             </dd>
         
             <dt>
@@ -458,6 +330,8 @@ object and returns a URL string.</p>
 
                 
                 </label>
+                
+                    Object to transform to query string
                 
             </dd>
         
@@ -500,8 +374,8 @@ object and returns a URL string.</p>
     
 
 </section>
-
-    <section id="Ink_Util_Url_1-Ink_Util_Url-getAnchor" class="box box-function">
+    
+        <section id="Ink_Util_Url_1-getAnchor" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -512,11 +386,12 @@ object and returns a URL string.</p>
     ([str])
     
         
-            <i>method</i>
+            <i>function</i>
         
     
     </h1>
 
+    
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         
@@ -529,12 +404,13 @@ object and returns a URL string.</p>
         </li>
         
     </ul>
-
-    
     
 
     
-        <p class="text">Get URL hash</p>
+    
+
+    
+        <p class="text">Gets the URL hash value</p>
     
 
     
@@ -556,7 +432,7 @@ object and returns a URL string.</p>
                 
                 </label>
                 
-                    URL String. If not set, it will get the current URL.
+                    URL String. Defaults to current page URL.
                 
             </dd>
         
@@ -595,8 +471,8 @@ object and returns a URL string.</p>
     
 
 </section>
-
-    <section id="Ink_Util_Url_1-Ink_Util_Url-getAnchorString" class="box box-function">
+    
+        <section id="Ink_Util_Url_1-getAnchorString" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -607,11 +483,12 @@ object and returns a URL string.</p>
     ([string])
     
         
-            <i>method</i>
+            <i>function</i>
         
     
     </h1>
 
+    
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         
@@ -624,12 +501,13 @@ object and returns a URL string.</p>
         </li>
         
     </ul>
-
-    
     
 
     
-        <p class="text">Get anchor string of current or passed URL</p>
+    
+
+    
+        <p class="text">Gets the anchor string of an URL</p>
     
 
     
@@ -651,7 +529,7 @@ object and returns a URL string.</p>
                 
                 </label>
                 
-                    If not provided it uses the current URL.
+                    URL to parse. Defaults to current URL.
                 
             </dd>
         
@@ -695,8 +573,8 @@ object and returns a URL string.</p>
     
 
 </section>
-
-    <section id="Ink_Util_Url_1-Ink_Util_Url-getQueryString" class="box box-function">
+    
+        <section id="Ink_Util_Url_1-getQueryString" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -707,11 +585,12 @@ object and returns a URL string.</p>
     ([str])
     
         
-            <i>method</i>
+            <i>function</i>
         
     
     </h1>
 
+    
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         
@@ -724,12 +603,13 @@ object and returns a URL string.</p>
         </li>
         
     </ul>
-
-    
     
 
     
-        <p class="text">Get query string of current or passed URL</p>
+    
+
+    
+        <p class="text">Gets an object from an URL encoded string.</p>
     
 
     
@@ -795,8 +675,8 @@ object and returns a URL string.</p>
     
 
 </section>
-
-    <section id="Ink_Util_Url_1-Ink_Util_Url-getUrl" class="box box-function">
+    
+        <section id="Ink_Util_Url_1-getUrl" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -807,21 +687,18 @@ object and returns a URL string.</p>
     ()
     
         
-            <i>method</i>
+            <i>function</i>
         
     
     </h1>
 
-    <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        
-    </ul>
+    
 
     
     
 
     
-        <p class="text">Get current URL of page</p>
+        <p class="text">Gets URL of current page</p>
     
 
     
@@ -842,8 +719,8 @@ object and returns a URL string.</p>
     
 
 </section>
-
-    <section id="Ink_Util_Url_1-Ink_Util_Url-parseUrl" class="box box-function">
+    
+        <section id="Ink_Util_Url_1-parseUrl" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -854,11 +731,12 @@ object and returns a URL string.</p>
     (url)
     
         
-            <i>method</i>
+            <i>function</i>
         
     
     </h1>
 
+    
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         
@@ -871,12 +749,13 @@ object and returns a URL string.</p>
         </li>
         
     </ul>
-
-    
     
 
     
-        <p class="text">Parse passed URL</p>
+    
+
+    
+        <p class="text">Parses URL string into URL parts</p>
     
 
     
@@ -946,11 +825,6 @@ object and returns a URL string.</p>
     
 
 </section>
-
-
-
-    
-
     
 
     

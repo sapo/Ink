@@ -669,8 +669,9 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          *
          * @method inViewport
          * @param {DOMElement} element DOM Element
-         * @param {Boolean} [partial]=false Return `true` even if it is only partially visible.
-         * @param {Number}  [opts.margin]=0 Consider a margin all around the viewport with `opts.margin` width a dead zone.
+         * @param {Object}  [options]  Options object. If you pass a Boolean value here, it is interpreted as `options.partial`
+         * @param {Boolean} [options.partial]=false    Return `true` even if it is only partially visible.
+         * @param {Number}  [options.margin]=0         Consider a margin all around the viewport with `opts.margin` width a dead zone.
          * @return {Boolean}
          * @sample Ink_Dom_Element_1_inViewport.html 
          */
