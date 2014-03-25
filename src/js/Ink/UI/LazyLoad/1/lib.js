@@ -32,57 +32,33 @@ LazyLoad.prototype = {
      * @class Ink.UI.LazyLoad_1
      * @constructor
      *
-     * @param [rootElement] {String|DOMElement}
-     *  The element which contains the lazily-loaded items.
+     * @param rootElement {String|DOMElement} The element which contains the lazily-loaded items.
      *
      * @param [options] Options object, containing:
      *
-     * @param [options.item]='.lazyload-item'  {String}
-     *  Use this to select and define what is to be considered an `item`.
+     * @param [options.item]='.lazyload-item'  {String} Use this to select and define what is to be considered an `item`.
      *
-     * @param [options.placeholder]=null       {String}
-     *  Placeholder value for items which are still outside the screen
-     *  (in case they don't already have a value set)
+     * @param [options.placeholder]=null       {String} Placeholder value for items which are still outside the screen (in case they don't already have a value set)
      *
-     * @param [options.source]='data-src'      {String}
-     *  When an `item` is within the viewport, take the value it has
-     *  in this attribute then set its `destination` attribute to it.
+     * @param [options.source]='data-src'      {String} When an `item` is within the viewport, take the value it has in this attribute then set its `destination` attribute to it.
      *
-     * @param [options.destination]='src'      {String}
-     *  attribute which gets the value in `source` when the element is
-     *  visible.
+     * @param [options.destination]='src'      {String} attribute which gets the value in `source` when the element is visible.
      *
-     * @param [options.delay]=100              {Number}
-     *  Wait a few milliseconds before trying to load.
+     * @param [options.delay]=100              {Number} Wait a few milliseconds before trying to load.
      *
-     * @param [options.delta]=0                {Number}
-     *  Distance in px from the outside of the viewport. Elements
-     *  touching within this "margin", items are considered to be inside
-     *  even if they are outside the viewport limits. Can be negative if
-     *  you want an element to be considered inside only when it is a
-     *  certain distance into the viewport.
+     * @param [options.delta]=0                {Number} Distance in px from the outside of the viewport. Elements touching within this "margin", items are considered to be inside even if they are outside the viewport limits. Can be negative if you want an element to be considered inside only when it is a certain distance into the viewport.
      *
-     * @param [options.image]=true             {Boolean}
-     *  Set to false to make this component do nothing to any elements
-     *  and just give you the onInsideViewport callback.
+     * @param [options.image]=true             {Boolean} Set to false to make this component do nothing to any elements and just give you the onInsideViewport callback.
      *
-     * @param [options.scrollElement]=window   {Element}
-     *  (advanced) What element is to be listened for the scroll event.
+     * @param [options.scrollElement]=window   {Element} (advanced) What element is to be listened for the scroll event.
      *
-     * @param [options.touchEvents]=true       {Boolean}
-     *  Subscribe to touch events in addition to scroll events. Useful
-     *  in mobile safari because 'scroll' events aren't frequent enough.
+     * @param [options.touchEvents]=true       {Boolean} Subscribe to touch events in addition to scroll events. Useful in mobile safari because 'scroll' events aren't frequent enough.
      *
-     * @param [options.onInsideViewport]=false {Function}
-     *  Called when an `item` is within the viewport. Receives `{ element }`
+     * @param [options.onInsideViewport]=false {Function} Called when an `item` is within the viewport. Receives `{ element }`
      *
-     * @param [options.onAfterAttributeChange]=false {Function}
-     *  (advanced) Called after `source` is copied over to
-     *  `destination`. Receives `{ element }`
+     * @param [options.onAfterAttributeChange]=false {Function} (advanced) Called after `source` is copied over to `destination`. Receives `{ element }`
      *
-     * @param [options.autoInit]=true         {Boolean}
-     *  (advanced) Set to false if you want to start LazyLoad yourself
-     *  with `reload()`
+     * @param [options.autoInit]=true         {Boolean} (advanced) Set to false if you want to start LazyLoad yourself with `reload()`
      */
     _init: function(selector) {
         this._rootElm = UICommon.elsOrSelector(selector, 'Ink.UI.LazyLoad root element')[0] || null;
@@ -211,6 +187,7 @@ LazyLoad.prototype = {
      * no user scrolling happened.
      *
      * @method reload
+     * @public
      */
     reload: function() {
         this._activate(); 
@@ -219,6 +196,7 @@ LazyLoad.prototype = {
     /**
      * Destroy this component
      * @method destroy
+     * @public
      **/
     destroy: function() {
         if(this._hasEvents) {
