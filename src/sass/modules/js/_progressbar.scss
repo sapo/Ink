@@ -1,5 +1,5 @@
 /* Progess bars */
-.ink-progress-bar {
+.#{$progress-bar-class-name} {
     margin-bottom: 1em;
     overflow: hidden;
     background: $progress-bar-bg;
