@@ -71,7 +71,7 @@
             @include border-radius(50%);
             @include text-shadow(rgba(0,0,0,0.6) 0 -1px 0);
             @include opacity(.6);
-            @include transition (compact(opacity 125ms ease-in-out));
+            // @include transition (compact(opacity 125ms ease-in-out));
 
             &:after {
                 content: "\f00d";
@@ -97,7 +97,7 @@
     }
 
     > .modal-header, > header, > .modal-footer, > footer {
-        padding: 0.8em 1em 0.65em 1em;
+        padding: .8em 1em .65em 1em;
         &:before, &:after {
             content: "."; 
             display: block;
