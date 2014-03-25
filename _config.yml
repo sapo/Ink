@@ -125,6 +125,7 @@ sections:
           - title: Ink.UI.FormValidator
           - title: Ink.UI.FormValidator_2
           - title: Ink.UI.ImageQuery
+          - title: Ink.UI.LazyLoad
           - title: Ink.UI.Modal
           - title: Ink.UI.Pagination
           - title: Ink.UI.ProgressBar
