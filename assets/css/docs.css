@@ -143,7 +143,7 @@ a.visited {
   font-size: 1.2em;
   color: #bbbbbb;
   border: none;
-  padding: 0.8em;
+  padding: .8em;
 }
 #topbar .ink-navigation ul.black li button.fa-bars:hover, #topbar .ink-navigation ul.black li button.fa-bars:active, #topbar .ink-navigation ul.black li button.fa-bars:focus {
   color: white;
@@ -179,8 +179,6 @@ a.visited {
 .sidebar.ink-navigation ul.menu.vertical li.search input[type=search] {
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
   border-radius: 2px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -207,8 +205,6 @@ a.visited {
 .panel {
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
   border-radius: 2px;
   -webkit-box-shadow: #dddddd 0 1px 1px 0;
   -moz-box-shadow: #dddddd 0 1px 1px 0;
@@ -243,8 +239,6 @@ body.ink-drawer .left-drawer li.search input[type=search],
 body.ink-drawer .right-drawer li.search input[type=search] {
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
   border-radius: 2px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -332,8 +326,6 @@ body.ink-drawer .right-drawer li:last-child {
   border: 1px solid #d9d9d9;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
   border-radius: 2px;
 }
 .mosaic .title {
@@ -359,8 +351,6 @@ body.ink-drawer .right-drawer li:last-child {
   margin-bottom: 1.5em;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
   border-radius: 2px;
 }
 
@@ -572,6 +562,11 @@ body.ink-drawer .right-drawer li:last-child {
 }
 
 /* Name.Variable */
+.highlight .nx {
+  color: #005080;
+}
+
+/* Name.Variable */
 .highlight .ow {
   font-weight: bold;
 }
@@ -746,8 +741,6 @@ table.props {
   background: #eeebe5;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
   border-radius: 2px;
   margin: 1.5em 0;
 }
@@ -767,7 +760,7 @@ table.props tr td {
   line-height: 1.4;
 }
 table.props caption {
-  padding: 0 0 0 0.4em;
+  padding: 0 0 0 .4em;
   color: #eeebe5;
   text-align: left;
   text-transform: uppercase;
@@ -776,7 +769,7 @@ table.props caption {
   line-height: 0.8;
 }
 table.props td, table.props th {
-  padding: 0.1em;
+  padding: .1em;
   border-bottom: 1px solid #ded8cc;
   text-align: left;
 }
@@ -797,7 +790,7 @@ ul.props {
   list-style-type: none;
 }
 ul.props.inline li + li {
-  margin: 0 0.4em 0.5em 0;
+  margin: 0 .4em .5em 0;
 }
 ul.props li.heading {
   text-transform: uppercase;
@@ -809,27 +802,25 @@ ul.props li.prop {
   padding: 0 5px;
 }
 ul.props li.prop.breakpoint-aware:after {
-  margin-left: 0.2em;
+  margin-left: .2em;
   background: none;
   color: #4a9b17;
   content: "Breakpoint aware";
   text-transform: uppercase;
-  font-size: 0.9em;
+  font-size: .9em;
 }
 
 span.label {
   white-space: nowrap;
-  font-size: 0.80em;
+  font-size: .80em;
 }
 span.label + span.label {
-  margin-left: 0.3em;
+  margin-left: .3em;
 }
 span.label:after {
-  padding: 0 0.35em;
+  padding: 0 .35em;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
   border-radius: 2px;
 }
 span.label.mandatory:after {
@@ -870,7 +861,7 @@ span.label.flexbox:after {
 }
 
 p.example-title {
-  padding: 0 0 0 0.4em;
+  padding: 0 0 0 .4em;
   color: #eeebe5;
   text-align: left;
   text-transform: uppercase;
@@ -881,7 +872,7 @@ p.example-title {
 }
 
 p + p.example-title {
-  margin-top: 0.7em;
+  margin-top: .7em;
 }
 
 .example code, .example pre, table.props code, table.props pre {
@@ -894,8 +885,6 @@ html.flexbox .example {
   background: #eeebe5;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
   border-radius: 2px;
   margin-bottom: 1.5em;
 }
@@ -938,8 +927,6 @@ footer .socialplugins {
   border: 1px solid #afafaf;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
   border-radius: 2px;
 }
 footer .copyright .SAPOlogo {
