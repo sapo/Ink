@@ -18,7 +18,7 @@
     @include box-shadow (0, 0px, 10px, 0, rgba( 0, 0, 0, 0.3));
 }
 
-.ink-sortable-list {
+.#{$sortable-list-class-name} {
     
     li {
         margin:0;
@@ -35,7 +35,7 @@
            @extend .drag;
         }
         
-        .ink-label {
+        .#{$label-class-name} {
             margin:0 .8em;
         }
     }
