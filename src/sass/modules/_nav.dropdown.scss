@@ -15,10 +15,10 @@
         min-width: 10em;
         @include border-radius($border-radius);
         @include box-shadow(rgba(100,100,100,0.3) 0 0 1px 0);
-        padding: 0.3em 0;
+        padding: .3em 0;
         margin-left: 0px;
-        padding: 0.35em 0;   
-        font-size: 0.85em;
+        padding: .35em 0;   
+        font-size: .85em;
 
         li {
             
@@ -37,29 +37,29 @@
             list-style-type: none;
 
             &.separator-above {
-                padding-top: 0.35em;
-                margin-top: 0.35em;
+                padding-top: .35em;
+                margin-top: .35em;
                 border-top: 1px solid $grey-15;
             }
 
             &.separator-below {
-                padding-bottom: 0.35em;
-                margin-bottom: 0.35em;
+                padding-bottom: .35em;
+                margin-bottom: .35em;
                 border-bottom: 1px solid $grey-15;
                 
             }
 
             &.heading {
                 font-weight: 700;
-                padding-bottom: 0.35em;
-                margin-bottom: 0.35em;
-                padding: 0.5em 0.8em;
+                padding-bottom: .35em;
+                margin-bottom: .35em;
+                padding: .5em .8em;
                 color: $grey-80;
             }
 
             a {
                 color: #444;
-                padding: 0.5em 0.8em;
+                padding: .5em .8em;
                 display: block;
                 clear: both;
 
@@ -98,7 +98,7 @@
                     &:after {
                         content: "\f0da";
                         width: auto;
-                        margin-left: 0.8em;
+                        margin-left: .8em;
                         font-family: FontAwesome;
                         color: $grey-30;
                     }
@@ -123,7 +123,7 @@
                 > ul.dropdown-menu, > ul.dropdown {
                     font-size: inherit;
                     position: absolute;
-                    top: -0.36em;
+                    top: -.36em;
                     left: 100%;
                     display: none;
                 }
