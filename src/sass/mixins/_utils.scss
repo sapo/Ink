@@ -39,3 +39,7 @@
 .align-right {
     text-align: right;
 }
+
+.clearfix {
+    @include pie-clearfix;
+}

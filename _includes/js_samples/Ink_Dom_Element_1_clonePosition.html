@@ -1,16 +1,36 @@
-<p>Desc... <code>this</code> </p>
+<p>Clone top, left position from an element to another one</p>
 
 <p class="example-title">Code</p>
 {% highlight html %}
-<div>
+<style type="text/css">
+#original {
+    position:absolute;
+    top: 10px;
+    left: 10px;
+}
+#target {
+    position:absolute;
+    top: 50px;
+    left: 50px;
+}
+</style>
+<div id="original">
+    Original
+</div>
+<div id="target">
+    Target
 </div>
 <script>
 Ink.requireModules(['Ink.Dom.Element_1'], function(InkElement) {
-    
-    var ... = InkElement.('');
 
-    Ink.log(aPositionedOffset); // [0, 0]  
+    var original = Ink.i('original'); 
+    var target = Ink.i('target'); 
+  
+    Ink.log(InkElement.offset(original)); // [10, 10]
 
+    InkElement.clonePosition(original, target);
+
+    Ink.log(InkElement.offset(original)); // [50, 50]
 });
 </script>
 {% endhighlight %}

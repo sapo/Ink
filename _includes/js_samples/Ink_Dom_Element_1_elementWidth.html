@@ -1,16 +1,26 @@
-<p>Desc... <code>this</code> </p>
-
+<p>Get element width. Computed width will be returned.</p>
 <p class="example-title">Code</p>
 {% highlight html %}
-<div>
+<style type="text/css">
+.sample {
+    width: 100px;
+    height: 50px;
+}
+</style>
+<div id="elm_1" class="sample">
+    A
+</div>
+<div id="elm_2">
+    <p>B content</p>
 </div>
 <script>
 Ink.requireModules(['Ink.Dom.Element_1'], function(InkElement) {
-    
-    var ... = InkElement.('');
 
-    Ink.log(aPositionedOffset); // [0, 0]  
+    var elm1 = Ink.i('elm_1');
+    var elm2 = Ink.i('elm_2');
 
+    InkElement.elementWidth(elm1); // 100 
+    InkElement.elementWidth(elm2); // 1280 
 });
 </script>
 {% endhighlight %}

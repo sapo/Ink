@@ -1850,6 +1850,15 @@
   text-align: right;
 }
 
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
 /*! normalize.css v3.0.0 | MIT License | git.io/normalize */
 /**
  * 1. Set default font family to sans-serif.
@@ -2537,7 +2546,7 @@ html.no-flexboxlegacy .button-group > .ink-button:first-child {
   -moz-border-radius-bottomleft: 2px;
   -webkit-border-bottom-left-radius: 2px;
   border-bottom-left-radius: 2px;
-  border-left: 1px solid #ccc;
+  border-left: 1px solid #bfbfbf;
 }
 html.no-flexbox .button-group > .ink-button:last-child,
 html.no-flexboxlegacy .button-group > .ink-button:last-child {
@@ -8860,6 +8869,25 @@ html.no-flexboxlegacy img {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
+}
+
+.button-group > .ink-button.blue:first-child {
+  border-left: #0c63b9;
+}
+.button-group > .ink-button.green:first-child {
+  border-left: #3e8313;
+}
+.button-group > .ink-button.orange:first-child {
+  border-left: #d88400;
+}
+.button-group > .ink-button.red:first-child {
+  border-left: #aa0e0e;
+}
+.button-group > .ink-button.black:first-child {
+  border-left: #161616;
+}
+.button-group > .ink-button.white:first-child {
+  border-left: #d8d8d8;
 }
 
 .ink-label {

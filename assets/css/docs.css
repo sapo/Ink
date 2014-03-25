@@ -329,7 +329,6 @@ body.ink-drawer .right-drawer li:last-child {
 
 .mosaic {
   padding: 1em;
-  display: block;
   border: 1px solid #d9d9d9;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;

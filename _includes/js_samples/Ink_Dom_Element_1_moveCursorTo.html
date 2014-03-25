@@ -1,16 +1,18 @@
-<p>Desc... <code>this</code> </p>
+<p>Move cursor in a textarea to given position.</p>
 
 <p class="example-title">Code</p>
 {% highlight html %}
-<div>
-</div>
+<textarea id="textarea">
+This is a sample text in textarea
+</textarea>
 <script>
 Ink.requireModules(['Ink.Dom.Element_1'], function(InkElement) {
-    
-    var ... = InkElement.('');
 
-    Ink.log(aPositionedOffset); // [0, 0]  
+    var textarea = Ink.i('textarea'); 
 
+    textarea.focus(); 
+  
+    InkElement.moveCursorTo(textarea, 10); 
 });
 </script>
 {% endhighlight %}

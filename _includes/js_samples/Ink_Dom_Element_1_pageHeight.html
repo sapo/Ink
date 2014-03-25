@@ -1,17 +1,12 @@
-<p>Desc... <code>this</code> </p>
+<p>Get page height</p>
 
 <p class="example-title">Code</p>
-{% highlight html %}
-<div>
-</div>
-<script>
+{% highlight js %}
 Ink.requireModules(['Ink.Dom.Element_1'], function(InkElement) {
     
-    var ... = InkElement.('');
+    var pageHeight = InkElement.pageHeight();
 
-    Ink.log(aPositionedOffset); // [0, 0]  
-
+    Ink.log(pageHeight); // 1567
 });
-</script>
 {% endhighlight %}
 

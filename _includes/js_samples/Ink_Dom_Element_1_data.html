@@ -1,16 +1,25 @@
-<p>Desc... <code>this</code> </p>
+<p>Get all <code>data-</code> attributes into an object. All data attributes will be converted to camel case.</p>
 
 <p class="example-title">Code</p>
 {% highlight html %}
-<div>
+<div id="container" data-option="option_value" data-foo="bar" data-new-attr="attr_value">
 </div>
 <script>
 Ink.requireModules(['Ink.Dom.Element_1'], function(InkElement) {
-    
-    var ... = InkElement.('');
 
-    Ink.log(aPositionedOffset); // [0, 0]  
+    var cont = Ink.i('container');
+      
+    var data = InkElement.data(cont);
 
+    Ink.log(data);
+    /*
+     * Output: 
+       {
+            option: 'option_value',
+            foo: 'bar',
+            neAttr: 'attr_value'
+       }
+    */
 });
 </script>
 {% endhighlight %}

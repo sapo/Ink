@@ -1,17 +1,29 @@
-<p>Desc... <code>this</code> </p>
+<p>Create a wrapper around element with id target.</p>
 
 <p class="example-title">Code</p>
 {% highlight html %}
-<div>
+<!-- Original -->
+<div id="wrapper">
+    <p id="target">
+        Target content
+    </p>
 </div>
 <script>
 Ink.requireModules(['Ink.Dom.Element_1'], function(InkElement) {
-    
-    var ... = InkElement.('');
 
-    Ink.log(aPositionedOffset); // [0, 0]  
-
+    var target = Ink.i('target');
+    InkElement.unwrap(target);    
+    // or unsing a selector 
+    InkElement.unwrap(target, '#wrapper');
 });
 </script>
+<!-- Result -->
+<p id="target">
+    Target content
+</p>
+<div id="wrapper">
+    Wrapper content
+</div>
+
 {% endhighlight %}
 
