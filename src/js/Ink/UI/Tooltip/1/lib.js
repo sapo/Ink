@@ -6,6 +6,14 @@ Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Common_1', 'Ink.Dom.Event_1', '
     'use strict';
 
     /**
+     * Tooltips are useful as a means to display information about functionality while avoiding clutter.
+     *
+     * Tooltips show up when you hover elements which "have" tooltips.
+     *
+     * This class will "give" a tooltip to many elements, selected by its first argument (`target`). This is contrary to the other UI modules in Ink, which are created once per element.
+     *
+     * You can define options either through the second argument of the Tooltip constructor, or as data-attributes in each `target` element. Options set through data-attributes all start with "data-tip", and override options passed into the Tooltip constructor.
+     *
      * @class Ink.UI.Tooltip
      * @constructor
      *
@@ -13,10 +21,7 @@ Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Common_1', 'Ink.Dom.Event_1', '
      * @param {Object} [options]
      *     @param [options.text]=''             Text content for the tooltip.
      *     @param [options.html]=''             HTML for the tooltip. Same as above, but won't escape HTML.
-     *     @param [options.where]='up'          Positioning for the tooltip. Options:
-     *          @param options.where.up         Place above, below, to the left of, or to the right of, the target. Show an arrow.
-     *          @param options.where.mousemove  Place the tooltip to the bottom and to the right of the mouse when it hovers the element, and follow the mouse as it moves.
-     *          @param options.where.mousefix   Place the tooltip to the bottom and to the right of the mouse when it hovers the element, keep the tooltip there motionless.
+     *     @param [options.where]='up'          Positioning for the tooltip. Options are 'up', 'down', 'left', 'right', which place the tooltip in the corresponding direction (and show an arrow), 'mousemove', which follows the mouse as it moves, and 'mousefix', which stays in one place.
      *     
      *     @param [options.color]=''            Color of the tooltip. Options are red, orange, blue, green and black. Default is white.
      *     @param [options.fade]=0.3            Fade time; Duration of the fade in/out effect.
@@ -26,9 +31,9 @@ Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Common_1', 'Ink.Dom.Event_1', '
      *     @param [options.template]=null       Element or selector containing HTML to be cloned into the tooltips. Can be a hidden element, because CSS `display` is set to `block`.
      *     @param [options.templatefield]=null  Selector within the template element to choose where the text is inserted into the tooltip. Useful when a wrapper DIV is required.
      *
-     *     @param [options.left]=10         (Nitty-gritty) Spacing from the target to the tooltip, when `where` is `mousemove` or `mousefix`
-     *     @param [options.top]=10         (Nitty-gritty) Spacing from the target to the tooltip, when `where` is `mousemove` or `mousefix`
-     *     @param [options.spacing]=8           (Nitty-gritty) Spacing between the tooltip and the target element, when `where` is `up`, `down`, `left`, or `right`
+     *     @param [options.left]=10      (Nitty-gritty) Spacing from the target to the tooltip, when `where` is `mousemove` or `mousefix`
+     *     @param [options.top]=10       (Nitty-gritty) Spacing from the target to the tooltip, when `where` is `mousemove` or `mousefix`
+     *     @param [options.spacing]=8    (Nitty-gritty) Spacing between the tooltip and the target element, when `where` is `up`, `down`, `left`, or `right`
      * 
      * @example
      *     <ul class="buttons">

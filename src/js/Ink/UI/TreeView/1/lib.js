@@ -8,20 +8,31 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
 
 
     /**
-     * Shows elements in a tree-like hierarchical structure.
+     * Shows elements in a tree structure which can be expanded and contracted.
+     *
+     * A TreeView is built with "node"s and "children". "node"s are `li` tags, and
+     * "children" are `ul` tags.
+     *
+     * You can build your TreeView out of a regular UL and  LI element structure which
+     * you already use to display lists with several levels.
+     *
+     * If you want a node (LI) to be open when the TreeView is built, just add the 
+     * data-open="true" attribute to it.
      * 
      * @class Ink.UI.TreeView
      * @constructor
      * @version 1
      * @param {String|DOMElement} selector
-     * @param {String} [options.node='li'] Selector to define which elements are seen as nodes.
-     * @param {String} [options.children='ul'] Selector to define which elements are represented as children.
-     * @param {String} [options.parentClass='parent'] Classes to be added to the parent node.
-     * @param {String} [options.openClass='fa fa-minus-circle'] Classes to be added to the icon when a parent is open.
-     * @param {String} [options.closedClass='fa fa-plus-circle'] Classes to be added to the icon when a parent is closed.
-     * @param {String} [options.hideClass='hide-all'] Class to toggle visibility of the children.
-     * @param {String} [options.iconTag='i'] The name of icon tag. The component tries to find a tag with that name as a direct child of the node. If it doesn't find it, it creates it.
-     * @param {Boolean} [options.stopDefault=true] Stops the default behavior of the click handler.
+     * @param {String} [options] Options object, containing:
+     *
+     * @param {String} [options.node]='li'                      Selector to define which elements are seen as nodes.
+     * @param {String} [options.children]='ul'                  Selector to define which elements are represented as children.
+     * @param {String} [options.parentClass]='parent'           Classes to be added to the parent node.
+     * @param {String} [options.openClass]='fa fa-minus-circle' Classes to be added to the icon when a parent is open.
+     * @param {String} [options.closedClass]='fa fa-plus-circle' Classes to be added to the icon when a parent is closed.
+     * @param {String} [options.hideClass]='hide-all'           Class to toggle visibility of the children.
+     * @param {String} [options.iconTag]='i'                    The name of icon tag. The component tries to find a tag with that name as a direct child of the node. If it doesn't find it, it creates it.
+     * @param {Boolean} [options.stopDefault=true]              Stops the default behavior of the click handler.
      * @example
      *      <ul class="ink-tree-view">
      *        <li data-open="true"><a href="#">root</a>
@@ -107,6 +118,12 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
             return Ink.s('> ' + this._options.iconTag, node);
         },
 
+        /**
+         * Check whether a node is open
+         *
+         * @method isOpen
+         * @param {DOMElement} node  The tree node to check
+         **/
         isOpen: function (node) {
             if (!this._getChild(node)) {
                 throw new Error('not a node!');
@@ -116,6 +133,12 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
                 Css.hasClassName(node, this._options.openNodeClass);
         },
 
+        /**
+         * Returns whether a node is a parent in this tree.
+         *
+         * @method isParent
+         * @param {DOMElement} node     Node to check
+         **/
         isParent: function (node) {
             return Css.hasClassName(node, this._options.parentClass) ||
                 this._getChild(node) != null;
@@ -153,14 +176,34 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
             }
         },
 
+        /**
+         * Open one of the tree nodes
+         *
+         * Make sure you pass the node's DOMElement
+         * @method open
+         * @param {DOMElement} node     The node you wish to open.
+         **/
         open: function (node) {
             this._setNodeOpen(node, true);
         },
 
+        /**
+         * close one of the tree nodes
+         *
+         * Make sure you pass the node's DOMElement
+         * @method close
+         * @param {DOMElement} node     The node you wish to close.
+         **/
         close: function (node) {
             this._setNodeOpen(node, false);
         },
 
+        /**
+         * Toggle a node
+         *
+         * @method toggle
+         * @param {DOMElement} node     The node to toggle.
+         **/
         toggle: function (node) {
             if (this.isOpen(node)) {
                 this.close(node);
