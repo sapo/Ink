@@ -62,17 +62,17 @@ Stacker.prototype = {
      * Html:
      *
      *     <div id="stacker-container">  <!-- Stacker element -->
-     *         <div class="extra-large-33 large-33 medium-50 tiny-100 stacker-column"> <!-- Column element ('.stacker-column' is the default selector) -->
+     *         <div class="xlarge-33 large-33 medium-50 tiny-100 stacker-column"> <!-- Column element ('.stacker-column' is the default selector) -->
      *             <div id="a" class="stacker-item">a</div> <!-- Item ('.stacker-item' is the default selector) -->
      *             <div id="d" class="stacker-item">d</div>
      *             <div id="g" class="stacker-item">g</div>
      *         </div>
-     *         <div class="extra-large-33 large-33 medium-50 tiny-100 hide-small stacker-column">
+     *         <div class="xlarge-33 large-33 medium-50 tiny-100 hide-small stacker-column">
      *             <div id="b" class="stacker-item">b</div>
      *             <div id="e" class="stacker-item">e</div>
      *             <div id="h" class="stacker-item">h</div>
      *         </div>
-     *         <div class="extra-large-33 large-33 medium-50 tiny-100 hide-medium hide-small stacker-column">
+     *         <div class="xlarge-33 large-33 medium-50 tiny-100 hide-medium hide-small stacker-column">
      *             <div id="c" class="stacker-item">c</div>
      *             <div id="f" class="stacker-item">f</div>
      *             <div id="i" class="stacker-item">i</div>
