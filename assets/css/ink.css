@@ -1851,12 +1851,8 @@
 }
 
 .clearfix {
+  overflow: hidden;
   *zoom: 1;
-}
-.clearfix:after {
-  content: "";
-  display: table;
-  clear: both;
 }
 
 /*! normalize.css v3.0.0 | MIT License | git.io/normalize */
