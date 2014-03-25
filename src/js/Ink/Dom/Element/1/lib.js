@@ -608,31 +608,25 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * Get an element's left position in pixels.
+         * Deprecated. Alias for offsetLeft()
          *
          * @method elementLeft
          * @param {DOMElement|String}       element     DOM element or target ID
          * @return {Number} Element's left position
          */
         elementLeft: function(element) {
-            if(typeof element === "string") {
-                element = document.getElementById(element);
-            }
-            return element.offsetLeft;
+            return InkElement.offsetLeft(element);
         },
 
         /**
-         * Returns the element's top position in pixels.
+         * Deprecated. Alias for offsetTop()
          *
          * @method elementTop
          * @param {DOMElement|string}   element     Target DOM element or target ID
          * @return {Number} element's top position
          */
         elementTop: function(element) {
-            if(typeof element === "string") {
-                element = document.getElementById(element);
-            }
-            return element.offsetTop;
+            return InkElement.offsetTop(element);
         },
 
         /**
@@ -675,8 +669,9 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          *
          * @method inViewport
          * @param {DOMElement} element DOM Element
-         * @param {Boolean} [partial]=false Return `true` even if it is only partially visible.
-         * @param {Number}  [opts.margin]=0 Consider a margin all around the viewport with `opts.margin` width a dead zone.
+         * @param {Object}  [options]  Options object. If you pass a Boolean value here, it is interpreted as `options.partial`
+         * @param {Boolean} [options.partial]=false    Return `true` even if it is only partially visible.
+         * @param {Number}  [options.margin]=0         Consider a margin all around the viewport with `opts.margin` width a dead zone.
          * @return {Boolean}
          * @sample Ink_Dom_Element_1_inViewport.html 
          */
@@ -953,6 +948,8 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @param {Array}              data            Data to populate the component
          * @param {Boolean}            [skipEmpty]     Flag to skip empty option
          * @param {String|Number}      [defaultValue]  Initial selected value
+         *
+         * @sample Ink_Dom_Element_1_fillSelect.html 
          */
         fillSelect: function(container, data, skipEmpty, defaultValue) {
             var containerEl = Ink.i(container);
@@ -990,110 +987,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
 
 
         /**
-         * Fills a select element with options
-         * This method allows the creation of new values
-         *
-         * @method fillSelect2
-         * @param {DOMElement|String} ctn Select element to get populated
-         * @param {Object} opts
-         * @param {Array}                       [opts.data]                 Data to populate the component
-         * @param {Boolean}                     [opts.skipEmpty]=false      Flag to skip creation of empty options
-         * @param {String}                      [opts.emptyLabel]           Label to display on empty option
-         * @param {String}                      [opts.createLabel]          Label to display on create option
-         * @param {String}                      [opts.optionsGroupLabel]    Text to display on group surrounding value options
-         * @param {String}                      [opts.defaultValue]         Initial selected value
-         * @param {Function}                    [opts.onCreate]             Callback when the user selects the create option
-         */
-        fillSelect2: function(ctn, opts) {
-            ctn = Ink.i(ctn);
-            ctn.innerHTML = '';
-
-            var defs = {
-                skipEmpty:              false,
-                skipCreate:             false,
-                emptyLabel:             'none',
-                createLabel:            'create',
-                optionsGroupLabel:      'groups',
-                emptyOptionsGroupLabel: 'none exist',
-                defaultValue:           ''
-            };
-            if (!opts) {      throw 'param opts is a requirement!';   }
-            if (!opts.data) { throw 'opts.data is a requirement!';    }
-            opts = Ink.extendObj(defs, opts);
-
-            var optionEl, d;
-
-            var optGroupValuesEl = document.createElement('optgroup');
-            optGroupValuesEl.setAttribute('label', opts.optionsGroupLabel);
-
-            opts.data = InkElement._normalizeData(opts.data);
-
-            if (!opts.skipCreate) {
-                opts.data.unshift(['$create$', opts.createLabel]);
-            }
-
-            if (!opts.skipEmpty) {
-                opts.data.unshift(['', opts.emptyLabel]);
-            }
-
-            for (var i = 0, f = opts.data.length; i < f; ++i) {
-                d = opts.data[i];
-
-                optionEl = document.createElement('option');
-                optionEl.setAttribute('value', d[0]);
-                optionEl.appendChild( document.createTextNode(d[1]) );
-
-                if (d[0] === opts.defaultValue) {   optionEl.setAttribute('selected', 'selected');  }
-
-                if (d[0] === '' || d[0] === '$create$') {
-                    ctn.appendChild(optionEl);
-                }
-                else {
-                    optGroupValuesEl.appendChild(optionEl);
-                }
-            }
-
-            var lastValIsNotOption = function(data) {
-                var lastVal = data[data.length-1][0];
-                return (lastVal === '' || lastVal === '$create$');
-            };
-
-            if (lastValIsNotOption(opts.data)) {
-                optionEl = document.createElement('option');
-                optionEl.setAttribute('value', '$dummy$');
-                optionEl.setAttribute('disabled', 'disabled');
-                optionEl.appendChild(   document.createTextNode(opts.emptyOptionsGroupLabel)    );
-                optGroupValuesEl.appendChild(optionEl);
-            }
-
-            ctn.appendChild(optGroupValuesEl);
-
-            var addOption = function(v, l) {
-                var optionEl = ctn.options[ctn.options.length - 1];
-                if (optionEl.getAttribute('disabled')) {
-                    optionEl.parentNode.removeChild(optionEl);
-                }
-
-                // create it
-                optionEl = document.createElement('option');
-                optionEl.setAttribute('value', v);
-                optionEl.appendChild(   document.createTextNode(l)  );
-                optGroupValuesEl.appendChild(optionEl);
-
-                // select it
-                ctn.options[ctn.options.length - 1].setAttribute('selected', true);
-            };
-
-            if (!opts.skipCreate) {
-                ctn.onchange = function() {
-                    if ((ctn.value === '$create$') && (typeof opts.onCreate === 'function')) {  opts.onCreate(ctn, addOption);  }
-                };
-            }
-        },
-
-
-        /**
-         * Creates a set of radio buttons
+         * Creates a set of radio buttons from an array of data
          *
          * @method fillRadios
          * @param {DOMElement|String}  insertAfterEl    Element after which the input elements will be created
@@ -1105,23 +999,17 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @return {DOMElement} Wrapper element around the radio buttons
          */
         fillRadios: function(insertAfterEl, name, data, skipEmpty, defaultValue, splitEl) {
-            var afterEl = Ink.i(insertAfterEl);
-            afterEl = afterEl.nextSibling;
-            while (afterEl && afterEl.nodeType !== 1) {
-                afterEl = afterEl.nextSibling;
-            }
+            insertAfterEl = Ink.i(insertAfterEl);
             var containerEl = document.createElement('span');
-            if (afterEl) {
-                afterEl.parentNode.insertBefore(containerEl, afterEl);
-            } else {
-                Ink.i(insertAfterEl).appendChild(containerEl);
-            }
+            InkElement.insertAfter(containerEl, insertAfterEl);
 
             data = InkElement._normalizeData(data);
 
+            /*
             if (name.substring(name.length - 1) !== ']') {
                 name += '[]';
             }
+            */
 
             var d, inputEl;
 
@@ -1168,17 +1056,9 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @return {DOMElement} Wrapper element around the checkboxes
          */
         fillChecks: function(insertAfterEl, name, data, defaultValue, splitEl) {
-            var afterEl = Ink.i(insertAfterEl);
-            afterEl = afterEl.nextSibling;
-            while (afterEl && afterEl.nodeType !== 1) {
-                afterEl = afterEl.nextSibling;
-            }
+            insertAfterEl = Ink.i(insertAfterEl);
             var containerEl = document.createElement('span');
-            if (afterEl) {
-                afterEl.parentNode.insertBefore(containerEl, afterEl);
-            } else {
-                Ink.i(insertAfterEl).appendChild(containerEl);
-            }
+            InkElement.insertAfter(containerEl, insertAfterEl);
 
             data = InkElement._normalizeData(data);
 
@@ -1517,8 +1397,12 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         unwrap: function (elem, wrapperSelector) {
             elem = Ink.i(elem);
             var wrapper;
-            if (wrapperSelector) {
+            if (typeof wrapperSelector === 'string') {
                 wrapper = InkElement.findUpwardsBySelector(elem, wrapperSelector);
+            } else if (typeof wrapperSelector === 'object' && wrapperSelector.tagName) {
+                wrapper = InkElement.findUpwardsHaving(elem, function (ancestor) {
+                    return ancestor === wrapperSelector;
+                });
             } else {
                 wrapper = elem.parentNode;
             }
@@ -1541,10 +1425,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          *       replace(Ink.i('element1'), newelement1);
          */
         replace: function (element, replacement) {
-            /*
-            InkElement.insertBefore(replacement, element);
-            InkElement.remove(element);
-            */
             element = Ink.i(element);
             if(element !== null) {
                 element.parentNode.replaceChild(replacement, element);
@@ -1797,7 +1677,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Get the scroll's width.
          * @method scrollWidth
          * @return {Number} Scroll width
-         * @sample Ink_Dom_Element_1_scrollWidth.html 
          */
         scrollWidth: function() {
             if (typeof window.self.pageXOffset !== 'undefined') {
@@ -1813,7 +1692,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Get the scroll's height.
          * @method scrollHeight
          * @return {Number} Scroll height
-         * @sample Ink_Dom_Element_1_scrollHeight.html 
          */
         scrollHeight: function() {
             if (typeof window.self.pageYOffset !== 'undefined') {

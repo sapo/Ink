@@ -51,6 +51,8 @@
     input[type="search"],
     input[type="tel"],
     input[type="color"] {
+        font-family: $form-field-font;
+        font-weight: $form-field-fontWeight;
         @include border-radius($border-radius);
         padding: $form-field-padding;
         border: 1px solid shade($form-field-borderColor,10%);
