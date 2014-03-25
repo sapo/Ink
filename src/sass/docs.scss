@@ -116,7 +116,7 @@ color: $link-visited-color ;
                         font-size: 1.2em;
                         color: $topbar-color;
                         border: none;
-                        padding: 0.8em;
+                        padding: .8em;
 
                         &:hover, &:active, &:focus {
                             color: $topbar-colorHover;
@@ -389,6 +389,7 @@ body.ink-drawer {
 .highlight .nn      { color: #555555; } /* Name.Namespace */
 .highlight .nt      { color: #000080; } /* Name.Tag */
 .highlight .nv      { color: #008080; } /* Name.Variable */
+.highlight .nx      { color: #005080; } /* Name.Variable */
 .highlight .ow      { font-weight: bold; } /* Operator.Word */
 .highlight .w       { color: #bbbbbb; } /* Text.Whitespace */
 .highlight .mf      { color: #009999; } /* Literal.Number.Float */
@@ -500,7 +501,7 @@ table.props {
     }
 
     caption {
-        padding: 0 0 0 0.4em;
+        padding: 0 0 0 .4em;
         color: $code-background;
         text-align: left;
         text-transform: uppercase;
@@ -510,7 +511,7 @@ table.props {
     }
 
     td, th {
-        padding: 0.1em;
+        padding: .1em;
         border-bottom: 1px solid $code-border;
         text-align: left;
     }
@@ -537,7 +538,7 @@ ul {
         &.inline {
             li {
                 & + li {
-                    margin: 0 0.4em 0.5em 0;
+                    margin: 0 .4em .5em 0;
                 }
             }
         }
@@ -556,12 +557,12 @@ ul {
             &.breakpoint-aware {
                 &:after {
                     @extend .fw-300;
-                    margin-left: 0.2em;
+                    margin-left: .2em;
                     background: none;
                     color: $green;
                     content: "Breakpoint aware";
                     text-transform: uppercase;
-                    font-size: 0.9em;
+                    font-size: .9em;
                 }
             }
         }
@@ -574,14 +575,14 @@ ul {
 span.label {
 
     white-space: nowrap;
-    font-size: 0.80em;
+    font-size: .80em;
 
     & + & {
-        margin-left: 0.3em;
+        margin-left: .3em;
     }
 
     &:after {
-        padding: 0 0.35em;
+        padding: 0 .35em;
         @include border-radius(2px);
     }
 
@@ -636,7 +637,7 @@ span.label {
 }
 
 p.example-title {
-    padding: 0 0 0 0.4em;
+    padding: 0 0 0 .4em;
     color: $code-background;
     text-align: left;
     text-transform: uppercase;
@@ -647,7 +648,7 @@ p.example-title {
 }
 
 p + p.example-title {
-    margin-top: 0.7em;
+    margin-top: .7em;
 }
 
 .example, table.props {

@@ -30,7 +30,7 @@
     color: $button-text-color;
     border: 1px solid darken($grey-15,10%);
     @include border-radius($button-border-radius);
-    @include transition(compact(all 140ms ease-in-out));
+    // @include transition(compact(all 140ms ease-in-out));
 
     &:hover,
     &:active {

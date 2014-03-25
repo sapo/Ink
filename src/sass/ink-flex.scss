@@ -15,7 +15,7 @@
 @import "contrib/compass/utilities";
 
 // Import Font Awesome
-@import "contrib/font-awesome/font-awesome";
+// @import "contrib/font-awesome/font-awesome";
 
 // IMPORT CONFIG FILES (THESE CONTAIN VARIABLE DEFINITIONS)
 @import "config/common";
@@ -35,7 +35,7 @@
 
 // IMPORT MIXINS FILES (THESE CONTAIN HELPER FUNCTIONS)
 @import "mixins/alerts";
-@import "mixins/buttons"; 
+@import "mixins/buttons";
 @import "mixins/grid";
 @import "mixins/flex-grid";
 @import "mixins/forms";
@@ -54,10 +54,6 @@
 @import "modules/badges";
 @import "modules/buttons";
 @import "modules/forms";
-html.no-flexbox,
-html.no-flexboxlegacy {
-  @import "modules/grid";
-}
 @import "modules/flex-grid";
 @import "modules/fonts";
 @import "modules/labels";
