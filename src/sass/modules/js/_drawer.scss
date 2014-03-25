@@ -4,7 +4,7 @@ body {
     $width: 220px;
     $easing: cubic-bezier(0.860, 0.000, 0.070, 1.000);
 
-    &.ink-drawer {
+    &.#{$drawer-class-name} {
 
         max-width: 100%;
 

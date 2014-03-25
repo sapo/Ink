@@ -2,13 +2,13 @@
 layout: home
 title: Interface Kit
 site_root:  /
-tags: 
+tags:
 ---
 
 <section class="ink">
   <div class="ink-grid">
     <div class="column-group push-middle push-center">
-      <div class="extra-large-65 large-65 all-80 align-center">
+      <div class="xlarge-65 large-65 all-80 align-center">
         <p><img src="{{ site.images_path }}ink.png" alt="Ink"></p>
         <h1 class="fw-light">A quick and efficient toolkit to create responsive web interfaces.</h1>
         <div class="column-group">
@@ -27,37 +27,55 @@ tags:
   <div class="ink-grid">
     <h1 class="fw-light uppercase align-center small-align-left tiny-align-left">Lightning fast responsive web development</h1>
     <div class="column-group horizontal-gutters push-top">
-      <div class="extra-large-50 large-50 medium-50 small-100 tiny-100">
+      <div class="xlarge-50 large-50 medium-50 small-100 tiny-100">
         <h2 class="fw-light">Responsive from the ground up</h2>
         <p>Our grid system is percentage based. Nesting grid elements gives you infinite possibilities. Version 3.0.0 introduces a flex based grid system that gives you unprecedented control over your layouts.</p>
+{% highlight html %}
+<nav class="ink-grid">
+  <div class="column-group">
+    <div class="all-50 small-100 tiny-100">...</div>
+    <div class="all-50 small-100 tiny-100">...</div>
+  </div>
+</nav>
+{% endhighlight %}
       </div>
-      <div class="extra-large-50 large-50 medium-50 small-100 tiny-100">
+      <div class="xlarge-50 large-50 medium-50 small-100 tiny-100">
         <h2 class="fw-light">Easy to code and easy to read</h2>
         <p>Our syntax was designed to be clean and readable like a human language, creating legible code that both designers and developers can understand, helping to make your work accessible to anyone on your teams.</p>
 {% highlight html %}
 <nav class="ink-navigation">
   <ul class="horizontal menu">
-    <li>...</li>
+    <li><a href="/home">home</a></li>
+    <li><a href="/about">about</a></li>
   </ul>
 </nav>
 {% endhighlight %}
       </div>
-      <div class="extra-large-50 large-50 medium-50 small-100 tiny-100">
+      <div class="xlarge-50 large-50 medium-50 small-100 tiny-100">
         <h2 class="fw-light">More than HTML and CSS</h2>
         <p>We've developed our own Javascript library based on the latest coding standards and a modular architecture. Using <a href="http://localhost:4000/javascript/ink/#Ink_1-Ink_1-requireModules">Ink.requireModules()</a> method make sure all of Ink power is at your finger tips.</p>
 {% highlight js %}
 Ink.requireModules(
-  ['Ink.Dom.CSS_1', 'Ink.Dom.Selector_1'], 
-  function(c, s) {    
+  ['Ink.Dom.CSS_1', 'Ink.Dom.Selector_1'],
+  function(c, s) {
     var myDiv = Ink.s('#intro');
     c.addClass(myDiv,'hot');
   }
 );
-{% endhighlight %}        
+{% endhighlight %}
       </div>
-      <div class="extra-large-50 large-50 medium-50 small-100 tiny-100">
+      <div class="xlarge-50 large-50 medium-50 small-100 tiny-100">
         <h2 class="fw-light">Customizable</h2>
-        <p>Our CSS is created with <a href="http://sass-lang.com/" target="_blank">SASS</a>. Dimensions, color, font sizes and even class names are defined as variables and are easily reconfigurable. Just <a href="{{ site.url }}ui-elements/">edit a couple of files</a>, recompile and you'll have your unique build.</p>   
+        <p>Inks CSS is created with <a href="http://sass-lang.com/" target="_blank">SASS</a>. Dimensions, color, font sizes and even class names are defined as variables and are easily reconfigurable. Just <a href="{{ site.url }}ui-elements/">edit a couple of files</a>, recompile and you'll have your unique build.</p>
+{% highlight scss %}
+// scss
+$ink-class-prefix: my-;
+$navigation-class-name: #{$ink-class-prefix}nav
+// css
+.my-nav {
+  ...
+}
+{% endhighlight %}
       </div>
     </div>
   </div>

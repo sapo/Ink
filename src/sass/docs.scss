@@ -5,11 +5,13 @@
 
 // Import Ink
 @import "config/common";
-@import "config/colors"; 
+@import "config/colors";
+
+@charset "UTF-8";
 
 // Variables
 $themeBackground    : #DEEDF1;
-$topbar-fontSize    : 14px;      
+$topbar-fontSize    : 14px;
 $topbar-bgColor     : #222;
 $topbar-color       : #BBB;
 $topbar-colorHover  : $white;
@@ -19,7 +21,7 @@ $code-border        : darken($code-background,8%);
 $teal               : #009999;
 $code-font-size        : .85em;
 
-.uppercase { text-transform: uppercase; }
+
 .fw-100 { font-weight: 100; font-family: Roboto; }
 .fw-300 { font-weight: 300; font-family: Roboto; }
 .fw-400 { font-weight: 400; font-family: Roboto; }
@@ -37,7 +39,7 @@ $code-font-size        : .85em;
 .slab-700 { font-weight: 700; font-family: Roboto_slab; }
 
 .italic { font-style: italic; }
-
+.uppercase { text-transform: uppercase; }
 
 a.hover {
 color: $link-hover-color;
@@ -54,7 +56,7 @@ color: $link-visited-color ;
 
 
 
-#topbar {   
+#topbar {
     position: fixed;
     z-index: $layer-100;
     width: 100%;
@@ -62,15 +64,15 @@ color: $link-visited-color ;
     -webkit-transform: scale3d(1,1,1); // Solves weird “redraw behavior” involving anchor links and fixed positioned elements in chrome.
     @include pie-clearfix;
     top: 0;
-    
+
     .ink-navigation {
-    
+
         ul.black {
-        
+
             li {
-    
+
                 font-size: $topbar-fontSize;
-    
+
                 a {
                     padding: .7em 1em;
                     color:$topbar-color;
@@ -78,7 +80,7 @@ color: $link-visited-color ;
                     font-weight: 300;
                     line-height: $base-line-height;
                     *height:auto;
-                    
+
                     &:hover {
                         color:$topbar-colorHover;
                     }
@@ -102,9 +104,9 @@ color: $link-visited-color ;
 
                         &:hover {
                             background: none;
-                        }                            
+                        }
                     }
-                    
+
                 }
 
                 button.fa-bars {
@@ -119,7 +121,7 @@ color: $link-visited-color ;
                         &:hover, &:active, &:focus {
                             color: $topbar-colorHover;
                             outline: none;
-                        }        
+                        }
                     }
 
                 &.active {
@@ -130,7 +132,7 @@ color: $link-visited-color ;
                 }
             }
         }
-        
+
         @include pie-clearfix;
     }
 
@@ -163,9 +165,9 @@ color: $link-visited-color ;
                 }
 
                 &.search {
-                
+
                     position: relative;
-                    
+
                     input[type=search] {
                         @include border-radius(2px);
                         @include box-sizing(border-box);
@@ -184,7 +186,7 @@ color: $link-visited-color ;
 
                     #search-dropdown {
                         width: 100%;
-                        .dropdown-menu {                            
+                        .dropdown-menu {
                             li {
                                 float: none;
                                 width: 100%;
@@ -207,7 +209,7 @@ color: $link-visited-color ;
 }
 
 body.ink-drawer {
-    
+
     .left-drawer,
     .right-drawer {
         background: #1e1e1e;
@@ -224,10 +226,10 @@ body.ink-drawer {
             font-weight: 300;
 
             &.search {
-                    
+
                 position: relative;
                 margin: 15px;
-                
+
                 input[type=search] {
                     @include border-radius(2px);
                     @include box-sizing(border-box);
@@ -246,7 +248,7 @@ body.ink-drawer {
 
                 #search-dropdown {
                     width: 100%;
-                    .dropdown-menu {                            
+                    .dropdown-menu {
                         li {
                             float: none;
                             width: 100%;
@@ -261,7 +263,7 @@ body.ink-drawer {
                 text-transform: uppercase;
                 margin-top: 1em;
                 font-weight: 700;
-                
+
                 a {
                     font-size: 1em;
                     margin-top: 1em;
@@ -272,7 +274,7 @@ body.ink-drawer {
                     border-top: none;
                 }
             }
-            
+
             & > a {
                 @include transition(compact(all 140ms ease-in-out));
                 display: block;
@@ -343,9 +345,9 @@ body.ink-drawer {
 
 // Code highlight
 .highlight          { padding: 1em; background: $code-background; margin-bottom: 1.5em; @include border-radius($border-radius);}
-.highlight pre      { 
-    margin: 0; 
-    font-size: $code-font-size; 
+.highlight pre      {
+    margin: 0;
+    font-size: $code-font-size;
     overflow-x: auto;
     white-space: pre;
     word-wrap: normal;
@@ -416,13 +418,17 @@ body.ink-drawer {
     font-size: 1.25em;
 
     p {
-        margin:.5em 0 1em;
+        margin: 0 0 1em;
         font-weight: 300;
         line-height: 1.5;
 
         &.section-title {
             margin: 0;
         }
+    }
+
+    h1 {
+        margin-bottom: 0;
     }
 
     .border {
@@ -444,13 +450,13 @@ section {
     padding-top: 5em;
     //margin: -1em 0 0;
     @include background-clip(padding-box);
-    
+
     & + section {
         margin-top: 3em;
         padding-top: 3em;
         border-top: 1px solid $code-border;
     }
-    
+
     p, ul, ol, dl, dt code, table {
         font-weight: 300;
     }
@@ -473,7 +479,7 @@ table.props {
     @include border-radius($border-radius);
     margin: 1.5em 0;
 
-    tr {            
+    tr {
         &:nth-child(odd){
             td {
                 background: lighten($code-background,2%);
@@ -527,7 +533,7 @@ ul {
         margin: 0;
         padding: 0;
         list-style-type: none;
-        
+
         &.inline {
             li {
                 & + li {
@@ -541,7 +547,7 @@ ul {
             text-transform: uppercase;
             margin: 0 0 .5em;
         }
-        
+
         li.prop {
             @extend .slab-400;
             background-color: $code-background;
@@ -555,13 +561,15 @@ ul {
                     color: $green;
                     content: "Breakpoint aware";
                     text-transform: uppercase;
-                    font-size: 0.9em;                
+                    font-size: 0.9em;
                 }
             }
         }
-        
+
     }
 }
+
+
 
 span.label {
 
@@ -669,14 +677,14 @@ html.flexbox .example {
     }
 
     &#chevron-example {
-        height:140px; 
-        width: 100%; 
-        position: relative; 
-        overflow: hidden; 
-        display: block; 
+        height:140px;
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+        display: block;
 
         a { top: auto; }
-    }    
+    }
 }
 
 .tall {
@@ -712,7 +720,7 @@ footer {
             display: block;
             height: 43px;
             padding-left: 60px;
-            text-decoration: none;   
+            text-decoration: none;
 
             small {
                 display: block;
@@ -731,7 +739,7 @@ footer {
                     padding: .5em 1em .5em 0;
                     display: inline-block;
                     &.license {
-                        padding: .5em 0;    
+                        padding: .5em 0;
                     }
                 }
             }
@@ -763,7 +771,7 @@ $who: lighten(#CA8A4E,10%);
   section {
     border: none;
     padding: 2em 0;
-    
+
     & + section {
       margin-top: 0;
     }
@@ -797,7 +805,7 @@ $who: lighten(#CA8A4E,10%);
         &:hover,&:focus,&:active {
           // background: darken($ink,20%);
           background: black;
-          // border-color: darken($ink,23%); 
+          // border-color: darken($ink,23%);
           border-color: black;
           color: $white;
         }
@@ -806,12 +814,12 @@ $who: lighten(#CA8A4E,10%);
     }
 
     section.what {
-      
+
 
       @include background-image(radial-gradient($what, darken($what,10%)));
       @include text-color($white,h1,h2,h3,p,ul);
-      
-      
+
+
       .ink-grid {
         height: 100%;
         .column-group {
@@ -824,8 +832,8 @@ $who: lighten(#CA8A4E,10%);
     section.why {
       @include background-image(radial-gradient($why, darken($why,20%)));
       @include text-color($white,h1,h2,h3,p,ul);
-      
-      
+
+
       .ink-grid {
         height: 100%;
         .column-group {
@@ -838,8 +846,8 @@ $who: lighten(#CA8A4E,10%);
     section.how {
       @include background-image(radial-gradient($how, darken($how,20%)));
       @include text-color($white,h1,h2,h3,p,ul);
-      
-      
+
+
       .ink-grid {
         height: 100%;
         .column-group {
@@ -852,8 +860,8 @@ $who: lighten(#CA8A4E,10%);
     section.who {
       @include background-image(radial-gradient($who, darken($who,20%)));
       @include text-color($white,h1,h2,h3,p,ul);
-      
-      
+
+
       .ink-grid {
         height: 100%;
         .column-group {

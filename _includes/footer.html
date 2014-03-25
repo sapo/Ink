@@ -4,7 +4,7 @@
         
         <div class="column-group gutters">
 
-            <div class="extra-large-70 large-70 medium-100 small-100 tiny-100">
+            <div class="xlarge-70 large-70 medium-100 small-100 tiny-100">
                 
                 <nav class="ink-navigation">
                     <ul class="menu horizontal">
@@ -17,9 +17,9 @@
                 <div class="socialplugins half-top-space">
                     <div class="half-bottom-space">
                         <a href="https://twitter.com/share" class="twitter-share-button" data-via="inksapo">Tweet</a>
-                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                        {% if site.environment == 'production' %}<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>{% endif %}
                         <a href="https://twitter.com/inksapo" class="twitter-follow-button" data-show-count="false">Follow @inksapo</a>
-                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                        {% if site.environment == 'production' %}<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>{% endif %}
                     </div>
                     <div class="fb-like hide-tiny hide-small" data-href="https://www.facebook.com/inksapo" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
                     <div class="fb-like hide-all show-tiny show-small" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
@@ -41,7 +41,7 @@
             </div>
 
 
-            <div class="extra-large-30 large-30 medium-100 small-100 tiny-100">
+            <div class="xlarge-30 large-30 medium-100 small-100 tiny-100">
             
                 <h3 class="quarter-vertical-space">Ink is built with:</h3>
                 

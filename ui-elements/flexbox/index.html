@@ -22,20 +22,43 @@ site_root: ../../
   <p>On this page we'll cover all the places where flexbox feature enhancement exists and how to take advantage of them.</p>
   <p><i class="fa fa-leaf"></i> Be aware that the Flexible box layout mode is still at the <a href="http://www.w3.org/TR/css3-flexbox/#status">Candidate Recommendation</a> stage of the specification and even though the W3C encourages browser makers to implement it, it is subject to change before the final version of the specification.</p>
   <h2 class="fw-300">How to use</h2>
-  <p>The <code>ink-flex.css</code> file contains both the new flexbox grid system and the "normal" one. To to make sure that the flexbox code only is used on capable browsers, we've wrapped both in css selectors:</p>
+  <p>Ink-flex.cssis the file that contains the new flexbox features, so the first step is to link it on your document <code>head</code>:</p>
+<p class="example-title">Code</p>
+{% highlight html %}
+<!-- pretty version for development -->
+<link rel="stylesheet" href="http://cdn.ink.sapo.pt/{{site.version}}/css/ink-flex.css">
+<!-- minified version for production -->
+<link rel="stylesheet" href="http://cdn.ink.sapo.pt/{{site.version}}/css/ink-flex.min.css">
+{% endhighlight %}
+<p>In the example above we're calling the css from our cdn but if you want to host the files yourself, just put them wherever you like and set the propper url.</p>
+<p><code>ink-flex.css</code> or <code>ink-flex.min.css</code> don't contain css for browsers without flexbox support, so if you still want or need to have a fallback for older browsers we have a <code>ink-flex-legacy.css</code> file that contains all the non-flexbox code where all the rules have additional specificity with the <code>html.no-flexbox, html.no-flexboxlegacy</code> selector:</p>
 <p class="example-title">Code</p>
 {% highlight css %}
-html.flexbox,
-html.flexboxlegacy {
-  // flexbox code
+...
+html.no-flexbox .ink-grid,
+html.no-flexboxlegacy .ink-grid {
+  width: auto;
+  max-width: 1440px;
+  margin: 0 auto;
 }
-
-html.no-flexbox,
-html.no-flexboxlegacy {
-  // non flexbox code
-}
+...
 {% endhighlight %}
-<p>From version 3.0.0 onward, we're distributing and using <a href="http://modernizr.com/" target="_blank">modernizr.js</a> to detect browser support for flexbox. <a href="http://modernizr.com/" target="_blank">Modernizr</a> will write the <code>flexbox</code>,<code>no-flexbox</code>,<code>flexboxlegacy</code> or <code>no-flexboxlegacy</code> on your pages html tag for you.</p>
+<p>We can now use the included <a href="http://modernizr.com/" target="_blank">modernizr.js</a> to detect if the browser does not support flexbox and load the lecagy stylesheet if needed:</p>
+<p class="example-title">Code</p>
+{% highlight html %}
+    ...
+    <script type="text/javascript" src="http://cdn.ink.sapo.pt/{{ site.version }}/js/modernizr.js"></script>
+    <script type="text/javascript">
+        Modernizr.load({
+          test: Modernizr.flexbox,
+          nope : 'http://cdn.ink.sapo.pt/{{ site.version }}/css/ink-flex-legacy.min.css',
+        });
+    </script>
+  </body>
+</html>
+{% endhighlight %}
+<p>Include the code above right before closing <code>body</code> tag. Modernizr will detect if the browser supports flexbox, and if it doesn't it will write the <code>no-flexbox</code> and / or <code>no-flexboxlegacy</code> css classes on the <code>html</code> element and load the legacy css file.</p>
+<p>This approach has a major drawback. Older browsers will have to load an additional css file, but we prefer to "penalize" browsers that don't support flexbox rather than the ones that do. There are other ways to implement this, but they have  their own drawbacks, so we'll let you choose the one that fits your needs the best.</p>
   <table class="props css">
     <caption>CSS CLASSES</caption>
     <thead>
@@ -140,7 +163,7 @@ html.no-flexboxlegacy {
 <p class="example-title">Code</p>
 {% highlight html %}
 <div class="ink-grid">
-  <div class="column-group extra-large-push-left large-push-center medium-push-right small-push-center tiny-push-left">
+  <div class="column-group xlarge-push-left large-push-center medium-push-right small-push-center tiny-push-left">
     <div class="all-50">
       50%
     </div>
@@ -150,7 +173,7 @@ html.no-flexboxlegacy {
 <p class="example-title">Demo</p>
 <div class="example">
   <div class="ink-grid">
-  <div class="column-group extra-large-push-left large-push-center medium-push-right small-push-center tiny-push-left">
+  <div class="column-group xlarge-push-left large-push-center medium-push-right small-push-center tiny-push-left">
     <div class="all-50">
       <div class="column">50%</div>
     </div>
@@ -218,13 +241,13 @@ html.no-flexboxlegacy {
 {% highlight html %}
 <div class="ink-grid">
   <div class="column-group horizontal-gutters">
-    <div class="all-33 tiny-order-3 small-order-2 medium-order-1 large-1 extra-large-order-3">
+    <div class="all-33 tiny-order-3 small-order-2 medium-order-1 large-1 xlarge-order-3">
       <div class="column">column 1</div>
     </div>
-    <div class="all-33 tiny-order-1 small-order-3 medium-order-3 large-2 extra-large-order-1">
+    <div class="all-33 tiny-order-1 small-order-3 medium-order-3 large-2 xlarge-order-1">
       <div class="column">column 2</div>
     </div>
-    <div class="all-33 tiny-order-2 small-order-1 medium-order-2 large-3 extra-large-order-2">
+    <div class="all-33 tiny-order-2 small-order-1 medium-order-2 large-3 xlarge-order-2">
       <div class="column">column 3</div>
     </div>
   </div>
@@ -234,13 +257,13 @@ html.no-flexboxlegacy {
 <div class="example">
   <div class="ink-grid">
     <div class="column-group horizontal-gutters">
-      <div class="all-33 tiny-order-3 small-order-2 medium-order-1 large-1 extra-large-order-3">
+      <div class="all-33 tiny-order-3 small-order-2 medium-order-1 large-1 xlarge-order-3">
         <div class="column">column 1</div>
       </div>
-      <div class="all-33 tiny-order-1 small-order-3 medium-order-3 large-2 extra-large-order-1">
+      <div class="all-33 tiny-order-1 small-order-3 medium-order-3 large-2 xlarge-order-1">
         <div class="column">column 2</div>
       </div>
-      <div class="all-33 tiny-order-2 small-order-1 medium-order-2 large-3 extra-large-order-2">
+      <div class="all-33 tiny-order-2 small-order-1 medium-order-2 large-3 xlarge-order-2">
         <div class="column">column 3</div>
       </div>
     </div>
@@ -282,7 +305,7 @@ html.no-flexboxlegacy {
 </div>
 <p>Adding the <code>vertical</code> css class to the <code>column-group</code> will make its child columns flow along the y axis. Basically each column will be in a single "line" regardless of their width. Combined with the <code>reverse</code> css class elements will flow vertically in reverse order:</p>
 <div class="column-group horizontal-gutters">
-<div class="extra-large-50 large-50 medium-100 small-100 tiny-100">
+<div class="xlarge-50 large-50 medium-100 small-100 tiny-100">
 <p class="example-title">Code</p>
 {% highlight html %}
 <div class="ink-grid">
@@ -316,7 +339,7 @@ html.no-flexboxlegacy {
 </div>  
 </div>
   </div>
-  <div class="extra-large-50 large-50 medium-100 small-100 tiny-100">
+  <div class="xlarge-50 large-50 medium-100 small-100 tiny-100">
     <p class="example-title">Code</p>
 {% highlight html %}
 <div class="ink-grid">
