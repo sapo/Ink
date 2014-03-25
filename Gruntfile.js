@@ -132,7 +132,15 @@ module.exports = function(grunt) {
             stderr: true,
             failOnError: true
           },
-          command: 'git checkout develop -- src && git add src && git commit -m "Updates src from the develop branch."'
+          command: 'git remote update; git checkout develop -- src && git add src && git commit -m "Updates src from the develop branch."'
+        },
+        inkdoc: {
+            options: {
+                stdout: true,
+                stderr: true,
+                failOnError: true
+            },
+            command: './node_modules/inkdoc/bin/inkdoc'
         }
     },
 
@@ -187,4 +195,5 @@ module.exports = function(grunt) {
   grunt.registerTask('update', ['shell:src']);
   grunt.registerTask('dev', ['watch']);
   grunt.registerTask('default', ['update','css','js']);
+  grunt.registerTask('inkdoc', ['shell:inkdoc']);
 };

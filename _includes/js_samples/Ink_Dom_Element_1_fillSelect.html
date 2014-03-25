@@ -1,31 +1,37 @@
-<p>Fill an <code>option</code> element with some default data</p>
+<p>Fill a <code>select</code> element with options data</p>
 
 <p class="example-title">Code</p>
 {% highlight html %}
-<div>
-    <select id="my-option" name="my-option"></select>
-</div>
+<!-- Original -->
+<select id="select_1">
+</select>
+<select id="select_2">
+</select>
 <script>
 Ink.requireModules(['Ink.Dom.Element_1'], function(InkElement) {
-    var myOption = Ink.i('my-option');
+    var mySelect1 = Ink.i('select_1');
+    var mySelect2 = Ink.i('select_2');
     var data = [
-        ['option 1', '1'],
-        ['option 2', '2'],
-        ['option 3', '3']
+        ['1', 'option 1'],
+        ['2', 'option 2'],
+        ['3', 'option 3']
     ];
-    InkElement.fillSelect(container, data, false /* no "default" option */);
-    /*
-
-    Now, #my-option contains 3 options:
-    
-    <select id="my-option" name="my-option">
-        <option value="1">option 1</option>
-        <option value="2">option 2</option>
-        <option value="3">option 3</option>
-    </select>
-
-    */
+    InkElement.fillSelect(mySelect1, data); 
+    InkElement.fillSelect(mySelect2, data, true, '2');
 });
 </script>
+<!-- Result -->
+<select id="select_1">
+    <option></option>
+    <option value="1">option 1</option>
+    <option value="2">option 2</option>
+    <option value="3">option 3</option>
+</select>
+<select id="select_2">
+    <option value="1">option 1</option>
+    <option value="2" selected>option 2</option>
+    <option value="3">option 3</option>
+</select>
+
 {% endhighlight %}
 
