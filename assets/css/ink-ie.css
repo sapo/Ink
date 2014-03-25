@@ -63,13 +63,13 @@
  *                 outside a @media query let's you use the grid in IE8.
  *  
  */
-.ink--grid {
+.ink-grid {
   width: auto;
   max-width: 1440px;
   margin: 0 auto;
 }
 
-.ink--grid {
+.ink-grid {
   padding: 0 1.75em;
 }
 
@@ -340,7 +340,7 @@
   margin-bottom: 0;
 }
 
-.ink--table td[class*=large-], .ink--table th[class*=large-], .ink--table tr[class*=large-], .ink--table thead[class*=large-], .ink--table tbody[class*=large-], .ink--table tfoot[class*=large-] {
+.ink-table td[class*=large-], .ink-table th[class*=large-], .ink-table tr[class*=large-], .ink-table thead[class*=large-], .ink-table tbody[class*=large-], .ink-table tfoot[class*=large-] {
   float: none;
 }
 
