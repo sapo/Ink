@@ -87,6 +87,13 @@ a.visited {
   color: gray;
 }
 
+a, .ink-button {
+  -webkit-transition: all 140ms ease-in-out;
+  -moz-transition: all 140ms ease-in-out;
+  -o-transition: all 140ms ease-in-out;
+  transition: all 140ms ease-in-out;
+}
+
 #topbar {
   position: fixed;
   z-index: 100;

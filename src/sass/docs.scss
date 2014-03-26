@@ -54,7 +54,9 @@ a.visited {
 color: $link-visited-color ;
 }
 
-
+a, .ink-button {
+  @include transition(compact(all 140ms ease-in-out));
+}
 
 #topbar {
     position: fixed;

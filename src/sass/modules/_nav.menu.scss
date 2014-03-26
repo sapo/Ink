@@ -47,10 +47,12 @@
                         line-height: $navigation-line-height;
                     }
                     .control {
+                        //line-height: $navigation-line-height * 1.45;
                         margin-top: .3em;
                     }
                     ul.submenu {
                         min-width: 100%;
+                        //top: $navigation-line-height + $navigation-v-padding * 2;
                         left: 0;
                         z-index: $layer-50;
                         li {
