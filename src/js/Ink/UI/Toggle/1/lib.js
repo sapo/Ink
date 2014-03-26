@@ -121,8 +121,6 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
                     this._targets[i].style.display = '';  // becomes default
                 }
             }
-
-            this._rootElement.setAttribute('data-is-toggle-trigger', 'true');
         },
 
         /**
@@ -139,7 +137,7 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
             if( this._options.closeOnClick ){
                 InkEvent.observe( document, 'click', Ink.bind(this._onOutsideClick, this));
             }
-            if( this._options.closeOnInsideClick && this._options.closeOnInsideClick !== 'false') {
+            if( this._options.closeOnInsideClick ) {
                 var sel = this._options.closeOnInsideClick;
                 if (sel.toString() === 'true') {
                     sel = '*';
@@ -220,13 +218,11 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
             var tgtEl = InkEvent.element(event),
                 shades;
 
-            if (InkElement.findUpwardsBySelector(tgtEl, '[data-is-toggle-trigger="true"]')) return;
-
             var ancestorOfTargets = InkArray.some(this._targets, function (target) {
                 return InkElement.isAncestorOf(target, tgtEl) || target === tgtEl;
             });
 
-            if( (this._rootElement === tgtEl) || InkElement.isAncestorOf(this._rootElement, tgtEl) || ancestorOfTargets) {
+            if( (this._rootElement === tgtEl) || InkElement.isAncestorOf(this._rootElement, tgtEl) || ancestorOfTargets /*|| this._firstTime (I forgot what this last check was for) */) {
                 return;
             } else if( (shades = Ink.ss('.ink-shade')).length ) {
                 var shadesLength = shades.length;

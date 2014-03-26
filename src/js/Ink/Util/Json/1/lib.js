@@ -1,7 +1,7 @@
 /**
  * @module Ink.Util.Json_1
- * JSON Utilities
- * @version 1
+ *
+ * @author inkdev AT sapo.pt
  */
 
 Ink.createModule('Ink.Util.Json', '1', [], function() {
@@ -56,7 +56,7 @@ Ink.createModule('Ink.Util.Json', '1', [], function() {
      *          var source = '{"key": "value", "array": [true, null, false]}';
      *          Json.parse(source);  // The above JSON string as an object
      *      });
-     * @namespace Ink.Util.Json
+     * @class Ink.Util.Json
      * @static
      * 
      */
@@ -191,12 +191,12 @@ Ink.createModule('Ink.Util.Json', '1', [], function() {
         },
 
         /**
-         * Serializes a JSON object into a string.
+         * serializes a JSON object into a string.
          *
          * @method stringify
-         * @param   {Object}      input                 Data to be serialized into JSON
-         * @param   {Boolean}     convertToUnicode      When `true`, converts string contents to unicode \uXXXX
-         * @return  {String}                            Serialized string
+         * @param {Object}      input               Data to be serialized into JSON
+         * @param {Boolean}     convertToUnicode    When `true`, converts string contents to unicode \uXXXX
+         * @return {String}     serialized string
          *
          * @example
          *      Json.stringify({a:1.23}); // -> string: '{"a": 1.23}'
@@ -210,13 +210,10 @@ Ink.createModule('Ink.Util.Json', '1', [], function() {
         },
         
         /**
-         * Parses a JSON text through a function
-         * 
          * @method parse
          * @param text      {String}    Input string
          * @param reviver   {Function}  Function receiving `(key, value)`, and `this`=(containing object), used to walk objects.
          * 
-         * @return {Object}             JSON object
          * @example
          * Simple example:
          *

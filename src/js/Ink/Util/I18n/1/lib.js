@@ -1,7 +1,6 @@
 /**
  * @module Ink.Util.I18n_1
- * Internationalization Utilities 
- * @version 1
+ * @author inkdev AT sapo.pt
  */
 
 Ink.createModule('Ink.Util.I18n', '1', [], function () {
@@ -78,9 +77,9 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
         /**
          * Adds translation strings for the helper to use.
          *
-         * @method  append
-         * @param   {Object} dict Object containing language objects identified by their language code
-         * @example 
+         * @method append
+         * @param {Object} dict Object containing language objects identified by their language code
+         * @example
          *     var i18n = new I18n({}, 'pt_PT');
          *     i18n.append({'pt_PT': {
          *         'sfraggles': 'braggles'
@@ -95,11 +94,11 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
             return this;
         },
         /**
-         * Gets or sets the language.
+         * Get or set the language.
          * If there are more dictionaries available in cache, they will be loaded.
          *
          * @method  lang
-         * @param   {String}    lang    Language code to set this instance to.
+         * @param   lang    {String} Language code to set this instance to.
          */
         lang: function( lang ) {
             if ( !arguments.length ) { return this._lang; }
@@ -120,8 +119,8 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
          * Sets or unsets test mode.
          * In test mode, unknown strings are wrapped in `[ ... ]`. This is useful for debugging your application and to make sure all your translation keys are in place.
          *
-         * @method  testMode
-         * @param   {Boolean} bool Flag to set the test mode state
+         * @method testMode
+         * @param {Boolean} bool Flag to set the test mode state
          */
         testMode: function( bool ) {
             if ( !arguments.length ) { return !!this._testMode; }
@@ -132,7 +131,7 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
         },
 
         /**
-         * Gest a key from the current dictionary
+         * Return a key from the current dictionary
          *
          * @method getKey
          * @param {String} key
@@ -167,11 +166,11 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
          * When a translated string is not available, the original string is returned unchanged.
          *
          * @method text
-         * @param {String} str          Key to look for in i18n dictionary (which is returned verbatim if unknown)
-         * @param {Object} [namedParms] Named replacements. Replaces {named} with values in this object.
-         * @param {String} [args]      Replacement #1 (replaces first {} and all {1})
-         * @param {String} [arg2]       Replacement #2 (replaces second {} and all {2})
-         * @param {String} [argn*]      Replacement #n (replaces nth {} and all {n})
+         * @param {String} str key to look for in i18n dictionary (which is returned verbatim if unknown)
+         * @param {Object} [namedParms] named replacements. Replaces {named} with values in this object.
+         * @param {String} [arg1] replacement #1 (replaces first {} and all {1})
+         * @param {String} [arg2] replacement #2 (replaces second {} and all {2})
+         * @param {String} [argn*] replacement #n (replaces nth {} and all {n})
          *
          * @example
          *      _('Gosto muito de {} e o céu é {}.', 'carros', 'azul');
@@ -230,7 +229,7 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
 
         /**
          * Translates and pluralizes text.
-         * Given a singular string, a plural string and a number, translates either the singular or plural string.
+         * Given a singular string, a plural string, and a number, translates either the singular or plural string.
          *
          * @method ntext
          * @return {String}
@@ -274,9 +273,12 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
          *
          * @method ordinal
          *
-         * @param {Number}          num                         Input number
-         * @param {Object|Function} [options]={}                Maps for translating. Each of these options' fallback is found in the current language's dictionary. The lookup order is the following: `exceptions`, `byLastDigit`, `default`. Each of these may be either an `Object` or a `Function`. If it's a function, it is called (with `number` and `digit` for any function except for byLastDigit, which is called with the `lastDigit` of the number in question), and if the function returns a string, that is used. If it's an object, the property is looked up using `[...]`. If what is found is a string, it is used.
+         * @param {Number}          num             Input number
+         * 
+         * @param {Object|Function} [options]={}    Maps for translating. Each of these options' fallback is found in the current language's dictionary. The lookup order is the following: `exceptions`, `byLastDigit`, `default`. Each of these may be either an `Object` or a `Function`. If it's a function, it is called (with `number` and `digit` for any function except for byLastDigit, which is called with the `lastDigit` of the number in question), and if the function returns a string, that is used. If it's an object, the property is looked up using `[...]`. If what is found is a string, it is used.
+         *
          * @param {Object|Function} [options.byLastDigit]={}    If the language requires the last digit to be considered, mappings of last digits to ordinal suffixes can be created here.
+         *
          * @param {Object|Function} [options.exceptions]={}     Map unique, special cases to their ordinal suffixes.
          *
          * @returns {String}        Ordinal suffix for `num`.
@@ -377,7 +379,7 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
         },
 
         /**
-         * Alias for the text method.
+         * Alias for the text method
          * Returns an alias to `text()`, for convenience. The resulting function is traditionally assigned to "_".
          *
          * @method alias
@@ -455,7 +457,7 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
     };
 
     /**
-     * Gets or sets the current default language of I18n instances.
+     * Get or set the current default language of I18n instances.
      *
      * @method lang
      * @static

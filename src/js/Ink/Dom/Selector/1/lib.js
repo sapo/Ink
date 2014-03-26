@@ -1,12 +1,18 @@
 /**
  * @module Ink.Dom.Selector_1
- * CSS selector engine
+ * @author inkdev AT sapo.pt
  * @version 1
  */
- 
 Ink.createModule('Ink.Dom.Selector', 1, [], function() {
     /*jshint forin:false, eqnull:true, noempty:false, expr:true, boss:true, maxdepth:false*/
 	'use strict';
+
+    /**
+     * @class Ink.Dom.Selector
+     * @static
+     * @version 1
+     */
+
 
 /*!
  * Sizzle CSS Selector Engine
@@ -1915,36 +1921,32 @@ support.detectDuplicates = hasDuplicate;
 // EXPOSE
 
 /**
- * @namespace Ink.Dom.Selector
- * @static
- */
-
-/**
  * Alias for the Sizzle selector engine
  *
  * @method select
- * @param {String}      selector    CSS selector to search for elements
- * @param {DOMElement}  [context]   By default the search is done in the document element. However, you can specify an element as search context
- * @param {Array}       [results]   By default this is considered an empty array. But if you want to merge it with other searches you did, pass their result array through here.
+ * @param {String} selector CSS selector to search for elements
+ * @param {DOMElement} [context] By default the search is done in the document element. However, you can specify an element as search context
+ * @param {Array} [results] By default this is considered an empty array. But if you want to merge it with other searches you did, pass their result array through here.
+ * @param {Object} [seed]
  * @return {Array} Array of resulting DOM Elements
  */
 
 /**
- * Filters elements that match a CSS selector.
+ * Returns elements which match with the second argument to the function.
  *
  * @method matches
- * @param {String}  selector    CSS selector to search for elements
- * @param {Array}   matches     Elements to be 'matched' with
+ * @param {String} selector CSS selector to search for elements
+ * @param {Array} matches Elements to be 'matched' with
  * @return {Array} Elements that matched
  */
 
 /**
- * Checks if an element matches a given selector
+ * Returns true iif element matches given selector
  *
  * @method matchesSelector
- * @param {DOMElement} element Element to test
+ * @param {DOMElement} element to test
  * @param {String}     selector CSS selector to test the element with
- * @return {Boolean} True if element matches the CSS selector
+ * @return {Boolean} true iif element matches the CSS selector
  */
 
 return {

@@ -1,13 +1,19 @@
 /**
  * @module Ink.Util.Url_1
- * URL Utilities
+ * @author inkdev AT sapo.pt
  * @version 1
  */
-
 Ink.createModule('Ink.Util.Url', '1', [], function() {
 
     'use strict';
 
+    /**
+     * Utility functions to use with URLs
+     *
+     * @class Ink.Util.Url
+     * @version 1
+     * @static
+     */
     var Url = {
 
         /**
@@ -22,7 +28,7 @@ Ink.createModule('Ink.Util.Url', '1', [], function() {
 
 
         /**
-         * Gets URL of current page
+         * Get current URL of page
          *
          * @method getUrl
          * @return {String}    Current URL
@@ -39,11 +45,11 @@ Ink.createModule('Ink.Util.Url', '1', [], function() {
         },
 
         /**
-         * Generates an URL string.
+         * Generates an uri with query string based on the parameters object given
          *
          * @method genQueryString
-         * @param {String} uri      Base URL
-         * @param {Object} params   Object to transform to query string
+         * @param {String} uri
+         * @param {Object} params
          * @return {String} URI with query string set
          * @public
          * @static
@@ -81,11 +87,11 @@ Ink.createModule('Ink.Util.Url', '1', [], function() {
         },
 
         /**
-         * Gets an object from an URL encoded string.
+         * Get query string of current or passed URL
          *
          * @method getQueryString
-         * @param   {String} [str]      URL String. When not specified it uses the current URL.
-         * @return  {Object}            Key-Value pair object
+         * @param {String} [str] URL String. When not specified it uses the current URL.
+         * @return {Object} Key-Value object with the pairs variable: value
          * @public
          * @static
          * @example
@@ -122,11 +128,11 @@ Ink.createModule('Ink.Util.Url', '1', [], function() {
         },
 
         /**
-         * Gets the URL hash value
+         * Get URL hash
          *
          * @method getAnchor
-         * @param   {String}            [str]   URL String. Defaults to current page URL.
-         * @return  {String|Boolean}            Hash in the URL. If there's no hash, returns false.
+         * @param {String} [str] URL String. If not set, it will get the current URL.
+         * @return {String|Boolean} Hash in the URL. If there's no hash, returns false.
          * @public
          * @static
          * @example
@@ -151,11 +157,11 @@ Ink.createModule('Ink.Util.Url', '1', [], function() {
         },
 
         /**
-         * Gets the anchor string of an URL
+         * Get anchor string of current or passed URL
          *
          * @method getAnchorString
-         * @param   {String} [string]   URL to parse. Defaults to current URL.
-         * @return  {Object}            Key-value pair object of the URL's hashtag 'variables'
+         * @param {String} [string] If not provided it uses the current URL.
+         * @return {Object} Returns a key-value object of the 'variables' available in the hashtag of the URL
          * @public
          * @static
          * @example
@@ -193,7 +199,7 @@ Ink.createModule('Ink.Util.Url', '1', [], function() {
 
 
         /**
-         * Parses URL string into URL parts
+         * Parse passed URL
          *
          * @method parseUrl
          * @param {String} url URL to be parsed
@@ -280,10 +286,11 @@ Ink.createModule('Ink.Util.Url', '1', [], function() {
         },
 
         /**
-         * Formats an URL object into an URL string.
+         * Take a URL object from Ink.Util.Url.parseUrl or a window.location
+         * object and returns a URL string.
          *
          * @method format
-         * @param urlObj Window.location, a.href, or parseUrl object to format
+         * @param urlObj window.location, a.href, or parseUrl object to format
          * @return {String} Full URL.
          */
         format: function (urlObj) {
@@ -323,7 +330,7 @@ Ink.createModule('Ink.Util.Url', '1', [], function() {
         },
 
         /**
-         * Gets the last loaded script element
+         * Get last loaded script element
          *
          * @method currentScriptElement
          * @param {String} [match] String to match against the script src attribute

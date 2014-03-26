@@ -27,7 +27,7 @@ Ink.createModule(
         /**
          * This is a awesome set of methods to paint the sky.
          *
-         * @namespace Ink.Namespace.StaticModule
+         * @class Ink.Namespace.StaticModule
          * @static
          */
 

@@ -3,7 +3,7 @@
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1','Ink.Dom.Loaded_1'], function(Event, InkElement, Selector, Loaded) {
+Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.Dom.Event_1','Ink.Dom.Selector_1','Ink.Dom.Loaded_1'], function(Event, Selector, Loaded) {
     'use strict';
 
     var requestAnimationFrame =
@@ -15,28 +15,13 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.Dom.Event_1', 'Ink.Dom.Elem
         function (id) { clearTimeout(id); };
 
     /**
-     * @namespace Ink.UI.SmoothScroller
+     * @class Ink.UI.SmoothScroller
      * @version 1
      * @static
      *
-     * SmoothScroller is a component which replaces the default scroll-to behaviour of `<a>` tags which refer to IDs on the page.
-     *
-     * For example, when you have this:
-     *
-     *          <a href="#todo">Todo</a>
-     *              [...]
-     *          <section id="todo">
-     *              [...]
-     *
-     * You can click the `<a>` and the page will scroll until the section you pointed to.
-     *
-     * When you use SmoothScroller, instead of immediately scrolling to the element, you get a smooth motion.
-     *
-     * Also, you can define the data-margin option if you have a `position:fixed` top menu ruining the behaviour.
-     *
      * @example
      *
-     *      <a href="#part1" class="ink-smooth-scroll" data-margin="10">go to Part 1</a>
+     *      <a href="#part1" class="ink-smooth-scroll">go to Part 1</a>
      *
      *      [lots and lots of content...]
      *
@@ -138,28 +123,24 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.Dom.Event_1', 'Ink.Dom.Elem
          * @public
          * @static
          */
-        scroll: function(d, options) {
+        scroll: function(d) {
             var a = SmoothScroller.scrollTop();
-            var margin = options.margin || 0;
-
-            var endPos = d - margin;
-
-            if (endPos > a) {
-                a += Math.ceil((endPos - a) / SmoothScroller.speed);
+            if (d > a) {
+                a += Math.ceil((d - a) / SmoothScroller.speed);
             } else {
-                a = a + (endPos - a) / SmoothScroller.speed;
-            }
-
-            cancelAnimationFrame(SmoothScroller.interval);
-
-            if (!((a) === endPos || SmoothScroller.offsetTop === a)) {
-                SmoothScroller.interval = requestAnimationFrame(
-                    Ink.bindMethod(SmoothScroller, 'scroll', d, options), document.body);
-            } else {
-                SmoothScroller.onDone();
+                a = a + (d - a) / SmoothScroller.speed;
             }
 
             window.scrollTo(0, a);
+
+            cancelAnimationFrame(SmoothScroller.interval);
+
+            if (!((a) === d || SmoothScroller.offsetTop === a)) {
+                SmoothScroller.interval = requestAnimationFrame(
+                    Ink.bindMethod(SmoothScroller, 'scroll', d), document.body);
+            } else {
+                SmoothScroller.onDone();
+            }
             SmoothScroller.offsetTop = a;
         },
 
@@ -204,13 +185,11 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.Dom.Event_1', 'Ink.Dom.Elem
          */
         onClick: function(event, _elm) {
             SmoothScroller.end(event);
-            if(_elm != null && _elm.getAttribute('href') !== null) {
+            if(_elm !== null && _elm.getAttribute('href') !== null) {
                 var hashIndex = _elm.href.indexOf('#');
                 if (hashIndex === -1) {
                     return;
                 }
-
-                var data = InkElement.data(_elm);
                 var hash = _elm.href.substr((hashIndex + 1));
                 var activeLiSelector = 'ul > li.active > ' + selector;
 
@@ -227,11 +206,7 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.Dom.Event_1', 'Ink.Dom.Elem
                         _elm.parentNode.className += " active";
                     }
                     SmoothScroller.hash = hash;
-                    var options = {};
-                    if (parseFloat(data.margin)) {
-                        options.margin = parseFloat(data.margin);
-                    }
-                    SmoothScroller.scroll(SmoothScroller.getTop(elm), options);
+                    SmoothScroller.scroll(SmoothScroller.getTop(elm));
                 }
             }
         },

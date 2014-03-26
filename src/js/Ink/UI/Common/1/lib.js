@@ -22,7 +22,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
     /**
      * The Common class provides auxiliar methods to ease some of the most common/repetitive UI tasks.
      *
-     * @namespace Ink.UI.Common
+     * @class Ink.UI.Common
      * @version 1
      * @static
      */
@@ -95,10 +95,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
         elOrSelector: function(elOrSelector, fieldName) {
             if (!this.isDOMElement(elOrSelector)) {
                 var t = Selector.select(elOrSelector);
-                if (t.length === 0) {
-                    Ink.warn(fieldName + ' must either be a DOM Element or a selector expression!\nThe script element must also be after the DOM Element itself.');
-                    return null;
-                }
+                if (t.length === 0) { throw new TypeError(fieldName + ' must either be a DOM Element or a selector expression!\nThe script element must also be after the DOM Element itself.'); }
                 return t[0];
             }
             return elOrSelector;

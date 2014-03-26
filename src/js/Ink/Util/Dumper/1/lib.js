@@ -1,13 +1,19 @@
 /**
  * @module Ink.Util.Dumper_1
- * Dump/Profiling Utilities
+ * @author inkdev AT sapo.pt
  * @version 1
  */
-
 Ink.createModule('Ink.Util.Dumper', '1', [], function() {
 
     'use strict';
 
+    /**
+     * Dump/Profiling Utilities
+     *
+     * @class Ink.Util.Dumper
+     * @version 1
+     * @static
+     */
     var Dumper = {
 
         /**
@@ -82,7 +88,7 @@ Ink.createModule('Ink.Util.Dumper', '1', [], function() {
         },
 
         /**
-         * Function that formats the parameter to display.
+         * Function that formats the parameter to display
          *
          * @method _outputFormat
          * @param {Any} param
@@ -120,11 +126,11 @@ Ink.createModule('Ink.Util.Dumper', '1', [], function() {
         },
 
         /**
-         * Prints variable structure.
+         * Print variable structure. Can be passed an output target
          *
          * @method printDump
-         * @param {Any}                 param       Variable to be dumped.
-         * @param {DOMElement|String}   [target]    Element to print the dump on.
+         * @param {Object|String|Boolean} param
+         * @param {optional String|Object} target (can be an element ID or an element)
          * @public
          * @static
          */
@@ -145,11 +151,11 @@ Ink.createModule('Ink.Util.Dumper', '1', [], function() {
         },
 
         /**
-         * Get a variable's structure.
+         * Function that returns the variable's structure
          *
          * @method returnDump
-         * @param   {Any}       param   Variable to get the structure.
-         * @return  {String}            The variable's structure.
+         * @param {Object|String|Boolean} param
+         * @return {String} The variable structure
          * @public
          * @static
          */
@@ -159,10 +165,10 @@ Ink.createModule('Ink.Util.Dumper', '1', [], function() {
         },
 
         /**
-         * Alert a variable's structure.
+         * Function that alerts the variable structure
          *
          * @method alertDump
-         * @param {Any}     param     Variable to be dumped.
+         * @param {Object|String|Boolean} param
          * @public
          * @static
          */
@@ -172,10 +178,10 @@ Ink.createModule('Ink.Util.Dumper', '1', [], function() {
         },
 
         /**
-         * Prints the variable structure to a new window.
+         * Print to new window the variable structure
          *
          * @method windowDump
-         * @param {Any}     param   Variable to be dumped.
+         * @param {Object|String|Boolean} param
          * @public
          * @static
          */

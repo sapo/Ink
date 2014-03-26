@@ -1,17 +1,23 @@
 /**
  * @module Ink.Util.Validator_1
- * Validation Utilities
+ * @author inkdev AT sapo.pt
  * @version 1
  */
- 
 Ink.createModule('Ink.Util.Validator', '1', [], function() {
 
     'use strict';
 
+    /**
+     * Set of functions to provide validation
+     *
+     * @class Ink.Util.Validator
+     * @version 1
+     * @static
+     */
     var Validator = {
 
         /**
-         * List of country codes avaible for the isPhone method
+         * List of country codes avaible for isPhone function
          *
          * @property _countryCodes
          * @type {Array}
@@ -145,7 +151,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
                         99: 'móvel 99'
                     },
         /**
-         * International number for Angola
+         * International number for angola
          *
          * @property _internacionalAO
          * @type {Number}
@@ -170,7 +176,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
                         92: 'móvel 92'
                     },
         /**
-         * International number for Mozambique
+         * International number for mozambique
          *
          * @property _internacionalMZ
          * @type {Number}
@@ -254,7 +260,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
         },
 
         /**
-         * Creates a regular expression for several character groups.
+         * Create a regular expression for several character groups.
          *
          * @method createRegExp
          *
@@ -290,7 +296,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
         },
 
         /**
-         * Checks if a field has the required groups.
+         * Checks if a field has the required groups. Takes an options object for further configuration.
          *
          * @method checkCharacterGroups
          * @param {String}  s               The validation string
@@ -301,7 +307,8 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
         },
 
         /**
-         * Checks if a field contains unicode printable characters.
+         * Checks whether a field contains unicode printable characters. Takes an
+         * options object for further configuration
          *
          * @method unicode
          * @param {String}  s               The validation string
@@ -313,8 +320,9 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
         },
 
         /**
-         * Checks if a field only contains latin-1 alphanumeric characters. 
-         * Takes options for allowing singleline whitespace, cross-line whitespace and punctuation.
+         * Checks that a field only contains only latin-1 alphanumeric
+         * characters. Takes options for allowing singleline whitespace,
+         * cross-line whitespace and punctuation.
          *
          * @method latin1
          *
@@ -327,8 +335,9 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
         },
 
         /**
-         * Checks if a field only contains only ASCII alphanumeric characters. 
-         * Takes options for allowing singleline whitespace, cross-line whitespace and punctuation.
+         * Checks that a field only contains only ASCII alphanumeric
+         * characters. Takes options for allowing singleline whitespace,
+         * cross-line whitespace and punctuation.
          *
          * @method ascii
          *
@@ -341,7 +350,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
         },
 
         /**
-         * Checks if a number is a valid
+         * Checks that the number is a valid number
          *
          * @method number
          * @param {String} numb         The number
@@ -467,11 +476,11 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
         },
 
         /**
-         * Gets the number of days in a given month of a given year
+         * Calculates the number of days in a given month of a given year
          *
          * @method _daysInMonth
-         * @param {Number} _m Month (1 to 12)
-         * @param {Number} _y Year
+         * @param {Number} _m - month (1 to 12)
+         * @param {Number} _y - year
          * @return {Number} Returns the number of days in a given month of a given year
          * @private
          * @static
@@ -511,7 +520,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
          * @param {Number} year
          * @param {Number} month
          * @param {Number} day
-         * @return {Boolean} True if valid
+         * @return {Boolean} True if it's a valid date
          * @private
          * @static
          * @example
@@ -534,11 +543,11 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
         },
 
         /**
-         * Checks if an email is valid
+         * Checks if a email is valid
          *
          * @method mail
          * @param {String} email
-         * @return {Boolean} True if it's valid
+         * @return {Boolean} True if it's a valid e-mail
          * @public
          * @static
          * @example
@@ -563,17 +572,16 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
          * @method mail
          * @public
          * @static
-         * @private
          */
         mail: function (mail) { return Validator.email(mail); },
 
         /**
-         * Checks if an url is valid
+         * Checks if a url is valid
          *
          * @method url
          * @param {String} url URL to be checked
          * @param {Boolean} [full] If true, validates a full URL (one that should start with 'http')
-         * @return {Boolean} True if valid
+         * @return {Boolean} True if the given URL is valid
          * @public
          * @static
          * @example
@@ -859,13 +867,12 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
         },
 
         /**
-         * Checks if a number is a phone number.
-         * This method validates the number in all country codes available the ones set in the second param
+         * Validates the function in all country codes available or in the ones set in the second param
          *
          * @method isPhone
-         * @param   {String}        phone           Phone number to validate
-         * @param   {String|Array}  [countryCode]   Country code or  array of countries to validate
-         * @return  {Boolean}                       True if it's a valid phone in any country available
+         * @param {String} phone number
+         * @param {optional String|Array}  country or array of countries to validate
+         * @return {Boolean} True if it's a valid phone in any country available
          * @public
          * @static
          * @example
@@ -976,11 +983,11 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
         },
 
         /**
-         * Checks if a date is valid in a given format
+         * Checks is a date is valid in a given format
          *
          * @method isDate
-         * @param {String} format Format defined in _dateParsers
-         * @param {String} dateStr Date string
+         * @param {String} format - defined in _dateParsers
+         * @param {String} dateStr - date string
          * @return {Boolean} True if it's a valid date and in the specified format
          * @public
          * @static
@@ -1117,7 +1124,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
         },
 
         /**
-         * Checks if the value is a valid IP. 
+         * Checks if the value is a valid IP. Supports ipv4 and ipv6
          *
          * @method isIP
          * @param  {String} value   Value to be checked
@@ -1240,7 +1247,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
         },
 
         /**
-         * Checks if a number is of a specific credit card type
+         * Validates if a number is of a specific credit card
          * @method isCreditCard
          * @param  {String}  num            Number to be validates
          * @param  {String|Array}  creditCardType Credit card type. See _creditCardSpecs for the list of supported values.

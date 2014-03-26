@@ -7,7 +7,7 @@ Ink.createModule('Ink.Dom.Browser', '1', [], function() {
     'use strict';    
 
     /**
-     * @namespace Ink.Dom.Browser
+     * @class Ink.Dom.Browser
      * @version 1
      * @static
      * @example

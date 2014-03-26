@@ -1,21 +1,27 @@
 /**
  * @module Ink.Util.Cookie_1
- * Cookie Utilities
+ * @author inkdev AT sapo.pt
  * @version 1
  */
-
 Ink.createModule('Ink.Util.Cookie', '1', [], function() {
 
     'use strict';
 
+    /**
+     * Utilities for Cookie handling
+     *
+     * @class Ink.Util.Cookie
+     * @version 1
+     * @static
+     */
     var Cookie = {
 
         /**
-         * Gets an object with the current page cookies.
+         * Gets an object with current page cookies
          *
          * @method get
-         * @param   {String}          name      The cookie name.
-         * @return  {String|Object}             If the name is specified, it returns the value of that key. Otherwise it returns the full cookie object
+         * @param {String} name
+         * @return {String|Object} If the name is specified, it returns the value related to that property. Otherwise it returns the full cookie object
          * @public
          * @static
          * @example
@@ -54,15 +60,15 @@ Ink.createModule('Ink.Util.Cookie', '1', [], function() {
         },
 
         /**
-         * Sets a cookie.
+         * Sets a cookie
          *
          * @method set
-         * @param {String}      name        Cookie name.
-         * @param {String}      value       Cookie value.
-         * @param {Number}      [expires]   Number of seconds the cookie will be valid for.
-         * @param {String}      [path]      Path for the cookie. Defaults to '/'.
-         * @param {String}      [domain]    Domain for the cookie. Defaults to current hostname.
-         * @param {Boolean}     [secure]    Flag for secure. Default 'false'.
+         * @param {String} name Cookie name
+         * @param {String} value Cookie value
+         * @param {Number} [expires] Number to add to current Date in seconds
+         * @param {String} [path] Path to sets cookie (default '/')
+         * @param {String} [domain] Domain to sets cookie (default current hostname)
+         * @param {Boolean} [secure] True if wants secure, default 'false'
          * @public
          * @static
          * @example
@@ -127,12 +133,12 @@ Ink.createModule('Ink.Util.Cookie', '1', [], function() {
         },
 
         /**
-         * Deletes a cookie.
+         * Delete a cookie
          *
          * @method remove
-         * @param {String}  cookieName   Cookie name.
-         * @param {String}  [path]       Path of the cookie. Defaults to '/'.
-         * @param {String}  [domain]     Domain of the cookie. Defaults to current hostname.
+         * @param {String} cookieName Cookie name
+         * @param {String} [path] Path of the cookie (default '/')
+         * @param {String} [domain] Domain of the cookie (default current hostname)
          * @public
          * @static
          * @example

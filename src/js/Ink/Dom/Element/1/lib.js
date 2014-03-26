@@ -30,7 +30,11 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
     }
 
     /**
-     * @namespace Ink.Dom.Element_1
+     * @module Ink.Dom.Element_1
+     */
+
+    /**
+     * @class Ink.Dom.Element
      */
 
     var InkElement = {
@@ -435,7 +439,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method isLink
          * @param {DOMNode} node    Node to check if it's link
          * @return {Boolean}
-         * @sample Ink_Dom_Element_1_isLink.html
          */
         isLink: function(element){
             var b = element && element.nodeType === 1 && ((/^a|area$/i).test(element.tagName) ||
@@ -450,7 +453,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @param {DOMNode} ancestor  Ancestor node
          * @param {DOMNode} node      Descendant node
          * @return {Boolean}
-         * @sample Ink_Dom_Element_1_isAncestorOf.html
          */
         isAncestorOf: function(ancestor, node){
             /*jshint boss:true */
@@ -475,7 +477,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @param {DOMNode} node        The ancestor
          * @param {DOMNode} descendant  The descendant
          * @return {Boolean} true if 'descendant' is descendant of 'node'
-         * @sample Ink_Dom_Element_1_descendantOf.html
          */
         descendantOf: function(node, descendant){
             return node !== descendant && InkElement.isAncestorOf(node, descendant);
@@ -486,7 +487,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method firstElementChild
          * @param {DOMElement} elm Parent node
          * @return {DOMElement} the Element child
-         * @sample Ink_Dom_Element_1_firstElementChild.html
          */
         firstElementChild: function(elm){
             if(!elm) {
@@ -507,7 +507,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method lastElementChild
          * @param {DOMElement} elm Parent node
          * @return {DOMElement} the Element child
-         * @sample Ink_Dom_Element_1_lastElementChild.html
          */
         lastElementChild: function(elm){
             if(!elm) {
@@ -529,7 +528,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method nextElementSibling
          * @param {DOMNode} node  The current node
          * @return {DOMElement|Null} The first sibling element after node or null if none is found
-         * @sample Ink_Dom_Element_1_nextElementSibling.html 
          */
         nextElementSibling: function(node){
             var sibling = null;
@@ -556,7 +554,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method previousElementSibling
          * @param {DOMNode}        node The current node
          * @return {DOMElement|Null} The first element sibling before node or null if none is found
-         * @sample Ink_Dom_Element_1_previousElementSibling.html 
          */
         previousElementSibling: function(node){
             var sibling = null;
@@ -583,7 +580,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method elementWidth
          * @param {DOMElement|String} element Target DOM element or target ID
          * @return {Number} The element's width
-         * @sample Ink_Dom_Element_1_elementWidth.html 
          */
         elementWidth: function(element) {
             if(typeof element === "string") {
@@ -598,7 +594,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method elementHeight
          * @param {DOMElement|String} element DOM element or target ID
          * @return {Number} The element's height
-         * @sample Ink_Dom_Element_1_elementHeight.html 
          */
         elementHeight: function(element) {
             if(typeof element === "string") {
@@ -608,25 +603,31 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * Deprecated. Alias for offsetLeft()
+         * Get an element's left position in pixels.
          *
          * @method elementLeft
          * @param {DOMElement|String}       element     DOM element or target ID
          * @return {Number} Element's left position
          */
         elementLeft: function(element) {
-            return InkElement.offsetLeft(element);
+            if(typeof element === "string") {
+                element = document.getElementById(element);
+            }
+            return element.offsetLeft;
         },
 
         /**
-         * Deprecated. Alias for offsetTop()
+         * Returns the element's top position in pixels.
          *
          * @method elementTop
          * @param {DOMElement|string}   element     Target DOM element or target ID
          * @return {Number} element's top position
          */
         elementTop: function(element) {
-            return InkElement.offsetTop(element);
+            if(typeof element === "string") {
+                element = document.getElementById(element);
+            }
+            return element.offsetTop;
         },
 
         /**
@@ -635,7 +636,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method elementDimensions
          * @param {DOMElement|string}   element     DOM element or target ID
          * @return {Array} Array with element's width and height
-         * @sample Ink_Dom_Element_1_elementDimensions.html 
          */
         elementDimensions: function(element) {
             element = Ink.i(element);
@@ -650,7 +650,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          *
          * @param {DOMElement} element Target element
          * @return {Array} Array with element width and height.
-         * @sample Ink_Dom_Element_1_outerDimensions.html 
          */
         outerDimensions: function (element) {
             var bbox = rect(element);
@@ -669,11 +668,9 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          *
          * @method inViewport
          * @param {DOMElement} element DOM Element
-         * @param {Object}  [options]  Options object. If you pass a Boolean value here, it is interpreted as `options.partial`
-         * @param {Boolean} [options.partial]=false    Return `true` even if it is only partially visible.
-         * @param {Number}  [options.margin]=0         Consider a margin all around the viewport with `opts.margin` width a dead zone.
+         * @param {Boolean} [partial]=false Return `true` even if it is only partially visible.
+         * @param {Number}  [opts.margin]=0 Consider a margin all around the viewport with `opts.margin` width a dead zone.
          * @return {Boolean}
-         * @sample Ink_Dom_Element_1_inViewport.html 
          */
         inViewport: function (element, opts) {
             var dims = rect(Ink.i(element));
@@ -701,7 +698,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method isHidden
          * @param {DOMElement} element Element to check
          * @return {Boolean}
-         * @sample Ink_Dom_Element_1_isHidden.html 
          */
 
         isHidden: function (element) {
@@ -723,7 +719,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @uses isHidden
          * @param {DOMElement} element Element to check
          * @return {Boolean}
-         * @sample Ink_Dom_Element_1_isVisible.html 
          */
 
         isVisible: function (element) {
@@ -737,7 +732,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @param {DOMElement} cloneTo    element to be position cloned
          * @param {DOMElement} cloneFrom  element to get the cloned position
          * @return {DOMElement} The element with positionClone
-         * @sample Ink_Dom_Element_1_clonePosition.html 
          */
         clonePosition: function(cloneTo, cloneFrom){
             var pos = InkElement.offset(cloneFrom);
@@ -755,11 +749,12 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @param {DOMElement} element              Element to modify text content
          * @param {String}     [ellipsis]='\u2026'  String to append to the chopped text
          */
-        ellipsizeText: function(element/*, ellipsis*/){
-            if ((element = Ink.i(element))) {
-                element.style.overflow = 'hidden';
-                element.style.whiteSpace = 'nowrap';
-                element.style.textOverflow = 'ellipsis';
+        ellipsizeText: function(element, ellipsis){
+            /*jshint boss:true */
+            if (element = Ink.i(element)){
+                while (element && element.scrollHeight > (element.offsetHeight + 8)) {
+                    element.textContent = element.textContent.replace(/(\s+\S+)\s*$/, ellipsis || '\u2026');
+                }
             }
         },
 
@@ -771,7 +766,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @param {DOMElement} element     Element to base the search from
          * @param {Function}    boolTest   Testing function
          * @return {DOMElement|false} The matched element or false if did not match
-         * @sample Ink_Dom_Element_1_findUpwardsHaving.html 
          */
         findUpwardsHaving: function(element, boolTest) {
             while (element && element.nodeType === 1) {
@@ -791,7 +785,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @param {DOMElement} element      Element to base the search from
          * @param {String}      className   Class name to search
          * @returns {DOMElement|false} The matched element or false if did not match
-         * @sample Ink_Dom_Element_1_findUpwardsByClass.html 
          */
         findUpwardsByClass: function(element, className) {
             var re = new RegExp("(^|\\s)" + className + "(\\s|$)");
@@ -809,7 +802,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @param {DOMElement} element  Element to base the search from
          * @param {String}      tag     Tag to search
          * @returns {DOMElement|false} the matched element or false if did not match
-         * @sample Ink_Dom_Element_1_findUpwardsByTag.html 
          */
         findUpwardsByTag: function(element, tag) {
             tag = tag.toUpperCase();
@@ -826,7 +818,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @param {HtmlElement} element     Element to base the search from
          * @param {String}      id          ID to search
          * @returns {HtmlElement|false} The matched element or false if did not match
-         * @sample Ink_Dom_Element_1_findUpwardsById.html 
          */
         findUpwardsById: function(element, id) {
             var tst = function(el) {
@@ -840,12 +831,11 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          *
          * @method findUpwardsBySelector
          * @param {HtmlElement} element     Element to base the search from
-         * @param {String}      sel         CSS selector
+         * @param {String}      seĺ         CSS selector
          * @returns {HtmlElement|false} The matched element or false if did not match
-         * @sample Ink_Dom_Element_1_findUpwardsBySelector.html 
          */
         findUpwardsBySelector: function(element, sel) {
-            var Selector = Ink.getModule('Ink.Dom.Selector', '1');
+            var Selector = Ink.getModule('Ink.Dom.Selector');
             if (!Selector) {
                 throw new Error('This method requires Ink.Dom.Selector');
             }
@@ -862,7 +852,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @param {DOMElement}  el          Element to base the search from
          * @param {Boolean}     [removeIt]  Flag to remove the text from the element
          * @return {String} Text found
-         * @sample Ink_Dom_Element_1_getChildrenText.html 
          */
         getChildrenText: function(el, removeIt) {
             var node,
@@ -910,7 +899,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method getSelectValues
          * @param {DOMElement|String} select element
          * @return {Array} The selected values
-         * @sample Ink_Dom_Element_1_getSelectValues.html 
          */
         getSelectValues: function (select) {
             var selectEl = Ink.i(select);
@@ -944,12 +932,10 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Fills a select element with options
          *
          * @method fillSelect
-         * @param {DOMElement|String}  container       Select element which will get filled
+         * @param {DomElement|String}  container       Select element which will get filled
          * @param {Array}              data            Data to populate the component
          * @param {Boolean}            [skipEmpty]     Flag to skip empty option
          * @param {String|Number}      [defaultValue]  Initial selected value
-         *
-         * @sample Ink_Dom_Element_1_fillSelect.html 
          */
         fillSelect: function(container, data, skipEmpty, defaultValue) {
             var containerEl = Ink.i(container);
@@ -987,10 +973,113 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
 
 
         /**
-         * Creates a set of radio buttons from an array of data
+         * Fills a select element with options
+         * This method allows the creation of new values
+         *
+         * @method fillSelect2
+         * @param {DomElement|String} ctn Select element to get populated
+         * @param {Object} opts
+         * @param {Array}                       [opts.data]                 Data to populate the component
+         * @param {Boolean}                     [opts.skipEmpty]=false      Flag to skip creation of empty options
+         * @param {String}                      [opts.emptyLabel]           Label to display on empty option
+         * @param {String}                      [opts.createLabel]          Label to display on create option
+         * @param {String}                      [opts.optionsGroupLabel]    Text to display on group surrounding value options
+         * @param {String}                      [opts.defaultValue]         Initial selected value
+         * @param {Function}                    [opts.onCreate]             Callback when the user selects the create option
+         */
+        fillSelect2: function(ctn, opts) {
+            ctn = Ink.i(ctn);
+            ctn.innerHTML = '';
+
+            var defs = {
+                skipEmpty:              false,
+                skipCreate:             false,
+                emptyLabel:             'none',
+                createLabel:            'create',
+                optionsGroupLabel:      'groups',
+                emptyOptionsGroupLabel: 'none exist',
+                defaultValue:           ''
+            };
+            if (!opts) {      throw 'param opts is a requirement!';   }
+            if (!opts.data) { throw 'opts.data is a requirement!';    }
+            opts = Ink.extendObj(defs, opts);
+
+            var optionEl, d;
+
+            var optGroupValuesEl = document.createElement('optgroup');
+            optGroupValuesEl.setAttribute('label', opts.optionsGroupLabel);
+
+            opts.data = InkElement._normalizeData(opts.data);
+
+            if (!opts.skipCreate) {
+                opts.data.unshift(['$create$', opts.createLabel]);
+            }
+
+            if (!opts.skipEmpty) {
+                opts.data.unshift(['', opts.emptyLabel]);
+            }
+
+            for (var i = 0, f = opts.data.length; i < f; ++i) {
+                d = opts.data[i];
+
+                optionEl = document.createElement('option');
+                optionEl.setAttribute('value', d[0]);
+                optionEl.appendChild( document.createTextNode(d[1]) );
+
+                if (d[0] === opts.defaultValue) {   optionEl.setAttribute('selected', 'selected');  }
+
+                if (d[0] === '' || d[0] === '$create$') {
+                    ctn.appendChild(optionEl);
+                }
+                else {
+                    optGroupValuesEl.appendChild(optionEl);
+                }
+            }
+
+            var lastValIsNotOption = function(data) {
+                var lastVal = data[data.length-1][0];
+                return (lastVal === '' || lastVal === '$create$');
+            };
+
+            if (lastValIsNotOption(opts.data)) {
+                optionEl = document.createElement('option');
+                optionEl.setAttribute('value', '$dummy$');
+                optionEl.setAttribute('disabled', 'disabled');
+                optionEl.appendChild(   document.createTextNode(opts.emptyOptionsGroupLabel)    );
+                optGroupValuesEl.appendChild(optionEl);
+            }
+
+            ctn.appendChild(optGroupValuesEl);
+
+            var addOption = function(v, l) {
+                var optionEl = ctn.options[ctn.options.length - 1];
+                if (optionEl.getAttribute('disabled')) {
+                    optionEl.parentNode.removeChild(optionEl);
+                }
+
+                // create it
+                optionEl = document.createElement('option');
+                optionEl.setAttribute('value', v);
+                optionEl.appendChild(   document.createTextNode(l)  );
+                optGroupValuesEl.appendChild(optionEl);
+
+                // select it
+                ctn.options[ctn.options.length - 1].setAttribute('selected', true);
+            };
+
+            if (!opts.skipCreate) {
+                ctn.onchange = function() {
+                    if ((ctn.value === '$create$') && (typeof opts.onCreate === 'function')) {  opts.onCreate(ctn, addOption);  }
+                };
+            }
+        },
+
+
+        /**
+         * Creates a set of radio buttons
          *
          * @method fillRadios
-         * @param {DOMElement|String}  insertAfterEl    Element after which the input elements will be created
+         * @param {DomElement|String}  insertAfterEl    Element after which the input elements will be created
          * @param {String}             name             Name for the form field ([] is added if not present as a suffix)
          * @param {Array}              data             Data to populate the component
          * @param {Boolean}            [skipEmpty]      Flag to skip creation of empty options
@@ -999,17 +1088,23 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @return {DOMElement} Wrapper element around the radio buttons
          */
         fillRadios: function(insertAfterEl, name, data, skipEmpty, defaultValue, splitEl) {
-            insertAfterEl = Ink.i(insertAfterEl);
+            var afterEl = Ink.i(insertAfterEl);
+            afterEl = afterEl.nextSibling;
+            while (afterEl && afterEl.nodeType !== 1) {
+                afterEl = afterEl.nextSibling;
+            }
             var containerEl = document.createElement('span');
-            InkElement.insertAfter(containerEl, insertAfterEl);
+            if (afterEl) {
+                afterEl.parentNode.insertBefore(containerEl, afterEl);
+            } else {
+                Ink.i(insertAfterEl).appendChild(containerEl);
+            }
 
             data = InkElement._normalizeData(data);
 
-            /*
             if (name.substring(name.length - 1) !== ']') {
                 name += '[]';
             }
-            */
 
             var d, inputEl;
 
@@ -1047,7 +1142,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Creates set of checkbox buttons
          *
          * @method fillChecks
-         * @param {DOMElement|String}  insertAfterEl   Element after which the input elements will be created
+         * @param {DomElement|String}  insertAfterEl   Element after which the input elements will be created
          * @param {String}             name            Name for the form field ([] is added if not present as a suffix)
          * @param {Array}              data            Data to populate the component
          * @param {Boolean}            [skipEmpty]     Flag to skip creation of empty options
@@ -1056,9 +1151,17 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @return {DOMElement} Wrapper element around the checkboxes
          */
         fillChecks: function(insertAfterEl, name, data, defaultValue, splitEl) {
-            insertAfterEl = Ink.i(insertAfterEl);
+            var afterEl = Ink.i(insertAfterEl);
+            afterEl = afterEl.nextSibling;
+            while (afterEl && afterEl.nodeType !== 1) {
+                afterEl = afterEl.nextSibling;
+            }
             var containerEl = document.createElement('span');
-            InkElement.insertAfter(containerEl, insertAfterEl);
+            if (afterEl) {
+                afterEl.parentNode.insertBefore(containerEl, afterEl);
+            } else {
+                Ink.i(insertAfterEl).appendChild(containerEl);
+            }
 
             data = InkElement._normalizeData(data);
 
@@ -1095,7 +1198,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @param {DOMElement}  parentEl  Element to parse
          * @param {DOMElement}  childEl   Child Element to look for
          * @return {Number} The index of the childEl inside parentEl. Returns -1 if it's not a direct child
-         * @sample Ink_Dom_Element_1_parentIndexOf.html 
          */
         parentIndexOf: function(parentEl, childEl) {
             var node, idx = 0;
@@ -1114,12 +1216,13 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Gets the next siblings of an element
          *
          * @method nextSiblings
-         * @param {String|DOMElement} elm Element
+         * @param {String|DomElement} elm Element
          * @return {Array} Array of next sibling elements
-         * @sample Ink_Dom_Element_1_nextSiblings.html 
          */
         nextSiblings: function(elm) {
-            elm = Ink.i(elm);
+            if(typeof(elm) === "string") {
+                elm = document.getElementById(elm);
+            }
             if(typeof(elm) === 'object' && elm !== null && elm.nodeType && elm.nodeType === 1) {
                 var elements = [],
                     siblings = elm.parentNode.children,
@@ -1139,12 +1242,13 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Gets the previous siblings of an element
          *
          * @method previousSiblings
-         * @param {String|DOMElement} elm Element
+         * @param {String|DomElement} elm Element
          * @return {Array} Array of previous sibling elements
-         * @sample Ink_Dom_Element_1_previousSiblings.html 
          */
         previousSiblings: function(elm) {
-            elm = Ink.i(elm);
+            if(typeof(elm) === "string") {
+                elm = document.getElementById(elm);
+            }
             if(typeof(elm) === 'object' && elm !== null && elm.nodeType && elm.nodeType === 1) {
                 var elements    = [],
                     siblings    = elm.parentNode.children,
@@ -1164,12 +1268,13 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Gets the all siblings of an element
          *
          * @method siblings
-         * @param {String|DOMElement} elm Element
+         * @param {String|DomElement} elm Element
          * @return {Array} Array of sibling elements
-         * @sample Ink_Dom_Element_1_siblings.html 
          */
         siblings: function(elm) {
-            elm = Ink.i(elm);
+            if(typeof(elm) === "string") {
+                elm = document.getElementById(elm);
+            }
             if(typeof(elm) === 'object' && elm !== null && elm.nodeType && elm.nodeType === 1) {
                 var elements   = [],
                     siblings   = elm.parentNode.children;
@@ -1189,9 +1294,8 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Counts the number of children of an element
          *
          * @method childElementCount
-         * @param {String|DOMElement} elm element
+         * @param {String|DomElement} elm element
          * @return {Number} number of child elements
-         * @sample Ink_Dom_Element_1_childElementCount.html 
          */
         childElementCount: function(elm) {
             elm = Ink.i(elm);
@@ -1270,17 +1374,13 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * This method parses the html string and doesn't modify its contents
          *
          * @method appendHTML
-         * @param {String|DOMElement} elm   Element
+         * @param {String|DomElement} elm   Element
          * @param {String}            html  Markup string
-         * @sample Ink_Dom_Element_1_appendHTML.html 
          */
         appendHTML: function(elm, html){
-            elm = Ink.i(elm);
-            if(elm !== null) {
-                var wrapper = InkElement._getWrapper(elm, html);
-                while (wrapper.firstChild) {
-                    elm.appendChild(wrapper.firstChild);
-                }
+            var wrapper = InkElement._getWrapper(elm, html);
+            while (wrapper.firstChild) {
+                elm.appendChild(wrapper.firstChild);
             }
         },
 
@@ -1291,15 +1391,11 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method prependHTML
          * @param {String|DOMElement} elm   Element
          * @param {String}            html  Markup string
-         * @sample Ink_Dom_Element_1_prependHTML.html 
          */
         prependHTML: function(elm, html){
-            elm = Ink.i(elm);
-            if(elm !== null) {
-                var wrapper = InkElement._getWrapper(elm, html);
-                while (wrapper.lastChild) {
-                    elm.insertBefore(wrapper.lastChild, elm.firstChild);
-                }
+            var wrapper = InkElement._getWrapper(elm, html);
+            while (wrapper.lastChild) {
+                elm.insertBefore(wrapper.lastChild, elm.firstChild);
             }
         },
 
@@ -1309,20 +1405,16 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method setHTML
          * @param {String|DOMElement} elm   Element
          * @param {String}            html  Markup string
-         * @sample Ink_Dom_Element_1_setHTML.html 
          */
         setHTML: function (elm, html) {
-            elm = Ink.i(elm);
-            if(elm !== null) {
-                try {
-                    elm.innerHTML = html;
-                } catch (e) {
-                    // Tables in IE7
-                    while (elm.firstChild) {
-                        elm.removeChild(elm.firstChild);
-                    }
-                    InkElement.appendHTML(elm, html);
+            try {
+                elm.innerHTML = html;
+            } catch (e) {
+                // Tables in IE7
+                while (elm.firstChild) {
+                    elm.removeChild(elm.firstChild);
                 }
+                InkElement.appendHTML(elm, html);
             }
         },
 
@@ -1335,7 +1427,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @param {String|DOMElement}   target      Element to be wrapped
          * @param {String|DOMElement}   container   Element to wrap the target
          * @return Container element
-         * @sample Ink_Dom_Element_1_wrap.html 
          *
          * @example
          * before:
@@ -1374,7 +1465,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method unwrap
          * @param {DOMElement}  elem                The element you're trying to unwrap. This should be an ancestor of the wrapper.
          * @param {String}      [wrapperSelector]   CSS Selector for the ancestor. Use this if your wrapper is not the direct parent of elem.
-         * @sample Ink_Dom_Element_1_unwrap.html 
          *
          * @example
          *
@@ -1397,12 +1487,8 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         unwrap: function (elem, wrapperSelector) {
             elem = Ink.i(elem);
             var wrapper;
-            if (typeof wrapperSelector === 'string') {
+            if (wrapperSelector) {
                 wrapper = InkElement.findUpwardsBySelector(elem, wrapperSelector);
-            } else if (typeof wrapperSelector === 'object' && wrapperSelector.tagName) {
-                wrapper = InkElement.findUpwardsHaving(elem, function (ancestor) {
-                    return ancestor === wrapperSelector;
-                });
             } else {
                 wrapper = elem.parentNode;
             }
@@ -1417,7 +1503,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method replace
          * @param element       The element to be replaced.
          * @param replacement   The new element.
-         * @sample Ink_Dom_Element_1_replace.html 
          *
          * @example
          *       var newelement1 = InkElement.create('div');
@@ -1425,10 +1510,8 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          *       replace(Ink.i('element1'), newelement1);
          */
         replace: function (element, replacement) {
-            element = Ink.i(element);
-            if(element !== null) {
-                element.parentNode.replaceChild(replacement, element);
-            }
+            InkElement.insertBefore(replacement, element);
+            InkElement.remove(element);
         },
 
         /**
@@ -1437,20 +1520,16 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          *
          * @method removeTextNodeChildren
          * @param  {DOMElement} el          Element to remove text from
-         * @sample Ink_Dom_Element_1_removeTextNodeChildren.html 
          */
         removeTextNodeChildren: function(el) {
-            el = Ink.i(el);
-            if(el !== null) {
-                var prevEl, toRemove, parent = el;
-                el = el.firstChild;
-                while (el) {
-                    toRemove = (el.nodeType === 3);
-                    prevEl = el;
-                    el = el.nextSibling;
-                    if (toRemove) {
-                        parent.removeChild(prevEl);
-                    }
+            var prevEl, toRemove, parent = el;
+            el = el.firstChild;
+            while (el) {
+                toRemove = (el.nodeType === 3);
+                prevEl = el;
+                el = el.nextSibling;
+                if (toRemove) {
+                    parent.removeChild(prevEl);
                 }
             }
         },
@@ -1461,7 +1540,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method htmlToFragment
          * @param  {String} html  HTML string
          * @return {DocumentFragment} DocumentFragment containing all of the elements from the html string
-         * @sample Ink_Dom_Element_1_htmlToFragment.html 
          */
         htmlToFragment: (createContextualFragmentSupport ?
             function(html){
@@ -1504,9 +1582,8 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Gets data attributes from an element
          *
          * @method data
-         * @param {String|DOMElement} selector Element or CSS selector
+         * @param {String|DomElement} selector Element or CSS selector
          * @return {Object} Object with the data-* properties. If no data-attributes are present, an empty object is returned.
-         * @sample Ink_Dom_Element_1_data.html 
         */
         data: function(selector) {
             var el;
@@ -1552,22 +1629,18 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method moveCursorTo
          * @param  {DOMElement} el  Input or Textarea element
          * @param  {Number}     t   Index of the character to move the cursor to
-         * @sample Ink_Dom_Element_1_moveCursorTo.html 
          */
         moveCursorTo: function(el, t) {
-            el = Ink.i(el);
-            if(el !== null) {
-                if (el.setSelectionRange) {
-                    el.setSelectionRange(t, t);
-                    //el.focus();
-                }
-                else {
-                    var range = el.createTextRange();
-                    range.collapse(true);
-                    range.moveEnd(  'character', t);
-                    range.moveStart('character', t);
-                    range.select();
-                }
+            if (el.setSelectionRange) {
+                el.setSelectionRange(t, t);
+                //el.focus();
+            }
+            else {
+                var range = el.createTextRange();
+                range.collapse(true);
+                range.moveEnd(  'character', t);
+                range.moveStart('character', t);
+                range.select();
             }
         },
 
@@ -1575,7 +1648,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Get the page's width.
          * @method pageWidth
          * @return {Number} Page width in pixels
-         * @sample Ink_Dom_Element_1_pageWidth.html 
          */
         pageWidth: function() {
             var xScroll;
@@ -1613,7 +1685,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Get the page's height.
          * @method pageHeight
          * @return {Number} Page height in pixels
-         * @sample Ink_Dom_Element_1_pageHeight.html 
          */
         pageHeight: function() {
             var yScroll;
@@ -1647,7 +1718,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Get the viewport's width.
          * @method viewportWidth
          * @return {Number} Viewport width in pixels
-         * @sample Ink_Dom_Element_1_viewportWidth.html 
          */
         viewportWidth: function() {
             if(typeof window.innerWidth !== "undefined") {
@@ -1662,7 +1732,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Get the viewport's height.
          * @method viewportHeight
          * @return {Number} Viewport height in pixels
-         * @sample Ink_Dom_Element_1_viewportHeight.html 
          */
         viewportHeight: function() {
             if (typeof window.innerHeight !== "undefined") {
