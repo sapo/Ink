@@ -235,7 +235,7 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
          * @method setState
          * @param newState {Boolean} New state (on/off)
          */
-        setState: function (newState, callHandler) {
+        setState: function (on, callHandler) {
             if (on === this.getState()) { return; }
             if (callHandler && typeof this._options.onChangeState === 'function') {
                 var ret = this._options.onChangeState(on);
