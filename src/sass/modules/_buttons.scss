@@ -2,14 +2,14 @@
 
     -webkit-appearance: menuitem;
     padding: $button-padding;
-    cursor:pointer; 
+    cursor:pointer;
     text-decoration: none;
     text-align: center;
     display: inline-block;
     vertical-align: middle;
     white-space: nowrap;
     line-height: normal;
-    
+
     & + .#{$button-class-name} {
         margin-left: $button-margin;
     }
@@ -29,15 +29,13 @@
             border-left: none;
         }
 
-        &:first-child {
-            @include border-right-radius(0);
-            @include border-left-radius($button-border-radius);
+        &:first-child {            
+            @include border-radius($button-border-radius 0 0 $button-border-radius);
             border-left: 1px solid darken($grey-15,10%);
         }
 
         &:last-child {
-            @include border-right-radius($button-border-radius);
-            @include border-left-radius(0);
+            @include border-radius(0 $button-border-radius $button-border-radius 0);
         }
     }
 

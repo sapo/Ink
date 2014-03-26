@@ -56,13 +56,13 @@ module.exports = function (grunt) {
                 files: [
                     {
                         cwd: '<%= ink.folders.bower %>font-awesome/scss/',
-                        src: '*.scss', 
+                        src: '*.scss',
                         dest: 'src/sass/contrib/font-awesome/',
                         expand: true,
                     },
                     {
                         cwd: '<%= ink.folders.bower %>font-awesome/less/',
-                        src: '*.less', 
+                        src: '*.less',
                         dest: 'src/less/contrib/font-awesome/',
                         expand: true,
                     }
@@ -92,7 +92,7 @@ module.exports = function (grunt) {
                 files: [
                     {
                         cwd: '<%= ink.folders.bower %>bower-compass-core/compass/stylesheets/',
-                        src: '**/*.scss', 
+                        src: '**/*.scss',
                         dest: 'src/sass/contrib/',
                         expand: true,
                     }
@@ -307,9 +307,9 @@ module.exports = function (grunt) {
             },
         },
 
-        compass: {                                    
-            css: {                                     
-                options: {     
+        compass: {
+            css: {
+                options: {
                     config: "config.rb",
                 }
             },
@@ -323,6 +323,7 @@ module.exports = function (grunt) {
                 dest: '<%= ink.folders.css.dist %>',
                 ext: '.min.css',
                 options: {
+                    keepSpecialComments: 0,
                     report: 'min',
                     sourceMap: true,
                     sourceMapFilename: '<%= ink.folders.css.dist %><%= pkg.name %>-min.css.map',

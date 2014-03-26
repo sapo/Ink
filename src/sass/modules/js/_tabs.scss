@@ -1,6 +1,6 @@
 /* Tabs */
 
-.ink-tabs {
+.#{$tabs-class-name} {
 
     .tabs-nav {
 
@@ -52,7 +52,7 @@
 
                 a {
                     margin-right: .4em;
-                    @include border-top-radius(4px);
+                    @include border-radius(4px 4px 0 0);
                 }
 
                 &.active {
@@ -78,7 +78,7 @@
 
                 a {
                     margin-right: .4em;
-                    @include border-bottom-radius(4px);
+                    @include border-radius(0 0 4px 4px);
                 }
 
                 &.active {
@@ -107,7 +107,7 @@
 
                 a {
                     margin-bottom: .4em;
-                    @include border-left-radius(4px);
+                    @include border-radius(4px 0 0 4px);
                 }
 
                 &.active {
@@ -135,7 +135,7 @@
 
                 a {
                     margin-bottom: .4em;
-                    @include border-right-radius(4px);
+                    @include border-radius(0 4px 4px 0);
                 }
 
                 &.active {

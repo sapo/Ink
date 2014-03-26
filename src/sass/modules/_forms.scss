@@ -24,7 +24,7 @@
             font-size: .875em;
             color: tint($text-color,35%);
             position: relative;
-            margin: .2em 0 0 0.1em;
+            margin: .2em 0 0 .1em;
         }
 
         &.label {
@@ -164,15 +164,13 @@
                     & > input,
                     & > select,
                     & > textarea {
-                        @include border-left-radius($border-radius);
-                        @include border-right-radius(0);
+                        @include border-radius($border-radius 0 0 $border-radius);
                     }
                 }
                 
                 .#{$button-class-name} {
                     margin: 0;
-                    @include border-right-radius($border-radius);
-                    @include border-left-radius(0);
+                    @include border-radius(0 $border-radius $border-radius 0);
                     border-left: none;
                 }
             }
@@ -188,15 +186,13 @@
                     & > input,
                     & > select,
                     & > textarea {
-                        @include border-right-radius($border-radius);
-                        @include border-left-radius(0);
+                        @include border-radius(0 $border-radius $border-radius 0);
                     }
                 }
                 
                 .#{$button-class-name} {
                     margin: 0;
-                    @include border-left-radius($border-radius);
-                    @include border-right-radius(0);
+                    @include border-radius($border-radius 0 0 $border-radius);
                     border-right: none;
                 }
             }
@@ -252,7 +248,7 @@
             padding: 0;
             margin: .55em 0;
             border: none;
-            //margin-top: 0.55em;
+            //margin-top: .55em;
             clear: left;
             float: left;
             cursor: pointer;
@@ -260,7 +256,7 @@
             & + label {
                 float: left;
                 //line-height: 2.5;
-                //margin-left: 0.55em;
+                //margin-left: .55em;
                 //margin-top: -.4em;
                 margin: .25em 0 .25em .4em;
             }

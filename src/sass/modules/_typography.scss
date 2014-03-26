@@ -42,7 +42,7 @@ a {
     color: $link-color; 
     text-decoration: none;
     cursor: pointer;
-    @include transition (compact(all 140ms ease-in-out));
+    // @include transition (compact(all 140ms ease-in-out));
     
     &:hover {
         color: $link-hover-color; 
@@ -123,8 +123,8 @@ blockquote {
     strong {color: $text-color;}
 }
 
-.small      { font-size: 0.75em; }
-.medium      { font-size: 0.85em; }
+.small      { font-size: .75em; }
+.medium      { font-size: .85em; }
 .large      { font-size: 1.2em; }
 .extralarge { font-size: 1.45em !important; }
 
