@@ -7,54 +7,42 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
     'use strict';
 
     /**
-     * Toggle component
-     * 
+     * Toggle the visibility of DOM Elements.
+     *
+     * You need two elements to use Toggle: the `trigger` element, and
+     * the `target` element (or elements). The default behaviour is to
+     * toggle the `target`(s) when you click the `trigger`.
+     *
+     * The toggle has a state. It is either "on" or "off". It works by
+     * switching between the CSS classes in `classNameOn` and `classNameOff`
+     * according to the current state.
+     *
+     * When you initialize the Toggle, it will check whether the targets
+     * are visible to figure out what the initial state is. You can force
+     * the toggle to consider itself turned "on" or "off" by setting the
+     * `initialState` option to `true` or `false`, respectively.
+     *
+     * You can get the current state of the Toggle by calling `getState`,
+     * or by checking if your `trigger` element has the "active" class.
+     * The state can be changed through JavaScript. Just call  `setState(true)` 
+     * to turn the Toggle on (or `setState(false)` to turn it off).
+     *
      * @class Ink.UI.Toggle
      * @constructor
      * @version 1
-     * @param {String|DOMElement} selector
-     * @param {Object} [options] Options
-     *     @param {String}       options.target                    CSS Selector that specifies the elements that this component will toggle
-     *     @param {String}       [options.classNameOn='show-all']  className when toggle is On
-     *     @param {String}       [options.classNameOff='hide-all'] className when toggle is Off.
-     *     @param {String}       [options.triggerEvent='click']    Event that will trigger the toggling.
-     *     @param {Boolean}      [options.closeOnClick=true]       When this is on, if the user clicks outside of the toggled content, the target is toggled off.
-     *     @param {Selector}     [options.closeOnInsideClick='a[href]'] Toggle off when an element matching this selector is clicked. Set to null to deactivate the check. Default: 'a[href]' (finds links)
-     *     @param {Boolean}      [options.initialState=null]       Whether to start toggled off, on, or as found in the markup. (false: off, true: on, null: markup)
-     *     @param {Function}     [options.onChangeState=null]      Callback to be called when the toggle state changes. Return `false` to cancel the event.
+     * @param {String|DOMElement} selector  Trigger element. By clicking this, the target (or targets) are triggered.
+     * @param {Object} [options] Options object, containing:
      *
-     * @example
-     *      <div class="ink-dropdown">
-     *          <button class="ink-button toggle" data-target="#dropdown">Dropdown <span class="fa fa-caret-down"></span></button>
-     *          <ul id="dropdown" class="dropdown-menu">
-     *              <li class="heading">Heading</li>
-     *              <li class="separator-above"><a href="#">Option</a></li>
-     *              <li><a href="#">Option</a></li>
-     *              <li class="separator-above disabled"><a href="#">Disabled option</a></li>
-     *              <li class="submenu">
-     *                  <a href="#" class="toggle" data-target="#submenu1">A longer option name</a>
-     *                  <ul id="submenu1" class="dropdown-menu">
-     *                      <li class="submenu">
-     *                          <a href="#" class="toggle" data-target="#ultrasubmenu">Sub option</a>
-     *                          <ul id="ultrasubmenu" class="dropdown-menu">
-     *                              <li><a href="#">Sub option</a></li>
-     *                              <li><a href="#" data-target="ultrasubmenu">Sub option</a></li>
-     *                              <li><a href="#">Sub option</a></li>
-     *                          </ul>
-     *                      </li>
-     *                      <li><a href="#">Sub option</a></li>
-     *                      <li><a href="#">Sub option</a></li>
-     *                  </ul>
-     *              </li>
-     *              <li><a href="#">Option</a></li>
-     *          </ul>
-     *      </div>
-     *      <script>
-     *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.Toggle_1'], function( Selector, Toggle ){
-     *              var toggleElement = Ink.s('.toggle');
-     *              var toggleObj = new Toggle( toggleElement );
-     *          });
-     *      </script>
+     * @param {String}       options.target                    CSS Selector that specifies the elements that this component will toggle
+     * @param {String}       [options.classNameOn='show-all']  className when toggle is On
+     * @param {String}       [options.classNameOff='hide-all'] className when toggle is Off.
+     * @param {String}       [options.triggerEvent='click']    Event that will trigger the toggling.
+     * @param {Boolean}      [options.closeOnClick=true]       When this is on, if the user clicks outside of the toggled content, the target is toggled off.
+     * @param {Selector}     [options.closeOnInsideClick='a[href]'] Toggle off when an element matching this selector is clicked. Set to null to deactivate the check. Default: 'a[href]' (finds links)
+     * @param {Boolean}      [options.initialState=null]       Whether to start toggled off, on, or as found in the markup. (false: off, true: on, null: markup)
+     * @param {Function}     [options.onChangeState=null]      Callback (`function (currentState) {...}`) to be called when the toggle state changes. Return `false` to cancel the event.
+     *
+     * @sample Ink_UI_Toggle_1_constructor.html
      */
     var Toggle = function( selector, options ){
         this._rootElement = Common.elOrSelector(selector, '[Ink.UI.Toggle root element]:');
@@ -244,11 +232,10 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
         /**
          * Sets the state of the toggle. (on/off)
          *
-         * @param on {Boolean} New state (on/off)
-         * 
          * @method setState
+         * @param newState {Boolean} New state (on/off)
          */
-        setState: function (on, callHandler) {
+        setState: function (newState, callHandler) {
             if (on === this.getState()) { return; }
             if (callHandler && typeof this._options.onChangeState === 'function') {
                 var ret = this._options.onChangeState(on);
