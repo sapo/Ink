@@ -233,10 +233,10 @@
     // define the step size (this is the minimum column width percentage)
     $step-size: 5;
 
-    .#{$grid-column-group-class-name} > [class*=all-] {
-      float: left;
-      clear: none;
-    }
+    // .#{$grid-column-group-class-name} > [class*=all-] {
+    //   float: left;
+    //   clear: none;
+    // }
 
     // iterate to generate the width classes
     @while $i <= 100 {
@@ -244,6 +244,8 @@
         @if $i > 30 and $i <= 35 {
             .all-33 {
                 width: 33.33%;
+                float: left;
+                clear: none;
             }
         }
         
@@ -251,12 +253,16 @@
         @if $i > 65 and $i <= 70 {
             .all-66 {
                 width: 66.66%;
+                float: left;
+                clear: none;
             }
         }
         
         
         .all-#{$i} {
-            width: $i * 1%;            
+            width: $i * 1%;  
+            float: left;
+            clear: none;          
         }
 
         @if $i == 100 {
