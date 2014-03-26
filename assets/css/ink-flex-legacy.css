@@ -63,6 +63,31 @@
  *                 outside a @media query let's you use the grid in IE8.
  *  
  */
+/**
+ * Ink
+ *
+ * A set of tools for quick development of web interfaces.
+ *
+ * @package    Ink
+ * @author     Sapo Ink Team
+ * @license    http://opensource.org/licenses/MIT MIT
+ * @link       http://ink.sapo.pt
+ * @version    3.0.0
+ */
+/**
+ * Ink-button
+ *
+ * Creates css for a button
+ *
+ * @package    Ink
+ * @subpackage Mixins
+ * @category   Buttons
+ * @since      3.0.0
+ *
+ * @param color $button-background-color
+ * @param color $button-text-color
+ * @param color $button-text-shadow-color
+ */
 .show-all {
   display: inherit;
 }
@@ -73,10 +98,6 @@
 
 .no-margin {
   margin: 0 !important;
-}
-
-.no-padding {
-  padding: 0 !important;
 }
 
 .push-left {
@@ -91,9 +112,6 @@
 
 .push-right {
   float: right;
-  -webkit-justify-content: flex-end;
-  -moz-justify-content: flex-end;
-  justify-content: flex-end;
 }
 
 .align-left {
@@ -106,15 +124,6 @@
 
 .align-right {
   text-align: right;
-}
-
-.clearfix {
-  *zoom: 1;
-}
-.clearfix:after {
-  content: "";
-  display: table;
-  clear: both;
 }
 
 html.no-flexbox .ink-grid,
@@ -226,101 +235,101 @@ html.no-flexboxlegacy [class*=all-100] {
   html.no-flexboxlegacy .ink-grid {
     padding: 0 2em;
   }
-  html.no-flexbox .column-group > [class*=xlarge-],
-  html.no-flexboxlegacy .column-group > [class*=xlarge-] {
+  html.no-flexbox .column-group > [class*=extra-large-],
+  html.no-flexboxlegacy .column-group > [class*=extra-large-] {
     float: left;
     clear: none;
   }
-  html.no-flexbox .xlarge-5,
-  html.no-flexboxlegacy .xlarge-5 {
+  html.no-flexbox .extra-large-5,
+  html.no-flexboxlegacy .extra-large-5 {
     width: 5%;
   }
-  html.no-flexbox .xlarge-10,
-  html.no-flexboxlegacy .xlarge-10 {
+  html.no-flexbox .extra-large-10,
+  html.no-flexboxlegacy .extra-large-10 {
     width: 10%;
   }
-  html.no-flexbox .xlarge-15,
-  html.no-flexboxlegacy .xlarge-15 {
+  html.no-flexbox .extra-large-15,
+  html.no-flexboxlegacy .extra-large-15 {
     width: 15%;
   }
-  html.no-flexbox .xlarge-20,
-  html.no-flexboxlegacy .xlarge-20 {
+  html.no-flexbox .extra-large-20,
+  html.no-flexboxlegacy .extra-large-20 {
     width: 20%;
   }
-  html.no-flexbox .xlarge-25,
-  html.no-flexboxlegacy .xlarge-25 {
+  html.no-flexbox .extra-large-25,
+  html.no-flexboxlegacy .extra-large-25 {
     width: 25%;
   }
-  html.no-flexbox .xlarge-30,
-  html.no-flexboxlegacy .xlarge-30 {
+  html.no-flexbox .extra-large-30,
+  html.no-flexboxlegacy .extra-large-30 {
     width: 30%;
   }
-  html.no-flexbox .xlarge-33,
-  html.no-flexboxlegacy .xlarge-33 {
+  html.no-flexbox .extra-large-33,
+  html.no-flexboxlegacy .extra-large-33 {
     width: 33.33%;
   }
-  html.no-flexbox .xlarge-35,
-  html.no-flexboxlegacy .xlarge-35 {
+  html.no-flexbox .extra-large-35,
+  html.no-flexboxlegacy .extra-large-35 {
     width: 35%;
   }
-  html.no-flexbox .xlarge-40,
-  html.no-flexboxlegacy .xlarge-40 {
+  html.no-flexbox .extra-large-40,
+  html.no-flexboxlegacy .extra-large-40 {
     width: 40%;
   }
-  html.no-flexbox .xlarge-45,
-  html.no-flexboxlegacy .xlarge-45 {
+  html.no-flexbox .extra-large-45,
+  html.no-flexboxlegacy .extra-large-45 {
     width: 45%;
   }
-  html.no-flexbox .xlarge-50,
-  html.no-flexboxlegacy .xlarge-50 {
+  html.no-flexbox .extra-large-50,
+  html.no-flexboxlegacy .extra-large-50 {
     width: 50%;
   }
-  html.no-flexbox .xlarge-55,
-  html.no-flexboxlegacy .xlarge-55 {
+  html.no-flexbox .extra-large-55,
+  html.no-flexboxlegacy .extra-large-55 {
     width: 55%;
   }
-  html.no-flexbox .xlarge-60,
-  html.no-flexboxlegacy .xlarge-60 {
+  html.no-flexbox .extra-large-60,
+  html.no-flexboxlegacy .extra-large-60 {
     width: 60%;
   }
-  html.no-flexbox .xlarge-65,
-  html.no-flexboxlegacy .xlarge-65 {
+  html.no-flexbox .extra-large-65,
+  html.no-flexboxlegacy .extra-large-65 {
     width: 65%;
   }
-  html.no-flexbox .xlarge-66,
-  html.no-flexboxlegacy .xlarge-66 {
+  html.no-flexbox .extra-large-66,
+  html.no-flexboxlegacy .extra-large-66 {
     width: 66.66%;
   }
-  html.no-flexbox .xlarge-70,
-  html.no-flexboxlegacy .xlarge-70 {
+  html.no-flexbox .extra-large-70,
+  html.no-flexboxlegacy .extra-large-70 {
     width: 70%;
   }
-  html.no-flexbox .xlarge-75,
-  html.no-flexboxlegacy .xlarge-75 {
+  html.no-flexbox .extra-large-75,
+  html.no-flexboxlegacy .extra-large-75 {
     width: 75%;
   }
-  html.no-flexbox .xlarge-80,
-  html.no-flexboxlegacy .xlarge-80 {
+  html.no-flexbox .extra-large-80,
+  html.no-flexboxlegacy .extra-large-80 {
     width: 80%;
   }
-  html.no-flexbox .xlarge-85,
-  html.no-flexboxlegacy .xlarge-85 {
+  html.no-flexbox .extra-large-85,
+  html.no-flexboxlegacy .extra-large-85 {
     width: 85%;
   }
-  html.no-flexbox .xlarge-90,
-  html.no-flexboxlegacy .xlarge-90 {
+  html.no-flexbox .extra-large-90,
+  html.no-flexboxlegacy .extra-large-90 {
     width: 90%;
   }
-  html.no-flexbox .xlarge-95,
-  html.no-flexboxlegacy .xlarge-95 {
+  html.no-flexbox .extra-large-95,
+  html.no-flexboxlegacy .extra-large-95 {
     width: 95%;
   }
-  html.no-flexbox .xlarge-100,
-  html.no-flexboxlegacy .xlarge-100 {
+  html.no-flexbox .extra-large-100,
+  html.no-flexboxlegacy .extra-large-100 {
     width: 100%;
   }
-  html.no-flexbox [class*=xlarge-100],
-  html.no-flexboxlegacy [class*=xlarge-100] {
+  html.no-flexbox [class*=extra-large-100],
+  html.no-flexboxlegacy [class*=extra-large-100] {
     float: none;
     clear: both;
   }
@@ -338,8 +347,8 @@ html.no-flexboxlegacy [class*=all-100] {
   html.no-flexboxlegacy .column-group.gutters {
     margin-left: -2em;
   }
-  html.no-flexbox .column-group.gutters > [class*=xlarge-], html.no-flexbox .column-group.gutters > [class*=all-],
-  html.no-flexboxlegacy .column-group.gutters > [class*=xlarge-],
+  html.no-flexbox .column-group.gutters > [class*=extra-large-], html.no-flexbox .column-group.gutters > [class*=all-],
+  html.no-flexboxlegacy .column-group.gutters > [class*=extra-large-],
   html.no-flexboxlegacy .column-group.gutters > [class*=all-] {
     padding-left: 2em;
     margin-bottom: 2em;
@@ -348,13 +357,13 @@ html.no-flexboxlegacy [class*=all-100] {
   html.no-flexboxlegacy .column-group.horizontal-gutters {
     margin-left: -2em;
   }
-  html.no-flexbox .column-group.horizontal-gutters > [class*=xlarge-], html.no-flexbox .column-group.horizontal-gutters > [class*=all-],
-  html.no-flexboxlegacy .column-group.horizontal-gutters > [class*=xlarge-],
+  html.no-flexbox .column-group.horizontal-gutters > [class*=extra-large-], html.no-flexbox .column-group.horizontal-gutters > [class*=all-],
+  html.no-flexboxlegacy .column-group.horizontal-gutters > [class*=extra-large-],
   html.no-flexboxlegacy .column-group.horizontal-gutters > [class*=all-] {
     padding-left: 2em;
   }
-  html.no-flexbox .column-group.vertical-gutters > [class*=xlarge-], html.no-flexbox .column-group.vertical-gutters > [class*=all-],
-  html.no-flexboxlegacy .column-group.vertical-gutters > [class*=xlarge-],
+  html.no-flexbox .column-group.vertical-gutters > [class*=extra-large-], html.no-flexbox .column-group.vertical-gutters > [class*=all-],
+  html.no-flexboxlegacy .column-group.vertical-gutters > [class*=extra-large-],
   html.no-flexboxlegacy .column-group.vertical-gutters > [class*=all-] {
     margin-bottom: 2em;
   }
@@ -362,8 +371,8 @@ html.no-flexboxlegacy [class*=all-100] {
   html.no-flexboxlegacy .column-group.double-gutters {
     margin-left: -4em;
   }
-  html.no-flexbox .column-group.double-gutters > [class*=xlarge-], html.no-flexbox .column-group.double-gutters > [class*=all-],
-  html.no-flexboxlegacy .column-group.double-gutters > [class*=xlarge-],
+  html.no-flexbox .column-group.double-gutters > [class*=extra-large-], html.no-flexbox .column-group.double-gutters > [class*=all-],
+  html.no-flexboxlegacy .column-group.double-gutters > [class*=extra-large-],
   html.no-flexboxlegacy .column-group.double-gutters > [class*=all-] {
     padding-left: 4em;
     margin-bottom: 4em;
@@ -372,13 +381,13 @@ html.no-flexboxlegacy [class*=all-100] {
   html.no-flexboxlegacy .column-group.double-horizontal-gutters {
     margin-left: -4em;
   }
-  html.no-flexbox .column-group.double-horizontal-gutters > [class*=xlarge-], html.no-flexbox .column-group.double-horizontal-gutters > [class*=all-],
-  html.no-flexboxlegacy .column-group.double-horizontal-gutters > [class*=xlarge-],
+  html.no-flexbox .column-group.double-horizontal-gutters > [class*=extra-large-], html.no-flexbox .column-group.double-horizontal-gutters > [class*=all-],
+  html.no-flexboxlegacy .column-group.double-horizontal-gutters > [class*=extra-large-],
   html.no-flexboxlegacy .column-group.double-horizontal-gutters > [class*=all-] {
     padding-left: 4em;
   }
-  html.no-flexbox .column-group.double-vertical-gutters > [class*=xlarge-], html.no-flexbox .column-group.double-vertical-gutters > [class*=all-],
-  html.no-flexboxlegacy .column-group.double-vertical-gutters > [class*=xlarge-],
+  html.no-flexbox .column-group.double-vertical-gutters > [class*=extra-large-], html.no-flexbox .column-group.double-vertical-gutters > [class*=all-],
+  html.no-flexboxlegacy .column-group.double-vertical-gutters > [class*=extra-large-],
   html.no-flexboxlegacy .column-group.double-vertical-gutters > [class*=all-] {
     margin-bottom: 4em;
   }
@@ -386,8 +395,8 @@ html.no-flexboxlegacy [class*=all-100] {
   html.no-flexboxlegacy .column-group.half-gutters {
     margin-left: -1em;
   }
-  html.no-flexbox .column-group.half-gutters > [class*=xlarge-], html.no-flexbox .column-group.half-gutters > [class*=all-],
-  html.no-flexboxlegacy .column-group.half-gutters > [class*=xlarge-],
+  html.no-flexbox .column-group.half-gutters > [class*=extra-large-], html.no-flexbox .column-group.half-gutters > [class*=all-],
+  html.no-flexboxlegacy .column-group.half-gutters > [class*=extra-large-],
   html.no-flexboxlegacy .column-group.half-gutters > [class*=all-] {
     padding-left: 1em;
     margin-bottom: 1em;
@@ -396,13 +405,13 @@ html.no-flexboxlegacy [class*=all-100] {
   html.no-flexboxlegacy .column-group.half-horizontal-gutters {
     margin-left: -1em;
   }
-  html.no-flexbox .column-group.half-horizontal-gutters > [class*=xlarge-], html.no-flexbox .column-group.half-horizontal-gutters > [class*=all-],
-  html.no-flexboxlegacy .column-group.half-horizontal-gutters > [class*=xlarge-],
+  html.no-flexbox .column-group.half-horizontal-gutters > [class*=extra-large-], html.no-flexbox .column-group.half-horizontal-gutters > [class*=all-],
+  html.no-flexboxlegacy .column-group.half-horizontal-gutters > [class*=extra-large-],
   html.no-flexboxlegacy .column-group.half-horizontal-gutters > [class*=all-] {
     padding-left: 1em;
   }
-  html.no-flexbox .column-group.half-vertical-gutters > [class*=xlarge-], html.no-flexbox .column-group.half-vertical-gutters > [class*=all-],
-  html.no-flexboxlegacy .column-group.half-vertical-gutters > [class*=xlarge-],
+  html.no-flexbox .column-group.half-vertical-gutters > [class*=extra-large-], html.no-flexbox .column-group.half-vertical-gutters > [class*=all-],
+  html.no-flexboxlegacy .column-group.half-vertical-gutters > [class*=extra-large-],
   html.no-flexboxlegacy .column-group.half-vertical-gutters > [class*=all-] {
     margin-bottom: 1em;
   }
@@ -410,8 +419,8 @@ html.no-flexboxlegacy [class*=all-100] {
   html.no-flexboxlegacy .column-group.quarter-gutters {
     margin-left: -0.5em;
   }
-  html.no-flexbox .column-group.quarter-gutters > [class*=xlarge-], html.no-flexbox .column-group.quarter-gutters > [class*=all-],
-  html.no-flexboxlegacy .column-group.quarter-gutters > [class*=xlarge-],
+  html.no-flexbox .column-group.quarter-gutters > [class*=extra-large-], html.no-flexbox .column-group.quarter-gutters > [class*=all-],
+  html.no-flexboxlegacy .column-group.quarter-gutters > [class*=extra-large-],
   html.no-flexboxlegacy .column-group.quarter-gutters > [class*=all-] {
     padding-left: 0.5em;
     margin-bottom: 0.5em;
@@ -420,223 +429,207 @@ html.no-flexboxlegacy [class*=all-100] {
   html.no-flexboxlegacy .column-group.quarter-horizontal-gutters {
     margin-left: -0.5em;
   }
-  html.no-flexbox .column-group.quarter-horizontal-gutters > [class*=xlarge-], html.no-flexbox .column-group.quarter-horizontal-gutters > [class*=all-],
-  html.no-flexboxlegacy .column-group.quarter-horizontal-gutters > [class*=xlarge-],
+  html.no-flexbox .column-group.quarter-horizontal-gutters > [class*=extra-large-], html.no-flexbox .column-group.quarter-horizontal-gutters > [class*=all-],
+  html.no-flexboxlegacy .column-group.quarter-horizontal-gutters > [class*=extra-large-],
   html.no-flexboxlegacy .column-group.quarter-horizontal-gutters > [class*=all-] {
     padding-left: 0.5em;
   }
-  html.no-flexbox .column-group.quarter-vertical-gutters > [class*=xlarge-], html.no-flexbox .column-group.quarter-vertical-gutters > [class*=all-],
-  html.no-flexboxlegacy .column-group.quarter-vertical-gutters > [class*=xlarge-],
+  html.no-flexbox .column-group.quarter-vertical-gutters > [class*=extra-large-], html.no-flexbox .column-group.quarter-vertical-gutters > [class*=all-],
+  html.no-flexboxlegacy .column-group.quarter-vertical-gutters > [class*=extra-large-],
   html.no-flexboxlegacy .column-group.quarter-vertical-gutters > [class*=all-] {
     margin-bottom: 0.5em;
   }
-  html.no-flexbox .column-group.xlarge-gutters,
-  html.no-flexboxlegacy .column-group.xlarge-gutters {
+  html.no-flexbox .column-group.extra-large-gutters,
+  html.no-flexboxlegacy .column-group.extra-large-gutters {
     margin-left: -2em;
   }
-  html.no-flexbox .column-group.xlarge-gutters > [class*=xlarge-], html.no-flexbox .column-group.xlarge-gutters > [class*=all-],
-  html.no-flexboxlegacy .column-group.xlarge-gutters > [class*=xlarge-],
-  html.no-flexboxlegacy .column-group.xlarge-gutters > [class*=all-] {
+  html.no-flexbox .column-group.extra-large-gutters > [class*=extra-large-], html.no-flexbox .column-group.extra-large-gutters > [class*=all-],
+  html.no-flexboxlegacy .column-group.extra-large-gutters > [class*=extra-large-],
+  html.no-flexboxlegacy .column-group.extra-large-gutters > [class*=all-] {
     padding-left: 0.5em;
     margin-bottom: 0.5em;
   }
-  html.no-flexbox .column-group.xlarge-horizontal-gutters,
-  html.no-flexboxlegacy .column-group.xlarge-horizontal-gutters {
+  html.no-flexbox .column-group.extra-large-horizontal-gutters,
+  html.no-flexboxlegacy .column-group.extra-large-horizontal-gutters {
     margin-left: -2em;
   }
-  html.no-flexbox .column-group.xlarge-horizontal-gutters > [class*=xlarge-], html.no-flexbox .column-group.xlarge-horizontal-gutters > [class*=all-],
-  html.no-flexboxlegacy .column-group.xlarge-horizontal-gutters > [class*=xlarge-],
-  html.no-flexboxlegacy .column-group.xlarge-horizontal-gutters > [class*=all-] {
+  html.no-flexbox .column-group.extra-large-horizontal-gutters > [class*=extra-large-], html.no-flexbox .column-group.extra-large-horizontal-gutters > [class*=all-],
+  html.no-flexboxlegacy .column-group.extra-large-horizontal-gutters > [class*=extra-large-],
+  html.no-flexboxlegacy .column-group.extra-large-horizontal-gutters > [class*=all-] {
     padding-left: 2em;
   }
-  html.no-flexbox .column-group.xlarge-vertical-gutters > [class*=xlarge-], html.no-flexbox .column-group.xlarge-vertical-gutters > [class*=all-],
-  html.no-flexboxlegacy .column-group.xlarge-vertical-gutters > [class*=xlarge-],
-  html.no-flexboxlegacy .column-group.xlarge-vertical-gutters > [class*=all-] {
+  html.no-flexbox .column-group.extra-large-vertical-gutters > [class*=extra-large-], html.no-flexbox .column-group.extra-large-vertical-gutters > [class*=all-],
+  html.no-flexboxlegacy .column-group.extra-large-vertical-gutters > [class*=extra-large-],
+  html.no-flexboxlegacy .column-group.extra-large-vertical-gutters > [class*=all-] {
     margin-bottom: 2em;
   }
-  html.no-flexbox .column-group.xlarge-double-gutters,
-  html.no-flexboxlegacy .column-group.xlarge-double-gutters {
+  html.no-flexbox .column-group.extra-large-double-gutters,
+  html.no-flexboxlegacy .column-group.extra-large-double-gutters {
     margin-left: -4em;
   }
-  html.no-flexbox .column-group.xlarge-double-gutters > [class*=xlarge-], html.no-flexbox .column-group.xlarge-double-gutters > [class*=all-],
-  html.no-flexboxlegacy .column-group.xlarge-double-gutters > [class*=xlarge-],
-  html.no-flexboxlegacy .column-group.xlarge-double-gutters > [class*=all-] {
+  html.no-flexbox .column-group.extra-large-double-gutters > [class*=extra-large-], html.no-flexbox .column-group.extra-large-double-gutters > [class*=all-],
+  html.no-flexboxlegacy .column-group.extra-large-double-gutters > [class*=extra-large-],
+  html.no-flexboxlegacy .column-group.extra-large-double-gutters > [class*=all-] {
     padding-left: 4em;
     margin-bottom: 4em;
   }
-  html.no-flexbox .column-group.xlarge-double-horizontal-gutters,
-  html.no-flexboxlegacy .column-group.xlarge-double-horizontal-gutters {
+  html.no-flexbox .column-group.extra-large-double-horizontal-gutters,
+  html.no-flexboxlegacy .column-group.extra-large-double-horizontal-gutters {
     margin-left: -4em;
   }
-  html.no-flexbox .column-group.xlarge-double-horizontal-gutters > [class*=xlarge-], html.no-flexbox .column-group.xlarge-double-horizontal-gutters > [class*=all-],
-  html.no-flexboxlegacy .column-group.xlarge-double-horizontal-gutters > [class*=xlarge-],
-  html.no-flexboxlegacy .column-group.xlarge-double-horizontal-gutters > [class*=all-] {
+  html.no-flexbox .column-group.extra-large-double-horizontal-gutters > [class*=extra-large-], html.no-flexbox .column-group.extra-large-double-horizontal-gutters > [class*=all-],
+  html.no-flexboxlegacy .column-group.extra-large-double-horizontal-gutters > [class*=extra-large-],
+  html.no-flexboxlegacy .column-group.extra-large-double-horizontal-gutters > [class*=all-] {
     padding-left: 4em;
   }
-  html.no-flexbox .column-group.xlarge-double-vertical-gutters > [class*=xlarge-], html.no-flexbox .column-group.xlarge-double-vertical-gutters > [class*=all-],
-  html.no-flexboxlegacy .column-group.xlarge-double-vertical-gutters > [class*=xlarge-],
-  html.no-flexboxlegacy .column-group.xlarge-double-vertical-gutters > [class*=all-] {
+  html.no-flexbox .column-group.extra-large-double-vertical-gutters > [class*=extra-large-], html.no-flexbox .column-group.extra-large-double-vertical-gutters > [class*=all-],
+  html.no-flexboxlegacy .column-group.extra-large-double-vertical-gutters > [class*=extra-large-],
+  html.no-flexboxlegacy .column-group.extra-large-double-vertical-gutters > [class*=all-] {
     margin-bottom: 4em;
   }
-  html.no-flexbox .column-group.xlarge-half-gutters,
-  html.no-flexboxlegacy .column-group.xlarge-half-gutters {
+  html.no-flexbox .column-group.extra-large-half-gutters,
+  html.no-flexboxlegacy .column-group.extra-large-half-gutters {
     margin-left: -1em;
   }
-  html.no-flexbox .column-group.xlarge-half-gutters > [class*=xlarge-], html.no-flexbox .column-group.xlarge-half-gutters > [class*=all-],
-  html.no-flexboxlegacy .column-group.xlarge-half-gutters > [class*=xlarge-],
-  html.no-flexboxlegacy .column-group.xlarge-half-gutters > [class*=all-] {
+  html.no-flexbox .column-group.extra-large-half-gutters > [class*=extra-large-], html.no-flexbox .column-group.extra-large-half-gutters > [class*=all-],
+  html.no-flexboxlegacy .column-group.extra-large-half-gutters > [class*=extra-large-],
+  html.no-flexboxlegacy .column-group.extra-large-half-gutters > [class*=all-] {
     padding-left: 1em;
     margin-bottom: 1em;
   }
-  html.no-flexbox .column-group.xlarge-half-horizontal-gutters,
-  html.no-flexboxlegacy .column-group.xlarge-half-horizontal-gutters {
+  html.no-flexbox .column-group.extra-large-half-horizontal-gutters,
+  html.no-flexboxlegacy .column-group.extra-large-half-horizontal-gutters {
     margin-left: -1em;
   }
-  html.no-flexbox .column-group.xlarge-half-horizontal-gutters > [class*=xlarge-], html.no-flexbox .column-group.xlarge-half-horizontal-gutters > [class*=all-],
-  html.no-flexboxlegacy .column-group.xlarge-half-horizontal-gutters > [class*=xlarge-],
-  html.no-flexboxlegacy .column-group.xlarge-half-horizontal-gutters > [class*=all-] {
+  html.no-flexbox .column-group.extra-large-half-horizontal-gutters > [class*=extra-large-], html.no-flexbox .column-group.extra-large-half-horizontal-gutters > [class*=all-],
+  html.no-flexboxlegacy .column-group.extra-large-half-horizontal-gutters > [class*=extra-large-],
+  html.no-flexboxlegacy .column-group.extra-large-half-horizontal-gutters > [class*=all-] {
     padding-left: 1em;
   }
-  html.no-flexbox .column-group.xlarge-half-vertical-gutters > [class*=xlarge-], html.no-flexbox .column-group.xlarge-half-vertical-gutters > [class*=all-],
-  html.no-flexboxlegacy .column-group.xlarge-half-vertical-gutters > [class*=xlarge-],
-  html.no-flexboxlegacy .column-group.xlarge-half-vertical-gutters > [class*=all-] {
+  html.no-flexbox .column-group.extra-large-half-vertical-gutters > [class*=extra-large-], html.no-flexbox .column-group.extra-large-half-vertical-gutters > [class*=all-],
+  html.no-flexboxlegacy .column-group.extra-large-half-vertical-gutters > [class*=extra-large-],
+  html.no-flexboxlegacy .column-group.extra-large-half-vertical-gutters > [class*=all-] {
     margin-bottom: 1em;
   }
-  html.no-flexbox .column-group.xlarge-quarter-gutters,
-  html.no-flexboxlegacy .column-group.xlarge-quarter-gutters {
+  html.no-flexbox .column-group.extra-large-quarter-gutters,
+  html.no-flexboxlegacy .column-group.extra-large-quarter-gutters {
     margin-left: -0.5em;
   }
-  html.no-flexbox .column-group.xlarge-quarter-gutters > [class*=xlarge-], html.no-flexbox .column-group.xlarge-quarter-gutters > [class*=all-],
-  html.no-flexboxlegacy .column-group.xlarge-quarter-gutters > [class*=xlarge-],
-  html.no-flexboxlegacy .column-group.xlarge-quarter-gutters > [class*=all-] {
+  html.no-flexbox .column-group.extra-large-quarter-gutters > [class*=extra-large-], html.no-flexbox .column-group.extra-large-quarter-gutters > [class*=all-],
+  html.no-flexboxlegacy .column-group.extra-large-quarter-gutters > [class*=extra-large-],
+  html.no-flexboxlegacy .column-group.extra-large-quarter-gutters > [class*=all-] {
     padding-left: 0.5em;
     margin-bottom: 0.5em;
   }
-  html.no-flexbox .column-group.xlarge-quarter-horizontal-gutters,
-  html.no-flexboxlegacy .column-group.xlarge-quarter-horizontal-gutters {
+  html.no-flexbox .column-group.extra-large-quarter-horizontal-gutters,
+  html.no-flexboxlegacy .column-group.extra-large-quarter-horizontal-gutters {
     margin-left: -0.5em;
   }
-  html.no-flexbox .column-group.xlarge-quarter-horizontal-gutters > [class*=xlarge-], html.no-flexbox .column-group.xlarge-quarter-horizontal-gutters > [class*=all-],
-  html.no-flexboxlegacy .column-group.xlarge-quarter-horizontal-gutters > [class*=xlarge-],
-  html.no-flexboxlegacy .column-group.xlarge-quarter-horizontal-gutters > [class*=all-] {
+  html.no-flexbox .column-group.extra-large-quarter-horizontal-gutters > [class*=extra-large-], html.no-flexbox .column-group.extra-large-quarter-horizontal-gutters > [class*=all-],
+  html.no-flexboxlegacy .column-group.extra-large-quarter-horizontal-gutters > [class*=extra-large-],
+  html.no-flexboxlegacy .column-group.extra-large-quarter-horizontal-gutters > [class*=all-] {
     padding-left: 0.5em;
   }
-  html.no-flexbox .column-group.xlarge-quarter-vertical-gutters > [class*=xlarge-], html.no-flexbox .column-group.xlarge-quarter-vertical-gutters > [class*=all-],
-  html.no-flexboxlegacy .column-group.xlarge-quarter-vertical-gutters > [class*=xlarge-],
-  html.no-flexboxlegacy .column-group.xlarge-quarter-vertical-gutters > [class*=all-] {
+  html.no-flexbox .column-group.extra-large-quarter-vertical-gutters > [class*=extra-large-], html.no-flexbox .column-group.extra-large-quarter-vertical-gutters > [class*=all-],
+  html.no-flexboxlegacy .column-group.extra-large-quarter-vertical-gutters > [class*=extra-large-],
+  html.no-flexboxlegacy .column-group.extra-large-quarter-vertical-gutters > [class*=all-] {
     margin-bottom: 0.5em;
   }
-  html.no-flexbox .column-group.xlarge-no-gutters,
-  html.no-flexboxlegacy .column-group.xlarge-no-gutters {
+  html.no-flexbox .column-group.extra-large-no-gutters,
+  html.no-flexboxlegacy .column-group.extra-large-no-gutters {
     margin-left: 0;
   }
-  html.no-flexbox .column-group.xlarge-no-gutters > [class*=xlarge-], html.no-flexbox .column-group.xlarge-no-gutters > [class*=all-],
-  html.no-flexboxlegacy .column-group.xlarge-no-gutters > [class*=xlarge-],
-  html.no-flexboxlegacy .column-group.xlarge-no-gutters > [class*=all-] {
+  html.no-flexbox .column-group.extra-large-no-gutters > [class*=extra-large-], html.no-flexbox .column-group.extra-large-no-gutters > [class*=all-],
+  html.no-flexboxlegacy .column-group.extra-large-no-gutters > [class*=extra-large-],
+  html.no-flexboxlegacy .column-group.extra-large-no-gutters > [class*=all-] {
     padding-left: 0;
     margin-bottom: 0;
   }
-  html.no-flexbox .ink-table td[class*=xlarge-], html.no-flexbox .ink-table th[class*=xlarge-], html.no-flexbox .ink-table tr[class*=xlarge-], html.no-flexbox .ink-table thead[class*=xlarge-], html.no-flexbox .ink-table tbody[class*=xlarge-], html.no-flexbox .ink-table tfoot[class*=xlarge-],
-  html.no-flexboxlegacy .ink-table td[class*=xlarge-],
-  html.no-flexboxlegacy .ink-table th[class*=xlarge-],
-  html.no-flexboxlegacy .ink-table tr[class*=xlarge-],
-  html.no-flexboxlegacy .ink-table thead[class*=xlarge-],
-  html.no-flexboxlegacy .ink-table tbody[class*=xlarge-],
-  html.no-flexboxlegacy .ink-table tfoot[class*=xlarge-] {
+  html.no-flexbox .ink-table td[class*=extra-large-], html.no-flexbox .ink-table th[class*=extra-large-], html.no-flexbox .ink-table tr[class*=extra-large-], html.no-flexbox .ink-table thead[class*=extra-large-], html.no-flexbox .ink-table tbody[class*=extra-large-], html.no-flexbox .ink-table tfoot[class*=extra-large-],
+  html.no-flexboxlegacy .ink-table td[class*=extra-large-],
+  html.no-flexboxlegacy .ink-table th[class*=extra-large-],
+  html.no-flexboxlegacy .ink-table tr[class*=extra-large-],
+  html.no-flexboxlegacy .ink-table thead[class*=extra-large-],
+  html.no-flexboxlegacy .ink-table tbody[class*=extra-large-],
+  html.no-flexboxlegacy .ink-table tfoot[class*=extra-large-] {
     float: none;
   }
-  html.no-flexbox .xlarge-push-left,
-  html.no-flexboxlegacy .xlarge-push-left {
+  html.no-flexbox .extra-large-push-left,
+  html.no-flexboxlegacy .extra-large-push-left {
     float: left;
   }
-  html.no-flexbox .xlarge-push-center,
-  html.no-flexboxlegacy .xlarge-push-center {
+  html.no-flexbox .extra-large-push-center,
+  html.no-flexboxlegacy .extra-large-push-center {
     float: none;
     margin-left: auto;
     margin-right: auto;
   }
-  html.no-flexbox .xlarge-push-right,
-  html.no-flexboxlegacy .xlarge-push-right {
+  html.no-flexbox .extra-large-push-right,
+  html.no-flexboxlegacy .extra-large-push-right {
     float: right;
   }
-  html.no-flexbox .xlarge-align-left,
-  html.no-flexboxlegacy .xlarge-align-left {
+  html.no-flexbox .extra-large-align-left,
+  html.no-flexboxlegacy .extra-large-align-left {
     text-align: left;
   }
-  html.no-flexbox .xlarge-align-center,
-  html.no-flexboxlegacy .xlarge-align-center {
+  html.no-flexbox .extra-large-align-center,
+  html.no-flexboxlegacy .extra-large-align-center {
     text-align: center;
   }
-  html.no-flexbox .xlarge-align-right,
-  html.no-flexboxlegacy .xlarge-align-right {
+  html.no-flexbox .extra-large-align-right,
+  html.no-flexboxlegacy .extra-large-align-right {
     text-align: right;
   }
-  html.no-flexbox .xlarge-no-margin,
-  html.no-flexboxlegacy .xlarge-no-margin {
+  html.no-flexbox .extra-large-no-margin,
+  html.no-flexboxlegacy .extra-large-no-margin {
     margin: 0 !important;
   }
   html.no-flexbox .space,
   html.no-flexboxlegacy .space {
     margin: 2em;
   }
-  html.no-flexbox .xlarge-space,
-  html.no-flexboxlegacy .xlarge-space {
+  html.no-flexbox .extra-large-space,
+  html.no-flexboxlegacy .extra-large-space {
     margin: 2em;
   }
   html.no-flexbox .padding,
   html.no-flexboxlegacy .padding {
     padding: 2em;
   }
-  html.no-flexbox .xlarge-padding,
-  html.no-flexboxlegacy .xlarge-padding {
+  html.no-flexbox .extra-large-padding,
+  html.no-flexboxlegacy .extra-large-padding {
     padding: 2em;
-  }
-  html.no-flexbox .double-space,
-  html.no-flexboxlegacy .double-space {
-    margin: 4em;
-  }
-  html.no-flexbox .xlarge-double-space,
-  html.no-flexboxlegacy .xlarge-double-space {
-    margin: 4em;
-  }
-  html.no-flexbox .double-padding,
-  html.no-flexboxlegacy .double-padding {
-    padding: 4em;
-  }
-  html.no-flexbox .xlarge-double-padding,
-  html.no-flexboxlegacy .xlarge-double-padding {
-    padding: 4em;
   }
   html.no-flexbox .half-space,
   html.no-flexboxlegacy .half-space {
     margin: 1em;
   }
-  html.no-flexbox .xlarge-half-space,
-  html.no-flexboxlegacy .xlarge-half-space {
+  html.no-flexbox .extra-large-half-space,
+  html.no-flexboxlegacy .extra-large-half-space {
     margin: 1em;
   }
   html.no-flexbox .half-padding,
   html.no-flexboxlegacy .half-padding {
     padding: 1em;
   }
-  html.no-flexbox .xlarge-half-padding,
-  html.no-flexboxlegacy .xlarge-half-padding {
+  html.no-flexbox .extra-large-half-padding,
+  html.no-flexboxlegacy .extra-large-half-padding {
     padding: 1em;
   }
   html.no-flexbox .quarter-space,
   html.no-flexboxlegacy .quarter-space {
     margin: 0.5em;
   }
-  html.no-flexbox .xlarge-quarter-space,
-  html.no-flexboxlegacy .xlarge-quarter-space {
+  html.no-flexbox .extra-large-quarter-space,
+  html.no-flexboxlegacy .extra-large-quarter-space {
     margin: 0.5em;
   }
   html.no-flexbox .quarter-padding,
   html.no-flexboxlegacy .quarter-padding {
     padding: 0.5em;
   }
-  html.no-flexbox .xlarge-quarter-padding,
-  html.no-flexboxlegacy .xlarge-quarter-padding {
+  html.no-flexbox .extra-large-quarter-padding,
+  html.no-flexboxlegacy .extra-large-quarter-padding {
     padding: 0.5em;
   }
   html.no-flexbox .vertical-space,
@@ -644,8 +637,8 @@ html.no-flexboxlegacy [class*=all-100] {
     margin-top: 2em;
     margin-bottom: 2em;
   }
-  html.no-flexbox .xlarge-vertical-space,
-  html.no-flexboxlegacy .xlarge-vertical-space {
+  html.no-flexbox .extra-large-vertical-space,
+  html.no-flexboxlegacy .extra-large-vertical-space {
     margin-top: 2em;
     margin-bottom: 2em;
   }
@@ -654,38 +647,18 @@ html.no-flexboxlegacy [class*=all-100] {
     padding-top: 2em;
     padding-bottom: 2em;
   }
-  html.no-flexbox .xlarge-vertical-padding,
-  html.no-flexboxlegacy .xlarge-vertical-padding {
+  html.no-flexbox .extra-large-vertical-padding,
+  html.no-flexboxlegacy .extra-large-vertical-padding {
     padding-top: 2em;
     padding-bottom: 2em;
-  }
-  html.no-flexbox .double-vertical-space,
-  html.no-flexboxlegacy .double-vertical-space {
-    margin-top: 4em;
-    margin-bottom: 4em;
-  }
-  html.no-flexbox .xlarge-double-vertical-space,
-  html.no-flexboxlegacy .xlarge-double-vertical-space {
-    margin-top: 4em;
-    margin-bottom: 4em;
-  }
-  html.no-flexbox .double-vertical-padding,
-  html.no-flexboxlegacy .double-vertical-padding {
-    padding-top: 4em;
-    padding-bottom: 4em;
-  }
-  html.no-flexbox .xlarge-double-vertical-padding,
-  html.no-flexboxlegacy .xlarge-double-vertical-padding {
-    padding-top: 4em;
-    padding-bottom: 4em;
   }
   html.no-flexbox .half-vertical-space,
   html.no-flexboxlegacy .half-vertical-space {
     margin-top: 1em;
     margin-bottom: 1em;
   }
-  html.no-flexbox .xlarge-half-vertical-space,
-  html.no-flexboxlegacy .xlarge-half-vertical-space {
+  html.no-flexbox .extra-large-half-vertical-space,
+  html.no-flexboxlegacy .extra-large-half-vertical-space {
     margin-top: 1em;
     margin-bottom: 1em;
   }
@@ -694,8 +667,8 @@ html.no-flexboxlegacy [class*=all-100] {
     padding-top: 1em;
     padding-bottom: 1em;
   }
-  html.no-flexbox .xlarge-half-vertical-padding,
-  html.no-flexboxlegacy .xlarge-half-vertical-padding {
+  html.no-flexbox .extra-large-half-vertical-padding,
+  html.no-flexboxlegacy .extra-large-half-vertical-padding {
     padding-top: 1em;
     padding-bottom: 1em;
   }
@@ -704,8 +677,8 @@ html.no-flexboxlegacy [class*=all-100] {
     margin-top: 0.5em;
     margin-bottom: 0.5em;
   }
-  html.no-flexbox .xlarge-quarter-vertical-space,
-  html.no-flexboxlegacy .xlarge-quarter-vertical-space {
+  html.no-flexbox .extra-large-quarter-vertical-space,
+  html.no-flexboxlegacy .extra-large-quarter-vertical-space {
     margin-top: 0.5em;
     margin-bottom: 0.5em;
   }
@@ -714,8 +687,8 @@ html.no-flexboxlegacy [class*=all-100] {
     padding-top: 0.5em;
     padding-bottom: 0.5em;
   }
-  html.no-flexbox .xlarge-quarter-vertical-padding,
-  html.no-flexboxlegacy .xlarge-quarter-vertical-padding {
+  html.no-flexbox .extra-large-quarter-vertical-padding,
+  html.no-flexboxlegacy .extra-large-quarter-vertical-padding {
     padding-top: 0.5em;
     padding-bottom: 0.5em;
   }
@@ -724,8 +697,8 @@ html.no-flexboxlegacy [class*=all-100] {
     margin-left: 2em;
     margin-right: 2em;
   }
-  html.no-flexbox .xlarge-horizontal-space,
-  html.no-flexboxlegacy .xlarge-horizontal-space {
+  html.no-flexbox .extra-large-horizontal-space,
+  html.no-flexboxlegacy .extra-large-horizontal-space {
     margin-left: 2em;
     margin-right: 2em;
   }
@@ -734,38 +707,18 @@ html.no-flexboxlegacy [class*=all-100] {
     padding-left: 2em;
     padding-right: 2em;
   }
-  html.no-flexbox .xlarge-horizontal-padding,
-  html.no-flexboxlegacy .xlarge-horizontal-padding {
+  html.no-flexbox .extra-large-horizontal-padding,
+  html.no-flexboxlegacy .extra-large-horizontal-padding {
     padding-left: 2em;
     padding-right: 2em;
-  }
-  html.no-flexbox .double-horizontal-space,
-  html.no-flexboxlegacy .double-horizontal-space {
-    margin-left: 4em;
-    margin-right: 4em;
-  }
-  html.no-flexbox .xlarge-double-horizontal-space,
-  html.no-flexboxlegacy .xlarge-double-horizontal-space {
-    margin-left: 4em;
-    margin-right: 4em;
-  }
-  html.no-flexbox .double-horizontal-padding,
-  html.no-flexboxlegacy .double-horizontal-padding {
-    padding-left: 4em;
-    padding-right: 4em;
-  }
-  html.no-flexbox .xlarge-double-horizontal-padding,
-  html.no-flexboxlegacy .xlarge-double-horizontal-padding {
-    padding-left: 4em;
-    padding-right: 4em;
   }
   html.no-flexbox .half-horizontal-space,
   html.no-flexboxlegacy .half-horizontal-space {
     margin-left: 1em;
     margin-right: 1em;
   }
-  html.no-flexbox .xlarge-half-horizontal-space,
-  html.no-flexboxlegacy .xlarge-half-horizontal-space {
+  html.no-flexbox .extra-large-half-horizontal-space,
+  html.no-flexboxlegacy .extra-large-half-horizontal-space {
     margin-left: 1em;
     margin-right: 1em;
   }
@@ -774,8 +727,8 @@ html.no-flexboxlegacy [class*=all-100] {
     padding-left: 1em;
     padding-right: 1em;
   }
-  html.no-flexbox .xlarge-half-horizontal-padding,
-  html.no-flexboxlegacy .xlarge-half-horizontal-padding {
+  html.no-flexbox .extra-large-half-horizontal-padding,
+  html.no-flexboxlegacy .extra-large-half-horizontal-padding {
     padding-left: 1em;
     padding-right: 1em;
   }
@@ -784,8 +737,8 @@ html.no-flexboxlegacy [class*=all-100] {
     margin-left: 0.5em;
     margin-right: 0.5em;
   }
-  html.no-flexbox .xlarge-quarter-horizontal-space,
-  html.no-flexboxlegacy .xlarge-quarter-horizontal-space {
+  html.no-flexbox .extra-large-quarter-horizontal-space,
+  html.no-flexboxlegacy .extra-large-quarter-horizontal-space {
     margin-left: 0.5em;
     margin-right: 0.5em;
   }
@@ -794,8 +747,8 @@ html.no-flexboxlegacy [class*=all-100] {
     padding-left: 0.5em;
     padding-right: 0.5em;
   }
-  html.no-flexbox .xlarge-quarter-horizontal-padding,
-  html.no-flexboxlegacy .xlarge-quarter-horizontal-padding {
+  html.no-flexbox .extra-large-quarter-horizontal-padding,
+  html.no-flexboxlegacy .extra-large-quarter-horizontal-padding {
     padding-left: 0.5em;
     padding-right: 0.5em;
   }
@@ -803,290 +756,226 @@ html.no-flexboxlegacy [class*=all-100] {
   html.no-flexboxlegacy .top-space {
     margin-top: 2em;
   }
-  html.no-flexbox .xlarge-top-space,
-  html.no-flexboxlegacy .xlarge-top-space {
+  html.no-flexbox .extra-large-top-space,
+  html.no-flexboxlegacy .extra-large-top-space {
     margin-top: 2em;
   }
   html.no-flexbox .top-padding,
   html.no-flexboxlegacy .top-padding {
     padding-top: 2em;
   }
-  html.no-flexbox .xlarge-top-padding,
-  html.no-flexboxlegacy .xlarge-top-padding {
+  html.no-flexbox .extra-large-top-padding,
+  html.no-flexboxlegacy .extra-large-top-padding {
     padding-top: 2em;
-  }
-  html.no-flexbox .double-top-space,
-  html.no-flexboxlegacy .double-top-space {
-    margin-top: 4em;
-  }
-  html.no-flexbox .xlarge-double-top-space,
-  html.no-flexboxlegacy .xlarge-double-top-space {
-    margin-top: 4em;
-  }
-  html.no-flexbox .double-top-padding,
-  html.no-flexboxlegacy .double-top-padding {
-    padding-top: 4em;
-  }
-  html.no-flexbox .xlarge-double-top-padding,
-  html.no-flexboxlegacy .xlarge-double-top-padding {
-    padding-top: 4em;
   }
   html.no-flexbox .half-top-space,
   html.no-flexboxlegacy .half-top-space {
     margin-top: 1em;
   }
-  html.no-flexbox .xlarge-half-top-space,
-  html.no-flexboxlegacy .xlarge-half-top-space {
+  html.no-flexbox .extra-large-half-top-space,
+  html.no-flexboxlegacy .extra-large-half-top-space {
     margin-top: 1em;
   }
   html.no-flexbox .half-top-padding,
   html.no-flexboxlegacy .half-top-padding {
     padding-top: 1em;
   }
-  html.no-flexbox .xlarge-half-top-padding,
-  html.no-flexboxlegacy .xlarge-half-top-padding {
+  html.no-flexbox .extra-large-half-top-padding,
+  html.no-flexboxlegacy .extra-large-half-top-padding {
     padding-top: 1em;
   }
   html.no-flexbox .quarter-top-space,
   html.no-flexboxlegacy .quarter-top-space {
     margin-top: 0.5em;
   }
-  html.no-flexbox .xlarge-quarter-top-space,
-  html.no-flexboxlegacy .xlarge-quarter-top-space {
+  html.no-flexbox .extra-large-quarter-top-space,
+  html.no-flexboxlegacy .extra-large-quarter-top-space {
     margin-top: 0.5em;
   }
   html.no-flexbox .quarter-top-padding,
   html.no-flexboxlegacy .quarter-top-padding {
     padding-top: 0.5em;
   }
-  html.no-flexbox .xlarge-quarter-top-padding,
-  html.no-flexboxlegacy .xlarge-quarter-top-padding {
+  html.no-flexbox .extra-large-quarter-top-padding,
+  html.no-flexboxlegacy .extra-large-quarter-top-padding {
     padding-top: 0.5em;
   }
   html.no-flexbox .right-space,
   html.no-flexboxlegacy .right-space {
     margin-right: 2em;
   }
-  html.no-flexbox .xlarge-right-space,
-  html.no-flexboxlegacy .xlarge-right-space {
+  html.no-flexbox .extra-large-right-space,
+  html.no-flexboxlegacy .extra-large-right-space {
     margin-right: 2em;
   }
   html.no-flexbox .right-padding,
   html.no-flexboxlegacy .right-padding {
     padding-right: 2em;
   }
-  html.no-flexbox .xlarge-right-padding,
-  html.no-flexboxlegacy .xlarge-right-padding {
+  html.no-flexbox .extra-large-right-padding,
+  html.no-flexboxlegacy .extra-large-right-padding {
     padding-right: 2em;
-  }
-  html.no-flexbox .double-right-space,
-  html.no-flexboxlegacy .double-right-space {
-    margin-right: 4em;
-  }
-  html.no-flexbox .xlarge-double-right-space,
-  html.no-flexboxlegacy .xlarge-double-right-space {
-    margin-right: 4em;
-  }
-  html.no-flexbox .double-right-padding,
-  html.no-flexboxlegacy .double-right-padding {
-    padding-right: 4em;
-  }
-  html.no-flexbox .xlarge-double-right-padding,
-  html.no-flexboxlegacy .xlarge-double-right-padding {
-    padding-right: 4em;
   }
   html.no-flexbox .half-right-space,
   html.no-flexboxlegacy .half-right-space {
     margin-right: 1em;
   }
-  html.no-flexbox .xlarge-half-right-space,
-  html.no-flexboxlegacy .xlarge-half-right-space {
+  html.no-flexbox .extra-large-half-right-space,
+  html.no-flexboxlegacy .extra-large-half-right-space {
     margin-right: 1em;
   }
   html.no-flexbox .half-right-padding,
   html.no-flexboxlegacy .half-right-padding {
     padding-right: 1em;
   }
-  html.no-flexbox .xlarge-half-right-padding,
-  html.no-flexboxlegacy .xlarge-half-right-padding {
+  html.no-flexbox .extra-large-half-right-padding,
+  html.no-flexboxlegacy .extra-large-half-right-padding {
     padding-right: 1em;
   }
   html.no-flexbox .quarter-right-space,
   html.no-flexboxlegacy .quarter-right-space {
     margin-right: 0.5em;
   }
-  html.no-flexbox .xlarge-quarter-right-space,
-  html.no-flexboxlegacy .xlarge-quarter-right-space {
+  html.no-flexbox .extra-large-quarter-right-space,
+  html.no-flexboxlegacy .extra-large-quarter-right-space {
     margin-right: 0.5em;
   }
   html.no-flexbox .quarter-right-padding,
   html.no-flexboxlegacy .quarter-right-padding {
     padding-right: 0.5em;
   }
-  html.no-flexbox .xlarge-quarter-right-padding,
-  html.no-flexboxlegacy .xlarge-quarter-right-padding {
+  html.no-flexbox .extra-large-quarter-right-padding,
+  html.no-flexboxlegacy .extra-large-quarter-right-padding {
     padding-right: 0.5em;
   }
   html.no-flexbox .bottom-space,
   html.no-flexboxlegacy .bottom-space {
     margin-bottom: 2em;
   }
-  html.no-flexbox .xlarge-bottom-space,
-  html.no-flexboxlegacy .xlarge-bottom-space {
+  html.no-flexbox .extra-large-bottom-space,
+  html.no-flexboxlegacy .extra-large-bottom-space {
     margin-bottom: 2em;
   }
   html.no-flexbox .bottom-padding,
   html.no-flexboxlegacy .bottom-padding {
     padding-bottom: 2em;
   }
-  html.no-flexbox .xlarge-bottom-padding,
-  html.no-flexboxlegacy .xlarge-bottom-padding {
+  html.no-flexbox .extra-large-bottom-padding,
+  html.no-flexboxlegacy .extra-large-bottom-padding {
     padding-bottom: 2em;
-  }
-  html.no-flexbox .double-bottom-space,
-  html.no-flexboxlegacy .double-bottom-space {
-    margin-bottom: 4em;
-  }
-  html.no-flexbox .xlarge-double-bottom-space,
-  html.no-flexboxlegacy .xlarge-double-bottom-space {
-    margin-bottom: 4em;
-  }
-  html.no-flexbox .double-bottom-padding,
-  html.no-flexboxlegacy .double-bottom-padding {
-    padding-bottom: 4em;
-  }
-  html.no-flexbox .xlarge-double-bottom-padding,
-  html.no-flexboxlegacy .xlarge-double-bottom-padding {
-    padding-bottom: 4em;
   }
   html.no-flexbox .half-bottom-space,
   html.no-flexboxlegacy .half-bottom-space {
     margin-bottom: 1em;
   }
-  html.no-flexbox .xlarge-half-bottom-space,
-  html.no-flexboxlegacy .xlarge-half-bottom-space {
+  html.no-flexbox .extra-large-half-bottom-space,
+  html.no-flexboxlegacy .extra-large-half-bottom-space {
     margin-bottom: 1em;
   }
   html.no-flexbox .half-bottom-padding,
   html.no-flexboxlegacy .half-bottom-padding {
     padding-bottom: 1em;
   }
-  html.no-flexbox .xlarge-half-bottom-padding,
-  html.no-flexboxlegacy .xlarge-half-bottom-padding {
+  html.no-flexbox .extra-large-half-bottom-padding,
+  html.no-flexboxlegacy .extra-large-half-bottom-padding {
     padding-bottom: 1em;
   }
   html.no-flexbox .quarter-bottom-space,
   html.no-flexboxlegacy .quarter-bottom-space {
     margin-bottom: 0.5em;
   }
-  html.no-flexbox .xlarge-quarter-bottom-space,
-  html.no-flexboxlegacy .xlarge-quarter-bottom-space {
+  html.no-flexbox .extra-large-quarter-bottom-space,
+  html.no-flexboxlegacy .extra-large-quarter-bottom-space {
     margin-bottom: 0.5em;
   }
   html.no-flexbox .quarter-bottom-padding,
   html.no-flexboxlegacy .quarter-bottom-padding {
     padding-bottom: 0.5em;
   }
-  html.no-flexbox .xlarge-quarter-bottom-padding,
-  html.no-flexboxlegacy .xlarge-quarter-bottom-padding {
+  html.no-flexbox .extra-large-quarter-bottom-padding,
+  html.no-flexboxlegacy .extra-large-quarter-bottom-padding {
     padding-bottom: 0.5em;
   }
   html.no-flexbox .left-space,
   html.no-flexboxlegacy .left-space {
     margin-left: 2em;
   }
-  html.no-flexbox .xlarge-left-space,
-  html.no-flexboxlegacy .xlarge-left-space {
+  html.no-flexbox .extra-large-left-space,
+  html.no-flexboxlegacy .extra-large-left-space {
     margin-left: 2em;
   }
   html.no-flexbox .left-padding,
   html.no-flexboxlegacy .left-padding {
     padding-left: 2em;
   }
-  html.no-flexbox .xlarge-left-padding,
-  html.no-flexboxlegacy .xlarge-left-padding {
+  html.no-flexbox .extra-large-left-padding,
+  html.no-flexboxlegacy .extra-large-left-padding {
     padding-left: 2em;
-  }
-  html.no-flexbox .double-left-space,
-  html.no-flexboxlegacy .double-left-space {
-    margin-left: 4em;
-  }
-  html.no-flexbox .xlarge-double-left-space,
-  html.no-flexboxlegacy .xlarge-double-left-space {
-    margin-left: 4em;
-  }
-  html.no-flexbox .double-left-padding,
-  html.no-flexboxlegacy .double-left-padding {
-    padding-left: 4em;
-  }
-  html.no-flexbox .xlarge-double-left-padding,
-  html.no-flexboxlegacy .xlarge-double-left-padding {
-    padding-left: 4em;
   }
   html.no-flexbox .half-left-space,
   html.no-flexboxlegacy .half-left-space {
     margin-left: 1em;
   }
-  html.no-flexbox .xlarge-half-left-space,
-  html.no-flexboxlegacy .xlarge-half-left-space {
+  html.no-flexbox .extra-large-half-left-space,
+  html.no-flexboxlegacy .extra-large-half-left-space {
     margin-left: 1em;
   }
   html.no-flexbox .half-left-padding,
   html.no-flexboxlegacy .half-left-padding {
     padding-left: 1em;
   }
-  html.no-flexbox .xlarge-half-left-padding,
-  html.no-flexboxlegacy .xlarge-half-left-padding {
+  html.no-flexbox .extra-large-half-left-padding,
+  html.no-flexboxlegacy .extra-large-half-left-padding {
     padding-left: 1em;
   }
   html.no-flexbox .quarter-left-space,
   html.no-flexboxlegacy .quarter-left-space {
     margin-left: 0.5em;
   }
-  html.no-flexbox .xlarge-quarter-left-space,
-  html.no-flexboxlegacy .xlarge-quarter-left-space {
+  html.no-flexbox .extra-large-quarter-left-space,
+  html.no-flexboxlegacy .extra-large-quarter-left-space {
     margin-left: 0.5em;
   }
   html.no-flexbox .quarter-left-padding,
   html.no-flexboxlegacy .quarter-left-padding {
     padding-left: 0.5em;
   }
-  html.no-flexbox .xlarge-quarter-left-padding,
-  html.no-flexboxlegacy .xlarge-quarter-left-padding {
+  html.no-flexbox .extra-large-quarter-left-padding,
+  html.no-flexboxlegacy .extra-large-quarter-left-padding {
     padding-left: 0.5em;
   }
-  html.no-flexbox .hide-xlarge,
-  html.no-flexboxlegacy .hide-xlarge {
+  html.no-flexbox .hide-extra-large,
+  html.no-flexboxlegacy .hide-extra-large {
     display: none !important;
   }
-  html.no-flexbox .show-xlarge,
-  html.no-flexboxlegacy .show-xlarge {
+  html.no-flexbox .show-extra-large,
+  html.no-flexboxlegacy .show-extra-large {
     display: inherit !important;
   }
-  html.no-flexbox table.show-xlarge,
-  html.no-flexboxlegacy table.show-xlarge {
+  html.no-flexbox table.show-extra-large,
+  html.no-flexboxlegacy table.show-extra-large {
     display: table;
   }
-  html.no-flexbox thead.show-xlarge,
-  html.no-flexboxlegacy thead.show-xlarge {
+  html.no-flexbox thead.show-extra-large,
+  html.no-flexboxlegacy thead.show-extra-large {
     display: table-header-group;
   }
-  html.no-flexbox tbody.show-xlarge,
-  html.no-flexboxlegacy tbody.show-xlarge {
+  html.no-flexbox tbody.show-extra-large,
+  html.no-flexboxlegacy tbody.show-extra-large {
     display: table-row-group;
   }
-  html.no-flexbox tfoot.show-xlarge,
-  html.no-flexboxlegacy tfoot.show-xlarge {
+  html.no-flexbox tfoot.show-extra-large,
+  html.no-flexboxlegacy tfoot.show-extra-large {
     display: table-footer-group;
   }
-  html.no-flexbox tr.show-xlarge,
-  html.no-flexboxlegacy tr.show-xlarge {
+  html.no-flexbox tr.show-extra-large,
+  html.no-flexboxlegacy tr.show-extra-large {
     display: table-row;
   }
-  html.no-flexbox th.show-xlarge,
-  html.no-flexbox td.show-xlarge,
-  html.no-flexboxlegacy th.show-xlarge,
-  html.no-flexboxlegacy td.show-xlarge {
+  html.no-flexbox th.show-extra-large,
+  html.no-flexbox td.show-extra-large,
+  html.no-flexboxlegacy th.show-extra-large,
+  html.no-flexboxlegacy td.show-extra-large {
     display: table-cell;
   }
 }
@@ -1460,22 +1349,6 @@ html.no-flexboxlegacy [class*=all-100] {
   html.no-flexboxlegacy .large-padding {
     padding: 1.75em;
   }
-  html.no-flexbox .double-space,
-  html.no-flexboxlegacy .double-space {
-    margin: 3.5em;
-  }
-  html.no-flexbox .large-double-space,
-  html.no-flexboxlegacy .large-double-space {
-    margin: 3.5em;
-  }
-  html.no-flexbox .double-padding,
-  html.no-flexboxlegacy .double-padding {
-    padding: 3.5em;
-  }
-  html.no-flexbox .large-double-padding,
-  html.no-flexboxlegacy .large-double-padding {
-    padding: 3.5em;
-  }
   html.no-flexbox .half-space,
   html.no-flexboxlegacy .half-space {
     margin: 0.875em;
@@ -1527,26 +1400,6 @@ html.no-flexboxlegacy [class*=all-100] {
   html.no-flexboxlegacy .large-vertical-padding {
     padding-top: 1.75em;
     padding-bottom: 1.75em;
-  }
-  html.no-flexbox .double-vertical-space,
-  html.no-flexboxlegacy .double-vertical-space {
-    margin-top: 3.5em;
-    margin-bottom: 3.5em;
-  }
-  html.no-flexbox .large-double-vertical-space,
-  html.no-flexboxlegacy .large-double-vertical-space {
-    margin-top: 3.5em;
-    margin-bottom: 3.5em;
-  }
-  html.no-flexbox .double-vertical-padding,
-  html.no-flexboxlegacy .double-vertical-padding {
-    padding-top: 3.5em;
-    padding-bottom: 3.5em;
-  }
-  html.no-flexbox .large-double-vertical-padding,
-  html.no-flexboxlegacy .large-double-vertical-padding {
-    padding-top: 3.5em;
-    padding-bottom: 3.5em;
   }
   html.no-flexbox .half-vertical-space,
   html.no-flexboxlegacy .half-vertical-space {
@@ -1608,26 +1461,6 @@ html.no-flexboxlegacy [class*=all-100] {
     padding-left: 1.75em;
     padding-right: 1.75em;
   }
-  html.no-flexbox .double-horizontal-space,
-  html.no-flexboxlegacy .double-horizontal-space {
-    margin-left: 3.5em;
-    margin-right: 3.5em;
-  }
-  html.no-flexbox .large-double-horizontal-space,
-  html.no-flexboxlegacy .large-double-horizontal-space {
-    margin-left: 3.5em;
-    margin-right: 3.5em;
-  }
-  html.no-flexbox .double-horizontal-padding,
-  html.no-flexboxlegacy .double-horizontal-padding {
-    padding-left: 3.5em;
-    padding-right: 3.5em;
-  }
-  html.no-flexbox .large-double-horizontal-padding,
-  html.no-flexboxlegacy .large-double-horizontal-padding {
-    padding-left: 3.5em;
-    padding-right: 3.5em;
-  }
   html.no-flexbox .half-horizontal-space,
   html.no-flexboxlegacy .half-horizontal-space {
     margin-left: 0.875em;
@@ -1684,22 +1517,6 @@ html.no-flexboxlegacy [class*=all-100] {
   html.no-flexboxlegacy .large-top-padding {
     padding-top: 1.75em;
   }
-  html.no-flexbox .double-top-space,
-  html.no-flexboxlegacy .double-top-space {
-    margin-top: 3.5em;
-  }
-  html.no-flexbox .large-double-top-space,
-  html.no-flexboxlegacy .large-double-top-space {
-    margin-top: 3.5em;
-  }
-  html.no-flexbox .double-top-padding,
-  html.no-flexboxlegacy .double-top-padding {
-    padding-top: 3.5em;
-  }
-  html.no-flexbox .large-double-top-padding,
-  html.no-flexboxlegacy .large-double-top-padding {
-    padding-top: 3.5em;
-  }
   html.no-flexbox .half-top-space,
   html.no-flexboxlegacy .half-top-space {
     margin-top: 0.875em;
@@ -1747,22 +1564,6 @@ html.no-flexboxlegacy [class*=all-100] {
   html.no-flexbox .large-right-padding,
   html.no-flexboxlegacy .large-right-padding {
     padding-right: 1.75em;
-  }
-  html.no-flexbox .double-right-space,
-  html.no-flexboxlegacy .double-right-space {
-    margin-right: 3.5em;
-  }
-  html.no-flexbox .large-double-right-space,
-  html.no-flexboxlegacy .large-double-right-space {
-    margin-right: 3.5em;
-  }
-  html.no-flexbox .double-right-padding,
-  html.no-flexboxlegacy .double-right-padding {
-    padding-right: 3.5em;
-  }
-  html.no-flexbox .large-double-right-padding,
-  html.no-flexboxlegacy .large-double-right-padding {
-    padding-right: 3.5em;
   }
   html.no-flexbox .half-right-space,
   html.no-flexboxlegacy .half-right-space {
@@ -1812,22 +1613,6 @@ html.no-flexboxlegacy [class*=all-100] {
   html.no-flexboxlegacy .large-bottom-padding {
     padding-bottom: 1.75em;
   }
-  html.no-flexbox .double-bottom-space,
-  html.no-flexboxlegacy .double-bottom-space {
-    margin-bottom: 3.5em;
-  }
-  html.no-flexbox .large-double-bottom-space,
-  html.no-flexboxlegacy .large-double-bottom-space {
-    margin-bottom: 3.5em;
-  }
-  html.no-flexbox .double-bottom-padding,
-  html.no-flexboxlegacy .double-bottom-padding {
-    padding-bottom: 3.5em;
-  }
-  html.no-flexbox .large-double-bottom-padding,
-  html.no-flexboxlegacy .large-double-bottom-padding {
-    padding-bottom: 3.5em;
-  }
   html.no-flexbox .half-bottom-space,
   html.no-flexboxlegacy .half-bottom-space {
     margin-bottom: 0.875em;
@@ -1875,22 +1660,6 @@ html.no-flexboxlegacy [class*=all-100] {
   html.no-flexbox .large-left-padding,
   html.no-flexboxlegacy .large-left-padding {
     padding-left: 1.75em;
-  }
-  html.no-flexbox .double-left-space,
-  html.no-flexboxlegacy .double-left-space {
-    margin-left: 3.5em;
-  }
-  html.no-flexbox .large-double-left-space,
-  html.no-flexboxlegacy .large-double-left-space {
-    margin-left: 3.5em;
-  }
-  html.no-flexbox .double-left-padding,
-  html.no-flexboxlegacy .double-left-padding {
-    padding-left: 3.5em;
-  }
-  html.no-flexbox .large-double-left-padding,
-  html.no-flexboxlegacy .large-double-left-padding {
-    padding-left: 3.5em;
   }
   html.no-flexbox .half-left-space,
   html.no-flexboxlegacy .half-left-space {
@@ -2329,22 +2098,6 @@ html.no-flexboxlegacy [class*=all-100] {
   html.no-flexboxlegacy .medium-padding {
     padding: 1.5em;
   }
-  html.no-flexbox .double-space,
-  html.no-flexboxlegacy .double-space {
-    margin: 3em;
-  }
-  html.no-flexbox .medium-double-space,
-  html.no-flexboxlegacy .medium-double-space {
-    margin: 3em;
-  }
-  html.no-flexbox .double-padding,
-  html.no-flexboxlegacy .double-padding {
-    padding: 3em;
-  }
-  html.no-flexbox .medium-double-padding,
-  html.no-flexboxlegacy .medium-double-padding {
-    padding: 3em;
-  }
   html.no-flexbox .half-space,
   html.no-flexboxlegacy .half-space {
     margin: 0.75em;
@@ -2396,26 +2149,6 @@ html.no-flexboxlegacy [class*=all-100] {
   html.no-flexboxlegacy .medium-vertical-padding {
     padding-top: 1.5em;
     padding-bottom: 1.5em;
-  }
-  html.no-flexbox .double-vertical-space,
-  html.no-flexboxlegacy .double-vertical-space {
-    margin-top: 3em;
-    margin-bottom: 3em;
-  }
-  html.no-flexbox .medium-double-vertical-space,
-  html.no-flexboxlegacy .medium-double-vertical-space {
-    margin-top: 3em;
-    margin-bottom: 3em;
-  }
-  html.no-flexbox .double-vertical-padding,
-  html.no-flexboxlegacy .double-vertical-padding {
-    padding-top: 3em;
-    padding-bottom: 3em;
-  }
-  html.no-flexbox .medium-double-vertical-padding,
-  html.no-flexboxlegacy .medium-double-vertical-padding {
-    padding-top: 3em;
-    padding-bottom: 3em;
   }
   html.no-flexbox .half-vertical-space,
   html.no-flexboxlegacy .half-vertical-space {
@@ -2477,26 +2210,6 @@ html.no-flexboxlegacy [class*=all-100] {
     padding-left: 1.5em;
     padding-right: 1.5em;
   }
-  html.no-flexbox .double-horizontal-space,
-  html.no-flexboxlegacy .double-horizontal-space {
-    margin-left: 3em;
-    margin-right: 3em;
-  }
-  html.no-flexbox .medium-double-horizontal-space,
-  html.no-flexboxlegacy .medium-double-horizontal-space {
-    margin-left: 3em;
-    margin-right: 3em;
-  }
-  html.no-flexbox .double-horizontal-padding,
-  html.no-flexboxlegacy .double-horizontal-padding {
-    padding-left: 3em;
-    padding-right: 3em;
-  }
-  html.no-flexbox .medium-double-horizontal-padding,
-  html.no-flexboxlegacy .medium-double-horizontal-padding {
-    padding-left: 3em;
-    padding-right: 3em;
-  }
   html.no-flexbox .half-horizontal-space,
   html.no-flexboxlegacy .half-horizontal-space {
     margin-left: 0.75em;
@@ -2553,22 +2266,6 @@ html.no-flexboxlegacy [class*=all-100] {
   html.no-flexboxlegacy .medium-top-padding {
     padding-top: 1.5em;
   }
-  html.no-flexbox .double-top-space,
-  html.no-flexboxlegacy .double-top-space {
-    margin-top: 3em;
-  }
-  html.no-flexbox .medium-double-top-space,
-  html.no-flexboxlegacy .medium-double-top-space {
-    margin-top: 3em;
-  }
-  html.no-flexbox .double-top-padding,
-  html.no-flexboxlegacy .double-top-padding {
-    padding-top: 3em;
-  }
-  html.no-flexbox .medium-double-top-padding,
-  html.no-flexboxlegacy .medium-double-top-padding {
-    padding-top: 3em;
-  }
   html.no-flexbox .half-top-space,
   html.no-flexboxlegacy .half-top-space {
     margin-top: 0.75em;
@@ -2616,22 +2313,6 @@ html.no-flexboxlegacy [class*=all-100] {
   html.no-flexbox .medium-right-padding,
   html.no-flexboxlegacy .medium-right-padding {
     padding-right: 1.5em;
-  }
-  html.no-flexbox .double-right-space,
-  html.no-flexboxlegacy .double-right-space {
-    margin-right: 3em;
-  }
-  html.no-flexbox .medium-double-right-space,
-  html.no-flexboxlegacy .medium-double-right-space {
-    margin-right: 3em;
-  }
-  html.no-flexbox .double-right-padding,
-  html.no-flexboxlegacy .double-right-padding {
-    padding-right: 3em;
-  }
-  html.no-flexbox .medium-double-right-padding,
-  html.no-flexboxlegacy .medium-double-right-padding {
-    padding-right: 3em;
   }
   html.no-flexbox .half-right-space,
   html.no-flexboxlegacy .half-right-space {
@@ -2681,22 +2362,6 @@ html.no-flexboxlegacy [class*=all-100] {
   html.no-flexboxlegacy .medium-bottom-padding {
     padding-bottom: 1.5em;
   }
-  html.no-flexbox .double-bottom-space,
-  html.no-flexboxlegacy .double-bottom-space {
-    margin-bottom: 3em;
-  }
-  html.no-flexbox .medium-double-bottom-space,
-  html.no-flexboxlegacy .medium-double-bottom-space {
-    margin-bottom: 3em;
-  }
-  html.no-flexbox .double-bottom-padding,
-  html.no-flexboxlegacy .double-bottom-padding {
-    padding-bottom: 3em;
-  }
-  html.no-flexbox .medium-double-bottom-padding,
-  html.no-flexboxlegacy .medium-double-bottom-padding {
-    padding-bottom: 3em;
-  }
   html.no-flexbox .half-bottom-space,
   html.no-flexboxlegacy .half-bottom-space {
     margin-bottom: 0.75em;
@@ -2744,22 +2409,6 @@ html.no-flexboxlegacy [class*=all-100] {
   html.no-flexbox .medium-left-padding,
   html.no-flexboxlegacy .medium-left-padding {
     padding-left: 1.5em;
-  }
-  html.no-flexbox .double-left-space,
-  html.no-flexboxlegacy .double-left-space {
-    margin-left: 3em;
-  }
-  html.no-flexbox .medium-double-left-space,
-  html.no-flexboxlegacy .medium-double-left-space {
-    margin-left: 3em;
-  }
-  html.no-flexbox .double-left-padding,
-  html.no-flexboxlegacy .double-left-padding {
-    padding-left: 3em;
-  }
-  html.no-flexbox .medium-double-left-padding,
-  html.no-flexboxlegacy .medium-double-left-padding {
-    padding-left: 3em;
   }
   html.no-flexbox .half-left-space,
   html.no-flexboxlegacy .half-left-space {
@@ -3198,22 +2847,6 @@ html.no-flexboxlegacy [class*=all-100] {
   html.no-flexboxlegacy .small-padding {
     padding: 1.25em;
   }
-  html.no-flexbox .double-space,
-  html.no-flexboxlegacy .double-space {
-    margin: 2.5em;
-  }
-  html.no-flexbox .small-double-space,
-  html.no-flexboxlegacy .small-double-space {
-    margin: 2.5em;
-  }
-  html.no-flexbox .double-padding,
-  html.no-flexboxlegacy .double-padding {
-    padding: 2.5em;
-  }
-  html.no-flexbox .small-double-padding,
-  html.no-flexboxlegacy .small-double-padding {
-    padding: 2.5em;
-  }
   html.no-flexbox .half-space,
   html.no-flexboxlegacy .half-space {
     margin: 0.625em;
@@ -3265,26 +2898,6 @@ html.no-flexboxlegacy [class*=all-100] {
   html.no-flexboxlegacy .small-vertical-padding {
     padding-top: 1.25em;
     padding-bottom: 1.25em;
-  }
-  html.no-flexbox .double-vertical-space,
-  html.no-flexboxlegacy .double-vertical-space {
-    margin-top: 2.5em;
-    margin-bottom: 2.5em;
-  }
-  html.no-flexbox .small-double-vertical-space,
-  html.no-flexboxlegacy .small-double-vertical-space {
-    margin-top: 2.5em;
-    margin-bottom: 2.5em;
-  }
-  html.no-flexbox .double-vertical-padding,
-  html.no-flexboxlegacy .double-vertical-padding {
-    padding-top: 2.5em;
-    padding-bottom: 2.5em;
-  }
-  html.no-flexbox .small-double-vertical-padding,
-  html.no-flexboxlegacy .small-double-vertical-padding {
-    padding-top: 2.5em;
-    padding-bottom: 2.5em;
   }
   html.no-flexbox .half-vertical-space,
   html.no-flexboxlegacy .half-vertical-space {
@@ -3346,26 +2959,6 @@ html.no-flexboxlegacy [class*=all-100] {
     padding-left: 1.25em;
     padding-right: 1.25em;
   }
-  html.no-flexbox .double-horizontal-space,
-  html.no-flexboxlegacy .double-horizontal-space {
-    margin-left: 2.5em;
-    margin-right: 2.5em;
-  }
-  html.no-flexbox .small-double-horizontal-space,
-  html.no-flexboxlegacy .small-double-horizontal-space {
-    margin-left: 2.5em;
-    margin-right: 2.5em;
-  }
-  html.no-flexbox .double-horizontal-padding,
-  html.no-flexboxlegacy .double-horizontal-padding {
-    padding-left: 2.5em;
-    padding-right: 2.5em;
-  }
-  html.no-flexbox .small-double-horizontal-padding,
-  html.no-flexboxlegacy .small-double-horizontal-padding {
-    padding-left: 2.5em;
-    padding-right: 2.5em;
-  }
   html.no-flexbox .half-horizontal-space,
   html.no-flexboxlegacy .half-horizontal-space {
     margin-left: 0.625em;
@@ -3422,22 +3015,6 @@ html.no-flexboxlegacy [class*=all-100] {
   html.no-flexboxlegacy .small-top-padding {
     padding-top: 1.25em;
   }
-  html.no-flexbox .double-top-space,
-  html.no-flexboxlegacy .double-top-space {
-    margin-top: 2.5em;
-  }
-  html.no-flexbox .small-double-top-space,
-  html.no-flexboxlegacy .small-double-top-space {
-    margin-top: 2.5em;
-  }
-  html.no-flexbox .double-top-padding,
-  html.no-flexboxlegacy .double-top-padding {
-    padding-top: 2.5em;
-  }
-  html.no-flexbox .small-double-top-padding,
-  html.no-flexboxlegacy .small-double-top-padding {
-    padding-top: 2.5em;
-  }
   html.no-flexbox .half-top-space,
   html.no-flexboxlegacy .half-top-space {
     margin-top: 0.625em;
@@ -3485,22 +3062,6 @@ html.no-flexboxlegacy [class*=all-100] {
   html.no-flexbox .small-right-padding,
   html.no-flexboxlegacy .small-right-padding {
     padding-right: 1.25em;
-  }
-  html.no-flexbox .double-right-space,
-  html.no-flexboxlegacy .double-right-space {
-    margin-right: 2.5em;
-  }
-  html.no-flexbox .small-double-right-space,
-  html.no-flexboxlegacy .small-double-right-space {
-    margin-right: 2.5em;
-  }
-  html.no-flexbox .double-right-padding,
-  html.no-flexboxlegacy .double-right-padding {
-    padding-right: 2.5em;
-  }
-  html.no-flexbox .small-double-right-padding,
-  html.no-flexboxlegacy .small-double-right-padding {
-    padding-right: 2.5em;
   }
   html.no-flexbox .half-right-space,
   html.no-flexboxlegacy .half-right-space {
@@ -3550,22 +3111,6 @@ html.no-flexboxlegacy [class*=all-100] {
   html.no-flexboxlegacy .small-bottom-padding {
     padding-bottom: 1.25em;
   }
-  html.no-flexbox .double-bottom-space,
-  html.no-flexboxlegacy .double-bottom-space {
-    margin-bottom: 2.5em;
-  }
-  html.no-flexbox .small-double-bottom-space,
-  html.no-flexboxlegacy .small-double-bottom-space {
-    margin-bottom: 2.5em;
-  }
-  html.no-flexbox .double-bottom-padding,
-  html.no-flexboxlegacy .double-bottom-padding {
-    padding-bottom: 2.5em;
-  }
-  html.no-flexbox .small-double-bottom-padding,
-  html.no-flexboxlegacy .small-double-bottom-padding {
-    padding-bottom: 2.5em;
-  }
   html.no-flexbox .half-bottom-space,
   html.no-flexboxlegacy .half-bottom-space {
     margin-bottom: 0.625em;
@@ -3613,22 +3158,6 @@ html.no-flexboxlegacy [class*=all-100] {
   html.no-flexbox .small-left-padding,
   html.no-flexboxlegacy .small-left-padding {
     padding-left: 1.25em;
-  }
-  html.no-flexbox .double-left-space,
-  html.no-flexboxlegacy .double-left-space {
-    margin-left: 2.5em;
-  }
-  html.no-flexbox .small-double-left-space,
-  html.no-flexboxlegacy .small-double-left-space {
-    margin-left: 2.5em;
-  }
-  html.no-flexbox .double-left-padding,
-  html.no-flexboxlegacy .double-left-padding {
-    padding-left: 2.5em;
-  }
-  html.no-flexbox .small-double-left-padding,
-  html.no-flexboxlegacy .small-double-left-padding {
-    padding-left: 2.5em;
   }
   html.no-flexbox .half-left-space,
   html.no-flexboxlegacy .half-left-space {
@@ -4067,22 +3596,6 @@ html.no-flexboxlegacy [class*=all-100] {
   html.no-flexboxlegacy .tiny-padding {
     padding: 1em;
   }
-  html.no-flexbox .double-space,
-  html.no-flexboxlegacy .double-space {
-    margin: 2em;
-  }
-  html.no-flexbox .tiny-double-space,
-  html.no-flexboxlegacy .tiny-double-space {
-    margin: 2em;
-  }
-  html.no-flexbox .double-padding,
-  html.no-flexboxlegacy .double-padding {
-    padding: 2em;
-  }
-  html.no-flexbox .tiny-double-padding,
-  html.no-flexboxlegacy .tiny-double-padding {
-    padding: 2em;
-  }
   html.no-flexbox .half-space,
   html.no-flexboxlegacy .half-space {
     margin: 0.5em;
@@ -4134,26 +3647,6 @@ html.no-flexboxlegacy [class*=all-100] {
   html.no-flexboxlegacy .tiny-vertical-padding {
     padding-top: 1em;
     padding-bottom: 1em;
-  }
-  html.no-flexbox .double-vertical-space,
-  html.no-flexboxlegacy .double-vertical-space {
-    margin-top: 2em;
-    margin-bottom: 2em;
-  }
-  html.no-flexbox .tiny-double-vertical-space,
-  html.no-flexboxlegacy .tiny-double-vertical-space {
-    margin-top: 2em;
-    margin-bottom: 2em;
-  }
-  html.no-flexbox .double-vertical-padding,
-  html.no-flexboxlegacy .double-vertical-padding {
-    padding-top: 2em;
-    padding-bottom: 2em;
-  }
-  html.no-flexbox .tiny-double-vertical-padding,
-  html.no-flexboxlegacy .tiny-double-vertical-padding {
-    padding-top: 2em;
-    padding-bottom: 2em;
   }
   html.no-flexbox .half-vertical-space,
   html.no-flexboxlegacy .half-vertical-space {
@@ -4215,26 +3708,6 @@ html.no-flexboxlegacy [class*=all-100] {
     padding-left: 1em;
     padding-right: 1em;
   }
-  html.no-flexbox .double-horizontal-space,
-  html.no-flexboxlegacy .double-horizontal-space {
-    margin-left: 2em;
-    margin-right: 2em;
-  }
-  html.no-flexbox .tiny-double-horizontal-space,
-  html.no-flexboxlegacy .tiny-double-horizontal-space {
-    margin-left: 2em;
-    margin-right: 2em;
-  }
-  html.no-flexbox .double-horizontal-padding,
-  html.no-flexboxlegacy .double-horizontal-padding {
-    padding-left: 2em;
-    padding-right: 2em;
-  }
-  html.no-flexbox .tiny-double-horizontal-padding,
-  html.no-flexboxlegacy .tiny-double-horizontal-padding {
-    padding-left: 2em;
-    padding-right: 2em;
-  }
   html.no-flexbox .half-horizontal-space,
   html.no-flexboxlegacy .half-horizontal-space {
     margin-left: 0.5em;
@@ -4291,22 +3764,6 @@ html.no-flexboxlegacy [class*=all-100] {
   html.no-flexboxlegacy .tiny-top-padding {
     padding-top: 1em;
   }
-  html.no-flexbox .double-top-space,
-  html.no-flexboxlegacy .double-top-space {
-    margin-top: 2em;
-  }
-  html.no-flexbox .tiny-double-top-space,
-  html.no-flexboxlegacy .tiny-double-top-space {
-    margin-top: 2em;
-  }
-  html.no-flexbox .double-top-padding,
-  html.no-flexboxlegacy .double-top-padding {
-    padding-top: 2em;
-  }
-  html.no-flexbox .tiny-double-top-padding,
-  html.no-flexboxlegacy .tiny-double-top-padding {
-    padding-top: 2em;
-  }
   html.no-flexbox .half-top-space,
   html.no-flexboxlegacy .half-top-space {
     margin-top: 0.5em;
@@ -4354,22 +3811,6 @@ html.no-flexboxlegacy [class*=all-100] {
   html.no-flexbox .tiny-right-padding,
   html.no-flexboxlegacy .tiny-right-padding {
     padding-right: 1em;
-  }
-  html.no-flexbox .double-right-space,
-  html.no-flexboxlegacy .double-right-space {
-    margin-right: 2em;
-  }
-  html.no-flexbox .tiny-double-right-space,
-  html.no-flexboxlegacy .tiny-double-right-space {
-    margin-right: 2em;
-  }
-  html.no-flexbox .double-right-padding,
-  html.no-flexboxlegacy .double-right-padding {
-    padding-right: 2em;
-  }
-  html.no-flexbox .tiny-double-right-padding,
-  html.no-flexboxlegacy .tiny-double-right-padding {
-    padding-right: 2em;
   }
   html.no-flexbox .half-right-space,
   html.no-flexboxlegacy .half-right-space {
@@ -4419,22 +3860,6 @@ html.no-flexboxlegacy [class*=all-100] {
   html.no-flexboxlegacy .tiny-bottom-padding {
     padding-bottom: 1em;
   }
-  html.no-flexbox .double-bottom-space,
-  html.no-flexboxlegacy .double-bottom-space {
-    margin-bottom: 2em;
-  }
-  html.no-flexbox .tiny-double-bottom-space,
-  html.no-flexboxlegacy .tiny-double-bottom-space {
-    margin-bottom: 2em;
-  }
-  html.no-flexbox .double-bottom-padding,
-  html.no-flexboxlegacy .double-bottom-padding {
-    padding-bottom: 2em;
-  }
-  html.no-flexbox .tiny-double-bottom-padding,
-  html.no-flexboxlegacy .tiny-double-bottom-padding {
-    padding-bottom: 2em;
-  }
   html.no-flexbox .half-bottom-space,
   html.no-flexboxlegacy .half-bottom-space {
     margin-bottom: 0.5em;
@@ -4482,22 +3907,6 @@ html.no-flexboxlegacy [class*=all-100] {
   html.no-flexbox .tiny-left-padding,
   html.no-flexboxlegacy .tiny-left-padding {
     padding-left: 1em;
-  }
-  html.no-flexbox .double-left-space,
-  html.no-flexboxlegacy .double-left-space {
-    margin-left: 2em;
-  }
-  html.no-flexbox .tiny-double-left-space,
-  html.no-flexboxlegacy .tiny-double-left-space {
-    margin-left: 2em;
-  }
-  html.no-flexbox .double-left-padding,
-  html.no-flexboxlegacy .double-left-padding {
-    padding-left: 2em;
-  }
-  html.no-flexbox .tiny-double-left-padding,
-  html.no-flexboxlegacy .tiny-double-left-padding {
-    padding-left: 2em;
   }
   html.no-flexbox .half-left-space,
   html.no-flexboxlegacy .half-left-space {
@@ -4569,17 +3978,17 @@ html.no-flexboxlegacy [class*=all-100] {
 @media screen and (min-width: 1261px) {
   html.no-flexbox html,
   html.no-flexboxlegacy html {
-    font-size: 1.08em;
+    font-size: 1em;
   }
   html.no-flexbox html:after,
   html.no-flexboxlegacy html:after {
-    font-family: '{"name":"xlarge",{"min":"1261px","max":""}}';
+    font-family: '{"name":"extra-large",{"min":"1261px","max":""}}';
   }
 }
 @media screen and (min-width: 961px) and (max-width: 1260px) {
   html.no-flexbox html,
   html.no-flexboxlegacy html {
-    font-size: 1.05em;
+    font-size: 1em;
   }
   html.no-flexbox html:after,
   html.no-flexboxlegacy html:after {
@@ -4599,7 +4008,7 @@ html.no-flexboxlegacy [class*=all-100] {
 @media screen and (min-width: 321px) and (max-width: 640px) {
   html.no-flexbox html,
   html.no-flexboxlegacy html {
-    font-size: 0.98em;
+    font-size: 0.938em;
   }
   html.no-flexbox html:after,
   html.no-flexboxlegacy html:after {
@@ -4609,7 +4018,7 @@ html.no-flexboxlegacy [class*=all-100] {
 @media screen and (max-width: 320px) {
   html.no-flexbox html,
   html.no-flexboxlegacy html {
-    font-size: 0.97em;
+    font-size: 0.938em;
   }
   html.no-flexbox html:after,
   html.no-flexboxlegacy html:after {
