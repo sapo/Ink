@@ -1,5 +1,5 @@
 /**
- * @module Ink.Dom.FormSerialize
+ * @module Ink.Dom.FormSerialize_1
  * Two way serialization of form data and javascript objects.
  * Valid applications are ad hoc AJAX/syndicated submission of forms, restoring form values from server side state, etc.
  */
