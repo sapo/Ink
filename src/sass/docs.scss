@@ -19,7 +19,7 @@ $img-path           : "../img/";
 $code-background    : #EEEBE5;
 $code-border        : darken($code-background,8%);
 $teal               : #009999;
-$code-font-size        : .85em;
+$code-font-size     : .85em;
 
 
 .fw-100 { font-weight: 100; font-family: Roboto; }
@@ -112,13 +112,12 @@ a, .ink-button {
                 }
 
                 button.fa-bars {
-                        padding: .46em 0;
                         font-size: 21px;
                         background: none;
                         font-size: 1.2em;
                         color: $topbar-color;
                         border: none;
-                        padding: .8em;
+                        padding: .8em .8em .8em 0;
 
                         &:hover, &:active, &:focus {
                             color: $topbar-colorHover;
@@ -265,6 +264,7 @@ body.ink-drawer {
                 text-transform: uppercase;
                 margin-top: 1em;
                 font-weight: 700;
+                padding: 6px 15px;
 
                 a {
                     font-size: 1em;
@@ -278,7 +278,6 @@ body.ink-drawer {
             }
 
             & > a {
-                @include transition(compact(all 140ms ease-in-out));
                 display: block;
                 padding: 6px 15px;
                 color: #bbb;
