@@ -1,8 +1,9 @@
 /**
  * @module Ink.UI.ImageQuery_1
- * @author inkdev AT sapo.pt
+ * Responsive image loading
  * @version 1
  */
+ 
 Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Element_1','Ink.Util.Array_1'], function(Common, Event, Element, InkArray ) {
     'use strict';
 
@@ -11,14 +12,14 @@ Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
      * @constructor
      * @version 1
      *
-     * @param {String|DOMElement} selector
-     * @param {Object} [options] Options
-     *      @param {String|Function}    [options.src]             String or Callback function (that returns a string) with the path to be used to get the images.
-     *      @param {String|Function}    [options.retina]          String or Callback function (that returns a string) with the path to be used to get RETINA specific images.
-     *      @param {Array}              [options.queries]         Array of queries
-     *          @param {String}              [options.queries.label]         Label of the query. Ex. 'small'
-     *          @param {Number}              [options.queries.width]         Min-width to use this query
-     *      @param {Function}           [options.onLoad]          Date format string
+     * @param {String|DOMElement}   selector                    Selector or element
+     * @param {Object}              [options]                   Options object
+     * @param {String|Function}     [options.src]               String or Callback function (that returns a string) with the path to be used to get the images.
+     * @param {String|Function}     [options.retina]            String or Callback function (that returns a string) with the path to be used to get RETINA specific images.
+     * @param {Array}               [options.queries]           Array of queries
+     * @param {String}              [options.queries.label]     Label of the query. Ex. 'small'
+     * @param {Number}              [options.queries.width]     Min-width to use this query
+     * @param {Function}            [options.onLoad]            Date format string
      *
      * @example
      *      <div class="imageQueryExample all-100 content-center clearfix vspace">
@@ -66,8 +67,8 @@ Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         /**
          * Default options, overriden by data-attributes if any.
          * The parameters are:
-         * @param {array} queries Array of objects that determine the label/name and its min-width to be applied.
-         * @param {boolean} allowFirstLoad Boolean flag to allow the loading of the first element.
+         * @xparam {array} queries Array of objects that determine the label/name and its min-width to be applied.
+         * @xparam {boolean} allowFirstLoad Boolean flag to allow the loading of the first element.
          */
         this._options = Ink.extendObj({
             queries:[],
@@ -142,8 +143,7 @@ Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
             /**
              * Since we allow the src to be a callback, let's run it and get the results.
-             * For the inside, we're passing the element (img) being processed and the object of the selected
-             * query.
+             * For the inside, we're passing the element (img) being processed and the object of the selected query.
              */
             if( typeof src === 'function' ){
                 src = src.apply(this,[this._element,current]);
@@ -167,8 +167,7 @@ Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         }, 500),
 
         /**
-         * Queries are in a descendant order. We want to find the query with the highest width that fits
-         * the viewport, therefore the first one.
+         * Queries are in a descendant order. We want to find the query with the highest width that fits the viewport, therefore the first one.
          */
         _findCurrentQuery: function () {
             /**
