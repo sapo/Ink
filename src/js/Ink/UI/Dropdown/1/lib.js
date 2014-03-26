@@ -1,9 +1,9 @@
 /**
  * @module Ink.UI.Dropdown_1
- *
- * @author inkdev AT sapo.pt
+ * Dropdown menus
  * @version 1
  */
+ 
 Ink.createModule('Ink.UI.Dropdown', '1', ['Ink.UI.Common_1', 'Ink.UI.Toggle_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1'], function(Common, Toggle, InkEvent, InkElement) {
     'use strict';
 
@@ -18,8 +18,8 @@ Ink.createModule('Ink.UI.Dropdown', '1', ['Ink.UI.Common_1', 'Ink.UI.Toggle_1', 
          * @class Ink.UI.Dropdown
          *
          * @constructor
-         * @param {DOMElement|String}   trigger
-         * @param {Object}              options
+         * @param {DOMElement|String}   trigger         Trigger Element
+         * @param {Object}              options         Options Object
          * @param {DOMElement|String}   options.target Target of the dropdown action.
          */
         _init: function(trigger, options) {
@@ -136,7 +136,7 @@ Ink.createModule('Ink.UI.Dropdown', '1', ['Ink.UI.Common_1', 'Ink.UI.Toggle_1', 
         },
 
         /**
-         * Dismiss the dropdown.
+         * Closes the dropdown.
          *
          * @method dismiss
          * @param [callHandler=false] call onDismiss handler
@@ -146,7 +146,7 @@ Ink.createModule('Ink.UI.Dropdown', '1', ['Ink.UI.Common_1', 'Ink.UI.Toggle_1', 
         },
 
         /**
-         * Open the dropdown
+         * Opens the dropdown
          *
          * @method open
          * @param [callHandler=false] call onOpen handler
@@ -193,4 +193,3 @@ Ink.createModule('Ink.UI.Dropdown', '1', ['Ink.UI.Common_1', 'Ink.UI.Toggle_1', 
 
     return Dropdown;
 });
-
