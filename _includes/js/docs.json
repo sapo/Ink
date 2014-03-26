@@ -3797,7 +3797,7 @@
 		},
 		{
 			"kind": "module",
-			"name": "Ink.Dom.FormSerialize",
+			"name": "Ink.Dom.FormSerialize_1",
 			"file": "src/js/Ink/Dom/FormSerialize/1/lib.js",
 			"classes": [
 				{
@@ -4869,44 +4869,47 @@
 								{
 									"kind": "param",
 									"name": "element",
+									"type": "DOMElement",
 									"isFirstLevel": true,
-									"description": "{DOMElement} animated element"
+									"description": "Animated element"
 								},
 								{
 									"kind": "param",
 									"name": "options",
+									"type": "Object",
 									"isFirstLevel": true,
-									"description": "{Object} options object"
+									"description": "Options object"
 								},
 								{
 									"kind": "param",
 									"name": "options.animation",
+									"type": "String",
 									"isFirstLevel": false,
-									"description": "{String} animation name"
+									"description": "Animation name"
 								},
 								{
 									"kind": "param",
 									"name": "options.duration",
+									"type": "String|Number",
 									"isOptional": true,
-									"defaultValue": "medium",
 									"isFirstLevel": false,
-									"description": "{String|Number} duration name (fast|medium|slow) or duration in ms"
+									"description": "Duration name (fast|medium|slow) or duration in milliseconds. Defaults to 'medium'."
 								},
 								{
 									"kind": "param",
 									"name": "options.removeClass",
+									"type": "Boolean",
 									"isOptional": true,
-									"defaultValue": "true",
 									"isFirstLevel": false,
-									"description": "{Boolean} Whether to remove the `animation` class when finished animating"
+									"description": "Flag to remove the CSS class when finished animating. Defaults to false."
 								},
 								{
 									"kind": "param",
 									"name": "options.onEnd",
+									"type": "Function",
 									"isOptional": true,
-									"defaultValue": "null",
 									"isFirstLevel": false,
-									"description": "{Function} callback for animation end"
+									"description": "Callback for the animation end"
 								}
 							],
 							"examples": [
@@ -4969,19 +4972,19 @@
 						{
 							"kind": "attribute",
 							"name": "_animationPrefix",
-							"text": "Prefix for CSS animation-related properties in this browser.",
+							"text": "Browser prefix for the CSS animations.",
 							"private": true
 						},
 						{
 							"kind": "attribute",
 							"name": "animationSupported",
-							"text": "Whether CSS3 animation is supported in this browser.",
+							"text": "CSS3 animation browser support.",
 							"type": "{Boolean}"
 						},
 						{
 							"kind": "attribute",
 							"name": "animationEndEventName",
-							"text": "The correct event for the animationend event in this browser, with the correct prefix",
+							"text": "Prefixed animation end event name.",
 							"type": "{String}",
 							"examples": [
 								"\n\n     Animate.animate(myDiv, 'shake', {\n         onEnd: function () {\n             alert('Finished shaking!');\n         }\n     });\n\n"
@@ -4994,7 +4997,6 @@
 			"functions": [],
 			"attributes": [],
 			"uses": [],
-			"author": "inkdev AT sapo.pt",
 			"version": "1"
 		},
 		{
@@ -5017,76 +5019,64 @@
 									"kind": "param",
 									"name": "selector",
 									"type": "String|DOMElement",
-									"isFirstLevel": true
+									"isFirstLevel": true,
+									"description": "DOM element or element id"
 								},
 								{
 									"kind": "param",
 									"name": "options",
 									"type": "Object",
 									"isOptional": true,
-									"isFirstLevel": true
+									"isFirstLevel": true,
+									"description": "Carousel Options"
 								},
 								{
 									"kind": "param",
 									"name": "options.autoAdvance",
 									"type": "Integer",
 									"isOptional": true,
-									"defaultValue": "0",
 									"isFirstLevel": false,
-									"description": "The number of milliseconds to wait between auto-advancing pages. Set to 0 to disable auto-advance."
+									"description": "Milliseconds to wait before auto-advancing pages. Set to 0 to disable auto-advance. Defaults to 0."
 								},
 								{
 									"kind": "param",
 									"name": "options.axis",
 									"type": "String",
 									"isOptional": true,
-									"defaultValue": "'x'",
 									"isFirstLevel": false,
-									"description": "Can be `'x'` or `'y'`, for a horizontal or vertical carousel"
+									"description": "Axis of the carousel. Set to 'y' for a vertical carousel. Defaults to 'x'."
 								},
 								{
 									"kind": "param",
 									"name": "options.center",
 									"type": "Boolean",
 									"isOptional": true,
-									"defaultValue": "false",
 									"isFirstLevel": false,
-									"description": "Center the carousel."
+									"description": "Flag to center the carousel horizontally."
 								},
 								{
 									"kind": "param",
 									"name": "options.initialPage",
 									"type": "Number",
 									"isOptional": true,
-									"defaultValue": "0",
 									"isFirstLevel": false,
-									"description": "When initialized, set the page to this."
-								},
-								{
-									"kind": "param",
-									"name": "options.keyboardSupport",
-									"type": "Boolean",
-									"isOptional": true,
-									"defaultValue": "false",
-									"isFirstLevel": false,
-									"description": "Enable keyboard support"
+									"description": "Initial index page of the carousel. Defaults to 0."
 								},
 								{
 									"kind": "param",
 									"name": "options.swipe",
 									"type": "Boolean",
 									"isOptional": true,
-									"defaultValue": "true",
 									"isFirstLevel": false,
-									"description": "Enable swipe support where available"
+									"description": "Enable swipe support if available. Defaults to true."
 								},
 								{
 									"kind": "param",
 									"name": "options.pagination",
-									"type": "String|DOMElement|Ink.UI.Pagination_1",
+									"type": "Mixed",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "Either an `<ul>` element to add pagination markup to, or an `Ink.UI.Pagination` instance to use."
+									"description": "Either an `<ul>` element to add pagination markup to or an `Ink.UI.Pagination` instance to use."
 								},
 								{
 									"kind": "param",
@@ -5094,7 +5084,7 @@
 									"type": "Function",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "Callback for when the page is changed."
+									"description": "Callback to be called when the page changes."
 								}
 							]
 						},
@@ -5102,14 +5092,14 @@
 							"kind": "function",
 							"name": "refit",
 							"file": "src/js/Ink/UI/Carousel/1/lib.js",
-							"text": "Measure the carousel once again, adjusting the involved elements'\nsizes. Called automatically when the window resizes, in order to\ncater for changes from responsive media queries, for instance.",
+							"text": "Repositions elements around.\nMeasure the carousel once again, adjusting the involved elements' sizes. This is called automatically when the window resizes, in order to cater for changes from responsive media queries, for instance.",
 							"params": []
 						},
 						{
 							"kind": "function",
 							"name": "_IE7",
 							"file": "src/js/Ink/UI/Carousel/1/lib.js",
-							"text": "Refit stuff for IE7 because it won't support inline-block.",
+							"text": "Refits elements for IE7 because it doesn't support inline-block.",
 							"params": [],
 							"private": true
 						},
@@ -5117,27 +5107,33 @@
 							"kind": "function",
 							"name": "getPage",
 							"file": "src/js/Ink/UI/Carousel/1/lib.js",
-							"text": "Get the currently displayed page.",
-							"params": []
+							"text": "Gets the current page index",
+							"params": [],
+							"return": {
+								"kind": "return",
+								"description": "The current page number"
+							}
 						},
 						{
 							"kind": "function",
 							"name": "setPage",
 							"file": "src/js/Ink/UI/Carousel/1/lib.js",
-							"text": "Set the current page to `page`",
+							"text": "Sets the current page index",
 							"params": [
 								{
 									"kind": "param",
 									"name": "page",
-									"isFirstLevel": true
+									"type": "Number",
+									"isFirstLevel": true,
+									"description": "Index of the destination page."
 								},
 								{
 									"kind": "param",
 									"name": "wrap",
+									"type": "Boolean",
 									"isOptional": true,
-									"defaultValue": "false",
 									"isFirstLevel": true,
-									"description": "Wrap over the first and last pages. (For example, going to the 5th page when there are only 4 pages goes to the 1st page)"
+									"description": "Flag to activate circular counting."
 								}
 							]
 						},
@@ -5145,16 +5141,15 @@
 							"kind": "function",
 							"name": "nextPage",
 							"file": "src/js/Ink/UI/Carousel/1/lib.js",
-							"text": "Change to the next page",
+							"text": "Goes to the next page",
 							"params": [
 								{
 									"kind": "param",
 									"name": "wrap",
 									"type": "Boolean",
 									"isOptional": true,
-									"defaultValue": "false",
 									"isFirstLevel": true,
-									"description": "If true, going to the page after the last page takes you to the first page."
+									"description": "Flag to loop from last page to first page."
 								}
 							]
 						},
@@ -5162,16 +5157,15 @@
 							"kind": "function",
 							"name": "previousPage",
 							"file": "src/js/Ink/UI/Carousel/1/lib.js",
-							"text": "Change to the previous page",
+							"text": "Goes to the previous page",
 							"params": [
 								{
 									"kind": "param",
 									"name": "wrap",
 									"type": "Boolean",
 									"isOptional": true,
-									"defaultValue": "false",
 									"isFirstLevel": true,
-									"description": "If true, going to the page after the last page takes you to the first page."
+									"description": "Flag to loop from first page to last page."
 								}
 							]
 						}
@@ -5182,7 +5176,6 @@
 			"functions": [],
 			"attributes": [],
 			"uses": [],
-			"author": "inkdev AT sapo.pt",
 			"version": "1"
 		},
 		{
@@ -5193,7 +5186,7 @@
 				{
 					"kind": "class",
 					"name": "Ink.UI.Close",
-					"text": "Subscribes clicks on the document.body. If and only if you clicked on an element\nhaving class \"ink-close\" or \"ink-dismiss\", will go up the DOM hierarchy looking for an element with any\nof the following classes: \"ink-alert\", \"ink-alert-block\".\nIf it is found, it is removed from the DOM.\n\nOne should call close once per page (full page refresh).",
+					"text": "Subscribes clicks on the document.body.\nWhenever an \".ink-close,.ink-dismiss\" element is clicked, this module finds an ancestor \".ink-alert,.ink-alert-block\" element and removes it from the DOM.\nThis module should be called only once per page.",
 					"file": "src/js/Ink/UI/Close/1/lib.js",
 					"functions": [
 						{
@@ -5213,501 +5206,494 @@
 			"functions": [],
 			"attributes": [],
 			"uses": [],
-			"author": "inkdev AT sapo.pt"
+			"version": "1\nClosing utilities"
 		},
 		{
 			"kind": "module",
 			"name": "Ink.UI.Common_1",
 			"file": "src/js/Ink/UI/Common/1/lib.js",
-			"classes": [
+			"classes": [],
+			"functions": [
 				{
-					"kind": "class",
-					"name": "Ink.UI.Common",
-					"text": "The Common class provides auxiliar methods to ease some of the most common/repetitive UI tasks.",
+					"kind": "function",
+					"name": "isDOMElement",
 					"file": "src/js/Ink/UI/Common/1/lib.js",
-					"functions": [
+					"text": "Checks if an item is a valid DOM Element.",
+					"params": [
 						{
-							"kind": "function",
-							"name": "isDOMElement",
-							"file": "src/js/Ink/UI/Common/1/lib.js",
-							"text": "Method to check if an item is a valid DOM Element.",
-							"params": [
-								{
-									"kind": "param",
-									"name": "o",
-									"type": "Mixed",
-									"isFirstLevel": true,
-									"description": "The object to be checked."
-								}
-							],
-							"static": true,
-							"return": {
-								"kind": "return",
-								"type": "Boolean",
-								"description": "True if it's a valid DOM Element."
-							},
-							"examples": [
-								"\n    var el = Ink.s('#element');\n    if( Ink.UI.Common.isDOMElement( el ) === true ){\n        // It is a DOM Element.\n    } else {\n        // It is NOT a DOM Element.\n    }\n"
-							]
-						},
+							"kind": "param",
+							"name": "o",
+							"type": "Mixed",
+							"isFirstLevel": true,
+							"description": "The object to be checked."
+						}
+					],
+					"static": true,
+					"return": {
+						"kind": "return",
+						"type": "Boolean",
+						"description": "True if it's a valid DOM Element."
+					},
+					"examples": [
+						"\n    var el = Ink.s('#element');\n    if( Ink.UI.Common.isDOMElement( el ) === true ){\n        // It is a DOM Element.\n    } else {\n        // It is NOT a DOM Element.\n    }\n"
+					]
+				},
+				{
+					"kind": "function",
+					"name": "isInteger",
+					"file": "src/js/Ink/UI/Common/1/lib.js",
+					"text": "Checks if an item is a valid integer.",
+					"params": [
 						{
-							"kind": "function",
-							"name": "isInteger",
-							"file": "src/js/Ink/UI/Common/1/lib.js",
-							"text": "Method to check if an item is a valid integer.",
-							"params": [
-								{
-									"kind": "param",
-									"name": "n",
-									"type": "Mixed",
-									"isFirstLevel": true,
-									"description": "The value to be checked."
-								}
-							],
-							"static": true,
-							"return": {
-								"kind": "return",
-								"type": "Boolean",
-								"description": "True if 'n' is a valid integer."
-							},
-							"examples": [
-								"\n    var value = 1;\n    if( Ink.UI.Common.isInteger( value ) === true ){\n        // It is an integer.\n    } else {\n        // It is NOT an integer.\n    }\n"
-							]
-						},
+							"kind": "param",
+							"name": "n",
+							"type": "Mixed",
+							"isFirstLevel": true,
+							"description": "The value to be checked."
+						}
+					],
+					"static": true,
+					"return": {
+						"kind": "return",
+						"type": "Boolean",
+						"description": "True if it's a valid integer."
+					},
+					"examples": [
+						"\n    var value = 1;\n    if( Ink.UI.Common.isInteger( value ) === true ){\n        // It is an integer.\n    } else {\n        // It is NOT an integer.\n    }\n"
+					]
+				},
+				{
+					"kind": "function",
+					"name": "elOrSelector",
+					"file": "src/js/Ink/UI/Common/1/lib.js",
+					"text": "Gets a DOM Element.",
+					"params": [
 						{
-							"kind": "function",
+							"kind": "param",
 							"name": "elOrSelector",
-							"file": "src/js/Ink/UI/Common/1/lib.js",
-							"text": "Method to get a DOM Element. The first parameter should be either a DOM Element or a valid CSS Selector.\nIf not, then it will throw an exception. Otherwise, it returns a DOM Element.",
-							"params": [
-								{
-									"kind": "param",
-									"name": "elOrSelector",
-									"type": "DOMElement|String",
-									"isFirstLevel": true,
-									"description": "DOM Element or CSS Selector"
-								},
-								{
-									"kind": "param",
-									"name": "fieldName",
-									"type": "String",
-									"isFirstLevel": true,
-									"description": "This field is used in the thrown Exception to identify the parameter."
-								}
-							],
-							"static": true,
-							"return": {
-								"kind": "return",
-								"type": "DOMElement",
-								"description": "Returns the DOMElement passed or the first result of the CSS Selector. Otherwise it throws an exception."
-							},
-							"examples": [
-								"\n    // In case there are several .myInput, it will retrieve the first found\n    var el = Ink.UI.Common.elOrSelector('.myInput','My Input');\n"
-							]
+							"type": "DOMElement|String",
+							"isFirstLevel": true,
+							"description": "DOM Element or CSS Selector"
 						},
 						{
-							"kind": "function",
-							"name": "elsOrSelector",
-							"file": "src/js/Ink/UI/Common/1/lib.js",
-							"text": "Does the same as `elOrSelector` but returns an array of elements.\n\nsee elOrSelector",
-							"params": [
-								{
-									"kind": "param",
-									"name": "elOrSelector",
-									"type": "DOMElement|String",
-									"isFirstLevel": true,
-									"description": "DOM Element or CSS Selector"
-								},
-								{
-									"kind": "param",
-									"name": "fieldName",
-									"type": "String",
-									"isFirstLevel": true,
-									"description": "This field is used in the thrown Exception to identify the parameter."
-								},
-								{
-									"kind": "param",
-									"name": "required",
-									"type": "Boolean",
-									"isFirstLevel": true,
-									"description": "If true, accept an empty array as output."
-								}
-							],
-							"static": true,
-							"return": {
-								"kind": "return",
-								"type": "Array",
-								"description": "The selected DOM Elements."
-							},
-							"examples": [
-								"\n    var elements = Ink.UI.Common.elsOrSelector('input.my-inputs', 'My Input');\n"
-							]
-						},
-						{
-							"kind": "function",
-							"name": "options",
-							"file": "src/js/Ink/UI/Common/1/lib.js",
-							"text": "Get options from an \"options\" object and the Element's data attributes.\n\nThe element's data attributes take precedence.\n\nValues from the element's data-atrributes are coerced into the required type.\n\nMainly for Ink UI.* modules",
-							"params": [
-								{
-									"kind": "param",
-									"name": "fieldId",
-									"type": "Object",
-									"isOptional": true,
-									"defaultValue": "''",
-									"isFirstLevel": true,
-									"description": "Tag used in thrown exceptions: \"<fieldId>: ...\""
-								},
-								{
-									"kind": "param",
-									"name": "defaults",
-									"type": "Object",
-									"isFirstLevel": true,
-									"description": "Object with arrays of option defaults"
-								},
-								{
-									"kind": "param",
-									"name": "overrides",
-									"type": "Object",
-									"isFirstLevel": true,
-									"description": "Object containing options given from user through JavaScript"
-								},
-								{
-									"kind": "param",
-									"name": "element",
-									"type": "DOMElement",
-									"isOptional": true,
-									"isFirstLevel": true,
-									"description": "Element with data-attributes"
-								}
-							],
-							"examples": [
-								"\n\n     this._options = Ink.UI.Common.options('MyComponent', {\n         'anobject': ['Object', null],  // Defaults to null\n         'target': ['Element', null],\n         'stuff': ['Number', 0.1],\n         'stuff2': ['Integer', 0],\n         'doKickFlip': ['Boolean', false],\n         'targets': ['Elements'], // Required option since no default was given\n         'onClick': ['Function', null]\n     }, options || {}, elm)\n\n",
-								"\n\n### Note about booleans\n\nHere is how options are read from the markup\ndata-attributes, for several values`data-a-boolean`.\n\nOptions considered true:\n\n  - `data-a-boolean=\"true\"`\n  - (Every other value which is not on the list below.)\n\nOptions considered false:\n\n  - `data-a-boolean=\"false\"`\n  - `data-a-boolean=\"\"`\n  - `data-a-boolean`\n\nOptions which go to default:\n\n  - (no attribute). When `data-a-boolean` is ommitted, the\n  option is not considered true nor false, and as such\n  defaults to what is in the `defaults` argument.\n\n"
-							]
-						},
-						{
-							"kind": "function",
-							"name": "clone",
-							"file": "src/js/Ink/UI/Common/1/lib.js",
-							"text": "Method to make a deep copy (clone) of an object.\nNote: The object cannot have loops.",
-							"params": [
-								{
-									"kind": "param",
-									"name": "o",
-									"type": "Object",
-									"isFirstLevel": true,
-									"description": "The object to be cloned/copied."
-								}
-							],
-							"static": true,
-							"return": {
-								"kind": "return",
-								"type": "Object",
-								"description": "Returns the result of the clone/copy."
-							},
-							"examples": [
-								"\n    var originalObj = {\n        key1: 'value1',\n        key2: 'value2',\n        key3: 'value3'\n    };\n    var cloneObj = Ink.UI.Common.clone( originalObj );\n"
-							]
-						},
-						{
-							"kind": "function",
-							"name": "childIndex",
-							"file": "src/js/Ink/UI/Common/1/lib.js",
-							"text": "Method to return the 'nth' position that an element occupies relatively to its parent.",
-							"params": [
-								{
-									"kind": "param",
-									"name": "childEl",
-									"type": "DOMElement",
-									"isFirstLevel": true,
-									"description": "Valid DOM Element."
-								}
-							],
-							"static": true,
-							"return": {
-								"kind": "return",
-								"type": "Number",
-								"description": "Numerical position of an element relatively to its parent."
-							},
-							"examples": [
-								"\n    <!-- Imagine the following HTML: -->\n    <ul>\n      <li>One</li>\n      <li>Two</li>\n      <li id=\"test\">Three</li>\n      <li>Four</li>\n    </ul>\n\n    <script>\n        var testLi = Ink.s('#test');\n        Ink.UI.Common.childIndex( testLi ); // Returned value: 3\n    </script>\n"
-							]
-						},
-						{
-							"kind": "function",
-							"name": "ajaxJSON",
-							"file": "src/js/Ink/UI/Common/1/lib.js",
-							"text": "This method provides a more convenient way to do an async AJAX request and expect a JSON response.\nIt offers a callback option, as third paramenter, for a better async handling.",
-							"params": [
-								{
-									"kind": "param",
-									"name": "endpoint",
-									"type": "String",
-									"isFirstLevel": true,
-									"description": "Valid URL to be used as target by the request."
-								},
-								{
-									"kind": "param",
-									"name": "params",
-									"type": "Object",
-									"isFirstLevel": true,
-									"description": "This field is used in the thrown Exception to identify the parameter."
-								}
-							],
-							"static": true,
-							"async": true,
-							"examples": [
-								"\n    // In case there are several .myInput, it will retrieve the first found\n    var el = Ink.UI.Common.elOrSelector('.myInput','My Input');\n"
-							]
-						},
-						{
-							"kind": "function",
-							"name": "currentLayout",
-							"file": "src/js/Ink/UI/Common/1/lib.js",
-							"text": "Method to get the current Ink layout applied.",
-							"params": [],
-							"static": true,
-							"return": {
-								"kind": "return",
-								"type": "String",
-								"description": "'small', 'medium' or 'large'"
-							},
-							"examples": [
-								"\n     var inkLayout = Ink.UI.Common.currentLayout();\n     if (inkLayout === 'small') {\n         // ...\n     }\n"
-							]
-						},
-						{
-							"kind": "function",
-							"name": "hashSet",
-							"file": "src/js/Ink/UI/Common/1/lib.js",
-							"text": "Method to set the location's hash (window.location.hash).",
-							"params": [
-								{
-									"kind": "param",
-									"name": "o",
-									"type": "Object",
-									"isFirstLevel": true,
-									"description": "Object with the info to be placed in the location's hash."
-								}
-							],
-							"static": true,
-							"examples": [
-								"\n    // It will set the location's hash like: <url>#key1=value1&key2=value2&key3=value3\n    Ink.UI.Common.hashSet({\n        key1: 'value1',\n        key2: 'value2',\n        key3: 'value3'\n    });\n"
-							]
-						},
-						{
-							"kind": "function",
-							"name": "cleanChildren",
-							"file": "src/js/Ink/UI/Common/1/lib.js",
-							"text": "Method to remove children nodes from a given object.\nThis method was initially created to help solve a problem in Internet Explorer(s) that occurred when trying\nto set the innerHTML of some specific elements like 'table'.",
-							"params": [
-								{
-									"kind": "param",
-									"name": "parentEl",
-									"type": "DOMElement",
-									"isFirstLevel": true,
-									"description": "Valid DOM Element"
-								}
-							],
-							"static": true,
-							"examples": [
-								"\n    <!-- Imagine the following HTML: -->\n    <ul id=\"myUl\">\n      <li>One</li>\n      <li>Two</li>\n      <li>Three</li>\n      <li>Four</li>\n    </ul>\n\n    <script>\n    Ink.UI.Common.cleanChildren( Ink.s( '#myUl' ) );\n    </script>\n\n    <!-- After running it, the HTML changes to: -->\n    <ul id=\"myUl\"></ul>\n"
-							]
-						},
-						{
-							"kind": "function",
-							"name": "storeIdAndClasses",
-							"file": "src/js/Ink/UI/Common/1/lib.js",
-							"text": "This method stores the id and/or the classes of a given element in a given object.",
-							"params": [
-								{
-									"kind": "param",
-									"name": "fromEl",
-									"type": "DOMElement",
-									"isFirstLevel": true,
-									"description": "Valid DOM Element to get the id and classes from."
-								},
-								{
-									"kind": "param",
-									"name": "inObj",
-									"type": "Object",
-									"isFirstLevel": true,
-									"description": "Object where the id and classes will be saved."
-								}
-							],
-							"static": true,
-							"examples": [
-								"\n    <div id=\"myDiv\" class=\"aClass\"></div>\n\n    <script>\n        var storageObj = {};\n        Ink.UI.Common.storeIdAndClasses( Ink.s('#myDiv'), storageObj );\n        // storageObj changes to:\n        {\n          _id: 'myDiv',\n          _classes: 'aClass'\n        }\n    </script>\n"
-							]
-						},
-						{
-							"kind": "function",
-							"name": "restoreIdAndClasses",
-							"file": "src/js/Ink/UI/Common/1/lib.js",
-							"text": "This method sets the id and className properties of a given DOM Element based on a given similar object\nresultant of the previous function 'storeIdAndClasses'.",
-							"params": [
-								{
-									"kind": "param",
-									"name": "toEl",
-									"type": "DOMElement",
-									"isFirstLevel": true,
-									"description": "Valid DOM Element to set the id and classes on."
-								},
-								{
-									"kind": "param",
-									"name": "inObj",
-									"type": "Object",
-									"isFirstLevel": true,
-									"description": "Object where the id and classes to be set are."
-								}
-							],
-							"static": true,
-							"examples": [
-								"\n    <div></div>\n\n    <script>\n        var storageObj = {\n          _id: 'myDiv',\n          _classes: 'aClass'\n        };\n\n        Ink.UI.Common.storeIdAndClasses( Ink.s('div'), storageObj );\n    </script>\n\n    <!-- After the code runs the div element changes to: -->\n    <div id=\"myDiv\" class=\"aClass\"></div>\n"
-							]
-						},
-						{
-							"kind": "function",
-							"name": "registerInstance",
-							"file": "src/js/Ink/UI/Common/1/lib.js",
-							"text": "This method saves a component's instance reference for later retrieval.",
-							"params": [
-								{
-									"kind": "param",
-									"name": "inst",
-									"type": "Object",
-									"isFirstLevel": true,
-									"description": "Object that holds the instance."
-								},
-								{
-									"kind": "param",
-									"name": "el",
-									"type": "DOMElement",
-									"isFirstLevel": true,
-									"description": "DOM Element to associate with the object."
-								},
-								{
-									"kind": "param",
-									"name": "optionalPrefix",
-									"type": "Object",
-									"isOptional": true,
-									"isFirstLevel": true,
-									"description": "Defaults to 'instance'"
-								}
-							],
-							"static": true
-						},
-						{
-							"kind": "function",
-							"name": "unregisterInstance",
-							"file": "src/js/Ink/UI/Common/1/lib.js",
-							"text": "This method deletes/destroy an instance with a given id.",
-							"params": [
-								{
-									"kind": "param",
-									"name": "id",
-									"type": "String",
-									"isFirstLevel": true,
-									"description": "Id of the instance to be destroyed."
-								}
-							],
-							"static": true
-						},
-						{
-							"kind": "function",
-							"name": "getInstance",
-							"file": "src/js/Ink/UI/Common/1/lib.js",
-							"text": "This method retrieves the registered instance(s) of a given element or instance id.",
-							"params": [
-								{
-									"kind": "param",
-									"name": "instanceIdOrElement",
-									"type": "String|DOMElement",
-									"isFirstLevel": true,
-									"description": "Instance's id or DOM Element from which we want the instances."
-								}
-							],
-							"static": true,
-							"return": {
-								"kind": "return",
-								"type": "Object|Object[]",
-								"description": "Returns an instance or a collection of instances."
-							}
-						},
-						{
-							"kind": "function",
-							"name": "getInstanceFromSelector",
-							"file": "src/js/Ink/UI/Common/1/lib.js",
-							"text": "This method retrieves the registered instance(s) of an element based on the given selector.",
-							"params": [
-								{
-									"kind": "param",
-									"name": "selector",
-									"type": "String",
-									"isFirstLevel": true,
-									"description": "CSS selector to define the element from which it'll get the instance(s)."
-								}
-							],
-							"static": true,
-							"return": {
-								"kind": "return",
-								"type": "Object|Object[]",
-								"description": "Returns an instance or a collection of instances."
-							}
-						},
-						{
-							"kind": "function",
-							"name": "getInstanceIds",
-							"file": "src/js/Ink/UI/Common/1/lib.js",
-							"text": "This method retrieves the registered instances' ids of all instances.",
-							"params": [],
-							"static": true,
-							"return": {
-								"kind": "return",
-								"type": "String[]",
-								"description": "Id or collection of ids of all existing instances."
-							}
-						},
-						{
-							"kind": "function",
-							"name": "getInstances",
-							"file": "src/js/Ink/UI/Common/1/lib.js",
-							"text": "This method retrieves all existing instances.",
-							"params": [],
-							"static": true,
-							"return": {
-								"kind": "return",
-								"type": "Object[]",
-								"description": "Collection of existing instances."
-							}
-						},
-						{
-							"kind": "function",
-							"name": "destroyComponent",
-							"file": "src/js/Ink/UI/Common/1/lib.js",
-							"text": "This method is not to supposed to be invoked by the Common component.\nComponents should copy this method as its destroy method.",
-							"params": [],
-							"static": true
+							"kind": "param",
+							"name": "fieldName",
+							"type": "String",
+							"isFirstLevel": true,
+							"description": "The name of the field. Commonly used for debugging."
 						}
 					],
-					"attributes": [
+					"static": true,
+					"return": {
+						"kind": "return",
+						"type": "DOMElement",
+						"description": "Returns the DOMElement passed or the first result of the CSS Selector. Otherwise it throws an exception."
+					},
+					"examples": [
+						"\n    // In case there are several .myInput, it will retrieve the first found\n    var el = Ink.UI.Common.elOrSelector('.myInput','My Input');\n"
+					]
+				},
+				{
+					"kind": "function",
+					"name": "elsOrSelector",
+					"file": "src/js/Ink/UI/Common/1/lib.js",
+					"text": "Alias for `elOrSelector` but returns an array of elements.",
+					"params": [
 						{
-							"kind": "attribute",
-							"name": "Layouts",
-							"text": "Supported Ink Layouts",
-							"type": "Object"
+							"kind": "param",
+							"name": "elOrSelector",
+							"type": "DOMElement|String",
+							"isFirstLevel": true,
+							"description": "DOM Element or CSS Selector"
+						},
+						{
+							"kind": "param",
+							"name": "fieldName",
+							"type": "String",
+							"isFirstLevel": true,
+							"description": "The name of the field. Commonly used for debugging."
+						},
+						{
+							"kind": "param",
+							"name": "required",
+							"type": "Boolean",
+							"isFirstLevel": true,
+							"description": "Flag to accept an empty array as output."
 						}
 					],
-					"isNamespace": true,
-					"version": "1",
+					"static": true,
+					"return": {
+						"kind": "return",
+						"type": "Array",
+						"description": "The selected DOM Elements."
+					},
+					"examples": [
+						"\n    var elements = Ink.UI.Common.elsOrSelector('input.my-inputs', 'My Input');\n"
+					]
+				},
+				{
+					"kind": "function",
+					"name": "options",
+					"file": "src/js/Ink/UI/Common/1/lib.js",
+					"text": "Gets options an object and element's metadata.\n\nThe element's data attributes take precedence. Values from the element's data-atrributes are coerced into the required type.",
+					"params": [
+						{
+							"kind": "param",
+							"name": "fieldId",
+							"type": "Object",
+							"isOptional": true,
+							"isFirstLevel": true,
+							"description": "Name to be used in debugging features."
+						},
+						{
+							"kind": "param",
+							"name": "defaults",
+							"type": "Object",
+							"isFirstLevel": true,
+							"description": "Object with the options' types and defaults."
+						},
+						{
+							"kind": "param",
+							"name": "overrides",
+							"type": "Object",
+							"isFirstLevel": true,
+							"description": "Options to override the defaults. Usually passed when instantiating an UI module."
+						},
+						{
+							"kind": "param",
+							"name": "element",
+							"type": "DOMElement",
+							"isOptional": true,
+							"isFirstLevel": true,
+							"description": "Element with data-attributes"
+						}
+					],
+					"examples": [
+						"\n\n     this._options = Ink.UI.Common.options('MyComponent', {\n         'anobject': ['Object', null],  // Defaults to null\n         'target': ['Element', null],\n         'stuff': ['Number', 0.1],\n         'stuff2': ['Integer', 0],\n         'doKickFlip': ['Boolean', false],\n         'targets': ['Elements'], // Required option since no default was given\n         'onClick': ['Function', null]\n     }, options || {}, elm)\n\n",
+						"\n\n### Note about booleans\n\nHere is how options are read from the markup\ndata-attributes, for several values`data-a-boolean`.\n\nOptions considered true:\n\n  - `data-a-boolean=\"true\"`\n  - (Every other value which is not on the list below.)\n\nOptions considered false:\n\n  - `data-a-boolean=\"false\"`\n  - `data-a-boolean=\"\"`\n  - `data-a-boolean`\n\nOptions which go to default:\n\n  - (no attribute). When `data-a-boolean` is ommitted, the\n  option is not considered true nor false, and as such\n  defaults to what is in the `defaults` argument.\n\n"
+					]
+				},
+				{
+					"kind": "function",
+					"name": "clone",
+					"file": "src/js/Ink/UI/Common/1/lib.js",
+					"text": "Deep copy (clone) an object.\nNote: The object cannot have referece loops.",
+					"params": [
+						{
+							"kind": "param",
+							"name": "o",
+							"type": "Object",
+							"isFirstLevel": true,
+							"description": "The object to be cloned/copied."
+						}
+					],
+					"static": true,
+					"return": {
+						"kind": "return",
+						"type": "Object",
+						"description": "Returns the result of the clone/copy."
+					},
+					"examples": [
+						"\n    var originalObj = {\n        key1: 'value1',\n        key2: 'value2',\n        key3: 'value3'\n    };\n    var cloneObj = Ink.UI.Common.clone( originalObj );\n"
+					]
+				},
+				{
+					"kind": "function",
+					"name": "childIndex",
+					"file": "src/js/Ink/UI/Common/1/lib.js",
+					"text": "Gets an element's one-base index relative to its parent.",
+					"params": [
+						{
+							"kind": "param",
+							"name": "childEl",
+							"type": "DOMElement",
+							"isFirstLevel": true,
+							"description": "Valid DOM Element."
+						}
+					],
+					"static": true,
+					"return": {
+						"kind": "return",
+						"type": "Number",
+						"description": "Numerical position of an element relatively to its parent."
+					},
+					"examples": [
+						"\n    <!-- Imagine the following HTML: -->\n    <ul>\n      <li>One</li>\n      <li>Two</li>\n      <li id=\"test\">Three</li>\n      <li>Four</li>\n    </ul>\n\n    <script>\n        var testLi = Ink.s('#test');\n        Ink.UI.Common.childIndex( testLi ); // Returned value: 3\n    </script>\n"
+					]
+				},
+				{
+					"kind": "function",
+					"name": "ajaxJSON",
+					"file": "src/js/Ink/UI/Common/1/lib.js",
+					"text": "AJAX JSON request shortcut method\nIt provides a more convenient way to do an AJAX request and expect a JSON response.\nIt offers a callback option, as third parameter, for better async handling.",
+					"params": [
+						{
+							"kind": "param",
+							"name": "endpoint",
+							"type": "String",
+							"isFirstLevel": true,
+							"description": "Valid URL to be used as target by the request."
+						},
+						{
+							"kind": "param",
+							"name": "params",
+							"type": "Object",
+							"isFirstLevel": true,
+							"description": "This field is used in the thrown Exception to identify the parameter."
+						},
+						{
+							"kind": "param",
+							"name": "cb",
+							"type": "Function",
+							"isFirstLevel": true,
+							"description": "Callback for the request."
+						}
+					],
+					"static": true,
+					"async": true,
+					"examples": [
+						"\n    // In case there are several .myInput, it will retrieve the first found\n    var el = Ink.UI.Common.elOrSelector('.myInput','My Input');\n"
+					]
+				},
+				{
+					"kind": "function",
+					"name": "currentLayout",
+					"file": "src/js/Ink/UI/Common/1/lib.js",
+					"text": "Gets the current Ink layout.",
+					"params": [],
+					"static": true,
+					"return": {
+						"kind": "return",
+						"type": "String",
+						"description": "A string representation of the current layout name."
+					},
+					"examples": [
+						"\n     var inkLayout = Ink.UI.Common.currentLayout();\n     if (inkLayout === 'small') {\n         // ...\n     }\n"
+					]
+				},
+				{
+					"kind": "function",
+					"name": "hashSet",
+					"file": "src/js/Ink/UI/Common/1/lib.js",
+					"text": "Sets the location's hash (window.location.hash).",
+					"params": [
+						{
+							"kind": "param",
+							"name": "o",
+							"type": "Object",
+							"isFirstLevel": true,
+							"description": "Object with the info to be placed in the location's hash."
+						}
+					],
+					"static": true,
+					"examples": [
+						"\n    // It will set the location's hash like: <url>#key1=value1&key2=value2&key3=value3\n    Ink.UI.Common.hashSet({\n        key1: 'value1',\n        key2: 'value2',\n        key3: 'value3'\n    });\n"
+					]
+				},
+				{
+					"kind": "function",
+					"name": "cleanChildren",
+					"file": "src/js/Ink/UI/Common/1/lib.js",
+					"text": "Removes children nodes from a given object.\nThis method was initially created to help solve a problem in Internet Explorer(s) that occurred when trying to set the innerHTML of some specific elements like 'table'.",
+					"params": [
+						{
+							"kind": "param",
+							"name": "parentEl",
+							"type": "DOMElement",
+							"isFirstLevel": true,
+							"description": "Valid DOM Element"
+						}
+					],
+					"static": true,
+					"examples": [
+						"\n    <!-- Imagine the following HTML: -->\n    <ul id=\"myUl\">\n      <li>One</li>\n      <li>Two</li>\n      <li>Three</li>\n      <li>Four</li>\n    </ul>\n\n    <script>\n    Ink.UI.Common.cleanChildren( Ink.s( '#myUl' ) );\n    </script>\n\n    <!-- After running it, the HTML changes to: -->\n    <ul id=\"myUl\"></ul>\n"
+					]
+				},
+				{
+					"kind": "function",
+					"name": "storeIdAndClasses",
+					"file": "src/js/Ink/UI/Common/1/lib.js",
+					"text": "Stores the id and/or classes of an element in an object.",
+					"params": [
+						{
+							"kind": "param",
+							"name": "fromEl",
+							"type": "DOMElement",
+							"isFirstLevel": true,
+							"description": "Valid DOM Element to get the id and classes from."
+						},
+						{
+							"kind": "param",
+							"name": "inObj",
+							"type": "Object",
+							"isFirstLevel": true,
+							"description": "Object where the id and classes will be saved."
+						}
+					],
+					"static": true,
+					"examples": [
+						"\n    <div id=\"myDiv\" class=\"aClass\"></div>\n\n    <script>\n        var storageObj = {};\n        Ink.UI.Common.storeIdAndClasses( Ink.s('#myDiv'), storageObj );\n        // storageObj changes to:\n        {\n          _id: 'myDiv',\n          _classes: 'aClass'\n        }\n    </script>\n"
+					]
+				},
+				{
+					"kind": "function",
+					"name": "restoreIdAndClasses",
+					"file": "src/js/Ink/UI/Common/1/lib.js",
+					"text": "Sets the id and className properties of an element based",
+					"params": [
+						{
+							"kind": "param",
+							"name": "toEl",
+							"type": "DOMElement",
+							"isFirstLevel": true,
+							"description": "Valid DOM Element to set the id and classes on."
+						},
+						{
+							"kind": "param",
+							"name": "inObj",
+							"type": "Object",
+							"isFirstLevel": true,
+							"description": "Object where the id and classes to be set are. This method uses the same format as the one given in `storeIdAndClasses`"
+						}
+					],
+					"static": true,
+					"examples": [
+						"\n    <div></div>\n\n    <script>\n        var storageObj = {\n          _id: 'myDiv',\n          _classes: 'aClass'\n        };\n\n        Ink.UI.Common.storeIdAndClasses( Ink.s('div'), storageObj );\n    </script>\n\n    <!-- After the code runs the div element changes to: -->\n    <div id=\"myDiv\" class=\"aClass\"></div>\n"
+					]
+				},
+				{
+					"kind": "function",
+					"name": "registerInstance",
+					"file": "src/js/Ink/UI/Common/1/lib.js",
+					"text": "Saves a component's instance reference for later retrieval.",
+					"params": [
+						{
+							"kind": "param",
+							"name": "inst",
+							"type": "Object",
+							"isFirstLevel": true,
+							"description": "Object that holds the instance."
+						},
+						{
+							"kind": "param",
+							"name": "el",
+							"type": "DOMElement",
+							"isFirstLevel": true,
+							"description": "DOM Element to associate with the object."
+						},
+						{
+							"kind": "param",
+							"name": "optionalPrefix",
+							"type": "Object",
+							"isOptional": true,
+							"isFirstLevel": true,
+							"description": "Defaults to 'instance'"
+						}
+					],
+					"static": true
+				},
+				{
+					"kind": "function",
+					"name": "unregisterInstance",
+					"file": "src/js/Ink/UI/Common/1/lib.js",
+					"text": "Deletes an instance with a given id.",
+					"params": [
+						{
+							"kind": "param",
+							"name": "id",
+							"type": "String",
+							"isFirstLevel": true,
+							"description": "Id of the instance to be destroyed."
+						}
+					],
+					"static": true
+				},
+				{
+					"kind": "function",
+					"name": "getInstance",
+					"file": "src/js/Ink/UI/Common/1/lib.js",
+					"text": "Gets an UI instance from an element or instance id.",
+					"params": [
+						{
+							"kind": "param",
+							"name": "instanceIdOrElement",
+							"type": "String|DOMElement",
+							"isFirstLevel": true,
+							"description": "Instance's id or DOM Element from which we want the instances."
+						}
+					],
+					"static": true,
+					"return": {
+						"kind": "return",
+						"type": "Object|Array",
+						"description": "Returns an instance or a collection of instances."
+					}
+				},
+				{
+					"kind": "function",
+					"name": "getInstanceFromSelector",
+					"file": "src/js/Ink/UI/Common/1/lib.js",
+					"text": "Gets an instance based on a selector.",
+					"params": [
+						{
+							"kind": "param",
+							"name": "selector",
+							"type": "String",
+							"isFirstLevel": true,
+							"description": "CSS selector to get the instances from."
+						}
+					],
+					"static": true,
+					"return": {
+						"kind": "return",
+						"type": "Object|Array",
+						"description": "Returns an instance or a collection of instances."
+					}
+				},
+				{
+					"kind": "function",
+					"name": "getInstanceIds",
+					"file": "src/js/Ink/UI/Common/1/lib.js",
+					"text": "Gets all the instance ids",
+					"params": [],
+					"static": true,
+					"return": {
+						"kind": "return",
+						"type": "Array",
+						"description": "Collection of instance ids"
+					}
+				},
+				{
+					"kind": "function",
+					"name": "getInstances",
+					"file": "src/js/Ink/UI/Common/1/lib.js",
+					"text": "Gets all the instances",
+					"params": [],
+					"static": true,
+					"return": {
+						"kind": "return",
+						"type": "Array",
+						"description": "Collection of existing instances."
+					}
+				},
+				{
+					"kind": "function",
+					"name": "destroyComponent",
+					"file": "src/js/Ink/UI/Common/1/lib.js",
+					"text": "Boilerplate method to destroy a component.\nComponents should copy this method as its destroy method and modify it.",
+					"params": [],
 					"static": true
 				}
 			],
-			"functions": [],
-			"attributes": [],
+			"attributes": [
+				{
+					"kind": "attribute",
+					"name": "Layouts",
+					"text": "Supported Ink Layouts",
+					"type": "Object"
+				}
+			],
 			"uses": [],
-			"author": "inkdev AT sapo.pt",
 			"version": "1"
 		},
 		{
@@ -5745,9 +5731,8 @@
 									"name": "options.autoOpen",
 									"type": "Boolean",
 									"isOptional": true,
-									"defaultValue": "false",
 									"isFirstLevel": false,
-									"description": "set to `true` to automatically open the datepicker."
+									"description": "Flag to automatically open the datepicker."
 								},
 								{
 									"kind": "param",
@@ -5755,7 +5740,7 @@
 									"type": "String",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "text to display on clean button. defaults to 'Limpar'"
+									"description": "Text for the clean button. Defaults to 'Limpar'."
 								},
 								{
 									"kind": "param",
@@ -5763,7 +5748,7 @@
 									"type": "String",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "text to display on close button. defaults to 'Fechar'"
+									"description": "Text for the close button. Defaults to 'Fechar'."
 								},
 								{
 									"kind": "param",
@@ -5771,7 +5756,7 @@
 									"type": "String",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "CSS class to be applied to the datepicker"
+									"description": "CSS class to be applied on the datepicker"
 								},
 								{
 									"kind": "param",
@@ -5779,7 +5764,7 @@
 									"type": "String",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "enforce limits to year, month and day for the Date, ex: '1990-08-25:2020-11'"
+									"description": "Enforce limits to year, month and day for the Date, ex: '1990-08-25:2020-11'"
 								},
 								{
 									"kind": "param",
@@ -5787,7 +5772,7 @@
 									"type": "Boolean",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "whether to display the component in a select. defaults to false."
+									"description": "Flag to display the component in a select element."
 								},
 								{
 									"kind": "param",
@@ -5795,7 +5780,7 @@
 									"type": "String|DOMElement",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "(if using options.displayInSelect) `<select>` field with days."
+									"description": "(if using options.displayInSelect) `select` field with days."
 								},
 								{
 									"kind": "param",
@@ -5803,7 +5788,7 @@
 									"type": "String|DOMElement",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "(if using options.displayInSelect)  `<select>` field with months."
+									"description": "(if using options.displayInSelect) `select` field with months."
 								},
 								{
 									"kind": "param",
@@ -5811,7 +5796,7 @@
 									"type": "String|DOMElement",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "(if using options.displayInSelect)  `<select>` field with years."
+									"description": "(if using options.displayInSelect) `select` field with years."
 								},
 								{
 									"kind": "param",
@@ -5827,7 +5812,7 @@
 									"type": "String",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "unique id for the datepicker"
+									"description": "Unique id for the datepicker"
 								},
 								{
 									"kind": "param",
@@ -5843,7 +5828,7 @@
 									"type": "String",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "text to display on the previous button. defaults to '«'"
+									"description": "Text for the previous button. Defaults to '«'."
 								},
 								{
 									"kind": "param",
@@ -5851,16 +5836,15 @@
 									"type": "String",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "text to display between month and year. defaults to ' of '"
+									"description": "Text to show between month and year. Defaults to ' of '."
 								},
 								{
 									"kind": "param",
 									"name": "options.onFocus",
 									"type": "Boolean",
 									"isOptional": true,
-									"defaultValue": "true",
 									"isFirstLevel": false,
-									"description": "if the datepicker should open when the target element is focused"
+									"description": "If the datepicker should open when the target element is focused. Defaults to true."
 								},
 								{
 									"kind": "param",
@@ -5868,7 +5852,7 @@
 									"type": "Function",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "callback function to execute when the month is selected"
+									"description": "Callback to execute when the month is selected."
 								},
 								{
 									"kind": "param",
@@ -5876,7 +5860,7 @@
 									"type": "Function",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "callback to execute when set date"
+									"description": "Callback to execute when the date is set."
 								},
 								{
 									"kind": "param",
@@ -5884,7 +5868,7 @@
 									"type": "Function",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "callback function to execute when the year is selected"
+									"description": "Callback to execute when the year is selected."
 								},
 								{
 									"kind": "param",
@@ -5892,7 +5876,7 @@
 									"type": "String",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "position the datepicker. Accept right or bottom, default is right"
+									"description": "Position for the datepicker. Either 'right' or 'bottom'. Defaults to 'right'."
 								},
 								{
 									"kind": "param",
@@ -5900,7 +5884,7 @@
 									"type": "String",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "text to display on the previous button. defaults to '«'"
+									"description": "Text for the previous button. Defaults to '«'."
 								},
 								{
 									"kind": "param",
@@ -5908,7 +5892,7 @@
 									"type": "Boolean",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "whether to display the clean button or not. defaults to true."
+									"description": "If the clean button should be visible. Defaults to true."
 								},
 								{
 									"kind": "param",
@@ -5916,16 +5900,15 @@
 									"type": "Boolean",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "whether to display the close button or not. defaults to true."
+									"description": "If the close button should be visible. Defaults to true."
 								},
 								{
 									"kind": "param",
 									"name": "options.shy",
 									"type": "Boolean",
 									"isOptional": true,
-									"defaultValue": "true",
 									"isFirstLevel": false,
-									"description": "whether the datepicker starts automatically."
+									"description": "If the datepicker should start automatically. Defaults to true."
 								},
 								{
 									"kind": "param",
@@ -5933,7 +5916,7 @@
 									"type": "String",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "Date to define init month. Must be in yyyy-mm-dd format"
+									"description": "Date to define initial month. Must be in yyyy-mm-dd format."
 								},
 								{
 									"kind": "param",
@@ -5941,7 +5924,7 @@
 									"type": "Number",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "day to use as first column on the calendar view. Sunday is zero. Defaults to Monday (1)."
+									"description": "First day of the week. Sunday is zero. Defaults to 1 (Monday)."
 								},
 								{
 									"kind": "param",
@@ -5949,7 +5932,7 @@
 									"type": "Function",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "callback function to execute when 'rendering' the month (in the month view)"
+									"description": "Callback to execute when 'rendering' the month (in the month view)"
 								},
 								{
 									"kind": "param",
@@ -5957,7 +5940,7 @@
 									"type": "Function",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "callback function to execute when 'rendering' the month (in the month view)"
+									"description": "Callback to execute when 'rendering' the month (in the month view)"
 								},
 								{
 									"kind": "param",
@@ -5965,7 +5948,7 @@
 									"type": "Function",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "callback function to execute when 'rendering' the day (in the month view)"
+									"description": "Callback to execute when 'rendering' the day (in the month view)"
 								},
 								{
 									"kind": "param",
@@ -5973,7 +5956,7 @@
 									"type": "Function",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "Find the next valid date, given the current Date. Necessary when the calendar has a lot of \"holes\", and not many dates are valid and they are separated by many months or years so it doesn't make sense to have the user click the \"next\" button too many times and not see any valid date."
+									"description": "Function to calculate the next valid date, given the current. Useful when there's invalid dates or time frames."
 								},
 								{
 									"kind": "param",
@@ -5981,7 +5964,7 @@
 									"type": "Function",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "See nextValidDateFn. Find the previous valid date."
+									"description": "Function to calculate the previous valid date, given the current. Useful when there's invalid dates or time frames."
 								},
 								{
 									"kind": "param",
@@ -5989,7 +5972,7 @@
 									"type": "Object",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "Hash of weekdays. Defaults to portuguese month names. Sunday is 0."
+									"description": "Hash of weekdays. Defaults to portuguese names. Sunday is 0."
 								},
 								{
 									"kind": "param",
@@ -5997,7 +5980,7 @@
 									"type": "String",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "enforce limits to year for the Date, ex: '1990:2020' (deprecated)"
+									"description": "Enforce limits to year for the Date, ex: '1990:2020' (deprecated)"
 								}
 							],
 							"version": "1",
@@ -6009,7 +5992,7 @@
 							"kind": "function",
 							"name": "_init",
 							"file": "src/js/Ink/UI/DatePicker/1/lib.js",
-							"text": "Initialization function. Called by the constructor and\nreceives the same parameters.",
+							"text": "Initialization function. Called by the constructor and receives the same parameters.",
 							"params": [],
 							"private": true
 						},
@@ -6017,7 +6000,7 @@
 							"kind": "function",
 							"name": "_render",
 							"file": "src/js/Ink/UI/DatePicker/1/lib.js",
-							"text": "Renders the DatePicker's markup",
+							"text": "Renders the DatePicker's markup.",
 							"params": [],
 							"private": true
 						},
@@ -6025,14 +6008,14 @@
 							"kind": "function",
 							"name": "show",
 							"file": "src/js/Ink/UI/DatePicker/1/lib.js",
-							"text": "Shows the calendar",
+							"text": "Shows the calendar.",
 							"params": []
 						},
 						{
 							"kind": "function",
 							"name": "_renderMonthSelector",
 							"file": "src/js/Ink/UI/DatePicker/1/lib.js",
-							"text": "Create the markup of the view with months.",
+							"text": "Creates the markup of the view with months.",
 							"params": [],
 							"private": true
 						},
@@ -6040,7 +6023,7 @@
 							"kind": "function",
 							"name": "_onChangerClick",
 							"file": "src/js/Ink/UI/DatePicker/1/lib.js",
-							"text": "Handle click events on a changer (« ») for next/prev year/month",
+							"text": "Handles click events on a changer (« ») for next/prev year/month",
 							"params": [],
 							"private": true
 						},
@@ -6048,7 +6031,7 @@
 							"kind": "function",
 							"name": "_onAbsoluteChangerClick",
 							"file": "src/js/Ink/UI/DatePicker/1/lib.js",
-							"text": "Handle click events on an atom-changer (day button, month button, year button)",
+							"text": "Handles click events on an atom-changer (day button, month button, year button)",
 							"params": [],
 							"private": true
 						},
@@ -6056,15 +6039,15 @@
 							"kind": "function",
 							"name": "_hide",
 							"file": "src/js/Ink/UI/DatePicker/1/lib.js",
-							"text": "Hides the DatePicker. If the component is shy (options.shy), behaves differently.",
+							"text": "Hides the DatePicker.\nIf the component is shy (options.shy), behaves differently.",
 							"params": [
 								{
 									"kind": "param",
 									"name": "blur",
+									"type": "Boolean",
 									"isOptional": true,
-									"defaultValue": "true",
 									"isFirstLevel": true,
-									"description": "Set to false to indicate this is not just a blur and force hiding even if the component is shy."
+									"description": "If false, forces hiding even if the component is shy."
 								}
 							]
 						},
@@ -6283,7 +6266,7 @@
 							"kind": "function",
 							"name": "getDate",
 							"file": "src/js/Ink/UI/DatePicker/1/lib.js",
-							"text": "Get the current date as a JavaScript date.",
+							"text": "Gets the current date as a JavaScript date.",
 							"params": []
 						},
 						{
@@ -6400,66 +6383,59 @@
 								},
 								{
 									"kind": "param",
-									"name": "closeText",
+									"name": "options.closeText",
 									"type": "String",
-									"isFirstLevel": true,
+									"isFirstLevel": false,
 									"description": "Text of the close anchor"
 								},
 								{
 									"kind": "param",
-									"name": "cleanText",
+									"name": "options.cleanText",
 									"type": "String",
-									"isFirstLevel": true,
+									"isFirstLevel": false,
 									"description": "Text of the clean text anchor"
 								},
 								{
 									"kind": "param",
-									"name": "prevLinkText",
+									"name": "options.prevLinkText",
 									"type": "String",
-									"isFirstLevel": true,
+									"isFirstLevel": false,
 									"description": "\"Previous\" link's text"
 								},
 								{
 									"kind": "param",
-									"name": "nextLinkText",
+									"name": "options.nextLinkText",
 									"type": "String",
-									"isFirstLevel": true,
+									"isFirstLevel": false,
 									"description": "\"Next\" link's text"
 								},
 								{
 									"kind": "param",
-									"name": "ofText",
+									"name": "options.ofText",
 									"type": "String",
-									"isFirstLevel": true,
+									"isFirstLevel": false,
 									"description": "The text \"of\", present in 'May of 2013'"
 								},
 								{
 									"kind": "param",
-									"name": "month",
+									"name": "options.month",
 									"type": "Object",
-									"isFirstLevel": true,
-									"description": "An object with keys from 1 to 12 that have the full months' names"
+									"isFirstLevel": false,
+									"description": "An object with keys from 1 to 12 for the full months' names"
 								},
 								{
 									"kind": "param",
-									"name": "wDay",
+									"name": "options.wDay",
 									"type": "Object",
-									"isFirstLevel": true,
-									"description": "An object with keys from 0 to 6 that have the full weekdays' names"
+									"isFirstLevel": false,
+									"description": "An object with keys from 0 to 6 for the full weekdays' names"
 								}
 							],
-							"private": true
-						},
-						{
-							"kind": "function",
-							"name": "showMonth",
-							"file": "src/js/Ink/UI/DatePicker/1/lib.js",
-							"text": "This calls the rendering of the selected month. (Deprecated: use show() instead)",
-							"params": [],
+							"private": true,
 							"return": {
 								"kind": "return",
 								"type": "Boolean",
-								"description": "True if the calendar sceen is in 'select day' mode"
+								"description": "True if the calendar screen is in 'select day' mode"
 							}
 						}
 					],
@@ -6476,8 +6452,7 @@
 			"functions": [],
 			"attributes": [],
 			"uses": [],
-			"author": "inkdev AT sapo.pt",
-			"version": "1"
+			"version": "1\nDate selector"
 		},
 		{
 			"kind": "module",
@@ -6508,7 +6483,7 @@
 									"type": "Object",
 									"isOptional": true,
 									"isFirstLevel": true,
-									"description": "Optional object for configuring the component"
+									"description": "Optional object to configure the component."
 								},
 								{
 									"kind": "param",
@@ -6521,7 +6496,7 @@
 								{
 									"kind": "param",
 									"name": "options.constraintElm",
-									"type": "String|DomElement",
+									"type": "String|DOMElement",
 									"isOptional": true,
 									"isFirstLevel": false,
 									"description": "Constrain dragging to be within this element. None by default."
@@ -6532,7 +6507,7 @@
 									"type": "Number",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "Limits for constraining draggable movement."
+									"description": "Limits to constrain draggable movement."
 								},
 								{
 									"kind": "param",
@@ -6540,7 +6515,7 @@
 									"type": "Number",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "Limits for constraining draggable movement."
+									"description": "Limits to constrain draggable movement."
 								},
 								{
 									"kind": "param",
@@ -6548,7 +6523,7 @@
 									"type": "Number",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "Limits for constraining draggable movement."
+									"description": "Limits to constrain draggable movement."
 								},
 								{
 									"kind": "param",
@@ -6556,7 +6531,7 @@
 									"type": "Number",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "Limits for constraining draggable movement."
+									"description": "Limits to constrain draggable movement."
 								},
 								{
 									"kind": "param",
@@ -6564,7 +6539,7 @@
 									"type": "String|DOMElement",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "if specified, this element will be used as a handle for dragging."
+									"description": "If specified, this element or CSS ID will be used as a handle for dragging."
 								},
 								{
 									"kind": "param",
@@ -6572,7 +6547,7 @@
 									"type": "Boolean",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "if true, reverts the draggable to the original position when dragging stops"
+									"description": "Flag to revert the draggable to the original position when dragging stops."
 								},
 								{
 									"kind": "param",
@@ -6580,7 +6555,7 @@
 									"type": "String",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "cursor type (CSS `cursor` value) used when the mouse is over the draggable object"
+									"description": "Cursor type (CSS `cursor` value) used when the mouse is over the draggable object."
 								},
 								{
 									"kind": "param",
@@ -6588,7 +6563,7 @@
 									"type": "Number",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "zindex applied to the draggable element while dragged"
+									"description": "Z-index applied to the draggable element while dragged."
 								},
 								{
 									"kind": "param",
@@ -6596,15 +6571,15 @@
 									"type": "Number",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "if defined, on drag will run every n frames per second only"
+									"description": "If set, throttles the drag effect to this number of frames per second."
 								},
 								{
 									"kind": "param",
 									"name": "options.droppableProxy",
-									"type": "DomElement",
+									"type": "DOMElement",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "if set, a shallow copy of the droppableProxy will be put on document.body with transparent bg"
+									"description": "If set, a shallow copy of this element will be moved around with transparent background."
 								},
 								{
 									"kind": "param",
@@ -6612,16 +6587,15 @@
 									"type": "String",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "defaults to mouse cursor. can be 'left|center|right top|center|bottom'"
+									"description": "Anchor for the drag. Can be one of: 'left','center','right','top','center','bottom'."
 								},
 								{
 									"kind": "param",
 									"name": "options.dragClass",
 									"type": "String",
 									"isOptional": true,
-									"defaultValue": "'drag'",
 									"isFirstLevel": false,
-									"description": "class to add when the draggable is being dragged."
+									"description": "Class to add when the draggable is being dragged. Defaults to drag."
 								},
 								{
 									"kind": "param",
@@ -6629,7 +6603,7 @@
 									"type": "Function",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "callback called when dragging starts"
+									"description": "Callback called when dragging starts."
 								},
 								{
 									"kind": "param",
@@ -6637,7 +6611,7 @@
 									"type": "Function",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "callback called when dragging stops"
+									"description": "Callback called when dragging stops."
 								},
 								{
 									"kind": "param",
@@ -6645,7 +6619,7 @@
 									"type": "Function",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "callback called while dragging, prior to position updates"
+									"description": "Callback called while dragging, prior to position updates."
 								},
 								{
 									"kind": "param",
@@ -6653,7 +6627,7 @@
 									"type": "Function",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "callback called while dragging, after position updates"
+									"description": "Callback called while dragging, after position updates."
 								}
 							],
 							"examples": [
@@ -6671,7 +6645,7 @@
 									"name": "element",
 									"type": "String|DOMElement",
 									"isFirstLevel": true,
-									"description": "ID of the element or DOM Element."
+									"description": "Element ID of the element or DOM Element."
 								},
 								{
 									"kind": "param",
@@ -8652,7 +8626,7 @@
 				{
 					"kind": "class",
 					"name": "Ink.UI.LazyLoad_1",
-					"text": "",
+					"text": "Stop the browser from loading a barrage of content at once.\n\nThis delays the loading of images and other content until the\ncorresponding elements are visible in the browser viewport.\n\nThis was created to load images later, but can be also used for\nwidgets which are slow to load and are only useful when on screen.\n\nThis works through copying the `src` attribute into `data-src`,\nand placing a `placeholder` string in the `src` attribute. Then,\nwhen the element is on screen, the `data-src` attribute is copied\nback to `src` and the content starts loading. You can use the options\nbelow to change what attributes are involved in the exchange.\n\nYou can also provide your `onInsideViewport` callback and use it to\nstart widgets which need javascript, such as an interactive map\nor an animation.",
 					"file": "src/js/Ink/UI/LazyLoad/1/lib.js",
 					"functions": [
 						{
@@ -8660,7 +8634,117 @@
 							"name": "LazyLoad_1",
 							"file": "src/js/Ink/UI/LazyLoad/1/lib.js",
 							"isConstructor": true,
-							"params": []
+							"params": [
+								{
+									"kind": "param",
+									"name": "rootElement",
+									"isFirstLevel": true,
+									"description": "{String|DOMElement} The element which contains the lazily-loaded items."
+								},
+								{
+									"kind": "param",
+									"name": "options",
+									"isOptional": true,
+									"isFirstLevel": true,
+									"description": "Options object, containing:"
+								},
+								{
+									"kind": "param",
+									"name": "options.item",
+									"isOptional": true,
+									"defaultValue": "'.lazyload-item'",
+									"isFirstLevel": false,
+									"description": "{String} Use this to select and define what is to be considered an `item`."
+								},
+								{
+									"kind": "param",
+									"name": "options.placeholder",
+									"isOptional": true,
+									"defaultValue": "null",
+									"isFirstLevel": false,
+									"description": "{String} Placeholder value for items which are still outside the screen (in case they don't already have a value set)"
+								},
+								{
+									"kind": "param",
+									"name": "options.source",
+									"isOptional": true,
+									"defaultValue": "'data-src'",
+									"isFirstLevel": false,
+									"description": "{String} When an `item` is within the viewport, take the value it has in this attribute then set its `destination` attribute to it."
+								},
+								{
+									"kind": "param",
+									"name": "options.destination",
+									"isOptional": true,
+									"defaultValue": "'src'",
+									"isFirstLevel": false,
+									"description": "{String} attribute which gets the value in `source` when the element is visible."
+								},
+								{
+									"kind": "param",
+									"name": "options.delay",
+									"isOptional": true,
+									"defaultValue": "100",
+									"isFirstLevel": false,
+									"description": "{Number} Wait a few milliseconds before trying to load."
+								},
+								{
+									"kind": "param",
+									"name": "options.delta",
+									"isOptional": true,
+									"defaultValue": "0",
+									"isFirstLevel": false,
+									"description": "{Number} Distance in px from the outside of the viewport. Elements touching within this \"margin\", items are considered to be inside even if they are outside the viewport limits. Can be negative if you want an element to be considered inside only when it is a certain distance into the viewport."
+								},
+								{
+									"kind": "param",
+									"name": "options.image",
+									"isOptional": true,
+									"defaultValue": "true",
+									"isFirstLevel": false,
+									"description": "{Boolean} Set to false to make this component do nothing to any elements and just give you the onInsideViewport callback."
+								},
+								{
+									"kind": "param",
+									"name": "options.scrollElement",
+									"isOptional": true,
+									"defaultValue": "window",
+									"isFirstLevel": false,
+									"description": "{Element} (advanced) What element is to be listened for the scroll event."
+								},
+								{
+									"kind": "param",
+									"name": "options.touchEvents",
+									"isOptional": true,
+									"defaultValue": "true",
+									"isFirstLevel": false,
+									"description": "{Boolean} Subscribe to touch events in addition to scroll events. Useful in mobile safari because 'scroll' events aren't frequent enough."
+								},
+								{
+									"kind": "param",
+									"name": "options.onInsideViewport",
+									"isOptional": true,
+									"defaultValue": "false",
+									"isFirstLevel": false,
+									"description": "{Function} Called when an `item` is within the viewport. Receives `{ element }`"
+								},
+								{
+									"kind": "param",
+									"name": "options.onAfterAttributeChange",
+									"isOptional": true,
+									"defaultValue": "false",
+									"isFirstLevel": false,
+									"description": "{Function} (advanced) Called after `source` is copied over to `destination`. Receives `{ element }`"
+								},
+								{
+									"kind": "param",
+									"name": "options.autoInit",
+									"isOptional": true,
+									"defaultValue": "true",
+									"isFirstLevel": false,
+									"description": "{Boolean} (advanced) Set to false if you want to start LazyLoad yourself with `reload()`"
+								}
+							]
 						},
 						{
 							"kind": "function",
@@ -8691,6 +8775,20 @@
 								}
 							],
 							"private": true
+						},
+						{
+							"kind": "function",
+							"name": "reload",
+							"file": "src/js/Ink/UI/LazyLoad/1/lib.js",
+							"text": "Load or reload the component. Adding the 'scroll' event listener if\nnecessary and checks if anything needs to be lazily loaded now.\n\nYou can use this if some elements may have appeared on screen but\nno user scrolling happened.",
+							"params": []
+						},
+						{
+							"kind": "function",
+							"name": "destroy",
+							"file": "src/js/Ink/UI/LazyLoad/1/lib.js",
+							"text": "Destroy this component",
+							"params": []
 						}
 					],
 					"attributes": []
@@ -11452,6 +11550,7 @@
 				{
 					"kind": "class",
 					"name": "Ink.UI.Tooltip",
+					"text": "Tooltips are useful as a means to display information about functionality while avoiding clutter.\n\nTooltips show up when you hover elements which \"have\" tooltips.\n\nThis class will \"give\" a tooltip to many elements, selected by its first argument (`target`). This is contrary to the other UI modules in Ink, which are created once per element.\n\nYou can define options either through the second argument of the Tooltip constructor, or as data-attributes in each `target` element. Options set through data-attributes all start with \"data-tip\", and override options passed into the Tooltip constructor.",
 					"file": "src/js/Ink/UI/Tooltip/1/lib.js",
 					"functions": [
 						{
@@ -11496,25 +11595,7 @@
 									"isOptional": true,
 									"defaultValue": "'up'",
 									"isFirstLevel": false,
-									"description": "Positioning for the tooltip. Options:"
-								},
-								{
-									"kind": "param",
-									"name": "options.where.up",
-									"isFirstLevel": false,
-									"description": "Place above, below, to the left of, or to the right of, the target. Show an arrow."
-								},
-								{
-									"kind": "param",
-									"name": "options.where.mousemove",
-									"isFirstLevel": false,
-									"description": "Place the tooltip to the bottom and to the right of the mouse when it hovers the element, and follow the mouse as it moves."
-								},
-								{
-									"kind": "param",
-									"name": "options.where.mousefix",
-									"isFirstLevel": false,
-									"description": "Place the tooltip to the bottom and to the right of the mouse when it hovers the element, keep the tooltip there motionless."
+									"description": "Positioning for the tooltip. Options are 'up', 'down', 'left', 'right', which place the tooltip in the corresponding direction (and show an arrow), 'mousemove', which follows the mouse as it moves, and 'mousefix', which stays in one place."
 								},
 								{
 									"kind": "param",
@@ -11650,7 +11731,7 @@
 				{
 					"kind": "class",
 					"name": "Ink.UI.TreeView",
-					"text": "Shows elements in a tree-like hierarchical structure.",
+					"text": "Shows elements in a tree structure which can be expanded and contracted.\n\nA TreeView is built with \"node\"s and \"children\". \"node\"s are `li` tags, and\n\"children\" are `ul` tags.\n\nYou can build your TreeView out of a regular UL and  LI element structure which\nyou already use to display lists with several levels.\n\nIf you want a node (LI) to be open when the TreeView is built, just add the \ndata-open=\"true\" attribute to it.",
 					"file": "src/js/Ink/UI/TreeView/1/lib.js",
 					"functions": [
 						{
@@ -11664,6 +11745,14 @@
 									"name": "selector",
 									"type": "String|DOMElement",
 									"isFirstLevel": true
+								},
+								{
+									"kind": "param",
+									"name": "options",
+									"type": "String",
+									"isOptional": true,
+									"isFirstLevel": true,
+									"description": "Options object, containing:"
 								},
 								{
 									"kind": "param",
@@ -11697,18 +11786,18 @@
 									"name": "options.openClass",
 									"type": "String",
 									"isOptional": true,
-									"defaultValue": "'f",
+									"defaultValue": "'fa",
 									"isFirstLevel": false,
-									"description": "fa-minus-circle'] Classes to be added to the icon when a parent is open."
+									"description": "fa-minus-circle' Classes to be added to the icon when a parent is open."
 								},
 								{
 									"kind": "param",
 									"name": "options.closedClass",
 									"type": "String",
 									"isOptional": true,
-									"defaultValue": "'f",
+									"defaultValue": "'fa",
 									"isFirstLevel": false,
-									"description": "fa-plus-circle'] Classes to be added to the icon when a parent is closed."
+									"description": "fa-plus-circle' Classes to be added to the icon when a parent is closed."
 								},
 								{
 									"kind": "param",
@@ -11750,6 +11839,81 @@
 							"text": "Init function called by the constructor. Sets the necessary event handlers.",
 							"params": [],
 							"private": true
+						},
+						{
+							"kind": "function",
+							"name": "isOpen",
+							"file": "src/js/Ink/UI/TreeView/1/lib.js",
+							"text": "Check whether a node is open",
+							"params": [
+								{
+									"kind": "param",
+									"name": "node",
+									"type": "DOMElement",
+									"isFirstLevel": true,
+									"description": "The tree node to check"
+								}
+							]
+						},
+						{
+							"kind": "function",
+							"name": "isParent",
+							"file": "src/js/Ink/UI/TreeView/1/lib.js",
+							"text": "Returns whether a node is a parent in this tree.",
+							"params": [
+								{
+									"kind": "param",
+									"name": "node",
+									"type": "DOMElement",
+									"isFirstLevel": true,
+									"description": "Node to check"
+								}
+							]
+						},
+						{
+							"kind": "function",
+							"name": "open",
+							"file": "src/js/Ink/UI/TreeView/1/lib.js",
+							"text": "Open one of the tree nodes\n\nMake sure you pass the node's DOMElement",
+							"params": [
+								{
+									"kind": "param",
+									"name": "node",
+									"type": "DOMElement",
+									"isFirstLevel": true,
+									"description": "The node you wish to open."
+								}
+							]
+						},
+						{
+							"kind": "function",
+							"name": "close",
+							"file": "src/js/Ink/UI/TreeView/1/lib.js",
+							"text": "close one of the tree nodes\n\nMake sure you pass the node's DOMElement",
+							"params": [
+								{
+									"kind": "param",
+									"name": "node",
+									"type": "DOMElement",
+									"isFirstLevel": true,
+									"description": "The node you wish to close."
+								}
+							]
+						},
+						{
+							"kind": "function",
+							"name": "toggle",
+							"file": "src/js/Ink/UI/TreeView/1/lib.js",
+							"text": "Toggle a node",
+							"params": [
+								{
+									"kind": "param",
+									"name": "node",
+									"type": "DOMElement",
+									"isFirstLevel": true,
+									"description": "The node to toggle."
+								}
+							]
 						},
 						{
 							"kind": "function",

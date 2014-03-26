@@ -23,22 +23,17 @@
             
 
     
-    <p>This module combines several stacks of items together, in smaller screen sizes.
-
-The purpose is to have several stacks of items which may have different heights and as such cannot be used because of `float: left` quirks.
-
-For example, when you have three different columns of information:
-
-    [col. A: 1] [col. B: 1] [col. C: 1]
-    [col. B: 2] [col. C: 2] [col. C: 2]
-
-and the screen resizes and you need a layout of 2 columns, Stacker reorders the stacks so that you get:
-
-    [col. A: 1] [col. B: 1]
-    [col. C: 1] [col. A: 2]
-    [col. B: 2] [col. C: 2]
-
-Note: If you just want to use a different amount of columns for your items in several viewports, but these items are guaranteed to have a fixed height, don't use this module. Use the `small-*`, `medium-*` and `large-*` classes instead.</p>
+    <p><p>This module combines several stacks of items together, in smaller screen sizes.</p>
+<p>The purpose is to have several stacks of items which may have different heights and as such cannot be used because of <code>float: left</code> quirks.</p>
+<p>For example, when you have three different columns of information:</p>
+<pre><code>[col. A: 1] [col. B: 1] [col. C: 1]
+[col. B: 2] [col. C: 2] [col. C: 2]
+</code></pre><p>and the screen resizes and you need a layout of 2 columns, Stacker reorders the stacks so that you get:</p>
+<pre><code>[col. A: 1] [col. B: 1]
+[col. C: 1] [col. A: 2]
+[col. B: 2] [col. C: 2]
+</code></pre><p>Note: If you just want to use a different amount of columns for your items in several viewports, but these items are guaranteed to have a fixed height, don&#39;t use this module. Use the <code>small-*</code>, <code>medium-*</code> and <code>large-*</code> classes instead.</p>
+</p>
     
     
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p>
@@ -89,7 +84,8 @@ Note: If you just want to use a different amount of columns for your items in se
                 <td>
                     
 
-                    Add an item to the end of your stacks. Call `reloadItems()` when you are done adding items.
+                    <p>Add an item to the end of your stacks. Call <code>reloadItems()</code> when you are done adding items.</p>
+
 
                     
                     
@@ -108,12 +104,13 @@ Note: If you just want to use a different amount of columns for your items in se
                 <td>
                     
 
-                    Update the layout of your items.
+                    <p>Update the layout of your items.</p>
+<p>Call this when:</p>
+<ul>
+<li>The width has changed, but not because of the window resizing.</li>
+<li>You used addItem to add some items</li>
+</ul>
 
-Call this when:
-
- - The width has changed, but not because of the window resizing.
- - You used addItem to add some items
 
                     
                     
@@ -294,8 +291,6 @@ Call this when:
             </dt>
             <dd>
                 
-                    teste
-                
                 
                 
                 <label class="optional">[options.column]
@@ -314,8 +309,6 @@ Call this when:
                 
             </dt>
             <dd>
-                
-                    teste
                 
                 
                 
@@ -336,8 +329,6 @@ Call this when:
             </dt>
             <dd>
                 
-                    teste
-                
                 
                 
                 <label class="optional">[options.customBreakPoints]
@@ -354,8 +345,6 @@ Call this when:
                 
             </dt>
             <dd>
-                
-                    teste
                 
                 
                 
@@ -374,8 +363,6 @@ Call this when:
             </dt>
             <dd>
                 
-                    teste
-                
                 
                 
                 <label>options.customBreakpoints.BREAKPOINT_NAME.max
@@ -392,8 +379,6 @@ Call this when:
                 
             </dt>
             <dd>
-                
-                    teste
                 
                 
                 
@@ -412,8 +397,6 @@ Call this when:
             </dt>
             <dd>
                 
-                    teste
-                
                 
                 
                 <label>options.customBreakpoints.BREAKPOINT_NAME.cols
@@ -431,8 +414,6 @@ Call this when:
             </dt>
             <dd>
                 
-                    teste
-                
                 
                 
                 <label class="optional">[options.largeMax]
@@ -449,8 +430,6 @@ Call this when:
                 
             </dt>
             <dd>
-                
-                    teste
                 
                 
                 
@@ -471,8 +450,6 @@ Call this when:
             </dt>
             <dd>
                 
-                    teste
-                
                 
                 
                 <label class="optional">[options.mediumMax]
@@ -491,8 +468,6 @@ Call this when:
                 
             </dt>
             <dd>
-                
-                    teste
                 
                 
                 
@@ -513,8 +488,6 @@ Call this when:
             </dt>
             <dd>
                 
-                    teste
-                
                 
                 
                 <label class="optional">[options.smallMax]
@@ -534,8 +507,6 @@ Call this when:
             </dt>
             <dd>
                 
-                    teste
-                
                 
                 
                 <label class="optional">[options.smallMin]
@@ -552,8 +523,6 @@ Call this when:
                 
             </dt>
             <dd>
-                
-                    teste
                 
                 
                 
@@ -574,8 +543,6 @@ Call this when:
             </dt>
             <dd>
                 
-                    teste
-                
                 
                 
                 <label class="optional">[options.mediumCols]
@@ -594,8 +561,6 @@ Call this when:
                 
             </dt>
             <dd>
-                
-                    teste
                 
                 
                 
@@ -616,8 +581,6 @@ Call this when:
             </dt>
             <dd>
                 
-                    teste
-                
                 
                 
                 <label class="optional">[options.isOrdered]
@@ -637,8 +600,6 @@ Call this when:
             </dt>
             <dd>
                 
-                    teste
-                
                 
                 
                 <label class="optional">[options.onRunCallback]
@@ -656,8 +617,6 @@ Call this when:
             </dt>
             <dd>
                 
-                    teste
-                
                 
                 
                 <label class="optional">[options.onResizeCallback]
@@ -674,8 +633,6 @@ Call this when:
                 
             </dt>
             <dd>
-                
-                    teste
                 
                 
                 
@@ -771,7 +728,8 @@ Javascript:
     
 
     
-        <p class="text">Add an item to the end of your stacks. Call `reloadItems()` when you are done adding items.</p>
+        <p class="text"><p>Add an item to the end of your stacks. Call <code>reloadItems()</code> when you are done adding items.</p>
+</p>
     
 
     
@@ -831,12 +789,13 @@ Javascript:
     
 
     
-        <p class="text">Update the layout of your items.
-
-Call this when:
-
- - The width has changed, but not because of the window resizing.
- - You used addItem to add some items</p>
+        <p class="text"><p>Update the layout of your items.</p>
+<p>Call this when:</p>
+<ul>
+<li>The width has changed, but not because of the window resizing.</li>
+<li>You used addItem to add some items</li>
+</ul>
+</p>
     
 
     

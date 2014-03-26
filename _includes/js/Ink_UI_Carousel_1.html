@@ -72,7 +72,8 @@
                 <td>
                     
 
-                    Get the currently displayed page.
+                    <p>Gets the current page index</p>
+
 
                     
                     
@@ -91,7 +92,8 @@
                 <td>
                     
 
-                    Change to the next page
+                    <p>Goes to the next page</p>
+
 
                     
                     
@@ -110,7 +112,8 @@
                 <td>
                     
 
-                    Change to the previous page
+                    <p>Goes to the previous page</p>
+
 
                     
                     
@@ -129,9 +132,9 @@
                 <td>
                     
 
-                    Measure the carousel once again, adjusting the involved elements'
-sizes. Called automatically when the window resizes, in order to
-cater for changes from responsive media queries, for instance.
+                    <p>Repositions elements around.
+Measure the carousel once again, adjusting the involved elements&#39; sizes. This is called automatically when the window resizes, in order to cater for changes from responsive media queries, for instance.</p>
+
 
                     
                     
@@ -150,7 +153,8 @@ cater for changes from responsive media queries, for instance.
                 <td>
                     
 
-                    Set the current page to `page`
+                    <p>Sets the current page index</p>
+
 
                     
                     
@@ -230,10 +234,6 @@ cater for changes from responsive media queries, for instance.
         
         </li>
         
-        <li class="prop">
-        
-        </li>
-        
     </ul>
     
 
@@ -261,6 +261,8 @@ cater for changes from responsive media queries, for instance.
                 
                 </label>
                 
+                    DOM element or element id
+                
             </dd>
         
             <dt>
@@ -278,6 +280,8 @@ cater for changes from responsive media queries, for instance.
                 
                 </label>
                 
+                    Carousel Options
+                
             </dd>
         
             <dt>
@@ -287,19 +291,15 @@ cater for changes from responsive media queries, for instance.
             </dt>
             <dd>
                 
-                    teste
-                
                 
                 
                 <label class="optional">[options.autoAdvance]
                 
 
                 
-                    0
-                
                 </label>
                 
-                    The number of milliseconds to wait between auto-advancing pages. Set to 0 to disable auto-advance.
+                    Milliseconds to wait before auto-advancing pages. Set to 0 to disable auto-advance. Defaults to 0.
                 
             </dd>
         
@@ -310,19 +310,15 @@ cater for changes from responsive media queries, for instance.
             </dt>
             <dd>
                 
-                    teste
-                
                 
                 
                 <label class="optional">[options.axis]
                 
 
                 
-                    &#x27;x&#x27;
-                
                 </label>
                 
-                    Can be `'x'` or `'y'`, for a horizontal or vertical carousel
+                    Axis of the carousel. Set to 'y' for a vertical carousel. Defaults to 'x'.
                 
             </dd>
         
@@ -333,19 +329,15 @@ cater for changes from responsive media queries, for instance.
             </dt>
             <dd>
                 
-                    teste
-                
                 
                 
                 <label class="optional">[options.center]
                 
 
                 
-                    false
-                
                 </label>
                 
-                    Center the carousel.
+                    Flag to center the carousel horizontally.
                 
             </dd>
         
@@ -356,19 +348,15 @@ cater for changes from responsive media queries, for instance.
             </dt>
             <dd>
                 
-                    teste
-                
                 
                 
                 <label class="optional">[options.initialPage]
                 
 
                 
-                    0
-                
                 </label>
                 
-                    When initialized, set the page to this.
+                    Initial index page of the carousel. Defaults to 0.
                 
             </dd>
         
@@ -378,31 +366,6 @@ cater for changes from responsive media queries, for instance.
                 
             </dt>
             <dd>
-                
-                    teste
-                
-                
-                
-                <label class="optional">[options.keyboardSupport]
-                
-
-                
-                    false
-                
-                </label>
-                
-                    Enable keyboard support
-                
-            </dd>
-        
-            <dt>
-                
-                    <code>Boolean</code>
-                
-            </dt>
-            <dd>
-                
-                    teste
                 
                 
                 
@@ -410,22 +373,18 @@ cater for changes from responsive media queries, for instance.
                 
 
                 
-                    true
-                
                 </label>
                 
-                    Enable swipe support where available
+                    Enable swipe support if available. Defaults to true.
                 
             </dd>
         
             <dt>
                 
-                    <code>String|DOMElement|Ink.UI.Pagination_1</code>
+                    <code>Mixed</code>
                 
             </dt>
             <dd>
-                
-                    teste
                 
                 
                 
@@ -435,7 +394,7 @@ cater for changes from responsive media queries, for instance.
                 
                 </label>
                 
-                    Either an `<ul>` element to add pagination markup to, or an `Ink.UI.Pagination` instance to use.
+                    Either an `<ul>` element to add pagination markup to or an `Ink.UI.Pagination` instance to use.
                 
             </dd>
         
@@ -446,8 +405,6 @@ cater for changes from responsive media queries, for instance.
             </dt>
             <dd>
                 
-                    teste
-                
                 
                 
                 <label class="optional">[options.onChange]
@@ -456,7 +413,7 @@ cater for changes from responsive media queries, for instance.
                 
                 </label>
                 
-                    Callback for when the page is changed.
+                    Callback to be called when the page changes.
                 
             </dd>
         
@@ -496,7 +453,8 @@ cater for changes from responsive media queries, for instance.
     
 
     
-        <p class="text">Get the currently displayed page.</p>
+        <p class="text"><p>Gets the current page index</p>
+</p>
     
 
     
@@ -544,7 +502,8 @@ cater for changes from responsive media queries, for instance.
     
 
     
-        <p class="text">Change to the next page</p>
+        <p class="text"><p>Goes to the next page</p>
+</p>
     
 
     
@@ -564,11 +523,9 @@ cater for changes from responsive media queries, for instance.
                 
 
                 
-                    false
-                
                 </label>
                 
-                    If true, going to the page after the last page takes you to the first page.
+                    Flag to loop from last page to first page.
                 
             </dd>
         
@@ -621,7 +578,8 @@ cater for changes from responsive media queries, for instance.
     
 
     
-        <p class="text">Change to the previous page</p>
+        <p class="text"><p>Goes to the previous page</p>
+</p>
     
 
     
@@ -641,11 +599,9 @@ cater for changes from responsive media queries, for instance.
                 
 
                 
-                    false
-                
                 </label>
                 
-                    If true, going to the page after the last page takes you to the first page.
+                    Flag to loop from first page to last page.
                 
             </dd>
         
@@ -685,9 +641,9 @@ cater for changes from responsive media queries, for instance.
     
 
     
-        <p class="text">Measure the carousel once again, adjusting the involved elements'
-sizes. Called automatically when the window resizes, in order to
-cater for changes from responsive media queries, for instance.</p>
+        <p class="text"><p>Repositions elements around.
+Measure the carousel once again, adjusting the involved elements&#39; sizes. This is called automatically when the window resizes, in order to cater for changes from responsive media queries, for instance.</p>
+</p>
     
 
     
@@ -743,7 +699,8 @@ cater for changes from responsive media queries, for instance.</p>
     
 
     
-        <p class="text">Set the current page to `page`</p>
+        <p class="text"><p>Sets the current page index</p>
+</p>
     
 
     
@@ -751,6 +708,8 @@ cater for changes from responsive media queries, for instance.</p>
         <dl class="params">
         
             <dt>
+                
+                    <code>Number</code>
                 
             </dt>
             <dd>
@@ -763,9 +722,13 @@ cater for changes from responsive media queries, for instance.</p>
                 
                 </label>
                 
+                    Index of the destination page.
+                
             </dd>
         
             <dt>
+                
+                    <code>Boolean</code>
                 
             </dt>
             <dd>
@@ -776,11 +739,9 @@ cater for changes from responsive media queries, for instance.</p>
                 
 
                 
-                    false
-                
                 </label>
                 
-                    Wrap over the first and last pages. (For example, going to the 5th page when there are only 4 pages goes to the 1st page)
+                    Flag to activate circular counting.
                 
             </dd>
         

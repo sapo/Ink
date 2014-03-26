@@ -23,6 +23,12 @@
             
 
     
+    <p><p>Tooltips are useful as a means to display information about functionality while avoiding clutter.</p>
+<p>Tooltips show up when you hover elements which &quot;have&quot; tooltips.</p>
+<p>This class will &quot;give&quot; a tooltip to many elements, selected by its first argument (<code>target</code>). This is contrary to the other UI modules in Ink, which are created once per element.</p>
+<p>You can define options either through the second argument of the Tooltip constructor, or as data-attributes in each <code>target</code> element. Options set through data-attributes all start with &quot;data-tip&quot;, and override options passed into the Tooltip constructor.</p>
+</p>
+    
     
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p>
 
@@ -72,7 +78,8 @@
                 <td>
                     
 
-                    Destroys the tooltips created by this instance
+                    <p>Destroys the tooltips created by this instance</p>
+
 
                     
                     
@@ -121,18 +128,6 @@
         [
         options
         ]
-        
-        </li>
-        
-        <li class="prop">
-        
-        </li>
-        
-        <li class="prop">
-        
-        </li>
-        
-        <li class="prop">
         
         </li>
         
@@ -241,8 +236,6 @@
             </dt>
             <dd>
                 
-                    teste
-                
                 
                 
                 <label class="optional">[options.text]
@@ -261,8 +254,6 @@
                 
             </dt>
             <dd>
-                
-                    teste
                 
                 
                 
@@ -283,8 +274,6 @@
             </dt>
             <dd>
                 
-                    teste
-                
                 
                 
                 <label class="optional">[options.where]
@@ -295,7 +284,7 @@
                 
                 </label>
                 
-                    Positioning for the tooltip. Options:
+                    Positioning for the tooltip. Options are 'up', 'down', 'left', 'right', which place the tooltip in the corresponding direction (and show an arrow), 'mousemove', which follows the mouse as it moves, and 'mousefix', which stays in one place.
                 
             </dd>
         
@@ -303,65 +292,6 @@
                 
             </dt>
             <dd>
-                
-                    teste
-                
-                
-                
-                <label>options.where.up
-                
-
-                
-                </label>
-                
-                    Place above, below, to the left of, or to the right of, the target. Show an arrow.
-                
-            </dd>
-        
-            <dt>
-                
-            </dt>
-            <dd>
-                
-                    teste
-                
-                
-                
-                <label>options.where.mousemove
-                
-
-                
-                </label>
-                
-                    Place the tooltip to the bottom and to the right of the mouse when it hovers the element, and follow the mouse as it moves.
-                
-            </dd>
-        
-            <dt>
-                
-            </dt>
-            <dd>
-                
-                    teste
-                
-                
-                
-                <label>options.where.mousefix
-                
-
-                
-                </label>
-                
-                    Place the tooltip to the bottom and to the right of the mouse when it hovers the element, keep the tooltip there motionless.
-                
-            </dd>
-        
-            <dt>
-                
-            </dt>
-            <dd>
-                
-                    teste
                 
                 
                 
@@ -382,8 +312,6 @@
             </dt>
             <dd>
                 
-                    teste
-                
                 
                 
                 <label class="optional">[options.fade]
@@ -402,8 +330,6 @@
                 
             </dt>
             <dd>
-                
-                    teste
                 
                 
                 
@@ -424,8 +350,6 @@
             </dt>
             <dd>
                 
-                    teste
-                
                 
                 
                 <label class="optional">[options.timeout]
@@ -445,8 +369,6 @@
             </dt>
             <dd>
                 
-                    teste
-                
                 
                 
                 <label class="optional">[options.delay]
@@ -463,8 +385,6 @@
                 
             </dt>
             <dd>
-                
-                    teste
                 
                 
                 
@@ -485,8 +405,6 @@
             </dt>
             <dd>
                 
-                    teste
-                
                 
                 
                 <label class="optional">[options.templatefield]
@@ -505,8 +423,6 @@
                 
             </dt>
             <dd>
-                
-                    teste
                 
                 
                 
@@ -527,8 +443,6 @@
             </dt>
             <dd>
                 
-                    teste
-                
                 
                 
                 <label class="optional">[options.top]
@@ -547,8 +461,6 @@
                 
             </dt>
             <dd>
-                
-                    teste
                 
                 
                 
@@ -619,7 +531,8 @@
     
 
     
-        <p class="text">Destroys the tooltips created by this instance</p>
+        <p class="text"><p>Destroys the tooltips created by this instance</p>
+</p>
     
 
     

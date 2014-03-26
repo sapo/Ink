@@ -14,474 +14,147 @@
 
 
     
-
-    
-
-
-
-    
+        <h2>Defined functions:</h2>
+        <ul class="unstyled">
+        
+            <li><a href="#Ink_UI_Common_1-ajaxJSON">
             
-
-    
-    <p>The Common class provides auxiliar methods to ease some of the most common/repetitive UI tasks.</p>
-    
-    
-    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p>
-
-    
-    <table class="props bottom-space">
-        
-        
-        <caption>Functions</caption>
-        <thead>
-            <tr>
-                <th>Function name</th>
-                <th>Description</th>
-            </tr>
-        </thead>
-
-        
-        
-        <tbody>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_UI_Common_1-Ink_UI_Common-ajaxJSON">
-                        
-                            .ajaxJSON
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    This method provides a more convenient way to do an async AJAX request and expect a JSON response.
-It offers a callback option, as third paramenter, for a better async handling.
-
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_UI_Common_1-Ink_UI_Common-childIndex">
-                        
-                            .childIndex
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    Method to return the 'nth' position that an element occupies relatively to its parent.
-
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_UI_Common_1-Ink_UI_Common-cleanChildren">
-                        
-                            .cleanChildren
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    Method to remove children nodes from a given object.
-This method was initially created to help solve a problem in Internet Explorer(s) that occurred when trying
-to set the innerHTML of some specific elements like 'table'.
-
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_UI_Common_1-Ink_UI_Common-clone">
-                        
-                            .clone
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    Method to make a deep copy (clone) of an object.
-Note: The object cannot have loops.
-
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_UI_Common_1-Ink_UI_Common-currentLayout">
-                        
-                            .currentLayout
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    Method to get the current Ink layout applied.
-
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_UI_Common_1-Ink_UI_Common-destroyComponent">
-                        
-                            .destroyComponent
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    This method is not to supposed to be invoked by the Common component.
-Components should copy this method as its destroy method.
-
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_UI_Common_1-Ink_UI_Common-elOrSelector">
-                        
-                            .elOrSelector
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    Method to get a DOM Element. The first parameter should be either a DOM Element or a valid CSS Selector.
-If not, then it will throw an exception. Otherwise, it returns a DOM Element.
-
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_UI_Common_1-Ink_UI_Common-elsOrSelector">
-                        
-                            .elsOrSelector
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    Does the same as `elOrSelector` but returns an array of elements.
-
-see elOrSelector
-
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_UI_Common_1-Ink_UI_Common-getInstance">
-                        
-                            .getInstance
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    This method retrieves the registered instance(s) of a given element or instance id.
-
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_UI_Common_1-Ink_UI_Common-getInstanceFromSelector">
-                        
-                            .getInstanceFromSelector
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    This method retrieves the registered instance(s) of an element based on the given selector.
-
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_UI_Common_1-Ink_UI_Common-getInstanceIds">
-                        
-                            .getInstanceIds
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    This method retrieves the registered instances' ids of all instances.
-
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_UI_Common_1-Ink_UI_Common-getInstances">
-                        
-                            .getInstances
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    This method retrieves all existing instances.
-
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_UI_Common_1-Ink_UI_Common-hashSet">
-                        
-                            .hashSet
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    Method to set the location's hash (window.location.hash).
-
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_UI_Common_1-Ink_UI_Common-isDOMElement">
-                        
-                            .isDOMElement
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    Method to check if an item is a valid DOM Element.
-
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_UI_Common_1-Ink_UI_Common-isInteger">
-                        
-                            .isInteger
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    Method to check if an item is a valid integer.
-
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_UI_Common_1-Ink_UI_Common-options">
-                        
-                            .options
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    Get options from an "options" object and the Element's data attributes.
-
-The element's data attributes take precedence.
-
-Values from the element's data-atrributes are coerced into the required type.
-
-Mainly for Ink UI.* modules
-
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_UI_Common_1-Ink_UI_Common-registerInstance">
-                        
-                            .registerInstance
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    This method saves a component's instance reference for later retrieval.
-
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_UI_Common_1-Ink_UI_Common-restoreIdAndClasses">
-                        
-                            .restoreIdAndClasses
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    This method sets the id and className properties of a given DOM Element based on a given similar object
-resultant of the previous function 'storeIdAndClasses'.
-
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_UI_Common_1-Ink_UI_Common-storeIdAndClasses">
-                        
-                            .storeIdAndClasses
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    This method stores the id and/or the classes of a given element in a given object.
-
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_UI_Common_1-Ink_UI_Common-unregisterInstance">
-                        
-                            .unregisterInstance
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    This method deletes/destroy an instance with a given id.
-
-                    
-                    
-                </td>
-            </tr>
-        
-        </tbody>
-    </table>
-    
-
-    
-    <table class="props">
-        <caption>Properties</caption>
-        <thead>
-            <tr>
-                <th>Property name</th>
-                <th>Description</th>
-            </tr>
-        </thead>
-        <tbody>
+                Ink.UI.Common_1.ajaxJSON
             
-            <tr>
-                <td><a href="#Ink_UI_Common_1-Ink_UI_Common-Layouts">.Layouts</a></td>
-                <td>
-                    
-
-                    
-                        Supported Ink Layouts
-                    
-
-                    
-                        <span class="ink-label orange uppercase">Object</span>
-                    
-                    
-                </td>
-            </tr>
+            (endpoint, params, cb)</a></li>
+        
+            <li><a href="#Ink_UI_Common_1-childIndex">
             
-        </tbody>
-    </table>
+                Ink.UI.Common_1.childIndex
+            
+            (childEl)</a></li>
+        
+            <li><a href="#Ink_UI_Common_1-cleanChildren">
+            
+                Ink.UI.Common_1.cleanChildren
+            
+            (parentEl)</a></li>
+        
+            <li><a href="#Ink_UI_Common_1-clone">
+            
+                Ink.UI.Common_1.clone
+            
+            (o)</a></li>
+        
+            <li><a href="#Ink_UI_Common_1-currentLayout">
+            
+                Ink.UI.Common_1.currentLayout
+            
+            ()</a></li>
+        
+            <li><a href="#Ink_UI_Common_1-destroyComponent">
+            
+                Ink.UI.Common_1.destroyComponent
+            
+            ()</a></li>
+        
+            <li><a href="#Ink_UI_Common_1-elOrSelector">
+            
+                Ink.UI.Common_1.elOrSelector
+            
+            (elOrSelector, fieldName)</a></li>
+        
+            <li><a href="#Ink_UI_Common_1-elsOrSelector">
+            
+                Ink.UI.Common_1.elsOrSelector
+            
+            (elOrSelector, fieldName, required)</a></li>
+        
+            <li><a href="#Ink_UI_Common_1-getInstance">
+            
+                Ink.UI.Common_1.getInstance
+            
+            (instanceIdOrElement)</a></li>
+        
+            <li><a href="#Ink_UI_Common_1-getInstanceFromSelector">
+            
+                Ink.UI.Common_1.getInstanceFromSelector
+            
+            (selector)</a></li>
+        
+            <li><a href="#Ink_UI_Common_1-getInstanceIds">
+            
+                Ink.UI.Common_1.getInstanceIds
+            
+            ()</a></li>
+        
+            <li><a href="#Ink_UI_Common_1-getInstances">
+            
+                Ink.UI.Common_1.getInstances
+            
+            ()</a></li>
+        
+            <li><a href="#Ink_UI_Common_1-hashSet">
+            
+                Ink.UI.Common_1.hashSet
+            
+            (o)</a></li>
+        
+            <li><a href="#Ink_UI_Common_1-isDOMElement">
+            
+                Ink.UI.Common_1.isDOMElement
+            
+            (o)</a></li>
+        
+            <li><a href="#Ink_UI_Common_1-isInteger">
+            
+                Ink.UI.Common_1.isInteger
+            
+            (n)</a></li>
+        
+            <li><a href="#Ink_UI_Common_1-options">
+            
+                Ink.UI.Common_1.options
+            
+            ([fieldId], defaults, overrides, [element])</a></li>
+        
+            <li><a href="#Ink_UI_Common_1-registerInstance">
+            
+                Ink.UI.Common_1.registerInstance
+            
+            (inst, el, [optionalPrefix])</a></li>
+        
+            <li><a href="#Ink_UI_Common_1-restoreIdAndClasses">
+            
+                Ink.UI.Common_1.restoreIdAndClasses
+            
+            (toEl, inObj)</a></li>
+        
+            <li><a href="#Ink_UI_Common_1-storeIdAndClasses">
+            
+                Ink.UI.Common_1.storeIdAndClasses
+            
+            (fromEl, inObj)</a></li>
+        
+            <li><a href="#Ink_UI_Common_1-unregisterInstance">
+            
+                Ink.UI.Common_1.unregisterInstance
+            
+            (id)</a></li>
+        
+        </ul>
     
-</section>
+
+    
+        <h2>Defined attributes:</h2>
+        <ul class="unstyled">
+        
+            <li><a href="#Ink_UI_Common_1-Layouts">Layouts</a></li>
+        
+        </ul>
+    
 
 
 
+    
 
-
-
-
-    <section id="Ink_UI_Common_1-Ink_UI_Common-ajaxJSON" class="box box-function">
+    
+        <section id="Ink_UI_Common_1-ajaxJSON" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -489,10 +162,10 @@ resultant of the previous function 'storeIdAndClasses'.
             .ajaxJSON
         
     
-    (endpoint, params)
+    (endpoint, params, cb)
     
         
-            <i>method</i>
+            <i>function</i>
         
     
     </h1>
@@ -517,6 +190,14 @@ resultant of the previous function 'storeIdAndClasses'.
         
         </li>
         
+        <li class="prop">
+        
+        
+        cb
+        
+        
+        </li>
+        
     </ul>
     
 
@@ -526,8 +207,10 @@ resultant of the previous function 'storeIdAndClasses'.
     
 
     
-        <p class="text">This method provides a more convenient way to do an async AJAX request and expect a JSON response.
-It offers a callback option, as third paramenter, for a better async handling.</p>
+        <p class="text"><p>AJAX JSON request shortcut method
+It provides a more convenient way to do an AJAX request and expect a JSON response.
+It offers a callback option, as third parameter, for better async handling.</p>
+</p>
     
 
     
@@ -572,6 +255,25 @@ It offers a callback option, as third paramenter, for a better async handling.</
                 
             </dd>
         
+            <dt>
+                
+                    <code>Function</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label>cb
+                
+
+                
+                </label>
+                
+                    Callback for the request.
+                
+            </dd>
+        
         </dl>
         
         
@@ -593,8 +295,8 @@ It offers a callback option, as third paramenter, for a better async handling.</
     
 
 </section>
-
-    <section id="Ink_UI_Common_1-Ink_UI_Common-childIndex" class="box box-function">
+    
+        <section id="Ink_UI_Common_1-childIndex" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -605,7 +307,7 @@ It offers a callback option, as third paramenter, for a better async handling.</
     (childEl)
     
         
-            <i>method</i>
+            <i>function</i>
         
     
     </h1>
@@ -629,7 +331,8 @@ It offers a callback option, as third paramenter, for a better async handling.</
     
 
     
-        <p class="text">Method to return the 'nth' position that an element occupies relatively to its parent.</p>
+        <p class="text"><p>Gets an element&#39;s one-base index relative to its parent.</p>
+</p>
     
 
     
@@ -698,8 +401,8 @@ It offers a callback option, as third paramenter, for a better async handling.</
     
 
 </section>
-
-    <section id="Ink_UI_Common_1-Ink_UI_Common-cleanChildren" class="box box-function">
+    
+        <section id="Ink_UI_Common_1-cleanChildren" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -710,7 +413,7 @@ It offers a callback option, as third paramenter, for a better async handling.</
     (parentEl)
     
         
-            <i>method</i>
+            <i>function</i>
         
     
     </h1>
@@ -734,9 +437,9 @@ It offers a callback option, as third paramenter, for a better async handling.</
     
 
     
-        <p class="text">Method to remove children nodes from a given object.
-This method was initially created to help solve a problem in Internet Explorer(s) that occurred when trying
-to set the innerHTML of some specific elements like 'table'.</p>
+        <p class="text"><p>Removes children nodes from a given object.
+This method was initially created to help solve a problem in Internet Explorer(s) that occurred when trying to set the innerHTML of some specific elements like &#39;table&#39;.</p>
+</p>
     
 
     
@@ -795,8 +498,8 @@ to set the innerHTML of some specific elements like 'table'.</p>
     
 
 </section>
-
-    <section id="Ink_UI_Common_1-Ink_UI_Common-clone" class="box box-function">
+    
+        <section id="Ink_UI_Common_1-clone" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -807,7 +510,7 @@ to set the innerHTML of some specific elements like 'table'.</p>
     (o)
     
         
-            <i>method</i>
+            <i>function</i>
         
     
     </h1>
@@ -831,8 +534,9 @@ to set the innerHTML of some specific elements like 'table'.</p>
     
 
     
-        <p class="text">Method to make a deep copy (clone) of an object.
-Note: The object cannot have loops.</p>
+        <p class="text"><p>Deep copy (clone) an object.
+Note: The object cannot have referece loops.</p>
+</p>
     
 
     
@@ -895,8 +599,8 @@ Note: The object cannot have loops.</p>
     
 
 </section>
-
-    <section id="Ink_UI_Common_1-Ink_UI_Common-currentLayout" class="box box-function">
+    
+        <section id="Ink_UI_Common_1-currentLayout" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -907,7 +611,7 @@ Note: The object cannot have loops.</p>
     ()
     
         
-            <i>method</i>
+            <i>function</i>
         
     
     </h1>
@@ -918,7 +622,8 @@ Note: The object cannot have loops.</p>
     
 
     
-        <p class="text">Method to get the current Ink layout applied.</p>
+        <p class="text"><p>Gets the current Ink layout.</p>
+</p>
     
 
     
@@ -940,8 +645,8 @@ Note: The object cannot have loops.</p>
     
 
 </section>
-
-    <section id="Ink_UI_Common_1-Ink_UI_Common-destroyComponent" class="box box-function">
+    
+        <section id="Ink_UI_Common_1-destroyComponent" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -952,7 +657,7 @@ Note: The object cannot have loops.</p>
     ()
     
         
-            <i>method</i>
+            <i>function</i>
         
     
     </h1>
@@ -963,8 +668,9 @@ Note: The object cannot have loops.</p>
     
 
     
-        <p class="text">This method is not to supposed to be invoked by the Common component.
-Components should copy this method as its destroy method.</p>
+        <p class="text"><p>Boilerplate method to destroy a component.
+Components should copy this method as its destroy method and modify it.</p>
+</p>
     
 
     
@@ -976,8 +682,8 @@ Components should copy this method as its destroy method.</p>
     
 
 </section>
-
-    <section id="Ink_UI_Common_1-Ink_UI_Common-elOrSelector" class="box box-function">
+    
+        <section id="Ink_UI_Common_1-elOrSelector" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -988,7 +694,7 @@ Components should copy this method as its destroy method.</p>
     (elOrSelector, fieldName)
     
         
-            <i>method</i>
+            <i>function</i>
         
     
     </h1>
@@ -1020,8 +726,8 @@ Components should copy this method as its destroy method.</p>
     
 
     
-        <p class="text">Method to get a DOM Element. The first parameter should be either a DOM Element or a valid CSS Selector.
-If not, then it will throw an exception. Otherwise, it returns a DOM Element.</p>
+        <p class="text"><p>Gets a DOM Element.</p>
+</p>
     
 
     
@@ -1062,7 +768,7 @@ If not, then it will throw an exception. Otherwise, it returns a DOM Element.</p
                 
                 </label>
                 
-                    This field is used in the thrown Exception to identify the parameter.
+                    The name of the field. Commonly used for debugging.
                 
             </dd>
         
@@ -1099,8 +805,8 @@ If not, then it will throw an exception. Otherwise, it returns a DOM Element.</p
     
 
 </section>
-
-    <section id="Ink_UI_Common_1-Ink_UI_Common-elsOrSelector" class="box box-function">
+    
+        <section id="Ink_UI_Common_1-elsOrSelector" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -1111,7 +817,7 @@ If not, then it will throw an exception. Otherwise, it returns a DOM Element.</p
     (elOrSelector, fieldName, required)
     
         
-            <i>method</i>
+            <i>function</i>
         
     
     </h1>
@@ -1151,9 +857,8 @@ If not, then it will throw an exception. Otherwise, it returns a DOM Element.</p
     
 
     
-        <p class="text">Does the same as `elOrSelector` but returns an array of elements.
-
-see elOrSelector</p>
+        <p class="text"><p>Alias for <code>elOrSelector</code> but returns an array of elements.</p>
+</p>
     
 
     
@@ -1194,7 +899,7 @@ see elOrSelector</p>
                 
                 </label>
                 
-                    This field is used in the thrown Exception to identify the parameter.
+                    The name of the field. Commonly used for debugging.
                 
             </dd>
         
@@ -1213,7 +918,7 @@ see elOrSelector</p>
                 
                 </label>
                 
-                    If true, accept an empty array as output.
+                    Flag to accept an empty array as output.
                 
             </dd>
         
@@ -1249,8 +954,8 @@ see elOrSelector</p>
     
 
 </section>
-
-    <section id="Ink_UI_Common_1-Ink_UI_Common-getInstance" class="box box-function">
+    
+        <section id="Ink_UI_Common_1-getInstance" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -1261,7 +966,7 @@ see elOrSelector</p>
     (instanceIdOrElement)
     
         
-            <i>method</i>
+            <i>function</i>
         
     
     </h1>
@@ -1285,7 +990,8 @@ see elOrSelector</p>
     
 
     
-        <p class="text">This method retrieves the registered instance(s) of a given element or instance id.</p>
+        <p class="text"><p>Gets an UI instance from an element or instance id.</p>
+</p>
     
 
     
@@ -1316,7 +1022,7 @@ see elOrSelector</p>
         <h3>Returns</h3>
         <dl>
             <dt class="return">
-                <code>Object|Object[]</code>
+                <code>Object|Array</code>
             </dt>                
             <dd>   
                 
@@ -1336,8 +1042,8 @@ see elOrSelector</p>
     
 
 </section>
-
-    <section id="Ink_UI_Common_1-Ink_UI_Common-getInstanceFromSelector" class="box box-function">
+    
+        <section id="Ink_UI_Common_1-getInstanceFromSelector" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -1348,7 +1054,7 @@ see elOrSelector</p>
     (selector)
     
         
-            <i>method</i>
+            <i>function</i>
         
     
     </h1>
@@ -1372,7 +1078,8 @@ see elOrSelector</p>
     
 
     
-        <p class="text">This method retrieves the registered instance(s) of an element based on the given selector.</p>
+        <p class="text"><p>Gets an instance based on a selector.</p>
+</p>
     
 
     
@@ -1394,7 +1101,7 @@ see elOrSelector</p>
                 
                 </label>
                 
-                    CSS selector to define the element from which it'll get the instance(s).
+                    CSS selector to get the instances from.
                 
             </dd>
         
@@ -1403,7 +1110,7 @@ see elOrSelector</p>
         <h3>Returns</h3>
         <dl>
             <dt class="return">
-                <code>Object|Object[]</code>
+                <code>Object|Array</code>
             </dt>                
             <dd>   
                 
@@ -1423,8 +1130,8 @@ see elOrSelector</p>
     
 
 </section>
-
-    <section id="Ink_UI_Common_1-Ink_UI_Common-getInstanceIds" class="box box-function">
+    
+        <section id="Ink_UI_Common_1-getInstanceIds" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -1435,7 +1142,7 @@ see elOrSelector</p>
     ()
     
         
-            <i>method</i>
+            <i>function</i>
         
     
     </h1>
@@ -1446,7 +1153,8 @@ see elOrSelector</p>
     
 
     
-        <p class="text">This method retrieves the registered instances' ids of all instances.</p>
+        <p class="text"><p>Gets all the instance ids</p>
+</p>
     
 
     
@@ -1458,8 +1166,8 @@ see elOrSelector</p>
     
 
 </section>
-
-    <section id="Ink_UI_Common_1-Ink_UI_Common-getInstances" class="box box-function">
+    
+        <section id="Ink_UI_Common_1-getInstances" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -1470,7 +1178,7 @@ see elOrSelector</p>
     ()
     
         
-            <i>method</i>
+            <i>function</i>
         
     
     </h1>
@@ -1481,7 +1189,8 @@ see elOrSelector</p>
     
 
     
-        <p class="text">This method retrieves all existing instances.</p>
+        <p class="text"><p>Gets all the instances</p>
+</p>
     
 
     
@@ -1493,8 +1202,8 @@ see elOrSelector</p>
     
 
 </section>
-
-    <section id="Ink_UI_Common_1-Ink_UI_Common-hashSet" class="box box-function">
+    
+        <section id="Ink_UI_Common_1-hashSet" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -1505,7 +1214,7 @@ see elOrSelector</p>
     (o)
     
         
-            <i>method</i>
+            <i>function</i>
         
     
     </h1>
@@ -1529,7 +1238,8 @@ see elOrSelector</p>
     
 
     
-        <p class="text">Method to set the location's hash (window.location.hash).</p>
+        <p class="text"><p>Sets the location&#39;s hash (window.location.hash).</p>
+</p>
     
 
     
@@ -1580,8 +1290,8 @@ see elOrSelector</p>
     
 
 </section>
-
-    <section id="Ink_UI_Common_1-Ink_UI_Common-isDOMElement" class="box box-function">
+    
+        <section id="Ink_UI_Common_1-isDOMElement" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -1592,7 +1302,7 @@ see elOrSelector</p>
     (o)
     
         
-            <i>method</i>
+            <i>function</i>
         
     
     </h1>
@@ -1616,7 +1326,8 @@ see elOrSelector</p>
     
 
     
-        <p class="text">Method to check if an item is a valid DOM Element.</p>
+        <p class="text"><p>Checks if an item is a valid DOM Element.</p>
+</p>
     
 
     
@@ -1679,8 +1390,8 @@ see elOrSelector</p>
     
 
 </section>
-
-    <section id="Ink_UI_Common_1-Ink_UI_Common-isInteger" class="box box-function">
+    
+        <section id="Ink_UI_Common_1-isInteger" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -1691,7 +1402,7 @@ see elOrSelector</p>
     (n)
     
         
-            <i>method</i>
+            <i>function</i>
         
     
     </h1>
@@ -1715,7 +1426,8 @@ see elOrSelector</p>
     
 
     
-        <p class="text">Method to check if an item is a valid integer.</p>
+        <p class="text"><p>Checks if an item is a valid integer.</p>
+</p>
     
 
     
@@ -1778,8 +1490,8 @@ see elOrSelector</p>
     
 
 </section>
-
-    <section id="Ink_UI_Common_1-Ink_UI_Common-options" class="box box-function">
+    
+        <section id="Ink_UI_Common_1-options" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -1790,7 +1502,7 @@ see elOrSelector</p>
     ([fieldId], defaults, overrides, [element])
     
         
-            <i>method</i>
+            <i>function</i>
         
     
     </h1>
@@ -1838,13 +1550,9 @@ see elOrSelector</p>
     
 
     
-        <p class="text">Get options from an "options" object and the Element's data attributes.
-
-The element's data attributes take precedence.
-
-Values from the element's data-atrributes are coerced into the required type.
-
-Mainly for Ink UI.* modules</p>
+        <p class="text"><p>Gets options an object and element&#39;s metadata.</p>
+<p>The element&#39;s data attributes take precedence. Values from the element&#39;s data-atrributes are coerced into the required type.</p>
+</p>
     
 
     
@@ -1864,11 +1572,9 @@ Mainly for Ink UI.* modules</p>
                 
 
                 
-                    &#x27;&#x27;
-                
                 </label>
                 
-                    Tag used in thrown exceptions: "<fieldId>: ..."
+                    Name to be used in debugging features.
                 
             </dd>
         
@@ -1887,7 +1593,7 @@ Mainly for Ink UI.* modules</p>
                 
                 </label>
                 
-                    Object with arrays of option defaults
+                    Object with the options' types and defaults.
                 
             </dd>
         
@@ -1906,7 +1612,7 @@ Mainly for Ink UI.* modules</p>
                 
                 </label>
                 
-                    Object containing options given from user through JavaScript
+                    Options to override the defaults. Usually passed when instantiating an UI module.
                 
             </dd>
         
@@ -1985,8 +1691,8 @@ Options which go to default:
     
 
 </section>
-
-    <section id="Ink_UI_Common_1-Ink_UI_Common-registerInstance" class="box box-function">
+    
+        <section id="Ink_UI_Common_1-registerInstance" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -1997,7 +1703,7 @@ Options which go to default:
     (inst, el, [optionalPrefix])
     
         
-            <i>method</i>
+            <i>function</i>
         
     
     </h1>
@@ -2037,7 +1743,8 @@ Options which go to default:
     
 
     
-        <p class="text">This method saves a component's instance reference for later retrieval.</p>
+        <p class="text"><p>Saves a component&#39;s instance reference for later retrieval.</p>
+</p>
     
 
     
@@ -2114,8 +1821,8 @@ Options which go to default:
     
 
 </section>
-
-    <section id="Ink_UI_Common_1-Ink_UI_Common-restoreIdAndClasses" class="box box-function">
+    
+        <section id="Ink_UI_Common_1-restoreIdAndClasses" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -2126,7 +1833,7 @@ Options which go to default:
     (toEl, inObj)
     
         
-            <i>method</i>
+            <i>function</i>
         
     
     </h1>
@@ -2158,8 +1865,8 @@ Options which go to default:
     
 
     
-        <p class="text">This method sets the id and className properties of a given DOM Element based on a given similar object
-resultant of the previous function 'storeIdAndClasses'.</p>
+        <p class="text"><p>Sets the id and className properties of an element based</p>
+</p>
     
 
     
@@ -2200,7 +1907,7 @@ resultant of the previous function 'storeIdAndClasses'.</p>
                 
                 </label>
                 
-                    Object where the id and classes to be set are.
+                    Object where the id and classes to be set are. This method uses the same format as the one given in `storeIdAndClasses`
                 
             </dd>
         
@@ -2236,8 +1943,8 @@ resultant of the previous function 'storeIdAndClasses'.</p>
     
 
 </section>
-
-    <section id="Ink_UI_Common_1-Ink_UI_Common-storeIdAndClasses" class="box box-function">
+    
+        <section id="Ink_UI_Common_1-storeIdAndClasses" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -2248,7 +1955,7 @@ resultant of the previous function 'storeIdAndClasses'.</p>
     (fromEl, inObj)
     
         
-            <i>method</i>
+            <i>function</i>
         
     
     </h1>
@@ -2280,7 +1987,8 @@ resultant of the previous function 'storeIdAndClasses'.</p>
     
 
     
-        <p class="text">This method stores the id and/or the classes of a given element in a given object.</p>
+        <p class="text"><p>Stores the id and/or classes of an element in an object.</p>
+</p>
     
 
     
@@ -2355,8 +2063,8 @@ resultant of the previous function 'storeIdAndClasses'.</p>
     
 
 </section>
-
-    <section id="Ink_UI_Common_1-Ink_UI_Common-unregisterInstance" class="box box-function">
+    
+        <section id="Ink_UI_Common_1-unregisterInstance" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -2367,7 +2075,7 @@ resultant of the previous function 'storeIdAndClasses'.</p>
     (id)
     
         
-            <i>method</i>
+            <i>function</i>
         
     
     </h1>
@@ -2391,7 +2099,8 @@ resultant of the previous function 'storeIdAndClasses'.</p>
     
 
     
-        <p class="text">This method deletes/destroy an instance with a given id.</p>
+        <p class="text"><p>Deletes an instance with a given id.</p>
+</p>
     
 
     
@@ -2430,21 +2139,22 @@ resultant of the previous function 'storeIdAndClasses'.</p>
     
 
 </section>
+    
 
-
-
-    <section class="box box-attribute">
+    
+        <section class="box box-attribute">
 
     <h1 class="fw-300">
     
-       Ink.UI.Common.Layouts
+        Layouts
     
     <i>attribute</i></h1>
 
     
 
     
-        <p class="text">Supported Ink Layouts</p>
+        <p class="text"><p>Supported Ink Layouts</p>
+</p>
     
 
     
@@ -2456,10 +2166,5 @@ resultant of the previous function 'storeIdAndClasses'.</p>
     
 
 </section>
-
-    
-
-    
-
     
 

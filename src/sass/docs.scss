@@ -482,6 +482,13 @@ table.props {
     @include border-radius($border-radius);
     margin: 1.5em 0;
 
+    &.glossary {
+        th.class {
+            width: 20%;
+        }
+    }
+
+
     tr {
         &:nth-child(odd){
             td {

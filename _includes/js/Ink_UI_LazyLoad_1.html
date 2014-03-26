@@ -23,6 +23,21 @@
             
 
     
+    <p><p>Stop the browser from loading a barrage of content at once.</p>
+<p>This delays the loading of images and other content until the
+corresponding elements are visible in the browser viewport.</p>
+<p>This was created to load images later, but can be also used for
+widgets which are slow to load and are only useful when on screen.</p>
+<p>This works through copying the <code>src</code> attribute into <code>data-src</code>,
+and placing a <code>placeholder</code> string in the <code>src</code> attribute. Then,
+when the element is on screen, the <code>data-src</code> attribute is copied
+back to <code>src</code> and the content starts loading. You can use the options
+below to change what attributes are involved in the exchange.</p>
+<p>You can also provide your <code>onInsideViewport</code> callback and use it to
+start widgets which need javascript, such as an interactive map
+or an animation.</p>
+</p>
+    
     
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p>
 
@@ -60,6 +75,49 @@
                 </td>
             </tr>
         
+            <tr>
+                <td>
+                    <a href="#Ink_UI_LazyLoad_1-Ink_UI_LazyLoad_1-destroy">
+                        
+                            .destroy
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Destroy this component</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_LazyLoad_1-Ink_UI_LazyLoad_1-reload">
+                        
+                            .reload
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Load or reload the component. Adding the &#39;scroll&#39; event listener if
+necessary and checks if anything needs to be lazily loaded now.</p>
+<p>You can use this if some elements may have appeared on screen but
+no user scrolling happened.</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
         </tbody>
     </table>
     
@@ -79,9 +137,381 @@
     
         Ink.UI.LazyLoad_1
     
-    ()
+    (rootElement, [options], )
     
         <i>constructor</i>
+    
+    </h1>
+
+    
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        rootElement
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        [
+        options
+        ]
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+    </ul>
+    
+
+    
+    
+
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label>rootElement
+                
+
+                
+                </label>
+                
+                    {String|DOMElement} The element which contains the lazily-loaded items.
+                
+            </dd>
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="optional">[options]
+                
+
+                
+                </label>
+                
+                    Options object, containing:
+                
+            </dd>
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="optional">[options.item]
+                
+
+                
+                    &#x27;.lazyload-item&#x27;
+                
+                </label>
+                
+                    {String} Use this to select and define what is to be considered an `item`.
+                
+            </dd>
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="optional">[options.placeholder]
+                
+
+                
+                    null
+                
+                </label>
+                
+                    {String} Placeholder value for items which are still outside the screen (in case they don't already have a value set)
+                
+            </dd>
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="optional">[options.source]
+                
+
+                
+                    &#x27;data-src&#x27;
+                
+                </label>
+                
+                    {String} When an `item` is within the viewport, take the value it has in this attribute then set its `destination` attribute to it.
+                
+            </dd>
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="optional">[options.destination]
+                
+
+                
+                    &#x27;src&#x27;
+                
+                </label>
+                
+                    {String} attribute which gets the value in `source` when the element is visible.
+                
+            </dd>
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="optional">[options.delay]
+                
+
+                
+                    100
+                
+                </label>
+                
+                    {Number} Wait a few milliseconds before trying to load.
+                
+            </dd>
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="optional">[options.delta]
+                
+
+                
+                    0
+                
+                </label>
+                
+                    {Number} Distance in px from the outside of the viewport. Elements touching within this "margin", items are considered to be inside even if they are outside the viewport limits. Can be negative if you want an element to be considered inside only when it is a certain distance into the viewport.
+                
+            </dd>
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="optional">[options.image]
+                
+
+                
+                    true
+                
+                </label>
+                
+                    {Boolean} Set to false to make this component do nothing to any elements and just give you the onInsideViewport callback.
+                
+            </dd>
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="optional">[options.scrollElement]
+                
+
+                
+                    window
+                
+                </label>
+                
+                    {Element} (advanced) What element is to be listened for the scroll event.
+                
+            </dd>
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="optional">[options.touchEvents]
+                
+
+                
+                    true
+                
+                </label>
+                
+                    {Boolean} Subscribe to touch events in addition to scroll events. Useful in mobile safari because 'scroll' events aren't frequent enough.
+                
+            </dd>
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="optional">[options.onInsideViewport]
+                
+
+                
+                    false
+                
+                </label>
+                
+                    {Function} Called when an `item` is within the viewport. Receives `{ element }`
+                
+            </dd>
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="optional">[options.onAfterAttributeChange]
+                
+
+                
+                    false
+                
+                </label>
+                
+                    {Function} (advanced) Called after `source` is copied over to `destination`. Receives `{ element }`
+                
+            </dd>
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="optional">[options.autoInit]
+                
+
+                
+                    true
+                
+                </label>
+                
+                    {Boolean} (advanced) Set to false if you want to start LazyLoad yourself with `reload()`
+                
+            </dd>
+        
+        </dl>
+        
+        
+
+    
+
+
+    
+
+
+    
+
+</section>
+
+    <section id="Ink_UI_LazyLoad_1-Ink_UI_LazyLoad_1-destroy" class="box box-function">
+
+    <h1 class="fw-300">
+    
+        
+            .destroy
+        
+    
+    ()
+    
+        
+            <i>method</i>
+        
     
     </h1>
 
@@ -90,6 +520,48 @@
     
     
 
+    
+        <p class="text"><p>Destroy this component</p>
+</p>
+    
+
+    
+
+
+    
+
+
+    
+
+</section>
+
+    <section id="Ink_UI_LazyLoad_1-Ink_UI_LazyLoad_1-reload" class="box box-function">
+
+    <h1 class="fw-300">
+    
+        
+            .reload
+        
+    
+    ()
+    
+        
+            <i>method</i>
+        
+    
+    </h1>
+
+    
+
+    
+    
+
+    
+        <p class="text"><p>Load or reload the component. Adding the &#39;scroll&#39; event listener if
+necessary and checks if anything needs to be lazily loaded now.</p>
+<p>You can use this if some elements may have appeared on screen but
+no user scrolling happened.</p>
+</p>
     
 
     

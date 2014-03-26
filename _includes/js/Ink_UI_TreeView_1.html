@@ -23,7 +23,14 @@
             
 
     
-    <p>Shows elements in a tree-like hierarchical structure.</p>
+    <p><p>Shows elements in a tree structure which can be expanded and contracted.</p>
+<p>A TreeView is built with &quot;node&quot;s and &quot;children&quot;. &quot;node&quot;s are <code>li</code> tags, and
+&quot;children&quot; are <code>ul</code> tags.</p>
+<p>You can build your TreeView out of a regular UL and  LI element structure which
+you already use to display lists with several levels.</p>
+<p>If you want a node (LI) to be open when the TreeView is built, just add the 
+data-open=&quot;true&quot; attribute to it.</p>
+</p>
     
     
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p>
@@ -62,6 +69,108 @@
                 </td>
             </tr>
         
+            <tr>
+                <td>
+                    <a href="#Ink_UI_TreeView_1-Ink_UI_TreeView-close">
+                        
+                            .close
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>close one of the tree nodes</p>
+<p>Make sure you pass the node&#39;s DOMElement</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_TreeView_1-Ink_UI_TreeView-isOpen">
+                        
+                            .isOpen
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Check whether a node is open</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_TreeView_1-Ink_UI_TreeView-isParent">
+                        
+                            .isParent
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Returns whether a node is a parent in this tree.</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_TreeView_1-Ink_UI_TreeView-open">
+                        
+                            .open
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Open one of the tree nodes</p>
+<p>Make sure you pass the node&#39;s DOMElement</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_TreeView_1-Ink_UI_TreeView-toggle">
+                        
+                            .toggle
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Toggle a node</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
         </tbody>
     </table>
     
@@ -81,7 +190,7 @@
     
         Ink.UI.TreeView
     
-    (selector, )
+    (selector, [options], )
     
         <i>constructor</i>
     
@@ -96,6 +205,14 @@
         
         selector
         
+        
+        </li>
+        
+        <li class="prop">
+        
+        [
+        options
+        ]
         
         </li>
         
@@ -167,7 +284,24 @@
             </dt>
             <dd>
                 
-                    teste
+                
+                
+                <label class="optional">[options]
+                
+
+                
+                </label>
+                
+                    Options object, containing:
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
                 
                 
                 
@@ -190,8 +324,6 @@
             </dt>
             <dd>
                 
-                    teste
-                
                 
                 
                 <label class="optional">[options.children]
@@ -212,8 +344,6 @@
                 
             </dt>
             <dd>
-                
-                    teste
                 
                 
                 
@@ -236,19 +366,17 @@
             </dt>
             <dd>
                 
-                    teste
-                
                 
                 
                 <label class="optional">[options.openClass]
                 
 
                 
-                    &#x27;f
+                    &#x27;fa
                 
                 </label>
                 
-                    fa-minus-circle'] Classes to be added to the icon when a parent is open.
+                    fa-minus-circle' Classes to be added to the icon when a parent is open.
                 
             </dd>
         
@@ -258,8 +386,6 @@
                 
             </dt>
             <dd>
-                
-                    teste
                 
                 
                 
@@ -267,11 +393,11 @@
                 
 
                 
-                    &#x27;f
+                    &#x27;fa
                 
                 </label>
                 
-                    fa-plus-circle'] Classes to be added to the icon when a parent is closed.
+                    fa-plus-circle' Classes to be added to the icon when a parent is closed.
                 
             </dd>
         
@@ -281,8 +407,6 @@
                 
             </dt>
             <dd>
-                
-                    teste
                 
                 
                 
@@ -305,8 +429,6 @@
             </dt>
             <dd>
                 
-                    teste
-                
                 
                 
                 <label class="optional">[options.iconTag]
@@ -327,8 +449,6 @@
                 
             </dt>
             <dd>
-                
-                    teste
                 
                 
                 
@@ -383,6 +503,388 @@
 {% endraw %}{% endhighlight %}
 
 
+
+
+    
+
+</section>
+
+    <section id="Ink_UI_TreeView_1-Ink_UI_TreeView-close" class="box box-function">
+
+    <h1 class="fw-300">
+    
+        
+            .close
+        
+    
+    (node)
+    
+        
+            <i>method</i>
+        
+    
+    </h1>
+
+    
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        node
+        
+        
+        </li>
+        
+    </ul>
+    
+
+    
+    
+
+    
+        <p class="text"><p>close one of the tree nodes</p>
+<p>Make sure you pass the node&#39;s DOMElement</p>
+</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>DOMElement</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label>node
+                
+
+                
+                </label>
+                
+                    The node you wish to close.
+                
+            </dd>
+        
+        </dl>
+        
+        
+
+    
+
+
+    
+
+
+    
+
+</section>
+
+    <section id="Ink_UI_TreeView_1-Ink_UI_TreeView-isOpen" class="box box-function">
+
+    <h1 class="fw-300">
+    
+        
+            .isOpen
+        
+    
+    (node)
+    
+        
+            <i>method</i>
+        
+    
+    </h1>
+
+    
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        node
+        
+        
+        </li>
+        
+    </ul>
+    
+
+    
+    
+
+    
+        <p class="text"><p>Check whether a node is open</p>
+</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>DOMElement</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label>node
+                
+
+                
+                </label>
+                
+                    The tree node to check
+                
+            </dd>
+        
+        </dl>
+        
+        
+
+    
+
+
+    
+
+
+    
+
+</section>
+
+    <section id="Ink_UI_TreeView_1-Ink_UI_TreeView-isParent" class="box box-function">
+
+    <h1 class="fw-300">
+    
+        
+            .isParent
+        
+    
+    (node)
+    
+        
+            <i>method</i>
+        
+    
+    </h1>
+
+    
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        node
+        
+        
+        </li>
+        
+    </ul>
+    
+
+    
+    
+
+    
+        <p class="text"><p>Returns whether a node is a parent in this tree.</p>
+</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>DOMElement</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label>node
+                
+
+                
+                </label>
+                
+                    Node to check
+                
+            </dd>
+        
+        </dl>
+        
+        
+
+    
+
+
+    
+
+
+    
+
+</section>
+
+    <section id="Ink_UI_TreeView_1-Ink_UI_TreeView-open" class="box box-function">
+
+    <h1 class="fw-300">
+    
+        
+            .open
+        
+    
+    (node)
+    
+        
+            <i>method</i>
+        
+    
+    </h1>
+
+    
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        node
+        
+        
+        </li>
+        
+    </ul>
+    
+
+    
+    
+
+    
+        <p class="text"><p>Open one of the tree nodes</p>
+<p>Make sure you pass the node&#39;s DOMElement</p>
+</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>DOMElement</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label>node
+                
+
+                
+                </label>
+                
+                    The node you wish to open.
+                
+            </dd>
+        
+        </dl>
+        
+        
+
+    
+
+
+    
+
+
+    
+
+</section>
+
+    <section id="Ink_UI_TreeView_1-Ink_UI_TreeView-toggle" class="box box-function">
+
+    <h1 class="fw-300">
+    
+        
+            .toggle
+        
+    
+    (node)
+    
+        
+            <i>method</i>
+        
+    
+    </h1>
+
+    
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        node
+        
+        
+        </li>
+        
+    </ul>
+    
+
+    
+    
+
+    
+        <p class="text"><p>Toggle a node</p>
+</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>DOMElement</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label>node
+                
+
+                
+                </label>
+                
+                    The node to toggle.
+                
+            </dd>
+        
+        </dl>
+        
+        
+
+    
+
+
+    
 
 
     
