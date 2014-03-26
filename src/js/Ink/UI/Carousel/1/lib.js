@@ -33,6 +33,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
      * @param {String}              [options.axis]              Axis of the carousel. Set to 'y' for a vertical carousel. Defaults to 'x'.
      * @param {Boolean}             [options.center]            Flag to center the carousel horizontally.
      * @param {Number}              [options.initialPage]       Initial index page of the carousel. Defaults to 0.
+     * @param {Boolean}             [options.spaceAfterLastSlide=true] If there are not enough slides to fill the full width of the last page, leave white space. Defaults to `true`.
      * @param {Boolean}             [options.swipe]             Enable swipe support if available. Defaults to true.
      * @param {Mixed}               [options.pagination]        Either an `<ul>` element to add pagination markup to or an `Ink.UI.Pagination` instance to use.
      * @param {Function}            [options.onChange]          Callback to be called when the page changes.
