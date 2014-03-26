@@ -176,7 +176,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
          * @method _updateItems
          * @private
          */
-        _updateItems: function () {
+        _updateItems: function() {
             var liEls = this._itemLiEls;
 
             var isSimpleToggle = this._size === liEls.length;
