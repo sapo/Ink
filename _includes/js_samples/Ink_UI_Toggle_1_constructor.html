@@ -1,0 +1,35 @@
+
+<p>Toggle an alert</p>
+
+{% highlight html %}
+<button id="alert-toggler" class="ink-button" data-target="#alert-toggle-target">
+     See more
+</button>
+<div id="alert-toggle-target" class="ink-alert block hide-all">
+    <h4>This is a details section</h4>
+    <p>Which you don't care about.</p>
+</div>
+<script>
+    Ink.requireModules(['Ink.UI.Toggle_1'], function (Toggle) {
+        new Toggle('#alert-toggler');
+    });
+</script>
+{% endhighlight %}
+
+
+<p>Toggle between two classes, to switch the color of a label between red and blue.</p>
+
+{% highlight html %}
+<button id="toggle-class"
+    class="ink-button"
+    data-target="#toggled-label"
+    data-class-name-on="green"
+    data-class-name-off="red">Click here to toggle the label</button>
+<span id="toggled-label" class="ink-label green">label</span>
+<script>
+    Ink.requireModules(['Ink.UI.Toggle_1'], function (Toggle) {
+        new Toggle('#toggle-class');
+    });
+</script>
+{% endhighlight %}
+
