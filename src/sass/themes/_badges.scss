@@ -3,33 +3,35 @@
     @include border-radius(8em);
     color: $white;
     
-    &.orange {
-        background: $orange;
-    }
-
-    &.red {
-        background: $red;
-    }
-
-    &.green {
-        background: $green;
-    }
-
-    &.blue {
-        background: $blue;
-    }
-
     &.white {
         background: $white;
         color: $text-color;
     }
-
     &.black {
         background: $black;
     }
-
+    &.orange {
+        background: $orange;
+    }
+    &.red {
+        background: $red;
+    }
+    &.green {
+        background: $green;
+    }
+    &.blue {
+        background: $blue;
+    }
+    &.yellow {
+        background: $yellow;
+        color: $text-color;
+    }
     &.grey {
         background: $grey-50;
+    }
+
+    & + .#{$badge-class-name} {
+        margin-left: .2em;
     }
 
 }

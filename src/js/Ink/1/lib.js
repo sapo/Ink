@@ -8,11 +8,6 @@
 
     'use strict';
 
-    /**
-     * @class Ink
-     */
-
-
     // skip redefinition of Ink core
     if ('Ink' in window) { return; }
 
@@ -44,8 +39,11 @@
         return true;
     };
 
-    window.Ink = {
+    /**
+     * @namespace Ink_1
+     */
 
+    window.Ink = {
         _checkPendingRequireModules: function() {
             var I, F, o, dep, mod, cb, pRMs = [];
             for (I = 0, F = pendingRMs.length; I < F; ++I) {
@@ -145,7 +143,7 @@
 
         /**
          * Loads a script URL.
-         * This creates a `<script>` tag in the `<head>` of the document.
+         * This creates a `script` tag in the `head` of the document.
          * Reports errors by listening to 'error' and 'readystatechange' events.
          *
          * @method loadScript

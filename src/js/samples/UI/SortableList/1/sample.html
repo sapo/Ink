@@ -36,12 +36,17 @@
                     <h2>SortableList #1 - Default Markup</h2>
                 </header>
                 <ul class="unstyled ink-sortable-list" id="slist" data-instance="sortableList9">
-                    <li><span class="ink-label info"><i class="fa fa-sort"></i>drag here</span>primeiro</li>
-                    <li><span class="ink-label info"><i class="fa fa-sort"></i>drag here</span>segundo</li>
-                    <li><span class="ink-label info"><i class="fa fa-sort"></i>drag here</span>terceiro</li>
+                    <li><span class="ink-label blue"><i class="fa fa-sort"></i> Drag here</span>First</li>
+                    <li><span class="ink-label blue"><i class="fa fa-sort"></i> Drag here</span>Second</li>
+                    <li><span class="ink-label blue"><i class="fa fa-sort"></i> Drag here</span>Third</li>
                 </ul>
                 <p>
                     <pre class="prettyprint linenums">
+&lt;ul class="unstyled ink-sortable-list" id="slist" data-instance="sortableList9"&gt;
+    &lt;li&gt;&lt;span class="ink-label blue"&gt;&lt;i class="fa fa-sort"&gt;&lt;/i&gt; Drag here&lt;/span&gt;First&lt;/li&gt;
+    &lt;li&gt;&lt;span class="ink-label blue"&gt;&lt;i class="fa fa-sort"&gt;&lt;/i&gt; Drag here&lt;/span&gt;Second&lt;/li&gt;
+    &lt;li&gt;&lt;span class="ink-label blue"&gt;&lt;i class="fa fa-sort"&gt;&lt;/i&gt; Drag here&lt;/span&gt;Third&lt;/li&gt;
+&lt;/ul&gt;
 &lt;script&gt;
     var sList = new Ink.UI.SortableList('#slist');
 &lt;/script&gt;</pre>
@@ -49,10 +54,8 @@
             </section>
         </div>
         <script>
-            Ink.requireModules(['Ink.Util.Array_1','Ink.UI.SortableList_1'], function(InkArray, SortableList) {
-                InkArray.each(Ink.ss('.ink-sortable-list'),function(item){
-                    var sList = new SortableList(item);
-                });
+            Ink.requireModules(['Ink.UI.SortableList_1'], function(SortableList) {
+                var sList = new SortableList('#slist');
             });
         </script>
     </body>

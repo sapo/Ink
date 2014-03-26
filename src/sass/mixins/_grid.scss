@@ -1,22 +1,4 @@
-// Ink
-//
-// A set of tools for quick development of web interfaces.
-//
-// @package    Ink
-// @subpackage Mixins
-// @author     Sapo Ink Team
-// @license    http://opensource.org/licenses/MIT MIT
-// @link       http://ink.sapo.pt
-// @since      Version 3.0.0
-
-// ---------------------------------------------------------------------------------------------
-
-// Grid Divisions
-// 
-// @package    Ink
-// @subpackage Mixins
-// @category   Layout grid
-// @author     Sapo Ink Team
+// Grid
 
 // generates the grid main container
 @mixin generate-grid-container ($grid-container-class-name, $gutter-width) {
@@ -251,10 +233,10 @@
     // define the step size (this is the minimum column width percentage)
     $step-size: 5;
 
-    .#{$grid-column-group-class-name} > [class*=all-] {
-      float: left;
-      clear: none;
-    }
+    // .#{$grid-column-group-class-name} > [class*=all-] {
+    //   float: left;
+    //   clear: none;
+    // }
 
     // iterate to generate the width classes
     @while $i <= 100 {
@@ -262,6 +244,8 @@
         @if $i > 30 and $i <= 35 {
             .all-33 {
                 width: 33.33%;
+                float: left;
+                clear: none;
             }
         }
         
@@ -269,12 +253,16 @@
         @if $i > 65 and $i <= 70 {
             .all-66 {
                 width: 66.66%;
+                float: left;
+                clear: none;
             }
         }
         
         
         .all-#{$i} {
-            width: $i * 1%;            
+            width: $i * 1%;  
+            float: left;
+            clear: none;          
         }
 
         @if $i == 100 {
@@ -367,44 +355,51 @@
         
         (null,
             (
-                (half,2),
-                ('quarter',4)
+                (double,2),
+                (half,0.5),
+                ('quarter',0.25)
             )
         ),
         ('vertical',
             (
-                (half,2),
-                ('quarter',4)
+                (double,2),
+                (half,0.5),
+                ('quarter',0.25)
             )
         ),
         ('horizontal',
             (
-                (half,2),
-                ('quarter',4)
+                (double,2),
+                (half,0.5),
+                ('quarter',0.25)
             )
         ),
         ('top',
             (
-                (half,2),
-                ('quarter',4)
+                (double,2),
+                (half,0.5),
+                ('quarter',0.25)
             )
         ),
         ('right',
             (
-                (half,2),
-                ('quarter',4)
+                (double,2),
+                (half,0.5),
+                ('quarter',0.25)
             )
         ),
         ('bottom',
             (
-                (half,2),
-                ('quarter',4)
+                (double,2),
+                (half,0.5),
+                ('quarter',0.25)
             )
         ),
         ('left',
             (
-                (half,2),
-                ('quarter',4)
+                (double,2),
+                (half,0.5),
+                ('quarter',0.25)
             )
         )
     );    
@@ -440,23 +435,23 @@
                 $sub-division-unit: nth($sub-division,2);
 
                 .#{$sub-division-class-name}-#{$position}-space {
-                    margin-left: $gutter-width / $sub-division-unit;
-                    margin-right: $gutter-width / $sub-division-unit;
+                    margin-left: $gutter-width * $sub-division-unit;
+                    margin-right: $gutter-width * $sub-division-unit;
                 }
 
                 .#{$class-name}-#{$sub-division-class-name}-#{$position}-space {
-                    margin-left: $gutter-width / $sub-division-unit;
-                    margin-right: $gutter-width / $sub-division-unit;
+                    margin-left: $gutter-width * $sub-division-unit;
+                    margin-right: $gutter-width * $sub-division-unit;
                 }
 
                 .#{$sub-division-class-name}-#{$position}-padding {
-                    padding-left: $gutter-width / $sub-division-unit;
-                    padding-right: $gutter-width / $sub-division-unit;
+                    padding-left: $gutter-width * $sub-division-unit;
+                    padding-right: $gutter-width * $sub-division-unit;
                 }
 
                 .#{$class-name}-#{$sub-division-class-name}-#{$position}-padding {
-                    padding-left: $gutter-width / $sub-division-unit;
-                    padding-right: $gutter-width / $sub-division-unit;
+                    padding-left: $gutter-width * $sub-division-unit;
+                    padding-right: $gutter-width * $sub-division-unit;
                 }
             }
 
@@ -489,23 +484,23 @@
                 $sub-division-unit: nth($sub-division,2);   
 
                 .#{$sub-division-class-name}-#{$position}-space {
-                    margin-top: $gutter-width / $sub-division-unit;
-                    margin-bottom: $gutter-width / $sub-division-unit;
+                    margin-top: $gutter-width * $sub-division-unit;
+                    margin-bottom: $gutter-width * $sub-division-unit;
                 }
 
                 .#{$class-name}-#{$sub-division-class-name}-#{$position}-space {
-                    margin-top: $gutter-width / $sub-division-unit;
-                    margin-bottom: $gutter-width / $sub-division-unit;
+                    margin-top: $gutter-width * $sub-division-unit;
+                    margin-bottom: $gutter-width * $sub-division-unit;
                 }
 
                 .#{$sub-division-class-name}-#{$position}-padding {
-                    padding-top: $gutter-width / $sub-division-unit;
-                    padding-bottom: $gutter-width / $sub-division-unit;
+                    padding-top: $gutter-width * $sub-division-unit;
+                    padding-bottom: $gutter-width * $sub-division-unit;
                 }
 
                 .#{$class-name}-#{$sub-division-class-name}-#{$position}-padding {
-                    padding-top: $gutter-width / $sub-division-unit;
-                    padding-bottom: $gutter-width / $sub-division-unit;
+                    padding-top: $gutter-width * $sub-division-unit;
+                    padding-bottom: $gutter-width * $sub-division-unit;
                 }
             }
 
@@ -534,19 +529,19 @@
                 $sub-division-unit: nth($sub-division,2);
 
                 .#{$sub-division-class-name}-#{$position}-space {
-                    margin-#{$position}: $gutter-width / $sub-division-unit;
+                    margin-#{$position}: $gutter-width * $sub-division-unit;
                 }
 
                 .#{$class-name}-#{$sub-division-class-name}-#{$position}-space {
-                    margin-#{$position}: $gutter-width / $sub-division-unit;
+                    margin-#{$position}: $gutter-width * $sub-division-unit;
                 }
 
                 .#{$sub-division-class-name}-#{$position}-padding {
-                    padding-#{$position}: $gutter-width / $sub-division-unit;
+                    padding-#{$position}: $gutter-width * $sub-division-unit;
                 }
 
                 .#{$class-name}-#{$sub-division-class-name}-#{$position}-padding {
-                    padding-#{$position}: $gutter-width / $sub-division-unit;
+                    padding-#{$position}: $gutter-width * $sub-division-unit;
                 }
             }
         }
@@ -574,19 +569,19 @@
                 $sub-division-unit: nth($sub-division,2);
 
                 .#{$sub-division-class-name}-space {
-                    margin: $gutter-width / $sub-division-unit;
+                    margin: $gutter-width * $sub-division-unit;
                 }
 
                 .#{$class-name}-#{$sub-division-class-name}-space {
-                    margin: $gutter-width / $sub-division-unit;
+                    margin: $gutter-width * $sub-division-unit;
                 }
 
                 .#{$sub-division-class-name}-padding {
-                    padding: $gutter-width / $sub-division-unit;
+                    padding: $gutter-width * $sub-division-unit;
                 }
 
                 .#{$class-name}-#{$sub-division-class-name}-padding {
-                    padding: $gutter-width / $sub-division-unit;
+                    padding: $gutter-width * $sub-division-unit;
                 }
             }
         }

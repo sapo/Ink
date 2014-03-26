@@ -1,16 +1,5 @@
-// Ink
-// A set of tools for quick development of web interfaces.
-//
-// @package    Ink
-// @subpackage Mixins
-// @category   Navigation
-// @author     Sapo Ink Team
-// @license    http://opensource.org/licenses/MIT MIT
-// @link       http://ink.sapo.pt
-// @since      Version 3.0.0
+// Pagination navigation
 
-
-// PAGINATION
 @mixin nav-pagination($pagination-type:null, $nav-color: null) {
 
     // PAGINATION:DEFAULT
@@ -37,16 +26,14 @@
                 }
             }
 
-            a { @include transition(compact(all 140ms ease-in-out)); }
-
             &:first-child,
             &:first-child a {
-                @include border-left-radius($navigation-border-radius);
+                @include border-radius($navigation-border-radius 0 0 $navigation-border-radius);
             }
 
             &:last-child, 
             &:last-child a {
-                @include border-right-radius($navigation-border-radius);
+                @include border-radius(0 $navigation-border-radius $navigation-border-radius);
             }
         }
     }

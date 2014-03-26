@@ -15,7 +15,7 @@ Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
     };
 
     /**
-     * @class Ink.UI.Droppable
+     * @namespace Ink.UI.Droppable
      * @version 1
      * @static
      */

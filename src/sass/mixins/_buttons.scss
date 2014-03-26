@@ -1,31 +1,4 @@
-/**
- * Ink
- *
- * A set of tools for quick development of web interfaces.
- *
- * @package    Ink
- * @author     Sapo Ink Team
- * @license    http://opensource.org/licenses/MIT MIT
- * @link       http://ink.sapo.pt
- * @version    3.0.0
- */
-
-// ------------------------------------------------------------
-
-/**
- * Ink-button
- *
- * Creates css for a button
- *
- * @package    Ink
- * @subpackage Mixins
- * @category   Buttons
- * @since      3.0.0
- *
- * @param color $button-background-color
- * @param color $button-text-color
- * @param color $button-text-shadow-color
- */
+// Buttons
 
 @mixin ink-button($button-background-color, $button-text-color) {
 
@@ -55,4 +28,10 @@
     }
 }
 
+@mixin button-group($button-background-color) {
 
+    &:first-child {
+        border-left: shade($button-background-color, 15%);
+    }
+
+}
