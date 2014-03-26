@@ -24,7 +24,7 @@
             font-size: .875em;
             color: tint($text-color,35%);
             position: relative;
-            margin: .2em 0 0 .1em;
+            margin: .2em 0 0 0.1em;
         }
 
         &.label {
@@ -51,8 +51,6 @@
     input[type="search"],
     input[type="tel"],
     input[type="color"] {
-        font-family: $form-field-font;
-        font-weight: $form-field-fontWeight;
         @include border-radius($border-radius);
         padding: $form-field-padding;
         border: 1px solid shade($form-field-borderColor,10%);
@@ -164,13 +162,15 @@
                     & > input,
                     & > select,
                     & > textarea {
-                        @include border-radius($border-radius 0 0 $border-radius);
+                        @include border-left-radius($border-radius);
+                        @include border-right-radius(0);
                     }
                 }
                 
                 .#{$button-class-name} {
                     margin: 0;
-                    @include border-radius(0 $border-radius $border-radius 0);
+                    @include border-right-radius($border-radius);
+                    @include border-left-radius(0);
                     border-left: none;
                 }
             }
@@ -186,13 +186,15 @@
                     & > input,
                     & > select,
                     & > textarea {
-                        @include border-radius(0 $border-radius $border-radius 0);
+                        @include border-right-radius($border-radius);
+                        @include border-left-radius(0);
                     }
                 }
                 
                 .#{$button-class-name} {
                     margin: 0;
-                    @include border-radius($border-radius 0 0 $border-radius);
+                    @include border-left-radius($border-radius);
+                    @include border-right-radius(0);
                     border-right: none;
                 }
             }
@@ -248,7 +250,7 @@
             padding: 0;
             margin: .55em 0;
             border: none;
-            //margin-top: .55em;
+            //margin-top: 0.55em;
             clear: left;
             float: left;
             cursor: pointer;
@@ -256,7 +258,7 @@
             & + label {
                 float: left;
                 //line-height: 2.5;
-                //margin-left: .55em;
+                //margin-left: 0.55em;
                 //margin-top: -.4em;
                 margin: .25em 0 .25em .4em;
             }

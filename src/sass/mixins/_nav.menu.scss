@@ -1,5 +1,16 @@
-// Menu navigation
+// Ink
+// A set of tools for quick development of web interfaces.
+//
+// @package    Ink
+// @subpackage Mixins
+// @category   Navigation
+// @author     Sapo Ink Team
+// @license    http://opensource.org/licenses/MIT MIT
+// @link       http://ink.sapo.pt
+// @since      Version 3.0.0
 
+
+// MENU
 @mixin nav-menu($nav-color: null) {
 
     @if $nav-color == null {
@@ -51,22 +62,22 @@
                 
                 &:first-child {
                     
-                    @include border-radius($navigation-border-radius $navigation-border-radius 0 0);
+                    @include border-top-radius($navigation-border-radius);
 
-                    > a { @include border-radius($navigation-border-radius $navigation-border-radius 0 0); }
+                    > a { @include border-top-radius($navigation-border-radius); }
                 }
 
                 &:last-child {
-                    @include border-radius(0 0 $navigation-border-radius $navigation-border-radius);
+                    @include border-bottom-radius($navigation-border-radius);
 
                     > a { 
                         border-bottom: none;
-                        @include border-radius(0 0 $navigation-border-radius $navigation-border-radius); 
+                        @include border-bottom-radius($navigation-border-radius); 
                     }
 
                     .submenu {
                         
-                        @include border-radius(0 0 $navigation-border-radius $navigation-border-radius);
+                        @include border-bottom-radius($navigation-border-radius);
 
                         &.flyout  {
                             @include border-radius($navigation-border-radius);    
@@ -75,8 +86,8 @@
                         li {
 
                             &:last-child {
-                                @include border-radius(0 0 $navigation-border-radius $navigation-border-radius);
-                                a { @include border-radius(0 0 $navigation-border-radius $navigation-border-radius); }
+                                @include border-bottom-radius($navigation-border-radius);
+                                a { @include border-bottom-radius($navigation-border-radius); }
                             }
                         }
                     }
@@ -90,30 +101,30 @@
 
                 &:first-child {
 
-                    @include border-radius($navigation-border-radius 0 0 $navigation-border-radius);
+                    @include border-left-radius($navigation-border-radius);
 
-                    a { @include border-radius($navigation-border-radius 0 0 $navigation-border-radius); }
+                    a { @include border-left-radius($navigation-border-radius); }
                 }
 
                 &:last-child {
 
-                    @include border-radius(0 $navigation-border-radius $navigation-border-radius 0);
+                    @include border-right-radius($navigation-border-radius);
 
-                    a { @include border-radius(0 $navigation-border-radius $navigation-border-radius 0); }
+                    a { @include border-right-radius($navigation-border-radius); }
                 }
 
                 ul {
 
                     &.submenu {
 
-                        @include border-radius(0 0 $navigation-border-radius $navigation-border-radius);
+                        @include border-bottom-radius($navigation-border-radius);
                         background: $white;
 
                         li {
 
                             &:last-child {
 
-                                @include border-radius(0 0 $navigation-border-radius $navigation-border-radius);
+                                @include border-bottom-radius($navigation-border-radius);
                                 a { border-bottom: none; }
                             }
                         }
@@ -158,7 +169,7 @@
                 text-decoration: none;
 
                 &:hover {
-                    background: lighten($nav-color,15%);
+                    background: lighten($nav-color,6%);
                 }
             }
         }

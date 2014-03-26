@@ -1,5 +1,15 @@
-// Dropdown menu
+// Ink
+// A set of tools for quick development of web interfaces.
+//
+// @package    Ink
+// @subpackage Mixins
+// @category   Navigation
+// @author     Sapo Ink Team
+// @license    http://opensource.org/licenses/MIT MIT
+// @link       http://ink.sapo.pt
+// @since      Version 3.0.0
 
+// DROPDOWN MENU
 @mixin nav-dropdown($nav-color) {
 
     ul.dropdown-menu {

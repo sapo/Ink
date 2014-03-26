@@ -23,14 +23,13 @@
  * @since      3.0.0
  */
 
-
 .#{$button-class-name} {
 
     background: $grey-15;
     color: $button-text-color;
     border: 1px solid darken($grey-15,10%);
     @include border-radius($button-border-radius);
-    // @include transition(compact(all 140ms ease-in-out));
+    @include transition(compact(all 140ms ease-in-out));
 
     &:hover,
     &:active {
@@ -56,24 +55,24 @@
         }
     }
     
-    &.blue      { @include ink-button($blue, $white); }
-    &.green     { @include ink-button($green, $white); }
-    &.orange    { @include ink-button($orange, $white); }
-    &.red       { @include ink-button($red, $white); }
-    &.black     { @include ink-button($grey-90, $white); }
-    &.white     { @include ink-button($white, $text-color); }
-  
-}
-
-.button-group {
-
-    & > .#{$button-class-name}  {
-
-        &.blue      { @include button-group($blue);}
-        &.green     { @include button-group($green);}
-        &.orange    { @include button-group($orange);}
-        &.red       { @include button-group($red);}
-        &.black     { @include button-group($grey-90);}
-        &.white     { @include button-group($white);}
+    &.blue {
+        @include ink-button($blue, $white);
     }
+
+    &.green {
+        @include ink-button($green, $white);
+    }
+    
+    &.orange {
+        @include ink-button($orange, $white);
+    }
+
+    &.red {
+        @include ink-button($red, $white);
+    }
+
+    &.black {
+        @include ink-button($grey-90, $white);
+    }
+  
 }

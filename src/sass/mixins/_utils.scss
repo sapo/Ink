@@ -5,17 +5,12 @@
 
 // hide visible element
 .hide-all {
-    display: none !important; 
+    display: none !important;
 }
 
 // Removes margin
 .no-margin {
     margin: 0 !important;
-}
-
-// Removes padding
-.no-padding {
-    padding: 0 !important;
 }
 
 .push-left {
@@ -28,7 +23,6 @@
 }
 .push-right {
     float: right;
-    @include experimental(justify-content, flex-end, -moz, -webkit, not -o, not -ms, not -khtml, official);
 }
 .align-left {
     text-align: left;
@@ -38,8 +32,4 @@
 }
 .align-right {
     text-align: right;
-}
-
-.clearfix {
-    @include pie-clearfix;
 }

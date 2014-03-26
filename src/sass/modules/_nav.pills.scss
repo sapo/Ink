@@ -13,7 +13,7 @@
             a {
                 display: block;
                 padding: $navigation-padding;
-                // @include transition(compact(background 140ms ease-in-out));
+                @include transition(compact(background 140ms ease-in-out));
 
                 &:hover {
                     text-decoration: none;
