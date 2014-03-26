@@ -58,12 +58,6 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
 }
 
-h1 small {
-    font-size: .6em; 
-    color: #BFBFBF; 
-    font-weight: 100;
-}
-
 small {
     color: tint($text-color, 30%); 
     //font-size: .6em;
