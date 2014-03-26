@@ -1,7 +1,9 @@
 /**
  * @module Ink.UI.Drawer_1
+ * Off-canvas menu
  * @version 1
  */
+ 
 Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', 'Ink.Dom.Selector_1', 'Ink.Dom.Element_1', 'Ink.Dom.Event_1', 'Ink.Dom.Css_1'], function(Common, Loaded, Selector, Element, Event, Css) {
     'use strict';
 
