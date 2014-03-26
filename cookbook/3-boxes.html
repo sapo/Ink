@@ -32,10 +32,8 @@
         <!-- Place your Javascript here  -->
 
         <script type="text/javascript" src="../assets/js/holder.js"></script>
-        <script type="text/javascript" src="../assets/js/ink.min.js"></script>
-        <script type="text/javascript" src="../assets/js/ink-ui.min.js"></script>
+        <script type="text/javascript" src="../assets/js/ink-all.min.js"></script>
         <script type="text/javascript" src="../assets/js/autoload.js"></script>
-        <script type="text/javascript" src="../assets/js/html5shiv.js"></script>
         
         <style type="text/css">
             
@@ -55,13 +53,19 @@
     
     <body>
 
-        <!--[if lt IE 8]>
-            <p class="browser-alert">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-
-        <!-- Add your site or application content here -->
-
         <div class="ink-grid">
+        
+            <!--[if lte IE 8 ]>
+            <div class="ink-alert basic">
+                <button class="ink-dismiss">&times;</button>
+                <p><strong>You are using an outdated Internet Explorer version.</strong>
+                    Please <a href="http://browsehappy.com/">upgrade to a  browser</a> to improve your web experience experience.</p>
+                </p>
+            </div>
+            -->
+            
+            <!-- Add your site or application content here -->
+
             <header class="vertical-space">
                 <h1>site name<small>smaller text</small></h1>
                 <nav class="ink-navigation">
