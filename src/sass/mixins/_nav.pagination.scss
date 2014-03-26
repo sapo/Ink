@@ -33,7 +33,7 @@
 
             &:last-child, 
             &:last-child a {
-                @include border-radius(0 $navigation-border-radius $navigation-border-radius);
+                @include border-radius(0 $navigation-border-radius $navigation-border-radius 0);
             }
         }
     }

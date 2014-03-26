@@ -1,8 +1,9 @@
 /**
  * @module Ink.UI.FormValidator_2
- * @author inkdev AT sapo.pt
+ * Form Validation
  * @version 2
  */
+
 Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Element_1','Ink.Dom.Event_1','Ink.Dom.Selector_1','Ink.Dom.Css_1','Ink.Util.Array_1','Ink.Util.I18n_1','Ink.Util.Validator_1'], function( Common, Element, Event, Selector, Css, InkArray, I18n, InkValidator ) {
     'use strict';
 
@@ -16,8 +17,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
     var validationFunctions = {
 
         /**
-         * Checks if the value is actually defined and is not empty
-         * @
+         * Checks if a value is defined and not empty
          * @method required
          * @param  {String} value Value to be checked
          * @return {Boolean}       True case is defined, false if it's empty or not defined.
@@ -27,23 +27,23 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         },
 
         /**
-         * Checks if the value has a minimum length
+         * Checks if a value has a minimum length
          *
          * @method min_length
-         * @param  {String} value   Value to be checked
-         * @param  {String|Number} minSize Number of characters that the value at least must have.
-         * @return {Boolean}         True if the length of value is equal or bigger than the minimum chars defined. False if not.
+         * @param  {String}         value   Value to be checked.
+         * @param  {String|Number}  minSize Minimum number of characters.
+         * @return {Boolean}                True if the length of value is equal or bigger than the minimum chars defined. False if not.
          */
         'min_length': function( value, minSize ){
             return ( (typeof value === 'string') && ( value.length >= parseInt(minSize,10) ) );
         },
 
         /**
-         * Checks if the value has a maximum length
+         * Checks if a value has a maximum length
          *
          * @method max_length
-         * @param  {String} value   Value to be checked
-         * @param  {String|Number} maxSize Number of characters that the value at maximum can have.
+         * @param  {String}         value   Value to be checked.
+         * @param  {String|Number}  maxSize Maximum number of characters.
          * @return {Boolean}         True if the length of value is equal or smaller than the maximum chars defined. False if not.
          */
         'max_length': function( value, maxSize ){
@@ -51,35 +51,35 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         },
 
         /**
-         * Checks if the value has an exact length
+         * Checks if a value has an exact length
          *
          * @method exact_length
-         * @param  {String} value   Value to be checked
-         * @param  {String|Number} exactSize Number of characters that the value must have.
-         * @return {Boolean}         True if the length of value is equal to the size defined. False if not.
+         * @param  {String}         value       Value to be checked
+         * @param  {String|Number}  exactSize   Exact number of characters.
+         * @return {Boolean}                    True if the length of value is equal to the size defined. False if not.
          */
         'exact_length': function( value, exactSize ){
             return ( (typeof value === 'string') && ( value.length === parseInt(exactSize,10) ) );
         },
 
         /**
-         * Checks if the value has a valid e-mail address
+         * Checks if a value is a valid email address
          *
          * @method email
          * @param  {String} value   Value to be checked
-         * @return {Boolean}         True if the value is a valid e-mail address. False if not.
+         * @return {Boolean}         True if the value is a valid email address. False if not.
          */
         'email': function( value ){
             return ( ( typeof value === 'string' ) && InkValidator.mail( value ) );
         },
 
         /**
-         * Checks if the value has a valid URL
+         * Checks if a value has a valid URL
          *
          * @method url
-         * @param  {String} value   Value to be checked
-         * @param  {Boolean} fullCheck Flag that specifies if the value must be validated as a full url (with the protocol) or not.
-         * @return {Boolean}         True if the URL is considered valid. False if not.
+         * @param  {String} value       Value to be checked
+         * @param  {Boolean} fullCheck  Flag to validate a full url (with the protocol).
+         * @return {Boolean}            True if the URL is considered valid. False if not.
          */
         'url': function( value, fullCheck ){
             fullCheck = fullCheck || false;
@@ -87,7 +87,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         },
 
         /**
-         * Checks if the value is a valid IP. Supports ipv4 and ipv6
+         * Checks if a value is a valid IP. Supports ipv4 and ipv6
          *
          * @method ip
          * @param  {String} value   Value to be checked
@@ -103,7 +103,8 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         },
 
         /**
-         * Checks if the value is a valid phone number. Supports several countries, based in the Ink.Util.Validator class.
+         * Checks if a value is a valid phone number.
+         * Supports several countries, based in the Ink.Util.Validator class.
          *
          * @method phone
          * @param  {String} value   Value to be checked
@@ -121,7 +122,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         },
 
         /**
-         * Checks if it's a valid credit card.
+         * Checks if a value is a valid credit card.
          *
          * @method credit_card
          * @param  {String} value   Value to be checked
@@ -137,7 +138,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         },
 
         /**
-         * Checks if the value is a valid date.
+         * Checks if a value is a valid date.
          *
          * @method date
          * @param  {String} value   Value to be checked
@@ -149,7 +150,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         },
 
         /**
-         * Checks if the value only contains alphabetical values.
+         * Checks if a value only contains alphabetical values.
          *
          * @method alpha
          * @param  {String} value           Value to be checked
@@ -161,12 +162,11 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         },
 
         /*
-         * Check that the value contains only printable unicode text characters
-         * from the Basic Multilingual plane (BMP)
+         * Checks if a value contains only printable BMP unicode characters
          * Optionally allow punctuation and whitespace
          *
          * @method text
-         * @param {String} value    Value to be checked
+         * @param {String} value            Value to be checked
          * @return {Boolean}        Whether the value only contains printable text characters
          **/
         'text': function (value, whitespace, punctuation) {
@@ -176,10 +176,8 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         },
 
         /*
-         * Check that the value contains only printable text characters 
-         * available in the latin-1 encoding.
-         *
-         * Optionally allow punctuation and whitespace
+         * Checks if a value contains only printable latin-1 text characters.
+         * Optionally allow punctuation and whitespace.
          *
          * @method text
          * @param {String} value    Value to be checked
@@ -191,7 +189,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         },
 
         /**
-         * Checks if the value only contains alphabetical and numerical characters.
+         * Checks if a value contains only alphabetical or numerical characters.
          *
          * @method alpha_numeric
          * @param  {String} value   Value to be checked
@@ -202,7 +200,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         },
 
         /**
-         * Checks if the value only contains alphabetical, dash or underscore characteres.
+         * Checks if a value contains only alphabetical, dash or underscore characteres.
          *
          * @method alpha_dashes
          * @param  {String} value   Value to be checked
@@ -213,7 +211,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         },
 
         /**
-         * Checks if the value is a digit (an integer of length = 1).
+         * Checks if a value is a single digit.
          *
          * @method digit
          * @param  {String} value   Value to be checked
@@ -224,7 +222,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         },
 
         /**
-         * Checks if the value is a valid integer.
+         * Checks if a value is a valid integer.
          *
          * @method integer
          * @param  {String} value   Value to be checked
@@ -239,7 +237,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         },
 
         /**
-         * Checks if the value is a valid decimal number.
+         * Checks if a value is a valid decimal number.
          *
          * @method decimal
          * @param  {String} value   Value to be checked
@@ -257,13 +255,13 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         },
 
         /**
-         * Checks if it is a numeric value.
+         * Checks if a value is a numeric value.
          *
          * @method numeric
-         * @param  {String} value   Value to be checked
-         * @param  {String} decimalSeparator Verifies if it's a valid decimal. Otherwise checks if it's a valid integer.
-         * @param  {String} [decimalPlaces] (when the number is decimal) Maximum number of digits that the decimal part must have.
-         * @param  {String} [leftDigits] (when the number is decimal) Maximum number of digits that the integer part must have, when provided.
+         * @param  {String} value               Value to be checked
+         * @param  {String} decimalSeparator    Checks if it's a valid decimal. Otherwise checks if it's a valid integer.
+         * @param  {String} [decimalPlaces]     Maximum number of digits the decimal part must have.
+         * @param  {String} [leftDigits]        Maximum number of digits the integer part must have, when provided.
          * @return {Boolean}         True if the value is numeric. False if not.
          */
         'numeric': function( value, decimalSeparator, decimalPlaces, leftDigits ){
@@ -276,14 +274,15 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         },
 
         /**
-         * Checks if the value is in a specific range of values. The parameters after the first one are used for specifying the range, and are similar in function to python's range() function.
+         * Checks if a value is in a specific range of values.
+         * The parameters after the first one are used to specify the range, and are similar in function to python's range() function.
          *
          * @method range
-         * @param  {String} value   Value to be checked
-         * @param  {String} minValue Left limit of the range.
-         * @param  {String} maxValue Right limit of the range.
-         * @param  {String} [multipleOf] In case you want numbers that are only multiples of another number.
-         * @return {Boolean}         True if the value is within the range. False if not.
+         * @param  {String} value           Value to be checked
+         * @param  {String} minValue        Left limit of the range.
+         * @param  {String} maxValue        Right limit of the range.
+         * @param  {String} [multipleOf]    In case you want numbers that are only multiples of another number.
+         * @return {Boolean}                True if the value is within the range. False if not.
          */
         'range': function( value, minValue, maxValue, multipleOf ){
             value = +value;
@@ -306,7 +305,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         },
 
         /**
-         * Checks if the value is a valid color.
+         * Checks if a value is a valid color.
          *
          * @method color
          * @param  {String} value   Value to be checked
@@ -317,11 +316,11 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         },
 
         /**
-         * Checks if the value matches the value of a different field.
+         * Checks if a value matches the value of a different field.
          *
          * @method matches
-         * @param  {String} value   Value to be checked
-         * @param  {String} fieldToCompare Name or ID of the field to compare.
+         * @param  {String} value           Value to be checked
+         * @param  {String} fieldToCompare  Name or ID of the field to compare.
          * @return {Boolean}         True if the values match. False if not.
          */
         'matches': function( value, fieldToCompare ){
@@ -512,7 +511,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         },
 
         /**
-         * Function to retrieve the element's value
+         * Gets an element's value
          *
          * @method getValue
          * @return {mixed} The DOM Element's value
@@ -544,7 +543,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         },
 
         /**
-         * Function that returns the constructed errors object.
+         * Gets the constructed errors' object.
          *
          * @method getErrors
          * @return {Object} Errors' object
@@ -555,7 +554,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         },
 
         /**
-         * Function that returns the DOM element related to it.
+         * Gets the DOM element related to the instance.
          *
          * @method getElement
          * @return {Object} DOM Element
@@ -566,7 +565,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         },
 
         /**
-         * Get other elements in the same form.
+         * Gets other elements in the same form.
          *
          * @method getFormElements
          * @return {Object} A mapping of keys to other elements in this form.
@@ -577,7 +576,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         },
 
         /**
-         * Function used to validate the element based on the rules defined.
+         * Validates the element based on the rules defined.
          * It parses the rules defined in the _options.rules property.
          *
          * @method validate
@@ -622,13 +621,13 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
      * @class Ink.UI.FormValidator_2
      * @version 2
      * @constructor
-     * @param {String|DOMElement} selector Either a CSS Selector string, or the form's DOMElement
-     * @param {String}   [options.eventTrigger='submit'] What event do we listen for.
-     * @param {Boolean}  [options.neverSubmit=false]     Always cancel the event? Use this to avoid submitting the form.
-     * @param {Selector} [options.searchFor='input, select, textarea, .control-group'] Look in these inputs for validation data-attributes.
-     * @param {Function} [options.beforeValidation]      Callback to be executed before validating the form
-     * @param {Function} [options.onError]               Validation error callback
-     * @param {Function} [options.onSuccess]             Validation success callback
+     * @param {String|DOMElement}   selector                        Either a CSS Selector string, or the form's DOMElement
+     * @param {String}              [options.eventTrigger]          Event that will trigger the validation. Defaults to 'submit'.
+     * @param {Boolean}             [options.neverSubmit]           Flag to cancel the submit event. Use this to avoid submitting the form.
+     * @param {Selector}            [options.searchFor]             Selector containing the validation data-attributes. Defaults to 'input, select, textarea, .control-group'.
+     * @param {Function}            [options.beforeValidation]      Callback to be executed before validating the form
+     * @param {Function}            [options.onError]               Validation error callback
+     * @param {Function}            [options.onSuccess]             Validation success callback
      *
      * @example
      *     Ink.requireModules( ['Ink.UI.FormValidator_2'], function( FormValidator ){
@@ -638,7 +637,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
     var FormValidator = function( selector, options ){
 
         /**
-         * DOMElement of the <form> being validated
+         * DOMElement of the form being validated
          *
          * @property _rootElement
          * @type {DOMElement}
@@ -695,7 +694,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
     };
 
     /**
-     * Method used to set validation functions (either custom or ovewrite the existent ones)
+     * Sets or modifies validation functions
      *
      * @method setRule
      * @param {String}   name         Name of the function. E.g. 'required'
@@ -714,7 +713,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
     };
 
     /**
-     * Get the i18n object in charge of the error messages
+     * Gets the i18n object in charge of the error messages
      *
      * @method getI18n
      * @return {Ink.Util.I18n} The i18n object the FormValidator is using.
@@ -723,7 +722,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         return validationMessages;
     };
 
-     /**
+    /**
      * Sets the I18n object for validation error messages
      *
      * @method setI18n
@@ -734,7 +733,8 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
     };
 
    /**
-     * Add to the I18n dictionary. See `Ink.Util.I18n.append()` documentation.
+     * Add to the I18n dictionary.
+     * See `Ink.Util.I18n.append()` documentation.
      *
      * @method AppendI18n
      */
@@ -743,7 +743,8 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
     };
 
     /**
-     * Sets the language of the error messages. pt_PT and en_US are available, but you can add new languages by using append()
+     * Sets the language of the error messages.
+     * pt_PT and en_US are available, but you can add new languages by using append()
      *
      * See the `Ink.Util.I18n.lang()` setter
      *
@@ -772,8 +773,8 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         },
 
         /**
-         * Function that searches for the elements of the form, based in the
-         * this._options.searchFor configuration.
+         * Searches for the elements in the form.
+         * This method is based in the this._options.searchFor configuration.
          *
          * @method getElements
          * @return {Object} An object with the elements in the form, indexed by name/id
@@ -819,13 +820,12 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         },
 
         /**
-         * Runs the validate function of each FormElement in the this._formElements
-         * object.
-         * Also, based on the this._options.beforeValidation, this._options.onError
-         * and this._options.onSuccess, this callbacks are executed when defined.
+         * Validates every registered FormElement 
+         * This method looks inside the this._formElements object for validation targets.
+         * Also, based on the this._options.beforeValidation, this._options.onError, and this._options.onSuccess, this callbacks are executed when defined.
          *
          * @method validate
-         * @param  {Event} event window.event object
+         * @param  {Event} event    Window.event object
          * @return {Boolean}
          * @public
          */

@@ -1,5 +1,7 @@
 /**
  * @module Ink.UI.LazyLoad_1
+ * Delays content loading
+ * @version 1
  */
 
 Ink.createModule('Ink.UI.LazyLoad', '1', ['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1'], function(UICommon, InkEvent, InkElement) {
@@ -11,54 +13,32 @@ var LazyLoad = function(selector, options) {
 
 LazyLoad.prototype = {
     /**
-     * Stop the browser from loading a barrage of content at once.
+     * Stops the browser from loading a barrage of content at once.
      *
-     * This delays the loading of images and other content until the
-     * corresponding elements are visible in the browser viewport.
+     * This delays the loading of images and other content until the corresponding elements are visible in the browser viewport.
+     * This was created to load images later, but can be also used for widgets which are slow to load and are only useful when on screen.
      *
-     * This was created to load images later, but can be also used for
-     * widgets which are slow to load and are only useful when on screen.
+     * This works through copying the `src` attribute into `data-src`, and placing a `placeholder` string in the `src` attribute. Then, when the element is on screen, the `data-src` attribute is copied back to `src` and the content starts loading. You can use the options below to change what attributes are involved in the exchange.
      *
-     * This works through copying the `src` attribute into `data-src`,
-     * and placing a `placeholder` string in the `src` attribute. Then,
-     * when the element is on screen, the `data-src` attribute is copied
-     * back to `src` and the content starts loading. You can use the options
-     * below to change what attributes are involved in the exchange.
-     *
-     * You can also provide your `onInsideViewport` callback and use it to
-     * start widgets which need javascript, such as an interactive map
-     * or an animation.
+     * You can also provide your `onInsideViewport` callback and use it to start widgets which need javascript, such as an interactive map or an animation.
      *
      * @class Ink.UI.LazyLoad_1
      * @constructor
      *
      * @param rootElement {String|DOMElement} The element which contains the lazily-loaded items.
-     *
-     * @param [options] Options object, containing:
-     *
-     * @param [options.item]='.lazyload-item'  {String} Use this to select and define what is to be considered an `item`.
-     *
-     * @param [options.placeholder]=null       {String} Placeholder value for items which are still outside the screen (in case they don't already have a value set)
-     *
-     * @param [options.source]='data-src'      {String} When an `item` is within the viewport, take the value it has in this attribute then set its `destination` attribute to it.
-     *
-     * @param [options.destination]='src'      {String} attribute which gets the value in `source` when the element is visible.
-     *
-     * @param [options.delay]=100              {Number} Wait a few milliseconds before trying to load.
-     *
-     * @param [options.delta]=0                {Number} Distance in px from the outside of the viewport. Elements touching within this "margin", items are considered to be inside even if they are outside the viewport limits. Can be negative if you want an element to be considered inside only when it is a certain distance into the viewport.
-     *
-     * @param [options.image]=true             {Boolean} Set to false to make this component do nothing to any elements and just give you the onInsideViewport callback.
-     *
-     * @param [options.scrollElement]=window   {Element} (advanced) What element is to be listened for the scroll event.
-     *
-     * @param [options.touchEvents]=true       {Boolean} Subscribe to touch events in addition to scroll events. Useful in mobile safari because 'scroll' events aren't frequent enough.
-     *
-     * @param [options.onInsideViewport]=false {Function} Called when an `item` is within the viewport. Receives `{ element }`
-     *
-     * @param [options.onAfterAttributeChange]=false {Function} (advanced) Called after `source` is copied over to `destination`. Receives `{ element }`
-     *
-     * @param [options.autoInit]=true         {Boolean} (advanced) Set to false if you want to start LazyLoad yourself with `reload()`
+     * @param {Object}      [options]                           Options object, containing:
+     * @param {String}      [options.item]                      Item selector. Defaults to '.lazyload-item'.
+     * @param {String}      [options.placeholder]               Placeholder value for items which are not 'visible', in case they don't already have a value set.
+     * @param {String}      [options.source]                    Source attribute. When an item is 'visible', use this attribute's value to set its destination attribute. Defaults to 'data-src'.
+     * @param {String}      [options.destination]               Destination attribute. Attribute to change when the element is 'visible'. Defaults to 'src'. 
+     * @param {Number}      [options.delay]                     Milliseconds to wait before trying to load items. Defaults to 100.
+     * @param {Number}      [options.delta]                     Offset distance in pixels. Determines how far the top of an item must be from the viewport be considered 'visible'. Negative values shrink the considered 'visible' viewport while positive values enlarge it. Defaults to 0.
+     * @param {Boolean}     [options.image]                     Set to false to make this component do nothing to any elements and just give you the onInsideViewport callback.
+     * @param {Element}     [options.scrollElement]             (advanced) What element is to be listened for the scroll event. Defaults to document.window.
+     * @param {Boolean}     [options.touchEvents]               Subscribe to touch events in addition to scroll events. Useful in mobile safari because 'scroll' events aren't frequent enough. Defaults to true.
+     * @param {Function}    [options.onInsideViewport]          Callback function for when an `item` is 'visible'. Receives the item's element as an argument.
+     * @param {Function}    [options.onAfterAttributeChange]    (advanced) Callback function when an item's attribute changes. Receives the item's element as an argument.
+     * @param {Boolean}     [options.autoInit]                  (advanced) Set to false if you want to start LazyLoad yourself with `reload()`. Defaults to true.
      */
     _init: function(selector) {
         this._rootElm = UICommon.elsOrSelector(selector, 'Ink.UI.LazyLoad root element')[0] || null;
@@ -180,11 +160,10 @@ LazyLoad.prototype = {
     },
 
     /**
-     * Load or reload the component. Adding the 'scroll' event listener if
-     * necessary and checks if anything needs to be lazily loaded now.
+     * Load or reload the component.
+     * Adding the 'scroll' event listener if necessary and checks if anything needs to be loaded now.
      *
-     * You can use this if some elements may have appeared on screen but
-     * no user scrolling happened.
+     * You can use this to manually invoke the loading logic without user action. 
      *
      * @method reload
      * @public
