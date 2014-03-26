@@ -169,6 +169,11 @@ module.exports = function(grunt) {
           port: 4000,
         }
       },
+      devNoServe: {
+        options: {
+          config: '_config.yml,_config.dev.yml',
+        }
+      },
       prod: {
         options: {
           config: '_config.yml'
