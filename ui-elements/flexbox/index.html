@@ -31,7 +31,7 @@ site_root: ../../
 <link rel="stylesheet" href="http://cdn.ink.sapo.pt/{{site.version}}/css/ink-flex.min.css">
 {% endhighlight %}
 <p>In the example above we're calling the css from our cdn but if you want to host the files yourself, just put them wherever you like and set the propper url.</p>
-<p><code>ink-flex.css</code> or <code>ink-flex.min.css</code> don't contain css for browsers without flexbox support, so if you still want or need to have a fallback for older browsers we have a <code>ink-flex-legacy.css</code> file that contains all the non-flexbox code where all the rules have additional specificity with the <code>html.no-flexbox, html.no-flexboxlegacy</code> selector:</p>
+<p><code>ink-flex.css</code> or <code>ink-flex.min.css</code> don't contain css for browsers without flexbox support, so if you still want or need to have a fallback for older browsers we have a <code>ink-legacy.css</code> file that contains all the non-flexbox code where all the rules have <code>html.no-flexbox, html.no-flexboxlegacy</code> as part of the selector:</p>
 <p class="example-title">Code</p>
 {% highlight css %}
 ...
@@ -51,7 +51,7 @@ html.no-flexboxlegacy .ink-grid {
     <script type="text/javascript">
         Modernizr.load({
           test: Modernizr.flexbox,
-          nope : 'http://cdn.ink.sapo.pt/{{ site.version }}/css/ink-flex-legacy.min.css',
+          nope : 'http://cdn.ink.sapo.pt/{{ site.version }}/css/ink-legacy.min.css',
         });
     </script>
   </body>
@@ -112,7 +112,7 @@ html.no-flexboxlegacy .ink-grid {
           <td><code>width-auto</code></td>
           <td>Sets the elements <code>width</code> to auto. Horizontal space will be divided evenly between elements as content size allows. <span class="label flexbox"></span></td>
         </tr>
-    </tbody>    
+    </tbody>
   </table>
   <ul class="unstyled">
     <li><span class="label mandatory"></span> : This class must be used for the flexbox features to work.</li>
@@ -146,7 +146,7 @@ html.no-flexboxlegacy .ink-grid {
       50%
     </div>
   </div>
-</div>  
+</div>
 {% endhighlight %}
 <p>Unlike the "default" grid system, and because of the way flexbox works, positioning classes are applied to the <code>column-group</code>, rather that the columns themselves.</p>
 <p class="example-title">Demo</p>
@@ -157,7 +157,7 @@ html.no-flexboxlegacy .ink-grid {
       <div class="column">50%</div>
     </div>
   </div>
-</div>  
+</div>
 </div>
 <p>You can also define breakpoint dependent grid column alignment:</p>
 <p class="example-title">Code</p>
@@ -168,7 +168,7 @@ html.no-flexboxlegacy .ink-grid {
       50%
     </div>
   </div>
-</div>  
+</div>
 {% endhighlight %}
 <p class="example-title">Demo</p>
 <div class="example">
@@ -178,7 +178,7 @@ html.no-flexboxlegacy .ink-grid {
       <div class="column">50%</div>
     </div>
   </div>
-</div>  
+</div>
 </div>
 <p>You can combine horizontal and vertical alignment classe to center a grid column in both the x and y axis:</p>
 <p class="example-title">Code</p>
@@ -189,7 +189,7 @@ html.no-flexboxlegacy .ink-grid {
       50%
     </div>
   </div>
-</div>  
+</div>
 {% endhighlight %}
 <p class="example-title">Demo</p>
 <div class="example">
@@ -199,7 +199,7 @@ html.no-flexboxlegacy .ink-grid {
       <div class="column">50%</div>
     </div>
   </div>
-</div>  
+</div>
 </div>
 <h2>Reordering grid columns</h2>
 <p>Flexbox allows us to redefine the order that grid columns are displayed, regardless of their order in the markup.</p>
@@ -234,7 +234,7 @@ html.no-flexboxlegacy .ink-grid {
       <div class="column">column 3</div>
     </div>
   </div>
-</div>  
+</div>
 </div>
 <p>Once again you can reorder items based, on the breakpoint:</p>
 <p class="example-title">Code</p>
@@ -336,7 +336,7 @@ html.no-flexboxlegacy .ink-grid {
       <div class="column">column 3</div>
     </div>
   </div>
-</div>  
+</div>
 </div>
   </div>
   <div class="xlarge-50 large-50 medium-100 small-100 tiny-100">
@@ -370,7 +370,7 @@ html.no-flexboxlegacy .ink-grid {
       <div class="column">column 3</div>
     </div>
   </div>
-</div>  
+</div>
 </div>
   </div>
 </div>

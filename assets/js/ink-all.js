@@ -8,6 +8,11 @@
 
     'use strict';
 
+    /**
+     * @class Ink
+     */
+
+
     // skip redefinition of Ink core
     if ('Ink' in window) { return; }
 
@@ -39,11 +44,8 @@
         return true;
     };
 
-    /**
-     * @namespace Ink_1
-     */
-
     window.Ink = {
+
         _checkPendingRequireModules: function() {
             var I, F, o, dep, mod, cb, pRMs = [];
             for (I = 0, F = pendingRMs.length; I < F; ++I) {
@@ -143,7 +145,7 @@
 
         /**
          * Loads a script URL.
-         * This creates a `script` tag in the `head` of the document.
+         * This creates a `<script>` tag in the `<head>` of the document.
          * Reports errors by listening to 'error' and 'readystatechange' events.
          *
          * @method loadScript
@@ -670,13 +672,16 @@
 }(window, document));
 
 /**
- * @module Ink.Net.Ajax_1
- * Cross Browser Ajax requests
+ * @author inkdev AT sapo.pt
  */
 
 Ink.createModule('Ink.Net.Ajax', '1', [], function() {
 
     'use strict';
+
+    /**
+     * @module Ink.Net.Ajax_1
+     */
 
     /**
      * Creates a new cross browser XMLHttpRequest object
@@ -686,25 +691,28 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
      *
      * @param {String}  url      request url
      * @param {Object}  options  request options
-     * @param {Boolean}        [options.asynchronous]=true  If false, the request synchronous.
-     * @param {Boolean}        [options.cors]               Flag to activate CORS. Set this to true if you're doing a cross-origin request
-     * @param {String}         [options.method]='POST'      HTTP request method. POST by default.
-     * @param {Object|String}  [options.parameters]         Request parameters to be sent with the request
-     * @param {Number}         [options.timeout]            Request timeout in seconds
-     * @param {Number}         [options.delay]              Artificial delay. If the request is completed faster than this delay, wait the remaining time before executing the callbacks
-     * @param {String}         [options.postBody]           POST request body. If not specified, it's filled with the contents from parameters
-     * @param {String}         [options.contentType]        Content-type header to be sent. Defaults to 'application/x-www-form-urlencoded'
-     * @param {Object}         [options.requestHeaders]     key-value pairs for additional request headers
-     * @param {Function}       [options.onComplete]         Callback executed after the request is completed, regardless of what happened during the request.
-     * @param {Function}       [options.onSuccess]          Callback executed if the request is successful (requests with 2xx status codes)
-     * @param {Function}       [options.onFailure]          Callback executed if the request fails (requests with status codes different from 2xx)
-     * @param {Function}       [options.onException]        Callback executed if an exception occurs. Receives the exception as a parameter.
-     * @param {Function}       [options.onCreate]           Callback executed after object initialization but before the request is made
-     * @param {Function}       [options.onInit]             Callback executed before any initialization
-     * @param {Function}       [options.onTimeout]          Callback executed if the request times out
-     * @param {Boolean|String} [options.evalJS]=true        If the request Content-type header is application/json, evaluates the response and populates responseJSON. Use 'force' if you want to force the response evaluation, no matter what Content-type it's using.
-     * @param {Boolean}        [options.sanitizeJSON]       Flag to sanitize the content of responseText before evaluation
-     * @param {String}         [options.xhrProxy]           URI for proxy service hosted on the same server as the web app, that can fetch documents from other domains. The service must pipe all input and output untouched (some input sanitization is allowed, like clearing cookies). e.g., requesting http://example.org/doc can become /proxy/http%3A%2F%2Fexample.org%2Fdoc The proxy service will be used for cross-domain requests, if set, else a network error is returned as exception.
+     * @param {Boolean}        [options.asynchronous]    if the request should be asynchronous. true by default.
+     * @param {Boolean}        [options.cors]            set this to true if you're doing a cross-origin request
+     * @param {String}         [options.method]          HTTP request method. POST by default.
+     * @param {Object|String}  [options.parameters]      Request parameters which should be sent with the request
+     * @param {Number}         [options.timeout]         Request timeout
+     * @param {Number}         [options.delay]           Artificial delay. If request is completed in time lower than this, then wait a bit before calling the callbacks
+     * @param {String}         [options.postBody]        POST request body. If not specified, it's filled with the contents from parameters
+     * @param {String}         [options.contentType]     Content-type header to be sent. Defaults to 'application/x-www-form-urlencoded'
+     * @param {Object}         [options.requestHeaders]  key-value pairs for additional request headers
+     * @param {Function}       [options.onComplete]      Callback executed after the request is completed, no matter what happens during the request.
+     * @param {Function}       [options.onSuccess]       Callback executed if the request is successful (requests with 2xx status codes)
+     * @param {Function}       [options.onFailure]       Callback executed if the request fails (requests with status codes different from 2xx)
+     * @param {Function}       [options.onException]     Callback executed if an exception  occurs. Receives the exception as a parameter.
+     * @param {Function}       [options.onCreate]        Callback executed after object initialization but before the request is made
+     * @param {Function}       [options.onInit]          Callback executed before any initialization
+     * @param {Function}       [options.onTimeout]       Callback executed if the request times out
+     * @param {Boolean|String} [options.evalJS]          If the request Content-type header is application/json, evaluates the response and populates responseJSON. Use 'force' if you want to force the response evaluation, no matter what Content-type it's using. Defaults to true.
+     * @param {Boolean}        [options.sanitizeJSON]    Sanitize the content of responseText before evaluation
+     * @param {String}         [options.xhrProxy]        URI for proxy service hosted on the same server as the web app, that can fetch documents from other domains.
+     *                                             The service must pipe all input and output untouched (some input sanitization is allowed, like clearing cookies).
+     *                                             e.g., requesting http://example.org/doc can become /proxy/http%3A%2F%2Fexample.org%2Fdoc The proxy service will
+     *                                             be used for cross-domain requests, if set, else a network error is returned as exception.
      *
      * @example
      *     new Ajax('test.json', {
@@ -895,7 +903,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
          * Set the necessary headers for an ajax request
          *
          * @method setHeaders
-         * @param {String} url The url for the request
+         * @param {String} url - url for the request
          */
         setHeaders: function()
         {
@@ -976,7 +984,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
         },
 
         /**
-         * Set the url parameters for a GET request
+         * set the url parameters for a GET request
          *
          * @method setParams
          */
@@ -1000,11 +1008,11 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
         },
 
         /**
-         * Gets an HTTP header from the response
+         * Retrieves HTTP header from response
          *
          * @method getHeader
-         * @param {String}  name    Header name
-         * @return {String} header  Content
+         * @param {String}  name  header name
+         * @return {String} header content
          */
         getHeader: function(name)
         {
@@ -1019,10 +1027,10 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
         },
 
         /**
-         * Gets all the HTTP headers from the response
+         * Returns all http headers from the response
          *
          * @method getAllHeaders
-         * @return {String} The headers, each separated by a newline
+         * @return {String} the headers, each separated by a newline
          */
         getAllHeaders: function()
         {
@@ -1034,7 +1042,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
         },
 
         /**
-         * Sets the response object
+         * Setup the response object
          *
          * @method getResponse
          * @return {Object} the response object
@@ -1175,8 +1183,8 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
          * Last step after XHR is complete. Call onComplete and cleanup object
          *
          * @method finish
-         * @param {Any} response
-         * @param {Any} responseContent
+         * @param {} response
+         * @param {} responseContent
          */
         finish: function(response, responseContent){
             if (response) {
@@ -1230,7 +1238,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
         },
 
         /**
-         * Sets a new request header for the next http request
+         * Sets new request header for the subsequent http request
          *
          * @method setRequestHeader
          * @param {String} name
@@ -1244,7 +1252,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
         },
 
         /**
-         * Executes the request
+         * Execute the request
          *
          * @method request
          */
@@ -1335,11 +1343,11 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
         },
 
         /**
-         * Returns a new exception object that can be thrown
+         * Returns new exception object that can be thrown
          *
          * @method makeError
-         * @param code      Error Code
-         * @param message   Message
+         * @param code
+         * @param message
          * @returns {Object}
          */
         makeError: function(code, message){
@@ -1371,7 +1379,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
          * @method evalJSON
          * @param {String}  str       String to be evaluated
          * @param {Boolean} sanitize  whether to sanitize the content or not
-         * @return {Object} JSON content as an object
+         * @return {Object} Json content as an object
          */
         evalJSON: function(strJSON, sanitize)
         {
@@ -1398,8 +1406,8 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
      * Works with JSON, XML and plain text.
      *
      * @method load
-     * @param {String}   url       Request URL
-     * @param {Function} callback  Callback to be executed if the request is successful
+     * @param {String}   url       request url
+     * @param {Function} callback  callback to be executed if the request is successful
      * @return {Object} XMLHttpRequest object
      *
      * @example
@@ -1465,7 +1473,7 @@ Ink.createModule('Ink.Net.JsonP', '1', [], function() {
      * of the request, and passing extra GET parameters to the server, is not so complicated
      * but it's boring and repetitive to code and tricky to get right.
      *
-     * @namespace Ink.Net.JsonP
+     * @class Ink.Net.JsonP
      * @constructor
      * @param {String} uri
      * @param {Object} options
@@ -1620,7 +1628,7 @@ Ink.createModule('Ink.Dom.Browser', '1', [], function() {
     'use strict';    
 
     /**
-     * @namespace Ink.Dom.Browser
+     * @class Ink.Dom.Browser
      * @version 1
      * @static
      * @example
@@ -1917,7 +1925,7 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
      var getCs = ("defaultView" in document) && ("getComputedStyle" in document.defaultView) ? document.defaultView.getComputedStyle : window.getComputedStyle;
 
     /**
-     * @namespace Ink.Dom.Css
+     * @class Ink.Dom.Css
      * @static
      */
 
@@ -2790,7 +2798,11 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
     }
 
     /**
-     * @namespace Ink.Dom.Element_1
+     * @module Ink.Dom.Element_1
+     */
+
+    /**
+     * @class Ink.Dom.Element
      */
 
     var InkElement = {
@@ -3195,7 +3207,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method isLink
          * @param {DOMNode} node    Node to check if it's link
          * @return {Boolean}
-         * @sample Ink_Dom_Element_1_isLink.html
          */
         isLink: function(element){
             var b = element && element.nodeType === 1 && ((/^a|area$/i).test(element.tagName) ||
@@ -3210,7 +3221,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @param {DOMNode} ancestor  Ancestor node
          * @param {DOMNode} node      Descendant node
          * @return {Boolean}
-         * @sample Ink_Dom_Element_1_isAncestorOf.html
          */
         isAncestorOf: function(ancestor, node){
             /*jshint boss:true */
@@ -3235,7 +3245,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @param {DOMNode} node        The ancestor
          * @param {DOMNode} descendant  The descendant
          * @return {Boolean} true if 'descendant' is descendant of 'node'
-         * @sample Ink_Dom_Element_1_descendantOf.html
          */
         descendantOf: function(node, descendant){
             return node !== descendant && InkElement.isAncestorOf(node, descendant);
@@ -3246,7 +3255,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method firstElementChild
          * @param {DOMElement} elm Parent node
          * @return {DOMElement} the Element child
-         * @sample Ink_Dom_Element_1_firstElementChild.html
          */
         firstElementChild: function(elm){
             if(!elm) {
@@ -3267,7 +3275,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method lastElementChild
          * @param {DOMElement} elm Parent node
          * @return {DOMElement} the Element child
-         * @sample Ink_Dom_Element_1_lastElementChild.html
          */
         lastElementChild: function(elm){
             if(!elm) {
@@ -3289,7 +3296,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method nextElementSibling
          * @param {DOMNode} node  The current node
          * @return {DOMElement|Null} The first sibling element after node or null if none is found
-         * @sample Ink_Dom_Element_1_nextElementSibling.html 
          */
         nextElementSibling: function(node){
             var sibling = null;
@@ -3316,7 +3322,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method previousElementSibling
          * @param {DOMNode}        node The current node
          * @return {DOMElement|Null} The first element sibling before node or null if none is found
-         * @sample Ink_Dom_Element_1_previousElementSibling.html 
          */
         previousElementSibling: function(node){
             var sibling = null;
@@ -3343,7 +3348,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method elementWidth
          * @param {DOMElement|String} element Target DOM element or target ID
          * @return {Number} The element's width
-         * @sample Ink_Dom_Element_1_elementWidth.html 
          */
         elementWidth: function(element) {
             if(typeof element === "string") {
@@ -3358,7 +3362,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method elementHeight
          * @param {DOMElement|String} element DOM element or target ID
          * @return {Number} The element's height
-         * @sample Ink_Dom_Element_1_elementHeight.html 
          */
         elementHeight: function(element) {
             if(typeof element === "string") {
@@ -3401,7 +3404,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method elementDimensions
          * @param {DOMElement|string}   element     DOM element or target ID
          * @return {Array} Array with element's width and height
-         * @sample Ink_Dom_Element_1_elementDimensions.html 
          */
         elementDimensions: function(element) {
             element = Ink.i(element);
@@ -3416,7 +3418,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          *
          * @param {DOMElement} element Target element
          * @return {Array} Array with element width and height.
-         * @sample Ink_Dom_Element_1_outerDimensions.html 
          */
         outerDimensions: function (element) {
             var bbox = rect(element);
@@ -3438,7 +3439,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @param {Boolean} [partial]=false Return `true` even if it is only partially visible.
          * @param {Number}  [opts.margin]=0 Consider a margin all around the viewport with `opts.margin` width a dead zone.
          * @return {Boolean}
-         * @sample Ink_Dom_Element_1_inViewport.html 
          */
         inViewport: function (element, opts) {
             var dims = rect(Ink.i(element));
@@ -3466,7 +3466,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method isHidden
          * @param {DOMElement} element Element to check
          * @return {Boolean}
-         * @sample Ink_Dom_Element_1_isHidden.html 
          */
 
         isHidden: function (element) {
@@ -3488,7 +3487,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @uses isHidden
          * @param {DOMElement} element Element to check
          * @return {Boolean}
-         * @sample Ink_Dom_Element_1_isVisible.html 
          */
 
         isVisible: function (element) {
@@ -3502,7 +3500,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @param {DOMElement} cloneTo    element to be position cloned
          * @param {DOMElement} cloneFrom  element to get the cloned position
          * @return {DOMElement} The element with positionClone
-         * @sample Ink_Dom_Element_1_clonePosition.html 
          */
         clonePosition: function(cloneTo, cloneFrom){
             var pos = InkElement.offset(cloneFrom);
@@ -3520,11 +3517,12 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @param {DOMElement} element              Element to modify text content
          * @param {String}     [ellipsis]='\u2026'  String to append to the chopped text
          */
-        ellipsizeText: function(element/*, ellipsis*/){
-            if ((element = Ink.i(element))) {
-                element.style.overflow = 'hidden';
-                element.style.whiteSpace = 'nowrap';
-                element.style.textOverflow = 'ellipsis';
+        ellipsizeText: function(element, ellipsis){
+            /*jshint boss:true */
+            if (element = Ink.i(element)){
+                while (element && element.scrollHeight > (element.offsetHeight + 8)) {
+                    element.textContent = element.textContent.replace(/(\s+\S+)\s*$/, ellipsis || '\u2026');
+                }
             }
         },
 
@@ -3536,7 +3534,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @param {DOMElement} element     Element to base the search from
          * @param {Function}    boolTest   Testing function
          * @return {DOMElement|false} The matched element or false if did not match
-         * @sample Ink_Dom_Element_1_findUpwardsHaving.html 
          */
         findUpwardsHaving: function(element, boolTest) {
             while (element && element.nodeType === 1) {
@@ -3556,7 +3553,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @param {DOMElement} element      Element to base the search from
          * @param {String}      className   Class name to search
          * @returns {DOMElement|false} The matched element or false if did not match
-         * @sample Ink_Dom_Element_1_findUpwardsByClass.html 
          */
         findUpwardsByClass: function(element, className) {
             var re = new RegExp("(^|\\s)" + className + "(\\s|$)");
@@ -3574,7 +3570,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @param {DOMElement} element  Element to base the search from
          * @param {String}      tag     Tag to search
          * @returns {DOMElement|false} the matched element or false if did not match
-         * @sample Ink_Dom_Element_1_findUpwardsByTag.html 
          */
         findUpwardsByTag: function(element, tag) {
             tag = tag.toUpperCase();
@@ -3591,7 +3586,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @param {HtmlElement} element     Element to base the search from
          * @param {String}      id          ID to search
          * @returns {HtmlElement|false} The matched element or false if did not match
-         * @sample Ink_Dom_Element_1_findUpwardsById.html 
          */
         findUpwardsById: function(element, id) {
             var tst = function(el) {
@@ -3605,9 +3599,8 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          *
          * @method findUpwardsBySelector
          * @param {HtmlElement} element     Element to base the search from
-         * @param {String}      sel         CSS selector
+         * @param {String}      seĺ         CSS selector
          * @returns {HtmlElement|false} The matched element or false if did not match
-         * @sample Ink_Dom_Element_1_findUpwardsBySelector.html 
          */
         findUpwardsBySelector: function(element, sel) {
             var Selector = Ink.getModule('Ink.Dom.Selector');
@@ -3627,7 +3620,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @param {DOMElement}  el          Element to base the search from
          * @param {Boolean}     [removeIt]  Flag to remove the text from the element
          * @return {String} Text found
-         * @sample Ink_Dom_Element_1_getChildrenText.html 
          */
         getChildrenText: function(el, removeIt) {
             var node,
@@ -3675,7 +3667,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method getSelectValues
          * @param {DOMElement|String} select element
          * @return {Array} The selected values
-         * @sample Ink_Dom_Element_1_getSelectValues.html 
          */
         getSelectValues: function (select) {
             var selectEl = Ink.i(select);
@@ -3709,7 +3700,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Fills a select element with options
          *
          * @method fillSelect
-         * @param {DOMElement|String}  container       Select element which will get filled
+         * @param {DomElement|String}  container       Select element which will get filled
          * @param {Array}              data            Data to populate the component
          * @param {Boolean}            [skipEmpty]     Flag to skip empty option
          * @param {String|Number}      [defaultValue]  Initial selected value
@@ -3754,7 +3745,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * This method allows the creation of new values
          *
          * @method fillSelect2
-         * @param {DOMElement|String} ctn Select element to get populated
+         * @param {DomElement|String} ctn Select element to get populated
          * @param {Object} opts
          * @param {Array}                       [opts.data]                 Data to populate the component
          * @param {Boolean}                     [opts.skipEmpty]=false      Flag to skip creation of empty options
@@ -3856,7 +3847,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Creates a set of radio buttons
          *
          * @method fillRadios
-         * @param {DOMElement|String}  insertAfterEl    Element after which the input elements will be created
+         * @param {DomElement|String}  insertAfterEl    Element after which the input elements will be created
          * @param {String}             name             Name for the form field ([] is added if not present as a suffix)
          * @param {Array}              data             Data to populate the component
          * @param {Boolean}            [skipEmpty]      Flag to skip creation of empty options
@@ -3919,7 +3910,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Creates set of checkbox buttons
          *
          * @method fillChecks
-         * @param {DOMElement|String}  insertAfterEl   Element after which the input elements will be created
+         * @param {DomElement|String}  insertAfterEl   Element after which the input elements will be created
          * @param {String}             name            Name for the form field ([] is added if not present as a suffix)
          * @param {Array}              data            Data to populate the component
          * @param {Boolean}            [skipEmpty]     Flag to skip creation of empty options
@@ -3975,7 +3966,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @param {DOMElement}  parentEl  Element to parse
          * @param {DOMElement}  childEl   Child Element to look for
          * @return {Number} The index of the childEl inside parentEl. Returns -1 if it's not a direct child
-         * @sample Ink_Dom_Element_1_parentIndexOf.html 
          */
         parentIndexOf: function(parentEl, childEl) {
             var node, idx = 0;
@@ -3994,9 +3984,8 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Gets the next siblings of an element
          *
          * @method nextSiblings
-         * @param {String|DOMElement} elm Element
+         * @param {String|DomElement} elm Element
          * @return {Array} Array of next sibling elements
-         * @sample Ink_Dom_Element_1_nextSiblings.html 
          */
         nextSiblings: function(elm) {
             if(typeof(elm) === "string") {
@@ -4021,9 +4010,8 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Gets the previous siblings of an element
          *
          * @method previousSiblings
-         * @param {String|DOMElement} elm Element
+         * @param {String|DomElement} elm Element
          * @return {Array} Array of previous sibling elements
-         * @sample Ink_Dom_Element_1_previousSiblings.html 
          */
         previousSiblings: function(elm) {
             if(typeof(elm) === "string") {
@@ -4048,9 +4036,8 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Gets the all siblings of an element
          *
          * @method siblings
-         * @param {String|DOMElement} elm Element
+         * @param {String|DomElement} elm Element
          * @return {Array} Array of sibling elements
-         * @sample Ink_Dom_Element_1_siblings.html 
          */
         siblings: function(elm) {
             if(typeof(elm) === "string") {
@@ -4075,9 +4062,8 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Counts the number of children of an element
          *
          * @method childElementCount
-         * @param {String|DOMElement} elm element
+         * @param {String|DomElement} elm element
          * @return {Number} number of child elements
-         * @sample Ink_Dom_Element_1_childElementCount.html 
          */
         childElementCount: function(elm) {
             elm = Ink.i(elm);
@@ -4156,9 +4142,8 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * This method parses the html string and doesn't modify its contents
          *
          * @method appendHTML
-         * @param {String|DOMElement} elm   Element
+         * @param {String|DomElement} elm   Element
          * @param {String}            html  Markup string
-         * @sample Ink_Dom_Element_1_appendHTML.html 
          */
         appendHTML: function(elm, html){
             var wrapper = InkElement._getWrapper(elm, html);
@@ -4174,7 +4159,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method prependHTML
          * @param {String|DOMElement} elm   Element
          * @param {String}            html  Markup string
-         * @sample Ink_Dom_Element_1_prependHTML.html 
          */
         prependHTML: function(elm, html){
             var wrapper = InkElement._getWrapper(elm, html);
@@ -4189,7 +4173,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method setHTML
          * @param {String|DOMElement} elm   Element
          * @param {String}            html  Markup string
-         * @sample Ink_Dom_Element_1_setHTML.html 
          */
         setHTML: function (elm, html) {
             try {
@@ -4212,7 +4195,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @param {String|DOMElement}   target      Element to be wrapped
          * @param {String|DOMElement}   container   Element to wrap the target
          * @return Container element
-         * @sample Ink_Dom_Element_1_wrap.html 
          *
          * @example
          * before:
@@ -4251,7 +4233,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method unwrap
          * @param {DOMElement}  elem                The element you're trying to unwrap. This should be an ancestor of the wrapper.
          * @param {String}      [wrapperSelector]   CSS Selector for the ancestor. Use this if your wrapper is not the direct parent of elem.
-         * @sample Ink_Dom_Element_1_unwrap.html 
          *
          * @example
          *
@@ -4290,7 +4271,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method replace
          * @param element       The element to be replaced.
          * @param replacement   The new element.
-         * @sample Ink_Dom_Element_1_replace.html 
          *
          * @example
          *       var newelement1 = InkElement.create('div');
@@ -4308,7 +4288,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          *
          * @method removeTextNodeChildren
          * @param  {DOMElement} el          Element to remove text from
-         * @sample Ink_Dom_Element_1_removeTextNodeChildren.html 
          */
         removeTextNodeChildren: function(el) {
             var prevEl, toRemove, parent = el;
@@ -4329,7 +4308,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method htmlToFragment
          * @param  {String} html  HTML string
          * @return {DocumentFragment} DocumentFragment containing all of the elements from the html string
-         * @sample Ink_Dom_Element_1_htmlToFragment.html 
          */
         htmlToFragment: (createContextualFragmentSupport ?
             function(html){
@@ -4372,9 +4350,8 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Gets data attributes from an element
          *
          * @method data
-         * @param {String|DOMElement} selector Element or CSS selector
+         * @param {String|DomElement} selector Element or CSS selector
          * @return {Object} Object with the data-* properties. If no data-attributes are present, an empty object is returned.
-         * @sample Ink_Dom_Element_1_data.html 
         */
         data: function(selector) {
             var el;
@@ -4420,7 +4397,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method moveCursorTo
          * @param  {DOMElement} el  Input or Textarea element
          * @param  {Number}     t   Index of the character to move the cursor to
-         * @sample Ink_Dom_Element_1_moveCursorTo.html 
          */
         moveCursorTo: function(el, t) {
             if (el.setSelectionRange) {
@@ -4440,7 +4416,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Get the page's width.
          * @method pageWidth
          * @return {Number} Page width in pixels
-         * @sample Ink_Dom_Element_1_pageWidth.html 
          */
         pageWidth: function() {
             var xScroll;
@@ -4478,7 +4453,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Get the page's height.
          * @method pageHeight
          * @return {Number} Page height in pixels
-         * @sample Ink_Dom_Element_1_pageHeight.html 
          */
         pageHeight: function() {
             var yScroll;
@@ -4512,7 +4486,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Get the viewport's width.
          * @method viewportWidth
          * @return {Number} Viewport width in pixels
-         * @sample Ink_Dom_Element_1_viewportWidth.html 
          */
         viewportWidth: function() {
             if(typeof window.innerWidth !== "undefined") {
@@ -4527,7 +4500,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Get the viewport's height.
          * @method viewportHeight
          * @return {Number} Viewport height in pixels
-         * @sample Ink_Dom_Element_1_viewportHeight.html 
          */
         viewportHeight: function() {
             if (typeof window.innerHeight !== "undefined") {
@@ -4542,7 +4514,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Get the scroll's width.
          * @method scrollWidth
          * @return {Number} Scroll width
-         * @sample Ink_Dom_Element_1_scrollWidth.html 
          */
         scrollWidth: function() {
             if (typeof window.self.pageXOffset !== 'undefined') {
@@ -4558,7 +4529,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Get the scroll's height.
          * @method scrollHeight
          * @return {Number} Scroll height
-         * @sample Ink_Dom_Element_1_scrollHeight.html 
          */
         scrollHeight: function() {
             if (typeof window.self.pageYOffset !== 'undefined') {
@@ -4592,11 +4562,6 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
            curly:false,
            expr:true
            */
-
-    /**
-     * @namespace Ink.Dom.Event_1
-     * @static
-     */
 
     /*!
       * Bean - copyright (c) Jacob Thornton 2011-2012
@@ -5344,6 +5309,10 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      */
     'use strict';
 
+    /**
+     * @class Ink.Dom.Event
+     */
+
     var InkEvent = {
 
     KEY_BACKSPACE: 8,
@@ -5362,14 +5331,16 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     KEY_INSERT:   45,
     
     /**
-     * Creates a debounced version of a function.
-     * Returns a function which calls `func`, waiting at least `wait` milliseconds between calls. This is useful for events such as `scroll` or `resize`, which can be triggered too many times per second, slowing down the browser with needless function calls.
+     * Returns a function which calls `func`, waiting at least `wait`
+     * milliseconds between calls. This is useful for events such as `scroll`
+     * or `resize`, which can be triggered too many times per second, slowing
+     * down the browser with needless function calls.
      *
      * *note:* This does not delay the first function call to the function.
      *
      * @method throttle
      * @param {Function} func   Function to call. Arguments and context are both passed.
-     * @param {Number} [wait]=0 Milliseconds to wait between calls.
+     * @param {Number} [wait=0] Milliseconds to wait between calls.
      *
      * @example
      *  
@@ -5424,11 +5395,11 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     },
 
     /**
-     * Gets the event's target element.
+     * Returns the target of the event object
      *
      * @method element
-     * @param {Object} ev  Event object
-     * @return {DOMNode} The target
+     * @param {Object} ev  event object
+     * @return {Node} The target
      */
     element: function(ev) {
         var node = ev.delegationTarget ||
@@ -5444,11 +5415,11 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     },
 
     /**
-     * Gets the event's related target element.
+     * Returns the related target of the event object
      *
      * @method relatedTarget
      * @param {Object} ev event object
-     * @return {DOMNode} The related target
+     * @return {Node} The related target
      */
     relatedTarget: function(ev){
         var node = ev.relatedTarget ||
@@ -5462,15 +5433,14 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     },
 
     /**
-     * Find closest ancestor element by tag name related to the event target.
      * Navigate up the DOM tree, looking for a tag with the name `elmTagName`.
      *
      * If such tag is not found, `document` is returned.
      *
      * @method findElement
-     * @param {Object}  ev              Event object
-     * @param {String}  elmTagName      Tag name to find
-     * @param {Boolean} [force]=false   Flag to skip returning `document` and to return `false` instead.
+     * @param {Object}  ev              event object
+     * @param {String}  elmTagName      tag name to find
+     * @param {Boolean} [force=false]   If this is true, never return `document`, and returns `false` instead.
      * @return {DOMElement} the first element which matches given tag name or the document element if the wanted tag is not found
      */
     findElement: function(ev, elmTagName, force)
@@ -5501,8 +5471,11 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * @method observe
      * @param {DOMElement|String}  element      Element id or element
      * @param {String}             eventName    Event name
-     * @param {Function}           callBack     Receives the event object as a parameter. If you're manually firing custom events, check it's eventName property to make sure you're handling the right event.
-     * @param {Boolean}            [useCapture] Flag to change event listening from bubbling to capture.
+     * @param {Function}           callBack     Receives event object as a
+     * parameter. If you're manually firing custom events, check the
+     * eventName property of the event object to make sure you're handling
+     * the right event.
+     * @param {Boolean}            [useCapture] Set to true to change event listening from bubbling to capture.
      * @return {Function} The event handler used. Hang on to this if you want to `stopObserving` later.
      */
     observe: function(element, eventName, callBack, useCapture) {
@@ -5523,8 +5496,11 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * @method observeOnce
      * @param {DOMElement|String}  element      Element id or element
      * @param {String}             eventName    Event name
-     * @param {Function}           callBack     Receives the event object as a parameter. If you're manually firing custom events, check it's eventName property to make sure you're handling the right event.
-     * @param {Boolean}            [useCapture] Flag to change event listening from bubbling to capture.
+     * @param {Function}           callBack     Receives event object as a
+     * parameter. If you're manually firing custom events, check the
+     * eventName property of the event object to make sure you're handling
+     * the right event.
+     * @param {Boolean}            [useCapture] Set to true to change event listening from bubbling to capture.
      * @return {Function} The event handler used. Hang on to this if you want to `stopObserving` later.
      */
     observeOnce: function (element, eventName, callBack, useCapture) {
@@ -5538,11 +5514,16 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     /**
      * Attaches an event to a selector or array of elements.
      *
+     * Requires Ink.Dom.Selector
+     *
      * @method observeMulti
-     * @param {Array|String}        elements       
-     * @param {String}              eventName    Event name
-     * @param {Function}            callBack     Receives the event object as a parameter. If you're manually firing custom events, check it's eventName property to make sure you're handling the right event.
-     * @param {Boolean}            [useCapture]  Flag change event listening from bubbling to capture.
+     * @param {Array|String} elements
+     * @param {String}             eventName    Event name
+     * @param {Function}           callBack     Receives event object as a
+     * parameter. If you're manually firing custom events, check the
+     * eventName property of the event object to make sure you're handling
+     * the right event.
+     * @param {Boolean}            [useCapture] Set to true to change event listening from bubbling to capture.
      * @return {Function} The used callback.
      */
     observeMulti: function (elements, eventName, callBack, useCapture) {
@@ -5560,7 +5541,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     },
 
     /**
-     * Observes an event on an element and its descendants matching the selector.
+     * Observe an event on the given element and every children which matches the selector string (if provided).
      *
      * Requires Ink.Dom.Selector if you need to use a selector.
      *
@@ -5590,13 +5571,13 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     },
 
     /**
-     * Removes an event attached to an element.
+     * Remove an event attached to an element
      *
      * @method stopObserving
-     * @param {DOMElement|String}  element       Element id or element
-     * @param {String}             eventName     Event name
-     * @param {Function}           callBack      Callback function
-     * @param {Boolean}            [useCapture]  Set to true if the event was being observed with useCapture set to true as well.
+     * @param {DOMElement|String}  element       element id or element
+     * @param {String}             eventName     event name
+     * @param {Function}           callBack      callback function
+     * @param {Boolean}            [useCapture]  set to true if the event was being observed with useCapture set to true as well.
      */
     stopObserving: function(element, eventName, callBack, useCapture) {
         element = Ink.i(element);
@@ -5611,10 +5592,10 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     },
 
     /**
-     * Stops event propagation and bubbling.
+     * Stops event propagation and bubbling
      *
      * @method stop
-     * @param {Object} event  Event handle
+     * @param {Object} event  event handle
      */
     stop: function(event)
     {
@@ -5636,10 +5617,10 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     },
 
     /**
-     * Stops event propagation.
+     * Stops event propagation
      *
      * @method stopPropagation
-     * @param {Object} event  Event handle
+     * @param {Object} event  event handle
      */
     stopPropagation: function(event) {
         if(event.cancelBubble !== null) {
@@ -5651,10 +5632,10 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     },
 
     /**
-     * Stops event default behaviour.
+     * Stops event default behaviour
      *
      * @method stopDefault
-     * @param {Object} event  Event handle
+     * @param {Object} event  event handle
      */
     stopDefault: function(event)
     {
@@ -5670,11 +5651,9 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     },
 
     /**
-     * Gets the pointer's coordinates from the event object.
-     *
      * @method pointer
-     * @param {Object} ev Event object
-     * @return {Object} An object with the mouse X and Y position
+     * @param {Object} ev event object
+     * @return {Object} an object with the mouse X and Y position
      */
     pointer: function(ev)
     {
@@ -5685,11 +5664,9 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     },
 
     /**
-     * Gets the pointer's X coordinate.
-     *
      * @method pointerX
-     * @param {Object} ev Event object
-     * @return {Number} Mouse X position
+     * @param {Object} ev event object
+     * @return {Number} mouse X position
      */
     pointerX: function(ev)
     {
@@ -5699,11 +5676,9 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     },
 
     /**
-     * Gets the pointer's Y coordinate.
-     *
      * @method pointerY
-     * @param {Object} ev Event object
-     * @return {Number} Mouse Y position
+     * @param {Object} ev event object
+     * @return {Number} mouse Y position
      */
     pointerY: function(ev)
     {
@@ -5713,11 +5688,9 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     },
 
     /**
-     * Checks if an event is a left click.
-     *
      * @method isLeftClick
-     * @param {Object} ev  Event object
-     * @return {Boolean} True if the event is a left click
+     * @param {Object} ev  event object
+     * @return {Boolean} True if the event is a left mouse click
      */
     isLeftClick: function(ev) {
         if (window.addEventListener) {
@@ -5735,22 +5708,18 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     },
 
     /**
-     * Checks if an event is a right click.
-     *
      * @method isRightClick
-     * @param {Object} ev  Event object
-     * @return {Boolean} True if the event is a right click
+     * @param {Object} ev  event object
+     * @return {Boolean} True if there is a right click on the event
      */
     isRightClick: function(ev) {
         return (ev.button === 2);
     },
 
     /**
-     * Checks if an event is a middle click.
-     *
      * @method isMiddleClick
-     * @param {Object} ev  Event object
-     * @return {Boolean} True if the event is a middle click
+     * @param {Object} ev  event object
+     * @return {Boolean} True if there is a middle click on the event
      */
     isMiddleClick: function(ev) {
         if (window.addEventListener) {
@@ -5763,13 +5732,13 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     },
 
     /**
-     * Gets character from an event.
+     * Work in Progress.
      * Used in SAPO.Component.MaskedInput
      *
      * @method getCharFromKeyboardEvent
-     * @param {Object}   event           Keyboard event
-     * @param {Boolean}  [changeCasing]  If true uppercases, if false lowercases, otherwise keeps casing
-     * @return {String} Character representation of pressed key combination
+     * @param {KeyboardEvent}     event           keyboard event
+     * @param {optional Boolean}  [changeCasing]  if true uppercases, if false lowercases, otherwise keeps casing
+     * @return {String} character representation of pressed key combination
      */
     getCharFromKeyboardEvent: function(event, changeCasing) {
         var k = event.keyCode;
@@ -5796,7 +5765,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
 };
 
 /**
- * Lets you attach event listeners to both elements and objects.
+ * bean.on() lets you attach event listeners to both elements and objects.
  * http://github.com/fat/bean#on
  *
  * @method on
@@ -5810,7 +5779,6 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
  */
 
 /**
- * Alias for `on` but will only be executed once.
  * bean.one() is an alias for bean.on() except that the handler will only be executed once and then removed for the event type(s).
  * http://github.com/fat/bean#one
  *
@@ -5825,7 +5793,6 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
  */
 
 /**
- * Removes event handlers.
  * bean.off() is how you get rid of handlers once you no longer want them active. It's also a good idea to call off on elements before you remove them from your DOM; this gives Bean a chance to clean up some things and prevents memory leaks.
  * http://github.com/fat/bean#off
  *
@@ -5838,7 +5805,6 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
  */
 
 /**
- * Clones events from one object to another
  * bean.clone() is a method for cloning events from one DOM element or object to another.
  * http://github.com/fat/bean#clone
  *
@@ -5851,7 +5817,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
  */
 
 /**
- * Triggers events.
+ * bean.fire() gives you the ability to trigger events.
  * http://github.com/fat/bean#fire
  *
  * @method fire
@@ -5868,28 +5834,29 @@ return Ink.extendObj(InkEvent, bean);
 
 /**
  * @module Ink.Dom.FormSerialize
- * Two way serialization of form data and javascript objects.
- * Valid applications are ad hoc AJAX/syndicated submission of forms, restoring form values from server side state, etc.
+ * @author inkdev AT sapo.pt
  */
 
 Ink.createModule('Ink.Dom.FormSerialize', 1, [], function () {
     'use strict';
-
     /**
-     * @namespace Ink.Dom.FormSerialize
-     * @static
-     **/
+     * Supports serialization of form data to/from javascript Objects.
+     *
+     * Valid applications are ad hoc AJAX/syndicated submission of forms, restoring form values from server side state, etc.
+     *
+     * @class Ink.Dom.FormSerialize
+     *
+     */
     var FormSerialize = {
 
         /**
-         * Serializes a form element into a JS object
-         * It turns field names into keys and field values into values.
+         * Serializes a form into an object, turning field names into keys, and field values into values.
          *
-         * note: Multi-select and checkboxes with multiple values will result in arrays
+         * note: Multi-select and checkboxes with multiple values will yield arrays
          *
          * @method serialize
-         * @param {DOMElement|String}   form    Form element to extract data
-         * @return {Object} Map of fieldName -> String|String[]|Boolean
+         * @return {Object} map of fieldName -> String|String[]|Boolean
+         * @param {DomElement|String}   form    form element from which the extraction is to occur
          *
          * @example
          *     <form id="frm">
@@ -5927,13 +5894,13 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, [], function () {
 
 
         /**
-         * Sets form elements' values with values from an object
+         * Sets form elements's values with values given from object
          *
-         * Note: You can't set the values of an input with `type="file"` (browser prohibits it)
+         * One cannot restore the values of an input with `type="file"` (browser prohibits it)
          *
          * @method fillIn 
-         * @param {DOMElement|String}   form    Form element to be populated
-         * @param {Object}              map2    Map of fieldName -> String|String[]|Boolean
+         * @param {DomElement|String}   form    form element which is to be populated
+         * @param {Object}              map2    map of fieldName -> String|String[]|Boolean
          * @example
          *     <form id="frm">
          *         <input type="text" name="field1">
@@ -6087,19 +6054,24 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, [], function () {
 
     return FormSerialize;
 });
+
 /**
  * @module Ink.Dom.Loaded_1
- * Execute code only when the DOM is loaded.
+ * @author inkdev AT sapo.pt
  * @version 1
  */
- 
 Ink.createModule('Ink.Dom.Loaded', 1, [], function() {
 
     'use strict';
 
     /**
-     * @namespace Ink.Dom.Loaded_1
-     **/
+     * The Loaded class provides a method that allows developers to queue functions to run when
+     * the page is loaded (document is ready).
+     *
+     * @class Ink.Dom.Loaded
+     * @version 1
+     * @static
+     */
     var Loaded = {
 
         /**
@@ -6114,11 +6086,11 @@ Ink.createModule('Ink.Dom.Loaded', 1, [], function() {
         _contexts: [], // Callbacks' queue
 
         /**
-         * Specify a function to execute when the DOM is fully loaded.
+         * Adds a new function that will be invoked once the document is ready
          *
          * @method run
-         * @param {Object}   [win]=window   Window object to attach/add the event
-         * @param {Function} fn             Callback function to be executed after the DOM is ready
+         * @param {Object}   [win=window]   Window object to attach/add the event
+         * @param {Function} fn             Callback function to be run after the page is loaded
          * @public
          * @example
          *     Ink.requireModules(['Ink.Dom.Loaded_1'], function(Loaded){
@@ -6256,12 +6228,19 @@ Ink.createModule('Ink.Dom.Loaded', 1, [], function() {
 
 /**
  * @module Ink.Dom.Selector_1
- * CSS selector engine
+ * @author inkdev AT sapo.pt
  * @version 1
  */
 Ink.createModule('Ink.Dom.Selector', 1, [], function() {
     /*jshint forin:false, eqnull:true, noempty:false, expr:true, boss:true, maxdepth:false*/
 	'use strict';
+
+    /**
+     * @class Ink.Dom.Selector
+     * @static
+     * @version 1
+     */
+
 
 /*!
  * Sizzle CSS Selector Engine
@@ -8170,36 +8149,32 @@ support.detectDuplicates = hasDuplicate;
 // EXPOSE
 
 /**
- * @namespace Ink.Dom.Selector
- * @static
- */
-
-/**
  * Alias for the Sizzle selector engine
  *
  * @method select
- * @param {String}      selector    CSS selector to search for elements
- * @param {DOMElement}  [context]   By default the search is done in the document element. However, you can specify an element as search context
- * @param {Array}       [results]   By default this is considered an empty array. But if you want to merge it with other searches you did, pass their result array through here.
+ * @param {String} selector CSS selector to search for elements
+ * @param {DOMElement} [context] By default the search is done in the document element. However, you can specify an element as search context
+ * @param {Array} [results] By default this is considered an empty array. But if you want to merge it with other searches you did, pass their result array through here.
+ * @param {Object} [seed]
  * @return {Array} Array of resulting DOM Elements
  */
 
 /**
- * Filters elements that match a CSS selector.
+ * Returns elements which match with the second argument to the function.
  *
  * @method matches
- * @param {String}  selector    CSS selector to search for elements
- * @param {Array}   matches     Elements to be 'matched' with
+ * @param {String} selector CSS selector to search for elements
+ * @param {Array} matches Elements to be 'matched' with
  * @return {Array} Elements that matched
  */
 
 /**
- * Checks if an element matches a given selector
+ * Returns true iif element matches given selector
  *
  * @method matchesSelector
- * @param {DOMElement} element Element to test
+ * @param {DOMElement} element to test
  * @param {String}     selector CSS selector to test the element with
- * @return {Boolean} True if element matches the CSS selector
+ * @return {Boolean} true iif element matches the CSS selector
  */
 
 return {
@@ -8210,6 +8185,7 @@ return {
 
 
 }); //( window );
+
 /**
  * @module Ink.Util.Array_1
  * @author inkdev AT sapo.pt
@@ -8224,7 +8200,7 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
     /**
      * Utility functions to use with Arrays
      *
-     * @namespace Ink.Util.Array
+     * @class Ink.Util.Array
      * @version 1
      * @static
      */
@@ -8825,7 +8801,7 @@ Ink.createModule('Ink.Util.BinPack', '1', [], function() {
      *
      * see https://github.com/jakesgordon/bin-packing/
      *
-     * @namespace Ink.Util.BinPack
+     * @class Ink.Util.BinPack
      * @version 1
      * @static
      */
@@ -8923,7 +8899,7 @@ Ink.createModule('Ink.Util.Cookie', '1', [], function() {
     /**
      * Utilities for Cookie handling
      *
-     * @namespace Ink.Util.Cookie
+     * @class Ink.Util.Cookie
      * @version 1
      * @static
      */
@@ -9098,7 +9074,7 @@ Ink.createModule('Ink.Util.Date', '1', [], function() {
     /**
      * Class to provide the same features that php date does
      *
-     * @namespace Ink.Util.Date
+     * @class Ink.Util.Date
      * @version 1
      * @static
      */
@@ -9875,7 +9851,7 @@ Ink.createModule('Ink.Util.Dumper', '1', [], function() {
     /**
      * Dump/Profiling Utilities
      *
-     * @namespace Ink.Util.Dumper
+     * @class Ink.Util.Dumper
      * @version 1
      * @static
      */
@@ -10610,7 +10586,7 @@ Ink.createModule('Ink.Util.Json', '1', [], function() {
      *          var source = '{"key": "value", "array": [true, null, false]}';
      *          Json.parse(source);  // The above JSON string as an object
      *      });
-     * @namespace Ink.Util.Json
+     * @class Ink.Util.Json
      * @static
      * 
      */
@@ -10878,7 +10854,7 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
     /**
      * String Manipulation Utilities
      *
-     * @namespace Ink.Util.String
+     * @class Ink.Util.String
      * @version 1
      * @static
      */
@@ -11556,7 +11532,7 @@ Ink.createModule('Ink.Util.Url', '1', [], function() {
     /**
      * Utility functions to use with URLs
      *
-     * @namespace Ink.Util.Url
+     * @class Ink.Util.Url
      * @version 1
      * @static
      */
@@ -12020,7 +11996,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
     /**
      * Set of functions to provide validation
      *
-     * @namespace Ink.Util.Validator
+     * @class Ink.Util.Validator
      * @version 1
      * @static
      */
@@ -13522,7 +13498,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
      *
      * @param {String|DOMElement} selector
      * @param {Object} [options]
-     *  @param {Integer} [options.autoAdvance=0] The number of milliseconds to wait between auto-advancing pages. Set to 0 to disable auto-advance.
+     *  @param {Integer} [autoAdvance=0] The number of milliseconds to wait between auto-advancing pages. Set to 0 to disable auto-advance.
      *  @param {String} [options.axis='x'] Can be `'x'` or `'y'`, for a horizontal or vertical carousel
      *  @param {Boolean} [options.center=false] Center the carousel.
      *  @param {Number} [options.initialPage=0] When initialized, set the page to this.
@@ -13545,7 +13521,6 @@ Ink.createModule('Ink.UI.Carousel', '1',
             autoAdvance:    ['Integer', 0],
             axis:           ['String', 'x'],
             initialPage:    ['Integer', 0],
-            spaceAfterLastSlide: ['Boolean', true],
             hideLast:       ['Boolean', false],
             center:         ['Boolean', false],
             keyboardSupport:['Boolean', false],
@@ -13562,10 +13537,6 @@ Ink.createModule('Ink.UI.Carousel', '1',
         this._ulEl = ulEl;
 
         InkElement.removeTextNodeChildren(ulEl);
-
-        if (this._options.pagination == null) {
-            this._currentPage = this._options.initialPage;
-        }
 
         this.refit(); // recalculate this._numPages
 
@@ -13625,7 +13596,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
             if (this._pagination && numPagesChanged) {
                 this._pagination.setSize(this._numPages);
             }
-            this.setPage(limitRange(this.getPage(), 0, this._numPages));
+            this.setPage(limitRange(this.getPage(), 1, this._numPages));
         },
 
         _setUpPagination: function () {
@@ -13689,7 +13660,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
 
         _updateHider: function() {
             if (!this._hiderEl) { return; }
-            if (this.getPage() === 0) {
+            if ((!this._pagination) || this._pagination.getCurrent() === 0) {
                 var gap = Math.floor( this._ctnLength - (this._elLength * this._slidesPerPage) );
                 if (this._options.center) {
                     gap /= 2;
@@ -13736,8 +13707,8 @@ Ink.createModule('Ink.UI.Carousel', '1',
 
             this._touchMoveIsFirstTouchMove = true;
 
-            // InkEvent.stopDefault(event);
-            InkEvent.stopPropagation(event);
+            // event.preventDefault();
+            event.stopPropagation();
         },
 
         _onTouchMove: function (event) {
@@ -13761,12 +13732,12 @@ Ink.createModule('Ink.UI.Carousel', '1',
             }
 
             if (!this._scrolling && this._swipeData) {
-                InkEvent.stopDefault(event);
+                event.preventDefault();
 
                 this._swipeData.pointerPos = this._isY ? pointerY : pointerX;
             }
 
-            InkEvent.stopPropagation(event);
+            event.stopPropagation();
         },
 
         _onAnimationFrame: function () {
@@ -13796,7 +13767,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
                 var snapToNext = 0.1;  // swipe 10% of the way to change page
                 var progress = - this._swipeData.lastUlPos;
 
-                var curPage = this.getPage();
+                var curPage = this._pagination.getCurrent();
                 var estimatedPage = progress / this._elLength / this._slidesPerPage;
 
                 if (Math.round(estimatedPage) === curPage) {
@@ -13811,8 +13782,8 @@ Ink.createModule('Ink.UI.Carousel', '1',
 
                 this.setPage(curPage);
 
-                InkEvent.stopPropagation(event);
-                InkEvent.stopDefault(event);
+                event.stopPropagation();
+                // event.preventDefault();
             }
 
             setTransitionProperty(this._ulEl, null /* transition: left, top */);
@@ -13833,7 +13804,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
             if (this._pagination) {
                 return this._pagination.getCurrent();
             } else {
-                return this._currentPage || 0;
+                return this._currentPage;
             }
         },
 
@@ -13859,18 +13830,8 @@ Ink.createModule('Ink.UI.Carousel', '1',
         },
 
         _setPage: function (page) {
-            var _lengthToGo = page * this._deltaLength;
-            var isLastPage = page === (this._numPages - 1);
-
-            if (!this._options.spaceAfterLastSlide && isLastPage && page > 0) { 
-                var _itemsInLastPage = this._liEls.length - (page * this._slidesPerPage);
-                if(_itemsInLastPage < this._slidesPerPage) {
-                    _lengthToGo = ((page - 1) * this._deltaLength) + (_itemsInLastPage * this._elLength);
-                }
-            }
-
             this._ulEl.style[ this._isY ? 'top' : 'left'] =
-                ['-', _lengthToGo, 'px'].join('');
+                ['-', page * this._deltaLength, 'px'].join('');
 
             if (this._options.onChange) {
                 this._options.onChange.call(this, page);
@@ -13984,7 +13945,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
     /**
      * The Common class provides auxiliar methods to ease some of the most common/repetitive UI tasks.
      *
-     * @namespace Ink.UI.Common
+     * @class Ink.UI.Common
      * @version 1
      * @static
      */
@@ -14057,10 +14018,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
         elOrSelector: function(elOrSelector, fieldName) {
             if (!this.isDOMElement(elOrSelector)) {
                 var t = Selector.select(elOrSelector);
-                if (t.length === 0) {
-                    Ink.warn(fieldName + ' must either be a DOM Element or a selector expression!\nThe script element must also be after the DOM Element itself.');
-                    return null;
-                }
+                if (t.length === 0) { throw new TypeError(fieldName + ' must either be a DOM Element or a selector expression!\nThe script element must also be after the DOM Element itself.'); }
                 return t[0];
             }
             return elOrSelector;
@@ -17039,7 +16997,7 @@ Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
     };
 
     /**
-     * @namespace Ink.UI.Droppable
+     * @class Ink.UI.Droppable
      * @version 1
      * @static
      */
@@ -17354,7 +17312,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
         return ret;
     }
     /**
-     * @namespace Ink.UI.FormValidator
+     * @class Ink.UI.FormValidator
      * @version 1
      */
     var FormValidator = {
@@ -18995,7 +18953,7 @@ Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
      *      @param {Function}           [options.onLoad]          Date format string
      *
      * @example
-     *      <div class="imageQueryExample all-100 content-center clearfix vspace">
+     *      <div class="imageQueryExample large-100 medium-100 small-100 content-center clearfix vspace">
      *          <img src="/assets/imgs/imagequery/small/image.jpg" />
      *      </div>
      *      <script type="text/javascript">
@@ -20591,7 +20549,7 @@ Ink.createModule('Ink.UI.ProgressBar', '1', ['Ink.Dom.Selector_1','Ink.Dom.Eleme
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1','Ink.Dom.Loaded_1'], function(Event, InkElement, Selector, Loaded) {
+Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.Dom.Event_1','Ink.Dom.Selector_1','Ink.Dom.Loaded_1'], function(Event, Selector, Loaded) {
     'use strict';
 
     var requestAnimationFrame =
@@ -20603,28 +20561,13 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.Dom.Event_1', 'Ink.Dom.Elem
         function (id) { clearTimeout(id); };
 
     /**
-     * @namespace Ink.UI.SmoothScroller
+     * @class Ink.UI.SmoothScroller
      * @version 1
      * @static
      *
-     * SmoothScroller is a component which replaces the default scroll-to behaviour of `<a>` tags which refer to IDs on the page.
-     *
-     * For example, when you have this:
-     *
-     *          <a href="#todo">Todo</a>
-     *              [...]
-     *          <section id="todo">
-     *              [...]
-     *
-     * You can click the `<a>` and the page will scroll until the section you pointed to.
-     *
-     * When you use SmoothScroller, instead of immediately scrolling to the element, you get a smooth motion.
-     *
-     * Also, you can define the data-margin option if you have a `position:fixed` top menu ruining the behaviour.
-     *
      * @example
      *
-     *      <a href="#part1" class="ink-smooth-scroll" data-margin="10">go to Part 1</a>
+     *      <a href="#part1" class="ink-smooth-scroll">go to Part 1</a>
      *
      *      [lots and lots of content...]
      *
@@ -20726,28 +20669,24 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.Dom.Event_1', 'Ink.Dom.Elem
          * @public
          * @static
          */
-        scroll: function(d, options) {
+        scroll: function(d) {
             var a = SmoothScroller.scrollTop();
-            var margin = options.margin || 0;
-
-            var endPos = d - margin;
-
-            if (endPos > a) {
-                a += Math.ceil((endPos - a) / SmoothScroller.speed);
+            if (d > a) {
+                a += Math.ceil((d - a) / SmoothScroller.speed);
             } else {
-                a = a + (endPos - a) / SmoothScroller.speed;
-            }
-
-            cancelAnimationFrame(SmoothScroller.interval);
-
-            if (!((a) === endPos || SmoothScroller.offsetTop === a)) {
-                SmoothScroller.interval = requestAnimationFrame(
-                    Ink.bindMethod(SmoothScroller, 'scroll', d, options), document.body);
-            } else {
-                SmoothScroller.onDone();
+                a = a + (d - a) / SmoothScroller.speed;
             }
 
             window.scrollTo(0, a);
+
+            cancelAnimationFrame(SmoothScroller.interval);
+
+            if (!((a) === d || SmoothScroller.offsetTop === a)) {
+                SmoothScroller.interval = requestAnimationFrame(
+                    Ink.bindMethod(SmoothScroller, 'scroll', d), document.body);
+            } else {
+                SmoothScroller.onDone();
+            }
             SmoothScroller.offsetTop = a;
         },
 
@@ -20792,13 +20731,11 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.Dom.Event_1', 'Ink.Dom.Elem
          */
         onClick: function(event, _elm) {
             SmoothScroller.end(event);
-            if(_elm != null && _elm.getAttribute('href') !== null) {
+            if(_elm !== null && _elm.getAttribute('href') !== null) {
                 var hashIndex = _elm.href.indexOf('#');
                 if (hashIndex === -1) {
                     return;
                 }
-
-                var data = InkElement.data(_elm);
                 var hash = _elm.href.substr((hashIndex + 1));
                 var activeLiSelector = 'ul > li.active > ' + selector;
 
@@ -20815,11 +20752,7 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.Dom.Event_1', 'Ink.Dom.Elem
                         _elm.parentNode.className += " active";
                     }
                     SmoothScroller.hash = hash;
-                    var options = {};
-                    if (parseFloat(data.margin)) {
-                        options.margin = parseFloat(data.margin);
-                    }
-                    SmoothScroller.scroll(SmoothScroller.getTop(elm), options);
+                    SmoothScroller.scroll(SmoothScroller.getTop(elm));
                 }
             }
         },
@@ -21323,17 +21256,17 @@ Stacker.prototype = {
      * Html:
      *
      *     <div id="stacker-container">  <!-- Stacker element -->
-     *         <div class="xlarge-33 large-33 medium-50 tiny-100 stacker-column"> <!-- Column element ('.stacker-column' is the default selector) -->
+     *         <div class="large-33 medium-50 small-100 stacker-column"> <!-- Column element ('.stacker-column' is the default selector) -->
      *             <div id="a" class="stacker-item">a</div> <!-- Item ('.stacker-item' is the default selector) -->
      *             <div id="d" class="stacker-item">d</div>
      *             <div id="g" class="stacker-item">g</div>
      *         </div>
-     *         <div class="xlarge-33 large-33 medium-50 tiny-100 hide-small stacker-column">
+     *         <div class="large-33 medium-50 small-100 hide-small stacker-column">
      *             <div id="b" class="stacker-item">b</div>
      *             <div id="e" class="stacker-item">e</div>
      *             <div id="h" class="stacker-item">h</div>
      *         </div>
-     *         <div class="xlarge-33 large-33 medium-50 tiny-100 hide-medium hide-small stacker-column">
+     *         <div class="large-33 medium-50 small-100 hide-medium hide-small stacker-column">
      *             <div id="c" class="stacker-item">c</div>
      *             <div id="f" class="stacker-item">f</div>
      *             <div id="i" class="stacker-item">i</div>
@@ -23633,8 +23566,6 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
                     this._targets[i].style.display = '';  // becomes default
                 }
             }
-
-            this._rootElement.setAttribute('data-is-toggle-trigger', 'true');
         },
 
         /**
@@ -23651,7 +23582,7 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
             if( this._options.closeOnClick ){
                 InkEvent.observe( document, 'click', Ink.bind(this._onOutsideClick, this));
             }
-            if( this._options.closeOnInsideClick && this._options.closeOnInsideClick !== 'false') {
+            if( this._options.closeOnInsideClick ) {
                 var sel = this._options.closeOnInsideClick;
                 if (sel.toString() === 'true') {
                     sel = '*';
@@ -23732,13 +23663,11 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
             var tgtEl = InkEvent.element(event),
                 shades;
 
-            if (InkElement.findUpwardsBySelector(tgtEl, '[data-is-toggle-trigger="true"]')) return;
-
             var ancestorOfTargets = InkArray.some(this._targets, function (target) {
                 return InkElement.isAncestorOf(target, tgtEl) || target === tgtEl;
             });
 
-            if( (this._rootElement === tgtEl) || InkElement.isAncestorOf(this._rootElement, tgtEl) || ancestorOfTargets) {
+            if( (this._rootElement === tgtEl) || InkElement.isAncestorOf(this._rootElement, tgtEl) || ancestorOfTargets /*|| this._firstTime (I forgot what this last check was for) */) {
                 return;
             } else if( (shades = Ink.ss('.ink-shade')).length ) {
                 var shadesLength = shades.length;

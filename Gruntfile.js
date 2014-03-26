@@ -45,7 +45,7 @@ module.exports = function(grunt) {
       },
 
       ink_all: {
-        src: '<%= ink.folders.js.dist %>ink-all.js', 
+        src: '<%= ink.folders.js.dist %>ink-all.js',
         dest: '<%= ink.folders.js.dist %>ink-all.min.js'
       }
     },
@@ -82,9 +82,9 @@ module.exports = function(grunt) {
       }
     },
 
-    compass: {                  
-      css: {                   
-        options: {   
+    compass: {
+      css: {
+        options: {
           config: "config.rb"
         }
       },
@@ -147,14 +147,14 @@ module.exports = function(grunt) {
     text_grab: {
       glossary: {
         options: {
-          pattern: '\\.[a-zA-Z][a-zA-Z0-9-]+',
-          templateStart: '<table class="ink-table bordered alternating content-left">\n<tr><th class="large-30">Class</th><th>Description</th></tr>\n',
-          templateRow: '<tr><td>%s</td><td></td><td></td></tr>\n',
+          pattern: '\\.[a-zA-Z][a-zA-Z0-9-_]+',
+          templateStart: '<table class="props css">\n<tr><th class="large-30">Class</th><th>Description</th></tr>\n<caption>Glossary</caption>\n',
+          templateRow: '<tr>\n<td><code>%s</code></td>\n<td></td>\n</tr>\n',
           templateEnd: '</table>\n',
-          exceptions: ['\\.fa','ttf','otf','svg','eot','woff','jpg','jpeg','png'],
+          exceptions: ['\\.fa','ttf','otf','svg','eot','woff','jpg','jpeg','png','Microsoft','Alpha'],
         },
        files: {
-         'glossary/g.html': ['assets/css/ink.css']
+         'glossary/g.html': ['assets/css/ink-flex.css']
        }
       },
     },
