@@ -201,4 +201,5 @@ module.exports = function(grunt) {
   grunt.registerTask('dev', ['watch']);
   grunt.registerTask('default', ['update','css','js']);
   grunt.registerTask('inkdoc', ['shell:inkdoc']);
+  grunt.registerTask('docs', ['inkdoc','jekyll']);
 };

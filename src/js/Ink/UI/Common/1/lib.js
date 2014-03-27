@@ -30,9 +30,11 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          * @readOnly
          */
         Layouts: {
+            TINY: 'tiny',
             SMALL:  'small',
             MEDIUM: 'medium',
-            LARGE:  'large'
+            LARGE:  'large',
+            XLARGE: 'x-large'
         },
 
         /**

@@ -1,8 +1,9 @@
 /**
  * @module Ink.UI.Pagination_1
- * @author inkdev AT sapo.pt
+ * Pagination elements
  * @version 1
  */
+ 
 Ink.createModule('Ink.UI.Pagination', '1',
     ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1'],
     function(Common, Event, Css, Element, Selector ) {
@@ -36,34 +37,34 @@ Ink.createModule('Ink.UI.Pagination', '1',
      * @class Ink.UI.Pagination
      * @constructor
      * @version 1
-     * @param {String|DOMElement} selector
-     * @param {Object} options Options
-     * @param {Number}   [options.size]              number of pages.
-     * @param {Number}   [options.totalItemCount]    Total numeber of items to display
-     * @param {Number}   [options.itemsPerPage]      number of items per page.
-     * @param {Number}   [options.maxSize]           If passed, only shows at most maxSize items. displays also first|prev page and next page|last buttons
-     * @param {Number}   [options.start]             start page. defaults to 1
-     * @param {Boolean}  [options.sideButtons=true]  whether to show the first, last, previous, next, previousPage and lastPage buttons. Do not use together with maxSize.
-     * @param {String}   [options.firstLabel]        label to display on first page button
-     * @param {String}   [options.lastLabel]         label to display on last page button
-     * @param {String}   [options.previousLabel]     label to display on previous button
-     * @param {String}   [options.nextLabel]         label to display on next button
-     * @param {String}   [options.previousPageLabel] label to display on previous page button
-     * @param {String}   [options.nextPageLabel]     label to display on next page button
-     * @param {Function} [options.onChange]          optional callback. Called with `(thisPaginator, newPageNumber)`.
-     * @param {String}   [options.hashParameter]     parameter to use on setHash. by default uses 'page'
-     * @param {String}   [options.parentTag]         HTML Tag used as the parent node.
-     * @param {String}   [options.childTag]          HTML Tag used as the child nodes.
-     * @param {String}   [options.wrapperClass]      CSS Class used in the wrapper element
-     * @param {String}   [options.paginationClass]   CSS Class used in the pagination element
-     * @param {String}   [options.activeClass]       CSS Class used to mark page as active
-     * @param {String}   [options.disabledClass]     CSS Class used to mark page as disabled
-     * @param {String}   [options.hideClass]         CSS Class used to hide elements
-     * @param {String}   [options.previousClass]     CSS Class used in the previous element
-     * @param {String}   [options.previousPageClass] CSS Class used in the previous page element
-     * @param {String}   [options.nextClass]         CSS Class used in the next element
-     * @param {String}   [options.nextPageClass]     CSS Class used in the next page element
-     * @param {Function} [options.numberFormatter]   optional function which takes and 0-indexed number and returns the string which appears on a numbered button
+     * @param {String|DOMElement}   selector                    Selector or element
+     * @param {Object}              options                     Options
+     * @param {Number}              [options.size]              Number of pages.
+     * @param {Number}              [options.totalItemCount]    Total numeber of items to display
+     * @param {Number}              [options.itemsPerPage]      Number of items per page.
+     * @param {Number}              [options.maxSize]           If passed, only shows at most maxSize items. displays also first|prev page and next page|last buttons
+     * @param {Number}              [options.start]             Start page. defaults to 1
+     * @param {Boolean}             [options.sideButtons=true]  Whether to show the first, last, previous, next, previousPage and lastPage buttons. Do not use together with maxSize.
+     * @param {String}              [options.firstLabel]        Text for the first page button. Defaults to 'First'.
+     * @param {String}              [options.lastLabel]         Text for the last page button. Defaults to 'Last'.
+     * @param {String}              [options.previousLabel]     Text for the previous button. Defaults to 'Previous'-
+     * @param {String}              [options.nextLabel]         Text for the next button. Defaults to 'Next'
+     * @param {String}              [options.previousPageLabel] Text for the previous page button. Defaults to 'Previous {Items per page}'.
+     * @param {String}              [options.nextPageLabel]     Text for the next page button. Defaults to 'Next {Items per page}'.
+     * @param {Function}            [options.onChange]          Callback to be called when a page changes. Called with `(thisPaginator, newPageNumber)`.
+     * @param {String}              [options.hashParameter]     Parameter to use on setHash. Defaults to 'page'.
+     * @param {String}              [options.parentTag]         HTML Tag used as the parent node.
+     * @param {String}              [options.childTag]          HTML Tag used as the child nodes.
+     * @param {String}              [options.wrapperClass]      CSS Class used in the wrapper element
+     * @param {String}              [options.paginationClass]   CSS Class used in the pagination element
+     * @param {String}              [options.activeClass]       CSS Class used to mark page as active
+     * @param {String}              [options.disabledClass]     CSS Class used to mark page as disabled
+     * @param {String}              [options.hideClass]         CSS Class used to hide elements
+     * @param {String}              [options.previousClass]     CSS Class used in the previous element
+     * @param {String}              [options.previousPageClass] CSS Class used in the previous page element
+     * @param {String}              [options.nextClass]         CSS Class used in the next element
+     * @param {String}              [options.nextPageClass]     CSS Class used in the next page element
+     * @param {Function}            [options.numberFormatter]   Number formatter function. Receives a 0-indexed number and returns the text for the numbered page button.
      */
     var Pagination = function(selector, options) {
 
@@ -372,11 +373,11 @@ Ink.createModule('Ink.UI.Pagination', '1',
         },
 
         /**
-         * Calculate the number of pages, then call setSize().
+         * Sets the number of pages, then call setSize().
          *
          * @param setSizeInItems
-         * @param {Number} totalItems
-         * @param {Number} itemsPerPage
+         * @param {Number} totalItems       Total number of items
+         * @param {Number} itemsPerPage     Items per page
          */
         setSizeInItems: function (totalItems, itemsPerPage) {
             var pageNumber = Math.ceil(totalItems / itemsPerPage);
@@ -384,11 +385,11 @@ Ink.createModule('Ink.UI.Pagination', '1',
         },
 
         /**
-         * Sets the current page
+         * Sets the current page.
          *
          * @method setCurrent
-         * @param {Number} nr sets the current page to given number
-         * @param {Boolean} isRelative trueish to set relative change instead of absolute (default)
+         * @param {Number} nr           Sets the current page to given number.
+         * @param {Boolean} isRelative  Flag to change the position from absolute to relative.
          * @public
          */
         setCurrent: function(nr, isRelative) {
@@ -423,7 +424,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
         },
 
         /**
-         * Returns the number of pages
+         * Gets the number of pages
          *
          * @method getSize
          * @return {Number} Number of pages
@@ -434,7 +435,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
         },
 
         /**
-         * Returns current page
+         * Gets the current page index
          *
          * @method getCurrent
          * @return {Number} Current page
@@ -445,7 +446,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
         },
 
         /**
-         * Returns true iif at first page
+         * Checks if it's at the first page
          *
          * @method isFirst
          * @return {Boolean} True if at first page
@@ -456,7 +457,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
         },
 
         /**
-         * Returns true iif at last page
+         * Checks if it's on the last page
          *
          * @method isLast
          * @return {Boolean} True if at last page
@@ -467,7 +468,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
         },
 
         /**
-         * Returns true iif has prior pages
+         * Checks if it has previous pages
          *
          * @method hasPrevious
          * @return {Boolean} True if has prior pages
@@ -478,7 +479,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
         },
 
         /**
-         * Returns true iif has pages ahead
+         * Checks if it has next pages
          *
          * @method hasNext
          * @return {Boolean} True if has pages ahead
@@ -489,7 +490,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
         },
 
         /**
-         * Returns true iif has prior set of page(s)
+         * Checks if it has a previous set of pages
          *
          * @method hasPreviousPage
          * @return {Boolean} Returns true iif has prior set of page(s)
@@ -500,7 +501,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
         },
 
         /**
-         * Returns true iif has set of page(s) ahead
+         * Checks if it has a next set of pages
          *
          * @method hasNextPage
          * @return {Boolean} Returns true iif has set of page(s) ahead
@@ -511,7 +512,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
         },
 
         /**
-         * Unregisters the component and removes its markup from the DOM
+         * Unregisters the component and removes its markup
          *
          * @method destroy
          * @public

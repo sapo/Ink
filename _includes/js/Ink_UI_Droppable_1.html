@@ -54,7 +54,8 @@
                 <td>
                     
 
-                    <p>Makes an element droppable and adds it to the stack of droppable elements.
+                    <p>Makes an element droppable.
+This method adds it to the stack of droppable elements.
 Can consider it a constructor of droppable elements, but where no Droppable object is returned.</p>
 <p>In the following arguments, any events/callbacks you may pass, can be either functions or strings. If the &#39;move&#39; or &#39;copy&#39; strings are passed, the draggable gets moved into this droppable. If &#39;revert&#39; is passed, an acceptable droppable is moved back to the element it came from.</p>
 
@@ -77,6 +78,26 @@ Can consider it a constructor of droppable elements, but where no Droppable obje
                     
 
                     <p>Removes an element from the droppable stack and removes the droppable behavior</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Droppable_1-Ink_UI_Droppable-update">
+                        
+                            .update
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Updates location and size of droppable element</p>
 
 
                     
@@ -160,7 +181,8 @@ Can consider it a constructor of droppable elements, but where no Droppable obje
     
 
     
-        <p class="text"><p>Makes an element droppable and adds it to the stack of droppable elements.
+        <p class="text"><p>Makes an element droppable.
+This method adds it to the stack of droppable elements.
 Can consider it a constructor of droppable elements, but where no Droppable object is returned.</p>
 <p>In the following arguments, any events/callbacks you may pass, can be either functions or strings. If the &#39;move&#39; or &#39;copy&#39; strings are passed, the draggable gets moved into this droppable. If &#39;revert&#39; is passed, an acceptable droppable is moved back to the element it came from.</p>
 </p>
@@ -204,7 +226,7 @@ Can consider it a constructor of droppable elements, but where no Droppable obje
                 
                 </label>
                 
-                    options object
+                    Options object
                 
             </dd>
         
@@ -261,7 +283,7 @@ Can consider it a constructor of droppable elements, but where no Droppable obje
                 
                 </label>
                 
-                    callback called when an acceptable draggable element is hovering the droppable. Gets the draggable and the droppable element as parameters.
+                    Callback when an acceptable draggable element is hovering the droppable. Gets the draggable and the droppable element as parameters.
                 
             </dd>
         
@@ -280,7 +302,7 @@ Can consider it a constructor of droppable elements, but where no Droppable obje
                 
                 </label>
                 
-                    callback called when an acceptable draggable element is dropped. Gets the draggable, the droppable and the event as parameters.
+                    Callback when an acceptable draggable element is dropped. Gets the draggable, the droppable and the event as parameters.
                 
             </dd>
         
@@ -299,7 +321,7 @@ Can consider it a constructor of droppable elements, but where no Droppable obje
                 
                 </label>
                 
-                    callback called when a droppable is dropped outside this droppable. Gets the draggable, the droppable and the event as parameters. (see above for string options).
+                    Callback when a droppable is dropped outside this droppable. Gets the draggable, the droppable and the event as parameters. (see above for string options).
                 
             </dd>
         
@@ -425,6 +447,82 @@ Can consider it a constructor of droppable elements, but where no Droppable obje
                     
                 
             </dd>
+        </dl>
+        
+        
+
+    
+
+
+    
+
+
+    
+
+</section>
+
+    <section id="Ink_UI_Droppable_1-Ink_UI_Droppable-update" class="box box-function">
+
+    <h1 class="fw-300">
+    
+        
+            .update
+        
+    
+    (element)
+    
+        
+            <i>method</i>
+        
+    
+    </h1>
+
+    
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        element
+        
+        
+        </li>
+        
+    </ul>
+    
+
+    
+    
+
+    
+        <p class="text"><p>Updates location and size of droppable element</p>
+</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String|DOMElement</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label>element
+                
+
+                
+                </label>
+                
+                    Target element
+                
+            </dd>
+        
         </dl>
         
         

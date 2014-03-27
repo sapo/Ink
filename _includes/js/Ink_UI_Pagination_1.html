@@ -72,7 +72,7 @@
                 <td>
                     
 
-                    <p>Unregisters the component and removes its markup from the DOM</p>
+                    <p>Unregisters the component and removes its markup</p>
 
 
                     
@@ -92,7 +92,7 @@
                 <td>
                     
 
-                    <p>Returns current page</p>
+                    <p>Gets the current page index</p>
 
 
                     
@@ -112,7 +112,7 @@
                 <td>
                     
 
-                    <p>Returns the number of pages</p>
+                    <p>Gets the number of pages</p>
 
 
                     
@@ -132,7 +132,7 @@
                 <td>
                     
 
-                    <p>Returns true iif has pages ahead</p>
+                    <p>Checks if it has next pages</p>
 
 
                     
@@ -152,7 +152,7 @@
                 <td>
                     
 
-                    <p>Returns true iif has set of page(s) ahead</p>
+                    <p>Checks if it has a next set of pages</p>
 
 
                     
@@ -172,7 +172,7 @@
                 <td>
                     
 
-                    <p>Returns true iif has prior pages</p>
+                    <p>Checks if it has previous pages</p>
 
 
                     
@@ -192,7 +192,7 @@
                 <td>
                     
 
-                    <p>Returns true iif has prior set of page(s)</p>
+                    <p>Checks if it has a previous set of pages</p>
 
 
                     
@@ -212,7 +212,7 @@
                 <td>
                     
 
-                    <p>Returns true iif at first page</p>
+                    <p>Checks if it&#39;s at the first page</p>
 
 
                     
@@ -232,7 +232,7 @@
                 <td>
                     
 
-                    <p>Returns true iif at last page</p>
+                    <p>Checks if it&#39;s on the last page</p>
 
 
                     
@@ -252,7 +252,7 @@
                 <td>
                     
 
-                    <p>Sets the current page</p>
+                    <p>Sets the current page.</p>
 
 
                     
@@ -476,6 +476,8 @@
                 
                 </label>
                 
+                    Selector or element
+                
             </dd>
         
             <dt>
@@ -512,7 +514,7 @@
                 
                 </label>
                 
-                    number of pages.
+                    Number of pages.
                 
             </dd>
         
@@ -550,7 +552,7 @@
                 
                 </label>
                 
-                    number of items per page.
+                    Number of items per page.
                 
             </dd>
         
@@ -588,7 +590,7 @@
                 
                 </label>
                 
-                    start page. defaults to 1
+                    Start page. defaults to 1
                 
             </dd>
         
@@ -609,7 +611,7 @@
                 
                 </label>
                 
-                    whether to show the first, last, previous, next, previousPage and lastPage buttons. Do not use together with maxSize.
+                    Whether to show the first, last, previous, next, previousPage and lastPage buttons. Do not use together with maxSize.
                 
             </dd>
         
@@ -628,7 +630,7 @@
                 
                 </label>
                 
-                    label to display on first page button
+                    Text for the first page button. Defaults to 'First'.
                 
             </dd>
         
@@ -647,7 +649,7 @@
                 
                 </label>
                 
-                    label to display on last page button
+                    Text for the last page button. Defaults to 'Last'.
                 
             </dd>
         
@@ -666,7 +668,7 @@
                 
                 </label>
                 
-                    label to display on previous button
+                    Text for the previous button. Defaults to 'Previous'-
                 
             </dd>
         
@@ -685,7 +687,7 @@
                 
                 </label>
                 
-                    label to display on next button
+                    Text for the next button. Defaults to 'Next'
                 
             </dd>
         
@@ -704,7 +706,7 @@
                 
                 </label>
                 
-                    label to display on previous page button
+                    Text for the previous page button. Defaults to 'Previous {Items per page}'.
                 
             </dd>
         
@@ -723,7 +725,7 @@
                 
                 </label>
                 
-                    label to display on next page button
+                    Text for the next page button. Defaults to 'Next {Items per page}'.
                 
             </dd>
         
@@ -742,7 +744,7 @@
                 
                 </label>
                 
-                    optional callback. Called with `(thisPaginator, newPageNumber)`.
+                    Callback to be called when a page changes. Called with `(thisPaginator, newPageNumber)`.
                 
             </dd>
         
@@ -761,7 +763,7 @@
                 
                 </label>
                 
-                    parameter to use on setHash. by default uses 'page'
+                    Parameter to use on setHash. Defaults to 'page'.
                 
             </dd>
         
@@ -989,7 +991,7 @@
                 
                 </label>
                 
-                    optional function which takes and 0-indexed number and returns the string which appears on a numbered button
+                    Number formatter function. Receives a 0-indexed number and returns the text for the numbered page button.
                 
             </dd>
         
@@ -1029,7 +1031,7 @@
     
 
     
-        <p class="text"><p>Unregisters the component and removes its markup from the DOM</p>
+        <p class="text"><p>Unregisters the component and removes its markup</p>
 </p>
     
 
@@ -1065,7 +1067,7 @@
     
 
     
-        <p class="text"><p>Returns current page</p>
+        <p class="text"><p>Gets the current page index</p>
 </p>
     
 
@@ -1101,7 +1103,7 @@
     
 
     
-        <p class="text"><p>Returns the number of pages</p>
+        <p class="text"><p>Gets the number of pages</p>
 </p>
     
 
@@ -1137,7 +1139,7 @@
     
 
     
-        <p class="text"><p>Returns true iif has pages ahead</p>
+        <p class="text"><p>Checks if it has next pages</p>
 </p>
     
 
@@ -1173,7 +1175,7 @@
     
 
     
-        <p class="text"><p>Returns true iif has set of page(s) ahead</p>
+        <p class="text"><p>Checks if it has a next set of pages</p>
 </p>
     
 
@@ -1209,7 +1211,7 @@
     
 
     
-        <p class="text"><p>Returns true iif has prior pages</p>
+        <p class="text"><p>Checks if it has previous pages</p>
 </p>
     
 
@@ -1245,7 +1247,7 @@
     
 
     
-        <p class="text"><p>Returns true iif has prior set of page(s)</p>
+        <p class="text"><p>Checks if it has a previous set of pages</p>
 </p>
     
 
@@ -1281,7 +1283,7 @@
     
 
     
-        <p class="text"><p>Returns true iif at first page</p>
+        <p class="text"><p>Checks if it&#39;s at the first page</p>
 </p>
     
 
@@ -1317,7 +1319,7 @@
     
 
     
-        <p class="text"><p>Returns true iif at last page</p>
+        <p class="text"><p>Checks if it&#39;s on the last page</p>
 </p>
     
 
@@ -1374,7 +1376,7 @@
     
 
     
-        <p class="text"><p>Sets the current page</p>
+        <p class="text"><p>Sets the current page.</p>
 </p>
     
 
@@ -1397,7 +1399,7 @@
                 
                 </label>
                 
-                    sets the current page to given number
+                    Sets the current page to given number.
                 
             </dd>
         
@@ -1416,7 +1418,7 @@
                 
                 </label>
                 
-                    trueish to set relative change instead of absolute (default)
+                    Flag to change the position from absolute to relative.
                 
             </dd>
         
@@ -1624,6 +1626,8 @@
                 
                 </label>
                 
+                    Total number of items
+                
             </dd>
         
             <dt>
@@ -1640,6 +1644,8 @@
 
                 
                 </label>
+                
+                    Items per page
                 
             </dd>
         
