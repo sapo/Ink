@@ -92,6 +92,7 @@ a, .ink-button {
                         padding: 4px 12px;
                         margin: 5px 1em;
                         font-size: .875em;
+                        @include border-radius($border-radius);
 
                         &:hover {
                             background: #0d68c2;
