@@ -23,7 +23,7 @@
             
 
     
-    <p><p>Displays off-canvas (to the left and to the right) content which can be triggered by clicking elements with the &#39;left-drawer-trigger&#39; and &#39;right-drawer-trigger&#39;, respectively.</p>
+    <p><p>Displays off-canvas content which can be triggered by clicking elements with the &#39;left-drawer-trigger&#39; and &#39;right-drawer-trigger&#39;, respectively.</p>
 <p>The left drawer has the &#39;left-drawer&#39; class, and the right drawer has the &#39;right-drawer&#39; class.</p>
 <p>The content drawer (EG your <code>&lt;div id=&quot;main&quot;&gt;</code>) must have the &#39;content-drawer&#39; class.</p>
 <p>For more, see the example below, or try the sample.</p>
@@ -85,7 +85,7 @@
     
         Ink.UI.Drawer_1
     
-    ([options], )
+    ()
     
         <i>constructor</i>
     
@@ -94,14 +94,6 @@
     
     <ul class="props inline">
         <li class="heading">Arguments:</li>
-        
-        <li class="prop">
-        
-        [
-        options
-        ]
-        
-        </li>
         
         <li class="prop">
         
@@ -129,22 +121,7 @@
         
             <dt>
                 
-            </dt>
-            <dd>
-                
-                
-                
-                <label class="optional">[options]
-                
-
-                
-                </label>
-                
-                    {Object} object containing the following options:
-                
-            </dd>
-        
-            <dt>
+                    <code>Boolean</code>
                 
             </dt>
             <dd>
@@ -155,15 +132,15 @@
                 
 
                 
-                    true
-                
                 </label>
                 
-                    {Boolean}
+                    Flag to close the drawer when someone clicks on the `.contentDrawer`
                 
             </dd>
         
             <dt>
+                
+                    <code>String</code>
                 
             </dt>
             <dd>
@@ -174,15 +151,15 @@
                 
 
                 
-                    &#x27;push&#x27;
-                
                 </label>
                 
-                    {String}
+                    This can be 'push' or 'hide'.
                 
             </dd>
         
             <dt>
+                
+                    <code>String</code>
                 
             </dt>
             <dd>
@@ -193,11 +170,9 @@
                 
 
                 
-                    &#x27;both&#x27;
-                
                 </label>
                 
-                    {String}
+                    Can be 'left', 'right', or 'both'. Controls from which sides the content
                 
             </dd>
         

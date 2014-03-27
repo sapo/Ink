@@ -221,7 +221,8 @@
                 <td>
                     
 
-                    <p>Add to the I18n dictionary. See <code>Ink.Util.I18n.append()</code> documentation.</p>
+                    <p>Add to the I18n dictionary.
+See <code>Ink.Util.I18n.append()</code> documentation.</p>
 
 
                     
@@ -241,8 +242,8 @@
                 <td>
                     
 
-                    <p>Function that searches for the elements of the form, based in the
-this._options.searchFor configuration.</p>
+                    <p>Searches for the elements in the form.
+This method is based in the this._options.searchFor configuration.</p>
 
 
                     
@@ -262,7 +263,7 @@ this._options.searchFor configuration.</p>
                 <td>
                     
 
-                    <p>Get the i18n object in charge of the error messages</p>
+                    <p>Gets the i18n object in charge of the error messages</p>
 
 
                     
@@ -322,7 +323,8 @@ this._options.searchFor configuration.</p>
                 <td>
                     
 
-                    <p>Sets the language of the error messages. pt_PT and en_US are available, but you can add new languages by using append()</p>
+                    <p>Sets the language of the error messages.
+pt_PT and en_US are available, but you can add new languages by using append()</p>
 <p>See the <code>Ink.Util.I18n.lang()</code> setter</p>
 
 
@@ -343,7 +345,7 @@ this._options.searchFor configuration.</p>
                 <td>
                     
 
-                    <p>Method used to set validation functions (either custom or ovewrite the existent ones)</p>
+                    <p>Sets or modifies validation functions</p>
 
 
                     
@@ -363,10 +365,9 @@ this._options.searchFor configuration.</p>
                 <td>
                     
 
-                    <p>Runs the validate function of each FormElement in the this._formElements
-object.
-Also, based on the this._options.beforeValidation, this._options.onError
-and this._options.onSuccess, this callbacks are executed when defined.</p>
+                    <p>Validates every registered FormElement 
+This method looks inside the this._formElements object for validation targets.
+Also, based on the this._options.beforeValidation, this._options.onError, and this._options.onSuccess, this callbacks are executed when defined.</p>
 
 
                     
@@ -479,11 +480,9 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
                 
 
                 
-                    &#x27;submit&#x27;
-                
                 </label>
                 
-                    What event do we listen for.
+                    Event that will trigger the validation. Defaults to 'submit'.
                 
             </dd>
         
@@ -500,11 +499,9 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
                 
 
                 
-                    false
-                
                 </label>
                 
-                    Always cancel the event? Use this to avoid submitting the form.
+                    Flag to cancel the submit event. Use this to avoid submitting the form.
                 
             </dd>
         
@@ -521,11 +518,9 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
                 
 
                 
-                    &#x27;input
-                
                 </label>
                 
-                    select, textarea, .control-group'] Look in these inputs for validation data-attributes.
+                    Selector containing the validation data-attributes. Defaults to 'input, select, textarea, .control-group'.
                 
             </dd>
         
@@ -631,7 +626,8 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
     
 
     
-        <p class="text"><p>Add to the I18n dictionary. See <code>Ink.Util.I18n.append()</code> documentation.</p>
+        <p class="text"><p>Add to the I18n dictionary.
+See <code>Ink.Util.I18n.append()</code> documentation.</p>
 </p>
     
 
@@ -667,8 +663,8 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
     
 
     
-        <p class="text"><p>Function that searches for the elements of the form, based in the
-this._options.searchFor configuration.</p>
+        <p class="text"><p>Searches for the elements in the form.
+This method is based in the this._options.searchFor configuration.</p>
 </p>
     
 
@@ -704,7 +700,7 @@ this._options.searchFor configuration.</p>
     
 
     
-        <p class="text"><p>Get the i18n object in charge of the error messages</p>
+        <p class="text"><p>Gets the i18n object in charge of the error messages</p>
 </p>
     
 
@@ -865,7 +861,8 @@ this._options.searchFor configuration.</p>
     
 
     
-        <p class="text"><p>Sets the language of the error messages. pt_PT and en_US are available, but you can add new languages by using append()</p>
+        <p class="text"><p>Sets the language of the error messages.
+pt_PT and en_US are available, but you can add new languages by using append()</p>
 <p>See the <code>Ink.Util.I18n.lang()</code> setter</p>
 </p>
     
@@ -956,7 +953,7 @@ this._options.searchFor configuration.</p>
     
 
     
-        <p class="text"><p>Method used to set validation functions (either custom or ovewrite the existent ones)</p>
+        <p class="text"><p>Sets or modifies validation functions</p>
 </p>
     
 
@@ -1070,10 +1067,9 @@ this._options.searchFor configuration.</p>
     
 
     
-        <p class="text"><p>Runs the validate function of each FormElement in the this._formElements
-object.
-Also, based on the this._options.beforeValidation, this._options.onError
-and this._options.onSuccess, this callbacks are executed when defined.</p>
+        <p class="text"><p>Validates every registered FormElement 
+This method looks inside the this._formElements object for validation targets.
+Also, based on the this._options.beforeValidation, this._options.onError, and this._options.onSuccess, this callbacks are executed when defined.</p>
 </p>
     
 
@@ -1096,7 +1092,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
                 
                 </label>
                 
-                    window.event object
+                    Window.event object
                 
             </dd>
         
@@ -1172,7 +1168,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
     
 
     
-        <p class="text"><p>Checks if the value only contains alphabetical values.</p>
+        <p class="text"><p>Checks if a value only contains alphabetical values.</p>
 </p>
     
 
@@ -1279,7 +1275,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
     
 
     
-        <p class="text"><p>Checks if the value only contains alphabetical, dash or underscore characteres.</p>
+        <p class="text"><p>Checks if a value contains only alphabetical, dash or underscore characteres.</p>
 </p>
     
 
@@ -1367,7 +1363,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
     
 
     
-        <p class="text"><p>Checks if the value only contains alphabetical and numerical characters.</p>
+        <p class="text"><p>Checks if a value contains only alphabetical or numerical characters.</p>
 </p>
     
 
@@ -1455,7 +1451,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
     
 
     
-        <p class="text"><p>Checks if the value is a valid color.</p>
+        <p class="text"><p>Checks if a value is a valid color.</p>
 </p>
     
 
@@ -1551,7 +1547,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
     
 
     
-        <p class="text"><p>Checks if it&#39;s a valid credit card.</p>
+        <p class="text"><p>Checks if a value is a valid credit card.</p>
 </p>
     
 
@@ -1666,7 +1662,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
     
 
     
-        <p class="text"><p>Checks if the value is a valid date.</p>
+        <p class="text"><p>Checks if a value is a valid date.</p>
 </p>
     
 
@@ -1797,7 +1793,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
     
 
     
-        <p class="text"><p>Checks if the value is a valid decimal number.</p>
+        <p class="text"><p>Checks if a value is a valid decimal number.</p>
 </p>
     
 
@@ -1942,7 +1938,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
     
 
     
-        <p class="text"><p>Checks if the value is a digit (an integer of length = 1).</p>
+        <p class="text"><p>Checks if a value is a single digit.</p>
 </p>
     
 
@@ -2030,7 +2026,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
     
 
     
-        <p class="text"><p>Checks if the value has a valid e-mail address</p>
+        <p class="text"><p>Checks if a value is a valid email address</p>
 </p>
     
 
@@ -2126,7 +2122,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
     
 
     
-        <p class="text"><p>Checks if the value has an exact length</p>
+        <p class="text"><p>Checks if a value has an exact length</p>
 </p>
     
 
@@ -2168,7 +2164,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
                 
                 </label>
                 
-                    Number of characters that the value must have.
+                    Exact number of characters.
                 
             </dd>
         
@@ -2220,7 +2216,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
     
 
     
-        <p class="text"><p>Function that returns the DOM element related to it.</p>
+        <p class="text"><p>Gets the DOM element related to the instance.</p>
 </p>
     
 
@@ -2256,7 +2252,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
     
 
     
-        <p class="text"><p>Function that returns the constructed errors object.</p>
+        <p class="text"><p>Gets the constructed errors&#39; object.</p>
 </p>
     
 
@@ -2292,7 +2288,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
     
 
     
-        <p class="text"><p>Get other elements in the same form.</p>
+        <p class="text"><p>Gets other elements in the same form.</p>
 </p>
     
 
@@ -2328,7 +2324,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
     
 
     
-        <p class="text"><p>Function to retrieve the element&#39;s value</p>
+        <p class="text"><p>Gets an element&#39;s value</p>
 </p>
     
 
@@ -2385,7 +2381,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
     
 
     
-        <p class="text"><p>Checks if the value is a valid integer.</p>
+        <p class="text"><p>Checks if a value is a valid integer.</p>
 </p>
     
 
@@ -2500,7 +2496,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
     
 
     
-        <p class="text"><p>Checks if the value is a valid IP. Supports ipv4 and ipv6</p>
+        <p class="text"><p>Checks if a value is a valid IP. Supports ipv4 and ipv6</p>
 </p>
     
 
@@ -2615,7 +2611,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
     
 
     
-        <p class="text"><p>Checks if the value has a maximum length</p>
+        <p class="text"><p>Checks if a value has a maximum length</p>
 </p>
     
 
@@ -2638,7 +2634,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
                 
                 </label>
                 
-                    Value to be checked
+                    Value to be checked.
                 
             </dd>
         
@@ -2657,7 +2653,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
                 
                 </label>
                 
-                    Number of characters that the value at maximum can have.
+                    Maximum number of characters.
                 
             </dd>
         
@@ -2730,7 +2726,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
     
 
     
-        <p class="text"><p>Checks if the value has a minimum length</p>
+        <p class="text"><p>Checks if a value has a minimum length</p>
 </p>
     
 
@@ -2753,7 +2749,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
                 
                 </label>
                 
-                    Value to be checked
+                    Value to be checked.
                 
             </dd>
         
@@ -2772,7 +2768,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
                 
                 </label>
                 
-                    Number of characters that the value at least must have.
+                    Minimum number of characters.
                 
             </dd>
         
@@ -2861,7 +2857,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
     
 
     
-        <p class="text"><p>Checks if it is a numeric value.</p>
+        <p class="text"><p>Checks if a value is a numeric value.</p>
 </p>
     
 
@@ -2903,7 +2899,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
                 
                 </label>
                 
-                    Verifies if it's a valid decimal. Otherwise checks if it's a valid integer.
+                    Checks if it's a valid decimal. Otherwise checks if it's a valid integer.
                 
             </dd>
         
@@ -2922,7 +2918,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
                 
                 </label>
                 
-                    (when the number is decimal) Maximum number of digits that the decimal part must have.
+                    Maximum number of digits the decimal part must have.
                 
             </dd>
         
@@ -2941,7 +2937,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
                 
                 </label>
                 
-                    (when the number is decimal) Maximum number of digits that the integer part must have, when provided.
+                    Maximum number of digits the integer part must have, when provided.
                 
             </dd>
         
@@ -3014,7 +3010,8 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
     
 
     
-        <p class="text"><p>Checks if the value is a valid phone number. Supports several countries, based in the Ink.Util.Validator class.</p>
+        <p class="text"><p>Checks if a value is a valid phone number.
+Supports several countries, based in the Ink.Util.Validator class.</p>
 </p>
     
 
@@ -3145,7 +3142,8 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
     
 
     
-        <p class="text"><p>Checks if the value is in a specific range of values. The parameters after the first one are used for specifying the range, and are similar in function to python&#39;s range() function.</p>
+        <p class="text"><p>Checks if a value is in a specific range of values.
+The parameters after the first one are used to specify the range, and are similar in function to python&#39;s range() function.</p>
 </p>
     
 
@@ -3290,8 +3288,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
     
 
     
-        <p class="text"><p>Checks if the value is actually defined and is not empty
-@</p>
+        <p class="text"><p>Checks if a value is defined and not empty</p>
 </p>
     
 
@@ -3387,7 +3384,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
     
 
     
-        <p class="text"><p>Checks if the value has a valid URL</p>
+        <p class="text"><p>Checks if a value has a valid URL</p>
 </p>
     
 
@@ -3429,7 +3426,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
                 
                 </label>
                 
-                    Flag that specifies if the value must be validated as a full url (with the protocol) or not.
+                    Flag to validate a full url (with the protocol).
                 
             </dd>
         
@@ -3481,7 +3478,7 @@ and this._options.onSuccess, this callbacks are executed when defined.</p>
     
 
     
-        <p class="text"><p>Function used to validate the element based on the rules defined.
+        <p class="text"><p>Validates the element based on the rules defined.
 It parses the rules defined in the _options.rules property.</p>
 </p>
     

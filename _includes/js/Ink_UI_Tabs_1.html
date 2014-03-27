@@ -2,7 +2,9 @@
 
     
         <section>
-        <h1 class="fw-300">Ink.UI.Tabs_1 <small>version: 1</small></h1>
+        <h1 class="fw-300">Ink.UI.Tabs_1 <small>version: 1
+
+Display tabbed content</small></h1>
     
 
     
@@ -23,7 +25,31 @@
             
 
     
-    <p><p>Tabs component</p>
+    <p><p>The Tabs Component offers a simple way to build a tab-separated
+layout, allowing you to offer multiple content in the same space
+with intuitive navigation.</p>
+<p>This component requires your markup to have:</p>
+<ul>
+<li>A container element (this is what you call the Ink.UI.Tabs constructor on), containing everything.<ul>
+<li>An element with the <code>tabs-nav</code> class, to contain links.<ul>
+<li>Your links with <code>href=&quot;#ID_OF_SECTION&quot;</code></li>
+</ul>
+</li>
+<li>Your sections with the corresponding <code>id</code> attributes.<ul>
+<li>The content for each section.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>When the user clicks in the links inside <code>tabs-nav</code>, the tab with
+the corresponding ID is then activated.</p>
+<p>The tab which is active when the tab component is initialized has
+its hash in the browser URL. If there is no hash, then the <code>active</code>
+option kicks in. Otherwise, Tabs will fall back to showing the tab
+corresponding to the first link.</p>
+<p>You can disable some (or all) tabs by passing an array for the
+<code>disabled</code> option</p>
 </p>
     
     
@@ -75,7 +101,8 @@
                 <td>
                     
 
-                    <p>Returns the current active Content Tab</p>
+                    <p>Returns the currently active section</p>
+<p>(Each section contains content for a tab, and must have an <code>id</code> attribute)</p>
 
 
                     
@@ -95,7 +122,7 @@
                 <td>
                     
 
-                    <p>Returns the current active Menu anchorChanges to the desired tag</p>
+                    <p>Returns the currently active Menu link (the links which the user clicks on to change tabs)</p>
 
 
                     
@@ -114,8 +141,13 @@
                 </td>
                 <td>
                     
+                        <span class="tag">deprecated</span>
+                    
 
-                    <p>Returns the current active Menu LI</p>
+                    <p>(This method is deprecated)</p>
+<p>Returns the parent of the currently active menu link.</p>
+<p>This is useful if you want to have <code>li</code> elements wrapping your links
+and want to access the currently visible one.</p>
 
 
                     
@@ -156,6 +188,7 @@
                     
 
                     <p>Changes to the desired tag</p>
+<p>Pass a selector/element identifying what tab you want</p>
 
 
                     
@@ -522,7 +555,8 @@
     
 
     
-        <p class="text"><p>Returns the current active Content Tab</p>
+        <p class="text"><p>Returns the currently active section</p>
+<p>(Each section contains content for a tab, and must have an <code>id</code> attribute)</p>
 </p>
     
 
@@ -558,7 +592,7 @@
     
 
     
-        <p class="text"><p>Returns the current active Menu anchorChanges to the desired tag</p>
+        <p class="text"><p>Returns the currently active Menu link (the links which the user clicks on to change tabs)</p>
 </p>
     
 
@@ -592,9 +626,14 @@
 
     
     
+        <span class="tag">deprecated</span>
+    
 
     
-        <p class="text"><p>Returns the current active Menu LI</p>
+        <p class="text"><p>(This method is deprecated)</p>
+<p>Returns the parent of the currently active menu link.</p>
+<p>This is useful if you want to have <code>li</code> elements wrapping your links
+and want to access the currently visible one.</p>
 </p>
     
 
@@ -680,6 +719,7 @@
 
     
         <p class="text"><p>Changes to the desired tag</p>
+<p>Pass a selector/element identifying what tab you want</p>
 </p>
     
 
@@ -702,7 +742,7 @@
                 
                 </label>
                 
-                    the id of the desired tab or the link that links to it
+                    Selector of the desired tab or the link that links to it
                 
             </dd>
         
@@ -890,7 +930,7 @@
                 
                 </label>
                 
-                    the id of the desired tab or the link that links to it
+                    The id of the desired tab or the link that links to it
                 
             </dd>
         

@@ -18,7 +18,7 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
 
     Drawer.prototype = {
         /**
-         * Displays off-canvas (to the left and to the right) content which can be triggered by clicking elements with the 'left-drawer-trigger' and 'right-drawer-trigger', respectively.
+         * Displays off-canvas content which can be triggered by clicking elements with the 'left-drawer-trigger' and 'right-drawer-trigger', respectively.
          *
          * The left drawer has the 'left-drawer' class, and the right drawer has the 'right-drawer' class.
          *
@@ -29,28 +29,16 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
          * @class Ink.UI.Drawer_1
          * @constructor
          *
-         * @param [options] {Object} object containing the following options:
-         * @xparam [options.parentSelector]='.ink-drawer'         {Selector}
-         *   The class you are using in your wrapper (in the example below, it's the
-         *   `<body>` tag.
-         * @xparam [options.leftDrawer]='.left-drawer'            {Selector}
-         *   Selector for the left drawer element. This element is placed outside the
-         *   screen and shown when you click the `leftTrigger` element.
-         * @xparam [options.leftTrigger]='.left-drawer-trigger'   {Selector}
-         *   Selector for the left drawer trigger(s). When you click this trigger, the
-         *   `leftDrawer` is shown.
-         * @xparam [options.rightDrawer]='.right-drawer'          {Selector}
-         *   Right drawer selector. (see `options.leftDrawer`)
-         * @xparam [options.rightTrigger]='.right-drawer-trigger' {Selector}
-         *   Right trigger selector (see `options.leftTrigger`)
-         * @xparam [options.contentDrawer]='.content-drawer'      {Selector}
-         *   Selector for the content drawer.
-         * @param [options.closeOnContentClick]=true             {Boolean}
-         *   Whether to close the drawer when someone clicks on the `contentDrawer`
-         * @param [options.mode]='push'                          {String}
-         *   This can be 'push' or 'hide'
-         * @param [options.sides]='both'                         {String}
-         *     Can be 'left', 'right', or 'both'. Controls from which sides the content
+         * @xparam {Object}     [options]                       Configuration options.
+         * @xparam {String}     [options.parentSelector]        The class you are using in your wrapper (in the example below, it's the `body` tag.
+         * @xparam {String}     [options.leftDrawer]            Selector for the left drawer element. This element is placed outside the screen and shown when you click the `leftTrigger` element.
+         * @xparam {String}     [options.leftTrigger]           Selector for the left drawer trigger(s). When you click this trigger, the `leftDrawer` is shown.
+         * @xparam {String}     [options.rightDrawer]           Right drawer selector. (see `options.leftDrawer`)
+         * @xparam {String}     [options.rightTrigger]          Right trigger selector (see `options.leftTrigger`)
+         * @xparam {String}     [options.contentDrawer]         Selector for the content drawer.
+         * @param {Boolean}     [options.closeOnContentClick]   Flag to close the drawer when someone clicks on the `.contentDrawer`
+         * @param {String}      [options.mode]                  This can be 'push' or 'hide'.
+         * @param {String}      [options.sides]                 Can be 'left', 'right', or 'both'. Controls from which sides the content
          *
          * @example
          *
@@ -163,7 +151,8 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
         },
 
         /**
-         * Click event handler. Listens to the body's click event
+         * Click event handler.
+         * Listens to the body's click event
          *
          * @method _onClick
          * @private

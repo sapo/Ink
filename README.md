@@ -5,7 +5,7 @@ Ink is an interface kit for quick development of web interfaces, simple to use a
 Read the full documentation here: [http://ink.sapo.pt](http://ink.sapo.pt)
 
 ## This branch is used for Inks documentation only
-If you find any inaccuracies or problems in our documentation this is the place to get them fixed. We'll only accept pull request related to the documentation on this branch. 
+If you find any inaccuracies or problems in our documentation this is the place to get them fixed. We'll only accept pull request related to the documentation on this branch.
 
 ## Installing Jekyll and required build tools
 
@@ -33,13 +33,12 @@ If you find any inaccuracies or problems in our documentation this is the place 
 
 **All these commands must be ran inside Inks folder**
 
-Run ``jekyll serve`` and you'll get your own local instance of our documentation site running on [http://localhost:4000](http://localhost:4000)
-You can get Jekyll to watch for changes on the sites files and update the local instance by running ``jekyll serve --watch``.
-
 We also have quite a few usefull grunt tasks:
 
-- ``grunt css`` will compile the scss src into css
-- ``grunt js`` will build the js portion of ink
+- ``grunt css`` compiles the scss src into css
+- ``grunt js`` builds the js portion of ink
+- ``grunt docs`` renenerates the js documentation and launch a local instance of the documentation site on http://localhost:4000
+- ``grunt jekyll`` launches a local instance of the documentation site on http://localhost:4000
 - ``grunt watch`` will watch the src/ folder for changes on eiher js or scss files and rebuild the lot.
 - ``grunt watch:js`` will watch the src/ folder for changes on js files and rebuild.
 - ``grunt watch:css`` will watch the src/ folder for changes on scss files and rebuild.

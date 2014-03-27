@@ -78,7 +78,7 @@ module.exports = function(grunt) {
         src: ["<%= ink.folders.js.dist %>/ink*.js"]
       },
       css: {
-        src: ["<%= ink.folders.css.dist %>/*.css"]
+        src: ["<%= ink.folders.css.dist %>/*.css","<%= ink.folders.css.dist %>/contrib" ]
       }
     },
 
@@ -159,6 +159,13 @@ module.exports = function(grunt) {
       },
     },
 
+    copy: {
+      facss: {
+        src: 'assets/css/contrib/font-awesome/font-awesome.css',
+        dest: 'assets/css/font-awesome.css'
+      }
+    },
+
     jekyll: {
       dev: {
         options: {
@@ -196,9 +203,10 @@ module.exports = function(grunt) {
 
   // Default task(s).
   grunt.registerTask('js', ['clean:js','concat','uglify']);
-  grunt.registerTask('css', ['clean:css','compass','cssmin']);
+  grunt.registerTask('css', ['clean:css','compass','copy:facss','cssmin']);
   grunt.registerTask('update', ['shell:src']);
   grunt.registerTask('dev', ['watch']);
   grunt.registerTask('default', ['update','css','js']);
   grunt.registerTask('inkdoc', ['shell:inkdoc']);
+  grunt.registerTask('docs', ['inkdoc','jekyll']);
 };

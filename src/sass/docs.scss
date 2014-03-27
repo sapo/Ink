@@ -793,7 +793,7 @@ $who: lighten(#CA8A4E,10%);
 
   section.ink {
 
-      @include background-image(radial-gradient($ink, darken($ink,10%)));
+      @include background-image(radial-gradient($ink, darken($ink,20%)));
       @include text-color($white,h1,h2,h3,p,ul);
 
       .ink-grid {
