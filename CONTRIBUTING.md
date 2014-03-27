@@ -1,4 +1,4 @@
-## Issue reporting
+# Issue reporting
 
 * Please be as descriptive as possible about your problem. "Stuff doesn't work" won't help us to help you.
 * When reporting an issue, provide a [jsfiddle](http://www.jsfiddle.net) example (or something like it, such as codepen) which reproduces your problem.
@@ -29,7 +29,8 @@ We'd love to have your contribution so, here's a quick guide:
 2. Use camel case for method names.
 3. Private/internal methods must start with underscore, e.g. ``_onClick: function(e){...}``
 4. Component names are camel cased and start with a capital letter, e.g. ``Ink.Ext.MyPhotoGallery``
-5. Add your new components under the ``Ink.Ext`` namespace with [Ink.createExt()](http://ink.sapo.pt/javascript/ink/#Ink_1-Ink_1-createExt):
+5. All Ink code should pass `grunt jshint` to ensure code quality and maintainability. Use inline directives only if you have a good reason to.
+6. (If you're adding a new component) Add your new components under the ``Ink.Ext`` namespace with [Ink.createExt()](http://ink.sapo.pt/javascript/ink/#Ink_1-Ink_1-createExt):
     ```js
     Ink.createExt('MyAwesomeModule', 1, ['Ink.Dom.Event_1'], function(InkEvent) {
 
