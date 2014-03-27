@@ -223,15 +223,6 @@ module.exports = function (grunt) {
                 ]
             },
             csscontrib: [ '<%= ink.folders.css.dist %>/contrib' ]
-            /*
-            [3.0.0]: uncomment this
-            fontAwesome: {
-                src: [
-                    '<%= ink.folders.css.src %>modules/icons/*',
-                    '!<%= ink.folders.css.src %>modules/icons/variables.less'
-                ]
-            },
-            */
         },
 
         // CONCATENATE JS
@@ -367,13 +358,12 @@ module.exports = function (grunt) {
         watch: {
             css: {
                 files: [
-                    'src/**/*.scss',
-                    'src/**/*.less',
+                    'src/**/*.scss'
                 ],
                 tasks: ['css'],
                 options: {
                     spawn: false,
-                    // interrupt: true,
+                    interrupt: true,
                 }
             },
             js: {
@@ -381,7 +371,7 @@ module.exports = function (grunt) {
                 tasks: ['js'],
                 options: {
                     spawn: false,
-                    // interrupt: true,
+                    interrupt: true,
                 }
             },
         },
