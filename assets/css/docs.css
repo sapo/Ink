@@ -1100,3 +1100,21 @@ footer .ink-navigation ul.menu.horizontal li a.license {
 #home section.who .ink-grid .column-group {
   height: inherit;
 }
+
+.copyright .PTClogo a {
+  background: url("../img/icon_Sprite.png") no-repeat 0 top;
+  text-indent: -9999px;
+  display: inline-block;
+  float: left;
+  width: 41px;
+  height: 43px;
+  margin-right: 1em;
+}
+.copyright .SAPOlogo {
+  background: url("../img/SAPOlogo.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+  text-indent: -9999px;
+  display: inline-block;
+  width: 101px;
+  height: 30px;
+  margin-bottom: 1em;
+}

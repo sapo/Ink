@@ -56,10 +56,10 @@ tags:
         <p>We've developed our own Javascript library based on the latest coding standards and a modular architecture. Using <a href="http://localhost:4000/javascript/ink/#Ink_1-Ink_1-requireModules">Ink.requireModules()</a> method make sure all of Ink power is at your finger tips.</p>
 {% highlight js %}
 Ink.requireModules(
-  ['Ink.Dom.CSS_1', 'Ink.Dom.Selector_1'],
-  function(c, s) {
-    var myDiv = Ink.s('#intro');
-    c.addClass(myDiv,'hot');
+  ['Ink.Dom.Css_1'],
+  function(css) {
+    var elm = Ink.s('.ink');
+    css.addClassName(elm,'hot');
   }
 );
 {% endhighlight %}
@@ -108,11 +108,20 @@ $navigation-class-name: #{$ink-class-prefix}nav
     <div class="column-group push-middle push-center">
       <div class="all-60 align-center">
         <h1 class="fw-light">Ink is made at Sapo</h1>
-        <p>We've been paving the way for web technology, here in Portugal, for over 18 years.</p>
+        <p>
+          For the last 18 years, Sapo has lead the way, in web development, in Portugal. We've allways contributed to and made use of many open source projects, many of which are critical to our operations. So, Ink is made as part of our <a href="http://oss.sapo.pt">open source initiative</a> and made available under <a href="http://opensource.org/licenses/MIT">MIT</a> license.
+        </p>
         <p>
           <iframe src="http://ghbtns.com/github-btn.html?user=sapo&repo=Ink&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"></iframe>
           <iframe src="http://ghbtns.com/github-btn.html?user=sapo&repo=Ink&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"></iframe>
         </p>
+        <div class="copyright vspace">
+            <p><a class="SAPOlogo" href="http://www.sapo.pt">sapo.pt</a></p>
+            <p class="PTClogo">
+                <a href="http://www.telecom.pt">PTC logo</a>PTC - All rights reserved.<br>
+                SAPO is a trademark and a search engine created at the University of Aveiro.
+            </p>
+        </div>
       </div>
     </div>
   </div>
