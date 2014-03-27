@@ -48,6 +48,7 @@ module.exports = function (grunt) {
                     install: true,
                     verbose: false,
                     cleanTargetDir: false,
+                    cleanBowerDir: true
                 }
             }
         },
@@ -98,13 +99,9 @@ module.exports = function (grunt) {
                     }
                 ]
             },
-            html5shiv: {
-                files: [{
-                    cwd: '<%= ink.folders.bower %>html5shiv/dist',
-                    src: '*',
-                    dest: '<%= ink.folders.js.dist %>',
-                    expand: true,
-                }]
+            facss: {
+              src: 'dist/css/contrib/font-awesome/font-awesome.css',
+              dest: 'dist/css/font-awesome.css'
             }
         },
 
@@ -219,17 +216,13 @@ module.exports = function (grunt) {
                 ]
             },
             css: {
-                src: ['<%= ink.folders.css.dist %>/ink*.css']
-            },
-            /*
-            [3.0.0]: uncomment this
-            fontAwesome: {
                 src: [
-                    '<%= ink.folders.css.src %>modules/icons/*',
-                    '!<%= ink.folders.css.src %>modules/icons/variables.less'
+                  '<%= ink.folders.css.dist %>/*.css',
+                  '<%= ink.folders.css.dist %>/*.css.map',
+                  '!<%= ink.folders.css.dist %>/quick-start.css'
                 ]
             },
-            */
+            csscontrib: [ '<%= ink.folders.css.dist %>/contrib' ]
         },
 
         // CONCATENATE JS
@@ -310,7 +303,13 @@ module.exports = function (grunt) {
         compass: {
             css: {
                 options: {
-                    config: "config.rb",
+                    outputStyle: 'expanded',
+                    noLineComments: true,
+                    relativeAssets: true,
+                    sassDir: 'src/sass',
+                    cssDir: "dist/css",
+                    fontsDir: 'dist/fonts',
+                    imagesDir: 'dist/img'
                 }
             },
         },
@@ -359,13 +358,12 @@ module.exports = function (grunt) {
         watch: {
             css: {
                 files: [
-                    'src/**/*.scss',
-                    'src/**/*.less',
+                    'src/**/*.scss'
                 ],
                 tasks: ['css'],
                 options: {
                     spawn: false,
-                    // interrupt: true,
+                    interrupt: true,
                 }
             },
             js: {
@@ -373,15 +371,15 @@ module.exports = function (grunt) {
                 tasks: ['js'],
                 options: {
                     spawn: false,
-                    // interrupt: true,
+                    interrupt: true,
                 }
             },
         },
     });
 
     grunt.registerTask('js', ['clean:js', 'concat', 'uglify']);
-    grunt.registerTask('css', ['clean:css', 'compass', 'cssmin']);
-    grunt.registerTask('dependencies', ['bower', 'copy']);
+    grunt.registerTask('css', ['clean:css', 'compass', 'copy:facss', 'clean:csscontrib', 'cssmin']);
+    grunt.registerTask('dependencies', ['bower', 'copy:fontAwesome', 'copy:modernizr', 'copy:compass']);
     grunt.registerTask('default', ['dependencies','css','js']);
     grunt.registerTask('_phantomjs', function (module) {
         this.requires('connect:test');

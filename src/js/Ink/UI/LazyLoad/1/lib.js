@@ -34,10 +34,10 @@ LazyLoad.prototype = {
      * @param {Number}      [options.delay]                     Milliseconds to wait before trying to load items. Defaults to 100.
      * @param {Number}      [options.delta]                     Offset distance in pixels. Determines how far the top of an item must be from the viewport be considered 'visible'. Negative values shrink the considered 'visible' viewport while positive values enlarge it. Defaults to 0.
      * @param {Boolean}     [options.image]                     Set to false to make this component do nothing to any elements and just give you the onInsideViewport callback.
-     * @param {Element}     [options.scrollElement]             (advanced) What element is to be listened for the scroll event. Defaults to document.window.
+     * @param {DOMElement}  [options.scrollElement]             (advanced) What element is to be listened for the scroll event. Defaults to document.window.
      * @param {Boolean}     [options.touchEvents]               Subscribe to touch events in addition to scroll events. Useful in mobile safari because 'scroll' events aren't frequent enough. Defaults to true.
-     * @param {Function}    [options.onInsideViewport]          Callback function for when an `item` is 'visible'. Receives the item's element as an argument.
-     * @param {Function}    [options.onAfterAttributeChange]    (advanced) Callback function when an item's attribute changes. Receives the item's element as an argument.
+     * @param {Function}    [options.onInsideViewport]          Callback function for when an `item` is 'visible'. Receives an object containing the item's element as an argument.
+     * @param {Function}    [options.onAfterAttributeChange]    (advanced) Callback function when an item's attribute changes. Receives an object containing the item's element as an argument.
      * @param {Boolean}     [options.autoInit]                  (advanced) Set to false if you want to start LazyLoad yourself with `reload()`. Defaults to true.
      */
     _init: function(selector) {
