@@ -39,13 +39,13 @@ body {
 .fa { font-size: 14px; }
 
 a {
-    color: $link-color; 
+    color: $link-color;
     text-decoration: none;
     cursor: pointer;
     // @include transition (compact(all 140ms ease-in-out));
-    
+
     &:hover {
-        color: $link-hover-color; 
+        color: $link-hover-color;
         text-decoration: underline;
     }
 }
@@ -56,10 +56,11 @@ a {
 h1, h2, h3, h4, h5, h6 {
     color: $headings-color;
     font-weight: 700;
+    line-height: $base-line-height / .85;
 }
 
 small {
-    color: tint($text-color, 30%); 
+    color: tint($text-color, 30%);
     //font-size: .6em;
 }
 
@@ -82,7 +83,7 @@ address {
     color: tint($text-color, 20%);
     font-size: 1em;
     line-height: 1.4;
-    
+
     p { margin-top: 0 }
 
     h6 { color: $text-color; }
@@ -95,10 +96,10 @@ abbr {
 }
 
 blockquote {
-    border-left: 4px solid #ddd; 
-    padding-left: $indent-amount; 
-    margin:1em 0; 
-    font-weight: 200; 
+    border-left: 4px solid #ddd;
+    padding-left: $indent-amount;
+    margin:1em 0;
+    font-weight: 200;
     font-size: 1.1em;
 
     small {
@@ -108,11 +109,11 @@ blockquote {
         &::after {
             content: ' — ';
         }
-    } 
+    }
 }
 
 .note {
-    font-size: .9em; 
+    font-size: .9em;
     color: tint($text-color, 20%);
     strong {color: $text-color;}
 }
@@ -123,13 +124,13 @@ blockquote {
 .extralarge { font-size: 1.45em !important; }
 
 hr {
-    border: 0; 
-    border-top: 1px solid #ddd; 
+    border: 0;
+    border-top: 1px solid #ddd;
     margin:1em 0
 }
 
 .lead {
-    font-size: 1.1em; 
+    font-size: 1.1em;
     font-weight: bold;
 }
 
@@ -146,16 +147,16 @@ ul, ol {
 ul {
 
     &.unstyled {
-        list-style: none; 
+        list-style: none;
         padding-left: 0em;
 
-        ul  { 
+        ul  {
             list-style:disc outside;
         }
     }
 
     &.inline {
-        list-style: none; 
+        list-style: none;
 
         li {
             display: inline-block;
@@ -167,10 +168,10 @@ ul {
     }
 }
 
-dl { 
+dl {
     margin: 1em 0;
-    dt { 
-        font-weight: bold; 
+    dt {
+        font-weight: bold;
         margin: .5em 0;
     }
 
