@@ -13,7 +13,7 @@ You can read our full documentation, examples and recipes in http://ink.sapo.pt
 Let's get you started with Ink right away. Here's what you need to know and do:
 
 1. Download the [latest](https://github.com/sapo/Ink/archive/3.0.0.zip) release.
-2. Check the recipes we provide in the ```dist/cookbook``` folder and choose one to start from or use ```empty-page.html``` as a blank slate.
+2. Check the recipes we provide in the ```dist/cookbook``` folder and choose one to start from or use ```quick-start.html``` as a blank slate.
 3. Make sure you have `ink.css`, `ink-ie.css` and `ink.js` included somewhere in the `<head>`.
 4. Add your own css and scripts to carry all your project-specific changes. You can use ```quick-start.css``` from the ```dist/css``` folder. It allready contains the same media queries as Ink.
 5. Keep coming back to the documentation to help you along the way.
@@ -25,7 +25,7 @@ Let's get you started with Ink right away. Here's what you need to know and do:
 
 * **[master](https://github.com/sapo/Ink/tree/master)** -  The master branch contains the latest release as its HEAD and all previous releases as tags named as the version numbers.
 * **[staging](https://github.com/sapo/Ink/tree/staging)** - The staging branch is a semi-stable branch containing code from the develop branch which is under testing and will, eventually, go into the next release.
-* **[develop](https://github.com/sapo/Ink/tree/develop)** The develop branch contains our latest code that will eventually lead to a new release and tag on **[master](https://github.com/sapo/Ink/tree/master).*
+* **[develop](https://github.com/sapo/Ink/tree/develop)*** - The develop branch contains our latest code that will eventually lead to a new release and tag on [master](https://github.com/sapo/Ink/tree/master).
 
 **\* This branch is very likely to contain code that is not fully functional or documented. Support requests for problems with this branch will have the lowest priority so, use at your own risk.**
 
