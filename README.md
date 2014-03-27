@@ -66,6 +66,8 @@ If you want to build from our source code, you'll need to install a few things:
 * [Grunt](http://gruntjs.com/)
 * [Bower](http://bower.io/)
 
+
+
 * #### OS X
   * **Install Homebrew:**
   ```
@@ -85,7 +87,7 @@ If you want to build from our source code, you'll need to install a few things:
   ```
   * **Install Compass:**
   ```
-  gem update --system && gem install compass``` May require ```sudo
+  gem update --system && gem install compass
   ```
   * **Move into Inks folder and install remaining build tools:**
   ```
