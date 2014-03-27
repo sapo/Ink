@@ -98,13 +98,9 @@ module.exports = function (grunt) {
                     }
                 ]
             },
-            html5shiv: {
-                files: [{
-                    cwd: '<%= ink.folders.bower %>html5shiv/dist',
-                    src: '*',
-                    dest: '<%= ink.folders.js.dist %>',
-                    expand: true,
-                }]
+            facss: {
+              src: 'dist/css/contrib/font-awesome/font-awesome.css',
+              dest: 'dist/css/font-awesome.css'
             }
         },
 
@@ -219,8 +215,13 @@ module.exports = function (grunt) {
                 ]
             },
             css: {
-                src: ['<%= ink.folders.css.dist %>/ink*.css']
+                src: [
+                  '<%= ink.folders.css.dist %>/*.css',
+                  '<%= ink.folders.css.dist %>/*.css.map',
+                  '!<%= ink.folders.css.dist %>/quick-start.css'
+                ]
             },
+            csscontrib: [ '<%= ink.folders.css.dist %>/contrib' ]
             /*
             [3.0.0]: uncomment this
             fontAwesome: {
@@ -310,7 +311,13 @@ module.exports = function (grunt) {
         compass: {
             css: {
                 options: {
-                    config: "config.rb",
+                    outputStyle: 'expanded',
+                    noLineComments: true,
+                    relativeAssets: true,
+                    sassDir: 'src/sass',
+                    cssDir: "dist/css",
+                    fontsDir: 'dist/fonts',
+                    imagesDir: 'dist/img'
                 }
             },
         },
@@ -380,8 +387,8 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('js', ['clean:js', 'concat', 'uglify']);
-    grunt.registerTask('css', ['clean:css', 'compass', 'cssmin']);
-    grunt.registerTask('dependencies', ['bower', 'copy']);
+    grunt.registerTask('css', ['clean:css', 'compass', 'copy:facss', 'clean:csscontrib', 'cssmin']);
+    grunt.registerTask('dependencies', ['bower', 'copy:fontAwesome', 'copy:modernizr', 'copy:compass']);
     grunt.registerTask('default', ['dependencies','css','js']);
     grunt.registerTask('_phantomjs', function (module) {
         this.requires('connect:test');

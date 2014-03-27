@@ -7061,12 +7061,6 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
 }
 
-h1 small {
-  font-size: .6em;
-  color: #BFBFBF;
-  font-weight: 100;
-}
-
 small {
   color: #888888;
 }
@@ -7207,7 +7201,6 @@ figure.ink-image {
   border: 1px solid #555555;
 }
 figure.ink-image > img {
-  margin-bottom: -6px;
   width: 100%;
 }
 figure.ink-image > figcaption {
@@ -7242,6 +7235,7 @@ img {
   border: 0;
   width: auto;
   max-width: 100%;
+  vertical-align: top;
 }
 
 .ink-alert.basic, .ink-alert.block {
@@ -8088,9 +8082,9 @@ img {
   border-radius: 2px 0 0 2px;
 }
 .ink-navigation ul.pagination li:last-child, .ink-navigation ul.pagination li:last-child a {
-  -webkit-border-radius: 0 2px 2px;
-  -moz-border-radius: 0 2px 2px;
-  border-radius: 0 2px 2px;
+  -webkit-border-radius: 0 2px 2px 0;
+  -moz-border-radius: 0 2px 2px 0;
+  border-radius: 0 2px 2px 0;
 }
 .ink-navigation ul.pagination.white li {
   background: white;
