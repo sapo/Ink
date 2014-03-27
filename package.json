@@ -18,9 +18,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "http://github.com/pedrocorreia/Ink.git"
+    "url": "http://github.com/sapo/Ink.git"
   },
   "scripts": {
-    "less": "grunt --verbose"
+    "all": "grunt --verbose"
   }
 }

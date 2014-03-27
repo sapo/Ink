@@ -18,13 +18,13 @@ download_url: https://github.com/sapo/Ink/archive/
 repo_url: https://github.com/sapo/Ink/
 
 # ASSETS PATHS
-images_path: ./assets/img/
-js_path: ./assets/js/
-css_path: ./assets/css/
+images_path: assets/img/
+js_path: assets/js/
+css_path: assets/css/
 
 sections:
   - title: UI Elements
-    components: 
+    components:
       - title: Grid
         topics:
           - title: Basic principles
@@ -89,7 +89,7 @@ sections:
           - title: Element alignment
           - title: Content alignment
           - title: Element spacing
-          - title: Element visibility  
+          - title: Element visibility
       - title: Flexbox
         topics:
           - title: Basic principles
@@ -97,7 +97,7 @@ sections:
           - title: Content alignment
           - title: Reordering
   - title: Javascript
-    components: 
+    components:
       - title: Core
         topics:
           - title: Ink
@@ -155,4 +155,3 @@ sections:
 
 # ANALYTICS
 # analytics: FC2C65EF-D60C-4BC2-9D76-251A50DADC3D
-
