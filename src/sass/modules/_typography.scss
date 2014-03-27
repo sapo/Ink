@@ -56,7 +56,7 @@ a {
 h1, h2, h3, h4, h5, h6 {
     color: $headings-color;
     font-weight: 700;
-    line-height: $base-line-height / .85;
+    line-height: $base-line-height * 0.8;
 }
 
 small {
