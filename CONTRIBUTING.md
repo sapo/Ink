@@ -1,11 +1,3 @@
-# Contributing
-
-
-We'd love to have your contribution so, here's a quick guide:
-
-1. Fork our repository
-
-
 ## Issue reporting
 
 * Please be as descriptive as possible about your problem. "Stuff doesn't work" won't help us to help you.
@@ -19,6 +11,11 @@ We'd love to have your contribution so, here's a quick guide:
 
 We're a small team and have other projects in our hands so, we'll try to at least give you some feedback on issues, even if it's just a comment on a maximum of 3 business days. Please be patient.
 
+# Contributing with code
+
+We'd love to have your contribution so, here's a quick guide:
+
+1. Fork our repository
 
 ## JavaScript
 
