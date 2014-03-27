@@ -52,7 +52,7 @@ Since version 2.3.0 we've moved things around in order keep source code from dis
   src/js
   ```
 
-We've also unified our build system using [Grunt](http://gruntjs.com/), [Bower](http://bower.io/) so, building from source is now a lot easier.
+We've also unified our build system using [Grunt](http://gruntjs.com/) and [Bower](http://bower.io/). So, building from source is now a lot easier.
 
 ---
 
@@ -85,7 +85,7 @@ If you want to build from our source code, you'll need to install a few things:
   ```
   * **Install Compass:**
   ```
-  gem update --system && gem install compass```. May require ```sudo
+  gem update --system && gem install compass``` May require ```sudo
   ```
   * **Move into Inks folder and install remaining build tools:**
   ```
