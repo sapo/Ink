@@ -25,7 +25,7 @@ Let's get you started with Ink right away. Here's what you need to know and do:
 
 * **[master](https://github.com/sapo/Ink/tree/master)** -  The master branch contains the latest release as its HEAD and all previous releases as tags named as the version numbers.
 * **[staging](https://github.com/sapo/Ink/tree/staging)** - The staging branch is a semi-stable branch containing code from the develop branch which is under testing and will, eventually, go into the next release.
-* **[develop](https://github.com/sapo/Ink/tree/develop)** - The develop branch contains our latest code that will eventually lead to a new release and tag on **[master](https://github.com/sapo/Ink/tree/master).*
+* **[develop](https://github.com/sapo/Ink/tree/develop)*** - The develop branch contains our latest code that will eventually lead to a new release and tag on [master](https://github.com/sapo/Ink/tree/master).
 
 **\* This branch is very likely to contain code that is not fully functional or documented. Support requests for problems with this branch will have the lowest priority so, use at your own risk.**
 
