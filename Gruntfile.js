@@ -48,6 +48,7 @@ module.exports = function (grunt) {
                     install: true,
                     verbose: false,
                     cleanTargetDir: false,
+                    cleanBowerDir: true
                 }
             }
         },
