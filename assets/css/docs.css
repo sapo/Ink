@@ -981,11 +981,11 @@ footer .ink-navigation ul.menu.horizontal li a.license {
   margin-top: 44px;
 }
 #home section.ink {
-  background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, color-stop(0%, #bcb098), color-stop(100%, #a79879));
-  background-image: -webkit-radial-gradient(#bcb098, #a79879);
-  background-image: -moz-radial-gradient(#bcb098, #a79879);
-  background-image: -o-radial-gradient(#bcb098, #a79879);
-  background-image: radial-gradient(#bcb098, #a79879);
+  background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, color-stop(0%, #bcb098), color-stop(100%, #907f5e));
+  background-image: -webkit-radial-gradient(#bcb098, #907f5e);
+  background-image: -moz-radial-gradient(#bcb098, #907f5e);
+  background-image: -o-radial-gradient(#bcb098, #907f5e);
+  background-image: radial-gradient(#bcb098, #907f5e);
 }
 #home section.ink h1, #home section.ink h2, #home section.ink h3, #home section.ink p, #home section.ink ul {
   color: white;
