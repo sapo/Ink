@@ -3,7 +3,7 @@ exclude: [".gitignore", ".git", "config.rb", "package.json", "Gruntfile.js", "bo
 
 destination: ./_site
 
-url: http://oss.sapo.pt/Ink/
+url: http://ink3.sapo.p/
 environment: production
 description: Ink is a set of tools for quick development of web interfaces.
 
