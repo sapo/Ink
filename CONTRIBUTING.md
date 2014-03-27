@@ -62,7 +62,7 @@ We're not really strict with Sass code but adhering to these guidelines will hel
 1. Two spaces, no tabs.
 2. Try to declare each css property on a single line.
 3. Use shorthand declarations whenever possible;
-4. Check if compass already has a @mixin for what you nedd before writing new ones.
+4. Check if compass already has a @mixin for what you need before writing new ones.
 
 ## Documentation
 
