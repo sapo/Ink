@@ -87,13 +87,13 @@ If you want to build from our source code, you'll need to install a few things:
   ```
   * **Install Compass:**
   ```
-  gem update --system && gem install compass
+  sudo gem update --system && sudo gem install compass
   ```
   * **Move into Inks folder and install remaining build tools:**
   ```
   npm install
   ```
----
+
 * #### Ubuntu
   * **Install Node.js**
   ```
