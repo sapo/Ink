@@ -43,5 +43,6 @@
 }
 
 .clearfix {
+    @include clearfix;
     @include pie-clearfix;
 }
