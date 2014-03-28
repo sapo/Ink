@@ -417,7 +417,7 @@ body.ink-drawer {
 .highlight .lineno  { color: #ccc; } /* Literal.Number.Integer.Long */
 
 .page-header {
-    padding: 3.5em 0 2em;
+    padding: 3em 0 2em;
     font-size: 1.25em;
 
     p {
@@ -428,10 +428,6 @@ body.ink-drawer {
         &.section-title {
             margin: 0;
         }
-    }
-
-    h1 {
-        margin-bottom: 0;
     }
 
     .border {
@@ -799,7 +795,7 @@ footer {
 $ink: darken($code-background,25%);
 $what: #709DC7;
 $why: lighten(#8F65C5,10%);
-$download: lighten(#C04343,10%);
+$how: lighten(#C04343,10%);
 $who: lighten(#CA8A4E,10%);
 
 #home {
@@ -809,14 +805,14 @@ $who: lighten(#CA8A4E,10%);
     text-decoration: underline;
   }
 
-  @mixin text-color($color,$elements...) {
-    #{$elements} {
-      color: $color;
-    }
+@mixin text-color($color,$elements...) {
+  #{$elements} {
+    color: $color;
   }
+}
 
   section {
-    border: 0px transparent;
+    border: none;
     padding: 2em 0;
 
     & + section {
@@ -839,6 +835,25 @@ $who: lighten(#CA8A4E,10%);
             height: inherit;
         }
       }
+
+      a.ink-button.download,
+      a.ink-button.repo {
+        color: $ink;
+        background: white;
+        font-size: 1.1em;
+        padding: .5em 1em;
+        @extend .fw-300;
+        text-decoration: none;
+        text-transform: uppercase;
+        &:hover,&:focus,&:active {
+          // background: darken($ink,20%);
+          background: black;
+          // border-color: darken($ink,23%);
+          border-color: black;
+          color: $white;
+        }
+      }
+
     }
 
     section.what {
@@ -871,8 +886,8 @@ $who: lighten(#CA8A4E,10%);
 
     }
 
-    section.download {
-      @include background-image(radial-gradient($download, darken($download,20%)));
+    section.how {
+      @include background-image(radial-gradient($how, darken($how,20%)));
       @include text-color($white,h1,h2,h3,p,ul);
 
 
@@ -880,24 +895,6 @@ $who: lighten(#CA8A4E,10%);
         height: 100%;
         .column-group {
             height: inherit;
-        }
-      }
-
-      a.ink-button.download,
-      a.ink-button.repo {
-        color: $download;
-        background: white;
-        font-size: 1.1em;
-        padding: .5em 1em;
-        @extend .fw-300;
-        text-decoration: none;
-        text-transform: uppercase;
-        &:hover,&:focus,&:active {
-          // background: darken($ink,20%);
-          background: black;
-          // border-color: darken($ink,23%);
-          border-color: black;
-          color: $white;
         }
       }
 
@@ -916,29 +913,4 @@ $who: lighten(#CA8A4E,10%);
       }
 
     }
-}
-
-.copyright {
-
-    line-height: 1.25;
-
-  .PTClogo a {
-    background: url("../img/icon_Sprite.png") no-repeat 0 top;
-    text-indent: -9999px;
-    display: inline-block;
-    float: left;
-    width: 41px;
-    height: 43px;
-    margin-right: .6em;
-  }
-
-  .SAPOlogo {
-    background: url("../img/SAPOlogo.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
-    text-indent: -9999px;
-    display: inline-block;
-    width: 101px;
-    height: 30px;
-    margin-bottom: 1em;
-    color: transparent !important;
-  }
 }
