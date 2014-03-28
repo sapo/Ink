@@ -1,0 +1,17 @@
+{% include document-top.html %}
+{% include top-navigation.html %}
+{% include left-drawer.html %}
+<div  id="page-content" class="ink-grid content-drawer">
+    <div class="page-header">
+        <h1 class="slab">{{ page.title }}</h1>
+        <p>{{ page.description }}</p>
+        <div class="border"></div>
+    </div>
+    <div class="column-group gutters">
+        <div class="xlarge-100 large-100 medium-100 small-100 tiny-100">
+            {{ content }}
+        </div>
+    </div>
+</div>
+{% include footer.html %}
+{% include document-bottom.html %}

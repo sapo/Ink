@@ -6,6 +6,7 @@ destination: ./_site
 url: http://ink3.sapo.pt/
 environment: production
 description: Ink is a set of tools for quick development of web interfaces.
+timezone: Europe/Lisbon
 
 # SITE TITLE
 title: Ink Interface Kit

@@ -49,10 +49,18 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
      * The Table component transforms the native/DOM table element into a
      * sortable, paginated component.
      *
+     * You can use this component to display data from a JSON endpoint, or
+     * from table rows in the DOM. Displaying from the DOM is more practical,
+     * but sometimes you don't want to load everything at once (if you have
+     * a HUGE table). In those cases, you should configure Ink.UI.Table to
+     * get data from JSON endpoint.
+     *
      * To enable sorting, just set the `data-sortable` attribute of your
      * table headers (they must be in the `thead` of the table) to "true".
      *
-     * To enable pagination, you can do one of the following:
+     * To enable pagination, set the `pageSize` option to the amount of table
+     * rows you want to show at once, and choose an `Ink.UI.Pagination`
+     * component to use. To do this, you can do one of the following:
      *  - Pass an `Ink.UI.Pagination` instance as the `pagination` option, or...
      *  - Pass a selector as the `pagination` option which selects an element to create the Ink.UI.Paginate element on.
      *

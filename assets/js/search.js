@@ -1,64 +1,76 @@
-Ink.requireModules(['Ink.Net.Ajax_1','Ink.Dom.Css','Ink.Dom.Element','Ink.Dom.Selector','Ink.Dom.Event','Ink.Util.Json_1'],function(a,c,el,s,ev,j){
+Ink.requireModules(['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Dom.Event_1','Ink.Util.Json_1','Ink.Util.Url_1'],function(ajax,css,elm,sel,ev,json,url){
 
-  var jsonIndex;
 
-  var index = lunr(function () {
-    this.field('title', 50);
-    this.field('tags', 100);
-    this.ref('url');
-  });
 
-  function dateToTimestamp(date) {
-    date=date.split("-");
-    var newDate=date[1]+"/"+date[0]+"/"+date[2];
-    var ts = new Date(newDate).getTime();
-    return ts.toString();
-  }
-
-  var request = new a('/search.json',{method: 'GET',onSuccess: function(response){
-
-    jsonIndex  = response.responseJSON[1];
-
-    for (var i = 0; i < response.responseJSON[1].length; i++){
-      index.add(response.responseJSON[1][i]);
+  function addEvent(selector) {
+    if(typeof(selector) === 'string') {
+      var elm = Ink.ss(selector);
+    } else {
+      var elm = selector;
     }
 
-    var indexJson = j.stringify(index.toJSON());
+    ev.observeMulti(elm, 'submit', function(event) {
 
-  }});
-
-  var searchInput = Ink.s('#search');
-  var resultList = Ink.s('#resultsList');
-  var resultsDropdown = Ink.s('#search-dropdown');
-
-  ev.observe(searchInput,'keyup',function(evElm){
-
-      resultList.innerHTML = '';
-
-      if(searchInput.value.length > 3){
-
-        var results = index.search(searchInput.value.toString()).map(function(result) {
-
-            var searchField = "url";
-            var searchVal = result.ref;
-
-            for (var i=0 ; i < jsonIndex.length ; i++)
-            {
-                if (jsonIndex[i][searchField] == searchVal) {
-                    var resultUrl = jsonIndex[i].url;
-                    var resultTitle = jsonIndex[i].title;
-                    var resultItem = el.create('li',{'class':'separator-below'});
-                    var resultLink = el.create('a',{'href':resultUrl});
-                    resultLink.innerHTML = resultTitle;
-                    resultItem.appendChild(resultLink);
-                    resultList.appendChild(resultItem);
-                }
-            }
-        });
-        resultsDropdown.style.display = 'block';
-      } else {
-        resultsDropdown.style.display = 'none';
+      var tgt = ev.element(event);
+      var val = tgt.value;
+      if(val !== '') {
+        doRequest(val);
       }
-  });
+
+    });
+  };
+
+  function fillSearchInput(selector){
+    var qs = url.getQueryString(url.getUrl());
+    var searchFields = Ink.ss(selector);
+    if(qs.search){
+      for(var i=0; i<searchFields.length; i++){
+      if(searchFields[i].value === "") {
+          searchFields[i].value = qs.search;
+        }
+      }
+    }
+    
+  }
+
+  var doOnSuccess = function(json) {
+
+    Ink.log(json);
+    if(response.numFound === 0) {
+      return;
+    }
+    var data = json.response.docs;
+
+    var cur;
+    for(var i=0, t=data.length; i < t; i++) {
+      cur = data[i];
+      Ink.log(cur);
+    }
+
+  }
+
+  function doRequest(value) {
+    var request = new ajax(
+      'http://services.sapo.pt/RSS/Feed/site/ink',
+      {
+        method: 'get',
+        paramenters: 'wt=json&indent=on&fl=Title,Url,RSSWorksId&q='+encodeURIComponent(value),
+        onSuccess: function(req) {
+          if(req.responseJSON) {
+            var json = req.responseJSON;
+
+            doOnSuccess(json);
+          }
+        },
+        onFailure: function () {
+          Ink.warn('failed')
+        }
+      }
+      );
+  }
+
+  addEvent('.docsearch');
+  fillSearchInput('.search-field');
+
 
 });
