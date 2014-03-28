@@ -1,30 +1,30 @@
 /**
- * @module Ink.UI.Swipe
- * @author ink AT sapo.pt
+ * @module Ink.UI.Swipe_1
+ * Swipe gestures
  * @version 1
  */
 Ink.createModule('Ink.UI.Swipe', '1', ['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.UI.Common_1'], function(InkEvent, InkElement, Common) {
     'use strict';
 
     /**
-     * Subscribe swipe gestures!
+     * Subscribe swipe gestures.
      *
      * Supports filtering swipes be any combination of the criteria supported in the options.
      *
-     * @class Ink.UI.Swipe
+     * @class Ink.UI.Swipe_1
      * @constructor
-     * @param {String|DOMElement} el
-     * @param {Object}   options
-     *     @param {Function} [options.onEnd]       callback function for the `touchend` event. Gets all the gesture information, and is filtered by min/max Dist and Duration options (see below)
-     *     @param {Function} [options.onStart]     callback function for `touchstart` event
-     *     @param {Function} [options.onMove]      callback function for every `touchmove` event. Gets current gesture information.
-     *     @param {Number}   [options.minDist]     minimum allowed distance, in pixels
-     *     @param {Number}   [options.maxDist]     maximum allowed distance, in pixels
-     *     @param {Number}   [options.minDuration] minimum allowed duration, in seconds
-     *     @param {Number}   [options.maxDuration] maximum allowed duration, in seconds
-     *     @param {String}   [options.axis]        if either 'x' or 'y' is passed, only swipes where the dominant axis is the given one trigger the callback
-     *     @param {String}   [options.storeGesture=false] store gesture information and provide to the callback
-     *     @param {String}   [options.stopEvents=true] stop (default and propagation) of the received events
+     * @param {String|DOMElement}   el                      Element or Selector
+     * @param {Object}              options                 Options Object
+     * @param {Function}            [options.onEnd]         Callback function for the `touchend` event. Gets all the gesture information, and is filtered by min/max Dist and Duration options (see below)
+     * @param {Function}            [options.onStart]       Callback function for `touchstart` event.
+     * @param {Function}            [options.onMove]        Callback function for every `touchmove` event. Gets current gesture information.
+     * @param {Number}              [options.minDist]       Minimum allowed distance, in pixels.
+     * @param {Number}              [options.maxDist]       Maximum allowed distance, in pixels.
+     * @param {Number}              [options.minDuration]   Minimum allowed duration, in seconds.
+     * @param {Number}              [options.maxDuration]   Maximum allowed duration, in seconds.
+     * @param {String}              [options.axis]          If either 'x' or 'y' is passed, only swipes where the dominant axis is the given one trigger the callback
+     * @param {String}              [options.storeGesture]  If to store gesture information and provide it to the callback. Defaults to true.
+     * @param {String}              [options.stopEvents]    Flag to stop (default and propagation) of the received events. Defaults to true.
      * 
      * -----
      *
@@ -43,6 +43,7 @@ Ink.createModule('Ink.UI.Swipe', '1', ['Ink.Dom.Event_1', 'Ink.Dom.Element_1', '
      *   - `overallMovement`: X and Y distance traveled by the touch movement (`[x, y]`) (onEnd only)
      *   - `overallTime`: total time passed (onEnd only)
      *
+     * @sample Ink_UI_Swipe_1.html
      */
     function Swipe(el, options) {
         el = Common.elOrSelector(el, 'Swipe target');
