@@ -4,40 +4,47 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>
-            Fluid & Fixed width columns
-        </title>
+        <title>Fixed width column</title>
         <meta name="description" content="">
         <meta name="author" content="ink, cookbook, recipes">
         <meta name="HandheldFriendly" content="True">
         <meta name="MobileOptimized" content="320">
-        <meta name="viewport" content="width=device-width, initialarge-scale=1.0, maximum-scale=1.0, user-scalable=0">
-        <link rel="shortcut icon" href="../img/ink-favicon.ico">
-        <link rel="apple-touch-icon-precomposed" href="../img/touch-icon.57.png">
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../img/touch-icon.72.png">
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../img/touch-icon.114.png">
-        <link rel="apple-touch-startup-image" href="../img/splash.320x460.png"
-        media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
-        <link rel="apple-touch-startup-image" href="../img/splash.768x1004.png"
-        media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
-        <link rel="apple-touch-startup-image" href="../img/splash.1024x748.png"
-        media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
-        <link rel="stylesheet" type="text/css" href="../css/ink.css">
-        <!--[if IE 7 ]>
-            <link rel="stylesheet" href="../css/ink-ie7.css" type="text/css" media="screen" title="no title" charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        
+        <!-- Place favicon.ico and apple-touch-icon(s) here  -->
+        
+        <link rel="shortcut icon" href="../assets/img/favicon.ico">
+        <link rel="apple-touch-icon-precomposed" href="../assets/img/touch-icon.57.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/img/touch-icon.72.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/img/touch-icon.114.png">
+        <link rel="apple-touch-startup-image" href="../assets/img/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
+        <link rel="apple-touch-startup-image" href="../assets/img/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+        <link rel="apple-touch-startup-image" href="../assets/img/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+        
+        <!-- Place your CSS here  -->
+
+        <link rel="stylesheet" type="text/css" href="../assets/css/ink.css">
+        
+        <!--[if lte IE 8 ]>
+            <link rel="stylesheet" href="../css/ink-ie.css" type="text/css" media="screen" title="no title" charset="utf-8">
         <![endif]-->
         
-        <script type="text/javascript" src="../js/holder.js"></script>
-        <script type="text/javascript" src="../js/ink.min.js"></script>
-        <script type="text/javascript" src="../js/ink-ui.min.js"></script>
-        <script type="text/javascript" src="../js/autoload.js"></script>
-        <script type="text/javascript" src="../js/html5shiv.js"></script>
-        
+        <!-- Place your Javascript here  -->
+
+        <script type="text/javascript" src="../assets/js/holder.js"></script>
+        <script type="text/javascript" src="../assets/js/ink-all.min.js"></script>
+        <script type="text/javascript" src="../assets/js/autoload.js"></script>
         
         <style>
 
             body {
-                font-size: 16px;
+                background: #ededed;
+            }
+            
+            header h1 small:before  {
+                content: "|";
+                margin: 0 0.5em;
+                font-size: 1.6em;
             }
 
             .highlight {
@@ -52,7 +59,23 @@
                 width: 300px;
             }
 
-            @media screen and (min-width: 960px) {
+            .pub a {
+                display: block;
+            }
+
+            footer {
+                background: #ccc;
+            }
+
+            @media screen and (min-width: 1261px) {
+                /* xlarge */
+                .highlight {
+                    /* create the needed space for the fixed width column */
+                    padding-right: 20.75em;
+                }
+            }
+
+            @media screen and (min-width: 961px) and (max-width: 1260px) {
                 /* large */
                 .highlight {
                     /* create the needed space for the fixed width column */
@@ -60,15 +83,22 @@
                 }
             }
 
-            @media screen and (min-width: 650px) and (max-width: 959px) {
+            @media screen and (min-width: 641px) and (max-width: 960px) {
                 /* medium */
                 .highlight {
                     padding-right: 0;
                 }
             }
 
-            @media screen and (max-width: 649px) {
+            @media screen and (min-width: 321px) and (max-width: 640px) {
                 /* small */
+                .highlight {
+                    padding-right: 0;
+                }
+            }
+
+            @media screen and (max-width: 320px) {
+                /* tiny */
                 .highlight {
                     padding-right: 0;
                 }
@@ -77,44 +107,78 @@
 
     </head>
     <body>
-    <div class="ink-grid">
-        <div class="column-group vspace">            
-            <section class="pub hide-all show-large large-push-right">
-                <a href="#" class="mrec"><img src="../js/holder.js/300x250/ink/auto/text: MREC PUB" /></a>
-                <div class="column-group vspace gutters">
-                    <div class="large-50"><img src="../js/holder.js/300x250/ink/auto/text: PUB" /></div>
-                    <div class="large-50"><img src="../js/holder.js/300x250/ink/auto/text: PUB" /></div>
+        <div class="ink-grid">
+        
+            <!--[if lte IE 8 ]>
+            <div class="ink-alert basic">
+                <button class="ink-dismiss">&times;</button>
+                <p><strong>You are using an outdated Internet Explorer version.</strong>
+                    Please <a href="http://browsehappy.com/">upgrade to a  browser</a> to improve your web experience experience.</p>
+                </p>
+            </div>
+            -->
+            
+            <!-- Add your site or application content here -->
+
+            <header class="vertical-space">
+                <h1>site name<small>smaller text</small></h1>
+                <nav class="ink-navigation">
+                    <ul class="menu horizontal black">
+                        <li class="active"><a href="#">item</a></li>
+                        <li><a href="#">item</a></li>
+                        <li><a href="#">item</a></li>
+                    </ul>
+                </nav>             
+            </header>
+            
+            <section class="pub hide-all show-large show-xlarge xlarge-push-right large-push-right">
+                <div class="column-group gutters">
+                    <a href="#" class="all-100 mrec"><img src="../assets/js/holder.js/300x250/ink/auto/text: MREC PUB" /></a>
+                    <div class="all-50"><img src="../assets/js/holder.js/300x250/ink/auto/text: PUB" /></div>
+                    <div class="all-50"><img src="../assets/js/holder.js/300x250/ink/auto/text: PUB" /></div>
                 </div>
-                <p class="vspace">
+                <p>
                     "Red is not the right word," was the reply. "The plague was scarlet.  The whole face and body turned scarlet in an hour's time. Don't I  know? Didn't I see enough of it? And I am telling you it was scarlet  because&mdash;well, because it was scarlet. There is no other word for it."
                 </p>
             </section>
-            <section class="highlight medium-100 small-100">
+            
+            <section class="highlight">
                 <div class="highlight-wrapper">
-                    <div class="column-group half-gutters">
-                        <div class="large-60 medium-50 small-100">
+                    <div class="column-group gutters">
+                        <div class="xlarge-60 large-60 medium-50 small-100 tiny-100">
                             <div class="image">
-                                <img src="../js/holder.js/600x430/ink/auto/text: highlight" />
+                                <img src="../assets/js/holder.js/600x430/ink/auto/text: highlight" />
                             </div>
                         </div>
-                        <div class="large-40 medium-50 small-100">
+                        <div class="xlarge-40 large-40 medium-50 small-100 tiny-100">
                             <h2>heading</h2>
                             <p>"Red is not the right word," was the reply. "The plague was scarlet.  The whole face and body turned scarlet in an hour's time. Don't I  know? Didn't I see enough of it? And I am telling you it was scarlet  because&mdash;well, because it was scarlet. There is no other word for it."</p>
                         </div>
                     </div>
                     <div class="column-group gutters">
-                        <div class="large-50 medium-50 small-100"><img src="../js/holder.js/600x430/ink/auto/text: another story" /></div>
-                        <div class="large-50 medium-50 small-100"><img src="../js/holder.js/600x430/ink/auto/text: another story" /></div>
+                        <div class="all-50 small-100 tiny-100"><img src="../assets/js/holder.js/600x430/ink/auto/text: another story" /></div>
+                        <div class="all-50 small-100 tiny-100"><img src="../assets/js/holder.js/600x430/ink/auto/text: another story" /></div>
                     </div>
                     <div class="column-group gutters">
-                        <div class="large-33 medium-33 small-100"><img src="../js/holder.js/600x430/ink/auto/text: another story" /></div>
-                        <div class="large-33 medium-33 small-100"><img src="../js/holder.js/600x430/ink/auto/text: another story" /></div>
-                        <div class="large-33 medium-33 small-100"><img src="../js/holder.js/600x430/ink/auto/text: another story" /></div>
+                        <div class="all-33 small-100 tiny-100"><img src="../assets/js/holder.js/600x430/ink/auto/text: another story" /></div>
+                        <div class="all-33 small-100 tiny-100"><img src="../assets/js/holder.js/600x430/ink/auto/text: another story" /></div>
+                        <div class="all-33 small-100 tiny-100"><img src="../assets/js/holder.js/600x430/ink/auto/text: another story" /></div>
                     </div>
                 </div>
             </section>
-        </div>
-    </div>
 
-</body>
+        </div>
+        
+        <footer class="clearfix">
+            <div class="ink-grid">
+                <ul class="unstyled inline half-vertical-space">
+                    <li class="active"><a href="#">About</a></li>
+                    <li><a href="#">Sitemap</a></li>
+                    <li><a href="#">Contacts</a></li>
+                </ul>
+                <p class="note">Identification of the owner of the copyright, either by name, abbreviation, or other designation by which it is generally known.</p>
+            </div>
+        </footer>
+
+    </body>
 </html>
