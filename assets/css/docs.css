@@ -4,8 +4,8 @@
 }
 
 .fw-300, ul.props li.prop.breakpoint-aware:after, .example .ink-grid .column,
-html.flexbox .example .ink-grid .column, #home section.ink a.ink-button.download,
-#home section.ink a.ink-button.repo {
+html.flexbox .example .ink-grid .column, #home section.download a.ink-button.download,
+#home section.download a.ink-button.repo {
   font-weight: 300;
   font-family: Roboto;
 }
@@ -87,6 +87,13 @@ a.visited {
   color: gray;
 }
 
+a, .ink-button {
+  -webkit-transition: all 140ms ease-in-out;
+  -moz-transition: all 140ms ease-in-out;
+  -o-transition: all 140ms ease-in-out;
+  transition: all 140ms ease-in-out;
+}
+
 #topbar {
   position: fixed;
   z-index: 100;
@@ -123,6 +130,11 @@ a.visited {
   padding: 4px 12px;
   margin: 5px 1em;
   font-size: .875em;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
 }
 #topbar .ink-navigation ul.black li a.ink-button:hover {
   background: #0d68c2;
@@ -137,13 +149,12 @@ a.visited {
   background: none;
 }
 #topbar .ink-navigation ul.black li button.fa-bars {
-  padding: .46em 0;
   font-size: 21px;
   background: none;
   font-size: 1.2em;
   color: #bbbbbb;
   border: none;
-  padding: 0.8em;
+  padding: .8em .8em .8em 0;
 }
 #topbar .ink-navigation ul.black li button.fa-bars:hover, #topbar .ink-navigation ul.black li button.fa-bars:active, #topbar .ink-navigation ul.black li button.fa-bars:focus {
   color: white;
@@ -277,6 +288,7 @@ body.ink-drawer .right-drawer li.heading {
   text-transform: uppercase;
   margin-top: 1em;
   font-weight: 700;
+  padding: 6px 15px;
 }
 body.ink-drawer .left-drawer li.heading a,
 body.ink-drawer .right-drawer li.heading a {
@@ -290,10 +302,6 @@ body.ink-drawer .right-drawer li.heading:first-child {
 }
 body.ink-drawer .left-drawer li > a,
 body.ink-drawer .right-drawer li > a {
-  -webkit-transition: all 140ms ease-in-out;
-  -moz-transition: all 140ms ease-in-out;
-  -o-transition: all 140ms ease-in-out;
-  transition: all 140ms ease-in-out;
   display: block;
   padding: 6px 15px;
   color: #bbb;
@@ -572,6 +580,11 @@ body.ink-drawer .right-drawer li:last-child {
 }
 
 /* Name.Variable */
+.highlight .nx {
+  color: #005080;
+}
+
+/* Name.Variable */
 .highlight .ow {
   font-weight: bold;
 }
@@ -751,6 +764,9 @@ table.props {
   border-radius: 2px;
   margin: 1.5em 0;
 }
+table.props.glossary th.class {
+  width: 20%;
+}
 table.props tr:nth-child(odd) td {
   background: #f2f0eb;
 }
@@ -767,7 +783,7 @@ table.props tr td {
   line-height: 1.4;
 }
 table.props caption {
-  padding: 0 0 0 0.4em;
+  padding: 0 0 0 .4em;
   color: #eeebe5;
   text-align: left;
   text-transform: uppercase;
@@ -776,7 +792,7 @@ table.props caption {
   line-height: 0.8;
 }
 table.props td, table.props th {
-  padding: 0.1em;
+  padding: .1em;
   border-bottom: 1px solid #ded8cc;
   text-align: left;
 }
@@ -792,12 +808,11 @@ span.tip {
 }
 
 ul.props {
-  margin: 0;
   padding: 0;
   list-style-type: none;
 }
 ul.props.inline li + li {
-  margin: 0 0.4em 0.5em 0;
+  margin: 0 .4em .5em 0;
 }
 ul.props li.heading {
   text-transform: uppercase;
@@ -809,23 +824,23 @@ ul.props li.prop {
   padding: 0 5px;
 }
 ul.props li.prop.breakpoint-aware:after {
-  margin-left: 0.2em;
+  margin-left: .2em;
   background: none;
   color: #4a9b17;
   content: "Breakpoint aware";
   text-transform: uppercase;
-  font-size: 0.9em;
+  font-size: .9em;
 }
 
 span.label {
   white-space: nowrap;
-  font-size: 0.80em;
+  font-size: .80em;
 }
 span.label + span.label {
-  margin-left: 0.3em;
+  margin-left: .3em;
 }
 span.label:after {
-  padding: 0 0.35em;
+  padding: 0 .35em;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   -ms-border-radius: 2px;
@@ -870,7 +885,7 @@ span.label.flexbox:after {
 }
 
 p.example-title {
-  padding: 0 0 0 0.4em;
+  padding: 0 0 0 .4em;
   color: #eeebe5;
   text-align: left;
   text-transform: uppercase;
@@ -881,7 +896,7 @@ p.example-title {
 }
 
 p + p.example-title {
-  margin-top: 0.7em;
+  margin-top: .7em;
 }
 
 .example code, .example pre, table.props code, table.props pre {
@@ -973,12 +988,54 @@ footer .ink-navigation ul.menu.horizontal li a.license {
   padding: .5em 0;
 }
 
+.screen-size-helper {
+  line-height: 1.6em;
+  padding: 0.5333333333333333em 0.8em;
+  background: rgba(0, 0, 0, 0.7);
+}
+.screen-size-helper .title,
+.screen-size-helper ul {
+  color: white;
+}
+.screen-size-helper .title {
+  margin: 0;
+  float: left;
+  text-transform: uppercase;
+}
+.screen-size-helper ul {
+  float: right;
+  margin: 0;
+  padding: 0;
+}
+.screen-size-helper ul li {
+  padding: 0;
+  margin: 0;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: inherit !important;
+}
+.screen-size-helper ul li.tiny {
+  color: #0f75da;
+}
+.screen-size-helper ul li.small {
+  color: #4a9b17;
+}
+.screen-size-helper ul li.medium {
+  color: #ff9c00;
+}
+.screen-size-helper ul li.large {
+  color: #c91111;
+}
+.screen-size-helper ul li.xlarge {
+  color: white;
+}
+
 #home a {
   color: white;
   text-decoration: underline;
 }
 #home section {
-  border: none;
+  border: 0px transparent;
   padding: 2em 0;
 }
 #home section + section {
@@ -988,11 +1045,11 @@ footer .ink-navigation ul.menu.horizontal li a.license {
   margin-top: 44px;
 }
 #home section.ink {
-  background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, color-stop(0%, #bcb098), color-stop(100%, #a79879));
-  background-image: -webkit-radial-gradient(#bcb098, #a79879);
-  background-image: -moz-radial-gradient(#bcb098, #a79879);
-  background-image: -o-radial-gradient(#bcb098, #a79879);
-  background-image: radial-gradient(#bcb098, #a79879);
+  background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, color-stop(0%, #bcb098), color-stop(100%, #907f5e));
+  background-image: -webkit-radial-gradient(#bcb098, #907f5e);
+  background-image: -moz-radial-gradient(#bcb098, #907f5e);
+  background-image: -o-radial-gradient(#bcb098, #907f5e);
+  background-image: radial-gradient(#bcb098, #907f5e);
 }
 #home section.ink h1, #home section.ink h2, #home section.ink h3, #home section.ink p, #home section.ink ul {
   color: white;
@@ -1002,23 +1059,6 @@ footer .ink-navigation ul.menu.horizontal li a.license {
 }
 #home section.ink .ink-grid .column-group {
   height: inherit;
-}
-#home section.ink a.ink-button.download,
-#home section.ink a.ink-button.repo {
-  color: #bcb098;
-  background: white;
-  font-size: 1.1em;
-  padding: .5em 1em;
-  text-decoration: none;
-  text-transform: uppercase;
-}
-#home section.ink a.ink-button.download:hover, #home section.ink a.ink-button.download:focus, #home section.ink a.ink-button.download:active,
-#home section.ink a.ink-button.repo:hover,
-#home section.ink a.ink-button.repo:focus,
-#home section.ink a.ink-button.repo:active {
-  background: black;
-  border-color: black;
-  color: white;
 }
 #home section.what {
   background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, color-stop(0%, #709dc7), color-stop(100%, #4b84b9));
@@ -1052,21 +1092,38 @@ footer .ink-navigation ul.menu.horizontal li a.license {
 #home section.why .ink-grid .column-group {
   height: inherit;
 }
-#home section.how {
+#home section.download {
   background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, color-stop(0%, #cd6969), color-stop(100%, #9c3434));
   background-image: -webkit-radial-gradient(#cd6969, #9c3434);
   background-image: -moz-radial-gradient(#cd6969, #9c3434);
   background-image: -o-radial-gradient(#cd6969, #9c3434);
   background-image: radial-gradient(#cd6969, #9c3434);
 }
-#home section.how h1, #home section.how h2, #home section.how h3, #home section.how p, #home section.how ul {
+#home section.download h1, #home section.download h2, #home section.download h3, #home section.download p, #home section.download ul {
   color: white;
 }
-#home section.how .ink-grid {
+#home section.download .ink-grid {
   height: 100%;
 }
-#home section.how .ink-grid .column-group {
+#home section.download .ink-grid .column-group {
   height: inherit;
+}
+#home section.download a.ink-button.download,
+#home section.download a.ink-button.repo {
+  color: #cd6969;
+  background: white;
+  font-size: 1.1em;
+  padding: .5em 1em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+#home section.download a.ink-button.download:hover, #home section.download a.ink-button.download:focus, #home section.download a.ink-button.download:active,
+#home section.download a.ink-button.repo:hover,
+#home section.download a.ink-button.repo:focus,
+#home section.download a.ink-button.repo:active {
+  background: black;
+  border-color: black;
+  color: white;
 }
 #home section.who {
   background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, color-stop(0%, #d6a475), color-stop(100%, #b07135));
@@ -1083,4 +1140,26 @@ footer .ink-navigation ul.menu.horizontal li a.license {
 }
 #home section.who .ink-grid .column-group {
   height: inherit;
+}
+
+.copyright {
+  line-height: 1.25;
+}
+.copyright .PTClogo a {
+  background: url("../img/icon_Sprite.png") no-repeat 0 top;
+  text-indent: -9999px;
+  display: inline-block;
+  float: left;
+  width: 41px;
+  height: 43px;
+  margin-right: .6em;
+}
+.copyright .SAPOlogo {
+  background: url("../img/SAPOlogo.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+  text-indent: -9999px;
+  display: inline-block;
+  width: 101px;
+  height: 30px;
+  margin-bottom: 1em;
+  color: transparent !important;
 }

@@ -3,7 +3,7 @@ exclude: [".gitignore", ".git", "config.rb", "package.json", "Gruntfile.js", "bo
 
 destination: ./_site
 
-url: http://oss.sapo.pt/Ink/
+url: http://ink3.sapo.pt/
 environment: production
 description: Ink is a set of tools for quick development of web interfaces.
 
@@ -14,17 +14,18 @@ title: Ink Interface Kit
 version: 3.0.0
 
 # URLS
-download_url: https://github.com/sapo/Ink/archive/
+download_url: https://github.com/sapo/Ink/releases/download/
+download_src_url: https://github.com/sapo/Ink/archive/
 repo_url: https://github.com/sapo/Ink/
 
 # ASSETS PATHS
-images_path: ./assets/img/
-js_path: ./assets/js/
-css_path: ./assets/css/
+images_path: assets/img/
+js_path: assets/js/
+css_path: assets/css/
 
 sections:
   - title: UI Elements
-    components: 
+    components:
       - title: Grid
         topics:
           - title: Basic principles
@@ -89,7 +90,7 @@ sections:
           - title: Element alignment
           - title: Content alignment
           - title: Element spacing
-          - title: Element visibility  
+          - title: Element visibility
       - title: Flexbox
         topics:
           - title: Basic principles
@@ -97,7 +98,7 @@ sections:
           - title: Content alignment
           - title: Reordering
   - title: Javascript
-    components: 
+    components:
       - title: Core
         topics:
           - title: Ink
@@ -154,6 +155,17 @@ sections:
   - title: Cookbook
   - title: Glossary
 
-# ANALYTICS
-# analytics: FC2C65EF-D60C-4BC2-9D76-251A50DADC3D
+releases:
+  - 3.0.0
+  - 2.3.1
+  - 2.3.0
+  - 2.2.1
+  - 2.2.0
+  - 2.1.1
+  - 2.1.0
+  - 2.0.0
+  - 1.1.0
+  - 0.1.0
 
+# ANALYTICS
+analytics: FC2C65EF-D60C-4BC2-9D76-251A50DADC3D

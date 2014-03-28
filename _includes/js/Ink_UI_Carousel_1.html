@@ -72,7 +72,8 @@
                 <td>
                     
 
-                    Get the currently displayed page.
+                    <p>Gets the current page index</p>
+
 
                     
                     
@@ -91,7 +92,8 @@
                 <td>
                     
 
-                    Change to the next page
+                    <p>Goes to the next page</p>
+
 
                     
                     
@@ -110,7 +112,8 @@
                 <td>
                     
 
-                    Change to the previous page
+                    <p>Goes to the previous page</p>
+
 
                     
                     
@@ -129,9 +132,9 @@
                 <td>
                     
 
-                    Measure the carousel once again, adjusting the involved elements'
-sizes. Called automatically when the window resizes, in order to
-cater for changes from responsive media queries, for instance.
+                    <p>Repositions elements around.
+Measure the carousel once again, adjusting the involved elements&#39; sizes. This is called automatically when the window resizes, in order to cater for changes from responsive media queries, for instance.</p>
+
 
                     
                     
@@ -150,7 +153,8 @@ cater for changes from responsive media queries, for instance.
                 <td>
                     
 
-                    Set the current page to `page`
+                    <p>Sets the current page index</p>
+
 
                     
                     
@@ -255,11 +259,13 @@ cater for changes from responsive media queries, for instance.
                 
                 
                 
-                <label>selector
+                <label class="monospace">selector
                 
 
                 
                 </label>
+                
+                    DOM element or element id
                 
             </dd>
         
@@ -272,11 +278,13 @@ cater for changes from responsive media queries, for instance.
                 
                 
                 
-                <label class="optional">[options]
+                <label class="monospace">[options]
                 
 
                 
                 </label>
+                
+                    Carousel Options
                 
             </dd>
         
@@ -287,19 +295,15 @@ cater for changes from responsive media queries, for instance.
             </dt>
             <dd>
                 
-                    teste
                 
                 
-                
-                <label class="optional">[options.autoAdvance]
+                <label class="monospace">[options.autoAdvance]
                 
 
                 
-                    0
-                
                 </label>
                 
-                    The number of milliseconds to wait between auto-advancing pages. Set to 0 to disable auto-advance.
+                    Milliseconds to wait before auto-advancing pages. Set to 0 to disable auto-advance. Defaults to 0.
                 
             </dd>
         
@@ -310,19 +314,15 @@ cater for changes from responsive media queries, for instance.
             </dt>
             <dd>
                 
-                    teste
                 
                 
-                
-                <label class="optional">[options.axis]
+                <label class="monospace">[options.axis]
                 
 
                 
-                    &#x27;x&#x27;
-                
                 </label>
                 
-                    Can be `'x'` or `'y'`, for a horizontal or vertical carousel
+                    Axis of the carousel. Set to 'y' for a vertical carousel. Defaults to 'x'.
                 
             </dd>
         
@@ -333,19 +333,15 @@ cater for changes from responsive media queries, for instance.
             </dt>
             <dd>
                 
-                    teste
                 
                 
-                
-                <label class="optional">[options.center]
+                <label class="monospace">[options.center]
                 
 
                 
-                    false
-                
                 </label>
                 
-                    Center the carousel.
+                    Flag to center the carousel horizontally.
                 
             </dd>
         
@@ -356,19 +352,15 @@ cater for changes from responsive media queries, for instance.
             </dt>
             <dd>
                 
-                    teste
                 
                 
-                
-                <label class="optional">[options.initialPage]
+                <label class="monospace">[options.initialPage]
                 
 
                 
-                    0
-                
                 </label>
                 
-                    When initialized, set the page to this.
+                    Initial index page of the carousel. Defaults to 0.
                 
             </dd>
         
@@ -379,34 +371,9 @@ cater for changes from responsive media queries, for instance.
             </dt>
             <dd>
                 
-                    teste
                 
                 
-                
-                <label class="optional">[options.keyboardSupport]
-                
-
-                
-                    false
-                
-                </label>
-                
-                    Enable keyboard support
-                
-            </dd>
-        
-            <dt>
-                
-                    <code>Boolean</code>
-                
-            </dt>
-            <dd>
-                
-                    teste
-                
-                
-                
-                <label class="optional">[options.swipe]
+                <label class="monospace">[options.spaceAfterLastSlide]
                 
 
                 
@@ -414,28 +381,45 @@ cater for changes from responsive media queries, for instance.
                 
                 </label>
                 
-                    Enable swipe support where available
+                    If there are not enough slides to fill the full width of the last page, leave white space. Defaults to `true`.
                 
             </dd>
         
             <dt>
                 
-                    <code>String|DOMElement|Ink.UI.Pagination_1</code>
+                    <code>Boolean</code>
                 
             </dt>
             <dd>
                 
-                    teste
                 
                 
-                
-                <label class="optional">[options.pagination]
+                <label class="monospace">[options.swipe]
                 
 
                 
                 </label>
                 
-                    Either an `<ul>` element to add pagination markup to, or an `Ink.UI.Pagination` instance to use.
+                    Enable swipe support if available. Defaults to true.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Mixed</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="monospace">[options.pagination]
+                
+
+                
+                </label>
+                
+                    Either an `<ul>` element to add pagination markup to or an `Ink.UI.Pagination` instance to use.
                 
             </dd>
         
@@ -446,17 +430,15 @@ cater for changes from responsive media queries, for instance.
             </dt>
             <dd>
                 
-                    teste
                 
                 
-                
-                <label class="optional">[options.onChange]
+                <label class="monospace">[options.onChange]
                 
 
                 
                 </label>
                 
-                    Callback for when the page is changed.
+                    Callback to be called when the page changes.
                 
             </dd>
         
@@ -496,7 +478,8 @@ cater for changes from responsive media queries, for instance.
     
 
     
-        <p class="text">Get the currently displayed page.</p>
+        <p class="text"><p>Gets the current page index</p>
+</p>
     
 
     
@@ -544,7 +527,8 @@ cater for changes from responsive media queries, for instance.
     
 
     
-        <p class="text">Change to the next page</p>
+        <p class="text"><p>Goes to the next page</p>
+</p>
     
 
     
@@ -560,15 +544,13 @@ cater for changes from responsive media queries, for instance.
                 
                 
                 
-                <label class="optional">[wrap]
+                <label class="monospace">[wrap]
                 
 
                 
-                    false
-                
                 </label>
                 
-                    If true, going to the page after the last page takes you to the first page.
+                    Flag to loop from last page to first page.
                 
             </dd>
         
@@ -621,7 +603,8 @@ cater for changes from responsive media queries, for instance.
     
 
     
-        <p class="text">Change to the previous page</p>
+        <p class="text"><p>Goes to the previous page</p>
+</p>
     
 
     
@@ -637,15 +620,13 @@ cater for changes from responsive media queries, for instance.
                 
                 
                 
-                <label class="optional">[wrap]
+                <label class="monospace">[wrap]
                 
 
                 
-                    false
-                
                 </label>
                 
-                    If true, going to the page after the last page takes you to the first page.
+                    Flag to loop from first page to last page.
                 
             </dd>
         
@@ -685,9 +666,9 @@ cater for changes from responsive media queries, for instance.
     
 
     
-        <p class="text">Measure the carousel once again, adjusting the involved elements'
-sizes. Called automatically when the window resizes, in order to
-cater for changes from responsive media queries, for instance.</p>
+        <p class="text"><p>Repositions elements around.
+Measure the carousel once again, adjusting the involved elements&#39; sizes. This is called automatically when the window resizes, in order to cater for changes from responsive media queries, for instance.</p>
+</p>
     
 
     
@@ -743,7 +724,8 @@ cater for changes from responsive media queries, for instance.</p>
     
 
     
-        <p class="text">Set the current page to `page`</p>
+        <p class="text"><p>Sets the current page index</p>
+</p>
     
 
     
@@ -752,35 +734,39 @@ cater for changes from responsive media queries, for instance.</p>
         
             <dt>
                 
+                    <code>Number</code>
+                
             </dt>
             <dd>
                 
                 
                 
-                <label>page
+                <label class="monospace">page
                 
 
                 
                 </label>
+                
+                    Index of the destination page.
                 
             </dd>
         
             <dt>
                 
+                    <code>Boolean</code>
+                
             </dt>
             <dd>
                 
                 
                 
-                <label class="optional">[wrap]
+                <label class="monospace">[wrap]
                 
 
                 
-                    false
-                
                 </label>
                 
-                    Wrap over the first and last pages. (For example, going to the 5th page when there are only 4 pages goes to the 1st page)
+                    Flag to activate circular counting.
                 
             </dd>
         

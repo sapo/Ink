@@ -72,7 +72,8 @@
                 <td>
                     
 
-                    Removes the ability of the element of being dragged
+                    <p>Removes the ability of the element of being dragged</p>
+
 
                     
                     
@@ -217,7 +218,7 @@
                 
                 
                 
-                <label>target
+                <label class="monospace">target
                 
 
                 
@@ -236,13 +237,13 @@
                 
                 
                 
-                <label class="optional">[options]
+                <label class="monospace">[options]
                 
 
                 
                 </label>
                 
-                    Optional object for configuring the component
+                    Optional object to configure the component.
                 
             </dd>
         
@@ -253,11 +254,9 @@
             </dt>
             <dd>
                 
-                    teste
                 
                 
-                
-                <label class="optional">[options.constraint]
+                <label class="monospace">[options.constraint]
                 
 
                 
@@ -269,16 +268,14 @@
         
             <dt>
                 
-                    <code>String|DomElement</code>
+                    <code>String|DOMElement</code>
                 
             </dt>
             <dd>
                 
-                    teste
                 
                 
-                
-                <label class="optional">[options.constraintElm]
+                <label class="monospace">[options.constraintElm]
                 
 
                 
@@ -295,17 +292,15 @@
             </dt>
             <dd>
                 
-                    teste
                 
                 
-                
-                <label class="optional">[options.top]
+                <label class="monospace">[options.top]
                 
 
                 
                 </label>
                 
-                    Limits for constraining draggable movement.
+                    Limits to constrain draggable movement.
                 
             </dd>
         
@@ -316,17 +311,15 @@
             </dt>
             <dd>
                 
-                    teste
                 
                 
-                
-                <label class="optional">[options.right]
+                <label class="monospace">[options.right]
                 
 
                 
                 </label>
                 
-                    Limits for constraining draggable movement.
+                    Limits to constrain draggable movement.
                 
             </dd>
         
@@ -337,17 +330,15 @@
             </dt>
             <dd>
                 
-                    teste
                 
                 
-                
-                <label class="optional">[options.bottom]
+                <label class="monospace">[options.bottom]
                 
 
                 
                 </label>
                 
-                    Limits for constraining draggable movement.
+                    Limits to constrain draggable movement.
                 
             </dd>
         
@@ -358,17 +349,15 @@
             </dt>
             <dd>
                 
-                    teste
                 
                 
-                
-                <label class="optional">[options.left]
+                <label class="monospace">[options.left]
                 
 
                 
                 </label>
                 
-                    Limits for constraining draggable movement.
+                    Limits to constrain draggable movement.
                 
             </dd>
         
@@ -379,17 +368,15 @@
             </dt>
             <dd>
                 
-                    teste
                 
                 
-                
-                <label class="optional">[options.handle]
+                <label class="monospace">[options.handle]
                 
 
                 
                 </label>
                 
-                    if specified, this element will be used as a handle for dragging.
+                    If specified, this element or CSS ID will be used as a handle for dragging.
                 
             </dd>
         
@@ -400,17 +387,15 @@
             </dt>
             <dd>
                 
-                    teste
                 
                 
-                
-                <label class="optional">[options.revert]
+                <label class="monospace">[options.revert]
                 
 
                 
                 </label>
                 
-                    if true, reverts the draggable to the original position when dragging stops
+                    Flag to revert the draggable to the original position when dragging stops.
                 
             </dd>
         
@@ -421,17 +406,15 @@
             </dt>
             <dd>
                 
-                    teste
                 
                 
-                
-                <label class="optional">[options.cursor]
+                <label class="monospace">[options.cursor]
                 
 
                 
                 </label>
                 
-                    cursor type (CSS `cursor` value) used when the mouse is over the draggable object
+                    Cursor type (CSS `cursor` value) used when the mouse is over the draggable object.
                 
             </dd>
         
@@ -442,17 +425,15 @@
             </dt>
             <dd>
                 
-                    teste
                 
                 
-                
-                <label class="optional">[options.zIndex]
+                <label class="monospace">[options.zIndex]
                 
 
                 
                 </label>
                 
-                    zindex applied to the draggable element while dragged
+                    Z-index applied to the draggable element while dragged.
                 
             </dd>
         
@@ -463,59 +444,34 @@
             </dt>
             <dd>
                 
-                    teste
                 
                 
-                
-                <label class="optional">[options.fps]
+                <label class="monospace">[options.fps]
                 
 
                 
                 </label>
                 
-                    if defined, on drag will run every n frames per second only
+                    If set, throttles the drag effect to this number of frames per second.
                 
             </dd>
         
             <dt>
                 
-                    <code>DomElement</code>
+                    <code>DOMElement</code>
                 
             </dt>
             <dd>
                 
-                    teste
                 
                 
-                
-                <label class="optional">[options.droppableProxy]
+                <label class="monospace">[options.droppableProxy]
                 
 
                 
                 </label>
                 
-                    if set, a shallow copy of the droppableProxy will be put on document.body with transparent bg
-                
-            </dd>
-        
-            <dt>
-                
-                    <code>String</code>
-                
-            </dt>
-            <dd>
-                
-                    teste
-                
-                
-                
-                <label class="optional">[options.mouseAnchor]
-                
-
-                
-                </label>
-                
-                    defaults to mouse cursor. can be 'left|center|right top|center|bottom'
+                    If set, a shallow copy of this element will be moved around with transparent background.
                 
             </dd>
         
@@ -526,19 +482,34 @@
             </dt>
             <dd>
                 
-                    teste
                 
                 
-                
-                <label class="optional">[options.dragClass]
+                <label class="monospace">[options.mouseAnchor]
                 
 
                 
-                    &#x27;drag&#x27;
+                </label>
+                
+                    Anchor for the drag. Can be one of: 'left','center','right','top','center','bottom'.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="monospace">[options.dragClass]
+                
+
                 
                 </label>
                 
-                    class to add when the draggable is being dragged.
+                    Class to add when the draggable is being dragged. Defaults to drag.
                 
             </dd>
         
@@ -549,17 +520,15 @@
             </dt>
             <dd>
                 
-                    teste
                 
                 
-                
-                <label class="optional">[options.onStart]
+                <label class="monospace">[options.onStart]
                 
 
                 
                 </label>
                 
-                    callback called when dragging starts
+                    Callback called when dragging starts.
                 
             </dd>
         
@@ -570,17 +539,15 @@
             </dt>
             <dd>
                 
-                    teste
                 
                 
-                
-                <label class="optional">[options.onEnd]
+                <label class="monospace">[options.onEnd]
                 
 
                 
                 </label>
                 
-                    callback called when dragging stops
+                    Callback called when dragging stops.
                 
             </dd>
         
@@ -591,17 +558,15 @@
             </dt>
             <dd>
                 
-                    teste
                 
                 
-                
-                <label class="optional">[options.onDrag]
+                <label class="monospace">[options.onDrag]
                 
 
                 
                 </label>
                 
-                    callback called while dragging, prior to position updates
+                    Callback called while dragging, prior to position updates.
                 
             </dd>
         
@@ -612,17 +577,15 @@
             </dt>
             <dd>
                 
-                    teste
                 
                 
-                
-                <label class="optional">[options.onChange]
+                <label class="monospace">[options.onChange]
                 
 
                 
                 </label>
                 
-                    callback called while dragging, after position updates
+                    Callback called while dragging, after position updates.
                 
             </dd>
         
@@ -671,7 +634,8 @@
     
 
     
-        <p class="text">Removes the ability of the element of being dragged</p>
+        <p class="text"><p>Removes the ability of the element of being dragged</p>
+</p>
     
 
     

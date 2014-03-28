@@ -23,8 +23,15 @@
             
 
     
-    <p>The Table component transforms the native/DOM table element into a
-sortable, paginated component.</p>
+    <p><p>The Table component transforms the native/DOM table element into a sortable, paginated component.</p>
+<p>You can use this component to display data from a JSON endpoint, or
+from table rows in the DOM. Displaying from the DOM is more practical,
+but sometimes you don&#39;t want to load everything at once (if you have
+a HUGE table). In those cases, you should configure Ink.UI.Table to
+get data from JSON endpoint.</p>
+<p>To enable sorting, just set the <code>data-sortable</code> attribute of your table headers (they must be in the <code>thead</code> of the table) to &quot;true&quot;.</p>
+<p>To enable pagination, you should pass either an <code>Ink.UI.Pagination</code> instance or a selector to create the Ink.UI.Paginate element on.</p>
+</p>
     
     
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p>
@@ -57,6 +64,27 @@ sortable, paginated component.</p>
                     
 
                     
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Table_1-Ink_UI_Table-setEndpoint">
+                        
+                            .setEndpoint
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Sets the AJAX endpoint.
+Useful to change the endpoint in runtime.</p>
+
 
                     
                     
@@ -197,7 +225,7 @@ sortable, paginated component.</p>
                 
                 
                 
-                <label>selector
+                <label class="monospace">selector
                 
 
                 
@@ -214,7 +242,7 @@ sortable, paginated component.</p>
                 
                 
                 
-                <label class="optional">[options]
+                <label class="monospace">[options]
                 
 
                 
@@ -231,11 +259,9 @@ sortable, paginated component.</p>
             </dt>
             <dd>
                 
-                    teste
                 
                 
-                
-                <label class="optional">[options.pageSize]
+                <label class="monospace">[options.pageSize]
                 
 
                 
@@ -252,11 +278,9 @@ sortable, paginated component.</p>
             </dt>
             <dd>
                 
-                    teste
                 
                 
-                
-                <label class="optional">[options.endpoint]
+                <label class="monospace">[options.endpoint]
                 
 
                 
@@ -273,17 +297,15 @@ sortable, paginated component.</p>
             </dt>
             <dd>
                 
-                    teste
                 
                 
-                
-                <label class="optional">[options.createEndpointUrl]
+                <label class="monospace">[options.createEndpointUrl]
                 
 
                 
                 </label>
                 
-                    Callback to customise what URL the AJAX endpoint is at. Receives three
+                    Callback to customise what URL the AJAX endpoint is at. Receives three arguments: base (the "endpoint" option), sort (`{ order: 'asc' or 'desc', field: fieldname }`) and page ({ page: page number, size: items per page })
                 
             </dd>
         
@@ -294,17 +316,15 @@ sortable, paginated component.</p>
             </dt>
             <dd>
                 
-                    teste
                 
                 
-                
-                <label class="optional">[options.getDataFromEndPoint]
+                <label class="monospace">[options.getDataFromEndPoint]
                 
 
                 
                 </label>
                 
-                    Callback to allow the user to retrieve the data himself given an URL.
+                    Callback to allow the user to retrieve the data himself given an URL.  Must accept two arguments: `url` and `callback`. This `callback` will take as a single argument a JavaScript object.
                 
             </dd>
         
@@ -315,11 +335,9 @@ sortable, paginated component.</p>
             </dt>
             <dd>
                 
-                    teste
                 
                 
-                
-                <label class="optional">[options.processJSONRows]
+                <label class="monospace">[options.processJSONRows]
                 
 
                 
@@ -336,17 +354,15 @@ sortable, paginated component.</p>
             </dt>
             <dd>
                 
-                    teste
                 
                 
-                
-                <label class="optional">[options.processJSONHeaders]
+                <label class="monospace">[options.processJSONHeaders]
                 
 
                 
                 </label>
                 
-                    Get an object with all the headers' names as keys, and a { label, sortable }
+                    Get an object with all the headers' names as keys, and a { label, sortable } object as value.  Example: `{col1: {label: "Column 1"}, col2: {label: "Column 2", sortable: true}`.  Takes a single argument, the JSON response.
                 
             </dd>
         
@@ -357,11 +373,9 @@ sortable, paginated component.</p>
             </dt>
             <dd>
                 
-                    teste
                 
                 
-                
-                <label class="optional">[options.processJSONRow]
+                <label class="monospace">[options.processJSONRow]
                 
 
                 
@@ -378,17 +392,15 @@ sortable, paginated component.</p>
             </dt>
             <dd>
                 
-                    teste
                 
                 
-                
-                <label class="optional">[options.processJSONField]
+                <label class="monospace">[options.processJSONField]
                 
 
                 
                 </label>
                 
-                    Process the field data before putting it on the table.
+                    Process the field data before putting it on the table.  You can return HTML, a DOM element, or a string here.  Arguments you receive: `(column, fieldData, rowIndex)`.
                 
             </dd>
         
@@ -399,11 +411,9 @@ sortable, paginated component.</p>
             </dt>
             <dd>
                 
-                    teste
                 
                 
-                
-                <label class="optional">[options.processJSONField.FIELD_NAME]
+                <label class="monospace">[options.processJSONField.FIELD_NAME]
                 
 
                 
@@ -420,17 +430,15 @@ sortable, paginated component.</p>
             </dt>
             <dd>
                 
-                    teste
                 
                 
-                
-                <label class="optional">[options.processJSONTotalRows]
+                <label class="monospace">[options.processJSONTotalRows]
                 
 
                 
                 </label>
                 
-                    A callback where you have a chance to say how many rows
+                    A callback where you have a chance to say how many rows are in the dataset (not only on this page) you have on the collection. You get as an argument the JSON response.
                 
             </dd>
         
@@ -441,19 +449,15 @@ sortable, paginated component.</p>
             </dt>
             <dd>
                 
-                    teste
                 
                 
-                
-                <label class="optional">[options.getSortKey]
+                <label class="monospace">[options.getSortKey]
                 
 
                 
-                    null
-                
                 </label>
                 
-                    A function taking a `{ columnIndex, columnName, data, element }`
+                    A function taking a `{ columnIndex, columnName, data, element }` object and returning a value which serves as a sort key for the sorting operation. For example, if you want to sort by a `data-sort-key` atribute, set `getSortKey` to: function (cell) { return cell.element.getAttribute('data-sort-key'); }
                 
             </dd>
         
@@ -464,11 +468,9 @@ sortable, paginated component.</p>
             </dt>
             <dd>
                 
-                    teste
                 
                 
-                
-                <label class="optional">[options.getSortKey.FIELD_NAME]
+                <label class="monospace">[options.getSortKey.FIELD_NAME]
                 
 
                 
@@ -485,38 +487,34 @@ sortable, paginated component.</p>
             </dt>
             <dd>
                 
-                    teste
                 
                 
-                
-                <label class="optional">[options.tdClassNames]
+                <label class="monospace">[options.tdClassNames]
                 
 
                 
                 </label>
                 
-                    An object mapping each field to what classes it gets.
+                    An object mapping each field to what classes it gets.  Example: `{ name: "large-10", isBoss: "hide-small" }`
                 
             </dd>
         
             <dt>
                 
-                    <code>String|DomElement|Ink.UI.Pagination</code>
+                    <code>Mixed</code>
                 
             </dt>
             <dd>
                 
-                    teste
                 
                 
-                
-                <label class="optional">[options.pagination]
+                <label class="monospace">[options.pagination]
                 
 
                 
                 </label>
                 
-                    Pagination instance or element.
+                    Pagination instance, element or selector.
                 
             </dd>
         
@@ -527,11 +525,9 @@ sortable, paginated component.</p>
             </dt>
             <dd>
                 
-                    teste
                 
                 
-                
-                <label class="optional">[options.paginationOptions]
+                <label class="monospace">[options.paginationOptions]
                 
 
                 
@@ -548,11 +544,9 @@ sortable, paginated component.</p>
             </dt>
             <dd>
                 
-                    teste
                 
                 
-                
-                <label class="optional">[options.allowResetSorting]
+                <label class="monospace">[options.allowResetSorting]
                 
 
                 
@@ -569,11 +563,9 @@ sortable, paginated component.</p>
             </dt>
             <dd>
                 
-                    teste
                 
                 
-                
-                <label class="optional">[options.visibleFields]
+                <label class="monospace">[options.visibleFields]
                 
 
                 
@@ -662,6 +654,83 @@ sortable, paginated component.</p>
 {% endraw %}{% endhighlight %}
 
 
+
+
+    
+
+</section>
+
+    <section id="Ink_UI_Table_1-Ink_UI_Table-setEndpoint" class="box box-function">
+
+    <h1 class="fw-300">
+    
+        
+            .setEndpoint
+        
+    
+    (endpoint)
+    
+        
+            <i>method</i>
+        
+    
+    </h1>
+
+    
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        endpoint
+        
+        
+        </li>
+        
+    </ul>
+    
+
+    
+    
+
+    
+        <p class="text"><p>Sets the AJAX endpoint.
+Useful to change the endpoint in runtime.</p>
+</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="monospace">endpoint
+                
+
+                
+                </label>
+                
+                    New endpoint
+                
+            </dd>
+        
+        </dl>
+        
+        
+
+    
+
+
+    
 
 
     

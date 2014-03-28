@@ -45,7 +45,7 @@ module.exports = function(grunt) {
       },
 
       ink_all: {
-        src: '<%= ink.folders.js.dist %>ink-all.js', 
+        src: '<%= ink.folders.js.dist %>ink-all.js',
         dest: '<%= ink.folders.js.dist %>ink-all.min.js'
       }
     },
@@ -78,13 +78,14 @@ module.exports = function(grunt) {
         src: ["<%= ink.folders.js.dist %>/ink*.js"]
       },
       css: {
-        src: ["<%= ink.folders.css.dist %>/*.css"]
-      }
+        src: ["<%= ink.folders.css.dist %>/*.css","<%= ink.folders.css.dist %>/contrib" ]
+      },
+      csscontrib: [ '<%= ink.folders.css.dist %>/contrib' ]
     },
 
-    compass: {                  
-      css: {                   
-        options: {   
+    compass: {
+      css: {
+        options: {
           config: "config.rb"
         }
       },
@@ -132,7 +133,7 @@ module.exports = function(grunt) {
             stderr: true,
             failOnError: true
           },
-          command: 'git remote update; git checkout develop -- src && git add src && git commit -m "Updates src from the develop branch."'
+          command: 'git remote update; git checkout origin/develop -- src && git add src'
         },
         inkdoc: {
             options: {
@@ -147,16 +148,23 @@ module.exports = function(grunt) {
     text_grab: {
       glossary: {
         options: {
-          pattern: '\\.[a-zA-Z][a-zA-Z0-9-]+',
-          templateStart: '<table class="ink-table bordered alternating content-left">\n<tr><th class="large-30">Class</th><th>Description</th></tr>\n',
-          templateRow: '<tr><td>%s</td><td></td><td></td></tr>\n',
+          pattern: '\\.[a-zA-Z][a-zA-Z0-9-_]+',
+          templateStart: '<table class="props css">\n<tr><th class="large-30">Class</th><th>Description</th></tr>\n<caption>Glossary</caption>\n',
+          templateRow: '<tr>\n<td><code>%s</code></td>\n<td></td>\n</tr>\n',
           templateEnd: '</table>\n',
-          exceptions: ['\\.fa','ttf','otf','svg','eot','woff','jpg','jpeg','png'],
+          exceptions: ['\\.fa','ttf','otf','svg','eot','woff','jpg','jpeg','png','Microsoft','Alpha'],
         },
        files: {
-         'glossary/g.html': ['assets/css/ink.css']
+         'glossary/g.html': ['assets/css/ink-flex.css']
        }
       },
+    },
+
+    copy: {
+      facss: {
+        src: 'assets/css/contrib/font-awesome/font-awesome.css',
+        dest: 'assets/css/font-awesome.css'
+      }
     },
 
     jekyll: {
@@ -184,21 +192,22 @@ module.exports = function(grunt) {
   });
 
   grunt.loadNpmTasks('grunt-jekyll');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-contrib-compass');
-  grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-shell');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-text-grab');
+  grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-compass');
+  grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-watch');
 
   // Default task(s).
-  grunt.registerTask('js', ['clean:js','concat','uglify']);
-  grunt.registerTask('css', ['clean:css','compass','cssmin']);
-  grunt.registerTask('update', ['shell:src']);
-  grunt.registerTask('dev', ['watch']);
   grunt.registerTask('default', ['update','css','js']);
+  grunt.registerTask('update', ['shell:src']);
+  grunt.registerTask('docs', ['inkdoc','jekyll']);
+  grunt.registerTask('dev', ['watch']);
   grunt.registerTask('inkdoc', ['shell:inkdoc']);
+  grunt.registerTask('js', ['clean:js','concat','uglify']);
+  grunt.registerTask('css', ['clean:css','compass','copy:facss','clean:csscontrib','cssmin']);
 };

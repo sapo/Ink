@@ -2,7 +2,9 @@
 
     
         <section>
-        <h1 class="fw-300">Ink.UI.Tabs_1 <small>version: 1</small></h1>
+        <h1 class="fw-300">Ink.UI.Tabs_1 <small>version: 1
+
+Display tabbed content</small></h1>
     
 
     
@@ -23,7 +25,32 @@
             
 
     
-    <p>Tabs component</p>
+    <p><p>The Tabs Component offers a simple way to build a tab-separated
+layout, allowing you to offer multiple content in the same space
+with intuitive navigation.</p>
+<p>This component requires your markup to have:</p>
+<ul>
+<li>A container element (this is what you call the Ink.UI.Tabs constructor on), containing everything.<ul>
+<li>An element with the <code>tabs-nav</code> class, to contain links.<ul>
+<li>Your links with <code>href=&quot;#ID_OF_SECTION&quot;</code></li>
+</ul>
+</li>
+<li>Your sections with the corresponding <code>id</code> attributes.<ul>
+<li>The content for each section.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>When the user clicks in the links inside <code>tabs-nav</code>, the tab with
+the corresponding ID is then activated.</p>
+<p>The tab which is active when the tab component is initialized has
+its hash in the browser URL. If there is no hash, then the <code>active</code>
+option kicks in. Otherwise, Tabs will fall back to showing the tab
+corresponding to the first link.</p>
+<p>You can disable some (or all) tabs by passing an array for the
+<code>disabled</code> option</p>
+</p>
     
     
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p>
@@ -74,7 +101,9 @@
                 <td>
                     
 
-                    Returns the current active Content Tab
+                    <p>Returns the currently active section</p>
+<p>(Each section contains content for a tab, and must have an <code>id</code> attribute)</p>
+
 
                     
                     
@@ -93,7 +122,8 @@
                 <td>
                     
 
-                    Returns the current active Menu anchorChanges to the desired tag
+                    <p>Returns the currently active Menu link (the links which the user clicks on to change tabs)</p>
+
 
                     
                     
@@ -111,8 +141,14 @@
                 </td>
                 <td>
                     
+                        <span class="tag">deprecated</span>
+                    
 
-                    Returns the current active Menu LI
+                    <p>(This method is deprecated)</p>
+<p>Returns the parent of the currently active menu link.</p>
+<p>This is useful if you want to have <code>li</code> elements wrapping your links
+and want to access the currently visible one.</p>
+
 
                     
                     
@@ -131,7 +167,8 @@
                 <td>
                     
 
-                    Returns the active tab id
+                    <p>Returns the active tab id</p>
+
 
                     
                     
@@ -150,7 +187,9 @@
                 <td>
                     
 
-                    Changes to the desired tag
+                    <p>Changes to the desired tag</p>
+<p>Pass a selector/element identifying what tab you want</p>
+
 
                     
                     
@@ -169,7 +208,8 @@
                 <td>
                     
 
-                    Unregisters the component and removes its markup from the DOM
+                    <p>Unregisters the component and removes its markup from the DOM</p>
+
 
                     
                     
@@ -188,7 +228,8 @@
                 <td>
                     
 
-                    Disables the desired tag
+                    <p>Disables the desired tag</p>
+
 
                     
                     
@@ -207,7 +248,8 @@
                 <td>
                     
 
-                    Enables the desired tag
+                    <p>Enables the desired tag</p>
+
 
                     
                     
@@ -304,7 +346,7 @@
                 
                 
                 
-                <label>selector
+                <label class="monospace">selector
                 
 
                 
@@ -321,7 +363,7 @@
                 
                 
                 
-                <label class="optional">[options]
+                <label class="monospace">[options]
                 
 
                 
@@ -338,11 +380,9 @@
             </dt>
             <dd>
                 
-                    teste
                 
                 
-                
-                <label class="optional">[options.preventUrlChange]
+                <label class="monospace">[options.preventUrlChange]
                 
 
                 
@@ -359,11 +399,9 @@
             </dt>
             <dd>
                 
-                    teste
                 
                 
-                
-                <label class="optional">[options.active]
+                <label class="monospace">[options.active]
                 
 
                 
@@ -380,11 +418,9 @@
             </dt>
             <dd>
                 
-                    teste
                 
                 
-                
-                <label class="optional">[options.disabled]
+                <label class="monospace">[options.disabled]
                 
 
                 
@@ -401,11 +437,9 @@
             </dt>
             <dd>
                 
-                    teste
                 
                 
-                
-                <label class="optional">[options.onBeforeChange]
+                <label class="monospace">[options.onBeforeChange]
                 
 
                 
@@ -422,11 +456,9 @@
             </dt>
             <dd>
                 
-                    teste
                 
                 
-                
-                <label class="optional">[options.onChange]
+                <label class="monospace">[options.onChange]
                 
 
                 
@@ -443,11 +475,9 @@
             </dt>
             <dd>
                 
-                    teste
                 
                 
-                
-                <label class="optional">[options.triggerEventsOnLoad]
+                <label class="monospace">[options.triggerEventsOnLoad]
                 
 
                 
@@ -525,7 +555,9 @@
     
 
     
-        <p class="text">Returns the current active Content Tab</p>
+        <p class="text"><p>Returns the currently active section</p>
+<p>(Each section contains content for a tab, and must have an <code>id</code> attribute)</p>
+</p>
     
 
     
@@ -560,7 +592,8 @@
     
 
     
-        <p class="text">Returns the current active Menu anchorChanges to the desired tag</p>
+        <p class="text"><p>Returns the currently active Menu link (the links which the user clicks on to change tabs)</p>
+</p>
     
 
     
@@ -593,9 +626,15 @@
 
     
     
+        <span class="tag">deprecated</span>
+    
 
     
-        <p class="text">Returns the current active Menu LI</p>
+        <p class="text"><p>(This method is deprecated)</p>
+<p>Returns the parent of the currently active menu link.</p>
+<p>This is useful if you want to have <code>li</code> elements wrapping your links
+and want to access the currently visible one.</p>
+</p>
     
 
     
@@ -630,7 +669,8 @@
     
 
     
-        <p class="text">Returns the active tab id</p>
+        <p class="text"><p>Returns the active tab id</p>
+</p>
     
 
     
@@ -678,7 +718,9 @@
     
 
     
-        <p class="text">Changes to the desired tag</p>
+        <p class="text"><p>Changes to the desired tag</p>
+<p>Pass a selector/element identifying what tab you want</p>
+</p>
     
 
     
@@ -694,13 +736,13 @@
                 
                 
                 
-                <label>selector
+                <label class="monospace">selector
                 
 
                 
                 </label>
                 
-                    the id of the desired tab or the link that links to it
+                    Selector of the desired tab or the link that links to it
                 
             </dd>
         
@@ -740,7 +782,8 @@
     
 
     
-        <p class="text">Unregisters the component and removes its markup from the DOM</p>
+        <p class="text"><p>Unregisters the component and removes its markup from the DOM</p>
+</p>
     
 
     
@@ -788,7 +831,8 @@
     
 
     
-        <p class="text">Disables the desired tag</p>
+        <p class="text"><p>Disables the desired tag</p>
+</p>
     
 
     
@@ -804,7 +848,7 @@
                 
                 
                 
-                <label>selector
+                <label class="monospace">selector
                 
 
                 
@@ -863,7 +907,8 @@
     
 
     
-        <p class="text">Enables the desired tag</p>
+        <p class="text"><p>Enables the desired tag</p>
+</p>
     
 
     
@@ -879,13 +924,13 @@
                 
                 
                 
-                <label>selector
+                <label class="monospace">selector
                 
 
                 
                 </label>
                 
-                    the id of the desired tab or the link that links to it
+                    The id of the desired tab or the link that links to it
                 
             </dd>
         

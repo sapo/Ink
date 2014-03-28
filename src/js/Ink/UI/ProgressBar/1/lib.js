@@ -1,23 +1,23 @@
 /**
  * @module Ink.UI.ProgressBar_1
- * @author inkdev AT sapo.pt
+ * Animated progress bars
  * @version 1
  */
+
 Ink.createModule('Ink.UI.ProgressBar', '1', ['Ink.Dom.Selector_1','Ink.Dom.Element_1'], function( Selector, Element ) {
     'use strict';
 
     /**
-     * Associated to a .ink-progress-bar element, it provides the necessary
-     * method - setValue() - for the user to change the element's value.
+     * Associated to a .ink-progress-bar element, it provides a setValue() method to change the element's value.
      * 
      * @class Ink.UI.ProgressBar
      * @constructor
      * @version 1
-     * @param {String|DOMElement} selector
-     * @param {Object} [options] Options
-     *     @param {Number}     [options.startValue]          Percentage of the bar that is filled. Range between 0 and 100. Default: 0
-     *     @param {Function}   [options.onStart]             Callback that is called when a change of value is started
-     *     @param {Function}   [options.onEnd]               Callback that is called when a change of value ends
+     * @param {String|DOMElement}   selector                Element or selector
+     * @param {Object}              [options]               Options object
+     * @param {Number}              [options.startValue]    Percentage of the bar that is filled. Ranges between 0 and 100. Default: 0
+     * @param {Function}            [options.onStart]       Callback called when a change of value is started
+     * @param {Function}            [options.onEnd]         Callback called when a change of value ends
      *
      * @example
      *      <div class="ink-progress-bar grey" data-start-value="70%">

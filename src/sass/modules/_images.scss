@@ -6,7 +6,7 @@ figure {
         border: 1px solid $text-color;
 
         > img {
-            margin-bottom: -6px;
+            //margin-bottom: -6px;
             width: 100%;
         }
         
@@ -49,4 +49,5 @@ img {
     border: 0;
     width: auto;
     max-width: 100%;
+    vertical-align: top;
 }

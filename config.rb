@@ -7,4 +7,3 @@ sass_dir = 'src/sass'
 css_dir = "assets/css"
 fonts_dir = 'assets/fonts'
 images_dir = 'assets/img'
-
