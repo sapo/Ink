@@ -796,7 +796,7 @@ footer {
 $ink: darken($code-background,25%);
 $what: #709DC7;
 $why: lighten(#8F65C5,10%);
-$how: lighten(#C04343,10%);
+$download: lighten(#C04343,10%);
 $who: lighten(#CA8A4E,10%);
 
 #home {
@@ -837,24 +837,6 @@ $who: lighten(#CA8A4E,10%);
         }
       }
 
-      a.ink-button.download,
-      a.ink-button.repo {
-        color: $ink;
-        background: white;
-        font-size: 1.1em;
-        padding: .5em 1em;
-        @extend .fw-300;
-        text-decoration: none;
-        text-transform: uppercase;
-        &:hover,&:focus,&:active {
-          // background: darken($ink,20%);
-          background: black;
-          // border-color: darken($ink,23%);
-          border-color: black;
-          color: $white;
-        }
-      }
-
     }
 
     section.what {
@@ -887,9 +869,27 @@ $who: lighten(#CA8A4E,10%);
 
     }
 
-    section.how {
-      @include background-image(radial-gradient($how, darken($how,20%)));
+    section.download {
+      @include background-image(radial-gradient($download, darken($download,20%)));
       @include text-color($white,h1,h2,h3,p,ul);
+
+    a.ink-button.download,
+      a.ink-button.repo {
+        color: $download;
+        background: white;
+        font-size: 1.1em;
+        padding: .5em 1em;
+        @extend .fw-300;
+        text-decoration: none;
+        text-transform: uppercase;
+        &:hover,&:focus,&:active {
+          // background: darken($download,20%);
+          background: black;
+          // border-color: darken($download,23%);
+          border-color: black;
+          color: $white;
+        }
+      }
 
 
       .ink-grid {

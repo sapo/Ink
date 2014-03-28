@@ -1,38 +1,1166 @@
-/*
-Syntax error: Invalid CSS after "}": expected selector or at-rule, was "<<<<<<< HEAD"
-        on line 918 of /Users/pedrocorreia/dev/ink/src/sass/docs.scss
+.fw-100 {
+  font-weight: 100;
+  font-family: Roboto;
+}
 
-Backtrace:
-/Users/pedrocorreia/dev/ink/src/sass/docs.scss:918
-/Users/pedrocorreia/.rvm/gems/ruby-2.0.0-p247/gems/sass-3.2.13/lib/sass/scss/parser.rb:1147:in `expected'
-/Users/pedrocorreia/.rvm/gems/ruby-2.0.0-p247/gems/sass-3.2.13/lib/sass/scss/parser.rb:1085:in `expected'
-/Users/pedrocorreia/.rvm/gems/ruby-2.0.0-p247/gems/sass-3.2.13/lib/sass/scss/parser.rb:28:in `parse'
-/Users/pedrocorreia/.rvm/gems/ruby-2.0.0-p247/gems/sass-3.2.13/lib/sass/engine.rb:342:in `_to_tree'
-/Users/pedrocorreia/.rvm/gems/ruby-2.0.0-p247/gems/sass-3.2.13/lib/sass/engine.rb:315:in `_render'
-/Users/pedrocorreia/.rvm/gems/ruby-2.0.0-p247/gems/sass-3.2.13/lib/sass/engine.rb:262:in `render'
-/Users/pedrocorreia/.rvm/gems/ruby-2.0.0-p247/gems/compass-0.12.2/lib/compass/compiler.rb:140:in `block (2 levels) in compile'
-/Users/pedrocorreia/.rvm/gems/ruby-2.0.0-p247/gems/compass-0.12.2/lib/compass/compiler.rb:126:in `timed'
-/Users/pedrocorreia/.rvm/gems/ruby-2.0.0-p247/gems/compass-0.12.2/lib/compass/compiler.rb:139:in `block in compile'
-/Users/pedrocorreia/.rvm/gems/ruby-2.0.0-p247/gems/compass-0.12.2/lib/compass/logger.rb:45:in `red'
-/Users/pedrocorreia/.rvm/gems/ruby-2.0.0-p247/gems/compass-0.12.2/lib/compass/compiler.rb:138:in `compile'
-/Users/pedrocorreia/.rvm/gems/ruby-2.0.0-p247/gems/compass-0.12.2/lib/compass/compiler.rb:118:in `compile_if_required'
-/Users/pedrocorreia/.rvm/gems/ruby-2.0.0-p247/gems/compass-0.12.2/lib/compass/compiler.rb:103:in `block (2 levels) in run'
-/Users/pedrocorreia/.rvm/gems/ruby-2.0.0-p247/gems/compass-0.12.2/lib/compass/compiler.rb:101:in `each'
-/Users/pedrocorreia/.rvm/gems/ruby-2.0.0-p247/gems/compass-0.12.2/lib/compass/compiler.rb:101:in `block in run'
-/Users/pedrocorreia/.rvm/gems/ruby-2.0.0-p247/gems/compass-0.12.2/lib/compass/compiler.rb:126:in `timed'
-/Users/pedrocorreia/.rvm/gems/ruby-2.0.0-p247/gems/compass-0.12.2/lib/compass/compiler.rb:100:in `run'
-/Users/pedrocorreia/.rvm/gems/ruby-2.0.0-p247/gems/compass-0.12.2/lib/compass/commands/update_project.rb:45:in `perform'
-/Users/pedrocorreia/.rvm/gems/ruby-2.0.0-p247/gems/compass-0.12.2/lib/compass/commands/base.rb:18:in `execute'
-/Users/pedrocorreia/.rvm/gems/ruby-2.0.0-p247/gems/compass-0.12.2/lib/compass/commands/project_base.rb:19:in `execute'
-/Users/pedrocorreia/.rvm/gems/ruby-2.0.0-p247/gems/compass-0.12.2/lib/compass/exec/sub_command_ui.rb:43:in `perform!'
-/Users/pedrocorreia/.rvm/gems/ruby-2.0.0-p247/gems/compass-0.12.2/lib/compass/exec/sub_command_ui.rb:15:in `run!'
-/Users/pedrocorreia/.rvm/gems/ruby-2.0.0-p247/gems/compass-0.12.2/bin/compass:30:in `block in <top (required)>'
-/Users/pedrocorreia/.rvm/gems/ruby-2.0.0-p247/gems/compass-0.12.2/bin/compass:44:in `call'
-/Users/pedrocorreia/.rvm/gems/ruby-2.0.0-p247/gems/compass-0.12.2/bin/compass:44:in `<top (required)>'
-/Users/pedrocorreia/.rvm/gems/ruby-2.0.0-p247/bin/compass:19:in `load'
-/Users/pedrocorreia/.rvm/gems/ruby-2.0.0-p247/bin/compass:19:in `<main>'
-*/
-body:before {
+.fw-300, ul.props li.prop.breakpoint-aware:after, .example .ink-grid .column,
+html.flexbox .example .ink-grid .column, #home section.download a.ink-button.download,
+#home section.download a.ink-button.repo {
+  font-weight: 300;
+  font-family: Roboto;
+}
+
+.fw-400, .sidebar.ink-navigation ul.menu.vertical li.heading ul a {
+  font-weight: 400;
+  font-family: Roboto;
+}
+
+.fw-500, .sidebar.ink-navigation ul.menu.vertical li.heading {
+  font-weight: 500;
+  font-family: Roboto;
+}
+
+.fw-700, .mosaic .title, ul.props li.heading {
+  font-weight: 700;
+  font-family: Roboto;
+}
+
+.fw-900 {
+  font-weight: 900;
+  font-family: Roboto;
+}
+
+.condensed-300 {
+  font-weight: 200;
+  font-family: Roboto_condensed;
+}
+
+.condensed-400 {
+  font-weight: 400;
+  font-family: Roboto_condensed;
+}
+
+.condensed-700 {
+  font-weight: 700;
+  font-family: Roboto_condensed;
+}
+
+.slab-100 {
+  font-weight: 100;
+  font-family: Roboto_slab;
+}
+
+.slab-300 {
+  font-weight: 300;
+  font-family: Roboto_slab;
+}
+
+.slab-400, ul.props li.prop {
+  font-weight: 400;
+  font-family: Roboto_slab;
+}
+
+.slab-700 {
+  font-weight: 700;
+  font-family: Roboto_slab;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.uppercase, .mosaic .title, .example .ink-grid .column,
+html.flexbox .example .ink-grid .column {
+  text-transform: uppercase;
+}
+
+a.hover {
+  color: #007ed5;
+  text-decoration: underline;
+}
+
+a.active {
+  color: #f20000;
+}
+
+a.visited {
+  color: gray;
+}
+
+a, .ink-button {
+  -webkit-transition: all 140ms ease-in-out;
+  -moz-transition: all 140ms ease-in-out;
+  -o-transition: all 140ms ease-in-out;
+  transition: all 140ms ease-in-out;
+}
+
+#topbar {
+  position: fixed;
+  z-index: 100;
+  width: 100%;
+  background: #1a1a1a;
+  -webkit-transform: scale3d(1, 1, 1);
+  *zoom: 1;
+  top: 0;
+}
+#topbar:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+#topbar .ink-navigation {
+  *zoom: 1;
+}
+#topbar .ink-navigation ul.black li {
+  font-size: 14px;
+}
+#topbar .ink-navigation ul.black li a {
+  padding: .7em 1em;
+  color: #bbbbbb;
+  text-transform: uppercase;
+  font-weight: 300;
+  line-height: 24px;
+  *height: auto;
+}
+#topbar .ink-navigation ul.black li a:hover {
+  color: white;
+}
+#topbar .ink-navigation ul.black li a.ink-button {
+  color: white;
+  padding: 4px 12px;
+  margin: 5px 1em;
+  font-size: .875em;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+}
+#topbar .ink-navigation ul.black li a.ink-button:hover {
+  background: #0d68c2;
+}
+#topbar .ink-navigation ul.black li a.logoPlaceholder {
+  margin-right: .5em;
+  padding: .4em 0;
+  font-weight: bold;
+  font-size: 1.8em;
+}
+#topbar .ink-navigation ul.black li a.logoPlaceholder:hover {
+  background: none;
+}
+#topbar .ink-navigation ul.black li button.fa-bars {
+  font-size: 21px;
+  background: none;
+  font-size: 1.2em;
+  color: #bbbbbb;
+  border: none;
+  padding: .8em .8em .8em 0;
+}
+#topbar .ink-navigation ul.black li button.fa-bars:hover, #topbar .ink-navigation ul.black li button.fa-bars:active, #topbar .ink-navigation ul.black li button.fa-bars:focus {
+  color: white;
+  outline: none;
+}
+#topbar .ink-navigation ul.black li.active a {
+  color: white;
+}
+#topbar .ink-navigation:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.sidebar.ink-navigation ul.menu.vertical li.heading {
+  margin-top: 1em;
+  border-top: 1px solid #ddd;
+  font-size: .875em;
+  padding: 1em 0 0;
+  color: #555555;
+}
+.sidebar.ink-navigation ul.menu.vertical li.heading ul a {
+  padding: .3em 0;
+  border-bottom: none;
+  font-size: .875em;
+}
+.sidebar.ink-navigation ul.menu.vertical li.search {
+  position: relative;
+}
+.sidebar.ink-navigation ul.menu.vertical li.search input[type=search] {
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: .4em .6em .4em 1.9em;
+  width: 100%;
+  border: 1px solid #DDD;
+  font-size: 14px;
+}
+.sidebar.ink-navigation ul.menu.vertical li.search .fa-search {
+  position: absolute;
+  top: .7em;
+  left: .6em;
+  font-size: 14px;
+}
+.sidebar.ink-navigation ul.menu.vertical li.search #search-dropdown {
+  width: 100%;
+}
+.sidebar.ink-navigation ul.menu.vertical li.search #search-dropdown .dropdown-menu li {
+  float: none;
+  width: 100%;
+}
+
+.panel {
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+  -webkit-box-shadow: #dddddd 0 1px 1px 0;
+  -moz-box-shadow: #dddddd 0 1px 1px 0;
+  box-shadow: #dddddd 0 1px 1px 0;
+  padding: 1em;
+  border: 1px solid #BBB;
+  background-color: #FFF;
+}
+
+body.ink-drawer .left-drawer,
+body.ink-drawer .right-drawer {
+  background: #1e1e1e;
+}
+body.ink-drawer .left-drawer ul,
+body.ink-drawer .right-drawer ul {
+  margin: 59px 0 0 0;
+  padding: 0;
+  list-style-type: none;
+}
+body.ink-drawer .left-drawer li,
+body.ink-drawer .right-drawer li {
+  display: block;
+  margin: 0;
+  font-weight: 300;
+}
+body.ink-drawer .left-drawer li.search,
+body.ink-drawer .right-drawer li.search {
+  position: relative;
+  margin: 15px;
+}
+body.ink-drawer .left-drawer li.search input[type=search],
+body.ink-drawer .right-drawer li.search input[type=search] {
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: .4em .6em .4em 1.9em;
+  width: 100%;
+  border: 1px solid #DDD;
+  font-size: 14px;
+}
+body.ink-drawer .left-drawer li.search .fa-search,
+body.ink-drawer .right-drawer li.search .fa-search {
+  position: absolute;
+  top: .7em;
+  left: .6em;
+  font-size: 14px;
+}
+body.ink-drawer .left-drawer li.search #search-dropdown,
+body.ink-drawer .right-drawer li.search #search-dropdown {
+  width: 100%;
+}
+body.ink-drawer .left-drawer li.search #search-dropdown .dropdown-menu li,
+body.ink-drawer .right-drawer li.search #search-dropdown .dropdown-menu li {
+  float: none;
+  width: 100%;
+}
+body.ink-drawer .left-drawer li.heading,
+body.ink-drawer .right-drawer li.heading {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: #f0f0f0;
+  text-transform: uppercase;
+  margin-top: 1em;
+  font-weight: 700;
+  padding: 6px 15px;
+}
+body.ink-drawer .left-drawer li.heading a,
+body.ink-drawer .right-drawer li.heading a {
+  font-size: 1em;
+  margin-top: 1em;
+}
+body.ink-drawer .left-drawer li.heading:first-child,
+body.ink-drawer .right-drawer li.heading:first-child {
+  margin-top: 0;
+  border-top: none;
+}
+body.ink-drawer .left-drawer li > a,
+body.ink-drawer .right-drawer li > a {
+  display: block;
+  padding: 6px 15px;
+  color: #bbb;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: .875em;
+}
+body.ink-drawer .left-drawer li > a:hover,
+body.ink-drawer .right-drawer li > a:hover {
+  background: #333;
+  color: #FFF;
+}
+body.ink-drawer .left-drawer li > a.ink-button,
+body.ink-drawer .right-drawer li > a.ink-button {
+  color: white;
+  padding: 4px 12px;
+  margin: 1em;
+}
+body.ink-drawer .left-drawer li > a.ink-button:hover,
+body.ink-drawer .right-drawer li > a.ink-button:hover {
+  background: #0d68c2;
+}
+body.ink-drawer .left-drawer li.active > a,
+body.ink-drawer .right-drawer li.active > a {
+  background: #333;
+  color: #FFF;
+}
+body.ink-drawer .left-drawer li:last-child,
+body.ink-drawer .right-drawer li:last-child {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 1em;
+}
+
+.mosaic {
+  padding: 1em;
+  border: 1px solid #d9d9d9;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+}
+.mosaic .title {
+  margin: .5em 0;
+}
+.mosaic .description {
+  margin: 0;
+  font-size: .875em;
+  color: #555555;
+}
+.mosaic:hover {
+  text-decoration: none;
+  border: 1px solid #bfbfbf;
+  background: #fcfcfc;
+}
+.mosaic:hover .description {
+  text-transform: none;
+}
+
+.highlight {
+  padding: 1em;
+  background: #eeebe5;
+  margin-bottom: 1.5em;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+}
+
+.highlight pre {
+  margin: 0;
+  font-size: 0.85em;
+  overflow-x: auto;
   white-space: pre;
-  font-family: monospace;
-  content: "Syntax error: Invalid CSS after \"}\": expected selector or at-rule, was \"<<<<<<< HEAD\"\A         on line 918 of /Users/pedrocorreia/dev/ink/src/sass/docs.scss"; }
+  word-wrap: normal;
+}
+
+.highlight .c {
+  color: #999988;
+  font-style: italic;
+}
+
+/* Comment */
+.highlight .err {
+  background-color: #e3d2d2;
+  color: #a61717;
+}
+
+/* Error */
+.highlight .k {
+  font-weight: bold;
+}
+
+/* Keyword */
+.highlight .o {
+  font-weight: bold;
+}
+
+/* Operator */
+.highlight .cm {
+  color: #999988;
+  font-style: italic;
+}
+
+/* Comment.Multiline */
+.highlight .cp {
+  color: #999999;
+  font-weight: bold;
+}
+
+/* Comment.Preproc */
+.highlight .c1 {
+  color: #999988;
+  font-style: italic;
+}
+
+/* Comment.Single */
+.highlight .cs {
+  color: #999999;
+  font-weight: bold;
+  font-style: italic;
+}
+
+/* Comment.Special */
+.highlight .gd {
+  background-color: #ffdddd;
+  color: #000000;
+}
+
+/* Generic.Deleted */
+.highlight .gd .x {
+  background-color: #ffaaaa;
+  color: #000000;
+}
+
+/* Generic.Deleted.Specific */
+.highlight .ge {
+  font-style: italic;
+}
+
+/* Generic.Emph */
+.highlight .gr {
+  color: #aa0000;
+}
+
+/* Generic.Error */
+.highlight .gh {
+  color: #999999;
+}
+
+/* Generic.Heading */
+.highlight .gi {
+  background-color: #ddffdd;
+  color: #000000;
+}
+
+/* Generic.Inserted */
+.highlight .gi .x {
+  background-color: #aaffaa;
+  color: #000000;
+}
+
+/* Generic.Inserted.Specific */
+.highlight .go {
+  color: #888888;
+}
+
+/* Generic.Output */
+.highlight .gp {
+  color: #555555;
+}
+
+/* Generic.Prompt */
+.highlight .gs {
+  font-weight: bold;
+}
+
+/* Generic.Strong */
+.highlight .gu {
+  color: #aaaaaa;
+}
+
+/* Generic.Subheading */
+.highlight .gt {
+  color: #aa0000;
+}
+
+/* Generic.Traceback */
+.highlight .kc {
+  font-weight: bold;
+}
+
+/* Keyword.Constant */
+.highlight .kd {
+  font-weight: bold;
+}
+
+/* Keyword.Declaration */
+.highlight .kp {
+  font-weight: bold;
+}
+
+/* Keyword.Pseudo */
+.highlight .kr {
+  font-weight: bold;
+}
+
+/* Keyword.Reserved */
+.highlight .kt {
+  color: #445588;
+  font-weight: bold;
+}
+
+/* Keyword.Type */
+.highlight .m {
+  color: #009999;
+}
+
+/* Literal.Number */
+.highlight .s {
+  color: #d14;
+}
+
+/* Literal.String */
+.highlight .na {
+  color: #008080;
+}
+
+/* Name.Attribute */
+.highlight .nb {
+  color: #0086B3;
+}
+
+/* Name.Builtin */
+.highlight .nc {
+  color: #445588;
+  font-weight: bold;
+}
+
+/* Name.Class */
+.highlight .no {
+  color: #008080;
+}
+
+/* Name.Constant */
+.highlight .ni {
+  color: #800080;
+}
+
+/* Name.Entity */
+.highlight .ne {
+  color: #990000;
+  font-weight: bold;
+}
+
+/* Name.Exception */
+.highlight .nf {
+  color: #990000;
+  font-weight: bold;
+}
+
+/* Name.Function */
+.highlight .nn {
+  color: #555555;
+}
+
+/* Name.Namespace */
+.highlight .nt {
+  color: #000080;
+}
+
+/* Name.Tag */
+.highlight .nv {
+  color: #008080;
+}
+
+/* Name.Variable */
+.highlight .nx {
+  color: #005080;
+}
+
+/* Name.Variable */
+.highlight .ow {
+  font-weight: bold;
+}
+
+/* Operator.Word */
+.highlight .w {
+  color: #bbbbbb;
+}
+
+/* Text.Whitespace */
+.highlight .mf {
+  color: #009999;
+}
+
+/* Literal.Number.Float */
+.highlight .mh {
+  color: #009999;
+}
+
+/* Literal.Number.Hex */
+.highlight .mi {
+  color: #009999;
+}
+
+/* Literal.Number.Integer */
+.highlight .mo {
+  color: #009999;
+}
+
+/* Literal.Number.Oct */
+.highlight .sb {
+  color: #d14;
+}
+
+/* Literal.String.Backtick */
+.highlight .sc {
+  color: #d14;
+}
+
+/* Literal.String.Char */
+.highlight .sd {
+  color: #d14;
+}
+
+/* Literal.String.Doc */
+.highlight .s2 {
+  color: #d14;
+}
+
+/* Literal.String.Double */
+.highlight .se {
+  color: #d14;
+}
+
+/* Literal.String.Escape */
+.highlight .sh {
+  color: #d14;
+}
+
+/* Literal.String.Heredoc */
+.highlight .si {
+  color: #d14;
+}
+
+/* Literal.String.Interpol */
+.highlight .sx {
+  color: #d14;
+}
+
+/* Literal.String.Other */
+.highlight .sr {
+  color: #009926;
+}
+
+/* Literal.String.Regex */
+.highlight .s1 {
+  color: #d14;
+}
+
+/* Literal.String.Single */
+.highlight .ss {
+  color: #990073;
+}
+
+/* Literal.String.Symbol */
+.highlight .bp {
+  color: #999999;
+}
+
+/* Name.Builtin.Pseudo */
+.highlight .vc {
+  color: #008080;
+}
+
+/* Name.Variable.Class */
+.highlight .vg {
+  color: #008080;
+}
+
+/* Name.Variable.Global */
+.highlight .vi {
+  color: #008080;
+}
+
+/* Name.Variable.Instance */
+.highlight .il {
+  color: #009999;
+}
+
+/* Literal.Number.Integer.Long */
+.highlight .lineno {
+  color: #ccc;
+}
+
+/* Literal.Number.Integer.Long */
+.page-header {
+  padding: 3em 0 2em;
+  font-size: 1.25em;
+}
+.page-header p {
+  margin: 0 0 1em;
+  font-weight: 300;
+  line-height: 1.5;
+}
+.page-header p.section-title {
+  margin: 0;
+}
+.page-header .border {
+  background-image: url("../img/home_bkg.png") center 0px;
+  background-image: -webkit-gradient(linear, 0% 50%, 100% 50%, color-stop(0%, #e65d5b), color-stop(14%, #f3af32), color-stop(28%, #e6d168), color-stop(40%, #7bd369), color-stop(55%, #50c6a2), color-stop(70%, #a7d37c), color-stop(85%, #a7b958), color-stop(100%, #e35c57));
+  background-image: -webkit-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
+  background-image: -moz-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
+  background-image: -o-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
+  background-image: linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
+  clear: both;
+  margin: 0;
+  height: .3em;
+}
+
+section {
+  padding-top: 5em;
+  -webkit-background-clip: padding;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+}
+section:first-child {
+  padding-top: 0;
+  margin: 0;
+}
+section + section {
+  margin-top: 3em;
+  padding-top: 3em;
+  border-top: 1px solid #ded8cc;
+}
+section p, section ul, section ol, section dl, section dt code, section table {
+  font-weight: 300;
+}
+
+p code, ul code, dl code {
+  margin: 0 2px;
+  padding: 0 5px;
+  background-color: #eeebe5;
+  font-size: 0.85em;
+}
+
+table.props {
+  width: 100%;
+  border-collapse: initial;
+  background: #eeebe5;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+  margin: 1.5em 0;
+}
+table.props.glossary th.class {
+  width: 20%;
+}
+table.props tr:nth-child(odd) td {
+  background: #f2f0eb;
+}
+table.props tr td, table.props tr th {
+  padding: .7em 0;
+}
+table.props tr td:first-child, table.props tr th:first-child {
+  padding: .7em 1em;
+}
+table.props tr td:last-child, table.props tr th:last-child {
+  padding-right: 1em;
+}
+table.props tr td {
+  line-height: 1.4;
+}
+table.props caption {
+  padding: 0 0 0 .4em;
+  color: #eeebe5;
+  text-align: left;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 2em;
+  line-height: 0.8;
+}
+table.props td, table.props th {
+  padding: .1em;
+  border-bottom: 1px solid #ded8cc;
+  text-align: left;
+}
+table.props tr:last-child td {
+  border-bottom: none;
+}
+table.props .ink-label {
+  font-size: .813em;
+}
+
+span.tip {
+  display: none;
+}
+
+ul.props {
+  padding: 0;
+  list-style-type: none;
+}
+ul.props.inline li + li {
+  margin: 0 .4em .5em 0;
+}
+ul.props li.heading {
+  text-transform: uppercase;
+  margin: 0 0 .5em;
+}
+ul.props li.prop {
+  background-color: #eeebe5;
+  font-size: 0.85em;
+  padding: 0 5px;
+}
+ul.props li.prop.breakpoint-aware:after {
+  margin-left: .2em;
+  background: none;
+  color: #4a9b17;
+  content: "Breakpoint aware";
+  text-transform: uppercase;
+  font-size: .9em;
+}
+
+span.label {
+  white-space: nowrap;
+  font-size: .80em;
+}
+span.label + span.label {
+  margin-left: .3em;
+}
+span.label:after {
+  padding: 0 .35em;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+}
+span.label.mandatory:after {
+  background: #d64c4c;
+  color: white;
+  content: "Mandatory";
+  text-transform: uppercase;
+}
+span.label.breakpoint-aware:after {
+  background: #77b451;
+  color: white;
+  content: "Breakpoint aware";
+  text-transform: uppercase;
+}
+span.label.context-aware:after {
+  background: #77b451;
+  color: white;
+  content: "Context aware";
+  text-transform: uppercase;
+}
+span.label.halves-quarters:after {
+  background: #ffb43f;
+  color: white;
+  content: "Double, Half & Quarter";
+  text-transform: uppercase;
+}
+span.label.js:after {
+  background: #4b97e3;
+  color: white;
+  content: "JavaScript";
+  text-transform: uppercase;
+}
+span.label.flexbox:after {
+  background: #3fb2b2;
+  color: white;
+  content: "Flexbox";
+  text-transform: uppercase;
+}
+
+p.example-title {
+  padding: 0 0 0 .4em;
+  color: #eeebe5;
+  text-align: left;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 2em;
+  line-height: 0.8;
+  margin: 1em 0 0 0;
+}
+
+p + p.example-title {
+  margin-top: .7em;
+}
+
+.example code, .example pre, table.props code, table.props pre {
+  font-size: 0.85em;
+}
+
+.example,
+html.flexbox .example {
+  padding: 1em;
+  background: #eeebe5;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+  margin-bottom: 1.5em;
+}
+.example .ink-grid,
+html.flexbox .example .ink-grid {
+  padding: 0;
+}
+.example .ink-grid .column,
+html.flexbox .example .ink-grid .column {
+  height: 150px;
+  border: 1px #d0c7b7 solid;
+  background: #e0dacf;
+  text-align: center;
+  line-height: 150px;
+}
+.example#chevron-example,
+html.flexbox .example#chevron-example {
+  height: 140px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: block;
+}
+.example#chevron-example a,
+html.flexbox .example#chevron-example a {
+  top: auto;
+}
+
+.tall {
+  height: 250px;
+}
+
+footer {
+  border-top: 1px solid #DDD;
+  background: #f0f0f0;
+}
+footer .socialplugins {
+  background: #e6e6e6;
+  padding: 1em;
+  border: 1px solid #afafaf;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+}
+footer .copyright .SAPOlogo {
+  background: url("../img/SAPOlogo.png") no-repeat;
+  text-indent: -9999px;
+  display: block;
+  width: 101px;
+  height: 43px;
+  margin-top: .2em;
+  margin-right: 2em;
+}
+footer .copyright .PTClogo {
+  background: url("../img/icon_Sprite.png") no-repeat 0 top;
+  display: block;
+  height: 43px;
+  padding-left: 60px;
+  text-decoration: none;
+}
+footer .copyright .PTClogo small {
+  display: block;
+  line-height: 1.6;
+}
+footer .credits {
+  margin: 0;
+}
+footer .ink-navigation ul.menu.horizontal li a {
+  padding: .5em 1em .5em 0;
+  display: inline-block;
+}
+footer .ink-navigation ul.menu.horizontal li a.license {
+  padding: .5em 0;
+}
+
+.screen-size-helper {
+  line-height: 1.6em;
+  padding: 0.5333333333333333em 0.8em;
+  background: rgba(0, 0, 0, 0.7);
+}
+.screen-size-helper .title,
+.screen-size-helper ul {
+  color: white;
+}
+.screen-size-helper .title {
+  margin: 0;
+  float: left;
+  text-transform: uppercase;
+}
+.screen-size-helper ul {
+  float: right;
+  margin: 0;
+  padding: 0;
+}
+.screen-size-helper ul li {
+  padding: 0;
+  margin: 0;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: inherit !important;
+}
+.screen-size-helper ul li.tiny {
+  color: #0f75da;
+}
+.screen-size-helper ul li.small {
+  color: #4a9b17;
+}
+.screen-size-helper ul li.medium {
+  color: #ff9c00;
+}
+.screen-size-helper ul li.large {
+  color: #c91111;
+}
+.screen-size-helper ul li.xlarge {
+  color: white;
+}
+
+#home a {
+  color: white;
+  text-decoration: underline;
+}
+#home section {
+  border: none;
+  padding: 2em 0;
+}
+#home section + section {
+  margin-top: 0;
+}
+#home section:first-child {
+  margin-top: 44px;
+}
+#home section.ink {
+  background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, color-stop(0%, #bcb098), color-stop(100%, #907f5e));
+  background-image: -webkit-radial-gradient(#bcb098, #907f5e);
+  background-image: -moz-radial-gradient(#bcb098, #907f5e);
+  background-image: -o-radial-gradient(#bcb098, #907f5e);
+  background-image: radial-gradient(#bcb098, #907f5e);
+}
+#home section.ink h1, #home section.ink h2, #home section.ink h3, #home section.ink p, #home section.ink ul {
+  color: white;
+}
+#home section.ink .ink-grid {
+  height: 100%;
+}
+#home section.ink .ink-grid .column-group {
+  height: inherit;
+}
+#home section.what {
+  background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, color-stop(0%, #709dc7), color-stop(100%, #4b84b9));
+  background-image: -webkit-radial-gradient(#709dc7, #4b84b9);
+  background-image: -moz-radial-gradient(#709dc7, #4b84b9);
+  background-image: -o-radial-gradient(#709dc7, #4b84b9);
+  background-image: radial-gradient(#709dc7, #4b84b9);
+}
+#home section.what h1, #home section.what h2, #home section.what h3, #home section.what p, #home section.what ul {
+  color: white;
+}
+#home section.what .ink-grid {
+  height: 100%;
+}
+#home section.what .ink-grid .column-group {
+  height: inherit;
+}
+#home section.why {
+  background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, color-stop(0%, #aa8ad3), color-stop(100%, #7544b3));
+  background-image: -webkit-radial-gradient(#aa8ad3, #7544b3);
+  background-image: -moz-radial-gradient(#aa8ad3, #7544b3);
+  background-image: -o-radial-gradient(#aa8ad3, #7544b3);
+  background-image: radial-gradient(#aa8ad3, #7544b3);
+}
+#home section.why h1, #home section.why h2, #home section.why h3, #home section.why p, #home section.why ul {
+  color: white;
+}
+#home section.why .ink-grid {
+  height: 100%;
+}
+#home section.why .ink-grid .column-group {
+  height: inherit;
+}
+#home section.download {
+  background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, color-stop(0%, #cd6969), color-stop(100%, #9c3434));
+  background-image: -webkit-radial-gradient(#cd6969, #9c3434);
+  background-image: -moz-radial-gradient(#cd6969, #9c3434);
+  background-image: -o-radial-gradient(#cd6969, #9c3434);
+  background-image: radial-gradient(#cd6969, #9c3434);
+}
+#home section.download h1, #home section.download h2, #home section.download h3, #home section.download p, #home section.download ul {
+  color: white;
+}
+#home section.download a.ink-button.download,
+#home section.download a.ink-button.repo {
+  color: #cd6969;
+  background: white;
+  font-size: 1.1em;
+  padding: .5em 1em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+#home section.download a.ink-button.download:hover, #home section.download a.ink-button.download:focus, #home section.download a.ink-button.download:active,
+#home section.download a.ink-button.repo:hover,
+#home section.download a.ink-button.repo:focus,
+#home section.download a.ink-button.repo:active {
+  background: black;
+  border-color: black;
+  color: white;
+}
+#home section.download .ink-grid {
+  height: 100%;
+}
+#home section.download .ink-grid .column-group {
+  height: inherit;
+}
+#home section.who {
+  background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, color-stop(0%, #d6a475), color-stop(100%, #b07135));
+  background-image: -webkit-radial-gradient(#d6a475, #b07135);
+  background-image: -moz-radial-gradient(#d6a475, #b07135);
+  background-image: -o-radial-gradient(#d6a475, #b07135);
+  background-image: radial-gradient(#d6a475, #b07135);
+}
+#home section.who h1, #home section.who h2, #home section.who h3, #home section.who p, #home section.who ul {
+  color: white;
+}
+#home section.who .ink-grid {
+  height: 100%;
+}
+#home section.who .ink-grid .column-group {
+  height: inherit;
+}
+
+.copyright {
+  line-height: 1.25;
+}
+.copyright .PTClogo a {
+  background: url("../img/icon_Sprite.png") no-repeat 0 top;
+  text-indent: -9999px;
+  display: inline-block;
+  float: left;
+  width: 41px;
+  height: 43px;
+  margin-right: .6em;
+}
+.copyright .SAPOlogo {
+  background: url("../img/SAPOlogo.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+  text-indent: -9999px;
+  display: inline-block;
+  width: 101px;
+  height: 30px;
+  margin-bottom: 1em;
+  color: transparent !important;
+}
+
+#search-results {
+  display: none;
+}
+#search-results.show {
+  display: block;
+}
