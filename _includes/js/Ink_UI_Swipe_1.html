@@ -2,7 +2,7 @@
 
     
         <section>
-        <h1 class="fw-300">Ink.UI.Swipe <small>version: 1</small></h1>
+        <h1 class="fw-300">Ink.UI.Swipe_1 <small>version: 1</small></h1>
     
 
     
@@ -23,7 +23,7 @@
             
 
     
-    <p><p>Subscribe swipe gestures!</p>
+    <p><p>Subscribe swipe gestures.</p>
 <p>Supports filtering swipes be any combination of the criteria supported in the options.</p>
 </p>
     
@@ -47,7 +47,7 @@
         
             <tr>
                 <td>
-                    <a href="#Ink_UI_Swipe-Ink_UI_Swipe-Swipe">
+                    <a href="#Ink_UI_Swipe_1-Ink_UI_Swipe_1-Swipe_1">
                         
                             
                         
@@ -77,11 +77,11 @@
 
 
 
-    <section id="Ink_UI_Swipe-Ink_UI_Swipe-Swipe" class="box box-function">
+    <section id="Ink_UI_Swipe_1-Ink_UI_Swipe_1-Swipe_1" class="box box-function">
 
     <h1 class="fw-300">
     
-        Ink.UI.Swipe
+        Ink.UI.Swipe_1
     
     (el, options, )
     
@@ -170,11 +170,13 @@
                 
                 
                 
-                <label>el
+                <label class="monospace">el
                 
 
                 
                 </label>
+                
+                    Element or Selector
                 
             </dd>
         
@@ -187,11 +189,13 @@
                 
                 
                 
-                <label>options
+                <label class="monospace">options
                 
 
                 
                 </label>
+                
+                    Options Object
                 
             </dd>
         
@@ -204,13 +208,13 @@
                 
                 
                 
-                <label class="optional">[options.onEnd]
+                <label class="monospace">[options.onEnd]
                 
 
                 
                 </label>
                 
-                    callback function for the `touchend` event. Gets all the gesture information, and is filtered by min/max Dist and Duration options (see below)
+                    Callback function for the `touchend` event. Gets all the gesture information, and is filtered by min/max Dist and Duration options (see below)
                 
             </dd>
         
@@ -223,13 +227,13 @@
                 
                 
                 
-                <label class="optional">[options.onStart]
+                <label class="monospace">[options.onStart]
                 
 
                 
                 </label>
                 
-                    callback function for `touchstart` event
+                    Callback function for `touchstart` event.
                 
             </dd>
         
@@ -242,13 +246,13 @@
                 
                 
                 
-                <label class="optional">[options.onMove]
+                <label class="monospace">[options.onMove]
                 
 
                 
                 </label>
                 
-                    callback function for every `touchmove` event. Gets current gesture information.
+                    Callback function for every `touchmove` event. Gets current gesture information.
                 
             </dd>
         
@@ -261,13 +265,13 @@
                 
                 
                 
-                <label class="optional">[options.minDist]
+                <label class="monospace">[options.minDist]
                 
 
                 
                 </label>
                 
-                    minimum allowed distance, in pixels
+                    Minimum allowed distance, in pixels.
                 
             </dd>
         
@@ -280,13 +284,13 @@
                 
                 
                 
-                <label class="optional">[options.maxDist]
+                <label class="monospace">[options.maxDist]
                 
 
                 
                 </label>
                 
-                    maximum allowed distance, in pixels
+                    Maximum allowed distance, in pixels.
                 
             </dd>
         
@@ -299,13 +303,13 @@
                 
                 
                 
-                <label class="optional">[options.minDuration]
+                <label class="monospace">[options.minDuration]
                 
 
                 
                 </label>
                 
-                    minimum allowed duration, in seconds
+                    Minimum allowed duration, in seconds.
                 
             </dd>
         
@@ -318,13 +322,13 @@
                 
                 
                 
-                <label class="optional">[options.maxDuration]
+                <label class="monospace">[options.maxDuration]
                 
 
                 
                 </label>
                 
-                    maximum allowed duration, in seconds
+                    Maximum allowed duration, in seconds.
                 
             </dd>
         
@@ -337,13 +341,13 @@
                 
                 
                 
-                <label class="optional">[options.axis]
+                <label class="monospace">[options.axis]
                 
 
                 
                 </label>
                 
-                    if either 'x' or 'y' is passed, only swipes where the dominant axis is the given one trigger the callback
+                    If either 'x' or 'y' is passed, only swipes where the dominant axis is the given one trigger the callback
                 
             </dd>
         
@@ -356,15 +360,13 @@
                 
                 
                 
-                <label class="optional">[options.storeGesture]
+                <label class="monospace">[options.storeGesture]
                 
 
                 
-                    false
-                
                 </label>
                 
-                    store gesture information and provide to the callback
+                    If to store gesture information and provide it to the callback. Defaults to true.
                 
             </dd>
         
@@ -377,15 +379,13 @@
                 
                 
                 
-                <label class="optional">[options.stopEvents]
+                <label class="monospace">[options.stopEvents]
                 
 
                 
-                    true
-                
                 </label>
                 
-                    stop (default and propagation) of the received events
+                    Flag to stop (default and propagation) of the received events. Defaults to true.
                 
             </dd>
         
@@ -400,6 +400,12 @@
 
 
     
+	<h3>Samples</h3>
+
+	
+		{% include js_samples/Ink_UI_Swipe_1.html %}
+	
+
 
 </section>
 

@@ -23,8 +23,12 @@
             
 
     
-    <p><p>The Sticky component takes an element and transforms it&#39;s behavior in order to, when the user scrolls he sets its position
-to fixed and maintain it until the user scrolls back to the same place.</p>
+    <p><p>Ink.UI.Sticky makes an element &quot;stick&quot; to the screen and stay in the same place as the user scrolls.</p>
+<p>To use it, just select an element as you create the Sticky. As you scroll past it, it will stick to the top of the screen.</p>
+<p>The <code>activateInLayouts</code> option controls in what layouts this behaviour happens. By default, it is disabled for the <code>small</code> and <code>tiny</code> layouts.
+Pass a comma-separated string to choose just the layouts you need.</p>
+<p>You can use the <code>offsetTop</code> option if you want it to keep some distance from the top of the screen.</p>
+<p>To avoid it going under the footer of your page, pass a selector to your footer as the <code>bottomElement</code> option.</p>
 </p>
     
     
@@ -172,6 +176,8 @@ to fixed and maintain it until the user scrolls back to the same place.</p>
                 
                 </label>
                 
+                    Element or selector
+                
             </dd>
         
             <dt>
@@ -189,7 +195,7 @@ to fixed and maintain it until the user scrolls back to the same place.</p>
                 
                 </label>
                 
-                    Options
+                    Options           Options object.
                 
             </dd>
         
@@ -206,11 +212,9 @@ to fixed and maintain it until the user scrolls back to the same place.</p>
                 
 
                 
-                    0
-                
                 </label>
                 
-                    Number of pixels of distance from the bottomElement.
+                    Number of pixels of distance from the bottomElement. Defaults to 0.
                 
             </dd>
         
@@ -227,11 +231,9 @@ to fixed and maintain it until the user scrolls back to the same place.</p>
                 
 
                 
-                    0
-                
                 </label>
                 
-                    Number of pixels of distance from the topElement.
+                    Number of pixels of distance from the topElement. Defaults to 0.
                 
             </dd>
         
@@ -248,11 +250,9 @@ to fixed and maintain it until the user scrolls back to the same place.</p>
                 
 
                 
-                    true
-                
                 </label>
                 
-                    Whether to set "style.height" and "style.width" in the stuck element. Turn this off when your `stickyClass` has its own height and width and you don't want this to be dealt with through javascript.
+                    Set to false to disable setting inline CSS dimensions. Use this if you want to use CSS to define your own dimensions. Defaults to true.
                 
             </dd>
         
@@ -269,11 +269,9 @@ to fixed and maintain it until the user scrolls back to the same place.</p>
                 
 
                 
-                    true
-                
                 </label>
                 
-                    Whether to set "style.left" in the stuck element. Turn this off when your `stickyClass` has its own "left" position and you don't want this to be dealt with through javascript.
+                    Set to false to disable setting inline CSS positions. Use this if you want to use CSS to define your own positioning. Defaults to true.
                 
             </dd>
         
@@ -290,11 +288,9 @@ to fixed and maintain it until the user scrolls back to the same place.</p>
                 
 
                 
-                    &quot;ink-sticky-wrapper&quot;
-                
                 </label>
                 
-                    Css class for the wrapper element.
+                    CSS class for the wrapper element. Defaults to 'ink-sticky-wrapper'.
                 
             </dd>
         
@@ -311,11 +307,9 @@ to fixed and maintain it until the user scrolls back to the same place.</p>
                 
 
                 
-                    &quot;ink-sticky-stuck&quot;
-                
                 </label>
                 
-                    Css class for sticking the sticky to the screen. Add your own "stuck" class to define your own sticky behaviour.
+                    CSS class to stick the element to the screen. Defaults to 'ink-sticky-stuck'.
                 
             </dd>
         
@@ -370,11 +364,9 @@ to fixed and maintain it until the user scrolls back to the same place.</p>
                 
 
                 
-                    &#x27;medium,large&#x27;
-                
                 </label>
                 
-                    Layouts in which the sticky behaviour is present. Pass an array or comma-separated string.
+                    Layouts in which the sticky behaviour is present. Pass an array or comma-separated string. Defaults to 'medium,large'.
                 
             </dd>
         

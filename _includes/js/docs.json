@@ -5095,6 +5095,9 @@
 									"isFirstLevel": false,
 									"description": "Callback to be called when the page changes."
 								}
+							],
+							"samples": [
+								"Ink_UI_Carousel_1.html"
 							]
 						},
 						{
@@ -6640,7 +6643,10 @@
 								}
 							],
 							"examples": [
-								"\n    Ink.requireModules( ['Ink.UI.Draggable_1'], function( Draggable ){\n        new Draggable( '#myElementId' );\n    });\n"
+								"\n    Ink.requireModules( ['Ink.UI.Draggable_1'], function( Draggable ){\n        new Draggable( '#myElementId' );\n    });\n\n"
+							],
+							"samples": [
+								"Ink_UI_Swipe_1.html"
 							]
 						},
 						{
@@ -10080,7 +10086,7 @@
 				{
 					"kind": "class",
 					"name": "Ink.UI.Spy",
-					"text": "Spy is a component that 'spies' an element (or a group of elements) and when they leave the viewport (through the top),\nhighlight an option - related to that element being spied - that resides in a menu, initially identified as target.",
+					"text": "Spy is a UI component which tells the user which section is currently\nvisible.\n\nSpy can be used to highlight a menu item for the section which is\nvisible to the user.\n\nYou need two things: A menu element (which contains your links inside\n`li` tags), and an element containing your section's content.\n\nThe links must be inside `li` tags. These will get the 'active' class,\nto signal which item is currently visible. In your CSS you need to add\nstyling for this class.\n\nTo use Ink.UI.Spy for more than one section, loop through your\nsections (as you see in the sample below), or just load\n`autoload.js` and set add the `data-spy=\"true\"` attribute to\nyour sections.\n\nThe currently visible element's corresponding link in the menu\ngets the 'visible' class added to it.",
 					"file": "src/js/Ink/UI/Spy/1/lib.js",
 					"functions": [
 						{
@@ -10108,12 +10114,12 @@
 									"name": "options.target",
 									"type": "DOMElement|String",
 									"isFirstLevel": false,
-									"description": "Target menu on where the spy will highlight the right option."
+									"description": "Target menu where the spy will highlight the right option."
 								}
 							],
 							"version": "1",
-							"examples": [
-								"\n     <script>\n         Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.Spy_1'], function( Selector, Spy ){\n             var menuElement = Ink.s('#menu');\n             var specialAnchorToSpy = Ink.s('#specialAnchor');\n             var spyObj = new Spy( specialAnchorToSpy, {\n                 target: menuElement\n             });\n         });\n     </script>\n"
+							"samples": [
+								"Ink_UI_Spy_1.html"
 							]
 						},
 						{
@@ -10132,7 +10138,7 @@
 			"attributes": [],
 			"uses": [],
 			"author": "inkdev AT sapo.pt",
-			"version": "1"
+			"version": "1\n\nHighlight elements as you scroll"
 		},
 		{
 			"kind": "module",
@@ -10154,162 +10160,175 @@
 								{
 									"kind": "param",
 									"name": "container",
+									"type": "DOMElement|String",
 									"isOptional": true,
 									"isFirstLevel": true,
-									"description": "{DOMElement|String} Element which contains the stacks (identified by the options.column selector)"
+									"description": "Element which contains the stacks (identified by the options.column selector)"
 								},
 								{
 									"kind": "param",
 									"name": "options",
+									"type": "Object",
 									"isOptional": true,
-									"isFirstLevel": true
+									"isFirstLevel": true,
+									"description": "Options object."
 								},
 								{
 									"kind": "param",
 									"name": "options.column",
+									"type": "String",
 									"isOptional": true,
-									"defaultValue": "'.stacker-column'",
 									"isFirstLevel": false,
-									"description": "{String}   Select the columns inside the `container`"
+									"description": "Selector for the the columns inside the container element. Defaults to '.stacker-column'."
 								},
 								{
 									"kind": "param",
 									"name": "options.item",
+									"type": "String",
 									"isOptional": true,
-									"defaultValue": "'.stacker-item'",
 									"isFirstLevel": false,
-									"description": "{String}   Select items in your stack"
+									"description": "Selector for the items in your stack. Defaults to '.stacker-item'."
 								},
 								{
 									"kind": "param",
 									"name": "options.customBreakPoints",
+									"type": "Object",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "{Object}   options for each breakpoint name. Use this if you have more breakpoints than Ink by default (`large`, `medium`, `small`)"
+									"description": "Options for each breakpoint name. Use this if you have more breakpoints than Ink by default (`large`, `medium`, `small`)"
 								},
 								{
 									"kind": "param",
 									"name": "options.customBreakpoints.BREAKPOINT_NAME",
+									"type": "Object",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "{Object}"
+									"description": "Custom breakpoints object."
 								},
 								{
 									"kind": "param",
 									"name": "options.customBreakpoints.BREAKPOINT_NAME.max",
+									"type": "String",
 									"isFirstLevel": false,
 									"description": "Maximum screen size as seen in your media query"
 								},
 								{
 									"kind": "param",
 									"name": "options.customBreakpoints.BREAKPOINT_NAME.min",
+									"type": "String",
 									"isFirstLevel": false,
 									"description": "Minimum screen size as seen in your media query"
 								},
 								{
 									"kind": "param",
 									"name": "options.customBreakpoints.BREAKPOINT_NAME.cols",
+									"type": "String",
 									"isFirstLevel": false,
 									"description": "Column count for this size."
 								},
 								{
 									"kind": "param",
 									"name": "options.largeMax",
+									"type": "Number",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "{Number}   Upper bound of `large` breakpoint"
+									"description": "Upper bound of `large` breakpoint"
 								},
 								{
 									"kind": "param",
 									"name": "options.largeMin",
+									"type": "Number",
 									"isOptional": true,
-									"defaultValue": "961",
 									"isFirstLevel": false,
-									"description": "{Number}   Lower bound of `large` breakpoint"
+									"description": "Lower bound of `large` breakpoint. Defaults to 961."
 								},
 								{
 									"kind": "param",
 									"name": "options.mediumMax",
+									"type": "Number",
 									"isOptional": true,
-									"defaultValue": "960",
 									"isFirstLevel": false,
-									"description": "{Number}   Upper bound of `medium` breakpoint"
+									"description": "Upper bound of `medium` breakpoint. Defaults to 960."
 								},
 								{
 									"kind": "param",
 									"name": "options.mediumMin",
+									"type": "Number",
 									"isOptional": true,
-									"defaultValue": "651",
 									"isFirstLevel": false,
-									"description": "{Number}   Lower bound of `medium` breakpoint"
+									"description": "Lower bound of `medium` breakpoint. Defaults to 651."
 								},
 								{
 									"kind": "param",
 									"name": "options.smallMax",
+									"type": "Number",
 									"isOptional": true,
-									"defaultValue": "650",
 									"isFirstLevel": false,
-									"description": "{Number}   Upper bound of `small` breakpoint"
+									"description": "Upper bound of `small` breakpoint. Defaults to 650."
 								},
 								{
 									"kind": "param",
 									"name": "options.smallMin",
+									"type": "Number",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "{Number}   Lower bound of `small` breakpoint"
+									"description": "Lower bound of `small` breakpoint"
 								},
 								{
 									"kind": "param",
 									"name": "options.largeCols",
+									"type": "Integer",
 									"isOptional": true,
-									"defaultValue": "3",
 									"isFirstLevel": false,
-									"description": "{Integer}  Number of columns in the `large` viewport"
+									"description": "Number of columns in the `large` viewport. Defaults to 3."
 								},
 								{
 									"kind": "param",
 									"name": "options.mediumCols",
+									"type": "Integer",
 									"isOptional": true,
-									"defaultValue": "2",
 									"isFirstLevel": false,
-									"description": "{Integer}  Number of columns in the `medium` viewport"
+									"description": "Number of columns in the `medium` viewport. Defaults to 2."
 								},
 								{
 									"kind": "param",
 									"name": "options.smallCols",
+									"type": "Integer",
 									"isOptional": true,
-									"defaultValue": "1",
 									"isFirstLevel": false,
-									"description": "{Integer}  Number of columns in the `small` viewport"
+									"description": "Number of columns in the `small` viewport. Defaults to 1."
 								},
 								{
 									"kind": "param",
 									"name": "options.isOrdered",
+									"type": "Boolean",
 									"isOptional": true,
-									"defaultValue": "true",
 									"isFirstLevel": false,
-									"description": "{Boolean}  When `false`, do not reorder stacks when combining them."
+									"description": "When false, doesn't reorder stacks when combining them."
 								},
 								{
 									"kind": "param",
 									"name": "options.onRunCallback",
+									"type": "Function",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "{Function} Called when instantiated"
+									"description": "Called when instantiated."
 								},
 								{
 									"kind": "param",
 									"name": "options.onResizeCallback",
+									"type": "Function",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "{Function} Called when resized because the window resized."
+									"description": "Called when the window resizes."
 								},
 								{
 									"kind": "param",
 									"name": "options.onAPIReloadCallback",
+									"type": "Function",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "{Function} Called when you ask to reload stack items from the DOM."
+									"description": "Called when the reload function executes."
 								}
 							],
 							"examples": [
@@ -10320,13 +10339,14 @@
 							"kind": "function",
 							"name": "addItem",
 							"file": "src/js/Ink/UI/Stacker/1/lib.js",
-							"text": "Add an item to the end of your stacks. Call `reloadItems()` when you are done adding items.",
+							"text": "Adds an item to the end of your stacks.\nCall `reloadItems()` when you are done adding items.",
 							"params": [
 								{
 									"kind": "param",
 									"name": "item",
 									"type": "DOMElement",
-									"isFirstLevel": true
+									"isFirstLevel": true,
+									"description": "Element"
 								}
 							]
 						},
@@ -10334,7 +10354,7 @@
 							"kind": "function",
 							"name": "reloadItems",
 							"file": "src/js/Ink/UI/Stacker/1/lib.js",
-							"text": "Update the layout of your items.\n\nCall this when:\n\n - The width has changed, but not because of the window resizing.\n - You used addItem to add some items",
+							"text": "Updates the layout of your items.\nCall this method after adding items or changing their dimensions. This method is automatically called when the window resizes.",
 							"params": []
 						}
 					],
@@ -10343,7 +10363,8 @@
 			],
 			"functions": [],
 			"attributes": [],
-			"uses": []
+			"uses": [],
+			"version": "1"
 		},
 		{
 			"kind": "module",
@@ -10353,7 +10374,7 @@
 				{
 					"kind": "class",
 					"name": "Ink.UI.Sticky",
-					"text": "The Sticky component takes an element and transforms it's behavior in order to, when the user scrolls he sets its position\nto fixed and maintain it until the user scrolls back to the same place.",
+					"text": "Ink.UI.Sticky makes an element \"stick\" to the screen and stay in the same place as the user scrolls.\n\nTo use it, just select an element as you create the Sticky. As you scroll past it, it will stick to the top of the screen.\n\nThe `activateInLayouts` option controls in what layouts this behaviour happens. By default, it is disabled for the `small` and `tiny` layouts.\nPass a comma-separated string to choose just the layouts you need.\n\nYou can use the `offsetTop` option if you want it to keep some distance from the top of the screen.\n\nTo avoid it going under the footer of your page, pass a selector to your footer as the `bottomElement` option.",
 					"file": "src/js/Ink/UI/Sticky/1/lib.js",
 					"functions": [
 						{
@@ -10366,7 +10387,8 @@
 									"kind": "param",
 									"name": "selector",
 									"type": "String|DOMElement",
-									"isFirstLevel": true
+									"isFirstLevel": true,
+									"description": "Element or selector"
 								},
 								{
 									"kind": "param",
@@ -10374,61 +10396,55 @@
 									"type": "Object",
 									"isOptional": true,
 									"isFirstLevel": true,
-									"description": "Options"
+									"description": "Options           Options object."
 								},
 								{
 									"kind": "param",
 									"name": "options.offsetBottom",
 									"type": "Number",
 									"isOptional": true,
-									"defaultValue": "0",
 									"isFirstLevel": false,
-									"description": "Number of pixels of distance from the bottomElement."
+									"description": "Number of pixels of distance from the bottomElement. Defaults to 0."
 								},
 								{
 									"kind": "param",
 									"name": "options.offsetTop",
 									"type": "Number",
 									"isOptional": true,
-									"defaultValue": "0",
 									"isFirstLevel": false,
-									"description": "Number of pixels of distance from the topElement."
+									"description": "Number of pixels of distance from the topElement. Defaults to 0."
 								},
 								{
 									"kind": "param",
 									"name": "options.inlineDimensions",
 									"type": "Boolean",
 									"isOptional": true,
-									"defaultValue": "true",
 									"isFirstLevel": false,
-									"description": "Whether to set \"style.height\" and \"style.width\" in the stuck element. Turn this off when your `stickyClass` has its own height and width and you don't want this to be dealt with through javascript."
+									"description": "Set to false to disable setting inline CSS dimensions. Use this if you want to use CSS to define your own dimensions. Defaults to true."
 								},
 								{
 									"kind": "param",
 									"name": "options.inlinePosition",
 									"type": "Boolean",
 									"isOptional": true,
-									"defaultValue": "true",
 									"isFirstLevel": false,
-									"description": "Whether to set \"style.left\" in the stuck element. Turn this off when your `stickyClass` has its own \"left\" position and you don't want this to be dealt with through javascript."
+									"description": "Set to false to disable setting inline CSS positions. Use this if you want to use CSS to define your own positioning. Defaults to true."
 								},
 								{
 									"kind": "param",
 									"name": "options.wrapperClass",
 									"type": "String",
 									"isOptional": true,
-									"defaultValue": "\"ink-sticky-wrapper\"",
 									"isFirstLevel": false,
-									"description": "Css class for the wrapper element."
+									"description": "CSS class for the wrapper element. Defaults to 'ink-sticky-wrapper'."
 								},
 								{
 									"kind": "param",
 									"name": "options.stickyClass",
 									"type": "String",
 									"isOptional": true,
-									"defaultValue": "\"ink-sticky-stuck\"",
 									"isFirstLevel": false,
-									"description": "Css class for sticking the sticky to the screen. Add your own \"stuck\" class to define your own sticky behaviour."
+									"description": "CSS class to stick the element to the screen. Defaults to 'ink-sticky-stuck'."
 								},
 								{
 									"kind": "param",
@@ -10451,9 +10467,8 @@
 									"name": "options.activateInLayouts",
 									"type": "Array|String",
 									"isOptional": true,
-									"defaultValue": "'medium,large'",
 									"isFirstLevel": false,
-									"description": "Layouts in which the sticky behaviour is present. Pass an array or comma-separated string."
+									"description": "Layouts in which the sticky behaviour is present. Pass an array or comma-separated string. Defaults to 'medium,large'."
 								}
 							],
 							"version": "1",
@@ -10532,23 +10547,22 @@
 			"functions": [],
 			"attributes": [],
 			"uses": [],
-			"author": "inkdev AT sapo.pt",
 			"version": "1"
 		},
 		{
 			"kind": "module",
-			"name": "Ink.UI.Swipe",
+			"name": "Ink.UI.Swipe_1",
 			"file": "src/js/Ink/UI/Swipe/1/lib.js",
 			"classes": [
 				{
 					"kind": "class",
-					"name": "Ink.UI.Swipe",
-					"text": "Subscribe swipe gestures!\n\nSupports filtering swipes be any combination of the criteria supported in the options.",
+					"name": "Ink.UI.Swipe_1",
+					"text": "Subscribe swipe gestures.\n\nSupports filtering swipes be any combination of the criteria supported in the options.",
 					"file": "src/js/Ink/UI/Swipe/1/lib.js",
 					"functions": [
 						{
 							"kind": "function",
-							"name": "Swipe",
+							"name": "Swipe_1",
 							"file": "src/js/Ink/UI/Swipe/1/lib.js",
 							"isConstructor": true,
 							"params": [
@@ -10556,13 +10570,15 @@
 									"kind": "param",
 									"name": "el",
 									"type": "String|DOMElement",
-									"isFirstLevel": true
+									"isFirstLevel": true,
+									"description": "Element or Selector"
 								},
 								{
 									"kind": "param",
 									"name": "options",
 									"type": "Object",
-									"isFirstLevel": true
+									"isFirstLevel": true,
+									"description": "Options Object"
 								},
 								{
 									"kind": "param",
@@ -10570,7 +10586,7 @@
 									"type": "Function",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "callback function for the `touchend` event. Gets all the gesture information, and is filtered by min/max Dist and Duration options (see below)"
+									"description": "Callback function for the `touchend` event. Gets all the gesture information, and is filtered by min/max Dist and Duration options (see below)"
 								},
 								{
 									"kind": "param",
@@ -10578,7 +10594,7 @@
 									"type": "Function",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "callback function for `touchstart` event"
+									"description": "Callback function for `touchstart` event."
 								},
 								{
 									"kind": "param",
@@ -10586,7 +10602,7 @@
 									"type": "Function",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "callback function for every `touchmove` event. Gets current gesture information."
+									"description": "Callback function for every `touchmove` event. Gets current gesture information."
 								},
 								{
 									"kind": "param",
@@ -10594,7 +10610,7 @@
 									"type": "Number",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "minimum allowed distance, in pixels"
+									"description": "Minimum allowed distance, in pixels."
 								},
 								{
 									"kind": "param",
@@ -10602,7 +10618,7 @@
 									"type": "Number",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "maximum allowed distance, in pixels"
+									"description": "Maximum allowed distance, in pixels."
 								},
 								{
 									"kind": "param",
@@ -10610,7 +10626,7 @@
 									"type": "Number",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "minimum allowed duration, in seconds"
+									"description": "Minimum allowed duration, in seconds."
 								},
 								{
 									"kind": "param",
@@ -10618,7 +10634,7 @@
 									"type": "Number",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "maximum allowed duration, in seconds"
+									"description": "Maximum allowed duration, in seconds."
 								},
 								{
 									"kind": "param",
@@ -10626,26 +10642,27 @@
 									"type": "String",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "if either 'x' or 'y' is passed, only swipes where the dominant axis is the given one trigger the callback"
+									"description": "If either 'x' or 'y' is passed, only swipes where the dominant axis is the given one trigger the callback"
 								},
 								{
 									"kind": "param",
 									"name": "options.storeGesture",
 									"type": "String",
 									"isOptional": true,
-									"defaultValue": "false",
 									"isFirstLevel": false,
-									"description": "store gesture information and provide to the callback"
+									"description": "If to store gesture information and provide it to the callback. Defaults to true."
 								},
 								{
 									"kind": "param",
 									"name": "options.stopEvents",
 									"type": "String",
 									"isOptional": true,
-									"defaultValue": "true",
 									"isFirstLevel": false,
-									"description": "stop (default and propagation) of the received events"
+									"description": "Flag to stop (default and propagation) of the received events. Defaults to true."
 								}
+							],
+							"samples": [
+								"Ink_UI_Swipe_1.html"
 							]
 						}
 					],
@@ -10655,7 +10672,6 @@
 			"functions": [],
 			"attributes": [],
 			"uses": [],
-			"author": "ink AT sapo.pt",
 			"version": "1"
 		},
 		{
@@ -10998,7 +11014,7 @@
 				{
 					"kind": "class",
 					"name": "Ink.UI.Tabs",
-					"text": "The Tabs Component offers a simple way to build a tab-separated\nlayout, allowing you to offer multiple content in the same space\nwith intuitive navigation.\n\nThis component requires your markup to have:\n\n - A container element (this is what you call the Ink.UI.Tabs constructor on), containing everything.\n   - An element with the `tabs-nav` class, to contain links.\n     - Your links with `href=\"#ID_OF_SECTION\"`\n   - Your sections with the corresponding `id` attributes.\n     - The content for each section.\n\nWhen the user clicks in the links inside `tabs-nav`, the tab with\nthe corresponding ID is then activated.\n\nThe tab which is active when the tab component is initialized has\nits hash in the browser URL. If there is no hash, then the `active`\noption kicks in. Otherwise, Tabs will fall back to showing the tab\ncorresponding to the first link.\n\nYou can disable some (or all) tabs by passing an array for the\n`disabled` option",
+					"text": "The Tabs Component offers a simple way to build a tab-separated layout, allowing you to offer multiple content in the same space with intuitive navigation.\n\nThis component requires your markup to have:\n\n - A container element (this is what you call the Ink.UI.Tabs constructor on), containing everything.\n   - An element with the `tabs-nav` class, to contain links.\n     - Your links with `href=\"#ID_OF_SECTION\"`\n   - Your sections with the corresponding `id` attributes.\n     - The content for each section.\n\nWhen the user clicks in the links inside `tabs-nav`, the tab with the corresponding ID is then activated.\n\nThe tab which is active when the tab component is initialized has its hash in the browser URL. If there is no hash, then the `active` option kicks in. Otherwise, Tabs will fall back to showing the tab corresponding to the first link.\n\nYou can disable some (or all) tabs by passing an array for the `disabled` option.",
 					"file": "src/js/Ink/UI/Tabs/1/lib.js",
 					"functions": [
 						{
@@ -11214,7 +11230,7 @@
 							"kind": "function",
 							"name": "changeTab",
 							"file": "src/js/Ink/UI/Tabs/1/lib.js",
-							"text": "Changes to the desired tag\n\nPass a selector/element identifying what tab you want",
+							"text": "Changes the active tab\n\nPass a selector/element identifying what tab you want",
 							"params": [
 								{
 									"kind": "param",
@@ -11271,7 +11287,7 @@
 							"kind": "function",
 							"name": "activeMenuTab",
 							"file": "src/js/Ink/UI/Tabs/1/lib.js",
-							"text": "(This method is deprecated)\n\nReturns the parent of the currently active menu link.\n\nThis is useful if you want to have `li` elements wrapping your links\nand want to access the currently visible one.",
+							"text": "Returns the parent of the currently active menu link.\n\nThis is useful if you want to have `li` elements wrapping your links\nand want to access the currently visible one.\n\n(This method is deprecated)",
 							"params": [],
 							"deprecated": true,
 							"return": {
@@ -11284,7 +11300,7 @@
 							"kind": "function",
 							"name": "activeMenuLink",
 							"file": "src/js/Ink/UI/Tabs/1/lib.js",
-							"text": "Returns the currently active Menu link (the links which the user clicks on to change tabs)",
+							"text": "Gets the currently active Menu link (the links which the user clicks on to change tabs)",
 							"params": [],
 							"return": {
 								"kind": "return",
@@ -11296,7 +11312,7 @@
 							"kind": "function",
 							"name": "activeContentTab",
 							"file": "src/js/Ink/UI/Tabs/1/lib.js",
-							"text": "Returns the currently active section\n\n(Each section contains content for a tab, and must have an `id` attribute)",
+							"text": "Gets the currently active section\n\n(Each section contains content for a tab, and must have an `id` attribute)",
 							"params": [],
 							"return": {
 								"kind": "return",
@@ -11308,7 +11324,7 @@
 							"kind": "function",
 							"name": "destroy",
 							"file": "src/js/Ink/UI/Tabs/1/lib.js",
-							"text": "Unregisters the component and removes its markup from the DOM",
+							"text": "Unregisters the component and removes its markup",
 							"params": []
 						}
 					],
@@ -11318,8 +11334,7 @@
 			"functions": [],
 			"attributes": [],
 			"uses": [],
-			"author": "inkdev AT sapo.pt",
-			"version": "1\n\nDisplay tabbed content"
+			"version": "1"
 		},
 		{
 			"kind": "module",
@@ -11329,7 +11344,7 @@
 				{
 					"kind": "class",
 					"name": "Ink.UI.Toggle",
-					"text": "Toggle the visibility of DOM Elements.\n\nYou need two elements to use Toggle: the `trigger` element, and\nthe `target` element (or elements). The default behaviour is to\ntoggle the `target`(s) when you click the `trigger`.\n\nThe toggle has a state. It is either \"on\" or \"off\". It works by\nswitching between the CSS classes in `classNameOn` and `classNameOff`\naccording to the current state.\n\nWhen you initialize the Toggle, it will check whether the targets\nare visible to figure out what the initial state is. You can force\nthe toggle to consider itself turned \"on\" or \"off\" by setting the\n`initialState` option to `true` or `false`, respectively.\n\nYou can get the current state of the Toggle by calling `getState`,\nor by checking if your `trigger` element has the \"active\" class.\nThe state can be changed through JavaScript. Just call  `setState(true)` \nto turn the Toggle on (or `setState(false)` to turn it off).",
+					"text": "You need two elements to use Toggle: the `trigger` element, and the `target` element (or elements). The default behaviour is to toggle the `target`(s) when you click the `trigger`.\n\nThe toggle has a state. It is either \"on\" or \"off\". It works by switching between the CSS classes in `classNameOn` and `classNameOff` according to the current state.\n\nWhen you initialize the Toggle, it will check if the targets are visible to figure out what the initial state is. You can force the toggle to consider itself turned \"on\" or \"off\" by setting the `initialState` option to `true` or `false`, respectively.\n\nYou can get the current state of the Toggle by calling `getState`, or by checking if your `trigger` element has the \"active\" class.\nThe state can be changed through JavaScript. Just call  `setState(true)` \nto turn the Toggle on (or `setState(false)` to turn it off).",
 					"file": "src/js/Ink/UI/Toggle/1/lib.js",
 					"functions": [
 						{
@@ -11365,63 +11380,56 @@
 									"name": "options.classNameOn",
 									"type": "String",
 									"isOptional": true,
-									"defaultValue": "'show-all'",
 									"isFirstLevel": false,
-									"description": "className when toggle is On"
+									"description": "CSS class to toggle when on. Defaults to 'show-all'."
 								},
 								{
 									"kind": "param",
 									"name": "options.classNameOff",
 									"type": "String",
 									"isOptional": true,
-									"defaultValue": "'hide-all'",
 									"isFirstLevel": false,
-									"description": "className when toggle is Off."
+									"description": "CSS class to toggle when off. Defaults to 'hide-all'."
 								},
 								{
 									"kind": "param",
 									"name": "options.triggerEvent",
 									"type": "String",
 									"isOptional": true,
-									"defaultValue": "'click'",
 									"isFirstLevel": false,
-									"description": "Event that will trigger the toggling."
+									"description": "Event that will trigger the toggling. Defaults to 'click'."
 								},
 								{
 									"kind": "param",
 									"name": "options.closeOnClick",
 									"type": "Boolean",
 									"isOptional": true,
-									"defaultValue": "true",
 									"isFirstLevel": false,
-									"description": "When this is on, if the user clicks outside of the toggled content, the target is toggled off."
+									"description": "Flag to toggle the targe off when clicking outside the toggled content. Defaults to true."
 								},
 								{
 									"kind": "param",
 									"name": "options.closeOnInsideClick",
-									"type": "Selector",
+									"type": "String",
 									"isOptional": true,
-									"defaultValue": "'a[href]'",
 									"isFirstLevel": false,
-									"description": "Toggle off when an element matching this selector is clicked. Set to null to deactivate the check. Default: 'a[href]' (finds links)"
+									"description": "Toggle off when an element matching this selector is clicked. Set to null to deactivate the check. Defaults to 'a[href]'."
 								},
 								{
 									"kind": "param",
 									"name": "options.initialState",
 									"type": "Boolean",
 									"isOptional": true,
-									"defaultValue": "null",
 									"isFirstLevel": false,
-									"description": "Whether to start toggled off, on, or as found in the markup. (false: off, true: on, null: markup)"
+									"description": "Flag to define initial state. false: off, true: on, null: markup. Defaults to null."
 								},
 								{
 									"kind": "param",
 									"name": "options.onChangeState",
 									"type": "Function",
 									"isOptional": true,
-									"defaultValue": "null",
 									"isFirstLevel": false,
-									"description": "Callback (`function (currentState) {...}`) to be called when the toggle state changes. Return `false` to cancel the event."
+									"description": "Callback when the toggle state changes. Return `false` to cancel the event."
 								}
 							],
 							"version": "1",
@@ -11515,7 +11523,6 @@
 			"functions": [],
 			"attributes": [],
 			"uses": [],
-			"author": "inkdev AT sapo.pt",
 			"version": "1"
 		},
 		{
@@ -11547,67 +11554,69 @@
 									"name": "options",
 									"type": "Object",
 									"isOptional": true,
-									"isFirstLevel": true
+									"isFirstLevel": true,
+									"description": "Options object"
 								},
 								{
 									"kind": "param",
 									"name": "options.text",
+									"type": "String",
 									"isOptional": true,
-									"defaultValue": "''",
 									"isFirstLevel": false,
 									"description": "Text content for the tooltip."
 								},
 								{
 									"kind": "param",
 									"name": "options.html",
+									"type": "String",
 									"isOptional": true,
-									"defaultValue": "''",
 									"isFirstLevel": false,
 									"description": "HTML for the tooltip. Same as above, but won't escape HTML."
 								},
 								{
 									"kind": "param",
 									"name": "options.where",
+									"type": "String",
 									"isOptional": true,
-									"defaultValue": "'up'",
 									"isFirstLevel": false,
-									"description": "Positioning for the tooltip. Options are 'up', 'down', 'left', 'right', which place the tooltip in the corresponding direction (and show an arrow), 'mousemove', which follows the mouse as it moves, and 'mousefix', which stays in one place."
+									"description": "Positioning for the tooltip. Options are 'up', 'down', 'left', 'right', 'mousemove' (follows the cursor), and 'mousefix' (stays fixed). Defaults to 'up'."
 								},
 								{
 									"kind": "param",
 									"name": "options.color",
+									"type": "String",
 									"isOptional": true,
-									"defaultValue": "''",
 									"isFirstLevel": false,
 									"description": "Color of the tooltip. Options are red, orange, blue, green and black. Default is white."
 								},
 								{
 									"kind": "param",
 									"name": "options.fade",
+									"type": "Number",
 									"isOptional": true,
-									"defaultValue": "0.3",
 									"isFirstLevel": false,
-									"description": "Fade time; Duration of the fade in/out effect."
+									"description": "Number of seconds to fade in/out. Defaults to 0.3."
 								},
 								{
 									"kind": "param",
 									"name": "options.forever",
+									"type": "Boolean",
 									"isOptional": true,
-									"defaultValue": "0",
 									"isFirstLevel": false,
-									"description": "Set to 1/true to prevent the tooltip from being erased when the mouse hovers away from the target"
+									"description": "Flag to prevent the tooltip from being erased when the mouse hovers away from the target."
 								},
 								{
 									"kind": "param",
 									"name": "options.timeout",
+									"type": "Number",
 									"isOptional": true,
-									"defaultValue": "0",
 									"isFirstLevel": false,
-									"description": "Time for the tooltip to live. Useful together with [options.forever]."
+									"description": "Number of seconds the tooltip will stay open. Useful together with options.forever. Defaults to 0."
 								},
 								{
 									"kind": "param",
 									"name": "options.delay",
+									"type": "Number",
 									"isOptional": true,
 									"isFirstLevel": false,
 									"description": "Time the tooltip waits until it is displayed. Useful to avoid getting the attention of the user unnecessarily"
@@ -11615,42 +11624,42 @@
 								{
 									"kind": "param",
 									"name": "options.template",
+									"type": "DOMElement|Selector",
 									"isOptional": true,
-									"defaultValue": "null",
 									"isFirstLevel": false,
 									"description": "Element or selector containing HTML to be cloned into the tooltips. Can be a hidden element, because CSS `display` is set to `block`."
 								},
 								{
 									"kind": "param",
 									"name": "options.templatefield",
+									"type": "String",
 									"isOptional": true,
-									"defaultValue": "null",
 									"isFirstLevel": false,
 									"description": "Selector within the template element to choose where the text is inserted into the tooltip. Useful when a wrapper DIV is required."
 								},
 								{
 									"kind": "param",
 									"name": "options.left",
+									"type": "Number",
 									"isOptional": true,
-									"defaultValue": "10",
 									"isFirstLevel": false,
-									"description": "(Nitty-gritty) Spacing from the target to the tooltip, when `where` is `mousemove` or `mousefix`"
+									"description": "Spacing from the target to the tooltip, when `where` is `mousemove` or `mousefix`. Defaults to 10."
 								},
 								{
 									"kind": "param",
 									"name": "options.top",
+									"type": "Number",
 									"isOptional": true,
-									"defaultValue": "10",
 									"isFirstLevel": false,
-									"description": "(Nitty-gritty) Spacing from the target to the tooltip, when `where` is `mousemove` or `mousefix`"
+									"description": "Spacing from the target to the tooltip, when `where` is `mousemove` or `mousefix`. Defaults to 10."
 								},
 								{
 									"kind": "param",
 									"name": "options.spacing",
+									"type": "Number",
 									"isOptional": true,
-									"defaultValue": "8",
 									"isFirstLevel": false,
-									"description": "(Nitty-gritty) Spacing between the tooltip and the target element, when `where` is `up`, `down`, `left`, or `right`"
+									"description": "Spacing between the tooltip and the target element, when `where` is not `mousemove` or `mousefix`. Defaults to 8."
 								}
 							],
 							"examples": [
@@ -11697,7 +11706,7 @@
 			"functions": [],
 			"attributes": [],
 			"uses": [],
-			"author": "inkdev AT sapo.pt"
+			"version": "1"
 		},
 		{
 			"kind": "module",
@@ -11707,7 +11716,7 @@
 				{
 					"kind": "class",
 					"name": "Ink.UI.TreeView",
-					"text": "Shows elements in a tree structure which can be expanded and contracted.\n\nA TreeView is built with \"node\"s and \"children\". \"node\"s are `li` tags, and\n\"children\" are `ul` tags.\n\nYou can build your TreeView out of a regular UL and  LI element structure which\nyou already use to display lists with several levels.\n\nIf you want a node (LI) to be open when the TreeView is built, just add the \ndata-open=\"true\" attribute to it.",
+					"text": "Shows elements in a tree structure which can be expanded and contracted.\nA TreeView is built with \"node\"s and \"children\". \"node\"s are `li` tags, and \"children\" are `ul` tags.\nYou can build your TreeView out of a regular UL and  LI element structure which you already use to display lists with several levels.\nIf you want a node to be open when the TreeView is built, just add the data-open=\"true\" attribute to it.",
 					"file": "src/js/Ink/UI/TreeView/1/lib.js",
 					"functions": [
 						{
@@ -11720,7 +11729,8 @@
 									"kind": "param",
 									"name": "selector",
 									"type": "String|DOMElement",
-									"isFirstLevel": true
+									"isFirstLevel": true,
+									"description": "Element or selector."
 								},
 								{
 									"kind": "param",
@@ -11735,72 +11745,64 @@
 									"name": "options.node",
 									"type": "String",
 									"isOptional": true,
-									"defaultValue": "'li'",
 									"isFirstLevel": false,
-									"description": "Selector to define which elements are seen as nodes."
+									"description": "Selector for the nodes. Defaults to 'li'."
 								},
 								{
 									"kind": "param",
 									"name": "options.children",
 									"type": "String",
 									"isOptional": true,
-									"defaultValue": "'ul'",
 									"isFirstLevel": false,
-									"description": "Selector to define which elements are represented as children."
+									"description": "Selector for the children. Defaults to 'ul'."
 								},
 								{
 									"kind": "param",
 									"name": "options.parentClass",
 									"type": "String",
 									"isOptional": true,
-									"defaultValue": "'parent'",
 									"isFirstLevel": false,
-									"description": "Classes to be added to the parent node."
+									"description": "CSS classes to be added to parent nodes. Defaults to 'parent'."
 								},
 								{
 									"kind": "param",
 									"name": "options.openClass",
 									"type": "String",
 									"isOptional": true,
-									"defaultValue": "'fa",
 									"isFirstLevel": false,
-									"description": "fa-minus-circle' Classes to be added to the icon when a parent is open."
+									"description": "CSS classes to be added to the icon when a parent is open. Defaults to 'fa fa-minus-circle'."
 								},
 								{
 									"kind": "param",
 									"name": "options.closedClass",
 									"type": "String",
 									"isOptional": true,
-									"defaultValue": "'fa",
 									"isFirstLevel": false,
-									"description": "fa-plus-circle' Classes to be added to the icon when a parent is closed."
+									"description": "CSS classes to be added to the icon when a parent is closed. Defaults to 'fa fa-plus-circle'."
 								},
 								{
 									"kind": "param",
 									"name": "options.hideClass",
 									"type": "String",
 									"isOptional": true,
-									"defaultValue": "'hide-all'",
 									"isFirstLevel": false,
-									"description": "Class to toggle visibility of the children."
+									"description": "CSS Class to toggle visibility of the children. Defaults to 'hide-all'."
 								},
 								{
 									"kind": "param",
 									"name": "options.iconTag",
 									"type": "String",
 									"isOptional": true,
-									"defaultValue": "'i'",
 									"isFirstLevel": false,
-									"description": "The name of icon tag. The component tries to find a tag with that name as a direct child of the node. If it doesn't find it, it creates it."
+									"description": "The name of icon tag. The component tries to find a tag with that name as a direct child of the node. If it doesn't find it, it creates it. Defaults to 'i'."
 								},
 								{
 									"kind": "param",
 									"name": "options.stopDefault",
 									"type": "Boolean",
 									"isOptional": true,
-									"defaultValue": "true",
 									"isFirstLevel": false,
-									"description": "Stops the default behavior of the click handler."
+									"description": "Flag to stops the default behavior of the click handler. Defaults to true."
 								}
 							],
 							"version": "1",
@@ -11820,7 +11822,7 @@
 							"kind": "function",
 							"name": "isOpen",
 							"file": "src/js/Ink/UI/TreeView/1/lib.js",
-							"text": "Check whether a node is open",
+							"text": "Checks if a node is open.",
 							"params": [
 								{
 									"kind": "param",
@@ -11835,7 +11837,7 @@
 							"kind": "function",
 							"name": "isParent",
 							"file": "src/js/Ink/UI/TreeView/1/lib.js",
-							"text": "Returns whether a node is a parent in this tree.",
+							"text": "Checks if a node is a parent.",
 							"params": [
 								{
 									"kind": "param",
@@ -11850,7 +11852,7 @@
 							"kind": "function",
 							"name": "open",
 							"file": "src/js/Ink/UI/TreeView/1/lib.js",
-							"text": "Open one of the tree nodes\n\nMake sure you pass the node's DOMElement",
+							"text": "Opens one of the tree nodes\n\nMake sure you pass the node's DOMElement",
 							"params": [
 								{
 									"kind": "param",
@@ -11865,7 +11867,7 @@
 							"kind": "function",
 							"name": "close",
 							"file": "src/js/Ink/UI/TreeView/1/lib.js",
-							"text": "close one of the tree nodes\n\nMake sure you pass the node's DOMElement",
+							"text": "Closes one of the tree nodes\n\nMake sure you pass the node's DOMElement",
 							"params": [
 								{
 									"kind": "param",
@@ -11880,7 +11882,7 @@
 							"kind": "function",
 							"name": "toggle",
 							"file": "src/js/Ink/UI/TreeView/1/lib.js",
-							"text": "Toggle a node",
+							"text": "Toggles a node state",
 							"params": [
 								{
 									"kind": "param",
@@ -11913,7 +11915,6 @@
 			"functions": [],
 			"attributes": [],
 			"uses": [],
-			"author": "inkdev AT sapo.pt",
 			"version": "1"
 		},
 		{
@@ -14897,7 +14898,7 @@
 						{
 							"kind": "param",
 							"name": "element",
-							"type": "String|InputElement",
+							"type": "String|DOMElement",
 							"isFirstLevel": true,
 							"description": "Selector or DOM Input Element."
 						},
@@ -14906,7 +14907,8 @@
 							"name": "options",
 							"type": "Object",
 							"isOptional": true,
-							"isFirstLevel": true
+							"isFirstLevel": true,
+							"description": "Options object"
 						},
 						{
 							"kind": "param",
@@ -14914,51 +14916,47 @@
 							"type": "String|Array",
 							"isOptional": true,
 							"isFirstLevel": false,
-							"description": "initial tags in the input"
+							"description": "Initial tags in the input"
 						},
 						{
 							"kind": "param",
 							"name": "options.allowRepeated",
 							"type": "Boolean",
 							"isOptional": true,
-							"defaultValue": "true",
 							"isFirstLevel": false,
-							"description": "allow user to input several tags"
+							"description": "Flag to allow user to input several tags. Defaults to true."
 						},
 						{
 							"kind": "param",
 							"name": "options.separator",
 							"type": "RegExp",
 							"isOptional": true,
-							"defaultValue": "/[,;(space)]+/g",
 							"isFirstLevel": false,
-							"description": "Split the input by this RegExp. The default splits by spaces, commas and semicolons"
+							"description": "Split the input by this RegExp. Defaults to /[,;(space)]+/g (spaces, commas and semicolons)"
 						},
 						{
 							"kind": "param",
 							"name": "options.outSeparator",
 							"type": "String",
 							"isOptional": true,
-							"defaultValue": "','",
 							"isFirstLevel": false,
-							"description": "Use this string to separate each tag from the next in the output."
+							"description": "Use this string to separate each tag from the next in the output. Defaults to ','."
 						},
 						{
 							"kind": "param",
 							"name": "options.autoSplit",
 							"type": "Boolean",
 							"isOptional": true,
-							"defaultValue": "true",
-							"isFirstLevel": false
+							"isFirstLevel": false,
+							"description": "Flag to activate tag creation when the user types a separator. Defaults to true."
 						},
 						{
 							"kind": "param",
 							"name": "options.maxTags",
 							"type": "Integer",
 							"isOptional": true,
-							"defaultValue": "-1",
 							"isFirstLevel": false,
-							"description": "Maximum amount of tags the user can write."
+							"description": "Maximum number of tags allowed. Set to -1 for no limit. Defaults to -1."
 						}
 					],
 					"examples": [

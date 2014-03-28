@@ -2,7 +2,7 @@
 
     
         <section>
-        <h1 class="fw-300">Ink.UI.Tooltip_1 </h1>
+        <h1 class="fw-300">Ink.UI.Tooltip_1 <small>version: 1</small></h1>
     
 
     
@@ -229,9 +229,13 @@
                 
                 </label>
                 
+                    Options object
+                
             </dd>
         
             <dt>
+                
+                    <code>String</code>
                 
             </dt>
             <dd>
@@ -242,8 +246,6 @@
                 
 
                 
-                    &#x27;&#x27;
-                
                 </label>
                 
                     Text content for the tooltip.
@@ -251,6 +253,8 @@
             </dd>
         
             <dt>
+                
+                    <code>String</code>
                 
             </dt>
             <dd>
@@ -261,8 +265,6 @@
                 
 
                 
-                    &#x27;&#x27;
-                
                 </label>
                 
                     HTML for the tooltip. Same as above, but won't escape HTML.
@@ -270,6 +272,8 @@
             </dd>
         
             <dt>
+                
+                    <code>String</code>
                 
             </dt>
             <dd>
@@ -280,15 +284,15 @@
                 
 
                 
-                    &#x27;up&#x27;
-                
                 </label>
                 
-                    Positioning for the tooltip. Options are 'up', 'down', 'left', 'right', which place the tooltip in the corresponding direction (and show an arrow), 'mousemove', which follows the mouse as it moves, and 'mousefix', which stays in one place.
+                    Positioning for the tooltip. Options are 'up', 'down', 'left', 'right', 'mousemove' (follows the cursor), and 'mousefix' (stays fixed). Defaults to 'up'.
                 
             </dd>
         
             <dt>
+                
+                    <code>String</code>
                 
             </dt>
             <dd>
@@ -299,8 +303,6 @@
                 
 
                 
-                    &#x27;&#x27;
-                
                 </label>
                 
                     Color of the tooltip. Options are red, orange, blue, green and black. Default is white.
@@ -308,6 +310,8 @@
             </dd>
         
             <dt>
+                
+                    <code>Number</code>
                 
             </dt>
             <dd>
@@ -318,15 +322,15 @@
                 
 
                 
-                    0.3
-                
                 </label>
                 
-                    Fade time; Duration of the fade in/out effect.
+                    Number of seconds to fade in/out. Defaults to 0.3.
                 
             </dd>
         
             <dt>
+                
+                    <code>Boolean</code>
                 
             </dt>
             <dd>
@@ -337,15 +341,15 @@
                 
 
                 
-                    0
-                
                 </label>
                 
-                    Set to 1/true to prevent the tooltip from being erased when the mouse hovers away from the target
+                    Flag to prevent the tooltip from being erased when the mouse hovers away from the target.
                 
             </dd>
         
             <dt>
+                
+                    <code>Number</code>
                 
             </dt>
             <dd>
@@ -356,15 +360,15 @@
                 
 
                 
-                    0
-                
                 </label>
                 
-                    Time for the tooltip to live. Useful together with [options.forever].
+                    Number of seconds the tooltip will stay open. Useful together with options.forever. Defaults to 0.
                 
             </dd>
         
             <dt>
+                
+                    <code>Number</code>
                 
             </dt>
             <dd>
@@ -383,6 +387,8 @@
         
             <dt>
                 
+                    <code>DOMElement|Selector</code>
+                
             </dt>
             <dd>
                 
@@ -392,8 +398,6 @@
                 
 
                 
-                    null
-                
                 </label>
                 
                     Element or selector containing HTML to be cloned into the tooltips. Can be a hidden element, because CSS `display` is set to `block`.
@@ -401,6 +405,8 @@
             </dd>
         
             <dt>
+                
+                    <code>String</code>
                 
             </dt>
             <dd>
@@ -411,8 +417,6 @@
                 
 
                 
-                    null
-                
                 </label>
                 
                     Selector within the template element to choose where the text is inserted into the tooltip. Useful when a wrapper DIV is required.
@@ -420,6 +424,8 @@
             </dd>
         
             <dt>
+                
+                    <code>Number</code>
                 
             </dt>
             <dd>
@@ -430,15 +436,15 @@
                 
 
                 
-                    10
-                
                 </label>
                 
-                    (Nitty-gritty) Spacing from the target to the tooltip, when `where` is `mousemove` or `mousefix`
+                    Spacing from the target to the tooltip, when `where` is `mousemove` or `mousefix`. Defaults to 10.
                 
             </dd>
         
             <dt>
+                
+                    <code>Number</code>
                 
             </dt>
             <dd>
@@ -449,15 +455,15 @@
                 
 
                 
-                    10
-                
                 </label>
                 
-                    (Nitty-gritty) Spacing from the target to the tooltip, when `where` is `mousemove` or `mousefix`
+                    Spacing from the target to the tooltip, when `where` is `mousemove` or `mousefix`. Defaults to 10.
                 
             </dd>
         
             <dt>
+                
+                    <code>Number</code>
                 
             </dt>
             <dd>
@@ -468,11 +474,9 @@
                 
 
                 
-                    8
-                
                 </label>
                 
-                    (Nitty-gritty) Spacing between the tooltip and the target element, when `where` is `up`, `down`, `left`, or `right`
+                    Spacing between the tooltip and the target element, when `where` is not `mousemove` or `mousefix`. Defaults to 8.
                 
             </dd>
         

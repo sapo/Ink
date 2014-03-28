@@ -1,17 +1,13 @@
 /**
  * @module Ink.UI.Tabs_1
- * @author inkdev AT sapo.pt
- * @version 1
- *
  * Display tabbed content
+ * @version 1
  */
 Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Common, Event, Css, Element, Selector, InkArray ) {
     'use strict';
 
     /**
-     * The Tabs Component offers a simple way to build a tab-separated
-     * layout, allowing you to offer multiple content in the same space
-     * with intuitive navigation.
+     * The Tabs Component offers a simple way to build a tab-separated layout, allowing you to offer multiple content in the same space with intuitive navigation.
      *
      * This component requires your markup to have:
      *
@@ -21,28 +17,23 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
      *    - Your sections with the corresponding `id` attributes.
      *      - The content for each section.
      *
-     * When the user clicks in the links inside `tabs-nav`, the tab with
-     * the corresponding ID is then activated.
+     * When the user clicks in the links inside `tabs-nav`, the tab with the corresponding ID is then activated.
      *
-     * The tab which is active when the tab component is initialized has
-     * its hash in the browser URL. If there is no hash, then the `active`
-     * option kicks in. Otherwise, Tabs will fall back to showing the tab
-     * corresponding to the first link.
+     * The tab which is active when the tab component is initialized has its hash in the browser URL. If there is no hash, then the `active` option kicks in. Otherwise, Tabs will fall back to showing the tab corresponding to the first link.
      *
-     * You can disable some (or all) tabs by passing an array for the
-     * `disabled` option
+     * You can disable some (or all) tabs by passing an array for the `disabled` option.
      *
      * @class Ink.UI.Tabs
      * @constructor
      * @version 1
-     * @param {String|DOMElement} selector
-     * @param {Object} [options] Options
-     *     @param {Boolean}      [options.preventUrlChange]        Flag that determines if follows the link on click or stops the event
-     *     @param {String}       [options.active]                  ID of the tab to activate on creation
-     *     @param {Array}        [options.disabled]                IDs of the tabs that will be disabled on creation
-     *     @param {Function}     [options.onBeforeChange]          Callback to be executed before changing tabs
-     *     @param {Function}     [options.onChange]                Callback to be executed after changing tabs
-     *     @param {Boolean}      [options.triggerEventsOnLoad]     Trigger the above events when the page is loaded.
+     * @param {String|DOMElement}   selector
+     * @param {Object}              [options]                       Options
+     * @param {Boolean}             [options.preventUrlChange]      Flag that determines if follows the link on click or stops the event
+     * @param {String}              [options.active]                ID of the tab to activate on creation
+     * @param {Array}               [options.disabled]              IDs of the tabs that will be disabled on creation
+     * @param {Function}            [options.onBeforeChange]        Callback to be executed before changing tabs
+     * @param {Function}            [options.onChange]              Callback to be executed after changing tabs
+     * @param {Boolean}             [options.triggerEventsOnLoad]   Trigger the above events when the page is loaded.
      *
      * @example
      *      <div class="ink-tabs top"> <!-- replace 'top' with 'bottom', 'left' or 'right' to place navigation -->
@@ -316,7 +307,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          **************/
 
         /**
-         * Changes to the desired tag
+         * Changes the active tab
          *
          * Pass a selector/element identifying what tab you want
          * 
@@ -349,7 +340,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
             Css.addClassName(element, 'ink-disabled');
         },
 
-         /**
+        /**
          * Enables the desired tag
          * 
          * @method enable
@@ -382,13 +373,13 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
         },
 
         /**
-         * (This method is deprecated)
          *
          * Returns the parent of the currently active menu link.
          *
          * This is useful if you want to have `li` elements wrapping your links
          * and want to access the currently visible one.
          *
+         * (This method is deprecated)
          * @method activeMenuTab
          * @deprecated
          * @return {DOMElement|null} Active menu LI, or `null` if there is none.
@@ -401,7 +392,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
         },
 
         /**
-         * Returns the currently active Menu link (the links which the user clicks on to change tabs)
+         * Gets the currently active Menu link (the links which the user clicks on to change tabs)
          * 
          * @method activeMenuLink
          * @return {DOMElement|null} Active menu link, or `null` if there is none.
@@ -412,7 +403,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
         },
 
         /**
-         * Returns the currently active section
+         * Gets the currently active section
          *
          * (Each section contains content for a tab, and must have an `id` attribute)
          * 
@@ -425,7 +416,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
         },
 
         /**
-         * Unregisters the component and removes its markup from the DOM
+         * Unregisters the component and removes its markup
          * 
          * @method destroy
          * @public
