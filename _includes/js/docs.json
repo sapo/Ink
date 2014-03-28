@@ -10666,7 +10666,7 @@
 				{
 					"kind": "class",
 					"name": "Ink.UI.Table",
-					"text": "The Table component transforms the native/DOM table element into a\nsortable, paginated component.\n\nTo enable sorting, just set the `data-sortable` attribute of your\ntable headers (they must be in the `thead` of the table) to \"true\".\n\nTo enable pagination, you can do one of the following:\n - Pass an `Ink.UI.Pagination` instance as the `pagination` option, or...\n - Pass a selector as the `pagination` option which selects an element to create the Ink.UI.Paginate element on.",
+					"text": "The Table component transforms the native/DOM table element into a sortable, paginated component.\n\nYou can use this component to display data from a JSON endpoint, or\nfrom table rows in the DOM. Displaying from the DOM is more practical,\nbut sometimes you don't want to load everything at once (if you have\na HUGE table). In those cases, you should configure Ink.UI.Table to\nget data from JSON endpoint.\n\nTo enable sorting, just set the `data-sortable` attribute of your table headers (they must be in the `thead` of the table) to \"true\".\n\nTo enable pagination, you should pass either an `Ink.UI.Pagination` instance or a selector to create the Ink.UI.Paginate element on.",
 					"file": "src/js/Ink/UI/Table/1/lib.js",
 					"functions": [
 						{
@@ -10774,7 +10774,6 @@
 									"name": "options.getSortKey",
 									"type": "Function",
 									"isOptional": true,
-									"defaultValue": "null",
 									"isFirstLevel": false,
 									"description": "A function taking a `{ columnIndex, columnName, data, element }` object and returning a value which serves as a sort key for the sorting operation. For example, if you want to sort by a `data-sort-key` atribute, set `getSortKey` to: function (cell) { return cell.element.getAttribute('data-sort-key'); }"
 								},
@@ -10797,10 +10796,10 @@
 								{
 									"kind": "param",
 									"name": "options.pagination",
-									"type": "String|DomElement|Ink.UI.Pagination",
+									"type": "Mixed",
 									"isOptional": true,
 									"isFirstLevel": false,
-									"description": "Pagination instance or element."
+									"description": "Pagination instance, element or selector."
 								},
 								{
 									"kind": "param",
@@ -10940,7 +10939,7 @@
 							"kind": "function",
 							"name": "setEndpoint",
 							"file": "src/js/Ink/UI/Table/1/lib.js",
-							"text": "Sets the AJAX endpoint. Useful for changing the endpoint in runtime.",
+							"text": "Sets the AJAX endpoint.\nUseful to change the endpoint in runtime.",
 							"params": [
 								{
 									"kind": "param",
@@ -10989,8 +10988,7 @@
 			"functions": [],
 			"attributes": [],
 			"uses": [],
-			"author": "inkdev AT sapo.pt",
-			"version": "1\n\nSort and paginate tabular data"
+			"version": "1"
 		},
 		{
 			"kind": "module",
