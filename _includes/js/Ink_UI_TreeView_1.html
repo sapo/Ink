@@ -23,13 +23,10 @@
             
 
     
-    <p><p>Shows elements in a tree structure which can be expanded and contracted.</p>
-<p>A TreeView is built with &quot;node&quot;s and &quot;children&quot;. &quot;node&quot;s are <code>li</code> tags, and
-&quot;children&quot; are <code>ul</code> tags.</p>
-<p>You can build your TreeView out of a regular UL and  LI element structure which
-you already use to display lists with several levels.</p>
-<p>If you want a node (LI) to be open when the TreeView is built, just add the 
-data-open=&quot;true&quot; attribute to it.</p>
+    <p><p>Shows elements in a tree structure which can be expanded and contracted.
+A TreeView is built with &quot;node&quot;s and &quot;children&quot;. &quot;node&quot;s are <code>li</code> tags, and &quot;children&quot; are <code>ul</code> tags.
+You can build your TreeView out of a regular UL and  LI element structure which you already use to display lists with several levels.
+If you want a node to be open when the TreeView is built, just add the data-open=&quot;true&quot; attribute to it.</p>
 </p>
     
     
@@ -81,7 +78,7 @@ data-open=&quot;true&quot; attribute to it.</p>
                 <td>
                     
 
-                    <p>close one of the tree nodes</p>
+                    <p>Closes one of the tree nodes</p>
 <p>Make sure you pass the node&#39;s DOMElement</p>
 
 
@@ -102,7 +99,7 @@ data-open=&quot;true&quot; attribute to it.</p>
                 <td>
                     
 
-                    <p>Check whether a node is open</p>
+                    <p>Checks if a node is open.</p>
 
 
                     
@@ -122,7 +119,7 @@ data-open=&quot;true&quot; attribute to it.</p>
                 <td>
                     
 
-                    <p>Returns whether a node is a parent in this tree.</p>
+                    <p>Checks if a node is a parent.</p>
 
 
                     
@@ -142,7 +139,7 @@ data-open=&quot;true&quot; attribute to it.</p>
                 <td>
                     
 
-                    <p>Open one of the tree nodes</p>
+                    <p>Opens one of the tree nodes</p>
 <p>Make sure you pass the node&#39;s DOMElement</p>
 
 
@@ -163,7 +160,7 @@ data-open=&quot;true&quot; attribute to it.</p>
                 <td>
                     
 
-                    <p>Toggle a node</p>
+                    <p>Toggles a node state</p>
 
 
                     
@@ -275,6 +272,8 @@ data-open=&quot;true&quot; attribute to it.</p>
                 
                 </label>
                 
+                    Element or selector.
+                
             </dd>
         
             <dt>
@@ -309,11 +308,9 @@ data-open=&quot;true&quot; attribute to it.</p>
                 
 
                 
-                    &#x27;li&#x27;
-                
                 </label>
                 
-                    Selector to define which elements are seen as nodes.
+                    Selector for the nodes. Defaults to 'li'.
                 
             </dd>
         
@@ -330,11 +327,9 @@ data-open=&quot;true&quot; attribute to it.</p>
                 
 
                 
-                    &#x27;ul&#x27;
-                
                 </label>
                 
-                    Selector to define which elements are represented as children.
+                    Selector for the children. Defaults to 'ul'.
                 
             </dd>
         
@@ -351,11 +346,9 @@ data-open=&quot;true&quot; attribute to it.</p>
                 
 
                 
-                    &#x27;parent&#x27;
-                
                 </label>
                 
-                    Classes to be added to the parent node.
+                    CSS classes to be added to parent nodes. Defaults to 'parent'.
                 
             </dd>
         
@@ -372,11 +365,9 @@ data-open=&quot;true&quot; attribute to it.</p>
                 
 
                 
-                    &#x27;fa
-                
                 </label>
                 
-                    fa-minus-circle' Classes to be added to the icon when a parent is open.
+                    CSS classes to be added to the icon when a parent is open. Defaults to 'fa fa-minus-circle'.
                 
             </dd>
         
@@ -393,11 +384,9 @@ data-open=&quot;true&quot; attribute to it.</p>
                 
 
                 
-                    &#x27;fa
-                
                 </label>
                 
-                    fa-plus-circle' Classes to be added to the icon when a parent is closed.
+                    CSS classes to be added to the icon when a parent is closed. Defaults to 'fa fa-plus-circle'.
                 
             </dd>
         
@@ -414,11 +403,9 @@ data-open=&quot;true&quot; attribute to it.</p>
                 
 
                 
-                    &#x27;hide-all&#x27;
-                
                 </label>
                 
-                    Class to toggle visibility of the children.
+                    CSS Class to toggle visibility of the children. Defaults to 'hide-all'.
                 
             </dd>
         
@@ -435,11 +422,9 @@ data-open=&quot;true&quot; attribute to it.</p>
                 
 
                 
-                    &#x27;i&#x27;
-                
                 </label>
                 
-                    The name of icon tag. The component tries to find a tag with that name as a direct child of the node. If it doesn't find it, it creates it.
+                    The name of icon tag. The component tries to find a tag with that name as a direct child of the node. If it doesn't find it, it creates it. Defaults to 'i'.
                 
             </dd>
         
@@ -456,11 +441,9 @@ data-open=&quot;true&quot; attribute to it.</p>
                 
 
                 
-                    true
-                
                 </label>
                 
-                    Stops the default behavior of the click handler.
+                    Flag to stops the default behavior of the click handler. Defaults to true.
                 
             </dd>
         
@@ -544,7 +527,7 @@ data-open=&quot;true&quot; attribute to it.</p>
     
 
     
-        <p class="text"><p>close one of the tree nodes</p>
+        <p class="text"><p>Closes one of the tree nodes</p>
 <p>Make sure you pass the node&#39;s DOMElement</p>
 </p>
     
@@ -621,7 +604,7 @@ data-open=&quot;true&quot; attribute to it.</p>
     
 
     
-        <p class="text"><p>Check whether a node is open</p>
+        <p class="text"><p>Checks if a node is open.</p>
 </p>
     
 
@@ -697,7 +680,7 @@ data-open=&quot;true&quot; attribute to it.</p>
     
 
     
-        <p class="text"><p>Returns whether a node is a parent in this tree.</p>
+        <p class="text"><p>Checks if a node is a parent.</p>
 </p>
     
 
@@ -773,7 +756,7 @@ data-open=&quot;true&quot; attribute to it.</p>
     
 
     
-        <p class="text"><p>Open one of the tree nodes</p>
+        <p class="text"><p>Opens one of the tree nodes</p>
 <p>Make sure you pass the node&#39;s DOMElement</p>
 </p>
     
@@ -850,7 +833,7 @@ data-open=&quot;true&quot; attribute to it.</p>
     
 
     
-        <p class="text"><p>Toggle a node</p>
+        <p class="text"><p>Toggles a node state</p>
 </p>
     
 

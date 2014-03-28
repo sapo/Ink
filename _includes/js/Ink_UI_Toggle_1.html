@@ -23,19 +23,10 @@
             
 
     
-    <p><p>Toggle the visibility of DOM Elements.</p>
-<p>You need two elements to use Toggle: the <code>trigger</code> element, and
-the <code>target</code> element (or elements). The default behaviour is to
-toggle the <code>target</code>(s) when you click the <code>trigger</code>.</p>
-<p>The toggle has a state. It is either &quot;on&quot; or &quot;off&quot;. It works by
-switching between the CSS classes in <code>classNameOn</code> and <code>classNameOff</code>
-according to the current state.</p>
-<p>When you initialize the Toggle, it will check whether the targets
-are visible to figure out what the initial state is. You can force
-the toggle to consider itself turned &quot;on&quot; or &quot;off&quot; by setting the
-<code>initialState</code> option to <code>true</code> or <code>false</code>, respectively.</p>
-<p>You can get the current state of the Toggle by calling <code>getState</code>,
-or by checking if your <code>trigger</code> element has the &quot;active&quot; class.
+    <p><p>You need two elements to use Toggle: the <code>trigger</code> element, and the <code>target</code> element (or elements). The default behaviour is to toggle the <code>target</code>(s) when you click the <code>trigger</code>.</p>
+<p>The toggle has a state. It is either &quot;on&quot; or &quot;off&quot;. It works by switching between the CSS classes in <code>classNameOn</code> and <code>classNameOff</code> according to the current state.</p>
+<p>When you initialize the Toggle, it will check if the targets are visible to figure out what the initial state is. You can force the toggle to consider itself turned &quot;on&quot; or &quot;off&quot; by setting the <code>initialState</code> option to <code>true</code> or <code>false</code>, respectively.</p>
+<p>You can get the current state of the Toggle by calling <code>getState</code>, or by checking if your <code>trigger</code> element has the &quot;active&quot; class.
 The state can be changed through JavaScript. Just call  <code>setState(true)</code> 
 to turn the Toggle on (or <code>setState(false)</code> to turn it off).</p>
 </p>
@@ -276,11 +267,9 @@ to turn the Toggle on (or <code>setState(false)</code> to turn it off).</p>
                 
 
                 
-                    &#x27;show-all&#x27;
-                
                 </label>
                 
-                    className when toggle is On
+                    CSS class to toggle when on. Defaults to 'show-all'.
                 
             </dd>
         
@@ -297,11 +286,9 @@ to turn the Toggle on (or <code>setState(false)</code> to turn it off).</p>
                 
 
                 
-                    &#x27;hide-all&#x27;
-                
                 </label>
                 
-                    className when toggle is Off.
+                    CSS class to toggle when off. Defaults to 'hide-all'.
                 
             </dd>
         
@@ -318,11 +305,9 @@ to turn the Toggle on (or <code>setState(false)</code> to turn it off).</p>
                 
 
                 
-                    &#x27;click&#x27;
-                
                 </label>
                 
-                    Event that will trigger the toggling.
+                    Event that will trigger the toggling. Defaults to 'click'.
                 
             </dd>
         
@@ -339,17 +324,15 @@ to turn the Toggle on (or <code>setState(false)</code> to turn it off).</p>
                 
 
                 
-                    true
-                
                 </label>
                 
-                    When this is on, if the user clicks outside of the toggled content, the target is toggled off.
+                    Flag to toggle the targe off when clicking outside the toggled content. Defaults to true.
                 
             </dd>
         
             <dt>
                 
-                    <code>Selector</code>
+                    <code>String</code>
                 
             </dt>
             <dd>
@@ -360,11 +343,9 @@ to turn the Toggle on (or <code>setState(false)</code> to turn it off).</p>
                 
 
                 
-                    &#x27;a[href]&#x27;
-                
                 </label>
                 
-                    Toggle off when an element matching this selector is clicked. Set to null to deactivate the check. Default: 'a[href]' (finds links)
+                    Toggle off when an element matching this selector is clicked. Set to null to deactivate the check. Defaults to 'a[href]'.
                 
             </dd>
         
@@ -381,11 +362,9 @@ to turn the Toggle on (or <code>setState(false)</code> to turn it off).</p>
                 
 
                 
-                    null
-                
                 </label>
                 
-                    Whether to start toggled off, on, or as found in the markup. (false: off, true: on, null: markup)
+                    Flag to define initial state. false: off, true: on, null: markup. Defaults to null.
                 
             </dd>
         
@@ -402,11 +381,9 @@ to turn the Toggle on (or <code>setState(false)</code> to turn it off).</p>
                 
 
                 
-                    null
-                
                 </label>
                 
-                    Callback (`function (currentState) {...}`) to be called when the toggle state changes. Return `false` to cancel the event.
+                    Callback when the toggle state changes. Return `false` to cancel the event.
                 
             </dd>
         

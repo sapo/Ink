@@ -2,7 +2,7 @@
 
     
         <section>
-        <h1 class="fw-300">Ink.UI.Stacker_1 </h1>
+        <h1 class="fw-300">Ink.UI.Stacker_1 <small>version: 1</small></h1>
     
 
     
@@ -84,7 +84,8 @@
                 <td>
                     
 
-                    <p>Add an item to the end of your stacks. Call <code>reloadItems()</code> when you are done adding items.</p>
+                    <p>Adds an item to the end of your stacks.
+Call <code>reloadItems()</code> when you are done adding items.</p>
 
 
                     
@@ -104,12 +105,8 @@
                 <td>
                     
 
-                    <p>Update the layout of your items.</p>
-<p>Call this when:</p>
-<ul>
-<li>The width has changed, but not because of the window resizing.</li>
-<li>You used addItem to add some items</li>
-</ul>
+                    <p>Updates the layout of your items.
+Call this method after adding items or changing their dimensions. This method is automatically called when the window resizes.</p>
 
 
                     
@@ -256,6 +253,8 @@
         
             <dt>
                 
+                    <code>DOMElement|String</code>
+                
             </dt>
             <dd>
                 
@@ -267,11 +266,13 @@
                 
                 </label>
                 
-                    {DOMElement|String} Element which contains the stacks (identified by the options.column selector)
+                    Element which contains the stacks (identified by the options.column selector)
                 
             </dd>
         
             <dt>
+                
+                    <code>Object</code>
                 
             </dt>
             <dd>
@@ -284,9 +285,13 @@
                 
                 </label>
                 
+                    Options object.
+                
             </dd>
         
             <dt>
+                
+                    <code>String</code>
                 
             </dt>
             <dd>
@@ -297,15 +302,15 @@
                 
 
                 
-                    &#x27;.stacker-column&#x27;
-                
                 </label>
                 
-                    {String}   Select the columns inside the `container`
+                    Selector for the the columns inside the container element. Defaults to '.stacker-column'.
                 
             </dd>
         
             <dt>
+                
+                    <code>String</code>
                 
             </dt>
             <dd>
@@ -316,15 +321,15 @@
                 
 
                 
-                    &#x27;.stacker-item&#x27;
-                
                 </label>
                 
-                    {String}   Select items in your stack
+                    Selector for the items in your stack. Defaults to '.stacker-item'.
                 
             </dd>
         
             <dt>
+                
+                    <code>Object</code>
                 
             </dt>
             <dd>
@@ -337,11 +342,13 @@
                 
                 </label>
                 
-                    {Object}   options for each breakpoint name. Use this if you have more breakpoints than Ink by default (`large`, `medium`, `small`)
+                    Options for each breakpoint name. Use this if you have more breakpoints than Ink by default (`large`, `medium`, `small`)
                 
             </dd>
         
             <dt>
+                
+                    <code>Object</code>
                 
             </dt>
             <dd>
@@ -354,11 +361,13 @@
                 
                 </label>
                 
-                    {Object}
+                    Custom breakpoints object.
                 
             </dd>
         
             <dt>
+                
+                    <code>String</code>
                 
             </dt>
             <dd>
@@ -377,6 +386,8 @@
         
             <dt>
                 
+                    <code>String</code>
+                
             </dt>
             <dd>
                 
@@ -393,6 +404,8 @@
             </dd>
         
             <dt>
+                
+                    <code>String</code>
                 
             </dt>
             <dd>
@@ -411,6 +424,8 @@
         
             <dt>
                 
+                    <code>Number</code>
+                
             </dt>
             <dd>
                 
@@ -422,11 +437,13 @@
                 
                 </label>
                 
-                    {Number}   Upper bound of `large` breakpoint
+                    Upper bound of `large` breakpoint
                 
             </dd>
         
             <dt>
+                
+                    <code>Number</code>
                 
             </dt>
             <dd>
@@ -437,15 +454,15 @@
                 
 
                 
-                    961
-                
                 </label>
                 
-                    {Number}   Lower bound of `large` breakpoint
+                    Lower bound of `large` breakpoint. Defaults to 961.
                 
             </dd>
         
             <dt>
+                
+                    <code>Number</code>
                 
             </dt>
             <dd>
@@ -456,15 +473,15 @@
                 
 
                 
-                    960
-                
                 </label>
                 
-                    {Number}   Upper bound of `medium` breakpoint
+                    Upper bound of `medium` breakpoint. Defaults to 960.
                 
             </dd>
         
             <dt>
+                
+                    <code>Number</code>
                 
             </dt>
             <dd>
@@ -475,15 +492,15 @@
                 
 
                 
-                    651
-                
                 </label>
                 
-                    {Number}   Lower bound of `medium` breakpoint
+                    Lower bound of `medium` breakpoint. Defaults to 651.
                 
             </dd>
         
             <dt>
+                
+                    <code>Number</code>
                 
             </dt>
             <dd>
@@ -494,15 +511,15 @@
                 
 
                 
-                    650
-                
                 </label>
                 
-                    {Number}   Upper bound of `small` breakpoint
+                    Upper bound of `small` breakpoint. Defaults to 650.
                 
             </dd>
         
             <dt>
+                
+                    <code>Number</code>
                 
             </dt>
             <dd>
@@ -515,11 +532,13 @@
                 
                 </label>
                 
-                    {Number}   Lower bound of `small` breakpoint
+                    Lower bound of `small` breakpoint
                 
             </dd>
         
             <dt>
+                
+                    <code>Integer</code>
                 
             </dt>
             <dd>
@@ -530,15 +549,15 @@
                 
 
                 
-                    3
-                
                 </label>
                 
-                    {Integer}  Number of columns in the `large` viewport
+                    Number of columns in the `large` viewport. Defaults to 3.
                 
             </dd>
         
             <dt>
+                
+                    <code>Integer</code>
                 
             </dt>
             <dd>
@@ -549,15 +568,15 @@
                 
 
                 
-                    2
-                
                 </label>
                 
-                    {Integer}  Number of columns in the `medium` viewport
+                    Number of columns in the `medium` viewport. Defaults to 2.
                 
             </dd>
         
             <dt>
+                
+                    <code>Integer</code>
                 
             </dt>
             <dd>
@@ -568,15 +587,15 @@
                 
 
                 
-                    1
-                
                 </label>
                 
-                    {Integer}  Number of columns in the `small` viewport
+                    Number of columns in the `small` viewport. Defaults to 1.
                 
             </dd>
         
             <dt>
+                
+                    <code>Boolean</code>
                 
             </dt>
             <dd>
@@ -587,15 +606,15 @@
                 
 
                 
-                    true
-                
                 </label>
                 
-                    {Boolean}  When `false`, do not reorder stacks when combining them.
+                    When false, doesn't reorder stacks when combining them.
                 
             </dd>
         
             <dt>
+                
+                    <code>Function</code>
                 
             </dt>
             <dd>
@@ -608,11 +627,13 @@
                 
                 </label>
                 
-                    {Function} Called when instantiated
+                    Called when instantiated.
                 
             </dd>
         
             <dt>
+                
+                    <code>Function</code>
                 
             </dt>
             <dd>
@@ -625,11 +646,13 @@
                 
                 </label>
                 
-                    {Function} Called when resized because the window resized.
+                    Called when the window resizes.
                 
             </dd>
         
             <dt>
+                
+                    <code>Function</code>
                 
             </dt>
             <dd>
@@ -642,7 +665,7 @@
                 
                 </label>
                 
-                    {Function} Called when you ask to reload stack items from the DOM.
+                    Called when the reload function executes.
                 
             </dd>
         
@@ -728,7 +751,8 @@ Javascript:
     
 
     
-        <p class="text"><p>Add an item to the end of your stacks. Call <code>reloadItems()</code> when you are done adding items.</p>
+        <p class="text"><p>Adds an item to the end of your stacks.
+Call <code>reloadItems()</code> when you are done adding items.</p>
 </p>
     
 
@@ -750,6 +774,8 @@ Javascript:
 
                 
                 </label>
+                
+                    Element
                 
             </dd>
         
@@ -789,12 +815,8 @@ Javascript:
     
 
     
-        <p class="text"><p>Update the layout of your items.</p>
-<p>Call this when:</p>
-<ul>
-<li>The width has changed, but not because of the window resizing.</li>
-<li>You used addItem to add some items</li>
-</ul>
+        <p class="text"><p>Updates the layout of your items.
+Call this method after adding items or changing their dimensions. This method is automatically called when the window resizes.</p>
 </p>
     
 
