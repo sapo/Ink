@@ -1,0 +1,844 @@
+---
+layout: js-documentation
+title: Ink.Util.Url_1
+description: Provides the core methods to create and load all of the library modules. 
+site_root:  ../
+---
+
+    
+        <section>
+        <h1 class="fw-300">Ink.Util.Url_1 <small>version: 1</small></h1>
+    
+
+    
+
+    
+
+
+    
+
+
+    
+        <h2>Defined functions:</h2>
+        <ul class="unstyled">
+        
+            <li><a href="#Ink_Util_Url_1-currentScriptElement">
+            
+                Ink.Util.Url_1.currentScriptElement
+            
+            ([match])</a></li>
+        
+            <li><a href="#Ink_Util_Url_1-format">
+            
+                Ink.Util.Url_1.format
+            
+            (urlObj)</a></li>
+        
+            <li><a href="#Ink_Util_Url_1-genQueryString">
+            
+                Ink.Util.Url_1.genQueryString
+            
+            (uri, params)</a></li>
+        
+            <li><a href="#Ink_Util_Url_1-getAnchor">
+            
+                Ink.Util.Url_1.getAnchor
+            
+            ([str])</a></li>
+        
+            <li><a href="#Ink_Util_Url_1-getAnchorString">
+            
+                Ink.Util.Url_1.getAnchorString
+            
+            ([string])</a></li>
+        
+            <li><a href="#Ink_Util_Url_1-getQueryString">
+            
+                Ink.Util.Url_1.getQueryString
+            
+            ([str])</a></li>
+        
+            <li><a href="#Ink_Util_Url_1-getUrl">
+            
+                Ink.Util.Url_1.getUrl
+            
+            ()</a></li>
+        
+            <li><a href="#Ink_Util_Url_1-parseUrl">
+            
+                Ink.Util.Url_1.parseUrl
+            
+            (url)</a></li>
+        
+        </ul>
+    
+
+    
+
+
+
+    
+
+    
+        <section id="Ink_Util_Url_1-currentScriptElement" class="box box-function">
+
+    <h1 class="fw-300">
+    
+        
+            .currentScriptElement
+        
+    
+    ([match])
+    
+        
+            <i>function</i>
+        
+    
+    </h1>
+
+    
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        [
+        match
+        ]
+        
+        </li>
+        
+    </ul>
+    
+
+    
+    
+
+    
+        <p class="text"><p>Gets the last loaded script element</p>
+</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="optional">[match]
+                
+
+                
+                </label>
+                
+                    String to match against the script src attribute
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>DOMElement|Boolean</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
+
+    
+
+
+    
+
+</section>
+    
+        <section id="Ink_Util_Url_1-format" class="box box-function">
+
+    <h1 class="fw-300">
+    
+        
+            .format
+        
+    
+    (urlObj)
+    
+        
+            <i>function</i>
+        
+    
+    </h1>
+
+    
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        urlObj
+        
+        
+        </li>
+        
+    </ul>
+    
+
+    
+    
+
+    
+        <p class="text"><p>Formats an URL object into an URL string.</p>
+</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label>urlObj
+                
+
+                
+                </label>
+                
+                    Window.location, a.href, or parseUrl object to format
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>String</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
+
+    
+
+
+    
+
+</section>
+    
+        <section id="Ink_Util_Url_1-genQueryString" class="box box-function">
+
+    <h1 class="fw-300">
+    
+        
+            .genQueryString
+        
+    
+    (uri, params)
+    
+        
+            <i>function</i>
+        
+    
+    </h1>
+
+    
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        uri
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        
+        params
+        
+        
+        </li>
+        
+    </ul>
+    
+
+    
+    
+
+    
+        <p class="text"><p>Generates an URL string.</p>
+</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label>uri
+                
+
+                
+                </label>
+                
+                    Base URL
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Object</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label>params
+                
+
+                
+                </label>
+                
+                    Object to transform to query string
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>String</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
+
+    
+<p class="example-title">Example</p>
+  
+{% highlight html %}{% raw %}
+    Ink.requireModules(['Ink.Util.Url_1'], function( InkUrl ){
+        var queryString = InkUrl.genQueryString( 'http://www.sapo.pt/', {
+            'param1': 'valueParam1',
+            'param2': 'valueParam2'
+        });
+
+        console.log( queryString ); // Result: http://www.sapo.pt/?param1=valueParam1&param2=valueParam2
+    });
+{% endraw %}{% endhighlight %}
+
+
+
+
+    
+
+</section>
+    
+        <section id="Ink_Util_Url_1-getAnchor" class="box box-function">
+
+    <h1 class="fw-300">
+    
+        
+            .getAnchor
+        
+    
+    ([str])
+    
+        
+            <i>function</i>
+        
+    
+    </h1>
+
+    
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        [
+        str
+        ]
+        
+        </li>
+        
+    </ul>
+    
+
+    
+    
+
+    
+        <p class="text"><p>Gets the URL hash value</p>
+</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="optional">[str]
+                
+
+                
+                </label>
+                
+                    URL String. Defaults to current page URL.
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>String|Boolean</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
+
+    
+<p class="example-title">Example</p>
+  
+{% highlight html %}{% raw %}
+    Ink.requireModules(['Ink.Util.Url_1'], function( InkUrl ){
+        var anchor = InkUrl.getAnchor( 'http://www.sapo.pt/page.php#TEST' );
+        console.log( anchor ); // Result: TEST
+    });
+{% endraw %}{% endhighlight %}
+
+
+
+
+    
+
+</section>
+    
+        <section id="Ink_Util_Url_1-getAnchorString" class="box box-function">
+
+    <h1 class="fw-300">
+    
+        
+            .getAnchorString
+        
+    
+    ([string])
+    
+        
+            <i>function</i>
+        
+    
+    </h1>
+
+    
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        [
+        string
+        ]
+        
+        </li>
+        
+    </ul>
+    
+
+    
+    
+
+    
+        <p class="text"><p>Gets the anchor string of an URL</p>
+</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="optional">[string]
+                
+
+                
+                </label>
+                
+                    URL to parse. Defaults to current URL.
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>Object</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
+
+    
+<p class="example-title">Example</p>
+  
+{% highlight html %}{% raw %}
+    Ink.requireModules(['Ink.Util.Url_1'], function( InkUrl ){
+        var hashParams = InkUrl.getAnchorString( 'http://www.sapo.pt/#var1=valueVar1&var2=valueVar2' );
+        console.log( hashParams );
+        // Result:
+        // {
+        //    var1: 'valueVar1',
+        //    var2: 'valueVar2'
+        // }
+    });
+{% endraw %}{% endhighlight %}
+
+
+
+
+    
+
+</section>
+    
+        <section id="Ink_Util_Url_1-getQueryString" class="box box-function">
+
+    <h1 class="fw-300">
+    
+        
+            .getQueryString
+        
+    
+    ([str])
+    
+        
+            <i>function</i>
+        
+    
+    </h1>
+
+    
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        [
+        str
+        ]
+        
+        </li>
+        
+    </ul>
+    
+
+    
+    
+
+    
+        <p class="text"><p>Gets an object from an URL encoded string.</p>
+</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="optional">[str]
+                
+
+                
+                </label>
+                
+                    URL String. When not specified it uses the current URL.
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>Object</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
+
+    
+<p class="example-title">Example</p>
+  
+{% highlight html %}{% raw %}
+    Ink.requireModules(['Ink.Util.Url_1'], function( InkUrl ){
+        var queryStringParams = InkUrl.getQueryString( 'http://www.sapo.pt/?var1=valueVar1&var2=valueVar2' );
+        console.log( queryStringParams );
+        // Result:
+        // {
+        //    var1: 'valueVar1',
+        //    var2: 'valueVar2'
+        // }
+    });
+{% endraw %}{% endhighlight %}
+
+
+
+
+    
+
+</section>
+    
+        <section id="Ink_Util_Url_1-getUrl" class="box box-function">
+
+    <h1 class="fw-300">
+    
+        
+            .getUrl
+        
+    
+    ()
+    
+        
+            <i>function</i>
+        
+    
+    </h1>
+
+    
+
+    
+    
+
+    
+        <p class="text"><p>Gets URL of current page</p>
+</p>
+    
+
+    
+
+
+    
+<p class="example-title">Example</p>
+  
+{% highlight html %}{% raw %}
+    Ink.requireModules(['Ink.Util.Url_1'], function( InkUrl ){
+        console.log( InkUrl.getUrl() ); // Will return it's window URL
+    });
+{% endraw %}{% endhighlight %}
+
+
+
+
+    
+
+</section>
+    
+        <section id="Ink_Util_Url_1-parseUrl" class="box box-function">
+
+    <h1 class="fw-300">
+    
+        
+            .parseUrl
+        
+    
+    (url)
+    
+        
+            <i>function</i>
+        
+    
+    </h1>
+
+    
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        url
+        
+        
+        </li>
+        
+    </ul>
+    
+
+    
+    
+
+    
+        <p class="text"><p>Parses URL string into URL parts</p>
+</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label>url
+                
+
+                
+                </label>
+                
+                    URL to be parsed
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>Object</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
+
+    
+<p class="example-title">Example</p>
+  
+{% highlight html %}{% raw %}
+    Ink.requireModules(['Ink.Util.Url_1'], function( InkUrl ){
+        var parsedURL = InkUrl.parseUrl( 'http://www.sapo.pt/index.html?var1=value1#anchor' )
+        console.log( parsedURL );
+        // Result:
+        // {
+        //   'scheme'    => 'http',
+        //   'host'      => 'www.sapo.pt',
+        //   'path'      => '/index.html',
+        //   'query'     => 'var1=value1',
+        //   'fragment'  => 'anchor'
+        // }
+    });
+
+{% endraw %}{% endhighlight %}
+
+
+
+
+    
+
+</section>
+    
+
+    
+

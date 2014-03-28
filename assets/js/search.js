@@ -11,10 +11,16 @@ Ink.requireModules(['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Do
 
     ev.observeMulti(elm, 'submit', function(event) {
 
-      var tgt = ev.element(event);
-      var val = tgt.value;
-      if(val !== '') {
-        doRequest(val);
+      var currentUrl = url.parseUrl(url.getUrl());
+
+      if(currentUrl.path === '/search/') {
+        event.preventDefault();   
+      }
+      
+      var searchString = Ink.s('.search-field');
+      
+      if(searchString.value !== ''){
+        doRequest(searchString.value);
       }
 
     });
@@ -35,31 +41,39 @@ Ink.requireModules(['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Do
 
   var doOnSuccess = function(json) {
 
+    console.log(json);
+
     Ink.log(json);
     if(response.numFound === 0) {
       return;
     }
-    var data = json.response.docs;
+
+    var pages = json.response.docs;
+    var highlights = json.highlights;
 
     var cur;
-    for(var i=0, t=data.length; i < t; i++) {
-      cur = data[i];
+    for(var i=0, t=pages.length; i < t; i++) {
+      cur = pages[i];
       Ink.log(cur);
+      Ink.log(highlights[cur.RSSWorksId])
     }
 
   }
 
   function doRequest(value) {
+
+    console.log('search: ' + value);
+
     var request = new ajax(
       'http://services.sapo.pt/RSS/Feed/site/ink',
       {
         method: 'get',
-        paramenters: 'wt=json&indent=on&fl=Title,Url,RSSWorksId&q='+encodeURIComponent(value),
+        cors: true,
+        paramenters: 'wt=json&indent=on&fl=Title,Url,RSSWorksId&hl=true&q='+encodeURIComponent(value),
         onSuccess: function(req) {
           if(req.responseJSON) {
             var json = req.responseJSON;
-
-            doOnSuccess(json);
+            doOnSuccess(req);
           }
         },
         onFailure: function () {

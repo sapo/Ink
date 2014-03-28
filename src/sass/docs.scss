@@ -141,11 +141,12 @@ a, .ink-button {
 }
 
 .sidebar {
+
     &.ink-navigation {
         ul.menu.vertical {
             li {
 
-                text-transform: uppercase;
+                // text-transform: uppercase;
 
                 &.heading {
                     margin-top: 1em;
@@ -941,4 +942,11 @@ $who: lighten(#CA8A4E,10%);
     margin-bottom: 1em;
     color: transparent !important;
   }
+}
+
+#search-results {
+    display: none;
+    &.show {
+        display: block;
+    }
 }

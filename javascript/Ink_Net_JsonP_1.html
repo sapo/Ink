@@ -1,0 +1,367 @@
+---
+layout: js-documentation
+title: Ink.Net.JsonP_1
+description: Provides the core methods to create and load all of the library modules. 
+site_root:  ../
+---
+
+    
+        <section>
+        <h1 class="fw-300">Ink.Net.JsonP_1 <small>version: 1</small></h1>
+    
+
+    
+
+    
+
+
+    
+
+
+    
+
+    
+
+
+
+    
+            
+
+    
+    <p><p>Executes a JSONP request</p>
+</p>
+    
+    
+    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p>
+
+    
+    <table class="props bottom-space">
+        
+        
+        <caption>Methods</caption>
+        <thead>
+            <tr>
+                <th>Method name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        
+        
+        <tbody>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Net_JsonP_1-Ink_Net_JsonP-JsonP">
+                        
+                            
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    
+
+                    
+                    
+                </td>
+            </tr>
+        
+        </tbody>
+    </table>
+    
+
+    
+</section>
+
+
+
+
+
+
+
+    <section id="Ink_Net_JsonP_1-Ink_Net_JsonP-JsonP" class="box box-function">
+
+    <h1 class="fw-300">
+    
+        Ink.Net.JsonP
+    
+    (uri, options, )
+    
+        <i>constructor</i>
+    
+    </h1>
+
+    
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        uri
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        
+        options
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+    </ul>
+    
+
+    
+    
+
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label>uri
+                
+
+                
+                </label>
+                
+                    Request URL
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Object</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label>options
+                
+
+                
+                </label>
+                
+                    Request options
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Function</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label>options.onSuccess
+                
+
+                
+                </label>
+                
+                    Success callback
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Function</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="optional">[options.onFailure]
+                
+
+                
+                </label>
+                
+                    Failure callback
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Object</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="optional">[options.failureObj]
+                
+
+                
+                </label>
+                
+                    Object to be passed as argument to failure callback
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Number</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="optional">[options.timeout]
+                
+
+                
+                </label>
+                
+                    Timeout for request fail, in seconds. defaults to 10
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Object</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="optional">[options.params]
+                
+
+                
+                </label>
+                
+                    Object with the parameters and respective values to unfold
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="optional">[options.callbackParam]
+                
+
+                
+                </label>
+                
+                    Parameter to use as callback. defaults to 'jsoncallback'
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="optional">[options.internalCallback]
+                
+
+                
+                </label>
+                
+                    Name of the callback function stored in the Ink.Net.JsonP object.
+                
+            </dd>
+        
+        </dl>
+        
+        
+
+    
+
+
+    
+<p class="example-title">Example</p>
+  
+{% highlight html %}{% raw %}
+     Ink.requireModules(['Ink.Net.JsonP_1'], function (JsonP) {
+         var jsonp = new JsonP('http://path.to.jsonp/endpoint', {
+             // When the JSONP response arrives, this callback is called:
+             onSuccess: function (gameData) {
+                 game.startGame(gameData);
+             },
+             // after options.timeout seconds, this callback gets called:
+             onFailure: function () {
+                 game.error('Could not load game data!');
+             },
+             timeout: 5
+         });
+     });
+{% endraw %}{% endhighlight %}
+
+
+
+
+    
+
+</section>
+
+
+
+    
+
+    
+
+    
+

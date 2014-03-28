@@ -2,7 +2,9 @@
 
     
         <section>
-        <h1 class="fw-300">Ink.UI.Spy_1 <small>version: 1</small></h1>
+        <h1 class="fw-300">Ink.UI.Spy_1 <small>version: 1
+
+Highlight elements as you scroll</small></h1>
     
 
     
@@ -23,8 +25,21 @@
             
 
     
-    <p><p>Spy is a component that &#39;spies&#39; an element (or a group of elements) and when they leave the viewport (through the top),
-highlight an option - related to that element being spied - that resides in a menu, initially identified as target.</p>
+    <p><p>Spy is a UI component which tells the user which section is currently
+visible.</p>
+<p>Spy can be used to highlight a menu item for the section which is
+visible to the user.</p>
+<p>You need two things: A menu element (which contains your links inside
+<code>li</code> tags), and an element containing your section&#39;s content.</p>
+<p>The links must be inside <code>li</code> tags. These will get the &#39;active&#39; class,
+to signal which item is currently visible. In your CSS you need to add
+styling for this class.</p>
+<p>To use Ink.UI.Spy for more than one section, loop through your
+sections (as you see in the sample below), or just load
+<code>autoload.js</code> and set add the <code>data-spy=&quot;true&quot;</code> attribute to
+your sections.</p>
+<p>The currently visible element&#39;s corresponding link in the menu
+gets the &#39;visible&#39; class added to it.</p>
 </p>
     
     
@@ -176,7 +191,7 @@ highlight an option - related to that element being spied - that resides in a me
                 
                 </label>
                 
-                    Target menu on where the spy will highlight the right option.
+                    Target menu where the spy will highlight the right option.
                 
             </dd>
         
@@ -188,24 +203,15 @@ highlight an option - related to that element being spied - that resides in a me
 
 
     
-<p class="example-title">Example</p>
-  
-{% highlight html %}{% raw %}
-     <script>
-         Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.Spy_1'], function( Selector, Spy ){
-             var menuElement = Ink.s('#menu');
-             var specialAnchorToSpy = Ink.s('#specialAnchor');
-             var spyObj = new Spy( specialAnchorToSpy, {
-                 target: menuElement
-             });
-         });
-     </script>
-{% endraw %}{% endhighlight %}
-
-
 
 
     
+	<h3>Samples</h3>
+
+	
+		{% include js_samples/Ink_UI_Spy_1.html %}
+	
+
 
 </section>
 

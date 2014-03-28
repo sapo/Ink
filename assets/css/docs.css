@@ -169,9 +169,6 @@ a, .ink-button {
   clear: both;
 }
 
-.sidebar.ink-navigation ul.menu.vertical li {
-  text-transform: uppercase;
-}
 .sidebar.ink-navigation ul.menu.vertical li.heading {
   margin-top: 1em;
   border-top: 1px solid #ddd;
@@ -808,7 +805,6 @@ span.tip {
 }
 
 ul.props {
-  margin: 0;
   padding: 0;
   list-style-type: none;
 }
@@ -989,6 +985,48 @@ footer .ink-navigation ul.menu.horizontal li a.license {
   padding: .5em 0;
 }
 
+.screen-size-helper {
+  line-height: 1.6em;
+  padding: 0.5333333333333333em 0.8em;
+  background: rgba(0, 0, 0, 0.7);
+}
+.screen-size-helper .title,
+.screen-size-helper ul {
+  color: white;
+}
+.screen-size-helper .title {
+  margin: 0;
+  float: left;
+  text-transform: uppercase;
+}
+.screen-size-helper ul {
+  float: right;
+  margin: 0;
+  padding: 0;
+}
+.screen-size-helper ul li {
+  padding: 0;
+  margin: 0;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: inherit !important;
+}
+.screen-size-helper ul li.tiny {
+  color: #0f75da;
+}
+.screen-size-helper ul li.small {
+  color: #4a9b17;
+}
+.screen-size-helper ul li.medium {
+  color: #ff9c00;
+}
+.screen-size-helper ul li.large {
+  color: #c91111;
+}
+.screen-size-helper ul li.xlarge {
+  color: white;
+}
+
 #home a {
   color: white;
   text-decoration: underline;
@@ -1121,4 +1159,11 @@ footer .ink-navigation ul.menu.horizontal li a.license {
   height: 30px;
   margin-bottom: 1em;
   color: transparent !important;
+}
+
+#search-results {
+  display: none;
+}
+#search-results.show {
+  display: block;
 }

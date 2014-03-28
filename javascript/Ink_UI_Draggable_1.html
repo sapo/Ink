@@ -1,0 +1,663 @@
+---
+layout: js-documentation
+title: Ink.UI.Draggable_1
+description: Provides the core methods to create and load all of the library modules. 
+site_root:  ../
+---
+
+    
+        <section>
+        <h1 class="fw-300">Ink.UI.Draggable_1 <small>version: 1</small></h1>
+    
+
+    
+
+    
+
+
+    
+
+
+    
+
+    
+
+
+
+    
+            
+
+    
+    
+    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p>
+
+    
+    <table class="props bottom-space">
+        
+        
+        <caption>Methods</caption>
+        <thead>
+            <tr>
+                <th>Method name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        
+        
+        <tbody>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Draggable_1-Ink_UI_Draggable-Draggable">
+                        
+                            
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Draggable_1-Ink_UI_Draggable-destroy">
+                        
+                            .destroy
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Removes the ability of the element of being dragged</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+        </tbody>
+    </table>
+    
+
+    
+</section>
+
+
+
+
+
+
+
+    <section id="Ink_UI_Draggable_1-Ink_UI_Draggable-Draggable" class="box box-function">
+
+    <h1 class="fw-300">
+    
+        Ink.UI.Draggable
+    
+    (target, [options], )
+    
+        <i>constructor</i>
+    
+    </h1>
+
+    
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        target
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        [
+        options
+        ]
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+    </ul>
+    
+
+    
+    
+
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String|DOMElement</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label>target
+                
+
+                
+                </label>
+                
+                    Target element.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Object</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="optional">[options]
+                
+
+                
+                </label>
+                
+                    Optional object to configure the component.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="optional">[options.constraint]
+                
+
+                
+                </label>
+                
+                    Movement constraint. None by default. Can be `vertical`, `horizontal`, or `both`.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String|DOMElement</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="optional">[options.constraintElm]
+                
+
+                
+                </label>
+                
+                    Constrain dragging to be within this element. None by default.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Number</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="optional">[options.top]
+                
+
+                
+                </label>
+                
+                    Limits to constrain draggable movement.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Number</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="optional">[options.right]
+                
+
+                
+                </label>
+                
+                    Limits to constrain draggable movement.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Number</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="optional">[options.bottom]
+                
+
+                
+                </label>
+                
+                    Limits to constrain draggable movement.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Number</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="optional">[options.left]
+                
+
+                
+                </label>
+                
+                    Limits to constrain draggable movement.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String|DOMElement</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="optional">[options.handle]
+                
+
+                
+                </label>
+                
+                    If specified, this element or CSS ID will be used as a handle for dragging.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Boolean</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="optional">[options.revert]
+                
+
+                
+                </label>
+                
+                    Flag to revert the draggable to the original position when dragging stops.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="optional">[options.cursor]
+                
+
+                
+                </label>
+                
+                    Cursor type (CSS `cursor` value) used when the mouse is over the draggable object.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Number</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="optional">[options.zIndex]
+                
+
+                
+                </label>
+                
+                    Z-index applied to the draggable element while dragged.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Number</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="optional">[options.fps]
+                
+
+                
+                </label>
+                
+                    If set, throttles the drag effect to this number of frames per second.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>DOMElement</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="optional">[options.droppableProxy]
+                
+
+                
+                </label>
+                
+                    If set, a shallow copy of this element will be moved around with transparent background.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="optional">[options.mouseAnchor]
+                
+
+                
+                </label>
+                
+                    Anchor for the drag. Can be one of: 'left','center','right','top','center','bottom'.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="optional">[options.dragClass]
+                
+
+                
+                </label>
+                
+                    Class to add when the draggable is being dragged. Defaults to drag.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Function</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="optional">[options.onStart]
+                
+
+                
+                </label>
+                
+                    Callback called when dragging starts.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Function</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="optional">[options.onEnd]
+                
+
+                
+                </label>
+                
+                    Callback called when dragging stops.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Function</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="optional">[options.onDrag]
+                
+
+                
+                </label>
+                
+                    Callback called while dragging, prior to position updates.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Function</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="optional">[options.onChange]
+                
+
+                
+                </label>
+                
+                    Callback called while dragging, after position updates.
+                
+            </dd>
+        
+        </dl>
+        
+        
+
+    
+
+
+    
+<p class="example-title">Example</p>
+  
+{% highlight html %}{% raw %}
+    Ink.requireModules( ['Ink.UI.Draggable_1'], function( Draggable ){
+        new Draggable( '#myElementId' );
+    });
+{% endraw %}{% endhighlight %}
+
+
+
+
+    
+
+</section>
+
+    <section id="Ink_UI_Draggable_1-Ink_UI_Draggable-destroy" class="box box-function">
+
+    <h1 class="fw-300">
+    
+        
+            .destroy
+        
+    
+    ()
+    
+        
+            <i>method</i>
+        
+    
+    </h1>
+
+    
+
+    
+    
+
+    
+        <p class="text"><p>Removes the ability of the element of being dragged</p>
+</p>
+    
+
+    
+
+
+    
+
+
+    
+
+</section>
+
+
+
+    
+
+    
+
+    
+

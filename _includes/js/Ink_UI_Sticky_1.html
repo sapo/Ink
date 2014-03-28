@@ -2,7 +2,9 @@
 
     
         <section>
-        <h1 class="fw-300">Ink.UI.Sticky_1 <small>version: 1</small></h1>
+        <h1 class="fw-300">Ink.UI.Sticky_1 <small>version: 1
+
+Stick an element to the screen</small></h1>
     
 
     
@@ -23,8 +25,17 @@
             
 
     
-    <p><p>The Sticky component takes an element and transforms it&#39;s behavior in order to, when the user scrolls he sets its position
-to fixed and maintain it until the user scrolls back to the same place.</p>
+    <p><p>Ink.UI.Sticky makes an element &quot;stick&quot; to the screen and stay in the
+same place as the user scrolls.</p>
+<p>To use it, just select an element as you create the Sticky. As you
+scroll past it, it will stick to the top of the screen.</p>
+<p>The <code>activateInLayouts</code> option controls in what layouts this behaviour
+happens. By default, it is disabled for the <code>small</code> and <code>tiny</code> layouts.
+Pass a comma-separated string to choose just the layouts you need.</p>
+<p>You can use the <code>offsetTop</code> option if you want it to keep some distance
+from the top of the screen.</p>
+<p>To avoid it going under the footer of your page, pass a selector
+to your footer as the <code>bottomElement</code> option.</p>
 </p>
     
     
@@ -210,7 +221,7 @@ to fixed and maintain it until the user scrolls back to the same place.</p>
                 
                 </label>
                 
-                    Number of pixels of distance from the bottomElement.
+                    Number of pixels of distance from the bottomElement (or the bottom of the screen).
                 
             </dd>
         
@@ -231,7 +242,7 @@ to fixed and maintain it until the user scrolls back to the same place.</p>
                 
                 </label>
                 
-                    Number of pixels of distance from the topElement.
+                    Number of pixels of distance from the topElement (or the top of the screen).
                 
             </dd>
         
@@ -370,7 +381,7 @@ to fixed and maintain it until the user scrolls back to the same place.</p>
                 
 
                 
-                    &#x27;medium,large&#x27;
+                    &#x27;medium,large,xlarge&#x27;
                 
                 </label>
                 

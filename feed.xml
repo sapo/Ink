@@ -24,7 +24,8 @@
         <pubDate>{{ site.time | date: "%a, %d %b %Y %H:%M:%S GMT" }}</pubDate>
         {% for tag in page.tags %}<category>{{ tag }}</category>{% endfor %}
         <guid isPermaLink="false">{{ page.id }}</guid>
-        <description><![CDATA[ {{ page.content | strip_html }} ]]></description>
+        {% capture pageContent %}{{ page.content }}{% endcapture %}
+        <description>{{ pageContent | xml_escape | replace: '{% include',''}}</description>
     </item>
     {% endfor %}
 </channel>
