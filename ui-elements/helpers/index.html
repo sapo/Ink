@@ -108,7 +108,6 @@ site_root: ../../
   <button class="ink-button red">Cancel</button>
   <button class="ink-button green large-push-right">Confirm</button>
 </div>
-<p></p>
 <p class="example-title">Code</p>
 {% highlight html %}
 <button class="ink-button red">Cancel</button>
@@ -132,26 +131,75 @@ site_root: ../../
   <h1 class="fw-300">Content alignment</h1>
   <ul class="css props inline">
     <li class="heading">Css classes:</li>
-    <li><code>show</code> <span class="label breakpoint-aware"></span></li>
-    <li><code>hide</code> <span class="label breakpoint-aware"></span></li>
+    <li><code>align-left</code> <span class="label breakpoint-aware"></span></li>
+    <li><code>align-center</code> <span class="label breakpoint-aware"></span></li>
+    <li><code>align-right</code> <span class="label breakpoint-aware"></span></li>
   </ul>
-  <p>With Ink, you can control the visibility of any element based globally of based on a specific breakpoint.</p>
+  <p>If you need to align content within your blocks, you can use the <code>align-left</code>, <code>align-center</code> or <code>align-right</code> classes.</p>
+  <p class="example-title">Demo</p>
+  <div class="example">
+    <p class="align-right no-margin">This is some right aligned text, using the <code>align-right</code> class.</p>
+  </div>
+  <p class="example-title">Code</p>
+{% highlight html %}<p class="align-right">This is some right aligned text, using the align-right class.</p>{% endhighlight %}
+  <!--<p>
+    If you have floating elements that you need to left, right or center align, you can use the three corresponding utility classes <code>align-left</code>, <code>align-right</code> and <code>align-center</code>. You should pair these classes with common width classes, such as .large-50, this is especially important in centering, as Ink uses an auto margin method to achieve that positioning.
+  </p>-->
 </section>
 <section id="element-spacing">
   <h1 class="fw-300">Element spacing</h1>
   <ul class="css props inline">
     <li class="heading">Css classes:</li>
-    <li><code>show</code> <span class="label breakpoint-aware"></span></li>
-    <li><code>hide</code> <span class="label breakpoint-aware"></span></li>
+    <li><code>space</code> <span class="label breakpoint-aware"></span></li>
+    <li><code>top-space</code> <span class="label breakpoint-aware"></span></li>
+    <li><code>right-space</code> <span class="label breakpoint-aware"></span></li>
+    <li><code>bottom-space</code> <span class="label breakpoint-aware"></span></li>
+    <li><code>left-space</code> <span class="label breakpoint-aware"></span></li>
   </ul>
-  <p>With Ink, you can control the visibility of any element based globally of based on a specific breakpoint.</p>
+  <p>
+    Sometimes extra space is essential and so Ink ships with a few simple spacer classes. Add one of the above classes to any block level element to obtain the desired space.
+  </p>
 </section>
 <section id="visibility">
   <h1 class="fw-300">Visibility</h1>
   <ul class="css props inline">
     <li class="heading">Css classes:</li>
+    <li><code>show-all</code> <span class="label breakpoint-aware"></span></li>
+    <li><code>hide-all</code> <span class="label breakpoint-aware"></span></li>
     <li><code>show</code> <span class="label breakpoint-aware"></span></li>
     <li><code>hide</code> <span class="label breakpoint-aware"></span></li>
   </ul>
-  <p>With Ink, you can control the visibility of any element based globally of based on a specific breakpoint.</p>
+  
+  <p>With the <code>.show</code> and <code>hide</code> classes you can force an element to be shown or hidden.</p>
+  <p><i class="fa fa-leaf"></i> Note that these classes use <code>!important</code> to avoid any conflicts.</p>
+  <p>The bar below will display different values and colors depending on the size of the screen it's being viewed on.</p>
+
+  <p class="example-title">Demo</p>
+  <div class="example">
+    <div class="screen-size-helper clearfix">
+      <p class="title">Screen size:</p>
+      <ul class="unstyled">
+        <li class="hide-all show-tiny tiny">TINY</li>
+        <li class="hide-all show-small small">SMALL</li>
+        <li class="hide-all show-medium medium">MEDIUM</li>
+        <li class="hide-all show-large large">LARGE</li>
+        <li class="hide-all show-xlarge xlarge">XLARGE</li>
+      </ul>
+    </div>
+  </div>
+
+  <p class="example-title">Code</p>
+{% highlight html %}
+<div class="screen-size-helper clearfix">
+  <p class="title">Screen size:</p>
+  <ul class="unstyled">
+    <li class="hide-all show-tiny tiny">TINY</li>
+    <li class="hide-all show-small small">SMALL</li>
+    <li class="hide-all show-medium medium">MEDIUM</li>
+    <li class="hide-all show-large large">LARGE</li>
+    <li class="hide-all show-xlarge xlarge">XLARGE</li>
+  </ul>
+</div>
+{% endhighlight %}
+
 </section>
