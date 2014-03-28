@@ -8,19 +8,34 @@ tags:
 <section class="ink">
   <div class="ink-grid">
     <div class="column-group push-middle push-center">
-      <div class="xlarge-65 large-65 all-80 align-center">
+      <div class="xlarge-70 large-70 all-80 align-center">
         <p><img src="{{ site.images_path }}ink.png" alt="Ink"></p>
         <h1 class="fw-light">Create responsive web interfaces quick and efficiently.</h1>
-        <div class="column-group">
-          <div class="all-50">
-            <a href="{{site.download_url}}{{site.version}}.zip" class="ink-button download">Download</a>
-          </div>
-          <div class="all-50">
-            <a href="{{site.repo_url}}" class="ink-button repo">Github</a>
-          </div>
-        </div>
       </div>
     </div>
+  </div>
+</section>
+<section class="download">
+  <div class="ink-grid">
+    <h1 class="fw-light align-center uppercase">Get our code</h1>
+        <div class="column-group push-middle push-center">
+          <div class="xlarge-70 large-70 all-80 align-center">
+            <div class="column-group horizontal-gutters small-vertical-gutters tiny-vertical-gutters">
+              <div class="all-33 small-100 tiny-100">
+                <a href="{{site.download_url}}{{site.version}}/ink-{{site.version}}.zip" class="ink-button download">Download</a>
+                <p class="half-top-space">This file contains css, javascript and their minified versions, images, fonts and the cookbook.</p>
+              </div>
+              <div class="all-33 small-100 tiny-100">
+                <a href="{{site.download_src_url}}{{site.version}}.zip" class="ink-button download">Download with source</a>
+                <p class="half-top-space">This file containe Sass and JavaScript source code, distribution versions and the build tools config files.</p>
+              </div>
+              <div class="all-33 small-100 tiny-100">
+                <a href="{{site.repo_url}}" class="ink-button repo">Github</a>
+                <p class="half-top-space">If you prefer, head on to our gihub repository, fork the project and help us create an even better Ink.</p>
+              </div>
+            </div>
+          </div>
+        </div>
   </div>
 </section>
 <section class="what">
@@ -80,47 +95,28 @@ $navigation-class-name: #{$ink-class-prefix}nav
     </div>
   </div>
 </section>
-<section class="how">
-  <div class="ink-grid">
-    <h1 class="fw-light">How?</h1>
-    <div class="column-group horizontal-gutters push-top push-center">
-      <div class="all-25 medium-50 small-100 tiny-100">
-        <h2 class="fw-light uppercase">Generated</h2>
-        <p>Inks CSS is created with <a href="http://sass-lang.com/" target="_blank">SASS</a> and uses <a href="http://compass-style.org/" target="_blank">Compass</a> to make our work a lot easier. This also makes it very easy for you to do the same.</p>
-      </div>
-      <div class="all-25 medium-50 small-100 tiny-100">
-        <h2 class="fw-light uppercase">Customizable</h2>
-        <p>Allmost all aspects of Ink, like dimensions, coloring, typography and even class names are defined with SASS variables. Creating your own version is as simple as editing a few files and recompiling.</p>
-      </div>
-      <div class="all-25 medium-50 small-100 tiny-100">
-        <h2 class="fw-light uppercase">Modular</h2>
-        <p>If you need just a couple of our components, just edit the code and recompile your stripped down version of our CSS.</p>
-      </div>
-      <div class="all-25 medium-50 small-100 tiny-100">
-        <h2 class="fw-light uppercase">Javascript</h2>
-        <p>Ink.js is our own library and comes packed with lots of UI components, and the tools to let you build your own.</p>
-      </div>
-    </div>
-  </div>
-</section>
 <section class="who">
   <div class="ink-grid">
     <div class="column-group push-middle push-center">
       <div class="all-80 align-center">
         <h1 class="fw-light">Ink is made at Sapo</h1>
         <p>
-          For the last 18 years, Sapo has lead the way, in web development, in Portugal. We've allways contributed to and made use of many open source projects, many of which are critical to our operations. So, Ink is made as part of our <a href="http://oss.sapo.pt">open source initiative</a> and made available under <a href="http://opensource.org/licenses/MIT">MIT</a> license.
+          For the last 18 years, Sapo has lead the way, in web development, in Portugal. We've always contributed to and made use of many open source projects, many of which are critical to our operations. So, Ink is made as part of our <a href="http://oss.sapo.pt">open source initiative</a> and made available under <a href="http://opensource.org/licenses/MIT">MIT</a> license.
         </p>
         <p>
           <iframe src="http://ghbtns.com/github-btn.html?user=sapo&repo=Ink&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"></iframe>
           <iframe src="http://ghbtns.com/github-btn.html?user=sapo&repo=Ink&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"></iframe>
         </p>
-        <div class="copyright vspace">
-            <p><a class="SAPOlogo" href="http://www.sapo.pt">sapo.pt</a></p>
+        <div class="column-group copyright">
+          <div class="xlarge-60 large-60 medium-60 small-100 tiny-100 align-left">
             <p class="PTClogo">
                 <a href="http://www.telecom.pt">PTC logo</a>PTC - All rights reserved.<br>
                 SAPO is a trademark and a search engine created at the University of Aveiro.
             </p>
+          </div>
+          <div class="xlarge-40 large-40 medium-40 small-100 tiny-100 align-right">
+            <p><a class="SAPOlogo" href="http://www.sapo.pt">sapo.pt</a></p>
+          </div>
         </div>
       </div>
     </div>

@@ -762,7 +762,7 @@ footer {
 $ink: darken($code-background,25%);
 $what: #709DC7;
 $why: lighten(#8F65C5,10%);
-$how: lighten(#C04343,10%);
+$download: lighten(#C04343,10%);
 $who: lighten(#CA8A4E,10%);
 
 #home {
@@ -802,25 +802,6 @@ $who: lighten(#CA8A4E,10%);
             height: inherit;
         }
       }
-
-      a.ink-button.download,
-      a.ink-button.repo {
-        color: $ink;
-        background: white;
-        font-size: 1.1em;
-        padding: .5em 1em;
-        @extend .fw-300;
-        text-decoration: none;
-        text-transform: uppercase;
-        &:hover,&:focus,&:active {
-          // background: darken($ink,20%);
-          background: black;
-          // border-color: darken($ink,23%);
-          border-color: black;
-          color: $white;
-        }
-      }
-
     }
 
     section.what {
@@ -853,8 +834,8 @@ $who: lighten(#CA8A4E,10%);
 
     }
 
-    section.how {
-      @include background-image(radial-gradient($how, darken($how,20%)));
+    section.download {
+      @include background-image(radial-gradient($download, darken($download,20%)));
       @include text-color($white,h1,h2,h3,p,ul);
 
 
@@ -862,6 +843,24 @@ $who: lighten(#CA8A4E,10%);
         height: 100%;
         .column-group {
             height: inherit;
+        }
+      }
+
+      a.ink-button.download,
+      a.ink-button.repo {
+        color: $download;
+        background: white;
+        font-size: 1.1em;
+        padding: .5em 1em;
+        @extend .fw-300;
+        text-decoration: none;
+        text-transform: uppercase;
+        &:hover,&:focus,&:active {
+          // background: darken($ink,20%);
+          background: black;
+          // border-color: darken($ink,23%);
+          border-color: black;
+          color: $white;
         }
       }
 
@@ -883,6 +882,9 @@ $who: lighten(#CA8A4E,10%);
 }
 
 .copyright {
+
+    line-height: 1.25;
+
   .PTClogo a {
     background: url("../img/icon_Sprite.png") no-repeat 0 top;
     text-indent: -9999px;
@@ -890,8 +892,9 @@ $who: lighten(#CA8A4E,10%);
     float: left;
     width: 41px;
     height: 43px;
-    margin-right: 1em;
+    margin-right: .6em;
   }
+
   .SAPOlogo {
     background: url("../img/SAPOlogo.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
     text-indent: -9999px;
@@ -899,5 +902,6 @@ $who: lighten(#CA8A4E,10%);
     width: 101px;
     height: 30px;
     margin-bottom: 1em;
+    color: transparent !important;
   }
 }
