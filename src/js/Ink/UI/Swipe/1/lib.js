@@ -1,5 +1,5 @@
 /**
- * @module Ink.UI.Swipe
+ * @module Ink.UI.Swipe_1
  * Swipe gestures
  * @version 1
  */
@@ -11,7 +11,7 @@ Ink.createModule('Ink.UI.Swipe', '1', ['Ink.Dom.Event_1', 'Ink.Dom.Element_1', '
      *
      * Supports filtering swipes be any combination of the criteria supported in the options.
      *
-     * @class Ink.UI.Swipe
+     * @class Ink.UI.Swipe_1
      * @constructor
      * @param {String|DOMElement}   el                      Element or Selector
      * @param {Object}              options                 Options Object
@@ -43,6 +43,7 @@ Ink.createModule('Ink.UI.Swipe', '1', ['Ink.Dom.Event_1', 'Ink.Dom.Element_1', '
      *   - `overallMovement`: X and Y distance traveled by the touch movement (`[x, y]`) (onEnd only)
      *   - `overallTime`: total time passed (onEnd only)
      *
+     * @sample Ink_UI_Swipe_1.html
      */
     function Swipe(el, options) {
         el = Common.elOrSelector(el, 'Swipe target');

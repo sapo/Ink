@@ -37,6 +37,8 @@ Ink.createModule('Ink.UI.Carousel', '1',
      * @param {Boolean}             [options.swipe]             Enable swipe support if available. Defaults to true.
      * @param {Mixed}               [options.pagination]        Either an `<ul>` element to add pagination markup to or an `Ink.UI.Pagination` instance to use.
      * @param {Function}            [options.onChange]          Callback to be called when the page changes.
+     *
+     * @sample Ink_UI_Carousel_1.html
      */
     var Carousel = function(selector, options) {
         this._handlers = {
