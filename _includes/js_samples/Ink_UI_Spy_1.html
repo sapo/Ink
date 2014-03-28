@@ -1,0 +1,45 @@
+<p>Highlight menu items as the user scrolls</p>
+
+<p class="example-title">Code</p>
+{% highlight html %}
+
+<style>
+    #my-menu .active a { color: red; }
+</style>
+
+
+<div class="ink-grid">
+    <nav id="my-menu" class="all-25">
+        <li><a href="#my-section-1">My section 1</a></li>
+        <li><a href="#my-section-2">My section 2</a></li>
+        <li><a href="#my-section-3">My section 3</a></li>
+    </nav>
+
+    <div class="all-75">
+        <section id="my-section-1">
+            Lots of content...<br><br><br><br><br>
+        </section>
+        <section id="my-section-2">
+            Lots of content...<br><br><br><br><br>
+        </section>
+        <section id="my-section-3">
+            Lots of content...<br><br><br><br><br>
+        </section>
+    </div>
+</div>
+
+<script>
+    // If you included `autoload.js` in your page, you can just
+    // add 'data-spy="true"' and 'data-target="#my-menu"' to each
+    // of your sections and ignore this JavaScript snippet.
+    Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.Spy_1'], function( Selector, Spy ){
+        var myMenu = Ink.i('my-menu');
+        var sections = Ink.ss('.my-sections');
+
+        for (var i = 0, len = sections.length; i < len; i++) {
+            new Spy(sections[i], { target: myMenu });
+        }
+    });
+</script>
+{% endhighlight %}
+

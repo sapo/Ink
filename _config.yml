@@ -134,6 +134,7 @@ sections:
           - title: Ink.UI.SortableList
           - title: Ink.UI.Spy
           - title: Ink.UI.Sticky
+          - title: Ink.UI.Swipe
           - title: Ink.UI.Table
           - title: Ink.UI.Tabs
           - title: Ink.UI.Toggle
