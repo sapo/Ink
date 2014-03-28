@@ -79,7 +79,8 @@ module.exports = function(grunt) {
       },
       css: {
         src: ["<%= ink.folders.css.dist %>/*.css","<%= ink.folders.css.dist %>/contrib" ]
-      }
+      },
+      csscontrib: [ '<%= ink.folders.css.dist %>/contrib' ]
     },
 
     compass: {
@@ -191,22 +192,22 @@ module.exports = function(grunt) {
   });
 
   grunt.loadNpmTasks('grunt-jekyll');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-contrib-compass');
-  grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-shell');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-text-grab');
+  grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-compass');
+  grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-watch');
 
   // Default task(s).
-  grunt.registerTask('js', ['clean:js','concat','uglify']);
-  grunt.registerTask('css', ['clean:css','compass','copy:facss','cssmin']);
-  grunt.registerTask('update', ['shell:src']);
-  grunt.registerTask('dev', ['watch']);
   grunt.registerTask('default', ['update','css','js']);
-  grunt.registerTask('inkdoc', ['shell:inkdoc']);
+  grunt.registerTask('update', ['shell:src']);
   grunt.registerTask('docs', ['inkdoc','jekyll']);
+  grunt.registerTask('dev', ['watch']);
+  grunt.registerTask('inkdoc', ['shell:inkdoc']);
+  grunt.registerTask('js', ['clean:js','concat','uglify']);
+  grunt.registerTask('css', ['clean:css','compass','copy:facss','clean:csscontrib','cssmin']);
 };

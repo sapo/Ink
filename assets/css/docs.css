@@ -994,7 +994,7 @@ footer .ink-navigation ul.menu.horizontal li a.license {
   text-decoration: underline;
 }
 #home section {
-  border: none;
+  border: 0px transparent;
   padding: 2em 0;
 }
 #home section + section {

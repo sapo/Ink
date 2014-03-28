@@ -772,14 +772,14 @@ $who: lighten(#CA8A4E,10%);
     text-decoration: underline;
   }
 
-@mixin text-color($color,$elements...) {
-  #{$elements} {
-    color: $color;
+  @mixin text-color($color,$elements...) {
+    #{$elements} {
+      color: $color;
+    }
   }
-}
 
   section {
-    border: none;
+    border: 0px transparent;
     padding: 2em 0;
 
     & + section {
