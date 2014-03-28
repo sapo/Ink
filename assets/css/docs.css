@@ -4,8 +4,8 @@
 }
 
 .fw-300, ul.props li.prop.breakpoint-aware:after, .example .ink-grid .column,
-html.flexbox .example .ink-grid .column, #home section.download a.ink-button.download,
-#home section.download a.ink-button.repo {
+html.flexbox .example .ink-grid .column, #home section.ink a.ink-button.download,
+#home section.ink a.ink-button.repo {
   font-weight: 300;
   font-family: Roboto;
 }
@@ -701,7 +701,7 @@ body.ink-drawer .right-drawer li:last-child {
 
 /* Literal.Number.Integer.Long */
 .page-header {
-  padding: 3.5em 0 2em;
+  padding: 3em 0 2em;
   font-size: 1.25em;
 }
 .page-header p {
@@ -711,9 +711,6 @@ body.ink-drawer .right-drawer li:last-child {
 }
 .page-header p.section-title {
   margin: 0;
-}
-.page-header h1 {
-  margin-bottom: 0;
 }
 .page-header .border {
   background-image: url("../img/home_bkg.png") center 0px;
@@ -1035,7 +1032,7 @@ footer .ink-navigation ul.menu.horizontal li a.license {
   text-decoration: underline;
 }
 #home section {
-  border: 0px transparent;
+  border: none;
   padding: 2em 0;
 }
 #home section + section {
@@ -1059,6 +1056,23 @@ footer .ink-navigation ul.menu.horizontal li a.license {
 }
 #home section.ink .ink-grid .column-group {
   height: inherit;
+}
+#home section.ink a.ink-button.download,
+#home section.ink a.ink-button.repo {
+  color: #bcb098;
+  background: white;
+  font-size: 1.1em;
+  padding: .5em 1em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+#home section.ink a.ink-button.download:hover, #home section.ink a.ink-button.download:focus, #home section.ink a.ink-button.download:active,
+#home section.ink a.ink-button.repo:hover,
+#home section.ink a.ink-button.repo:focus,
+#home section.ink a.ink-button.repo:active {
+  background: black;
+  border-color: black;
+  color: white;
 }
 #home section.what {
   background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, color-stop(0%, #709dc7), color-stop(100%, #4b84b9));
@@ -1092,38 +1106,21 @@ footer .ink-navigation ul.menu.horizontal li a.license {
 #home section.why .ink-grid .column-group {
   height: inherit;
 }
-#home section.download {
+#home section.how {
   background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, color-stop(0%, #cd6969), color-stop(100%, #9c3434));
   background-image: -webkit-radial-gradient(#cd6969, #9c3434);
   background-image: -moz-radial-gradient(#cd6969, #9c3434);
   background-image: -o-radial-gradient(#cd6969, #9c3434);
   background-image: radial-gradient(#cd6969, #9c3434);
 }
-#home section.download h1, #home section.download h2, #home section.download h3, #home section.download p, #home section.download ul {
+#home section.how h1, #home section.how h2, #home section.how h3, #home section.how p, #home section.how ul {
   color: white;
 }
-#home section.download .ink-grid {
+#home section.how .ink-grid {
   height: 100%;
 }
-#home section.download .ink-grid .column-group {
+#home section.how .ink-grid .column-group {
   height: inherit;
-}
-#home section.download a.ink-button.download,
-#home section.download a.ink-button.repo {
-  color: #cd6969;
-  background: white;
-  font-size: 1.1em;
-  padding: .5em 1em;
-  text-decoration: none;
-  text-transform: uppercase;
-}
-#home section.download a.ink-button.download:hover, #home section.download a.ink-button.download:focus, #home section.download a.ink-button.download:active,
-#home section.download a.ink-button.repo:hover,
-#home section.download a.ink-button.repo:focus,
-#home section.download a.ink-button.repo:active {
-  background: black;
-  border-color: black;
-  color: white;
 }
 #home section.who {
   background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, color-stop(0%, #d6a475), color-stop(100%, #b07135));
@@ -1140,26 +1137,4 @@ footer .ink-navigation ul.menu.horizontal li a.license {
 }
 #home section.who .ink-grid .column-group {
   height: inherit;
-}
-
-.copyright {
-  line-height: 1.25;
-}
-.copyright .PTClogo a {
-  background: url("../img/icon_Sprite.png") no-repeat 0 top;
-  text-indent: -9999px;
-  display: inline-block;
-  float: left;
-  width: 41px;
-  height: 43px;
-  margin-right: .6em;
-}
-.copyright .SAPOlogo {
-  background: url("../img/SAPOlogo.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
-  text-indent: -9999px;
-  display: inline-block;
-  width: 101px;
-  height: 30px;
-  margin-bottom: 1em;
-  color: transparent !important;
 }
