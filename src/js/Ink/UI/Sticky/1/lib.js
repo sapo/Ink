@@ -1,6 +1,6 @@
 /**
  * @module Ink.UI.Sticky_1
- * @author inkdev AT sapo.pt
+ * Stick elements to the viewport
  * @version 1
  *
  * Stick an element to the screen
@@ -9,6 +9,7 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
     'use strict';
 
     /**
+<<<<<<< HEAD
      * Ink.UI.Sticky makes an element "stick" to the screen and stay in the
      * same place as the user scrolls.
      *
@@ -24,11 +25,24 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
      *
      * To avoid it going under the footer of your page, pass a selector
      * to your footer as the `bottomElement` option.
+=======
+     * Ink.UI.Sticky makes an element "stick" to the screen and stay in the same place as the user scrolls.
+     *
+     * To use it, just select an element as you create the Sticky. As you scroll past it, it will stick to the top of the screen.
+     *
+     * The `activateInLayouts` option controls in what layouts this behaviour happens. By default, it is disabled for the `small` and `tiny` layouts.
+     * Pass a comma-separated string to choose just the layouts you need.
+     *
+     * You can use the `offsetTop` option if you want it to keep some distance from the top of the screen.
+     *
+     * To avoid it going under the footer of your page, pass a selector to your footer as the `bottomElement` option.
+>>>>>>> 797f31ed036f19213caf05a449c86811e1966d36
      *
      *
      * @class Ink.UI.Sticky
      * @constructor
      * @version 1
+<<<<<<< HEAD
      * @param {String|DOMElement} selector
      * @param {Object} [options] Options
      *     @param {Number}     [options.offsetBottom=0]     Number of pixels of distance from the bottomElement (or the bottom of the screen).
@@ -40,6 +54,19 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
      *     @param {String}     [options.topElement]        CSS Selector that specifies a top element with which the component could collide.
      *     @param {String}     [options.bottomElement]     CSS Selector that specifies a bottom element with which the component could collide.
      *     @param {Array|String} [options.activateInLayouts='medium,large,xlarge'] Layouts in which the sticky behaviour is present. Pass an array or comma-separated string.
+=======
+     * @param {String|DOMElement}   selector                    Element or selector
+     * @param {Object}              [options] Options           Options object.
+     * @param {Number}              [options.offsetBottom]      Number of pixels of distance from the bottomElement. Defaults to 0.
+     * @param {Number}              [options.offsetTop]         Number of pixels of distance from the topElement. Defaults to 0.
+     * @param {Boolean}             [options.inlineDimensions]  Set to false to disable setting inline CSS dimensions. Use this if you want to use CSS to define your own dimensions. Defaults to true.
+     * @param {Boolean}             [options.inlinePosition]    Set to false to disable setting inline CSS positions. Use this if you want to use CSS to define your own positioning. Defaults to true.
+     * @param {String}              [options.wrapperClass]      CSS class for the wrapper element. Defaults to 'ink-sticky-wrapper'.
+     * @param {String}              [options.stickyClass]       CSS class to stick the element to the screen. Defaults to 'ink-sticky-stuck'.
+     * @param {String}              [options.topElement]        CSS Selector that specifies a top element with which the component could collide.
+     * @param {String}              [options.bottomElement]     CSS Selector that specifies a bottom element with which the component could collide.
+     * @param {Array|String}        [options.activateInLayouts] Layouts in which the sticky behaviour is present. Pass an array or comma-separated string. Defaults to 'medium,large'.
+>>>>>>> 797f31ed036f19213caf05a449c86811e1966d36
      * @example
      *      <script>
      *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.Sticky_1'], function( Selector, Sticky ) {

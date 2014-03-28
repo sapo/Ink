@@ -25,6 +25,7 @@ Stick an element to the screen</small></h1>
             
 
     
+<<<<<<< HEAD
     <p><p>Ink.UI.Sticky makes an element &quot;stick&quot; to the screen and stay in the
 same place as the user scrolls.</p>
 <p>To use it, just select an element as you create the Sticky. As you
@@ -36,6 +37,14 @@ Pass a comma-separated string to choose just the layouts you need.</p>
 from the top of the screen.</p>
 <p>To avoid it going under the footer of your page, pass a selector
 to your footer as the <code>bottomElement</code> option.</p>
+=======
+    <p><p>Ink.UI.Sticky makes an element &quot;stick&quot; to the screen and stay in the same place as the user scrolls.</p>
+<p>To use it, just select an element as you create the Sticky. As you scroll past it, it will stick to the top of the screen.</p>
+<p>The <code>activateInLayouts</code> option controls in what layouts this behaviour happens. By default, it is disabled for the <code>small</code> and <code>tiny</code> layouts.
+Pass a comma-separated string to choose just the layouts you need.</p>
+<p>You can use the <code>offsetTop</code> option if you want it to keep some distance from the top of the screen.</p>
+<p>To avoid it going under the footer of your page, pass a selector to your footer as the <code>bottomElement</code> option.</p>
+>>>>>>> 797f31ed036f19213caf05a449c86811e1966d36
 </p>
     
     
@@ -177,11 +186,13 @@ to your footer as the <code>bottomElement</code> option.</p>
                 
                 
                 
-                <label>selector
+                <label class="monospace">selector
                 
 
                 
                 </label>
+                
+                    Element or selector
                 
             </dd>
         
@@ -194,13 +205,13 @@ to your footer as the <code>bottomElement</code> option.</p>
                 
                 
                 
-                <label class="optional">[options]
+                <label class="monospace">[options]
                 
 
                 
                 </label>
                 
-                    Options
+                    Options           Options object.
                 
             </dd>
         
@@ -213,15 +224,17 @@ to your footer as the <code>bottomElement</code> option.</p>
                 
                 
                 
-                <label class="optional">[options.offsetBottom]
+                <label class="monospace">[options.offsetBottom]
                 
 
                 
-                    0
-                
                 </label>
                 
+<<<<<<< HEAD
                     Number of pixels of distance from the bottomElement (or the bottom of the screen).
+=======
+                    Number of pixels of distance from the bottomElement. Defaults to 0.
+>>>>>>> 797f31ed036f19213caf05a449c86811e1966d36
                 
             </dd>
         
@@ -234,15 +247,17 @@ to your footer as the <code>bottomElement</code> option.</p>
                 
                 
                 
-                <label class="optional">[options.offsetTop]
+                <label class="monospace">[options.offsetTop]
                 
 
                 
-                    0
-                
                 </label>
                 
+<<<<<<< HEAD
                     Number of pixels of distance from the topElement (or the top of the screen).
+=======
+                    Number of pixels of distance from the topElement. Defaults to 0.
+>>>>>>> 797f31ed036f19213caf05a449c86811e1966d36
                 
             </dd>
         
@@ -255,15 +270,13 @@ to your footer as the <code>bottomElement</code> option.</p>
                 
                 
                 
-                <label class="optional">[options.inlineDimensions]
+                <label class="monospace">[options.inlineDimensions]
                 
 
                 
-                    true
-                
                 </label>
                 
-                    Whether to set "style.height" and "style.width" in the stuck element. Turn this off when your `stickyClass` has its own height and width and you don't want this to be dealt with through javascript.
+                    Set to false to disable setting inline CSS dimensions. Use this if you want to use CSS to define your own dimensions. Defaults to true.
                 
             </dd>
         
@@ -276,15 +289,13 @@ to your footer as the <code>bottomElement</code> option.</p>
                 
                 
                 
-                <label class="optional">[options.inlinePosition]
+                <label class="monospace">[options.inlinePosition]
                 
 
                 
-                    true
-                
                 </label>
                 
-                    Whether to set "style.left" in the stuck element. Turn this off when your `stickyClass` has its own "left" position and you don't want this to be dealt with through javascript.
+                    Set to false to disable setting inline CSS positions. Use this if you want to use CSS to define your own positioning. Defaults to true.
                 
             </dd>
         
@@ -297,15 +308,13 @@ to your footer as the <code>bottomElement</code> option.</p>
                 
                 
                 
-                <label class="optional">[options.wrapperClass]
+                <label class="monospace">[options.wrapperClass]
                 
 
                 
-                    &quot;ink-sticky-wrapper&quot;
-                
                 </label>
                 
-                    Css class for the wrapper element.
+                    CSS class for the wrapper element. Defaults to 'ink-sticky-wrapper'.
                 
             </dd>
         
@@ -318,15 +327,13 @@ to your footer as the <code>bottomElement</code> option.</p>
                 
                 
                 
-                <label class="optional">[options.stickyClass]
+                <label class="monospace">[options.stickyClass]
                 
 
                 
-                    &quot;ink-sticky-stuck&quot;
-                
                 </label>
                 
-                    Css class for sticking the sticky to the screen. Add your own "stuck" class to define your own sticky behaviour.
+                    CSS class to stick the element to the screen. Defaults to 'ink-sticky-stuck'.
                 
             </dd>
         
@@ -339,7 +346,7 @@ to your footer as the <code>bottomElement</code> option.</p>
                 
                 
                 
-                <label class="optional">[options.topElement]
+                <label class="monospace">[options.topElement]
                 
 
                 
@@ -358,7 +365,7 @@ to your footer as the <code>bottomElement</code> option.</p>
                 
                 
                 
-                <label class="optional">[options.bottomElement]
+                <label class="monospace">[options.bottomElement]
                 
 
                 
@@ -377,15 +384,18 @@ to your footer as the <code>bottomElement</code> option.</p>
                 
                 
                 
-                <label class="optional">[options.activateInLayouts]
+                <label class="monospace">[options.activateInLayouts]
                 
 
                 
+<<<<<<< HEAD
                     &#x27;medium,large,xlarge&#x27;
                 
+=======
+>>>>>>> 797f31ed036f19213caf05a449c86811e1966d36
                 </label>
                 
-                    Layouts in which the sticky behaviour is present. Pass an array or comma-separated string.
+                    Layouts in which the sticky behaviour is present. Pass an array or comma-separated string. Defaults to 'medium,large'.
                 
             </dd>
         

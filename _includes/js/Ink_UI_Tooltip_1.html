@@ -2,7 +2,7 @@
 
     
         <section>
-        <h1 class="fw-300">Ink.UI.Tooltip_1 </h1>
+        <h1 class="fw-300">Ink.UI.Tooltip_1 <small>version: 1</small></h1>
     
 
     
@@ -204,7 +204,7 @@
                 
                 
                 
-                <label>target
+                <label class="monospace">target
                 
 
                 
@@ -223,26 +223,28 @@
                 
                 
                 
-                <label class="optional">[options]
+                <label class="monospace">[options]
                 
 
                 
                 </label>
                 
+                    Options object
+                
             </dd>
         
             <dt>
+                
+                    <code>String</code>
                 
             </dt>
             <dd>
                 
                 
                 
-                <label class="optional">[options.text]
+                <label class="monospace">[options.text]
                 
 
-                
-                    &#x27;&#x27;
                 
                 </label>
                 
@@ -252,16 +254,16 @@
         
             <dt>
                 
+                    <code>String</code>
+                
             </dt>
             <dd>
                 
                 
                 
-                <label class="optional">[options.html]
+                <label class="monospace">[options.html]
                 
 
-                
-                    &#x27;&#x27;
                 
                 </label>
                 
@@ -271,35 +273,35 @@
         
             <dt>
                 
+                    <code>String</code>
+                
             </dt>
             <dd>
                 
                 
                 
-                <label class="optional">[options.where]
+                <label class="monospace">[options.where]
                 
 
                 
-                    &#x27;up&#x27;
-                
                 </label>
                 
-                    Positioning for the tooltip. Options are 'up', 'down', 'left', 'right', which place the tooltip in the corresponding direction (and show an arrow), 'mousemove', which follows the mouse as it moves, and 'mousefix', which stays in one place.
+                    Positioning for the tooltip. Options are 'up', 'down', 'left', 'right', 'mousemove' (follows the cursor), and 'mousefix' (stays fixed). Defaults to 'up'.
                 
             </dd>
         
             <dt>
                 
+                    <code>String</code>
+                
             </dt>
             <dd>
                 
                 
                 
-                <label class="optional">[options.color]
+                <label class="monospace">[options.color]
                 
 
-                
-                    &#x27;&#x27;
                 
                 </label>
                 
@@ -309,69 +311,71 @@
         
             <dt>
                 
+                    <code>Number</code>
+                
             </dt>
             <dd>
                 
                 
                 
-                <label class="optional">[options.fade]
+                <label class="monospace">[options.fade]
                 
 
                 
-                    0.3
-                
                 </label>
                 
-                    Fade time; Duration of the fade in/out effect.
+                    Number of seconds to fade in/out. Defaults to 0.3.
                 
             </dd>
         
             <dt>
                 
+                    <code>Boolean</code>
+                
             </dt>
             <dd>
                 
                 
                 
-                <label class="optional">[options.forever]
+                <label class="monospace">[options.forever]
                 
 
                 
-                    0
-                
                 </label>
                 
-                    Set to 1/true to prevent the tooltip from being erased when the mouse hovers away from the target
+                    Flag to prevent the tooltip from being erased when the mouse hovers away from the target.
                 
             </dd>
         
             <dt>
                 
+                    <code>Number</code>
+                
             </dt>
             <dd>
                 
                 
                 
-                <label class="optional">[options.timeout]
+                <label class="monospace">[options.timeout]
                 
 
                 
-                    0
-                
                 </label>
                 
-                    Time for the tooltip to live. Useful together with [options.forever].
+                    Number of seconds the tooltip will stay open. Useful together with options.forever. Defaults to 0.
                 
             </dd>
         
             <dt>
                 
+                    <code>Number</code>
+                
             </dt>
             <dd>
                 
                 
                 
-                <label class="optional">[options.delay]
+                <label class="monospace">[options.delay]
                 
 
                 
@@ -383,16 +387,16 @@
         
             <dt>
                 
+                    <code>DOMElement|Selector</code>
+                
             </dt>
             <dd>
                 
                 
                 
-                <label class="optional">[options.template]
+                <label class="monospace">[options.template]
                 
 
-                
-                    null
                 
                 </label>
                 
@@ -402,16 +406,16 @@
         
             <dt>
                 
+                    <code>String</code>
+                
             </dt>
             <dd>
                 
                 
                 
-                <label class="optional">[options.templatefield]
+                <label class="monospace">[options.templatefield]
                 
 
-                
-                    null
                 
                 </label>
                 
@@ -421,58 +425,58 @@
         
             <dt>
                 
+                    <code>Number</code>
+                
             </dt>
             <dd>
                 
                 
                 
-                <label class="optional">[options.left]
+                <label class="monospace">[options.left]
                 
 
                 
-                    10
-                
                 </label>
                 
-                    (Nitty-gritty) Spacing from the target to the tooltip, when `where` is `mousemove` or `mousefix`
+                    Spacing from the target to the tooltip, when `where` is `mousemove` or `mousefix`. Defaults to 10.
                 
             </dd>
         
             <dt>
                 
+                    <code>Number</code>
+                
             </dt>
             <dd>
                 
                 
                 
-                <label class="optional">[options.top]
+                <label class="monospace">[options.top]
                 
 
                 
-                    10
-                
                 </label>
                 
-                    (Nitty-gritty) Spacing from the target to the tooltip, when `where` is `mousemove` or `mousefix`
+                    Spacing from the target to the tooltip, when `where` is `mousemove` or `mousefix`. Defaults to 10.
                 
             </dd>
         
             <dt>
                 
+                    <code>Number</code>
+                
             </dt>
             <dd>
                 
                 
                 
-                <label class="optional">[options.spacing]
+                <label class="monospace">[options.spacing]
                 
 
                 
-                    8
-                
                 </label>
                 
-                    (Nitty-gritty) Spacing between the tooltip and the target element, when `where` is `up`, `down`, `left`, or `right`
+                    Spacing between the tooltip and the target element, when `where` is not `mousemove` or `mousefix`. Defaults to 8.
                 
             </dd>
         

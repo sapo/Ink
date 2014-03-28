@@ -2,7 +2,7 @@
 
     
         <section>
-        <h1 class="fw-300">Ink.UI.Stacker_1 </h1>
+        <h1 class="fw-300">Ink.UI.Stacker_1 <small>version: 1</small></h1>
     
 
     
@@ -84,7 +84,8 @@
                 <td>
                     
 
-                    <p>Add an item to the end of your stacks. Call <code>reloadItems()</code> when you are done adding items.</p>
+                    <p>Adds an item to the end of your stacks.
+Call <code>reloadItems()</code> when you are done adding items.</p>
 
 
                     
@@ -104,12 +105,8 @@
                 <td>
                     
 
-                    <p>Update the layout of your items.</p>
-<p>Call this when:</p>
-<ul>
-<li>The width has changed, but not because of the window resizing.</li>
-<li>You used addItem to add some items</li>
-</ul>
+                    <p>Updates the layout of your items.
+Call this method after adding items or changing their dimensions. This method is automatically called when the window resizes.</p>
 
 
                     
@@ -256,116 +253,128 @@
         
             <dt>
                 
+                    <code>DOMElement|String</code>
+                
             </dt>
             <dd>
                 
                 
                 
-                <label class="optional">[container]
+                <label class="monospace">[container]
                 
 
                 
                 </label>
                 
-                    {DOMElement|String} Element which contains the stacks (identified by the options.column selector)
+                    Element which contains the stacks (identified by the options.column selector)
                 
             </dd>
         
             <dt>
+                
+                    <code>Object</code>
                 
             </dt>
             <dd>
                 
                 
                 
-                <label class="optional">[options]
+                <label class="monospace">[options]
                 
 
                 
                 </label>
                 
+                    Options object.
+                
             </dd>
         
             <dt>
+                
+                    <code>String</code>
                 
             </dt>
             <dd>
                 
                 
                 
-                <label class="optional">[options.column]
-                
-
-                
-                    &#x27;.stacker-column&#x27;
-                
-                </label>
-                
-                    {String}   Select the columns inside the `container`
-                
-            </dd>
-        
-            <dt>
-                
-            </dt>
-            <dd>
-                
-                
-                
-                <label class="optional">[options.item]
-                
-
-                
-                    &#x27;.stacker-item&#x27;
-                
-                </label>
-                
-                    {String}   Select items in your stack
-                
-            </dd>
-        
-            <dt>
-                
-            </dt>
-            <dd>
-                
-                
-                
-                <label class="optional">[options.customBreakPoints]
+                <label class="monospace">[options.column]
                 
 
                 
                 </label>
                 
-                    {Object}   options for each breakpoint name. Use this if you have more breakpoints than Ink by default (`large`, `medium`, `small`)
+                    Selector for the the columns inside the container element. Defaults to '.stacker-column'.
                 
             </dd>
         
             <dt>
+                
+                    <code>String</code>
                 
             </dt>
             <dd>
                 
                 
                 
-                <label class="optional">[options.customBreakpoints.BREAKPOINT_NAME]
+                <label class="monospace">[options.item]
                 
 
                 
                 </label>
                 
-                    {Object}
+                    Selector for the items in your stack. Defaults to '.stacker-item'.
                 
             </dd>
         
             <dt>
+                
+                    <code>Object</code>
                 
             </dt>
             <dd>
                 
                 
                 
-                <label>options.customBreakpoints.BREAKPOINT_NAME.max
+                <label class="monospace">[options.customBreakPoints]
+                
+
+                
+                </label>
+                
+                    Options for each breakpoint name. Use this if you have more breakpoints than Ink by default (`large`, `medium`, `small`)
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Object</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="monospace">[options.customBreakpoints.BREAKPOINT_NAME]
+                
+
+                
+                </label>
+                
+                    Custom breakpoints object.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="monospace">options.customBreakpoints.BREAKPOINT_NAME.max
                 
 
                 
@@ -377,12 +386,14 @@
         
             <dt>
                 
+                    <code>String</code>
+                
             </dt>
             <dd>
                 
                 
                 
-                <label>options.customBreakpoints.BREAKPOINT_NAME.min
+                <label class="monospace">options.customBreakpoints.BREAKPOINT_NAME.min
                 
 
                 
@@ -394,12 +405,14 @@
         
             <dt>
                 
+                    <code>String</code>
+                
             </dt>
             <dd>
                 
                 
                 
-                <label>options.customBreakpoints.BREAKPOINT_NAME.cols
+                <label class="monospace">options.customBreakpoints.BREAKPOINT_NAME.cols
                 
 
                 
@@ -411,238 +424,248 @@
         
             <dt>
                 
+                    <code>Number</code>
+                
             </dt>
             <dd>
                 
                 
                 
-                <label class="optional">[options.largeMax]
+                <label class="monospace">[options.largeMax]
                 
 
                 
                 </label>
                 
-                    {Number}   Upper bound of `large` breakpoint
+                    Upper bound of `large` breakpoint
                 
             </dd>
         
             <dt>
                 
+                    <code>Number</code>
+                
             </dt>
             <dd>
                 
                 
                 
-                <label class="optional">[options.largeMin]
+                <label class="monospace">[options.largeMin]
                 
 
                 
-                    961
-                
                 </label>
                 
-                    {Number}   Lower bound of `large` breakpoint
+                    Lower bound of `large` breakpoint. Defaults to 961.
                 
             </dd>
         
             <dt>
                 
+                    <code>Number</code>
+                
             </dt>
             <dd>
                 
                 
                 
-                <label class="optional">[options.mediumMax]
+                <label class="monospace">[options.mediumMax]
                 
 
                 
-                    960
-                
                 </label>
                 
-                    {Number}   Upper bound of `medium` breakpoint
+                    Upper bound of `medium` breakpoint. Defaults to 960.
                 
             </dd>
         
             <dt>
                 
+                    <code>Number</code>
+                
             </dt>
             <dd>
                 
                 
                 
-                <label class="optional">[options.mediumMin]
+                <label class="monospace">[options.mediumMin]
                 
 
                 
-                    651
-                
                 </label>
                 
-                    {Number}   Lower bound of `medium` breakpoint
+                    Lower bound of `medium` breakpoint. Defaults to 651.
                 
             </dd>
         
             <dt>
                 
+                    <code>Number</code>
+                
             </dt>
             <dd>
                 
                 
                 
-                <label class="optional">[options.smallMax]
+                <label class="monospace">[options.smallMax]
                 
 
                 
-                    650
-                
                 </label>
                 
-                    {Number}   Upper bound of `small` breakpoint
+                    Upper bound of `small` breakpoint. Defaults to 650.
                 
             </dd>
         
             <dt>
                 
+                    <code>Number</code>
+                
             </dt>
             <dd>
                 
                 
                 
-                <label class="optional">[options.smallMin]
+                <label class="monospace">[options.smallMin]
                 
 
                 
                 </label>
                 
-                    {Number}   Lower bound of `small` breakpoint
+                    Lower bound of `small` breakpoint
                 
             </dd>
         
             <dt>
                 
+                    <code>Integer</code>
+                
             </dt>
             <dd>
                 
                 
                 
-                <label class="optional">[options.largeCols]
+                <label class="monospace">[options.largeCols]
                 
 
                 
-                    3
-                
                 </label>
                 
-                    {Integer}  Number of columns in the `large` viewport
+                    Number of columns in the `large` viewport. Defaults to 3.
                 
             </dd>
         
             <dt>
                 
+                    <code>Integer</code>
+                
             </dt>
             <dd>
                 
                 
                 
-                <label class="optional">[options.mediumCols]
+                <label class="monospace">[options.mediumCols]
                 
 
                 
-                    2
-                
                 </label>
                 
-                    {Integer}  Number of columns in the `medium` viewport
+                    Number of columns in the `medium` viewport. Defaults to 2.
                 
             </dd>
         
             <dt>
                 
+                    <code>Integer</code>
+                
             </dt>
             <dd>
                 
                 
                 
-                <label class="optional">[options.smallCols]
+                <label class="monospace">[options.smallCols]
                 
 
                 
-                    1
-                
                 </label>
                 
-                    {Integer}  Number of columns in the `small` viewport
+                    Number of columns in the `small` viewport. Defaults to 1.
                 
             </dd>
         
             <dt>
                 
+                    <code>Boolean</code>
+                
             </dt>
             <dd>
                 
                 
                 
-                <label class="optional">[options.isOrdered]
+                <label class="monospace">[options.isOrdered]
                 
 
                 
-                    true
-                
                 </label>
                 
-                    {Boolean}  When `false`, do not reorder stacks when combining them.
+                    When false, doesn't reorder stacks when combining them.
                 
             </dd>
         
             <dt>
                 
+                    <code>Function</code>
+                
             </dt>
             <dd>
                 
                 
                 
-                <label class="optional">[options.onRunCallback]
+                <label class="monospace">[options.onRunCallback]
                 
 
                 
                 </label>
                 
-                    {Function} Called when instantiated
+                    Called when instantiated.
                 
             </dd>
         
             <dt>
                 
+                    <code>Function</code>
+                
             </dt>
             <dd>
                 
                 
                 
-                <label class="optional">[options.onResizeCallback]
+                <label class="monospace">[options.onResizeCallback]
                 
 
                 
                 </label>
                 
-                    {Function} Called when resized because the window resized.
+                    Called when the window resizes.
                 
             </dd>
         
             <dt>
                 
+                    <code>Function</code>
+                
             </dt>
             <dd>
                 
                 
                 
-                <label class="optional">[options.onAPIReloadCallback]
+                <label class="monospace">[options.onAPIReloadCallback]
                 
 
                 
                 </label>
                 
-                    {Function} Called when you ask to reload stack items from the DOM.
+                    Called when the reload function executes.
                 
             </dd>
         
@@ -728,7 +751,8 @@ Javascript:
     
 
     
-        <p class="text"><p>Add an item to the end of your stacks. Call <code>reloadItems()</code> when you are done adding items.</p>
+        <p class="text"><p>Adds an item to the end of your stacks.
+Call <code>reloadItems()</code> when you are done adding items.</p>
 </p>
     
 
@@ -745,11 +769,13 @@ Javascript:
                 
                 
                 
-                <label>item
+                <label class="monospace">item
                 
 
                 
                 </label>
+                
+                    Element
                 
             </dd>
         
@@ -789,12 +815,8 @@ Javascript:
     
 
     
-        <p class="text"><p>Update the layout of your items.</p>
-<p>Call this when:</p>
-<ul>
-<li>The width has changed, but not because of the window resizing.</li>
-<li>You used addItem to add some items</li>
-</ul>
+        <p class="text"><p>Updates the layout of your items.
+Call this method after adding items or changing their dimensions. This method is automatically called when the window resizes.</p>
 </p>
     
 

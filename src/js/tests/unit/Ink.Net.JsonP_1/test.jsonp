@@ -1,3 +1,0 @@
-window.mockJsonPCallback({
-    "foo": "bar"
-});

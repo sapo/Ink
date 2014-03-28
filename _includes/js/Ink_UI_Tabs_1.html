@@ -2,9 +2,7 @@
 
     
         <section>
-        <h1 class="fw-300">Ink.UI.Tabs_1 <small>version: 1
-
-Display tabbed content</small></h1>
+        <h1 class="fw-300">Ink.UI.Tabs_1 <small>version: 1</small></h1>
     
 
     
@@ -25,9 +23,7 @@ Display tabbed content</small></h1>
             
 
     
-    <p><p>The Tabs Component offers a simple way to build a tab-separated
-layout, allowing you to offer multiple content in the same space
-with intuitive navigation.</p>
+    <p><p>The Tabs Component offers a simple way to build a tab-separated layout, allowing you to offer multiple content in the same space with intuitive navigation.</p>
 <p>This component requires your markup to have:</p>
 <ul>
 <li>A container element (this is what you call the Ink.UI.Tabs constructor on), containing everything.<ul>
@@ -42,14 +38,9 @@ with intuitive navigation.</p>
 </ul>
 </li>
 </ul>
-<p>When the user clicks in the links inside <code>tabs-nav</code>, the tab with
-the corresponding ID is then activated.</p>
-<p>The tab which is active when the tab component is initialized has
-its hash in the browser URL. If there is no hash, then the <code>active</code>
-option kicks in. Otherwise, Tabs will fall back to showing the tab
-corresponding to the first link.</p>
-<p>You can disable some (or all) tabs by passing an array for the
-<code>disabled</code> option</p>
+<p>When the user clicks in the links inside <code>tabs-nav</code>, the tab with the corresponding ID is then activated.</p>
+<p>The tab which is active when the tab component is initialized has its hash in the browser URL. If there is no hash, then the <code>active</code> option kicks in. Otherwise, Tabs will fall back to showing the tab corresponding to the first link.</p>
+<p>You can disable some (or all) tabs by passing an array for the <code>disabled</code> option.</p>
 </p>
     
     
@@ -101,7 +92,7 @@ corresponding to the first link.</p>
                 <td>
                     
 
-                    <p>Returns the currently active section</p>
+                    <p>Gets the currently active section</p>
 <p>(Each section contains content for a tab, and must have an <code>id</code> attribute)</p>
 
 
@@ -122,7 +113,7 @@ corresponding to the first link.</p>
                 <td>
                     
 
-                    <p>Returns the currently active Menu link (the links which the user clicks on to change tabs)</p>
+                    <p>Gets the currently active Menu link (the links which the user clicks on to change tabs)</p>
 
 
                     
@@ -144,10 +135,10 @@ corresponding to the first link.</p>
                         <span class="tag">deprecated</span>
                     
 
-                    <p>(This method is deprecated)</p>
-<p>Returns the parent of the currently active menu link.</p>
+                    <p>Returns the parent of the currently active menu link.</p>
 <p>This is useful if you want to have <code>li</code> elements wrapping your links
 and want to access the currently visible one.</p>
+<p>(This method is deprecated)</p>
 
 
                     
@@ -187,7 +178,7 @@ and want to access the currently visible one.</p>
                 <td>
                     
 
-                    <p>Changes to the desired tag</p>
+                    <p>Changes the active tab</p>
 <p>Pass a selector/element identifying what tab you want</p>
 
 
@@ -208,7 +199,7 @@ and want to access the currently visible one.</p>
                 <td>
                     
 
-                    <p>Unregisters the component and removes its markup from the DOM</p>
+                    <p>Unregisters the component and removes its markup</p>
 
 
                     
@@ -346,7 +337,7 @@ and want to access the currently visible one.</p>
                 
                 
                 
-                <label>selector
+                <label class="monospace">selector
                 
 
                 
@@ -363,7 +354,7 @@ and want to access the currently visible one.</p>
                 
                 
                 
-                <label class="optional">[options]
+                <label class="monospace">[options]
                 
 
                 
@@ -382,7 +373,7 @@ and want to access the currently visible one.</p>
                 
                 
                 
-                <label class="optional">[options.preventUrlChange]
+                <label class="monospace">[options.preventUrlChange]
                 
 
                 
@@ -401,7 +392,7 @@ and want to access the currently visible one.</p>
                 
                 
                 
-                <label class="optional">[options.active]
+                <label class="monospace">[options.active]
                 
 
                 
@@ -420,7 +411,7 @@ and want to access the currently visible one.</p>
                 
                 
                 
-                <label class="optional">[options.disabled]
+                <label class="monospace">[options.disabled]
                 
 
                 
@@ -439,7 +430,7 @@ and want to access the currently visible one.</p>
                 
                 
                 
-                <label class="optional">[options.onBeforeChange]
+                <label class="monospace">[options.onBeforeChange]
                 
 
                 
@@ -458,7 +449,7 @@ and want to access the currently visible one.</p>
                 
                 
                 
-                <label class="optional">[options.onChange]
+                <label class="monospace">[options.onChange]
                 
 
                 
@@ -477,7 +468,7 @@ and want to access the currently visible one.</p>
                 
                 
                 
-                <label class="optional">[options.triggerEventsOnLoad]
+                <label class="monospace">[options.triggerEventsOnLoad]
                 
 
                 
@@ -555,7 +546,7 @@ and want to access the currently visible one.</p>
     
 
     
-        <p class="text"><p>Returns the currently active section</p>
+        <p class="text"><p>Gets the currently active section</p>
 <p>(Each section contains content for a tab, and must have an <code>id</code> attribute)</p>
 </p>
     
@@ -592,7 +583,7 @@ and want to access the currently visible one.</p>
     
 
     
-        <p class="text"><p>Returns the currently active Menu link (the links which the user clicks on to change tabs)</p>
+        <p class="text"><p>Gets the currently active Menu link (the links which the user clicks on to change tabs)</p>
 </p>
     
 
@@ -630,10 +621,10 @@ and want to access the currently visible one.</p>
     
 
     
-        <p class="text"><p>(This method is deprecated)</p>
-<p>Returns the parent of the currently active menu link.</p>
+        <p class="text"><p>Returns the parent of the currently active menu link.</p>
 <p>This is useful if you want to have <code>li</code> elements wrapping your links
 and want to access the currently visible one.</p>
+<p>(This method is deprecated)</p>
 </p>
     
 
@@ -718,7 +709,7 @@ and want to access the currently visible one.</p>
     
 
     
-        <p class="text"><p>Changes to the desired tag</p>
+        <p class="text"><p>Changes the active tab</p>
 <p>Pass a selector/element identifying what tab you want</p>
 </p>
     
@@ -736,7 +727,7 @@ and want to access the currently visible one.</p>
                 
                 
                 
-                <label>selector
+                <label class="monospace">selector
                 
 
                 
@@ -782,7 +773,7 @@ and want to access the currently visible one.</p>
     
 
     
-        <p class="text"><p>Unregisters the component and removes its markup from the DOM</p>
+        <p class="text"><p>Unregisters the component and removes its markup</p>
 </p>
     
 
@@ -848,7 +839,7 @@ and want to access the currently visible one.</p>
                 
                 
                 
-                <label>selector
+                <label class="monospace">selector
                 
 
                 
@@ -924,7 +915,7 @@ and want to access the currently visible one.</p>
                 
                 
                 
-                <label>selector
+                <label class="monospace">selector
                 
 
                 
