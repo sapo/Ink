@@ -25,32 +25,28 @@ Display tabbed content</small></h1>
             
 
     
-    <p><p>The Tabs Component offers a simple way to build a tab-separated
+    <p>The Tabs Component offers a simple way to build a tab-separated
 layout, allowing you to offer multiple content in the same space
-with intuitive navigation.</p>
-<p>This component requires your markup to have:</p>
-<ul>
-<li>A container element (this is what you call the Ink.UI.Tabs constructor on), containing everything.<ul>
-<li>An element with the <code>tabs-nav</code> class, to contain links.<ul>
-<li>Your links with <code>href=&quot;#ID_OF_SECTION&quot;</code></li>
-</ul>
-</li>
-<li>Your sections with the corresponding <code>id</code> attributes.<ul>
-<li>The content for each section.</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>When the user clicks in the links inside <code>tabs-nav</code>, the tab with
-the corresponding ID is then activated.</p>
-<p>The tab which is active when the tab component is initialized has
-its hash in the browser URL. If there is no hash, then the <code>active</code>
+with intuitive navigation.
+
+This component requires your markup to have:
+
+ - A container element (this is what you call the Ink.UI.Tabs constructor on), containing everything.
+   - An element with the `tabs-nav` class, to contain links.
+     - Your links with `href="#ID_OF_SECTION"`
+   - Your sections with the corresponding `id` attributes.
+     - The content for each section.
+
+When the user clicks in the links inside `tabs-nav`, the tab with
+the corresponding ID is then activated.
+
+The tab which is active when the tab component is initialized has
+its hash in the browser URL. If there is no hash, then the `active`
 option kicks in. Otherwise, Tabs will fall back to showing the tab
-corresponding to the first link.</p>
-<p>You can disable some (or all) tabs by passing an array for the
-<code>disabled</code> option</p>
-</p>
+corresponding to the first link.
+
+You can disable some (or all) tabs by passing an array for the
+`disabled` option</p>
     
     
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p>
@@ -101,9 +97,9 @@ corresponding to the first link.</p>
                 <td>
                     
 
-                    <p>Returns the currently active section</p>
-<p>(Each section contains content for a tab, and must have an <code>id</code> attribute)</p>
+                    Returns the currently active section
 
+(Each section contains content for a tab, and must have an `id` attribute)
 
                     
                     
@@ -122,8 +118,7 @@ corresponding to the first link.</p>
                 <td>
                     
 
-                    <p>Returns the currently active Menu link (the links which the user clicks on to change tabs)</p>
-
+                    Returns the currently active Menu link (the links which the user clicks on to change tabs)
 
                     
                     
@@ -144,11 +139,12 @@ corresponding to the first link.</p>
                         <span class="tag">deprecated</span>
                     
 
-                    <p>(This method is deprecated)</p>
-<p>Returns the parent of the currently active menu link.</p>
-<p>This is useful if you want to have <code>li</code> elements wrapping your links
-and want to access the currently visible one.</p>
+                    (This method is deprecated)
 
+Returns the parent of the currently active menu link.
+
+This is useful if you want to have `li` elements wrapping your links
+and want to access the currently visible one.
 
                     
                     
@@ -167,8 +163,7 @@ and want to access the currently visible one.</p>
                 <td>
                     
 
-                    <p>Returns the active tab id</p>
-
+                    Returns the active tab id
 
                     
                     
@@ -187,9 +182,9 @@ and want to access the currently visible one.</p>
                 <td>
                     
 
-                    <p>Changes to the desired tag</p>
-<p>Pass a selector/element identifying what tab you want</p>
+                    Changes to the desired tag
 
+Pass a selector/element identifying what tab you want
 
                     
                     
@@ -208,8 +203,7 @@ and want to access the currently visible one.</p>
                 <td>
                     
 
-                    <p>Unregisters the component and removes its markup from the DOM</p>
-
+                    Unregisters the component and removes its markup from the DOM
 
                     
                     
@@ -228,8 +222,7 @@ and want to access the currently visible one.</p>
                 <td>
                     
 
-                    <p>Disables the desired tag</p>
-
+                    Disables the desired tag
 
                     
                     
@@ -248,8 +241,7 @@ and want to access the currently visible one.</p>
                 <td>
                     
 
-                    <p>Enables the desired tag</p>
-
+                    Enables the desired tag
 
                     
                     
@@ -380,6 +372,8 @@ and want to access the currently visible one.</p>
             </dt>
             <dd>
                 
+                    teste
+                
                 
                 
                 <label class="optional">[options.preventUrlChange]
@@ -398,6 +392,8 @@ and want to access the currently visible one.</p>
                 
             </dt>
             <dd>
+                
+                    teste
                 
                 
                 
@@ -418,6 +414,8 @@ and want to access the currently visible one.</p>
             </dt>
             <dd>
                 
+                    teste
+                
                 
                 
                 <label class="optional">[options.disabled]
@@ -436,6 +434,8 @@ and want to access the currently visible one.</p>
                 
             </dt>
             <dd>
+                
+                    teste
                 
                 
                 
@@ -456,6 +456,8 @@ and want to access the currently visible one.</p>
             </dt>
             <dd>
                 
+                    teste
+                
                 
                 
                 <label class="optional">[options.onChange]
@@ -474,6 +476,8 @@ and want to access the currently visible one.</p>
                 
             </dt>
             <dd>
+                
+                    teste
                 
                 
                 
@@ -555,9 +559,9 @@ and want to access the currently visible one.</p>
     
 
     
-        <p class="text"><p>Returns the currently active section</p>
-<p>(Each section contains content for a tab, and must have an <code>id</code> attribute)</p>
-</p>
+        <p class="text">Returns the currently active section
+
+(Each section contains content for a tab, and must have an `id` attribute)</p>
     
 
     
@@ -592,8 +596,7 @@ and want to access the currently visible one.</p>
     
 
     
-        <p class="text"><p>Returns the currently active Menu link (the links which the user clicks on to change tabs)</p>
-</p>
+        <p class="text">Returns the currently active Menu link (the links which the user clicks on to change tabs)</p>
     
 
     
@@ -630,11 +633,12 @@ and want to access the currently visible one.</p>
     
 
     
-        <p class="text"><p>(This method is deprecated)</p>
-<p>Returns the parent of the currently active menu link.</p>
-<p>This is useful if you want to have <code>li</code> elements wrapping your links
+        <p class="text">(This method is deprecated)
+
+Returns the parent of the currently active menu link.
+
+This is useful if you want to have `li` elements wrapping your links
 and want to access the currently visible one.</p>
-</p>
     
 
     
@@ -669,8 +673,7 @@ and want to access the currently visible one.</p>
     
 
     
-        <p class="text"><p>Returns the active tab id</p>
-</p>
+        <p class="text">Returns the active tab id</p>
     
 
     
@@ -718,9 +721,9 @@ and want to access the currently visible one.</p>
     
 
     
-        <p class="text"><p>Changes to the desired tag</p>
-<p>Pass a selector/element identifying what tab you want</p>
-</p>
+        <p class="text">Changes to the desired tag
+
+Pass a selector/element identifying what tab you want</p>
     
 
     
@@ -782,8 +785,7 @@ and want to access the currently visible one.</p>
     
 
     
-        <p class="text"><p>Unregisters the component and removes its markup from the DOM</p>
-</p>
+        <p class="text">Unregisters the component and removes its markup from the DOM</p>
     
 
     
@@ -831,8 +833,7 @@ and want to access the currently visible one.</p>
     
 
     
-        <p class="text"><p>Disables the desired tag</p>
-</p>
+        <p class="text">Disables the desired tag</p>
     
 
     
@@ -907,8 +908,7 @@ and want to access the currently visible one.</p>
     
 
     
-        <p class="text"><p>Enables the desired tag</p>
-</p>
+        <p class="text">Enables the desired tag</p>
     
 
     

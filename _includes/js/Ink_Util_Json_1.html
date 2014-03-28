@@ -23,25 +23,28 @@
             
 
     
-    <p><p>Use this class to convert JSON strings to JavaScript objects
-<code>(Json.parse)</code> and also to do the opposite operation <code>(Json.stringify)</code>.
+    <p>Use this class to convert JSON strings to JavaScript objects
+`(Json.parse)` and also to do the opposite operation `(Json.stringify)`.
 Internally, the standard JSON implementation is used if available
-Otherwise, the functions mimic the standard implementation.</p>
-<p>Here&#39;s how to produce JSON from an existing object:</p>
-<pre><code> Ink.requireModules([&#39;Ink.Util.Json_1&#39;], function (Json) {
-     var obj = {
-         key1: &#39;value1&#39;,
-         key2: &#39;value2&#39;,
-         keyArray: [&#39;arrayValue1&#39;, &#39;arrayValue2&#39;, &#39;arrayValue3&#39;]
-     };
-     Json.stringify(obj);  // The above object as a JSON string
- });
-</code></pre><p>And here is how to parse JSON:</p>
-<pre><code> Ink.requireModules([&#39;Ink.Util.Json_1&#39;], function (Json) {
-     var source = &#39;{&quot;key&quot;: &quot;value&quot;, &quot;array&quot;: [true, null, false]}&#39;;
-     Json.parse(source);  // The above JSON string as an object
- });
-</code></pre></p>
+Otherwise, the functions mimic the standard implementation.
+
+Here's how to produce JSON from an existing object:
+
+     Ink.requireModules(['Ink.Util.Json_1'], function (Json) {
+         var obj = {
+             key1: 'value1',
+             key2: 'value2',
+             keyArray: ['arrayValue1', 'arrayValue2', 'arrayValue3']
+         };
+         Json.stringify(obj);  // The above object as a JSON string
+     });
+
+And here is how to parse JSON:
+
+     Ink.requireModules(['Ink.Util.Json_1'], function (Json) {
+         var source = '{"key": "value", "array": [true, null, false]}';
+         Json.parse(source);  // The above JSON string as an object
+     });</p>
     
     
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p>
@@ -74,8 +77,7 @@ Otherwise, the functions mimic the standard implementation.</p>
                 <td>
                     
 
-                    <p>Parses a JSON text through a function</p>
-
+                    Parses a JSON text through a function
 
                     
                     
@@ -94,8 +96,7 @@ Otherwise, the functions mimic the standard implementation.</p>
                 <td>
                     
 
-                    <p>Serializes a JSON object into a string.</p>
-
+                    Serializes a JSON object into a string.
 
                     
                     
@@ -158,8 +159,7 @@ Otherwise, the functions mimic the standard implementation.</p>
     
 
     
-        <p class="text"><p>Parses a JSON text through a function</p>
-</p>
+        <p class="text">Parses a JSON text through a function</p>
     
 
     
@@ -285,8 +285,7 @@ Simple example:
     
 
     
-        <p class="text"><p>Serializes a JSON object into a string.</p>
-</p>
+        <p class="text">Serializes a JSON object into a string.</p>
     
 
     
