@@ -1,29 +1,21 @@
 /**
  * @module Ink.UI.Toggle_1
- * @author inkdev AT sapo.pt
+ * Toggle the visibility of elements.
  * @version 1
  */
-Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Common, InkEvent, Css, InkElement, Selector, InkArray ) {
+
+ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Common, InkEvent, Css, InkElement, Selector, InkArray ) {
     'use strict';
 
     /**
-     * Toggle the visibility of DOM Elements.
      *
-     * You need two elements to use Toggle: the `trigger` element, and
-     * the `target` element (or elements). The default behaviour is to
-     * toggle the `target`(s) when you click the `trigger`.
+     * You need two elements to use Toggle: the `trigger` element, and the `target` element (or elements). The default behaviour is to toggle the `target`(s) when you click the `trigger`.
      *
-     * The toggle has a state. It is either "on" or "off". It works by
-     * switching between the CSS classes in `classNameOn` and `classNameOff`
-     * according to the current state.
+     * The toggle has a state. It is either "on" or "off". It works by switching between the CSS classes in `classNameOn` and `classNameOff` according to the current state.
      *
-     * When you initialize the Toggle, it will check whether the targets
-     * are visible to figure out what the initial state is. You can force
-     * the toggle to consider itself turned "on" or "off" by setting the
-     * `initialState` option to `true` or `false`, respectively.
+     * When you initialize the Toggle, it will check if the targets are visible to figure out what the initial state is. You can force the toggle to consider itself turned "on" or "off" by setting the `initialState` option to `true` or `false`, respectively.
      *
-     * You can get the current state of the Toggle by calling `getState`,
-     * or by checking if your `trigger` element has the "active" class.
+     * You can get the current state of the Toggle by calling `getState`, or by checking if your `trigger` element has the "active" class.
      * The state can be changed through JavaScript. Just call  `setState(true)` 
      * to turn the Toggle on (or `setState(false)` to turn it off).
      *
@@ -33,14 +25,14 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
      * @param {String|DOMElement} selector  Trigger element. By clicking this, the target (or targets) are triggered.
      * @param {Object} [options] Options object, containing:
      *
-     * @param {String}       options.target                    CSS Selector that specifies the elements that this component will toggle
-     * @param {String}       [options.classNameOn='show-all']  className when toggle is On
-     * @param {String}       [options.classNameOff='hide-all'] className when toggle is Off.
-     * @param {String}       [options.triggerEvent='click']    Event that will trigger the toggling.
-     * @param {Boolean}      [options.closeOnClick=true]       When this is on, if the user clicks outside of the toggled content, the target is toggled off.
-     * @param {Selector}     [options.closeOnInsideClick='a[href]'] Toggle off when an element matching this selector is clicked. Set to null to deactivate the check. Default: 'a[href]' (finds links)
-     * @param {Boolean}      [options.initialState=null]       Whether to start toggled off, on, or as found in the markup. (false: off, true: on, null: markup)
-     * @param {Function}     [options.onChangeState=null]      Callback (`function (currentState) {...}`) to be called when the toggle state changes. Return `false` to cancel the event.
+     * @param {String}              options.target                  CSS Selector that specifies the elements that this component will toggle
+     * @param {String}              [options.classNameOn]           CSS class to toggle when on. Defaults to 'show-all'.
+     * @param {String}              [options.classNameOff]          CSS class to toggle when off. Defaults to 'hide-all'.
+     * @param {String}              [options.triggerEvent]          Event that will trigger the toggling. Defaults to 'click'.
+     * @param {Boolean}             [options.closeOnClick]          Flag to toggle the targe off when clicking outside the toggled content. Defaults to true.
+     * @param {String}              [options.closeOnInsideClick]    Toggle off when an element matching this selector is clicked. Set to null to deactivate the check. Defaults to 'a[href]'.
+     * @param {Boolean}             [options.initialState]          Flag to define initial state. false: off, true: on, null: markup. Defaults to null.
+     * @param {Function}            [options.onChangeState]         Callback when the toggle state changes. Return `false` to cancel the event.
      *
      * @sample Ink_UI_Toggle_1_constructor.html
      */
@@ -262,4 +254,3 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
 
     return Toggle;
 });
-

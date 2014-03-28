@@ -24,14 +24,14 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
      * @class Ink.UI.TagField
      * @version 1
      * @constructor
-     * @param {String|InputElement} element Selector or DOM Input Element.
-     * @param {Object} [options]
-     * @param {String|Array} [options.tags] initial tags in the input
-     * @param {Boolean} [options.allowRepeated=true] allow user to input several tags
-     * @param {RegExp} [options.separator=/[,;(space)]+/g] Split the input by this RegExp. The default splits by spaces, commas and semicolons
-     * @param {String} [options.outSeparator=','] Use this string to separate each tag from the next in the output.
-     * @param {Boolean} [options.autoSplit=true]
-     * @param {Integer} [options.maxTags=-1] Maximum amount of tags the user can write.
+     * @param {String|DOMElement}   element                         Selector or DOM Input Element.
+     * @param {Object}              [options]                       Options object
+     * @param {String|Array}        [options.tags]                  Initial tags in the input
+     * @param {Boolean}             [options.allowRepeated]         Flag to allow user to input several tags. Defaults to true.
+     * @param {RegExp}              [options.separator]             Split the input by this RegExp. Defaults to /[,;(space)]+/g (spaces, commas and semicolons)
+     * @param {String}              [options.outSeparator]          Use this string to separate each tag from the next in the output. Defaults to ','.
+     * @param {Boolean}             [options.autoSplit]             Flag to activate tag creation when the user types a separator. Defaults to true.
+     * @param {Integer}             [options.maxTags]               Maximum number of tags allowed. Set to -1 for no limit. Defaults to -1.
      * @example
      */
     function TagField(element, options) {
