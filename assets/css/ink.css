@@ -111,6 +111,8 @@
 
 .clearfix {
   *zoom: 1;
+  overflow: hidden;
+  *zoom: 1;
 }
 .clearfix:after {
   content: "";
@@ -451,10 +453,10 @@ input[type="number"]::-webkit-outer-spin-button {
 input[type="search"] {
   -webkit-appearance: textfield;
   /* 1 */
-  -moz-box-sizing: content-box;
-  -webkit-box-sizing: content-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   /* 2 */
-  box-sizing: content-box;
+  box-sizing: border-box;
 }
 
 /**
@@ -1249,7 +1251,7 @@ th {
   clear: none;
 }
 
-[class*=all-100] {
+[class~=all-100] {
   float: none;
   clear: both;
 }
