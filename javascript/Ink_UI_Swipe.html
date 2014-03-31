@@ -1,0 +1,418 @@
+---
+layout: js-documentation
+title: Ink.UI.Swipe
+description: Provides the core methods to create and load all of the library modules. 
+site_root:  ../
+---
+
+    
+        <section>
+        <h1 class="fw-300">Ink.UI.Swipe <small>version: 1</small></h1>
+    
+
+    
+
+    
+
+
+    
+
+
+    
+
+    
+
+
+
+    
+            
+
+    
+    <p><p>Subscribe swipe gestures!</p>
+<p>Supports filtering swipes be any combination of the criteria supported in the options.</p>
+</p>
+    
+    
+    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p>
+
+    
+    <table class="props bottom-space">
+        
+        
+        <caption>Methods</caption>
+        <thead>
+            <tr>
+                <th>Method name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        
+        
+        <tbody>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Swipe-Ink_UI_Swipe-Swipe">
+                        
+                            
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    
+
+                    
+                    
+                </td>
+            </tr>
+        
+        </tbody>
+    </table>
+    
+
+    
+</section>
+
+
+
+
+
+
+
+    <section id="Ink_UI_Swipe-Ink_UI_Swipe-Swipe" class="box box-function">
+
+    <h1 class="fw-300">
+    
+        Ink.UI.Swipe
+    
+    (el, options, )
+    
+        <i>constructor</i>
+    
+    </h1>
+
+    
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        el
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        
+        options
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+    </ul>
+    
+
+    
+    
+
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String|DOMElement</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label>el
+                
+
+                
+                </label>
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Object</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label>options
+                
+
+                
+                </label>
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Function</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="optional">[options.onEnd]
+                
+
+                
+                </label>
+                
+                    callback function for the `touchend` event. Gets all the gesture information, and is filtered by min/max Dist and Duration options (see below)
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Function</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="optional">[options.onStart]
+                
+
+                
+                </label>
+                
+                    callback function for `touchstart` event
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Function</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="optional">[options.onMove]
+                
+
+                
+                </label>
+                
+                    callback function for every `touchmove` event. Gets current gesture information.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Number</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="optional">[options.minDist]
+                
+
+                
+                </label>
+                
+                    minimum allowed distance, in pixels
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Number</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="optional">[options.maxDist]
+                
+
+                
+                </label>
+                
+                    maximum allowed distance, in pixels
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Number</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="optional">[options.minDuration]
+                
+
+                
+                </label>
+                
+                    minimum allowed duration, in seconds
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Number</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="optional">[options.maxDuration]
+                
+
+                
+                </label>
+                
+                    maximum allowed duration, in seconds
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="optional">[options.axis]
+                
+
+                
+                </label>
+                
+                    if either 'x' or 'y' is passed, only swipes where the dominant axis is the given one trigger the callback
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="optional">[options.storeGesture]
+                
+
+                
+                    false
+                
+                </label>
+                
+                    store gesture information and provide to the callback
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="optional">[options.stopEvents]
+                
+
+                
+                    true
+                
+                </label>
+                
+                    stop (default and propagation) of the received events
+                
+            </dd>
+        
+        </dl>
+        
+        
+
+    
+
+
+    
+
+
+    
+
+</section>
+
+
+
+    
+
+    
+
+    
+

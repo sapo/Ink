@@ -13,12 +13,7 @@
             <nav class="ink-navigation sidebar">
                 <ul class="menu vertical">
                     <li class="search">
-                        <input placeholder="Search..." class="docsearch" type="search"><span class="fa fa-search"></span>
-                        <div class="ink-dropdown red" id="search-dropdown" style="display: none;">
-                            <ul id="resultsList" class="dropdown-menu">
-
-                            </ul>
-                        </div>
+                        {% include search.html %}
                     </li>
                 </ul>
                 {% include side-nav.html %}

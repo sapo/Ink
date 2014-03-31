@@ -1,0 +1,292 @@
+---
+layout: js-documentation
+title: Ink.Util.Date_1
+description: Provides the core methods to create and load all of the library modules. 
+site_root:  ../
+---
+
+    
+        <section>
+        <h1 class="fw-300">Ink.Util.Date_1 <small>version: 1</small></h1>
+    
+
+    
+
+    
+
+
+    
+
+
+    
+        <h2>Defined functions:</h2>
+        <ul class="unstyled">
+        
+            <li><a href="#Ink_Util_Date_1-get">
+            
+                Ink.Util.Date_1.get
+            
+            (format, [_date])</a></li>
+        
+            <li><a href="#Ink_Util_Date_1-set">
+            
+                Ink.Util.Date_1.set
+            
+            ([format], str_date)</a></li>
+        
+        </ul>
+    
+
+    
+
+
+
+    
+
+    
+        <section id="Ink_Util_Date_1-get" class="box box-function">
+
+    <h1 class="fw-300">
+    
+        
+            .get
+        
+    
+    (format, [_date])
+    
+        
+            <i>function</i>
+        
+    
+    </h1>
+
+    
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        format
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        [
+        _date
+        ]
+        
+        </li>
+        
+    </ul>
+    
+
+    
+    
+
+    
+        <p class="text"><p>Formats a date object.
+This works exactly as php date() function. <a href="http://php.net/manual/en/function.date.php">http://php.net/manual/en/function.date.php</a></p>
+</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label>format
+                
+
+                
+                </label>
+                
+                    The format in which the date it will be formatted.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Date</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="optional">[_date]
+                
+
+                
+                </label>
+                
+                    The date to format. Can receive unix timestamp or a date object. Defaults to current time.
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>String</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
+
+    
+<p class="example-title">Example</p>
+  
+{% highlight html %}{% raw %}
+    <script>
+        Ink.requireModules( ['Ink.Util.Date_1'], function( InkDate ){
+            console.log( InkDate.get('Y-m-d') ); // Result (at the time of writing): 2013-05-07
+        });
+    </script>
+{% endraw %}{% endhighlight %}
+
+
+
+
+    
+
+</section>
+    
+        <section id="Ink_Util_Date_1-set" class="box box-function">
+
+    <h1 class="fw-300">
+    
+        
+            .set
+        
+    
+    ([format], str_date)
+    
+        
+            <i>function</i>
+        
+    
+    </h1>
+
+    
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        [
+        format
+        ]
+        
+        </li>
+        
+        <li class="prop">
+        
+        
+        str_date
+        
+        
+        </li>
+        
+    </ul>
+    
+
+    
+    
+
+    
+        <p class="text"><p>Creates a date object based on a format string.
+This works exactly as php date() function. <a href="http://php.net/manual/en/function.date.php">http://php.net/manual/en/function.date.php</a></p>
+</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="optional">[format]
+                
+
+                
+                </label>
+                
+                    The format in which the date will be formatted. Defaults to 'Y-m-d'
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label>str_date
+                
+
+                
+                </label>
+                
+                    The date formatted.
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>Date</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
+
+    
+
+
+    
+
+</section>
+    
+
+    
+

@@ -10374,7 +10374,11 @@
 				{
 					"kind": "class",
 					"name": "Ink.UI.Sticky",
+<<<<<<< HEAD
+					"text": "Ink.UI.Sticky makes an element \"stick\" to the screen and stay in the\nsame place as the user scrolls.\n\nTo use it, just select an element as you create the Sticky. As you\nscroll past it, it will stick to the top of the screen.\n\nThe `activateInLayouts` option controls in what layouts this behaviour\nhappens. By default, it is disabled for the `small` and `tiny` layouts.\nPass a comma-separated string to choose just the layouts you need.\n\nYou can use the `offsetTop` option if you want it to keep some distance\nfrom the top of the screen.\n\nTo avoid it going under the footer of your page, pass a selector\nto your footer as the `bottomElement` option.",
+=======
 					"text": "Ink.UI.Sticky makes an element \"stick\" to the screen and stay in the same place as the user scrolls.\n\nTo use it, just select an element as you create the Sticky. As you scroll past it, it will stick to the top of the screen.\n\nThe `activateInLayouts` option controls in what layouts this behaviour happens. By default, it is disabled for the `small` and `tiny` layouts.\nPass a comma-separated string to choose just the layouts you need.\n\nYou can use the `offsetTop` option if you want it to keep some distance from the top of the screen.\n\nTo avoid it going under the footer of your page, pass a selector to your footer as the `bottomElement` option.",
+>>>>>>> 797f31ed036f19213caf05a449c86811e1966d36
 					"file": "src/js/Ink/UI/Sticky/1/lib.js",
 					"functions": [
 						{
@@ -10404,7 +10408,11 @@
 									"type": "Number",
 									"isOptional": true,
 									"isFirstLevel": false,
+<<<<<<< HEAD
+									"description": "Number of pixels of distance from the bottomElement (or the bottom of the screen)."
+=======
 									"description": "Number of pixels of distance from the bottomElement. Defaults to 0."
+>>>>>>> 797f31ed036f19213caf05a449c86811e1966d36
 								},
 								{
 									"kind": "param",
@@ -10412,7 +10420,11 @@
 									"type": "Number",
 									"isOptional": true,
 									"isFirstLevel": false,
+<<<<<<< HEAD
+									"description": "Number of pixels of distance from the topElement (or the top of the screen)."
+=======
 									"description": "Number of pixels of distance from the topElement. Defaults to 0."
+>>>>>>> 797f31ed036f19213caf05a449c86811e1966d36
 								},
 								{
 									"kind": "param",
@@ -10467,6 +10479,10 @@
 									"name": "options.activateInLayouts",
 									"type": "Array|String",
 									"isOptional": true,
+<<<<<<< HEAD
+									"defaultValue": "'medium,large,xlarge'",
+=======
+>>>>>>> 797f31ed036f19213caf05a449c86811e1966d36
 									"isFirstLevel": false,
 									"description": "Layouts in which the sticky behaviour is present. Pass an array or comma-separated string. Defaults to 'medium,large'."
 								}
@@ -10547,7 +10563,12 @@
 			"functions": [],
 			"attributes": [],
 			"uses": [],
+<<<<<<< HEAD
+			"author": "inkdev AT sapo.pt",
+			"version": "1\n\nStick an element to the screen"
+=======
 			"version": "1"
+>>>>>>> 797f31ed036f19213caf05a449c86811e1966d36
 		},
 		{
 			"kind": "module",
@@ -10682,7 +10703,11 @@
 				{
 					"kind": "class",
 					"name": "Ink.UI.Table",
+<<<<<<< HEAD
+					"text": "The Table component transforms the native/DOM table element into a\nsortable, paginated component.\n\nYou can use this component to display data from a JSON endpoint, or\nfrom table rows in the DOM. Displaying from the DOM is more practical,\nbut sometimes you don't want to load everything at once (if you have\na HUGE table). In those cases, you should configure Ink.UI.Table to\nget data from JSON endpoint.\n\nTo enable sorting, just set the `data-sortable` attribute of your\ntable headers (they must be in the `thead` of the table) to \"true\".\n\nTo enable pagination, set the `pageSize` option to the amount of table\nrows you want to show at once, and choose an `Ink.UI.Pagination`\ncomponent to use. To do this, you can do one of the following:\n - Pass an `Ink.UI.Pagination` instance as the `pagination` option, or...\n - Pass a selector as the `pagination` option which selects an element to create the Ink.UI.Paginate element on.",
+=======
 					"text": "The Table component transforms the native/DOM table element into a sortable, paginated component.\n\nYou can use this component to display data from a JSON endpoint, or\nfrom table rows in the DOM. Displaying from the DOM is more practical,\nbut sometimes you don't want to load everything at once (if you have\na HUGE table). In those cases, you should configure Ink.UI.Table to\nget data from JSON endpoint.\n\nTo enable sorting, just set the `data-sortable` attribute of your table headers (they must be in the `thead` of the table) to \"true\".\n\nTo enable pagination, you should pass either an `Ink.UI.Pagination` instance or a selector to create the Ink.UI.Paginate element on.",
+>>>>>>> 797f31ed036f19213caf05a449c86811e1966d36
 					"file": "src/js/Ink/UI/Table/1/lib.js",
 					"functions": [
 						{

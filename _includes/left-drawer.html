@@ -1,12 +1,7 @@
 <div class="left-drawer">
     <ul>
         <li class="search">
-            <input placeholder="Search..." class="side-search-input" value="" type="search"><span class="fa fa-search"></span>
-            <div class="ink-dropdown red side-search-results" style="display: none;">
-                <ul class="dropdown-menu side-search-results-list">
-
-                </ul>
-            </div>
+            {% include search.html %}
         </li>
 
         {% for section in site.sections %}
