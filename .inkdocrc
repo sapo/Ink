@@ -1,5 +1,5 @@
 {
-    "outputDir":       "javascript",
+    "outputDir":       "_includes/js",
     "sourceDir":       "src",
     "templatesDir":    "_includes/inkdoctemplates",
     "template":        "ink",
