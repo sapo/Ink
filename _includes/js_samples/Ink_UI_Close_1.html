@@ -1,14 +1,17 @@
-<p></p>
+<p>Initializing close</p>
 
 <p class="example-title">Code</p>
 {% highlight html %}
 
-<style>
-</style>
+<div class="ink-alert basic">
+    <button class="ink-dismiss">&times;</button>
+    <p>Click the X to close this!</p>
+</div>
 
 <script>
-    Ink.requireModules( ['Ink.UI.Spy_1'], function( Spy ){
-        new Spy(sections[i], { target: myMenu });
+    // Not needed with autoload.js
+    Ink.requireModules(['Ink.UI.Close_1'],function( Close ){
+        new Close();
     });
 </script>
 {% endhighlight %}
