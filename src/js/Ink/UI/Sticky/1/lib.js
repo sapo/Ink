@@ -33,13 +33,8 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
      * @param {String}              [options.topElement]        CSS Selector that specifies a top element with which the component could collide.
      * @param {String}              [options.bottomElement]     CSS Selector that specifies a bottom element with which the component could collide.
      * @param {Array|String}        [options.activateInLayouts] Layouts in which the sticky behaviour is present. Pass an array or comma-separated string. Defaults to 'medium,large'.
-     * @example
-     *      <script>
-     *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.Sticky_1'], function( Selector, Sticky ) {
-     *              var menuElement = Ink.s('#menu');
-     *              var stickyObj = new Sticky( menuElement );
-     *          });
-     *      </script>
+     *
+     * @sample Ink_UI_Sticky_1.html
      */
     var Sticky = function( selector, options ){
         this._rootElement = Common.elOrSelector(selector, 'Ink.UI.Sticky_1');

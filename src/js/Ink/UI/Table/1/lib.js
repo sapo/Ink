@@ -78,72 +78,8 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
      * @param {Object}              [options.paginationOptions]             Override the options with which we instantiate the Ink.UI.Pagination.
      * @param {Boolean}             [options.allowResetSorting]             Allow sort order to be set to "none" in addition to "ascending" and "descending"
      * @param {String|Array}        [options.visibleFields]                 Set of fields which get shown on the table
-     * @example
-     *      <table class="ink-table alternating" data-page-size="6">
-     *          <thead>
-     *              <tr>
-     *                  <th data-sortable="true" width="75%">Pepper</th>
-     *                  <th data-sortable="true" width="25%">Scoville Rating</th>
-     *              </tr>
-     *          </thead>
-     *          <tbody>
-     *              <tr>
-     *                  <td>Trinidad Moruga Scorpion</td>
-     *                  <td>1500000</td>
-     *              </tr>
-     *              <tr>
-     *                  <td>Bhut Jolokia</td>
-     *                  <td>1000000</td>
-     *              </tr>
-     *              <tr>
-     *                  <td>Naga Viper</td>
-     *                  <td>1463700</td>
-     *              </tr>
-     *              <tr>
-     *                  <td>Red Savina Habanero</td>
-     *                  <td>580000</td>
-     *              </tr>
-     *              <tr>
-     *                  <td>Habanero</td>
-     *                  <td>350000</td>
-     *              </tr>
-     *              <tr>
-     *                  <td>Scotch Bonnet</td>
-     *                  <td>180000</td>
-     *              </tr>
-     *              <tr>
-     *                  <td>Malagueta</td>
-     *                  <td>50000</td>
-     *              </tr>
-     *              <tr>
-     *                  <td>Tabasco</td>
-     *                  <td>35000</td>
-     *              </tr>
-     *              <tr>
-     *                  <td>Serrano Chili</td>
-     *                  <td>27000</td>
-     *              </tr>
-     *              <tr>
-     *                  <td>Jalapeño</td>
-     *                  <td>8000</td>
-     *              </tr>
-     *              <tr>
-     *                  <td>Poblano</td>
-     *                  <td>1500</td>
-     *              </tr>
-     *              <tr>
-     *                  <td>Peperoncino</td>
-     *                  <td>500</td>
-     *              </tr>
-     *          </tbody>
-     *      </table>
-     *      <nav class="ink-navigation"><ul class="pagination"></ul></nav>
-     *      <script>
-     *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.Table_1'], function( Selector, Table ){
-     *              var tableElement = Ink.s('.ink-table');
-     *              var tableObj = new Table( tableElement );
-     *          });
-     *      </script>
+     *
+     * @sample Ink_UI_Table_1.html
      */
     var Table = function( selector, options ){
 
