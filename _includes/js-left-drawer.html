@@ -11,7 +11,7 @@
 
         {% for section in site.sections %}
         {% assign section_uri = section.title | downcase | replace:' ','-' %}
-        
+
         <li{% if current_section[1] == section_uri %} class="active"{% endif %}>
             <a href="{{ site.url }}{{ section.title | downcase | replace:' ','-' }}/" title="{{ section.title }}">{{ section.title }}</a>
         </li>
@@ -20,13 +20,18 @@
         {% include section-selector.html %}
 
         {% for component in section.components %}
-          <li class="heading">{{ component.title }}{% if component.topics %}
-            {% for topic in component.topics %}    
-              <li><a href="{{ site.url }}{{ section.title | downcase | replace: ' ','-' }}/{{ topic.title | downcase | replace: ' ','-' | replace: ',','' }}" title="{{ topic.title }}">{{ topic.title }}</a></li>{% endfor %}
-            {% endif %}
-          </li>{% endfor %}
+          <li class="heading">{{ component.title }}
+            {% if component.topics %}
+        {% for topic in component.topics %}{% if topic.title == 'Ink.UI.FormValidator_2' %}
+          <li><a href="{{ site.url }}{{ section.title | downcase | replace: ' ','-' }}/{{ topic.title | replace: '.','_' | replace: ',','' }}.html" title="{{ topic.title }}">{{ topic.title }}</a></li>
+          {% else %}<li><a href="{{ site.url }}{{ section.title | downcase | replace: ' ','-' }}/{{ topic.title | replace: '.','_' | replace: ',','' }}_1.html" title="{{ topic.title }}">{{ topic.title }}</a></li>{% endif %}
+          {% endfor %}{% endif %}
+        {% endfor %}
 
         <li><a class="ink-button blue" href="{{ site.download_url }}{{ site.version }}.zip">Download</a></li>
 
     </ul>
 </div>
+
+<h2></h2>
+<div class="result"></div>
