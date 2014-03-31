@@ -5,10 +5,10 @@
     "template":        "ink",
     "markupFile":      "index.html",
     "debug":           false,
-    "skipJSON":        false,
+    "skipJSON":        true,
     "skipIdentifiers": true,
     "title":           "Ink Javascript API",
-    "sourceFiles": [ 
+    "sourceFiles": [
         "**/**/lib.js",
         "**/**/**/lib.js"
     ]
