@@ -169,6 +169,9 @@ a, .ink-button {
   clear: both;
 }
 
+.sidebar.ink-navigation ul.menu.vertical li {
+  text-transform: uppercase;
+}
 .sidebar.ink-navigation ul.menu.vertical li.heading {
   margin-top: 1em;
   border-top: 1px solid #ddd;
@@ -1163,4 +1166,26 @@ footer .ink-navigation ul.menu.horizontal li a.license {
 }
 #search-results.show {
   display: block;
+}
+#search-results > ul > li.result-item {
+  border-bottom: 1px solid #CCC;
+  padding: 1em 0;
+  display: none;
+}
+#search-results > ul > li.result-item.show {
+  display: block;
+}
+#search-results .result-snippet {
+  padding: 1em;
+  background: #eeebe5;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+  margin-bottom: 1.5em;
+}
+#search-results .result-snippet em {
+  background: yellow;
+  padding: 0 .5em;
 }

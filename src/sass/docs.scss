@@ -75,6 +75,7 @@ a, .ink-button {
 
                 font-size: $topbar-fontSize;
 
+
                 a {
                     padding: .7em 1em;
                     color:$topbar-color;
@@ -146,7 +147,7 @@ a, .ink-button {
         ul.menu.vertical {
             li {
 
-                // text-transform: uppercase;
+                text-transform: uppercase;
 
                 &.heading {
                     margin-top: 1em;
@@ -755,16 +756,16 @@ footer {
 }
 
 .screen-size-helper {
-    
+
     line-height: 1.6em;
     padding: 0.5333333333333333em 0.8em;
     background: rgba(0, 0, 0, 0.7);
-    
+
     .title,
     ul {
         color: $white;
     }
-    
+
     .title {
         margin: 0;
         float: left;
@@ -775,7 +776,7 @@ footer {
         float: right;
         margin: 0;
         padding: 0;
-        
+
         li {
             padding: 0;
             margin: 0;
@@ -945,5 +946,24 @@ $who: lighten(#CA8A4E,10%);
     display: none;
     &.show {
         display: block;
+    }
+
+    & > ul > li.result-item {
+      border-bottom: 1px solid #CCC;
+      padding: 1em 0;
+      display: none;
+      &.show {
+        display: block;
+      }
+    }
+    .result-snippet {
+      padding: 1em;
+      background: $code-background;
+      @include border-radius($border-radius);
+      margin-bottom: 1.5em;
+      em {
+        background: yellow;
+        padding: 0 .5em;
+      }
     }
 }
