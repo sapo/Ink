@@ -24,7 +24,7 @@
         <pubDate>{{ site.time | date: "%a, %d %b %Y %H:%M:%S GMT" }}</pubDate>
         {% for tag in page.tags %}<category>{{ tag }}</category>{% endfor %}
         <guid isPermaLink="false">{{ page.id }}</guid>
-        <description><![CDATA[{{ page.content | strip_html | replace: '{% include','' | replace: '{% highlight html ','' | replace: '{% highlight js ','' | replace: '{% endhighlight' | replace: "%&#125;" }}]]></description>
+        <description><![CDATA[{{ page.content | strip_html | replace: '{% include','' | replace: '{% highlight html ','' | replace: '{% highlight js ','' | replace: '{% endhighlight' | replace: "{% raw ",'' | replace: "{% endraw ",'' | replace: '%&#125;'','' }}]]></description>
     </item>
     {% endfor %}
 </channel>
