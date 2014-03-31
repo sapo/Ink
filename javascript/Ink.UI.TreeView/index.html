@@ -1,0 +1,889 @@
+---
+layout: js-documentation
+title: Ink.UI.TreeView_1
+description: Provides the core methods to create and load all of the library modules. 
+site_root:  ../
+---
+
+    
+        <section>
+        <h1 class="fw-300">Ink.UI.TreeView_1 <small>version: 1</small></h1>
+    
+
+    
+
+    
+
+
+    
+
+
+    
+
+    
+
+
+
+    
+            
+
+    
+    <p><p>Shows elements in a tree structure which can be expanded and contracted.
+A TreeView is built with &quot;node&quot;s and &quot;children&quot;. &quot;node&quot;s are <code>li</code> tags, and &quot;children&quot; are <code>ul</code> tags.
+You can build your TreeView out of a regular UL and  LI element structure which you already use to display lists with several levels.
+If you want a node to be open when the TreeView is built, just add the data-open=&quot;true&quot; attribute to it.</p>
+</p>
+    
+    
+    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p>
+
+    
+    <table class="props bottom-space">
+        
+        
+        <caption>Methods</caption>
+        <thead>
+            <tr>
+                <th>Method name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        
+        
+        <tbody>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_TreeView_1-Ink_UI_TreeView-TreeView">
+                        
+                            
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_TreeView_1-Ink_UI_TreeView-close">
+                        
+                            .close
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Closes one of the tree nodes</p>
+<p>Make sure you pass the node&#39;s DOMElement</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_TreeView_1-Ink_UI_TreeView-isOpen">
+                        
+                            .isOpen
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Checks if a node is open.</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_TreeView_1-Ink_UI_TreeView-isParent">
+                        
+                            .isParent
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Checks if a node is a parent.</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_TreeView_1-Ink_UI_TreeView-open">
+                        
+                            .open
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Opens one of the tree nodes</p>
+<p>Make sure you pass the node&#39;s DOMElement</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_TreeView_1-Ink_UI_TreeView-toggle">
+                        
+                            .toggle
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Toggles a node state</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+        </tbody>
+    </table>
+    
+
+    
+</section>
+
+
+
+
+
+
+
+    <section id="Ink_UI_TreeView_1-Ink_UI_TreeView-TreeView" class="box box-function">
+
+    <h1 class="fw-300">
+    
+        Ink.UI.TreeView
+    
+    (selector, [options], )
+    
+        <i>constructor</i>
+    
+    </h1>
+
+    
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        selector
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        [
+        options
+        ]
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+    </ul>
+    
+
+    
+    
+
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String|DOMElement</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="monospace">selector
+                
+
+                
+                </label>
+                
+                    Element or selector.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="monospace">[options]
+                
+
+                
+                </label>
+                
+                    Options object, containing:
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="monospace">[options.node]
+                
+
+                
+                </label>
+                
+                    Selector for the nodes. Defaults to 'li'.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="monospace">[options.children]
+                
+
+                
+                </label>
+                
+                    Selector for the children. Defaults to 'ul'.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="monospace">[options.parentClass]
+                
+
+                
+                </label>
+                
+                    CSS classes to be added to parent nodes. Defaults to 'parent'.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="monospace">[options.openClass]
+                
+
+                
+                </label>
+                
+                    CSS classes to be added to the icon when a parent is open. Defaults to 'fa fa-minus-circle'.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="monospace">[options.closedClass]
+                
+
+                
+                </label>
+                
+                    CSS classes to be added to the icon when a parent is closed. Defaults to 'fa fa-plus-circle'.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="monospace">[options.hideClass]
+                
+
+                
+                </label>
+                
+                    CSS Class to toggle visibility of the children. Defaults to 'hide-all'.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="monospace">[options.iconTag]
+                
+
+                
+                </label>
+                
+                    The name of icon tag. The component tries to find a tag with that name as a direct child of the node. If it doesn't find it, it creates it. Defaults to 'i'.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Boolean</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="monospace">[options.stopDefault]
+                
+
+                
+                </label>
+                
+                    Flag to stops the default behavior of the click handler. Defaults to true.
+                
+            </dd>
+        
+        </dl>
+        
+        
+
+    
+
+
+    
+<p class="example-title">Example</p>
+  
+{% highlight html %}{% raw %}
+     <ul class="ink-tree-view">
+       <li data-open="true"><a href="#">root</a>
+         <ul>
+           <li><a href="#">child 1</a></li>
+           <li><a href="#">child 2</a>
+             <ul>
+               <li><a href="#">grandchild 2a</a></li>
+               <li><a href="#">grandchild 2b</a>
+                 <ul>
+                   <li><a href="#">grandgrandchild 1bA</a></li>
+                   <li><a href="#">grandgrandchild 1bB</a></li>
+                 </ul>
+               </li>
+             </ul>
+           </li>
+           <li><a href="#">child 3</a></li>
+         </ul>
+       </li>
+     </ul>
+     <script>
+         Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.TreeView_1'], function( Selector, TreeView ){
+             var treeViewElement = Ink.s('.ink-tree-view');
+             var treeViewObj = new TreeView( treeViewElement );
+         });
+     </script>
+{% endraw %}{% endhighlight %}
+
+
+
+
+    
+
+</section>
+
+    <section id="Ink_UI_TreeView_1-Ink_UI_TreeView-close" class="box box-function">
+
+    <h1 class="fw-300">
+    
+        
+            .close
+        
+    
+    (node)
+    
+        
+            <i>method</i>
+        
+    
+    </h1>
+
+    
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        node
+        
+        
+        </li>
+        
+    </ul>
+    
+
+    
+    
+
+    
+        <p class="text"><p>Closes one of the tree nodes</p>
+<p>Make sure you pass the node&#39;s DOMElement</p>
+</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>DOMElement</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="monospace">node
+                
+
+                
+                </label>
+                
+                    The node you wish to close.
+                
+            </dd>
+        
+        </dl>
+        
+        
+
+    
+
+
+    
+
+
+    
+
+</section>
+
+    <section id="Ink_UI_TreeView_1-Ink_UI_TreeView-isOpen" class="box box-function">
+
+    <h1 class="fw-300">
+    
+        
+            .isOpen
+        
+    
+    (node)
+    
+        
+            <i>method</i>
+        
+    
+    </h1>
+
+    
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        node
+        
+        
+        </li>
+        
+    </ul>
+    
+
+    
+    
+
+    
+        <p class="text"><p>Checks if a node is open.</p>
+</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>DOMElement</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="monospace">node
+                
+
+                
+                </label>
+                
+                    The tree node to check
+                
+            </dd>
+        
+        </dl>
+        
+        
+
+    
+
+
+    
+
+
+    
+
+</section>
+
+    <section id="Ink_UI_TreeView_1-Ink_UI_TreeView-isParent" class="box box-function">
+
+    <h1 class="fw-300">
+    
+        
+            .isParent
+        
+    
+    (node)
+    
+        
+            <i>method</i>
+        
+    
+    </h1>
+
+    
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        node
+        
+        
+        </li>
+        
+    </ul>
+    
+
+    
+    
+
+    
+        <p class="text"><p>Checks if a node is a parent.</p>
+</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>DOMElement</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="monospace">node
+                
+
+                
+                </label>
+                
+                    Node to check
+                
+            </dd>
+        
+        </dl>
+        
+        
+
+    
+
+
+    
+
+
+    
+
+</section>
+
+    <section id="Ink_UI_TreeView_1-Ink_UI_TreeView-open" class="box box-function">
+
+    <h1 class="fw-300">
+    
+        
+            .open
+        
+    
+    (node)
+    
+        
+            <i>method</i>
+        
+    
+    </h1>
+
+    
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        node
+        
+        
+        </li>
+        
+    </ul>
+    
+
+    
+    
+
+    
+        <p class="text"><p>Opens one of the tree nodes</p>
+<p>Make sure you pass the node&#39;s DOMElement</p>
+</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>DOMElement</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="monospace">node
+                
+
+                
+                </label>
+                
+                    The node you wish to open.
+                
+            </dd>
+        
+        </dl>
+        
+        
+
+    
+
+
+    
+
+
+    
+
+</section>
+
+    <section id="Ink_UI_TreeView_1-Ink_UI_TreeView-toggle" class="box box-function">
+
+    <h1 class="fw-300">
+    
+        
+            .toggle
+        
+    
+    (node)
+    
+        
+            <i>method</i>
+        
+    
+    </h1>
+
+    
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        node
+        
+        
+        </li>
+        
+    </ul>
+    
+
+    
+    
+
+    
+        <p class="text"><p>Toggles a node state</p>
+</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>DOMElement</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="monospace">node
+                
+
+                
+                </label>
+                
+                    The node to toggle.
+                
+            </dd>
+        
+        </dl>
+        
+        
+
+    
+
+
+    
+
+
+    
+
+</section>
+
+
+
+    
+
+    
+
+    
+

@@ -1,13 +1,13 @@
 ---
 layout: js-documentation
-title: Ink.UI.Swipe_1
+title: Ink.UI.SortableList_1
 description: Provides the core methods to create and load all of the library modules. 
 site_root:  ../
 ---
 
     
         <section>
-        <h1 class="fw-300">Ink.UI.Swipe_1 <small>version: 1</small></h1>
+        <h1 class="fw-300">Ink.UI.SortableList_1 <small>version: 1</small></h1>
     
 
     
@@ -28,8 +28,7 @@ site_root:  ../
             
 
     
-    <p><p>Subscribe swipe gestures.</p>
-<p>Supports filtering swipes be any combination of the criteria supported in the options.</p>
+    <p><p>Adds sortable behaviour to any list.</p>
 </p>
     
     
@@ -52,7 +51,7 @@ site_root:  ../
         
             <tr>
                 <td>
-                    <a href="#Ink_UI_Swipe_1-Ink_UI_Swipe_1-Swipe_1">
+                    <a href="#Ink_UI_SortableList_1-Ink_UI_SortableList-SortableList">
                         
                             
                         
@@ -63,6 +62,26 @@ site_root:  ../
                     
 
                     
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_SortableList_1-Ink_UI_SortableList-destroy">
+                        
+                            .destroy
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Unregisters the component and removes its markup</p>
+
 
                     
                     
@@ -82,13 +101,13 @@ site_root:  ../
 
 
 
-    <section id="Ink_UI_Swipe_1-Ink_UI_Swipe_1-Swipe_1" class="box box-function">
+    <section id="Ink_UI_SortableList_1-Ink_UI_SortableList-SortableList" class="box box-function">
 
     <h1 class="fw-300">
     
-        Ink.UI.Swipe_1
+        Ink.UI.SortableList
     
-    (el, options, )
+    (selector, )
     
         <i>constructor</i>
     
@@ -101,24 +120,8 @@ site_root:  ../
         <li class="prop">
         
         
-        el
+        selector
         
-        
-        </li>
-        
-        <li class="prop">
-        
-        
-        options
-        
-        
-        </li>
-        
-        <li class="prop">
-        
-        </li>
-        
-        <li class="prop">
         
         </li>
         
@@ -175,165 +178,11 @@ site_root:  ../
                 
                 
                 
-                <label class="monospace">el
+                <label class="monospace">selector
                 
 
                 
                 </label>
-                
-                    Element or Selector
-                
-            </dd>
-        
-            <dt>
-                
-                    <code>Object</code>
-                
-            </dt>
-            <dd>
-                
-                
-                
-                <label class="monospace">options
-                
-
-                
-                </label>
-                
-                    Options Object
-                
-            </dd>
-        
-            <dt>
-                
-                    <code>Function</code>
-                
-            </dt>
-            <dd>
-                
-                
-                
-                <label class="monospace">[options.onEnd]
-                
-
-                
-                </label>
-                
-                    Callback function for the `touchend` event. Gets all the gesture information, and is filtered by min/max Dist and Duration options (see below)
-                
-            </dd>
-        
-            <dt>
-                
-                    <code>Function</code>
-                
-            </dt>
-            <dd>
-                
-                
-                
-                <label class="monospace">[options.onStart]
-                
-
-                
-                </label>
-                
-                    Callback function for `touchstart` event.
-                
-            </dd>
-        
-            <dt>
-                
-                    <code>Function</code>
-                
-            </dt>
-            <dd>
-                
-                
-                
-                <label class="monospace">[options.onMove]
-                
-
-                
-                </label>
-                
-                    Callback function for every `touchmove` event. Gets current gesture information.
-                
-            </dd>
-        
-            <dt>
-                
-                    <code>Number</code>
-                
-            </dt>
-            <dd>
-                
-                
-                
-                <label class="monospace">[options.minDist]
-                
-
-                
-                </label>
-                
-                    Minimum allowed distance, in pixels.
-                
-            </dd>
-        
-            <dt>
-                
-                    <code>Number</code>
-                
-            </dt>
-            <dd>
-                
-                
-                
-                <label class="monospace">[options.maxDist]
-                
-
-                
-                </label>
-                
-                    Maximum allowed distance, in pixels.
-                
-            </dd>
-        
-            <dt>
-                
-                    <code>Number</code>
-                
-            </dt>
-            <dd>
-                
-                
-                
-                <label class="monospace">[options.minDuration]
-                
-
-                
-                </label>
-                
-                    Minimum allowed duration, in seconds.
-                
-            </dd>
-        
-            <dt>
-                
-                    <code>Number</code>
-                
-            </dt>
-            <dd>
-                
-                
-                
-                <label class="monospace">[options.maxDuration]
-                
-
-                
-                </label>
-                
-                    Maximum allowed duration, in seconds.
                 
             </dd>
         
@@ -346,13 +195,13 @@ site_root:  ../
                 
                 
                 
-                <label class="monospace">[options.axis]
+                <label class="monospace">[options.placeholderClass]
                 
 
                 
                 </label>
                 
-                    If either 'x' or 'y' is passed, only swipes where the dominant axis is the given one trigger the callback
+                    CSS class added to the "ghost" element being dragged around. Defaults to 'placeholder'.
                 
             </dd>
         
@@ -365,13 +214,13 @@ site_root:  ../
                 
                 
                 
-                <label class="monospace">[options.storeGesture]
+                <label class="monospace">[options.draggedClass]
                 
 
                 
                 </label>
                 
-                    If to store gesture information and provide it to the callback. Defaults to true.
+                    CSS class added to the original element being dragged around. Defaults to 'hide-all'.
                 
             </dd>
         
@@ -384,13 +233,108 @@ site_root:  ../
                 
                 
                 
-                <label class="monospace">[options.stopEvents]
+                <label class="monospace">[options.draggingClass]
                 
 
                 
                 </label>
                 
-                    Flag to stop (default and propagation) of the received events. Defaults to true.
+                    CSS class added to the html element when the user is dragging. Defaults to 'dragging'.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="monospace">[options.dragSelector]
+                
+
+                
+                </label>
+                
+                    CSS selector for the drag enabled nodes. Defaults to 'li'.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="monospace">[options.handleSelector]
+                
+
+                
+                </label>
+                
+                    CSS selector for the drag handle. If present, you can only drag nodes by this selector.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="monospace">[options.moveSelector]
+                
+
+                
+                </label>
+                
+                    CSS selector to validate a node move. If present, you can only move nodes inside this selector.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Boolean</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="monospace">[options.swap]
+                
+
+                
+                </label>
+                
+                    Flag to swap dragged element and target element instead of reordering it.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Boolean</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="monospace">[options.cancelMouseOut]
+                
+
+                
+                </label>
+                
+                    Flag to cancel draggin if mouse leaves the container element.
                 
             </dd>
         
@@ -402,15 +346,62 @@ site_root:  ../
 
 
     
+<p class="example-title">Example</p>
+  
+{% highlight html %}{% raw %}
+     <ul class="unstyled ink-sortable-list" id="slist" data-handle-selector=".ink-label">
+         <li><span class="ink-label info">drag here</span>primeiro</li>
+         <li><span class="ink-label info">drag here</span>segundo</li>
+         <li><span class="ink-label info">drag here</span>terceiro</li>
+     </ul>
+     <script>
+         Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.SortableList_1'], function( Selector, SortableList ){
+             var sortableListElement = Ink.s('.ink-sortable-list');
+             var sortableListObj = new SortableList( sortableListElement );
+         });
+     <\/script>
+{% endraw %}{% endhighlight %}
+
+
 
 
     
-	<h3>Samples</h3>
 
-	
-		{% include js_samples/Ink_UI_Swipe_1.html %}
-	
+</section>
 
+    <section id="Ink_UI_SortableList_1-Ink_UI_SortableList-destroy" class="box box-function">
+
+    <h1 class="fw-300">
+    
+        
+            .destroy
+        
+    
+    ()
+    
+        
+            <i>method</i>
+        
+    
+    </h1>
+
+    
+
+    
+    
+
+    
+        <p class="text"><p>Unregisters the component and removes its markup</p>
+</p>
+    
+
+    
+
+
+    
+
+
+    
 
 </section>
 

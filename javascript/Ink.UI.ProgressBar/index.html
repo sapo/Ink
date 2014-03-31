@@ -1,13 +1,13 @@
 ---
 layout: js-documentation
-title: Ink.UI.Dropdown_1
+title: Ink.UI.ProgressBar_1
 description: Provides the core methods to create and load all of the library modules. 
 site_root:  ../
 ---
 
     
         <section>
-        <h1 class="fw-300">Ink.UI.Dropdown_1 <small>version: 1</small></h1>
+        <h1 class="fw-300">Ink.UI.ProgressBar_1 <small>version: 1</small></h1>
     
 
     
@@ -28,7 +28,7 @@ site_root:  ../
             
 
     
-    <p><p>Use this UI module to achieve a dropdown menu.</p>
+    <p><p>Associated to a .ink-progress-bar element, it provides a setValue() method to change the element&#39;s value.</p>
 </p>
     
     
@@ -51,7 +51,7 @@ site_root:  ../
         
             <tr>
                 <td>
-                    <a href="#Ink_UI_Dropdown_1-Ink_UI_Dropdown-Dropdown">
+                    <a href="#Ink_UI_ProgressBar_1-Ink_UI_ProgressBar-ProgressBar">
                         
                             
                         
@@ -70,29 +70,9 @@ site_root:  ../
         
             <tr>
                 <td>
-                    <a href="#Ink_UI_Dropdown_1-Ink_UI_Dropdown-dismiss">
+                    <a href="#Ink_UI_ProgressBar_1-Ink_UI_ProgressBar-setValue">
                         
-                            .dismiss
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    <p>Closes the dropdown.</p>
-
-
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_UI_Dropdown_1-Ink_UI_Dropdown-open">
-                        
-                            .open
+                            .setValue
                         
                         
                     </a>
@@ -100,7 +80,7 @@ site_root:  ../
                 <td>
                     
 
-                    <p>Opens the dropdown</p>
+                    <p>Sets the value of the Progressbar</p>
 
 
                     
@@ -121,13 +101,13 @@ site_root:  ../
 
 
 
-    <section id="Ink_UI_Dropdown_1-Ink_UI_Dropdown-Dropdown" class="box box-function">
+    <section id="Ink_UI_ProgressBar_1-Ink_UI_ProgressBar-ProgressBar" class="box box-function">
 
     <h1 class="fw-300">
     
-        Ink.UI.Dropdown
+        Ink.UI.ProgressBar
     
-    (trigger, options, )
+    (selector, [options], )
     
         <i>constructor</i>
     
@@ -140,16 +120,24 @@ site_root:  ../
         <li class="prop">
         
         
-        trigger
+        selector
         
         
         </li>
         
         <li class="prop">
         
-        
+        [
         options
+        ]
         
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
         
         </li>
         
@@ -171,20 +159,20 @@ site_root:  ../
         
             <dt>
                 
-                    <code>DOMElement|String</code>
+                    <code>String|DOMElement</code>
                 
             </dt>
             <dd>
                 
                 
                 
-                <label class="monospace">trigger
+                <label class="monospace">selector
                 
 
                 
                 </label>
                 
-                    Trigger Element
+                    Element or selector
                 
             </dd>
         
@@ -197,32 +185,70 @@ site_root:  ../
                 
                 
                 
-                <label class="monospace">options
+                <label class="monospace">[options]
                 
 
                 
                 </label>
                 
-                    Options Object
+                    Options object
                 
             </dd>
         
             <dt>
                 
-                    <code>DOMElement|String</code>
+                    <code>Number</code>
                 
             </dt>
             <dd>
                 
                 
                 
-                <label class="monospace">options.target
+                <label class="monospace">[options.startValue]
                 
 
                 
                 </label>
                 
-                    Target of the dropdown action.
+                    Percentage of the bar that is filled. Ranges between 0 and 100. Default: 0
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Function</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="monospace">[options.onStart]
+                
+
+                
+                </label>
+                
+                    Callback called when a change of value is started
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Function</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="monospace">[options.onEnd]
+                
+
+                
+                </label>
+                
+                    Callback called when a change of value ends
                 
             </dd>
         
@@ -234,21 +260,37 @@ site_root:  ../
 
 
     
+<p class="example-title">Example</p>
+  
+{% highlight html %}{% raw %}
+     <div class="ink-progress-bar grey" data-start-value="70%">
+         <span class="caption">I am a grey progress bar</span>
+         <div class="bar grey"></div>
+     </div>
+     <script>
+         Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.ProgressBar_1'], function( Selector, ProgressBar ){
+             var progressBarElement = Ink.s('.ink-progress-bar');
+             var progressBarObj = new ProgressBar( progressBarElement );
+         });
+     </script>
+{% endraw %}{% endhighlight %}
+
+
 
 
     
 
 </section>
 
-    <section id="Ink_UI_Dropdown_1-Ink_UI_Dropdown-dismiss" class="box box-function">
+    <section id="Ink_UI_ProgressBar_1-Ink_UI_ProgressBar-setValue" class="box box-function">
 
     <h1 class="fw-300">
     
         
-            .dismiss
+            .setValue
         
     
-    ([callHandler])
+    (newValue)
     
         
             <i>method</i>
@@ -262,9 +304,9 @@ site_root:  ../
         
         <li class="prop">
         
-        [
-        callHandler
-        ]
+        
+        newValue
+        
         
         </li>
         
@@ -275,7 +317,7 @@ site_root:  ../
     
 
     
-        <p class="text"><p>Closes the dropdown.</p>
+        <p class="text"><p>Sets the value of the Progressbar</p>
 </p>
     
 
@@ -285,96 +327,20 @@ site_root:  ../
         
             <dt>
                 
-            </dt>
-            <dd>
-                
-                
-                
-                <label class="monospace">[callHandler]
-                
-
-                
-                    false
-                
-                </label>
-                
-                    call onDismiss handler
-                
-            </dd>
-        
-        </dl>
-        
-        
-
-    
-
-
-    
-
-
-    
-
-</section>
-
-    <section id="Ink_UI_Dropdown_1-Ink_UI_Dropdown-open" class="box box-function">
-
-    <h1 class="fw-300">
-    
-        
-            .open
-        
-    
-    ([callHandler])
-    
-        
-            <i>method</i>
-        
-    
-    </h1>
-
-    
-    <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        
-        <li class="prop">
-        
-        [
-        callHandler
-        ]
-        
-        </li>
-        
-    </ul>
-    
-
-    
-    
-
-    
-        <p class="text"><p>Opens the dropdown</p>
-</p>
-    
-
-    
-        <h3>Accepts</h3>
-        <dl class="params">
-        
-            <dt>
+                    <code>Number</code>
                 
             </dt>
             <dd>
                 
                 
                 
-                <label class="monospace">[callHandler]
+                <label class="monospace">newValue
                 
 
                 
-                    false
-                
                 </label>
                 
-                    call onOpen handler
+                    Numeric value, between 0 and 100, that represents the percentage of the bar.
                 
             </dd>
         

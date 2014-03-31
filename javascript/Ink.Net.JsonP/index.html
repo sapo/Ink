@@ -1,13 +1,13 @@
 ---
 layout: js-documentation
-title: Ink.UI.Swipe_1
+title: Ink.Net.JsonP_1
 description: Provides the core methods to create and load all of the library modules. 
 site_root:  ../
 ---
 
     
         <section>
-        <h1 class="fw-300">Ink.UI.Swipe_1 <small>version: 1</small></h1>
+        <h1 class="fw-300">Ink.Net.JsonP_1 <small>version: 1</small></h1>
     
 
     
@@ -28,8 +28,7 @@ site_root:  ../
             
 
     
-    <p><p>Subscribe swipe gestures.</p>
-<p>Supports filtering swipes be any combination of the criteria supported in the options.</p>
+    <p><p>Executes a JSONP request</p>
 </p>
     
     
@@ -52,7 +51,7 @@ site_root:  ../
         
             <tr>
                 <td>
-                    <a href="#Ink_UI_Swipe_1-Ink_UI_Swipe_1-Swipe_1">
+                    <a href="#Ink_Net_JsonP_1-Ink_Net_JsonP-JsonP">
                         
                             
                         
@@ -82,13 +81,13 @@ site_root:  ../
 
 
 
-    <section id="Ink_UI_Swipe_1-Ink_UI_Swipe_1-Swipe_1" class="box box-function">
+    <section id="Ink_Net_JsonP_1-Ink_Net_JsonP-JsonP" class="box box-function">
 
     <h1 class="fw-300">
     
-        Ink.UI.Swipe_1
+        Ink.Net.JsonP
     
-    (el, options, )
+    (uri, options, )
     
         <i>constructor</i>
     
@@ -101,7 +100,7 @@ site_root:  ../
         <li class="prop">
         
         
-        el
+        uri
         
         
         </li>
@@ -111,18 +110,6 @@ site_root:  ../
         
         options
         
-        
-        </li>
-        
-        <li class="prop">
-        
-        </li>
-        
-        <li class="prop">
-        
-        </li>
-        
-        <li class="prop">
         
         </li>
         
@@ -168,20 +155,20 @@ site_root:  ../
         
             <dt>
                 
-                    <code>String|DOMElement</code>
+                    <code>String</code>
                 
             </dt>
             <dd>
                 
                 
                 
-                <label class="monospace">el
+                <label class="monospace">uri
                 
 
                 
                 </label>
                 
-                    Element or Selector
+                    Request URL
                 
             </dd>
         
@@ -200,7 +187,7 @@ site_root:  ../
                 
                 </label>
                 
-                    Options Object
+                    Request options
                 
             </dd>
         
@@ -213,13 +200,13 @@ site_root:  ../
                 
                 
                 
-                <label class="monospace">[options.onEnd]
+                <label class="monospace">options.onSuccess
                 
 
                 
                 </label>
                 
-                    Callback function for the `touchend` event. Gets all the gesture information, and is filtered by min/max Dist and Duration options (see below)
+                    Success callback
                 
             </dd>
         
@@ -232,51 +219,32 @@ site_root:  ../
                 
                 
                 
-                <label class="monospace">[options.onStart]
+                <label class="monospace">[options.onFailure]
                 
 
                 
                 </label>
                 
-                    Callback function for `touchstart` event.
+                    Failure callback
                 
             </dd>
         
             <dt>
                 
-                    <code>Function</code>
+                    <code>Object</code>
                 
             </dt>
             <dd>
                 
                 
                 
-                <label class="monospace">[options.onMove]
+                <label class="monospace">[options.failureObj]
                 
 
                 
                 </label>
                 
-                    Callback function for every `touchmove` event. Gets current gesture information.
-                
-            </dd>
-        
-            <dt>
-                
-                    <code>Number</code>
-                
-            </dt>
-            <dd>
-                
-                
-                
-                <label class="monospace">[options.minDist]
-                
-
-                
-                </label>
-                
-                    Minimum allowed distance, in pixels.
+                    Object to be passed as argument to failure callback
                 
             </dd>
         
@@ -289,51 +257,32 @@ site_root:  ../
                 
                 
                 
-                <label class="monospace">[options.maxDist]
+                <label class="monospace">[options.timeout]
                 
 
                 
                 </label>
                 
-                    Maximum allowed distance, in pixels.
+                    Timeout for request fail, in seconds. defaults to 10
                 
             </dd>
         
             <dt>
                 
-                    <code>Number</code>
+                    <code>Object</code>
                 
             </dt>
             <dd>
                 
                 
                 
-                <label class="monospace">[options.minDuration]
+                <label class="monospace">[options.params]
                 
 
                 
                 </label>
                 
-                    Minimum allowed duration, in seconds.
-                
-            </dd>
-        
-            <dt>
-                
-                    <code>Number</code>
-                
-            </dt>
-            <dd>
-                
-                
-                
-                <label class="monospace">[options.maxDuration]
-                
-
-                
-                </label>
-                
-                    Maximum allowed duration, in seconds.
+                    Object with the parameters and respective values to unfold
                 
             </dd>
         
@@ -346,13 +295,13 @@ site_root:  ../
                 
                 
                 
-                <label class="monospace">[options.axis]
+                <label class="monospace">[options.callbackParam]
                 
 
                 
                 </label>
                 
-                    If either 'x' or 'y' is passed, only swipes where the dominant axis is the given one trigger the callback
+                    Parameter to use as callback. defaults to 'jsoncallback'
                 
             </dd>
         
@@ -365,32 +314,13 @@ site_root:  ../
                 
                 
                 
-                <label class="monospace">[options.storeGesture]
+                <label class="monospace">[options.internalCallback]
                 
 
                 
                 </label>
                 
-                    If to store gesture information and provide it to the callback. Defaults to true.
-                
-            </dd>
-        
-            <dt>
-                
-                    <code>String</code>
-                
-            </dt>
-            <dd>
-                
-                
-                
-                <label class="monospace">[options.stopEvents]
-                
-
-                
-                </label>
-                
-                    Flag to stop (default and propagation) of the received events. Defaults to true.
+                    Name of the callback function stored in the Ink.Net.JsonP object.
                 
             </dd>
         
@@ -402,15 +332,28 @@ site_root:  ../
 
 
     
+<p class="example-title">Example</p>
+  
+{% highlight html %}{% raw %}
+     Ink.requireModules(['Ink.Net.JsonP_1'], function (JsonP) {
+         var jsonp = new JsonP('http://path.to.jsonp/endpoint', {
+             // When the JSONP response arrives, this callback is called:
+             onSuccess: function (gameData) {
+                 game.startGame(gameData);
+             },
+             // after options.timeout seconds, this callback gets called:
+             onFailure: function () {
+                 game.error('Could not load game data!');
+             },
+             timeout: 5
+         });
+     });
+{% endraw %}{% endhighlight %}
+
+
 
 
     
-	<h3>Samples</h3>
-
-	
-		{% include js_samples/Ink_UI_Swipe_1.html %}
-	
-
 
 </section>
 

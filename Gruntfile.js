@@ -3,7 +3,8 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-
+    // We need to generate the includes folder so inkdoc doesn't go bad
+    jsFolder: grunt.file.mkdir('_includes/js'),
     ink: {
       folders: {
         js: {
@@ -80,7 +81,8 @@ module.exports = function(grunt) {
       css: {
         src: ["<%= ink.folders.css.dist %>/*.css","<%= ink.folders.css.dist %>/contrib" ]
       },
-      csscontrib: [ '<%= ink.folders.css.dist %>/contrib' ]
+      csscontrib: [ '<%= ink.folders.css.dist %>/contrib' ],
+      inkdoc: ['_includes/js']
     },
 
     compass: {
@@ -164,6 +166,39 @@ module.exports = function(grunt) {
       facss: {
         src: 'assets/css/contrib/font-awesome/font-awesome.css',
         dest: 'assets/css/font-awesome.css'
+      },
+      inkdoc: {
+        files: [
+            {
+              expand: true,
+              cwd: '_includes/js/',
+              src: ['Ink_Autoload.html'],
+              dest: 'javascript/Autoload/',
+              filter: 'isFile',
+              rename: function(dest,fileName){
+                return dest + 'index.html';
+              }
+          },
+
+          {
+            expand: true,
+            cwd: '_includes/js/',
+            src: ['index.html'],
+            dest: 'javascript/',
+            filter: 'isFile'
+          },
+
+          {
+            expand: true,
+            cwd: '_includes/js/',
+            src: ['Ink_*.html', '!Ink_Autoload.html'],
+            dest: 'javascript/',
+            filter: 'isFile',
+            rename: function(dest,fileName){
+               return dest+fileName.replace('.html','').replace('_1','').replace(/[_]+/g,'.')+'/index.html';
+            }
+        }
+        ]
       }
     },
 
@@ -207,7 +242,7 @@ module.exports = function(grunt) {
   grunt.registerTask('update', ['shell:src']);
   grunt.registerTask('docs', ['inkdoc','jekyll']);
   grunt.registerTask('dev', ['watch']);
-  grunt.registerTask('inkdoc', ['shell:inkdoc']);
+  grunt.registerTask('inkdoc', ['shell:inkdoc', 'copy:inkdoc', 'clean:inkdoc']);
   grunt.registerTask('js', ['clean:js','concat','uglify']);
   grunt.registerTask('css', ['clean:css','compass','copy:facss','clean:csscontrib','cssmin']);
 };
