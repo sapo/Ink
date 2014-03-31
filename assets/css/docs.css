@@ -169,6 +169,9 @@ a, .ink-button {
   clear: both;
 }
 
+.sidebar.ink-navigation ul.menu.vertical li {
+  text-transform: uppercase;
+}
 .sidebar.ink-navigation ul.menu.vertical li.heading {
   margin-top: 1em;
   border-top: 1px solid #ddd;
@@ -1029,6 +1032,7 @@ footer .ink-navigation ul.menu.horizontal li a.license {
   margin-top: 44px;
 }
 #home section.ink {
+  background: #bcb098;
   background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, color-stop(0%, #bcb098), color-stop(100%, #907f5e));
   background-image: -webkit-radial-gradient(#bcb098, #907f5e);
   background-image: -moz-radial-gradient(#bcb098, #907f5e);
@@ -1045,6 +1049,7 @@ footer .ink-navigation ul.menu.horizontal li a.license {
   height: inherit;
 }
 #home section.what {
+  background: #709dc7;
   background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, color-stop(0%, #709dc7), color-stop(100%, #4b84b9));
   background-image: -webkit-radial-gradient(#709dc7, #4b84b9);
   background-image: -moz-radial-gradient(#709dc7, #4b84b9);
@@ -1061,6 +1066,7 @@ footer .ink-navigation ul.menu.horizontal li a.license {
   height: inherit;
 }
 #home section.why {
+  background: #aa8ad3;
   background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, color-stop(0%, #aa8ad3), color-stop(100%, #7544b3));
   background-image: -webkit-radial-gradient(#aa8ad3, #7544b3);
   background-image: -moz-radial-gradient(#aa8ad3, #7544b3);
@@ -1077,6 +1083,7 @@ footer .ink-navigation ul.menu.horizontal li a.license {
   height: inherit;
 }
 #home section.download {
+  background: #cd6969;
   background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, color-stop(0%, #cd6969), color-stop(100%, #9c3434));
   background-image: -webkit-radial-gradient(#cd6969, #9c3434);
   background-image: -moz-radial-gradient(#cd6969, #9c3434);
@@ -1110,6 +1117,7 @@ footer .ink-navigation ul.menu.horizontal li a.license {
   height: inherit;
 }
 #home section.who {
+  background: #d6a475;
   background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, color-stop(0%, #d6a475), color-stop(100%, #b07135));
   background-image: -webkit-radial-gradient(#d6a475, #b07135);
   background-image: -moz-radial-gradient(#d6a475, #b07135);
@@ -1153,4 +1161,26 @@ footer .ink-navigation ul.menu.horizontal li a.license {
 }
 #search-results.show {
   display: block;
+}
+#search-results > ul > li.result-item {
+  border-bottom: 1px solid #CCC;
+  padding: 1em 0;
+  display: none;
+}
+#search-results > ul > li.result-item.show {
+  display: block;
+}
+#search-results .result-snippet {
+  padding: 1em;
+  background: #eeebe5;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+  margin-bottom: 1.5em;
+}
+#search-results .result-snippet em {
+  background: yellow;
+  padding: 0 .5em;
 }
