@@ -1,0 +1,502 @@
+---
+layout: js-documentation
+title: Ink.Dom.Selector_1
+description: Provides the core methods to create and load all of the library modules. 
+site_root:  ../
+---
+
+    
+        <section>
+        <h1 class="fw-300">Ink.Dom.Selector_1 <small>version: 1</small></h1>
+    
+
+    
+
+    
+
+
+    
+
+
+    
+
+    
+
+
+
+    
+            
+
+    
+    
+    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p>
+
+    
+    <table class="props bottom-space">
+        
+        
+        <caption>Functions</caption>
+        <thead>
+            <tr>
+                <th>Function name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+
+        
+        
+        <tbody>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Selector_1-Ink_Dom_Selector-matches">
+                        
+                            .matches
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Filters elements that match a CSS selector.</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Selector_1-Ink_Dom_Selector-matchesSelector">
+                        
+                            .matchesSelector
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Checks if an element matches a given selector</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Selector_1-Ink_Dom_Selector-select">
+                        
+                            .select
+                        
+                        
+                    </a>
+                </td>
+                <td>
+                    
+
+                    <p>Alias for the Sizzle selector engine</p>
+
+
+                    
+                    
+                </td>
+            </tr>
+        
+        </tbody>
+    </table>
+    
+
+    
+</section>
+
+
+
+
+
+
+
+    <section id="Ink_Dom_Selector_1-Ink_Dom_Selector-matches" class="box box-function">
+
+    <h1 class="fw-300">
+    
+        
+            .matches
+        
+    
+    (selector, matches)
+    
+        
+            <i>method</i>
+        
+    
+    </h1>
+
+    
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        selector
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        
+        matches
+        
+        
+        </li>
+        
+    </ul>
+    
+
+    
+    
+
+    
+        <p class="text"><p>Filters elements that match a CSS selector.</p>
+</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="monospace">selector
+                
+
+                
+                </label>
+                
+                    CSS selector to search for elements
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Array</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="monospace">matches
+                
+
+                
+                </label>
+                
+                    Elements to be 'matched' with
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>Array</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
+
+    
+
+
+    
+
+</section>
+
+    <section id="Ink_Dom_Selector_1-Ink_Dom_Selector-matchesSelector" class="box box-function">
+
+    <h1 class="fw-300">
+    
+        
+            .matchesSelector
+        
+    
+    (element, selector)
+    
+        
+            <i>method</i>
+        
+    
+    </h1>
+
+    
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        element
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        
+        selector
+        
+        
+        </li>
+        
+    </ul>
+    
+
+    
+    
+
+    
+        <p class="text"><p>Checks if an element matches a given selector</p>
+</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>DOMElement</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="monospace">element
+                
+
+                
+                </label>
+                
+                    Element to test
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="monospace">selector
+                
+
+                
+                </label>
+                
+                    CSS selector to test the element with
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>Boolean</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
+
+    
+
+
+    
+
+</section>
+
+    <section id="Ink_Dom_Selector_1-Ink_Dom_Selector-select" class="box box-function">
+
+    <h1 class="fw-300">
+    
+        
+            .select
+        
+    
+    (selector, [context], [results])
+    
+        
+            <i>method</i>
+        
+    
+    </h1>
+
+    
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        selector
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        [
+        context
+        ]
+        
+        </li>
+        
+        <li class="prop">
+        
+        [
+        results
+        ]
+        
+        </li>
+        
+    </ul>
+    
+
+    
+    
+
+    
+        <p class="text"><p>Alias for the Sizzle selector engine</p>
+</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="monospace">selector
+                
+
+                
+                </label>
+                
+                    CSS selector to search for elements
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>DOMElement</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="monospace">[context]
+                
+
+                
+                </label>
+                
+                    By default the search is done in the document element. However, you can specify an element as search context
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Array</code>
+                
+            </dt>
+            <dd>
+                
+                
+                
+                <label class="monospace">[results]
+                
+
+                
+                </label>
+                
+                    By default this is considered an empty array. But if you want to merge it with other searches you did, pass their result array through here.
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>Array</code>
+            </dt>                
+            <dd>   
+                
+                    
+                
+            </dd>
+        </dl>
+        
+        
+
+    
+
+
+    
+
+
+    
+
+</section>
+
+
+
+    
+
+    
+
+    
+
