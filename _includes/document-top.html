@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" type="text/css" href="{{ site.url }}{{  site.css_path  }}ink-flex.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ site.url }}{{  site.css_path  }}ink-legacy.min.css">
     <link rel="stylesheet" type="text/css" href="{{ site.url }}{{  site.css_path  }}font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="{{ site.url }}{{  site.css_path  }}docs.min.css">
 
@@ -31,10 +32,13 @@
     <link rel="apple-touch-startup-image" href="{{ site.url }}{{  site.images_path  }}splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
 
     <!-- Load Documentation site CSS -->
-    <!--[if lte IE 7 ]>
-        <link rel="stylesheet" href="{{ site.url }}{{  site.css_path  }}ink-ie7-min.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    
+    <!--[if lt IE 9 ]>
+        <link rel="stylesheet" href="{{ site.url }}{{  site.css_path  }}ink-ie.min.css" type="text/css" media="screen" title="no title" charset="utf-8">
     <![endif]-->
+
     <script type="text/javascript" src="{{ site.url }}{{ site.js_path }}ink-all.min.js"></script>
+    <script type="text/javascript" src="{{ site.url }}{{ site.js_path }}modernizr.js"></script>
 </head>
 <body class="ink-drawer">
 <div id="fb-root"></div>
