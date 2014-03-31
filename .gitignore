@@ -26,3 +26,4 @@ _site
 .sass-cache
 bower_components
 quick-start.*
+_includes/js
