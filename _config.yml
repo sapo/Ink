@@ -123,10 +123,10 @@ sections:
           - title: Ink.UI.Common
           - title: Ink.UI.DatePicker
           - title: Ink.UI.Draggable
+          - title: Ink.UI.Dropdown
           - title: Ink.UI.Droppable
           - title: Ink.UI.FormValidator
           - title: Ink.UI.FormValidator_2
-          - title: Ink.UI.ImageQuery
           - title: Ink.UI.LazyLoad
           - title: Ink.UI.Modal
           - title: Ink.UI.Pagination
