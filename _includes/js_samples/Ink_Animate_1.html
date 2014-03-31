@@ -1,0 +1,17 @@
+{{! fiddle: http://jsfiddle.net/hxKp7/ }}
+
+{% highlight html %}
+<button id="animate-me" class="ink-button">Animate me!</button>
+<span class="ink-label blue ink-animate"
+    id="animated"
+    data-trigger="#animate-me"
+    data-animation="fadeOut"
+    data-removeClass="false">Hi!</span>
+
+<script type="text/javascript">
+    // Note: this step is not necessary if you are using autoload.js
+    Ink.requireModules(['Ink.UI.Animate_1'], function (Animate) {
+        new Animate('#animated');
+    });
+</script>
+{% endhighlight %}

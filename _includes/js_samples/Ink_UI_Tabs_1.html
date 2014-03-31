@@ -1,14 +1,25 @@
-<p></p>
+<p>Basic usage</p>
 
 <p class="example-title">Code</p>
 {% highlight html %}
+<!-- replace 'top' with 'bottom', 'left' or 'right' to reposition navigation -->
+<div class="ink-tabs top">
+    <!-- If you're using 'bottom' positioning, put this div AFTER the content. -->
+    <ul class="tabs-nav">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#news">News</a></li>
+        <li><a href="#stuff">Stuff</a></li>
+    </ul>
 
-<style>
-</style>
-
+    <!-- Now just place your content -->
+    <div id="home" class="tabs-content"><h1>Home</h1></div>
+    <div id="news" class="tabs-content"><h1>News</h1></div>
+    <div id="stuff" class="tabs-content"><h1>Stuff</h1></div>
+</div>
 <script>
-    Ink.requireModules( ['Ink.UI.Spy_1'], function( Spy ){
-        new Spy(sections[i], { target: myMenu });
+    Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.Tabs_1'], function( Selector, Tabs ){
+        var tabsElement = Ink.s('.ink-tabs');
+        var tabsObj = new Tabs( tabsElement );
     });
 </script>
 {% endhighlight %}
