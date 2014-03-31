@@ -432,7 +432,7 @@ body.ink-drawer {
     }
 
     .border {
-        background-image: url("#{$img-path}home_bkg.png") center 0px;
+        background: url("#{$img-path}home_bkg.png") center 0px;
         @include background-image(linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57));
         clear: both;
         margin: 0;
