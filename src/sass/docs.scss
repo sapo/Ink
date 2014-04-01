@@ -796,7 +796,7 @@ footer {
 
 $ink: darken($code-background,25%);
 $what: #709DC7;
-$why: lighten(#8F65C5,10%);
+$showcase: #A5AD85;
 $download: lighten(#C04343,10%);
 $who: lighten(#CA8A4E,10%);
 
@@ -855,10 +855,15 @@ $who: lighten(#CA8A4E,10%);
 
     }
 
-    section.why {
-      background: $why;
-      @include background-image(radial-gradient($why, darken($why,20%)));
+    section.showcase {
+      background: $showcase;
+      @include background-image(radial-gradient($showcase, darken($showcase,30%)));
       @include text-color($white,h1,h2,h3,p,ul);
+
+    
+        img {
+            border: $text-color 1px solid;
+        }
 
 
       .ink-grid {
