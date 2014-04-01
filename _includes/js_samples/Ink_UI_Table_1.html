@@ -1,14 +1,37 @@
-<p></p>
+<p>Basic usage</p>
 
 <p class="example-title">Code</p>
 {% highlight html %}
-
-<style>
-</style>
+<table class="ink-table alternating" data-page-size="6" data-pagination="#my-table-pagination"> 
+    <thead>
+        <tr>
+            <th data-sortable="true" width="75%">Pepper</th>
+            <th data-sortable="true" width="25%">Scoville Rating</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td>Trinidad Moruga Scorpion</td>   <td>1500000</td></tr>
+        <tr><td>Bhut Jolokia</td>               <td>1000000</td></tr>
+        <tr><td>Naga Viper</td>                 <td>1463700</td></tr>
+        <tr><td>Red Savina Habanero</td>        <td>580000</td></tr>
+        <tr><td>Habanero</td>                   <td>350000</td></tr>
+        <tr><td>Scotch Bonnet</td>              <td>180000</td></tr>
+        <tr><td>Malagueta</td>                  <td>50000</td></tr>
+        <tr><td>Tabasco</td>                    <td>35000</td></tr>
+        <tr><td>Serrano Chili</td>              <td>27000</td></tr>
+        <tr><td>Jalapeño</td>                   <td>8000</td></tr>
+        <tr><td>Poblano</td>                    <td>1500</td></tr>
+        <tr><td>Peperoncino</td>                <td>500</td></tr>
+    </tbody>
+</table>
+<nav class="ink-navigation" id="my-table-pagination">
+    <ul class="pagination red"></ul>
+</nav>
 
 <script>
-    Ink.requireModules( ['Ink.UI.Spy_1'], function( Spy ){
-        new Spy(sections[i], { target: myMenu });
+    Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.Table_1'], function( Selector, Table ){
+        var tableElement = Ink.s('.ink-table');
+        var tableObj = new Table( tableElement );
     });
 </script>
 {% endhighlight %}

@@ -3,13 +3,13 @@
 <p class="example-title">Code</p>
 {% highlight html %}
 
-<style>
-</style>
+<form id="my-form">
+</form>
 
 <script>
-    Ink.requireModules( ['Ink.UI.Spy_1'], function( Spy ){
-        new Spy(sections[i], { target: myMenu });
-    });
+Ink.requireModules( ['Ink.UI.FormValidator_2'], function( FormValidator ){
+    var myValidator = new FormValidator( '#my-form' );
+});
 </script>
 {% endhighlight %}
 

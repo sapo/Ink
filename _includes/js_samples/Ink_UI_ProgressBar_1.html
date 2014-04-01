@@ -1,15 +1,24 @@
-<p></p>
+{{! fiddle: http://jsfiddle.net/KPyJ7/ }}
+
+<p>Creating the progress bar</p>
 
 <p class="example-title">Code</p>
+
 {% highlight html %}
-
-<style>
-</style>
-
+<div id="my-progress-bar" class="ink-progress-bar grey" data-start-value="70">
+    <span class="caption">I am a grey progress bar</span>
+    <div class="bar grey"></div>
+</div>
 <script>
-    Ink.requireModules( ['Ink.UI.Spy_1'], function( Spy ){
-        new Spy(sections[i], { target: myMenu });
+    Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.ProgressBar_1'], function( Selector, ProgressBar ){
+        var myProgressBar = new ProgressBar( 'my-progress-bar' );
     });
 </script>
+{% endhighlight %}
+
+<p>Setting the progress bar to 20% programmatically</p>
+
+{% highlight javascript %}
+myProgressBar.setValue(20);
 {% endhighlight %}
 

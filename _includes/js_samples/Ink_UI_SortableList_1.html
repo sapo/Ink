@@ -1,14 +1,35 @@
-<p></p>
+<p>Basic sortable list</p>
 
 <p class="example-title">Code</p>
 {% highlight html %}
-
-<style>
-</style>
-
+<ul class="unstyled ink-sortable-list" id="my-sortable-list">
+    <li>First</li>
+    <li>Second</li>
+    <li>Third</li>
+</ul>
 <script>
-    Ink.requireModules( ['Ink.UI.Spy_1'], function( Spy ){
-        new Spy(sections[i], { target: myMenu });
+    // Not needed if you're using autoload.js
+    Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.SortableList_1'], function( Selector, SortableList ){
+        var sortableListElement = Ink.s('#my-sortable-list');
+        var sortableListObj = new SortableList( sortableListElement );
+    });
+</script>
+{% endhighlight %}
+
+<p>Drag items by a handle</p>
+
+<p class="example-title">Code</p>
+{% highlight html %}
+<ul class="unstyled ink-sortable-list" id="my-sortable-list-handles" data-handle-selector=".ink-label">
+    <li><span class="ink-label blue">Drag here</span> First</li>
+    <li><span class="ink-label blue">Drag here</span> Second</li>
+    <li><span class="ink-label blue">Drag here</span> Third</li>
+</ul>
+<script>
+    // Not needed if you're using autoload.js
+    Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.SortableList_1'], function( Selector, SortableList ){
+        var sortableListElement = Ink.s('#my-sortable-list-handles');
+        var sortableListObj = new SortableList( sortableListElement );
     });
 </script>
 {% endhighlight %}

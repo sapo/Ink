@@ -1,14 +1,12 @@
-<p></p>
+<p>Basic usage</p>
 
 <p class="example-title">Code</p>
 {% highlight html %}
 
-<style>
-</style>
-
-<script>
-    Ink.requireModules( ['Ink.UI.Spy_1'], function( Spy ){
-        new Spy(sections[i], { target: myMenu });
+<script>                                                                                        
+    Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.Sticky_1'], function( Selector, Sticky ) {
+        var menuElement = Ink.s('#menu');
+        var stickyObj = new Sticky( menuElement );
     });
 </script>
 {% endhighlight %}

@@ -118,6 +118,7 @@ sections:
           - title: Ink.Net.JsonP
       - title: User interface
         topics:
+          - title: Ink.UI.Animate
           - title: Ink.UI.Carousel
           - title: Ink.UI.Close
           - title: Ink.UI.Common
