@@ -1070,11 +1070,11 @@ footer .ink-navigation ul.menu.horizontal li a.license {
 }
 #home section.showcase {
   background: #a5ad85;
-  background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, color-stop(0%, #a5ad85), color-stop(100%, #565c3e));
-  background-image: -webkit-radial-gradient(#a5ad85, #565c3e);
-  background-image: -moz-radial-gradient(#a5ad85, #565c3e);
-  background-image: -o-radial-gradient(#a5ad85, #565c3e);
-  background-image: radial-gradient(#a5ad85, #565c3e);
+  background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, color-stop(0%, #a5ad85), color-stop(100%, #727a52));
+  background-image: -webkit-radial-gradient(#a5ad85, #727a52);
+  background-image: -moz-radial-gradient(#a5ad85, #727a52);
+  background-image: -o-radial-gradient(#a5ad85, #727a52);
+  background-image: radial-gradient(#a5ad85, #727a52);
 }
 #home section.showcase h1, #home section.showcase h2, #home section.showcase h3, #home section.showcase p, #home section.showcase ul {
   color: white;
