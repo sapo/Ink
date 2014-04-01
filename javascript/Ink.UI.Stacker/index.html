@@ -4,29 +4,21 @@ title: Ink.UI.Stacker_1
 description: Provides the core methods to create and load all of the library modules. 
 site_root:  ../
 ---
-
     
         <section>
         <h1 class="fw-300">Ink.UI.Stacker_1 <small>version: 1</small></h1>
     
-
     
-
-    
-
-
     
 
 
     
 
     
-
-
-
     
-        
-<p><p>This module combines several stacks of items together, in smaller screen sizes.</p>
+    
+            
+    <p><p>This module combines several stacks of items together, in smaller screen sizes.</p>
 <p>The purpose is to have several stacks of items which may have different heights and as such cannot be used because of <code>float: left</code> quirks.</p>
 <p>For example, when you have three different columns of information:</p>
 <pre><code>[col. A: 1] [col. B: 1] [col. C: 1]
@@ -37,97 +29,83 @@ site_root:  ../
 [col. B: 2] [col. C: 2]
 </code></pre><p>Note: If you just want to use a different amount of columns for your items in several viewports, but these items are guaranteed to have a fixed height, don&#39;t use this module. Use the <code>small-*</code>, <code>medium-*</code> and <code>large-*</code> classes instead.</p>
 </p>
-
-<p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p>
-
-<table class="props bottom-space">
-
-  <caption>Methods</caption>
-  <thead>
-  <tr>
-  <th>Method name</th>
-  <th>Description</th>
-  </tr>
-  </thead>
-
-  <tbody>
-
-  <tr>
-    <td>
-      <a href="#Ink_UI_Stacker_1-Ink_UI_Stacker_1-Stacker_1">
-  
-  
-  
-
-      </a>
-    </td>
-    <td>
-  
-
-  
-
-  
-      
-    </td>
-    </tr>
-
-  <tr>
-    <td>
-      <a href="#Ink_UI_Stacker_1-Ink_UI_Stacker_1-addItem">
-  
-      .addItem
-  
-
-      </a>
-    </td>
-    <td>
-  
-
-  <p>Adds an item to the end of your stacks.
+    
+    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p>
+    
+    <table class="props bottom-space">
+        
+        <caption>Methods</caption>
+        <thead>
+            <tr>
+                <th>Method name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Stacker_1-Ink_UI_Stacker_1-Stacker_1">
+                        
+                            
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Stacker_1-Ink_UI_Stacker_1-addItem">
+                        
+                            .addItem
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    <p>Adds an item to the end of your stacks.
 Call <code>reloadItems()</code> when you are done adding items.</p>
 
-
-  
-      
-    </td>
-    </tr>
-
-  <tr>
-    <td>
-      <a href="#Ink_UI_Stacker_1-Ink_UI_Stacker_1-reloadItems">
-  
-      .reloadItems
-  
-
-      </a>
-    </td>
-    <td>
-  
-
-  <p>Updates the layout of your items.
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Stacker_1-Ink_UI_Stacker_1-reloadItems">
+                        
+                            .reloadItems
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    <p>Updates the layout of your items.
 Call this method after adding items or changing their dimensions. This method is automatically called when the window resizes.</p>
 
-
-  
-      
-    </td>
-    </tr>
-
-</tbody>
-</table>
-
-
-
+                    
+                    
+                </td>
+            </tr>
+        
+        </tbody>
+    </table>
+    
+    
 </section>
 
 
 
 
-
-
-
-<section id="Ink_UI_Stacker_1-Ink_UI_Stacker_1-Stacker_1" class="box box-function">
-
+    <section id="Ink_UI_Stacker_1-Ink_UI_Stacker_1-Stacker_1" class="box box-function">
     <h1 class="fw-300">
     
         Ink.UI.Stacker_1
@@ -137,7 +115,6 @@ Call this method after adding items or changing their dimensions. This method is
         <i>constructor</i>
     
     </h1>
-
     
     <ul class="props inline">
         <li class="heading">Arguments:</li>
@@ -257,7 +234,7 @@ Call this method after adding items or changing their dimensions. This method is
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[container]
                 
@@ -276,7 +253,7 @@ Call this method after adding items or changing their dimensions. This method is
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options]
                 
@@ -295,7 +272,7 @@ Call this method after adding items or changing their dimensions. This method is
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.column]
                 
@@ -314,7 +291,7 @@ Call this method after adding items or changing their dimensions. This method is
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.item]
                 
@@ -333,7 +310,7 @@ Call this method after adding items or changing their dimensions. This method is
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.customBreakPoints]
                 
@@ -352,7 +329,7 @@ Call this method after adding items or changing their dimensions. This method is
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.customBreakpoints.BREAKPOINT_NAME]
                 
@@ -371,7 +348,7 @@ Call this method after adding items or changing their dimensions. This method is
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">options.customBreakpoints.BREAKPOINT_NAME.max
                 
@@ -390,7 +367,7 @@ Call this method after adding items or changing their dimensions. This method is
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">options.customBreakpoints.BREAKPOINT_NAME.min
                 
@@ -409,7 +386,7 @@ Call this method after adding items or changing their dimensions. This method is
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">options.customBreakpoints.BREAKPOINT_NAME.cols
                 
@@ -428,7 +405,7 @@ Call this method after adding items or changing their dimensions. This method is
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.largeMax]
                 
@@ -447,7 +424,7 @@ Call this method after adding items or changing their dimensions. This method is
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.largeMin]
                 
@@ -466,7 +443,7 @@ Call this method after adding items or changing their dimensions. This method is
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.mediumMax]
                 
@@ -485,7 +462,7 @@ Call this method after adding items or changing their dimensions. This method is
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.mediumMin]
                 
@@ -504,7 +481,7 @@ Call this method after adding items or changing their dimensions. This method is
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.smallMax]
                 
@@ -523,7 +500,7 @@ Call this method after adding items or changing their dimensions. This method is
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.smallMin]
                 
@@ -542,7 +519,7 @@ Call this method after adding items or changing their dimensions. This method is
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.largeCols]
                 
@@ -561,7 +538,7 @@ Call this method after adding items or changing their dimensions. This method is
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.mediumCols]
                 
@@ -580,7 +557,7 @@ Call this method after adding items or changing their dimensions. This method is
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.smallCols]
                 
@@ -599,7 +576,7 @@ Call this method after adding items or changing their dimensions. This method is
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.isOrdered]
                 
@@ -618,7 +595,7 @@ Call this method after adding items or changing their dimensions. This method is
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.onRunCallback]
                 
@@ -637,7 +614,7 @@ Call this method after adding items or changing their dimensions. This method is
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.onResizeCallback]
                 
@@ -656,7 +633,7 @@ Call this method after adding items or changing their dimensions. This method is
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.onAPIReloadCallback]
                 
@@ -670,7 +647,7 @@ Call this method after adding items or changing their dimensions. This method is
         
         </dl>
         
-        
+
 
     
 
@@ -715,8 +692,8 @@ Javascript:
 
 </section>
 
-<section id="Ink_UI_Stacker_1-Ink_UI_Stacker_1-addItem" class="box box-function">
 
+    <section id="Ink_UI_Stacker_1-Ink_UI_Stacker_1-addItem" class="box box-function">
     <h1 class="fw-300">
     
         
@@ -730,7 +707,6 @@ Javascript:
         
     
     </h1>
-
     
     <ul class="props inline">
         <li class="heading">Arguments:</li>
@@ -766,7 +742,7 @@ Call <code>reloadItems()</code> when you are done adding items.</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">item
                 
@@ -780,7 +756,7 @@ Call <code>reloadItems()</code> when you are done adding items.</p>
         
         </dl>
         
-        
+
 
     
 
@@ -792,8 +768,8 @@ Call <code>reloadItems()</code> when you are done adding items.</p>
 
 </section>
 
-<section id="Ink_UI_Stacker_1-Ink_UI_Stacker_1-reloadItems" class="box box-function">
 
+    <section id="Ink_UI_Stacker_1-Ink_UI_Stacker_1-reloadItems" class="box box-function">
     <h1 class="fw-300">
     
         
@@ -807,7 +783,6 @@ Call <code>reloadItems()</code> when you are done adding items.</p>
         
     
     </h1>
-
     
 
     
@@ -833,8 +808,5 @@ Call this method after adding items or changing their dimensions. This method is
 
 
     
-
     
-
     
-

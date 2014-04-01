@@ -4,442 +4,372 @@ title: Ink.Net.Ajax_1
 description: Provides the core methods to create and load all of the library modules. 
 site_root:  ../
 ---
-
     
         <section>
         <h1 class="fw-300">Ink.Net.Ajax_1 <small>version: 1</small></h1>
     
-
     
-
-    
-
-
     
 
 
     
 
     
-
-
-
     
-        
-<p><p>Creates a new XMLHttpRequest object</p>
+    
+            
+    <p><p>Creates a new XMLHttpRequest object</p>
 </p>
+    
+    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p>
+    
+    <table class="props bottom-space">
+        
+        <caption>Methods</caption>
+        <thead>
+            <tr>
+                <th>Method name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-Ajax">
+                        
+                            
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-abort">
+                        
+                            .abort
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    <p>Aborts the request if still running. No callbacks are called</p>
 
-<p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p>
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-evalJSON">
+                        
+                            .evalJSON
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    <p>Evaluates a given string as JSON</p>
 
-<table class="props bottom-space">
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-finish">
+                        
+                            .finish
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    <p>Last step after XHR is complete. Call onComplete and cleanup object</p>
 
-  <caption>Methods</caption>
-  <thead>
-  <tr>
-  <th>Method name</th>
-  <th>Description</th>
-  </tr>
-  </thead>
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-getAllHeaders">
+                        
+                            .getAllHeaders
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    <p>Gets all the HTTP headers from the response</p>
 
-  <tbody>
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-getHeader">
+                        
+                            .getHeader
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    <p>Gets an HTTP header from the response</p>
 
-  <tr>
-    <td>
-      <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-Ajax">
-  
-  
-  
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-getResponse">
+                        
+                            .getResponse
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    <p>Sets the response object</p>
 
-      </a>
-    </td>
-    <td>
-  
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-getTransport">
+                        
+                            .getTransport
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    <p>Creates the appropriate XMLHttpRequest object</p>
 
-  
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-isJSON">
+                        
+                            .isJSON
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    <p>Checks if a given string is valid JSON</p>
 
-  
-      
-    </td>
-    </tr>
-
-  <tr>
-    <td>
-      <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-abort">
-  
-      .abort
-  
-
-      </a>
-    </td>
-    <td>
-  
-
-  <p>Aborts the request if still running. No callbacks are called</p>
-
-
-  
-      
-    </td>
-    </tr>
-
-  <tr>
-    <td>
-      <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-evalJSON">
-  
-      .evalJSON
-  
-
-      </a>
-    </td>
-    <td>
-  
-
-  <p>Evaluates a given string as JSON</p>
-
-
-  
-      
-    </td>
-    </tr>
-
-  <tr>
-    <td>
-      <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-finish">
-  
-      .finish
-  
-
-      </a>
-    </td>
-    <td>
-  
-
-  <p>Last step after XHR is complete. Call onComplete and cleanup object</p>
-
-
-  
-      
-    </td>
-    </tr>
-
-  <tr>
-    <td>
-      <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-getAllHeaders">
-  
-      .getAllHeaders
-  
-
-      </a>
-    </td>
-    <td>
-  
-
-  <p>Gets all the HTTP headers from the response</p>
-
-
-  
-      
-    </td>
-    </tr>
-
-  <tr>
-    <td>
-      <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-getHeader">
-  
-      .getHeader
-  
-
-      </a>
-    </td>
-    <td>
-  
-
-  <p>Gets an HTTP header from the response</p>
-
-
-  
-      
-    </td>
-    </tr>
-
-  <tr>
-    <td>
-      <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-getResponse">
-  
-      .getResponse
-  
-
-      </a>
-    </td>
-    <td>
-  
-
-  <p>Sets the response object</p>
-
-
-  
-      
-    </td>
-    </tr>
-
-  <tr>
-    <td>
-      <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-getTransport">
-  
-      .getTransport
-  
-
-      </a>
-    </td>
-    <td>
-  
-
-  <p>Creates the appropriate XMLHttpRequest object</p>
-
-
-  
-      
-    </td>
-    </tr>
-
-  <tr>
-    <td>
-      <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-isJSON">
-  
-      .isJSON
-  
-
-      </a>
-    </td>
-    <td>
-  
-
-  <p>Checks if a given string is valid JSON</p>
-
-
-  
-      
-    </td>
-    </tr>
-
-  <tr>
-    <td>
-      <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-load">
-  
-      .load
-  
-
-      </a>
-    </td>
-    <td>
-  
-
-  <p>Loads content from a given url through an XMLHttpRequest.</p>
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-load">
+                        
+                            .load
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    <p>Loads content from a given url through an XMLHttpRequest.</p>
 <p>Shortcut function for simple AJAX use cases. Works with JSON, XML and plain text.</p>
 
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-makeError">
+                        
+                            .makeError
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    <p>Returns a new exception object that can be thrown</p>
 
-  
-      
-    </td>
-    </tr>
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-paramsObjToStr">
+                        
+                            .paramsObjToStr
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    <p>Converts an object with parameters to a querystring</p>
 
-  <tr>
-    <td>
-      <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-makeError">
-  
-      .makeError
-  
-
-      </a>
-    </td>
-    <td>
-  
-
-  <p>Returns a new exception object that can be thrown</p>
-
-
-  
-      
-    </td>
-    </tr>
-
-  <tr>
-    <td>
-      <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-paramsObjToStr">
-  
-      .paramsObjToStr
-  
-
-      </a>
-    </td>
-    <td>
-  
-
-  <p>Converts an object with parameters to a querystring</p>
-
-
-  
-      
-    </td>
-    </tr>
-
-  <tr>
-    <td>
-      <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-ping">
-  
-      .ping
-  
-
-      </a>
-    </td>
-    <td>
-  
-
-  <p>Loads content from a given url through an XMLHttpRequest.
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-ping">
+                        
+                            .ping
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    <p>Loads content from a given url through an XMLHttpRequest.
 Shortcut function for simple AJAX use cases.</p>
 
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-request">
+                        
+                            .request
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    <p>Executes the request</p>
 
-  
-      
-    </td>
-    </tr>
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-runStateChange">
+                        
+                            .runStateChange
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    <p>Executes the state changing phase of an ajax request</p>
 
-  <tr>
-    <td>
-      <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-request">
-  
-      .request
-  
-
-      </a>
-    </td>
-    <td>
-  
-
-  <p>Executes the request</p>
-
-
-  
-      
-    </td>
-    </tr>
-
-  <tr>
-    <td>
-      <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-runStateChange">
-  
-      .runStateChange
-  
-
-      </a>
-    </td>
-    <td>
-  
-
-  <p>Executes the state changing phase of an ajax request</p>
-
-
-  
-      
-    </td>
-    </tr>
-
-  <tr>
-    <td>
-      <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-safeCall">
-  
-      .safeCall
-  
-
-      </a>
-    </td>
-    <td>
-  
-
-  <p>Safely calls a callback function.
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-safeCall">
+                        
+                            .safeCall
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    <p>Safely calls a callback function.
 Verifies that the callback is well defined and traps errors</p>
 
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-setHeaders">
+                        
+                            .setHeaders
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    <p>Set the necessary headers for an ajax request</p>
 
-  
-      
-    </td>
-    </tr>
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-setParams">
+                        
+                            .setParams
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    <p>Set the url parameters for a GET request</p>
 
-  <tr>
-    <td>
-      <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-setHeaders">
-  
-      .setHeaders
-  
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-setRequestHeader">
+                        
+                            .setRequestHeader
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    <p>Sets a new request header for the next http request</p>
 
-      </a>
-    </td>
-    <td>
-  
-
-  <p>Set the necessary headers for an ajax request</p>
-
-
-  
-      
-    </td>
-    </tr>
-
-  <tr>
-    <td>
-      <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-setParams">
-  
-      .setParams
-  
-
-      </a>
-    </td>
-    <td>
-  
-
-  <p>Set the url parameters for a GET request</p>
-
-
-  
-      
-    </td>
-    </tr>
-
-  <tr>
-    <td>
-      <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-setRequestHeader">
-  
-      .setRequestHeader
-  
-
-      </a>
-    </td>
-    <td>
-  
-
-  <p>Sets a new request header for the next http request</p>
-
-
-  
-      
-    </td>
-    </tr>
-
-</tbody>
-</table>
-
-
-
+                    
+                    
+                </td>
+            </tr>
+        
+        </tbody>
+    </table>
+    
+    
 </section>
 
 
 
 
-
-
-
-<section id="Ink_Net_Ajax_1-Ink_Net_Ajax-Ajax" class="box box-function">
-
+    <section id="Ink_Net_Ajax_1-Ink_Net_Ajax-Ajax" class="box box-function">
     <h1 class="fw-300">
     
         Ink.Net.Ajax
@@ -449,7 +379,6 @@ Verifies that the callback is well defined and traps errors</p>
         <i>constructor</i>
     
     </h1>
-
     
     <ul class="props inline">
         <li class="heading">Arguments:</li>
@@ -565,7 +494,7 @@ Verifies that the callback is well defined and traps errors</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">url
                 
@@ -584,7 +513,7 @@ Verifies that the callback is well defined and traps errors</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">options
                 
@@ -603,7 +532,7 @@ Verifies that the callback is well defined and traps errors</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.asynchronous]
                 
@@ -624,7 +553,7 @@ Verifies that the callback is well defined and traps errors</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.cors]
                 
@@ -643,7 +572,7 @@ Verifies that the callback is well defined and traps errors</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.method]
                 
@@ -664,7 +593,7 @@ Verifies that the callback is well defined and traps errors</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.parameters]
                 
@@ -683,7 +612,7 @@ Verifies that the callback is well defined and traps errors</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.timeout]
                 
@@ -702,7 +631,7 @@ Verifies that the callback is well defined and traps errors</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.delay]
                 
@@ -721,7 +650,7 @@ Verifies that the callback is well defined and traps errors</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.postBody]
                 
@@ -740,7 +669,7 @@ Verifies that the callback is well defined and traps errors</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.contentType]
                 
@@ -759,7 +688,7 @@ Verifies that the callback is well defined and traps errors</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.requestHeaders]
                 
@@ -778,7 +707,7 @@ Verifies that the callback is well defined and traps errors</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.onComplete]
                 
@@ -797,7 +726,7 @@ Verifies that the callback is well defined and traps errors</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.onSuccess]
                 
@@ -816,7 +745,7 @@ Verifies that the callback is well defined and traps errors</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.onFailure]
                 
@@ -835,7 +764,7 @@ Verifies that the callback is well defined and traps errors</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.onException]
                 
@@ -854,7 +783,7 @@ Verifies that the callback is well defined and traps errors</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.onCreate]
                 
@@ -873,7 +802,7 @@ Verifies that the callback is well defined and traps errors</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.onInit]
                 
@@ -892,7 +821,7 @@ Verifies that the callback is well defined and traps errors</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.onTimeout]
                 
@@ -911,7 +840,7 @@ Verifies that the callback is well defined and traps errors</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.evalJS]
                 
@@ -932,7 +861,7 @@ Verifies that the callback is well defined and traps errors</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.sanitizeJSON]
                 
@@ -951,7 +880,7 @@ Verifies that the callback is well defined and traps errors</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.xhrProxy]
                 
@@ -965,7 +894,7 @@ Verifies that the callback is well defined and traps errors</p>
         
         </dl>
         
-        
+
 
     
 
@@ -994,8 +923,8 @@ Verifies that the callback is well defined and traps errors</p>
 
 </section>
 
-<section id="Ink_Net_Ajax_1-Ink_Net_Ajax-abort" class="box box-function">
 
+    <section id="Ink_Net_Ajax_1-Ink_Net_Ajax-abort" class="box box-function">
     <h1 class="fw-300">
     
         
@@ -1009,7 +938,6 @@ Verifies that the callback is well defined and traps errors</p>
         
     
     </h1>
-
     
 
     
@@ -1030,8 +958,8 @@ Verifies that the callback is well defined and traps errors</p>
 
 </section>
 
-<section id="Ink_Net_Ajax_1-Ink_Net_Ajax-evalJSON" class="box box-function">
 
+    <section id="Ink_Net_Ajax_1-Ink_Net_Ajax-evalJSON" class="box box-function">
     <h1 class="fw-300">
     
         
@@ -1045,7 +973,6 @@ Verifies that the callback is well defined and traps errors</p>
         
     
     </h1>
-
     
     <ul class="props inline">
         <li class="heading">Arguments:</li>
@@ -1088,7 +1015,7 @@ Verifies that the callback is well defined and traps errors</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">str
                 
@@ -1107,7 +1034,7 @@ Verifies that the callback is well defined and traps errors</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">sanitize
                 
@@ -1125,15 +1052,15 @@ Verifies that the callback is well defined and traps errors</p>
         <dl>
             <dt class="return">
                 <code>Object</code>
-            </dt>                
-            <dd>   
+            </dt>
+            <dd>
                 
                     
                 
             </dd>
         </dl>
         
-        
+
 
     
 
@@ -1145,8 +1072,8 @@ Verifies that the callback is well defined and traps errors</p>
 
 </section>
 
-<section id="Ink_Net_Ajax_1-Ink_Net_Ajax-finish" class="box box-function">
 
+    <section id="Ink_Net_Ajax_1-Ink_Net_Ajax-finish" class="box box-function">
     <h1 class="fw-300">
     
         
@@ -1160,7 +1087,6 @@ Verifies that the callback is well defined and traps errors</p>
         
     
     </h1>
-
     
     <ul class="props inline">
         <li class="heading">Arguments:</li>
@@ -1203,7 +1129,7 @@ Verifies that the callback is well defined and traps errors</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">response
                 
@@ -1220,7 +1146,7 @@ Verifies that the callback is well defined and traps errors</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">responseContent
                 
@@ -1232,7 +1158,7 @@ Verifies that the callback is well defined and traps errors</p>
         
         </dl>
         
-        
+
 
     
 
@@ -1244,8 +1170,8 @@ Verifies that the callback is well defined and traps errors</p>
 
 </section>
 
-<section id="Ink_Net_Ajax_1-Ink_Net_Ajax-getAllHeaders" class="box box-function">
 
+    <section id="Ink_Net_Ajax_1-Ink_Net_Ajax-getAllHeaders" class="box box-function">
     <h1 class="fw-300">
     
         
@@ -1259,7 +1185,6 @@ Verifies that the callback is well defined and traps errors</p>
         
     
     </h1>
-
     
 
     
@@ -1280,8 +1205,8 @@ Verifies that the callback is well defined and traps errors</p>
 
 </section>
 
-<section id="Ink_Net_Ajax_1-Ink_Net_Ajax-getHeader" class="box box-function">
 
+    <section id="Ink_Net_Ajax_1-Ink_Net_Ajax-getHeader" class="box box-function">
     <h1 class="fw-300">
     
         
@@ -1295,7 +1220,6 @@ Verifies that the callback is well defined and traps errors</p>
         
     
     </h1>
-
     
     <ul class="props inline">
         <li class="heading">Arguments:</li>
@@ -1330,7 +1254,7 @@ Verifies that the callback is well defined and traps errors</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">name
                 
@@ -1348,15 +1272,15 @@ Verifies that the callback is well defined and traps errors</p>
         <dl>
             <dt class="return">
                 <code>String</code>
-            </dt>                
-            <dd>   
+            </dt>
+            <dd>
                 
                     
                 
             </dd>
         </dl>
         
-        
+
 
     
 
@@ -1368,8 +1292,8 @@ Verifies that the callback is well defined and traps errors</p>
 
 </section>
 
-<section id="Ink_Net_Ajax_1-Ink_Net_Ajax-getResponse" class="box box-function">
 
+    <section id="Ink_Net_Ajax_1-Ink_Net_Ajax-getResponse" class="box box-function">
     <h1 class="fw-300">
     
         
@@ -1383,7 +1307,6 @@ Verifies that the callback is well defined and traps errors</p>
         
     
     </h1>
-
     
 
     
@@ -1404,8 +1327,8 @@ Verifies that the callback is well defined and traps errors</p>
 
 </section>
 
-<section id="Ink_Net_Ajax_1-Ink_Net_Ajax-getTransport" class="box box-function">
 
+    <section id="Ink_Net_Ajax_1-Ink_Net_Ajax-getTransport" class="box box-function">
     <h1 class="fw-300">
     
         
@@ -1419,7 +1342,6 @@ Verifies that the callback is well defined and traps errors</p>
         
     
     </h1>
-
     
 
     
@@ -1440,8 +1362,8 @@ Verifies that the callback is well defined and traps errors</p>
 
 </section>
 
-<section id="Ink_Net_Ajax_1-Ink_Net_Ajax-isJSON" class="box box-function">
 
+    <section id="Ink_Net_Ajax_1-Ink_Net_Ajax-isJSON" class="box box-function">
     <h1 class="fw-300">
     
         
@@ -1455,7 +1377,6 @@ Verifies that the callback is well defined and traps errors</p>
         
     
     </h1>
-
     
     <ul class="props inline">
         <li class="heading">Arguments:</li>
@@ -1490,7 +1411,7 @@ Verifies that the callback is well defined and traps errors</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">str
                 
@@ -1508,15 +1429,15 @@ Verifies that the callback is well defined and traps errors</p>
         <dl>
             <dt class="return">
                 <code>Boolean</code>
-            </dt>                
-            <dd>   
+            </dt>
+            <dd>
                 
                     
                 
             </dd>
         </dl>
         
-        
+
 
     
 
@@ -1528,8 +1449,8 @@ Verifies that the callback is well defined and traps errors</p>
 
 </section>
 
-<section id="Ink_Net_Ajax_1-Ink_Net_Ajax-load" class="box box-function">
 
+    <section id="Ink_Net_Ajax_1-Ink_Net_Ajax-load" class="box box-function">
     <h1 class="fw-300">
     
         
@@ -1543,7 +1464,6 @@ Verifies that the callback is well defined and traps errors</p>
         
     
     </h1>
-
     
     <ul class="props inline">
         <li class="heading">Arguments:</li>
@@ -1587,7 +1507,7 @@ Verifies that the callback is well defined and traps errors</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">url
                 
@@ -1606,7 +1526,7 @@ Verifies that the callback is well defined and traps errors</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">callback
                 
@@ -1624,15 +1544,15 @@ Verifies that the callback is well defined and traps errors</p>
         <dl>
             <dt class="return">
                 <code>Object</code>
-            </dt>                
-            <dd>   
+            </dt>
+            <dd>
                 
                     
                 
             </dd>
         </dl>
         
-        
+
 
     
 
@@ -1660,8 +1580,8 @@ Verifies that the callback is well defined and traps errors</p>
 
 </section>
 
-<section id="Ink_Net_Ajax_1-Ink_Net_Ajax-makeError" class="box box-function">
 
+    <section id="Ink_Net_Ajax_1-Ink_Net_Ajax-makeError" class="box box-function">
     <h1 class="fw-300">
     
         
@@ -1675,7 +1595,6 @@ Verifies that the callback is well defined and traps errors</p>
         
     
     </h1>
-
     
     <ul class="props inline">
         <li class="heading">Arguments:</li>
@@ -1716,7 +1635,7 @@ Verifies that the callback is well defined and traps errors</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">code
                 
@@ -1733,7 +1652,7 @@ Verifies that the callback is well defined and traps errors</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">message
                 
@@ -1751,13 +1670,13 @@ Verifies that the callback is well defined and traps errors</p>
         <dl>
             <dt class="return">
                 <code>Object</code>
-            </dt>                
-            <dd>   
+            </dt>
+            <dd>
                 
             </dd>
         </dl>
         
-        
+
 
     
 
@@ -1769,8 +1688,8 @@ Verifies that the callback is well defined and traps errors</p>
 
 </section>
 
-<section id="Ink_Net_Ajax_1-Ink_Net_Ajax-paramsObjToStr" class="box box-function">
 
+    <section id="Ink_Net_Ajax_1-Ink_Net_Ajax-paramsObjToStr" class="box box-function">
     <h1 class="fw-300">
     
         
@@ -1784,7 +1703,6 @@ Verifies that the callback is well defined and traps errors</p>
         
     
     </h1>
-
     
     <ul class="props inline">
         <li class="heading">Arguments:</li>
@@ -1819,7 +1737,7 @@ Verifies that the callback is well defined and traps errors</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">optParams
                 
@@ -1837,15 +1755,15 @@ Verifies that the callback is well defined and traps errors</p>
         <dl>
             <dt class="return">
                 <code>String</code>
-            </dt>                
-            <dd>   
+            </dt>
+            <dd>
                 
                     
                 
             </dd>
         </dl>
         
-        
+
 
     
 
@@ -1857,8 +1775,8 @@ Verifies that the callback is well defined and traps errors</p>
 
 </section>
 
-<section id="Ink_Net_Ajax_1-Ink_Net_Ajax-ping" class="box box-function">
 
+    <section id="Ink_Net_Ajax_1-Ink_Net_Ajax-ping" class="box box-function">
     <h1 class="fw-300">
     
         
@@ -1872,7 +1790,6 @@ Verifies that the callback is well defined and traps errors</p>
         
     
     </h1>
-
     
     <ul class="props inline">
         <li class="heading">Arguments:</li>
@@ -1916,7 +1833,7 @@ Shortcut function for simple AJAX use cases.</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">url
                 
@@ -1935,7 +1852,7 @@ Shortcut function for simple AJAX use cases.</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">callback
                 
@@ -1953,15 +1870,15 @@ Shortcut function for simple AJAX use cases.</p>
         <dl>
             <dt class="return">
                 <code>Object</code>
-            </dt>                
-            <dd>   
+            </dt>
+            <dd>
                 
                     
                 
             </dd>
         </dl>
         
-        
+
 
     
 
@@ -1973,8 +1890,8 @@ Shortcut function for simple AJAX use cases.</p>
 
 </section>
 
-<section id="Ink_Net_Ajax_1-Ink_Net_Ajax-request" class="box box-function">
 
+    <section id="Ink_Net_Ajax_1-Ink_Net_Ajax-request" class="box box-function">
     <h1 class="fw-300">
     
         
@@ -1988,7 +1905,6 @@ Shortcut function for simple AJAX use cases.</p>
         
     
     </h1>
-
     
 
     
@@ -2009,8 +1925,8 @@ Shortcut function for simple AJAX use cases.</p>
 
 </section>
 
-<section id="Ink_Net_Ajax_1-Ink_Net_Ajax-runStateChange" class="box box-function">
 
+    <section id="Ink_Net_Ajax_1-Ink_Net_Ajax-runStateChange" class="box box-function">
     <h1 class="fw-300">
     
         
@@ -2024,7 +1940,6 @@ Shortcut function for simple AJAX use cases.</p>
         
     
     </h1>
-
     
 
     
@@ -2045,8 +1960,8 @@ Shortcut function for simple AJAX use cases.</p>
 
 </section>
 
-<section id="Ink_Net_Ajax_1-Ink_Net_Ajax-safeCall" class="box box-function">
 
+    <section id="Ink_Net_Ajax_1-Ink_Net_Ajax-safeCall" class="box box-function">
     <h1 class="fw-300">
     
         
@@ -2060,7 +1975,6 @@ Shortcut function for simple AJAX use cases.</p>
         
     
     </h1>
-
     
     <ul class="props inline">
         <li class="heading">Arguments:</li>
@@ -2096,7 +2010,7 @@ Verifies that the callback is well defined and traps errors</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">listener
                 
@@ -2108,7 +2022,7 @@ Verifies that the callback is well defined and traps errors</p>
         
         </dl>
         
-        
+
 
     
 
@@ -2120,8 +2034,8 @@ Verifies that the callback is well defined and traps errors</p>
 
 </section>
 
-<section id="Ink_Net_Ajax_1-Ink_Net_Ajax-setHeaders" class="box box-function">
 
+    <section id="Ink_Net_Ajax_1-Ink_Net_Ajax-setHeaders" class="box box-function">
     <h1 class="fw-300">
     
         
@@ -2135,7 +2049,6 @@ Verifies that the callback is well defined and traps errors</p>
         
     
     </h1>
-
     
     <ul class="props inline">
         <li class="heading">Arguments:</li>
@@ -2170,7 +2083,7 @@ Verifies that the callback is well defined and traps errors</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">url
                 
@@ -2184,7 +2097,7 @@ Verifies that the callback is well defined and traps errors</p>
         
         </dl>
         
-        
+
 
     
 
@@ -2196,8 +2109,8 @@ Verifies that the callback is well defined and traps errors</p>
 
 </section>
 
-<section id="Ink_Net_Ajax_1-Ink_Net_Ajax-setParams" class="box box-function">
 
+    <section id="Ink_Net_Ajax_1-Ink_Net_Ajax-setParams" class="box box-function">
     <h1 class="fw-300">
     
         
@@ -2211,7 +2124,6 @@ Verifies that the callback is well defined and traps errors</p>
         
     
     </h1>
-
     
 
     
@@ -2232,8 +2144,8 @@ Verifies that the callback is well defined and traps errors</p>
 
 </section>
 
-<section id="Ink_Net_Ajax_1-Ink_Net_Ajax-setRequestHeader" class="box box-function">
 
+    <section id="Ink_Net_Ajax_1-Ink_Net_Ajax-setRequestHeader" class="box box-function">
     <h1 class="fw-300">
     
         
@@ -2247,7 +2159,6 @@ Verifies that the callback is well defined and traps errors</p>
         
     
     </h1>
-
     
     <ul class="props inline">
         <li class="heading">Arguments:</li>
@@ -2290,7 +2201,7 @@ Verifies that the callback is well defined and traps errors</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">name
                 
@@ -2307,7 +2218,7 @@ Verifies that the callback is well defined and traps errors</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">value
                 
@@ -2319,7 +2230,7 @@ Verifies that the callback is well defined and traps errors</p>
         
         </dl>
         
-        
+
 
     
 
@@ -2335,8 +2246,5 @@ Verifies that the callback is well defined and traps errors</p>
 
 
     
-
     
-
     
-

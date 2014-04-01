@@ -4,179 +4,152 @@ title: Ink.UI.FormValidator_1
 description: Provides the core methods to create and load all of the library modules. 
 site_root:  ../
 ---
-
     
         <section>
         <h1 class="fw-300">Ink.UI.FormValidator_1 <small>version: 1</small></h1>
     
-
     
-
-    
-
-
     
 
 
     
 
     
-
-
-
     
+    
+            
+    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p>
+    
+    <table class="props bottom-space">
         
-<p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p>
+        <caption>Functions</caption>
+        <thead>
+            <tr>
+                <th>Function name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_FormValidator_1-Ink_UI_FormValidator-reset">
+                        
+                            .reset
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    <p>Resets previously generated validation errors</p>
 
-<table class="props bottom-space">
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_FormValidator_1-Ink_UI_FormValidator-validate">
+                        
+                            .validate
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    <p>Checks if a form is valid</p>
 
-  <caption>Functions</caption>
-  <thead>
-  <tr>
-  <th>Function name</th>
-  <th>Description</th>
-  </tr>
-  </thead>
+                    
+                    
+                </td>
+            </tr>
+        
+        </tbody>
+    </table>
+    
+    
+    <table class="props">
+        <caption>Properties</caption>
+        <thead>
+            <tr>
+                <th>Property name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            <tr>
+                <td><a href="#Ink_UI_FormValidator_1-Ink_UI_FormValidator-confirmElms">.confirmElms</a></td>
+                <td>
+                    
+                    
+                        <p>This property holds the objects needed to cross-check for the &#39;confirm&#39; rule</p>
 
-  <tbody>
+                    
+                    
+                        <span class="ink-label orange uppercase">Object</span>
+                    
+                    
+                </td>
+            </tr>
+            
+            <tr>
+                <td><a href="#Ink_UI_FormValidator_1-Ink_UI_FormValidator-elements">.elements</a></td>
+                <td>
+                    
+                    
+                        <p>This property holds all form elements for later validation</p>
 
-  <tr>
-    <td>
-      <a href="#Ink_UI_FormValidator_1-Ink_UI_FormValidator-reset">
-  
-      .reset
-  
-
-      </a>
-    </td>
-    <td>
-  
-
-  <p>Resets previously generated validation errors</p>
-
-
-  
-      
-    </td>
-    </tr>
-
-  <tr>
-    <td>
-      <a href="#Ink_UI_FormValidator_1-Ink_UI_FormValidator-validate">
-  
-      .validate
-  
-
-      </a>
-    </td>
-    <td>
-  
-
-  <p>Checks if a form is valid</p>
-
-
-  
-      
-    </td>
-    </tr>
-
-</tbody>
-</table>
-
-
-
-<table class="props">
-<caption>Properties</caption>
-<thead>
-<tr>
-<th>Property name</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-
-<tr>
-<td><a href="#Ink_UI_FormValidator_1-Ink_UI_FormValidator-confirmElms">.confirmElms</a></td>
-<td>
-
-
-
-<p>This property holds the objects needed to cross-check for the &#39;confirm&#39; rule</p>
-
-
-
-
-<span class="ink-label orange uppercase">Object</span>
-
-
-</td>
-</tr>
-
-<tr>
-<td><a href="#Ink_UI_FormValidator_1-Ink_UI_FormValidator-elements">.elements</a></td>
-<td>
-
-
-
-<p>This property holds all form elements for later validation</p>
-
-
-
-
-<span class="ink-label orange uppercase">Object</span>
-
-
-</td>
-</tr>
-
-<tr>
-<td><a href="#Ink_UI_FormValidator_1-Ink_UI_FormValidator-hasConfirm">.hasConfirm</a></td>
-<td>
-
-
-
-<p>This property holds the previous elements in the confirmElms property, but with a
+                    
+                    
+                        <span class="ink-label orange uppercase">Object</span>
+                    
+                    
+                </td>
+            </tr>
+            
+            <tr>
+                <td><a href="#Ink_UI_FormValidator_1-Ink_UI_FormValidator-hasConfirm">.hasConfirm</a></td>
+                <td>
+                    
+                    
+                        <p>This property holds the previous elements in the confirmElms property, but with a
 true/false specifying if it has the class ink-fv-confirm.</p>
 
+                    
+                    
+                        <span class="ink-label orange uppercase">Object</span>
+                    
+                    
+                </td>
+            </tr>
+            
+            <tr>
+                <td><a href="#Ink_UI_FormValidator_1-Ink_UI_FormValidator-version">.version</a></td>
+                <td>
+                    
+                    
+                        <p>Specifies the version of the component</p>
 
-
-
-<span class="ink-label orange uppercase">Object</span>
-
-
-</td>
-</tr>
-
-<tr>
-<td><a href="#Ink_UI_FormValidator_1-Ink_UI_FormValidator-version">.version</a></td>
-<td>
-
-
-
-<p>Specifies the version of the component</p>
-
-
-
-
-<span class="ink-label orange uppercase">String</span>
-
-
-</td>
-</tr>
-
-</tbody>
-</table>
-
+                    
+                    
+                        <span class="ink-label orange uppercase">String</span>
+                    
+                    
+                </td>
+            </tr>
+            
+        </tbody>
+    </table>
+    
 </section>
 
 
 
 
-
-
-
-<section id="Ink_UI_FormValidator_1-Ink_UI_FormValidator-reset" class="box box-function">
-
+    <section id="Ink_UI_FormValidator_1-Ink_UI_FormValidator-reset" class="box box-function">
     <h1 class="fw-300">
     
         
@@ -190,7 +163,6 @@ true/false specifying if it has the class ink-fv-confirm.</p>
         
     
     </h1>
-
     
 
     
@@ -211,8 +183,8 @@ true/false specifying if it has the class ink-fv-confirm.</p>
 
 </section>
 
-<section id="Ink_UI_FormValidator_1-Ink_UI_FormValidator-validate" class="box box-function">
 
+    <section id="Ink_UI_FormValidator_1-Ink_UI_FormValidator-validate" class="box box-function">
     <h1 class="fw-300">
     
         
@@ -226,7 +198,6 @@ true/false specifying if it has the class ink-fv-confirm.</p>
         
     
     </h1>
-
     
     <ul class="props inline">
         <li class="heading">Arguments:</li>
@@ -281,7 +252,7 @@ true/false specifying if it has the class ink-fv-confirm.</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">elm
                 
@@ -300,7 +271,7 @@ true/false specifying if it has the class ink-fv-confirm.</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">options
                 
@@ -319,7 +290,7 @@ true/false specifying if it has the class ink-fv-confirm.</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.onSuccess]
                 
@@ -338,7 +309,7 @@ true/false specifying if it has the class ink-fv-confirm.</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.onError]
                 
@@ -357,7 +328,7 @@ true/false specifying if it has the class ink-fv-confirm.</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.customFlag]
                 
@@ -375,15 +346,15 @@ true/false specifying if it has the class ink-fv-confirm.</p>
         <dl>
             <dt class="return">
                 <code>Boolean</code>
-            </dt>                
-            <dd>   
+            </dt>
+            <dd>
                 
                     
                 
             </dd>
         </dl>
         
-        
+
 
     
 
@@ -465,7 +436,7 @@ option to this function, like so:
 
 
 
-<section class="box box-attribute">
+    <section class="box box-attribute">
     <h1 class="fw-300">
     
        Ink.UI.FormValidator.confirmElms
@@ -484,7 +455,7 @@ option to this function, like so:
 </section>
 
 
-<section class="box box-attribute">
+    <section class="box box-attribute">
     <h1 class="fw-300">
     
        Ink.UI.FormValidator.elements
@@ -503,7 +474,7 @@ option to this function, like so:
 </section>
 
 
-<section class="box box-attribute">
+    <section class="box box-attribute">
     <h1 class="fw-300">
     
        Ink.UI.FormValidator.hasConfirm
@@ -523,7 +494,7 @@ true/false specifying if it has the class ink-fv-confirm.</p>
 </section>
 
 
-<section class="box box-attribute">
+    <section class="box box-attribute">
     <h1 class="fw-300">
     
        Ink.UI.FormValidator.version
@@ -544,8 +515,5 @@ true/false specifying if it has the class ink-fv-confirm.</p>
 
 
     
-
     
-
     
-

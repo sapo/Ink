@@ -4,124 +4,102 @@ title: Ink.UI.Toggle_1
 description: Provides the core methods to create and load all of the library modules. 
 site_root:  ../
 ---
-
     
         <section>
         <h1 class="fw-300">Ink.UI.Toggle_1 <small>version: 1</small></h1>
     
-
     
-
-    
-
-
     
 
 
     
 
     
-
-
-
     
-        
-<p><p>You need two elements to use Toggle: the <code>trigger</code> element, and the <code>target</code> element (or elements). The default behaviour is to toggle the <code>target</code>(s) when you click the <code>trigger</code>.</p>
+    
+            
+    <p><p>You need two elements to use Toggle: the <code>trigger</code> element, and the <code>target</code> element (or elements). The default behaviour is to toggle the <code>target</code>(s) when you click the <code>trigger</code>.</p>
 <p>The toggle has a state. It is either &quot;on&quot; or &quot;off&quot;. It works by switching between the CSS classes in <code>classNameOn</code> and <code>classNameOff</code> according to the current state.</p>
 <p>When you initialize the Toggle, it will check if the targets are visible to figure out what the initial state is. You can force the toggle to consider itself turned &quot;on&quot; or &quot;off&quot; by setting the <code>initialState</code> option to <code>true</code> or <code>false</code>, respectively.</p>
 <p>You can get the current state of the Toggle by calling <code>getState</code>, or by checking if your <code>trigger</code> element has the &quot;active&quot; class.
 The state can be changed through JavaScript. Just call  <code>setState(true)</code> 
 to turn the Toggle on (or <code>setState(false)</code> to turn it off).</p>
 </p>
+    
+    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p>
+    
+    <table class="props bottom-space">
+        
+        <caption>Methods</caption>
+        <thead>
+            <tr>
+                <th>Method name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Toggle_1-Ink_UI_Toggle-Toggle">
+                        
+                            
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Toggle_1-Ink_UI_Toggle-getState">
+                        
+                            .getState
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    <p>Gets the state of the toggle. (on/off)</p>
 
-<p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p>
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Toggle_1-Ink_UI_Toggle-setState">
+                        
+                            .setState
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    <p>Sets the state of the toggle. (on/off)</p>
 
-<table class="props bottom-space">
-
-  <caption>Methods</caption>
-  <thead>
-  <tr>
-  <th>Method name</th>
-  <th>Description</th>
-  </tr>
-  </thead>
-
-  <tbody>
-
-  <tr>
-    <td>
-      <a href="#Ink_UI_Toggle_1-Ink_UI_Toggle-Toggle">
-  
-  
-  
-
-      </a>
-    </td>
-    <td>
-  
-
-  
-
-  
-      
-    </td>
-    </tr>
-
-  <tr>
-    <td>
-      <a href="#Ink_UI_Toggle_1-Ink_UI_Toggle-getState">
-  
-      .getState
-  
-
-      </a>
-    </td>
-    <td>
-  
-
-  <p>Gets the state of the toggle. (on/off)</p>
-
-
-  
-      
-    </td>
-    </tr>
-
-  <tr>
-    <td>
-      <a href="#Ink_UI_Toggle_1-Ink_UI_Toggle-setState">
-  
-      .setState
-  
-
-      </a>
-    </td>
-    <td>
-  
-
-  <p>Sets the state of the toggle. (on/off)</p>
-
-
-  
-      
-    </td>
-    </tr>
-
-</tbody>
-</table>
-
-
-
+                    
+                    
+                </td>
+            </tr>
+        
+        </tbody>
+    </table>
+    
+    
 </section>
 
 
 
 
-
-
-
-<section id="Ink_UI_Toggle_1-Ink_UI_Toggle-Toggle" class="box box-function">
-
+    <section id="Ink_UI_Toggle_1-Ink_UI_Toggle-Toggle" class="box box-function">
     <h1 class="fw-300">
     
         Ink.UI.Toggle
@@ -131,7 +109,6 @@ to turn the Toggle on (or <code>setState(false)</code> to turn it off).</p>
         <i>constructor</i>
     
     </h1>
-
     
     <ul class="props inline">
         <li class="heading">Arguments:</li>
@@ -203,7 +180,7 @@ to turn the Toggle on (or <code>setState(false)</code> to turn it off).</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">selector
                 
@@ -222,7 +199,7 @@ to turn the Toggle on (or <code>setState(false)</code> to turn it off).</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options]
                 
@@ -241,7 +218,7 @@ to turn the Toggle on (or <code>setState(false)</code> to turn it off).</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">options.target
                 
@@ -260,7 +237,7 @@ to turn the Toggle on (or <code>setState(false)</code> to turn it off).</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.classNameOn]
                 
@@ -279,7 +256,7 @@ to turn the Toggle on (or <code>setState(false)</code> to turn it off).</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.classNameOff]
                 
@@ -298,7 +275,7 @@ to turn the Toggle on (or <code>setState(false)</code> to turn it off).</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.triggerEvent]
                 
@@ -317,7 +294,7 @@ to turn the Toggle on (or <code>setState(false)</code> to turn it off).</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.closeOnClick]
                 
@@ -336,7 +313,7 @@ to turn the Toggle on (or <code>setState(false)</code> to turn it off).</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.closeOnInsideClick]
                 
@@ -355,7 +332,7 @@ to turn the Toggle on (or <code>setState(false)</code> to turn it off).</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.initialState]
                 
@@ -374,7 +351,7 @@ to turn the Toggle on (or <code>setState(false)</code> to turn it off).</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.onChangeState]
                 
@@ -388,7 +365,7 @@ to turn the Toggle on (or <code>setState(false)</code> to turn it off).</p>
         
         </dl>
         
-        
+
 
     
 
@@ -398,7 +375,6 @@ to turn the Toggle on (or <code>setState(false)</code> to turn it off).</p>
 
     
 	<h3>Samples</h3>
-
 	
 		{% include js_samples/Ink_UI_Toggle_1_constructor.html %}
 	
@@ -406,8 +382,8 @@ to turn the Toggle on (or <code>setState(false)</code> to turn it off).</p>
 
 </section>
 
-<section id="Ink_UI_Toggle_1-Ink_UI_Toggle-getState" class="box box-function">
 
+    <section id="Ink_UI_Toggle_1-Ink_UI_Toggle-getState" class="box box-function">
     <h1 class="fw-300">
     
         
@@ -421,7 +397,6 @@ to turn the Toggle on (or <code>setState(false)</code> to turn it off).</p>
         
     
     </h1>
-
     
 
     
@@ -442,8 +417,8 @@ to turn the Toggle on (or <code>setState(false)</code> to turn it off).</p>
 
 </section>
 
-<section id="Ink_UI_Toggle_1-Ink_UI_Toggle-setState" class="box box-function">
 
+    <section id="Ink_UI_Toggle_1-Ink_UI_Toggle-setState" class="box box-function">
     <h1 class="fw-300">
     
         
@@ -457,7 +432,6 @@ to turn the Toggle on (or <code>setState(false)</code> to turn it off).</p>
         
     
     </h1>
-
     
     <ul class="props inline">
         <li class="heading">Arguments:</li>
@@ -490,7 +464,7 @@ to turn the Toggle on (or <code>setState(false)</code> to turn it off).</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">newState
                 
@@ -504,7 +478,7 @@ to turn the Toggle on (or <code>setState(false)</code> to turn it off).</p>
         
         </dl>
         
-        
+
 
     
 
@@ -520,8 +494,5 @@ to turn the Toggle on (or <code>setState(false)</code> to turn it off).</p>
 
 
     
-
     
-
     
-

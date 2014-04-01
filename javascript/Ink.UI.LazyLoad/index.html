@@ -4,125 +4,103 @@ title: Ink.UI.LazyLoad_1
 description: Provides the core methods to create and load all of the library modules. 
 site_root:  ../
 ---
-
     
         <section>
         <h1 class="fw-300">Ink.UI.LazyLoad_1 <small>version: 1</small></h1>
     
-
     
-
-    
-
-
     
 
 
     
 
     
-
-
-
     
-        
-<p><p>Stops the browser from loading a barrage of content at once.</p>
+    
+            
+    <p><p>Stops the browser from loading a barrage of content at once.</p>
 <p>This delays the loading of images and other content until the corresponding elements are visible in the browser viewport.
 This was created to load images later, but can be also used for widgets which are slow to load and are only useful when on screen.</p>
 <p>This works through copying the <code>src</code> attribute into <code>data-src</code>, and placing a <code>placeholder</code> string in the <code>src</code> attribute. Then, when the element is on screen, the <code>data-src</code> attribute is copied back to <code>src</code> and the content starts loading. You can use the options below to change what attributes are involved in the exchange.</p>
 <p>You can also provide your <code>onInsideViewport</code> callback and use it to start widgets which need javascript, such as an interactive map or an animation.</p>
 </p>
+    
+    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p>
+    
+    <table class="props bottom-space">
+        
+        <caption>Methods</caption>
+        <thead>
+            <tr>
+                <th>Method name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_LazyLoad_1-Ink_UI_LazyLoad_1-LazyLoad_1">
+                        
+                            
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_LazyLoad_1-Ink_UI_LazyLoad_1-destroy">
+                        
+                            .destroy
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    <p>Destroy this component</p>
 
-<p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p>
-
-<table class="props bottom-space">
-
-  <caption>Methods</caption>
-  <thead>
-  <tr>
-  <th>Method name</th>
-  <th>Description</th>
-  </tr>
-  </thead>
-
-  <tbody>
-
-  <tr>
-    <td>
-      <a href="#Ink_UI_LazyLoad_1-Ink_UI_LazyLoad_1-LazyLoad_1">
-  
-  
-  
-
-      </a>
-    </td>
-    <td>
-  
-
-  
-
-  
-      
-    </td>
-    </tr>
-
-  <tr>
-    <td>
-      <a href="#Ink_UI_LazyLoad_1-Ink_UI_LazyLoad_1-destroy">
-  
-      .destroy
-  
-
-      </a>
-    </td>
-    <td>
-  
-
-  <p>Destroy this component</p>
-
-
-  
-      
-    </td>
-    </tr>
-
-  <tr>
-    <td>
-      <a href="#Ink_UI_LazyLoad_1-Ink_UI_LazyLoad_1-reload">
-  
-      .reload
-  
-
-      </a>
-    </td>
-    <td>
-  
-
-  <p>Load or reload the component.
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_LazyLoad_1-Ink_UI_LazyLoad_1-reload">
+                        
+                            .reload
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    <p>Load or reload the component.
 Adding the &#39;scroll&#39; event listener if necessary and checks if anything needs to be loaded now.</p>
 <p>You can use this to manually invoke the loading logic without user action.</p>
 
-
-  
-      
-    </td>
-    </tr>
-
-</tbody>
-</table>
-
-
-
+                    
+                    
+                </td>
+            </tr>
+        
+        </tbody>
+    </table>
+    
+    
 </section>
 
 
 
 
-
-
-
-<section id="Ink_UI_LazyLoad_1-Ink_UI_LazyLoad_1-LazyLoad_1" class="box box-function">
-
+    <section id="Ink_UI_LazyLoad_1-Ink_UI_LazyLoad_1-LazyLoad_1" class="box box-function">
     <h1 class="fw-300">
     
         Ink.UI.LazyLoad_1
@@ -132,7 +110,6 @@ Adding the &#39;scroll&#39; event listener if necessary and checks if anything n
         <i>constructor</i>
     
     </h1>
-
     
     <ul class="props inline">
         <li class="heading">Arguments:</li>
@@ -218,7 +195,7 @@ Adding the &#39;scroll&#39; event listener if necessary and checks if anything n
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">rootElement
                 
@@ -237,7 +214,7 @@ Adding the &#39;scroll&#39; event listener if necessary and checks if anything n
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options]
                 
@@ -256,7 +233,7 @@ Adding the &#39;scroll&#39; event listener if necessary and checks if anything n
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.item]
                 
@@ -275,7 +252,7 @@ Adding the &#39;scroll&#39; event listener if necessary and checks if anything n
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.placeholder]
                 
@@ -294,7 +271,7 @@ Adding the &#39;scroll&#39; event listener if necessary and checks if anything n
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.source]
                 
@@ -313,7 +290,7 @@ Adding the &#39;scroll&#39; event listener if necessary and checks if anything n
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.destination]
                 
@@ -332,7 +309,7 @@ Adding the &#39;scroll&#39; event listener if necessary and checks if anything n
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.delay]
                 
@@ -351,7 +328,7 @@ Adding the &#39;scroll&#39; event listener if necessary and checks if anything n
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.delta]
                 
@@ -370,7 +347,7 @@ Adding the &#39;scroll&#39; event listener if necessary and checks if anything n
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.image]
                 
@@ -389,7 +366,7 @@ Adding the &#39;scroll&#39; event listener if necessary and checks if anything n
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.scrollElement]
                 
@@ -408,7 +385,7 @@ Adding the &#39;scroll&#39; event listener if necessary and checks if anything n
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.touchEvents]
                 
@@ -427,7 +404,7 @@ Adding the &#39;scroll&#39; event listener if necessary and checks if anything n
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.onInsideViewport]
                 
@@ -446,7 +423,7 @@ Adding the &#39;scroll&#39; event listener if necessary and checks if anything n
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.onAfterAttributeChange]
                 
@@ -465,7 +442,7 @@ Adding the &#39;scroll&#39; event listener if necessary and checks if anything n
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.autoInit]
                 
@@ -479,7 +456,7 @@ Adding the &#39;scroll&#39; event listener if necessary and checks if anything n
         
         </dl>
         
-        
+
 
     
 
@@ -491,8 +468,8 @@ Adding the &#39;scroll&#39; event listener if necessary and checks if anything n
 
 </section>
 
-<section id="Ink_UI_LazyLoad_1-Ink_UI_LazyLoad_1-destroy" class="box box-function">
 
+    <section id="Ink_UI_LazyLoad_1-Ink_UI_LazyLoad_1-destroy" class="box box-function">
     <h1 class="fw-300">
     
         
@@ -506,7 +483,6 @@ Adding the &#39;scroll&#39; event listener if necessary and checks if anything n
         
     
     </h1>
-
     
 
     
@@ -527,8 +503,8 @@ Adding the &#39;scroll&#39; event listener if necessary and checks if anything n
 
 </section>
 
-<section id="Ink_UI_LazyLoad_1-Ink_UI_LazyLoad_1-reload" class="box box-function">
 
+    <section id="Ink_UI_LazyLoad_1-Ink_UI_LazyLoad_1-reload" class="box box-function">
     <h1 class="fw-300">
     
         
@@ -542,7 +518,6 @@ Adding the &#39;scroll&#39; event listener if necessary and checks if anything n
         
     
     </h1>
-
     
 
     
@@ -569,8 +544,5 @@ Adding the &#39;scroll&#39; event listener if necessary and checks if anything n
 
 
     
-
     
-
     
-

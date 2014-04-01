@@ -4,29 +4,21 @@ title: Ink.UI.Tabs_1
 description: Provides the core methods to create and load all of the library modules. 
 site_root:  ../
 ---
-
     
         <section>
         <h1 class="fw-300">Ink.UI.Tabs_1 <small>version: 1</small></h1>
     
-
     
-
-    
-
-
     
 
 
     
 
     
-
-
-
     
-        
-<p><p>The Tabs Component offers a simple way to build a tab-separated layout, allowing you to offer multiple content in the same space with intuitive navigation.</p>
+    
+            
+    <p><p>The Tabs Component offers a simple way to build a tab-separated layout, allowing you to offer multiple content in the same space with intuitive navigation.</p>
 <p>This component requires your markup to have:</p>
 <ul>
 <li>A container element (this is what you call the Ink.UI.Tabs constructor on), containing everything.<ul>
@@ -45,222 +37,190 @@ site_root:  ../
 <p>The tab which is active when the tab component is initialized has its hash in the browser URL. If there is no hash, then the <code>active</code> option kicks in. Otherwise, Tabs will fall back to showing the tab corresponding to the first link.</p>
 <p>You can disable some (or all) tabs by passing an array for the <code>disabled</code> option.</p>
 </p>
-
-<p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p>
-
-<table class="props bottom-space">
-
-  <caption>Methods</caption>
-  <thead>
-  <tr>
-  <th>Method name</th>
-  <th>Description</th>
-  </tr>
-  </thead>
-
-  <tbody>
-
-  <tr>
-    <td>
-      <a href="#Ink_UI_Tabs_1-Ink_UI_Tabs-Tabs">
-  
-  
-  
-
-      </a>
-    </td>
-    <td>
-  
-
-  
-
-  
-      
-    </td>
-    </tr>
-
-  <tr>
-    <td>
-      <a href="#Ink_UI_Tabs_1-Ink_UI_Tabs-activeContentTab">
-  
-      .activeContentTab
-  
-
-      </a>
-    </td>
-    <td>
-  
-
-  <p>Gets the currently active section</p>
+    
+    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p>
+    
+    <table class="props bottom-space">
+        
+        <caption>Methods</caption>
+        <thead>
+            <tr>
+                <th>Method name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Tabs_1-Ink_UI_Tabs-Tabs">
+                        
+                            
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Tabs_1-Ink_UI_Tabs-activeContentTab">
+                        
+                            .activeContentTab
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    <p>Gets the currently active section</p>
 <p>(Each section contains content for a tab, and must have an <code>id</code> attribute)</p>
 
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Tabs_1-Ink_UI_Tabs-activeMenuLink">
+                        
+                            .activeMenuLink
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    <p>Gets the currently active Menu link (the links which the user clicks on to change tabs)</p>
 
-  
-      
-    </td>
-    </tr>
-
-  <tr>
-    <td>
-      <a href="#Ink_UI_Tabs_1-Ink_UI_Tabs-activeMenuLink">
-  
-      .activeMenuLink
-  
-
-      </a>
-    </td>
-    <td>
-  
-
-  <p>Gets the currently active Menu link (the links which the user clicks on to change tabs)</p>
-
-
-  
-      
-    </td>
-    </tr>
-
-  <tr>
-    <td>
-      <a href="#Ink_UI_Tabs_1-Ink_UI_Tabs-activeMenuTab">
-  
-      .activeMenuTab
-  
-
-      </a>
-    </td>
-    <td>
-  
-      <span class="tag">deprecated</span>
-  
-
-  <p>Returns the parent of the currently active menu link.</p>
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Tabs_1-Ink_UI_Tabs-activeMenuTab">
+                        
+                            .activeMenuTab
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                        <span class="tag">deprecated</span>
+                    
+                    <p>Returns the parent of the currently active menu link.</p>
 <p>This is useful if you want to have <code>li</code> elements wrapping your links
 and want to access the currently visible one.</p>
 <p>(This method is deprecated)</p>
 
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Tabs_1-Ink_UI_Tabs-activeTab">
+                        
+                            .activeTab
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    <p>Returns the active tab id</p>
 
-  
-      
-    </td>
-    </tr>
-
-  <tr>
-    <td>
-      <a href="#Ink_UI_Tabs_1-Ink_UI_Tabs-activeTab">
-  
-      .activeTab
-  
-
-      </a>
-    </td>
-    <td>
-  
-
-  <p>Returns the active tab id</p>
-
-
-  
-      
-    </td>
-    </tr>
-
-  <tr>
-    <td>
-      <a href="#Ink_UI_Tabs_1-Ink_UI_Tabs-changeTab">
-  
-      .changeTab
-  
-
-      </a>
-    </td>
-    <td>
-  
-
-  <p>Changes the active tab</p>
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Tabs_1-Ink_UI_Tabs-changeTab">
+                        
+                            .changeTab
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    <p>Changes the active tab</p>
 <p>Pass a selector/element identifying what tab you want</p>
 
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Tabs_1-Ink_UI_Tabs-destroy">
+                        
+                            .destroy
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    <p>Unregisters the component and removes its markup</p>
 
-  
-      
-    </td>
-    </tr>
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Tabs_1-Ink_UI_Tabs-disable">
+                        
+                            .disable
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    <p>Disables the desired tag</p>
 
-  <tr>
-    <td>
-      <a href="#Ink_UI_Tabs_1-Ink_UI_Tabs-destroy">
-  
-      .destroy
-  
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Tabs_1-Ink_UI_Tabs-enable">
+                        
+                            .enable
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    <p>Enables the desired tag</p>
 
-      </a>
-    </td>
-    <td>
-  
-
-  <p>Unregisters the component and removes its markup</p>
-
-
-  
-      
-    </td>
-    </tr>
-
-  <tr>
-    <td>
-      <a href="#Ink_UI_Tabs_1-Ink_UI_Tabs-disable">
-  
-      .disable
-  
-
-      </a>
-    </td>
-    <td>
-  
-
-  <p>Disables the desired tag</p>
-
-
-  
-      
-    </td>
-    </tr>
-
-  <tr>
-    <td>
-      <a href="#Ink_UI_Tabs_1-Ink_UI_Tabs-enable">
-  
-      .enable
-  
-
-      </a>
-    </td>
-    <td>
-  
-
-  <p>Enables the desired tag</p>
-
-
-  
-      
-    </td>
-    </tr>
-
-</tbody>
-</table>
-
-
-
+                    
+                    
+                </td>
+            </tr>
+        
+        </tbody>
+    </table>
+    
+    
 </section>
 
 
 
 
-
-
-
-<section id="Ink_UI_Tabs_1-Ink_UI_Tabs-Tabs" class="box box-function">
-
+    <section id="Ink_UI_Tabs_1-Ink_UI_Tabs-Tabs" class="box box-function">
     <h1 class="fw-300">
     
         Ink.UI.Tabs
@@ -270,7 +230,6 @@ and want to access the currently visible one.</p>
         <i>constructor</i>
     
     </h1>
-
     
     <ul class="props inline">
         <li class="heading">Arguments:</li>
@@ -334,7 +293,7 @@ and want to access the currently visible one.</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">selector
                 
@@ -351,7 +310,7 @@ and want to access the currently visible one.</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options]
                 
@@ -370,7 +329,7 @@ and want to access the currently visible one.</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.preventUrlChange]
                 
@@ -389,7 +348,7 @@ and want to access the currently visible one.</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.active]
                 
@@ -408,7 +367,7 @@ and want to access the currently visible one.</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.disabled]
                 
@@ -427,7 +386,7 @@ and want to access the currently visible one.</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.onBeforeChange]
                 
@@ -446,7 +405,7 @@ and want to access the currently visible one.</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.onChange]
                 
@@ -465,7 +424,7 @@ and want to access the currently visible one.</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.triggerEventsOnLoad]
                 
@@ -479,7 +438,7 @@ and want to access the currently visible one.</p>
         
         </dl>
         
-        
+
 
     
 
@@ -523,8 +482,8 @@ and want to access the currently visible one.</p>
 
 </section>
 
-<section id="Ink_UI_Tabs_1-Ink_UI_Tabs-activeContentTab" class="box box-function">
 
+    <section id="Ink_UI_Tabs_1-Ink_UI_Tabs-activeContentTab" class="box box-function">
     <h1 class="fw-300">
     
         
@@ -538,7 +497,6 @@ and want to access the currently visible one.</p>
         
     
     </h1>
-
     
 
     
@@ -560,8 +518,8 @@ and want to access the currently visible one.</p>
 
 </section>
 
-<section id="Ink_UI_Tabs_1-Ink_UI_Tabs-activeMenuLink" class="box box-function">
 
+    <section id="Ink_UI_Tabs_1-Ink_UI_Tabs-activeMenuLink" class="box box-function">
     <h1 class="fw-300">
     
         
@@ -575,7 +533,6 @@ and want to access the currently visible one.</p>
         
     
     </h1>
-
     
 
     
@@ -596,8 +553,8 @@ and want to access the currently visible one.</p>
 
 </section>
 
-<section id="Ink_UI_Tabs_1-Ink_UI_Tabs-activeMenuTab" class="box box-function">
 
+    <section id="Ink_UI_Tabs_1-Ink_UI_Tabs-activeMenuTab" class="box box-function">
     <h1 class="fw-300">
     
         
@@ -611,7 +568,6 @@ and want to access the currently visible one.</p>
         
     
     </h1>
-
     
 
     
@@ -637,8 +593,8 @@ and want to access the currently visible one.</p>
 
 </section>
 
-<section id="Ink_UI_Tabs_1-Ink_UI_Tabs-activeTab" class="box box-function">
 
+    <section id="Ink_UI_Tabs_1-Ink_UI_Tabs-activeTab" class="box box-function">
     <h1 class="fw-300">
     
         
@@ -652,7 +608,6 @@ and want to access the currently visible one.</p>
         
     
     </h1>
-
     
 
     
@@ -673,8 +628,8 @@ and want to access the currently visible one.</p>
 
 </section>
 
-<section id="Ink_UI_Tabs_1-Ink_UI_Tabs-changeTab" class="box box-function">
 
+    <section id="Ink_UI_Tabs_1-Ink_UI_Tabs-changeTab" class="box box-function">
     <h1 class="fw-300">
     
         
@@ -688,7 +643,6 @@ and want to access the currently visible one.</p>
         
     
     </h1>
-
     
     <ul class="props inline">
         <li class="heading">Arguments:</li>
@@ -724,7 +678,7 @@ and want to access the currently visible one.</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">selector
                 
@@ -738,7 +692,7 @@ and want to access the currently visible one.</p>
         
         </dl>
         
-        
+
 
     
 
@@ -750,8 +704,8 @@ and want to access the currently visible one.</p>
 
 </section>
 
-<section id="Ink_UI_Tabs_1-Ink_UI_Tabs-destroy" class="box box-function">
 
+    <section id="Ink_UI_Tabs_1-Ink_UI_Tabs-destroy" class="box box-function">
     <h1 class="fw-300">
     
         
@@ -765,7 +719,6 @@ and want to access the currently visible one.</p>
         
     
     </h1>
-
     
 
     
@@ -786,8 +739,8 @@ and want to access the currently visible one.</p>
 
 </section>
 
-<section id="Ink_UI_Tabs_1-Ink_UI_Tabs-disable" class="box box-function">
 
+    <section id="Ink_UI_Tabs_1-Ink_UI_Tabs-disable" class="box box-function">
     <h1 class="fw-300">
     
         
@@ -801,7 +754,6 @@ and want to access the currently visible one.</p>
         
     
     </h1>
-
     
     <ul class="props inline">
         <li class="heading">Arguments:</li>
@@ -836,7 +788,7 @@ and want to access the currently visible one.</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">selector
                 
@@ -850,7 +802,7 @@ and want to access the currently visible one.</p>
         
         </dl>
         
-        
+
 
     
 
@@ -862,8 +814,8 @@ and want to access the currently visible one.</p>
 
 </section>
 
-<section id="Ink_UI_Tabs_1-Ink_UI_Tabs-enable" class="box box-function">
 
+    <section id="Ink_UI_Tabs_1-Ink_UI_Tabs-enable" class="box box-function">
     <h1 class="fw-300">
     
         
@@ -877,7 +829,6 @@ and want to access the currently visible one.</p>
         
     
     </h1>
-
     
     <ul class="props inline">
         <li class="heading">Arguments:</li>
@@ -912,7 +863,7 @@ and want to access the currently visible one.</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">selector
                 
@@ -926,7 +877,7 @@ and want to access the currently visible one.</p>
         
         </dl>
         
-        
+
 
     
 
@@ -942,8 +893,5 @@ and want to access the currently visible one.</p>
 
 
     
-
     
-
     
-

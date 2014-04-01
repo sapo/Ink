@@ -4,316 +4,264 @@ title: Ink.UI.Pagination_1
 description: Provides the core methods to create and load all of the library modules. 
 site_root:  ../
 ---
-
     
         <section>
         <h1 class="fw-300">Ink.UI.Pagination_1 <small>version: 1</small></h1>
     
-
     
-
-    
-
-
     
 
 
     
 
     
-
-
-
     
+    
+            
+    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p>
+    
+    <table class="props bottom-space">
         
-<p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p>
-
-<table class="props bottom-space">
-
-  <caption>Methods</caption>
-  <thead>
-  <tr>
-  <th>Method name</th>
-  <th>Description</th>
-  </tr>
-  </thead>
-
-  <tbody>
-
-  <tr>
-    <td>
-      <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-Pagination">
-  
-  
-  
-
-      </a>
-    </td>
-    <td>
-  
-
-  
-
-  
-      
-    </td>
-    </tr>
-
-  <tr>
-    <td>
-      <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-destroy">
-  
-      .destroy
-  
-
-      </a>
-    </td>
-    <td>
-  
-
-  <p>Unregisters the component and removes its markup</p>
-
-
-  
-      
-    </td>
-    </tr>
-
-  <tr>
-    <td>
-      <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-getCurrent">
-  
-      .getCurrent
-  
-
-      </a>
-    </td>
-    <td>
-  
-
-  <p>Gets the current page index</p>
-
-
-  
-      
-    </td>
-    </tr>
-
-  <tr>
-    <td>
-      <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-getSize">
-  
-      .getSize
-  
-
-      </a>
-    </td>
-    <td>
-  
-
-  <p>Gets the number of pages</p>
-
-
-  
-      
-    </td>
-    </tr>
-
-  <tr>
-    <td>
-      <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-hasNext">
-  
-      .hasNext
-  
-
-      </a>
-    </td>
-    <td>
-  
-
-  <p>Checks if it has next pages</p>
-
-
-  
-      
-    </td>
-    </tr>
-
-  <tr>
-    <td>
-      <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-hasNextPage">
-  
-      .hasNextPage
-  
-
-      </a>
-    </td>
-    <td>
-  
-
-  <p>Checks if it has a next set of pages</p>
-
-
-  
-      
-    </td>
-    </tr>
-
-  <tr>
-    <td>
-      <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-hasPrevious">
-  
-      .hasPrevious
-  
-
-      </a>
-    </td>
-    <td>
-  
-
-  <p>Checks if it has previous pages</p>
-
-
-  
-      
-    </td>
-    </tr>
-
-  <tr>
-    <td>
-      <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-hasPreviousPage">
-  
-      .hasPreviousPage
-  
-
-      </a>
-    </td>
-    <td>
-  
-
-  <p>Checks if it has a previous set of pages</p>
-
-
-  
-      
-    </td>
-    </tr>
-
-  <tr>
-    <td>
-      <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-isFirst">
-  
-      .isFirst
-  
-
-      </a>
-    </td>
-    <td>
-  
-
-  <p>Checks if it&#39;s at the first page</p>
-
-
-  
-      
-    </td>
-    </tr>
-
-  <tr>
-    <td>
-      <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-isLast">
-  
-      .isLast
-  
-
-      </a>
-    </td>
-    <td>
-  
-
-  <p>Checks if it&#39;s on the last page</p>
-
-
-  
-      
-    </td>
-    </tr>
-
-  <tr>
-    <td>
-      <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-setCurrent">
-  
-      .setCurrent
-  
-
-      </a>
-    </td>
-    <td>
-  
-
-  <p>Sets the current page.</p>
-
-
-  
-      
-    </td>
-    </tr>
-
-  <tr>
-    <td>
-      <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-setOnChange">
-  
-      .setOnChange
-  
-
-      </a>
-    </td>
-    <td>
-  
-
-  <p>Allows you to subscribe to the onChange event</p>
-
-
-  
-      
-    </td>
-    </tr>
-
-  <tr>
-    <td>
-      <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-setSize">
-  
-      .setSize
-  
-
-      </a>
-    </td>
-    <td>
-  
-
-  <p>Sets the number of pages</p>
-
-
-  
-      
-    </td>
-    </tr>
-
-</tbody>
-</table>
-
-
-
+        <caption>Methods</caption>
+        <thead>
+            <tr>
+                <th>Method name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-Pagination">
+                        
+                            
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-destroy">
+                        
+                            .destroy
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    <p>Unregisters the component and removes its markup</p>
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-getCurrent">
+                        
+                            .getCurrent
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    <p>Gets the current page index</p>
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-getSize">
+                        
+                            .getSize
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    <p>Gets the number of pages</p>
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-hasNext">
+                        
+                            .hasNext
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    <p>Checks if it has next pages</p>
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-hasNextPage">
+                        
+                            .hasNextPage
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    <p>Checks if it has a next set of pages</p>
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-hasPrevious">
+                        
+                            .hasPrevious
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    <p>Checks if it has previous pages</p>
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-hasPreviousPage">
+                        
+                            .hasPreviousPage
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    <p>Checks if it has a previous set of pages</p>
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-isFirst">
+                        
+                            .isFirst
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    <p>Checks if it&#39;s at the first page</p>
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-isLast">
+                        
+                            .isLast
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    <p>Checks if it&#39;s on the last page</p>
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-setCurrent">
+                        
+                            .setCurrent
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    <p>Sets the current page.</p>
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-setOnChange">
+                        
+                            .setOnChange
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    <p>Allows you to subscribe to the onChange event</p>
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-setSize">
+                        
+                            .setSize
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    <p>Sets the number of pages</p>
+
+                    
+                    
+                </td>
+            </tr>
+        
+        </tbody>
+    </table>
+    
+    
 </section>
 
 
 
 
-
-
-
-<section id="Ink_UI_Pagination_1-Ink_UI_Pagination-Pagination" class="box box-function">
-
+    <section id="Ink_UI_Pagination_1-Ink_UI_Pagination-Pagination" class="box box-function">
     <h1 class="fw-300">
     
         Ink.UI.Pagination
@@ -323,7 +271,6 @@ site_root:  ../
         <i>constructor</i>
     
     </h1>
-
     
     <ul class="props inline">
         <li class="heading">Arguments:</li>
@@ -467,7 +414,7 @@ site_root:  ../
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">selector
                 
@@ -486,7 +433,7 @@ site_root:  ../
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">options
                 
@@ -505,7 +452,7 @@ site_root:  ../
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.size]
                 
@@ -524,7 +471,7 @@ site_root:  ../
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.totalItemCount]
                 
@@ -543,7 +490,7 @@ site_root:  ../
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.itemsPerPage]
                 
@@ -562,7 +509,7 @@ site_root:  ../
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.maxSize]
                 
@@ -581,7 +528,7 @@ site_root:  ../
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.start]
                 
@@ -600,7 +547,7 @@ site_root:  ../
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.sideButtons]
                 
@@ -621,7 +568,7 @@ site_root:  ../
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.firstLabel]
                 
@@ -640,7 +587,7 @@ site_root:  ../
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.lastLabel]
                 
@@ -659,7 +606,7 @@ site_root:  ../
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.previousLabel]
                 
@@ -678,7 +625,7 @@ site_root:  ../
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.nextLabel]
                 
@@ -697,7 +644,7 @@ site_root:  ../
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.previousPageLabel]
                 
@@ -716,7 +663,7 @@ site_root:  ../
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.nextPageLabel]
                 
@@ -735,7 +682,7 @@ site_root:  ../
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.onChange]
                 
@@ -754,7 +701,7 @@ site_root:  ../
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.hashParameter]
                 
@@ -773,7 +720,7 @@ site_root:  ../
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.parentTag]
                 
@@ -792,7 +739,7 @@ site_root:  ../
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.childTag]
                 
@@ -811,7 +758,7 @@ site_root:  ../
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.wrapperClass]
                 
@@ -830,7 +777,7 @@ site_root:  ../
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.paginationClass]
                 
@@ -849,7 +796,7 @@ site_root:  ../
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.activeClass]
                 
@@ -868,7 +815,7 @@ site_root:  ../
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.disabledClass]
                 
@@ -887,7 +834,7 @@ site_root:  ../
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.hideClass]
                 
@@ -906,7 +853,7 @@ site_root:  ../
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.previousClass]
                 
@@ -925,7 +872,7 @@ site_root:  ../
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.previousPageClass]
                 
@@ -944,7 +891,7 @@ site_root:  ../
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.nextClass]
                 
@@ -963,7 +910,7 @@ site_root:  ../
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.nextPageClass]
                 
@@ -982,7 +929,7 @@ site_root:  ../
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[options.numberFormatter]
                 
@@ -996,7 +943,7 @@ site_root:  ../
         
         </dl>
         
-        
+
 
     
 
@@ -1008,8 +955,8 @@ site_root:  ../
 
 </section>
 
-<section id="Ink_UI_Pagination_1-Ink_UI_Pagination-destroy" class="box box-function">
 
+    <section id="Ink_UI_Pagination_1-Ink_UI_Pagination-destroy" class="box box-function">
     <h1 class="fw-300">
     
         
@@ -1023,7 +970,6 @@ site_root:  ../
         
     
     </h1>
-
     
 
     
@@ -1044,8 +990,8 @@ site_root:  ../
 
 </section>
 
-<section id="Ink_UI_Pagination_1-Ink_UI_Pagination-getCurrent" class="box box-function">
 
+    <section id="Ink_UI_Pagination_1-Ink_UI_Pagination-getCurrent" class="box box-function">
     <h1 class="fw-300">
     
         
@@ -1059,7 +1005,6 @@ site_root:  ../
         
     
     </h1>
-
     
 
     
@@ -1080,8 +1025,8 @@ site_root:  ../
 
 </section>
 
-<section id="Ink_UI_Pagination_1-Ink_UI_Pagination-getSize" class="box box-function">
 
+    <section id="Ink_UI_Pagination_1-Ink_UI_Pagination-getSize" class="box box-function">
     <h1 class="fw-300">
     
         
@@ -1095,7 +1040,6 @@ site_root:  ../
         
     
     </h1>
-
     
 
     
@@ -1116,8 +1060,8 @@ site_root:  ../
 
 </section>
 
-<section id="Ink_UI_Pagination_1-Ink_UI_Pagination-hasNext" class="box box-function">
 
+    <section id="Ink_UI_Pagination_1-Ink_UI_Pagination-hasNext" class="box box-function">
     <h1 class="fw-300">
     
         
@@ -1131,7 +1075,6 @@ site_root:  ../
         
     
     </h1>
-
     
 
     
@@ -1152,8 +1095,8 @@ site_root:  ../
 
 </section>
 
-<section id="Ink_UI_Pagination_1-Ink_UI_Pagination-hasNextPage" class="box box-function">
 
+    <section id="Ink_UI_Pagination_1-Ink_UI_Pagination-hasNextPage" class="box box-function">
     <h1 class="fw-300">
     
         
@@ -1167,7 +1110,6 @@ site_root:  ../
         
     
     </h1>
-
     
 
     
@@ -1188,8 +1130,8 @@ site_root:  ../
 
 </section>
 
-<section id="Ink_UI_Pagination_1-Ink_UI_Pagination-hasPrevious" class="box box-function">
 
+    <section id="Ink_UI_Pagination_1-Ink_UI_Pagination-hasPrevious" class="box box-function">
     <h1 class="fw-300">
     
         
@@ -1203,7 +1145,6 @@ site_root:  ../
         
     
     </h1>
-
     
 
     
@@ -1224,8 +1165,8 @@ site_root:  ../
 
 </section>
 
-<section id="Ink_UI_Pagination_1-Ink_UI_Pagination-hasPreviousPage" class="box box-function">
 
+    <section id="Ink_UI_Pagination_1-Ink_UI_Pagination-hasPreviousPage" class="box box-function">
     <h1 class="fw-300">
     
         
@@ -1239,7 +1180,6 @@ site_root:  ../
         
     
     </h1>
-
     
 
     
@@ -1260,8 +1200,8 @@ site_root:  ../
 
 </section>
 
-<section id="Ink_UI_Pagination_1-Ink_UI_Pagination-isFirst" class="box box-function">
 
+    <section id="Ink_UI_Pagination_1-Ink_UI_Pagination-isFirst" class="box box-function">
     <h1 class="fw-300">
     
         
@@ -1275,7 +1215,6 @@ site_root:  ../
         
     
     </h1>
-
     
 
     
@@ -1296,8 +1235,8 @@ site_root:  ../
 
 </section>
 
-<section id="Ink_UI_Pagination_1-Ink_UI_Pagination-isLast" class="box box-function">
 
+    <section id="Ink_UI_Pagination_1-Ink_UI_Pagination-isLast" class="box box-function">
     <h1 class="fw-300">
     
         
@@ -1311,7 +1250,6 @@ site_root:  ../
         
     
     </h1>
-
     
 
     
@@ -1332,8 +1270,8 @@ site_root:  ../
 
 </section>
 
-<section id="Ink_UI_Pagination_1-Ink_UI_Pagination-setCurrent" class="box box-function">
 
+    <section id="Ink_UI_Pagination_1-Ink_UI_Pagination-setCurrent" class="box box-function">
     <h1 class="fw-300">
     
         
@@ -1347,7 +1285,6 @@ site_root:  ../
         
     
     </h1>
-
     
     <ul class="props inline">
         <li class="heading">Arguments:</li>
@@ -1390,7 +1327,7 @@ site_root:  ../
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">nr
                 
@@ -1409,7 +1346,7 @@ site_root:  ../
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">isRelative
                 
@@ -1423,7 +1360,7 @@ site_root:  ../
         
         </dl>
         
-        
+
 
     
 
@@ -1435,8 +1372,8 @@ site_root:  ../
 
 </section>
 
-<section id="Ink_UI_Pagination_1-Ink_UI_Pagination-setOnChange" class="box box-function">
 
+    <section id="Ink_UI_Pagination_1-Ink_UI_Pagination-setOnChange" class="box box-function">
     <h1 class="fw-300">
     
         
@@ -1450,7 +1387,6 @@ site_root:  ../
         
     
     </h1>
-
     
     <ul class="props inline">
         <li class="heading">Arguments:</li>
@@ -1483,7 +1419,7 @@ site_root:  ../
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">cb
                 
@@ -1497,7 +1433,7 @@ site_root:  ../
         
         </dl>
         
-        
+
 
     
 
@@ -1509,8 +1445,8 @@ site_root:  ../
 
 </section>
 
-<section id="Ink_UI_Pagination_1-Ink_UI_Pagination-setSize" class="box box-function">
 
+    <section id="Ink_UI_Pagination_1-Ink_UI_Pagination-setSize" class="box box-function">
     <h1 class="fw-300">
     
         
@@ -1524,7 +1460,6 @@ site_root:  ../
         
     
     </h1>
-
     
     <ul class="props inline">
         <li class="heading">Arguments:</li>
@@ -1583,7 +1518,7 @@ site_root:  ../
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">sz
                 
@@ -1600,7 +1535,7 @@ site_root:  ../
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">setSizeInItems
                 
@@ -1617,7 +1552,7 @@ site_root:  ../
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">totalItems
                 
@@ -1636,7 +1571,7 @@ site_root:  ../
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">itemsPerPage
                 
@@ -1650,7 +1585,7 @@ site_root:  ../
         
         </dl>
         
-        
+
 
     
 
@@ -1666,8 +1601,5 @@ site_root:  ../
 
 
     
-
     
-
     
-

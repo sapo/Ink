@@ -4,249 +4,210 @@ title: Ink.UI.SmoothScroller_1
 description: Provides the core methods to create and load all of the library modules. 
 site_root:  ../
 ---
-
     
         <section>
         <h1 class="fw-300">Ink.UI.SmoothScroller_1 <small>version: 1</small></h1>
     
-
     
-
-    
-
-
     
 
 
     
 
     
-
-
-
     
+    
+            
+    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p>
+    
+    <table class="props bottom-space">
         
-<p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p>
+        <caption>Functions</caption>
+        <thead>
+            <tr>
+                <th>Function name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-add">
+                        
+                            .add
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    <p>Attaches an event for an element</p>
 
-<table class="props bottom-space">
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-end">
+                        
+                            .end
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    <p>Kill an event of an element</p>
 
-  <caption>Functions</caption>
-  <thead>
-  <tr>
-  <th>Function name</th>
-  <th>Description</th>
-  </tr>
-  </thead>
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-getTop">
+                        
+                            .getTop
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    <p>Returns the Y position of an element, relative to the document</p>
 
-  <tbody>
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-init">
+                        
+                            .init
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    <p>Has smooth scrolling applied to relevant elements upon page load.</p>
 
-  <tr>
-    <td>
-      <a href="#Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-add">
-  
-      .add
-  
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-onClick">
+                        
+                            .onClick
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    <p>Click handler</p>
 
-      </a>
-    </td>
-    <td>
-  
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-render">
+                        
+                            .render
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    <p>This method extracts all the anchors and validates them as # and attaches the events</p>
 
-  <p>Attaches an event for an element</p>
-
-
-  
-      
-    </td>
-    </tr>
-
-  <tr>
-    <td>
-      <a href="#Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-end">
-  
-      .end
-  
-
-      </a>
-    </td>
-    <td>
-  
-
-  <p>Kill an event of an element</p>
-
-
-  
-      
-    </td>
-    </tr>
-
-  <tr>
-    <td>
-      <a href="#Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-getTop">
-  
-      .getTop
-  
-
-      </a>
-    </td>
-    <td>
-  
-
-  <p>Returns the Y position of an element, relative to the document</p>
-
-
-  
-      
-    </td>
-    </tr>
-
-  <tr>
-    <td>
-      <a href="#Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-init">
-  
-      .init
-  
-
-      </a>
-    </td>
-    <td>
-  
-
-  <p>Has smooth scrolling applied to relevant elements upon page load.</p>
-
-
-  
-      
-    </td>
-    </tr>
-
-  <tr>
-    <td>
-      <a href="#Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-onClick">
-  
-      .onClick
-  
-
-      </a>
-    </td>
-    <td>
-  
-
-  <p>Click handler</p>
-
-
-  
-      
-    </td>
-    </tr>
-
-  <tr>
-    <td>
-      <a href="#Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-render">
-  
-      .render
-  
-
-      </a>
-    </td>
-    <td>
-  
-
-  <p>This method extracts all the anchors and validates them as # and attaches the events</p>
-
-
-  
-      
-    </td>
-    </tr>
-
-  <tr>
-    <td>
-      <a href="#Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-scroll">
-  
-      .scroll
-  
-
-      </a>
-    </td>
-    <td>
-  
-
-  <p>Moves the scrollbar to the target element. This is the function
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-scroll">
+                        
+                            .scroll
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    <p>Moves the scrollbar to the target element. This is the function
 which animates the scroll position bit by bit. It calls itself in
 the end through requestAnimationFrame</p>
 
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-scrollTop">
+                        
+                            .scrollTop
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    <p>Returns the current scroll position</p>
 
-  
-      
-    </td>
-    </tr>
+                    
+                    
+                </td>
+            </tr>
+        
+        </tbody>
+    </table>
+    
+    
+    <table class="props">
+        <caption>Properties</caption>
+        <thead>
+            <tr>
+                <th>Property name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            <tr>
+                <td><a href="#Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-speed">.speed</a></td>
+                <td>
+                    
+                    
+                        <p>Sets the speed of the scrolling</p>
 
-  <tr>
-    <td>
-      <a href="#Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-scrollTop">
-  
-      .scrollTop
-  
-
-      </a>
-    </td>
-    <td>
-  
-
-  <p>Returns the current scroll position</p>
-
-
-  
-      
-    </td>
-    </tr>
-
-</tbody>
-</table>
-
-
-
-<table class="props">
-<caption>Properties</caption>
-<thead>
-<tr>
-<th>Property name</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-
-<tr>
-<td><a href="#Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-speed">.speed</a></td>
-<td>
-
-
-
-<p>Sets the speed of the scrolling</p>
-
-
-
-
-<span class="ink-label orange uppercase">Number</span>
-
-
-</td>
-</tr>
-
-</tbody>
-</table>
-
+                    
+                    
+                        <span class="ink-label orange uppercase">Number</span>
+                    
+                    
+                </td>
+            </tr>
+            
+        </tbody>
+    </table>
+    
 </section>
 
 
 
 
-
-
-
-<section id="Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-add" class="box box-function">
-
+    <section id="Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-add" class="box box-function">
     <h1 class="fw-300">
     
         
@@ -260,7 +221,6 @@ the end through requestAnimationFrame</p>
         
     
     </h1>
-
     
     <ul class="props inline">
         <li class="heading">Arguments:</li>
@@ -311,7 +271,7 @@ the end through requestAnimationFrame</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">el
                 
@@ -330,7 +290,7 @@ the end through requestAnimationFrame</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">event
                 
@@ -349,7 +309,7 @@ the end through requestAnimationFrame</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">fn
                 
@@ -363,7 +323,7 @@ the end through requestAnimationFrame</p>
         
         </dl>
         
-        
+
 
     
 
@@ -375,8 +335,8 @@ the end through requestAnimationFrame</p>
 
 </section>
 
-<section id="Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-end" class="box box-function">
 
+    <section id="Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-end" class="box box-function">
     <h1 class="fw-300">
     
         
@@ -390,7 +350,6 @@ the end through requestAnimationFrame</p>
         
     
     </h1>
-
     
     <ul class="props inline">
         <li class="heading">Arguments:</li>
@@ -425,7 +384,7 @@ the end through requestAnimationFrame</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">e
                 
@@ -439,7 +398,7 @@ the end through requestAnimationFrame</p>
         
         </dl>
         
-        
+
 
     
 
@@ -451,8 +410,8 @@ the end through requestAnimationFrame</p>
 
 </section>
 
-<section id="Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-getTop" class="box box-function">
 
+    <section id="Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-getTop" class="box box-function">
     <h1 class="fw-300">
     
         
@@ -466,7 +425,6 @@ the end through requestAnimationFrame</p>
         
     
     </h1>
-
     
     <ul class="props inline">
         <li class="heading">Arguments:</li>
@@ -501,7 +459,7 @@ the end through requestAnimationFrame</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">d
                 
@@ -519,15 +477,15 @@ the end through requestAnimationFrame</p>
         <dl>
             <dt class="return">
                 <code>Number</code>
-            </dt>                
-            <dd>   
+            </dt>
+            <dd>
                 
                     
                 
             </dd>
         </dl>
         
-        
+
 
     
 
@@ -539,8 +497,8 @@ the end through requestAnimationFrame</p>
 
 </section>
 
-<section id="Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-init" class="box box-function">
 
+    <section id="Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-init" class="box box-function">
     <h1 class="fw-300">
     
         
@@ -554,7 +512,6 @@ the end through requestAnimationFrame</p>
         
     
     </h1>
-
     
     <ul class="props inline">
         <li class="heading">Arguments:</li>
@@ -587,7 +544,7 @@ the end through requestAnimationFrame</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">[selector]
                 
@@ -603,7 +560,7 @@ the end through requestAnimationFrame</p>
         
         </dl>
         
-        
+
 
     
 
@@ -615,8 +572,8 @@ the end through requestAnimationFrame</p>
 
 </section>
 
-<section id="Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-onClick" class="box box-function">
 
+    <section id="Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-onClick" class="box box-function">
     <h1 class="fw-300">
     
         
@@ -630,7 +587,6 @@ the end through requestAnimationFrame</p>
         
     
     </h1>
-
     
 
     
@@ -651,8 +607,8 @@ the end through requestAnimationFrame</p>
 
 </section>
 
-<section id="Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-render" class="box box-function">
 
+    <section id="Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-render" class="box box-function">
     <h1 class="fw-300">
     
         
@@ -666,7 +622,6 @@ the end through requestAnimationFrame</p>
         
     
     </h1>
-
     
 
     
@@ -687,8 +642,8 @@ the end through requestAnimationFrame</p>
 
 </section>
 
-<section id="Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-scroll" class="box box-function">
 
+    <section id="Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-scroll" class="box box-function">
     <h1 class="fw-300">
     
         
@@ -702,7 +657,6 @@ the end through requestAnimationFrame</p>
         
     
     </h1>
-
     
     <ul class="props inline">
         <li class="heading">Arguments:</li>
@@ -739,7 +693,7 @@ the end through requestAnimationFrame</p>
             </dt>
             <dd>
                 
-                
+
                 
                 <label class="monospace">d
                 
@@ -753,7 +707,7 @@ the end through requestAnimationFrame</p>
         
         </dl>
         
-        
+
 
     
 
@@ -765,8 +719,8 @@ the end through requestAnimationFrame</p>
 
 </section>
 
-<section id="Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-scrollTop" class="box box-function">
 
+    <section id="Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-scrollTop" class="box box-function">
     <h1 class="fw-300">
     
         
@@ -780,7 +734,6 @@ the end through requestAnimationFrame</p>
         
     
     </h1>
-
     
 
     
@@ -803,7 +756,7 @@ the end through requestAnimationFrame</p>
 
 
 
-<section class="box box-attribute">
+    <section class="box box-attribute">
     <h1 class="fw-300">
     
        Ink.UI.SmoothScroller.speed
@@ -824,8 +777,5 @@ the end through requestAnimationFrame</p>
 
 
     
-
     
-
     
-
