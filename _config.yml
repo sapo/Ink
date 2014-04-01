@@ -20,9 +20,9 @@ download_src_url: https://github.com/sapo/Ink/archive/
 repo_url: https://github.com/sapo/Ink/
 
 # ASSETS PATHS
-images_path: assets/img/
-js_path: assets/js/
-css_path: assets/css/
+images_path: /assets/img/
+js_path: /assets/js/
+css_path: /assets/css/
 
 sections:
   - title: UI Elements
