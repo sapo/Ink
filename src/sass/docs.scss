@@ -422,6 +422,8 @@ body.ink-drawer {
     padding: 3em 0 2em;
     font-size: 1.25em;
 
+    h1 { margin:  .1em 0; }
+
     p {
         margin: 0 0 1em;
         font-weight: 300;
@@ -433,7 +435,7 @@ body.ink-drawer {
     }
 
     .border {
-        background-image: url("#{$img-path}home_bkg.png") center 0px;
+        background: url("#{$img-path}home_bkg.png") center 0px;
         @include background-image(linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57));
         clear: both;
         margin: 0;
@@ -796,7 +798,7 @@ footer {
 
 $ink: darken($code-background,25%);
 $what: #709DC7;
-$why: lighten(#8F65C5,10%);
+$showcase: #A5AD85;
 $download: lighten(#C04343,10%);
 $who: lighten(#CA8A4E,10%);
 
@@ -855,10 +857,15 @@ $who: lighten(#CA8A4E,10%);
 
     }
 
-    section.why {
-      background: $why;
-      @include background-image(radial-gradient($why, darken($why,20%)));
+    section.showcase {
+      background: $showcase;
+      @include background-image(radial-gradient($showcase, darken($showcase,30%)));
       @include text-color($white,h1,h2,h3,p,ul);
+
+    
+        img {
+            border: $text-color 1px solid;
+        }
 
 
       .ink-grid {
@@ -943,7 +950,19 @@ $who: lighten(#CA8A4E,10%);
   }
 }
 
+p.loader {
+    display: none;
+    &.show {
+        display: block;
+    }
+}
+
 #search-results {
+
+    .nope {
+        word-break: break-all;
+    }
+
     display: none;
     &.show {
         display: block;
@@ -963,8 +982,21 @@ $who: lighten(#CA8A4E,10%);
       @include border-radius($border-radius);
       margin-bottom: 1.5em;
       em {
-        background: yellow;
+        background: rgba(255, 0, 0, 0.1);
         padding: 0 .5em;
       }
     }
+}
+
+@media screen and (min-width: 641px) and (max-width: 960px) {
+    #topbar .ink-navigation ul.black li.logoPlaceholder {float: right;}
+}
+
+@media screen and (min-width: 321px) and (max-width: 640px) {
+    #topbar .ink-navigation ul.black li.logoPlaceholder {float: right;}
+}
+
+@media screen and (max-width: 320px) {
+    #topbar .ink-navigation ul.black li.logoPlaceholder {float: right;}
+
 }

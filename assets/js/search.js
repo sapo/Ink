@@ -1,95 +1,3 @@
-// Ink.requireModules(['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Dom.Event_1','Ink.Util.Json_1','Ink.Util.Url_1'],function(ajax,css,elm,sel,ev,json,url){
-//
-//
-//
-//   function addEvent(selector) {
-//     if(typeof(selector) === 'string') {
-//       var elm = Ink.ss(selector);
-//     } else {
-//       var elm = selector;
-//     }
-//
-//     ev.observeMulti(elm, 'submit', function(event) {
-//
-//       var currentUrl = url.parseUrl(url.getUrl());
-//
-//       if(currentUrl.path === '/search/') {
-//         event.preventDefault();
-//       }
-//
-//       var searchString = Ink.s('.search-field');
-//
-//       if(searchString.value !== ''){
-//         doRequest(searchString.value);
-//       }
-//
-//     });
-//   };
-//
-//   function fillSearchInput(selector){
-//     var qs = url.getQueryString(url.getUrl());
-//     var searchFields = Ink.ss(selector);
-//     if(qs.search){
-//       for(var i=0; i<searchFields.length; i++){
-//       if(searchFields[i].value === "") {
-//           searchFields[i].value = qs.search;
-//         }
-//       }
-//     }
-//
-//   }
-//
-//   var doOnSuccess = function(json) {
-//
-//     console.log(json);
-//
-//     Ink.log(json);
-//     if(response.numFound === 0) {
-//       return;
-//     }
-//
-//     var pages = json.response.docs;
-//     var highlights = json.highlights;
-//
-//     var cur;
-//     for(var i=0, t=pages.length; i < t; i++) {
-//       cur = pages[i];
-//       Ink.log(cur);
-//       Ink.log(highlights[cur.RSSWorksId])
-//     }
-//
-//   }
-//
-//   function doRequest(value) {
-//
-//     console.log('search: ' + value);
-//
-//     var request = new ajax(
-//       'http://services.sapo.pt/RSS/Feed/site/ink',
-//       {
-//         method: 'get',
-//         cors: true,
-//         paramenters: 'wt=json&indent=on&fl=Title,Url,RSSWorksId&hl=true&q='+encodeURIComponent(value),
-//         onSuccess: function(req) {
-//           if(req.responseJSON) {
-//             var json = req.responseJSON;
-//             doOnSuccess(req);
-//           }
-//         },
-//         onFailure: function () {
-//           Ink.warn('failed')
-//         }
-//       }
-//       );
-//   }
-//
-//   addEvent('.docsearch');
-//   fillSearchInput('.search-field');
-//
-//
-// });
-
-
 Ink.requireModules(['Ink.Net.Ajax_1', 'Ink.Dom.Event_1', 'Ink.Util.Url_1', 'Ink.Util.Json_1','Ink.Dom.Css_1','Ink.Dom.Element_1'], function(InkAjax, InkEvent, UtilUrl, UtilJson, InkCss, InkElement) {
 
 
@@ -106,10 +14,10 @@ Ink.requireModules(['Ink.Net.Ajax_1', 'Ink.Dom.Event_1', 'Ink.Util.Url_1', 'Ink.
     }
 
     function processResponse(json) {
+        var results = Ink.s('#search-results');
         if(json && json.response && json.response.numFound > 0) {
             var docs = json.response.docs;
-            var cur, hlId, results, resultsList;
-            results = Ink.s('#search-results');
+            var cur, hlId, resultsList;
             resultsList = InkElement.create('ul',{
                 className: 'results-list unstyled',
                 insertBottom: results
@@ -122,11 +30,18 @@ Ink.requireModules(['Ink.Net.Ajax_1', 'Ink.Dom.Event_1', 'Ink.Util.Url_1', 'Ink.
                 hlId = json.highlighting[cur.RSSWorksId];
                 var result = InkElement.create('li',{
                   className: 'result-item',
-                  insertBottom: resultsList
+                  insertBottom: resultsList,
+                  setHTML: '<h2><a href="'+cur.Url+'" title="'+cur.Title+'">'+cur.Title+'</a></h2><div class="result-snippet">'+hlId.Content[0]+'</div>'
                 });
-                result.innerHTML = '<h2><a href="'+cur.Url+'" title="'+cur.Title+'">'+cur.Title+'</a></h2><div class="result-snippet">'+hlId.Content[0]+'</div>';
                 InkCss.addClassName(result,'show');
             }
+        } else {
+            InkCss.addClassName(results,'show');
+            var noResults = InkElement.create('p',{
+                insertBottom: results,
+                className: 'nope',
+                setHTML: "We're sorry, but we could not find any matches for <strong>" + curQS.search + "</strong>."
+            });
         }
     }
 
@@ -140,6 +55,9 @@ Ink.requireModules(['Ink.Net.Ajax_1', 'Ink.Dom.Event_1', 'Ink.Util.Url_1', 'Ink.
                     method: 'GET',
                     parameters: 'wt=json&indent=on&hl=true&fl=Title,Url,RSSWorksId&q='+encodeURIComponent(value),
                     cors: true,
+                    onCreate: function(){
+                        handleLoader('show');
+                    },
                     onSuccess: function(obj) {
                         if(obj.responseText) {
                             var req = obj.responseText;
@@ -147,11 +65,27 @@ Ink.requireModules(['Ink.Net.Ajax_1', 'Ink.Dom.Event_1', 'Ink.Util.Url_1', 'Ink.
                             processResponse(json);
                             Ink.log(json);
                         }
+                        handleLoader();
                     },
                     onFailure: function() {
-                        Ink.warn('failed request');
+                        var results = Ink.s('#search-results');
+                        InkCss.addClassName(results,'show');
+                        var noResults = InkElement.create('p',{
+                            className: 'nope',
+                            insertBottom: results,
+                            setTextContent: "Oops, something went wrong!"
+                        });
                     }
                 });
+    }
+
+    function handleLoader(action) {
+        var loader = Ink.s('.loader');
+        if(action === 'show'){
+            InkCss.addClassName(loader,'show');
+        } else {
+            InkCss.removeClassName(loader,'show');
+        }
     }
 
     function fillSearchInput(selector){
@@ -164,6 +98,7 @@ Ink.requireModules(['Ink.Net.Ajax_1', 'Ink.Dom.Event_1', 'Ink.Util.Url_1', 'Ink.
               searchFields[i].value = qs.search;
             }
           }
+          Ink.s('.search-field.main').focus();
         }
       }
     }

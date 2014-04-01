@@ -4,7 +4,7 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     // We need to generate the includes folder so inkdoc doesn't go bad
-    jsFolder: grunt.file.mkdir('_includes/js'), 
+    jsFolder: grunt.file.mkdir('_includes/js'),
     ink: {
       folders: {
         js: {
@@ -173,12 +173,21 @@ module.exports = function(grunt) {
               expand: true,
               cwd: '_includes/js/',
               src: ['Ink_Autoload.html'],
-              dest: 'javascript/Autoload',
+              dest: 'javascript/Autoload/',
               filter: 'isFile',
               rename: function(dest,fileName){
                 return dest + 'index.html';
               }
           },
+
+          {
+            expand: true,
+            cwd: '_includes/js/',
+            src: ['index.html'],
+            dest: 'javascript/',
+            filter: 'isFile'
+          },
+
           {
             expand: true,
             cwd: '_includes/js/',
@@ -186,7 +195,7 @@ module.exports = function(grunt) {
             dest: 'javascript/',
             filter: 'isFile',
             rename: function(dest,fileName){
-              return dest+fileName.replace('.html','index.html').replace('Ink_', '').replace('1', '').replace('_2', '2_').split('_').join('/');
+               return dest+fileName.replace('.html','').replace('_1','').replace(/[_]+/g,'.')+'/index.html';
             }
         }
         ]

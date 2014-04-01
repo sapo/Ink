@@ -110,8 +110,14 @@
 }
 
 .clearfix {
+  *zoom: 1;
   overflow: hidden;
   *zoom: 1;
+}
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
 /*! normalize.css v3.0.0 | MIT License | git.io/normalize */
@@ -5773,8 +5779,7 @@ table.ink-table {
 }
 table.ink-table tr th {
   padding: 5px 10px;
-  font-weight: 700;
-  line-height: 2;
+  line-height: 1.3;
 }
 table.ink-table tr th[data-sortable="true"]:hover {
   cursor: pointer;
@@ -5788,7 +5793,7 @@ table.ink-table tr th[data-sortable="true"] i {
 }
 table.ink-table tr td {
   padding: 5px 10px;
-  line-height: 2;
+  line-height: 1.3;
 }
 table.ink-table.hover tbody tr:hover {
   cursor: pointer;
@@ -5954,6 +5959,12 @@ h6 {
 }
 
 p {
+  font-size: 1em;
+  margin-top: 0;
+  margin-bottom: 1.26585em;
+}
+
+table {
   font-size: 1em;
   margin-top: 0;
   margin-bottom: 1.26585em;

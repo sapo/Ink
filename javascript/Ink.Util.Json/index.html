@@ -1,0 +1,349 @@
+---
+layout: js-documentation
+title: Ink.Util.Json_1
+description: Provides the core methods to create and load all of the library modules. 
+site_root:  ../
+---
+    
+        <section>
+        <h1 class="fw-300">Ink.Util.Json_1 <small>version: 1</small></h1>
+    
+    
+    
+
+
+    
+
+    
+    
+    
+            
+    <p><p>Use this class to convert JSON strings to JavaScript objects
+<code>(Json.parse)</code> and also to do the opposite operation <code>(Json.stringify)</code>.
+Internally, the standard JSON implementation is used if available
+Otherwise, the functions mimic the standard implementation.</p>
+<p>Here&#39;s how to produce JSON from an existing object:</p>
+<pre><code> Ink.requireModules([&#39;Ink.Util.Json_1&#39;], function (Json) {
+     var obj = {
+         key1: &#39;value1&#39;,
+         key2: &#39;value2&#39;,
+         keyArray: [&#39;arrayValue1&#39;, &#39;arrayValue2&#39;, &#39;arrayValue3&#39;]
+     };
+     Json.stringify(obj);  // The above object as a JSON string
+ });
+</code></pre><p>And here is how to parse JSON:</p>
+<pre><code> Ink.requireModules([&#39;Ink.Util.Json_1&#39;], function (Json) {
+     var source = &#39;{&quot;key&quot;: &quot;value&quot;, &quot;array&quot;: [true, null, false]}&#39;;
+     Json.parse(source);  // The above JSON string as an object
+ });
+</code></pre></p>
+    
+    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p>
+    
+    <table class="props bottom-space">
+        
+        <caption>Functions</caption>
+        <thead>
+            <tr>
+                <th>Function name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Json_1-Ink_Util_Json-parse">
+                        
+                            .parse
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    <p>Parses a JSON text through a function</p>
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Json_1-Ink_Util_Json-stringify">
+                        
+                            .stringify
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    <p>Serializes a JSON object into a string.</p>
+
+                    
+                    
+                </td>
+            </tr>
+        
+        </tbody>
+    </table>
+    
+    
+</section>
+
+
+
+
+    <section id="Ink_Util_Json_1-Ink_Util_Json-parse" class="box box-function">
+    <h1 class="fw-300">
+    
+        
+            .parse
+        
+    
+    (text, reviver)
+    
+        
+            <i>method</i>
+        
+    
+    </h1>
+    
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        text
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        
+        reviver
+        
+        
+        </li>
+        
+    </ul>
+    
+
+    
+    
+
+    
+        <p class="text"><p>Parses a JSON text through a function</p>
+</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+
+                
+                <label class="monospace">text
+                
+
+                
+                </label>
+                
+                    {String}    Input string
+                
+            </dd>
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+
+                
+                <label class="monospace">reviver
+                
+
+                
+                </label>
+                
+                    {Function}  Function receiving `(key, value)`, and `this`=(containing object), used to walk objects.
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>Object</code>
+            </dt>
+            <dd>
+                
+                    
+                
+            </dd>
+        </dl>
+        
+
+
+    
+
+
+    
+<p class="example-title">Example</p>
+  
+{% highlight html %}{% raw %}
+Simple example:
+
+     Json.parse('{"a": "3","numbers":false}',
+         function (key, value) {
+             if (!this.numbers && key === 'a') {
+                 return "NO NUMBERS";
+             } else {
+                 return value;
+             }
+         }); // -> object: {a: 'NO NUMBERS', numbers: false}
+{% endraw %}{% endhighlight %}
+
+
+
+
+    
+
+</section>
+
+
+    <section id="Ink_Util_Json_1-Ink_Util_Json-stringify" class="box box-function">
+    <h1 class="fw-300">
+    
+        
+            .stringify
+        
+    
+    (input, convertToUnicode)
+    
+        
+            <i>method</i>
+        
+    
+    </h1>
+    
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        input
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        
+        convertToUnicode
+        
+        
+        </li>
+        
+    </ul>
+    
+
+    
+    
+
+    
+        <p class="text"><p>Serializes a JSON object into a string.</p>
+</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>Object</code>
+                
+            </dt>
+            <dd>
+                
+
+                
+                <label class="monospace">input
+                
+
+                
+                </label>
+                
+                    Data to be serialized into JSON
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Boolean</code>
+                
+            </dt>
+            <dd>
+                
+
+                
+                <label class="monospace">convertToUnicode
+                
+
+                
+                </label>
+                
+                    When `true`, converts string contents to unicode \uXXXX
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>String</code>
+            </dt>
+            <dd>
+                
+                    
+                
+            </dd>
+        </dl>
+        
+
+
+    
+
+
+    
+<p class="example-title">Example</p>
+  
+{% highlight html %}{% raw %}
+     Json.stringify({a:1.23}); // -> string: '{"a": 1.23}'
+{% endraw %}{% endhighlight %}
+
+
+
+
+    
+
+</section>
+
+
+
+
+    
+    
+    

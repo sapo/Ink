@@ -1,0 +1,1679 @@
+---
+layout: js-documentation
+title: Ink.Util.Array_1
+description: Provides the core methods to create and load all of the library modules. 
+site_root:  ../
+---
+    
+        <section>
+        <h1 class="fw-300">Ink.Util.Array_1 <small>version: 1</small></h1>
+    
+    
+    
+
+
+    
+
+    
+        <h2>Defined functions:</h2>
+        <ul class="unstyled">
+        
+            <li><a href="#Ink_Util_Array_1-convert">
+            
+                Ink.Util.Array_1.convert
+            
+            (arr)</a></li>
+        
+            <li><a href="#Ink_Util_Array_1-each">
+            
+                Ink.Util.Array_1.each
+            
+            ()</a></li>
+        
+            <li><a href="#Ink_Util_Array_1-forEach">
+            
+                Ink.Util.Array_1.forEach
+            
+            (arr, cb)</a></li>
+        
+            <li><a href="#Ink_Util_Array_1-inArray">
+            
+                Ink.Util.Array_1.inArray
+            
+            (value, arr)</a></li>
+        
+            <li><a href="#Ink_Util_Array_1-insert">
+            
+                Ink.Util.Array_1.insert
+            
+            (arr, idx, value)</a></li>
+        
+            <li><a href="#Ink_Util_Array_1-intersect">
+            
+                Ink.Util.Array_1.intersect
+            
+            (arr1, arr2)</a></li>
+        
+            <li><a href="#Ink_Util_Array_1-keyValue">
+            
+                Ink.Util.Array_1.keyValue
+            
+            (value, arr, [first])</a></li>
+        
+            <li><a href="#Ink_Util_Array_1-map">
+            
+                Ink.Util.Array_1.map
+            
+            (array, map, [context], array, test, [context])</a></li>
+        
+            <li><a href="#Ink_Util_Array_1-remove">
+            
+                Ink.Util.Array_1.remove
+            
+            (arr, from, rLen)</a></li>
+        
+            <li><a href="#Ink_Util_Array_1-shuffle">
+            
+                Ink.Util.Array_1.shuffle
+            
+            (arr)</a></li>
+        
+            <li><a href="#Ink_Util_Array_1-some">
+            
+                Ink.Util.Array_1.some
+            
+            (arr, cb, context)</a></li>
+        
+            <li><a href="#Ink_Util_Array_1-sortMulti">
+            
+                Ink.Util.Array_1.sortMulti
+            
+            (arr, key)</a></li>
+        
+        </ul>
+    
+    
+    
+    
+        <section id="Ink_Util_Array_1-convert" class="box box-function">
+    <h1 class="fw-300">
+    
+        
+            .convert
+        
+    
+    (arr)
+    
+        
+            <i>function</i>
+        
+    
+    </h1>
+    
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        arr
+        
+        
+        </li>
+        
+    </ul>
+    
+
+    
+    
+
+    
+        <p class="text"><p>Converts an array-like object to an array</p>
+</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>Array</code>
+                
+            </dt>
+            <dd>
+                
+
+                
+                <label class="monospace">arr
+                
+
+                
+                </label>
+                
+                    Array to be converted
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>Array</code>
+            </dt>
+            <dd>
+                
+                    
+                
+            </dd>
+        </dl>
+        
+
+
+    
+
+
+    
+<p class="example-title">Example</p>
+  
+{% highlight html %}{% raw %}
+    Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
+        var testArray = [ 'value1', 'value2' ];
+        testArray.myMethod = function(){
+            console.log('stuff');
+        }
+
+        console.log( InkArray.convert( testArray ) ); // Result: [ 'value1', 'value2' ]
+    });
+{% endraw %}{% endhighlight %}
+
+
+
+
+    
+
+</section>
+
+    
+        <section id="Ink_Util_Array_1-each" class="box box-function">
+    <h1 class="fw-300">
+    
+        
+            .each
+        
+    
+    ()
+    
+        
+            <i>function</i>
+        
+    
+    </h1>
+    
+
+    
+    
+
+    
+        <p class="text"><p>Alias for backwards compatibility. See forEach</p>
+</p>
+    
+
+    
+
+
+    
+
+
+    
+
+</section>
+
+    
+        <section id="Ink_Util_Array_1-forEach" class="box box-function">
+    <h1 class="fw-300">
+    
+        
+            .forEach
+        
+    
+    (arr, cb)
+    
+        
+            <i>function</i>
+        
+    
+    </h1>
+    
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        arr
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        
+        cb
+        
+        
+        </li>
+        
+    </ul>
+    
+
+    
+    
+
+    
+        <p class="text"><p>Runs a function through each of the elements of an array</p>
+</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>Array</code>
+                
+            </dt>
+            <dd>
+                
+
+                
+                <label class="monospace">arr
+                
+
+                
+                </label>
+                
+                    The array to be cycled/iterated
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Function</code>
+                
+            </dt>
+            <dd>
+                
+
+                
+                <label class="monospace">cb
+                
+
+                
+                </label>
+                
+                    The function receives as arguments the value, index and array.
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>Array</code>
+            </dt>
+            <dd>
+                
+                    
+                
+            </dd>
+        </dl>
+        
+
+
+    
+
+
+    
+<p class="example-title">Example</p>
+  
+{% highlight html %}{% raw %}
+    Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
+        var testArray = [ 'value1', 'value2', 'value3', 'value2' ];
+        InkArray.forEach( testArray, function( value, index, arr ){
+            console.log( 'The value is: ' + value + ' | The index is: ' + index );
+        });
+    });
+{% endraw %}{% endhighlight %}
+
+
+
+
+    
+
+</section>
+
+    
+        <section id="Ink_Util_Array_1-inArray" class="box box-function">
+    <h1 class="fw-300">
+    
+        
+            .inArray
+        
+    
+    (value, arr)
+    
+        
+            <i>function</i>
+        
+    
+    </h1>
+    
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        value
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        
+        arr
+        
+        
+        </li>
+        
+    </ul>
+    
+
+    
+    
+
+    
+        <p class="text"><p>Checks if a value exists in array</p>
+</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>Mixed</code>
+                
+            </dt>
+            <dd>
+                
+
+                
+                <label class="monospace">value
+                
+
+                
+                </label>
+                
+                    Value to check
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Array</code>
+                
+            </dt>
+            <dd>
+                
+
+                
+                <label class="monospace">arr
+                
+
+                
+                </label>
+                
+                    Array to search in
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>Boolean</code>
+            </dt>
+            <dd>
+                
+                    
+                
+            </dd>
+        </dl>
+        
+
+
+    
+
+
+    
+<p class="example-title">Example</p>
+  
+{% highlight html %}{% raw %}
+    Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
+        var testArray = [ 'value1', 'value2', 'value3' ];
+        if( InkArray.inArray( 'value2', testArray ) === true ){
+            console.log( "Yep it's in the array." );
+        } else {
+            console.log( "No it's NOT in the array." );
+        }
+    });
+{% endraw %}{% endhighlight %}
+
+
+
+
+    
+
+</section>
+
+    
+        <section id="Ink_Util_Array_1-insert" class="box box-function">
+    <h1 class="fw-300">
+    
+        
+            .insert
+        
+    
+    (arr, idx, value)
+    
+        
+            <i>function</i>
+        
+    
+    </h1>
+    
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        arr
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        
+        idx
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        
+        value
+        
+        
+        </li>
+        
+    </ul>
+    
+
+    
+    
+
+    
+        <p class="text"><p>Inserts a value on a specified index</p>
+</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>Array</code>
+                
+            </dt>
+            <dd>
+                
+
+                
+                <label class="monospace">arr
+                
+
+                
+                </label>
+                
+                    Array where the value will be inserted
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Number</code>
+                
+            </dt>
+            <dd>
+                
+
+                
+                <label class="monospace">idx
+                
+
+                
+                </label>
+                
+                    Index of the array where the value should be inserted
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Mixed</code>
+                
+            </dt>
+            <dd>
+                
+
+                
+                <label class="monospace">value
+                
+
+                
+                </label>
+                
+                    Value to be inserted
+                
+            </dd>
+        
+        </dl>
+        
+
+
+    
+
+
+    
+<p class="example-title">Example</p>
+  
+{% highlight html %}{% raw %}
+    Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
+        var testArray = [ 'value1', 'value2' ];
+        console.log( InkArray.insert( testArray, 1, 'value3' ) ); // Result: [ 'value1', 'value3', 'value2' ]
+    });
+{% endraw %}{% endhighlight %}
+
+
+
+
+    
+
+</section>
+
+    
+        <section id="Ink_Util_Array_1-intersect" class="box box-function">
+    <h1 class="fw-300">
+    
+        
+            .intersect
+        
+    
+    (arr1, arr2)
+    
+        
+            <i>function</i>
+        
+    
+    </h1>
+    
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        arr1
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        
+        arr2
+        
+        
+        </li>
+        
+    </ul>
+    
+
+    
+    
+
+    
+        <p class="text"><p>Compares the values of two arrays and return the matches</p>
+</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>Array</code>
+                
+            </dt>
+            <dd>
+                
+
+                
+                <label class="monospace">arr1
+                
+
+                
+                </label>
+                
+                    First array
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Array</code>
+                
+            </dt>
+            <dd>
+                
+
+                
+                <label class="monospace">arr2
+                
+
+                
+                </label>
+                
+                    Second array
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>Array</code>
+            </dt>
+            <dd>
+                
+                    
+                
+            </dd>
+        </dl>
+        
+
+
+    
+
+
+    
+<p class="example-title">Example</p>
+  
+{% highlight html %}{% raw %}
+    Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
+        var testArray1 = [ 'value1', 'value2', 'value3' ];
+        var testArray2 = [ 'value2', 'value3', 'value4', 'value5', 'value6' ];
+        console.log( InkArray.intersect( testArray1,testArray2 ) ); // Result: [ 'value2', 'value3' ]
+    });
+{% endraw %}{% endhighlight %}
+
+
+
+
+    
+
+</section>
+
+    
+        <section id="Ink_Util_Array_1-keyValue" class="box box-function">
+    <h1 class="fw-300">
+    
+        
+            .keyValue
+        
+    
+    (value, arr, [first])
+    
+        
+            <i>function</i>
+        
+    
+    </h1>
+    
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        value
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        
+        arr
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        [
+        first
+        ]
+        
+        </li>
+        
+    </ul>
+    
+
+    
+    
+
+    
+        <p class="text"><p>Gets the indexes of a value in an array</p>
+</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+
+                
+                <label class="monospace">value
+                
+
+                
+                </label>
+                
+                    Value to search for.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Array</code>
+                
+            </dt>
+            <dd>
+                
+
+                
+                <label class="monospace">arr
+                
+
+                
+                </label>
+                
+                    Array to run the search in.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Boolean</code>
+                
+            </dt>
+            <dd>
+                
+
+                
+                <label class="monospace">[first]
+                
+
+                
+                </label>
+                
+                    Flag to stop the search at the first match. It also returns an index number instead of an array of indexes.
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>Boolean|Number|Array</code>
+            </dt>
+            <dd>
+                
+                    
+                
+            </dd>
+        </dl>
+        
+
+
+    
+
+
+    
+<p class="example-title">Example</p>
+  
+{% highlight html %}{% raw %}
+    Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
+        var testArray = [ 'value1', 'value2', 'value3', 'value2' ];
+        console.log( InkArray.keyValue( 'value2', testArray, true ) ); // Result: 1
+        console.log( InkArray.keyValue( 'value2', testArray ) ); // Result: [1, 3]
+    });
+{% endraw %}{% endhighlight %}
+
+
+
+
+    
+
+</section>
+
+    
+        <section id="Ink_Util_Array_1-map" class="box box-function">
+    <h1 class="fw-300">
+    
+        
+            .map
+        
+    
+    (array, map, [context], array, test, [context])
+    
+        
+            <i>function</i>
+        
+    
+    </h1>
+    
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        array
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        
+        map
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        [
+        context
+        ]
+        
+        </li>
+        
+        <li class="prop">
+        
+        
+        array
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        
+        test
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        [
+        context
+        ]
+        
+        </li>
+        
+    </ul>
+    
+
+    
+    
+
+    
+        <p class="text"><p>Runs a function for each item in the array. 
+That function will receive each item as an argument and its return value will change the corresponding array item.</p>
+</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>Array</code>
+                
+            </dt>
+            <dd>
+                
+
+                
+                <label class="monospace">array
+                
+
+                
+                </label>
+                
+                    The array to map over
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Function</code>
+                
+            </dt>
+            <dd>
+                
+
+                
+                <label class="monospace">map
+                
+
+                
+                </label>
+                
+                    The map function. Will take `(item, index, array)` as arguments and `this` will be the `context` argument.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Object</code>
+                
+            </dt>
+            <dd>
+                
+
+                
+                <label class="monospace">[context]
+                
+
+                
+                </label>
+                
+                    Object to be `this` in the map function.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Array</code>
+                
+            </dt>
+            <dd>
+                
+
+                
+                <label class="monospace">array
+                
+
+                
+                </label>
+                
+                    The array to filter
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Function</code>
+                
+            </dt>
+            <dd>
+                
+
+                
+                <label class="monospace">test
+                
+
+                
+                </label>
+                
+                    A test function taking `(item, index, array)`
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Object</code>
+                
+            </dt>
+            <dd>
+                
+
+                
+                <label class="monospace">[context]
+                
+
+                
+                </label>
+                
+                    Object to be `this` in the test function.
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>Array</code>
+            </dt>
+            <dd>
+                
+                    
+                
+            </dd>
+        </dl>
+        
+
+
+    
+
+
+    
+<p class="example-title">Example</p>
+  
+{% highlight html %}{% raw %}
+     InkArray.map([1, 2, 3, 4], function (item) {
+         return item + 1;
+     }); // -> [2, 3, 4, 5]
+{% endraw %}{% endhighlight %}
+  
+{% highlight html %}{% raw %}
+     InkArray.filter([1, 2, 3, 4, 5], function (val) {
+         return val > 2;
+     })  // -> [3, 4, 5]
+{% endraw %}{% endhighlight %}
+
+
+
+
+    
+
+</section>
+
+    
+        <section id="Ink_Util_Array_1-remove" class="box box-function">
+    <h1 class="fw-300">
+    
+        
+            .remove
+        
+    
+    (arr, from, rLen)
+    
+        
+            <i>function</i>
+        
+    
+    </h1>
+    
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        arr
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        
+        from
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        
+        rLen
+        
+        
+        </li>
+        
+    </ul>
+    
+
+    
+    
+
+    
+        <p class="text"><p>Removes a range of values from the array</p>
+</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>Array</code>
+                
+            </dt>
+            <dd>
+                
+
+                
+                <label class="monospace">arr
+                
+
+                
+                </label>
+                
+                    Array where the value will be removed
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Number</code>
+                
+            </dt>
+            <dd>
+                
+
+                
+                <label class="monospace">from
+                
+
+                
+                </label>
+                
+                    Index of the array where the removal will start removing.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Number</code>
+                
+            </dt>
+            <dd>
+                
+
+                
+                <label class="monospace">rLen
+                
+
+                
+                </label>
+                
+                    Number of items to be removed from the index onwards.
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>Array</code>
+            </dt>
+            <dd>
+                
+                    
+                
+            </dd>
+        </dl>
+        
+
+
+    
+
+
+    
+<p class="example-title">Example</p>
+  
+{% highlight html %}{% raw %}
+    Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
+        var testArray = [ 'value1', 'value2', 'value3', 'value4', 'value5' ];
+        console.log( InkArray.remove( testArray, 1, 3 ) ); // Result: [ 'value1', 'value4', 'value5' ]
+    });
+{% endraw %}{% endhighlight %}
+
+
+
+
+    
+
+</section>
+
+    
+        <section id="Ink_Util_Array_1-shuffle" class="box box-function">
+    <h1 class="fw-300">
+    
+        
+            .shuffle
+        
+    
+    (arr)
+    
+        
+            <i>function</i>
+        
+    
+    </h1>
+    
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        arr
+        
+        
+        </li>
+        
+    </ul>
+    
+
+    
+    
+
+    
+        <p class="text"><p>Shuffles an array.</p>
+</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>Array</code>
+                
+            </dt>
+            <dd>
+                
+
+                
+                <label class="monospace">arr
+                
+
+                
+                </label>
+                
+                    Array to shuffle
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>Array|Boolean</code>
+            </dt>
+            <dd>
+                
+                    
+                
+            </dd>
+        </dl>
+        
+
+
+    
+
+
+    
+<p class="example-title">Example</p>
+  
+{% highlight html %}{% raw %}
+    Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
+        var testArray = [ 'value1', 'value2', 'value3', 'value2' ];
+        console.log( InkArray.shuffle( testArray ) ); // Result example: [ 'value3', 'value2', 'value2', 'value1' ]
+    });
+{% endraw %}{% endhighlight %}
+
+
+
+
+    
+
+</section>
+
+    
+        <section id="Ink_Util_Array_1-some" class="box box-function">
+    <h1 class="fw-300">
+    
+        
+            .some
+        
+    
+    (arr, cb, context)
+    
+        
+            <i>function</i>
+        
+    
+    </h1>
+    
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        arr
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        
+        cb
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        
+        context
+        
+        
+        </li>
+        
+    </ul>
+    
+
+    
+    
+
+    
+        <p class="text"><p>Checks if some element in the array passes a truth test</p>
+</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>Array</code>
+                
+            </dt>
+            <dd>
+                
+
+                
+                <label class="monospace">arr
+                
+
+                
+                </label>
+                
+                    The array to iterate through
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Function</code>
+                
+            </dt>
+            <dd>
+                
+
+                
+                <label class="monospace">cb
+                
+
+                
+                </label>
+                
+                    The callback to be called on the array's elements. It receives the value, the index and the array as arguments.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Object</code>
+                
+            </dt>
+            <dd>
+                
+
+                
+                <label class="monospace">context
+                
+
+                
+                </label>
+                
+                    Object of the callback function
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>Boolean</code>
+            </dt>
+            <dd>
+                
+                    
+                
+            </dd>
+        </dl>
+        
+
+
+    
+
+
+    
+<p class="example-title">Example</p>
+  
+{% highlight html %}{% raw %}
+    Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
+        var testArray1 = [ 10, 20, 50, 100, 30 ];
+        var testArray2 = [ 1, 2, 3, 4, 5 ];
+
+        function myTestFunction( value, index, arr ){
+            if( value > 90 ){
+                return true;
+            }
+            return false;
+        }
+        console.log( InkArray.some( testArray1, myTestFunction, null ) ); // Result: true
+        console.log( InkArray.some( testArray2, myTestFunction, null ) ); // Result: false
+    });
+{% endraw %}{% endhighlight %}
+
+
+
+
+    
+
+</section>
+
+    
+        <section id="Ink_Util_Array_1-sortMulti" class="box box-function">
+    <h1 class="fw-300">
+    
+        
+            .sortMulti
+        
+    
+    (arr, key)
+    
+        
+            <i>function</i>
+        
+    
+    </h1>
+    
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        arr
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        
+        key
+        
+        
+        </li>
+        
+    </ul>
+    
+
+    
+    
+
+    
+        <p class="text"><p>Sorts an array of objects by an object property</p>
+</p>
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+                    <code>Array</code>
+                
+            </dt>
+            <dd>
+                
+
+                
+                <label class="monospace">arr
+                
+
+                
+                </label>
+                
+                    Array of objects to sort
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+
+                
+                <label class="monospace">key
+                
+
+                
+                </label>
+                
+                    Property to sort by
+                
+            </dd>
+        
+        </dl>
+        
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return">
+                <code>Array|Boolean</code>
+            </dt>
+            <dd>
+                
+                    
+                
+            </dd>
+        </dl>
+        
+
+
+    
+
+
+    
+<p class="example-title">Example</p>
+  
+{% highlight html %}{% raw %}
+    Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
+        var testArray = [
+            { 'myKey': 'value1' },
+            { 'myKey': 'value2' },
+            { 'myKey': 'value3' }
+        ];
+
+        InkArray.sortMulti( testArray, 'myKey' );
+    });
+{% endraw %}{% endhighlight %}
+
+
+
+
+    
+
+</section>
+
+    
+    

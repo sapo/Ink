@@ -20,9 +20,9 @@ download_src_url: https://github.com/sapo/Ink/archive/
 repo_url: https://github.com/sapo/Ink/
 
 # ASSETS PATHS
-images_path: assets/img/
-js_path: assets/js/
-css_path: assets/css/
+images_path: /assets/img/
+js_path: /assets/js/
+css_path: /assets/css/
 
 sections:
   - title: UI Elements
@@ -100,24 +100,9 @@ sections:
           - title: Reordering
   - title: Javascript
     components:
-      - title: Core
-        topics:
-          - title: Ink
-      - title: Dom manipulation
-        topics:
-          - title: Ink.Dom.Browser
-          - title: Ink.Dom.Css
-          - title: Ink.Dom.Element
-          - title: Ink.Dom.Event
-          - title: Ink.Dom.FormSerialize
-          - title: Ink.Dom.Loaded
-          - title: Ink.Dom.Selector
-      - title: Network communication
-        topics:
-          - title: Ink.Net.Ajax
-          - title: Ink.Net.JsonP
       - title: User interface
         topics:
+          - title: Ink.UI.Animate
           - title: Ink.UI.Carousel
           - title: Ink.UI.Close
           - title: Ink.UI.Common
@@ -140,6 +125,22 @@ sections:
           - title: Ink.UI.Toggle
           - title: Ink.UI.Tooltip
           - title: Ink.UI.TreeView
+      - title: Core
+        topics:
+          - title: Ink
+      - title: Dom manipulation
+        topics:
+          - title: Ink.Dom.Browser
+          - title: Ink.Dom.Css
+          - title: Ink.Dom.Element
+          - title: Ink.Dom.Event
+          - title: Ink.Dom.FormSerialize
+          - title: Ink.Dom.Loaded
+          - title: Ink.Dom.Selector
+      - title: Network communication
+        topics:
+          - title: Ink.Net.Ajax
+          - title: Ink.Net.JsonP
       - title: Utilities
         topics:
           - title: Ink.Util.Array

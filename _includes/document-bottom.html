@@ -12,7 +12,7 @@
     {% if site.environment == 'production' %}
     <script type="text/javascript" src="http://js.sapo.pt/SAPOWebAnalytics/"></script>    
     <script>
-      SAPO.WebAnalytics.track({swakt:"FC2C65EF-D60C-4BC2-9D76-251A50DADC3D"}); 
+      SAPO.WebAnalytics.track({swakt:"{{ site.analytics }}"}); 
       SAPO.WebAnalytics.registerClick();
     </script>
     <div id="fb-root"></div>

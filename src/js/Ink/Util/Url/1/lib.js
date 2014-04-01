@@ -25,7 +25,7 @@ Ink.createModule('Ink.Util.Url', '1', [], function() {
          * Gets URL of current page
          *
          * @method getUrl
-         * @return {String}    Current URL
+         * @return Current URL
          * @public
          * @static
          * @example

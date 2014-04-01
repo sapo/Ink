@@ -694,6 +694,9 @@ body.ink-drawer .right-drawer li:last-child {
   padding: 3em 0 2em;
   font-size: 1.25em;
 }
+.page-header h1 {
+  margin: .1em 0;
+}
 .page-header p {
   margin: 0 0 1em;
   font-weight: 300;
@@ -703,7 +706,7 @@ body.ink-drawer .right-drawer li:last-child {
   margin: 0;
 }
 .page-header .border {
-  background-image: url("../img/home_bkg.png") center 0px;
+  background: url("../img/home_bkg.png") center 0px;
   background-image: -webkit-gradient(linear, 0% 50%, 100% 50%, color-stop(0%, #e65d5b), color-stop(14%, #f3af32), color-stop(28%, #e6d168), color-stop(40%, #7bd369), color-stop(55%, #50c6a2), color-stop(70%, #a7d37c), color-stop(85%, #a7b958), color-stop(100%, #e35c57));
   background-image: -webkit-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
   background-image: -moz-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
@@ -1065,21 +1068,24 @@ footer .ink-navigation ul.menu.horizontal li a.license {
 #home section.what .ink-grid .column-group {
   height: inherit;
 }
-#home section.why {
-  background: #aa8ad3;
-  background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, color-stop(0%, #aa8ad3), color-stop(100%, #7544b3));
-  background-image: -webkit-radial-gradient(#aa8ad3, #7544b3);
-  background-image: -moz-radial-gradient(#aa8ad3, #7544b3);
-  background-image: -o-radial-gradient(#aa8ad3, #7544b3);
-  background-image: radial-gradient(#aa8ad3, #7544b3);
+#home section.showcase {
+  background: #a5ad85;
+  background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, color-stop(0%, #a5ad85), color-stop(100%, #565c3e));
+  background-image: -webkit-radial-gradient(#a5ad85, #565c3e);
+  background-image: -moz-radial-gradient(#a5ad85, #565c3e);
+  background-image: -o-radial-gradient(#a5ad85, #565c3e);
+  background-image: radial-gradient(#a5ad85, #565c3e);
 }
-#home section.why h1, #home section.why h2, #home section.why h3, #home section.why p, #home section.why ul {
+#home section.showcase h1, #home section.showcase h2, #home section.showcase h3, #home section.showcase p, #home section.showcase ul {
   color: white;
 }
-#home section.why .ink-grid {
+#home section.showcase img {
+  border: #555555 1px solid;
+}
+#home section.showcase .ink-grid {
   height: 100%;
 }
-#home section.why .ink-grid .column-group {
+#home section.showcase .ink-grid .column-group {
   height: inherit;
 }
 #home section.download {
@@ -1156,8 +1162,18 @@ footer .ink-navigation ul.menu.horizontal li a.license {
   color: transparent !important;
 }
 
+p.loader {
+  display: none;
+}
+p.loader.show {
+  display: block;
+}
+
 #search-results {
   display: none;
+}
+#search-results .nope {
+  word-break: break-all;
 }
 #search-results.show {
   display: block;
@@ -1181,6 +1197,22 @@ footer .ink-navigation ul.menu.horizontal li a.license {
   margin-bottom: 1.5em;
 }
 #search-results .result-snippet em {
-  background: yellow;
+  background: rgba(255, 0, 0, 0.1);
   padding: 0 .5em;
+}
+
+@media screen and (min-width: 641px) and (max-width: 960px) {
+  #topbar .ink-navigation ul.black li.logoPlaceholder {
+    float: right;
+  }
+}
+@media screen and (min-width: 321px) and (max-width: 640px) {
+  #topbar .ink-navigation ul.black li.logoPlaceholder {
+    float: right;
+  }
+}
+@media screen and (max-width: 320px) {
+  #topbar .ink-navigation ul.black li.logoPlaceholder {
+    float: right;
+  }
 }

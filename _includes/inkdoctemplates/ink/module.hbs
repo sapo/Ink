@@ -4,19 +4,15 @@ title: {{#if name}}{{name}}{{/if}}
 description: Provides the core methods to create and load all of the library modules. 
 site_root:  ../
 ---
-
     {{#if name}}
         <section>
         <h1 class="fw-300">{{name}} {{#if version}}<small>version: {{version}}</small>{{/if}}</h1>
     {{/if}}
-
     {{#if text}}
         <p class="text">{{{text}}}</p>
     {{/if}}
-
     {{> examples}}
     {{> samples}}
-
     {{#if functions.length}}
         <h2>Defined functions:</h2>
         <ul class="unstyled">
@@ -31,7 +27,6 @@ site_root:  ../
         {{/each}}
         </ul>
     {{/if}}
-
     {{#if attributes.length}}
         <h2>Defined attributes:</h2>
         <ul class="unstyled">
@@ -40,19 +35,13 @@ site_root:  ../
         {{/each}}
         </ul>
     {{/if}}
-
-
-
     {{#each classes}}
         {{> class}}
     {{/each}}
-
     {{#each functions}}
         {{> function}}
     {{/each}}
-
     {{#each attributes}}
         {{> attribute}}
     {{/each}}
-
 {{/file}}

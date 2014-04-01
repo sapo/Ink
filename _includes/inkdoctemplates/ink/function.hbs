@@ -1,5 +1,4 @@
 <section id="{{{hash}}}" class="box box-function">
-
     <h1 class="fw-300">
     {{#if isConstructor}}
         {{parent.name}}
@@ -21,7 +20,6 @@
         {{/ifvalue}}
     {{/if}}
     </h1>
-
     {{#if params}}
     <ul class="props inline">
         <li class="heading">Arguments:</li>
@@ -61,7 +59,7 @@
                 {{#if optionname }}
                     teste
                 {{/if}}
-                
+
                 {{#if isOptional}}
                 <label class="monospace">[{{name}}]
                 {{else}}
@@ -83,15 +81,15 @@
         <dl>
             <dt class="return">
                 {{#if return.type}}<code>{{return.type}}</code>{{/if}}
-            </dt>                
-            <dd>   
+            </dt>
+            <dd>
                 {{#if return.description}}
                     {{{description}}}
                 {{/if}}
             </dd>
         </dl>
         {{/if}}
-        
+
 
     {{/if}}
 

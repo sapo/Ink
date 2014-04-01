@@ -19,6 +19,8 @@ Ink.createModule('Ink.UI.Close', '1', ['Ink.Dom.Event_1','Ink.Dom.Element_1'], f
      *             new Close();
      *         });
      *     </script>
+     *
+     * @sample Ink_UI_Close_1.html
      */
     var Close = function() {
         InkEvent.observe(document.body, 'click', function(ev) {

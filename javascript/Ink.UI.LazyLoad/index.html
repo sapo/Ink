@@ -1,0 +1,548 @@
+---
+layout: js-documentation
+title: Ink.UI.LazyLoad_1
+description: Provides the core methods to create and load all of the library modules. 
+site_root:  ../
+---
+    
+        <section>
+        <h1 class="fw-300">Ink.UI.LazyLoad_1 <small>version: 1</small></h1>
+    
+    
+    
+
+
+    
+
+    
+    
+    
+            
+    <p><p>Stops the browser from loading a barrage of content at once.</p>
+<p>This delays the loading of images and other content until the corresponding elements are visible in the browser viewport.
+This was created to load images later, but can be also used for widgets which are slow to load and are only useful when on screen.</p>
+<p>This works through copying the <code>src</code> attribute into <code>data-src</code>, and placing a <code>placeholder</code> string in the <code>src</code> attribute. Then, when the element is on screen, the <code>data-src</code> attribute is copied back to <code>src</code> and the content starts loading. You can use the options below to change what attributes are involved in the exchange.</p>
+<p>You can also provide your <code>onInsideViewport</code> callback and use it to start widgets which need javascript, such as an interactive map or an animation.</p>
+</p>
+    
+    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p>
+    
+    <table class="props bottom-space">
+        
+        <caption>Methods</caption>
+        <thead>
+            <tr>
+                <th>Method name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_LazyLoad_1-Ink_UI_LazyLoad_1-LazyLoad_1">
+                        
+                            
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_LazyLoad_1-Ink_UI_LazyLoad_1-destroy">
+                        
+                            .destroy
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    <p>Destroy this component</p>
+
+                    
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    <a href="#Ink_UI_LazyLoad_1-Ink_UI_LazyLoad_1-reload">
+                        
+                            .reload
+                        
+                    </a>
+                </td>
+                <td>
+                    
+                    <p>Load or reload the component.
+Adding the &#39;scroll&#39; event listener if necessary and checks if anything needs to be loaded now.</p>
+<p>You can use this to manually invoke the loading logic without user action.</p>
+
+                    
+                    
+                </td>
+            </tr>
+        
+        </tbody>
+    </table>
+    
+    
+</section>
+
+
+
+
+    <section id="Ink_UI_LazyLoad_1-Ink_UI_LazyLoad_1-LazyLoad_1" class="box box-function">
+    <h1 class="fw-300">
+    
+        Ink.UI.LazyLoad_1
+    
+    (rootElement, [options], )
+    
+        <i>constructor</i>
+    
+    </h1>
+    
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        
+        <li class="prop">
+        
+        
+        rootElement
+        
+        
+        </li>
+        
+        <li class="prop">
+        
+        [
+        options
+        ]
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+        <li class="prop">
+        
+        </li>
+        
+    </ul>
+    
+
+    
+    
+
+    
+
+    
+        <h3>Accepts</h3>
+        <dl class="params">
+        
+            <dt>
+                
+            </dt>
+            <dd>
+                
+
+                
+                <label class="monospace">rootElement
+                
+
+                
+                </label>
+                
+                    {String|DOMElement} The element which contains the lazily-loaded items.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Object</code>
+                
+            </dt>
+            <dd>
+                
+
+                
+                <label class="monospace">[options]
+                
+
+                
+                </label>
+                
+                    Options object, containing:
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+
+                
+                <label class="monospace">[options.item]
+                
+
+                
+                </label>
+                
+                    Item selector. Defaults to '.lazyload-item'.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+
+                
+                <label class="monospace">[options.placeholder]
+                
+
+                
+                </label>
+                
+                    Placeholder value for items which are not 'visible', in case they don't already have a value set.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+
+                
+                <label class="monospace">[options.source]
+                
+
+                
+                </label>
+                
+                    Source attribute. When an item is 'visible', use this attribute's value to set its destination attribute. Defaults to 'data-src'.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>String</code>
+                
+            </dt>
+            <dd>
+                
+
+                
+                <label class="monospace">[options.destination]
+                
+
+                
+                </label>
+                
+                    Destination attribute. Attribute to change when the element is 'visible'. Defaults to 'src'.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Number</code>
+                
+            </dt>
+            <dd>
+                
+
+                
+                <label class="monospace">[options.delay]
+                
+
+                
+                </label>
+                
+                    Milliseconds to wait before trying to load items. Defaults to 100.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Number</code>
+                
+            </dt>
+            <dd>
+                
+
+                
+                <label class="monospace">[options.delta]
+                
+
+                
+                </label>
+                
+                    Offset distance in pixels. Determines how far the top of an item must be from the viewport be considered 'visible'. Negative values shrink the considered 'visible' viewport while positive values enlarge it. Defaults to 0.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Boolean</code>
+                
+            </dt>
+            <dd>
+                
+
+                
+                <label class="monospace">[options.image]
+                
+
+                
+                </label>
+                
+                    Set to false to make this component do nothing to any elements and just give you the onInsideViewport callback.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>DOMElement</code>
+                
+            </dt>
+            <dd>
+                
+
+                
+                <label class="monospace">[options.scrollElement]
+                
+
+                
+                </label>
+                
+                    (advanced) What element is to be listened for the scroll event. Defaults to document.window.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Boolean</code>
+                
+            </dt>
+            <dd>
+                
+
+                
+                <label class="monospace">[options.touchEvents]
+                
+
+                
+                </label>
+                
+                    Subscribe to touch events in addition to scroll events. Useful in mobile safari because 'scroll' events aren't frequent enough. Defaults to true.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Function</code>
+                
+            </dt>
+            <dd>
+                
+
+                
+                <label class="monospace">[options.onInsideViewport]
+                
+
+                
+                </label>
+                
+                    Callback function for when an `item` is 'visible'. Receives an object containing the item's element as an argument.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Function</code>
+                
+            </dt>
+            <dd>
+                
+
+                
+                <label class="monospace">[options.onAfterAttributeChange]
+                
+
+                
+                </label>
+                
+                    (advanced) Callback function when an item's attribute changes. Receives an object containing the item's element as an argument.
+                
+            </dd>
+        
+            <dt>
+                
+                    <code>Boolean</code>
+                
+            </dt>
+            <dd>
+                
+
+                
+                <label class="monospace">[options.autoInit]
+                
+
+                
+                </label>
+                
+                    (advanced) Set to false if you want to start LazyLoad yourself with `reload()`. Defaults to true.
+                
+            </dd>
+        
+        </dl>
+        
+
+
+    
+
+
+    
+
+
+    
+
+</section>
+
+
+    <section id="Ink_UI_LazyLoad_1-Ink_UI_LazyLoad_1-destroy" class="box box-function">
+    <h1 class="fw-300">
+    
+        
+            .destroy
+        
+    
+    ()
+    
+        
+            <i>method</i>
+        
+    
+    </h1>
+    
+
+    
+    
+
+    
+        <p class="text"><p>Destroy this component</p>
+</p>
+    
+
+    
+
+
+    
+
+
+    
+
+</section>
+
+
+    <section id="Ink_UI_LazyLoad_1-Ink_UI_LazyLoad_1-reload" class="box box-function">
+    <h1 class="fw-300">
+    
+        
+            .reload
+        
+    
+    ()
+    
+        
+            <i>method</i>
+        
+    
+    </h1>
+    
+
+    
+    
+
+    
+        <p class="text"><p>Load or reload the component.
+Adding the &#39;scroll&#39; event listener if necessary and checks if anything needs to be loaded now.</p>
+<p>You can use this to manually invoke the loading logic without user action.</p>
+</p>
+    
+
+    
+
+
+    
+
+
+    
+
+</section>
+
+
+
+
+    
+    
+    

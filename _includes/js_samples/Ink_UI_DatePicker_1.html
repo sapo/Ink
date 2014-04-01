@@ -1,14 +1,13 @@
-<p></p>
+<p>Basic usage</p>
 
 <p class="example-title">Code</p>
+
 {% highlight html %}
-
-<style>
-</style>
-
+<input type="text" id="dPicker" />
 <script>
-    Ink.requireModules( ['Ink.UI.Spy_1'], function( Spy ){
-        new Spy(sections[i], { target: myMenu });
+    Ink.requireModules(['Ink.Dom.Selector_1','Ink.UI.DatePicker_1'],function( Selector, DatePicker ){
+        var datePickerElement = Ink.s('#dPicker');
+        var datePickerObj = new DatePicker( datePickerElement );
     });
 </script>
 {% endhighlight %}
