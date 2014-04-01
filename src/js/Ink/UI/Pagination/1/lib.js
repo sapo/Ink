@@ -65,6 +65,8 @@ Ink.createModule('Ink.UI.Pagination', '1',
      * @param {String}              [options.nextClass]         CSS Class used in the next element
      * @param {String}              [options.nextPageClass]     CSS Class used in the next page element
      * @param {Function}            [options.numberFormatter]   Number formatter function. Receives a 0-indexed number and returns the text for the numbered page button.
+     *
+     * @sample Ink_UI_Pagination_1.html
      */
     var Pagination = function(selector, options) {
 

@@ -1,6 +1,7 @@
 /**
  * @module Ink.UI.Tooltip_1
- * @author inkdev AT sapo.pt
+ * Content Tooltips
+ * @version 1
  */
 Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1', 'Ink.Util.Array_1', 'Ink.Dom.Css_1', 'Ink.Dom.Browser_1'], function (Common, InkEvent, InkElement, Selector, InkArray, Css) {
     'use strict';
@@ -17,38 +18,24 @@ Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Common_1', 'Ink.Dom.Event_1', '
      * @class Ink.UI.Tooltip
      * @constructor
      *
-     * @param {DOMElement|String} target Target element or selector of elements, to display the tooltips on.
-     * @param {Object} [options]
-     *     @param [options.text]=''             Text content for the tooltip.
-     *     @param [options.html]=''             HTML for the tooltip. Same as above, but won't escape HTML.
-     *     @param [options.where]='up'          Positioning for the tooltip. Options are 'up', 'down', 'left', 'right', which place the tooltip in the corresponding direction (and show an arrow), 'mousemove', which follows the mouse as it moves, and 'mousefix', which stays in one place.
+     * @param {DOMElement|String}   target                  Target element or selector of elements, to display the tooltips on.
+     * @param {Object}              [options]               Options object
+     * @param {String}              [options.text]          Text content for the tooltip.
+     * @param {String}              [options.html]          HTML for the tooltip. Same as above, but won't escape HTML.
+     * @param {String}              [options.where]         Positioning for the tooltip. Options are 'up', 'down', 'left', 'right', 'mousemove' (follows the cursor), and 'mousefix' (stays fixed). Defaults to 'up'.
      *     
-     *     @param [options.color]=''            Color of the tooltip. Options are red, orange, blue, green and black. Default is white.
-     *     @param [options.fade]=0.3            Fade time; Duration of the fade in/out effect.
-     *     @param [options.forever]=0           Set to 1/true to prevent the tooltip from being erased when the mouse hovers away from the target
-     *     @param [options.timeout]=0           Time for the tooltip to live. Useful together with [options.forever].
-     *     @param [options.delay]               Time the tooltip waits until it is displayed. Useful to avoid getting the attention of the user unnecessarily
-     *     @param [options.template]=null       Element or selector containing HTML to be cloned into the tooltips. Can be a hidden element, because CSS `display` is set to `block`.
-     *     @param [options.templatefield]=null  Selector within the template element to choose where the text is inserted into the tooltip. Useful when a wrapper DIV is required.
-     *
-     *     @param [options.left]=10      (Nitty-gritty) Spacing from the target to the tooltip, when `where` is `mousemove` or `mousefix`
-     *     @param [options.top]=10       (Nitty-gritty) Spacing from the target to the tooltip, when `where` is `mousemove` or `mousefix`
-     *     @param [options.spacing]=8    (Nitty-gritty) Spacing between the tooltip and the target element, when `where` is `up`, `down`, `left`, or `right`
+     * @param {String}              [options.color]         Color of the tooltip. Options are red, orange, blue, green and black. Default is white.
+     * @param {Number}              [options.fade]          Number of seconds to fade in/out. Defaults to 0.3.
+     * @param {Boolean}             [options.forever]       Flag to prevent the tooltip from being erased when the mouse hovers away from the target.
+     * @param {Number}              [options.timeout]       Number of seconds the tooltip will stay open. Useful together with options.forever. Defaults to 0.
+     * @param {Number}              [options.delay]         Time the tooltip waits until it is displayed. Useful to avoid getting the attention of the user unnecessarily
+     * @param {DOMElement|Selector} [options.template]      Element or selector containing HTML to be cloned into the tooltips. Can be a hidden element, because CSS `display` is set to `block`.
+     * @param {String}              [options.templatefield] Selector within the template element to choose where the text is inserted into the tooltip. Useful when a wrapper DIV is required.
+     * @param {Number}              [options.left]          Spacing from the target to the tooltip, when `where` is `mousemove` or `mousefix`. Defaults to 10.
+     * @param {Number}              [options.top]           Spacing from the target to the tooltip, when `where` is `mousemove` or `mousefix`. Defaults to 10.
+     * @param {Number}              [options.spacing]       Spacing between the tooltip and the target element, when `where` is not `mousemove` or `mousefix`. Defaults to 8.
      * 
-     * @example
-     *     <ul class="buttons">
-     *         <li class="button" data-tip-text="Create a new document">New</li>
-     *         <li class="button" data-tip-text="Exit the program">Quit</li>
-     *         <li class="button" data-tip-text="Save the document you are working on">Save</li>
-     *     </ul>
-     *     
-     *     [...]
-     *
-     *     <script>
-     *         Ink.requireModules(['Ink.UI.Tooltip_1'], function (Tooltip) {
-     *             new Tooltip('.button', {where: 'mousefix'});
-     *         });
-     *     </script>
+     * @sample Ink_UI_Tooltip_1.html
      */
     function Tooltip(element, options) {
         this._init(element, options || {});

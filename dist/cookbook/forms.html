@@ -4,74 +4,96 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Ink - Forms</title>
+        <title>Forms</title>
         <meta name="description" content="">
         <meta name="author" content="ink, cookbook, recipes">
         <meta name="HandheldFriendly" content="True">
         <meta name="MobileOptimized" content="320">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-        <link rel="shortcut icon" href="../img/ink-favicon.ico">
-        <link rel="apple-touch-icon-precomposed" href="../img/touch-icon.57.png">
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../img/touch-icon.72.png">
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../img/touch-icon.114.png">
-        <link rel="apple-touch-startup-image" href="../img/splash.320x460.png"
-        media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
-        <link rel="apple-touch-startup-image" href="../img/splash.768x1004.png"
-        media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
-        <link rel="apple-touch-startup-image" href="../img/splash.1024x748.png"
-        media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
         
-        <link rel="stylesheet" type="text/css" href="../css/ink.css">
-        <link rel="stylesheet" type="text/css" href="../css/docs.css">
+        <!-- Place favicon.ico and apple-touch-icon(s) here  -->
+        
+        <link rel="shortcut icon" href="../assets/img/favicon.ico">
+        <link rel="apple-touch-icon-precomposed" href="../assets/img/touch-icon.57.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/img/touch-icon.72.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/img/touch-icon.114.png">
+        <link rel="apple-touch-startup-image" href="../assets/img/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
+        <link rel="apple-touch-startup-image" href="../assets/img/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+        <link rel="apple-touch-startup-image" href="../assets/img/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+        
+        <!-- Place your CSS here  -->
 
+        <link rel="stylesheet" type="text/css" href="../assets/css/ink.css">
+        
+        <!--[if lte IE 8 ]>
+            <link rel="stylesheet" href="../css/ink-ie.css" type="text/css" media="screen" title="no title" charset="utf-8">
+        <![endif]-->
+        
+        <!-- Place your Javascript here  -->
+
+        <script type="text/javascript" src="../assets/js/holder.js"></script>
+        <script type="text/javascript" src="../assets/js/ink-all.min.js"></script>
+        <script type="text/javascript" src="../assets/js/autoload.js"></script>
+        
+        
         <style type="text/css">
-
-        .panel {
-            padding: 1em;
-            margin-bottom: 1em;
-            background: #f0f0f0;
-        }
-
+            
+            body {
+                background: #ededed;
+            }
+            header {
+                padding: 2em 0;
+                margin-bottom: 2em;
+            }
+            header h1 {
+                font-size: 2em;
+            }
+            header h1 small:before  {
+                content: "|";
+                margin: 0 0.5em;
+                font-size: 1.6em;
+            }
+            footer {
+                background: #ccc;
+            }
 
         </style>
-    
+
     </head>
     
     <body>
         <div class="ink-grid">
+            <header>
+                <h1>site name<small>smaller text</small></h1>
+                <nav class="ink-navigation">
+                    <ul class="menu horizontal black">
+                        <li class="active"><a href="#">item</a></li>
+                        <li><a href="#">item</a></li>
+                        <li><a href="#">item</a></li>
+                    </ul>
+                </nav>             
+            </header>
             
-            <nav class="ink-navigation vertical-space">
-
-                <ul class="menu horizontal black">
-                    <li><a href="#">Form 1</a></li>
-                    <li><a href="#">Form 2</a></li>
-                    <li><a href="#">Form 3</a></li>
-                </ul>
-
-            </nav>
-
-
             <div class="column-group gutters">
                 
-                <form action="" class="ink-form all-50">
+                <form action="" class="ink-form all-50 small-100 tiny-100">
                     <fieldset>
                         <div class="control-group required column-group gutters">
-                            <label for="name" class="all-20 align-right">Name</label>
+                            <label for="email" class="all-20 align-right">Name</label>
                             <div class="control all-40">
-                                <input type="text" id="first-name">
+                                <input type="text" id="email">
                                 <p class="tip">First Name</p>
                             </div>
                             <div class="control all-40">
-                                <input type="text" id="last-name">
+                                <input type="text" id="email">
                                 <p class="tip">Last Name</p>
                             </div>
                         </div>
 
-                        <div class="column-group gutters control-group required validation error">
+                        <div class="control-group required column-group gutters">
                             <label for="email" class="all-20 align-right">Email</label>
                             <div class="control all-80">
                                 <input type="text" id="email">
-                                <p class="tip">not a valid email address</p>
                             </div>
                         </div>
 
@@ -93,18 +115,19 @@
                     </fieldset>
                 </form>
                 
-                <div class="all-50">
+                <div class="all-50 small-100 tiny-100">
                     <p>
                         Chuck Norris once kicked a baby elephant into puberty. Crop circles are Chuck Norris' way of telling the world that sometimes corn needs to lie the f*ck down.
                     </p>
-                    <img src="http://placehold.it/1200x600" alt="">
+                    <img src="holder.js/1200x600/auto/ink" alt="">
                 </div>
 
             </div>
             
 
+            
             <form action="#" class="ink-form column-group gutters">
-                <fieldset class="all-33">
+                <fieldset class="all-33 small-100 tiny-100">
                     <legend>Fieldset title</legend>
                     <div class="control-group">
                         <label for="name">Name</label>
@@ -126,9 +149,9 @@
                     </div>
                 </fieldset>
 
-                <fieldset class="all-33">
+                <fieldset class="all-33 small-100 tiny-100">
                     <legend>Rock Bands</legend>
-                    <div class="control-group required validation error">
+                    <div class="control-group">
                         <p class="label">Please select one or more options</p>
                         <ul class="control unstyled">
                             <li><input type="checkbox" id="cb4" name="cb4" value=""><label for="cb4">Chimaira</label></li>
@@ -137,13 +160,11 @@
                             <li><input type="checkbox" id="cb2" name="cb2" value=""><label for="cb2">Pantera</label></li>
                             <li><input type="checkbox" id="cb1" name="cb1" value=""><label for="cb1">Slayer</label></li>
                             <li><input type="checkbox" id="cb4" name="cb4" value=""><label for="cb4">Switchtense</label></li>
-                            <p class="tip">Choose anyone but Metallica</p>
-                            
                         </ul>
                     </div>
                 </fieldset>                     
 
-                <fieldset class="all-33">
+                <fieldset class="all-33 small-100 tiny-100">
                     <legend>Pick a card</legend>
                     <div class="control-group">
                         <p class="label">Please select one of these options</p>
@@ -165,9 +186,9 @@
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla gravida lacus purus. Integer turpis enim, condimentum non pellentesque vel, consequat vitae diam. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. 
                 </p>
-                <fieldset class="column-group gutters vspace">
+                <fieldset class="column-group gutters vertical-space">
                     
-                    <div class="control-group all-33">
+                    <div class="control-group all-33 small-100 tiny-100">
                         <div class="column-group gutters">
                             <label for="name" class="all-20 align-right">Name</label>
                             <div class="control all-80">
@@ -177,7 +198,7 @@
                         </div>
                     </div>
 
-                    <div class="control-group all-33">
+                    <div class="control-group all-33 small-100 tiny-100">
                         <div class="column-group gutters">
                             <label for="phone" class="all-20 align-right">Phone</label>
                             <div class="control all-80">
@@ -186,7 +207,7 @@
                         </div>
                     </div>
 
-                    <div class="control-group all-33">
+                    <div class="control-group all-33 small-100 tiny-100">
                         <div class="column-group gutters">
                             <label for="email" class="all-20 align-right">Email</label>
                             <div class="control all-80">
@@ -203,20 +224,20 @@
                 <p>
                     Proin nibh nulla, consequat vitae aliquet nec, consequat consectetur quam. Morbi diam dui, ornare vel elementum ut, pharetra at urna. Proin vel purus orci, vel euismod lorem. In hac habitasse platea dictumst. Donec eu scelerisque velit. Suspendisse velit lectus, ultrices vitae luctus vel, lobortis non metus.
                 </p>
-                <fieldset class="column-group gutters vspace">
-                    <div class="control-group all-33">
+                <fieldset class="column-group gutters vertical-space">
+                    <div class="control-group all-33 small-100 tiny-100">
                         <label for="name">Name</label>
                         <div class="control">
                             <input type="text" id="name">
                         </div>
                     </div>
-                    <div class="control-group all-33">
+                    <div class="control-group all-33 small-100 tiny-100">
                         <label for="phone">Phone</label>
                         <div class="control">
                             <input type="text" id="phone">
                         </div>
                     </div>
-                    <div class="control-group all-33">
+                    <div class="control-group all-33 small-100 tiny-100">
                         <label for="email">Email</label>
                         <div class="control">
                             <input type="text" id="email">
@@ -224,57 +245,6 @@
                     </div>
                 </fieldset>
             </form>
-            
-
-            <h4>Buttons</h4>
-            <div class="panel large-vertical-space">
-                <div class="ink-form column-group gutters">
-
-                    <div class="all-15 align-center"><a href="#" class="ink-button">Button</a></div>
-                    <div class="all-15 align-center"><button class="ink-button green">Button</button></div>
-                    <div class="all-15 align-center"><button class="ink-button orange">Button</button></div>
-                    <div class="all-15 align-center"><button class="ink-button red">Button</button></div>
-                    <div class="all-15 align-center"><button class="ink-button blue">Button</button></div>
-                    <div class="all-15 align-center"><button class="ink-button black">Button</button></div>
-                    <div class="all-15 align-center"><button class="ink-button" disabled="">Button</button></div>
-                    <div class="all-15 align-center"><button class="ink-button green" disabled="">Button</button></div>
-                    <div class="all-15 align-center"><button class="ink-button orange" disabled="">Button</button></div>
-                    <div class="all-15 align-center"><button class="ink-button red" disabled="">Button</button></div>
-                    <div class="all-15 align-center"><button class="ink-button blue" disabled="">Button</button></div>
-                    <div class="all-15 align-center"><button class="ink-button black" disabled="">Button</button></div>
-
-                </div>
-            </div>
-
-            <h4>Button groups</h4>
-            <div class="panel">
-                <div class="button-group">
-                    <button class="ink-button">left</button>
-                    <button class="ink-button">middle</button>
-                    <button class="ink-button">right</button>
-                </div>
-
-                <div class="button-toolbar">
-                    <div class="button-group">
-                        <button class="ink-button"><span class="fa fa-file"></span></button>
-                        <button class="ink-button"><span class="fa fa-save"></span></button>
-                    </div>
-                 
-                    <div class="button-group">
-                        <button class="ink-button"><span class="fa fa-bold"></span></button>
-                        <button class="ink-button"><span class="fa fa-italic"></span></button>
-                        <button class="ink-button"><span class="fa fa-underline"></span></button>
-                    </div>
-                 
-                    <div class="button-group">
-                        <button class="ink-button"><span class="fa fa-align-left"></span></button>
-                        <button class="ink-button"><span class="fa fa-align-center"></span></button>
-                        <button class="ink-button"><span class="fa fa-align-right"></span></button>
-                        <button class="ink-button"><span class="fa fa-align-justify"></span></button>
-                    </div>
-                </div>
-
-            </div>
 
             <form action="#" class="ink-form">
                 <h4>Appended and prepended buttons and symbols</h4>
@@ -283,11 +253,11 @@
                 </p>
                 <fieldset class="column-group gutters vertical-space">
                     
-                    <div class="control-group all-50">
+                    <div class="control-group all-50 small-100 tiny-100">
                         <div class="column-group gutters">
                             <label for="name" class="all-20 align-right">Name</label>
                             <div class="control all-80 append-button">
-                                <span><input type="text" id="name" placeholder="Search by name" disabled></span>
+                                <span><input type="text" id="name"></span>
                                 <button class="ink-button"><i class="icon-search"></i> Search</button>
                             </div>
                             
@@ -296,12 +266,12 @@
                             <label for="phone" class="all-20 align-right">Phone</label>
                             <div class="control all-80 prepend-button">
                                 <input type="submit" value="Search" class="ink-button">
-                                <span><input type="text" id="phone" placeholder="Search by phone number"></span>
+                                <span><input type="text" id="phone"></span>
                             </div>
                         </div>
                     </div>
 
-                    <div class="control-group all-50">
+                    <div class="control-group all-50 small-100 tiny-100">
                         <div class="column-group gutters">
                             <label for="email" class="all-20 align-right">Email</label>
                             <div class="control all-80 append-symbol">
@@ -326,9 +296,18 @@
                 </fieldset>
             </form>
         
-        
-
         </div>
+
+        <footer class="clearfix">
+            <div class="ink-grid">
+                <ul class="unstyled inline half-vertical-space">
+                    <li class="active"><a href="#">About</a></li>
+                    <li><a href="#">Sitemap</a></li>
+                    <li><a href="#">Contacts</a></li>
+                </ul>
+                <p class="note">Identification of the owner of the copyright, either by name, abbreviation, or other designation by which it is generally known.</p>
+            </div>
+        </footer>
 
     </body>
 </html>

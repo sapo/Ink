@@ -25,19 +25,8 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Css_1',
      * @param {String}              [options.moveSelector]              CSS selector to validate a node move. If present, you can only move nodes inside this selector.
      * @param {Boolean}             [options.swap]                      Flag to swap dragged element and target element instead of reordering it.
      * @param {Boolean}             [options.cancelMouseOut]            Flag to cancel draggin if mouse leaves the container element.
-
-     * @example
-     *      <ul class="unstyled ink-sortable-list" id="slist" data-handle-selector=".ink-label">
-     *          <li><span class="ink-label info">drag here</span>primeiro</li>
-     *          <li><span class="ink-label info">drag here</span>segundo</li>
-     *          <li><span class="ink-label info">drag here</span>terceiro</li>
-     *      </ul>
-     *      <script>
-     *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.SortableList_1'], function( Selector, SortableList ){
-     *              var sortableListElement = Ink.s('.ink-sortable-list');
-     *              var sortableListObj = new SortableList( sortableListElement );
-     *          });
-     *      <\/script>
+     *
+     * @sample Ink_UI_SortableList_1.html
      */
     var SortableList = function(selector, options) {
 

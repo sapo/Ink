@@ -21,6 +21,8 @@ Ink.createModule('Ink.UI.Dropdown', '1', ['Ink.UI.Common_1', 'Ink.UI.Toggle_1', 
          * @param {DOMElement|String}   trigger         Trigger Element
          * @param {Object}              options         Options Object
          * @param {DOMElement|String}   options.target Target of the dropdown action.
+         *
+         * @sample Ink_UI_Dropdown_1.html
          */
         _init: function(trigger, options) {
             this._element = Common.elOrSelector(trigger);
