@@ -1187,3 +1187,19 @@ footer .ink-navigation ul.menu.horizontal li a.license {
   background: yellow;
   padding: 0 .5em;
 }
+
+@media screen and (min-width: 641px) and (max-width: 960px) {
+  #topbar .ink-navigation ul.black li.logoPlaceholder {
+    float: right;
+  }
+}
+@media screen and (min-width: 321px) and (max-width: 640px) {
+  #topbar .ink-navigation ul.black li.logoPlaceholder {
+    float: right;
+  }
+}
+@media screen and (max-width: 320px) {
+  #topbar .ink-navigation ul.black li.logoPlaceholder {
+    float: right;
+  }
+}

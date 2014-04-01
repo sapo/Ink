@@ -1,15 +1,97 @@
-<p></p>
+{# Fiddle: http://jsfiddle.net/VK4fK/ #}
+
+<h2>What markup will I need?</h2>
+
+<p>Besides the markup structure you can see in
+<a href="http://ink.sapo.pt/forms#building"></a>, you need to add
+the <code>ink-fv-*</code> classes to your inputs, which correspond to validation
+rules in this component. Available classes are:</p>
+
+<ul>
+    <li><code>ink-fv-required</code> : Required field</li>
+    <li><code>ink-fv-email</code>    : Valid e-mail</li>
+    <li><code>ink-fv-url</code>      : Valid URL address</li>
+    <li><code>ink-fv-number</code>   : Valid number</li>
+    <li><code>ink-fv-phone_pt</code>, <code>ink-fv-phone_cv</code>, <code>ink-fv-phone_mz</code>, <code>ink-fv-phone_ao</code> : Valid telephone number in Portugal, Cape Verde, Mozambique or Angola.</li>
+    <li><code>ink-fv-date</code>     : Valid date</li>
+    <li><code>ink-fv-confirm</code>  : Make the user type the same thing twice. Common rule for confirming passwords.</li>
+    <li><code>ink-fv-custom</code>   : Custom rule (see below example "Custom rule")</li>
+</ul>
+
+<p>For example:</p>
+<ul>
+    <li>E-mail field: <code>&lt;input class="ink-fv-required ink-fv-email"&gt;&lt;br&gt;</code></li>
+    <li>Phone number field: <code>&lt;input class="ink-fv-number ink-fv-required"&gt;&lt;br&gt;</code></li>
+    <li>Website field (optional): <code>&lt;input class="ink-fv-url"&gt;</code></li>
+</ul>
+
+
+<h2>Simple usage</h2>
+
+<p>So you have a form and would like to validate it? This example shows
+how to validate a form and stop it from being submitted when invalid.
+To use this, add the several ink-fv-* classes to your input elements.</p>
+
+<p>The validate() function will also add "invalid" classes to each of
+your elements so the user gets a color feedback and an error message
+below each element (control-group, really).</p>
 
 <p class="example-title">Code</p>
-{% highlight html %}
+{% highlight javascript %}
+    var myForm = Ink.i('my-form');
+    InkEvent.observe(myForm, 'submit', function (ev) {
+        var formIsValid = FormValidator.validate(myForm);
+        if (!formIsValid) {
+            InkEvent.stop(ev);  // Cancel submission of form.
+        }
+    });
+{% endhighlight %}
 
-<style>
-</style>
+
+<h2>Custom rule.</h2>
+
+<p>The following code validates using a custom rule named <code>minthree</code>,
+which fails if the input string has less than three characters.
+To do this, you must add the <code>ink-fv-custom</code> and <code>minthree</code> classes
+to the input elements you want to validate, and pass the <code>customFlag</code>
+option to this function, like so:</p>
+
+<p class="example-title">Code</p>
+
+{% highlight html %}
+<div class="ink-grid ink-form" id="myForm">
+    <div class="control-group">
+        <div class="control">
+            <input
+                id="myInput"
+                type="text"
+                class="ink-fv-custom minthree"/>
+        </div>
+    </div>
+</div>
 
 <script>
-    Ink.requireModules( ['Ink.UI.Spy_1'], function( Spy ){
-        new Spy(sections[i], { target: myMenu });
+Ink.requireModules(['Ink.UI.FormValidator_1', 'Ink.Dom.Event_1'], function (FormValidator, InkEvent) {
+    var myForm = Ink.i('myForm');
+    var myInput = Ink.i('myInput');
+    
+    InkEvent.on(myInput, 'keyup', function (event) {
+        var isValid = FormValidator.validate(myForm, {
+            customFlag: [
+                {
+                    // The name of this rule
+                    flag: 'minthree',
+                    // message when rule fails
+                    msg: 'Please input at least three characters',  
+                    // Callback which returns true when okay, false when not
+                    callback: function (el) {
+                        return el.value.length >= 3;
+                    }
+                }
+            ]
+        });
     });
+});
 </script>
 {% endhighlight %}
 
