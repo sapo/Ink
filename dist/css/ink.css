@@ -110,12 +110,8 @@
 }
 
 .clearfix {
+  overflow: hidden;
   *zoom: 1;
-}
-.clearfix:after {
-  content: "";
-  display: table;
-  clear: both;
 }
 
 /*! normalize.css v3.0.0 | MIT License | git.io/normalize */
@@ -451,10 +447,10 @@ input[type="number"]::-webkit-outer-spin-button {
 input[type="search"] {
   -webkit-appearance: textfield;
   /* 1 */
-  -moz-box-sizing: content-box;
-  -webkit-box-sizing: content-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   /* 2 */
-  box-sizing: content-box;
+  box-sizing: border-box;
 }
 
 /**
@@ -1249,7 +1245,7 @@ th {
   clear: none;
 }
 
-[class*=all-100] {
+[class~=all-100] {
   float: none;
   clear: both;
 }
@@ -5777,8 +5773,7 @@ table.ink-table {
 }
 table.ink-table tr th {
   padding: 5px 10px;
-  font-weight: 700;
-  line-height: 2;
+  line-height: 1.3;
 }
 table.ink-table tr th[data-sortable="true"]:hover {
   cursor: pointer;
@@ -5792,7 +5787,7 @@ table.ink-table tr th[data-sortable="true"] i {
 }
 table.ink-table tr td {
   padding: 5px 10px;
-  line-height: 2;
+  line-height: 1.3;
 }
 table.ink-table.hover tbody tr:hover {
   cursor: pointer;
@@ -5963,6 +5958,12 @@ p {
   margin-bottom: 1.26585em;
 }
 
+table {
+  font-size: 1em;
+  margin-top: 0;
+  margin-bottom: 1.26585em;
+}
+
 h1:first-child, h2:first-child, h3:first-child, h4:first-child, h5:first-child, h6:first-child, p:first-child {
   margin-top: 0;
 }
@@ -5971,6 +5972,7 @@ h1:first-child, h2:first-child, h3:first-child, h4:first-child, h5:first-child, 
 h1, h2, h3, h4, h5, h6 {
   color: #404040;
   font-weight: 700;
+  line-height: 1.16;
 }
 
 small {
@@ -7886,6 +7888,7 @@ body.ink-drawer .right-drawer {
   overflow-y: auto;
   width: 220px;
   height: 100%;
+  -webkit-overflow-scrolling: touch;
 }
 body.ink-drawer .left-drawer.show,
 body.ink-drawer .right-drawer.show {
