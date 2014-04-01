@@ -225,10 +225,10 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
                 return;
             }
 
-            smallLayout =
+            var smallLayout =
                 currentLayout === Common.Layouts.TINY ||
                 currentLayout === Common.Layouts.SMALL ||
-                currentLayout === Common.Layouts.MEDIUM
+                currentLayout === Common.Layouts.MEDIUM;
 
             if(smallLayout){
                 Css.removeClassName(this._menu, 'menu');
