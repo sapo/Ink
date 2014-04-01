@@ -391,6 +391,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('js', ['clean:js', 'concat', 'uglify']);
     grunt.registerTask('css', ['clean:css', 'compass', 'copy:facss', 'clean:csscontrib', 'cssmin']);
+    grunt.registerTask('dist', ['css', 'js', 'compress']);
     grunt.registerTask('dependencies', ['bower', 'copy:fontAwesome', 'copy:modernizr', 'copy:compass']);
     grunt.registerTask('default', ['dependencies','css','js']);
     grunt.registerTask('_phantomjs', function (module) {
