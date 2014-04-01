@@ -703,7 +703,7 @@ body.ink-drawer .right-drawer li:last-child {
   margin: 0;
 }
 .page-header .border {
-  background-image: url("../img/home_bkg.png") center 0px;
+  background: url("../img/home_bkg.png") center 0px;
   background-image: -webkit-gradient(linear, 0% 50%, 100% 50%, color-stop(0%, #e65d5b), color-stop(14%, #f3af32), color-stop(28%, #e6d168), color-stop(40%, #7bd369), color-stop(55%, #50c6a2), color-stop(70%, #a7d37c), color-stop(85%, #a7b958), color-stop(100%, #e35c57));
   background-image: -webkit-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
   background-image: -moz-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
@@ -1183,4 +1183,20 @@ footer .ink-navigation ul.menu.horizontal li a.license {
 #search-results .result-snippet em {
   background: yellow;
   padding: 0 .5em;
+}
+
+@media screen and (min-width: 641px) and (max-width: 960px) {
+  #topbar .ink-navigation ul.black li.logoPlaceholder {
+    float: right;
+  }
+}
+@media screen and (min-width: 321px) and (max-width: 640px) {
+  #topbar .ink-navigation ul.black li.logoPlaceholder {
+    float: right;
+  }
+}
+@media screen and (max-width: 320px) {
+  #topbar .ink-navigation ul.black li.logoPlaceholder {
+    float: right;
+  }
 }
