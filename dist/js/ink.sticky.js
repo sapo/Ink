@@ -1,36 +1,40 @@
 /**
  * @module Ink.UI.Sticky_1
- * @author inkdev AT sapo.pt
+ * Stick elements to the viewport
  * @version 1
  */
 Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Element_1','Ink.Dom.Css_1'], function(Common, Event, Element, Css) {
     'use strict';
 
     /**
-     * The Sticky component takes an element and transforms it's behavior in order to, when the user scrolls he sets its position
-     * to fixed and maintain it until the user scrolls back to the same place.
+     * Ink.UI.Sticky makes an element "stick" to the screen and stay in the same place as the user scrolls.
+     *
+     * To use it, just select an element as you create the Sticky. As you scroll past it, it will stick to the top of the screen.
+     *
+     * The `activateInLayouts` option controls in what layouts this behaviour happens. By default, it is disabled for the `small` and `tiny` layouts.
+     * Pass a comma-separated string to choose just the layouts you need.
+     *
+     * You can use the `offsetTop` option if you want it to keep some distance from the top of the screen.
+     *
+     * To avoid it going under the footer of your page, pass a selector to your footer as the `bottomElement` option.
+     *
      *
      * @class Ink.UI.Sticky
      * @constructor
      * @version 1
-     * @param {String|DOMElement} selector
-     * @param {Object} [options] Options
-     *     @param {Number}     [options.offsetBottom=0]    Number of pixels of distance from the bottomElement.
-     *     @param {Number}     [options.offsetTop=0]       Number of pixels of distance from the topElement.
-     *     @param {Boolean}    [options.inlineDimensions=true] Whether to set "style.height" and "style.width" in the stuck element. Turn this off when your `stickyClass` has its own height and width and you don't want this to be dealt with through javascript.
-     *     @param {Boolean}    [options.inlinePosition=true] Whether to set "style.left" in the stuck element. Turn this off when your `stickyClass` has its own "left" position and you don't want this to be dealt with through javascript.
-     *     @param {String}     [options.wrapperClass="ink-sticky-wrapper"] Css class for the wrapper element.
-     *     @param {String}     [options.stickyClass="ink-sticky-stuck"] Css class for sticking the sticky to the screen. Add your own "stuck" class to define your own sticky behaviour.
-     *     @param {String}     [options.topElement]        CSS Selector that specifies a top element with which the component could collide.
-     *     @param {String}     [options.bottomElement]     CSS Selector that specifies a bottom element with which the component could collide.
-     *     @param {Array|String} [options.activateInLayouts='medium,large'] Layouts in which the sticky behaviour is present. Pass an array or comma-separated string.
-     * @example
-     *      <script>
-     *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.Sticky_1'], function( Selector, Sticky ) {
-     *              var menuElement = Ink.s('#menu');
-     *              var stickyObj = new Sticky( menuElement );
-     *          });
-     *      </script>
+     * @param {String|DOMElement}   selector                    Element or selector
+     * @param {Object}              [options] Options           Options object.
+     * @param {Number}              [options.offsetBottom]      Number of pixels of distance from the bottomElement. Defaults to 0.
+     * @param {Number}              [options.offsetTop]         Number of pixels of distance from the topElement. Defaults to 0.
+     * @param {Boolean}             [options.inlineDimensions]  Set to false to disable setting inline CSS dimensions. Use this if you want to use CSS to define your own dimensions. Defaults to true.
+     * @param {Boolean}             [options.inlinePosition]    Set to false to disable setting inline CSS positions. Use this if you want to use CSS to define your own positioning. Defaults to true.
+     * @param {String}              [options.wrapperClass]      CSS class for the wrapper element. Defaults to 'ink-sticky-wrapper'.
+     * @param {String}              [options.stickyClass]       CSS class to stick the element to the screen. Defaults to 'ink-sticky-stuck'.
+     * @param {String}              [options.topElement]        CSS Selector that specifies a top element with which the component could collide.
+     * @param {String}              [options.bottomElement]     CSS Selector that specifies a bottom element with which the component could collide.
+     * @param {Array|String}        [options.activateInLayouts] Layouts in which the sticky behaviour is present. Pass an array or comma-separated string. Defaults to 'medium,large'.
+     *
+     * @sample Ink_UI_Sticky_1.html
      */
     var Sticky = function( selector, options ){
         this._rootElement = Common.elOrSelector(selector, 'Ink.UI.Sticky_1');

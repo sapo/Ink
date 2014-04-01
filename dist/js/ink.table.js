@@ -1,6 +1,6 @@
 /**
  * @module Ink.UI.Table_1
- * @author inkdev AT sapo.pt
+ * Sort and paginate tabular data
  * @version 1
  */
 Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','Ink.Net.Ajax_1','Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1','Ink.Util.String_1', 'Ink.Util.Json_1'], function(InkUrl,Pagination, Ajax, Common, Event, Css, Element, Selector, InkArray, InkString, Json) {
@@ -44,149 +44,42 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
     // Most processJSON* functions can just default to this.
     function sameSame(obj) { return obj; }
     /**
-     * The Table component transforms the native/DOM table element into a
-     * sortable, paginated component.
-     * 
+     * The Table component transforms the native/DOM table element into a sortable, paginated component.
+     *
+     * You can use this component to display data from a JSON endpoint, or
+     * from table rows in the DOM. Displaying from the DOM is more practical,
+     * but sometimes you don't want to load everything at once (if you have
+     * a HUGE table). In those cases, you should configure Ink.UI.Table to
+     * get data from JSON endpoint.
+     *
+     * To enable sorting, just set the `data-sortable` attribute of your table headers (they must be in the `thead` of the table) to "true".
+     *
+     * To enable pagination, you should pass either an `Ink.UI.Pagination` instance or a selector to create the Ink.UI.Paginate element on.
+     *
      * @class Ink.UI.Table
      * @constructor
      * @version 1
-     * @param {String|DOMElement} selector
-     * @param {Object} [options] Options
-     *     @param {Number}    [options.pageSize]
-     *      Number of rows per page. Omit to avoid paginating.
+     * @param {String|DOMElement}   selector
+     * @param {Object}              [options] Options
+     * @param {Number}              [options.pageSize]                      Number of rows per page. Omit to avoid paginating.
+     * @param {String}              [options.endpoint]                      Endpoint to get the records via AJAX. Omit if you don't want to do AJAX
+     * @param {Function}            [options.createEndpointUrl]             Callback to customise what URL the AJAX endpoint is at. Receives three arguments: base (the "endpoint" option), sort (`{ order: 'asc' or 'desc', field: fieldname }`) and page ({ page: page number, size: items per page })
+     * @param {Function}            [options.getDataFromEndPoint]           Callback to allow the user to retrieve the data himself given an URL.  Must accept two arguments: `url` and `callback`. This `callback` will take as a single argument a JavaScript object.
+     * @param {Function}            [options.processJSONRows]               Retrieve an array of rows from the data which came from AJAX.
+     * @param {Function}            [options.processJSONHeaders]            Get an object with all the headers' names as keys, and a { label, sortable } object as value.  Example: `{col1: {label: "Column 1"}, col2: {label: "Column 2", sortable: true}`.  Takes a single argument, the JSON response.
+     * @param {Function}            [options.processJSONRow]                Process a row object before it gets on the table.
+     * @param {Function}            [options.processJSONField]              Process the field data before putting it on the table.  You can return HTML, a DOM element, or a string here.  Arguments you receive: `(column, fieldData, rowIndex)`.
+     * @param {Function}            [options.processJSONField.FIELD_NAME]   The same as processJSONField, but for a particular field.
+     * @param {Function}            [options.processJSONTotalRows]          A callback where you have a chance to say how many rows are in the dataset (not only on this page) you have on the collection. You get as an argument the JSON response.
+     * @param {Function}            [options.getSortKey]                    A function taking a `{ columnIndex, columnName, data, element }` object and returning a value which serves as a sort key for the sorting operation. For example, if you want to sort by a `data-sort-key` atribute, set `getSortKey` to: function (cell) { return cell.element.getAttribute('data-sort-key'); }
+     * @param {Function}            [options.getSortKey.FIELD_NAME]         Same as `options.getSortKey`, but for a particular field.
+     * @param {Object}              [options.tdClassNames]                  An object mapping each field to what classes it gets.  Example: `{ name: "large-10", isBoss: "hide-small" }`
+     * @param {Mixed}               [options.pagination]                    Pagination instance, element or selector.
+     * @param {Object}              [options.paginationOptions]             Override the options with which we instantiate the Ink.UI.Pagination.
+     * @param {Boolean}             [options.allowResetSorting]             Allow sort order to be set to "none" in addition to "ascending" and "descending"
+     * @param {String|Array}        [options.visibleFields]                 Set of fields which get shown on the table
      *
-     *     @param {String}    [options.endpoint]
-     *      Endpoint to get the records via AJAX. Omit if you don't want to do AJAX
-     *
-     *     @param {Function}  [options.createEndpointUrl]
-     *      Callback to customise what URL the AJAX endpoint is at. Receives three
-     *      arguments: base (the "endpoint" option), sort (`{ order: 'asc' or 'desc', field: fieldname }`)
-     *      and page ({ page: page number, size: items per page })
-     *
-     *     @param {Function}  [options.getDataFromEndPoint]
-     *      Callback to allow the user to retrieve the data himself given an URL.
-     *      Must accept two arguments: `url` and `callback`. This `callback` will
-     *      take as a single argument a JavaScript object.
-     *
-     *     @param {Function}  [options.processJSONRows]
-     *      Retrieve an array of rows from the data which came from AJAX.
-     *
-     *     @param {Function}  [options.processJSONHeaders]
-     *      Get an object with all the headers' names as keys, and a { label, sortable }
-     *      object as value.
-     *      Example: `{col1: {label: "Column 1"}, col2: {label: "Column 2", sortable: true}`.
-     *      Takes a single argument, the JSON response.
-     *
-     *     @param {Function}  [options.processJSONRow]
-     *      Process a row object before it gets on the table.
-     *
-     *     @param {Function}  [options.processJSONField]
-     *      Process the field data before putting it on the table.
-     *      You can return HTML, a DOM element, or a string here.
-     *      Arguments you receive: `(column, fieldData, rowIndex)`.
-     *
-     *          @param {Function}  [options.processJSONField.FIELD_NAME]
-     *           The same as processJSONField, but for a particular field.
-     *
-     *     @param {Function}  [options.processJSONTotalRows]
-     *      A callback where you have a chance to say how many rows
-     *      are in the dataset (not only on this page) you have on the
-     *      collection. You get as an argument the JSON response.
-     *
-     *     @param {Function}  [options.getSortKey=null]
-     *      A function taking a `{ columnIndex, columnName, data, element }`
-     *      object and returning a value which serves as a sort key for the
-     *      sorting operation. For example, if you want to sort by a
-     *      `data-sort-key` atribute, set `getSortKey` to:
-     *
-     *          function (cell) {
-     *              return cell.element.getAttribute('data-sort-key');
-     *          }
-     *
-     *          @param {Function} [options.getSortKey.FIELD_NAME]
-     *           Same as `options.getSortKey`, but for a particular field.
-     *
-     *     @param {Object}    [options.tdClassNames]
-     *      An object mapping each field to what classes it gets.
-     *      Example: `{ name: "large-10", isBoss: "hide-small" }`
-     *
-     *     @param {String|DomElement|Ink.UI.Pagination} [options.pagination]
-     *      Pagination instance or element.
-     *
-     *     @param {Object}    [options.paginationOptions]
-     *      Override the options with which we instantiate the Ink.UI.Pagination.
-     *
-     *     @param {Boolean}   [options.allowResetSorting]
-     *      Allow sort order to be set to "none" in addition to "ascending" and "descending"
-     *
-     *     @param {String|Array} [options.visibleFields]
-     *      Set of fields which get shown on the table
-     * @example
-     *      <table class="ink-table alternating" data-page-size="6">
-     *          <thead>
-     *              <tr>
-     *                  <th data-sortable="true" width="75%">Pepper</th>
-     *                  <th data-sortable="true" width="25%">Scoville Rating</th>
-     *              </tr>
-     *          </thead>
-     *          <tbody>
-     *              <tr>
-     *                  <td>Trinidad Moruga Scorpion</td>
-     *                  <td>1500000</td>
-     *              </tr>
-     *              <tr>
-     *                  <td>Bhut Jolokia</td>
-     *                  <td>1000000</td>
-     *              </tr>
-     *              <tr>
-     *                  <td>Naga Viper</td>
-     *                  <td>1463700</td>
-     *              </tr>
-     *              <tr>
-     *                  <td>Red Savina Habanero</td>
-     *                  <td>580000</td>
-     *              </tr>
-     *              <tr>
-     *                  <td>Habanero</td>
-     *                  <td>350000</td>
-     *              </tr>
-     *              <tr>
-     *                  <td>Scotch Bonnet</td>
-     *                  <td>180000</td>
-     *              </tr>
-     *              <tr>
-     *                  <td>Malagueta</td>
-     *                  <td>50000</td>
-     *              </tr>
-     *              <tr>
-     *                  <td>Tabasco</td>
-     *                  <td>35000</td>
-     *              </tr>
-     *              <tr>
-     *                  <td>Serrano Chili</td>
-     *                  <td>27000</td>
-     *              </tr>
-     *              <tr>
-     *                  <td>Jalapeño</td>
-     *                  <td>8000</td>
-     *              </tr>
-     *              <tr>
-     *                  <td>Poblano</td>
-     *                  <td>1500</td>
-     *              </tr>
-     *              <tr>
-     *                  <td>Peperoncino</td>
-     *                  <td>500</td>
-     *              </tr>
-     *          </tbody>
-     *      </table>
-     *      <nav class="ink-navigation"><ul class="pagination"></ul></nav>
-     *      <script>
-     *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.Table_1'], function( Selector, Table ){
-     *              var tableElement = Ink.s('.ink-table');
-     *              var tableObj = new Table( tableElement );
-     *          });
-     *      </script>
+     * @sample Ink_UI_Table_1.html
      */
     var Table = function( selector, options ){
 
@@ -613,9 +506,11 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
         },
 
         /**
-         * Sets the endpoint. Useful for changing the endpoint in runtime.
+         * Sets the AJAX endpoint.
+         * Useful to change the endpoint in runtime.
          *
-         * @method _setEndpoint
+         * @method setEndpoint
+         * @public
          * @param {String} endpoint New endpoint
          */
         setEndpoint: function( endpoint, currentPage ){

@@ -1,5 +1,14 @@
+/**
+ * @module Ink.Autoload
+ * @version 1
+ */
 Ink.createModule('Ink.Autoload', 1, ['Ink.Dom.Selector_1', 'Ink.Dom.Loaded_1', 'Ink.UI.SmoothScroller_1', 'Ink.UI.Close_1'], function( Selector, Loaded, Scroller, Close ){
     'use strict';
+
+    /**
+     * @namespace Ink.Autoload
+     * @static
+     */
 
     var Autoload = {
         selectors: {
@@ -8,6 +17,7 @@ Ink.createModule('Ink.Autoload', 1, ['Ink.Dom.Selector_1', 'Ink.Dom.Loaded_1', '
             'Animate_1'     : '.ink-animate',
             'Carousel_1'    : '.ink-carousel',
             'DatePicker_1'  : '.ink-datepicker',
+            'Dropdown_1'    : '.ink-dropdown',
             'Gallery_1'     : 'ul.ink-gallery-source',
             'Modal_1'       : '.ink-modal',
             'ProgressBar_1' : '.ink-progress-bar',

@@ -1,17 +1,15 @@
 /**
  * @module Ink.UI.Close_1
- * @author inkdev AT sapo.pt
+ * @version 1
+ * Closing utilities
  */
 Ink.createModule('Ink.UI.Close', '1', ['Ink.Dom.Event_1','Ink.Dom.Element_1'], function(InkEvent, InkElement) {
     'use strict';
 
     /**
-     * Subscribes clicks on the document.body. If and only if you clicked on an element
-     * having class "ink-close" or "ink-dismiss", will go up the DOM hierarchy looking for an element with any
-     * of the following classes: "ink-alert", "ink-alert-block".
-     * If it is found, it is removed from the DOM.
-     * 
-     * One should call close once per page (full page refresh).
+     * Subscribes clicks on the document.body.
+     * Whenever an ".ink-close,.ink-dismiss" element is clicked, this module finds an ancestor ".ink-alert,.ink-alert-block" element and removes it from the DOM.
+     * This module should be called only once per page.
      * 
      * @class Ink.UI.Close
      * @constructor
@@ -21,6 +19,8 @@ Ink.createModule('Ink.UI.Close', '1', ['Ink.Dom.Event_1','Ink.Dom.Element_1'], f
      *             new Close();
      *         });
      *     </script>
+     *
+     * @sample Ink_UI_Close_1.html
      */
     var Close = function() {
         InkEvent.observe(document.body, 'click', function(ev) {

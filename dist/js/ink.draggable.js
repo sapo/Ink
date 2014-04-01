@@ -1,7 +1,9 @@
 /**
  * @module Ink.UI.Draggable_1
+ * Dragging elements around
  * @version 1
  */
+ 
 Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", "Ink.Dom.Css_1", "Ink.Dom.Browser_1", "Ink.Dom.Selector_1", "Ink.UI.Common_1"],function( InkElement, InkEvent, Css, Browser, Selector, Common) {
     'use strict';
 
@@ -19,30 +21,33 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
      * @class Ink.UI.Draggable
      * @version 1
      * @constructor
-     * @param {String|DOMElement} target    Target element.
-     * @param {Object} [options] Optional object for configuring the component
-     *     @param {String}            [options.constraint]      Movement constraint. None by default. Can be `vertical`, `horizontal`, or `both`.
-     *     @param {String|DomElement} [options.constraintElm]   Constrain dragging to be within this element. None by default.
-     *     @param {Number}            [options.top]             Limits for constraining draggable movement.
-     *     @param {Number}            [options.right]           Limits for constraining draggable movement.
-     *     @param {Number}            [options.bottom]          Limits for constraining draggable movement.
-     *     @param {Number}            [options.left]            Limits for constraining draggable movement.
-     *     @param {String|DOMElement} [options.handle]          if specified, this element will be used as a handle for dragging.
-     *     @param {Boolean}           [options.revert]          if true, reverts the draggable to the original position when dragging stops
-     *     @param {String}            [options.cursor]          cursor type (CSS `cursor` value) used when the mouse is over the draggable object
-     *     @param {Number}            [options.zIndex]          zindex applied to the draggable element while dragged
-     *     @param {Number}            [options.fps]             if defined, on drag will run every n frames per second only
-     *     @param {DomElement}        [options.droppableProxy]  if set, a shallow copy of the droppableProxy will be put on document.body with transparent bg
-     *     @param {String}            [options.mouseAnchor]     defaults to mouse cursor. can be 'left|center|right top|center|bottom'
-     *     @param {String}            [options.dragClass]='drag' class to add when the draggable is being dragged.
-     *     @param {Function}          [options.onStart]        callback called when dragging starts
-     *     @param {Function}          [options.onEnd]          callback called when dragging stops
-     *     @param {Function}          [options.onDrag]         callback called while dragging, prior to position updates
-     *     @param {Function}          [options.onChange]       callback called while dragging, after position updates
+     * @param {String|DOMElement}   target                      Target element.
+     * @param {Object}              [options]                   Optional object to configure the component.
+     * @param {String}              [options.constraint]        Movement constraint. None by default. Can be `vertical`, `horizontal`, or `both`.
+     * @param {String|DOMElement}   [options.constraintElm]     Constrain dragging to be within this element. None by default.
+     * @param {Number}              [options.top]               Limits to constrain draggable movement.
+     * @param {Number}              [options.right]             Limits to constrain draggable movement.
+     * @param {Number}              [options.bottom]            Limits to constrain draggable movement.
+     * @param {Number}              [options.left]              Limits to constrain draggable movement.
+     * @param {String|DOMElement}   [options.handle]            If specified, this element or CSS ID will be used as a handle for dragging.
+     * @param {Boolean}             [options.revert]            Flag to revert the draggable to the original position when dragging stops.
+     * @param {String}              [options.cursor]            Cursor type (CSS `cursor` value) used when the mouse is over the draggable object.
+     * @param {Number}              [options.zIndex]            Z-index applied to the draggable element while dragged.
+     * @param {Number}              [options.fps]               If set, throttles the drag effect to this number of frames per second.
+     * @param {DOMElement}          [options.droppableProxy]    If set, a shallow copy of this element will be moved around with transparent background.
+     * @param {String}              [options.mouseAnchor]       Anchor for the drag. Can be one of: 'left','center','right','top','center','bottom'.
+     * @param {String}              [options.dragClass]         Class to add when the draggable is being dragged. Defaults to drag.
+     * @param {Function}            [options.onStart]           Callback called when dragging starts.
+     * @param {Function}            [options.onEnd]             Callback called when dragging stops.
+     * @param {Function}            [options.onDrag]            Callback called while dragging, prior to position updates.
+     * @param {Function}            [options.onChange]          Callback called while dragging, after position updates.
+     *
      * @example
      *     Ink.requireModules( ['Ink.UI.Draggable_1'], function( Draggable ){
      *         new Draggable( '#myElementId' );
      *     });
+     *
+     * @sample Ink_UI_Swipe_1.html
      */
     var Draggable = function(element, options) {
         this.init(element, options);
@@ -54,8 +59,8 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
          * Init function called by the constructor
          * 
          * @method _init
-         * @param {String|DOMElement} element ID of the element or DOM Element.
-         * @param {Object} [options] Options object for configuration of the module.
+         * @param {String|DOMElement}   element     Element ID of the element or DOM Element.
+         * @param {Object}              [options]   Options object for configuration of the module.
          * @private
          */
         init: function(element, options) {

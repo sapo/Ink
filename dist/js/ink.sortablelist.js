@@ -1,8 +1,9 @@
 /**
  * @module Ink.UI.SortableList_1
- * @author inkdev AT sapo.pt
+ * Sortable lists
  * @version 1
  */
+
 Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Css_1','Ink.Dom.Event_1','Ink.Dom.Element_1','Ink.Dom.Selector_1'], function( Common, Css, Events, Element, Selector ) {
     'use strict';
     var hasTouch = (('ontouchstart' in window) ||       // html5 browsers
@@ -10,33 +11,22 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Css_1',
                     (navigator.msMaxTouchPoints > 0));
 
     /**
-     * Adds sortable behaviour to any list!
+     * Adds sortable behaviour to any list.
      * 
      * @class Ink.UI.SortableList
      * @constructor
      * @version 1
-     * @param {String|DOMElement} selector
-     * @param {String} [options.placeholderClass='placeholder'] CSS class to be added to the "ghost" element being dragged around
-     * @param {String} [options.draggedClass='hide-all'] CSS class added to the original element.
-     * @param {String} [options.draggingClass='dragging'] CSS class added to the html element when the user is dragging.
-     * @param {String} [options.dragSelector='li'] CSS selector for the drag enabled nodes.
-     * @param {String} [options.handleSelector=null] CSS selector for the drag handle. If present, you can only drag nodes by this selector.
-     * @param {String} [options.moveSelector=null] CSS selector to validate a node move. If present, you can only move nodes into this selector.
-     * @param {Boolean} [options.swap=false] Flag to swap moving element with target element instead of changing its order.
-     * @param {Boolean} [options.cancelMouseOut=false] Flag to cancel moving if mouse leaves the container element.
-
-     * @example
-     *      <ul class="unstyled ink-sortable-list" id="slist" data-handle-selector=".ink-label">
-     *          <li><span class="ink-label info">drag here</span>primeiro</li>
-     *          <li><span class="ink-label info">drag here</span>segundo</li>
-     *          <li><span class="ink-label info">drag here</span>terceiro</li>
-     *      </ul>
-     *      <script>
-     *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.SortableList_1'], function( Selector, SortableList ){
-     *              var sortableListElement = Ink.s('.ink-sortable-list');
-     *              var sortableListObj = new SortableList( sortableListElement );
-     *          });
-     *      <\/script>
+     * @param {String|DOMElement}   selector
+     * @param {String}              [options.placeholderClass]          CSS class added to the "ghost" element being dragged around. Defaults to 'placeholder'.
+     * @param {String}              [options.draggedClass]              CSS class added to the original element being dragged around. Defaults to 'hide-all'.
+     * @param {String}              [options.draggingClass]             CSS class added to the html element when the user is dragging. Defaults to 'dragging'.
+     * @param {String}              [options.dragSelector]              CSS selector for the drag enabled nodes. Defaults to 'li'.
+     * @param {String}              [options.handleSelector]            CSS selector for the drag handle. If present, you can only drag nodes by this selector.
+     * @param {String}              [options.moveSelector]              CSS selector to validate a node move. If present, you can only move nodes inside this selector.
+     * @param {Boolean}             [options.swap]                      Flag to swap dragged element and target element instead of reordering it.
+     * @param {Boolean}             [options.cancelMouseOut]            Flag to cancel draggin if mouse leaves the container element.
+     *
+     * @sample Ink_UI_SortableList_1.html
      */
     var SortableList = function(selector, options) {
 
@@ -213,7 +203,7 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Css_1',
          **************/
 
         /**
-         * Unregisters the component and removes its markup from the DOM
+         * Unregisters the component and removes its markup
          * 
          * @method destroy
          * @public
@@ -221,7 +211,8 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Css_1',
         destroy: Common.destroyComponent,
 
         /**
-         * Visually stops moving. Removes the placeholder as well as the styling classes.
+         * Visually stops moving. 
+         * Removes the placeholder as well as the styling classes.
          * 
          * @method _movePlaceholder
          * @public
@@ -234,7 +225,8 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Css_1',
         },
 
         /**
-         * Validation method for the move handler
+         * Validate a move.
+         * This method is used by the move handler
          * 
          * @method _movePlaceholder
          * @param {Element} elem

@@ -15,13 +15,28 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.Dom.Event_1', 'Ink.Dom.Elem
         function (id) { clearTimeout(id); };
 
     /**
-     * @class Ink.UI.SmoothScroller
+     * @namespace Ink.UI.SmoothScroller
      * @version 1
      * @static
      *
+     * SmoothScroller is a component which replaces the default scroll-to behaviour of `<a>` tags which refer to IDs on the page.
+     *
+     * For example, when you have this:
+     *
+     *          <a href="#todo">Todo</a>
+     *              [...]
+     *          <section id="todo">
+     *              [...]
+     *
+     * You can click the `<a>` and the page will scroll until the section you pointed to.
+     *
+     * When you use SmoothScroller, instead of immediately scrolling to the element, you get a smooth motion.
+     *
+     * Also, you can define the data-margin option if you have a `position:fixed` top menu ruining the behaviour.
+     *
      * @example
      *
-     *      <a href="#part1" class="ink-smooth-scroll">go to Part 1</a>
+     *      <a href="#part1" class="ink-smooth-scroll" data-margin="10">go to Part 1</a>
      *
      *      [lots and lots of content...]
      *

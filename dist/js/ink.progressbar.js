@@ -1,52 +1,28 @@
 /**
  * @module Ink.UI.ProgressBar_1
- * @author inkdev AT sapo.pt
+ * Animated progress bars
  * @version 1
  */
-Ink.createModule('Ink.UI.ProgressBar', '1', ['Ink.Dom.Selector_1','Ink.Dom.Element_1'], function( Selector, Element ) {
+
+Ink.createModule('Ink.UI.ProgressBar', '1', ['Ink.UI.Common_1', 'Ink.Dom.Selector_1','Ink.Dom.Element_1'], function( Common, Selector, Element ) {
     'use strict';
 
     /**
-     * Associated to a .ink-progress-bar element, it provides the necessary
-     * method - setValue() - for the user to change the element's value.
+     * Associated to a .ink-progress-bar element, it provides a setValue() method to change the element's value.
      * 
      * @class Ink.UI.ProgressBar
      * @constructor
      * @version 1
-     * @param {String|DOMElement} selector
-     * @param {Object} [options] Options
-     *     @param {Number}     [options.startValue]          Percentage of the bar that is filled. Range between 0 and 100. Default: 0
-     *     @param {Function}   [options.onStart]             Callback that is called when a change of value is started
-     *     @param {Function}   [options.onEnd]               Callback that is called when a change of value ends
+     * @param {String|DOMElement}   selector                Element or selector
+     * @param {Object}              [options]               Options object
+     * @param {Number}              [options.startValue]    Percentage of the bar that is filled. Ranges between 0 and 100. Default: 0
+     * @param {Function}            [options.onStart]       Callback called when a change of value is started
+     * @param {Function}            [options.onEnd]         Callback called when a change of value ends
      *
-     * @example
-     *      <div class="ink-progress-bar grey" data-start-value="70%">
-     *          <span class="caption">I am a grey progress bar</span>
-     *          <div class="bar grey"></div>
-     *      </div>
-     *      <script>
-     *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.ProgressBar_1'], function( Selector, ProgressBar ){
-     *              var progressBarElement = Ink.s('.ink-progress-bar');
-     *              var progressBarObj = new ProgressBar( progressBarElement );
-     *          });
-     *      </script>
+     * @sample Ink_UI_ProgressBar_1.html
      */
     var ProgressBar = function( selector, options ){
-
-        if( typeof selector !== 'object' ){
-            if( typeof selector !== 'string' ){
-                throw '[Ink.UI.ProgressBar] :: Invalid selector';
-            } else {
-                this._element = Selector.select(selector);
-                if( this._element.length < 1 ){
-                    throw "[Ink.UI.ProgressBar] :: Selector didn't find any elements";
-                }
-                this._element = this._element[0];
-            }
-        } else {
-            this._element = selector;
-        }
-
+        this._element = Common.elOrSelector(selector);
 
         this._options = Ink.extendObj({
             'startValue': 0,

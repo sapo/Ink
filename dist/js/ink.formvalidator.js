@@ -1,8 +1,9 @@
 /**
  * @module Ink.UI.FormValidator_1
- * @author inkdev AT sapo.pt
+ * Form Validation
  * @version 1
  **/
+
 Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css_1','Ink.Util.Validator_1','Ink.Dom.Selector_1'], function( InkElement, Css, InkValidator , Selector) {
     'use strict';
 
@@ -18,7 +19,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
         return ret;
     }
     /**
-     * @class Ink.UI.FormValidator
+     * @namespace Ink.UI.FormValidator
      * @version 1
      */
     var FormValidator = {
@@ -129,78 +130,18 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
         _errorTypeErrorClassName: 'error',
 
         /**
-         * Check if a form is valid or not
+         * Checks if a form is valid
          * 
          * @method validate
-         * @param {DOMElement|String} elm DOM form element or form id
-         * @param {Object} options Options for
-         *      @param {Function} [options.onSuccess] function to run when form is valid
-         *      @param {Function} [options.onError] function to run when form is not valid
-         *      @param {Array} [options.customFlag] custom flags to use to validate form fields
+         * @param {DOMElement|String}   elm                     DOM form element or form id
+         * @param {Object}              options                 Configuration options
+         * @param {Function}            [options.onSuccess]     Callback to run when form is valid
+         * @param {Function}            [options.onError]       Callback to run when form is not valid
+         * @param {Array}               [options.customFlag]    Custom flags to use to validate form fields
          * @public
          * @return {Boolean} Whether the form is deemed valid or not.
          *
-         * @example
-         *
-         * ## What markup do I need?
-         *
-         * Besides the markup structure you can see in
-         * <a href="http://ink.sapo.pt/forms#building"></a>, you need to add
-         * the `ink-fv-*` classes to your inputs, which correspond to validation
-         * rules in this component. Available classes are:
-         *
-         * - `ink-fv-required` : Required field
-         * - `ink-fv-email`    : Valid e-mail
-         * - `ink-fv-url`      : Valid URL address
-         * - `ink-fv-number`   : Valid number
-         * - `ink-fv-phone_pt`, `ink-fv-phone_cv`, `ink-fv-phone_mz`, `ink-fv-phone_ao` : Valid telephone number in Portugal, Cape Verde, Mozambique or Angola.
-         * - `ink-fv-date`     : Valid date
-         * - `ink-fv-confirm`  : Make the user type the same thing twice. Common rule for confirming passwords.
-         * - `ink-fv-custom`   : Custom rule (see below example "Custom rule")
-         * 
-         *           E-mail field: <input class="ink-fv-required ink-fv-email"><br>
-         *           Phone number field: <input class="ink-fv-number ink-fv-required"><br>
-         *           Website field (optional): <input class="ink-fv-url">
-         * 
-         * ## Simple usage
-         *
-         * So you have a form and would like to validate it? This example shows
-         * how to validate a form and stop it from being submitted when invalid.
-         * To use this, add the several ink-fv-* classes to your input elements.
-         *
-         * The validate() function will also add "invalid" classes to each of
-         * your elements so the user gets a color feedback and an error message
-         * below each element (control-group, really).
-         *
-         *         var myForm = Ink.i('my-form');
-         *         InkEvent.observe(myForm, 'submit', function (ev) {
-         *             var formIsValid = FormValidator.validate(myForm);
-         *             if (!formIsValid) {
-         *                 InkEvent.stop(ev);  // Cancel submission of form.
-         *             }
-         *         });
-         *
-         * @example
-         *
-         * ## Custom rule.
-         *
-         * The following code validates using a custom rule named `minthree`,
-         * which fails if the input string has less than three characters.
-         * To do this, you must add the `ink-fv-custom` and `minthree` classes
-         * to the input elements you want to validate, and pass the `customFlag`
-         * option to this function, like so:
-         *
-         *         var isValid = FormValidator.validate(myForm, {
-         *             customFlag: [
-         *                 {
-         *                     flag: 'minthree',  // The name of this rule (add this class to your <input>s
-         *                     msg: 'Please input at least three characters',  // Error message when rule fails
-         *                     callback: function (el) {
-         *                         return el.value.length >= 3  // Return true when okay, false when not
-         *                     }
-         *                 }
-         *             ]
-         *         });
+         * @sample Ink_UI_FormValidator_1.html
          */
         validate: function(elm, options) {
             this._free();
@@ -253,7 +194,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
         },
 
         /**
-         * Reset previously generated validation errors
+         * Resets previously generated validation errors
          * 
          * @method reset
          * @public
