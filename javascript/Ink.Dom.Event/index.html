@@ -26,527 +26,520 @@ Event management</small></h1>
 
 
     
-            
+        
+<p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p>
 
-    
-    
-    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p>
+<table class="props bottom-space">
 
-    
-    <table class="props bottom-space">
-        
-        
-        <caption>Functions</caption>
-        <thead>
-            <tr>
-                <th>Function name</th>
-                <th>Description</th>
-            </tr>
-        </thead>
+  <caption>Functions</caption>
+  <thead>
+  <tr>
+  <th>Function name</th>
+  <th>Description</th>
+  </tr>
+  </thead>
 
-        
-        
-        <tbody>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-clone">
-                        
-                            .clone
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
+  <tbody>
 
-                    <p>Clones events from one object to another
+  <tr>
+    <td>
+      <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-clone">
+  
+      .clone
+  
+
+      </a>
+    </td>
+    <td>
+  
+
+  <p>Clones events from one object to another
 bean.clone() is a method for cloning events from one DOM element or object to another.
 <a href="http://github.com/fat/bean#clone">http://github.com/fat/bean#clone</a></p>
 
 
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-element">
-                        
-                            .element
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
+  
+      
+    </td>
+    </tr>
 
-                    <p>Gets the event&#39;s target element.</p>
+  <tr>
+    <td>
+      <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-element">
+  
+      .element
+  
+
+      </a>
+    </td>
+    <td>
+  
+
+  <p>Gets the event&#39;s target element.</p>
 
 
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-findElement">
-                        
-                            .findElement
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
+  
+      
+    </td>
+    </tr>
 
-                    <p>Find closest ancestor element by tag name related to the event target.
+  <tr>
+    <td>
+      <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-findElement">
+  
+      .findElement
+  
+
+      </a>
+    </td>
+    <td>
+  
+
+  <p>Find closest ancestor element by tag name related to the event target.
 Navigate up the DOM tree, looking for a tag with the name <code>elmTagName</code>.</p>
 <p>If such tag is not found, <code>document</code> is returned.</p>
 
 
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-fire">
-                        
-                            .fire
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
+  
+      
+    </td>
+    </tr>
 
-                    <p>Triggers events.
+  <tr>
+    <td>
+      <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-fire">
+  
+      .fire
+  
+
+      </a>
+    </td>
+    <td>
+  
+
+  <p>Triggers events.
 <a href="http://github.com/fat/bean#fire">http://github.com/fat/bean#fire</a></p>
 
 
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-getCharFromKeyboardEvent">
-                        
-                            .getCharFromKeyboardEvent
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
+  
+      
+    </td>
+    </tr>
 
-                    <p>Gets character from an event.
+  <tr>
+    <td>
+      <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-getCharFromKeyboardEvent">
+  
+      .getCharFromKeyboardEvent
+  
+
+      </a>
+    </td>
+    <td>
+  
+
+  <p>Gets character from an event.
 Used in SAPO.Component.MaskedInput</p>
 
 
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-isLeftClick">
-                        
-                            .isLeftClick
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
+  
+      
+    </td>
+    </tr>
 
-                    <p>Checks if an event is a left click.</p>
+  <tr>
+    <td>
+      <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-isLeftClick">
+  
+      .isLeftClick
+  
 
+      </a>
+    </td>
+    <td>
+  
 
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-isMiddleClick">
-                        
-                            .isMiddleClick
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    <p>Checks if an event is a middle click.</p>
+  <p>Checks if an event is a left click.</p>
 
 
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-isRightClick">
-                        
-                            .isRightClick
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
+  
+      
+    </td>
+    </tr>
 
-                    <p>Checks if an event is a right click.</p>
+  <tr>
+    <td>
+      <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-isMiddleClick">
+  
+      .isMiddleClick
+  
 
+      </a>
+    </td>
+    <td>
+  
 
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-observe">
-                        
-                            .observe
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    <p>Attaches an event to element</p>
+  <p>Checks if an event is a middle click.</p>
 
 
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-observeDelegated">
-                        
-                            .observeDelegated
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
+  
+      
+    </td>
+    </tr>
 
-                    <p>Observes an event on an element and its descendants matching the selector.</p>
+  <tr>
+    <td>
+      <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-isRightClick">
+  
+      .isRightClick
+  
+
+      </a>
+    </td>
+    <td>
+  
+
+  <p>Checks if an event is a right click.</p>
+
+
+  
+      
+    </td>
+    </tr>
+
+  <tr>
+    <td>
+      <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-observe">
+  
+      .observe
+  
+
+      </a>
+    </td>
+    <td>
+  
+
+  <p>Attaches an event to element</p>
+
+
+  
+      
+    </td>
+    </tr>
+
+  <tr>
+    <td>
+      <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-observeDelegated">
+  
+      .observeDelegated
+  
+
+      </a>
+    </td>
+    <td>
+  
+
+  <p>Observes an event on an element and its descendants matching the selector.</p>
 <p>Requires Ink.Dom.Selector if you need to use a selector.</p>
 
 
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-observeMulti">
-                        
-                            .observeMulti
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
+  
+      
+    </td>
+    </tr>
 
-                    <p>Attaches an event to a selector or array of elements.</p>
+  <tr>
+    <td>
+      <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-observeMulti">
+  
+      .observeMulti
+  
 
+      </a>
+    </td>
+    <td>
+  
 
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-observeOnce">
-                        
-                            .observeOnce
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    <p>Like observe, but listen to the event only once.</p>
+  <p>Attaches an event to a selector or array of elements.</p>
 
 
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-off">
-                        
-                            .off
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
+  
+      
+    </td>
+    </tr>
 
-                    <p>Removes event handlers.
+  <tr>
+    <td>
+      <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-observeOnce">
+  
+      .observeOnce
+  
+
+      </a>
+    </td>
+    <td>
+  
+
+  <p>Like observe, but listen to the event only once.</p>
+
+
+  
+      
+    </td>
+    </tr>
+
+  <tr>
+    <td>
+      <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-off">
+  
+      .off
+  
+
+      </a>
+    </td>
+    <td>
+  
+
+  <p>Removes event handlers.
 bean.off() is how you get rid of handlers once you no longer want them active. It&#39;s also a good idea to call off on elements before you remove them from your DOM; this gives Bean a chance to clean up some things and prevents memory leaks.
 <a href="http://github.com/fat/bean#off">http://github.com/fat/bean#off</a></p>
 
 
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-on">
-                        
-                            .on
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
+  
+      
+    </td>
+    </tr>
 
-                    <p>Lets you attach event listeners to both elements and objects.
+  <tr>
+    <td>
+      <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-on">
+  
+      .on
+  
+
+      </a>
+    </td>
+    <td>
+  
+
+  <p>Lets you attach event listeners to both elements and objects.
 <a href="http://github.com/fat/bean#on">http://github.com/fat/bean#on</a></p>
 
 
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-one">
-                        
-                            .one
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
+  
+      
+    </td>
+    </tr>
 
-                    <p>Alias for <code>on</code> but will only be executed once.
+  <tr>
+    <td>
+      <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-one">
+  
+      .one
+  
+
+      </a>
+    </td>
+    <td>
+  
+
+  <p>Alias for <code>on</code> but will only be executed once.
 bean.one() is an alias for bean.on() except that the handler will only be executed once and then removed for the event type(s).
 <a href="http://github.com/fat/bean#one">http://github.com/fat/bean#one</a></p>
 
 
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-pointer">
-                        
-                            .pointer
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
+  
+      
+    </td>
+    </tr>
 
-                    <p>Gets the pointer&#39;s coordinates from the event object.</p>
+  <tr>
+    <td>
+      <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-pointer">
+  
+      .pointer
+  
 
+      </a>
+    </td>
+    <td>
+  
 
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-pointerX">
-                        
-                            .pointerX
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    <p>Gets the pointer&#39;s X coordinate.</p>
+  <p>Gets the pointer&#39;s coordinates from the event object.</p>
 
 
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-pointerY">
-                        
-                            .pointerY
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
+  
+      
+    </td>
+    </tr>
 
-                    <p>Gets the pointer&#39;s Y coordinate.</p>
+  <tr>
+    <td>
+      <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-pointerX">
+  
+      .pointerX
+  
 
+      </a>
+    </td>
+    <td>
+  
 
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-relatedTarget">
-                        
-                            .relatedTarget
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    <p>Gets the event&#39;s related target element.</p>
+  <p>Gets the pointer&#39;s X coordinate.</p>
 
 
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-stop">
-                        
-                            .stop
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
+  
+      
+    </td>
+    </tr>
 
-                    <p>Stops event propagation and bubbling.</p>
+  <tr>
+    <td>
+      <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-pointerY">
+  
+      .pointerY
+  
 
+      </a>
+    </td>
+    <td>
+  
 
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-stopDefault">
-                        
-                            .stopDefault
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    <p>Stops event default behaviour.</p>
+  <p>Gets the pointer&#39;s Y coordinate.</p>
 
 
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-stopObserving">
-                        
-                            .stopObserving
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
+  
+      
+    </td>
+    </tr>
 
-                    <p>Removes an event attached to an element.</p>
+  <tr>
+    <td>
+      <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-relatedTarget">
+  
+      .relatedTarget
+  
 
+      </a>
+    </td>
+    <td>
+  
 
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-stopPropagation">
-                        
-                            .stopPropagation
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
-
-                    <p>Stops event propagation.</p>
+  <p>Gets the event&#39;s related target element.</p>
 
 
-                    
-                    
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-throttle">
-                        
-                            .throttle
-                        
-                        
-                    </a>
-                </td>
-                <td>
-                    
+  
+      
+    </td>
+    </tr>
 
-                    <p>Creates a debounced version of a function.
+  <tr>
+    <td>
+      <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-stop">
+  
+      .stop
+  
+
+      </a>
+    </td>
+    <td>
+  
+
+  <p>Stops event propagation and bubbling.</p>
+
+
+  
+      
+    </td>
+    </tr>
+
+  <tr>
+    <td>
+      <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-stopDefault">
+  
+      .stopDefault
+  
+
+      </a>
+    </td>
+    <td>
+  
+
+  <p>Stops event default behaviour.</p>
+
+
+  
+      
+    </td>
+    </tr>
+
+  <tr>
+    <td>
+      <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-stopObserving">
+  
+      .stopObserving
+  
+
+      </a>
+    </td>
+    <td>
+  
+
+  <p>Removes an event attached to an element.</p>
+
+
+  
+      
+    </td>
+    </tr>
+
+  <tr>
+    <td>
+      <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-stopPropagation">
+  
+      .stopPropagation
+  
+
+      </a>
+    </td>
+    <td>
+  
+
+  <p>Stops event propagation.</p>
+
+
+  
+      
+    </td>
+    </tr>
+
+  <tr>
+    <td>
+      <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-throttle">
+  
+      .throttle
+  
+
+      </a>
+    </td>
+    <td>
+  
+
+  <p>Creates a debounced version of a function.
 Returns a function which calls <code>func</code>, waiting at least <code>wait</code> milliseconds between calls. This is useful for events such as <code>scroll</code> or <code>resize</code>, which can be triggered too many times per second, slowing down the browser with needless function calls.</p>
 <p><em>note:</em> This does not delay the first function call to the function.</p>
 
 
-                    
-                    
-                </td>
-            </tr>
-        
-        </tbody>
-    </table>
-    
+  
+      
+    </td>
+    </tr>
 
-    
+</tbody>
+</table>
+
+
+
 </section>
 
 
@@ -555,7 +548,7 @@ Returns a function which calls <code>func</code>, waiting at least <code>wait</c
 
 
 
-    <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-clone" class="box box-function">
+<section id="Ink_Dom_Event_1-Ink_Dom_Event_1-clone" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -699,7 +692,7 @@ bean.clone() is a method for cloning events from one DOM element or object to an
 
 </section>
 
-    <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-element" class="box box-function">
+<section id="Ink_Dom_Event_1-Ink_Dom_Event_1-element" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -787,7 +780,7 @@ bean.clone() is a method for cloning events from one DOM element or object to an
 
 </section>
 
-    <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-findElement" class="box box-function">
+<section id="Ink_Dom_Event_1-Ink_Dom_Event_1-findElement" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -933,7 +926,7 @@ Navigate up the DOM tree, looking for a tag with the name <code>elmTagName</code
 
 </section>
 
-    <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-fire" class="box box-function">
+<section id="Ink_Dom_Event_1-Ink_Dom_Event_1-fire" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -1070,7 +1063,7 @@ Navigate up the DOM tree, looking for a tag with the name <code>elmTagName</code
 
 </section>
 
-    <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-getCharFromKeyboardEvent" class="box box-function">
+<section id="Ink_Dom_Event_1-Ink_Dom_Event_1-getCharFromKeyboardEvent" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -1186,7 +1179,7 @@ Used in SAPO.Component.MaskedInput</p>
 
 </section>
 
-    <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-isLeftClick" class="box box-function">
+<section id="Ink_Dom_Event_1-Ink_Dom_Event_1-isLeftClick" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -1274,7 +1267,7 @@ Used in SAPO.Component.MaskedInput</p>
 
 </section>
 
-    <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-isMiddleClick" class="box box-function">
+<section id="Ink_Dom_Event_1-Ink_Dom_Event_1-isMiddleClick" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -1362,7 +1355,7 @@ Used in SAPO.Component.MaskedInput</p>
 
 </section>
 
-    <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-isRightClick" class="box box-function">
+<section id="Ink_Dom_Event_1-Ink_Dom_Event_1-isRightClick" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -1450,7 +1443,7 @@ Used in SAPO.Component.MaskedInput</p>
 
 </section>
 
-    <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-observe" class="box box-function">
+<section id="Ink_Dom_Event_1-Ink_Dom_Event_1-observe" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -1619,7 +1612,7 @@ Used in SAPO.Component.MaskedInput</p>
 
 </section>
 
-    <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-observeDelegated" class="box box-function">
+<section id="Ink_Dom_Event_1-Ink_Dom_Event_1-observeDelegated" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -1789,7 +1782,7 @@ Used in SAPO.Component.MaskedInput</p>
 
 </section>
 
-    <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-observeMulti" class="box box-function">
+<section id="Ink_Dom_Event_1-Ink_Dom_Event_1-observeMulti" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -1956,7 +1949,7 @@ Used in SAPO.Component.MaskedInput</p>
 
 </section>
 
-    <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-observeOnce" class="box box-function">
+<section id="Ink_Dom_Event_1-Ink_Dom_Event_1-observeOnce" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -2125,7 +2118,7 @@ Used in SAPO.Component.MaskedInput</p>
 
 </section>
 
-    <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-off" class="box box-function">
+<section id="Ink_Dom_Event_1-Ink_Dom_Event_1-off" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -2269,7 +2262,7 @@ bean.off() is how you get rid of handlers once you no longer want them active. I
 
 </section>
 
-    <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-on" class="box box-function">
+<section id="Ink_Dom_Event_1-Ink_Dom_Event_1-on" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -2462,7 +2455,7 @@ bean.off() is how you get rid of handlers once you no longer want them active. I
 
 </section>
 
-    <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-one" class="box box-function">
+<section id="Ink_Dom_Event_1-Ink_Dom_Event_1-one" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -2654,7 +2647,7 @@ bean.one() is an alias for bean.on() except that the handler will only be execut
 
 </section>
 
-    <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-pointer" class="box box-function">
+<section id="Ink_Dom_Event_1-Ink_Dom_Event_1-pointer" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -2742,7 +2735,7 @@ bean.one() is an alias for bean.on() except that the handler will only be execut
 
 </section>
 
-    <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-pointerX" class="box box-function">
+<section id="Ink_Dom_Event_1-Ink_Dom_Event_1-pointerX" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -2830,7 +2823,7 @@ bean.one() is an alias for bean.on() except that the handler will only be execut
 
 </section>
 
-    <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-pointerY" class="box box-function">
+<section id="Ink_Dom_Event_1-Ink_Dom_Event_1-pointerY" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -2918,7 +2911,7 @@ bean.one() is an alias for bean.on() except that the handler will only be execut
 
 </section>
 
-    <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-relatedTarget" class="box box-function">
+<section id="Ink_Dom_Event_1-Ink_Dom_Event_1-relatedTarget" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -3006,7 +2999,7 @@ bean.one() is an alias for bean.on() except that the handler will only be execut
 
 </section>
 
-    <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-stop" class="box box-function">
+<section id="Ink_Dom_Event_1-Ink_Dom_Event_1-stop" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -3082,7 +3075,7 @@ bean.one() is an alias for bean.on() except that the handler will only be execut
 
 </section>
 
-    <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-stopDefault" class="box box-function">
+<section id="Ink_Dom_Event_1-Ink_Dom_Event_1-stopDefault" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -3158,7 +3151,7 @@ bean.one() is an alias for bean.on() except that the handler will only be execut
 
 </section>
 
-    <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-stopObserving" class="box box-function">
+<section id="Ink_Dom_Event_1-Ink_Dom_Event_1-stopObserving" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -3315,7 +3308,7 @@ bean.one() is an alias for bean.on() except that the handler will only be execut
 
 </section>
 
-    <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-stopPropagation" class="box box-function">
+<section id="Ink_Dom_Event_1-Ink_Dom_Event_1-stopPropagation" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -3391,7 +3384,7 @@ bean.one() is an alias for bean.on() except that the handler will only be execut
 
 </section>
 
-    <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-throttle" class="box box-function">
+<section id="Ink_Dom_Event_1-Ink_Dom_Event_1-throttle" class="box box-function">
 
     <h1 class="fw-300">
     
@@ -3531,6 +3524,7 @@ Suppose you are observing the `scroll` event, but your application is lagging be
     
 
 </section>
+
 
 
 
