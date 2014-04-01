@@ -109,12 +109,8 @@
 }
 
 .clearfix {
+  overflow: hidden;
   *zoom: 1;
-}
-.clearfix:after {
-  content: "";
-  display: table;
-  clear: both;
 }
 
 html.no-flexbox .ink-grid,
@@ -255,8 +251,8 @@ html.no-flexboxlegacy .all-100 {
   float: left;
   clear: none;
 }
-html.no-flexbox [class*=all-100],
-html.no-flexboxlegacy [class*=all-100] {
+html.no-flexbox [class~=all-100],
+html.no-flexboxlegacy [class~=all-100] {
   float: none;
   clear: both;
 }

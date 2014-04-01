@@ -9,7 +9,6 @@ table {
         tr {
             th {
                 padding: $table-cell-padding;
-                font-weight: 700;
                 line-height: $table-row-line-height;
                 &[data-sortable="true"]{
                 

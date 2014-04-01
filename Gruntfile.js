@@ -375,6 +375,18 @@ module.exports = function (grunt) {
                 }
             },
         },
+
+        compress: {
+          main: {
+            options: {
+              archive: '<%= pkg.name %>-<%= pkg.version %>.zip'
+            },
+            files: [
+              {src: ['dist/**'], dest: '/'} // includes files in path and its subdirs
+            ]
+          }
+        }
+
     });
 
     grunt.registerTask('js', ['clean:js', 'concat', 'uglify']);
