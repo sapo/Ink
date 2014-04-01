@@ -105,7 +105,7 @@ Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 Event.observe(this._element, 'onload', Ink.bindEvent(this._onLoad, this));
             }
 
-            Event.observe(window, 'resize', Ink.bindEvent(this._onResize, this));
+            Event.observe(window, 'resize', Event.throttle(Ink.bindMethod(this, '_onResize'), 400));
 
             // Imediate call to apply the right images based on the current viewport
             this._onResize();
@@ -117,7 +117,7 @@ Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * @method _onResize
          * @private
          */
-        _onResize: Event.throttle(function(){
+        _onResize: function(){
             if( !this._options.queries.length ){
                 return;
             }
@@ -164,7 +164,7 @@ Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
             // Removes the injected file property
             delete current.file;
-        }, 500),
+        },
 
         /**
          * Queries are in a descendant order. We want to find the query with the highest width that fits the viewport, therefore the first one.
