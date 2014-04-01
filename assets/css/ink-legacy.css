@@ -109,8 +109,14 @@
 }
 
 .clearfix {
+  *zoom: 1;
   overflow: hidden;
   *zoom: 1;
+}
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
 html.no-flexbox .ink-grid,

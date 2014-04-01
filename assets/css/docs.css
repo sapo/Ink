@@ -694,6 +694,9 @@ body.ink-drawer .right-drawer li:last-child {
   padding: 3em 0 2em;
   font-size: 1.25em;
 }
+.page-header h1 {
+  margin: .1em 0;
+}
 .page-header p {
   margin: 0 0 1em;
   font-weight: 300;
@@ -1159,8 +1162,18 @@ footer .ink-navigation ul.menu.horizontal li a.license {
   color: transparent !important;
 }
 
+p.loader {
+  display: none;
+}
+p.loader.show {
+  display: block;
+}
+
 #search-results {
   display: none;
+}
+#search-results .nope {
+  word-break: break-all;
 }
 #search-results.show {
   display: block;
@@ -1184,7 +1197,7 @@ footer .ink-navigation ul.menu.horizontal li a.license {
   margin-bottom: 1.5em;
 }
 #search-results .result-snippet em {
-  background: yellow;
+  background: rgba(255, 0, 0, 0.1);
   padding: 0 .5em;
 }
 

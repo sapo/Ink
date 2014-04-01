@@ -2,20 +2,22 @@
 layout: search
 title: Search
 site_root:  ../
+description: To help you navigate our documentation, we've added this nifty search box.
 ---
 
-<section>
-  <h1 class="align-center fw-300">Search our documentation</h1>
+<section class="align-center">
+  <p>Try searching for "large-top-space" or "grid gutters" or anything else you want to know about:</p>
   <form class="ink-form docsearch">
     <div class="column-group push-center">
       <div class="control-group all-60">
         <div class="control append-button">
-          <span><input type="search" class="search-field" placeholder="Search" name="search" tabindex="1"></span>
+          <span><input type="search" class="search-field main" placeholder="Search" name="search" tabindex="1"></span>
           <button class="ink-button black">Search</button>
         </div>
       </div>
     </div>
   </form>
+  <p class="loader"><img src="{{ site.images_path }}loading.gif" alt=""></p>
 </section>
 <section id="search-results">
     <h1 class="fw-300">Results</h1>

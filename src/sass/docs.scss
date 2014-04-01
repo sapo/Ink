@@ -422,6 +422,8 @@ body.ink-drawer {
     padding: 3em 0 2em;
     font-size: 1.25em;
 
+    h1 { margin:  .1em 0; }
+
     p {
         margin: 0 0 1em;
         font-weight: 300;
@@ -948,7 +950,19 @@ $who: lighten(#CA8A4E,10%);
   }
 }
 
+p.loader {
+    display: none;
+    &.show {
+        display: block;
+    }
+}
+
 #search-results {
+
+    .nope {
+        word-break: break-all;
+    }
+
     display: none;
     &.show {
         display: block;
@@ -968,7 +982,7 @@ $who: lighten(#CA8A4E,10%);
       @include border-radius($border-radius);
       margin-bottom: 1.5em;
       em {
-        background: yellow;
+        background: rgba(255, 0, 0, 0.1);
         padding: 0 .5em;
       }
     }

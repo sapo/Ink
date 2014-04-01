@@ -52,26 +52,9 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
      * a HUGE table). In those cases, you should configure Ink.UI.Table to
      * get data from JSON endpoint.
      *
-<<<<<<< HEAD
-     * You can use this component to display data from a JSON endpoint, or
-     * from table rows in the DOM. Displaying from the DOM is more practical,
-     * but sometimes you don't want to load everything at once (if you have
-     * a HUGE table). In those cases, you should configure Ink.UI.Table to
-     * get data from JSON endpoint.
-     *
-     * To enable sorting, just set the `data-sortable` attribute of your
-     * table headers (they must be in the `thead` of the table) to "true".
-     *
-     * To enable pagination, set the `pageSize` option to the amount of table
-     * rows you want to show at once, and choose an `Ink.UI.Pagination`
-     * component to use. To do this, you can do one of the following:
-     *  - Pass an `Ink.UI.Pagination` instance as the `pagination` option, or...
-     *  - Pass a selector as the `pagination` option which selects an element to create the Ink.UI.Paginate element on.
-=======
      * To enable sorting, just set the `data-sortable` attribute of your table headers (they must be in the `thead` of the table) to "true".
      *
      * To enable pagination, you should pass either an `Ink.UI.Pagination` instance or a selector to create the Ink.UI.Paginate element on.
->>>>>>> 797f31ed036f19213caf05a449c86811e1966d36
      *
      * @class Ink.UI.Table
      * @constructor
@@ -95,72 +78,8 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
      * @param {Object}              [options.paginationOptions]             Override the options with which we instantiate the Ink.UI.Pagination.
      * @param {Boolean}             [options.allowResetSorting]             Allow sort order to be set to "none" in addition to "ascending" and "descending"
      * @param {String|Array}        [options.visibleFields]                 Set of fields which get shown on the table
-     * @example
-     *      <table class="ink-table alternating" data-page-size="6">
-     *          <thead>
-     *              <tr>
-     *                  <th data-sortable="true" width="75%">Pepper</th>
-     *                  <th data-sortable="true" width="25%">Scoville Rating</th>
-     *              </tr>
-     *          </thead>
-     *          <tbody>
-     *              <tr>
-     *                  <td>Trinidad Moruga Scorpion</td>
-     *                  <td>1500000</td>
-     *              </tr>
-     *              <tr>
-     *                  <td>Bhut Jolokia</td>
-     *                  <td>1000000</td>
-     *              </tr>
-     *              <tr>
-     *                  <td>Naga Viper</td>
-     *                  <td>1463700</td>
-     *              </tr>
-     *              <tr>
-     *                  <td>Red Savina Habanero</td>
-     *                  <td>580000</td>
-     *              </tr>
-     *              <tr>
-     *                  <td>Habanero</td>
-     *                  <td>350000</td>
-     *              </tr>
-     *              <tr>
-     *                  <td>Scotch Bonnet</td>
-     *                  <td>180000</td>
-     *              </tr>
-     *              <tr>
-     *                  <td>Malagueta</td>
-     *                  <td>50000</td>
-     *              </tr>
-     *              <tr>
-     *                  <td>Tabasco</td>
-     *                  <td>35000</td>
-     *              </tr>
-     *              <tr>
-     *                  <td>Serrano Chili</td>
-     *                  <td>27000</td>
-     *              </tr>
-     *              <tr>
-     *                  <td>Jalapeño</td>
-     *                  <td>8000</td>
-     *              </tr>
-     *              <tr>
-     *                  <td>Poblano</td>
-     *                  <td>1500</td>
-     *              </tr>
-     *              <tr>
-     *                  <td>Peperoncino</td>
-     *                  <td>500</td>
-     *              </tr>
-     *          </tbody>
-     *      </table>
-     *      <nav class="ink-navigation"><ul class="pagination"></ul></nav>
-     *      <script>
-     *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.Table_1'], function( Selector, Table ){
-     *              var tableElement = Ink.s('.ink-table');
-     *              var tableObj = new Table( tableElement );
-     *          });
-     *      </script>
+     *
+     * @sample Ink_UI_Table_1.html
      */
     var Table = function( selector, options ){
 

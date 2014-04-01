@@ -77,14 +77,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
      * @param {Object}              [options.wDay]              Hash of weekdays. Defaults to portuguese names. Sunday is 0.
      * @param {String}              [options.yearRange]         Enforce limits to year for the Date, ex: '1990:2020' (deprecated)
      *
-     * @example
-     *     <input type="text" id="dPicker" />
-     *     <script>
-     *         Ink.requireModules(['Ink.Dom.Selector_1','Ink.UI.DatePicker_1'],function( Selector, DatePicker ){
-     *             var datePickerElement = Ink.s('#dPicker');
-     *             var datePickerObj = new DatePicker( datePickerElement );
-     *         });
-     *     </script>
+     * @sample Ink_UI_DatePicker_1.html
      */
     var DatePicker = function(selector, options) {
         this._element = selector &&
