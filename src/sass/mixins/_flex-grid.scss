@@ -747,7 +747,7 @@
         // generate the 33% width
         @if $i > 30 and $i <= 35 {
             .all-33 {
-                width: 33,33333%;
+                width: 33.33333%;
                 @include experimental(flex-basis, 33.33333%, -moz, -webkit, not -o, -ms, not -khtml, official);
                 @include experimental(flex-grow, 0, not -moz, -webkit, not -o, -ms, not -khtml, official);
             }
@@ -756,7 +756,7 @@
         // generate the 66% width
         @if $i > 65 and $i <= 70 {
             .all-66 {
-                width: 66,66666%;
+                width: 66.66666%;
                 @include experimental(flex-basis, 66.66666%, -moz, -webkit, not -o, -ms, not -khtml, official);
                 @include experimental(flex-grow, 0, not -moz, -webkit, not -o, -ms, not -khtml, official);
             }
