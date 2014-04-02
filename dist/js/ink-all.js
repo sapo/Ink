@@ -13484,7 +13484,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
             autoAdvance:    ['Integer', 0],
             axis:           ['String', 'x'],
             initialPage:    ['Integer', 0],
-            spaceAfterLastPage: ['Boolean', true],
+            spaceAfterLastSlide: ['Boolean', true],
             hideLast:       ['Boolean', false],
             center:         ['Boolean', false],
             keyboardSupport:['Boolean', false],
@@ -13751,7 +13751,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
                 this.setPage(curPage);
 
                 InkEvent.stopPropagation(event);
-                // InkEvent.stopDefault(event);
+                InkEvent.stopDefault(event);
             }
 
             setTransitionProperty(this._ulEl, null /* transition: left, top */);
@@ -13801,7 +13801,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
             var _lengthToGo = page * this._deltaLength;
             var isLastPage = page === (this._numPages - 1);
 
-            if (!this._options.spaceAfterLastPage && isLastPage && page > 0) { 
+            if (!this._options.spaceAfterLastSlide && isLastPage && page > 0) { 
                 var _itemsInLastPage = this._liEls.length - (page * this._slidesPerPage);
                 if(_itemsInLastPage < this._slidesPerPage) {
                     _lengthToGo = ((page - 1) * this._deltaLength) + (_itemsInLastPage * this._elLength);
@@ -23829,7 +23829,7 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
         this._options = Common.options('Treeview', {
             'node':   ['String', 'li'],
             // [3.0.1] Deprecate this terrible, terrible name
-            'child':  ['String','ul'],
+            'child':  ['String',null],
             'children':  ['String','ul'],
             'parentClass': ['String','parent'],
             // [3.0.0] use these classes because you'll have font-awesome 4
@@ -23931,7 +23931,7 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
         },
 
         _getChild: function (node) {
-            return Selector.select(this._options.child, node)[0] || null;
+            return Selector.select(this._options.children, node)[0] || null;
         },
 
         /**
@@ -23950,7 +23950,7 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
 
             if (!this.isParent(ev.currentTarget) ||
                     Selector.matchesSelector(ev.target, this._options.node) ||
-                    Selector.matchesSelector(ev.target, this._options.child)) {
+                    Selector.matchesSelector(ev.target, this._options.children)) {
                 return;
             }
 
