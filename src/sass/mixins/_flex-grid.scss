@@ -13,7 +13,8 @@
 
   .#{$flex-class-name},
   .#{$grid-column-group-class-name} {
-        @include experimental-value(display, flex, not -moz, -webkit, not -o, -ms, not -khtml, official);
+        @include experimental-value(display, flex, not -moz, -webkit, not -o, not -ms, not -khtml, official);
+        @include experimental-value(display, flexbox, not -moz, not -webkit, not -o, -ms, not -khtml, not official);
         @include experimental(flex-wrap, wrap, not -moz, -webkit, not -o, -ms, not -khtml, official);
         @include experimental(flex-direction, row, not -moz, -webkit, not -o, -ms, not -khtml, official);
         list-style: none;
@@ -78,6 +79,7 @@
     .push-left,
     .#{$class-name}-push-left {
         @include experimental(justify-content, flex-start, -moz, -webkit, not -o, -ms, not -khtml, official);
+        @include experimental(flex-pack, start, not -moz, not -webkit, not -o, -ms, not -khtml, not official);
         float: left;
     }
 
@@ -85,6 +87,7 @@
     .#{$class-name}-push-center {
         float: none !important;
         @include experimental(justify-content, center, -moz, -webkit, not -o, -ms, not -khtml, official);
+        @include experimental(flex-pack, center, not -moz, not -webkit, not -o, -ms, not -khtml, not official);
         margin-left: auto;
         margin-right: auto;
     }
@@ -92,6 +95,7 @@
     .push-right,
     .#{$class-name}-push-right {
         @include experimental(justify-content, flex-end, -moz, -webkit, not -o, -ms, not -khtml, official);
+        @include experimental(flex-pack, end, not -moz, not -webkit, not -o, -ms, not -khtml, not official);
         float: right;
     }
 
@@ -103,6 +107,7 @@
       @while $i <= 10 {
         .#{$class-name}-order-#{$i} {
           order: #{$i};
+          -ms-flex-order: #{$i};
           $i: $i + 1;
         }
       }
@@ -112,6 +117,7 @@
       @while $i <= 10 {
         .order-#{$i} {
           order: #{$i};
+          -ms-flex-order: #{$i};
           $i: $i + 1;
         }
       }

@@ -955,42 +955,52 @@ th {
 
 .order-1 {
   order: 1;
+  -ms-flex-order: 1;
 }
 
 .order-2 {
   order: 2;
+  -ms-flex-order: 2;
 }
 
 .order-3 {
   order: 3;
+  -ms-flex-order: 3;
 }
 
 .order-4 {
   order: 4;
+  -ms-flex-order: 4;
 }
 
 .order-5 {
   order: 5;
+  -ms-flex-order: 5;
 }
 
 .order-6 {
   order: 6;
+  -ms-flex-order: 6;
 }
 
 .order-7 {
   order: 7;
+  -ms-flex-order: 7;
 }
 
 .order-8 {
   order: 8;
+  -ms-flex-order: 8;
 }
 
 .order-9 {
   order: 9;
+  -ms-flex-order: 9;
 }
 
 .order-10 {
   order: 10;
+  -ms-flex-order: 10;
 }
 
 @media screen and (min-width: 1261px) {
@@ -1436,8 +1446,8 @@ th {
   .ink-flex,
   .column-group {
     display: -webkit-flex;
-    display: -ms-flex;
     display: flex;
+    display: -ms-flexbox;
     -webkit-flex-wrap: wrap;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
@@ -1473,42 +1483,52 @@ th {
 
   .xlarge-order-1 {
     order: 1;
+    -ms-flex-order: 1;
   }
 
   .xlarge-order-2 {
     order: 2;
+    -ms-flex-order: 2;
   }
 
   .xlarge-order-3 {
     order: 3;
+    -ms-flex-order: 3;
   }
 
   .xlarge-order-4 {
     order: 4;
+    -ms-flex-order: 4;
   }
 
   .xlarge-order-5 {
     order: 5;
+    -ms-flex-order: 5;
   }
 
   .xlarge-order-6 {
     order: 6;
+    -ms-flex-order: 6;
   }
 
   .xlarge-order-7 {
     order: 7;
+    -ms-flex-order: 7;
   }
 
   .xlarge-order-8 {
     order: 8;
+    -ms-flex-order: 8;
   }
 
   .xlarge-order-9 {
     order: 9;
+    -ms-flex-order: 9;
   }
 
   .xlarge-order-10 {
     order: 10;
+    -ms-flex-order: 10;
   }
 
   .column-group .xlarge-auto {
@@ -1562,6 +1582,7 @@ th {
     -moz-justify-content: flex-start;
     -ms-justify-content: flex-start;
     justify-content: flex-start;
+    -ms-flex-pack: start;
     float: left;
   }
 
@@ -1572,6 +1593,7 @@ th {
     -moz-justify-content: center;
     -ms-justify-content: center;
     justify-content: center;
+    -ms-flex-pack: center;
     margin-left: auto;
     margin-right: auto;
   }
@@ -1582,6 +1604,7 @@ th {
     -moz-justify-content: flex-end;
     -ms-justify-content: flex-end;
     justify-content: flex-end;
+    -ms-flex-pack: end;
     float: right;
   }
 
@@ -2553,8 +2576,8 @@ th {
   .ink-flex,
   .column-group {
     display: -webkit-flex;
-    display: -ms-flex;
     display: flex;
+    display: -ms-flexbox;
     -webkit-flex-wrap: wrap;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
@@ -2590,42 +2613,52 @@ th {
 
   .large-order-1 {
     order: 1;
+    -ms-flex-order: 1;
   }
 
   .large-order-2 {
     order: 2;
+    -ms-flex-order: 2;
   }
 
   .large-order-3 {
     order: 3;
+    -ms-flex-order: 3;
   }
 
   .large-order-4 {
     order: 4;
+    -ms-flex-order: 4;
   }
 
   .large-order-5 {
     order: 5;
+    -ms-flex-order: 5;
   }
 
   .large-order-6 {
     order: 6;
+    -ms-flex-order: 6;
   }
 
   .large-order-7 {
     order: 7;
+    -ms-flex-order: 7;
   }
 
   .large-order-8 {
     order: 8;
+    -ms-flex-order: 8;
   }
 
   .large-order-9 {
     order: 9;
+    -ms-flex-order: 9;
   }
 
   .large-order-10 {
     order: 10;
+    -ms-flex-order: 10;
   }
 
   .column-group .large-auto {
@@ -2679,6 +2712,7 @@ th {
     -moz-justify-content: flex-start;
     -ms-justify-content: flex-start;
     justify-content: flex-start;
+    -ms-flex-pack: start;
     float: left;
   }
 
@@ -2689,6 +2723,7 @@ th {
     -moz-justify-content: center;
     -ms-justify-content: center;
     justify-content: center;
+    -ms-flex-pack: center;
     margin-left: auto;
     margin-right: auto;
   }
@@ -2699,6 +2734,7 @@ th {
     -moz-justify-content: flex-end;
     -ms-justify-content: flex-end;
     justify-content: flex-end;
+    -ms-flex-pack: end;
     float: right;
   }
 
@@ -3670,8 +3706,8 @@ th {
   .ink-flex,
   .column-group {
     display: -webkit-flex;
-    display: -ms-flex;
     display: flex;
+    display: -ms-flexbox;
     -webkit-flex-wrap: wrap;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
@@ -3707,42 +3743,52 @@ th {
 
   .medium-order-1 {
     order: 1;
+    -ms-flex-order: 1;
   }
 
   .medium-order-2 {
     order: 2;
+    -ms-flex-order: 2;
   }
 
   .medium-order-3 {
     order: 3;
+    -ms-flex-order: 3;
   }
 
   .medium-order-4 {
     order: 4;
+    -ms-flex-order: 4;
   }
 
   .medium-order-5 {
     order: 5;
+    -ms-flex-order: 5;
   }
 
   .medium-order-6 {
     order: 6;
+    -ms-flex-order: 6;
   }
 
   .medium-order-7 {
     order: 7;
+    -ms-flex-order: 7;
   }
 
   .medium-order-8 {
     order: 8;
+    -ms-flex-order: 8;
   }
 
   .medium-order-9 {
     order: 9;
+    -ms-flex-order: 9;
   }
 
   .medium-order-10 {
     order: 10;
+    -ms-flex-order: 10;
   }
 
   .column-group .medium-auto {
@@ -3796,6 +3842,7 @@ th {
     -moz-justify-content: flex-start;
     -ms-justify-content: flex-start;
     justify-content: flex-start;
+    -ms-flex-pack: start;
     float: left;
   }
 
@@ -3806,6 +3853,7 @@ th {
     -moz-justify-content: center;
     -ms-justify-content: center;
     justify-content: center;
+    -ms-flex-pack: center;
     margin-left: auto;
     margin-right: auto;
   }
@@ -3816,6 +3864,7 @@ th {
     -moz-justify-content: flex-end;
     -ms-justify-content: flex-end;
     justify-content: flex-end;
+    -ms-flex-pack: end;
     float: right;
   }
 
@@ -4787,8 +4836,8 @@ th {
   .ink-flex,
   .column-group {
     display: -webkit-flex;
-    display: -ms-flex;
     display: flex;
+    display: -ms-flexbox;
     -webkit-flex-wrap: wrap;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
@@ -4824,42 +4873,52 @@ th {
 
   .small-order-1 {
     order: 1;
+    -ms-flex-order: 1;
   }
 
   .small-order-2 {
     order: 2;
+    -ms-flex-order: 2;
   }
 
   .small-order-3 {
     order: 3;
+    -ms-flex-order: 3;
   }
 
   .small-order-4 {
     order: 4;
+    -ms-flex-order: 4;
   }
 
   .small-order-5 {
     order: 5;
+    -ms-flex-order: 5;
   }
 
   .small-order-6 {
     order: 6;
+    -ms-flex-order: 6;
   }
 
   .small-order-7 {
     order: 7;
+    -ms-flex-order: 7;
   }
 
   .small-order-8 {
     order: 8;
+    -ms-flex-order: 8;
   }
 
   .small-order-9 {
     order: 9;
+    -ms-flex-order: 9;
   }
 
   .small-order-10 {
     order: 10;
+    -ms-flex-order: 10;
   }
 
   .column-group .small-auto {
@@ -4913,6 +4972,7 @@ th {
     -moz-justify-content: flex-start;
     -ms-justify-content: flex-start;
     justify-content: flex-start;
+    -ms-flex-pack: start;
     float: left;
   }
 
@@ -4923,6 +4983,7 @@ th {
     -moz-justify-content: center;
     -ms-justify-content: center;
     justify-content: center;
+    -ms-flex-pack: center;
     margin-left: auto;
     margin-right: auto;
   }
@@ -4933,6 +4994,7 @@ th {
     -moz-justify-content: flex-end;
     -ms-justify-content: flex-end;
     justify-content: flex-end;
+    -ms-flex-pack: end;
     float: right;
   }
 
@@ -5904,8 +5966,8 @@ th {
   .ink-flex,
   .column-group {
     display: -webkit-flex;
-    display: -ms-flex;
     display: flex;
+    display: -ms-flexbox;
     -webkit-flex-wrap: wrap;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
@@ -5941,42 +6003,52 @@ th {
 
   .tiny-order-1 {
     order: 1;
+    -ms-flex-order: 1;
   }
 
   .tiny-order-2 {
     order: 2;
+    -ms-flex-order: 2;
   }
 
   .tiny-order-3 {
     order: 3;
+    -ms-flex-order: 3;
   }
 
   .tiny-order-4 {
     order: 4;
+    -ms-flex-order: 4;
   }
 
   .tiny-order-5 {
     order: 5;
+    -ms-flex-order: 5;
   }
 
   .tiny-order-6 {
     order: 6;
+    -ms-flex-order: 6;
   }
 
   .tiny-order-7 {
     order: 7;
+    -ms-flex-order: 7;
   }
 
   .tiny-order-8 {
     order: 8;
+    -ms-flex-order: 8;
   }
 
   .tiny-order-9 {
     order: 9;
+    -ms-flex-order: 9;
   }
 
   .tiny-order-10 {
     order: 10;
+    -ms-flex-order: 10;
   }
 
   .column-group .tiny-auto {
@@ -6030,6 +6102,7 @@ th {
     -moz-justify-content: flex-start;
     -ms-justify-content: flex-start;
     justify-content: flex-start;
+    -ms-flex-pack: start;
     float: left;
   }
 
@@ -6040,6 +6113,7 @@ th {
     -moz-justify-content: center;
     -ms-justify-content: center;
     justify-content: center;
+    -ms-flex-pack: center;
     margin-left: auto;
     margin-right: auto;
   }
@@ -6050,6 +6124,7 @@ th {
     -moz-justify-content: flex-end;
     -ms-justify-content: flex-end;
     justify-content: flex-end;
+    -ms-flex-pack: end;
     float: right;
   }
 
