@@ -220,6 +220,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
             keyboardSupport:['Boolean', false],
             pagination:     ['String', null],
             onChange:       ['Function', null],
+            onInit:         ['Function', function () {}],
             swipe:          ['Boolean', true]
             // TODO exponential swipe
             // TODO specify break point for next page when moving finger
@@ -252,6 +253,8 @@ Ink.createModule('Ink.UI.Carousel', '1',
         this._setUpPagination();
         this._setUpAutoAdvance();
         this._setUpHider();
+
+        this._options.onInit.call(this, this);
     };
 
     Carousel.prototype = {
@@ -8121,7 +8124,7 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
      * @param {String}              [options.stickyClass]       CSS class to stick the element to the screen. Defaults to 'ink-sticky-stuck'.
      * @param {String}              [options.topElement]        CSS Selector that specifies a top element with which the component could collide.
      * @param {String}              [options.bottomElement]     CSS Selector that specifies a bottom element with which the component could collide.
-     * @param {Array|String}        [options.activateInLayouts] Layouts in which the sticky behaviour is present. Pass an array or comma-separated string. Defaults to 'medium,large'.
+     * @param {Array|String}        [options.activateInLayouts] Layouts in which the sticky behaviour is present. Pass an array or comma-separated string. Defaults to 'tiny,small,medium,large,xlarge'.
      *
      * @sample Ink_UI_Sticky_1.html
      */
@@ -8137,7 +8140,7 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
             inlineDimensions: ['Boolean', true],
             inlinePosition: ['Boolean', true],
             bottomElement: ['Element', null],
-            activateInLayouts: ['String', 'medium,large']
+            activateInLayouts: ['String', 'tiny,small,medium,large,xlarge']
         }, options || {}, this._rootElement );
 
         // Because String#indexOf is compatible with lt IE8 but not Array#indexOf

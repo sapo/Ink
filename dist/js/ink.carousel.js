@@ -60,6 +60,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
             keyboardSupport:['Boolean', false],
             pagination:     ['String', null],
             onChange:       ['Function', null],
+            onInit:         ['Function', function () {}],
             swipe:          ['Boolean', true]
             // TODO exponential swipe
             // TODO specify break point for next page when moving finger
@@ -92,6 +93,8 @@ Ink.createModule('Ink.UI.Carousel', '1',
         this._setUpPagination();
         this._setUpAutoAdvance();
         this._setUpHider();
+
+        this._options.onInit.call(this, this);
     };
 
     Carousel.prototype = {
