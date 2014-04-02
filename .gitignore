@@ -18,8 +18,8 @@ Thumbs.db
 *.zip
 
 
-node_modules/*
-bower_components/*
+node_modules
+bower_components
 _site
 assets
 
