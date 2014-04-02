@@ -1,15 +1,23 @@
 <p></p>
 
-<p class="example-title">Code</p>
-{% highlight html %}
+{% capture example_code %}
 
-<style>
-</style>
+<div id="myDraggable1" class="ink-alert basic">
+    <button class="ink-dismiss">&times;</button>
+    <p><b>Warning:</b> There's a warning for you</p>
+</div>
 
 <script>
-    Ink.requireModules( ['Ink.UI.Draggable_1'], function( Draggable ){
-        new Draggable( '#myElementId' );
+    Ink.requireModules(['Ink.UI.Draggable_1'], function (Draggable) {
+        new Draggable('#myDraggable1', {
+            revert: true,
+        });
     });
 </script>
-{% endhighlight %}
+{% endcapture %}
 
+<p class="example-title">Demo</p>
+{{ example_code }}
+
+<p class="example-title">Code</p>
+{% highlight html %}{{ example_code }}{% endhighlight %}
