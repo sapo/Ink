@@ -1003,6 +1003,258 @@ th {
   -ms-flex-order: 10;
 }
 
+.all-5 {
+  width: 5%;
+  -webkit-flex-basis: 5%;
+  -moz-flex-basis: 5%;
+  -ms-flex-basis: 5%;
+  flex-basis: 5%;
+  -webkit-flex-grow: 0;
+  -ms-flex-grow: 0;
+  flex-grow: 0;
+}
+
+.all-10 {
+  width: 10%;
+  -webkit-flex-basis: 10%;
+  -moz-flex-basis: 10%;
+  -ms-flex-basis: 10%;
+  flex-basis: 10%;
+  -webkit-flex-grow: 0;
+  -ms-flex-grow: 0;
+  flex-grow: 0;
+}
+
+.all-15 {
+  width: 15%;
+  -webkit-flex-basis: 15%;
+  -moz-flex-basis: 15%;
+  -ms-flex-basis: 15%;
+  flex-basis: 15%;
+  -webkit-flex-grow: 0;
+  -ms-flex-grow: 0;
+  flex-grow: 0;
+}
+
+.all-20 {
+  width: 20%;
+  -webkit-flex-basis: 20%;
+  -moz-flex-basis: 20%;
+  -ms-flex-basis: 20%;
+  flex-basis: 20%;
+  -webkit-flex-grow: 0;
+  -ms-flex-grow: 0;
+  flex-grow: 0;
+}
+
+.all-25 {
+  width: 25%;
+  -webkit-flex-basis: 25%;
+  -moz-flex-basis: 25%;
+  -ms-flex-basis: 25%;
+  flex-basis: 25%;
+  -webkit-flex-grow: 0;
+  -ms-flex-grow: 0;
+  flex-grow: 0;
+}
+
+.all-30 {
+  width: 30%;
+  -webkit-flex-basis: 30%;
+  -moz-flex-basis: 30%;
+  -ms-flex-basis: 30%;
+  flex-basis: 30%;
+  -webkit-flex-grow: 0;
+  -ms-flex-grow: 0;
+  flex-grow: 0;
+}
+
+.all-33 {
+  width: 33,33333%;
+  -webkit-flex-basis: 33.33333%;
+  -moz-flex-basis: 33.33333%;
+  -ms-flex-basis: 33.33333%;
+  flex-basis: 33.33333%;
+  -webkit-flex-grow: 0;
+  -ms-flex-grow: 0;
+  flex-grow: 0;
+}
+
+.all-35 {
+  width: 35%;
+  -webkit-flex-basis: 35%;
+  -moz-flex-basis: 35%;
+  -ms-flex-basis: 35%;
+  flex-basis: 35%;
+  -webkit-flex-grow: 0;
+  -ms-flex-grow: 0;
+  flex-grow: 0;
+}
+
+.all-40 {
+  width: 40%;
+  -webkit-flex-basis: 40%;
+  -moz-flex-basis: 40%;
+  -ms-flex-basis: 40%;
+  flex-basis: 40%;
+  -webkit-flex-grow: 0;
+  -ms-flex-grow: 0;
+  flex-grow: 0;
+}
+
+.all-45 {
+  width: 45%;
+  -webkit-flex-basis: 45%;
+  -moz-flex-basis: 45%;
+  -ms-flex-basis: 45%;
+  flex-basis: 45%;
+  -webkit-flex-grow: 0;
+  -ms-flex-grow: 0;
+  flex-grow: 0;
+}
+
+.all-50 {
+  width: 50%;
+  -webkit-flex-basis: 50%;
+  -moz-flex-basis: 50%;
+  -ms-flex-basis: 50%;
+  flex-basis: 50%;
+  -webkit-flex-grow: 0;
+  -ms-flex-grow: 0;
+  flex-grow: 0;
+}
+
+.all-55 {
+  width: 55%;
+  -webkit-flex-basis: 55%;
+  -moz-flex-basis: 55%;
+  -ms-flex-basis: 55%;
+  flex-basis: 55%;
+  -webkit-flex-grow: 0;
+  -ms-flex-grow: 0;
+  flex-grow: 0;
+}
+
+.all-60 {
+  width: 60%;
+  -webkit-flex-basis: 60%;
+  -moz-flex-basis: 60%;
+  -ms-flex-basis: 60%;
+  flex-basis: 60%;
+  -webkit-flex-grow: 0;
+  -ms-flex-grow: 0;
+  flex-grow: 0;
+}
+
+.all-65 {
+  width: 65%;
+  -webkit-flex-basis: 65%;
+  -moz-flex-basis: 65%;
+  -ms-flex-basis: 65%;
+  flex-basis: 65%;
+  -webkit-flex-grow: 0;
+  -ms-flex-grow: 0;
+  flex-grow: 0;
+}
+
+.all-66 {
+  width: 66,66666%;
+  -webkit-flex-basis: 66.66666%;
+  -moz-flex-basis: 66.66666%;
+  -ms-flex-basis: 66.66666%;
+  flex-basis: 66.66666%;
+  -webkit-flex-grow: 0;
+  -ms-flex-grow: 0;
+  flex-grow: 0;
+}
+
+.all-70 {
+  width: 70%;
+  -webkit-flex-basis: 70%;
+  -moz-flex-basis: 70%;
+  -ms-flex-basis: 70%;
+  flex-basis: 70%;
+  -webkit-flex-grow: 0;
+  -ms-flex-grow: 0;
+  flex-grow: 0;
+}
+
+.all-75 {
+  width: 75%;
+  -webkit-flex-basis: 75%;
+  -moz-flex-basis: 75%;
+  -ms-flex-basis: 75%;
+  flex-basis: 75%;
+  -webkit-flex-grow: 0;
+  -ms-flex-grow: 0;
+  flex-grow: 0;
+}
+
+.all-80 {
+  width: 80%;
+  -webkit-flex-basis: 80%;
+  -moz-flex-basis: 80%;
+  -ms-flex-basis: 80%;
+  flex-basis: 80%;
+  -webkit-flex-grow: 0;
+  -ms-flex-grow: 0;
+  flex-grow: 0;
+}
+
+.all-85 {
+  width: 85%;
+  -webkit-flex-basis: 85%;
+  -moz-flex-basis: 85%;
+  -ms-flex-basis: 85%;
+  flex-basis: 85%;
+  -webkit-flex-grow: 0;
+  -ms-flex-grow: 0;
+  flex-grow: 0;
+}
+
+.all-90 {
+  width: 90%;
+  -webkit-flex-basis: 90%;
+  -moz-flex-basis: 90%;
+  -ms-flex-basis: 90%;
+  flex-basis: 90%;
+  -webkit-flex-grow: 0;
+  -ms-flex-grow: 0;
+  flex-grow: 0;
+}
+
+.all-95 {
+  width: 95%;
+  -webkit-flex-basis: 95%;
+  -moz-flex-basis: 95%;
+  -ms-flex-basis: 95%;
+  flex-basis: 95%;
+  -webkit-flex-grow: 0;
+  -ms-flex-grow: 0;
+  flex-grow: 0;
+}
+
+.all-100 {
+  width: 100%;
+  -webkit-flex-basis: 100%;
+  -moz-flex-basis: 100%;
+  -ms-flex-basis: 100%;
+  flex-basis: 100%;
+  -webkit-flex-grow: 0;
+  -ms-flex-grow: 0;
+  flex-grow: 0;
+}
+
+.all-auto {
+  width: auto;
+  -webkit-flex-basis: auto;
+  -ms-flex-basis: auto;
+  flex-basis: auto;
+  -webkit-flex-grow: 1;
+  -ms-flex-grow: 1;
+  flex-grow: 1;
+}
+
 @media screen and (min-width: 1261px) {
   .ink-grid {
     padding: 0 2em;
