@@ -1,10 +1,10 @@
-    {{#if text}}
-    <p>{{{text}}}</p>
-    {{/if}}
-    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="{{site.url}}/javascript/ink/#Ink_1-Ink_1-requireModules">Ink.requireModules</a></p>
-    {{#if functions.length}}
+    {{~#if text~}}
+    <p>{{~{text}~}}</p>
+    {{~/if}}
+    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="{{site.url}}/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p>
+    {{~#if functions.length~}}
     <table class="props bottom-space">
-        {{#if isNamespace}}
+        {{~#if isNamespace~}}
         <caption>Functions</caption>
         <thead>
             <tr>
@@ -22,33 +22,31 @@
         </thead>
         {{/if}}
         <tbody>
-        {{#each functions}}
+        {{~#each functions}}
             <tr>
-                <td>
-                    <a href="#{{{hash}}}">
-                        {{#if isConstructor}}
+                <td><a href="#{{{hash}}}">
+                        {{~#if isConstructor~}}
                             <em>(constructor)</em>
-                        {{else}}
-                            .{{name}}
-                        {{/if}}
-                    </a>
-                </td>
+                        {{~else~}}
+                            .{{~name~}}
+                        {{~/if~}}
+                    </a></td>
                 <td>
-                    {{#if deprecated}}
+                    {{~#if deprecated~}}
                         <span class="tag">deprecated</span>
-                    {{/if}}
-                    {{#if text}}{{{text}}}{{/if}}
-                    {{#if type}}
+                    {{~/if~}}
+                    {{~#if text ~}}{{~{stripP text}~}}{{~/if~}}
+                    {{~#if type~}}
                         <pre>{{type}}</pre>
-                    {{/if}}
-                    {{#if description}}{{{description}}}{{/if}}
+                    {{~/if~}}
+                    {{~#if description}}{{~{stripP description}~}}{{~/if~}}
                 </td>
             </tr>
-        {{/each}}
+        {{~/each~}}
         </tbody>
     </table>
     {{/if}}
-    {{#if attributes.length}}
+    {{~#if attributes.length}}
     <table class="props">
         <caption>Properties</caption>
         <thead>
@@ -62,16 +60,16 @@
             <tr>
                 <td><a href="#{{{hash}}}">.{{name}}</a></td>
                 <td>
-                    {{#if deprecated}}
+                    {{~#if deprecated}}
                         <span class="tag">deprecated</span>
                     {{/if}}
-                    {{#if text}}
+                    {{~#if text}}
                         {{{text}}}
                     {{/if}}
-                    {{#if type}}
+                    {{~#if type}}
                         <span class="ink-label orange uppercase">{{type}}</span>
                     {{/if}}
-                    {{#if description}}
+                    {{~#if description}}
                         <span class="description">{{{description}}}</span>
                     {{/if}}
                 </td>
