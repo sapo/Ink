@@ -4,24 +4,11 @@ title: Ink.UI.Animate_1
 description: Provides the core methods to create and load all of the library modules. 
 site_root:  ../
 ---
-    
-        <section>
-        <h1 class="fw-300">Ink.UI.Animate_1 <small>version: 1</small></h1>
-    
-    
-    
+    <section>
+        <h1 class="fw-300">Ink.UI.Animate_1<small>version:1</small></h1>
 
 
-    
-
-    
-    
-    
-            
-    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">Ink.requireModules</a></p>
-    
-    <table class="props bottom-space">
-        
+    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p><table class="props bottom-space">
         <caption>Methods</caption>
         <thead>
             <tr>
@@ -31,42 +18,19 @@ site_root:  ../
         </thead>
         
         <tbody>
-        
             <tr>
                 <td>
-                    <a href="#Ink_UI_Animate_1-Ink_UI_Animate_1-Animate_1">
-                        
-                            
-                        
-                    </a>
+                    <a href="#Ink_UI_Animate_1-Ink_UI_Animate_1-Animate_1">Ink.UI.Animate_1</a>
                 </td>
-                <td>
-                    
-                    
-                    
-                    
-                </td>
+                <td></td>
             </tr>
-        
             <tr>
                 <td>
-                    <a href="#Ink_UI_Animate_1-Ink_UI_Animate_1-animate">
-                        
-                            .animate
-                        
-                    </a>
+                    <a href="#Ink_UI_Animate_1-Ink_UI_Animate_1-animate">.animate</a>
                 </td>
-                <td>
-                    
-                    
-                    
-                    
-                </td>
-            </tr>
-        
-        </tbody>
+                <td></td>
+            </tr></tbody>
     </table>
-    
     
     <table class="props">
         <caption>Properties</caption>
@@ -81,14 +45,10 @@ site_root:  ../
             <tr>
                 <td><a href="#Ink_UI_Animate_1-Ink_UI_Animate_1-animationEndEventName">.animationEndEventName</a></td>
                 <td>
-                    
-                    
                         <p>Prefixed animation end event name.</p>
 
                     
-                    
                         <span class="ink-label orange uppercase">{String}</span>
-                    
                     
                 </td>
             </tr>
@@ -96,14 +56,10 @@ site_root:  ../
             <tr>
                 <td><a href="#Ink_UI_Animate_1-Ink_UI_Animate_1-animationSupported">.animationSupported</a></td>
                 <td>
-                    
-                    
                         <p>CSS3 animation browser support.</p>
 
                     
-                    
                         <span class="ink-label orange uppercase">{Boolean}</span>
-                    
                     
                 </td>
             </tr>
@@ -115,387 +71,65 @@ site_root:  ../
 
 
 
-
     <section id="Ink_UI_Animate_1-Ink_UI_Animate_1-Animate_1" class="box box-function">
-    <h1 class="fw-300">
-    
-        Ink.UI.Animate_1
-    
-    (element, options, )
-    
-        <i>constructor</i>
-    
-    </h1>
-    
+    <h1 class="fw-300">Ink.UI.Animate_1(element, options, )<i>constructor</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
-        
-        <li class="prop">
-        
-        
-        element
-        
-        
-        </li>
-        
-        <li class="prop">
-        
-        
-        options
-        
-        
-        </li>
-        
-        <li class="prop">
-        
-        </li>
-        
-        <li class="prop">
-        
-        </li>
-        
-        <li class="prop">
-        
-        </li>
-        
-        <li class="prop">
-        
-        </li>
-        
+        <li class="prop">element</li>
+        <li class="prop">options</li>
+        <li class="prop"></li>
+        <li class="prop"></li>
+        <li class="prop"></li>
+        <li class="prop"></li>
     </ul>
-    
-
-    
-    
-
-    
-
-    
         <h3>Accepts</h3>
         <dl class="params">
-        
-            <dt>
-                
-                    <code>DOMElement</code>
-                
-            </dt>
-            <dd>
-                
-
-                
-                <label class="monospace">element
-                
-
-                
-                </label>
-                
-                    Animated element
-                
-            </dd>
-        
-            <dt>
-                
-                    <code>Object</code>
-                
-            </dt>
-            <dd>
-                
-
-                
-                <label class="monospace">options
-                
-
-                
-                </label>
-                
-                    Options object
-                
-            </dd>
-        
-            <dt>
-                
-                    <code>String</code>
-                
-            </dt>
-            <dd>
-                
-
-                
-                <label class="monospace">options.animation
-                
-
-                
-                </label>
-                
-                    Animation name
-                
-            </dd>
-        
-            <dt>
-                
-                    <code>String|Number</code>
-                
-            </dt>
-            <dd>
-                
-
-                
-                <label class="monospace">[options.duration]
-                
-
-                
-                </label>
-                
-                    Duration name (fast|medium|slow) or duration in milliseconds. Defaults to 'medium'.
-                
-            </dd>
-        
-            <dt>
-                
-                    <code>Boolean</code>
-                
-            </dt>
-            <dd>
-                
-
-                
-                <label class="monospace">[options.removeClass]
-                
-
-                
-                </label>
-                
-                    Flag to remove the CSS class when finished animating. Defaults to false.
-                
-            </dd>
-        
-            <dt>
-                
-                    <code>Function</code>
-                
-            </dt>
-            <dd>
-                
-
-                
-                <label class="monospace">[options.onEnd]
-                
-
-                
-                </label>
-                
-                    Callback for the animation end
-                
-            </dd>
-        
+            <dt><code>DOMElement</code></dt>
+            <dd><label class="monospace">element</label>Animated element</dd>
+            <dt><code>Object</code></dt>
+            <dd><label class="monospace">options</label>Options object</dd>
+            <dt><code>String</code></dt>
+            <dd><label class="monospace">options.animation</label>Animation name</dd>
+            <dt><code>String|Number</code></dt>
+            <dd><label class="monospace">[options.duration]</label>Duration name (fast|medium|slow) or duration in milliseconds. Defaults to 'medium'.</dd>
+            <dt><code>Boolean</code></dt>
+            <dd><label class="monospace">[options.removeClass]</label>Flag to remove the CSS class when finished animating. Defaults to false.</dd>
+            <dt><code>Function</code></dt>
+            <dd><label class="monospace">[options.onEnd]</label>Callback for the animation end</dd>
         </dl>
-        
 
-
-    
-
-
-    
-
-
-    
-	<h3>Samples</h3>
-	
+<h3>Samples</h3>
 		{% include js_samples/Ink_Animate_1.html %}
-	
-
-
-</section>
-
+	</section>
 
     <section id="Ink_UI_Animate_1-Ink_UI_Animate_1-animate" class="box box-function">
-    <h1 class="fw-300">
-    
-        
-            .animate
-        
-    
-    (element, animation, [options], )
-    
-        
-            <i>method</i>
-        
-    
-    </h1>
-    
+    <h1 class="fw-300">.animate(element, animation, [options], )<i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
-        
-        <li class="prop">
-        
-        
-        element
-        
-        
-        </li>
-        
-        <li class="prop">
-        
-        
-        animation
-        
-        
-        </li>
-        
-        <li class="prop">
-        
-        [
-        options
-        ]
-        
-        </li>
-        
-        <li class="prop">
-        
-        </li>
-        
-        <li class="prop">
-        
-        </li>
-        
-        <li class="prop">
-        
-        </li>
-        
+        <li class="prop">element</li>
+        <li class="prop">animation</li>
+        <li class="prop">[options]</li>
+        <li class="prop"></li>
+        <li class="prop"></li>
+        <li class="prop"></li>
     </ul>
-    
-
-    
-    
-
-    
-
-    
         <h3>Accepts</h3>
         <dl class="params">
-        
-            <dt>
-                
-            </dt>
-            <dd>
-                
-
-                
-                <label class="monospace">element
-                
-
-                
-                </label>
-                
-                    {DOMElement} animated element
-                
-            </dd>
-        
-            <dt>
-                
-            </dt>
-            <dd>
-                
-
-                
-                <label class="monospace">animation
-                
-
-                
-                </label>
-                
-                    {String} animation name
-                
-            </dd>
-        
-            <dt>
-                
-            </dt>
-            <dd>
-                
-
-                
-                <label class="monospace">[options]
-                
-
-                
-                </label>
-                
-                    {Object}
-                
-            </dd>
-        
-            <dt>
-                
-            </dt>
-            <dd>
-                
-
-                
-                <label class="monospace">[options.onEnd]
-                
-
-                
-                    null
-                
-                </label>
-                
-                    {Function} callback for animation end
-                
-            </dd>
-        
-            <dt>
-                
-            </dt>
-            <dd>
-                
-
-                
-                <label class="monospace">[options.removeClass]
-                
-
-                
-                    false
-                
-                </label>
-                
-                    {Boolean} whether to remove the Css class when finished
-                
-            </dd>
-        
-            <dt>
-                
-            </dt>
-            <dd>
-                
-
-                
-                <label class="monospace">[options.duration]
-                
-
-                
-                    medium
-                
-                </label>
-                
-                    {String|Number} duration name (fast|medium|slow) or duration in ms
-                
-            </dd>
-        
+            <dt></dt>
+            <dd><label class="monospace">element</label>{DOMElement} animated element</dd>
+            <dt></dt>
+            <dd><label class="monospace">animation</label>{String} animation name</dd>
+            <dt></dt>
+            <dd><label class="monospace">[options]</label>{Object}</dd>
+            <dt></dt>
+            <dd><label class="monospace">[options.onEnd]null</label>{Function} callback for animation end</dd>
+            <dt></dt>
+            <dd><label class="monospace">[options.removeClass]false</label>{Boolean} whether to remove the Css class when finished</dd>
+            <dt></dt>
+            <dd><label class="monospace">[options.duration]medium</label>{String|Number} duration name (fast|medium|slow) or duration in ms</dd>
         </dl>
-        
-
-
-    
-
-
-    
-
-
-    
 
 </section>
-
 
 
     <section class="box box-attribute">
@@ -537,6 +171,4 @@ site_root:  ../
 
 
 
-    
-    
     

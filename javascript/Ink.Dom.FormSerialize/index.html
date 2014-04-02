@@ -4,29 +4,13 @@ title: Ink.Dom.FormSerialize_1
 description: Provides the core methods to create and load all of the library modules. 
 site_root:  ../
 ---
-    
-        <section>
-        <h1 class="fw-300">Ink.Dom.FormSerialize_1 </h1>
-    
-    
-    
+    <section>
+        <h1 class="fw-300">Ink.Dom.FormSerialize_1</h1>
 
-
-    
-
-    
-    
-    
-            
-    <p><p>Two way serialization of form data and javascript objects.
+<p><p>Two way serialization of form data and javascript objects.
 Valid applications are ad hoc AJAX/syndicated submission of forms, restoring form values from server side state, etc.</p>
 </p>
-    
-    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">Ink.requireModules</a></p>
-    
-    <table class="props bottom-space">
-        
-        <caption>Functions</caption>
+    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p><table class="props bottom-space"><caption>Functions</caption>
         <thead>
             <tr>
                 <th>Function name</th>
@@ -35,149 +19,40 @@ Valid applications are ad hoc AJAX/syndicated submission of forms, restoring for
         </thead>
         
         <tbody>
-        
             <tr>
                 <td>
-                    <a href="#Ink_Dom_FormSerialize_1-Ink_Dom_FormSerialize-fillIn">
-                        
-                            .fillIn
-                        
-                    </a>
+                    <a href="#Ink_Dom_FormSerialize_1-Ink_Dom_FormSerialize-fillIn">.fillIn</a>
                 </td>
-                <td>
-                    
-                    <p>Sets form elements&#39; values with values from an object</p>
-<p>Note: You can&#39;t set the values of an input with <code>type=&quot;file&quot;</code> (browser prohibits it)</p>
-
-                    
-                    
-                </td>
+                <td><br><br></td>
             </tr>
-        
             <tr>
                 <td>
-                    <a href="#Ink_Dom_FormSerialize_1-Ink_Dom_FormSerialize-serialize">
-                        
-                            .serialize
-                        
-                    </a>
+                    <a href="#Ink_Dom_FormSerialize_1-Ink_Dom_FormSerialize-serialize">.serialize</a>
                 </td>
-                <td>
-                    
-                    <p>Serializes a form element into a JS object
-It turns field names into keys and field values into values.</p>
-<p>note: Multi-select and checkboxes with multiple values will result in arrays</p>
-
-                    
-                    
-                </td>
-            </tr>
-        
-        </tbody>
+                <td>Serializes a form element into a JS object<br>It turns field names into keys and field values into values.<br><br></td>
+            </tr></tbody>
     </table>
-    
     
 </section>
 
 
 
-
     <section id="Ink_Dom_FormSerialize_1-Ink_Dom_FormSerialize-fillIn" class="box box-function">
-    <h1 class="fw-300">
-    
-        
-            .fillIn
-        
-    
-    (form, map2)
-    
-        
-            <i>method</i>
-        
-    
-    </h1>
-    
+    <h1 class="fw-300">.fillIn(form, map2)<i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
-        
-        <li class="prop">
-        
-        
-        form
-        
-        
-        </li>
-        
-        <li class="prop">
-        
-        
-        map2
-        
-        
-        </li>
-        
-    </ul>
-    
-
-    
-    
-
-    
-        <p class="text"><p>Sets form elements&#39; values with values from an object</p>
+        <li class="prop">form</li>
+        <li class="prop">map2</li>
+    </ul><p class="text"><p>Sets form elements&#39; values with values from an object</p>
 <p>Note: You can&#39;t set the values of an input with <code>type=&quot;file&quot;</code> (browser prohibits it)</p>
 </p>
-    
-
-    
         <h3>Accepts</h3>
         <dl class="params">
-        
-            <dt>
-                
-                    <code>DOMElement|String</code>
-                
-            </dt>
-            <dd>
-                
-
-                
-                <label class="monospace">form
-                
-
-                
-                </label>
-                
-                    Form element to be populated
-                
-            </dd>
-        
-            <dt>
-                
-                    <code>Object</code>
-                
-            </dt>
-            <dd>
-                
-
-                
-                <label class="monospace">map2
-                
-
-                
-                </label>
-                
-                    Map of fieldName -> String|String[]|Boolean
-                
-            </dd>
-        
+            <dt><code>DOMElement|String</code></dt>
+            <dd><label class="monospace">form</label>Form element to be populated</dd>
+            <dt><code>Object</code></dt>
+            <dd><label class="monospace">map2</label>Map of fieldName -> String|String[]|Boolean</dd>
         </dl>
-        
-
-
-    
-
-
-    
 <p class="example-title">Example</p>
   
 {% highlight html %}{% raw %}
@@ -196,94 +71,29 @@ It turns field names into keys and field values into values.</p>
 
 
 
-
-    
-
 </section>
 
-
     <section id="Ink_Dom_FormSerialize_1-Ink_Dom_FormSerialize-serialize" class="box box-function">
-    <h1 class="fw-300">
-    
-        
-            .serialize
-        
-    
-    (form)
-    
-        
-            <i>method</i>
-        
-    
-    </h1>
-    
+    <h1 class="fw-300">.serialize(form)<i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
-        
-        <li class="prop">
-        
-        
-        form
-        
-        
-        </li>
-        
-    </ul>
-    
-
-    
-    
-
-    
-        <p class="text"><p>Serializes a form element into a JS object
+        <li class="prop">form</li>
+    </ul><p class="text"><p>Serializes a form element into a JS object
 It turns field names into keys and field values into values.</p>
 <p>note: Multi-select and checkboxes with multiple values will result in arrays</p>
 </p>
-    
-
-    
         <h3>Accepts</h3>
         <dl class="params">
-        
-            <dt>
-                
-                    <code>DOMElement|String</code>
-                
-            </dt>
-            <dd>
-                
-
-                
-                <label class="monospace">form
-                
-
-                
-                </label>
-                
-                    Form element to extract data
-                
-            </dd>
-        
+            <dt><code>DOMElement|String</code></dt>
+            <dd><label class="monospace">form</label>Form element to extract data</dd>
         </dl>
-        
         <h3>Returns</h3>
         <dl>
-            <dt class="return">
-                <code>Object</code>
-            </dt>
+            <dt class="return"><code>Object</code></dt>
             <dd>
-                
-                    
-                
             </dd>
         </dl>
         
-
-
-    
-
-
-    
 <p class="example-title">Example</p>
   
 {% highlight html %}{% raw %}
@@ -303,14 +113,8 @@ It turns field names into keys and field values into values.</p>
 
 
 
-
-    
-
 </section>
 
 
 
-
-    
-    
     

@@ -1,8 +1,6 @@
 <p>Initializing close</p>
 
-<p class="example-title">Code</p>
-{% highlight html %}
-
+{% capture example_code %}
 <div class="ink-alert basic">
     <button class="ink-dismiss">&times;</button>
     <p>Click the X to close this!</p>
@@ -14,5 +12,13 @@
         new Close();
     });
 </script>
+{% endcapture %}
+
+<p class="example-title">Demo</p>
+{{ example_code }}
+
+<p class="example-title">Code</p>
+{% highlight html %}
+{{ example_code }}
 {% endhighlight %}
 

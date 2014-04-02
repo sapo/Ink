@@ -4,123 +4,33 @@ title: Ink.Util.Cookie_1
 description: Provides the core methods to create and load all of the library modules. 
 site_root:  ../
 ---
-    
-        <section>
-        <h1 class="fw-300">Ink.Util.Cookie_1 <small>version: 1</small></h1>
-    
-    
-    
+    <section>
+        <h1 class="fw-300">Ink.Util.Cookie_1<small>version:1</small></h1>
 
-
-    
-
-    
-        <h2>Defined functions:</h2>
-        <ul class="unstyled">
+<h2>Defined functions:</h2>
+        <ul class="unstyled"><li><a href="#Ink_Util_Cookie_1-get">Ink.Util.Cookie_1.get(name)</a></li>
+        <li><a href="#Ink_Util_Cookie_1-remove">Ink.Util.Cookie_1.remove(cookieName, [path], [domain])</a></li>
+        <li><a href="#Ink_Util_Cookie_1-set">Ink.Util.Cookie_1.set(name, value, [expires], [path], [domain], [secure])</a></li>
         
-            <li><a href="#Ink_Util_Cookie_1-get">
-            
-                Ink.Util.Cookie_1.get
-            
-            (name)</a></li>
-        
-            <li><a href="#Ink_Util_Cookie_1-remove">
-            
-                Ink.Util.Cookie_1.remove
-            
-            (cookieName, [path], [domain])</a></li>
-        
-            <li><a href="#Ink_Util_Cookie_1-set">
-            
-                Ink.Util.Cookie_1.set
-            
-            (name, value, [expires], [path], [domain], [secure])</a></li>
-        
-        </ul>
-    
-    
-    
-    
-        <section id="Ink_Util_Cookie_1-get" class="box box-function">
-    <h1 class="fw-300">
-    
-        
-            .get
-        
-    
-    (name)
-    
-        
-            <i>function</i>
-        
-    
-    </h1>
-    
+        </ul><section id="Ink_Util_Cookie_1-get" class="box box-function">
+    <h1 class="fw-300">.get(name)<i>function</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
-        
-        <li class="prop">
-        
-        
-        name
-        
-        
-        </li>
-        
-    </ul>
-    
-
-    
-    
-
-    
-        <p class="text"><p>Gets an object with the current page cookies.</p>
+        <li class="prop">name</li>
+    </ul><p class="text"><p>Gets an object with the current page cookies.</p>
 </p>
-    
-
-    
         <h3>Accepts</h3>
         <dl class="params">
-        
-            <dt>
-                
-                    <code>String</code>
-                
-            </dt>
-            <dd>
-                
-
-                
-                <label class="monospace">name
-                
-
-                
-                </label>
-                
-                    The cookie name.
-                
-            </dd>
-        
+            <dt><code>String</code></dt>
+            <dd><label class="monospace">name</label>The cookie name.</dd>
         </dl>
-        
         <h3>Returns</h3>
         <dl>
-            <dt class="return">
-                <code>String|Object</code>
-            </dt>
+            <dt class="return"><code>String|Object</code></dt>
             <dd>
-                
-                    
-                
             </dd>
         </dl>
         
-
-
-    
-
-
-    
 <p class="example-title">Example</p>
   
 {% highlight html %}{% raw %}
@@ -132,134 +42,25 @@ site_root:  ../
 
 
 
-
-    
-
 </section>
-
-    
-        <section id="Ink_Util_Cookie_1-remove" class="box box-function">
-    <h1 class="fw-300">
-    
-        
-            .remove
-        
-    
-    (cookieName, [path], [domain])
-    
-        
-            <i>function</i>
-        
-    
-    </h1>
-    
+    <section id="Ink_Util_Cookie_1-remove" class="box box-function">
+    <h1 class="fw-300">.remove(cookieName, [path], [domain])<i>function</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
-        
-        <li class="prop">
-        
-        
-        cookieName
-        
-        
-        </li>
-        
-        <li class="prop">
-        
-        [
-        path
-        ]
-        
-        </li>
-        
-        <li class="prop">
-        
-        [
-        domain
-        ]
-        
-        </li>
-        
-    </ul>
-    
-
-    
-    
-
-    
-        <p class="text"><p>Deletes a cookie.</p>
+        <li class="prop">cookieName</li>
+        <li class="prop">[path]</li>
+        <li class="prop">[domain]</li>
+    </ul><p class="text"><p>Deletes a cookie.</p>
 </p>
-    
-
-    
         <h3>Accepts</h3>
         <dl class="params">
-        
-            <dt>
-                
-                    <code>String</code>
-                
-            </dt>
-            <dd>
-                
-
-                
-                <label class="monospace">cookieName
-                
-
-                
-                </label>
-                
-                    Cookie name.
-                
-            </dd>
-        
-            <dt>
-                
-                    <code>String</code>
-                
-            </dt>
-            <dd>
-                
-
-                
-                <label class="monospace">[path]
-                
-
-                
-                </label>
-                
-                    Path of the cookie. Defaults to '/'.
-                
-            </dd>
-        
-            <dt>
-                
-                    <code>String</code>
-                
-            </dt>
-            <dd>
-                
-
-                
-                <label class="monospace">[domain]
-                
-
-                
-                </label>
-                
-                    Domain of the cookie. Defaults to current hostname.
-                
-            </dd>
-        
+            <dt><code>String</code></dt>
+            <dd><label class="monospace">cookieName</label>Cookie name.</dd>
+            <dt><code>String</code></dt>
+            <dd><label class="monospace">[path]</label>Path of the cookie. Defaults to '/'.</dd>
+            <dt><code>String</code></dt>
+            <dd><label class="monospace">[domain]</label>Domain of the cookie. Defaults to current hostname.</dd>
         </dl>
-        
-
-
-    
-
-
-    
 <p class="example-title">Example</p>
   
 {% highlight html %}{% raw %}
@@ -270,215 +71,34 @@ site_root:  ../
 
 
 
-
-    
-
 </section>
-
-    
-        <section id="Ink_Util_Cookie_1-set" class="box box-function">
-    <h1 class="fw-300">
-    
-        
-            .set
-        
-    
-    (name, value, [expires], [path], [domain], [secure])
-    
-        
-            <i>function</i>
-        
-    
-    </h1>
-    
+    <section id="Ink_Util_Cookie_1-set" class="box box-function">
+    <h1 class="fw-300">.set(name, value, [expires], [path], [domain], [secure])<i>function</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
-        
-        <li class="prop">
-        
-        
-        name
-        
-        
-        </li>
-        
-        <li class="prop">
-        
-        
-        value
-        
-        
-        </li>
-        
-        <li class="prop">
-        
-        [
-        expires
-        ]
-        
-        </li>
-        
-        <li class="prop">
-        
-        [
-        path
-        ]
-        
-        </li>
-        
-        <li class="prop">
-        
-        [
-        domain
-        ]
-        
-        </li>
-        
-        <li class="prop">
-        
-        [
-        secure
-        ]
-        
-        </li>
-        
-    </ul>
-    
-
-    
-    
-
-    
-        <p class="text"><p>Sets a cookie.</p>
+        <li class="prop">name</li>
+        <li class="prop">value</li>
+        <li class="prop">[expires]</li>
+        <li class="prop">[path]</li>
+        <li class="prop">[domain]</li>
+        <li class="prop">[secure]</li>
+    </ul><p class="text"><p>Sets a cookie.</p>
 </p>
-    
-
-    
         <h3>Accepts</h3>
         <dl class="params">
-        
-            <dt>
-                
-                    <code>String</code>
-                
-            </dt>
-            <dd>
-                
-
-                
-                <label class="monospace">name
-                
-
-                
-                </label>
-                
-                    Cookie name.
-                
-            </dd>
-        
-            <dt>
-                
-                    <code>String</code>
-                
-            </dt>
-            <dd>
-                
-
-                
-                <label class="monospace">value
-                
-
-                
-                </label>
-                
-                    Cookie value.
-                
-            </dd>
-        
-            <dt>
-                
-                    <code>Number</code>
-                
-            </dt>
-            <dd>
-                
-
-                
-                <label class="monospace">[expires]
-                
-
-                
-                </label>
-                
-                    Number of seconds the cookie will be valid for.
-                
-            </dd>
-        
-            <dt>
-                
-                    <code>String</code>
-                
-            </dt>
-            <dd>
-                
-
-                
-                <label class="monospace">[path]
-                
-
-                
-                </label>
-                
-                    Path for the cookie. Defaults to '/'.
-                
-            </dd>
-        
-            <dt>
-                
-                    <code>String</code>
-                
-            </dt>
-            <dd>
-                
-
-                
-                <label class="monospace">[domain]
-                
-
-                
-                </label>
-                
-                    Domain for the cookie. Defaults to current hostname.
-                
-            </dd>
-        
-            <dt>
-                
-                    <code>Boolean</code>
-                
-            </dt>
-            <dd>
-                
-
-                
-                <label class="monospace">[secure]
-                
-
-                
-                </label>
-                
-                    Flag for secure. Default 'false'.
-                
-            </dd>
-        
+            <dt><code>String</code></dt>
+            <dd><label class="monospace">name</label>Cookie name.</dd>
+            <dt><code>String</code></dt>
+            <dd><label class="monospace">value</label>Cookie value.</dd>
+            <dt><code>Number</code></dt>
+            <dd><label class="monospace">[expires]</label>Number of seconds the cookie will be valid for.</dd>
+            <dt><code>String</code></dt>
+            <dd><label class="monospace">[path]</label>Path for the cookie. Defaults to '/'.</dd>
+            <dt><code>String</code></dt>
+            <dd><label class="monospace">[domain]</label>Domain for the cookie. Defaults to current hostname.</dd>
+            <dt><code>Boolean</code></dt>
+            <dd><label class="monospace">[secure]</label>Flag for secure. Default 'false'.</dd>
         </dl>
-        
-
-
-    
-
-
-    
 <p class="example-title">Example</p>
   
 {% highlight html %}{% raw %}
@@ -490,10 +110,5 @@ site_root:  ../
 
 
 
-
-    
-
 </section>
-
-    
     

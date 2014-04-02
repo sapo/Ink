@@ -8229,7 +8229,7 @@ body.ink-drawer.over.right .right-drawer {
   margin: 0 0 -2px 0;
 }
 .ink-tabs.top > .tabs-nav li.active a {
-  border-bottom-color: transparent;
+  border-bottom: none;
 }
 .ink-tabs.bottom > .tabs-nav {
   border-top: 1px solid #cccccc;
@@ -8249,7 +8249,7 @@ body.ink-drawer.over.right .right-drawer {
   margin: -2px 0 0 0;
 }
 .ink-tabs.bottom > .tabs-nav li.active a {
-  border-top-color: transparent;
+  border-top: none;
 }
 .ink-tabs.left > .tabs-nav {
   border-right: 1px solid #cccccc;
@@ -8272,7 +8272,7 @@ body.ink-drawer.over.right .right-drawer {
   margin: 0 -2px 0 0;
 }
 .ink-tabs.left > .tabs-nav li.active a {
-  border-right-color: transparent;
+  border-right: none;
 }
 .ink-tabs.right > .tabs-nav {
   border-left: 1px solid #cccccc;
@@ -8294,7 +8294,7 @@ body.ink-drawer.over.right .right-drawer {
   margin: 0 0 0 -2px;
 }
 .ink-tabs.right > .tabs-nav li.active a {
-  border-left-color: transparent;
+  border-left: none;
 }
 
 .ink-tagfield input[type="text"].new-tag-input {

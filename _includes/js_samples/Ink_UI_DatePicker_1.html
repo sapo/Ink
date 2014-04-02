@@ -1,14 +1,63 @@
 <p>Basic usage</p>
 
-<p class="example-title">Code</p>
-
-{% highlight html %}
-<input type="text" id="dPicker" />
+{% capture example_code %}
+<div class="ink-form">
+    <div class="control-group">
+        <div class="control">
+            <input type="text" id="myDatePicker" />
+        </div>
+    </div>
+</div>
 <script>
     Ink.requireModules(['Ink.Dom.Selector_1','Ink.UI.DatePicker_1'],function( Selector, DatePicker ){
-        var datePickerElement = Ink.s('#dPicker');
-        var datePickerObj = new DatePicker( datePickerElement );
+        var datePickerObj = new DatePicker( '#myDatePicker' );
     });
 </script>
+{% endcapture %}
+
+<p class="example-title">Demo</p>
+{{ example_code }}
+
+<p class="example-title">Code</p>
+{% highlight html %}
+{{ example_code }}
+{% endhighlight %}
+
+
+
+
+<hr>
+
+
+<p>Start date, end date and default date</p>
+
+<p>Below, you can only select dates between 15<sup>th</sup> November 2012 and today.</p>
+
+<p>It has December 31<sup>st</sup> 2013 filled in by default.</p>
+
+{% capture example_code %}
+<div class="ink-form">
+    <div class="control-group">
+        <div class="control">
+            <input type="text" id="myDatePicker2" />
+        </div>
+    </div>
+</div>
+<script>
+    Ink.requireModules(['Ink.Dom.Selector_1','Ink.UI.DatePicker_1'],function( Selector, DatePicker ){
+        var datePickerObj = new DatePicker( '#myDatePicker2', {
+            dateRange: '2012-11-15:NOW',
+            initialDate: '2013-12-31'
+        });
+    });
+</script>
+{% endcapture %}
+
+<p class="example-title">Demo</p>
+{{ example_code }}
+
+<p class="example-title">Code</p>
+{% highlight html %}
+{{ example_code }}
 {% endhighlight %}
 

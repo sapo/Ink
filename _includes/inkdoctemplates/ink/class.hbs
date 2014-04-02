@@ -24,13 +24,15 @@
         <tbody>
         {{~#each functions}}
             <tr>
-                <td><a href="#{{{hash}}}">
+                <td>
+                    <a href="#{{{hash}}}">
                         {{~#if isConstructor~}}
-                            {{~parent.name~}}
+                            <em>(constructor)</em>
                         {{~else~}}
                             .{{~name~}}
                         {{~/if~}}
-                    </a></td>
+                    </a>
+                </td>
                 <td>
                     {{~#if deprecated~}}
                         <span class="tag">deprecated</span>
