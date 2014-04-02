@@ -19,7 +19,7 @@ Date selector</small></h1>
     
     
             
-    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p>
+    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">Ink.requireModules</a></p>
     
     <table class="props bottom-space">
         
@@ -931,22 +931,14 @@ Date selector</small></h1>
 
 
     
-<p class="example-title">Example</p>
-  
-{% highlight html %}{% raw %}
-    <input type="text" id="dPicker" />
-    <script>
-        Ink.requireModules(['Ink.Dom.Selector_1','Ink.UI.DatePicker_1'],function( Selector, DatePicker ){
-            var datePickerElement = Ink.s('#dPicker');
-            var datePickerObj = new DatePicker( datePickerElement );
-        });
-    </script>
-{% endraw %}{% endhighlight %}
-
-
 
 
     
+	<h3>Samples</h3>
+	
+		{% include js_samples/Ink_UI_DatePicker_1.html %}
+	
+
 
 </section>
 

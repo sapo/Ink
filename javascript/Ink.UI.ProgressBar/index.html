@@ -21,7 +21,7 @@ site_root:  ../
     <p><p>Associated to a .ink-progress-bar element, it provides a setValue() method to change the element&#39;s value.</p>
 </p>
     
-    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p>
+    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">Ink.requireModules</a></p>
     
     <table class="props bottom-space">
         
@@ -234,25 +234,14 @@ site_root:  ../
 
 
     
-<p class="example-title">Example</p>
-  
-{% highlight html %}{% raw %}
-     <div class="ink-progress-bar grey" data-start-value="70%">
-         <span class="caption">I am a grey progress bar</span>
-         <div class="bar grey"></div>
-     </div>
-     <script>
-         Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.ProgressBar_1'], function( Selector, ProgressBar ){
-             var progressBarElement = Ink.s('.ink-progress-bar');
-             var progressBarObj = new ProgressBar( progressBarElement );
-         });
-     </script>
-{% endraw %}{% endhighlight %}
-
-
 
 
     
+	<h3>Samples</h3>
+	
+		{% include js_samples/Ink_UI_ProgressBar_1.html %}
+	
+
 
 </section>
 
