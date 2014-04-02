@@ -4,32 +4,17 @@ title: Ink.UI.Sticky_1
 description: Provides the core methods to create and load all of the library modules. 
 site_root:  ../
 ---
-    
-        <section>
-        <h1 class="fw-300">Ink.UI.Sticky_1 <small>version: 1</small></h1>
-    
-    
-    
+    <section>
+        <h1 class="fw-300">Ink.UI.Sticky_1<small>version:1</small></h1>
 
-
-    
-
-    
-    
-    
-            
-    <p><p>Ink.UI.Sticky makes an element &quot;stick&quot; to the screen and stay in the same place as the user scrolls.</p>
+<p><p>Ink.UI.Sticky makes an element &quot;stick&quot; to the screen and stay in the same place as the user scrolls.</p>
 <p>To use it, just select an element as you create the Sticky. As you scroll past it, it will stick to the top of the screen.</p>
 <p>The <code>activateInLayouts</code> option controls in what layouts this behaviour happens. By default, it is disabled for the <code>small</code> and <code>tiny</code> layouts.
 Pass a comma-separated string to choose just the layouts you need.</p>
 <p>You can use the <code>offsetTop</code> option if you want it to keep some distance from the top of the screen.</p>
 <p>To avoid it going under the footer of your page, pass a selector to your footer as the <code>bottomElement</code> option.</p>
 </p>
-    
-    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">Ink.requireModules</a></p>
-    
-    <table class="props bottom-space">
-        
+    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p><table class="props bottom-space">
         <caption>Methods</caption>
         <thead>
             <tr>
@@ -39,341 +24,64 @@ Pass a comma-separated string to choose just the layouts you need.</p>
         </thead>
         
         <tbody>
-        
             <tr>
                 <td>
-                    <a href="#Ink_UI_Sticky_1-Ink_UI_Sticky-Sticky">
-                        
-                            
-                        
-                    </a>
+                    <a href="#Ink_UI_Sticky_1-Ink_UI_Sticky-Sticky">Ink.UI.Sticky</a>
                 </td>
-                <td>
-                    
-                    
-                    
-                    
-                </td>
-            </tr>
-        
-        </tbody>
+                <td></td>
+            </tr></tbody>
     </table>
     
-    
 </section>
-
 
 
 
     <section id="Ink_UI_Sticky_1-Ink_UI_Sticky-Sticky" class="box box-function">
-    <h1 class="fw-300">
-    
-        Ink.UI.Sticky
-    
-    (selector, [options], )
-    
-        <i>constructor</i>
-    
-    </h1>
-    
+    <h1 class="fw-300">Ink.UI.Sticky(selector, [options], )<i>constructor</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
-        
-        <li class="prop">
-        
-        
-        selector
-        
-        
-        </li>
-        
-        <li class="prop">
-        
-        [
-        options
-        ]
-        
-        </li>
-        
-        <li class="prop">
-        
-        </li>
-        
-        <li class="prop">
-        
-        </li>
-        
-        <li class="prop">
-        
-        </li>
-        
-        <li class="prop">
-        
-        </li>
-        
-        <li class="prop">
-        
-        </li>
-        
-        <li class="prop">
-        
-        </li>
-        
-        <li class="prop">
-        
-        </li>
-        
-        <li class="prop">
-        
-        </li>
-        
-        <li class="prop">
-        
-        </li>
-        
+        <li class="prop">selector</li>
+        <li class="prop">[options]</li>
+        <li class="prop"></li>
+        <li class="prop"></li>
+        <li class="prop"></li>
+        <li class="prop"></li>
+        <li class="prop"></li>
+        <li class="prop"></li>
+        <li class="prop"></li>
+        <li class="prop"></li>
+        <li class="prop"></li>
     </ul>
-    
-
-    
-    
-
-    
-
-    
         <h3>Accepts</h3>
         <dl class="params">
-        
-            <dt>
-                
-                    <code>String|DOMElement</code>
-                
-            </dt>
-            <dd>
-                
-
-                
-                <label class="monospace">selector
-                
-
-                
-                </label>
-                
-                    Element or selector
-                
-            </dd>
-        
-            <dt>
-                
-                    <code>Object</code>
-                
-            </dt>
-            <dd>
-                
-
-                
-                <label class="monospace">[options]
-                
-
-                
-                </label>
-                
-                    Options           Options object.
-                
-            </dd>
-        
-            <dt>
-                
-                    <code>Number</code>
-                
-            </dt>
-            <dd>
-                
-
-                
-                <label class="monospace">[options.offsetBottom]
-                
-
-                
-                </label>
-                
-                    Number of pixels of distance from the bottomElement. Defaults to 0.
-                
-            </dd>
-        
-            <dt>
-                
-                    <code>Number</code>
-                
-            </dt>
-            <dd>
-                
-
-                
-                <label class="monospace">[options.offsetTop]
-                
-
-                
-                </label>
-                
-                    Number of pixels of distance from the topElement. Defaults to 0.
-                
-            </dd>
-        
-            <dt>
-                
-                    <code>Boolean</code>
-                
-            </dt>
-            <dd>
-                
-
-                
-                <label class="monospace">[options.inlineDimensions]
-                
-
-                
-                </label>
-                
-                    Set to false to disable setting inline CSS dimensions. Use this if you want to use CSS to define your own dimensions. Defaults to true.
-                
-            </dd>
-        
-            <dt>
-                
-                    <code>Boolean</code>
-                
-            </dt>
-            <dd>
-                
-
-                
-                <label class="monospace">[options.inlinePosition]
-                
-
-                
-                </label>
-                
-                    Set to false to disable setting inline CSS positions. Use this if you want to use CSS to define your own positioning. Defaults to true.
-                
-            </dd>
-        
-            <dt>
-                
-                    <code>String</code>
-                
-            </dt>
-            <dd>
-                
-
-                
-                <label class="monospace">[options.wrapperClass]
-                
-
-                
-                </label>
-                
-                    CSS class for the wrapper element. Defaults to 'ink-sticky-wrapper'.
-                
-            </dd>
-        
-            <dt>
-                
-                    <code>String</code>
-                
-            </dt>
-            <dd>
-                
-
-                
-                <label class="monospace">[options.stickyClass]
-                
-
-                
-                </label>
-                
-                    CSS class to stick the element to the screen. Defaults to 'ink-sticky-stuck'.
-                
-            </dd>
-        
-            <dt>
-                
-                    <code>String</code>
-                
-            </dt>
-            <dd>
-                
-
-                
-                <label class="monospace">[options.topElement]
-                
-
-                
-                </label>
-                
-                    CSS Selector that specifies a top element with which the component could collide.
-                
-            </dd>
-        
-            <dt>
-                
-                    <code>String</code>
-                
-            </dt>
-            <dd>
-                
-
-                
-                <label class="monospace">[options.bottomElement]
-                
-
-                
-                </label>
-                
-                    CSS Selector that specifies a bottom element with which the component could collide.
-                
-            </dd>
-        
-            <dt>
-                
-                    <code>Array|String</code>
-                
-            </dt>
-            <dd>
-                
-
-                
-                <label class="monospace">[options.activateInLayouts]
-                
-
-                
-                </label>
-                
-                    Layouts in which the sticky behaviour is present. Pass an array or comma-separated string. Defaults to 'medium,large'.
-                
-            </dd>
-        
+            <dt><code>String|DOMElement</code></dt>
+            <dd><label class="monospace">selector</label>Element or selector</dd>
+            <dt><code>Object</code></dt>
+            <dd><label class="monospace">[options]</label>Options           Options object.</dd>
+            <dt><code>Number</code></dt>
+            <dd><label class="monospace">[options.offsetBottom]</label>Number of pixels of distance from the bottomElement. Defaults to 0.</dd>
+            <dt><code>Number</code></dt>
+            <dd><label class="monospace">[options.offsetTop]</label>Number of pixels of distance from the topElement. Defaults to 0.</dd>
+            <dt><code>Boolean</code></dt>
+            <dd><label class="monospace">[options.inlineDimensions]</label>Set to false to disable setting inline CSS dimensions. Use this if you want to use CSS to define your own dimensions. Defaults to true.</dd>
+            <dt><code>Boolean</code></dt>
+            <dd><label class="monospace">[options.inlinePosition]</label>Set to false to disable setting inline CSS positions. Use this if you want to use CSS to define your own positioning. Defaults to true.</dd>
+            <dt><code>String</code></dt>
+            <dd><label class="monospace">[options.wrapperClass]</label>CSS class for the wrapper element. Defaults to 'ink-sticky-wrapper'.</dd>
+            <dt><code>String</code></dt>
+            <dd><label class="monospace">[options.stickyClass]</label>CSS class to stick the element to the screen. Defaults to 'ink-sticky-stuck'.</dd>
+            <dt><code>String</code></dt>
+            <dd><label class="monospace">[options.topElement]</label>CSS Selector that specifies a top element with which the component could collide.</dd>
+            <dt><code>String</code></dt>
+            <dd><label class="monospace">[options.bottomElement]</label>CSS Selector that specifies a bottom element with which the component could collide.</dd>
+            <dt><code>Array|String</code></dt>
+            <dd><label class="monospace">[options.activateInLayouts]</label>Layouts in which the sticky behaviour is present. Pass an array or comma-separated string. Defaults to 'medium,large'.</dd>
         </dl>
-        
 
-
-    
-
-
-    
-
-
-    
-	<h3>Samples</h3>
-	
+<h3>Samples</h3>
 		{% include js_samples/Ink_UI_Sticky_1.html %}
-	
-
-
-</section>
+	</section>
 
 
 
-
-    
-    
     

@@ -4,27 +4,12 @@ title: Ink.UI.SortableList_1
 description: Provides the core methods to create and load all of the library modules. 
 site_root:  ../
 ---
-    
-        <section>
-        <h1 class="fw-300">Ink.UI.SortableList_1 <small>version: 1</small></h1>
-    
-    
-    
+    <section>
+        <h1 class="fw-300">Ink.UI.SortableList_1<small>version:1</small></h1>
 
-
-    
-
-    
-    
-    
-            
-    <p><p>Adds sortable behaviour to any list.</p>
+<p><p>Adds sortable behaviour to any list.</p>
 </p>
-    
-    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">Ink.requireModules</a></p>
-    
-    <table class="props bottom-space">
-        
+    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p><table class="props bottom-space">
         <caption>Methods</caption>
         <thead>
             <tr>
@@ -34,341 +19,70 @@ site_root:  ../
         </thead>
         
         <tbody>
-        
             <tr>
                 <td>
-                    <a href="#Ink_UI_SortableList_1-Ink_UI_SortableList-SortableList">
-                        
-                            
-                        
-                    </a>
+                    <a href="#Ink_UI_SortableList_1-Ink_UI_SortableList-SortableList">Ink.UI.SortableList</a>
                 </td>
-                <td>
-                    
-                    
-                    
-                    
-                </td>
+                <td></td>
             </tr>
-        
             <tr>
                 <td>
-                    <a href="#Ink_UI_SortableList_1-Ink_UI_SortableList-destroy">
-                        
-                            .destroy
-                        
-                    </a>
+                    <a href="#Ink_UI_SortableList_1-Ink_UI_SortableList-destroy">.destroy</a>
                 </td>
-                <td>
-                    
-                    <p>Unregisters the component and removes its markup</p>
-
-                    
-                    
-                </td>
-            </tr>
-        
-        </tbody>
+                <td><br></td>
+            </tr></tbody>
     </table>
     
-    
 </section>
-
 
 
 
     <section id="Ink_UI_SortableList_1-Ink_UI_SortableList-SortableList" class="box box-function">
-    <h1 class="fw-300">
-    
-        Ink.UI.SortableList
-    
-    (selector, )
-    
-        <i>constructor</i>
-    
-    </h1>
-    
+    <h1 class="fw-300">Ink.UI.SortableList(selector, )<i>constructor</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
-        
-        <li class="prop">
-        
-        
-        selector
-        
-        
-        </li>
-        
-        <li class="prop">
-        
-        </li>
-        
-        <li class="prop">
-        
-        </li>
-        
-        <li class="prop">
-        
-        </li>
-        
-        <li class="prop">
-        
-        </li>
-        
-        <li class="prop">
-        
-        </li>
-        
-        <li class="prop">
-        
-        </li>
-        
-        <li class="prop">
-        
-        </li>
-        
-        <li class="prop">
-        
-        </li>
-        
+        <li class="prop">selector</li>
+        <li class="prop"></li>
+        <li class="prop"></li>
+        <li class="prop"></li>
+        <li class="prop"></li>
+        <li class="prop"></li>
+        <li class="prop"></li>
+        <li class="prop"></li>
+        <li class="prop"></li>
     </ul>
-    
-
-    
-    
-
-    
-
-    
         <h3>Accepts</h3>
         <dl class="params">
-        
-            <dt>
-                
-                    <code>String|DOMElement</code>
-                
-            </dt>
-            <dd>
-                
-
-                
-                <label class="monospace">selector
-                
-
-                
-                </label>
-                
-            </dd>
-        
-            <dt>
-                
-                    <code>String</code>
-                
-            </dt>
-            <dd>
-                
-
-                
-                <label class="monospace">[options.placeholderClass]
-                
-
-                
-                </label>
-                
-                    CSS class added to the "ghost" element being dragged around. Defaults to 'placeholder'.
-                
-            </dd>
-        
-            <dt>
-                
-                    <code>String</code>
-                
-            </dt>
-            <dd>
-                
-
-                
-                <label class="monospace">[options.draggedClass]
-                
-
-                
-                </label>
-                
-                    CSS class added to the original element being dragged around. Defaults to 'hide-all'.
-                
-            </dd>
-        
-            <dt>
-                
-                    <code>String</code>
-                
-            </dt>
-            <dd>
-                
-
-                
-                <label class="monospace">[options.draggingClass]
-                
-
-                
-                </label>
-                
-                    CSS class added to the html element when the user is dragging. Defaults to 'dragging'.
-                
-            </dd>
-        
-            <dt>
-                
-                    <code>String</code>
-                
-            </dt>
-            <dd>
-                
-
-                
-                <label class="monospace">[options.dragSelector]
-                
-
-                
-                </label>
-                
-                    CSS selector for the drag enabled nodes. Defaults to 'li'.
-                
-            </dd>
-        
-            <dt>
-                
-                    <code>String</code>
-                
-            </dt>
-            <dd>
-                
-
-                
-                <label class="monospace">[options.handleSelector]
-                
-
-                
-                </label>
-                
-                    CSS selector for the drag handle. If present, you can only drag nodes by this selector.
-                
-            </dd>
-        
-            <dt>
-                
-                    <code>String</code>
-                
-            </dt>
-            <dd>
-                
-
-                
-                <label class="monospace">[options.moveSelector]
-                
-
-                
-                </label>
-                
-                    CSS selector to validate a node move. If present, you can only move nodes inside this selector.
-                
-            </dd>
-        
-            <dt>
-                
-                    <code>Boolean</code>
-                
-            </dt>
-            <dd>
-                
-
-                
-                <label class="monospace">[options.swap]
-                
-
-                
-                </label>
-                
-                    Flag to swap dragged element and target element instead of reordering it.
-                
-            </dd>
-        
-            <dt>
-                
-                    <code>Boolean</code>
-                
-            </dt>
-            <dd>
-                
-
-                
-                <label class="monospace">[options.cancelMouseOut]
-                
-
-                
-                </label>
-                
-                    Flag to cancel draggin if mouse leaves the container element.
-                
-            </dd>
-        
+            <dt><code>String|DOMElement</code></dt>
+            <dd><label class="monospace">selector</label></dd>
+            <dt><code>String</code></dt>
+            <dd><label class="monospace">[options.placeholderClass]</label>CSS class added to the "ghost" element being dragged around. Defaults to 'placeholder'.</dd>
+            <dt><code>String</code></dt>
+            <dd><label class="monospace">[options.draggedClass]</label>CSS class added to the original element being dragged around. Defaults to 'hide-all'.</dd>
+            <dt><code>String</code></dt>
+            <dd><label class="monospace">[options.draggingClass]</label>CSS class added to the html element when the user is dragging. Defaults to 'dragging'.</dd>
+            <dt><code>String</code></dt>
+            <dd><label class="monospace">[options.dragSelector]</label>CSS selector for the drag enabled nodes. Defaults to 'li'.</dd>
+            <dt><code>String</code></dt>
+            <dd><label class="monospace">[options.handleSelector]</label>CSS selector for the drag handle. If present, you can only drag nodes by this selector.</dd>
+            <dt><code>String</code></dt>
+            <dd><label class="monospace">[options.moveSelector]</label>CSS selector to validate a node move. If present, you can only move nodes inside this selector.</dd>
+            <dt><code>Boolean</code></dt>
+            <dd><label class="monospace">[options.swap]</label>Flag to swap dragged element and target element instead of reordering it.</dd>
+            <dt><code>Boolean</code></dt>
+            <dd><label class="monospace">[options.cancelMouseOut]</label>Flag to cancel draggin if mouse leaves the container element.</dd>
         </dl>
-        
 
-
-    
-
-
-    
-
-
-    
-	<h3>Samples</h3>
-	
+<h3>Samples</h3>
 		{% include js_samples/Ink_UI_SortableList_1.html %}
-	
-
-
-</section>
-
+	</section>
 
     <section id="Ink_UI_SortableList_1-Ink_UI_SortableList-destroy" class="box box-function">
-    <h1 class="fw-300">
-    
-        
-            .destroy
-        
-    
-    ()
-    
-        
-            <i>method</i>
-        
-    
-    </h1>
-    
-
-    
-    
-
-    
-        <p class="text"><p>Unregisters the component and removes its markup</p>
+    <h1 class="fw-300">.destroy()<i>method</i></h1><p class="text"><p>Unregisters the component and removes its markup</p>
 </p>
-    
-
-    
-
-
-    
-
-
-    
 
 </section>
 
 
 
-
-    
-    
     

@@ -4,27 +4,12 @@ title: Ink.UI.ProgressBar_1
 description: Provides the core methods to create and load all of the library modules. 
 site_root:  ../
 ---
-    
-        <section>
-        <h1 class="fw-300">Ink.UI.ProgressBar_1 <small>version: 1</small></h1>
-    
-    
-    
+    <section>
+        <h1 class="fw-300">Ink.UI.ProgressBar_1<small>version:1</small></h1>
 
-
-    
-
-    
-    
-    
-            
-    <p><p>Associated to a .ink-progress-bar element, it provides a setValue() method to change the element&#39;s value.</p>
+<p><p>Associated to a .ink-progress-bar element, it provides a setValue() method to change the element&#39;s value.</p>
 </p>
-    
-    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">Ink.requireModules</a></p>
-    
-    <table class="props bottom-space">
-        
+    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p><table class="props bottom-space">
         <caption>Methods</caption>
         <thead>
             <tr>
@@ -34,295 +19,67 @@ site_root:  ../
         </thead>
         
         <tbody>
-        
             <tr>
                 <td>
-                    <a href="#Ink_UI_ProgressBar_1-Ink_UI_ProgressBar-ProgressBar">
-                        
-                            
-                        
-                    </a>
+                    <a href="#Ink_UI_ProgressBar_1-Ink_UI_ProgressBar-ProgressBar">Ink.UI.ProgressBar</a>
                 </td>
-                <td>
-                    
-                    
-                    
-                    
-                </td>
+                <td></td>
             </tr>
-        
             <tr>
                 <td>
-                    <a href="#Ink_UI_ProgressBar_1-Ink_UI_ProgressBar-setValue">
-                        
-                            .setValue
-                        
-                    </a>
+                    <a href="#Ink_UI_ProgressBar_1-Ink_UI_ProgressBar-setValue">.setValue</a>
                 </td>
-                <td>
-                    
-                    <p>Sets the value of the Progressbar</p>
-
-                    
-                    
-                </td>
-            </tr>
-        
-        </tbody>
+                <td><br></td>
+            </tr></tbody>
     </table>
     
-    
 </section>
-
 
 
 
     <section id="Ink_UI_ProgressBar_1-Ink_UI_ProgressBar-ProgressBar" class="box box-function">
-    <h1 class="fw-300">
-    
-        Ink.UI.ProgressBar
-    
-    (selector, [options], )
-    
-        <i>constructor</i>
-    
-    </h1>
-    
+    <h1 class="fw-300">Ink.UI.ProgressBar(selector, [options], )<i>constructor</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
-        
-        <li class="prop">
-        
-        
-        selector
-        
-        
-        </li>
-        
-        <li class="prop">
-        
-        [
-        options
-        ]
-        
-        </li>
-        
-        <li class="prop">
-        
-        </li>
-        
-        <li class="prop">
-        
-        </li>
-        
-        <li class="prop">
-        
-        </li>
-        
+        <li class="prop">selector</li>
+        <li class="prop">[options]</li>
+        <li class="prop"></li>
+        <li class="prop"></li>
+        <li class="prop"></li>
     </ul>
-    
-
-    
-    
-
-    
-
-    
         <h3>Accepts</h3>
         <dl class="params">
-        
-            <dt>
-                
-                    <code>String|DOMElement</code>
-                
-            </dt>
-            <dd>
-                
-
-                
-                <label class="monospace">selector
-                
-
-                
-                </label>
-                
-                    Element or selector
-                
-            </dd>
-        
-            <dt>
-                
-                    <code>Object</code>
-                
-            </dt>
-            <dd>
-                
-
-                
-                <label class="monospace">[options]
-                
-
-                
-                </label>
-                
-                    Options object
-                
-            </dd>
-        
-            <dt>
-                
-                    <code>Number</code>
-                
-            </dt>
-            <dd>
-                
-
-                
-                <label class="monospace">[options.startValue]
-                
-
-                
-                </label>
-                
-                    Percentage of the bar that is filled. Ranges between 0 and 100. Default: 0
-                
-            </dd>
-        
-            <dt>
-                
-                    <code>Function</code>
-                
-            </dt>
-            <dd>
-                
-
-                
-                <label class="monospace">[options.onStart]
-                
-
-                
-                </label>
-                
-                    Callback called when a change of value is started
-                
-            </dd>
-        
-            <dt>
-                
-                    <code>Function</code>
-                
-            </dt>
-            <dd>
-                
-
-                
-                <label class="monospace">[options.onEnd]
-                
-
-                
-                </label>
-                
-                    Callback called when a change of value ends
-                
-            </dd>
-        
+            <dt><code>String|DOMElement</code></dt>
+            <dd><label class="monospace">selector</label>Element or selector</dd>
+            <dt><code>Object</code></dt>
+            <dd><label class="monospace">[options]</label>Options object</dd>
+            <dt><code>Number</code></dt>
+            <dd><label class="monospace">[options.startValue]</label>Percentage of the bar that is filled. Ranges between 0 and 100. Default: 0</dd>
+            <dt><code>Function</code></dt>
+            <dd><label class="monospace">[options.onStart]</label>Callback called when a change of value is started</dd>
+            <dt><code>Function</code></dt>
+            <dd><label class="monospace">[options.onEnd]</label>Callback called when a change of value ends</dd>
         </dl>
-        
 
-
-    
-
-
-    
-
-
-    
-	<h3>Samples</h3>
-	
+<h3>Samples</h3>
 		{% include js_samples/Ink_UI_ProgressBar_1.html %}
-	
-
-
-</section>
-
+	</section>
 
     <section id="Ink_UI_ProgressBar_1-Ink_UI_ProgressBar-setValue" class="box box-function">
-    <h1 class="fw-300">
-    
-        
-            .setValue
-        
-    
-    (newValue)
-    
-        
-            <i>method</i>
-        
-    
-    </h1>
-    
+    <h1 class="fw-300">.setValue(newValue)<i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
-        
-        <li class="prop">
-        
-        
-        newValue
-        
-        
-        </li>
-        
-    </ul>
-    
-
-    
-    
-
-    
-        <p class="text"><p>Sets the value of the Progressbar</p>
+        <li class="prop">newValue</li>
+    </ul><p class="text"><p>Sets the value of the Progressbar</p>
 </p>
-    
-
-    
         <h3>Accepts</h3>
         <dl class="params">
-        
-            <dt>
-                
-                    <code>Number</code>
-                
-            </dt>
-            <dd>
-                
-
-                
-                <label class="monospace">newValue
-                
-
-                
-                </label>
-                
-                    Numeric value, between 0 and 100, that represents the percentage of the bar.
-                
-            </dd>
-        
+            <dt><code>Number</code></dt>
+            <dd><label class="monospace">newValue</label>Numeric value, between 0 and 100, that represents the percentage of the bar.</dd>
         </dl>
-        
-
-
-    
-
-
-    
-
-
-    
 
 </section>
 
 
 
-
-    
-    
     
