@@ -2,11 +2,6 @@
 *.orig
 *.bak
 
-# ignore temp InK build files
-*/builds/*
-*/builds/!index.html
-ink_to_prod_dir
-
 # ignore OS generated files
 .DS_Store
 .DS_Store?
@@ -17,16 +12,18 @@ ehthumbs.db
 Thumbs.db
 *.zip
 
-
+# ignore dev folders
 node_modules
 bower_components
+.sass-cache
+npm-debug.log
+
+# ignore gh-pages folders
 _site
 _includes
 assets
 
-npm-debug.log
-.sass-cache
-
+# legacy build files
 src/js/builds
 src/js/report
 src/js/serverUtils/moduleDirs.json
