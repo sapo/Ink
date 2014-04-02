@@ -9,8 +9,8 @@
             .{{~name~}}
         {{~/ifvalue~}}
     {{~/if~}}
-    ({{#foreach params}}{{#if isFirstLevel}}{{#if isOptional}}[{{/if}}{{name}}{{#if isOptional}}]{{/if}}{{#unless $last}}, {{/unless}}{{/if}}{{/foreach}})
-    {{~#if isConstructor~}}
+    ({{#foreach params}}{{#if isFirstLevel}}{{#if isOptional}}[{{/if}}{{name}}{{#if isOptional}}]{{/if}}{{#unless $last}}, {{/unless}}{{/if}}{{/foreach}}) 
+    {{#if isConstructor~}}
         <i>constructor</i>
     {{~else~}}
         {{~#ifvalue parent.kind value="class"~}}
@@ -61,9 +61,9 @@
                 {{~/if~}}
 
                 {{~#if isOptional~}}
-                <label class="monospace">[{{~name~}}]
-                {{~else~}}
-                <label class="monospace">{{~name~}}
+                <label class="monospace">[{{~name}}]
+                {{else~}}
+                <label class="monospace">{{~name}} 
                 {{~/if~}}
 
                 {{~#if defaultValue~}}
