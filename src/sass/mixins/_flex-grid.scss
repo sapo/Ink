@@ -694,9 +694,8 @@
 
         // generate the 33% width
         @if $i > 30 and $i <= 35 {
-            .all-33,
             .#{$class-name}-33 {
-                width: 33,33333%;
+                width: 33.33333%;
                 @include experimental(flex-basis, 33.33333%, -moz, -webkit, not -o, -ms, not -khtml, official);
                 @include experimental(flex-grow, 0, not -moz, -webkit, not -o, -ms, not -khtml, official);
             }
@@ -704,16 +703,14 @@
 
         // generate the 66% width
         @if $i > 65 and $i <= 70 {
-            .all-66,
             .#{$class-name}-66 {
-                width: 66,66666%;
+                width: 66.66666%;
                 @include experimental(flex-basis, 66.66666%, -moz, -webkit, not -o, -ms, not -khtml, official);
                 @include experimental(flex-grow, 0, not -moz, -webkit, not -o, -ms, not -khtml, official);
             }
         }
 
         // generate the 5% step widths
-        .all-#{$i},
         .#{$class-name}-#{$i} {
             width: $i * 1%;
             @include experimental(flex-basis, $i * 1%, -moz, -webkit, not -o, -ms, not -khtml, official);
@@ -724,7 +721,6 @@
         $i: $i + $step-size;
     }
 
-    .all-auto,
     .#{$class-name}-auto {
         width: auto;
         @include experimental(flex-basis, auto, not -moz, -webkit, not -o, -ms, not -khtml, official);
