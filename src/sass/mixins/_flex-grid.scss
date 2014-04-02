@@ -3,7 +3,7 @@
 // generates the grid main container
 @mixin generate-grid-container ($grid-container-class-name, $gutter-width) {
 
-    .#{$grid-container-class-name} { 
+    .#{$grid-container-class-name} {
         padding: 0 $gutter-width;
     }
 }
@@ -14,29 +14,28 @@
   .#{$flex-class-name},
   .#{$grid-column-group-class-name} {
         @include experimental-value(display, flex, not -moz, -webkit, not -o, not -ms, not -khtml, official);
-        // @include experimental-value(display, box, -moz, not -webkit, not -o, n-ms, not -khtml);
-        // @include experimental-value(display, flexbox, not -moz, not -webkit, not -o, -ms, not -khtml);
-        @include experimental(flex-wrap, wrap, not -moz, -webkit, not -o, not -ms, not -khtml, official);
-        @include experimental(flex-direction, row, not -moz, -webkit, not -o, not -ms, not -khtml, official);
-        list-style: none;    
+        @include experimental-value(display, flexbox, not -moz, not -webkit, not -o, -ms, not -khtml, not official);
+        @include experimental(flex-wrap, wrap, not -moz, -webkit, not -o, -ms, not -khtml, official);
+        @include experimental(flex-direction, row, not -moz, -webkit, not -o, -ms, not -khtml, official);
+        list-style: none;
 
 
         &.#{$class-name}-reverse,
-        &.reverse { @include experimental(flex-direction, row-reverse, -moz, -webkit, not -o, not -ms, not -khtml, official); }
-        
+        &.reverse { @include experimental(flex-direction, row-reverse, -moz, -webkit, not -o, -ms, not -khtml, official); }
+
         &.#{$class-name}-vertical,
-        &.vertical          { @include experimental(flex-direction, column, -moz, -webkit, not -o, not -ms, not -khtml, official); }
+        &.vertical          { @include experimental(flex-direction, column, -moz, -webkit, not -o, -ms, not -khtml, official); }
 
         &.#{$class-name}-vertical.#{$class-name}-reverse,
-        &.vertical.reverse  { @include experimental(flex-direction, column-reverse, -moz, -webkit, not -o, not -ms, not -khtml, official); }
+        &.vertical.reverse  { @include experimental(flex-direction, column-reverse, -moz, -webkit, not -o, -ms, not -khtml, official); }
     }
 }
 
 @mixin generate-flex-grid-utils ($class-name) {
     .#{$grid-column-group-class-name} {
         .#{$class-name}-auto {
-            @include experimental(flex-basis, auto, not -moz, -webkit, not -o, not -ms, not -khtml, official); 
-            @include experimental(flex-grow, 1, not -moz, -webkit, not -o, not -ms, not -khtml, official);   
+            @include experimental(flex-basis, auto, not -moz, -webkit, not -o, -ms, not -khtml, official);
+            @include experimental(flex-grow, 1, not -moz, -webkit, not -o, -ms, not -khtml, official);
         }
     }
 
@@ -76,44 +75,49 @@
         -ms-flex-item-align: center;
         align-self: center;
     }
-    
+
     .push-left,
     .#{$class-name}-push-left {
-        @include experimental(justify-content, flex-start, -moz, -webkit, not -o, not -ms, not -khtml, official);
-        float: left;    
+        @include experimental(justify-content, flex-start, -moz, -webkit, not -o, -ms, not -khtml, official);
+        @include experimental(flex-pack, start, not -moz, not -webkit, not -o, -ms, not -khtml, not official);
+        float: left;
     }
 
     .push-center,
     .#{$class-name}-push-center {
         float: none !important;
-        @include experimental(justify-content, center, -moz, -webkit, not -o, not -ms, not -khtml, official);
+        @include experimental(justify-content, center, -moz, -webkit, not -o, -ms, not -khtml, official);
+        @include experimental(flex-pack, center, not -moz, not -webkit, not -o, -ms, not -khtml, not official);
         margin-left: auto;
-        margin-right: auto;     
+        margin-right: auto;
     }
 
     .push-right,
     .#{$class-name}-push-right {
-        @include experimental(justify-content, flex-end, -moz, -webkit, not -o, not -ms, not -khtml, official);              
-        float: right;    
+        @include experimental(justify-content, flex-end, -moz, -webkit, not -o, -ms, not -khtml, official);
+        @include experimental(flex-pack, end, not -moz, not -webkit, not -o, -ms, not -khtml, not official);
+        float: right;
     }
 
 }
 
 @mixin grid-flex-order($class-name: null) {
   @if $class-name != null {
-      $i: 1; 
+      $i: 1;
       @while $i <= 10 {
         .#{$class-name}-order-#{$i} {
           order: #{$i};
+          -ms-flex-order: #{$i};
           $i: $i + 1;
         }
       }
   }
   @if $class-name == null {
-     $i: 1; 
+     $i: 1;
       @while $i <= 10 {
         .order-#{$i} {
           order: #{$i};
+          -ms-flex-order: #{$i};
           $i: $i + 1;
         }
       }
@@ -186,7 +190,7 @@
         & > .all-auto {
             padding-left: ( $gutter-width / 2);
             margin-bottom: ( $gutter-width / 2);
-        } 
+        }
     }
 
     .#{$grid-column-group-class-name}.#{$grid-half-horizontal-gutters-class-name} {
@@ -195,7 +199,7 @@
         & > [class*=all-],
         & > .all-auto {
             padding-left: ( $gutter-width / 2);
-        } 
+        }
     }
 
     .#{$grid-column-group-class-name}.#{$grid-half-vertical-gutters-class-name} {
@@ -203,7 +207,7 @@
         & > [class*=all-],
         & > .all-auto {
             margin-bottom: ( $gutter-width / 2);
-        } 
+        }
     }
 
     .#{$grid-column-group-class-name}.#{$grid-quarter-gutters-class-name} {
@@ -213,7 +217,7 @@
         & > .all-auto {
             padding-left: ( $gutter-width / 4);
             margin-bottom: ( $gutter-width / 4);
-        } 
+        }
     }
 
     .#{$grid-column-group-class-name}.#{$grid-quarter-horizontal-gutters-class-name} {
@@ -222,7 +226,7 @@
         & > [class*=all-],
         & > .all-auto {
             padding-left: ( $gutter-width / 4);
-        } 
+        }
     }
 
     .#{$grid-column-group-class-name}.#{$grid-quarter-vertical-gutters-class-name} {
@@ -230,7 +234,7 @@
         & > [class*=all-],
         & > .all-auto {
             margin-bottom: ( $gutter-width / 4);
-        } 
+        }
     }
 
     .#{$grid-column-group-class-name}.#{$class-name}-#{$grid-gutters-class-name} {
@@ -240,7 +244,7 @@
         & > .all-auto {
             padding-left: ( $gutter-width / 4);
             margin-bottom: ( $gutter-width / 4);
-        } 
+        }
     }
 
     .#{$grid-column-group-class-name}.#{$class-name}-#{$grid-horizontal-gutters-class-name} {
@@ -249,7 +253,7 @@
         & > [class*=all-],
         & > .all-auto {
             padding-left: $gutter-width ;
-        } 
+        }
     }
 
     .#{$grid-column-group-class-name}.#{$class-name}-#{$grid-vertical-gutters-class-name} {
@@ -257,7 +261,7 @@
         & > [class*=all-],
         & > .all-auto {
             margin-bottom: $gutter-width;
-        } 
+        }
     }
 
     .#{$grid-column-group-class-name}.#{$class-name}-#{$grid-double-gutters-class-name} {
@@ -267,7 +271,7 @@
         & > .all-auto {
             padding-left: ( $gutter-width * 2);
             margin-bottom: ( $gutter-width * 2);
-        } 
+        }
     }
 
     .#{$grid-column-group-class-name}.#{$class-name}-#{$grid-double-horizontal-gutters-class-name} {
@@ -276,7 +280,7 @@
         & > [class*=all-],
         & > .all-auto {
             padding-left: ( $gutter-width * 2);
-        } 
+        }
     }
 
     .#{$grid-column-group-class-name}.#{$class-name}-#{$grid-double-vertical-gutters-class-name} {
@@ -284,7 +288,7 @@
         & > [class*=all-],
         & > .all-auto {
             margin-bottom: ( $gutter-width * 2);
-        } 
+        }
     }
 
     .#{$grid-column-group-class-name}.#{$class-name}-#{$grid-half-gutters-class-name} {
@@ -294,7 +298,7 @@
         & > .all-auto {
             padding-left: ( $gutter-width / 2);
             margin-bottom: ( $gutter-width / 2);
-        } 
+        }
     }
 
     .#{$grid-column-group-class-name}.#{$class-name}-#{$grid-half-horizontal-gutters-class-name} {
@@ -303,7 +307,7 @@
         & > [class*=all-],
         & > .all-auto {
             padding-left: ( $gutter-width / 2);
-        } 
+        }
     }
 
     .#{$grid-column-group-class-name}.#{$class-name}-#{$grid-half-vertical-gutters-class-name} {
@@ -311,7 +315,7 @@
         & > [class*=all-],
         & > .all-auto {
             margin-bottom: ( $gutter-width / 2);
-        } 
+        }
     }
 
     .#{$grid-column-group-class-name}.#{$class-name}-#{$grid-quarter-gutters-class-name} {
@@ -321,7 +325,7 @@
         & > .all-auto {
             padding-left: ( $gutter-width / 4);
             margin-bottom: ( $gutter-width / 4);
-        } 
+        }
     }
 
     .#{$grid-column-group-class-name}.#{$class-name}-#{$grid-quarter-horizontal-gutters-class-name} {
@@ -330,7 +334,7 @@
         & > [class*=all-],
         & > .all-auto {
             padding-left: ( $gutter-width / 4);
-        } 
+        }
     }
 
     .#{$grid-column-group-class-name}.#{$class-name}-#{$grid-quarter-vertical-gutters-class-name} {
@@ -338,7 +342,7 @@
         & > [class*=all-],
         & > .all-auto {
             margin-bottom: ( $gutter-width / 4);
-        } 
+        }
     }
 
     .#{$grid-column-group-class-name}.#{$class-name}-#{$grid-no-gutters-class-name} {
@@ -348,7 +352,7 @@
         & > .all-auto {
             padding-left: 0;
             margin-bottom: 0;
-        } 
+        }
     }
 }
 
@@ -365,7 +369,7 @@
     }
 
     $space-placements: (
-        
+
         (null,
             (
                 (double,2),
@@ -415,7 +419,7 @@
                 ('quarter',0.25)
             )
         )
-    );    
+    );
 
     @each $placement in $space-placements {
 
@@ -494,7 +498,7 @@
 
             @each $sub-division in nth($placement,2) {
                 $sub-division-class-name: nth($sub-division,1);
-                $sub-division-unit: nth($sub-division,2);   
+                $sub-division-unit: nth($sub-division,2);
 
                 .#{$sub-division-class-name}-#{$position}-space {
                     margin-top: $gutter-width * $sub-division-unit;
@@ -609,7 +613,7 @@
     .show-#{$breakpoint} {
         display: inherit !important;
     }
-    
+
     table.show-#{$breakpoint} {
         display: table;
     }
@@ -683,48 +687,92 @@
     $i: 5;
 
     // define the step size (this is the minimum column width percentage)
-    $step-size: 5; 
+    $step-size: 5;
 
     // iterate to generate the width classes
     @while $i <= 100 {
-    
+
         // generate the 33% width
         @if $i > 30 and $i <= 35 {
-            .all-33,
             .#{$class-name}-33 {
-                width: 33,33333%;
-                @include experimental(flex-basis, 33.33333%, -moz, -webkit, not -o, not -ms, not -khtml, official);
-                @include experimental(flex-grow, 0, not -moz, -webkit, not -o, not -ms, not -khtml, official);
+                width: 33.33333%;
+                @include experimental(flex-basis, 33.33333%, -moz, -webkit, not -o, -ms, not -khtml, official);
+                @include experimental(flex-grow, 0, not -moz, -webkit, not -o, -ms, not -khtml, official);
             }
         }
 
         // generate the 66% width
         @if $i > 65 and $i <= 70 {
-            .all-66,
             .#{$class-name}-66 {
-                width: 66,66666%;
-                @include experimental(flex-basis, 66.66666%, -moz, -webkit, not -o, not -ms, not -khtml, official);
-                @include experimental(flex-grow, 0, not -moz, -webkit, not -o, not -ms, not -khtml, official);
+                width: 66.66666%;
+                @include experimental(flex-basis, 66.66666%, -moz, -webkit, not -o, -ms, not -khtml, official);
+                @include experimental(flex-grow, 0, not -moz, -webkit, not -o, -ms, not -khtml, official);
             }
         }
 
         // generate the 5% step widths
-        .all-#{$i},
         .#{$class-name}-#{$i} {
             width: $i * 1%;
-            @include experimental(flex-basis, $i * 1%, -moz, -webkit, not -o, not -ms, not -khtml, official);
-            @include experimental(flex-grow, 0, not -moz, -webkit, not -o, not -ms, not -khtml, official);
+            @include experimental(flex-basis, $i * 1%, -moz, -webkit, not -o, -ms, not -khtml, official);
+            @include experimental(flex-grow, 0, not -moz, -webkit, not -o, -ms, not -khtml, official);
         }
 
         // increment the counter
         $i: $i + $step-size;
     }
 
-    .all-auto,
     .#{$class-name}-auto {
         width: auto;
-        @include experimental(flex-basis, auto, not -moz, -webkit, not -o, not -ms, not -khtml, official); 
-        @include experimental(flex-grow, 1, not -moz, -webkit, not -o, not -ms, not -khtml, official);  
+        @include experimental(flex-basis, auto, not -moz, -webkit, not -o, -ms, not -khtml, official);
+        @include experimental(flex-grow, 1, not -moz, -webkit, not -o, -ms, not -khtml, official);
+    }
+}
+
+
+@mixin generate-all-flex-grid-divisions () {
+
+    // iteration counter
+    $i: 5;
+
+    // define the step size (this is the minimum column width percentage)
+    $step-size: 5;
+
+    // iterate to generate the width classes
+    @while $i <= 100 {
+
+        // generate the 33% width
+        @if $i > 30 and $i <= 35 {
+            .all-33 {
+                width: 33.33333%;
+                @include experimental(flex-basis, 33.33333%, -moz, -webkit, not -o, -ms, not -khtml, official);
+                @include experimental(flex-grow, 0, not -moz, -webkit, not -o, -ms, not -khtml, official);
+            }
+        }
+
+        // generate the 66% width
+        @if $i > 65 and $i <= 70 {
+            .all-66 {
+                width: 66.66666%;
+                @include experimental(flex-basis, 66.66666%, -moz, -webkit, not -o, -ms, not -khtml, official);
+                @include experimental(flex-grow, 0, not -moz, -webkit, not -o, -ms, not -khtml, official);
+            }
+        }
+
+        // generate the 5% step widths
+        .all-#{$i} {
+            width: $i * 1%;
+            @include experimental(flex-basis, $i * 1%, -moz, -webkit, not -o, -ms, not -khtml, official);
+            @include experimental(flex-grow, 0, not -moz, -webkit, not -o, -ms, not -khtml, official);
+        }
+
+        // increment the counter
+        $i: $i + $step-size;
+    }
+
+    .all-auto {
+        width: auto;
+        @include experimental(flex-basis, auto, not -moz, -webkit, not -o, -ms, not -khtml, official);
+        @include experimental(flex-grow, 1, not -moz, -webkit, not -o, -ms, not -khtml, official);
     }
 }
 
@@ -739,6 +787,7 @@
         }
 
         @include grid-flex-order();
+        @include generate-all-flex-grid-divisions();
 
         $all-class-names: '';
 
@@ -749,7 +798,7 @@
             $maximum-width: nth($breakpoint,3);
             $gutter-width: nth($breakpoint,4);
             $no-media-query: nth($breakpoint,6);
-            $all-class-names: ".#{$class-name}, #{$all-class-names}"; 
+            $all-class-names: ".#{$class-name}, #{$all-class-names}";
 
             @if $minimum-width and not $maximum-width {
                 @media screen and (min-width: $minimum-width) {
@@ -780,7 +829,7 @@
             @if not $minimum-width and $maximum-width {
                 @media screen and (max-width: $maximum-width) {
                     @include generate-grid-container($grid-class-name, $gutter-width);
-                    @include generate-flex-column-group-gutters($class-name,$gutter-width);          
+                    @include generate-flex-column-group-gutters($class-name,$gutter-width);
                     @include generate-flex-grid-divisions($class-name);
                     @include generate-flex-column-group($class-name);
                     @include grid-flex-order($class-name);

@@ -24,41 +24,11 @@ from table rows in the DOM. Displaying from the DOM is more practical,
 but sometimes you don&#39;t want to load everything at once (if you have
 a HUGE table). In those cases, you should configure Ink.UI.Table to
 get data from JSON endpoint.</p>
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
-You can use this component to display data from a JSON endpoint, or
-from table rows in the DOM. Displaying from the DOM is more practical,
-but sometimes you don&#39;t want to load everything at once (if you have
-a HUGE table). In those cases, you should configure Ink.UI.Table to
-get data from JSON endpoint.</p>
-<p>To enable sorting, just set the <code>data-sortable</code> attribute of your
-table headers (they must be in the <code>thead</code> of the table) to &quot;true&quot;.</p>
-<p>To enable pagination, set the <code>pageSize</code> option to the amount of table
-rows you want to show at once, and choose an <code>Ink.UI.Pagination</code>
-component to use. To do this, you can do one of the following:</p>
-<ul>
-<li>Pass an <code>Ink.UI.Pagination</code> instance as the <code>pagination</code> option, or...</li>
-<li><h1 id="pass-a-selector-as-the-pagination-option-which-selects-an-element-to-create-the-ink-ui-paginate-element-on-">Pass a selector as the <code>pagination</code> option which selects an element to create the Ink.UI.Paginate element on.</h1>
-To enable sorting, just set the <code>data-sortable</code> attribute of your table headers (they must be in the <code>thead</code> of the table) to &quot;true&quot;.</li>
-</ul>
+<p>To enable sorting, just set the <code>data-sortable</code> attribute of your table headers (they must be in the <code>thead</code> of the table) to &quot;true&quot;.</p>
 <p>To enable pagination, you should pass either an <code>Ink.UI.Pagination</code> instance or a selector to create the Ink.UI.Paginate element on.</p>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>797f31ed036f19213caf05a449c86811e1966d36</p>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
 </p>
     
-    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p>
+    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">Ink.requireModules</a></p>
     
     <table class="props bottom-space">
         
@@ -592,80 +562,14 @@ Useful to change the endpoint in runtime.</p>
 
 
     
-<p class="example-title">Example</p>
-  
-{% highlight html %}{% raw %}
-     <table class="ink-table alternating" data-page-size="6">
-         <thead>
-             <tr>
-                 <th data-sortable="true" width="75%">Pepper</th>
-                 <th data-sortable="true" width="25%">Scoville Rating</th>
-             </tr>
-         </thead>
-         <tbody>
-             <tr>
-                 <td>Trinidad Moruga Scorpion</td>
-                 <td>1500000</td>
-             </tr>
-             <tr>
-                 <td>Bhut Jolokia</td>
-                 <td>1000000</td>
-             </tr>
-             <tr>
-                 <td>Naga Viper</td>
-                 <td>1463700</td>
-             </tr>
-             <tr>
-                 <td>Red Savina Habanero</td>
-                 <td>580000</td>
-             </tr>
-             <tr>
-                 <td>Habanero</td>
-                 <td>350000</td>
-             </tr>
-             <tr>
-                 <td>Scotch Bonnet</td>
-                 <td>180000</td>
-             </tr>
-             <tr>
-                 <td>Malagueta</td>
-                 <td>50000</td>
-             </tr>
-             <tr>
-                 <td>Tabasco</td>
-                 <td>35000</td>
-             </tr>
-             <tr>
-                 <td>Serrano Chili</td>
-                 <td>27000</td>
-             </tr>
-             <tr>
-                 <td>Jalapeño</td>
-                 <td>8000</td>
-             </tr>
-             <tr>
-                 <td>Poblano</td>
-                 <td>1500</td>
-             </tr>
-             <tr>
-                 <td>Peperoncino</td>
-                 <td>500</td>
-             </tr>
-         </tbody>
-     </table>
-     <nav class="ink-navigation"><ul class="pagination"></ul></nav>
-     <script>
-         Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.Table_1'], function( Selector, Table ){
-             var tableElement = Ink.s('.ink-table');
-             var tableObj = new Table( tableElement );
-         });
-     </script>
-{% endraw %}{% endhighlight %}
-
-
 
 
     
+	<h3>Samples</h3>
+	
+		{% include js_samples/Ink_UI_Table_1.html %}
+	
+
 
 </section>
 

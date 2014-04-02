@@ -24,7 +24,7 @@ site_root:  ../
 <p>You can define options either through the second argument of the Tooltip constructor, or as data-attributes in each <code>target</code> element. Options set through data-attributes all start with &quot;data-tip&quot;, and override options passed into the Tooltip constructor.</p>
 </p>
     
-    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p>
+    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">Ink.requireModules</a></p>
     
     <table class="props bottom-space">
         
@@ -467,28 +467,14 @@ site_root:  ../
 
 
     
-<p class="example-title">Example</p>
-  
-{% highlight html %}{% raw %}
-    <ul class="buttons">
-        <li class="button" data-tip-text="Create a new document">New</li>
-        <li class="button" data-tip-text="Exit the program">Quit</li>
-        <li class="button" data-tip-text="Save the document you are working on">Save</li>
-    </ul>
-    
-    [...]
-
-    <script>
-        Ink.requireModules(['Ink.UI.Tooltip_1'], function (Tooltip) {
-            new Tooltip('.button', {where: 'mousefix'});
-        });
-    </script>
-{% endraw %}{% endhighlight %}
-
-
 
 
     
+	<h3>Samples</h3>
+	
+		{% include js_samples/Ink_UI_Tooltip_1.html %}
+	
+
 
 </section>
 

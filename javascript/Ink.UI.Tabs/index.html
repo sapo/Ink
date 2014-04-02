@@ -38,7 +38,7 @@ site_root:  ../
 <p>You can disable some (or all) tabs by passing an array for the <code>disabled</code> option.</p>
 </p>
     
-    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p>
+    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">Ink.requireModules</a></p>
     
     <table class="props bottom-space">
         
@@ -444,41 +444,14 @@ and want to access the currently visible one.</p>
 
 
     
-<p class="example-title">Example</p>
-  
-{% highlight html %}{% raw %}
-     <div class="ink-tabs top"> <!-- replace 'top' with 'bottom', 'left' or 'right' to place navigation -->
-         
-         <!-- put navigation first if using top, left or right positioning -->
-         <ul class="tabs-nav">
-             <li><a href="#home">Home</a></li>
-             <li><a href="#news">News</a></li>
-             <li><a href="#description">Description</a></li>
-             <li><a href="#stuff">Stuff</a></li>
-             <li><a href="#more_stuff">More stuff</a></li>
-         </ul>
-         
-         <!-- Put your content second if using top, left or right navigation -->
-         <div id="home" class="tabs-content"><p>Content</p></div>
-         <div id="news" class="tabs-content"><p>Content</p></div>
-         <div id="description" class="tabs-content"><p>Content</p></div>
-         <div id="stuff" class="tabs-content"><p>Content</p></div>
-         <div id="more_stuff" class="tabs-content"><p>Content</p></div>
-         <!-- If you're using bottom navigation, switch the nav block with the content blocks -->
-      
-     </div>
-     <script>
-         Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.Tabs_1'], function( Selector, Tabs ){
-             var tabsElement = Ink.s('.ink-tabs');
-             var tabsObj = new Tabs( tabsElement );
-         });
-     </script>
-{% endraw %}{% endhighlight %}
-
-
 
 
     
+	<h3>Samples</h3>
+	
+		{% include js_samples/Ink_UI_Tabs_1.html %}
+	
+
 
 </section>
 

@@ -48,7 +48,7 @@ site_root: ../../
   <p class="example-title">Structure</p>
 {% highlight html %}
 <figure>
-  <img src="{{ site.url }}assets/img/examples/sky.jpg" alt="example image">
+  <img src="{{ site.images_path }}examples/sky.jpg" alt="example image">
 </figure>
 {% endhighlight %}
 
@@ -72,7 +72,7 @@ site_root: ../../
         <figcaption>
           This caption is placed before the image
         </figcaption>
-        <img src="{{ site.url }}assets/img/examples/tiny/park.jpg" class="imagequery">
+        <img src="{{ site.images_path }}examples/tiny/park.jpg" class="imagequery">
       </figure>
       </div>
 
@@ -82,7 +82,7 @@ site_root: ../../
   <figcaption>
     This caption is placed before the image
   </figcaption>
-  <img src="{{ site.url }}assets/img/examples/park.jpg">
+  <img src="{{ site.images_path }}examples/park.jpg">
 </figure>
 {% endhighlight %}
 
@@ -92,7 +92,7 @@ site_root: ../../
 <p class="example-title">Demo</p>
       <div class="example bottom-space">
         <figure class="ink-image">
-        <img src="{{ site.url }}assets/img/examples/tiny/sky.jpg" class="imagequery">
+        <img src="{{ site.images_path }}examples/tiny/sky.jpg" class="imagequery">
         <figcaption>
           This caption is placed after the image.
         </figcaption>
@@ -101,7 +101,7 @@ site_root: ../../
 <p class="example-title">Code</p>
 {% highlight html %}
 <figure class="ink-image">
-  <img src="{{ site.url }}assets/img/examples/sky.jpg">
+  <img src="{{ site.images_path }}examples/sky.jpg">
   <figcaption>
     This caption is placed after the image.
   </figcaption>
@@ -111,14 +111,14 @@ site_root: ../../
   </div>
 <p>Adding the <code>dark</code> CSS class to the <code>&ltfigcaption&gt</code> element will set an alternative dark caption theme:</p>
       <figure class="ink-image bottom-space">
-        <img src="{{ site.url }}assets/img/examples/tiny/field.jpg" class="imagequery">
+        <img src="{{ site.images_path }}examples/tiny/field.jpg" class="imagequery">
         <figcaption class="dark">
           This is a dark caption.
         </figcaption>
       </figure>
 {% highlight html %}
 <figure class="ink-image">
-  <img src="{{ site.url }}assets/img/examples/field.jpg">
+  <img src="{{ site.images_path }}examples/field.jpg">
   <figcaption class="dark">
     This is a dark caption.
   </figcaption>
@@ -128,14 +128,14 @@ site_root: ../../
 <div class="column-group horizontal-gutters">
     <div class="xlarge-50 large-50 medium-50 small-100 tiny-100">
       <figure class="ink-image bottom-space">
-        <img src="{{ site.url }}assets/img/examples/tiny/field.jpg" class="imagequery">
+        <img src="{{ site.images_path }}examples/tiny/field.jpg" class="imagequery">
         <figcaption class="over-top">
           This a caption over the top of the image.
         </figcaption>
       </figure>
 {% highlight html %}
 <figure class="ink-image bottom-space">
-  <img src="{{ site.url }}assets/img/examples/field.jpg" class="imagequery">
+  <img src="{{ site.images_path }}examples/field.jpg" class="imagequery">
   <figcaption class="over-top">
     This a caption over the top of the image.
   </figcaption>
@@ -144,14 +144,14 @@ site_root: ../../
     </div>
     <div class="xlarge-50 large-50 medium-50 small-100 tiny-100">
       <figure class="ink-image bottom-space">
-        <img src="{{ site.url }}assets/img/examples/tiny/field.jpg" class="imagequery">
+        <img src="{{ site.images_path }}examples/tiny/field.jpg" class="imagequery">
         <figcaption class="over-bottom">
           This a caption over the top of the image.
         </figcaption>
       </figure>
 {% highlight html %}
 <figure class="ink-image bottom-space">
-  <img src="{{ site.url }}assets/img/examples/field.jpg" class="imagequery">
+  <img src="{{ site.images_path }}examples/field.jpg" class="imagequery">
   <figcaption class="over-bottom">
     This a caption over the top of the image.
   </figcaption>
@@ -171,7 +171,7 @@ site_root: ../../
 {% highlight javascript %}
 <script>
   var imagequery = new Ink.UI.ImageQuery('.imagequery', {
-    src: '{{ site.url }}assets/img/examples/{:label}/{:file}',
+    src: '{{ site.images_path }}examples/{:label}/{:file}',
     queries: [
       {
           label: 'tiny',
@@ -194,11 +194,15 @@ site_root: ../../
 </script>
 {% endhighlight %}
 
+<p>In the script above the <code>src</code> property sets the image base path. It can be relative or absolute. The rest of the url is a template that translates into properties of the <code>queries</code> array.</p>
+<p>In the example above <code>{:label}</code> will be a folder under the base path, and <code>{:file}</code> is the filename, which in this case defaults to the original file name.</p>
+<p><a href="{{ site.url }}javascript/ink.ui.imagequery">Ink.UI.ImageQuery</a> will then look at the <code>queries.width</code> property and the device screen width and decide if a larger images should be served to the device by rewriting the</p>
+
 </section>
 
     <script>
       var imagequery = new Ink.UI.ImageQuery('.imagequery', {
-        src: '{{ site.url }}assets/img/examples/{:label}/{:file}',
+        src: '{{ site.images_path }}examples/{:label}/{:file}',
         queries: [
           {
               label: 'small',
@@ -213,7 +217,7 @@ site_root: ../../
               width: 1200
           },
           {
-              label: 'extra-large',
+              label: 'xlarge',
               width: 1300
           }
         ]
