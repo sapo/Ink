@@ -13,7 +13,8 @@
 
   .#{$flex-class-name},
   .#{$grid-column-group-class-name} {
-        @include experimental-value(display, flex, not -moz, -webkit, not -o, -ms, not -khtml, official);
+        @include experimental-value(display, flex, not -moz, -webkit, not -o, not -ms, not -khtml, official);
+        @include experimental-value(display, flexbox, not -moz, not -webkit, not -o, -ms, not -khtml, not official);
         @include experimental(flex-wrap, wrap, not -moz, -webkit, not -o, -ms, not -khtml, official);
         @include experimental(flex-direction, row, not -moz, -webkit, not -o, -ms, not -khtml, official);
         list-style: none;
@@ -78,6 +79,7 @@
     .push-left,
     .#{$class-name}-push-left {
         @include experimental(justify-content, flex-start, -moz, -webkit, not -o, -ms, not -khtml, official);
+        @include experimental(flex-pack, start, not -moz, not -webkit, not -o, -ms, not -khtml, not official);
         float: left;
     }
 
@@ -85,6 +87,7 @@
     .#{$class-name}-push-center {
         float: none !important;
         @include experimental(justify-content, center, -moz, -webkit, not -o, -ms, not -khtml, official);
+        @include experimental(flex-pack, center, not -moz, not -webkit, not -o, -ms, not -khtml, not official);
         margin-left: auto;
         margin-right: auto;
     }
@@ -92,6 +95,7 @@
     .push-right,
     .#{$class-name}-push-right {
         @include experimental(justify-content, flex-end, -moz, -webkit, not -o, -ms, not -khtml, official);
+        @include experimental(flex-pack, end, not -moz, not -webkit, not -o, -ms, not -khtml, not official);
         float: right;
     }
 
@@ -103,6 +107,7 @@
       @while $i <= 10 {
         .#{$class-name}-order-#{$i} {
           order: #{$i};
+          -ms-flex-order: #{$i};
           $i: $i + 1;
         }
       }
@@ -112,6 +117,7 @@
       @while $i <= 10 {
         .order-#{$i} {
           order: #{$i};
+          -ms-flex-order: #{$i};
           $i: $i + 1;
         }
       }
@@ -688,9 +694,8 @@
 
         // generate the 33% width
         @if $i > 30 and $i <= 35 {
-            .all-33,
             .#{$class-name}-33 {
-                width: 33,33333%;
+                width: 33.33333%;
                 @include experimental(flex-basis, 33.33333%, -moz, -webkit, not -o, -ms, not -khtml, official);
                 @include experimental(flex-grow, 0, not -moz, -webkit, not -o, -ms, not -khtml, official);
             }
@@ -698,16 +703,14 @@
 
         // generate the 66% width
         @if $i > 65 and $i <= 70 {
-            .all-66,
             .#{$class-name}-66 {
-                width: 66,66666%;
+                width: 66.66666%;
                 @include experimental(flex-basis, 66.66666%, -moz, -webkit, not -o, -ms, not -khtml, official);
                 @include experimental(flex-grow, 0, not -moz, -webkit, not -o, -ms, not -khtml, official);
             }
         }
 
         // generate the 5% step widths
-        .all-#{$i},
         .#{$class-name}-#{$i} {
             width: $i * 1%;
             @include experimental(flex-basis, $i * 1%, -moz, -webkit, not -o, -ms, not -khtml, official);
@@ -718,8 +721,55 @@
         $i: $i + $step-size;
     }
 
-    .all-auto,
     .#{$class-name}-auto {
+        width: auto;
+        @include experimental(flex-basis, auto, not -moz, -webkit, not -o, -ms, not -khtml, official);
+        @include experimental(flex-grow, 1, not -moz, -webkit, not -o, -ms, not -khtml, official);
+    }
+}
+
+
+@mixin generate-all-flex-grid-divisions () {
+
+    // iteration counter
+    $i: 5;
+
+    // define the step size (this is the minimum column width percentage)
+    $step-size: 5;
+
+    // iterate to generate the width classes
+    @while $i <= 100 {
+
+        // generate the 33% width
+        @if $i > 30 and $i <= 35 {
+            .all-33 {
+                width: 33.33333%;
+                @include experimental(flex-basis, 33.33333%, -moz, -webkit, not -o, -ms, not -khtml, official);
+                @include experimental(flex-grow, 0, not -moz, -webkit, not -o, -ms, not -khtml, official);
+            }
+        }
+
+        // generate the 66% width
+        @if $i > 65 and $i <= 70 {
+            .all-66 {
+                width: 66.66666%;
+                @include experimental(flex-basis, 66.66666%, -moz, -webkit, not -o, -ms, not -khtml, official);
+                @include experimental(flex-grow, 0, not -moz, -webkit, not -o, -ms, not -khtml, official);
+            }
+        }
+
+        // generate the 5% step widths
+        .all-#{$i} {
+            width: $i * 1%;
+            @include experimental(flex-basis, $i * 1%, -moz, -webkit, not -o, -ms, not -khtml, official);
+            @include experimental(flex-grow, 0, not -moz, -webkit, not -o, -ms, not -khtml, official);
+        }
+
+        // increment the counter
+        $i: $i + $step-size;
+    }
+
+    .all-auto {
         width: auto;
         @include experimental(flex-basis, auto, not -moz, -webkit, not -o, -ms, not -khtml, official);
         @include experimental(flex-grow, 1, not -moz, -webkit, not -o, -ms, not -khtml, official);
@@ -737,6 +787,7 @@
         }
 
         @include grid-flex-order();
+        @include generate-all-flex-grid-divisions();
 
         $all-class-names: '';
 
