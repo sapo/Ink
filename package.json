@@ -2,7 +2,7 @@
   "name": "ink-documentation",
   "version": "2.2.0",
   "devDependencies": {
-    "inkdoc": "git://github.com/mariomc/inkdoc.git#0.2.6",
+    "inkdoc": "mariomc/inkdoc",
     "grunt": "~0.4.1",
     "grunt-cli": "~0.1.9",
     "grunt-jekyll": "~0.3.9",

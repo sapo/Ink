@@ -1,99 +1,99 @@
 <section id="{{{hash}}}" class="box box-function">
     <h1 class="fw-300">
-    {{#if isConstructor}}
-        {{parent.name}}
-    {{else}}
-        {{#ifvalue parent.kind value="class"}}
-            .{{name}}
-        {{else}}
-            .{{name}}
-        {{/ifvalue}}
-    {{/if}}
+    {{~#if isConstructor~}}
+        {{~parent.name~}}
+    {{~else~}}
+        {{~#ifvalue parent.kind value="class"~}}
+            .{{~name~}}
+        {{~else~}}
+            .{{~name~}}
+        {{~/ifvalue~}}
+    {{~/if~}}
     ({{#foreach params}}{{#if isFirstLevel}}{{#if isOptional}}[{{/if}}{{name}}{{#if isOptional}}]{{/if}}{{#unless $last}}, {{/unless}}{{/if}}{{/foreach}})
-    {{#if isConstructor}}
+    {{~#if isConstructor~}}
         <i>constructor</i>
-    {{else}}
-        {{#ifvalue parent.kind value="class"}}
+    {{~else~}}
+        {{~#ifvalue parent.kind value="class"~}}
             <i>method</i>
-        {{else}}
+        {{~else~}}
             <i>function</i>
-        {{/ifvalue}}
-    {{/if}}
+        {{~/ifvalue~}}
+    {{~/if~}}
     </h1>
-    {{#if params}}
+    {{~#if params}}
     <ul class="props inline">
         <li class="heading">Arguments:</li>
-        {{#foreach params}}
+        {{~#foreach params}}
         <li class="prop">
-        {{#if isFirstLevel}}
-        {{#if isOptional}}[{{/if}}
-        {{name}}
-        {{#if isOptional}}]{{/if}}
-        {{/if}}
+        {{~#if isFirstLevel~}}
+        {{~#if isOptional~}}[{{~/if~}}
+        {{~name~}}
+        {{~#if isOptional~}}]{{~/if~}}
+        {{~/if~}}
         </li>
-        {{/foreach}}
+        {{~/foreach}}
     </ul>
-    {{/if}}
+    {{~/if}}
 
-    {{#if async}}
+    {{~#if async~}}
         <span class="tag">async</span>
-    {{/if}}
-    {{#if deprecated}}
+    {{~/if~}}
+    {{~#if deprecated~}}
         <span class="tag">deprecated</span>
-    {{/if}}
+    {{~/if~}}
 
     {{#if text}}
-        <p class="text">{{{text}}}</p>
-    {{/if}}
+        <p class="text">{{{stripP text}}}</p>
+    {{~/if~}}
 
-    {{#if params.length}}
+    {{~#if params.length}}
         <h3>Accepts</h3>
         <dl class="params">
-        {{#each params}}
+        {{~#each params}}
             <dt>
-                {{#if type}}
+                {{~#if type~}}
                     <code>{{type}}</code>
-                {{/if}}
+                {{~/if~}}
             </dt>
             <dd>
-                {{#if optionname }}
+                {{~#if optionname ~}}
                     teste
-                {{/if}}
+                {{~/if~}}
 
-                {{#if isOptional}}
-                <label class="monospace">[{{name}}]
-                {{else}}
-                <label class="monospace">{{name}}
-                {{/if}}
+                {{~#if isOptional~}}
+                <label class="monospace">[{{~name~}}]
+                {{~else~}}
+                <label class="monospace">{{~name~}}
+                {{~/if~}}
 
-                {{#if defaultValue}}
-                    {{defaultValue}}
-                {{/if}}
+                {{~#if defaultValue~}}
+                    {{~defaultValue~}}
+                {{~/if~}}
                 </label>
-                {{#if description}}
-                    {{{description}}}
-                {{/if}}
+                {{~#if description~}}
+                    {{~{description}~}}
+                {{~/if~}}
             </dd>
-        {{/each}}
+        {{~/each}}
         </dl>
-        {{#if return}}
+        {{~#if return}}
         <h3>Returns</h3>
         <dl>
             <dt class="return">
-                {{#if return.type}}<code>{{return.type}}</code>{{/if}}
+                {{~#if return.type}}<code>{{~return.type~}}</code>{{~/if~}}
             </dt>
             <dd>
-                {{#if return.description}}
-                    {{{description}}}
-                {{/if}}
+                {{~#if return.description~}}
+                    {{~{description}~}}
+                {{~/if}}
             </dd>
         </dl>
-        {{/if}}
+        {{/if~}}
 
 
-    {{/if}}
+    {{~/if~}}
 
 
-    {{> examples}}
-    {{> samples}}
+    {{~> examples~}}
+    {{~> samples~}}
 </section>
