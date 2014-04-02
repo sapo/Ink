@@ -1,15 +1,67 @@
-<p></p>
+<p>Basic usage, with pagination</p>
+
+{% capture demo_code %}
+<div id="my-carousel-1" class="ink-carousel">
+    <ul class="stage column-group half-gutters">
+        <li class="slide xlarge-25 large-25 medium-33 small-50 tiny-100">
+        <img src="http://lorempixel.com/400/200/sports/1">
+        <div class="description">
+            <h4>Highlight Title</h4>
+            <p>This is a paragraph</p>
+        </div>
+        </li>
+
+        <li class="slide xlarge-25 large-25 medium-33 small-50 tiny-100">
+        <img src="http://lorempixel.com/400/200/sports/2">
+        <div class="description">
+            <h4>Highlight Title</h4>
+            <p>This is a paragraph</p>
+        </div>
+        </li>
+
+        <li class="slide xlarge-25 large-25 medium-33 small-50 tiny-100">
+        <img src="http://lorempixel.com/400/200/sports/3">
+        <div class="description">
+            <h4>Highlight Title</h4>
+            <p>This is a paragraph</p>
+        </div>
+        </li>
+
+        <li class="slide xlarge-25 large-25 medium-33 small-50 tiny-100">
+        <img src="http://lorempixel.com/400/200/sports/4">
+        <div class="description">
+            <h4>Highlight Title</h4>
+            <p>This is a paragraph</p>
+        </div>
+        </li>
+
+        <li class="slide xlarge-25 large-25 medium-33 small-50 tiny-100">
+        <img src="http://lorempixel.com/400/200/sports/8">
+        <div class="description">
+            <h4>Highlight Title</h4>
+            <p>This is a paragraph</p>
+        </div>
+        </li>
+    </ul>
+</div>
+
+<nav id="my-carousel-1-pagination" class="ink-navigation">
+    <ul class="pagination black">
+    </ul>
+</nav>
+
+<script>
+    Ink.requireModules(['Ink.UI.Carousel_1'], function (Carousel) {
+        new Carousel('#my-carousel-1', { pagination: '#my-carousel-1-pagination' })
+    });
+</script>
+{% endcapture %}
+
+<p class="example-title">Demo</p>
+{{ demo_code }}
 
 <p class="example-title">Code</p>
 {% highlight html %}
-
-<style>
-</style>
-
-<script>
-    Ink.requireModules( ['Ink.UI.Spy_1'], function( Spy ){
-        new Spy(sections[i], { target: myMenu });
-    });
-</script>
+{{ demo_code }}
 {% endhighlight %}
 
