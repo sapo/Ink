@@ -21,6 +21,7 @@ Thumbs.db
 node_modules
 bower_components
 _site
+_includes
 assets
 
 npm-debug.log
