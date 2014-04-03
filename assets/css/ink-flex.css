@@ -5855,43 +5855,53 @@ th {
   }
 }
 @media screen and (min-width: 1261px) {
-  html {
+  body {
     font-size: 1.08em;
   }
-  html:after {
-    font-family: '{"name":"xlarge",{"min":"1261px","max":""}}';
+  body:after {
+    content: '{"name":"xlarge", "size":{"min":"1261px","max":""}}';
+    color: transparent;
+    font-size: 0;
   }
 }
 @media screen and (min-width: 961px) and (max-width: 1260px) {
-  html {
+  body {
     font-size: 1.05em;
   }
-  html:after {
-    font-family: '{"name":"large",{"min":"961px","max":"1260px"}}';
+  body:after {
+    content: '{"name":"large", "size":{"min":"961px","max":"1260px"}}';
+    color: transparent;
+    font-size: 0;
   }
 }
 @media screen and (min-width: 641px) and (max-width: 960px) {
-  html {
+  body {
     font-size: 1em;
   }
-  html:after {
-    font-family: '{"name":"medium",{"min":"641px","max":"960px"}}';
+  body:after {
+    content: '{"name":"medium", "size":{"min":"641px","max":"960px"}}';
+    color: transparent;
+    font-size: 0;
   }
 }
 @media screen and (min-width: 321px) and (max-width: 640px) {
-  html {
+  body {
     font-size: 0.98em;
   }
-  html:after {
-    font-family: '{"name":"small",{"min":"321px","max":"640px"}}';
+  body:after {
+    content: '{"name":"small", "size":{"min":"321px","max":"640px"}}';
+    color: transparent;
+    font-size: 0;
   }
 }
 @media screen and (max-width: 320px) {
-  html {
+  body {
     font-size: 0.97em;
   }
-  html:after {
-    font-family: '{"name":"tiny",{"min":"","max":"320px"}}';
+  body:after {
+    content: '{"name":"tiny", "size":{"min":"","max":"320px"}}';
+    color: transparent;
+    font-size: 0;
   }
 }
 @font-face {
