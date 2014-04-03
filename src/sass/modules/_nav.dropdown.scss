@@ -1,12 +1,13 @@
 .#{$dropdown-class-name},
 .#{$navigation-class-name} {
 
-    // position: relative;
+    position: relative;
     
     ul.dropdown-menu, 
     ul.dropdown {
 
-        display: inline-block;
+        position: absolute;
+        //display: inline-block;
         background: $white;
         z-index: $layer-30;
         border: 1px solid $grey-15;
