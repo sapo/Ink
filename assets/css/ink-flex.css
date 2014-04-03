@@ -5859,7 +5859,9 @@ th {
     font-size: 1.08em;
   }
   body:after {
-    font-family: '{"name":"xlarge",{"min":"1261px","max":""}}';
+    content: '{"name":"xlarge",{"min":"1261px","max":""}}';
+    color: transparent;
+    font-size: 0;
   }
 }
 @media screen and (min-width: 961px) and (max-width: 1260px) {
@@ -5867,7 +5869,9 @@ th {
     font-size: 1.05em;
   }
   body:after {
-    font-family: '{"name":"large",{"min":"961px","max":"1260px"}}';
+    content: '{"name":"large",{"min":"961px","max":"1260px"}}';
+    color: transparent;
+    font-size: 0;
   }
 }
 @media screen and (min-width: 641px) and (max-width: 960px) {
@@ -5875,7 +5879,9 @@ th {
     font-size: 1em;
   }
   body:after {
-    font-family: '{"name":"medium",{"min":"641px","max":"960px"}}';
+    content: '{"name":"medium",{"min":"641px","max":"960px"}}';
+    color: transparent;
+    font-size: 0;
   }
 }
 @media screen and (min-width: 321px) and (max-width: 640px) {
@@ -5883,7 +5889,9 @@ th {
     font-size: 0.98em;
   }
   body:after {
-    font-family: '{"name":"small",{"min":"321px","max":"640px"}}';
+    content: '{"name":"small",{"min":"321px","max":"640px"}}';
+    color: transparent;
+    font-size: 0;
   }
 }
 @media screen and (max-width: 320px) {
@@ -5891,7 +5899,9 @@ th {
     font-size: 0.97em;
   }
   body:after {
-    font-family: '{"name":"tiny",{"min":"","max":"320px"}}';
+    content: '{"name":"tiny",{"min":"","max":"320px"}}';
+    color: transparent;
+    font-size: 0;
   }
 }
 @font-face {
