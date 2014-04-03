@@ -5859,7 +5859,7 @@ th {
     font-size: 1.08em;
   }
   body:after {
-    content: '{"name":"xlarge",{"min":"1261px","max":""}}';
+    content: '{"name":"xlarge", "size":{"min":"1261px","max":""}}';
     color: transparent;
     font-size: 0;
   }
@@ -5869,7 +5869,7 @@ th {
     font-size: 1.05em;
   }
   body:after {
-    content: '{"name":"large",{"min":"961px","max":"1260px"}}';
+    content: '{"name":"large", "size":{"min":"961px","max":"1260px"}}';
     color: transparent;
     font-size: 0;
   }
@@ -5879,7 +5879,7 @@ th {
     font-size: 1em;
   }
   body:after {
-    content: '{"name":"medium",{"min":"641px","max":"960px"}}';
+    content: '{"name":"medium", "size":{"min":"641px","max":"960px"}}';
     color: transparent;
     font-size: 0;
   }
@@ -5889,7 +5889,7 @@ th {
     font-size: 0.98em;
   }
   body:after {
-    content: '{"name":"small",{"min":"321px","max":"640px"}}';
+    content: '{"name":"small", "size":{"min":"321px","max":"640px"}}';
     color: transparent;
     font-size: 0;
   }
@@ -5899,7 +5899,7 @@ th {
     font-size: 0.97em;
   }
   body:after {
-    content: '{"name":"tiny",{"min":"","max":"320px"}}';
+    content: '{"name":"tiny", "size":{"min":"","max":"320px"}}';
     color: transparent;
     font-size: 0;
   }
