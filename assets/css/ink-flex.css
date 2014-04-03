@@ -5855,42 +5855,42 @@ th {
   }
 }
 @media screen and (min-width: 1261px) {
-  html {
+  body {
     font-size: 1.08em;
   }
-  html:after {
+  body:after {
     font-family: '{"name":"xlarge",{"min":"1261px","max":""}}';
   }
 }
 @media screen and (min-width: 961px) and (max-width: 1260px) {
-  html {
+  body {
     font-size: 1.05em;
   }
-  html:after {
+  body:after {
     font-family: '{"name":"large",{"min":"961px","max":"1260px"}}';
   }
 }
 @media screen and (min-width: 641px) and (max-width: 960px) {
-  html {
+  body {
     font-size: 1em;
   }
-  html:after {
+  body:after {
     font-family: '{"name":"medium",{"min":"641px","max":"960px"}}';
   }
 }
 @media screen and (min-width: 321px) and (max-width: 640px) {
-  html {
+  body {
     font-size: 0.98em;
   }
-  html:after {
+  body:after {
     font-family: '{"name":"small",{"min":"321px","max":"640px"}}';
   }
 }
 @media screen and (max-width: 320px) {
-  html {
+  body {
     font-size: 0.97em;
   }
-  html:after {
+  body:after {
     font-family: '{"name":"tiny",{"min":"","max":"320px"}}';
   }
 }
