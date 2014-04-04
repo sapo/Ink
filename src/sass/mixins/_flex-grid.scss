@@ -650,7 +650,7 @@
             @media screen and (min-width: $minimum-width) {
                 html {
                     &:after {
-                        content: '{"name":"#{$class-name}", "size":{"min":"#{$minimum-width}","max":"#{$maximum-width}"}}';
+                        font-family: '{"name":"#{$class-name}", "size":{"min":"#{$minimum-width}","max":"#{$maximum-width}"}}';
                     }
                     font-size: $base-font-size;
                 }
@@ -661,7 +661,7 @@
             @media screen and (min-width: $minimum-width) and (max-width: $maximum-width) {
                 html {
                     &:after {
-                        content: '{"name":"#{$class-name}", "size":{"min":"#{$minimum-width}","max":"#{$maximum-width}"}}';
+                        font-family: '{"name":"#{$class-name}", "size":{"min":"#{$minimum-width}","max":"#{$maximum-width}"}}';
                     }
                     font-size: $base-font-size;
                 }
@@ -672,7 +672,7 @@
             @media screen and (max-width: $maximum-width) {
                 html {
                     &:after {
-                        content: '{"name":"#{$class-name}", "size":{"min":"#{$minimum-width}","max":"#{$maximum-width}"}}';
+                        font-family: '{"name":"#{$class-name}", "size":{"min":"#{$minimum-width}","max":"#{$maximum-width}"}}';
                     }
                     font-size: $base-font-size;
                 }
