@@ -1,7 +1,0 @@
-{
-    "roots": ["Ink"],
-    "tests": {
-        "browsers":     "ch",
-        "runLocalGrid": true
-    }
-}
