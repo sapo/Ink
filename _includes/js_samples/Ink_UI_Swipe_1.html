@@ -1,16 +1,63 @@
-
-<p></p>
-
-<p class="example-title">Code</p>
-{% highlight html %}
-
+{% capture demo_code %}
 <style>
+	.swipe{
+		display: block;
+		width: 320px;
+		height: 320px;
+		background-color: #eeebe5;
+	}
 </style>
+<p>Swipe vertically:</p>
+<div class="swipe swipe-vertical"></div>
+
+<p>Swipe horizontally:</p>
+<div class="swipe swipe-horizontal"></div>
+
+<p>Drag:</p>
+<div class="swipe swipe-drag"></div>
 
 <script>
-    Ink.requireModules( ['Ink.UI.Spy_1'], function( Spy ){
-        new Spy(sections[i], { target: myMenu });
+    Ink.requireModules(['Ink.UI.Swipe_1', 'Ink.Dom.Element_1'], function (Swipe, InkElement) {
+        new Swipe('.swipe-vertical', {
+            axis: 'y',
+            minDist: 20,
+            onEnd: function (o) {
+                InkElement.setTextContent(o.element, 'Swiped vertically!');
+                setTimeout(
+                    Ink.bindMethod(InkElement, 'setTextContent', o.element, ''), 500);
+            }
+        });
+        new Swipe('.swipe-horizontal', {
+            axis: 'x',
+            minDist: 50,
+            onEnd: function (o) {
+                InkElement.setTextContent(o.element, 'Swiped horizontally!');
+                setTimeout(
+                    Ink.bindMethod(InkElement, 'setTextContent', o.element, ''), 500);
+            }
+        })
+
+        new Swipe('.swipe-drag', {
+            onStart: function (o) {
+                o.element.style.position = 'absolute'
+            },
+            onMove: function (o) {
+                var style = o.element.style
+                style.left = o.position[0] + 'px'
+                style.top = o.position[1] + 'px'
+            },
+            onEnd: function (o) {
+                o.element.style.position = 'static'
+            }
+        })
     });
 </script>
-{% endhighlight %}
+{% endcapture %}
 
+<p>Basic usage</p>
+<p class="example-title">Demo</p>
+{{ demo_code }}
+<p class="example-title">Code</p>
+{% highlight html %}
+{{ demo_code }}
+{% endhighlight %}
