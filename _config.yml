@@ -110,7 +110,6 @@ sections:
           - title: Ink.UI.Drawer
           - title: Ink.UI.Dropdown
           - title: Ink.UI.FormValidator
-          - title: Ink.UI.FormValidator_2
           - title: Ink.UI.LazyLoad
           - title: Ink.UI.Modal
           - title: Ink.UI.Pagination

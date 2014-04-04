@@ -695,6 +695,14 @@ html.flexbox .example {
 
         a { top: auto; }
     }
+
+    .ink-dropdown ul.dropdown, 
+    .ink-dropdown ul.dropdown-menu, 
+    .ink-navigation ul.dropdown, 
+    .ink-navigation ul.dropdown-menu {
+        position: relative;
+        display: inline-block;
+    }
 }
 
 .tall {

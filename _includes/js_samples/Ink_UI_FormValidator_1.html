@@ -1,9 +1,9 @@
-{# Fiddle: http://jsfiddle.net/VK4fK/ #}
+<!-- Fiddle: http://jsfiddle.net/VK4fK/ -->
 
 <h2>What markup will I need?</h2>
 
-<p>Besides the markup structure you can see in
-<a href="http://ink.sapo.pt/forms#building"></a>, you need to add
+<p>Besides the markup structure you see in
+<a href="{{ site_url }}/ui-elements/forms/">Forms</a>, you need to add
 the <code>ink-fv-*</code> classes to your inputs, which correspond to validation
 rules in this component. Available classes are:</p>
 
@@ -36,15 +36,40 @@ To use this, add the several ink-fv-* classes to your input elements.</p>
 your elements so the user gets a color feedback and an error message
 below each element (control-group, really).</p>
 
-<p class="example-title">Code</p>
-{% highlight javascript %}
-    var myForm = Ink.i('my-form');
-    InkEvent.observe(myForm, 'submit', function (ev) {
-        var formIsValid = FormValidator.validate(myForm);
-        if (!formIsValid) {
-            InkEvent.stop(ev);  // Cancel submission of form.
-        }
+<p>The following form has a required number field. You must input a
+number.</p>
+
+{% capture sample_code_1 %}
+<div class="ink-form" id="myForm">
+    <div class="control-group required">
+        <div class="control">
+            <label for="myInput">Enter a number</label>
+            <input
+                id="myInput"
+                type="text"
+                class="ink-fv-required ink-fv-number"/>
+        </div>
+    </div>
+</div>
+
+<script>
+Ink.requireModules(['Ink.UI.FormValidator_1', 'Ink.Dom.Event_1'], function (FormValidator, InkEvent) {
+    var myForm = Ink.i('myForm');
+    var myInput = Ink.i('myInput');
+    
+    InkEvent.on(myInput, 'keyup', function (event) {
+        var isValid = FormValidator.validate(myForm);
     });
+});
+</script>
+{% endcapture %}
+
+<p class="example-title">Demo</p>
+{{ sample_code_1 }}
+
+<p class="example-title">Code</p>
+{% highlight html %}
+{{ sample_code_1 }}
 {% endhighlight %}
 
 
@@ -56,14 +81,13 @@ To do this, you must add the <code>ink-fv-custom</code> and <code>minthree</code
 to the input elements you want to validate, and pass the <code>customFlag</code>
 option to this function, like so:</p>
 
-<p class="example-title">Code</p>
-
-{% highlight html %}
-<div class="ink-grid ink-form" id="myForm">
+{% capture sample_code_2 %}
+<div class="ink-form" id="myForm2">
     <div class="control-group">
         <div class="control">
+            <label for="myInput2">Enter at least three characters</label>
             <input
-                id="myInput"
+                id="myInput2"
                 type="text"
                 class="ink-fv-custom minthree"/>
         </div>
@@ -72,8 +96,8 @@ option to this function, like so:</p>
 
 <script>
 Ink.requireModules(['Ink.UI.FormValidator_1', 'Ink.Dom.Event_1'], function (FormValidator, InkEvent) {
-    var myForm = Ink.i('myForm');
-    var myInput = Ink.i('myInput');
+    var myForm = Ink.i('myForm2');
+    var myInput = Ink.i('myInput2');
     
     InkEvent.on(myInput, 'keyup', function (event) {
         var isValid = FormValidator.validate(myForm, {
@@ -93,5 +117,16 @@ Ink.requireModules(['Ink.UI.FormValidator_1', 'Ink.Dom.Event_1'], function (Form
     });
 });
 </script>
+{% endcapture %}
+
+<p class="example-title">Demo</p>
+{{ sample_code_2 }}
+
+<p class="example-title">Code</p>
+{% highlight html %}
+{{ sample_code_2 }}
 {% endhighlight %}
+
+<p class="example-title">Code</p>
+
 

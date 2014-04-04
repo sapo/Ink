@@ -1,16 +1,79 @@
 
-<p></p>
+{% capture example_code %}
+<div class="ink-dropdown" data-target="#my-menu-dropdown" id="my-dropdown">
+    <span class="ink-button">Dropdown</span>
+    <ul id="my-menu-dropdown" class="dropdown-menu hide-all">
+        <li class="heading">I am a heading</li>
+        <li class="separator-above"><a href="#">Option</a></li>
+        <li><a href="#">Option</a></li>
+        <li class="separator-above disabled"><a href="#">Disabled option</a></li>
+    </ul>
+</div>
+
+<script>
+    Ink.requireModules( ['Ink.UI.Dropdown_1'], function( Dropdown ){
+        new Dropdown('#my-dropdown');
+    });
+</script>
+{% endcapture %}
+
+
+{% capture example_code2 %}
+<div class="ink-dropdown" data-target="#my-menu-dropdown2" id="my-dropdown2">
+    <span class="ink-button">Dropdown</span>
+    <ul id="my-menu-dropdown2" class="dropdown-menu hide-all">
+        <li class="heading">Have a submenu:</li>
+        <li class="submenu">
+            <a href="#" class="ink-dropdown" id="my-submenu-dropdown" data-target="#submenu">A longer option name</a>
+            <ul id="submenu" class="dropdown-menu hide-all">
+                <li class="submenu">
+                    <a href="#" class="ink-dropdown" id="my-ultrasubmenu-dropdown" data-target="#ultrasubmenu">Sub option</a>
+                    <ul id="ultrasubmenu" class="dropdown-menu hide-all">
+                        <li><a href="#">Sub option</a></li>
+                        <li><a href="#">Sub option</a></li>
+                        <li><a href="#">Sub option</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Sub option</a></li>
+                <li><a href="#">Sub option</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Option</a></li>
+    </ul>
+</div>
+
+<script>
+    Ink.requireModules( ['Ink.UI.Dropdown_1'], function( Dropdown ){
+        new Dropdown('#my-dropdown2');
+        new Dropdown('#my-submenu-dropdown');
+        new Dropdown('#my-ultrasubmenu-dropdown');
+    });
+</script>
+{% endcapture %}
+
+
+
+
+<p>Basic usage</p>
+
+<p class="example-title">Demo</p>
+{{ example_code }}
 
 <p class="example-title">Code</p>
 {% highlight html %}
-
-<style>
-</style>
-
-<script>
-    Ink.requireModules( ['Ink.UI.Spy_1'], function( Spy ){
-        new Spy(sections[i], { target: myMenu });
-    });
-</script>
+{{ example_code }}
 {% endhighlight %}
+
+
+<!-- No, not yet.
+    <p>Dropdown works with submenus, too.</p>
+
+    <p class="example-title">Demo</p>
+    {{ example_code2 }}
+
+    <p class="example-title">Code</p>
+    {% highlight html %}
+    {{ example_code2 }}
+    {% endhighlight %}
+-->
 
