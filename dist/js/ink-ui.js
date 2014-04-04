@@ -2838,12 +2838,7 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
      * @param {Function}            [options.onDrag]            Callback called while dragging, prior to position updates.
      * @param {Function}            [options.onChange]          Callback called while dragging, after position updates.
      *
-     * @example
-     *     Ink.requireModules( ['Ink.UI.Draggable_1'], function( Draggable ){
-     *         new Draggable( '#myElementId' );
-     *     });
-     *
-     * @sample Ink_UI_Swipe_1.html
+     * @sample Ink_UI_Draggable_1.html
      */
     var Draggable = function(element, options) {
         this.init(element, options);
