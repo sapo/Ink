@@ -650,7 +650,7 @@
             @media screen and (min-width: $minimum-width) {
                 html {
                     &:after {
-                        content: "{'name':'#{$class-name}', 'size':{'min':'#{$minimum-width}','max':'#{$maximum-width}'}}";
+                        content: '{"name":"#{$class-name}", "size":{"min":"#{$minimum-width}","max":"#{$maximum-width}"}}';
                         position: absolute;
                         top: -100px;
                     }
@@ -663,7 +663,7 @@
             @media screen and (min-width: $minimum-width) and (max-width: $maximum-width) {
                 html {
                     &:after {
-                        content: "{'name':'#{$class-name}', 'size':{'min':'#{$minimum-width}','max':'#{$maximum-width}'}}";
+                        content: '{"name":"#{$class-name}", "size":{"min":"#{$minimum-width}","max":"#{$maximum-width}"}}';
                         position: absolute;
                         top: -100px;
                     }
@@ -676,7 +676,7 @@
             @media screen and (max-width: $maximum-width) {
                 html {
                     &:after {
-                        content: "{'name':'#{$class-name}', 'size':{'min':'#{$minimum-width}','max':'#{$maximum-width}'}}";
+                        content: '{"name":"#{$class-name}", "size":{"min":"#{$minimum-width}","max":"#{$maximum-width}"}}';
                         position: absolute;
                         top: -100px;
                     }
