@@ -964,7 +964,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         },
 
         /**
-         * Gets the current date as a JavaScript date.
+         * Gets the currently selected date as a JavaScript date.
          *
          * @method getDate
          */
@@ -1360,7 +1360,8 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             }
         },
 
-        /**
+        /*
+         * // TODO implement this
          * Prototype's method to allow the 'i18n files' to change all objects' language at once.
          * @param {Object} options                  Object with the texts' configuration.
          * @param {String} options.closeText        Text of the close anchor
@@ -1387,6 +1388,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         /**
          * Checks if the calendar screen is in 'select day' mode
          * 
+         * @method isMonthRendered
          * @return {Boolean} True if the calendar screen is in 'select day' mode
          * @public
          */
@@ -1400,6 +1402,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         /**
          * Destroys this datepicker, removing it from the page.
          *
+         * @method destroy
          * @public
          **/
         destroy: function () {

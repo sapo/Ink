@@ -1,5 +1,9 @@
 /**
  * Animate.css Utility
+ *
+ * This module is a wrapper around animate.css's CSS classes to produce animation.
+ * It contains options to ease common tasks, like listen to the "animationend" event with all necessary prefixes, remove the necessary class names when the animation finishes, or configure the duration of your animation with the necessary browser prefix.
+ *
  * @module Ink.UI.Animate_1
  * @version 1
  */
@@ -72,16 +76,16 @@ Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'In
         _animationPrefix: animationPrefix,
 
         /**
-         * CSS3 animation browser support.
+         * Boolean which says whether this browser has CSS3 animation support.
          *
-         * @property {Boolean} animationSupported
+         * @property animationSupported
          **/
         animationSupported: !!animationPrefix,
 
         /**
-         * Prefixed animation end event name.
+         * Prefixed 'animationend' event name.
          *
-         * @property {String} animationEndEventName
+         * @property animationEndEventName
          **/
         animationEndEventName: animationEndEventName,
 
@@ -89,14 +93,6 @@ Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'In
          * Animate an element using one of the animate.css classes
          *
          * **Note: This is a utility method inside the `Animate` class, which you can access through `Animate.animate()`. Do not mix these up.**
-         *
-         * @example
-         *
-         *      Animate.animate(myDiv, 'shake', {
-         *          onEnd: function () {
-         *              alert('Finished shaking!');
-         *          }
-         *      });
          *
          * @static
          * @method animate
@@ -106,6 +102,15 @@ Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'In
          *     @param [options.onEnd=null] {Function} callback for animation end
          *     @param [options.removeClass=false] {Boolean} whether to remove the Css class when finished
          *     @param [options.duration=medium] {String|Number} duration name (fast|medium|slow) or duration in ms
+         * @example
+         *  Animate.animate(myDiv, 'fadeIn')
+         *
+         * @example
+         *  Animate.animate(myDiv, 'shake', {
+         *      onEnd: function () {
+         *          alert('Finished shaking!');
+         *      }
+         *  });
          **/
         animate: function (element, animation, options) {
             element = Common.elOrSelector(element);
