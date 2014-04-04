@@ -651,8 +651,7 @@
                 body {
                     &:after {
                         content: '{"name":"#{$class-name}", "size":{"min":"#{$minimum-width}","max":"#{$maximum-width}"}}';
-                        color: transparent;
-                        font-size: 0;
+                        display: none;
                     }
                     font-size: $base-font-size;
                 }
@@ -664,8 +663,7 @@
                 body {
                     &:after {
                         content: '{"name":"#{$class-name}", "size":{"min":"#{$minimum-width}","max":"#{$maximum-width}"}}';
-                        color: transparent;
-                        font-size: 0;
+                        display: none;
                     }
                     font-size: $base-font-size;
                 }
@@ -677,8 +675,7 @@
                 body {
                     &:after {
                         content: '{"name":"#{$class-name}", "size":{"min":"#{$minimum-width}","max":"#{$maximum-width}"}}';
-                        color: transparent;
-                        font-size: 0;
+                        display: none;
                     }
                     font-size: $base-font-size;
                 }
