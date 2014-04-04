@@ -632,9 +632,10 @@
 
         @if $minimum-width and not $maximum-width {
             @media screen and (min-width: $minimum-width) {
-                html {
+                body {
                     &:after {
-                        font-family: '{"name":"#{$class-name}",{"min":"#{$minimum-width}","max":"#{$maximum-width}"}}';
+                        content: '{"name":"#{$class-name}", "size":{"min":"#{$minimum-width}","max":"#{$maximum-width}"}}';
+                        display: none;
                     }
                     font-size: $base-font-size;
                 }
@@ -643,9 +644,10 @@
 
         @if $minimum-width and $maximum-width {
             @media screen and (min-width: $minimum-width) and (max-width: $maximum-width) {
-                html {
+                body {
                     &:after {
-                        font-family: '{"name":"#{$class-name}",{"min":"#{$minimum-width}","max":"#{$maximum-width}"}}';
+                        content: '{"name":"#{$class-name}", "size":{"min":"#{$minimum-width}","max":"#{$maximum-width}"}}';
+                        display: none;
                     }
                     font-size: $base-font-size;
                 }
@@ -654,9 +656,10 @@
 
         @if not $minimum-width and $maximum-width {
             @media screen and (max-width: $maximum-width) {
-                html {
+                body {
                     &:after {
-                        font-family: '{"name":"#{$class-name}",{"min":"#{$minimum-width}","max":"#{$maximum-width}"}}';
+                        content: '{"name":"#{$class-name}", "size":{"min":"#{$minimum-width}","max":"#{$maximum-width}"}}';
+                        display: none;
                     }
                     font-size: $base-font-size;
                 }
