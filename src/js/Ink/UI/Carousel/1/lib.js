@@ -407,7 +407,57 @@ Ink.createModule('Ink.UI.Carousel', '1',
          * @method previousPage
          * @param {Boolean} [wrap] Flag to loop from first page to last page.
          **/
-        previousPage: function (wrap) { this.setPage(this.getPage() - 1, wrap); }
+        previousPage: function (wrap) { this.setPage(this.getPage() - 1, wrap); },
+
+        /**
+         * Returns how many slides fit into a page
+         * @method getSlidesPerPage
+         * @return {Number} The number of slides per page
+         * @public
+         */
+        getSlidesPerPage: function() {
+            return this._slidesPerPage;
+        },
+
+        /**
+         * Get the amount of pages in the carousel.
+         * @method getTotalPages
+         * @return {Number} The number of pages
+         * @public
+         */
+        getTotalPages: function() {
+            return this._numPages;
+        },
+
+        /**
+         * Get the stage element (your UL with the class ".stage").
+         * @method getStageElm
+         * @public
+         * @return {DOMElement} Stage element
+         **/
+        getStageElm: function() {
+            return this._ulEl;
+        },
+
+        /**
+         * Get a list of your slides (elements with the ".slide" class inside your stage)
+         * @method getSlidesList
+         * @return {DOMElement[]} Array containing the slides.
+         * @public
+         */
+        getSlidesList: function() {
+            return this._liEls;
+        },
+
+        /**
+         * Get the total number of slides
+         * @method getTotalSlides
+         * @return {Number} The number of slides
+         * @public
+         */
+        getTotalSlides: function() {
+            return this.getSlidesList().length;
+        }
     };
 
     function setTransitionProperty(el, newTransition) {
