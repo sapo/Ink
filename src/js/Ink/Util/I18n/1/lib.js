@@ -1,6 +1,6 @@
 /**
- * @module Ink.Util.I18n_1
  * Internationalization Utilities 
+ * @module Ink.Util.I18n_1
  * @version 1
  */
 

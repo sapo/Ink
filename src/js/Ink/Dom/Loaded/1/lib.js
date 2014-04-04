@@ -1,6 +1,6 @@
 /**
- * @module Ink.Dom.Loaded_1
  * Execute code only when the DOM is loaded.
+ * @module Ink.Dom.Loaded_1
  * @version 1
  */
  

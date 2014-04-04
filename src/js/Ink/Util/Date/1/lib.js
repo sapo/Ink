@@ -1,6 +1,6 @@
 /**
- * @module Ink.Util.Date_1
  * Date utility functions
+ * @module Ink.Util.Date_1
  * @version 1
  */
 

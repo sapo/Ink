@@ -1,6 +1,6 @@
 /**
- * @module Ink.Net.Ajax_1
  * Cross Browser Ajax requests
+ * @module Ink.Net.Ajax_1
  * @version 1
  */
 

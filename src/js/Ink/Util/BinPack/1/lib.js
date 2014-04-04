@@ -1,6 +1,6 @@
 /**
- * @module Ink.Util.BinPack_1
  * Binary Packing algorithm implementation
+ * @module Ink.Util.BinPack_1
  * @version 1
  */
 

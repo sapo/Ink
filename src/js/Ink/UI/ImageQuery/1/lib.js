@@ -1,6 +1,6 @@
 /**
- * @module Ink.UI.ImageQuery_1
  * Responsive image loading
+ * @module Ink.UI.ImageQuery_1
  * @version 1
  */
  

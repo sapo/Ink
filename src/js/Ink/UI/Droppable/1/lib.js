@@ -1,6 +1,6 @@
 /**
- * @module Ink.UI.Droppable_1
  * Drop elements around
+ * @module Ink.UI.Droppable_1
  * @version 1
  */
 

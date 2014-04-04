@@ -1,6 +1,6 @@
 /**
- * @module Ink.UI.ProgressBar_1
  * Animated progress bars
+ * @module Ink.UI.ProgressBar_1
  * @version 1
  */
 

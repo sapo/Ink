@@ -1,6 +1,6 @@
 /**
- * @module Ink.Util.Url_1
  * URL Utilities
+ * @module Ink.Util.Url_1
  * @version 1
  */
 

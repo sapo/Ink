@@ -1,6 +1,6 @@
 /**
- * @module Ink.UI.SortableList_1
  * Sortable lists
+ * @module Ink.UI.SortableList_1
  * @version 1
  */
 

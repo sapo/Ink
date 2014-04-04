@@ -1,6 +1,6 @@
 /**
- * @module Ink.UI.Modal_1
  * Modal dialog prompts
+ * @module Ink.UI.Modal_1
  * @version 1
  */
 Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Common, Event, Css, InkElement, Selector, InkArray ) {

@@ -1,6 +1,6 @@
 /**
- * @module Ink.Util.Dumper_1
  * Dump/Profiling Utilities
+ * @module Ink.Util.Dumper_1
  * @version 1
  */
 

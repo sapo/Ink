@@ -1,6 +1,6 @@
 /**
- * @module Ink.UI.Carousel_1
  * Flexible Carousel
+ * @module Ink.UI.Carousel_1
  * @version 1
  */
 

@@ -1,6 +1,6 @@
 /**
- * @module Ink.Util.Json_1
  * JSON Utilities
+ * @module Ink.Util.Json_1
  * @version 1
  */
 

@@ -1,6 +1,6 @@
 /**
- * @module Ink.UI.Tabs_1
  * Display tabbed content
+ * @module Ink.UI.Tabs_1
  * @version 1
  */
 Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Common, Event, Css, Element, Selector, InkArray ) {

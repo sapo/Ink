@@ -1,6 +1,6 @@
 /**
- * @module Ink.UI.Sticky_1
  * Stick elements to the viewport
+ * @module Ink.UI.Sticky_1
  * @version 1
  */
 Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Element_1','Ink.Dom.Css_1'], function(Common, Event, Element, Css) {
