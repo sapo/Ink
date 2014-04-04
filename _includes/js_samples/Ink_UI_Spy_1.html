@@ -1,45 +1,52 @@
-<p>Highlight menu items as the user scrolls</p>
+<p>Highlight menu items as the user scrolls (used together with <a href="/javascript/Ink.UI.Sticky/">Sticky</a> so that you can see the menu)</p>
 
-<p class="example-title">Code</p>
-{% highlight html %}
-
-<style>
-    #my-menu .active a { color: red; }
-</style>
-
-
-<div class="ink-grid">
-    <nav id="my-menu" class="all-25">
-        <li><a href="#my-section-1">My section 1</a></li>
-        <li><a href="#my-section-2">My section 2</a></li>
-        <li><a href="#my-section-3">My section 3</a></li>
-    </nav>
-
-    <div class="all-75">
+{% capture example_code %}
+<div class="column-group">
+    <div class="left-column all-25">
+        <nav class="ink-navigation" id="my-menu">
+            <ul class="menu vertical black">
+                <li><a href="#my-section-1">My section 1</a></li>
+                <li><a href="#my-section-2">My section 2</a></li>
+                <li><a href="#my-section-3">My section 3</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="all-75 my-sections">
         <section id="my-section-1">
-            Lots of content...<br><br><br><br><br>
+            <h2>My section 1</h2><br><br><br><br><br>
         </section>
         <section id="my-section-2">
-            Lots of content...<br><br><br><br><br>
+            <h2>My section 2</h2><br><br><br><br><br>
         </section>
         <section id="my-section-3">
-            Lots of content...<br><br><br><br><br>
+            <h2>My section 3</h2><br><br><br><br><br>
         </section>
     </div>
 </div>
+<br id="below-demo">
 
 <script>
     // If you included `autoload.js` in your page, you can just
     // add 'data-spy="true"' and 'data-target="#my-menu"' to each
     // of your sections and ignore this JavaScript snippet.
-    Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.Spy_1'], function( Selector, Spy ){
+    Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.Spy_1','Ink.UI.Sticky_1'], function( Selector, Spy, Sticky ){
         var myMenu = Ink.i('my-menu');
-        var sections = Ink.ss('.my-sections');
+        var sections = Ink.ss('.my-sections section');
 
         for (var i = 0, len = sections.length; i < len; i++) {
             new Spy(sections[i], { target: myMenu });
         }
+
+        new Sticky('#my-menu', { offsetTop: 60, bottomElement: '#below-demo' })
     });
 </script>
+{% endcapture %}
+
+<p class="example-title">Demo</p>
+{{ example_code }}
+
+<p class="example-title">Code</p>
+{% highlight html %}
+{{ example_code }}
 {% endhighlight %}
 

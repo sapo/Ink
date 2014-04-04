@@ -1,13 +1,50 @@
-<p>Basic usage</p>
+<p>Basic usage. Scroll down and see the sticky element stick to the top of your screen</p>
+
+{% capture example_code %}
+<div class="column-group">
+    <div class="left-column all-25">
+        <nav class="ink-navigation ink-sticky" id="my-sticky" data-bottom-element="#bottom-element" data-offset-top="60">
+            I am the sticky element
+        </nav>
+    </div>
+    <div class="all-75">
+        <!-- Lots of content: -->
+        <br><br><br><br><br>
+        <br><br><br><br><br>
+    </div>
+</div>
+<p id="bottom-element">I am the bottom element</p>
+
+<script>
+    Ink.requireModules( ['Ink.UI.Sticky_1'], function( Sticky ){
+        new Sticky('#my-sticky')
+    });
+</script>
+
+{% endcapture %}
+
+<p class="example-title">Demo</p>
+{{ example_code }}
 
 <p class="example-title">Code</p>
 {% highlight html %}
+{{ example_code }}
+{% endhighlight %}
 
-<script>                                                                                        
-    Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.Sticky_1'], function( Selector, Sticky ) {
-        var menuElement = Ink.s('#menu');
-        var stickyObj = new Sticky( menuElement );
-    });
-</script>
+<p class="example-title">Code (using autoload.js)</p>
+{% highlight html %}
+<div class="column-group">
+    <div class="left-column all-25">
+        <nav class="ink-navigation ink-sticky" id="my-sticky" data-bottom-element="#bottom-element" data-offset-top="60">
+            I am the sticky element
+        </nav>
+    </div>
+    <div class="all-75">
+        <!-- Lots of content: -->
+        <br><br><br><br><br>
+        <br><br><br><br><br>
+    </div>
+</div>
+<p id="bottom-element">I am the bottom element</p>
 {% endhighlight %}
 
