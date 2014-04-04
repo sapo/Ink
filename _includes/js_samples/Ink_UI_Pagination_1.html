@@ -1,10 +1,12 @@
-<p>Create a paginator with ten pages</p>
+<p>Pagination just takes an element with the markup described in <a href="/ui-elements/navigation/#pagination">UI Elements: Pagination</a> and creates the page numbers automatically.</p>
+
+<p>It is not very useful in and of itself, but some other UI elements in Ink, such as the Table and the Carousel, use it internally.</p>
 
 {% capture example_code %}
 <nav class="ink-navigation" id="myPagination" data-size="5">
     <ul class="pagination rounded red"></ul>
 </nav>
- 
+
 <script>
     Ink.requireModules(['Ink.UI.Pagination_1'], function(Pagination){
         var basicPagination = new Pagination('#myPagination');
@@ -12,7 +14,6 @@
 </script>
 {% endcapture %}
 
-<p class="example-titlel">Demo</p>
 {{ example_code }}
 <p class="example-title">Code</p>
 {% highlight html %}
@@ -34,7 +35,6 @@
 </script>
 {% endcapture %}
 
-<p class="example-title">Demo</p>
 {{ example_code2 }}
 <p class="example-title">Code</p>
 {% highlight html %}
@@ -42,10 +42,9 @@
 {% endhighlight %}
 
 
-<p>To configure pagination with the CSS classes you can see in <a href="http://localhost:4000/ui-elements/navigation/#pagination">UI Elements: Pagination</a>, just place the classes in the <code>&lt;ul&gt;</code></p>
+<p>To configure your Pagination visually, refer to the documentation in <a href="/ui-elements/navigation/#pagination">UI Elements: Pagination</a></p>
 
 {% capture example_code3 %}
-
 <p>Dotted pagination:</p>
 <nav class="ink-navigation" id="myPagination3" data-size="5">
     <ul class="pagination dotted"></ul>
@@ -60,18 +59,12 @@
 <nav class="ink-navigation" id="myPagination5" data-size="5">
     <ul class="pagination chevron"></ul>
 </nav>
- 
+
 <script>
-    Ink.requireModules(['Ink.UI.Pagination_1'], function(Pagination){
-        var dottedPagination = new Pagination('#myPagination3');
-        var blackPagination = new Pagination('#myPagination4');
-        var chevronPagination = new Pagination('#myPagination5');
-    });
+    ... (see above)
 </script>
 {% endcapture %}
 
-<p class="example-title">Demo</p>
-{{ example_code3 }}
 <p class="example-title">Code</p>
 {% highlight html %}
 {{ example_code3 }}
