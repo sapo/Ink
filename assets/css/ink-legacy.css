@@ -4615,8 +4615,7 @@ html.no-flexboxlegacy [class~=all-100] {
   html.no-flexbox html:after,
   html.no-flexboxlegacy html:after {
     content: '{"name":"xlarge", "size":{"min":"1261px","max":""}}';
-    position: absolute;
-    top: -100px;
+    display: none;
   }
 }
 @media screen and (min-width: 961px) and (max-width: 1260px) {
@@ -4627,8 +4626,7 @@ html.no-flexboxlegacy [class~=all-100] {
   html.no-flexbox html:after,
   html.no-flexboxlegacy html:after {
     content: '{"name":"large", "size":{"min":"961px","max":"1260px"}}';
-    position: absolute;
-    top: -100px;
+    display: none;
   }
 }
 @media screen and (min-width: 641px) and (max-width: 960px) {
@@ -4639,8 +4637,7 @@ html.no-flexboxlegacy [class~=all-100] {
   html.no-flexbox html:after,
   html.no-flexboxlegacy html:after {
     content: '{"name":"medium", "size":{"min":"641px","max":"960px"}}';
-    position: absolute;
-    top: -100px;
+    display: none;
   }
 }
 @media screen and (min-width: 321px) and (max-width: 640px) {
@@ -4651,8 +4648,7 @@ html.no-flexboxlegacy [class~=all-100] {
   html.no-flexbox html:after,
   html.no-flexboxlegacy html:after {
     content: '{"name":"small", "size":{"min":"321px","max":"640px"}}';
-    position: absolute;
-    top: -100px;
+    display: none;
   }
 }
 @media screen and (max-width: 320px) {
@@ -4663,8 +4659,7 @@ html.no-flexboxlegacy [class~=all-100] {
   html.no-flexbox html:after,
   html.no-flexboxlegacy html:after {
     content: '{"name":"tiny", "size":{"min":"","max":"320px"}}';
-    position: absolute;
-    top: -100px;
+    display: none;
   }
 }
 html.no-flexbox .ink-carousel,
