@@ -1,15 +1,82 @@
-<p></p>
+<p>Create a paginator with ten pages</p>
 
-<p class="example-title">Code</p>
-{% highlight html %}
-
-<style>
-</style>
-
+{% capture example_code %}
+<nav class="ink-navigation" id="myPagination" data-size="5">
+    <ul class="pagination rounded red"></ul>
+</nav>
+ 
 <script>
-    Ink.requireModules( ['Ink.UI.Spy_1'], function( Spy ){
-        new Spy(sections[i], { target: myMenu });
+    Ink.requireModules(['Ink.UI.Pagination_1'], function(Pagination){
+        var basicPagination = new Pagination('#myPagination');
     });
 </script>
+{% endcapture %}
+
+<p class="example-titlel">Demo</p>
+{{ example_code }}
+<p class="example-title">Code</p>
+{% highlight html %}
+{{ example_code }}
 {% endhighlight %}
+
+
+<p>You can use the <code>maxSize</code> option to limit the amount of pages shown.</p>
+
+{% capture example_code2 %}
+<nav class="ink-navigation" id="myPagination2" data-size="25" data-max-size="5">
+    <ul class="pagination rounded red"></ul>
+</nav>
+ 
+<script>
+    Ink.requireModules(['Ink.UI.Pagination_1'], function(Pagination){
+        var sizeLimitedPagination = new Pagination('#myPagination2');
+    });
+</script>
+{% endcapture %}
+
+<p class="example-title">Demo</p>
+{{ example_code2 }}
+<p class="example-title">Code</p>
+{% highlight html %}
+{{ example_code2 }}
+{% endhighlight %}
+
+
+<p>To configure pagination with the CSS classes you can see in <a href="http://localhost:4000/ui-elements/navigation/#pagination">UI Elements: Pagination</a>, just place the classes in the <code>&lt;ul&gt;</code></p>
+
+{% capture example_code3 %}
+
+<p>Dotted pagination:</p>
+<nav class="ink-navigation" id="myPagination3" data-size="5">
+    <ul class="pagination dotted"></ul>
+</nav>
+
+<p>Black pagination:</p>
+<nav class="ink-navigation" id="myPagination4" data-size="5">
+    <ul class="pagination black"></ul>
+</nav>
+
+<p>Chevron pagination:</p>
+<nav class="ink-navigation" id="myPagination5" data-size="5">
+    <ul class="pagination chevron"></ul>
+</nav>
+ 
+<script>
+    Ink.requireModules(['Ink.UI.Pagination_1'], function(Pagination){
+        var dottedPagination = new Pagination('#myPagination3');
+        var blackPagination = new Pagination('#myPagination4');
+        var chevronPagination = new Pagination('#myPagination5');
+    });
+</script>
+{% endcapture %}
+
+<p class="example-title">Demo</p>
+{{ example_code3 }}
+<p class="example-title">Code</p>
+{% highlight html %}
+{{ example_code3 }}
+{% endhighlight %}
+
+
+
 

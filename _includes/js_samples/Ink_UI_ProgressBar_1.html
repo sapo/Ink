@@ -2,22 +2,27 @@
 
 <p>Creating the progress bar</p>
 
-<p class="example-title">Code</p>
-
-{% highlight html %}
+{% capture example_code %}
 <div id="my-progress-bar" class="ink-progress-bar grey" data-start-value="70">
     <span class="caption">I am a grey progress bar</span>
     <div class="bar grey"></div>
 </div>
 <script>
-    Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.ProgressBar_1'], function( Selector, ProgressBar ){
-        var myProgressBar = new ProgressBar( 'my-progress-bar' );
+    Ink.requireModules( ['Ink.UI.ProgressBar_1'], function(ProgressBar){
+        var myProgressBar = new ProgressBar( '#my-progress-bar' );
     });
 </script>
+{% endcapture %}
+
+<p class="example-title">Demo</p>
+{{ example_code }}
+
+<p class="example-title">Code</p>
+{% highlight html %}
+{{ example_code }}
 {% endhighlight %}
 
 <p>Setting the progress bar to 20% programmatically</p>
-
 {% highlight javascript %}
 myProgressBar.setValue(20);
 {% endhighlight %}
