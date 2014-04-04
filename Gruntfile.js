@@ -29,7 +29,7 @@ module.exports = function (grunt) {
                     dist: './dist/js/'
                 },
                 css: {
-                    src: './src/less/',
+                    src: './src/sass/',
                     dist: './dist/css/'
                 }
             },
@@ -60,12 +60,6 @@ module.exports = function (grunt) {
                         src: '*.scss',
                         dest: 'src/sass/contrib/font-awesome/',
                         expand: true,
-                    },
-                    {
-                        cwd: '<%= ink.folders.bower %>font-awesome/less/',
-                        src: '*.less',
-                        dest: 'src/less/contrib/font-awesome/',
-                        expand: true,
                     }
                 ]
             },
@@ -73,10 +67,10 @@ module.exports = function (grunt) {
                 files: [{
                     cwd: '<%= ink.folders.bower %>animate.css',
                     src: ['animate.css'],
-                    dest: '<%= ink.folders.css.src %>modules/animations/',
+                    dest: 'src/sass/contrib/animations/',
                     expand: true,
                     rename: function (dest, src) {
-                        return dest + 'animate.less';
+                        return dest + 'animate.css';
                     }
                 }]
             },
