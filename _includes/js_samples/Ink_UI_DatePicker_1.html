@@ -4,11 +4,13 @@
 <div class="ink-form">
     <div class="control-group">
         <div class="control">
-            <input type="text" id="myDatePicker" />
+            <input type="text" id="myDatePicker"
+                class="ink-datepicker" />
         </div>
     </div>
 </div>
 <script>
+    // Not required if you're using autoload.js
     Ink.requireModules(['Ink.Dom.Selector_1','Ink.UI.DatePicker_1'],function( Selector, DatePicker ){
         var datePickerObj = new DatePicker( '#myDatePicker' );
     });
@@ -39,16 +41,17 @@
 <div class="ink-form">
     <div class="control-group">
         <div class="control">
-            <input type="text" id="myDatePicker2" />
+            <input type="text" id="myDatePicker2"
+                class="ink-datepicker"
+                data-date-range="2012-11-15:NOW"
+                data-initial-date="2013-12-31" />
         </div>
     </div>
 </div>
 <script>
-    Ink.requireModules(['Ink.Dom.Selector_1','Ink.UI.DatePicker_1'],function( Selector, DatePicker ){
-        var datePickerObj = new DatePicker( '#myDatePicker2', {
-            dateRange: '2012-11-15:NOW',
-            initialDate: '2013-12-31'
-        });
+    // Not required if you're using autoload.js
+    Ink.requireModules(['Ink.UI.DatePicker_1'],function(DatePicker) {
+        var datePickerObj = new DatePicker( '#myDatePicker2');
     });
 </script>
 {% endcapture %}

@@ -1,12 +1,14 @@
 {{! fiddle: http://jsfiddle.net/hxKp7/ }}
 
-{% highlight html %}
-<button id="animate-me" class="ink-button">Animate me!</button>
+<p>Fading out a label</p>
+
+{% capture example_code %}
+<button id="animate-me" class="ink-button">Animate!</button>
 <span class="ink-label blue ink-animate"
     id="animated"
     data-trigger="#animate-me"
     data-animation="fadeOut"
-    data-removeClass="false">Hi!</span>
+    data-removeClass="false">I am the animated label</span>
 
 <script type="text/javascript">
     // Note: this step is not necessary if you are using autoload.js
@@ -14,4 +16,45 @@
         new Animate('#animated');
     });
 </script>
+{% endcapture %}
+
+
+<p class="example-title">Demo</p>
+{{ example_code }}
+
+<p class="example-title">Code</p>
+{% highlight html %}
+{{ example_code }}
 {% endhighlight %}
+
+
+<p>Fade out and remove an element</p>
+
+<p class="example-title">Code</p>
+{% highlight javascript %}
+Ink.requireModules(['Ink.UI.Animate_1', 'Ink.Dom.Element_1'], function (Animate, InkElement) {
+    new Animate('#some-element', {
+        animation: 'fadeOut',
+        trigger: '#some-button'
+        onEnd: function (endData) {
+            InkElement.remove(endData.element);
+        }
+    });
+});
+{% endhighlight %}
+
+
+<p>Create an element, place it and fade it in</p>
+<p class="example-title">Code</p>
+{% highlight javascript %}
+Ink.requireModules(['Ink.UI.Animate_1', 'Ink.Dom.Element_1'], function (Animate, InkElement) {
+    var myNewElement = InkElement.create('span', {
+        className: 'ink-label red',
+        setTextContent: 'Danger!'
+    });
+    InkElement.insertTop(myNewElement, Ink.i('someOtherElement'));
+    new Animate(myNewElement, { animation: 'fadeIn' });
+});
+{% endhighlight %}
+
+
