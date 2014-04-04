@@ -64,13 +64,12 @@
                 <label class="monospace">[{{~name}}]
                 {{else~}}
                 <label class="monospace">{{~name}} 
-                {{~/if~}}
-
-                {{~#if defaultValue~}}
+                {{~/if}}
+                {{#if defaultValue~}}
                     {{~defaultValue~}}
                 {{~/if~}}
                 </label>
-                {{~#if description~}}
+                {{#if description~}}
                     {{~{description}~}}
                 {{~/if~}}
             </dd>

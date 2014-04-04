@@ -1,15 +1,12 @@
 {{#file hash}}---
 layout: js-documentation
 title: {{#if name}}{{name}}{{~/if}}
-description: Provides the core methods to create and load all of the library modules. 
+description: {{#if text~}}{{~{firstP text}~}}{{/if}}
 site_root:  ../
 ---
     {{#if name~}}
         <section>
         <h1 class="fw-300">{{~name~}} {{#if version~}}<small>version: {{~version~}}</small>{{~/if~}}</h1>
-    {{~/if~}}
-    {{~#if text~}}
-        <p class="text">{{~{stripP text}~}}</p>
     {{~/if~}}
     {{~> examples~}}
     {{~> samples~}}
