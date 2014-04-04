@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Droppable - 2</title>
+
+        <link rel="stylesheet" href="../../../../../dist/css/ink.css">
+        
+        <script type="text/javascript" src="../../../Ink/1/lib.js"></script> 
+        <script type="text/javascript">
+            Ink.setPath('Ink', '../../../Ink/');
+        </script> 
+        
+        <style type="text/css">
+            .draggable.ink-button {
+                display: block;
+                background-color: #DDD;
+                width:  200px;
+                height: 100px;
+                overflow: hidden;
+            }
+
+            .draggable_handler {
+                height:  20px;
+                width:  100%;
+                background-color: #CCF;
+            }
+
+            .drops {
+                margin-left:    25%;
+                margin-top:        10%
+            }
+
+            .droppable {
+                color: #777;
+                border: 1px dotted #777;
+                width: 50%;
+                height: 200px;
+            }
+
+            .droppable_hover {
+                border: 2px solid #FAA;
+                box-shadow: 0 0 8px;
+            }
+        </style>
+    </head>
+
+<body>
+    <!-- [todo] change this sample to Draggable. It has nothing to do with droppable from the user's POV -->
+    <h1>Droppable - 2</h1>
+    <h2>Anchor option</h2>
+
+    <p>An anchor is the point of a draggable which has to be on the droppable for the draggable to be considered "inside" that droppable. Think of it as the tip of the pointer of your mouse. The mouse pointer is a shape, and its anchor point is the tip.</p>
+
+    <p>Drag the draggables over the droppable and see when the droppable reacts.</p>
+    
+    <div class="drops">
+        <div id="drop1" class="droppable ink-alert block">
+            <h4>Drop #1</h4>
+        </div>
+    </div>
+    
+    <div id="drag1" class="draggable ink-button">
+        <div id="handler" class="draggable_handler">with 'left top' anchor</div>
+        <p>
+            The Quick Brown Fox
+            jumps over the lazy dog
+        </p>
+    </div>
+    
+    <div id="drag2" class="draggable ink-button">
+        <div id="handler" class="draggable_handler">with 'center center' anchor</div>
+        <p>
+            The Quick Brown Fox
+            jumps over the lazy dog
+        </p>
+    </div>
+    
+    <script type="text/javascript">
+        Ink.requireModules(['Ink.UI.Draggable_1', 'Ink.UI.Droppable_1'], function (Draggable, Droppable) {
+            var fps = 100;
+            var dbg = true;
+
+            new Draggable('#drag1', {
+                fps:fps, debug:dbg, revert:true, mouseAnchor:'left top'
+            });
+            new Draggable('#drag2', {
+                fps:fps, debug:dbg, revert:true, mouseAnchor:'center center'
+            });
+            
+            Droppable.add('#drop1', {
+                hoverClass: 'droppable_hover',
+                accept: '.draggable',
+                onDrop: function (draggable, element, event) {
+                    if (typeof console !== 'undefined') {
+                        console.log(['dropped', draggable.id, element.id]);
+                    }
+                }
+            });
+        });
+    </script>
+    </body>
+</html>

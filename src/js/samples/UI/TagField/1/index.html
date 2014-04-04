@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>TagField</title>
+    
+    <script type="text/javascript" src="../../../../Ink/1/lib.js"></script>
+    <script type="text/javascript">
+        Ink.setPath('Ink', '../../../../Ink/');
+    </script>
+
+    <link rel="stylesheet" type="text/css" href="../../../../../../dist/css/ink.css"/>
+</head>
+
+<body>
+    <div class="ink-grid">
+<h1>TagField</h1>
+
+<h2> With a separator</h2>
+
+<p>On this field, you can separate tags by spaces, commas, or semicolons, since the <code>separator</code> option used was <code>/[;, ]+/</code></p>
+
+<p>
+<input type="text" name="tagfield2" value="cats lols photobombs" />
+
+<script type="text/javascript">
+    Ink.requireModules(['Ink.UI.TagField_1'], function (TagField) {
+        new TagField('[name="tagfield2"]', {});
+    });
+</script>
+</p>
+
+
+<h2>Without separator</h2>
+
+<p>Type some text below. There is no tag separator, so anything can be a tag, including strings with spaces, numbers, etc.</p>
+
+<p>
+<select name="tagfield1" multiple>
+    <option value="cats and dogs">cats and dogs</option>
+    <option value="several words in a tag">several words in a tag</option>
+    <option value="or just one">or just one</option>
+</select>
+
+<script type="text/javascript">
+    Ink.requireModules(['Ink.UI.TagField_1'], function (TagField) {
+        new TagField('[name="tagfield1"]', {separator: null});
+    });
+</script>
+</p>
+
+
+<h2>In forms</h2>
+
+<p>Submit this form and see the GET parameters in your browser to look at how tags are turned into values</p>
+
+<p>
+<form method="GET" action="">
+    <label>tags:
+        <input type="text" name="informs-1" /></label>
+    <br>
+    <label>tags (internally using a <code>select</code> tag):
+        <select name="informs-2" multiple="multiple"></select></label>
+    <button type=submit>Submit</button>
+</form>
+
+<script type="text/javascript">
+    Ink.requireModules(['Ink.UI.TagField_1'], function (TagField) {
+        new TagField('[name="informs-1"]', {});
+        new TagField('[name="informs-2"]', {});
+    });
+</script>
+</p>
+
+<h2>Allowing repeated tags</h2>
+
+<p>You can allow repeated tags by setting the option <code>allowRepeated</code> to <code>true</code>.</p>
+
+<input type="text" name="allowing-repeated" value="repeated repeated repeated">
+
+<script type="text/javascript">
+    Ink.requireModules(['Ink.UI.TagField_1'], function (TagField) {
+        new TagField('[name="allowing-repeated"]', {
+            allowRepeated: true
+        });
+    });
+</script>
+
+<hr>
+
+<h2>Maximum tag count</h2>
+
+<p>Use the <code>maxTags</code> option to set a maximum number of tags the user can input.</p>
+
+<p>Try to insert more than five tags into the below TagField:</p>
+
+<input type="text" name="max-tags" value="no more than five">
+
+<script type="text/javascript">
+    Ink.requireModules(['Ink.UI.TagField_1'], function (TagField) {
+        new TagField('[name="max-tags"]', {
+            maxTags: 5
+        })
+    });
+</script>
+
+<hr>
+
+</div>
+</body>
+</html>

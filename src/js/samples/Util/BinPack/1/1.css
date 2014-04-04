@@ -1,0 +1,12 @@
+body {
+    font-family: sans-serif;
+}
+
+canvas {
+    border: 1px solid #AAA;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+}

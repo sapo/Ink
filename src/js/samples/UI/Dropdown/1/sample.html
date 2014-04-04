@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>
+            Ink.UI.Dropdown sample
+        </title>
+        <meta name="description" content="">
+        <meta name="author" content="ink, cookbook, recipes">
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="320">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <link rel="shortcut icon" href="../../../../../img/ink-favicon.ico">
+        <link rel="apple-touch-icon-precomposed" href="../../../../../img/touch-icon.57.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../../../../../img/touch-icon.72.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../../../../../img/touch-icon.114.png">
+        <link rel="apple-touch-startup-image" href="../../../../../img/splash.320x460.png"
+        media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
+        <link rel="apple-touch-startup-image" href="../../../../../img/splash.768x1004.png"
+        media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+        <link rel="apple-touch-startup-image" href="../../../../../img/splash.1024x748.png"
+        media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+        <link rel="stylesheet" type="text/css" href="../../../../../../dist/css/ink.css">
+        
+        <!--[if IE 7 ]>
+            <link rel="stylesheet" href="../../../../../css/ink-ie7.css" type="text/css" media="screen" title="no title" charset="utf-8">
+        <![endif]-->
+
+        <script src="../../../../Ink/1/lib.js"></script>
+        <script>
+            Ink.setPath('Ink', '../../../../Ink/');
+        </script>
+        <script type="text/javascript" src="../../../../../../dist/js/holder.js"></script>
+        <script type="text/javascript" src="../../../../../../dist/js/autoload.js"></script>
+        <script type="text/javascript" src="../../../../../../dist/js/html5shiv.js"></script>
+    </head>
+    <body>
+        <h1>Ink.UI.Dropdown sample</h1>
+        <div class="ink-dropdown" data-target="#dropdown">
+            <span class="ink-button" >Dropdown <span class="fa fa-caret-down"></span></span>
+            <ul id="dropdown" class="dropdown-menu hide-all">
+                <li class="heading">Heading</li>
+                <li class="separator-above"><a href="#">Option</a></li>
+                <li><a href="#">Option</a></li>
+                <li class="separator-above disabled"><a href="#">Disabled option</a></li>
+                <li class="submenu">
+                    <a href="#" class="ink-dropdown" data-target="#submenu1">A longer option name</a>
+                    <ul id="submenu1" class="dropdown-menu hide-all">
+                        <li class="submenu">
+                            <a href="#" class="ink-dropdown" data-target="#ultrasubmenu">Sub option</a>
+                            <ul id="ultrasubmenu" class="dropdown-menu hide-all">
+                                <li><a href="#">Sub option</a></li>
+                                <li><a href="#" data-target="ultrasubmenu">Sub option</a></li>
+                                <li><a href="#">Sub option</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Sub option</a></li>
+                        <li><a href="#">Sub option</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Option</a></li>
+            </ul>
+        </div>
+    </body>
+</html>
+
