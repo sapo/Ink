@@ -6253,7 +6253,7 @@ th {
     font-size: 1.08em;
   }
   html:after {
-    font-family: '{"name":"xlarge", "size":{"min":"1261px","max":""}}';
+    font-family: "{'name':'xlarge', 'size':{'min':'1261px','max':''}}";
   }
 }
 @media screen and (min-width: 961px) and (max-width: 1260px) {
@@ -6261,7 +6261,7 @@ th {
     font-size: 1.05em;
   }
   html:after {
-    font-family: '{"name":"large", "size":{"min":"961px","max":"1260px"}}';
+    font-family: "{'name':'large', 'size':{'min':'961px','max':'1260px'}}";
   }
 }
 @media screen and (min-width: 641px) and (max-width: 960px) {
@@ -6269,7 +6269,7 @@ th {
     font-size: 1em;
   }
   html:after {
-    font-family: '{"name":"medium", "size":{"min":"641px","max":"960px"}}';
+    font-family: "{'name':'medium', 'size':{'min':'641px','max':'960px'}}";
   }
 }
 @media screen and (min-width: 321px) and (max-width: 640px) {
@@ -6277,7 +6277,7 @@ th {
     font-size: 0.98em;
   }
   html:after {
-    font-family: '{"name":"small", "size":{"min":"321px","max":"640px"}}';
+    font-family: "{'name':'small', 'size':{'min':'321px','max':'640px'}}";
   }
 }
 @media screen and (max-width: 320px) {
@@ -6285,7 +6285,7 @@ th {
     font-size: 0.97em;
   }
   html:after {
-    font-family: '{"name":"tiny", "size":{"min":"","max":"320px"}}';
+    font-family: "{'name':'tiny', 'size':{'min':'','max':'320px'}}";
   }
 }
 @font-face {
