@@ -928,6 +928,17 @@ html.flexbox .example#chevron-example {
 html.flexbox .example#chevron-example a {
   top: auto;
 }
+.example .ink-dropdown ul.dropdown,
+.example .ink-dropdown ul.dropdown-menu,
+.example .ink-navigation ul.dropdown,
+.example .ink-navigation ul.dropdown-menu,
+html.flexbox .example .ink-dropdown ul.dropdown,
+html.flexbox .example .ink-dropdown ul.dropdown-menu,
+html.flexbox .example .ink-navigation ul.dropdown,
+html.flexbox .example .ink-navigation ul.dropdown-menu {
+  position: relative;
+  display: inline-block;
+}
 
 .tall {
   height: 250px;
