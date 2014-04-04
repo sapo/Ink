@@ -35,7 +35,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
      * @param {Number}              [options.initialPage]       Initial index page of the carousel. Defaults to 0.
      * @param {Boolean}             [options.spaceAfterLastSlide=true] If there are not enough slides to fill the full width of the last page, leave white space. Defaults to `true`.
      * @param {Boolean}             [options.swipe]             Enable swipe support if available. Defaults to true.
-     * @param {Mixed}               [options.pagination]        Either an `<ul>` element to add pagination markup to or an `Ink.UI.Pagination` instance to use.
+     * @param {Mixed}               [options.pagination]        Either an ul element to add pagination markup to or an `Ink.UI.Pagination` instance to use.
      * @param {Function}            [options.onChange]          Callback to be called when the page changes.
      *
      * @sample Ink_UI_Carousel_1.html
