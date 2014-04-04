@@ -27,8 +27,7 @@
 
 <script>
     // If you included `autoload.js` in your page, you can just
-    // add 'data-spy="true"' and 'data-target="#my-menu"' to each
-    // of your sections and ignore this JavaScript snippet.
+    // follow the example below
     Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.Spy_1','Ink.UI.Sticky_1'], function( Selector, Spy, Sticky ){
         var myMenu = Ink.i('my-menu');
         var sections = Ink.ss('.my-sections section');
@@ -48,5 +47,37 @@
 <p class="example-title">Code</p>
 {% highlight html %}
 {{ example_code }}
+{% endhighlight %}
+
+
+{% capture example_code_autoload %}
+<div class="column-group">
+    <div class="left-column all-25">
+        <nav class="ink-navigation ink-sticky" id="my-menu">
+            <ul class="menu vertical black">
+                <li><a href="#my-section-1">My section 1</a></li>
+                <li><a href="#my-section-2">My section 2</a></li>
+                <li><a href="#my-section-3">My section 3</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="all-75 my-sections">
+        <section id="my-section-1" data-spy="true" data-target="#my-menu">
+            <h2>My section 1</h2><br><br><br><br><br>
+        </section>
+        <section id="my-section-2" data-spy="true" data-target="#my-menu">
+            <h2>My section 2</h2><br><br><br><br><br>
+        </section>
+        <section id="my-section-3" data-spy="true" data-target="#my-menu">
+            <h2>My section 3</h2><br><br><br><br><br>
+        </section>
+    </div>
+</div>
+<br id="below-demo">
+{% endcapture %}
+
+<p class="example-title">Code (With autoload.js)</p>
+{% highlight html %}
+{{ example_code_autoload }}
 {% endhighlight %}
 
