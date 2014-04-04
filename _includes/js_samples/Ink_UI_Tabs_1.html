@@ -1,9 +1,6 @@
-<p>Basic usage</p>
-
-<p class="example-title">Code</p>
-{% highlight html %}
+{% capture demo_code %}
 <!-- replace 'top' with 'bottom', 'left' or 'right' to reposition navigation -->
-<div class="ink-tabs top">
+<div id="myTabs" class="ink-tabs top">
     <!-- If you're using 'bottom' positioning, put this div AFTER the content. -->
     <ul class="tabs-nav">
         <li><a href="#home">Home</a></li>
@@ -18,9 +15,16 @@
 </div>
 <script>
     Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.Tabs_1'], function( Selector, Tabs ){
-        var tabsElement = Ink.s('.ink-tabs');
+        var tabsElement = Ink.s('#myTabs');
         var tabsObj = new Tabs( tabsElement );
     });
 </script>
-{% endhighlight %}
+{% endcapture %}
 
+<p>Basic usage</p>
+<p class="example-title">Demo</p>
+{{demo_code}}
+<p class="example-title">Code</p>
+{% highlight html %}
+{{ demo_code }}
+{% endhighlight %}
