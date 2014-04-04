@@ -1,6 +1,6 @@
 /**
- * @module Ink.UI.Draggable_1
  * Dragging elements around
+ * @module Ink.UI.Draggable_1
  * @version 1
  */
  

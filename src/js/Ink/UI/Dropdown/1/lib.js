@@ -1,6 +1,6 @@
 /**
- * @module Ink.UI.Dropdown_1
  * Dropdown menus
+ * @module Ink.UI.Dropdown_1
  * @version 1
  */
  

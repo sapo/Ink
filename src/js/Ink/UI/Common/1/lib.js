@@ -1,6 +1,6 @@
 /**
- * @module Ink.UI.Common_1
  * Auxiliar utilities for UI Modules
+ * @module Ink.UI.Common_1
  * @version 1
  */
  

@@ -1,6 +1,6 @@
 /**
- * @module Ink.UI.Toggle_1
  * Toggle the visibility of elements.
+ * @module Ink.UI.Toggle_1
  * @version 1
  */
 

@@ -1,6 +1,6 @@
 /**
- * @module Ink.Dom.Selector_1
  * CSS selector engine
+ * @module Ink.Dom.Selector_1
  * @version 1
  */
  
