@@ -1,7 +1,7 @@
+
 <p>Basic sortable list</p>
 
-<p class="example-title">Code</p>
-{% highlight html %}
+{% capture example_code %}
 <ul class="unstyled ink-sortable-list" id="my-sortable-list">
     <li>First</li>
     <li>Second</li>
@@ -9,17 +9,26 @@
 </ul>
 <script>
     // Not needed if you're using autoload.js
-    Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.SortableList_1'], function( Selector, SortableList ){
-        var sortableListElement = Ink.s('#my-sortable-list');
-        var sortableListObj = new SortableList( sortableListElement );
+    Ink.requireModules( ['Ink.UI.SortableList_1'], function( SortableList ){
+        var sortableListObj = new SortableList('#my-sortable-list');
     });
 </script>
-{% endhighlight %}
+{% endcapture %}
 
-<p>Drag items by a handle</p>
+<p class="example-title">Demo</p>
+{{ example_code }}
 
 <p class="example-title">Code</p>
 {% highlight html %}
+{{ example_code }}
+{% endhighlight %}
+
+
+
+
+<p>Drag items by a handle</p>
+
+{% capture example_code2 %}
 <ul class="unstyled ink-sortable-list" id="my-sortable-list-handles" data-handle-selector=".ink-label">
     <li><span class="ink-label blue">Drag here</span> First</li>
     <li><span class="ink-label blue">Drag here</span> Second</li>
@@ -32,5 +41,13 @@
         var sortableListObj = new SortableList( sortableListElement );
     });
 </script>
+{% endcapture %}
+
+<p class="example-title">Demo</p>
+{{ example_code2 }}
+
+<p class="example-title">Code</p>
+{% highlight html %}
+{{ example_code2 }}
 {% endhighlight %}
 
