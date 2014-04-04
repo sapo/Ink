@@ -1,35 +1,52 @@
 
-<p>Toggle an alert</p>
 
-{% highlight html %}
-<button id="alert-toggler" class="ink-button" data-target="#alert-toggle-target">
+{% capture demo_code %}
+<div class="example">
+<button id="myAlertToggler" class="ink-button" data-target="#myAlert">
      See more
 </button>
-<div id="alert-toggle-target" class="ink-alert block hide-all">
+<div id="myAlert" class="ink-alert block hide-all">
     <h4>This is a details section</h4>
-    <p>Which you don't care about.</p>
+    <p>Insert awesome text here</p>
+</div>
 </div>
 <script>
     Ink.requireModules(['Ink.UI.Toggle_1'], function (Toggle) {
-        new Toggle('#alert-toggler');
+        new Toggle('#myAlertToggler');
     });
 </script>
+{% endcapture %}
+
+{% capture demo_1 %}
+<div class="example">
+<button id="myToggleClass"
+    class="ink-button"
+    data-target="#myToggledLabel"
+    data-class-name-on="green"
+    data-class-name-off="red">Click here to toggle the label</button>
+<span id="myToggledLabel" class="ink-label green">label</span>
+</div>
+<script>
+    Ink.requireModules(['Ink.UI.Toggle_1'], function (Toggle) {
+        new Toggle('#myToggleClass');
+    });
+</script>
+{% endcapture %}
+
+<p>Toggle an alert</p>
+<p class="example-title">Demo</p>
+{{ demo_code }}
+<p class="example-title">Code</p>
+{% highlight html %}
+{{ demo_code }}
 {% endhighlight %}
+
 
 
 <p>Toggle between two classes, to switch the color of a label between red and blue.</p>
-
+<p class="example-title">Demo</p>
+{{ demo_1 }}
+<p class="example-title">Code</p>
 {% highlight html %}
-<button id="toggle-class"
-    class="ink-button"
-    data-target="#toggled-label"
-    data-class-name-on="green"
-    data-class-name-off="red">Click here to toggle the label</button>
-<span id="toggled-label" class="ink-label green">label</span>
-<script>
-    Ink.requireModules(['Ink.UI.Toggle_1'], function (Toggle) {
-        new Toggle('#toggle-class');
-    });
-</script>
+{{ demo_1 }}
 {% endhighlight %}
-

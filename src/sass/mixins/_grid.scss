@@ -624,18 +624,19 @@
     @each $breakpoint in $breakpoints {
 
         $class-name: nth($breakpoint,1);
-        $minimum-width: nth($breakpoint,2);
         $maximum-width: nth($breakpoint,3);
+        $minimum-width: nth($breakpoint,2);
         $gutter-width: nth($breakpoint,4);
         $base-font-size: nth($breakpoint,5);
         $no-media-query: nth($breakpoint,6);
 
         @if $minimum-width and not $maximum-width {
             @media screen and (min-width: $minimum-width) {
-                body {
+                html {
                     &:after {
                         content: '{"name":"#{$class-name}", "size":{"min":"#{$minimum-width}","max":"#{$maximum-width}"}}';
-                        display: none;
+                        position: absolute;
+                        top: -100px;
                     }
                     font-size: $base-font-size;
                 }
@@ -644,10 +645,11 @@
 
         @if $minimum-width and $maximum-width {
             @media screen and (min-width: $minimum-width) and (max-width: $maximum-width) {
-                body {
+                html {
                     &:after {
                         content: '{"name":"#{$class-name}", "size":{"min":"#{$minimum-width}","max":"#{$maximum-width}"}}';
-                        display: none;
+                        position: absolute;
+                        top: -100px;
                     }
                     font-size: $base-font-size;
                 }
@@ -656,10 +658,11 @@
 
         @if not $minimum-width and $maximum-width {
             @media screen and (max-width: $maximum-width) {
-                body {
+                html {
                     &:after {
                         content: '{"name":"#{$class-name}", "size":{"min":"#{$minimum-width}","max":"#{$maximum-width}"}}';
-                        display: none;
+                        position: absolute;
+                        top: -100px;
                     }
                     font-size: $base-font-size;
                 }
