@@ -1,14 +1,13 @@
 ---
 layout: js-documentation
 title: Ink.Net.JsonP_1
-description: Provides the core methods to create and load all of the library modules. 
+description: Cross Browser JsonP requests
 site_root:  ../
 ---
     <section>
         <h1 class="fw-300">Ink.Net.JsonP_1<small>version:1</small></h1>
 
-<p><p>Executes a JSONP request</p>
-</p>
+<p>Executes a JSONP request<br></p>
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p><table class="props bottom-space">
         <caption>Methods</caption>
         <thead>
@@ -21,9 +20,9 @@ site_root:  ../
         <tbody>
             <tr>
                 <td>
-                    <a href="#Ink_Net_JsonP_1-Ink_Net_JsonP-JsonP">Ink.Net.JsonP</a>
+                    <a href="#Ink_Net_JsonP_1-Ink_Net_JsonP-JsonP"><em>(constructor)</em></a>
                 </td>
-                <td></td>
+                <td><span class="ink-label green">Constructor</span></td>
             </tr></tbody>
     </table>
     
@@ -32,7 +31,8 @@ site_root:  ../
 
 
     <section id="Ink_Net_JsonP_1-Ink_Net_JsonP-JsonP" class="box box-function">
-    <h1 class="fw-300">Ink.Net.JsonP(uri, options, )<i>constructor</i></h1>
+    <h1 class="fw-300">Ink.Net.JsonP(uri, options, ) 
+    <i>constructor</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">uri</li>
@@ -48,23 +48,47 @@ site_root:  ../
         <h3>Accepts</h3>
         <dl class="params">
             <dt><code>String</code></dt>
-            <dd><label class="monospace">uri</label>Request URL</dd>
+            <dd><label class="monospace">uri
+                </label>
+                Request URL</dd>
             <dt><code>Object</code></dt>
-            <dd><label class="monospace">options</label>Request options</dd>
+            <dd><label class="monospace">options
+                </label>
+                Request options</dd>
             <dt><code>Function</code></dt>
-            <dd><label class="monospace">options.onSuccess</label>Success callback</dd>
+            <dd><label class="monospace">options.onSuccess
+                </label>
+                Success callback</dd>
             <dt><code>Function</code></dt>
-            <dd><label class="monospace">[options.onFailure]</label>Failure callback</dd>
+            <dd><label class="monospace">[options.onFailure]
+                
+                </label>
+                Failure callback</dd>
             <dt><code>Object</code></dt>
-            <dd><label class="monospace">[options.failureObj]</label>Object to be passed as argument to failure callback</dd>
+            <dd><label class="monospace">[options.failureObj]
+                
+                </label>
+                Object to be passed as argument to failure callback</dd>
             <dt><code>Number</code></dt>
-            <dd><label class="monospace">[options.timeout]</label>Timeout for request fail, in seconds. defaults to 10</dd>
+            <dd><label class="monospace">[options.timeout]
+                
+                </label>
+                Timeout for request fail, in seconds. defaults to 10</dd>
             <dt><code>Object</code></dt>
-            <dd><label class="monospace">[options.params]</label>Object with the parameters and respective values to unfold</dd>
+            <dd><label class="monospace">[options.params]
+                
+                </label>
+                Object with the parameters and respective values to unfold</dd>
             <dt><code>String</code></dt>
-            <dd><label class="monospace">[options.callbackParam]</label>Parameter to use as callback. defaults to 'jsoncallback'</dd>
+            <dd><label class="monospace">[options.callbackParam]
+                
+                </label>
+                Parameter to use as callback. defaults to 'jsoncallback'</dd>
             <dt><code>String</code></dt>
-            <dd><label class="monospace">[options.internalCallback]</label>Name of the callback function stored in the Ink.Net.JsonP object.</dd>
+            <dd><label class="monospace">[options.internalCallback]
+                
+                </label>
+                Name of the callback function stored in the Ink.Net.JsonP object.</dd>
         </dl>
 <p class="example-title">Example</p>
   

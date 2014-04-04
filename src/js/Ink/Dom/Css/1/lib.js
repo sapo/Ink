@@ -1,7 +1,7 @@
 /**
+ * CSS Utilities and toolbox
  * @module Ink.Dom.Css_1
  * @version 1
- * CSS Utilities and toolbox
  */
 
 Ink.createModule( 'Ink.Dom.Css', 1, [], function() {

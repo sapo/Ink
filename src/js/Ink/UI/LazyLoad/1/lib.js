@@ -1,6 +1,6 @@
 /**
- * @module Ink.UI.LazyLoad_1
  * Delays content loading
+ * @module Ink.UI.LazyLoad_1
  * @version 1
  */
 

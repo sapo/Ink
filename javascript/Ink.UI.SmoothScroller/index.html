@@ -1,7 +1,7 @@
 ---
 layout: js-documentation
 title: Ink.UI.SmoothScroller_1
-description: Provides the core methods to create and load all of the library modules. 
+description: Scroll to content
 site_root:  ../
 ---
     <section>
@@ -21,49 +21,49 @@ site_root:  ../
                 <td>
                     <a href="#Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-add">.add</a>
                 </td>
-                <td><br></td>
+                <td>Attaches an event for an element</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-end">.end</a>
                 </td>
-                <td><br></td>
+                <td>Kill an event of an element</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-getTop">.getTop</a>
                 </td>
-                <td><br></td>
+                <td>Returns the Y position of an element, relative to the document</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-init">.init</a>
                 </td>
-                <td><br></td>
+                <td>Has smooth scrolling applied to relevant elements upon page load.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-onClick">.onClick</a>
                 </td>
-                <td><br></td>
+                <td>Click handler</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-render">.render</a>
                 </td>
-                <td><br></td>
+                <td>This method extracts all the anchors and validates them as # and attaches the events</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-scroll">.scroll</a>
                 </td>
-                <td>Moves the scrollbar to the target element. This is the function<br>which animates the scroll position bit by bit. It calls itself in<br>the end through requestAnimationFrame<br></td>
+                <td>Moves the scrollbar to the target element. This is the function</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-scrollTop">.scrollTop</a>
                 </td>
-                <td><br></td>
+                <td>Returns the current scroll position</td>
             </tr></tbody>
     </table>
     
@@ -96,7 +96,8 @@ site_root:  ../
 
 
     <section id="Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-add" class="box box-function">
-    <h1 class="fw-300">.add(el, event, fn)<i>method</i></h1>
+    <h1 class="fw-300">.add(el, event, fn) 
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">el</li>
@@ -107,17 +108,24 @@ site_root:  ../
         <h3>Accepts</h3>
         <dl class="params">
             <dt><code>DOMElement</code></dt>
-            <dd><label class="monospace">el</label>DOMElement to make the listening of the event</dd>
+            <dd><label class="monospace">el
+                </label>
+                DOMElement to make the listening of the event</dd>
             <dt><code>String</code></dt>
-            <dd><label class="monospace">event</label>Event name to be listened</dd>
+            <dd><label class="monospace">event
+                </label>
+                Event name to be listened</dd>
             <dt><code>DOMElement</code></dt>
-            <dd><label class="monospace">fn</label>Callback function to run when the event is triggered.</dd>
+            <dd><label class="monospace">fn
+                </label>
+                Callback function to run when the event is triggered.</dd>
         </dl>
 
 </section>
 
     <section id="Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-end" class="box box-function">
-    <h1 class="fw-300">.end(e)<i>method</i></h1>
+    <h1 class="fw-300">.end(e) 
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">e</li>
@@ -126,13 +134,16 @@ site_root:  ../
         <h3>Accepts</h3>
         <dl class="params">
             <dt><code>String</code></dt>
-            <dd><label class="monospace">e</label>Event to be killed/stopped</dd>
+            <dd><label class="monospace">e
+                </label>
+                Event to be killed/stopped</dd>
         </dl>
 
 </section>
 
     <section id="Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-getTop" class="box box-function">
-    <h1 class="fw-300">.getTop(d)<i>method</i></h1>
+    <h1 class="fw-300">.getTop(d) 
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">d</li>
@@ -141,7 +152,9 @@ site_root:  ../
         <h3>Accepts</h3>
         <dl class="params">
             <dt><code>DOMElement</code></dt>
-            <dd><label class="monospace">d</label>DOMElement to get the Y position from</dd>
+            <dd><label class="monospace">d
+                </label>
+                DOMElement to get the Y position from</dd>
         </dl>
         <h3>Returns</h3>
         <dl>
@@ -154,7 +167,8 @@ site_root:  ../
 </section>
 
     <section id="Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-init" class="box box-function">
-    <h1 class="fw-300">.init([selector])<i>method</i></h1>
+    <h1 class="fw-300">.init([selector]) 
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">[selector]</li>
@@ -163,25 +177,31 @@ site_root:  ../
         <h3>Accepts</h3>
         <dl class="params">
             <dt></dt>
-            <dd><label class="monospace">[selector]&#x27;a.scrollableLink,a.ink-smooth-scroll&#x27;</label>Selector string for finding links with smooth scrolling enabled.</dd>
+            <dd><label class="monospace">[selector]
+                
+                &#x27;a.scrollableLink,a.ink-smooth-scroll&#x27;</label>
+                Selector string for finding links with smooth scrolling enabled.</dd>
         </dl>
 
 </section>
 
     <section id="Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-onClick" class="box box-function">
-    <h1 class="fw-300">.onClick()<i>method</i></h1><p class="text"><p>Click handler</p>
+    <h1 class="fw-300">.onClick() 
+    <i>method</i></h1><p class="text"><p>Click handler</p>
 </p>
 
 </section>
 
     <section id="Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-render" class="box box-function">
-    <h1 class="fw-300">.render()<i>method</i></h1><p class="text"><p>This method extracts all the anchors and validates them as # and attaches the events</p>
+    <h1 class="fw-300">.render() 
+    <i>method</i></h1><p class="text"><p>This method extracts all the anchors and validates them as # and attaches the events</p>
 </p>
 
 </section>
 
     <section id="Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-scroll" class="box box-function">
-    <h1 class="fw-300">.scroll(d)<i>method</i></h1>
+    <h1 class="fw-300">.scroll(d) 
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">d</li>
@@ -192,13 +212,16 @@ the end through requestAnimationFrame</p>
         <h3>Accepts</h3>
         <dl class="params">
             <dt><code>Number</code></dt>
-            <dd><label class="monospace">d</label>Y coordinate value to stop</dd>
+            <dd><label class="monospace">d
+                </label>
+                Y coordinate value to stop</dd>
         </dl>
 
 </section>
 
     <section id="Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-scrollTop" class="box box-function">
-    <h1 class="fw-300">.scrollTop()<i>method</i></h1><p class="text"><p>Returns the current scroll position</p>
+    <h1 class="fw-300">.scrollTop() 
+    <i>method</i></h1><p class="text"><p>Returns the current scroll position</p>
 </p>
 
 </section>

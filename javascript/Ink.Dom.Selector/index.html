@@ -1,7 +1,7 @@
 ---
 layout: js-documentation
 title: Ink.Dom.Selector_1
-description: Provides the core methods to create and load all of the library modules. 
+description: CSS selector engine
 site_root:  ../
 ---
     <section>
@@ -21,19 +21,19 @@ site_root:  ../
                 <td>
                     <a href="#Ink_Dom_Selector_1-Ink_Dom_Selector-matches">.matches</a>
                 </td>
-                <td><br></td>
+                <td>Filters elements that match a CSS selector.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Dom_Selector_1-Ink_Dom_Selector-matchesSelector">.matchesSelector</a>
                 </td>
-                <td><br></td>
+                <td>Checks if an element matches a given selector</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Dom_Selector_1-Ink_Dom_Selector-select">.select</a>
                 </td>
-                <td><br></td>
+                <td>Alias for the Sizzle selector engine</td>
             </tr></tbody>
     </table>
     
@@ -42,7 +42,8 @@ site_root:  ../
 
 
     <section id="Ink_Dom_Selector_1-Ink_Dom_Selector-matches" class="box box-function">
-    <h1 class="fw-300">.matches(selector, matches)<i>method</i></h1>
+    <h1 class="fw-300">.matches(selector, matches) 
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">selector</li>
@@ -52,9 +53,13 @@ site_root:  ../
         <h3>Accepts</h3>
         <dl class="params">
             <dt><code>String</code></dt>
-            <dd><label class="monospace">selector</label>CSS selector to search for elements</dd>
+            <dd><label class="monospace">selector
+                </label>
+                CSS selector to search for elements</dd>
             <dt><code>Array</code></dt>
-            <dd><label class="monospace">matches</label>Elements to be 'matched' with</dd>
+            <dd><label class="monospace">matches
+                </label>
+                Elements to be 'matched' with</dd>
         </dl>
         <h3>Returns</h3>
         <dl>
@@ -67,7 +72,8 @@ site_root:  ../
 </section>
 
     <section id="Ink_Dom_Selector_1-Ink_Dom_Selector-matchesSelector" class="box box-function">
-    <h1 class="fw-300">.matchesSelector(element, selector)<i>method</i></h1>
+    <h1 class="fw-300">.matchesSelector(element, selector) 
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">element</li>
@@ -77,9 +83,13 @@ site_root:  ../
         <h3>Accepts</h3>
         <dl class="params">
             <dt><code>DOMElement</code></dt>
-            <dd><label class="monospace">element</label>Element to test</dd>
+            <dd><label class="monospace">element
+                </label>
+                Element to test</dd>
             <dt><code>String</code></dt>
-            <dd><label class="monospace">selector</label>CSS selector to test the element with</dd>
+            <dd><label class="monospace">selector
+                </label>
+                CSS selector to test the element with</dd>
         </dl>
         <h3>Returns</h3>
         <dl>
@@ -92,7 +102,8 @@ site_root:  ../
 </section>
 
     <section id="Ink_Dom_Selector_1-Ink_Dom_Selector-select" class="box box-function">
-    <h1 class="fw-300">.select(selector, [context], [results])<i>method</i></h1>
+    <h1 class="fw-300">.select(selector, [context], [results]) 
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">selector</li>
@@ -103,11 +114,19 @@ site_root:  ../
         <h3>Accepts</h3>
         <dl class="params">
             <dt><code>String</code></dt>
-            <dd><label class="monospace">selector</label>CSS selector to search for elements</dd>
+            <dd><label class="monospace">selector
+                </label>
+                CSS selector to search for elements</dd>
             <dt><code>DOMElement</code></dt>
-            <dd><label class="monospace">[context]</label>By default the search is done in the document element. However, you can specify an element as search context</dd>
+            <dd><label class="monospace">[context]
+                
+                </label>
+                By default the search is done in the document element. However, you can specify an element as search context</dd>
             <dt><code>Array</code></dt>
-            <dd><label class="monospace">[results]</label>By default this is considered an empty array. But if you want to merge it with other searches you did, pass their result array through here.</dd>
+            <dd><label class="monospace">[results]
+                
+                </label>
+                By default this is considered an empty array. But if you want to merge it with other searches you did, pass their result array through here.</dd>
         </dl>
         <h3>Returns</h3>
         <dl>

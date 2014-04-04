@@ -1,7 +1,7 @@
 /**
+ * Closing utilities
  * @module Ink.UI.Close_1
  * @version 1
- * Closing utilities
  */
 Ink.createModule('Ink.UI.Close', '1', ['Ink.Dom.Event_1','Ink.Dom.Element_1'], function(InkEvent, InkElement) {
     'use strict';

@@ -1,7 +1,7 @@
 ---
 layout: js-documentation
 title: Ink.Dom.Loaded_1
-description: Provides the core methods to create and load all of the library modules. 
+description: Execute code only when the DOM is loaded.
 site_root:  ../
 ---
     <section>
@@ -21,7 +21,7 @@ site_root:  ../
                 <td>
                     <a href="#Ink_Dom_Loaded_1-Ink_Dom_Loaded_1-run">.run</a>
                 </td>
-                <td><br></td>
+                <td>Specify a function to execute when the DOM is fully loaded.</td>
             </tr></tbody>
     </table>
     
@@ -30,7 +30,8 @@ site_root:  ../
 
 
     <section id="Ink_Dom_Loaded_1-Ink_Dom_Loaded_1-run" class="box box-function">
-    <h1 class="fw-300">.run([win], fn)<i>method</i></h1>
+    <h1 class="fw-300">.run([win], fn) 
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">[win]</li>
@@ -40,9 +41,14 @@ site_root:  ../
         <h3>Accepts</h3>
         <dl class="params">
             <dt><code>Object</code></dt>
-            <dd><label class="monospace">[win]window</label>Window object to attach/add the event</dd>
+            <dd><label class="monospace">[win]
+                
+                window</label>
+                Window object to attach/add the event</dd>
             <dt><code>Function</code></dt>
-            <dd><label class="monospace">fn</label>Callback function to be executed after the DOM is ready</dd>
+            <dd><label class="monospace">fn
+                </label>
+                Callback function to be executed after the DOM is ready</dd>
         </dl>
 <p class="example-title">Example</p>
   

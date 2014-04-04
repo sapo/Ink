@@ -1,6 +1,6 @@
 /**
+ * Cross Browser JsonP requests
  * @module Ink.Net.JsonP_1
- * Cross Browser Ajax requests
  * @version 1
  */
 

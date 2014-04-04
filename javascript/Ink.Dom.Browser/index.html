@@ -1,12 +1,11 @@
 ---
 layout: js-documentation
 title: Ink.Dom.Browser_1
-description: Provides the core methods to create and load all of the library modules. 
+description: Browser Detection and User Agent sniffing
 site_root:  ../
 ---
     <section>
-        <h1 class="fw-300">Ink.Dom.Browser_1<small>version:1
-Browser Detection and User Agent sniffing</small></h1>
+        <h1 class="fw-300">Ink.Dom.Browser_1<small>version:1</small></h1>
 
 
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p><table class="props bottom-space"><caption>Functions</caption>
@@ -22,31 +21,31 @@ Browser Detection and User Agent sniffing</small></h1>
                 <td>
                     <a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-debug">.debug</a>
                 </td>
-                <td><br></td>
+                <td>Debug function which displays browser (and Ink.Dom.Browser) information as an alert message.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-detectBrowser">.detectBrowser</a>
                 </td>
-                <td><br></td>
+                <td>Detects the browser and stores the found properties. Called automatically when this module is loaded.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-init">.init</a>
                 </td>
-                <td><br><br></td>
+                <td>Initialization function for the Browser object.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-setDimensions">.setDimensions</a>
                 </td>
-                <td><br></td>
+                <td>Retrieves and stores window dimensions in this object. Called automatically when this module is loaded.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-setReferrer">.setReferrer</a>
                 </td>
-                <td><br></td>
+                <td>Stores the referrer. Called automatically when this module is loaded.</td>
             </tr></tbody>
     </table>
     
@@ -170,7 +169,8 @@ False if it is unavailable.</p>
 
 
     <section id="Ink_Dom_Browser_1-Ink_Dom_Browser-debug" class="box box-function">
-    <h1 class="fw-300">.debug()<i>method</i></h1><p class="text"><p>Debug function which displays browser (and Ink.Dom.Browser) information as an alert message.</p>
+    <h1 class="fw-300">.debug() 
+    <i>method</i></h1><p class="text"><p>Debug function which displays browser (and Ink.Dom.Browser) information as an alert message.</p>
 </p>
 <p class="example-title">Example</p>
   
@@ -197,26 +197,30 @@ False if it is unavailable.</p>
 </section>
 
     <section id="Ink_Dom_Browser_1-Ink_Dom_Browser-detectBrowser" class="box box-function">
-    <h1 class="fw-300">.detectBrowser()<i>method</i></h1><p class="text"><p>Detects the browser and stores the found properties. Called automatically when this module is loaded.</p>
+    <h1 class="fw-300">.detectBrowser() 
+    <i>method</i></h1><p class="text"><p>Detects the browser and stores the found properties. Called automatically when this module is loaded.</p>
 </p>
 
 </section>
 
     <section id="Ink_Dom_Browser_1-Ink_Dom_Browser-init" class="box box-function">
-    <h1 class="fw-300">.init()<i>method</i></h1><p class="text"><p>Initialization function for the Browser object.</p>
+    <h1 class="fw-300">.init() 
+    <i>method</i></h1><p class="text"><p>Initialization function for the Browser object.</p>
 <p>Is called automatically when this module is loaded, and calls setDimensions, setBrowser and setReferrer.</p>
 </p>
 
 </section>
 
     <section id="Ink_Dom_Browser_1-Ink_Dom_Browser-setDimensions" class="box box-function">
-    <h1 class="fw-300">.setDimensions()<i>method</i></h1><p class="text"><p>Retrieves and stores window dimensions in this object. Called automatically when this module is loaded.</p>
+    <h1 class="fw-300">.setDimensions() 
+    <i>method</i></h1><p class="text"><p>Retrieves and stores window dimensions in this object. Called automatically when this module is loaded.</p>
 </p>
 
 </section>
 
     <section id="Ink_Dom_Browser_1-Ink_Dom_Browser-setReferrer" class="box box-function">
-    <h1 class="fw-300">.setReferrer()<i>method</i></h1><p class="text"><p>Stores the referrer. Called automatically when this module is loaded.</p>
+    <h1 class="fw-300">.setReferrer() 
+    <i>method</i></h1><p class="text"><p>Stores the referrer. Called automatically when this module is loaded.</p>
 </p>
 
 </section>

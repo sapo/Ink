@@ -1,7 +1,7 @@
 ---
 layout: js-documentation
 title: Ink.UI.Carousel_1
-description: Provides the core methods to create and load all of the library modules. 
+description: Flexible Carousel
 site_root:  ../
 ---
     <section>
@@ -20,39 +20,39 @@ site_root:  ../
         <tbody>
             <tr>
                 <td>
-                    <a href="#Ink_UI_Carousel_1-Ink_UI_Carousel_1-Carousel_1">Ink.UI.Carousel_1</a>
+                    <a href="#Ink_UI_Carousel_1-Ink_UI_Carousel_1-Carousel_1"><em>(constructor)</em></a>
                 </td>
-                <td></td>
+                <td><span class="ink-label green">Constructor</span></td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_Carousel_1-Ink_UI_Carousel_1-getPage">.getPage</a>
                 </td>
-                <td><br></td>
+                <td>Gets the current page index</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_Carousel_1-Ink_UI_Carousel_1-nextPage">.nextPage</a>
                 </td>
-                <td><br></td>
+                <td>Goes to the next page</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_Carousel_1-Ink_UI_Carousel_1-previousPage">.previousPage</a>
                 </td>
-                <td><br></td>
+                <td>Goes to the previous page</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_Carousel_1-Ink_UI_Carousel_1-refit">.refit</a>
                 </td>
-                <td>Repositions elements around.<br>Measure the carousel once again, adjusting the involved elements&#39; sizes. This is called automatically when the window resizes, in order to cater for changes from responsive media queries, for instance.<br></td>
+                <td>Repositions elements around.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_Carousel_1-Ink_UI_Carousel_1-setPage">.setPage</a>
                 </td>
-                <td><br></td>
+                <td>Sets the current page index</td>
             </tr></tbody>
     </table>
     
@@ -61,7 +61,8 @@ site_root:  ../
 
 
     <section id="Ink_UI_Carousel_1-Ink_UI_Carousel_1-Carousel_1" class="box box-function">
-    <h1 class="fw-300">Ink.UI.Carousel_1(selector, [options], )<i>constructor</i></h1>
+    <h1 class="fw-300">Ink.UI.Carousel_1(selector, [options], ) 
+    <i>constructor</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">selector</li>
@@ -78,25 +79,54 @@ site_root:  ../
         <h3>Accepts</h3>
         <dl class="params">
             <dt><code>String|DOMElement</code></dt>
-            <dd><label class="monospace">selector</label>DOM element or element id</dd>
+            <dd><label class="monospace">selector
+                </label>
+                DOM element or element id</dd>
             <dt><code>Object</code></dt>
-            <dd><label class="monospace">[options]</label>Carousel Options</dd>
+            <dd><label class="monospace">[options]
+                
+                </label>
+                Carousel Options</dd>
             <dt><code>Integer</code></dt>
-            <dd><label class="monospace">[options.autoAdvance]</label>Milliseconds to wait before auto-advancing pages. Set to 0 to disable auto-advance. Defaults to 0.</dd>
+            <dd><label class="monospace">[options.autoAdvance]
+                
+                </label>
+                Milliseconds to wait before auto-advancing pages. Set to 0 to disable auto-advance. Defaults to 0.</dd>
             <dt><code>String</code></dt>
-            <dd><label class="monospace">[options.axis]</label>Axis of the carousel. Set to 'y' for a vertical carousel. Defaults to 'x'.</dd>
+            <dd><label class="monospace">[options.axis]
+                
+                </label>
+                Axis of the carousel. Set to 'y' for a vertical carousel. Defaults to 'x'.</dd>
             <dt><code>Boolean</code></dt>
-            <dd><label class="monospace">[options.center]</label>Flag to center the carousel horizontally.</dd>
+            <dd><label class="monospace">[options.center]
+                
+                </label>
+                Flag to center the carousel horizontally.</dd>
             <dt><code>Number</code></dt>
-            <dd><label class="monospace">[options.initialPage]</label>Initial index page of the carousel. Defaults to 0.</dd>
+            <dd><label class="monospace">[options.initialPage]
+                
+                </label>
+                Initial index page of the carousel. Defaults to 0.</dd>
             <dt><code>Boolean</code></dt>
-            <dd><label class="monospace">[options.spaceAfterLastSlide]true</label>If there are not enough slides to fill the full width of the last page, leave white space. Defaults to `true`.</dd>
+            <dd><label class="monospace">[options.spaceAfterLastSlide]
+                
+                true</label>
+                If there are not enough slides to fill the full width of the last page, leave white space. Defaults to `true`.</dd>
             <dt><code>Boolean</code></dt>
-            <dd><label class="monospace">[options.swipe]</label>Enable swipe support if available. Defaults to true.</dd>
+            <dd><label class="monospace">[options.swipe]
+                
+                </label>
+                Enable swipe support if available. Defaults to true.</dd>
             <dt><code>Mixed</code></dt>
-            <dd><label class="monospace">[options.pagination]</label>Either an `<ul>` element to add pagination markup to or an `Ink.UI.Pagination` instance to use.</dd>
+            <dd><label class="monospace">[options.pagination]
+                
+                </label>
+                Either an `<ul>` element to add pagination markup to or an `Ink.UI.Pagination` instance to use.</dd>
             <dt><code>Function</code></dt>
-            <dd><label class="monospace">[options.onChange]</label>Callback to be called when the page changes.</dd>
+            <dd><label class="monospace">[options.onChange]
+                
+                </label>
+                Callback to be called when the page changes.</dd>
         </dl>
 
 <h3>Samples</h3>
@@ -104,13 +134,15 @@ site_root:  ../
 	</section>
 
     <section id="Ink_UI_Carousel_1-Ink_UI_Carousel_1-getPage" class="box box-function">
-    <h1 class="fw-300">.getPage()<i>method</i></h1><p class="text"><p>Gets the current page index</p>
+    <h1 class="fw-300">.getPage() 
+    <i>method</i></h1><p class="text"><p>Gets the current page index</p>
 </p>
 
 </section>
 
     <section id="Ink_UI_Carousel_1-Ink_UI_Carousel_1-nextPage" class="box box-function">
-    <h1 class="fw-300">.nextPage([wrap])<i>method</i></h1>
+    <h1 class="fw-300">.nextPage([wrap]) 
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">[wrap]</li>
@@ -119,13 +151,17 @@ site_root:  ../
         <h3>Accepts</h3>
         <dl class="params">
             <dt><code>Boolean</code></dt>
-            <dd><label class="monospace">[wrap]</label>Flag to loop from last page to first page.</dd>
+            <dd><label class="monospace">[wrap]
+                
+                </label>
+                Flag to loop from last page to first page.</dd>
         </dl>
 
 </section>
 
     <section id="Ink_UI_Carousel_1-Ink_UI_Carousel_1-previousPage" class="box box-function">
-    <h1 class="fw-300">.previousPage([wrap])<i>method</i></h1>
+    <h1 class="fw-300">.previousPage([wrap]) 
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">[wrap]</li>
@@ -134,20 +170,25 @@ site_root:  ../
         <h3>Accepts</h3>
         <dl class="params">
             <dt><code>Boolean</code></dt>
-            <dd><label class="monospace">[wrap]</label>Flag to loop from first page to last page.</dd>
+            <dd><label class="monospace">[wrap]
+                
+                </label>
+                Flag to loop from first page to last page.</dd>
         </dl>
 
 </section>
 
     <section id="Ink_UI_Carousel_1-Ink_UI_Carousel_1-refit" class="box box-function">
-    <h1 class="fw-300">.refit()<i>method</i></h1><p class="text"><p>Repositions elements around.
+    <h1 class="fw-300">.refit() 
+    <i>method</i></h1><p class="text"><p>Repositions elements around.
 Measure the carousel once again, adjusting the involved elements&#39; sizes. This is called automatically when the window resizes, in order to cater for changes from responsive media queries, for instance.</p>
 </p>
 
 </section>
 
     <section id="Ink_UI_Carousel_1-Ink_UI_Carousel_1-setPage" class="box box-function">
-    <h1 class="fw-300">.setPage(page, [wrap])<i>method</i></h1>
+    <h1 class="fw-300">.setPage(page, [wrap]) 
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">page</li>
@@ -157,9 +198,14 @@ Measure the carousel once again, adjusting the involved elements&#39; sizes. Thi
         <h3>Accepts</h3>
         <dl class="params">
             <dt><code>Number</code></dt>
-            <dd><label class="monospace">page</label>Index of the destination page.</dd>
+            <dd><label class="monospace">page
+                </label>
+                Index of the destination page.</dd>
             <dt><code>Boolean</code></dt>
-            <dd><label class="monospace">[wrap]</label>Flag to activate circular counting.</dd>
+            <dd><label class="monospace">[wrap]
+                
+                </label>
+                Flag to activate circular counting.</dd>
         </dl>
 
 </section>

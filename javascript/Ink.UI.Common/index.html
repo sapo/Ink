@@ -1,7 +1,7 @@
 ---
 layout: js-documentation
 title: Ink.UI.Common_1
-description: Provides the core methods to create and load all of the library modules. 
+description: Auxiliar utilities for UI Modules
 site_root:  ../
 ---
     <section>
@@ -33,7 +33,8 @@ site_root:  ../
         <ul class="unstyled"><li><a href="#Ink_UI_Common_1-Layouts">Layouts</a></li>
         
         </ul><section id="Ink_UI_Common_1-ajaxJSON" class="box box-function">
-    <h1 class="fw-300">.ajaxJSON(endpoint, params, cb)<i>function</i></h1>
+    <h1 class="fw-300">.ajaxJSON(endpoint, params, cb) 
+    <i>function</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">endpoint</li>
@@ -46,11 +47,17 @@ It offers a callback option, as third parameter, for better async handling.</p>
         <h3>Accepts</h3>
         <dl class="params">
             <dt><code>String</code></dt>
-            <dd><label class="monospace">endpoint</label>Valid URL to be used as target by the request.</dd>
+            <dd><label class="monospace">endpoint
+                </label>
+                Valid URL to be used as target by the request.</dd>
             <dt><code>Object</code></dt>
-            <dd><label class="monospace">params</label>This field is used in the thrown Exception to identify the parameter.</dd>
+            <dd><label class="monospace">params
+                </label>
+                This field is used in the thrown Exception to identify the parameter.</dd>
             <dt><code>Function</code></dt>
-            <dd><label class="monospace">cb</label>Callback for the request.</dd>
+            <dd><label class="monospace">cb
+                </label>
+                Callback for the request.</dd>
         </dl>
 <p class="example-title">Example</p>
   
@@ -63,7 +70,8 @@ It offers a callback option, as third parameter, for better async handling.</p>
 
 </section>
     <section id="Ink_UI_Common_1-childIndex" class="box box-function">
-    <h1 class="fw-300">.childIndex(childEl)<i>function</i></h1>
+    <h1 class="fw-300">.childIndex(childEl) 
+    <i>function</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">childEl</li>
@@ -72,7 +80,9 @@ It offers a callback option, as third parameter, for better async handling.</p>
         <h3>Accepts</h3>
         <dl class="params">
             <dt><code>DOMElement</code></dt>
-            <dd><label class="monospace">childEl</label>Valid DOM Element.</dd>
+            <dd><label class="monospace">childEl
+                </label>
+                Valid DOM Element.</dd>
         </dl>
         <h3>Returns</h3>
         <dl>
@@ -102,7 +112,8 @@ It offers a callback option, as third parameter, for better async handling.</p>
 
 </section>
     <section id="Ink_UI_Common_1-cleanChildren" class="box box-function">
-    <h1 class="fw-300">.cleanChildren(parentEl)<i>function</i></h1>
+    <h1 class="fw-300">.cleanChildren(parentEl) 
+    <i>function</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">parentEl</li>
@@ -112,7 +123,9 @@ This method was initially created to help solve a problem in Internet Explorer(s
         <h3>Accepts</h3>
         <dl class="params">
             <dt><code>DOMElement</code></dt>
-            <dd><label class="monospace">parentEl</label>Valid DOM Element</dd>
+            <dd><label class="monospace">parentEl
+                </label>
+                Valid DOM Element</dd>
         </dl>
 <p class="example-title">Example</p>
   
@@ -137,7 +150,8 @@ This method was initially created to help solve a problem in Internet Explorer(s
 
 </section>
     <section id="Ink_UI_Common_1-clone" class="box box-function">
-    <h1 class="fw-300">.clone(o)<i>function</i></h1>
+    <h1 class="fw-300">.clone(o) 
+    <i>function</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">o</li>
@@ -147,7 +161,9 @@ Note: The object cannot have referece loops.</p>
         <h3>Accepts</h3>
         <dl class="params">
             <dt><code>Object</code></dt>
-            <dd><label class="monospace">o</label>The object to be cloned/copied.</dd>
+            <dd><label class="monospace">o
+                </label>
+                The object to be cloned/copied.</dd>
         </dl>
         <h3>Returns</h3>
         <dl>
@@ -171,7 +187,8 @@ Note: The object cannot have referece loops.</p>
 
 </section>
     <section id="Ink_UI_Common_1-currentLayout" class="box box-function">
-    <h1 class="fw-300">.currentLayout()<i>function</i></h1><p class="text"><p>Gets the current Ink layout.</p>
+    <h1 class="fw-300">.currentLayout() 
+    <i>function</i></h1><p class="text"><p>Gets the current Ink layout.</p>
 </p>
 <p class="example-title">Example</p>
   
@@ -186,13 +203,15 @@ Note: The object cannot have referece loops.</p>
 
 </section>
     <section id="Ink_UI_Common_1-destroyComponent" class="box box-function">
-    <h1 class="fw-300">.destroyComponent()<i>function</i></h1><p class="text"><p>Boilerplate method to destroy a component.
+    <h1 class="fw-300">.destroyComponent() 
+    <i>function</i></h1><p class="text"><p>Boilerplate method to destroy a component.
 Components should copy this method as its destroy method and modify it.</p>
 </p>
 
 </section>
     <section id="Ink_UI_Common_1-elOrSelector" class="box box-function">
-    <h1 class="fw-300">.elOrSelector(elOrSelector, fieldName)<i>function</i></h1>
+    <h1 class="fw-300">.elOrSelector(elOrSelector, fieldName) 
+    <i>function</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">elOrSelector</li>
@@ -202,9 +221,13 @@ Components should copy this method as its destroy method and modify it.</p>
         <h3>Accepts</h3>
         <dl class="params">
             <dt><code>DOMElement|String</code></dt>
-            <dd><label class="monospace">elOrSelector</label>DOM Element or CSS Selector</dd>
+            <dd><label class="monospace">elOrSelector
+                </label>
+                DOM Element or CSS Selector</dd>
             <dt><code>String</code></dt>
-            <dd><label class="monospace">fieldName</label>The name of the field. Commonly used for debugging.</dd>
+            <dd><label class="monospace">fieldName
+                </label>
+                The name of the field. Commonly used for debugging.</dd>
         </dl>
         <h3>Returns</h3>
         <dl>
@@ -224,7 +247,8 @@ Components should copy this method as its destroy method and modify it.</p>
 
 </section>
     <section id="Ink_UI_Common_1-elsOrSelector" class="box box-function">
-    <h1 class="fw-300">.elsOrSelector(elOrSelector, fieldName, required)<i>function</i></h1>
+    <h1 class="fw-300">.elsOrSelector(elOrSelector, fieldName, required) 
+    <i>function</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">elOrSelector</li>
@@ -235,11 +259,17 @@ Components should copy this method as its destroy method and modify it.</p>
         <h3>Accepts</h3>
         <dl class="params">
             <dt><code>DOMElement|String</code></dt>
-            <dd><label class="monospace">elOrSelector</label>DOM Element or CSS Selector</dd>
+            <dd><label class="monospace">elOrSelector
+                </label>
+                DOM Element or CSS Selector</dd>
             <dt><code>String</code></dt>
-            <dd><label class="monospace">fieldName</label>The name of the field. Commonly used for debugging.</dd>
+            <dd><label class="monospace">fieldName
+                </label>
+                The name of the field. Commonly used for debugging.</dd>
             <dt><code>Boolean</code></dt>
-            <dd><label class="monospace">required</label>Flag to accept an empty array as output.</dd>
+            <dd><label class="monospace">required
+                </label>
+                Flag to accept an empty array as output.</dd>
         </dl>
         <h3>Returns</h3>
         <dl>
@@ -258,7 +288,8 @@ Components should copy this method as its destroy method and modify it.</p>
 
 </section>
     <section id="Ink_UI_Common_1-getInstance" class="box box-function">
-    <h1 class="fw-300">.getInstance(instanceIdOrElement)<i>function</i></h1>
+    <h1 class="fw-300">.getInstance(instanceIdOrElement) 
+    <i>function</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">instanceIdOrElement</li>
@@ -267,7 +298,9 @@ Components should copy this method as its destroy method and modify it.</p>
         <h3>Accepts</h3>
         <dl class="params">
             <dt><code>String|DOMElement</code></dt>
-            <dd><label class="monospace">instanceIdOrElement</label>Instance's id or DOM Element from which we want the instances.</dd>
+            <dd><label class="monospace">instanceIdOrElement
+                </label>
+                Instance's id or DOM Element from which we want the instances.</dd>
         </dl>
         <h3>Returns</h3>
         <dl>
@@ -279,7 +312,8 @@ Components should copy this method as its destroy method and modify it.</p>
 
 </section>
     <section id="Ink_UI_Common_1-getInstanceFromSelector" class="box box-function">
-    <h1 class="fw-300">.getInstanceFromSelector(selector)<i>function</i></h1>
+    <h1 class="fw-300">.getInstanceFromSelector(selector) 
+    <i>function</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">selector</li>
@@ -288,7 +322,9 @@ Components should copy this method as its destroy method and modify it.</p>
         <h3>Accepts</h3>
         <dl class="params">
             <dt><code>String</code></dt>
-            <dd><label class="monospace">selector</label>CSS selector to get the instances from.</dd>
+            <dd><label class="monospace">selector
+                </label>
+                CSS selector to get the instances from.</dd>
         </dl>
         <h3>Returns</h3>
         <dl>
@@ -300,17 +336,20 @@ Components should copy this method as its destroy method and modify it.</p>
 
 </section>
     <section id="Ink_UI_Common_1-getInstanceIds" class="box box-function">
-    <h1 class="fw-300">.getInstanceIds()<i>function</i></h1><p class="text"><p>Gets all the instance ids</p>
+    <h1 class="fw-300">.getInstanceIds() 
+    <i>function</i></h1><p class="text"><p>Gets all the instance ids</p>
 </p>
 
 </section>
     <section id="Ink_UI_Common_1-getInstances" class="box box-function">
-    <h1 class="fw-300">.getInstances()<i>function</i></h1><p class="text"><p>Gets all the instances</p>
+    <h1 class="fw-300">.getInstances() 
+    <i>function</i></h1><p class="text"><p>Gets all the instances</p>
 </p>
 
 </section>
     <section id="Ink_UI_Common_1-hashSet" class="box box-function">
-    <h1 class="fw-300">.hashSet(o)<i>function</i></h1>
+    <h1 class="fw-300">.hashSet(o) 
+    <i>function</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">o</li>
@@ -319,7 +358,9 @@ Components should copy this method as its destroy method and modify it.</p>
         <h3>Accepts</h3>
         <dl class="params">
             <dt><code>Object</code></dt>
-            <dd><label class="monospace">o</label>Object with the info to be placed in the location's hash.</dd>
+            <dd><label class="monospace">o
+                </label>
+                Object with the info to be placed in the location's hash.</dd>
         </dl>
 <p class="example-title">Example</p>
   
@@ -336,7 +377,8 @@ Components should copy this method as its destroy method and modify it.</p>
 
 </section>
     <section id="Ink_UI_Common_1-isDOMElement" class="box box-function">
-    <h1 class="fw-300">.isDOMElement(o)<i>function</i></h1>
+    <h1 class="fw-300">.isDOMElement(o) 
+    <i>function</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">o</li>
@@ -345,7 +387,9 @@ Components should copy this method as its destroy method and modify it.</p>
         <h3>Accepts</h3>
         <dl class="params">
             <dt><code>Mixed</code></dt>
-            <dd><label class="monospace">o</label>The object to be checked.</dd>
+            <dd><label class="monospace">o
+                </label>
+                The object to be checked.</dd>
         </dl>
         <h3>Returns</h3>
         <dl>
@@ -369,7 +413,8 @@ Components should copy this method as its destroy method and modify it.</p>
 
 </section>
     <section id="Ink_UI_Common_1-isInteger" class="box box-function">
-    <h1 class="fw-300">.isInteger(n)<i>function</i></h1>
+    <h1 class="fw-300">.isInteger(n) 
+    <i>function</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">n</li>
@@ -378,7 +423,9 @@ Components should copy this method as its destroy method and modify it.</p>
         <h3>Accepts</h3>
         <dl class="params">
             <dt><code>Mixed</code></dt>
-            <dd><label class="monospace">n</label>The value to be checked.</dd>
+            <dd><label class="monospace">n
+                </label>
+                The value to be checked.</dd>
         </dl>
         <h3>Returns</h3>
         <dl>
@@ -402,7 +449,8 @@ Components should copy this method as its destroy method and modify it.</p>
 
 </section>
     <section id="Ink_UI_Common_1-options" class="box box-function">
-    <h1 class="fw-300">.options([fieldId], defaults, overrides, [element])<i>function</i></h1>
+    <h1 class="fw-300">.options([fieldId], defaults, overrides, [element]) 
+    <i>function</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">[fieldId]</li>
@@ -415,13 +463,23 @@ Components should copy this method as its destroy method and modify it.</p>
         <h3>Accepts</h3>
         <dl class="params">
             <dt><code>Object</code></dt>
-            <dd><label class="monospace">[fieldId]</label>Name to be used in debugging features.</dd>
+            <dd><label class="monospace">[fieldId]
+                
+                </label>
+                Name to be used in debugging features.</dd>
             <dt><code>Object</code></dt>
-            <dd><label class="monospace">defaults</label>Object with the options' types and defaults.</dd>
+            <dd><label class="monospace">defaults
+                </label>
+                Object with the options' types and defaults.</dd>
             <dt><code>Object</code></dt>
-            <dd><label class="monospace">overrides</label>Options to override the defaults. Usually passed when instantiating an UI module.</dd>
+            <dd><label class="monospace">overrides
+                </label>
+                Options to override the defaults. Usually passed when instantiating an UI module.</dd>
             <dt><code>DOMElement</code></dt>
-            <dd><label class="monospace">[element]</label>Element with data-attributes</dd>
+            <dd><label class="monospace">[element]
+                
+                </label>
+                Element with data-attributes</dd>
         </dl>
 <p class="example-title">Example</p>
   
@@ -469,7 +527,8 @@ Options which go to default:
 
 </section>
     <section id="Ink_UI_Common_1-registerInstance" class="box box-function">
-    <h1 class="fw-300">.registerInstance(inst, el, [optionalPrefix])<i>function</i></h1>
+    <h1 class="fw-300">.registerInstance(inst, el, [optionalPrefix]) 
+    <i>function</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">inst</li>
@@ -480,16 +539,24 @@ Options which go to default:
         <h3>Accepts</h3>
         <dl class="params">
             <dt><code>Object</code></dt>
-            <dd><label class="monospace">inst</label>Object that holds the instance.</dd>
+            <dd><label class="monospace">inst
+                </label>
+                Object that holds the instance.</dd>
             <dt><code>DOMElement</code></dt>
-            <dd><label class="monospace">el</label>DOM Element to associate with the object.</dd>
+            <dd><label class="monospace">el
+                </label>
+                DOM Element to associate with the object.</dd>
             <dt><code>Object</code></dt>
-            <dd><label class="monospace">[optionalPrefix]</label>Defaults to 'instance'</dd>
+            <dd><label class="monospace">[optionalPrefix]
+                
+                </label>
+                Defaults to 'instance'</dd>
         </dl>
 
 </section>
     <section id="Ink_UI_Common_1-restoreIdAndClasses" class="box box-function">
-    <h1 class="fw-300">.restoreIdAndClasses(toEl, inObj)<i>function</i></h1>
+    <h1 class="fw-300">.restoreIdAndClasses(toEl, inObj) 
+    <i>function</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">toEl</li>
@@ -499,9 +566,13 @@ Options which go to default:
         <h3>Accepts</h3>
         <dl class="params">
             <dt><code>DOMElement</code></dt>
-            <dd><label class="monospace">toEl</label>Valid DOM Element to set the id and classes on.</dd>
+            <dd><label class="monospace">toEl
+                </label>
+                Valid DOM Element to set the id and classes on.</dd>
             <dt><code>Object</code></dt>
-            <dd><label class="monospace">inObj</label>Object where the id and classes to be set are. This method uses the same format as the one given in `storeIdAndClasses`</dd>
+            <dd><label class="monospace">inObj
+                </label>
+                Object where the id and classes to be set are. This method uses the same format as the one given in `storeIdAndClasses`</dd>
         </dl>
 <p class="example-title">Example</p>
   
@@ -525,7 +596,8 @@ Options which go to default:
 
 </section>
     <section id="Ink_UI_Common_1-storeIdAndClasses" class="box box-function">
-    <h1 class="fw-300">.storeIdAndClasses(fromEl, inObj)<i>function</i></h1>
+    <h1 class="fw-300">.storeIdAndClasses(fromEl, inObj) 
+    <i>function</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">fromEl</li>
@@ -535,9 +607,13 @@ Options which go to default:
         <h3>Accepts</h3>
         <dl class="params">
             <dt><code>DOMElement</code></dt>
-            <dd><label class="monospace">fromEl</label>Valid DOM Element to get the id and classes from.</dd>
+            <dd><label class="monospace">fromEl
+                </label>
+                Valid DOM Element to get the id and classes from.</dd>
             <dt><code>Object</code></dt>
-            <dd><label class="monospace">inObj</label>Object where the id and classes will be saved.</dd>
+            <dd><label class="monospace">inObj
+                </label>
+                Object where the id and classes will be saved.</dd>
         </dl>
 <p class="example-title">Example</p>
   
@@ -559,7 +635,8 @@ Options which go to default:
 
 </section>
     <section id="Ink_UI_Common_1-unregisterInstance" class="box box-function">
-    <h1 class="fw-300">.unregisterInstance(id)<i>function</i></h1>
+    <h1 class="fw-300">.unregisterInstance(id) 
+    <i>function</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">id</li>
@@ -568,7 +645,9 @@ Options which go to default:
         <h3>Accepts</h3>
         <dl class="params">
             <dt><code>String</code></dt>
-            <dd><label class="monospace">id</label>Id of the instance to be destroyed.</dd>
+            <dd><label class="monospace">id
+                </label>
+                Id of the instance to be destroyed.</dd>
         </dl>
 
 </section>

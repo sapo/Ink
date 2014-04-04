@@ -1,6 +1,6 @@
 /**
- * @module Ink.Util.Validator_1
  * Validation Utilities
+ * @module Ink.Util.Validator_1
  * @version 1
  */
  

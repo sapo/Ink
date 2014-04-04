@@ -1,4 +1,5 @@
-/**
+/** 
+ * Autoload Modules with data attributes
  * @module Ink.Autoload
  * @version 1
  */

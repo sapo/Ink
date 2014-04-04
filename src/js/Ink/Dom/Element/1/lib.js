@@ -1,7 +1,7 @@
 /**
+ * DOM Traversal and manipulation
  * @module Ink.Dom.Element_1
  * @version 1
- * DOM Traversal and manipulation
  */
 
 Ink.createModule('Ink.Dom.Element', 1, [], function() {
