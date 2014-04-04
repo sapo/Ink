@@ -635,6 +635,7 @@
                 html {
                     &:after {
                         content: '{"name":"#{$class-name}", "size":{"min":"#{$minimum-width}","max":"#{$maximum-width}"}}';
+                        display: none;
                     }
                     font-size: $base-font-size;
                 }
@@ -646,6 +647,7 @@
                 html {
                     &:after {
                         content: '{"name":"#{$class-name}", "size":{"min":"#{$minimum-width}","max":"#{$maximum-width}"}}';
+                        display: none;
                     }
                     font-size: $base-font-size;
                 }
@@ -657,6 +659,7 @@
                 html {
                     &:after {
                         content: '{"name":"#{$class-name}", "size":{"min":"#{$minimum-width}","max":"#{$maximum-width}"}}';
+                        display: none;
                     }
                     font-size: $base-font-size;
                 }
