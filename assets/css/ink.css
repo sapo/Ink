@@ -127,8 +127,6 @@
  *    user zoom.
  */
 html {
-  font-family: sans-serif;
-  /* 1 */
   -ms-text-size-adjust: 100%;
   /* 2 */
   -webkit-text-size-adjust: 100%;
@@ -5356,7 +5354,8 @@ th {
     font-size: 1.08em;
   }
   html:after {
-    font-family: '{"name":"xlarge",{"min":"1261px","max":""}}';
+    content: '{"name":"xlarge", "size":{"min":"1261px","max":""}}';
+    display: none;
   }
 }
 @media screen and (min-width: 961px) and (max-width: 1260px) {
@@ -5364,7 +5363,8 @@ th {
     font-size: 1.05em;
   }
   html:after {
-    font-family: '{"name":"large",{"min":"961px","max":"1260px"}}';
+    content: '{"name":"large", "size":{"min":"961px","max":"1260px"}}';
+    display: none;
   }
 }
 @media screen and (min-width: 641px) and (max-width: 960px) {
@@ -5372,7 +5372,8 @@ th {
     font-size: 1em;
   }
   html:after {
-    font-family: '{"name":"medium",{"min":"641px","max":"960px"}}';
+    content: '{"name":"medium", "size":{"min":"641px","max":"960px"}}';
+    display: none;
   }
 }
 @media screen and (min-width: 321px) and (max-width: 640px) {
@@ -5380,7 +5381,8 @@ th {
     font-size: 0.98em;
   }
   html:after {
-    font-family: '{"name":"small",{"min":"321px","max":"640px"}}';
+    content: '{"name":"small", "size":{"min":"321px","max":"640px"}}';
+    display: none;
   }
 }
 @media screen and (max-width: 320px) {
@@ -5388,7 +5390,8 @@ th {
     font-size: 0.97em;
   }
   html:after {
-    font-family: '{"name":"tiny",{"min":"","max":"320px"}}';
+    content: '{"name":"tiny", "size":{"min":"","max":"320px"}}';
+    display: none;
   }
 }
 .ink-label {
@@ -5436,15 +5439,11 @@ th {
   display: none;
 }
 
-.ink-dropdown,
-.ink-navigation {
-  position: relative;
-}
 .ink-dropdown ul.dropdown-menu,
 .ink-dropdown ul.dropdown,
 .ink-navigation ul.dropdown-menu,
 .ink-navigation ul.dropdown {
-  position: absolute;
+  display: inline-block;
   background: white;
   z-index: 30;
   border: 1px solid #d9d9d9;
@@ -8233,7 +8232,7 @@ body.ink-drawer.over.right .right-drawer {
   margin: 0 0 -2px 0;
 }
 .ink-tabs.top > .tabs-nav li.active a {
-  border-bottom: none;
+  border-bottom-color: transparent;
 }
 .ink-tabs.bottom > .tabs-nav {
   border-top: 1px solid #cccccc;
@@ -8253,7 +8252,7 @@ body.ink-drawer.over.right .right-drawer {
   margin: -2px 0 0 0;
 }
 .ink-tabs.bottom > .tabs-nav li.active a {
-  border-top: none;
+  border-top-color: transparent;
 }
 .ink-tabs.left > .tabs-nav {
   border-right: 1px solid #cccccc;
@@ -8276,7 +8275,7 @@ body.ink-drawer.over.right .right-drawer {
   margin: 0 -2px 0 0;
 }
 .ink-tabs.left > .tabs-nav li.active a {
-  border-right: none;
+  border-right-color: transparent;
 }
 .ink-tabs.right > .tabs-nav {
   border-left: 1px solid #cccccc;
@@ -8298,7 +8297,7 @@ body.ink-drawer.over.right .right-drawer {
   margin: 0 0 0 -2px;
 }
 .ink-tabs.right > .tabs-nav li.active a {
-  border-left: none;
+  border-left-color: transparent;
 }
 
 .ink-tagfield input[type="text"].new-tag-input {
@@ -8337,6 +8336,157 @@ body.ink-drawer.over.right .right-drawer {
 .ink-tagfield span.ink-tag i.icon-remove:hover {
   cursor: pointer;
   color: red;
+}
+
+.ink-tooltip {
+  display: inline-block;
+  position: relative;
+}
+.ink-tooltip > .content {
+  background: #f0f0f0;
+  padding: 0.5em 0.6em;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+  font-size: 0.8em;
+  color: #8c8c8c;
+}
+.ink-tooltip > .arrow {
+  position: absolute;
+}
+.ink-tooltip > .arrow.up, .ink-tooltip > .arrow.down, .ink-tooltip > .arrow.left, .ink-tooltip > .arrow.right {
+  width: 0;
+  height: 0;
+}
+.ink-tooltip > .arrow.up {
+  border-left: 0.4em solid transparent;
+  border-right: 0.4em solid transparent;
+  border-bottom: 0.4em solid #f0f0f0;
+  top: -0.4em;
+  left: 50%;
+  margin-left: -0.2em;
+}
+.ink-tooltip > .arrow.down {
+  border-left: 0.4em solid transparent;
+  border-right: 0.4em solid transparent;
+  border-top: 0.4em solid #f0f0f0;
+  bottom: -0.36364em;
+  left: 50%;
+  margin-left: -0.2em;
+}
+.ink-tooltip > .arrow.right {
+  border-top: 0.4em solid transparent;
+  border-bottom: 0.4em solid transparent;
+  border-left: 0.4em solid #f0f0f0;
+  top: 50%;
+  right: -0.36364em;
+  margin-top: -0.4em;
+}
+.ink-tooltip > .arrow.left {
+  border-top: 0.4em solid transparent;
+  border-bottom: 0.4em solid transparent;
+  border-right: 0.4em solid #f0f0f0;
+  top: 50%;
+  left: -0.36364em;
+  margin-top: -0.4em;
+}
+.ink-tooltip.blue > .content {
+  background: #0f75da;
+  color: white;
+}
+.ink-tooltip.blue > .arrow.up {
+  border-bottom-color: #0f75da;
+}
+.ink-tooltip.blue > .arrow.down {
+  border-top-color: #0f75da;
+}
+.ink-tooltip.blue > .arrow.left {
+  border-right-color: #0f75da;
+}
+.ink-tooltip.blue > .arrow.right {
+  border-left-color: #0f75da;
+}
+.ink-tooltip.red > .content {
+  background: #c91111;
+  color: white;
+}
+.ink-tooltip.red > .arrow.up {
+  border-bottom-color: #c91111;
+}
+.ink-tooltip.red > .arrow.down {
+  border-top-color: #c91111;
+}
+.ink-tooltip.red > .arrow.left {
+  border-right-color: #c91111;
+}
+.ink-tooltip.red > .arrow.right {
+  border-left-color: #c91111;
+}
+.ink-tooltip.orange > .content {
+  background: #ff9c00;
+  color: white;
+}
+.ink-tooltip.orange > .arrow.up {
+  border-bottom-color: #ff9c00;
+}
+.ink-tooltip.orange > .arrow.down {
+  border-top-color: #ff9c00;
+}
+.ink-tooltip.orange > .arrow.left {
+  border-right-color: #ff9c00;
+}
+.ink-tooltip.orange > .arrow.right {
+  border-left-color: #ff9c00;
+}
+.ink-tooltip.green > .content {
+  background: #4a9b17;
+  color: white;
+}
+.ink-tooltip.green > .arrow.up {
+  border-bottom-color: #4a9b17;
+}
+.ink-tooltip.green > .arrow.down {
+  border-top-color: #4a9b17;
+}
+.ink-tooltip.green > .arrow.left {
+  border-right-color: #4a9b17;
+}
+.ink-tooltip.green > .arrow.right {
+  border-left-color: #4a9b17;
+}
+.ink-tooltip.black > .content {
+  background: black;
+  color: white;
+}
+.ink-tooltip.black > .arrow.up {
+  border-bottom-color: black;
+}
+.ink-tooltip.black > .arrow.down {
+  border-top-color: black;
+}
+.ink-tooltip.black > .arrow.left {
+  border-right-color: black;
+}
+.ink-tooltip.black > .arrow.right {
+  border-left-color: black;
+}
+.ink-tooltip.grey > .content {
+  background: #cccccc;
+  color: #333333;
+}
+.ink-tooltip.grey > .arrow.up {
+  border-bottom-color: #cccccc;
+}
+.ink-tooltip.grey > .arrow.down {
+  border-top-color: #cccccc;
+}
+.ink-tooltip.grey > .arrow.left {
+  border-right-color: #cccccc;
+}
+.ink-tooltip.grey > .arrow.right {
+  border-left-color: #cccccc;
 }
 
 .ink-tree-view li {

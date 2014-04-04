@@ -1,15 +1,71 @@
-<p></p>
+{% capture demo_code %}
+<ul id="myTree1" class="ink-tree-view">
+	<li data-open="true"><a href="#">root</a>
+		<ul>
+			<li><a href="#">child 1</a></li>
+			<li><a href="#">child 2</a>
+				<ul>
+					<li><a href="#">grandchild 2a</a></li>
+					<li><a href="#">grandchild 2b</a>
+						<ul>
+							<li><a href="#">grandgrandchild 1bA</a></li>
+							<li><a href="#">grandgrandchild 1bB</a></li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+			<li><a href="#">child 3</a></li>
+		</ul>
+	</li>
+</ul>
+<script>
+	Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.TreeView_1'], function( Selector, TreeView ){
+		var treeViewElement = Ink.s('#myTree1');
+		var treeViewObj = new TreeView( treeViewElement );
+	});
+</script>
+{% endcapture %}
+{% capture data_demo %}
+<ul id="myTree2" class="ink-tree-view" data-open-class="fa fa-folder-open" data-closed-class="fa fa-folder">
+	<li data-open="true"><a href="#">root</a>
+		<ul>
+			<li><a href="#">child 1</a></li>
+			<li><a href="#">child 2</a>
+				<ul>
+					<li><a href="#">grandchild 2a</a></li>
+					<li><a href="#">grandchild 2b</a>
+						<ul>
+							<li><a href="#">grandgrandchild 1bA</a></li>
+							<li><a href="#">grandgrandchild 1bB</a></li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+			<li><a href="#">child 3</a></li>
+		</ul>
+	</li>
+</ul>
+<script>
+	Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.TreeView_1'], function( Selector, TreeView ){
+		var treeViewElement = Ink.s('#myTree2');
+		var treeViewObj = new TreeView( treeViewElement );
+	});
+</script>
+{% endcapture %}
 
+
+<p>Default usage</p>
+<p class="example-title">Demo</p>
+{{ demo_code }}
 <p class="example-title">Code</p>
 {% highlight html %}
-
-<style>
-</style>
-
-<script>
-    Ink.requireModules( ['Ink.UI.Spy_1'], function( Spy ){
-        new Spy(sections[i], { target: myMenu });
-    });
-</script>
+{{ demo_code }}
 {% endhighlight %}
 
+<p>Usage with data-attributes</p>
+<p class="example-title">Demo</p>
+{{ data_demo }}
+<p class="example-title">Code</p>
+{% highlight html %}
+{{ data_demo }}
+{% endhighlight %}

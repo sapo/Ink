@@ -624,8 +624,8 @@
     @each $breakpoint in $breakpoints {
 
         $class-name: nth($breakpoint,1);
-        $minimum-width: nth($breakpoint,2);
         $maximum-width: nth($breakpoint,3);
+        $minimum-width: nth($breakpoint,2);
         $gutter-width: nth($breakpoint,4);
         $base-font-size: nth($breakpoint,5);
         $no-media-query: nth($breakpoint,6);
@@ -634,7 +634,8 @@
             @media screen and (min-width: $minimum-width) {
                 html {
                     &:after {
-                        font-family: '{"name":"#{$class-name}",{"min":"#{$minimum-width}","max":"#{$maximum-width}"}}';
+                        content: '{"name":"#{$class-name}", "size":{"min":"#{$minimum-width}","max":"#{$maximum-width}"}}';
+                        display: none;
                     }
                     font-size: $base-font-size;
                 }
@@ -645,7 +646,8 @@
             @media screen and (min-width: $minimum-width) and (max-width: $maximum-width) {
                 html {
                     &:after {
-                        font-family: '{"name":"#{$class-name}",{"min":"#{$minimum-width}","max":"#{$maximum-width}"}}';
+                        content: '{"name":"#{$class-name}", "size":{"min":"#{$minimum-width}","max":"#{$maximum-width}"}}';
+                        display: none;
                     }
                     font-size: $base-font-size;
                 }
@@ -656,7 +658,8 @@
             @media screen and (max-width: $maximum-width) {
                 html {
                     &:after {
-                        font-family: '{"name":"#{$class-name}",{"min":"#{$minimum-width}","max":"#{$maximum-width}"}}';
+                        content: '{"name":"#{$class-name}", "size":{"min":"#{$minimum-width}","max":"#{$maximum-width}"}}';
+                        display: none;
                     }
                     font-size: $base-font-size;
                 }

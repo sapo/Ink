@@ -648,11 +648,10 @@
 
         @if $minimum-width and not $maximum-width {
             @media screen and (min-width: $minimum-width) {
-                body {
+                html {
                     &:after {
                         content: '{"name":"#{$class-name}", "size":{"min":"#{$minimum-width}","max":"#{$maximum-width}"}}';
-                        color: transparent;
-                        font-size: 0;
+                        display: none;
                     }
                     font-size: $base-font-size;
                 }
@@ -661,11 +660,10 @@
 
         @if $minimum-width and $maximum-width {
             @media screen and (min-width: $minimum-width) and (max-width: $maximum-width) {
-                body {
+                html {
                     &:after {
                         content: '{"name":"#{$class-name}", "size":{"min":"#{$minimum-width}","max":"#{$maximum-width}"}}';
-                        color: transparent;
-                        font-size: 0;
+                        display: none;
                     }
                     font-size: $base-font-size;
                 }
@@ -674,11 +672,10 @@
 
         @if not $minimum-width and $maximum-width {
             @media screen and (max-width: $maximum-width) {
-                body {
+                html {
                     &:after {
                         content: '{"name":"#{$class-name}", "size":{"min":"#{$minimum-width}","max":"#{$maximum-width}"}}';
-                        color: transparent;
-                        font-size: 0;
+                        display: none;
                     }
                     font-size: $base-font-size;
                 }
@@ -703,7 +700,7 @@
             .#{$class-name}-33 {
                 width: 33.33333%;
                 //@include experimental(flex-basis, 33.33333%, -moz, -webkit, not -o, -ms, not -khtml, official);
-                //@include experimental(flex-grow, 0, not -moz, -webkit, not -o, -ms, not -khtml, official);
+                @include experimental(flex-grow, 0, not -moz, -webkit, not -o, -ms, not -khtml, official);
             }
         }
 
@@ -712,7 +709,7 @@
             .#{$class-name}-66 {
                 width: 66.66666%;
                 //@include experimental(flex-basis, 66.66666%, -moz, -webkit, not -o, -ms, not -khtml, official);
-                //@include experimental(flex-grow, 0, not -moz, -webkit, not -o, -ms, not -khtml, official);
+                @include experimental(flex-grow, 0, not -moz, -webkit, not -o, -ms, not -khtml, official);
             }
         }
 
@@ -720,7 +717,7 @@
         .#{$class-name}-#{$i} {
             width: $i * 1%;
             //@include experimental(flex-basis, $i * 1%, -moz, -webkit, not -o, -ms, not -khtml, official);
-            //@include experimental(flex-grow, 0, not -moz, -webkit, not -o, -ms, not -khtml, official);
+            @include experimental(flex-grow, 0, not -moz, -webkit, not -o, -ms, not -khtml, official);
         }
 
         // increment the counter
@@ -756,7 +753,7 @@
             .all-33 {
                 width: 33.33333%;
                 //@include experimental(flex-basis, 33.33333%, -moz, -webkit, not -o, -ms, not -khtml, official);
-                //@include experimental(flex-grow, 0, not -moz, -webkit, not -o, -ms, not -khtml, official);
+                @include experimental(flex-grow, 0, not -moz, -webkit, not -o, -ms, not -khtml, official);
             }
         }
 
@@ -765,7 +762,7 @@
             .all-66 {
                 width: 66.66666%;
                 //@include experimental(flex-basis, 66.66666%, -moz, -webkit, not -o, -ms, not -khtml, official);
-                //@include experimental(flex-grow, 0, not -moz, -webkit, not -o, -ms, not -khtml, official);
+                @include experimental(flex-grow, 0, not -moz, -webkit, not -o, -ms, not -khtml, official);
             }
         }
 
@@ -773,7 +770,7 @@
         .all-#{$i} {
             width: $i * 1%;
             //@include experimental(flex-basis, $i * 1%, -moz, -webkit, not -o, -ms, not -khtml, official);
-            //@include experimental(flex-grow, 0, not -moz, -webkit, not -o, -ms, not -khtml, official);
+            @include experimental(flex-grow, 0, not -moz, -webkit, not -o, -ms, not -khtml, official);
         }
 
         // increment the counter
