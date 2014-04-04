@@ -5357,6 +5357,7 @@ th {
   }
   html:after {
     content: '{"name":"xlarge", "size":{"min":"1261px","max":""}}';
+    display: none;
   }
 }
 @media screen and (min-width: 961px) and (max-width: 1260px) {
@@ -5365,6 +5366,7 @@ th {
   }
   html:after {
     content: '{"name":"large", "size":{"min":"961px","max":"1260px"}}';
+    display: none;
   }
 }
 @media screen and (min-width: 641px) and (max-width: 960px) {
@@ -5373,6 +5375,7 @@ th {
   }
   html:after {
     content: '{"name":"medium", "size":{"min":"641px","max":"960px"}}';
+    display: none;
   }
 }
 @media screen and (min-width: 321px) and (max-width: 640px) {
@@ -5381,6 +5384,7 @@ th {
   }
   html:after {
     content: '{"name":"small", "size":{"min":"321px","max":"640px"}}';
+    display: none;
   }
 }
 @media screen and (max-width: 320px) {
@@ -5389,6 +5393,7 @@ th {
   }
   html:after {
     content: '{"name":"tiny", "size":{"min":"","max":"320px"}}';
+    display: none;
   }
 }
 .ink-label {
