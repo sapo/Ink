@@ -1,7 +1,7 @@
 ---
 layout: js-documentation
 title: Ink.UI.Droppable_1
-description: Provides the core methods to create and load all of the library modules. 
+description: Drop elements around
 site_root:  ../
 ---
     <section>
@@ -21,19 +21,19 @@ site_root:  ../
                 <td>
                     <a href="#Ink_UI_Droppable_1-Ink_UI_Droppable-add">.add</a>
                 </td>
-                <td>Makes an element droppable.<br>This method adds it to the stack of droppable elements.<br>Can consider it a constructor of droppable elements, but where no Droppable object is returned.<br><br></td>
+                <td>Makes an element droppable.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_Droppable_1-Ink_UI_Droppable-remove">.remove</a>
                 </td>
-                <td><br></td>
+                <td>Removes an element from the droppable stack and removes the droppable behavior</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_Droppable_1-Ink_UI_Droppable-update">.update</a>
                 </td>
-                <td><br></td>
+                <td>Updates location and size of droppable element</td>
             </tr></tbody>
     </table>
     
@@ -42,7 +42,8 @@ site_root:  ../
 
 
     <section id="Ink_UI_Droppable_1-Ink_UI_Droppable-add" class="box box-function">
-    <h1 class="fw-300">.add(element, [options], )<i>method</i></h1>
+    <h1 class="fw-300">.add(element, [options], ) 
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">element</li>
@@ -60,19 +61,39 @@ Can consider it a constructor of droppable elements, but where no Droppable obje
         <h3>Accepts</h3>
         <dl class="params">
             <dt><code>String|DOMElement</code></dt>
-            <dd><label class="monospace">element</label>Target element</dd>
+            <dd><label class="monospace">element
+                </label>
+                Target element</dd>
             <dt><code>Object</code></dt>
-            <dd><label class="monospace">[options]</label>Options object</dd>
+            <dd><label class="monospace">[options]
+                
+                </label>
+                Options object</dd>
             <dt><code>String</code></dt>
-            <dd><label class="monospace">[options.hoverClass]</label>Classname(s) applied when an acceptable draggable element is hovering the element</dd>
+            <dd><label class="monospace">[options.hoverClass]
+                
+                </label>
+                Classname(s) applied when an acceptable draggable element is hovering the element</dd>
             <dt><code>String</code></dt>
-            <dd><label class="monospace">[options.accept]</label>Selector for choosing draggables which can be dropped in this droppable.</dd>
+            <dd><label class="monospace">[options.accept]
+                
+                </label>
+                Selector for choosing draggables which can be dropped in this droppable.</dd>
             <dt><code>Function</code></dt>
-            <dd><label class="monospace">[options.onHover]</label>Callback when an acceptable draggable element is hovering the droppable. Gets the draggable and the droppable element as parameters.</dd>
+            <dd><label class="monospace">[options.onHover]
+                
+                </label>
+                Callback when an acceptable draggable element is hovering the droppable. Gets the draggable and the droppable element as parameters.</dd>
             <dt><code>Function|String</code></dt>
-            <dd><label class="monospace">[options.onDrop]</label>Callback when an acceptable draggable element is dropped. Gets the draggable, the droppable and the event as parameters.</dd>
+            <dd><label class="monospace">[options.onDrop]
+                
+                </label>
+                Callback when an acceptable draggable element is dropped. Gets the draggable, the droppable and the event as parameters.</dd>
             <dt><code>Function|String</code></dt>
-            <dd><label class="monospace">[options.onDropOut]</label>Callback when a droppable is dropped outside this droppable. Gets the draggable, the droppable and the event as parameters. (see above for string options).</dd>
+            <dd><label class="monospace">[options.onDropOut]
+                
+                </label>
+                Callback when a droppable is dropped outside this droppable. Gets the draggable, the droppable and the event as parameters. (see above for string options).</dd>
         </dl>
 
 <h3>Samples</h3>
@@ -80,7 +101,8 @@ Can consider it a constructor of droppable elements, but where no Droppable obje
 	</section>
 
     <section id="Ink_UI_Droppable_1-Ink_UI_Droppable-remove" class="box box-function">
-    <h1 class="fw-300">.remove(elOrSelector)<i>method</i></h1>
+    <h1 class="fw-300">.remove(elOrSelector) 
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">elOrSelector</li>
@@ -89,7 +111,9 @@ Can consider it a constructor of droppable elements, but where no Droppable obje
         <h3>Accepts</h3>
         <dl class="params">
             <dt><code>String|DOMElement</code></dt>
-            <dd><label class="monospace">elOrSelector</label>Droppable element to disable.</dd>
+            <dd><label class="monospace">elOrSelector
+                </label>
+                Droppable element to disable.</dd>
         </dl>
         <h3>Returns</h3>
         <dl>
@@ -102,7 +126,8 @@ Can consider it a constructor of droppable elements, but where no Droppable obje
 </section>
 
     <section id="Ink_UI_Droppable_1-Ink_UI_Droppable-update" class="box box-function">
-    <h1 class="fw-300">.update(element)<i>method</i></h1>
+    <h1 class="fw-300">.update(element) 
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">element</li>
@@ -111,7 +136,9 @@ Can consider it a constructor of droppable elements, but where no Droppable obje
         <h3>Accepts</h3>
         <dl class="params">
             <dt><code>String|DOMElement</code></dt>
-            <dd><label class="monospace">element</label>Target element</dd>
+            <dd><label class="monospace">element
+                </label>
+                Target element</dd>
         </dl>
 
 </section>

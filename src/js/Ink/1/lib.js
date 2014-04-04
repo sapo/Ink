@@ -1,6 +1,6 @@
 /**
- * @module Ink_1
  * Ink Core.
+ * @module Ink_1
  * This module provides the necessary methods to create and load the modules using Ink.
  */
 

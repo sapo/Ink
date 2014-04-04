@@ -1,7 +1,7 @@
 /**
+ * Browser Detection and User Agent sniffing
  * @module Ink.Dom.Browser_1
  * @version 1
- * Browser Detection and User Agent sniffing
  */
 Ink.createModule('Ink.Dom.Browser', '1', [], function() {
     'use strict';    

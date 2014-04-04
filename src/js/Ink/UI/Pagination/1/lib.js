@@ -1,6 +1,6 @@
 /**
- * @module Ink.UI.Pagination_1
  * Pagination elements
+ * @module Ink.UI.Pagination_1
  * @version 1
  */
  

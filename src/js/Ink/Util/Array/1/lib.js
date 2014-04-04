@@ -1,6 +1,6 @@
 /**
- * @module Ink.Util.Array_1
  * Array Utilities
+ * @module Ink.Util.Array_1
  * @version 1
  */
 

@@ -1,6 +1,6 @@
 /**
- * @module Ink.UI.Stacker_1
  * Stacking items in columns
+ * @module Ink.UI.Stacker_1
  * @version 1
  **/
 

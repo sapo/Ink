@@ -1,7 +1,7 @@
 ---
 layout: js-documentation
 title: Ink.UI.FormValidator_1
-description: Provides the core methods to create and load all of the library modules. 
+description: Form Validation
 site_root:  ../
 ---
     <section>
@@ -21,13 +21,13 @@ site_root:  ../
                 <td>
                     <a href="#Ink_UI_FormValidator_1-Ink_UI_FormValidator-reset">.reset</a>
                 </td>
-                <td><br></td>
+                <td>Resets previously generated validation errors</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_FormValidator_1-Ink_UI_FormValidator-validate">.validate</a>
                 </td>
-                <td><br></td>
+                <td>Checks if a form is valid</td>
             </tr></tbody>
     </table>
     
@@ -94,13 +94,15 @@ true/false specifying if it has the class ink-fv-confirm.</p>
 
 
     <section id="Ink_UI_FormValidator_1-Ink_UI_FormValidator-reset" class="box box-function">
-    <h1 class="fw-300">.reset()<i>method</i></h1><p class="text"><p>Resets previously generated validation errors</p>
+    <h1 class="fw-300">.reset() 
+    <i>method</i></h1><p class="text"><p>Resets previously generated validation errors</p>
 </p>
 
 </section>
 
     <section id="Ink_UI_FormValidator_1-Ink_UI_FormValidator-validate" class="box box-function">
-    <h1 class="fw-300">.validate(elm, options, )<i>method</i></h1>
+    <h1 class="fw-300">.validate(elm, options, ) 
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">elm</li>
@@ -113,15 +115,28 @@ true/false specifying if it has the class ink-fv-confirm.</p>
         <h3>Accepts</h3>
         <dl class="params">
             <dt><code>DOMElement|String</code></dt>
-            <dd><label class="monospace">elm</label>DOM form element or form id</dd>
+            <dd><label class="monospace">elm
+                </label>
+                DOM form element or form id</dd>
             <dt><code>Object</code></dt>
-            <dd><label class="monospace">options</label>Configuration options</dd>
+            <dd><label class="monospace">options
+                </label>
+                Configuration options</dd>
             <dt><code>Function</code></dt>
-            <dd><label class="monospace">[options.onSuccess]</label>Callback to run when form is valid</dd>
+            <dd><label class="monospace">[options.onSuccess]
+                
+                </label>
+                Callback to run when form is valid</dd>
             <dt><code>Function</code></dt>
-            <dd><label class="monospace">[options.onError]</label>Callback to run when form is not valid</dd>
+            <dd><label class="monospace">[options.onError]
+                
+                </label>
+                Callback to run when form is not valid</dd>
             <dt><code>Array</code></dt>
-            <dd><label class="monospace">[options.customFlag]</label>Custom flags to use to validate form fields</dd>
+            <dd><label class="monospace">[options.customFlag]
+                
+                </label>
+                Custom flags to use to validate form fields</dd>
         </dl>
         <h3>Returns</h3>
         <dl>

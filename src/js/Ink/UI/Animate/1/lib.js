@@ -1,6 +1,6 @@
 /**
- * @module Ink.UI.Animate_1
  * Animate.css Utility
+ * @module Ink.UI.Animate_1
  * @version 1
  */
 

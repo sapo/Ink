@@ -1,6 +1,6 @@
 /**
- * @module Ink.UI.TreeView_1
  * Elements in a tree structure
+ * @module Ink.UI.TreeView_1
  * @version 1
  */
 Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Common, Event, Css, Element, Selector, InkArray ) {

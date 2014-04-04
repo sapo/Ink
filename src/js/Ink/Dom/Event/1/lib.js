@@ -1,7 +1,7 @@
 /**
+ * Event management
  * @module Ink.Dom.Event_1
  * @version 1
- * Event management
  */
 
 Ink.createModule('Ink.Dom.Event', 1, [], function() {

@@ -1,14 +1,13 @@
 ---
 layout: js-documentation
 title: Ink.UI.ProgressBar_1
-description: Provides the core methods to create and load all of the library modules. 
+description: Animated progress bars
 site_root:  ../
 ---
     <section>
         <h1 class="fw-300">Ink.UI.ProgressBar_1<small>version:1</small></h1>
 
-<p><p>Associated to a .ink-progress-bar element, it provides a setValue() method to change the element&#39;s value.</p>
-</p>
+<p>Associated to a .ink-progress-bar element, it provides a setValue() method to change the element&#39;s value.<br></p>
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p><table class="props bottom-space">
         <caption>Methods</caption>
         <thead>
@@ -21,15 +20,15 @@ site_root:  ../
         <tbody>
             <tr>
                 <td>
-                    <a href="#Ink_UI_ProgressBar_1-Ink_UI_ProgressBar-ProgressBar">Ink.UI.ProgressBar</a>
+                    <a href="#Ink_UI_ProgressBar_1-Ink_UI_ProgressBar-ProgressBar"><em>(constructor)</em></a>
                 </td>
-                <td></td>
+                <td><span class="ink-label green">Constructor</span></td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_ProgressBar_1-Ink_UI_ProgressBar-setValue">.setValue</a>
                 </td>
-                <td><br></td>
+                <td>Sets the value of the Progressbar</td>
             </tr></tbody>
     </table>
     
@@ -38,7 +37,8 @@ site_root:  ../
 
 
     <section id="Ink_UI_ProgressBar_1-Ink_UI_ProgressBar-ProgressBar" class="box box-function">
-    <h1 class="fw-300">Ink.UI.ProgressBar(selector, [options], )<i>constructor</i></h1>
+    <h1 class="fw-300">Ink.UI.ProgressBar(selector, [options], ) 
+    <i>constructor</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">selector</li>
@@ -50,15 +50,29 @@ site_root:  ../
         <h3>Accepts</h3>
         <dl class="params">
             <dt><code>String|DOMElement</code></dt>
-            <dd><label class="monospace">selector</label>Element or selector</dd>
+            <dd><label class="monospace">selector
+                </label>
+                Element or selector</dd>
             <dt><code>Object</code></dt>
-            <dd><label class="monospace">[options]</label>Options object</dd>
+            <dd><label class="monospace">[options]
+                
+                </label>
+                Options object</dd>
             <dt><code>Number</code></dt>
-            <dd><label class="monospace">[options.startValue]</label>Percentage of the bar that is filled. Ranges between 0 and 100. Default: 0</dd>
+            <dd><label class="monospace">[options.startValue]
+                
+                </label>
+                Percentage of the bar that is filled. Ranges between 0 and 100. Default: 0</dd>
             <dt><code>Function</code></dt>
-            <dd><label class="monospace">[options.onStart]</label>Callback called when a change of value is started</dd>
+            <dd><label class="monospace">[options.onStart]
+                
+                </label>
+                Callback called when a change of value is started</dd>
             <dt><code>Function</code></dt>
-            <dd><label class="monospace">[options.onEnd]</label>Callback called when a change of value ends</dd>
+            <dd><label class="monospace">[options.onEnd]
+                
+                </label>
+                Callback called when a change of value ends</dd>
         </dl>
 
 <h3>Samples</h3>
@@ -66,7 +80,8 @@ site_root:  ../
 	</section>
 
     <section id="Ink_UI_ProgressBar_1-Ink_UI_ProgressBar-setValue" class="box box-function">
-    <h1 class="fw-300">.setValue(newValue)<i>method</i></h1>
+    <h1 class="fw-300">.setValue(newValue) 
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">newValue</li>
@@ -75,7 +90,9 @@ site_root:  ../
         <h3>Accepts</h3>
         <dl class="params">
             <dt><code>Number</code></dt>
-            <dd><label class="monospace">newValue</label>Numeric value, between 0 and 100, that represents the percentage of the bar.</dd>
+            <dd><label class="monospace">newValue
+                </label>
+                Numeric value, between 0 and 100, that represents the percentage of the bar.</dd>
         </dl>
 
 </section>

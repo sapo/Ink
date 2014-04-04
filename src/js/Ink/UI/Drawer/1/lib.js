@@ -1,6 +1,6 @@
 /**
- * @module Ink.UI.Drawer_1
  * Off-canvas menu
+ * @module Ink.UI.Drawer_1
  * @version 1
  */
  

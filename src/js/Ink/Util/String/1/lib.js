@@ -1,6 +1,6 @@
 /**
- * @module Ink.Util.String_1
  * String Utilities
+ * @module Ink.Util.String_1
  * @version 1
  */
 

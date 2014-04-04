@@ -1,17 +1,13 @@
 ---
 layout: js-documentation
 title: Ink.UI.Tooltip_1
-description: Provides the core methods to create and load all of the library modules. 
+description: Content Tooltips
 site_root:  ../
 ---
     <section>
         <h1 class="fw-300">Ink.UI.Tooltip_1<small>version:1</small></h1>
 
-<p><p>Tooltips are useful as a means to display information about functionality while avoiding clutter.</p>
-<p>Tooltips show up when you hover elements which &quot;have&quot; tooltips.</p>
-<p>This class will &quot;give&quot; a tooltip to many elements, selected by its first argument (<code>target</code>). This is contrary to the other UI modules in Ink, which are created once per element.</p>
-<p>You can define options either through the second argument of the Tooltip constructor, or as data-attributes in each <code>target</code> element. Options set through data-attributes all start with &quot;data-tip&quot;, and override options passed into the Tooltip constructor.</p>
-</p>
+<p>Tooltips are useful as a means to display information about functionality while avoiding clutter.<br><p>Tooltips show up when you hover elements which &quot;have&quot; tooltips.</p><br><p>This class will &quot;give&quot; a tooltip to many elements, selected by its first argument (<code>target</code>). This is contrary to the other UI modules in Ink, which are created once per element.</p><br><p>You can define options either through the second argument of the Tooltip constructor, or as data-attributes in each <code>target</code> element. Options set through data-attributes all start with &quot;data-tip&quot;, and override options passed into the Tooltip constructor.</p><br></p>
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p><table class="props bottom-space">
         <caption>Methods</caption>
         <thead>
@@ -24,15 +20,15 @@ site_root:  ../
         <tbody>
             <tr>
                 <td>
-                    <a href="#Ink_UI_Tooltip_1-Ink_UI_Tooltip-Tooltip">Ink.UI.Tooltip</a>
+                    <a href="#Ink_UI_Tooltip_1-Ink_UI_Tooltip-Tooltip"><em>(constructor)</em></a>
                 </td>
-                <td></td>
+                <td><span class="ink-label green">Constructor</span></td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_Tooltip_1-Ink_UI_Tooltip-destroy">.destroy</a>
                 </td>
-                <td><br></td>
+                <td>Destroys the tooltips created by this instance</td>
             </tr></tbody>
     </table>
     
@@ -41,7 +37,8 @@ site_root:  ../
 
 
     <section id="Ink_UI_Tooltip_1-Ink_UI_Tooltip-Tooltip" class="box box-function">
-    <h1 class="fw-300">Ink.UI.Tooltip(target, [options], )<i>constructor</i></h1>
+    <h1 class="fw-300">Ink.UI.Tooltip(target, [options], ) 
+    <i>constructor</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">target</li>
@@ -63,35 +60,79 @@ site_root:  ../
         <h3>Accepts</h3>
         <dl class="params">
             <dt><code>DOMElement|String</code></dt>
-            <dd><label class="monospace">target</label>Target element or selector of elements, to display the tooltips on.</dd>
+            <dd><label class="monospace">target
+                </label>
+                Target element or selector of elements, to display the tooltips on.</dd>
             <dt><code>Object</code></dt>
-            <dd><label class="monospace">[options]</label>Options object</dd>
+            <dd><label class="monospace">[options]
+                
+                </label>
+                Options object</dd>
             <dt><code>String</code></dt>
-            <dd><label class="monospace">[options.text]</label>Text content for the tooltip.</dd>
+            <dd><label class="monospace">[options.text]
+                
+                </label>
+                Text content for the tooltip.</dd>
             <dt><code>String</code></dt>
-            <dd><label class="monospace">[options.html]</label>HTML for the tooltip. Same as above, but won't escape HTML.</dd>
+            <dd><label class="monospace">[options.html]
+                
+                </label>
+                HTML for the tooltip. Same as above, but won't escape HTML.</dd>
             <dt><code>String</code></dt>
-            <dd><label class="monospace">[options.where]</label>Positioning for the tooltip. Options are 'up', 'down', 'left', 'right', 'mousemove' (follows the cursor), and 'mousefix' (stays fixed). Defaults to 'up'.</dd>
+            <dd><label class="monospace">[options.where]
+                
+                </label>
+                Positioning for the tooltip. Options are 'up', 'down', 'left', 'right', 'mousemove' (follows the cursor), and 'mousefix' (stays fixed). Defaults to 'up'.</dd>
             <dt><code>String</code></dt>
-            <dd><label class="monospace">[options.color]</label>Color of the tooltip. Options are red, orange, blue, green and black. Default is white.</dd>
+            <dd><label class="monospace">[options.color]
+                
+                </label>
+                Color of the tooltip. Options are red, orange, blue, green and black. Default is white.</dd>
             <dt><code>Number</code></dt>
-            <dd><label class="monospace">[options.fade]</label>Number of seconds to fade in/out. Defaults to 0.3.</dd>
+            <dd><label class="monospace">[options.fade]
+                
+                </label>
+                Number of seconds to fade in/out. Defaults to 0.3.</dd>
             <dt><code>Boolean</code></dt>
-            <dd><label class="monospace">[options.forever]</label>Flag to prevent the tooltip from being erased when the mouse hovers away from the target.</dd>
+            <dd><label class="monospace">[options.forever]
+                
+                </label>
+                Flag to prevent the tooltip from being erased when the mouse hovers away from the target.</dd>
             <dt><code>Number</code></dt>
-            <dd><label class="monospace">[options.timeout]</label>Number of seconds the tooltip will stay open. Useful together with options.forever. Defaults to 0.</dd>
+            <dd><label class="monospace">[options.timeout]
+                
+                </label>
+                Number of seconds the tooltip will stay open. Useful together with options.forever. Defaults to 0.</dd>
             <dt><code>Number</code></dt>
-            <dd><label class="monospace">[options.delay]</label>Time the tooltip waits until it is displayed. Useful to avoid getting the attention of the user unnecessarily</dd>
+            <dd><label class="monospace">[options.delay]
+                
+                </label>
+                Time the tooltip waits until it is displayed. Useful to avoid getting the attention of the user unnecessarily</dd>
             <dt><code>DOMElement|Selector</code></dt>
-            <dd><label class="monospace">[options.template]</label>Element or selector containing HTML to be cloned into the tooltips. Can be a hidden element, because CSS `display` is set to `block`.</dd>
+            <dd><label class="monospace">[options.template]
+                
+                </label>
+                Element or selector containing HTML to be cloned into the tooltips. Can be a hidden element, because CSS `display` is set to `block`.</dd>
             <dt><code>String</code></dt>
-            <dd><label class="monospace">[options.templatefield]</label>Selector within the template element to choose where the text is inserted into the tooltip. Useful when a wrapper DIV is required.</dd>
+            <dd><label class="monospace">[options.templatefield]
+                
+                </label>
+                Selector within the template element to choose where the text is inserted into the tooltip. Useful when a wrapper DIV is required.</dd>
             <dt><code>Number</code></dt>
-            <dd><label class="monospace">[options.left]</label>Spacing from the target to the tooltip, when `where` is `mousemove` or `mousefix`. Defaults to 10.</dd>
+            <dd><label class="monospace">[options.left]
+                
+                </label>
+                Spacing from the target to the tooltip, when `where` is `mousemove` or `mousefix`. Defaults to 10.</dd>
             <dt><code>Number</code></dt>
-            <dd><label class="monospace">[options.top]</label>Spacing from the target to the tooltip, when `where` is `mousemove` or `mousefix`. Defaults to 10.</dd>
+            <dd><label class="monospace">[options.top]
+                
+                </label>
+                Spacing from the target to the tooltip, when `where` is `mousemove` or `mousefix`. Defaults to 10.</dd>
             <dt><code>Number</code></dt>
-            <dd><label class="monospace">[options.spacing]</label>Spacing between the tooltip and the target element, when `where` is not `mousemove` or `mousefix`. Defaults to 8.</dd>
+            <dd><label class="monospace">[options.spacing]
+                
+                </label>
+                Spacing between the tooltip and the target element, when `where` is not `mousemove` or `mousefix`. Defaults to 8.</dd>
         </dl>
 
 <h3>Samples</h3>
@@ -99,7 +140,8 @@ site_root:  ../
 	</section>
 
     <section id="Ink_UI_Tooltip_1-Ink_UI_Tooltip-destroy" class="box box-function">
-    <h1 class="fw-300">.destroy()<i>method</i></h1><p class="text"><p>Destroys the tooltips created by this instance</p>
+    <h1 class="fw-300">.destroy() 
+    <i>method</i></h1><p class="text"><p>Destroys the tooltips created by this instance</p>
 </p>
 
 </section>

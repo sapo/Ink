@@ -1,17 +1,13 @@
 ---
 layout: js-documentation
 title: Ink.UI.TreeView_1
-description: Provides the core methods to create and load all of the library modules. 
+description: Elements in a tree structure
 site_root:  ../
 ---
     <section>
         <h1 class="fw-300">Ink.UI.TreeView_1<small>version:1</small></h1>
 
-<p><p>Shows elements in a tree structure which can be expanded and contracted.
-A TreeView is built with &quot;node&quot;s and &quot;children&quot;. &quot;node&quot;s are <code>li</code> tags, and &quot;children&quot; are <code>ul</code> tags.
-You can build your TreeView out of a regular UL and  LI element structure which you already use to display lists with several levels.
-If you want a node to be open when the TreeView is built, just add the data-open=&quot;true&quot; attribute to it.</p>
-</p>
+<p>Shows elements in a tree structure which can be expanded and contracted.<br>A TreeView is built with &quot;node&quot;s and &quot;children&quot;. &quot;node&quot;s are <code>li</code> tags, and &quot;children&quot; are <code>ul</code> tags.<br>You can build your TreeView out of a regular UL and  LI element structure which you already use to display lists with several levels.<br>If you want a node to be open when the TreeView is built, just add the data-open=&quot;true&quot; attribute to it.<br></p>
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p><table class="props bottom-space">
         <caption>Methods</caption>
         <thead>
@@ -24,39 +20,39 @@ If you want a node to be open when the TreeView is built, just add the data-open
         <tbody>
             <tr>
                 <td>
-                    <a href="#Ink_UI_TreeView_1-Ink_UI_TreeView-TreeView">Ink.UI.TreeView</a>
+                    <a href="#Ink_UI_TreeView_1-Ink_UI_TreeView-TreeView"><em>(constructor)</em></a>
                 </td>
-                <td></td>
+                <td><span class="ink-label green">Constructor</span></td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_TreeView_1-Ink_UI_TreeView-close">.close</a>
                 </td>
-                <td><br><br></td>
+                <td>Closes one of the tree nodes</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_TreeView_1-Ink_UI_TreeView-isOpen">.isOpen</a>
                 </td>
-                <td><br></td>
+                <td>Checks if a node is open.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_TreeView_1-Ink_UI_TreeView-isParent">.isParent</a>
                 </td>
-                <td><br></td>
+                <td>Checks if a node is a parent.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_TreeView_1-Ink_UI_TreeView-open">.open</a>
                 </td>
-                <td><br><br></td>
+                <td>Opens one of the tree nodes</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_TreeView_1-Ink_UI_TreeView-toggle">.toggle</a>
                 </td>
-                <td><br></td>
+                <td>Toggles a node state</td>
             </tr></tbody>
     </table>
     
@@ -65,7 +61,8 @@ If you want a node to be open when the TreeView is built, just add the data-open
 
 
     <section id="Ink_UI_TreeView_1-Ink_UI_TreeView-TreeView" class="box box-function">
-    <h1 class="fw-300">Ink.UI.TreeView(selector, [options], )<i>constructor</i></h1>
+    <h1 class="fw-300">Ink.UI.TreeView(selector, [options], ) 
+    <i>constructor</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">selector</li>
@@ -82,25 +79,54 @@ If you want a node to be open when the TreeView is built, just add the data-open
         <h3>Accepts</h3>
         <dl class="params">
             <dt><code>String|DOMElement</code></dt>
-            <dd><label class="monospace">selector</label>Element or selector.</dd>
+            <dd><label class="monospace">selector
+                </label>
+                Element or selector.</dd>
             <dt><code>String</code></dt>
-            <dd><label class="monospace">[options]</label>Options object, containing:</dd>
+            <dd><label class="monospace">[options]
+                
+                </label>
+                Options object, containing:</dd>
             <dt><code>String</code></dt>
-            <dd><label class="monospace">[options.node]</label>Selector for the nodes. Defaults to 'li'.</dd>
+            <dd><label class="monospace">[options.node]
+                
+                </label>
+                Selector for the nodes. Defaults to 'li'.</dd>
             <dt><code>String</code></dt>
-            <dd><label class="monospace">[options.children]</label>Selector for the children. Defaults to 'ul'.</dd>
+            <dd><label class="monospace">[options.children]
+                
+                </label>
+                Selector for the children. Defaults to 'ul'.</dd>
             <dt><code>String</code></dt>
-            <dd><label class="monospace">[options.parentClass]</label>CSS classes to be added to parent nodes. Defaults to 'parent'.</dd>
+            <dd><label class="monospace">[options.parentClass]
+                
+                </label>
+                CSS classes to be added to parent nodes. Defaults to 'parent'.</dd>
             <dt><code>String</code></dt>
-            <dd><label class="monospace">[options.openClass]</label>CSS classes to be added to the icon when a parent is open. Defaults to 'fa fa-minus-circle'.</dd>
+            <dd><label class="monospace">[options.openClass]
+                
+                </label>
+                CSS classes to be added to the icon when a parent is open. Defaults to 'fa fa-minus-circle'.</dd>
             <dt><code>String</code></dt>
-            <dd><label class="monospace">[options.closedClass]</label>CSS classes to be added to the icon when a parent is closed. Defaults to 'fa fa-plus-circle'.</dd>
+            <dd><label class="monospace">[options.closedClass]
+                
+                </label>
+                CSS classes to be added to the icon when a parent is closed. Defaults to 'fa fa-plus-circle'.</dd>
             <dt><code>String</code></dt>
-            <dd><label class="monospace">[options.hideClass]</label>CSS Class to toggle visibility of the children. Defaults to 'hide-all'.</dd>
+            <dd><label class="monospace">[options.hideClass]
+                
+                </label>
+                CSS Class to toggle visibility of the children. Defaults to 'hide-all'.</dd>
             <dt><code>String</code></dt>
-            <dd><label class="monospace">[options.iconTag]</label>The name of icon tag. The component tries to find a tag with that name as a direct child of the node. If it doesn't find it, it creates it. Defaults to 'i'.</dd>
+            <dd><label class="monospace">[options.iconTag]
+                
+                </label>
+                The name of icon tag. The component tries to find a tag with that name as a direct child of the node. If it doesn't find it, it creates it. Defaults to 'i'.</dd>
             <dt><code>Boolean</code></dt>
-            <dd><label class="monospace">[options.stopDefault]</label>Flag to stops the default behavior of the click handler. Defaults to true.</dd>
+            <dd><label class="monospace">[options.stopDefault]
+                
+                </label>
+                Flag to stops the default behavior of the click handler. Defaults to true.</dd>
         </dl>
 <p class="example-title">Example</p>
   
@@ -140,7 +166,8 @@ If you want a node to be open when the TreeView is built, just add the data-open
 	</section>
 
     <section id="Ink_UI_TreeView_1-Ink_UI_TreeView-close" class="box box-function">
-    <h1 class="fw-300">.close(node)<i>method</i></h1>
+    <h1 class="fw-300">.close(node) 
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">node</li>
@@ -150,13 +177,16 @@ If you want a node to be open when the TreeView is built, just add the data-open
         <h3>Accepts</h3>
         <dl class="params">
             <dt><code>DOMElement</code></dt>
-            <dd><label class="monospace">node</label>The node you wish to close.</dd>
+            <dd><label class="monospace">node
+                </label>
+                The node you wish to close.</dd>
         </dl>
 
 </section>
 
     <section id="Ink_UI_TreeView_1-Ink_UI_TreeView-isOpen" class="box box-function">
-    <h1 class="fw-300">.isOpen(node)<i>method</i></h1>
+    <h1 class="fw-300">.isOpen(node) 
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">node</li>
@@ -165,13 +195,16 @@ If you want a node to be open when the TreeView is built, just add the data-open
         <h3>Accepts</h3>
         <dl class="params">
             <dt><code>DOMElement</code></dt>
-            <dd><label class="monospace">node</label>The tree node to check</dd>
+            <dd><label class="monospace">node
+                </label>
+                The tree node to check</dd>
         </dl>
 
 </section>
 
     <section id="Ink_UI_TreeView_1-Ink_UI_TreeView-isParent" class="box box-function">
-    <h1 class="fw-300">.isParent(node)<i>method</i></h1>
+    <h1 class="fw-300">.isParent(node) 
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">node</li>
@@ -180,13 +213,16 @@ If you want a node to be open when the TreeView is built, just add the data-open
         <h3>Accepts</h3>
         <dl class="params">
             <dt><code>DOMElement</code></dt>
-            <dd><label class="monospace">node</label>Node to check</dd>
+            <dd><label class="monospace">node
+                </label>
+                Node to check</dd>
         </dl>
 
 </section>
 
     <section id="Ink_UI_TreeView_1-Ink_UI_TreeView-open" class="box box-function">
-    <h1 class="fw-300">.open(node)<i>method</i></h1>
+    <h1 class="fw-300">.open(node) 
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">node</li>
@@ -196,13 +232,16 @@ If you want a node to be open when the TreeView is built, just add the data-open
         <h3>Accepts</h3>
         <dl class="params">
             <dt><code>DOMElement</code></dt>
-            <dd><label class="monospace">node</label>The node you wish to open.</dd>
+            <dd><label class="monospace">node
+                </label>
+                The node you wish to open.</dd>
         </dl>
 
 </section>
 
     <section id="Ink_UI_TreeView_1-Ink_UI_TreeView-toggle" class="box box-function">
-    <h1 class="fw-300">.toggle(node)<i>method</i></h1>
+    <h1 class="fw-300">.toggle(node) 
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">node</li>
@@ -211,7 +250,9 @@ If you want a node to be open when the TreeView is built, just add the data-open
         <h3>Accepts</h3>
         <dl class="params">
             <dt><code>DOMElement</code></dt>
-            <dd><label class="monospace">node</label>The node to toggle.</dd>
+            <dd><label class="monospace">node
+                </label>
+                The node to toggle.</dd>
         </dl>
 
 </section>

@@ -1,14 +1,13 @@
 ---
 layout: js-documentation
 title: Ink.Net.Ajax_1
-description: Provides the core methods to create and load all of the library modules. 
+description: Cross Browser Ajax requests
 site_root:  ../
 ---
     <section>
         <h1 class="fw-300">Ink.Net.Ajax_1<small>version:1</small></h1>
 
-<p><p>Creates a new XMLHttpRequest object</p>
-</p>
+<p>Creates a new XMLHttpRequest object<br></p>
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p><table class="props bottom-space">
         <caption>Methods</caption>
         <thead>
@@ -21,117 +20,117 @@ site_root:  ../
         <tbody>
             <tr>
                 <td>
-                    <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-Ajax">Ink.Net.Ajax</a>
+                    <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-Ajax"><em>(constructor)</em></a>
                 </td>
-                <td></td>
+                <td><span class="ink-label green">Constructor</span></td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-abort">.abort</a>
                 </td>
-                <td><br></td>
+                <td>Aborts the request if still running. No callbacks are called</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-evalJSON">.evalJSON</a>
                 </td>
-                <td><br></td>
+                <td>Evaluates a given string as JSON</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-finish">.finish</a>
                 </td>
-                <td><br></td>
+                <td>Last step after XHR is complete. Call onComplete and cleanup object</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-getAllHeaders">.getAllHeaders</a>
                 </td>
-                <td><br></td>
+                <td>Gets all the HTTP headers from the response</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-getHeader">.getHeader</a>
                 </td>
-                <td><br></td>
+                <td>Gets an HTTP header from the response</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-getResponse">.getResponse</a>
                 </td>
-                <td><br></td>
+                <td>Sets the response object</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-getTransport">.getTransport</a>
                 </td>
-                <td><br></td>
+                <td>Creates the appropriate XMLHttpRequest object</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-isJSON">.isJSON</a>
                 </td>
-                <td><br></td>
+                <td>Checks if a given string is valid JSON</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-load">.load</a>
                 </td>
-                <td><br><br></td>
+                <td>Loads content from a given url through an XMLHttpRequest.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-makeError">.makeError</a>
                 </td>
-                <td><br></td>
+                <td>Returns a new exception object that can be thrown</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-paramsObjToStr">.paramsObjToStr</a>
                 </td>
-                <td><br></td>
+                <td>Converts an object with parameters to a querystring</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-ping">.ping</a>
                 </td>
-                <td>Loads content from a given url through an XMLHttpRequest.<br>Shortcut function for simple AJAX use cases.<br></td>
+                <td>Loads content from a given url through an XMLHttpRequest.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-request">.request</a>
                 </td>
-                <td><br></td>
+                <td>Executes the request</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-runStateChange">.runStateChange</a>
                 </td>
-                <td><br></td>
+                <td>Executes the state changing phase of an ajax request</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-safeCall">.safeCall</a>
                 </td>
-                <td>Safely calls a callback function.<br>Verifies that the callback is well defined and traps errors<br></td>
+                <td>Safely calls a callback function.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-setHeaders">.setHeaders</a>
                 </td>
-                <td><br></td>
+                <td>Set the necessary headers for an ajax request</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-setParams">.setParams</a>
                 </td>
-                <td><br></td>
+                <td>Set the url parameters for a GET request</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-setRequestHeader">.setRequestHeader</a>
                 </td>
-                <td><br></td>
+                <td>Sets a new request header for the next http request</td>
             </tr></tbody>
     </table>
     
@@ -140,7 +139,8 @@ site_root:  ../
 
 
     <section id="Ink_Net_Ajax_1-Ink_Net_Ajax-Ajax" class="box box-function">
-    <h1 class="fw-300">Ink.Net.Ajax(url, options, )<i>constructor</i></h1>
+    <h1 class="fw-300">Ink.Net.Ajax(url, options, ) 
+    <i>constructor</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">url</li>
@@ -168,47 +168,108 @@ site_root:  ../
         <h3>Accepts</h3>
         <dl class="params">
             <dt><code>String</code></dt>
-            <dd><label class="monospace">url</label>Request URL</dd>
+            <dd><label class="monospace">url
+                </label>
+                Request URL</dd>
             <dt><code>Object</code></dt>
-            <dd><label class="monospace">options</label>Request options</dd>
+            <dd><label class="monospace">options
+                </label>
+                Request options</dd>
             <dt><code>Boolean</code></dt>
-            <dd><label class="monospace">[options.asynchronous]true</label>If false, the request synchronous.</dd>
+            <dd><label class="monospace">[options.asynchronous]
+                
+                true</label>
+                If false, the request synchronous.</dd>
             <dt><code>Boolean</code></dt>
-            <dd><label class="monospace">[options.cors]</label>Flag to activate CORS. Set this to true if you're doing a cross-origin request</dd>
+            <dd><label class="monospace">[options.cors]
+                
+                </label>
+                Flag to activate CORS. Set this to true if you're doing a cross-origin request</dd>
             <dt><code>String</code></dt>
-            <dd><label class="monospace">[options.method]&#x27;POST&#x27;</label>HTTP request method. POST by default.</dd>
+            <dd><label class="monospace">[options.method]
+                
+                &#x27;POST&#x27;</label>
+                HTTP request method. POST by default.</dd>
             <dt><code>Object|String</code></dt>
-            <dd><label class="monospace">[options.parameters]</label>Request parameters to be sent with the request</dd>
+            <dd><label class="monospace">[options.parameters]
+                
+                </label>
+                Request parameters to be sent with the request</dd>
             <dt><code>Number</code></dt>
-            <dd><label class="monospace">[options.timeout]</label>Request timeout in seconds</dd>
+            <dd><label class="monospace">[options.timeout]
+                
+                </label>
+                Request timeout in seconds</dd>
             <dt><code>Number</code></dt>
-            <dd><label class="monospace">[options.delay]</label>Artificial delay. If the request is completed faster than this delay, wait the remaining time before executing the callbacks</dd>
+            <dd><label class="monospace">[options.delay]
+                
+                </label>
+                Artificial delay. If the request is completed faster than this delay, wait the remaining time before executing the callbacks</dd>
             <dt><code>String</code></dt>
-            <dd><label class="monospace">[options.postBody]</label>POST request body. If not specified, it's filled with the contents from parameters</dd>
+            <dd><label class="monospace">[options.postBody]
+                
+                </label>
+                POST request body. If not specified, it's filled with the contents from parameters</dd>
             <dt><code>String</code></dt>
-            <dd><label class="monospace">[options.contentType]</label>Content-type header to be sent. Defaults to 'application/x-www-form-urlencoded'</dd>
+            <dd><label class="monospace">[options.contentType]
+                
+                </label>
+                Content-type header to be sent. Defaults to 'application/x-www-form-urlencoded'</dd>
             <dt><code>Object</code></dt>
-            <dd><label class="monospace">[options.requestHeaders]</label>Key-value pairs for additional request headers</dd>
+            <dd><label class="monospace">[options.requestHeaders]
+                
+                </label>
+                Key-value pairs for additional request headers</dd>
             <dt><code>Function</code></dt>
-            <dd><label class="monospace">[options.onComplete]</label>Callback executed after the request is completed, regardless of what happened during the request.</dd>
+            <dd><label class="monospace">[options.onComplete]
+                
+                </label>
+                Callback executed after the request is completed, regardless of what happened during the request.</dd>
             <dt><code>Function</code></dt>
-            <dd><label class="monospace">[options.onSuccess]</label>Callback executed if the request is successful (requests with 2xx status codes)</dd>
+            <dd><label class="monospace">[options.onSuccess]
+                
+                </label>
+                Callback executed if the request is successful (requests with 2xx status codes)</dd>
             <dt><code>Function</code></dt>
-            <dd><label class="monospace">[options.onFailure]</label>Callback executed if the request fails (requests with status codes different from 2xx)</dd>
+            <dd><label class="monospace">[options.onFailure]
+                
+                </label>
+                Callback executed if the request fails (requests with status codes different from 2xx)</dd>
             <dt><code>Function</code></dt>
-            <dd><label class="monospace">[options.onException]</label>Callback executed if an exception occurs. Receives the exception as a parameter.</dd>
+            <dd><label class="monospace">[options.onException]
+                
+                </label>
+                Callback executed if an exception occurs. Receives the exception as a parameter.</dd>
             <dt><code>Function</code></dt>
-            <dd><label class="monospace">[options.onCreate]</label>Callback executed after object initialization but before the request is made</dd>
+            <dd><label class="monospace">[options.onCreate]
+                
+                </label>
+                Callback executed after object initialization but before the request is made</dd>
             <dt><code>Function</code></dt>
-            <dd><label class="monospace">[options.onInit]</label>Callback executed before any initialization</dd>
+            <dd><label class="monospace">[options.onInit]
+                
+                </label>
+                Callback executed before any initialization</dd>
             <dt><code>Function</code></dt>
-            <dd><label class="monospace">[options.onTimeout]</label>Callback executed if the request times out</dd>
+            <dd><label class="monospace">[options.onTimeout]
+                
+                </label>
+                Callback executed if the request times out</dd>
             <dt><code>Boolean|String</code></dt>
-            <dd><label class="monospace">[options.evalJS]true</label>If the request Content-type header is application/json, evaluates the response and populates responseJSON. Use 'force' if you want to force the response evaluation, no matter what Content-type it's using.</dd>
+            <dd><label class="monospace">[options.evalJS]
+                
+                true</label>
+                If the request Content-type header is application/json, evaluates the response and populates responseJSON. Use 'force' if you want to force the response evaluation, no matter what Content-type it's using.</dd>
             <dt><code>Boolean</code></dt>
-            <dd><label class="monospace">[options.sanitizeJSON]</label>Flag to sanitize the content of responseText before evaluation</dd>
+            <dd><label class="monospace">[options.sanitizeJSON]
+                
+                </label>
+                Flag to sanitize the content of responseText before evaluation</dd>
             <dt><code>String</code></dt>
-            <dd><label class="monospace">[options.xhrProxy]</label>URI for proxy service hosted on the same server as the web app, that can fetch documents from other domains. The service must pipe all input and output untouched (some input sanitization is allowed, like clearing cookies). e.g., requesting http://example.org/doc can become /proxy/http%3A%2F%2Fexample.org%2Fdoc The proxy service will be used for cross-domain requests, if set, else a network error is returned as exception.</dd>
+            <dd><label class="monospace">[options.xhrProxy]
+                
+                </label>
+                URI for proxy service hosted on the same server as the web app, that can fetch documents from other domains. The service must pipe all input and output untouched (some input sanitization is allowed, like clearing cookies). e.g., requesting http://example.org/doc can become /proxy/http%3A%2F%2Fexample.org%2Fdoc The proxy service will be used for cross-domain requests, if set, else a network error is returned as exception.</dd>
         </dl>
 <p class="example-title">Example</p>
   
@@ -231,13 +292,15 @@ site_root:  ../
 </section>
 
     <section id="Ink_Net_Ajax_1-Ink_Net_Ajax-abort" class="box box-function">
-    <h1 class="fw-300">.abort()<i>method</i></h1><p class="text"><p>Aborts the request if still running. No callbacks are called</p>
+    <h1 class="fw-300">.abort() 
+    <i>method</i></h1><p class="text"><p>Aborts the request if still running. No callbacks are called</p>
 </p>
 
 </section>
 
     <section id="Ink_Net_Ajax_1-Ink_Net_Ajax-evalJSON" class="box box-function">
-    <h1 class="fw-300">.evalJSON(str, sanitize)<i>method</i></h1>
+    <h1 class="fw-300">.evalJSON(str, sanitize) 
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">str</li>
@@ -247,9 +310,13 @@ site_root:  ../
         <h3>Accepts</h3>
         <dl class="params">
             <dt><code>String</code></dt>
-            <dd><label class="monospace">str</label>String to be evaluated</dd>
+            <dd><label class="monospace">str
+                </label>
+                String to be evaluated</dd>
             <dt><code>Boolean</code></dt>
-            <dd><label class="monospace">sanitize</label>Flag to sanitize the content</dd>
+            <dd><label class="monospace">sanitize
+                </label>
+                Flag to sanitize the content</dd>
         </dl>
         <h3>Returns</h3>
         <dl>
@@ -262,7 +329,8 @@ site_root:  ../
 </section>
 
     <section id="Ink_Net_Ajax_1-Ink_Net_Ajax-finish" class="box box-function">
-    <h1 class="fw-300">.finish(response, responseContent)<i>method</i></h1>
+    <h1 class="fw-300">.finish(response, responseContent) 
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">response</li>
@@ -272,21 +340,27 @@ site_root:  ../
         <h3>Accepts</h3>
         <dl class="params">
             <dt><code>Any</code></dt>
-            <dd><label class="monospace">response</label></dd>
+            <dd><label class="monospace">response
+                </label>
+                </dd>
             <dt><code>Any</code></dt>
-            <dd><label class="monospace">responseContent</label></dd>
+            <dd><label class="monospace">responseContent
+                </label>
+                </dd>
         </dl>
 
 </section>
 
     <section id="Ink_Net_Ajax_1-Ink_Net_Ajax-getAllHeaders" class="box box-function">
-    <h1 class="fw-300">.getAllHeaders()<i>method</i></h1><p class="text"><p>Gets all the HTTP headers from the response</p>
+    <h1 class="fw-300">.getAllHeaders() 
+    <i>method</i></h1><p class="text"><p>Gets all the HTTP headers from the response</p>
 </p>
 
 </section>
 
     <section id="Ink_Net_Ajax_1-Ink_Net_Ajax-getHeader" class="box box-function">
-    <h1 class="fw-300">.getHeader(name)<i>method</i></h1>
+    <h1 class="fw-300">.getHeader(name) 
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">name</li>
@@ -295,7 +369,9 @@ site_root:  ../
         <h3>Accepts</h3>
         <dl class="params">
             <dt><code>String</code></dt>
-            <dd><label class="monospace">name</label>Header name</dd>
+            <dd><label class="monospace">name
+                </label>
+                Header name</dd>
         </dl>
         <h3>Returns</h3>
         <dl>
@@ -308,19 +384,22 @@ site_root:  ../
 </section>
 
     <section id="Ink_Net_Ajax_1-Ink_Net_Ajax-getResponse" class="box box-function">
-    <h1 class="fw-300">.getResponse()<i>method</i></h1><p class="text"><p>Sets the response object</p>
+    <h1 class="fw-300">.getResponse() 
+    <i>method</i></h1><p class="text"><p>Sets the response object</p>
 </p>
 
 </section>
 
     <section id="Ink_Net_Ajax_1-Ink_Net_Ajax-getTransport" class="box box-function">
-    <h1 class="fw-300">.getTransport()<i>method</i></h1><p class="text"><p>Creates the appropriate XMLHttpRequest object</p>
+    <h1 class="fw-300">.getTransport() 
+    <i>method</i></h1><p class="text"><p>Creates the appropriate XMLHttpRequest object</p>
 </p>
 
 </section>
 
     <section id="Ink_Net_Ajax_1-Ink_Net_Ajax-isJSON" class="box box-function">
-    <h1 class="fw-300">.isJSON(str)<i>method</i></h1>
+    <h1 class="fw-300">.isJSON(str) 
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">str</li>
@@ -329,7 +408,9 @@ site_root:  ../
         <h3>Accepts</h3>
         <dl class="params">
             <dt><code>String</code></dt>
-            <dd><label class="monospace">str</label>String to be evaluated</dd>
+            <dd><label class="monospace">str
+                </label>
+                String to be evaluated</dd>
         </dl>
         <h3>Returns</h3>
         <dl>
@@ -342,7 +423,8 @@ site_root:  ../
 </section>
 
     <section id="Ink_Net_Ajax_1-Ink_Net_Ajax-load" class="box box-function">
-    <h1 class="fw-300">.load(url, callback)<i>method</i></h1>
+    <h1 class="fw-300">.load(url, callback) 
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">url</li>
@@ -353,9 +435,13 @@ site_root:  ../
         <h3>Accepts</h3>
         <dl class="params">
             <dt><code>String</code></dt>
-            <dd><label class="monospace">url</label>Request URL</dd>
+            <dd><label class="monospace">url
+                </label>
+                Request URL</dd>
             <dt><code>Function</code></dt>
-            <dd><label class="monospace">callback</label>Callback to be executed if the request is successful</dd>
+            <dd><label class="monospace">callback
+                </label>
+                Callback to be executed if the request is successful</dd>
         </dl>
         <h3>Returns</h3>
         <dl>
@@ -384,7 +470,8 @@ site_root:  ../
 </section>
 
     <section id="Ink_Net_Ajax_1-Ink_Net_Ajax-makeError" class="box box-function">
-    <h1 class="fw-300">.makeError(code, message)<i>method</i></h1>
+    <h1 class="fw-300">.makeError(code, message) 
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">code</li>
@@ -394,9 +481,13 @@ site_root:  ../
         <h3>Accepts</h3>
         <dl class="params">
             <dt></dt>
-            <dd><label class="monospace">code</label>Error Code</dd>
+            <dd><label class="monospace">code
+                </label>
+                Error Code</dd>
             <dt></dt>
-            <dd><label class="monospace">message</label>Message</dd>
+            <dd><label class="monospace">message
+                </label>
+                Message</dd>
         </dl>
         <h3>Returns</h3>
         <dl>
@@ -409,7 +500,8 @@ site_root:  ../
 </section>
 
     <section id="Ink_Net_Ajax_1-Ink_Net_Ajax-paramsObjToStr" class="box box-function">
-    <h1 class="fw-300">.paramsObjToStr(optParams)<i>method</i></h1>
+    <h1 class="fw-300">.paramsObjToStr(optParams) 
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">optParams</li>
@@ -418,7 +510,9 @@ site_root:  ../
         <h3>Accepts</h3>
         <dl class="params">
             <dt><code>Object|String</code></dt>
-            <dd><label class="monospace">optParams</label>parameters object</dd>
+            <dd><label class="monospace">optParams
+                </label>
+                parameters object</dd>
         </dl>
         <h3>Returns</h3>
         <dl>
@@ -431,7 +525,8 @@ site_root:  ../
 </section>
 
     <section id="Ink_Net_Ajax_1-Ink_Net_Ajax-ping" class="box box-function">
-    <h1 class="fw-300">.ping(url, callback)<i>method</i></h1>
+    <h1 class="fw-300">.ping(url, callback) 
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">url</li>
@@ -442,9 +537,13 @@ Shortcut function for simple AJAX use cases.</p>
         <h3>Accepts</h3>
         <dl class="params">
             <dt><code>String</code></dt>
-            <dd><label class="monospace">url</label>Request url</dd>
+            <dd><label class="monospace">url
+                </label>
+                Request url</dd>
             <dt><code>Function</code></dt>
-            <dd><label class="monospace">callback</label>Callback to be executed if the request is successful</dd>
+            <dd><label class="monospace">callback
+                </label>
+                Callback to be executed if the request is successful</dd>
         </dl>
         <h3>Returns</h3>
         <dl>
@@ -457,19 +556,22 @@ Shortcut function for simple AJAX use cases.</p>
 </section>
 
     <section id="Ink_Net_Ajax_1-Ink_Net_Ajax-request" class="box box-function">
-    <h1 class="fw-300">.request()<i>method</i></h1><p class="text"><p>Executes the request</p>
+    <h1 class="fw-300">.request() 
+    <i>method</i></h1><p class="text"><p>Executes the request</p>
 </p>
 
 </section>
 
     <section id="Ink_Net_Ajax_1-Ink_Net_Ajax-runStateChange" class="box box-function">
-    <h1 class="fw-300">.runStateChange()<i>method</i></h1><p class="text"><p>Executes the state changing phase of an ajax request</p>
+    <h1 class="fw-300">.runStateChange() 
+    <i>method</i></h1><p class="text"><p>Executes the state changing phase of an ajax request</p>
 </p>
 
 </section>
 
     <section id="Ink_Net_Ajax_1-Ink_Net_Ajax-safeCall" class="box box-function">
-    <h1 class="fw-300">.safeCall(listener)<i>method</i></h1>
+    <h1 class="fw-300">.safeCall(listener) 
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">listener</li>
@@ -479,13 +581,16 @@ Verifies that the callback is well defined and traps errors</p>
         <h3>Accepts</h3>
         <dl class="params">
             <dt><code>Function</code></dt>
-            <dd><label class="monospace">listener</label></dd>
+            <dd><label class="monospace">listener
+                </label>
+                </dd>
         </dl>
 
 </section>
 
     <section id="Ink_Net_Ajax_1-Ink_Net_Ajax-setHeaders" class="box box-function">
-    <h1 class="fw-300">.setHeaders(url)<i>method</i></h1>
+    <h1 class="fw-300">.setHeaders(url) 
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">url</li>
@@ -494,19 +599,23 @@ Verifies that the callback is well defined and traps errors</p>
         <h3>Accepts</h3>
         <dl class="params">
             <dt><code>String</code></dt>
-            <dd><label class="monospace">url</label>The url for the request</dd>
+            <dd><label class="monospace">url
+                </label>
+                The url for the request</dd>
         </dl>
 
 </section>
 
     <section id="Ink_Net_Ajax_1-Ink_Net_Ajax-setParams" class="box box-function">
-    <h1 class="fw-300">.setParams()<i>method</i></h1><p class="text"><p>Set the url parameters for a GET request</p>
+    <h1 class="fw-300">.setParams() 
+    <i>method</i></h1><p class="text"><p>Set the url parameters for a GET request</p>
 </p>
 
 </section>
 
     <section id="Ink_Net_Ajax_1-Ink_Net_Ajax-setRequestHeader" class="box box-function">
-    <h1 class="fw-300">.setRequestHeader(name, value)<i>method</i></h1>
+    <h1 class="fw-300">.setRequestHeader(name, value) 
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">name</li>
@@ -516,9 +625,13 @@ Verifies that the callback is well defined and traps errors</p>
         <h3>Accepts</h3>
         <dl class="params">
             <dt><code>String</code></dt>
-            <dd><label class="monospace">name</label></dd>
+            <dd><label class="monospace">name
+                </label>
+                </dd>
             <dt><code>String</code></dt>
-            <dd><label class="monospace">value</label></dd>
+            <dd><label class="monospace">value
+                </label>
+                </dd>
         </dl>
 
 </section>
