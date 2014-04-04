@@ -5352,48 +5352,43 @@ th {
   }
 }
 @media screen and (min-width: 1261px) {
-  body {
+  html {
     font-size: 1.08em;
   }
-  body:after {
+  html:after {
     content: '{"name":"xlarge", "size":{"min":"1261px","max":""}}';
-    display: none;
   }
 }
 @media screen and (min-width: 961px) and (max-width: 1260px) {
-  body {
+  html {
     font-size: 1.05em;
   }
-  body:after {
+  html:after {
     content: '{"name":"large", "size":{"min":"961px","max":"1260px"}}';
-    display: none;
   }
 }
 @media screen and (min-width: 641px) and (max-width: 960px) {
-  body {
+  html {
     font-size: 1em;
   }
-  body:after {
+  html:after {
     content: '{"name":"medium", "size":{"min":"641px","max":"960px"}}';
-    display: none;
   }
 }
 @media screen and (min-width: 321px) and (max-width: 640px) {
-  body {
+  html {
     font-size: 0.98em;
   }
-  body:after {
+  html:after {
     content: '{"name":"small", "size":{"min":"321px","max":"640px"}}';
-    display: none;
   }
 }
 @media screen and (max-width: 320px) {
-  body {
+  html {
     font-size: 0.97em;
   }
-  body:after {
+  html:after {
     content: '{"name":"tiny", "size":{"min":"","max":"320px"}}';
-    display: none;
   }
 }
 .ink-label {
@@ -5441,15 +5436,11 @@ th {
   display: none;
 }
 
-.ink-dropdown,
-.ink-navigation {
-  position: relative;
-}
 .ink-dropdown ul.dropdown-menu,
 .ink-dropdown ul.dropdown,
 .ink-navigation ul.dropdown-menu,
 .ink-navigation ul.dropdown {
-  position: absolute;
+  display: inline-block;
   background: white;
   z-index: 30;
   border: 1px solid #d9d9d9;
@@ -8238,7 +8229,7 @@ body.ink-drawer.over.right .right-drawer {
   margin: 0 0 -2px 0;
 }
 .ink-tabs.top > .tabs-nav li.active a {
-  border-bottom: none;
+  border-bottom-color: transparent;
 }
 .ink-tabs.bottom > .tabs-nav {
   border-top: 1px solid #cccccc;
@@ -8258,7 +8249,7 @@ body.ink-drawer.over.right .right-drawer {
   margin: -2px 0 0 0;
 }
 .ink-tabs.bottom > .tabs-nav li.active a {
-  border-top: none;
+  border-top-color: transparent;
 }
 .ink-tabs.left > .tabs-nav {
   border-right: 1px solid #cccccc;
@@ -8281,7 +8272,7 @@ body.ink-drawer.over.right .right-drawer {
   margin: 0 -2px 0 0;
 }
 .ink-tabs.left > .tabs-nav li.active a {
-  border-right: none;
+  border-right-color: transparent;
 }
 .ink-tabs.right > .tabs-nav {
   border-left: 1px solid #cccccc;
@@ -8303,7 +8294,7 @@ body.ink-drawer.over.right .right-drawer {
   margin: 0 0 0 -2px;
 }
 .ink-tabs.right > .tabs-nav li.active a {
-  border-left: none;
+  border-left-color: transparent;
 }
 
 .ink-tagfield input[type="text"].new-tag-input {
