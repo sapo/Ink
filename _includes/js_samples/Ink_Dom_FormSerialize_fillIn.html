@@ -1,0 +1,24 @@
+<p class="example-title">Code</p>
+{% highlight html %}
+<form id="form">
+    <input type="text" name="textfield">
+    <input type="radio" name="radio" value="1">
+    <input type="radio" name="radio" value="2">
+    <input type="checkbox" name="check[]" value="1">
+    <input type="checkbox" name="check[]" value="2">
+    <button type="submit">Submit</button>
+</form>
+<script>
+Ink.requireModules(['Ink.Dom.FormSerialize_1'], function(FormSerialize) {
+    var form = Ink.i('form');
+    var toFillForm = {
+        textfield: 'foobar',
+        radio: "2",
+        "check[]": ["1"]
+    };
+    FormSerialize.fillIn(form, toFillForm);
+});
+</script>
+{% endhighlight %}
+
+

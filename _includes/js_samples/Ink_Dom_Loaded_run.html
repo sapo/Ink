@@ -1,0 +1,21 @@
+<p>Run a function on <code>DOMContentLoaded</code> AKA on DOM Ready</p>
+<p>Should be used to run some code that will manipulate DOM in the page</p>
+<p class="example-title">Code</p>
+{% highlight html %}
+<html>
+<head>
+    <script src="http://cdn.ink.sapo.pt/3.0.0/js/ink.js"></script>
+    <script>
+      Ink.requireModules(['Ink.Dom.Loaded_1'], function (DomLoaded) { 
+        DomLoaded.run(function(){
+            alert('DOM is Ready');
+            // ... 
+        });
+      });  
+    </script>
+</head>
+<body>
+</body>
+</html>
+{% endhighlight %}
+
