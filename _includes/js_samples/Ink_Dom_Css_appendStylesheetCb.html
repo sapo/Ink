@@ -1,0 +1,34 @@
+<p class="example-title">Code</p>
+{% highlight html %}
+<!-- original markup -->
+<html>
+<head>
+</head>
+<body>
+    <div id="elm">
+        Element content 
+    </div>
+</body>
+</html>
+
+<script>
+Ink.requireModules(['Ink.Dom.Css_1'], function(InkCss){
+    InkCss.appendStylesheetCb('http://example.com/css/file.css', function() {
+            Ink.log('CSS is ready...');
+        });
+});
+</script>
+
+<!-- result markup -->
+<html>
+<head>
+    <link rel="stylesheet" href="http://example.com/css/file.css" type="text/css" media="screen">
+</head>
+<body>
+    <div id="elm">
+        Element content 
+    </div>
+</body>
+</html>
+{% endhighlight %}
+

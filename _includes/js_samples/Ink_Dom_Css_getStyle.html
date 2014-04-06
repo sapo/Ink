@@ -1,0 +1,23 @@
+<p class="example-title">Code</p>
+{% highlight html %}
+<style type="text/css">
+.classrule {
+    color: #FF0000;
+    font-size:12px;
+}
+</style>
+<div id="elm" class="classrule">
+    Element content 
+</div>
+<script>
+Ink.requireModules(['Ink.Dom.Css_1'], function(InkCss){
+    var elm = Ink.i('elm');
+    var color = InkCss.getStyle(elm, 'color');
+    var fontSize = InkCss.getStyle(elm, 'font-size');
+
+    Ink.log(color); // rgb(255, 0, 0) )
+    Ink.log(fontSize); // 12px 
+});
+</script>
+{% endhighlight %}
+

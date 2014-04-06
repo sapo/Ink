@@ -1,0 +1,18 @@
+<p class="example-title">Code</p>
+{% highlight html %}
+<div id="elm1">
+    Element content 
+</div>
+<script>
+Ink.requireModules(['Ink.Dom.Css_1'], function(InkCss){
+    var elm1 = Ink.i('elm1');
+    InkCss.blinkClassName(elm1, 'newclass', 1000);
+                
+    Ink.log(elm1);
+    // <div id="elm1" class="newclass"> 
+    // after 1 sec 
+    // <div id="elm1"> 
+});
+</script>
+{% endhighlight %}
+

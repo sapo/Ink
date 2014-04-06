@@ -1,0 +1,17 @@
+<p class="example-title">Code</p>
+{% highlight html %}
+<div id="container">
+    Element content 
+</div>
+<script>
+Ink.requireModules(['Ink.Dom.Css_1'], function(InkCss){
+    var elm = Ink.i('container');
+    InkCss.addClassName(elm, 'newclass');
+    InkCss.addClassName(elm, ['class1', 'class2']);
+                
+    Ink.log(elm);
+    // <div id="container" class="newclass class1 class2">
+});
+</script>
+{% endhighlight %}
+

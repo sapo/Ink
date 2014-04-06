@@ -1,0 +1,23 @@
+<p class="example-title">Code</p>
+{% highlight html %}
+<div id="elm1">
+    Element content 
+</div>
+<div id="elm2" class="class2">
+    Element content 
+</div>
+<script>
+Ink.requireModules(['Ink.Dom.Css_1'], function(InkCss){
+    var elm1 = Ink.i('elm1');
+    var elm2 = Ink.i('elm2');
+    InkCss.addRemoveClassName(elm1, 'class1', true);
+    InkCss.addRemoveClassName(elm2, 'class2', false);
+                
+    Ink.log(elm1);
+    // <div id="elm1" class="class1">
+    Ink.log(elm2);
+    // <div id="elm2" class="">
+});
+</script>
+{% endhighlight %}
+
