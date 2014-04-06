@@ -9,6 +9,8 @@
 <script>
     // Not needed with autoload.js
     Ink.requireModules(['Ink.UI.Close_1'],function( Close ){
+        // Notice that the Close module doesn't take a selector as a parameter.
+        // This is because it is page-wide. You only need to call this once.
         new Close();
     });
 </script>
