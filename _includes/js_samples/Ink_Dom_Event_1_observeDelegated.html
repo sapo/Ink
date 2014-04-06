@@ -1,0 +1,26 @@
+<p>Only <code>li &gt; a</code> fires event. Clicking <code>button</code> does nothing.</p>
+<p class="example-title">Code</p>
+{% highlight html %}
+<div id="container">
+    <ul>
+        <li><a href="#a">A</a></li>
+        <li><a href="#b">B</a></li>
+        <li><a href="#c">C</a></li>
+    </ul>
+    <button>button</button>
+</div>
+<script>
+Ink.requireModules(['Ink.Dom.Event_1'], function(InkEvent) {
+
+    var container = Ink.i('container');
+    InkEvent.observeDelegated(container, 'click', 'a', function(event) {
+            InkEvent.stopDefault(event);
+            var target = InkEvent.element(event);
+
+            Ink.log(target); 
+        });     
+});
+</script>
+{% endhighlight %}
+
+

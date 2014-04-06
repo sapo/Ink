@@ -1,0 +1,18 @@
+<p class="example-title">Code</p>
+{% highlight js %}
+Ink.requireModules(['Ink.Dom.Event_1', 'Ink.Dom.Element_1'], function(InkEvent, InkElement) {
+    // Create a function that only runs each 1000 milliseconds 
+    var runOnScroll = InkEvent.throttle(function(){
+        Ink.log(InkElement.scrollHeight() +' - '+ (new Date()).getSeconds());
+    }, 1000);
+    InkEvent.observe(window, 'scroll', runOnScroll);
+    // 1 - 29
+    // 35 - 30
+    // 63 - 31
+    // 122 - 32
+    // 172 - 33 
+    // ...
+});
+{% endhighlight %}
+
+

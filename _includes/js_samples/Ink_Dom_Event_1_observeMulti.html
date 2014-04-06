@@ -1,0 +1,25 @@
+<p class="example-title">Code</p>
+{% highlight html %}
+<div>
+    <ul>
+        <li><a href="#a" class="clickable">A</a></li>
+        <li><a href="#b" class="clickable">B</a></li>
+        <li><a href="#c" class="clickable">C</a></li>
+    </ul>
+    <div class="clickable"></div>
+</div>
+<script>
+Ink.requireModules(['Ink.Dom.Event_1'], function(InkEvent) {
+
+    var aClickable = Ink.ss('.clickable');
+    InkEvent.observeMulti(aClickable, 'click', function(event) {
+            InkEvent.stopDefault(event);
+            var target = InkEvent.element(event);
+
+            Ink.log(target); 
+        });     
+});
+</script>
+{% endhighlight %}
+
+

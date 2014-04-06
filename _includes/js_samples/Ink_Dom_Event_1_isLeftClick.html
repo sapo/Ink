@@ -1,0 +1,23 @@
+<p>Check if left click has been used</p>
+
+<p class="example-title">Code</p>
+{% highlight html %}
+<button id="b_1">Button</button>
+<script>
+Ink.requireModules(['Ink.Dom.Event_1'], function(InkEvent) {
+        
+    var b1 = Ink.i('b_1');
+    InkEvent.observe(b1, 'mousedown', function(event) {
+            var isLeftClick = InkEvent.isLeftClick(event); 
+
+            if(isLeftClick) {
+                alert('Is left click');
+            } else {
+                alert('Is not left click');
+            }
+        }); 
+});
+</script>
+{% endhighlight %}
+
+

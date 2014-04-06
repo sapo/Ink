@@ -1,0 +1,25 @@
+<p>Finds closest ancestor element by tag where the event occurs</p>
+
+<p class="example-title">Code</p>
+{% highlight html %}
+<div id="container">
+  <ul>
+    <li>Text with a <a href="#"><strong>strong link</strong></a></li>
+  </ul>
+</div>
+<script>
+Ink.requireModules(['Ink.Dom.Event_1'], function(InkEvent) {
+    var container = Ink.i('container');
+    InkEvent.observe(container, 'click', function(event) {
+        InkEvent.stopDefault(event); // prevents default 
+      
+        var ulElm = InkEvent.findElement(event, 'ul');
+
+        Ink.log(ulElm); // <ul>
+
+        InkEvent.findElement(event, 'p'); // returns document 
+});
+</script>
+{% endhighlight %}
+
+

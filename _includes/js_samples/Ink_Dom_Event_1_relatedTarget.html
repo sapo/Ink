@@ -1,0 +1,23 @@
+<p>Gets the event's related target (Find the element leaved before enter in an element)</p>
+
+<p class="example-title">Code</p>
+{% highlight html %}
+<div id="container">
+    <div id="level_1">
+        Text with an <strong><span>span</span></strong> element
+    </div>
+</div>
+<script>
+Ink.requireModules(['Ink.Dom.Event_1'], function(InkEvent) {
+      var container = Ink.i('container');
+      InkEvent.observe(container, 'mouseover', function(event) { // add event to container element 
+            var relatedTarget = InkEvent.relatedTarget(event); 
+            Ink.log(relatedTarget); 
+            // mouseover element <div id="level_1"> 
+            // relatedTarget will be <div id="container">
+      }); 
+});
+</script>
+{% endhighlight %}
+
+

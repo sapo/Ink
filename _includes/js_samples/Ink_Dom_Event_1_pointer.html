@@ -1,0 +1,20 @@
+<p class="example-title">Code</p>
+{% highlight html %}
+<div id="to_drag" style="width:100px; heigh:100px;">
+Mouse down to get mouse position. 
+</div>
+<script>
+Ink.requireModules(['Ink.Dom.Event_1'], function(InkEvent) {
+    var elm = Ink.i('to_drag');
+    InkEvent.observe(elm, 'mousedown',  function(event) {
+            var mousePosition = InkEvent.pointer(event); 
+            Ink.log(mousePosition);
+            /*
+             * {x: 100, y: 50}
+            */
+        });    
+});
+</script>
+{% endhighlight %}
+
+
