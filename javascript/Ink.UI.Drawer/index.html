@@ -55,31 +55,30 @@ site_root:  ../
             <dd><label class="monospace">[options.sides]
                 
                 </label>
-                Can be 'left', 'right', or 'both'. Controls from which sides the content</dd>
+                Can be 'left', 'right', or 'both'. Controls what sides have a drawer.</dd>
         </dl>
 <p class="example-title">Example</p>
   
 {% highlight html %}{% raw %}
+<body class="ink-drawer">
+    <div class="left-drawer">
+        Right drawer content...
+    </div>
+    <div class="right-drawer">
+        Left drawer content...
+    </div>
+    <div id="main-content" class="content-drawer ink-grid">
+        <a class="left-drawer-trigger" href="">Open left drawer</a>
+        <a class="right-drawer-trigger" href="">Open right drawer</a>
+        Content...
+    </div>
+</body>
 
-     <body class="ink-drawer">
-         <div class="left-drawer">
-             Right drawer content...
-         </div>
-         <div class="right-drawer">
-             Left drawer content...
-         </div>
-         <div id="main-content" class="content-drawer ink-grid">
-             <a class="left-drawer-trigger" href="">Open left drawer</a>
-             <a class="right-drawer-trigger" href="">Open right drawer</a>
-             Content...
-         </div>
-     </body>
-
-     <script>
-         Ink.requireModules(['Ink.UI.Drawer_1'], function (Drawer) {
-             new Drawer();
-         });
-     </script>
+<script>
+    Ink.requireModules(['Ink.UI.Drawer_1'], function (Drawer) {
+        new Drawer();
+    });
+</script>
 {% endraw %}{% endhighlight %}
 
 

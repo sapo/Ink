@@ -1,14 +1,13 @@
 ---
 layout: js-documentation
 title: Ink.UI.Dropdown_1
-description: Provides the core methods to create and load all of the library modules. 
+description: Dropdown menus
 site_root:  ../
 ---
     <section>
         <h1 class="fw-300">Ink.UI.Dropdown_1<small>version:1</small></h1>
 
-<p><p>Use this UI module to achieve a dropdown menu.</p>
-</p>
+<p>Use this UI module to achieve a dropdown menu.<br></p>
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p><table class="props bottom-space">
         <caption>Methods</caption>
         <thead>
@@ -21,21 +20,21 @@ site_root:  ../
         <tbody>
             <tr>
                 <td>
-                    <a href="#Ink_UI_Dropdown_1-Ink_UI_Dropdown-Dropdown">Ink.UI.Dropdown</a>
+                    <a href="#Ink_UI_Dropdown_1-Ink_UI_Dropdown-Dropdown"><em>(constructor)</em></a>
                 </td>
-                <td></td>
+                <td><span class="ink-label green">Constructor</span></td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_Dropdown_1-Ink_UI_Dropdown-dismiss">.dismiss</a>
                 </td>
-                <td><br></td>
+                <td>Closes the dropdown.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_Dropdown_1-Ink_UI_Dropdown-open">.open</a>
                 </td>
-                <td><br></td>
+                <td>Opens the dropdown</td>
             </tr></tbody>
     </table>
     
@@ -44,7 +43,8 @@ site_root:  ../
 
 
     <section id="Ink_UI_Dropdown_1-Ink_UI_Dropdown-Dropdown" class="box box-function">
-    <h1 class="fw-300">Ink.UI.Dropdown(trigger, options, )<i>constructor</i></h1>
+    <h1 class="fw-300">Ink.UI.Dropdown(trigger, options, ) 
+    <i>constructor</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">trigger</li>
@@ -54,11 +54,17 @@ site_root:  ../
         <h3>Accepts</h3>
         <dl class="params">
             <dt><code>DOMElement|String</code></dt>
-            <dd><label class="monospace">trigger</label>Trigger Element</dd>
+            <dd><label class="monospace">trigger
+                </label>
+                Trigger Element</dd>
             <dt><code>Object</code></dt>
-            <dd><label class="monospace">options</label>Options Object</dd>
+            <dd><label class="monospace">options
+                </label>
+                Options Object</dd>
             <dt><code>DOMElement|String</code></dt>
-            <dd><label class="monospace">options.target</label>Target of the dropdown action.</dd>
+            <dd><label class="monospace">options.target
+                </label>
+                Target of the dropdown action.</dd>
         </dl>
 
 <h3>Samples</h3>
@@ -66,7 +72,8 @@ site_root:  ../
 	</section>
 
     <section id="Ink_UI_Dropdown_1-Ink_UI_Dropdown-dismiss" class="box box-function">
-    <h1 class="fw-300">.dismiss([callHandler])<i>method</i></h1>
+    <h1 class="fw-300">.dismiss([callHandler]) 
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">[callHandler]</li>
@@ -75,13 +82,17 @@ site_root:  ../
         <h3>Accepts</h3>
         <dl class="params">
             <dt></dt>
-            <dd><label class="monospace">[callHandler]false</label>call onDismiss handler</dd>
+            <dd><label class="monospace">[callHandler]
+                
+                false</label>
+                call onDismiss handler</dd>
         </dl>
 
 </section>
 
     <section id="Ink_UI_Dropdown_1-Ink_UI_Dropdown-open" class="box box-function">
-    <h1 class="fw-300">.open([callHandler])<i>method</i></h1>
+    <h1 class="fw-300">.open([callHandler]) 
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">[callHandler]</li>
@@ -90,7 +101,10 @@ site_root:  ../
         <h3>Accepts</h3>
         <dl class="params">
             <dt></dt>
-            <dd><label class="monospace">[callHandler]false</label>call onOpen handler</dd>
+            <dd><label class="monospace">[callHandler]
+                
+                false</label>
+                call onOpen handler</dd>
         </dl>
 
 </section>

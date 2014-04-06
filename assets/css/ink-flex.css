@@ -1,4 +1,3 @@
-@charset "UTF-8";
 /**
  * Ink
  *
@@ -137,6 +136,8 @@
  *    user zoom.
  */
 html {
+  font-family: sans-serif;
+  /* 1 */
   -ms-text-size-adjust: 100%;
   /* 2 */
   -webkit-text-size-adjust: 100%;
@@ -6514,11 +6515,16 @@ th {
   display: none;
 }
 
+.ink-dropdown,
+.ink-navigation {
+  position: relative;
+}
 .ink-dropdown ul.dropdown-menu,
 .ink-dropdown ul.dropdown,
 .ink-navigation ul.dropdown-menu,
 .ink-navigation ul.dropdown {
-  display: inline-block;
+  position: absolute;
+  top: 110%;
   background: white;
   z-index: 30;
   border: 1px solid #d9d9d9;

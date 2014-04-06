@@ -1,15 +1,13 @@
 ---
 layout: js-documentation
 title: Ink.UI.Swipe_1
-description: Provides the core methods to create and load all of the library modules. 
+description: Swipe gestures
 site_root:  ../
 ---
     <section>
         <h1 class="fw-300">Ink.UI.Swipe_1<small>version:1</small></h1>
 
-<p><p>Subscribe swipe gestures.</p>
-<p>Supports filtering swipes be any combination of the criteria supported in the options.</p>
-</p>
+<p>Subscribe swipe gestures.<br><p>Supports filtering swipes be any combination of the criteria supported in the options.</p><br></p>
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p><table class="props bottom-space">
         <caption>Methods</caption>
         <thead>
@@ -22,9 +20,9 @@ site_root:  ../
         <tbody>
             <tr>
                 <td>
-                    <a href="#Ink_UI_Swipe_1-Ink_UI_Swipe_1-Swipe_1">Ink.UI.Swipe_1</a>
+                    <a href="#Ink_UI_Swipe_1-Ink_UI_Swipe_1-Swipe_1"><em>(constructor)</em></a>
                 </td>
-                <td></td>
+                <td><span class="ink-label green">Constructor</span></td>
             </tr></tbody>
     </table>
     
@@ -33,7 +31,8 @@ site_root:  ../
 
 
     <section id="Ink_UI_Swipe_1-Ink_UI_Swipe_1-Swipe_1" class="box box-function">
-    <h1 class="fw-300">Ink.UI.Swipe_1(el, options, )<i>constructor</i></h1>
+    <h1 class="fw-300">Ink.UI.Swipe_1(el, options, ) 
+    <i>constructor</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">el</li>
@@ -52,29 +51,63 @@ site_root:  ../
         <h3>Accepts</h3>
         <dl class="params">
             <dt><code>String|DOMElement</code></dt>
-            <dd><label class="monospace">el</label>Element or Selector</dd>
+            <dd><label class="monospace">el
+                </label>
+                Element or Selector</dd>
             <dt><code>Object</code></dt>
-            <dd><label class="monospace">options</label>Options Object</dd>
+            <dd><label class="monospace">options
+                </label>
+                Options Object</dd>
             <dt><code>Function</code></dt>
-            <dd><label class="monospace">[options.onEnd]</label>Callback function for the `touchend` event. Gets all the gesture information, and is filtered by min/max Dist and Duration options (see below)</dd>
+            <dd><label class="monospace">[options.onEnd]
+                
+                </label>
+                Callback function for the `touchend` event. Gets all the gesture information, and is filtered by min/max Dist and Duration options (see below)</dd>
             <dt><code>Function</code></dt>
-            <dd><label class="monospace">[options.onStart]</label>Callback function for `touchstart` event.</dd>
+            <dd><label class="monospace">[options.onStart]
+                
+                </label>
+                Callback function for `touchstart` event.</dd>
             <dt><code>Function</code></dt>
-            <dd><label class="monospace">[options.onMove]</label>Callback function for every `touchmove` event. Gets current gesture information.</dd>
+            <dd><label class="monospace">[options.onMove]
+                
+                </label>
+                Callback function for every `touchmove` event. Gets current gesture information.</dd>
             <dt><code>Number</code></dt>
-            <dd><label class="monospace">[options.minDist]</label>Minimum allowed distance, in pixels.</dd>
+            <dd><label class="monospace">[options.minDist]
+                
+                </label>
+                Minimum allowed distance, in pixels.</dd>
             <dt><code>Number</code></dt>
-            <dd><label class="monospace">[options.maxDist]</label>Maximum allowed distance, in pixels.</dd>
+            <dd><label class="monospace">[options.maxDist]
+                
+                </label>
+                Maximum allowed distance, in pixels.</dd>
             <dt><code>Number</code></dt>
-            <dd><label class="monospace">[options.minDuration]</label>Minimum allowed duration, in seconds.</dd>
+            <dd><label class="monospace">[options.minDuration]
+                
+                </label>
+                Minimum allowed duration, in seconds.</dd>
             <dt><code>Number</code></dt>
-            <dd><label class="monospace">[options.maxDuration]</label>Maximum allowed duration, in seconds.</dd>
+            <dd><label class="monospace">[options.maxDuration]
+                
+                </label>
+                Maximum allowed duration, in seconds.</dd>
             <dt><code>String</code></dt>
-            <dd><label class="monospace">[options.axis]</label>If either 'x' or 'y' is passed, only swipes where the dominant axis is the given one trigger the callback</dd>
+            <dd><label class="monospace">[options.axis]
+                
+                </label>
+                If either 'x' or 'y' is passed, only swipes where the dominant axis is the given one trigger the callback</dd>
             <dt><code>String</code></dt>
-            <dd><label class="monospace">[options.storeGesture]</label>If to store gesture information and provide it to the callback. Defaults to true.</dd>
+            <dd><label class="monospace">[options.storeGesture]
+                
+                </label>
+                If to store gesture information and provide it to the callback. Defaults to true.</dd>
             <dt><code>String</code></dt>
-            <dd><label class="monospace">[options.stopEvents]</label>Flag to stop (default and propagation) of the received events. Defaults to true.</dd>
+            <dd><label class="monospace">[options.stopEvents]
+                
+                </label>
+                Flag to stop (default and propagation) of the received events. Defaults to true.</dd>
         </dl>
 
 <h3>Samples</h3>

@@ -38,29 +38,28 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
          * @xparam {String}     [options.contentDrawer]         Selector for the content drawer.
          * @param {Boolean}     [options.closeOnContentClick]   Flag to close the drawer when someone clicks on the `.contentDrawer`
          * @param {String}      [options.mode]                  This can be 'push' or 'hide'.
-         * @param {String}      [options.sides]                 Can be 'left', 'right', or 'both'. Controls from which sides the content
+         * @param {String}      [options.sides]                 Can be 'left', 'right', or 'both'. Controls what sides have a drawer.
          *
          * @example
+         * <body class="ink-drawer">
+         *     <div class="left-drawer">
+         *         Right drawer content...
+         *     </div>
+         *     <div class="right-drawer">
+         *         Left drawer content...
+         *     </div>
+         *     <div id="main-content" class="content-drawer ink-grid">
+         *         <a class="left-drawer-trigger" href="">Open left drawer</a>
+         *         <a class="right-drawer-trigger" href="">Open right drawer</a>
+         *         Content...
+         *     </div>
+         * </body>
          *
-         *      <body class="ink-drawer">
-         *          <div class="left-drawer">
-         *              Right drawer content...
-         *          </div>
-         *          <div class="right-drawer">
-         *              Left drawer content...
-         *          </div>
-         *          <div id="main-content" class="content-drawer ink-grid">
-         *              <a class="left-drawer-trigger" href="">Open left drawer</a>
-         *              <a class="right-drawer-trigger" href="">Open right drawer</a>
-         *              Content...
-         *          </div>
-         *      </body>
-         *
-         *      <script>
-         *          Ink.requireModules(['Ink.UI.Drawer_1'], function (Drawer) {
-         *              new Drawer();
-         *          });
-         *      </script>
+         * <script>
+         *     Ink.requireModules(['Ink.UI.Drawer_1'], function (Drawer) {
+         *         new Drawer();
+         *     });
+         * </script>
          */
         _init: function (options) {
             this._options = Common.options({

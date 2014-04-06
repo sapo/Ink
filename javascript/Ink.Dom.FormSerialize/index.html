@@ -56,25 +56,10 @@ site_root:  ../
                 </label>
                 Map of fieldName -> String|String[]|Boolean</dd>
         </dl>
-<p class="example-title">Example</p>
-  
-{% highlight html %}{% raw %}
-    <form id="frm">
-        <input type="text" name="field1">
-        <button type="submit">Submit</button>
-    </form>
-    <script type="text/javascript">
-        Ink.requireModules(['Ink.Dom.FormSerialize_1'], function (FormSerialize) {
-            var values = {field1: 'CTHULHU'};
-            FormSerialize.fillIn('frm', values);
-            // At this point the form is pre-filled with the values above.
-        });
-    </script>
-{% endraw %}{% endhighlight %}
 
-
-
-</section>
+<h3>Samples</h3>
+		{% include js_samples/Ink_Dom_FormSerialize_fillIn.html %}
+	</section>
 
     <section id="Ink_Dom_FormSerialize_1-Ink_Dom_FormSerialize-serialize" class="box box-function">
     <h1 class="fw-300">.serialize(form) 
@@ -100,26 +85,10 @@ It turns field names into keys and field values into values.</p>
             </dd>
         </dl>
         
-<p class="example-title">Example</p>
-  
-{% highlight html %}{% raw %}
-    <form id="frm">
-        <input type="text" name="field1">
-        <button type="submit">Submit</button>
-    </form>
-    <script type="text/javascript">
-        Ink.requireModules(['Ink.Dom.FormSerialize_1', 'Ink.Dom.Event_1'], function (FormSerialize, InkEvent) {
-            InkEvent.observe('frm', 'submit', function (event) {
-                var formData = FormSerialize.serialize('frm'); // -> {field1:"123"}
-                InkEvent.stop(event);
-            });
-        });
-    </script>
-{% endraw %}{% endhighlight %}
 
-
-
-</section>
+<h3>Samples</h3>
+		{% include js_samples/Ink_Dom_FormSerialize_serialize.html %}
+	</section>
 
 
 

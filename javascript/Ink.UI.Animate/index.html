@@ -45,10 +45,8 @@ site_root:  ../
             <tr>
                 <td><a href="#Ink_UI_Animate_1-Ink_UI_Animate_1-animationEndEventName">.animationEndEventName</a></td>
                 <td>
-                        <p>Prefixed animation end event name.</p>
+                        <p>Prefixed &#39;animationend&#39; event name.</p>
 
-                    
-                        <span class="ink-label orange uppercase">{String}</span>
                     
                 </td>
             </tr>
@@ -56,10 +54,8 @@ site_root:  ../
             <tr>
                 <td><a href="#Ink_UI_Animate_1-Ink_UI_Animate_1-animationSupported">.animationSupported</a></td>
                 <td>
-                        <p>CSS3 animation browser support.</p>
+                        <p>Boolean which says whether this browser has CSS3 animation support.</p>
 
-                    
-                        <span class="ink-label orange uppercase">{Boolean}</span>
                     
                 </td>
             </tr>
@@ -161,6 +157,22 @@ site_root:  ../
                 medium</label>
                 {String|Number} duration name (fast|medium|slow) or duration in ms</dd>
         </dl>
+<p class="example-title">Example</p>
+  
+{% highlight html %}{% raw %}
+ Animate.animate(myDiv, 'fadeIn')
+
+{% endraw %}{% endhighlight %}
+  
+{% highlight html %}{% raw %}
+ Animate.animate(myDiv, 'shake', {
+     onEnd: function () {
+         alert('Finished shaking!');
+     }
+ });
+{% endraw %}{% endhighlight %}
+
+
 
 </section>
 
@@ -173,11 +185,9 @@ site_root:  ../
     <i>attribute</i></h1>
     
     
-        <p class="text"><p>Prefixed animation end event name.</p>
+        <p class="text"><p>Prefixed &#39;animationend&#39; event name.</p>
 </p>
     
-    
-        <pre>{String}</pre>
     
     <label>animationEndEventName</label>
     
@@ -192,11 +202,9 @@ site_root:  ../
     <i>attribute</i></h1>
     
     
-        <p class="text"><p>CSS3 animation browser support.</p>
+        <p class="text"><p>Boolean which says whether this browser has CSS3 animation support.</p>
 </p>
     
-    
-        <pre>{Boolean}</pre>
     
     <label>animationSupported</label>
     
