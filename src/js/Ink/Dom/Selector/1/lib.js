@@ -1927,6 +1927,7 @@ support.detectDuplicates = hasDuplicate;
  * @param {DOMElement}  [context]   By default the search is done in the document element. However, you can specify an element as search context
  * @param {Array}       [results]   By default this is considered an empty array. But if you want to merge it with other searches you did, pass their result array through here.
  * @return {Array} Array of resulting DOM Elements
+ * @sample Ink_Dom_Selector_select.html
  */
 
 /**
@@ -1936,6 +1937,7 @@ support.detectDuplicates = hasDuplicate;
  * @param {String}  selector    CSS selector to search for elements
  * @param {Array}   matches     Elements to be 'matched' with
  * @return {Array} Elements that matched
+ * @sample Ink_Dom_Selector_matches.html
  */
 
 /**
@@ -1945,6 +1947,7 @@ support.detectDuplicates = hasDuplicate;
  * @param {DOMElement} element Element to test
  * @param {String}     selector CSS selector to test the element with
  * @return {Boolean} True if element matches the CSS selector
+ * @sample Ink_Dom_Selector_matchesSelector.html 
  */
 
 return {
