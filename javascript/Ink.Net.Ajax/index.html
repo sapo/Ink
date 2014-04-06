@@ -271,25 +271,10 @@ site_root:  ../
                 </label>
                 URI for proxy service hosted on the same server as the web app, that can fetch documents from other domains. The service must pipe all input and output untouched (some input sanitization is allowed, like clearing cookies). e.g., requesting http://example.org/doc can become /proxy/http%3A%2F%2Fexample.org%2Fdoc The proxy service will be used for cross-domain requests, if set, else a network error is returned as exception.</dd>
         </dl>
-<p class="example-title">Example</p>
-  
-{% highlight html %}{% raw %}
-    new Ajax('test.json', {
-        method: 'get',
-        onSuccess: function (ajx, responseJSON) {
-            // Do stuff with responseJSON or ajx.responseText
-            console.log(responseJSON.something.length);
-        },
-        onFailure: function (ajx, errorResponse) {
-            // Deal with it
-            alert(ajx.status);  // The HTTP response code
-        }
-    });
-{% endraw %}{% endhighlight %}
 
-
-
-</section>
+<h3>Samples</h3>
+		{% include js_samples/Ink_Net_Ajax_1.html %}
+	</section>
 
     <section id="Ink_Net_Ajax_1-Ink_Net_Ajax-abort" class="box box-function">
     <h1 class="fw-300">.abort() 
@@ -450,24 +435,10 @@ site_root:  ../
             </dd>
         </dl>
         
-<p class="example-title">Example</p>
-  
-{% highlight html %}{% raw %}
-     Ajax.load('some/text/file', function (responseText) {
-         doSomething(responseText);
-     });
-     Ajax.load('some/xml/file', function (responseXML) {
-         doSomething(responseXML);
-     });
-     Ajax.load('some/json/file', function (responseJSON) {
-         doSomething(responseJSON);
-     });
 
-{% endraw %}{% endhighlight %}
-
-
-
-</section>
+<h3>Samples</h3>
+		{% include js_samples/Ink_Net_Ajax_load.html %}
+	</section>
 
     <section id="Ink_Net_Ajax_1-Ink_Net_Ajax-makeError" class="box box-function">
     <h1 class="fw-300">.makeError(code, message) 

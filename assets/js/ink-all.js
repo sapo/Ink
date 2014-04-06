@@ -707,18 +707,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
      * @param {Boolean}         [options.sanitizeJSON]          Flag to sanitize the content of responseText before evaluation
      * @param {String}          [options.xhrProxy]              URI for proxy service hosted on the same server as the web app, that can fetch documents from other domains. The service must pipe all input and output untouched (some input sanitization is allowed, like clearing cookies). e.g., requesting http://example.org/doc can become /proxy/http%3A%2F%2Fexample.org%2Fdoc The proxy service will be used for cross-domain requests, if set, else a network error is returned as exception.
      *
-     * @example
-     *     new Ajax('test.json', {
-     *         method: 'get',
-     *         onSuccess: function (ajx, responseJSON) {
-     *             // Do stuff with responseJSON or ajx.responseText
-     *             console.log(responseJSON.something.length);
-     *         },
-     *         onFailure: function (ajx, errorResponse) {
-     *             // Deal with it
-     *             alert(ajx.status);  // The HTTP response code
-     *         }
-     *     });
+     * @sample Ink_Net_Ajax_1.html 
      */
     var Ajax = function(url, options){
 
@@ -1400,17 +1389,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
      * @param {Function} callback   Callback to be executed if the request is successful
      * @return {Object}             XMLHttpRequest object
      *
-     * @example
-     *      Ajax.load('some/text/file', function (responseText) {
-     *          doSomething(responseText);
-     *      });
-     *      Ajax.load('some/xml/file', function (responseXML) {
-     *          doSomething(responseXML);
-     *      });
-     *      Ajax.load('some/json/file', function (responseJSON) {
-     *          doSomething(responseJSON);
-     *      });
-     *
+     * @sample Ink_Net_Ajax_load.html 
      */
     Ajax.load = function(url, callback){
         return new Ajax(url, {
@@ -1471,20 +1450,7 @@ Ink.createModule('Ink.Net.JsonP', '1', [], function() {
      * @param {String}      [options.callbackParam]     Parameter to use as callback. defaults to 'jsoncallback'
      * @param {String}      [options.internalCallback]  Name of the callback function stored in the Ink.Net.JsonP object.
      *
-     * @example
-     *      Ink.requireModules(['Ink.Net.JsonP_1'], function (JsonP) {
-     *          var jsonp = new JsonP('http://path.to.jsonp/endpoint', {
-     *              // When the JSONP response arrives, this callback is called:
-     *              onSuccess: function (gameData) {
-     *                  game.startGame(gameData);
-     *              },
-     *              // after options.timeout seconds, this callback gets called:
-     *              onFailure: function () {
-     *                  game.error('Could not load game data!');
-     *              },
-     *              timeout: 5
-     *          });
-     *      });
+     * @sample Ink_Net_JsonP_1.html 
      */
     var JsonP = function(uri, options) {
         this.init(uri, options);
@@ -1604,6 +1570,7 @@ Ink.createModule('Ink.Net.JsonP', '1', [], function() {
     return JsonP;
 
 });
+
 /**
  * Browser Detection and User Agent sniffing
  * @module Ink.Dom.Browser_1
