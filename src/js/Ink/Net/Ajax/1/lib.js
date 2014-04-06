@@ -718,17 +718,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
      * @param {Function} callback   Callback to be executed if the request is successful
      * @return {Object}             XMLHttpRequest object
      *
-     * @example
-     *      Ajax.load('some/text/file', function (responseText) {
-     *          doSomething(responseText);
-     *      });
-     *      Ajax.load('some/xml/file', function (responseXML) {
-     *          doSomething(responseXML);
-     *      });
-     *      Ajax.load('some/json/file', function (responseJSON) {
-     *          doSomething(responseJSON);
-     *      });
-     *
+     * @sample Ink_Net_Ajax_load.html 
      */
     Ajax.load = function(url, callback){
         return new Ajax(url, {
