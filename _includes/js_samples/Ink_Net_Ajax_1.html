@@ -1,0 +1,118 @@
+<p>Make an AJAX Request with some options</p>
+<p class="example-title">Code</p>
+{% highlight js %}
+Ink.requireModules(['Ink.Net.Ajax_1'], function(Ajax) {
+    var uri = '/endpoint.php';
+    new Ajax(uri, {
+        method: 'GET',
+        parameters: {foo: 'bar'},
+        onInit: function(obj) {
+            Ink.log('Init request');
+        }, 
+        onSuccess: function(xhrObj, req) {
+            // ... 
+            // var text = xhrObj.responseText;
+            // var xml = xhrObj.responseXML;
+            // var json = xhrObj.responseJSON; 
+        }, 
+        onComplete: function() {
+            Ink.log('Request completed');
+        },
+        onFailure: function() {
+            Ink.log('Request failed');
+        },
+        on404: function() {
+            Ink.log('404 request');
+        }, 
+        onTimeout: function() {
+            Ink.log('Request timeout');
+        },
+        timeout: 5
+    });
+});
+{% endhighlight %}
+
+<p>Submit a form using AJAX POST, serialized with <code>Ink.Dom.FormSerialize</code></p>
+<p class="example-title">Code</p>
+{% highlight html %} 
+<form id="form" method="post" action="#">
+  <p>
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name">
+  </p>
+  <p>
+    <label for="email">Email:</label>
+    <input type="text" id="email" name="email">
+  </p>
+  <p>Choices:</p> 
+  <p>
+    <input type="checkbox" name="choice[]" id="choice_a" value="A"> <label for="choice_a">A</label>
+  </p>
+  <p>
+    <input type="checkbox" name="choice[]" id="choice_b" value="B"> <label for="choice_b">B</label>
+  </p>
+  <p><button type="submit">Submit</button></p>
+</form>
+<script>
+Ink.requireModules(['Ink.Net.Ajax_1', 'Ink.Dom.Event_1', 'Ink.Dom.FormSerialize_1'], function(Ajax, InkEvent, FormSerialize) {
+
+    var form = Ink.i('form');
+  
+    function doPost(event) {
+        InkEvent.stopDefault(event);
+
+        var formData = FormSerialize.serialize(form);
+    
+        var uri = '/endpoint.php';
+        new Ajax(uri, {
+            method: 'POST',
+            postBody: formData,
+            onSuccess: function(obj) {
+                if(obj && obj.responseJSON) {
+                    var req = obj.responseJSON;
+                }
+            }, 
+            onFailure: function() {
+                Ink.warn('Ajax request failed');
+            }
+        });    
+    }
+  
+    InkEvent.observe(form, 'submit', doPost);
+});
+</script>
+{% endhighlight %}
+
+<p>Make an AJAX request to <code>SAPO Photos</code> using <code>CORS</code> and print the images</p>
+<p class="example-title">Code</p>
+{% highlight html %}
+<div id="container"></div>
+<script>
+Ink.requireModules(['Ink.Net.Ajax_1'], function(Ajax) {
+
+    var uri = 'http://services.sapo.pt/Photos/JSON2';
+    new Ajax(uri, {
+        method: 'GET',
+        cors: true,
+        parameters: {u: 'codebits', limit:'3'},
+        onSuccess: function(obj) {
+            if(obj && obj.responseJSON) {
+                var req = obj.responseJSON;
+                var aItems = req.rss.channel.item;
+                var container = Ink.i('container');
+                var curImg;
+                for(var i=0, total=aItems.length; i < total; i++) {
+                    curImg = new Image();
+                    curImg.src = aItems[i]['media:thumbnail'][0].url;
+                    container.appendChild(curImg);
+                }
+            }
+        }, 
+        onFailure: function() {
+            Ink.warn('Ajax request failed');
+        }
+    });
+});
+</script>
+{% endhighlight %}
+
