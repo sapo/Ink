@@ -114,6 +114,27 @@ Ink.createModule('Ink.Dom.Browser', '1', [], function() {
         userAgent: false,
 
         /**
+         * The CSS prefix (-moz-, -webkit-, -ms-, ...)
+         * False if it is unavailable 
+         *
+         * @property cssPrefix 
+         * @type {Boolean|String}
+         * @public 
+         * @static 
+         */
+        cssPrefix: false, 
+
+        /**
+         * The DOM prefix (Moz, Webkit, ms, ...)
+         * False if it is unavailable 
+         * @property domPrefix 
+         * @type {Boolean|String}
+         * @public 
+         * @static 
+         */
+        domPrefix: false,
+
+        /**
          * Initialization function for the Browser object.
          *
          * Is called automatically when this module is loaded, and calls setDimensions, setBrowser and setReferrer.
