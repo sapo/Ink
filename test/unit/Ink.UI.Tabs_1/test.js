@@ -74,6 +74,16 @@ Ink.requireModules(['Ink.UI.Tabs_1', 'Ink.UI.Common_1', 'Ink.Dom.Element_1', 'In
         });
     });
 
+    testTabs('unless it\'s a disabled tab', function (tabComponent, container) {
+        stop();
+        var spy = sinon.spy(tabComponent, '_changeTab');
+        var theTabLink = Ink.s('a[href$="#news"]', container);
+        Syn.click(theTabLink, function () {
+            ok(spy.notCalled);
+            start();
+        });
+    });
+
     test('regression test: #245', function () {
         var cont = makeContainer();
         var home = Ink.s('a[href$="#home"]', cont);
