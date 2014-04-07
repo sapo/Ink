@@ -131,7 +131,7 @@ Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Common_1', 'Ink.Dom.Event_1', '
             this._delayTimeout = null;
             this.tooltip = null;
 
-            Common.registerInstance(this, this.element)
+            Common.registerInstance(this, this.element);
         },
         _makeTooltip: function (mousePosition) {
             if (!this._getOpt('text') &&

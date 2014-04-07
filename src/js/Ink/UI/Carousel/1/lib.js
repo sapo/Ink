@@ -96,7 +96,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
 
         this._options.onInit.call(this, this);
 
-        Common.registerInstance(this, this._element)
+        Common.registerInstance(this, this._element);
     };
 
     Carousel.prototype = {
