@@ -5457,6 +5457,7 @@ th {
   height: auto;
   width: auto;
   min-width: 10em;
+  max-width: 12em;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   -ms-border-radius: 2px;
