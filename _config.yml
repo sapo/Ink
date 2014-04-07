@@ -102,6 +102,7 @@ sections:
     components:
       - title: User interface
         topics:
+          - title: Ink.Autoload
           - title: Ink.UI.Animate
           - title: Ink.UI.Carousel
           - title: Ink.UI.Close
