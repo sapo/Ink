@@ -1,12 +1,10 @@
-
-<p>Basic sortable list</p>
-
 {% capture example_code %}
 <ul class="unstyled ink-sortable-list" id="my-sortable-list">
     <li>First</li>
     <li>Second</li>
     <li>Third</li>
 </ul>
+
 <script>
     // Not needed if you're using autoload.js
     Ink.requireModules( ['Ink.UI.SortableList_1'], function( SortableList ){
@@ -16,17 +14,16 @@
 {% endcapture %}
 
 <p class="example-title">Demo</p>
+<div class="example">
 {{ example_code }}
+</div>
 
 <p class="example-title">Code</p>
 {% highlight html %}
 {{ example_code }}
 {% endhighlight %}
 
-
-
-
-<p>Drag items by a handle</p>
+<p>If you need to create an handle-like area to drag items check the example below.</p>
 
 {% capture example_code2 %}
 <ul class="unstyled ink-sortable-list" id="my-sortable-list-handles" data-handle-selector=".ink-label">
@@ -34,6 +31,7 @@
     <li><span class="ink-label blue">Drag here</span> Second</li>
     <li><span class="ink-label blue">Drag here</span> Third</li>
 </ul>
+
 <script>
     // Not needed if you're using autoload.js
     Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.SortableList_1'], function( Selector, SortableList ){
@@ -44,7 +42,9 @@
 {% endcapture %}
 
 <p class="example-title">Demo</p>
+<div class="example">
 {{ example_code2 }}
+</div>
 
 <p class="example-title">Code</p>
 {% highlight html %}

@@ -1,5 +1,5 @@
-<p>Basic usage</p>
-
+<h2 class="fw-300">Basic usage</h2>
+<p>To view a basic modal window, click the the example modal button. Then check the example code below to know how it's generated.</p>
 {% capture example_code %}
 <div class="ink-shade fade">
     <div id="myModal" class="ink-modal fade" data-trigger="#myModalTrigger" data-width="80%" data-height="80%">
@@ -10,7 +10,7 @@
         <div class="modal-body" id="modalContent">
             <h3>This is the modal content</h3>
             <figure class="ink-image">
-                <img src="http://lorempixel.com/400/200/sports/1" alt="" class="ink-image">
+                <img src="http://lorempixel.com/1200/675/sports/1" alt="" class="ink-image">
             </figure>
         </div>
         <div class="modal-footer">
@@ -21,7 +21,7 @@
         </div>
     </div>
 </div>
-<a href="#" id="myModalTrigger" class="ink-button">Open modal</a>
+<a href="#" id="myModalTrigger" class="ink-button">Open example modal</a>
 <script>
     // Not required if you are using autoload.js.
     Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.Modal_1'], function( Selector, Modal ){
@@ -31,8 +31,6 @@
 </script>
 {% endcapture %}
 
-
-<p class="example-title">Demo</p>
 {{ example_code }}
 
 <p class="example-title">Code</p>

@@ -1,39 +1,31 @@
-
 {% capture example_code %}
 <div id="my-lazy-load">
-    <div class="large-100 vertical-space">
-        <img data-src="http://cdn.ink.sapo.pt/2.2.1/img/shot_meo.png" class="lazyload-item">
-    </div>
-    <div class="large-100 vertical-space">
-        <img data-src="http://cdn.ink.sapo.pt/2.2.1/img/shot_musicbox.png" class="lazyload-item">
-    </div>
-    <div class="large-100 vertical-space">
-        <img data-src="http://cdn.ink.sapo.pt/2.2.1/img/shot_intra.png" class="lazyload-item">
-    </div>
-    <div class="large-100 vertical-space">
-        <img data-src="http://cdn.ink.sapo.pt/2.2.1/img/shot_ink.png" class="lazyload-item">
-    </div>
-    <div class="large-100 vertical-space">
-        <img data-src="http://cdn.ink.sapo.pt/2.2.1/img/shot_pessoa.png" class="lazyload-item">
-    </div>
+    <img data-src="http://cdn.ink.sapo.pt/2.2.1/img/shot_meo.png" class="lazyload-item quarter-vertical-space">
+    <img data-src="http://cdn.ink.sapo.pt/2.2.1/img/shot_musicbox.png" class="lazyload-item quarter-vertical-space">
+    <img data-src="http://cdn.ink.sapo.pt/2.2.1/img/shot_intra.png" class="lazyload-item quarter-vertical-space">
+    <img data-src="http://cdn.ink.sapo.pt/2.2.1/img/shot_ink.png" class="lazyload-item quarter-vertical-space">
+    <img data-src="http://cdn.ink.sapo.pt/2.2.1/img/shot_pessoa.png" class="lazyload-item quarter-vertical-space">    
 </div>
 
 <script type="text/javascript">
 Ink.requireModules(['Ink.UI.LazyLoad_1', 'Ink.Dom.Element_1'], function(LazyLoad, InkElement) {
     new LazyLoad('#my-lazy-load', {
-        delta: -100,
+        delta: -300,
         placeholder: 'http://cdn.ink.sapo.pt/2.2.1/img/logo_home.png'
     });
 });
 </script>
 {% endcapture %}
 
-<p><span class="ink-label red">Note about the demos:</span> If you want to see these items load again, scroll back up and reload the page.</p>
-
-<p>Basic usage: Load images only when they are 100px into the screen</p>
+<h2 class="fw-300">Basic usage</h2>
+<p>In the example below the defaults are set to load the images only when they are 300px into the screen.</p>
 
 <p class="example-title">Demo</p>
+<div class="example">
 {{ example_code }}
+</div>
+
+<p><i class="fa fa-leaf"></i> If you want to see these items loading again, scroll back up and reload the page.</p>
 
 <p class="example-title">Code</p>
 {% highlight html %}

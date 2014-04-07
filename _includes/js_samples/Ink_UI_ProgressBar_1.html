@@ -1,10 +1,9 @@
-<p>Creating the progress bar</p>
-
 {% capture example_code %}
 <div id="my-progress-bar" class="ink-progress-bar grey" data-start-value="70">
     <span class="caption">I am a grey progress bar</span>
     <div class="bar grey"></div>
 </div>
+
 <script>
     Ink.requireModules( ['Ink.UI.ProgressBar_1'], function(ProgressBar){
         var myProgressBar = new ProgressBar( '#my-progress-bar' );
@@ -13,7 +12,9 @@
 {% endcapture %}
 
 <p class="example-title">Demo</p>
+<div class="example">
 {{ example_code }}
+</div>
 
 <p class="example-title">Code</p>
 {% highlight html %}
