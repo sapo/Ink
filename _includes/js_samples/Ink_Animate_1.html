@@ -1,19 +1,18 @@
 {{! fiddle: http://jsfiddle.net/hxKp7/ }}
 
 {% capture example_code %}
-<div class="example">
-    <button id="animate-me" class="ink-button blue">Animate!</button>
-    <div class="ink-animate example-box half-top-space"
-        id="animated"
-        data-trigger="#animate-me"
-        data-animation="fadeOut"
-        data-removeClass="false">
-            <h3>I am the animated box</h3>
-            <p>
-                Animation is the process of creating a continuous motion and shape change illusion by means of the rapid display of a sequence of static images that minimally differ from each other. The illusion—as in motion pictures in general—is thought to rely on the phi phenomenon.
-            </p>
-    </div>
+<button id="animate-me" class="ink-button blue">Animate!</button>
+<div class="ink-animate example-box half-top-space"
+    id="animated"
+    data-trigger="#animate-me"
+    data-animation="fadeOut"
+    data-removeClass="false">
+    <h3>I am the animated box</h3>
+    <p>
+        Animation is the process of creating a continuous motion and shape change illusion by means of the rapid display of a sequence of static images that minimally differ from each other. The illusion—as in motion pictures in general—is thought to rely on the phi phenomenon.
+    </p>
 </div>
+
 <script type="text/javascript">
     // Note: this step is not necessary if you are using autoload.js
     Ink.requireModules(['Ink.UI.Animate_1'], function (Animate) {
@@ -24,8 +23,9 @@
 
 
 <p class="example-title">Demo</p>
+<div class="example">
 {{ example_code }}
-
+</div>
 <p class="example-title">Code</p>
 {% highlight html %}
 {{ example_code }}
