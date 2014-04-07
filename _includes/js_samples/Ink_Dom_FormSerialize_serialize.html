@@ -1,0 +1,28 @@
+<p class="example-title">Code</p>
+{% highlight html %}
+<form id="form">
+    <input type="text" name="textfield" value="foo">
+    <input type="radio" name="radio" value="1">
+    <input type="radio" name="radio" value="2" checked>
+    <input type="checkbox" name="check[]" value="1" checked>
+    <input type="checkbox" name="check[]" value="2" checked>
+    <button type="submit">Submit</button>
+</form>
+<script>
+Ink.requireModules(['Ink.Dom.FormSerialize_1', 'Ink.Dom.Event_1'], function(FormSerialize, InkEvent) {
+    var form = Ink.i('form');
+    InkEvent.observe(form, 'submit', function(event){
+        InkEvent.stopDefault(event);
+        var oSerialize = FormSerialize.serialize(form);
+        Ink.log(oSerialize); 
+        // {
+        //   textfield: "foo",
+        //   radio: "2",
+        //   check: ["1", "2"]
+        // }
+    });
+});
+</script>
+{% endhighlight %}
+
+

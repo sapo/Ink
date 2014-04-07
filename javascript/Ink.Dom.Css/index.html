@@ -8,7 +8,7 @@ site_root:  ../
         <h1 class="fw-300">Ink.Dom.Css_1<small>version:1</small></h1>
 
 
-    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p><table class="props bottom-space"><caption>Functions</caption>
+    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space"><caption>Functions</caption>
         <thead>
             <tr>
                 <th>Function name</th>
@@ -170,7 +170,9 @@ site_root:  ../
                 Classes</dd>
         </dl>
 
-</section>
+<h3>Samples</h3>
+		{% include js_samples/Ink_Dom_Css_addClassName.html %}
+	</section>
 
     <section id="Ink_Dom_Css_1-Ink_Dom_Css-addRemoveClassName" class="box box-function">
     <h1 class="fw-300">.addRemoveClassName(elm, className, addRemState) 
@@ -198,18 +200,10 @@ Depending on addRemState, this method either adds a class if it&#39;s true or re
                 </label>
                 Whether to add or remove. `true` to add, `false` to remove.</dd>
         </dl>
-<p class="example-title">Example</p>
-  
-{% highlight html %}{% raw %}
-     Ink.requireModules(['Ink.Dom.Css_1'], function (Css) {
-         Css.addRemoveClassName(myElm, 'classss', true);  // Adds the `classss` class.
-         Css.addRemoveClassName(myElm, 'classss', false);  // Removes the `classss` class.
-     });
-{% endraw %}{% endhighlight %}
 
-
-
-</section>
+<h3>Samples</h3>
+		{% include js_samples/Ink_Dom_Css_addRemoveClassName.html %}
+	</section>
 
     <section id="Ink_Dom_Css_1-Ink_Dom_Css-appendStyleTag" class="box box-function">
     <h1 class="fw-300">.appendStyleTag(selector, style, options, ) 
@@ -249,7 +243,9 @@ Depending on addRemState, this method either adds a class if it&#39;s true or re
                 If true, the style tag will be appended to end of head</dd>
         </dl>
 
-</section>
+<h3>Samples</h3>
+		{% include js_samples/Ink_Dom_Css_appendStyleTag.html %}
+	</section>
 
     <section id="Ink_Dom_Css_1-Ink_Dom_Css-appendStylesheet" class="box box-function">
     <h1 class="fw-300">.appendStylesheet(path, options, ) 
@@ -291,7 +287,9 @@ This method add a stylesheet to the head of a page</p>
                 If true, tag will be appended to end of head</dd>
         </dl>
 
-</section>
+<h3>Samples</h3>
+		{% include js_samples/Ink_Dom_Css_appendStylesheet.html %}
+	</section>
 
     <section id="Ink_Dom_Css_1-Ink_Dom_Css-appendStylesheetCb" class="box box-function">
     <h1 class="fw-300">.appendStylesheetCb(cssURI, [callback]) 
@@ -303,8 +301,7 @@ This method add a stylesheet to the head of a page</p>
     </ul><p class="text"><p>Injects an external link tag.
 Loads CSS via LINK element inclusion in HEAD (skips append if already there)</p>
 <p>Works similarly to appendStylesheet but:
-  a) supports all browsers;
-  b) supports optional callback which gets invoked once the CSS has been applied</p>
+  supports optional callback which gets invoked once the CSS has been applied</p>
 </p>
         <h3>Accepts</h3>
         <dl class="params">
@@ -319,7 +316,9 @@ Loads CSS via LINK element inclusion in HEAD (skips append if already there)</p>
                 optional callback which will be called once the CSS is loaded</dd>
         </dl>
 
-</section>
+<h3>Samples</h3>
+		{% include js_samples/Ink_Dom_Css_appendStylesheetCb.html %}
+	</section>
 
     <section id="Ink_Dom_Css_1-Ink_Dom_Css-blinkClass" class="box box-function">
     <h1 class="fw-300">.blinkClass(elm, className, timeout, negate) 
@@ -343,7 +342,7 @@ Add and removes the class from the element with a timeout, so it blinks</p>
             <dd><label class="monospace">className
                 </label>
                 Class name(s) to blink</dd>
-            <dt><code>Boolean</code></dt>
+            <dt><code>Number</code></dt>
             <dd><label class="monospace">timeout
                 </label>
                 timeout in ms between adding and removing, default 100 ms</dd>
@@ -353,7 +352,9 @@ Add and removes the class from the element with a timeout, so it blinks</p>
                 is true, class is removed then added</dd>
         </dl>
 
-</section>
+<h3>Samples</h3>
+		{% include js_samples/Ink_Dom_Css_blinkClass.html %}
+	</section>
 
     <section id="Ink_Dom_Css_1-Ink_Dom_Css-changeFontSize" class="box box-function">
     <h1 class="fw-300">.changeFontSize(selector, delta, [op], [minVal], [maxVal]) 
@@ -416,13 +417,15 @@ Useful to convert colors to their hexadecimal representation.</p>
         </dl>
         <h3>Returns</h3>
         <dl>
-            <dt class="return"></dt>
+            <dt class="return"><code>String</code></dt>
             <dd>
             </dd>
         </dl>
         
 
-</section>
+<h3>Samples</h3>
+		{% include js_samples/Ink_Dom_Css_decToHex.html %}
+	</section>
 
     <section id="Ink_Dom_Css_1-Ink_Dom_Css-getPropertyFromStylesheet" class="box box-function">
     <h1 class="fw-300">.getPropertyFromStylesheet(selector, property) 
@@ -483,7 +486,9 @@ Use this to obtain the value of a CSS property (searched from loaded CSS documen
         </dl>
         
 
-</section>
+<h3>Samples</h3>
+		{% include js_samples/Ink_Dom_Css_getStyle.html %}
+	</section>
 
     <section id="Ink_Dom_Css_1-Ink_Dom_Css-hasClassName" class="box box-function">
     <h1 class="fw-300">.hasClassName(elm, className, [all]) 
@@ -520,7 +525,9 @@ This method verifies if an element has ONE of a list of classes. If the last arg
         </dl>
         
 
-</section>
+<h3>Samples</h3>
+		{% include js_samples/Ink_Dom_Css_hasClassName.html %}
+	</section>
 
     <section id="Ink_Dom_Css_1-Ink_Dom_Css-hexToDec" class="box box-function">
     <h1 class="fw-300">.hexToDec(hex) 
@@ -546,7 +553,9 @@ Useful to use with CSS colors</p>
         </dl>
         
 
-</section>
+<h3>Samples</h3>
+		{% include js_samples/Ink_Dom_Css_hexToDec.html %}
+	</section>
 
     <section id="Ink_Dom_Css_1-Ink_Dom_Css-hide" class="box box-function">
     <h1 class="fw-300">.hide(elm) 
@@ -564,7 +573,9 @@ Useful to use with CSS colors</p>
                 DOM element or element id</dd>
         </dl>
 
-</section>
+<h3>Samples</h3>
+		{% include js_samples/Ink_Dom_Css_hide.html %}
+	</section>
 
     <section id="Ink_Dom_Css_1-Ink_Dom_Css-removeClassName" class="box box-function">
     <h1 class="fw-300">.removeClassName(elm, className) 
@@ -587,7 +598,9 @@ Useful to use with CSS colors</p>
                 Class names to remove. You can either use a space separated string of classnames, comma-separated list or an array</dd>
         </dl>
 
-</section>
+<h3>Samples</h3>
+		{% include js_samples/Ink_Dom_Css_removeClassName.html %}
+	</section>
 
     <section id="Ink_Dom_Css_1-Ink_Dom_Css-setClassName" class="box box-function">
     <h1 class="fw-300">.setClassName(elm, className, [add]) 
@@ -640,7 +653,9 @@ Utility function, saves many if/elses.</p>
                 allows 0 to 1(default mode decimal) or percentage (warning using 0 or 1 will reset to default mode)</dd>
         </dl>
 
-</section>
+<h3>Samples</h3>
+		{% include js_samples/Ink_Dom_Css_setOpacity.html %}
+	</section>
 
     <section id="Ink_Dom_Css_1-Ink_Dom_Css-setStyle" class="box box-function">
     <h1 class="fw-300">.setStyle(elm, style) 
@@ -662,27 +677,10 @@ Utility function, saves many if/elses.</p>
                 </label>
                 Which css attribute to set</dd>
         </dl>
-<p class="example-title">Example</p>
-  
-{% highlight html %}{% raw %}
-    <a href="#" class="change-color">Change his color</a>
-    <p class="him">"He" is me</p>
-    <script type="text/javascript">
-        Ink.requireModules(['Ink.Dom.Css_1', 'Ink.Dom.Event_1', 'Ink.Dom.Selector_1'], function (Css, InkEvent, Selector) {
-            var btn = Selector.select('.change-color')[0];
-            var other = Selector.select('.him')[0];
-            InkEvent.observe(btn, 'click', function () {
-                Css.setStyle(other, 'background-color: black');
-                Css.setStyle(other, 'color: white');
-            });
-        });
-    </script>
 
-{% endraw %}{% endhighlight %}
-
-
-
-</section>
+<h3>Samples</h3>
+		{% include js_samples/Ink_Dom_Css_setStyle.html %}
+	</section>
 
     <section id="Ink_Dom_Css_1-Ink_Dom_Css-show" class="box box-function">
     <h1 class="fw-300">.show(elm, [forceDisplayProperty]) 
@@ -707,7 +705,9 @@ Internally it unsets the display property of an element. You can force a specifi
                 Css display property to apply on show</dd>
         </dl>
 
-</section>
+<h3>Samples</h3>
+		{% include js_samples/Ink_Dom_Css_show.html %}
+	</section>
 
     <section id="Ink_Dom_Css_1-Ink_Dom_Css-showHide" class="box box-function">
     <h1 class="fw-300">.showHide(elm, [show]) 
@@ -732,7 +732,9 @@ If the show parameter is true, it shows the element. Otherwise, hides it.</p>
                 Whether to show or hide `elm`.</dd>
         </dl>
 
-</section>
+<h3>Samples</h3>
+		{% include js_samples/Ink_Dom_Css_showHide.html %}
+	</section>
 
     <section id="Ink_Dom_Css_1-Ink_Dom_Css-toggle" class="box box-function">
     <h1 class="fw-300">.toggle(elm, forceShow) 
@@ -755,7 +757,9 @@ If the show parameter is true, it shows the element. Otherwise, hides it.</p>
                 Forces showing if element is hidden</dd>
         </dl>
 
-</section>
+<h3>Samples</h3>
+		{% include js_samples/Ink_Dom_Css_toggle.html %}
+	</section>
 
     <section id="Ink_Dom_Css_1-Ink_Dom_Css-toggleClassName" class="box box-function">
     <h1 class="fw-300">.toggleClassName(elm, className, [forceAdd]) 
@@ -784,7 +788,9 @@ If the show parameter is true, it shows the element. Otherwise, hides it.</p>
                 Flag to force adding the the classe names if they don't exist yet.</dd>
         </dl>
 
-</section>
+<h3>Samples</h3>
+		{% include js_samples/Ink_Dom_Css_toggleClassName.html %}
+	</section>
 
 
 

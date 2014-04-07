@@ -10,6 +10,10 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
 
     var arrayProto = Array.prototype;
 
+    /**
+     * @namespace Ink.Util.Array_1
+     */
+
     var InkArray = {
 
         /**
@@ -21,15 +25,7 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          * @param {Mixed} value     Value to check
          * @param {Array} arr       Array to search in
          * @return {Boolean}        True if value exists in the array
-         * @example
-         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
-         *         var testArray = [ 'value1', 'value2', 'value3' ];
-         *         if( InkArray.inArray( 'value2', testArray ) === true ){
-         *             console.log( "Yep it's in the array." );
-         *         } else {
-         *             console.log( "No it's NOT in the array." );
-         *         }
-         *     });
+         * @sample Ink_Util_Array_inArray.html 
          */
         inArray: function(value, arr) {
             if (typeof arr === 'object') {
@@ -51,16 +47,7 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          * @return {Array|Boolean}      False if it's not an array, returns a sorted array if it's an array.
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
-         *         var testArray = [
-         *             { 'myKey': 'value1' },
-         *             { 'myKey': 'value2' },
-         *             { 'myKey': 'value3' }
-         *         ];
-         *
-         *         InkArray.sortMulti( testArray, 'myKey' );
-         *     });
+         * @sample Ink_Util_Array_sortMulti.html 
          */
         sortMulti: function(arr, key) {
             if (typeof arr === 'undefined' || arr.constructor !== Array) { return false; }
@@ -86,12 +73,7 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          * @return  {Boolean|Number|Array}  False for no matches. Array of matches or first match index.
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
-         *         var testArray = [ 'value1', 'value2', 'value3', 'value2' ];
-         *         console.log( InkArray.keyValue( 'value2', testArray, true ) ); // Result: 1
-         *         console.log( InkArray.keyValue( 'value2', testArray ) ); // Result: [1, 3]
-         *     });
+         * @sample Ink_Util_Array_keyValue.html 
          */
         keyValue: function(value, arr, first) {
             if (typeof value !== 'undefined' && typeof arr === 'object' && this.inArray(value, arr)) {
@@ -118,11 +100,7 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          * @return  {Array|Boolean}      Shuffled Array or false if not an array.
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
-         *         var testArray = [ 'value1', 'value2', 'value3', 'value2' ];
-         *         console.log( InkArray.shuffle( testArray ) ); // Result example: [ 'value3', 'value2', 'value2', 'value1' ]
-         *     });
+         * @sample Ink_Util_Array_shuffle.html 
          */
         shuffle: function(arr) {
             if (typeof(arr) !== 'undefined' && arr.constructor !== Array) { return false; }
@@ -148,13 +126,7 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          * @return  {Array}             Iterated array.
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
-         *         var testArray = [ 'value1', 'value2', 'value3', 'value2' ];
-         *         InkArray.forEach( testArray, function( value, index, arr ){
-         *             console.log( 'The value is: ' + value + ' | The index is: ' + index );
-         *         });
-         *     });
+         * @sample Ink_Util_Array_forEach.html 
          */
         forEach: function(array, callback, context) {
             if (arrayProto.forEach) {
@@ -180,12 +152,9 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          * @method map
          * @param {Array}       array       The array to map over
          * @param {Function}    map         The map function. Will take `(item, index, array)` as arguments and `this` will be the `context` argument.
-         * @param {Object}      [context]   Object to be `this` in the map function.
+         * @param {Object}      [context]   Object to be `this` in the map function. 
          *
-         * @example
-         *      InkArray.map([1, 2, 3, 4], function (item) {
-         *          return item + 1;
-         *      }); // -> [2, 3, 4, 5]
+         * @sample Ink_Util_Array_map.html 
          */
         map: function (array, callback, context) {
             if (arrayProto.map) {
@@ -201,15 +170,13 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
         /**
          * Filters an array based on a truth test.
          * This method runs a test function on all the array values and returns a new array with all the values that pass the test.
+         * @method filter
          * @param {Array}       array       The array to filter
          * @param {Function}    test        A test function taking `(item, index, array)`
          * @param {Object}      [context]   Object to be `this` in the test function.
          * @return {Array}                  Returns the filtered array
          *
-         * @example
-         *      InkArray.filter([1, 2, 3, 4, 5], function (val) {
-         *          return val > 2;
-         *      })  // -> [3, 4, 5]
+         * @sample Ink_Util_Array_filter.html 
          */
         filter: function (array, test, context) {
             if (arrayProto.filter) {
@@ -236,20 +203,7 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          * @return  {Boolean}               True if the callback returns true at any point, false otherwise
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
-         *         var testArray1 = [ 10, 20, 50, 100, 30 ];
-         *         var testArray2 = [ 1, 2, 3, 4, 5 ];
-         *
-         *         function myTestFunction( value, index, arr ){
-         *             if( value > 90 ){
-         *                 return true;
-         *             }
-         *             return false;
-         *         }
-         *         console.log( InkArray.some( testArray1, myTestFunction, null ) ); // Result: true
-         *         console.log( InkArray.some( testArray2, myTestFunction, null ) ); // Result: false
-         *     });
+         * @sample Ink_Util_Array_some.html 
          */
         some: function(arr, cb, context){
 
@@ -277,12 +231,7 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          * @return  {Array}             Empty array if one of the arrays is false (or do not intersect) | Array with the intersected values
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
-         *         var testArray1 = [ 'value1', 'value2', 'value3' ];
-         *         var testArray2 = [ 'value2', 'value3', 'value4', 'value5', 'value6' ];
-         *         console.log( InkArray.intersect( testArray1,testArray2 ) ); // Result: [ 'value2', 'value3' ]
-         *     });
+         * @sample Ink_Util_Array_intersect.html 
          */
         intersect: function(arr1, arr2) {
             if (!arr1 || !arr2 || arr1 instanceof Array === false || arr2 instanceof Array === false) {
@@ -309,15 +258,7 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          * @return  {Array}         Array resulting of the conversion
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
-         *         var testArray = [ 'value1', 'value2' ];
-         *         testArray.myMethod = function(){
-         *             console.log('stuff');
-         *         }
-         *
-         *         console.log( InkArray.convert( testArray ) ); // Result: [ 'value1', 'value2' ]
-         *     });
+         * @sample Ink_Util_Array_convert.html 
          */
         convert: function(arr) {
             return arrayProto.slice.call(arr || [], 0);
@@ -332,11 +273,7 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          * @param {Mixed}   value   Value to be inserted
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
-         *         var testArray = [ 'value1', 'value2' ];
-         *         console.log( InkArray.insert( testArray, 1, 'value3' ) ); // Result: [ 'value1', 'value3', 'value2' ]
-         *     });
+         * @sample Ink_Util_Array_insert.html 
          */
         insert: function(arr, idx, value) {
             arr.splice(idx, 0, value);
@@ -352,11 +289,7 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          * @return  {Array}             An array with the remaining values
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
-         *         var testArray = [ 'value1', 'value2', 'value3', 'value4', 'value5' ];
-         *         console.log( InkArray.remove( testArray, 1, 3 ) ); // Result: [ 'value1', 'value4', 'value5' ]
-         *     });
+         * @sample Ink_Util_Array_remove.html 
          */
         remove: function(arr, from, rLen){
             var output = [];

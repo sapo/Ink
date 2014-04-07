@@ -1,0 +1,16 @@
+<p class="example-title">Code</p>
+{% highlight html %}
+<div>
+    <button id="b_1">Click once</button>
+</div>
+<script>
+Ink.requireModules(['Ink.Dom.Event_1'], function(InkEvent) {
+    var button = Ink.i('b_1');
+    InkEvent.observeOnce(button, 'click',  function(event) {
+            alert('Hello World');
+        });    
+});
+</script>
+{% endhighlight %}
+
+

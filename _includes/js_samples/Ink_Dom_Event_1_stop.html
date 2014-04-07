@@ -1,0 +1,27 @@
+<p class="example-title">Code</p>
+{% highlight html %}
+<div id="container">
+    <a href="http://ink.sapo.pt/" id="link">Click to Ink</a>
+</div>
+<script>
+Ink.requireModules(['Ink.Dom.Event_1'], function(InkEvent) {
+        
+    var container = Ink.i('container');
+    var link = Ink.i('link');
+    InkEvent.observe(container, 'click', function(event) {
+            Ink.log('Container has been clicked');
+        }); 
+    InkEvent.observe(link, 'click', function(event) {
+            InkEvent.stop(event); // stops propagation and prevent defaults 
+            Ink.log('Link has been clicked');
+        }); 
+
+    // Clicking "link" will show: 
+    // "Link has been clicked" 
+    // Otherwise 
+    // "Link has been clicked" "Contaner has been clicked" and goes to ink.sapo.pt 
+});
+</script>
+{% endhighlight %}
+
+

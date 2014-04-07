@@ -1,0 +1,29 @@
+<p class="example-title">Code</p>
+{% highlight js %}
+Ink.requireModules(['Ink.Util.Array_1'], function(InkArray) {
+
+    var testArray = [1, 2, 3, 4];
+    var result = InkArray.map(testArray, function(item, index, arr) {
+            return item + 1;
+        });
+
+    Ink.log(result);
+    // [2, 3, 4, 5] 
+});
+{% endhighlight %}
+
+<p class="example-title">Code</p>
+{% highlight js %}
+Ink.requireModules(['Ink.Util.Array_1'], function(InkArray) {
+
+    var testArray = ['a', 'b', 'c'];
+    var result = InkArray.map(testArray, function(item, index, arr) {
+            return item.toUpperCase();
+        });
+
+    Ink.log(result);
+    // ['A', 'B', 'C'] 
+});
+{% endhighlight %}
+
+

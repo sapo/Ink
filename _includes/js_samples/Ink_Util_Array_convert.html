@@ -1,0 +1,29 @@
+<p>Convert <code>arguments</code> to an array</p> 
+<p class="example-title">Code</p>
+{% highlight js %}
+Ink.requireModules(['Ink.Util.Array_1'], function(InkArray) {
+    (function(a, b) {
+        var args = InkArray.convert(arguments);
+        Ink.log(args);
+    })('foo', 'bar');
+});
+{% endhighlight %}
+
+<p class="example-title">Code</p>
+{% highlight js %}
+Ink.requireModules(['Ink.Util.Array_1'], function(InkArray) {
+
+    var myArray = ['value_0', 'value_1'];
+    myArray.method = function() { };
+    myArray.prop = 'foobar';
+
+    Ink.log(typeof myArray.method); // function 
+
+    var arr = InkArray.convert(myArray);
+
+    Ink.log(arr);
+    // ['value_0', 'value_1']
+
+    Ink.log(typeof arr.method); // undefined 
+});
+{% endhighlight %}

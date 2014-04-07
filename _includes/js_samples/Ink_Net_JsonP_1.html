@@ -1,0 +1,29 @@
+<p>Make a request to <code>SAPO Photos</code> and print the images</p>
+
+<p class="example-title">Code</p>
+{% highlight html %}
+<div id="container"></div>
+<script>
+Ink.requireModules(['Ink.Net.JsonP_1'], function(JsonP) {
+
+    var uri = 'http://services.sapo.pt/Photos/JSON2?u=codebits';
+    new JsonP(uri, {
+        params: {limit: '3'}, // the query string parameters can be defined here 
+        onSuccess: function(data) {
+            var aItems = data.rss.channel.item;
+            var container = Ink.i('container');
+            var curImg;
+            for(var i=0, total=aItems.length; i < total; i++) {
+                curImg = new Image();
+                curImg.src = aItems[i]['media:thumbnail'][0].url;
+                container.appendChild(curImg);
+            }
+        }, 
+        onFailure: function() {
+            Ink.warn('JsonP request failed');
+        }
+    });
+});
+</script>
+{% endhighlight %}
+

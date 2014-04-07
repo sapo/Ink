@@ -7,31 +7,145 @@ site_root:  ../
     <section>
         <h1 class="fw-300">Ink.Util.Validator_1<small>version:1</small></h1>
 
-<h2>Defined functions:</h2>
-        <ul class="unstyled"><li><a href="#Ink_Util_Validator_1-ascii">Ink.Util.Validator_1.ascii(s, [options])</a></li>
-        <li><a href="#Ink_Util_Validator_1-checkCharacterGroups">Ink.Util.Validator_1.checkCharacterGroups(s, [groups])</a></li>
-        <li><a href="#Ink_Util_Validator_1-codPostal">Ink.Util.Validator_1.codPostal(cp1, cp2, returnBothResults)</a></li>
-        <li><a href="#Ink_Util_Validator_1-createRegExp">Ink.Util.Validator_1.createRegExp(Groups*)</a></li>
-        <li><a href="#Ink_Util_Validator_1-isAOPhone">Ink.Util.Validator_1.isAOPhone(phone)</a></li>
-        <li><a href="#Ink_Util_Validator_1-isCVPhone">Ink.Util.Validator_1.isCVPhone(phone)</a></li>
-        <li><a href="#Ink_Util_Validator_1-isColor">Ink.Util.Validator_1.isColor(str)</a></li>
-        <li><a href="#Ink_Util_Validator_1-isCreditCard">Ink.Util.Validator_1.isCreditCard(num, creditCardType)</a></li>
-        <li><a href="#Ink_Util_Validator_1-isDate">Ink.Util.Validator_1.isDate(format, dateStr)</a></li>
-        <li><a href="#Ink_Util_Validator_1-isIP">Ink.Util.Validator_1.isIP(value, ipType)</a></li>
-        <li><a href="#Ink_Util_Validator_1-isMZPhone">Ink.Util.Validator_1.isMZPhone(phone)</a></li>
-        <li><a href="#Ink_Util_Validator_1-isPTPhone">Ink.Util.Validator_1.isPTPhone(phone)</a></li>
-        <li><a href="#Ink_Util_Validator_1-isPhone">Ink.Util.Validator_1.isPhone(phone, [countryCode])</a></li>
-        <li><a href="#Ink_Util_Validator_1-isPortuguesePhone">Ink.Util.Validator_1.isPortuguesePhone(phone)</a></li>
-        <li><a href="#Ink_Util_Validator_1-isTLPhone">Ink.Util.Validator_1.isTLPhone(phone)</a></li>
-        <li><a href="#Ink_Util_Validator_1-latin1">Ink.Util.Validator_1.latin1(s, [options])</a></li>
-        <li><a href="#Ink_Util_Validator_1-mail">Ink.Util.Validator_1.mail(email)</a></li>
-        <li><a href="#Ink_Util_Validator_1-number">Ink.Util.Validator_1.number(numb, [options], )</a></li>
-        <li><a href="#Ink_Util_Validator_1-unicode">Ink.Util.Validator_1.unicode(s, [options])</a></li>
-        <li><a href="#Ink_Util_Validator_1-url">Ink.Util.Validator_1.url(url, [full])</a></li>
+
+    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space"><caption>Functions</caption>
+        <thead>
+            <tr>
+                <th>Function name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
         
-        </ul><section id="Ink_Util_Validator_1-ascii" class="box box-function">
+        <tbody>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-ascii">.ascii</a>
+                </td>
+                <td>Checks if a field only contains only ASCII alphanumeric characters. </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-checkCharacterGroups">.checkCharacterGroups</a>
+                </td>
+                <td>Checks if a field has the required groups.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-codPostal">.codPostal</a>
+                </td>
+                <td>Validates if a zip code is valid in Portugal</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-createRegExp">.createRegExp</a>
+                </td>
+                <td>Creates a regular expression for several character groups.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-isAOPhone">.isAOPhone</a>
+                </td>
+                <td>Checks if a phone is valid in Angola</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-isCVPhone">.isCVPhone</a>
+                </td>
+                <td>Checks if a phone is valid in Cabo Verde</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-isColor">.isColor</a>
+                </td>
+                <td>Checks if a string is a valid color</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-isCreditCard">.isCreditCard</a>
+                </td>
+                <td>Checks if a number is of a specific credit card type</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-isDate">.isDate</a>
+                </td>
+                <td>Checks if a date is valid in a given format</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-isIP">.isIP</a>
+                </td>
+                <td>Checks if the value is a valid IP.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-isMZPhone">.isMZPhone</a>
+                </td>
+                <td>Checks if a phone is valid in Mozambique</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-isPTPhone">.isPTPhone</a>
+                </td>
+                <td>Checks if a phone is valid in Portugal</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-isPhone">.isPhone</a>
+                </td>
+                <td>Checks if a number is a phone number.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-isPortuguesePhone">.isPortuguesePhone</a>
+                </td>
+                <td>Alias function for isPTPhone</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-isTLPhone">.isTLPhone</a>
+                </td>
+                <td>Checks if a phone is valid in Timor</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-latin1">.latin1</a>
+                </td>
+                <td>Checks if a field only contains latin-1 alphanumeric characters. </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-mail">.mail</a>
+                </td>
+                <td>Checks if an email is valid</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-number">.number</a>
+                </td>
+                <td>Checks if a number is a valid</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-unicode">.unicode</a>
+                </td>
+                <td>Checks if a field contains unicode printable characters.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-url">.url</a>
+                </td>
+                <td>Checks if an url is valid</td>
+            </tr></tbody>
+    </table>
+    
+</section>
+
+
+
+    <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-ascii" class="box box-function">
     <h1 class="fw-300">.ascii(s, [options]) 
-    <i>function</i></h1>
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">s</li>
@@ -53,9 +167,10 @@ Takes options for allowing singleline whitespace, cross-line whitespace and punc
         </dl>
 
 </section>
-    <section id="Ink_Util_Validator_1-checkCharacterGroups" class="box box-function">
+
+    <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-checkCharacterGroups" class="box box-function">
     <h1 class="fw-300">.checkCharacterGroups(s, [groups]) 
-    <i>function</i></h1>
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">s</li>
@@ -76,9 +191,10 @@ Takes options for allowing singleline whitespace, cross-line whitespace and punc
         </dl>
 
 </section>
-    <section id="Ink_Util_Validator_1-codPostal" class="box box-function">
+
+    <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-codPostal" class="box box-function">
     <h1 class="fw-300">.codPostal(cp1, cp2, returnBothResults) 
-    <i>function</i></h1>
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">cp1</li>
@@ -121,9 +237,10 @@ Takes options for allowing singleline whitespace, cross-line whitespace and punc
 
 
 </section>
-    <section id="Ink_Util_Validator_1-createRegExp" class="box box-function">
+
+    <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-createRegExp" class="box box-function">
     <h1 class="fw-300">.createRegExp(Groups*) 
-    <i>function</i></h1>
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">Groups*</li>
@@ -138,9 +255,10 @@ Takes options for allowing singleline whitespace, cross-line whitespace and punc
         </dl>
 
 </section>
-    <section id="Ink_Util_Validator_1-isAOPhone" class="box box-function">
+
+    <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-isAOPhone" class="box box-function">
     <h1 class="fw-300">.isAOPhone(phone) 
-    <i>function</i></h1>
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">phone</li>
@@ -174,9 +292,10 @@ Takes options for allowing singleline whitespace, cross-line whitespace and punc
 
 
 </section>
-    <section id="Ink_Util_Validator_1-isCVPhone" class="box box-function">
+
+    <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-isCVPhone" class="box box-function">
     <h1 class="fw-300">.isCVPhone(phone) 
-    <i>function</i></h1>
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">phone</li>
@@ -210,9 +329,10 @@ Takes options for allowing singleline whitespace, cross-line whitespace and punc
 
 
 </section>
-    <section id="Ink_Util_Validator_1-isColor" class="box box-function">
+
+    <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-isColor" class="box box-function">
     <h1 class="fw-300">.isColor(str) 
-    <i>function</i></h1>
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">str</li>
@@ -244,9 +364,10 @@ Takes options for allowing singleline whitespace, cross-line whitespace and punc
 
 
 </section>
-    <section id="Ink_Util_Validator_1-isCreditCard" class="box box-function">
+
+    <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-isCreditCard" class="box box-function">
     <h1 class="fw-300">.isCreditCard(num, creditCardType) 
-    <i>function</i></h1>
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">num</li>
@@ -273,9 +394,10 @@ Takes options for allowing singleline whitespace, cross-line whitespace and punc
         
 
 </section>
-    <section id="Ink_Util_Validator_1-isDate" class="box box-function">
+
+    <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-isDate" class="box box-function">
     <h1 class="fw-300">.isDate(format, dateStr) 
-    <i>function</i></h1>
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">format</li>
@@ -311,9 +433,10 @@ Takes options for allowing singleline whitespace, cross-line whitespace and punc
 
 
 </section>
-    <section id="Ink_Util_Validator_1-isIP" class="box box-function">
+
+    <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-isIP" class="box box-function">
     <h1 class="fw-300">.isIP(value, ipType) 
-    <i>function</i></h1>
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">value</li>
@@ -340,9 +463,10 @@ Takes options for allowing singleline whitespace, cross-line whitespace and punc
         
 
 </section>
-    <section id="Ink_Util_Validator_1-isMZPhone" class="box box-function">
+
+    <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-isMZPhone" class="box box-function">
     <h1 class="fw-300">.isMZPhone(phone) 
-    <i>function</i></h1>
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">phone</li>
@@ -376,9 +500,10 @@ Takes options for allowing singleline whitespace, cross-line whitespace and punc
 
 
 </section>
-    <section id="Ink_Util_Validator_1-isPTPhone" class="box box-function">
+
+    <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-isPTPhone" class="box box-function">
     <h1 class="fw-300">.isPTPhone(phone) 
-    <i>function</i></h1>
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">phone</li>
@@ -412,9 +537,10 @@ Takes options for allowing singleline whitespace, cross-line whitespace and punc
 
 
 </section>
-    <section id="Ink_Util_Validator_1-isPhone" class="box box-function">
+
+    <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-isPhone" class="box box-function">
     <h1 class="fw-300">.isPhone(phone, [countryCode]) 
-    <i>function</i></h1>
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">phone</li>
@@ -452,9 +578,10 @@ This method validates the number in all country codes available the ones set in 
 
 
 </section>
-    <section id="Ink_Util_Validator_1-isPortuguesePhone" class="box box-function">
+
+    <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-isPortuguesePhone" class="box box-function">
     <h1 class="fw-300">.isPortuguesePhone(phone) 
-    <i>function</i></h1>
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">phone</li>
@@ -488,9 +615,10 @@ This method validates the number in all country codes available the ones set in 
 
 
 </section>
-    <section id="Ink_Util_Validator_1-isTLPhone" class="box box-function">
+
+    <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-isTLPhone" class="box box-function">
     <h1 class="fw-300">.isTLPhone(phone) 
-    <i>function</i></h1>
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">phone</li>
@@ -524,9 +652,10 @@ This method validates the number in all country codes available the ones set in 
 
 
 </section>
-    <section id="Ink_Util_Validator_1-latin1" class="box box-function">
+
+    <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-latin1" class="box box-function">
     <h1 class="fw-300">.latin1(s, [options]) 
-    <i>function</i></h1>
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">s</li>
@@ -548,9 +677,10 @@ Takes options for allowing singleline whitespace, cross-line whitespace and punc
         </dl>
 
 </section>
-    <section id="Ink_Util_Validator_1-mail" class="box box-function">
+
+    <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-mail" class="box box-function">
     <h1 class="fw-300">.mail(email) 
-    <i>function</i></h1>
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">email</li>
@@ -582,9 +712,10 @@ Takes options for allowing singleline whitespace, cross-line whitespace and punc
 
 
 </section>
-    <section id="Ink_Util_Validator_1-number" class="box box-function">
+
+    <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-number" class="box box-function">
     <h1 class="fw-300">.number(numb, [options], ) 
-    <i>function</i></h1>
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">numb</li>
@@ -647,9 +778,10 @@ Takes options for allowing singleline whitespace, cross-line whitespace and punc
         </dl>
 
 </section>
-    <section id="Ink_Util_Validator_1-unicode" class="box box-function">
+
+    <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-unicode" class="box box-function">
     <h1 class="fw-300">.unicode(s, [options]) 
-    <i>function</i></h1>
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">s</li>
@@ -670,9 +802,10 @@ Takes options for allowing singleline whitespace, cross-line whitespace and punc
         </dl>
 
 </section>
-    <section id="Ink_Util_Validator_1-url" class="box box-function">
+
+    <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-url" class="box box-function">
     <h1 class="fw-300">.url(url, [full]) 
-    <i>function</i></h1>
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">url</li>
@@ -711,4 +844,7 @@ Takes options for allowing singleline whitespace, cross-line whitespace and punc
 
 
 </section>
+
+
+
     

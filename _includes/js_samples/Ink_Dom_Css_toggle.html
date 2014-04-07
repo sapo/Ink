@@ -1,0 +1,18 @@
+<p class="example-title">Code</p>
+{% highlight html %}
+<div id="elm">
+    Element content 
+</div>
+<script>
+Ink.requireModules(['Ink.Dom.Css_1'], function(InkCss){
+    var elm = Ink.i('elm');
+    InkCss.toggle(elm);
+    Ink.log(elm);
+    // <div id="elm" style="display: none;"> 
+    InkCss.toggle(elm);
+    Ink.log(elm);
+    // <div id="elm" style=""> 
+});
+</script>
+{% endhighlight %}
+

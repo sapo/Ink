@@ -1,0 +1,26 @@
+<p class="example-title">Code</p>
+{% highlight html %}
+<div id="container">
+    <div class="level_1">
+        <ul>
+            <li>A</li>
+            <li class="active">B</li>
+            <li>C</li>
+        </ul>
+    </div>
+</div>
+<script>
+Ink.requireModules(['Ink.Dom.Selector_1'], function(InkSelector) {
+    var aElms1 = InkSelector.matches('#container');
+    var aMatches1 = InkSelector.matches('#container li.active', aElms1);
+    Ink.log(aMatches1); 
+    // [] 
+    var aElms2 = InkSelector.matches('#container li');
+    var aMatches2 = InkSelector.matches('#container li.active', aElms2);
+    Ink.log(aMatches2);
+    // [li.active]
+});
+</script>
+{% endhighlight %}
+
+

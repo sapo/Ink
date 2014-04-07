@@ -7,23 +7,103 @@ site_root:  ../
     <section>
         <h1 class="fw-300">Ink.Util.Array_1<small>version:1</small></h1>
 
-<h2>Defined functions:</h2>
-        <ul class="unstyled"><li><a href="#Ink_Util_Array_1-convert">Ink.Util.Array_1.convert(arr)</a></li>
-        <li><a href="#Ink_Util_Array_1-each">Ink.Util.Array_1.each()</a></li>
-        <li><a href="#Ink_Util_Array_1-forEach">Ink.Util.Array_1.forEach(arr, cb)</a></li>
-        <li><a href="#Ink_Util_Array_1-inArray">Ink.Util.Array_1.inArray(value, arr)</a></li>
-        <li><a href="#Ink_Util_Array_1-insert">Ink.Util.Array_1.insert(arr, idx, value)</a></li>
-        <li><a href="#Ink_Util_Array_1-intersect">Ink.Util.Array_1.intersect(arr1, arr2)</a></li>
-        <li><a href="#Ink_Util_Array_1-keyValue">Ink.Util.Array_1.keyValue(value, arr, [first])</a></li>
-        <li><a href="#Ink_Util_Array_1-map">Ink.Util.Array_1.map(array, map, [context], array, test, [context])</a></li>
-        <li><a href="#Ink_Util_Array_1-remove">Ink.Util.Array_1.remove(arr, from, rLen)</a></li>
-        <li><a href="#Ink_Util_Array_1-shuffle">Ink.Util.Array_1.shuffle(arr)</a></li>
-        <li><a href="#Ink_Util_Array_1-some">Ink.Util.Array_1.some(arr, cb, context)</a></li>
-        <li><a href="#Ink_Util_Array_1-sortMulti">Ink.Util.Array_1.sortMulti(arr, key)</a></li>
+
+    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space"><caption>Functions</caption>
+        <thead>
+            <tr>
+                <th>Function name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
         
-        </ul><section id="Ink_Util_Array_1-convert" class="box box-function">
+        <tbody>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Array_1-Ink_Util_Array_1-convert">.convert</a>
+                </td>
+                <td>Converts an array-like object to an array</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Array_1-Ink_Util_Array_1-each">.each</a>
+                </td>
+                <td>Alias for backwards compatibility. See forEach</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Array_1-Ink_Util_Array_1-filter">.filter</a>
+                </td>
+                <td>Filters an array based on a truth test.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Array_1-Ink_Util_Array_1-forEach">.forEach</a>
+                </td>
+                <td>Runs a function through each of the elements of an array</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Array_1-Ink_Util_Array_1-inArray">.inArray</a>
+                </td>
+                <td>Checks if a value exists in array</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Array_1-Ink_Util_Array_1-insert">.insert</a>
+                </td>
+                <td>Inserts a value on a specified index</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Array_1-Ink_Util_Array_1-intersect">.intersect</a>
+                </td>
+                <td>Compares the values of two arrays and return the matches</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Array_1-Ink_Util_Array_1-keyValue">.keyValue</a>
+                </td>
+                <td>Gets the indexes of a value in an array</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Array_1-Ink_Util_Array_1-map">.map</a>
+                </td>
+                <td>Runs a function for each item in the array. </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Array_1-Ink_Util_Array_1-remove">.remove</a>
+                </td>
+                <td>Removes a range of values from the array</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Array_1-Ink_Util_Array_1-shuffle">.shuffle</a>
+                </td>
+                <td>Shuffles an array.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Array_1-Ink_Util_Array_1-some">.some</a>
+                </td>
+                <td>Checks if some element in the array passes a truth test</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Array_1-Ink_Util_Array_1-sortMulti">.sortMulti</a>
+                </td>
+                <td>Sorts an array of objects by an object property</td>
+            </tr></tbody>
+    </table>
+    
+</section>
+
+
+
+    <section id="Ink_Util_Array_1-Ink_Util_Array_1-convert" class="box box-function">
     <h1 class="fw-300">.convert(arr) 
-    <i>function</i></h1>
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">arr</li>
@@ -43,31 +123,60 @@ site_root:  ../
             </dd>
         </dl>
         
-<p class="example-title">Example</p>
-  
-{% highlight html %}{% raw %}
-    Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
-        var testArray = [ 'value1', 'value2' ];
-        testArray.myMethod = function(){
-            console.log('stuff');
-        }
 
-        console.log( InkArray.convert( testArray ) ); // Result: [ 'value1', 'value2' ]
-    });
-{% endraw %}{% endhighlight %}
+<h3>Samples</h3>
+		{% include js_samples/Ink_Util_Array_convert.html %}
+	</section>
 
-
-
-</section>
-    <section id="Ink_Util_Array_1-each" class="box box-function">
+    <section id="Ink_Util_Array_1-Ink_Util_Array_1-each" class="box box-function">
     <h1 class="fw-300">.each() 
-    <i>function</i></h1><p class="text"><p>Alias for backwards compatibility. See forEach</p>
+    <i>method</i></h1><p class="text"><p>Alias for backwards compatibility. See forEach</p>
 </p>
 
 </section>
-    <section id="Ink_Util_Array_1-forEach" class="box box-function">
+
+    <section id="Ink_Util_Array_1-Ink_Util_Array_1-filter" class="box box-function">
+    <h1 class="fw-300">.filter(array, test, [context]) 
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li>
+        <li class="prop">array</li>
+        <li class="prop">test</li>
+        <li class="prop">[context]</li>
+    </ul><p class="text"><p>Filters an array based on a truth test.
+This method runs a test function on all the array values and returns a new array with all the values that pass the test.</p>
+</p>
+        <h3>Accepts</h3>
+        <dl class="params">
+            <dt><code>Array</code></dt>
+            <dd><label class="monospace">array
+                </label>
+                The array to filter</dd>
+            <dt><code>Function</code></dt>
+            <dd><label class="monospace">test
+                </label>
+                A test function taking `(item, index, array)`</dd>
+            <dt><code>Object</code></dt>
+            <dd><label class="monospace">[context]
+                
+                </label>
+                Object to be `this` in the test function.</dd>
+        </dl>
+        <h3>Returns</h3>
+        <dl>
+            <dt class="return"><code>Array</code></dt>
+            <dd>
+            </dd>
+        </dl>
+        
+
+<h3>Samples</h3>
+		{% include js_samples/Ink_Util_Array_filter.html %}
+	</section>
+
+    <section id="Ink_Util_Array_1-Ink_Util_Array_1-forEach" class="box box-function">
     <h1 class="fw-300">.forEach(arr, cb) 
-    <i>function</i></h1>
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">arr</li>
@@ -92,23 +201,14 @@ site_root:  ../
             </dd>
         </dl>
         
-<p class="example-title">Example</p>
-  
-{% highlight html %}{% raw %}
-    Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
-        var testArray = [ 'value1', 'value2', 'value3', 'value2' ];
-        InkArray.forEach( testArray, function( value, index, arr ){
-            console.log( 'The value is: ' + value + ' | The index is: ' + index );
-        });
-    });
-{% endraw %}{% endhighlight %}
 
+<h3>Samples</h3>
+		{% include js_samples/Ink_Util_Array_forEach.html %}
+	</section>
 
-
-</section>
-    <section id="Ink_Util_Array_1-inArray" class="box box-function">
+    <section id="Ink_Util_Array_1-Ink_Util_Array_1-inArray" class="box box-function">
     <h1 class="fw-300">.inArray(value, arr) 
-    <i>function</i></h1>
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">value</li>
@@ -133,25 +233,14 @@ site_root:  ../
             </dd>
         </dl>
         
-<p class="example-title">Example</p>
-  
-{% highlight html %}{% raw %}
-    Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
-        var testArray = [ 'value1', 'value2', 'value3' ];
-        if( InkArray.inArray( 'value2', testArray ) === true ){
-            console.log( "Yep it's in the array." );
-        } else {
-            console.log( "No it's NOT in the array." );
-        }
-    });
-{% endraw %}{% endhighlight %}
 
+<h3>Samples</h3>
+		{% include js_samples/Ink_Util_Array_inArray.html %}
+	</section>
 
-
-</section>
-    <section id="Ink_Util_Array_1-insert" class="box box-function">
+    <section id="Ink_Util_Array_1-Ink_Util_Array_1-insert" class="box box-function">
     <h1 class="fw-300">.insert(arr, idx, value) 
-    <i>function</i></h1>
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">arr</li>
@@ -174,21 +263,14 @@ site_root:  ../
                 </label>
                 Value to be inserted</dd>
         </dl>
-<p class="example-title">Example</p>
-  
-{% highlight html %}{% raw %}
-    Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
-        var testArray = [ 'value1', 'value2' ];
-        console.log( InkArray.insert( testArray, 1, 'value3' ) ); // Result: [ 'value1', 'value3', 'value2' ]
-    });
-{% endraw %}{% endhighlight %}
 
+<h3>Samples</h3>
+		{% include js_samples/Ink_Util_Array_insert.html %}
+	</section>
 
-
-</section>
-    <section id="Ink_Util_Array_1-intersect" class="box box-function">
+    <section id="Ink_Util_Array_1-Ink_Util_Array_1-intersect" class="box box-function">
     <h1 class="fw-300">.intersect(arr1, arr2) 
-    <i>function</i></h1>
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">arr1</li>
@@ -213,22 +295,14 @@ site_root:  ../
             </dd>
         </dl>
         
-<p class="example-title">Example</p>
-  
-{% highlight html %}{% raw %}
-    Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
-        var testArray1 = [ 'value1', 'value2', 'value3' ];
-        var testArray2 = [ 'value2', 'value3', 'value4', 'value5', 'value6' ];
-        console.log( InkArray.intersect( testArray1,testArray2 ) ); // Result: [ 'value2', 'value3' ]
-    });
-{% endraw %}{% endhighlight %}
 
+<h3>Samples</h3>
+		{% include js_samples/Ink_Util_Array_intersect.html %}
+	</section>
 
-
-</section>
-    <section id="Ink_Util_Array_1-keyValue" class="box box-function">
+    <section id="Ink_Util_Array_1-Ink_Util_Array_1-keyValue" class="box box-function">
     <h1 class="fw-300">.keyValue(value, arr, [first]) 
-    <i>function</i></h1>
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">value</li>
@@ -259,29 +333,18 @@ site_root:  ../
             </dd>
         </dl>
         
-<p class="example-title">Example</p>
-  
-{% highlight html %}{% raw %}
-    Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
-        var testArray = [ 'value1', 'value2', 'value3', 'value2' ];
-        console.log( InkArray.keyValue( 'value2', testArray, true ) ); // Result: 1
-        console.log( InkArray.keyValue( 'value2', testArray ) ); // Result: [1, 3]
-    });
-{% endraw %}{% endhighlight %}
 
+<h3>Samples</h3>
+		{% include js_samples/Ink_Util_Array_keyValue.html %}
+	</section>
 
-
-</section>
-    <section id="Ink_Util_Array_1-map" class="box box-function">
-    <h1 class="fw-300">.map(array, map, [context], array, test, [context]) 
-    <i>function</i></h1>
+    <section id="Ink_Util_Array_1-Ink_Util_Array_1-map" class="box box-function">
+    <h1 class="fw-300">.map(array, map, [context]) 
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">array</li>
         <li class="prop">map</li>
-        <li class="prop">[context]</li>
-        <li class="prop">array</li>
-        <li class="prop">test</li>
         <li class="prop">[context]</li>
     </ul><p class="text"><p>Runs a function for each item in the array. 
 That function will receive each item as an argument and its return value will change the corresponding array item.</p>
@@ -301,47 +364,15 @@ That function will receive each item as an argument and its return value will ch
                 
                 </label>
                 Object to be `this` in the map function.</dd>
-            <dt><code>Array</code></dt>
-            <dd><label class="monospace">array
-                </label>
-                The array to filter</dd>
-            <dt><code>Function</code></dt>
-            <dd><label class="monospace">test
-                </label>
-                A test function taking `(item, index, array)`</dd>
-            <dt><code>Object</code></dt>
-            <dd><label class="monospace">[context]
-                
-                </label>
-                Object to be `this` in the test function.</dd>
         </dl>
-        <h3>Returns</h3>
-        <dl>
-            <dt class="return"><code>Array</code></dt>
-            <dd>
-            </dd>
-        </dl>
-        
-<p class="example-title">Example</p>
-  
-{% highlight html %}{% raw %}
-     InkArray.map([1, 2, 3, 4], function (item) {
-         return item + 1;
-     }); // -> [2, 3, 4, 5]
-{% endraw %}{% endhighlight %}
-  
-{% highlight html %}{% raw %}
-     InkArray.filter([1, 2, 3, 4, 5], function (val) {
-         return val > 2;
-     })  // -> [3, 4, 5]
-{% endraw %}{% endhighlight %}
 
+<h3>Samples</h3>
+		{% include js_samples/Ink_Util_Array_map.html %}
+	</section>
 
-
-</section>
-    <section id="Ink_Util_Array_1-remove" class="box box-function">
+    <section id="Ink_Util_Array_1-Ink_Util_Array_1-remove" class="box box-function">
     <h1 class="fw-300">.remove(arr, from, rLen) 
-    <i>function</i></h1>
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">arr</li>
@@ -371,21 +402,14 @@ That function will receive each item as an argument and its return value will ch
             </dd>
         </dl>
         
-<p class="example-title">Example</p>
-  
-{% highlight html %}{% raw %}
-    Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
-        var testArray = [ 'value1', 'value2', 'value3', 'value4', 'value5' ];
-        console.log( InkArray.remove( testArray, 1, 3 ) ); // Result: [ 'value1', 'value4', 'value5' ]
-    });
-{% endraw %}{% endhighlight %}
 
+<h3>Samples</h3>
+		{% include js_samples/Ink_Util_Array_remove.html %}
+	</section>
 
-
-</section>
-    <section id="Ink_Util_Array_1-shuffle" class="box box-function">
+    <section id="Ink_Util_Array_1-Ink_Util_Array_1-shuffle" class="box box-function">
     <h1 class="fw-300">.shuffle(arr) 
-    <i>function</i></h1>
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">arr</li>
@@ -405,21 +429,14 @@ That function will receive each item as an argument and its return value will ch
             </dd>
         </dl>
         
-<p class="example-title">Example</p>
-  
-{% highlight html %}{% raw %}
-    Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
-        var testArray = [ 'value1', 'value2', 'value3', 'value2' ];
-        console.log( InkArray.shuffle( testArray ) ); // Result example: [ 'value3', 'value2', 'value2', 'value1' ]
-    });
-{% endraw %}{% endhighlight %}
 
+<h3>Samples</h3>
+		{% include js_samples/Ink_Util_Array_shuffle.html %}
+	</section>
 
-
-</section>
-    <section id="Ink_Util_Array_1-some" class="box box-function">
+    <section id="Ink_Util_Array_1-Ink_Util_Array_1-some" class="box box-function">
     <h1 class="fw-300">.some(arr, cb, context) 
-    <i>function</i></h1>
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">arr</li>
@@ -449,30 +466,14 @@ That function will receive each item as an argument and its return value will ch
             </dd>
         </dl>
         
-<p class="example-title">Example</p>
-  
-{% highlight html %}{% raw %}
-    Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
-        var testArray1 = [ 10, 20, 50, 100, 30 ];
-        var testArray2 = [ 1, 2, 3, 4, 5 ];
 
-        function myTestFunction( value, index, arr ){
-            if( value > 90 ){
-                return true;
-            }
-            return false;
-        }
-        console.log( InkArray.some( testArray1, myTestFunction, null ) ); // Result: true
-        console.log( InkArray.some( testArray2, myTestFunction, null ) ); // Result: false
-    });
-{% endraw %}{% endhighlight %}
+<h3>Samples</h3>
+		{% include js_samples/Ink_Util_Array_some.html %}
+	</section>
 
-
-
-</section>
-    <section id="Ink_Util_Array_1-sortMulti" class="box box-function">
+    <section id="Ink_Util_Array_1-Ink_Util_Array_1-sortMulti" class="box box-function">
     <h1 class="fw-300">.sortMulti(arr, key) 
-    <i>function</i></h1>
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">arr</li>
@@ -497,21 +498,11 @@ That function will receive each item as an argument and its return value will ch
             </dd>
         </dl>
         
-<p class="example-title">Example</p>
-  
-{% highlight html %}{% raw %}
-    Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
-        var testArray = [
-            { 'myKey': 'value1' },
-            { 'myKey': 'value2' },
-            { 'myKey': 'value3' }
-        ];
 
-        InkArray.sortMulti( testArray, 'myKey' );
-    });
-{% endraw %}{% endhighlight %}
+<h3>Samples</h3>
+		{% include js_samples/Ink_Util_Array_sortMulti.html %}
+	</section>
 
 
 
-</section>
     

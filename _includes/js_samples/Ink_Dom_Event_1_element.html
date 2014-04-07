@@ -1,0 +1,24 @@
+<p>Gets the event's element target (Find the element clicked)</p>
+
+<p class="example-title">Code</p>
+{% highlight html %}
+<div id="container">
+    <div id="level_1">
+        Text with an <strong><span>span</span></strong> element
+    </div>
+</div>
+<script>
+Ink.requireModules(['Ink.Dom.Event_1'], function(InkEvent) {
+    var container = Ink.i('container');
+    InkEvent.observe(container, 'click', function(event) { // add event to container element 
+        var target = InkEvent.element(event); 
+        Ink.log(target); 
+        // <span> - if click occurs in span element 
+        // <div id="level_1"> - if click occurs over the the text 
+        // <div id="container"> - if click occurs outside level_1 element 
+    });
+});
+</script>
+{% endhighlight %}
+
+

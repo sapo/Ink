@@ -1,0 +1,20 @@
+<p class="example-title">Code</p>
+{% highlight js %}
+Ink.requireModules(['Ink.Net.Ajax_1'], function(Ajax) {
+
+    var doSomething = function(type, data) {
+        Ink.log(type, data);
+    };
+
+     Ajax.load('/some/text/file', function (responseText) {
+        doSomething('Text', responseText);
+     });
+     Ajax.load('/some/xml/file', function (responseXML) {
+        doSomething('XML', responseXML);
+     });
+     Ajax.load('/some/json/file', function (responseJSON) {
+        doSomething('JSON', responseJSON);
+     });
+});
+{% endhighlight %}
+

@@ -22,20 +22,7 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, [], function () {
          * @method serialize
          * @param {DOMElement|String}   form    Form element to extract data
          * @return {Object} Map of fieldName -> String|String[]|Boolean
-         *
-         * @example
-         *     <form id="frm">
-         *         <input type="text" name="field1">
-         *         <button type="submit">Submit</button>
-         *     </form>
-         *     <script type="text/javascript">
-         *         Ink.requireModules(['Ink.Dom.FormSerialize_1', 'Ink.Dom.Event_1'], function (FormSerialize, InkEvent) {
-         *             InkEvent.observe('frm', 'submit', function (event) {
-         *                 var formData = FormSerialize.serialize('frm'); // -> {field1:"123"}
-         *                 InkEvent.stop(event);
-         *             });
-         *         });
-         *     </script>
+         * @sample Ink_Dom_FormSerialize_serialize.html 
          */
         serialize: function(form) {
             form = Ink.i(form);
@@ -66,18 +53,7 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, [], function () {
          * @method fillIn 
          * @param {DOMElement|String}   form    Form element to be populated
          * @param {Object}              map2    Map of fieldName -> String|String[]|Boolean
-         * @example
-         *     <form id="frm">
-         *         <input type="text" name="field1">
-         *         <button type="submit">Submit</button>
-         *     </form>
-         *     <script type="text/javascript">
-         *         Ink.requireModules(['Ink.Dom.FormSerialize_1'], function (FormSerialize) {
-         *             var values = {field1: 'CTHULHU'};
-         *             FormSerialize.fillIn('frm', values);
-         *             // At this point the form is pre-filled with the values above.
-         *         });
-         *     </script>
+         * @sample Ink_Dom_FormSerialize_fillIn.html 
          */
         fillIn: function(form, map2) {
             form = Ink.i(form);
@@ -188,7 +164,9 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, [], function () {
 
             switch(nodeName) {
                 case 'select':
-                    if (fieldInputs.length > 1) {    throw 'Got multiple select elements with same name!';    }
+                    if (fieldInputs.length > 1) {    
+                        Ink.warn('FormSerialize - Got multiple select elements with same name!');
+                    }
                     for (i = 0, f = fieldInputs[0].options.length; i < f; ++i) {
                         el = fieldInputs[0].options[i];
                         el.selected = (fieldValues instanceof Array) ? this._valInArray(el.value, fieldValues) : el.value === fieldValues;
@@ -204,7 +182,9 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, [], function () {
                         }
                     }
                     else {
-                        if (fieldInputs.length > 1) {    throw 'Got multiple input elements with same name!';    }
+                        if (fieldInputs.length > 1) {
+                            Ink.warn('FormSerialize - Got multiple input elements with same name!'); 
+                        }
                         if (type !== 'file') {
                             fieldInputs[0].value = fieldValues;
                         }
@@ -212,7 +192,7 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, [], function () {
                     break;
 
                 default:
-                    throw 'Unsupported element: "' + nodeName + '"!';
+                    Ink.warn('FormSerialize - Unsupported element: "' + nodeName + '"!');
             }
         }
     };

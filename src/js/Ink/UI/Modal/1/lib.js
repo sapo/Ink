@@ -163,12 +163,9 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             Css.addClassName(this._modalDiv, this._options.modalClass);
         }
 
-        if( ("trigger" in this._options) && ( typeof this._options.trigger !== 'undefined' ) ){
-            var triggerElement;
-            if( typeof this._options.trigger === 'string' ){
-                triggerElement = Selector.select( this._options.trigger );
-                Event.observeMulti(triggerElement, this._options.triggerEvent, Ink.bindEvent(this.open, this));
-            }
+        if( this._options.trigger ) {
+            var triggerElements = Common.elsOrSelector(this._options.trigger, '', false /* don't throw */);
+            Event.observeMulti(triggerElements, this._options.triggerEvent, Ink.bindEvent(this.open, this));
         } else if ( this._options.autoDisplay.toString() === "true" ) {
             this.open();
         }

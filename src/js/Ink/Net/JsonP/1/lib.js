@@ -24,20 +24,7 @@ Ink.createModule('Ink.Net.JsonP', '1', [], function() {
      * @param {String}      [options.callbackParam]     Parameter to use as callback. defaults to 'jsoncallback'
      * @param {String}      [options.internalCallback]  Name of the callback function stored in the Ink.Net.JsonP object.
      *
-     * @example
-     *      Ink.requireModules(['Ink.Net.JsonP_1'], function (JsonP) {
-     *          var jsonp = new JsonP('http://path.to.jsonp/endpoint', {
-     *              // When the JSONP response arrives, this callback is called:
-     *              onSuccess: function (gameData) {
-     *                  game.startGame(gameData);
-     *              },
-     *              // after options.timeout seconds, this callback gets called:
-     *              onFailure: function () {
-     *                  game.error('Could not load game data!');
-     *              },
-     *              timeout: 5
-     *          });
-     *      });
+     * @sample Ink_Net_JsonP_1.html 
      */
     var JsonP = function(uri, options) {
         this.init(uri, options);

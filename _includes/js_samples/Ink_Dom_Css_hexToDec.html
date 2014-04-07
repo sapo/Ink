@@ -1,0 +1,12 @@
+<p class="example-title">Code</p>
+{% highlight js %}
+Ink.requireModules(['Ink.Dom.Css_1'], function(InkCss){
+    var a = InkCss.hexToDec('#CCC');
+    Ink.log(a);
+    // {r: 204, g: 204, b: 204}
+    var b = InkCss.hexToDec('#FF0033');
+    Ink.log(b);
+    // {r: 255, g: 0, b: 51}
+});
+{% endhighlight %}
+

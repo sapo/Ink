@@ -1,0 +1,14 @@
+<p class="example-title">Code</p>
+{% highlight js %}
+Ink.requireModules(['Ink.Util.Array_1'], function(InkArray) {
+
+    var testArray = [ 'value1', 'value2', 'value3', 'value2' ];
+    InkArray.forEach(testArray, function(value, index, arr) {
+        Ink.log( 'The value is: ' + value + ' | The index is: ' + index );
+    });
+    // The value is: value1 | The index is: 0
+    // The value is: value2 | The index is: 1
+    // The value is: value3 | The index is: 2
+    // The value is: value2 | The index is: 3
+});
+{% endhighlight %}

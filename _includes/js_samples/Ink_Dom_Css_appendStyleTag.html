@@ -1,0 +1,36 @@
+<p class="example-title">Code</p>
+{% highlight html %}
+<!-- original markup -->
+<html>
+<head>
+</head>
+<body>
+    <div id="elm">
+        Element content 
+    </div>
+</body>
+</html>
+
+<script>
+Ink.requireModules(['Ink.Dom.Css_1'], function(InkCss){
+    InkCss.appendStyleTag('#elm', 'border: 5px solid #000;');
+});
+</script>
+
+<!-- result markup -->
+<html>
+<head>
+    <style type="text/css">
+    #elm {
+        border: 5px solid #000;
+    }
+    </style>
+</head>
+<body>
+    <div id="elm">
+        Element content 
+    </div>
+</body>
+</html>
+{% endhighlight %}
+

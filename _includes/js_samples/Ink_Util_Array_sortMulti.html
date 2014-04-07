@@ -1,0 +1,18 @@
+<p class="example-title">Code</p>
+{% highlight js %}
+Ink.requireModules(['Ink.Util.Array_1'], function(InkArray) {
+
+    var testArray = [
+            {myKey: "value2"}, 
+            {myKey: "value5"}, 
+            {myKey: "value1"}, 
+            {myKey: "value3"}, 
+            {myKey: "value4"}
+        ];
+    var sorted = InkArray.sortMulti(testArray, 'myKey'); 
+
+    Ink.log(sorted); 
+    // [{myKey: "value1"}, {myKey: "value2"}, {myKey: "value3"}, {myKey: "value4"}, {myKey: "value5"}]
+});
+{% endhighlight %}
+

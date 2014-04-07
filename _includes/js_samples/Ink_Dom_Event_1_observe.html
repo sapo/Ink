@@ -1,0 +1,21 @@
+<p class="example-title">Code</p>
+{% highlight html %}
+<button id="b_1">Button</button>
+<script>
+Ink.requireModules(['Ink.Dom.Event_1'], function(InkEvent) {
+        
+    var b1 = Ink.i('b_1');
+    InkEvent.observe(b1, 'click', function(event) {
+            Ink.log('Element clicked');
+        }); 
+    InkEvent.observe(b1, 'mousedown', function(event) {
+            Ink.log('Mouse down');
+        }); 
+    InkEvent.observe(b1, 'mouseup', function(event) {
+            Ink.log('Mouse up');
+        }); 
+});
+</script>
+{% endhighlight %}
+
+

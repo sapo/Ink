@@ -7,19 +7,73 @@ site_root:  ../
     <section>
         <h1 class="fw-300">Ink.Util.Url_1<small>version:1</small></h1>
 
-<h2>Defined functions:</h2>
-        <ul class="unstyled"><li><a href="#Ink_Util_Url_1-currentScriptElement">Ink.Util.Url_1.currentScriptElement([match])</a></li>
-        <li><a href="#Ink_Util_Url_1-format">Ink.Util.Url_1.format(urlObj)</a></li>
-        <li><a href="#Ink_Util_Url_1-genQueryString">Ink.Util.Url_1.genQueryString(uri, params)</a></li>
-        <li><a href="#Ink_Util_Url_1-getAnchor">Ink.Util.Url_1.getAnchor([str])</a></li>
-        <li><a href="#Ink_Util_Url_1-getAnchorString">Ink.Util.Url_1.getAnchorString([string])</a></li>
-        <li><a href="#Ink_Util_Url_1-getQueryString">Ink.Util.Url_1.getQueryString([str])</a></li>
-        <li><a href="#Ink_Util_Url_1-getUrl">Ink.Util.Url_1.getUrl()</a></li>
-        <li><a href="#Ink_Util_Url_1-parseUrl">Ink.Util.Url_1.parseUrl(url)</a></li>
+
+    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space"><caption>Functions</caption>
+        <thead>
+            <tr>
+                <th>Function name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
         
-        </ul><section id="Ink_Util_Url_1-currentScriptElement" class="box box-function">
+        <tbody>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Url_1-Ink_Util_Url_1-currentScriptElement">.currentScriptElement</a>
+                </td>
+                <td>Gets the last loaded script element</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Url_1-Ink_Util_Url_1-format">.format</a>
+                </td>
+                <td>Formats an URL object into an URL string.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Url_1-Ink_Util_Url_1-genQueryString">.genQueryString</a>
+                </td>
+                <td>Generates an URL string.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Url_1-Ink_Util_Url_1-getAnchor">.getAnchor</a>
+                </td>
+                <td>Gets the URL hash value</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Url_1-Ink_Util_Url_1-getAnchorString">.getAnchorString</a>
+                </td>
+                <td>Gets the anchor string of an URL</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Url_1-Ink_Util_Url_1-getQueryString">.getQueryString</a>
+                </td>
+                <td>Gets an object from an URL encoded string.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Url_1-Ink_Util_Url_1-getUrl">.getUrl</a>
+                </td>
+                <td>Gets URL of current page</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Url_1-Ink_Util_Url_1-parseUrl">.parseUrl</a>
+                </td>
+                <td>Parses URL string into URL parts</td>
+            </tr></tbody>
+    </table>
+    
+</section>
+
+
+
+    <section id="Ink_Util_Url_1-Ink_Util_Url_1-currentScriptElement" class="box box-function">
     <h1 class="fw-300">.currentScriptElement([match]) 
-    <i>function</i></h1>
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">[match]</li>
@@ -41,10 +95,13 @@ site_root:  ../
         </dl>
         
 
-</section>
-    <section id="Ink_Util_Url_1-format" class="box box-function">
+<h3>Samples</h3>
+		{% include js_samples/Ink_Util_Url_currentScriptElement.html %}
+	</section>
+
+    <section id="Ink_Util_Url_1-Ink_Util_Url_1-format" class="box box-function">
     <h1 class="fw-300">.format(urlObj) 
-    <i>function</i></h1>
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">urlObj</li>
@@ -66,9 +123,10 @@ site_root:  ../
         
 
 </section>
-    <section id="Ink_Util_Url_1-genQueryString" class="box box-function">
+
+    <section id="Ink_Util_Url_1-Ink_Util_Url_1-genQueryString" class="box box-function">
     <h1 class="fw-300">.genQueryString(uri, params) 
-    <i>function</i></h1>
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">uri</li>
@@ -93,25 +151,14 @@ site_root:  ../
             </dd>
         </dl>
         
-<p class="example-title">Example</p>
-  
-{% highlight html %}{% raw %}
-    Ink.requireModules(['Ink.Util.Url_1'], function( InkUrl ){
-        var queryString = InkUrl.genQueryString( 'http://www.sapo.pt/', {
-            'param1': 'valueParam1',
-            'param2': 'valueParam2'
-        });
 
-        console.log( queryString ); // Result: http://www.sapo.pt/?param1=valueParam1&param2=valueParam2
-    });
-{% endraw %}{% endhighlight %}
+<h3>Samples</h3>
+		{% include js_samples/Ink_Util_Url_genQueryString.html %}
+	</section>
 
-
-
-</section>
-    <section id="Ink_Util_Url_1-getAnchor" class="box box-function">
+    <section id="Ink_Util_Url_1-Ink_Util_Url_1-getAnchor" class="box box-function">
     <h1 class="fw-300">.getAnchor([str]) 
-    <i>function</i></h1>
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">[str]</li>
@@ -132,21 +179,14 @@ site_root:  ../
             </dd>
         </dl>
         
-<p class="example-title">Example</p>
-  
-{% highlight html %}{% raw %}
-    Ink.requireModules(['Ink.Util.Url_1'], function( InkUrl ){
-        var anchor = InkUrl.getAnchor( 'http://www.sapo.pt/page.php#TEST' );
-        console.log( anchor ); // Result: TEST
-    });
-{% endraw %}{% endhighlight %}
 
+<h3>Samples</h3>
+		{% include js_samples/Ink_Util_Url_getAnchor.html %}
+	</section>
 
-
-</section>
-    <section id="Ink_Util_Url_1-getAnchorString" class="box box-function">
+    <section id="Ink_Util_Url_1-Ink_Util_Url_1-getAnchorString" class="box box-function">
     <h1 class="fw-300">.getAnchorString([string]) 
-    <i>function</i></h1>
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">[string]</li>
@@ -167,26 +207,14 @@ site_root:  ../
             </dd>
         </dl>
         
-<p class="example-title">Example</p>
-  
-{% highlight html %}{% raw %}
-    Ink.requireModules(['Ink.Util.Url_1'], function( InkUrl ){
-        var hashParams = InkUrl.getAnchorString( 'http://www.sapo.pt/#var1=valueVar1&var2=valueVar2' );
-        console.log( hashParams );
-        // Result:
-        // {
-        //    var1: 'valueVar1',
-        //    var2: 'valueVar2'
-        // }
-    });
-{% endraw %}{% endhighlight %}
 
+<h3>Samples</h3>
+		{% include js_samples/Ink_Util_Url_getAnchorString.html %}
+	</section>
 
-
-</section>
-    <section id="Ink_Util_Url_1-getQueryString" class="box box-function">
+    <section id="Ink_Util_Url_1-Ink_Util_Url_1-getQueryString" class="box box-function">
     <h1 class="fw-300">.getQueryString([str]) 
-    <i>function</i></h1>
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">[str]</li>
@@ -207,41 +235,23 @@ site_root:  ../
             </dd>
         </dl>
         
-<p class="example-title">Example</p>
-  
-{% highlight html %}{% raw %}
-    Ink.requireModules(['Ink.Util.Url_1'], function( InkUrl ){
-        var queryStringParams = InkUrl.getQueryString( 'http://www.sapo.pt/?var1=valueVar1&var2=valueVar2' );
-        console.log( queryStringParams );
-        // Result:
-        // {
-        //    var1: 'valueVar1',
-        //    var2: 'valueVar2'
-        // }
-    });
-{% endraw %}{% endhighlight %}
 
+<h3>Samples</h3>
+		{% include js_samples/Ink_Util_Url_getQueryString.html %}
+	</section>
 
-
-</section>
-    <section id="Ink_Util_Url_1-getUrl" class="box box-function">
+    <section id="Ink_Util_Url_1-Ink_Util_Url_1-getUrl" class="box box-function">
     <h1 class="fw-300">.getUrl() 
-    <i>function</i></h1><p class="text"><p>Gets URL of current page</p>
+    <i>method</i></h1><p class="text"><p>Gets URL of current page</p>
 </p>
-<p class="example-title">Example</p>
-  
-{% highlight html %}{% raw %}
-    Ink.requireModules(['Ink.Util.Url_1'], function( InkUrl ){
-        console.log( InkUrl.getUrl() ); // Will return it's window URL
-    });
-{% endraw %}{% endhighlight %}
 
+<h3>Samples</h3>
+		{% include js_samples/Ink_Util_Url_getUrl.html %}
+	</section>
 
-
-</section>
-    <section id="Ink_Util_Url_1-parseUrl" class="box box-function">
+    <section id="Ink_Util_Url_1-Ink_Util_Url_1-parseUrl" class="box box-function">
     <h1 class="fw-300">.parseUrl(url) 
-    <i>function</i></h1>
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">url</li>
@@ -261,25 +271,11 @@ site_root:  ../
             </dd>
         </dl>
         
-<p class="example-title">Example</p>
-  
-{% highlight html %}{% raw %}
-    Ink.requireModules(['Ink.Util.Url_1'], function( InkUrl ){
-        var parsedURL = InkUrl.parseUrl( 'http://www.sapo.pt/index.html?var1=value1#anchor' )
-        console.log( parsedURL );
-        // Result:
-        // {
-        //   'scheme'    => 'http',
-        //   'host'      => 'www.sapo.pt',
-        //   'path'      => '/index.html',
-        //   'query'     => 'var1=value1',
-        //   'fragment'  => 'anchor'
-        // }
-    });
 
-{% endraw %}{% endhighlight %}
+<h3>Samples</h3>
+		{% include js_samples/Ink_Util_Url_parseUrl.html %}
+	</section>
 
 
 
-</section>
     

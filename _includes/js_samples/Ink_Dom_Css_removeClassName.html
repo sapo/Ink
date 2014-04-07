@@ -1,0 +1,16 @@
+<p class="example-title">Code</p>
+{% highlight html %}
+<div id="container" class="oldclass">
+    Element content 
+</div>
+<script>
+Ink.requireModules(['Ink.Dom.Css_1'], function(InkCss){
+    var elm = Ink.i('container');
+    InkCss.removeClassName(elm, 'oldclass');
+                
+    Ink.log(elm);
+    // <div id="container">
+});
+</script>
+{% endhighlight %}
+

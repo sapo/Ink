@@ -1,0 +1,23 @@
+<p>Fires an event in an element</p>
+
+<p class="example-title">Code</p>
+{% highlight html %}
+<button id="b_1">Button 1</button>
+<button id="b_2">Button 2</button>
+<script>
+Ink.requireModules(['Ink.Dom.Event_1'], function(InkEvent) {
+        
+    var b1 = Ink.i('b_1');
+    var b2 = Ink.i('b_2');
+    InkEvent.observe(b1, 'click', function(event) {
+            alert('Button 1 clicked');
+        }); 
+
+    InkEvent.observe(b2, 'click', function(event) {
+            InkEvent.fire(b1, 'click');
+        });
+});
+</script>
+{% endhighlight %}
+
+

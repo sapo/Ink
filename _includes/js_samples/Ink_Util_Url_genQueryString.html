@@ -1,0 +1,15 @@
+<p class="example-title">Code</p>
+{% highlight js %}
+Ink.requireModules(['Ink.Util.Url_1'], function(InkUrl) {
+             
+    var uri = InkUrl.genQueryString('http://domain.com/', {
+                                        param1:'value1', 
+                                        param2:'value string'
+                                    }); 
+            
+    Ink.log(uri);
+    // http://domain.com/?param1=value1&param2=value%20string 
+});
+{% endhighlight %}
+
+

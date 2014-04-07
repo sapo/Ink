@@ -1,0 +1,26 @@
+<p>Clone events from an element to other</p>
+
+<p class="example-title">Code</p>
+{% highlight html %}
+<div id="container">
+    <button id="b_1">Button 1</button>
+    <button id="b_2">Button 2</button>
+</div> 
+<script>
+Ink.requireModules(['Ink.Dom.Event_1'], function(InkEvent) {
+        var button1Elm = Ink.i('b_1');
+        var button2Elm = Ink.i('b_2');
+
+        var clickHandler = function(event) {
+            alert('Hello World');
+        };
+
+        InkEvent.on(button1Elm, 'click' clickHandler);
+
+        InkEvent.clone(button2Elm, button1Elm); // clone events from button b_1 to b_2 
+        InkEvent.clone(button2Elm, button1Elm, 'click'); // clone click event from button b_1 to b_2  
+});
+</script>
+{% endhighlight %}
+
+

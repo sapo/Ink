@@ -31,12 +31,7 @@ Ink.createModule('Ink.Dom.Loaded', 1, [], function() {
          * @param {Object}   [win]=window   Window object to attach/add the event
          * @param {Function} fn             Callback function to be executed after the DOM is ready
          * @public
-         * @example
-         *     Ink.requireModules(['Ink.Dom.Loaded_1'], function(Loaded){
-         *         Loaded.run(function(){
-         *             console.log('This will run when the page/document is ready/loaded');
-         *         });
-         *     });
+         * @sample Ink_Dom_Loaded_run.html 
          */
         run: function(win, fn) {
             if (!fn) {

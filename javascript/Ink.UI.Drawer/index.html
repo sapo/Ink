@@ -8,7 +8,7 @@ site_root:  ../
         <h1 class="fw-300">Ink.UI.Drawer_1<small>version:1</small></h1>
 
 <p>Displays off-canvas content which can be triggered by clicking elements with the &#39;left-drawer-trigger&#39; and &#39;right-drawer-trigger&#39;, respectively.<br><p>The left drawer has the &#39;left-drawer&#39; class, and the right drawer has the &#39;right-drawer&#39; class.</p><br><p>The content drawer (EG your <code>&lt;div id=&quot;main&quot;&gt;</code>) must have the &#39;content-drawer&#39; class.</p><br><p>For more, see the example below, or try the sample.</p><br></p>
-    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p><table class="props bottom-space">
+    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space">
         <caption>Methods</caption>
         <thead>
             <tr>
@@ -55,31 +55,30 @@ site_root:  ../
             <dd><label class="monospace">[options.sides]
                 
                 </label>
-                Can be 'left', 'right', or 'both'. Controls from which sides the content</dd>
+                Can be 'left', 'right', or 'both'. Controls what sides have a drawer.</dd>
         </dl>
 <p class="example-title">Example</p>
   
 {% highlight html %}{% raw %}
+<body class="ink-drawer">
+    <div class="left-drawer">
+        Right drawer content...
+    </div>
+    <div class="right-drawer">
+        Left drawer content...
+    </div>
+    <div id="main-content" class="content-drawer ink-grid">
+        <a class="left-drawer-trigger" href="">Open left drawer</a>
+        <a class="right-drawer-trigger" href="">Open right drawer</a>
+        Content...
+    </div>
+</body>
 
-     <body class="ink-drawer">
-         <div class="left-drawer">
-             Right drawer content...
-         </div>
-         <div class="right-drawer">
-             Left drawer content...
-         </div>
-         <div id="main-content" class="content-drawer ink-grid">
-             <a class="left-drawer-trigger" href="">Open left drawer</a>
-             <a class="right-drawer-trigger" href="">Open right drawer</a>
-             Content...
-         </div>
-     </body>
-
-     <script>
-         Ink.requireModules(['Ink.UI.Drawer_1'], function (Drawer) {
-             new Drawer();
-         });
-     </script>
+<script>
+    Ink.requireModules(['Ink.UI.Drawer_1'], function (Drawer) {
+        new Drawer();
+    });
+</script>
 {% endraw %}{% endhighlight %}
 
 

@@ -8,7 +8,7 @@ site_root:  ../
         <h1 class="fw-300">Ink.Dom.Loaded_1<small>version:1</small></h1>
 
 
-    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p><table class="props bottom-space"><caption>Functions</caption>
+    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space"><caption>Functions</caption>
         <thead>
             <tr>
                 <th>Function name</th>
@@ -50,19 +50,10 @@ site_root:  ../
                 </label>
                 Callback function to be executed after the DOM is ready</dd>
         </dl>
-<p class="example-title">Example</p>
-  
-{% highlight html %}{% raw %}
-    Ink.requireModules(['Ink.Dom.Loaded_1'], function(Loaded){
-        Loaded.run(function(){
-            console.log('This will run when the page/document is ready/loaded');
-        });
-    });
-{% endraw %}{% endhighlight %}
 
-
-
-</section>
+<h3>Samples</h3>
+		{% include js_samples/Ink_Dom_Loaded_run.html %}
+	</section>
 
 
 

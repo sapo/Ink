@@ -1,0 +1,24 @@
+<p class="example-title">Code</p>
+{% highlight js %}
+Ink.requireModules(['Ink.Util.Url_1'], function(InkUrl) {
+             
+    // In URL: http://domain.com/#param1=value1&param2=value2
+    var oHash = InkUrl.getAnchorString(); 
+    Ink.log(oHash);
+    // { param1: "value1", param2: "value2" }    
+});
+{% endhighlight %}
+
+<p>A string in URL format can be passed as arguement</p>
+<p class="example-title">Code</p>
+{% highlight js %}
+Ink.requireModules(['Ink.Util.Url_1'], function(InkUrl) {
+             
+    var url = 'http://domain.com/#param1=value1&param2=value2'; 
+    var oHash = InkUrl.getAnchorString(url); 
+    Ink.log(oHash);
+    // { param1: "value1", param2: "value2" }    
+});
+{% endhighlight %}
+
+

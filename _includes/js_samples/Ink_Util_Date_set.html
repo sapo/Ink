@@ -1,0 +1,15 @@
+<p class="example-title">Code</p>
+{% highlight js %}
+Ink.requireModules(['Ink.Util.Url_1'], function(InkUrl) {
+             
+    var date1 = InkDate.get('Y-m-d H:i:s', '2025-11-22 17:01:03'); 
+    Ink.log(date1);
+    // Date {Sat Nov 22 2025 17:01:03 GMT+0000 (WET)} 
+
+    var date2 = InkDate.set('Y-m-d', '2014-05-19'); 
+    Ink.log(date2);
+    // Date {Mon May 19 2014 00:00:00 GMT+0100 (WEST)} 
+});
+{% endhighlight %}
+
+

@@ -1,0 +1,17 @@
+<p class="example-title">Code</p>
+{% highlight html %}
+<input type="text" id="input">
+<script>
+Ink.requireModules(['Ink.Dom.Event_1'], function(InkEvent) {
+
+    var box = Ink.i('input');
+    InkEvent.observe(box, 'keydown', function(event) {
+                    
+        var char = InkEvent.getCharFromKeyboardEvent(event);
+        Ink.log(char);
+    });
+});
+</script>
+{% endhighlight %}
+
+

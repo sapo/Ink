@@ -1,0 +1,21 @@
+<p class="example-title">Code</p>
+{% highlight html %}
+<div id="container">
+    <div class="level_1">
+        <ul>
+            <li>A</li>
+            <li class="active">B</li>
+            <li>C</li>
+        </ul>
+    </div>
+</div>
+<script>
+Ink.requireModules(['Ink.Dom.Selector_1'], function(InkSelector) {
+    var elms = InkSelector.select('#container li.active');
+    Ink.log(elms);
+    // [li.active]
+});
+</script>
+{% endhighlight %}
+
+

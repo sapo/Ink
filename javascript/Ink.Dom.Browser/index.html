@@ -8,7 +8,7 @@ site_root:  ../
         <h1 class="fw-300">Ink.Dom.Browser_1<small>version:1</small></h1>
 
 
-    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p><table class="props bottom-space"><caption>Functions</caption>
+    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space"><caption>Functions</caption>
         <thead>
             <tr>
                 <th>Function name</th>
@@ -126,6 +126,30 @@ site_root:  ../
             </tr>
             
             <tr>
+                <td><a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-cssPrefix">.cssPrefix</a></td>
+                <td>
+                        <p>The CSS prefix (-moz-, -webkit-, -ms-, ...)
+False if it is unavailable</p>
+
+                    
+                        <span class="ink-label orange uppercase">Boolean|String</span>
+                    
+                </td>
+            </tr>
+            
+            <tr>
+                <td><a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-domPrefix">.domPrefix</a></td>
+                <td>
+                        <p>The DOM prefix (Moz, Webkit, ms, ...)
+False if it is unavailable</p>
+
+                    
+                        <span class="ink-label orange uppercase">Boolean|String</span>
+                    
+                </td>
+            </tr>
+            
+            <tr>
                 <td><a href="#Ink_Dom_Browser_1-Ink_Dom_Browser-model">.model</a></td>
                 <td>
                         <p>The specific browser model.
@@ -172,29 +196,10 @@ False if it is unavailable.</p>
     <h1 class="fw-300">.debug() 
     <i>method</i></h1><p class="text"><p>Debug function which displays browser (and Ink.Dom.Browser) information as an alert message.</p>
 </p>
-<p class="example-title">Example</p>
-  
-{% highlight html %}{% raw %}
- 
- The following code
 
-     Ink.requireModules(['Ink.Dom.Browser_1'], function (Browser) {
-         Browser.debug();
-     });
-
- Alerts (On Firefox 22):
-
-     known browsers: (ie, gecko, opera, safari, konqueror) 
-     false,true,false,false,false
-     model -> firefox
-     version -> 22.0
-     
-     original UA -> Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:22.0) Gecko/20100101 Firefox/22.0
-{% endraw %}{% endhighlight %}
-
-
-
-</section>
+<h3>Samples</h3>
+		{% include js_samples/Ink_Dom_Browser_1_debug.html %}
+	</section>
 
     <section id="Ink_Dom_Browser_1-Ink_Dom_Browser-detectBrowser" class="box box-function">
     <h1 class="fw-300">.detectBrowser() 
@@ -336,6 +341,46 @@ False if it is unavailable.</p>
         <pre>Boolean</pre>
     
     <label>SAFARI</label>
+    
+</section>
+
+
+    <section class="box box-attribute">
+    <h1 class="fw-300">
+    
+       Ink.Dom.Browser.cssPrefix
+    
+    <i>attribute</i></h1>
+    
+    
+        <p class="text"><p>The CSS prefix (-moz-, -webkit-, -ms-, ...)
+False if it is unavailable</p>
+</p>
+    
+    
+        <pre>Boolean|String</pre>
+    
+    <label>cssPrefix</label>
+    
+</section>
+
+
+    <section class="box box-attribute">
+    <h1 class="fw-300">
+    
+       Ink.Dom.Browser.domPrefix
+    
+    <i>attribute</i></h1>
+    
+    
+        <p class="text"><p>The DOM prefix (Moz, Webkit, ms, ...)
+False if it is unavailable</p>
+</p>
+    
+    
+        <pre>Boolean|String</pre>
+    
+    <label>domPrefix</label>
     
 </section>
 

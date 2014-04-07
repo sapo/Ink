@@ -1,0 +1,12 @@
+<p class="example-title">Code</p>
+{% highlight js %}
+Ink.requireModules(['Ink.Util.Array_1'], function(InkArray) {
+
+    var testArray = [ 'value1', 'value2', 'value3', 'value4', 'value5' ];
+    var shuffleArray = InkArray.shuffle(testArray); 
+
+    Ink.log(shuffleArray); 
+    // ["value2", "value5", "value1", "value3", "value4"] 
+});
+{% endhighlight %}
+

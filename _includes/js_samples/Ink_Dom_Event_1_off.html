@@ -1,0 +1,23 @@
+<p>Works like .observe() but can be used to add more event types</p>
+<p class="example-title">Code</p>
+{% highlight html %}
+<button id="b_1">Button 1</button>
+<button id="b_2">Remove Button 1 events</button>
+<script>
+Ink.requireModules(['Ink.Dom.Event_1'], function(InkEvent) {
+        
+    var b1 = Ink.i('b_1');
+    var b2 = Ink.i('b_2');
+    var showLog = function(event) {
+            Ink.log('Mouse down/Touch start');
+    }; 
+    var removeEvent = function() {
+        InkEvent.off(b1, 'mousedown touchstart', showLog);
+    };
+    InkEvent.on(b1, 'mousedown touchstart', showLog); 
+    InkEvent.on(b2, 'mousedown touchstart', removeEvent); 
+});
+</script>
+{% endhighlight %}
+
+
