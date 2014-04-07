@@ -7,34 +7,169 @@ site_root:  ../
     <section>
         <h1 class="fw-300">Ink.UI.Common_1<small>version:1</small></h1>
 
-<h2>Defined functions:</h2>
-        <ul class="unstyled"><li><a href="#Ink_UI_Common_1-ajaxJSON">Ink.UI.Common_1.ajaxJSON(endpoint, params, cb)</a></li>
-        <li><a href="#Ink_UI_Common_1-childIndex">Ink.UI.Common_1.childIndex(childEl)</a></li>
-        <li><a href="#Ink_UI_Common_1-cleanChildren">Ink.UI.Common_1.cleanChildren(parentEl)</a></li>
-        <li><a href="#Ink_UI_Common_1-clone">Ink.UI.Common_1.clone(o)</a></li>
-        <li><a href="#Ink_UI_Common_1-currentLayout">Ink.UI.Common_1.currentLayout()</a></li>
-        <li><a href="#Ink_UI_Common_1-destroyComponent">Ink.UI.Common_1.destroyComponent()</a></li>
-        <li><a href="#Ink_UI_Common_1-elOrSelector">Ink.UI.Common_1.elOrSelector(elOrSelector, fieldName)</a></li>
-        <li><a href="#Ink_UI_Common_1-elsOrSelector">Ink.UI.Common_1.elsOrSelector(elOrSelector, fieldName, required)</a></li>
-        <li><a href="#Ink_UI_Common_1-getInstance">Ink.UI.Common_1.getInstance(instanceIdOrElement)</a></li>
-        <li><a href="#Ink_UI_Common_1-getInstanceFromSelector">Ink.UI.Common_1.getInstanceFromSelector(selector)</a></li>
-        <li><a href="#Ink_UI_Common_1-getInstanceIds">Ink.UI.Common_1.getInstanceIds()</a></li>
-        <li><a href="#Ink_UI_Common_1-getInstances">Ink.UI.Common_1.getInstances()</a></li>
-        <li><a href="#Ink_UI_Common_1-hashSet">Ink.UI.Common_1.hashSet(o)</a></li>
-        <li><a href="#Ink_UI_Common_1-isDOMElement">Ink.UI.Common_1.isDOMElement(o)</a></li>
-        <li><a href="#Ink_UI_Common_1-isInteger">Ink.UI.Common_1.isInteger(n)</a></li>
-        <li><a href="#Ink_UI_Common_1-options">Ink.UI.Common_1.options([fieldId], defaults, overrides, [element])</a></li>
-        <li><a href="#Ink_UI_Common_1-registerInstance">Ink.UI.Common_1.registerInstance(inst, el, [optionalPrefix])</a></li>
-        <li><a href="#Ink_UI_Common_1-restoreIdAndClasses">Ink.UI.Common_1.restoreIdAndClasses(toEl, inObj)</a></li>
-        <li><a href="#Ink_UI_Common_1-storeIdAndClasses">Ink.UI.Common_1.storeIdAndClasses(fromEl, inObj)</a></li>
-        <li><a href="#Ink_UI_Common_1-unregisterInstance">Ink.UI.Common_1.unregisterInstance(id)</a></li>
+
+    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space"><caption>Functions</caption>
+        <thead>
+            <tr>
+                <th>Function name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
         
-        </ul><h2>Defined attributes:</h2>
-        <ul class="unstyled"><li><a href="#Ink_UI_Common_1-Layouts">Layouts</a></li>
-        
-        </ul><section id="Ink_UI_Common_1-ajaxJSON" class="box box-function">
+        <tbody>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-ajaxJSON">.ajaxJSON</a>
+                </td>
+                <td>AJAX JSON request shortcut method</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-childIndex">.childIndex</a>
+                </td>
+                <td>Gets an element&#39;s one-base index relative to its parent.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-cleanChildren">.cleanChildren</a>
+                </td>
+                <td>Removes children nodes from a given object.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-clone">.clone</a>
+                </td>
+                <td>Deep copy (clone) an object.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-currentLayout">.currentLayout</a>
+                </td>
+                <td>Gets the current Ink layout.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-destroyComponent">.destroyComponent</a>
+                </td>
+                <td>Boilerplate method to destroy a component.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-elOrSelector">.elOrSelector</a>
+                </td>
+                <td>Gets a DOM Element.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-elsOrSelector">.elsOrSelector</a>
+                </td>
+                <td>Alias for <code>elOrSelector</code> but returns an array of elements.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-getInstance">.getInstance</a>
+                </td>
+                <td>Gets an UI instance from an element or instance id.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-getInstanceFromSelector">.getInstanceFromSelector</a>
+                </td>
+                <td>Gets an instance based on a selector.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-getInstanceIds">.getInstanceIds</a>
+                </td>
+                <td>Gets all the instance ids</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-getInstances">.getInstances</a>
+                </td>
+                <td>Gets all the instances</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-hashSet">.hashSet</a>
+                </td>
+                <td>Sets the location&#39;s hash (window.location.hash).</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-isDOMElement">.isDOMElement</a>
+                </td>
+                <td>Checks if an item is a valid DOM Element.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-isInteger">.isInteger</a>
+                </td>
+                <td>Checks if an item is a valid integer.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-options">.options</a>
+                </td>
+                <td>Gets options an object and element&#39;s metadata.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-registerInstance">.registerInstance</a>
+                </td>
+                <td>Saves a component&#39;s instance reference for later retrieval.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-restoreIdAndClasses">.restoreIdAndClasses</a>
+                </td>
+                <td>Sets the id and className properties of an element based</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-storeIdAndClasses">.storeIdAndClasses</a>
+                </td>
+                <td>Stores the id and/or classes of an element in an object.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-unregisterInstance">.unregisterInstance</a>
+                </td>
+                <td>Deletes an instance with a given id.</td>
+            </tr></tbody>
+    </table>
+    
+    <table class="props">
+        <caption>Properties</caption>
+        <thead>
+            <tr>
+                <th>Property name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            <tr>
+                <td><a href="#Ink_UI_Common_1-Ink_UI_Common_1-Layouts">.Layouts</a></td>
+                <td>
+                        <p>Supported Ink Layouts</p>
+
+                    
+                        <span class="ink-label orange uppercase">Object</span>
+                    
+                </td>
+            </tr>
+            
+        </tbody>
+    </table>
+    
+</section>
+
+
+
+    <section id="Ink_UI_Common_1-Ink_UI_Common_1-ajaxJSON" class="box box-function">
     <h1 class="fw-300">.ajaxJSON(endpoint, params, cb) 
-    <i>function</i></h1>
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">endpoint</li>
@@ -69,9 +204,10 @@ It offers a callback option, as third parameter, for better async handling.</p>
 
 
 </section>
-    <section id="Ink_UI_Common_1-childIndex" class="box box-function">
+
+    <section id="Ink_UI_Common_1-Ink_UI_Common_1-childIndex" class="box box-function">
     <h1 class="fw-300">.childIndex(childEl) 
-    <i>function</i></h1>
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">childEl</li>
@@ -111,9 +247,10 @@ It offers a callback option, as third parameter, for better async handling.</p>
 
 
 </section>
-    <section id="Ink_UI_Common_1-cleanChildren" class="box box-function">
+
+    <section id="Ink_UI_Common_1-Ink_UI_Common_1-cleanChildren" class="box box-function">
     <h1 class="fw-300">.cleanChildren(parentEl) 
-    <i>function</i></h1>
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">parentEl</li>
@@ -149,9 +286,10 @@ This method was initially created to help solve a problem in Internet Explorer(s
 
 
 </section>
-    <section id="Ink_UI_Common_1-clone" class="box box-function">
+
+    <section id="Ink_UI_Common_1-Ink_UI_Common_1-clone" class="box box-function">
     <h1 class="fw-300">.clone(o) 
-    <i>function</i></h1>
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">o</li>
@@ -186,9 +324,10 @@ Note: The object cannot have referece loops.</p>
 
 
 </section>
-    <section id="Ink_UI_Common_1-currentLayout" class="box box-function">
+
+    <section id="Ink_UI_Common_1-Ink_UI_Common_1-currentLayout" class="box box-function">
     <h1 class="fw-300">.currentLayout() 
-    <i>function</i></h1><p class="text"><p>Gets the current Ink layout.</p>
+    <i>method</i></h1><p class="text"><p>Gets the current Ink layout.</p>
 </p>
 <p class="example-title">Example</p>
   
@@ -202,16 +341,18 @@ Note: The object cannot have referece loops.</p>
 
 
 </section>
-    <section id="Ink_UI_Common_1-destroyComponent" class="box box-function">
+
+    <section id="Ink_UI_Common_1-Ink_UI_Common_1-destroyComponent" class="box box-function">
     <h1 class="fw-300">.destroyComponent() 
-    <i>function</i></h1><p class="text"><p>Boilerplate method to destroy a component.
+    <i>method</i></h1><p class="text"><p>Boilerplate method to destroy a component.
 Components should copy this method as its destroy method and modify it.</p>
 </p>
 
 </section>
-    <section id="Ink_UI_Common_1-elOrSelector" class="box box-function">
+
+    <section id="Ink_UI_Common_1-Ink_UI_Common_1-elOrSelector" class="box box-function">
     <h1 class="fw-300">.elOrSelector(elOrSelector, fieldName) 
-    <i>function</i></h1>
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">elOrSelector</li>
@@ -246,9 +387,10 @@ Components should copy this method as its destroy method and modify it.</p>
 
 
 </section>
-    <section id="Ink_UI_Common_1-elsOrSelector" class="box box-function">
+
+    <section id="Ink_UI_Common_1-Ink_UI_Common_1-elsOrSelector" class="box box-function">
     <h1 class="fw-300">.elsOrSelector(elOrSelector, fieldName, required) 
-    <i>function</i></h1>
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">elOrSelector</li>
@@ -287,9 +429,10 @@ Components should copy this method as its destroy method and modify it.</p>
 
 
 </section>
-    <section id="Ink_UI_Common_1-getInstance" class="box box-function">
+
+    <section id="Ink_UI_Common_1-Ink_UI_Common_1-getInstance" class="box box-function">
     <h1 class="fw-300">.getInstance(instanceIdOrElement) 
-    <i>function</i></h1>
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">instanceIdOrElement</li>
@@ -311,9 +454,10 @@ Components should copy this method as its destroy method and modify it.</p>
         
 
 </section>
-    <section id="Ink_UI_Common_1-getInstanceFromSelector" class="box box-function">
+
+    <section id="Ink_UI_Common_1-Ink_UI_Common_1-getInstanceFromSelector" class="box box-function">
     <h1 class="fw-300">.getInstanceFromSelector(selector) 
-    <i>function</i></h1>
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">selector</li>
@@ -335,21 +479,24 @@ Components should copy this method as its destroy method and modify it.</p>
         
 
 </section>
-    <section id="Ink_UI_Common_1-getInstanceIds" class="box box-function">
+
+    <section id="Ink_UI_Common_1-Ink_UI_Common_1-getInstanceIds" class="box box-function">
     <h1 class="fw-300">.getInstanceIds() 
-    <i>function</i></h1><p class="text"><p>Gets all the instance ids</p>
+    <i>method</i></h1><p class="text"><p>Gets all the instance ids</p>
 </p>
 
 </section>
-    <section id="Ink_UI_Common_1-getInstances" class="box box-function">
+
+    <section id="Ink_UI_Common_1-Ink_UI_Common_1-getInstances" class="box box-function">
     <h1 class="fw-300">.getInstances() 
-    <i>function</i></h1><p class="text"><p>Gets all the instances</p>
+    <i>method</i></h1><p class="text"><p>Gets all the instances</p>
 </p>
 
 </section>
-    <section id="Ink_UI_Common_1-hashSet" class="box box-function">
+
+    <section id="Ink_UI_Common_1-Ink_UI_Common_1-hashSet" class="box box-function">
     <h1 class="fw-300">.hashSet(o) 
-    <i>function</i></h1>
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">o</li>
@@ -376,9 +523,10 @@ Components should copy this method as its destroy method and modify it.</p>
 
 
 </section>
-    <section id="Ink_UI_Common_1-isDOMElement" class="box box-function">
+
+    <section id="Ink_UI_Common_1-Ink_UI_Common_1-isDOMElement" class="box box-function">
     <h1 class="fw-300">.isDOMElement(o) 
-    <i>function</i></h1>
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">o</li>
@@ -412,9 +560,10 @@ Components should copy this method as its destroy method and modify it.</p>
 
 
 </section>
-    <section id="Ink_UI_Common_1-isInteger" class="box box-function">
+
+    <section id="Ink_UI_Common_1-Ink_UI_Common_1-isInteger" class="box box-function">
     <h1 class="fw-300">.isInteger(n) 
-    <i>function</i></h1>
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">n</li>
@@ -448,9 +597,10 @@ Components should copy this method as its destroy method and modify it.</p>
 
 
 </section>
-    <section id="Ink_UI_Common_1-options" class="box box-function">
+
+    <section id="Ink_UI_Common_1-Ink_UI_Common_1-options" class="box box-function">
     <h1 class="fw-300">.options([fieldId], defaults, overrides, [element]) 
-    <i>function</i></h1>
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">[fieldId]</li>
@@ -526,9 +676,10 @@ Options which go to default:
 
 
 </section>
-    <section id="Ink_UI_Common_1-registerInstance" class="box box-function">
+
+    <section id="Ink_UI_Common_1-Ink_UI_Common_1-registerInstance" class="box box-function">
     <h1 class="fw-300">.registerInstance(inst, el, [optionalPrefix]) 
-    <i>function</i></h1>
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">inst</li>
@@ -554,9 +705,10 @@ Options which go to default:
         </dl>
 
 </section>
-    <section id="Ink_UI_Common_1-restoreIdAndClasses" class="box box-function">
+
+    <section id="Ink_UI_Common_1-Ink_UI_Common_1-restoreIdAndClasses" class="box box-function">
     <h1 class="fw-300">.restoreIdAndClasses(toEl, inObj) 
-    <i>function</i></h1>
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">toEl</li>
@@ -595,9 +747,10 @@ Options which go to default:
 
 
 </section>
-    <section id="Ink_UI_Common_1-storeIdAndClasses" class="box box-function">
+
+    <section id="Ink_UI_Common_1-Ink_UI_Common_1-storeIdAndClasses" class="box box-function">
     <h1 class="fw-300">.storeIdAndClasses(fromEl, inObj) 
-    <i>function</i></h1>
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">fromEl</li>
@@ -634,9 +787,10 @@ Options which go to default:
 
 
 </section>
-    <section id="Ink_UI_Common_1-unregisterInstance" class="box box-function">
+
+    <section id="Ink_UI_Common_1-Ink_UI_Common_1-unregisterInstance" class="box box-function">
     <h1 class="fw-300">.unregisterInstance(id) 
-    <i>function</i></h1>
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">id</li>
@@ -651,10 +805,12 @@ Options which go to default:
         </dl>
 
 </section>
+
+
     <section class="box box-attribute">
     <h1 class="fw-300">
     
-        Layouts
+       Ink.UI.Common_1.Layouts
     
     <i>attribute</i></h1>
     
@@ -668,5 +824,7 @@ Options which go to default:
     <label>Layouts</label>
     
 </section>
+
+
 
     

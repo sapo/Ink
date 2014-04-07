@@ -8053,6 +8053,10 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
 
     var arrayProto = Array.prototype;
 
+    /**
+     * @namespace Ink.Util.Array_1
+     */
+
     var InkArray = {
 
         /**
@@ -8064,15 +8068,7 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          * @param {Mixed} value     Value to check
          * @param {Array} arr       Array to search in
          * @return {Boolean}        True if value exists in the array
-         * @example
-         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
-         *         var testArray = [ 'value1', 'value2', 'value3' ];
-         *         if( InkArray.inArray( 'value2', testArray ) === true ){
-         *             console.log( "Yep it's in the array." );
-         *         } else {
-         *             console.log( "No it's NOT in the array." );
-         *         }
-         *     });
+         * @sample Ink_Util_Array_inArray.html 
          */
         inArray: function(value, arr) {
             if (typeof arr === 'object') {
@@ -8094,16 +8090,7 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          * @return {Array|Boolean}      False if it's not an array, returns a sorted array if it's an array.
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
-         *         var testArray = [
-         *             { 'myKey': 'value1' },
-         *             { 'myKey': 'value2' },
-         *             { 'myKey': 'value3' }
-         *         ];
-         *
-         *         InkArray.sortMulti( testArray, 'myKey' );
-         *     });
+         * @sample Ink_Util_Array_sortMulti.html 
          */
         sortMulti: function(arr, key) {
             if (typeof arr === 'undefined' || arr.constructor !== Array) { return false; }
@@ -8129,12 +8116,7 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          * @return  {Boolean|Number|Array}  False for no matches. Array of matches or first match index.
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
-         *         var testArray = [ 'value1', 'value2', 'value3', 'value2' ];
-         *         console.log( InkArray.keyValue( 'value2', testArray, true ) ); // Result: 1
-         *         console.log( InkArray.keyValue( 'value2', testArray ) ); // Result: [1, 3]
-         *     });
+         * @sample Ink_Util_Array_keyValue.html 
          */
         keyValue: function(value, arr, first) {
             if (typeof value !== 'undefined' && typeof arr === 'object' && this.inArray(value, arr)) {
@@ -8161,11 +8143,7 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          * @return  {Array|Boolean}      Shuffled Array or false if not an array.
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
-         *         var testArray = [ 'value1', 'value2', 'value3', 'value2' ];
-         *         console.log( InkArray.shuffle( testArray ) ); // Result example: [ 'value3', 'value2', 'value2', 'value1' ]
-         *     });
+         * @sample Ink_Util_Array_shuffle.html 
          */
         shuffle: function(arr) {
             if (typeof(arr) !== 'undefined' && arr.constructor !== Array) { return false; }
@@ -8191,13 +8169,7 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          * @return  {Array}             Iterated array.
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
-         *         var testArray = [ 'value1', 'value2', 'value3', 'value2' ];
-         *         InkArray.forEach( testArray, function( value, index, arr ){
-         *             console.log( 'The value is: ' + value + ' | The index is: ' + index );
-         *         });
-         *     });
+         * @sample Ink_Util_Array_forEach.html 
          */
         forEach: function(array, callback, context) {
             if (arrayProto.forEach) {
@@ -8223,12 +8195,9 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          * @method map
          * @param {Array}       array       The array to map over
          * @param {Function}    map         The map function. Will take `(item, index, array)` as arguments and `this` will be the `context` argument.
-         * @param {Object}      [context]   Object to be `this` in the map function.
+         * @param {Object}      [context]   Object to be `this` in the map function. 
          *
-         * @example
-         *      InkArray.map([1, 2, 3, 4], function (item) {
-         *          return item + 1;
-         *      }); // -> [2, 3, 4, 5]
+         * @sample Ink_Util_Array_map.html 
          */
         map: function (array, callback, context) {
             if (arrayProto.map) {
@@ -8244,15 +8213,13 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
         /**
          * Filters an array based on a truth test.
          * This method runs a test function on all the array values and returns a new array with all the values that pass the test.
+         * @method filter
          * @param {Array}       array       The array to filter
          * @param {Function}    test        A test function taking `(item, index, array)`
          * @param {Object}      [context]   Object to be `this` in the test function.
          * @return {Array}                  Returns the filtered array
          *
-         * @example
-         *      InkArray.filter([1, 2, 3, 4, 5], function (val) {
-         *          return val > 2;
-         *      })  // -> [3, 4, 5]
+         * @sample Ink_Util_Array_filter.html 
          */
         filter: function (array, test, context) {
             if (arrayProto.filter) {
@@ -8279,20 +8246,7 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          * @return  {Boolean}               True if the callback returns true at any point, false otherwise
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
-         *         var testArray1 = [ 10, 20, 50, 100, 30 ];
-         *         var testArray2 = [ 1, 2, 3, 4, 5 ];
-         *
-         *         function myTestFunction( value, index, arr ){
-         *             if( value > 90 ){
-         *                 return true;
-         *             }
-         *             return false;
-         *         }
-         *         console.log( InkArray.some( testArray1, myTestFunction, null ) ); // Result: true
-         *         console.log( InkArray.some( testArray2, myTestFunction, null ) ); // Result: false
-         *     });
+         * @sample Ink_Util_Array_some.html 
          */
         some: function(arr, cb, context){
 
@@ -8320,12 +8274,7 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          * @return  {Array}             Empty array if one of the arrays is false (or do not intersect) | Array with the intersected values
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
-         *         var testArray1 = [ 'value1', 'value2', 'value3' ];
-         *         var testArray2 = [ 'value2', 'value3', 'value4', 'value5', 'value6' ];
-         *         console.log( InkArray.intersect( testArray1,testArray2 ) ); // Result: [ 'value2', 'value3' ]
-         *     });
+         * @sample Ink_Util_Array_intersect.html 
          */
         intersect: function(arr1, arr2) {
             if (!arr1 || !arr2 || arr1 instanceof Array === false || arr2 instanceof Array === false) {
@@ -8352,15 +8301,7 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          * @return  {Array}         Array resulting of the conversion
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
-         *         var testArray = [ 'value1', 'value2' ];
-         *         testArray.myMethod = function(){
-         *             console.log('stuff');
-         *         }
-         *
-         *         console.log( InkArray.convert( testArray ) ); // Result: [ 'value1', 'value2' ]
-         *     });
+         * @sample Ink_Util_Array_convert.html 
          */
         convert: function(arr) {
             return arrayProto.slice.call(arr || [], 0);
@@ -8375,11 +8316,7 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          * @param {Mixed}   value   Value to be inserted
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
-         *         var testArray = [ 'value1', 'value2' ];
-         *         console.log( InkArray.insert( testArray, 1, 'value3' ) ); // Result: [ 'value1', 'value3', 'value2' ]
-         *     });
+         * @sample Ink_Util_Array_insert.html 
          */
         insert: function(arr, idx, value) {
             arr.splice(idx, 0, value);
@@ -8395,11 +8332,7 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          * @return  {Array}             An array with the remaining values
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
-         *         var testArray = [ 'value1', 'value2', 'value3', 'value4', 'value5' ];
-         *         console.log( InkArray.remove( testArray, 1, 3 ) ); // Result: [ 'value1', 'value4', 'value5' ]
-         *     });
+         * @sample Ink_Util_Array_remove.html 
          */
         remove: function(arr, from, rLen){
             var output = [];
@@ -8419,6 +8352,7 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
     return InkArray;
 
 });
+
 /**
  * Binary Packing algorithm implementation
  * @module Ink.Util.BinPack_1
@@ -8738,6 +8672,9 @@ Ink.createModule('Ink.Util.Cookie', '1', [], function() {
 
     'use strict';
 
+    /**
+     * @namespace Ink.Util.Cookie_1
+     */
     var Cookie = {
 
         /**
@@ -8748,11 +8685,7 @@ Ink.createModule('Ink.Util.Cookie', '1', [], function() {
          * @return  {String|Object}             If the name is specified, it returns the value of that key. Otherwise it returns the full cookie object
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Cookie_1'], function( InkCookie ){
-         *         var myCookieValue = InkCookie.get('someVarThere');
-         *         console.log( myCookieValue ); // This will output the value of the cookie 'someVarThere', from the cookie object.
-         *     });
+         * @sample Ink_Util_Cookie_get.html
          */
         get: function(name)
         {
@@ -8795,11 +8728,7 @@ Ink.createModule('Ink.Util.Cookie', '1', [], function() {
          * @param {Boolean}     [secure]    Flag for secure. Default 'false'.
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Cookie_1'], function( InkCookie ){
-         *         var expireDate = new Date( 2014,00,01, 0,0,0);
-         *         InkCookie.set( 'someVarThere', 'anyValueHere', expireDate.getTime() );
-         *     });
+         * @sample Ink_Util_Cookie_set.html
          */
         set: function(name, value, expires, path, domain, secure)
         {
@@ -8865,10 +8794,7 @@ Ink.createModule('Ink.Util.Cookie', '1', [], function() {
          * @param {String}  [domain]     Domain of the cookie. Defaults to current hostname.
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Cookie_1'], function( InkCookie ){
-         *         InkCookie.remove( 'someVarThere' );
-         *     });
+         * @sample Ink_Util_Cookie_remove.html
          */
         remove: function(cookieName, path, domain)
         {
@@ -8907,6 +8833,9 @@ Ink.createModule('Ink.Util.Date', '1', [], function() {
 
     'use strict';
 
+    /**
+     * @namespace Ink.Util.Date_1 
+     */
     var InkDate = {
 
         /**
@@ -9062,12 +8991,7 @@ Ink.createModule('Ink.Util.Date', '1', [], function() {
          * @return  {String}                Formatted date
          * @public
          * @static
-         * @example
-         *     <script>
-         *         Ink.requireModules( ['Ink.Util.Date_1'], function( InkDate ){
-         *             console.log( InkDate.get('Y-m-d') ); // Result (at the time of writing): 2013-05-07
-         *         });
-         *     </script>
+         * @sample Ink_Util_Date_get.html 
          */
         get: function(format, _date){
             /*jshint maxcomplexity:65 */
@@ -9307,6 +9231,7 @@ Ink.createModule('Ink.Util.Date', '1', [], function() {
          * @return  {Date}                  Date object based on the formatted date and format
          * @public
          * @static
+         * @sample Ink_Util_Date_set.html 
          */
         set : function( format , str_date ) {
             if ( typeof str_date === 'undefined' ) { return ; }
@@ -9678,6 +9603,10 @@ Ink.createModule('Ink.Util.Dumper', '1', [], function() {
 
     'use strict';
 
+    /**
+     * @namespace Ink.Util.Dumper_1 
+     */
+
     var Dumper = {
 
         /**
@@ -9867,6 +9796,7 @@ Ink.createModule('Ink.Util.Dumper', '1', [], function() {
     return Dumper;
 
 });
+
 /**
  * Internationalization Utilities 
  * @module Ink.Util.I18n_1
@@ -10384,7 +10314,7 @@ Ink.createModule('Ink.Util.Json', '1', [], function() {
 
     /**
      * Use this class to convert JSON strings to JavaScript objects
-     * `(Json.parse)` and also to do the opposite operation `(Json.stringify)`.
+     * `.parse()` and also to do the opposite operation `.stringify()`.
      * Internally, the standard JSON implementation is used if available
      * Otherwise, the functions mimic the standard implementation.
      *
@@ -10405,7 +10335,8 @@ Ink.createModule('Ink.Util.Json', '1', [], function() {
      *          var source = '{"key": "value", "array": [true, null, false]}';
      *          Json.parse(source);  // The above JSON string as an object
      *      });
-     * @namespace Ink.Util.Json
+     *
+     * @namespace Ink.Util.Json_1 
      * @static
      * 
      */
@@ -10547,8 +10478,7 @@ Ink.createModule('Ink.Util.Json', '1', [], function() {
          * @param   {Boolean}     convertToUnicode      When `true`, converts string contents to unicode \uXXXX
          * @return  {String}                            Serialized string
          *
-         * @example
-         *      Json.stringify({a:1.23}); // -> string: '{"a": 1.23}'
+         * @sample Ink_Util_Json_stringify.html 
          */
         stringify: function(input, convertToUnicode) {
             this._convertToUnicode = !!convertToUnicode;
@@ -10566,17 +10496,8 @@ Ink.createModule('Ink.Util.Json', '1', [], function() {
          * @param reviver   {Function}  Function receiving `(key, value)`, and `this`=(containing object), used to walk objects.
          * 
          * @return {Object}             JSON object
-         * @example
-         * Simple example:
          *
-         *      Json.parse('{"a": "3","numbers":false}',
-         *          function (key, value) {
-         *              if (!this.numbers && key === 'a') {
-         *                  return "NO NUMBERS";
-         *              } else {
-         *                  return value;
-         *              }
-         *          }); // -> object: {a: 'NO NUMBERS', numbers: false}
+         * @sample Ink_Util_Json_parse.html 
          */
         /* From https://github.com/douglascrockford/JSON-js/blob/master/json.js */
         parse: function (text, reviver) {
@@ -10663,6 +10584,7 @@ Ink.createModule('Ink.Util.Json', '1', [], function() {
 
     return InkJson;
 });
+
 /**
  * String Utilities
  * @module Ink.Util.String_1
@@ -10673,6 +10595,9 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
 
     'use strict';
 
+    /**
+     * @namespace Ink.Util.String_1 
+     */
     var InkUtilString = {
 
         /**
@@ -11342,6 +11267,9 @@ Ink.createModule('Ink.Util.Url', '1', [], function() {
 
     'use strict';
 
+    /**
+     * @namespace Ink.Util.Url_1
+     */
     var Url = {
 
         /**
@@ -11362,10 +11290,7 @@ Ink.createModule('Ink.Util.Url', '1', [], function() {
          * @return Current URL
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Url_1'], function( InkUrl ){
-         *         console.log( InkUrl.getUrl() ); // Will return it's window URL
-         *     });
+         * @sample Ink_Util_Url_getUrl.html 
          */
         getUrl: function()
         {
@@ -11381,15 +11306,7 @@ Ink.createModule('Ink.Util.Url', '1', [], function() {
          * @return {String} URI with query string set
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Url_1'], function( InkUrl ){
-         *         var queryString = InkUrl.genQueryString( 'http://www.sapo.pt/', {
-         *             'param1': 'valueParam1',
-         *             'param2': 'valueParam2'
-         *         });
-         *
-         *         console.log( queryString ); // Result: http://www.sapo.pt/?param1=valueParam1&param2=valueParam2
-         *     });
+         * @sample Ink_Util_Url_genQueryString.html 
          */
         genQueryString: function(uri, params) {
             var hasQuestionMark = uri.indexOf('?') !== -1;
@@ -11422,16 +11339,7 @@ Ink.createModule('Ink.Util.Url', '1', [], function() {
          * @return  {Object}            Key-Value pair object
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Url_1'], function( InkUrl ){
-         *         var queryStringParams = InkUrl.getQueryString( 'http://www.sapo.pt/?var1=valueVar1&var2=valueVar2' );
-         *         console.log( queryStringParams );
-         *         // Result:
-         *         // {
-         *         //    var1: 'valueVar1',
-         *         //    var2: 'valueVar2'
-         *         // }
-         *     });
+         * @sample Ink_Util_Url_getQueryString.html 
          */
         getQueryString: function(str)
         {
@@ -11463,11 +11371,7 @@ Ink.createModule('Ink.Util.Url', '1', [], function() {
          * @return  {String|Boolean}            Hash in the URL. If there's no hash, returns false.
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Url_1'], function( InkUrl ){
-         *         var anchor = InkUrl.getAnchor( 'http://www.sapo.pt/page.php#TEST' );
-         *         console.log( anchor ); // Result: TEST
-         *     });
+         * @sample Ink_Util_Url_getAnchor.html 
          */
         getAnchor: function(str)
         {
@@ -11492,16 +11396,7 @@ Ink.createModule('Ink.Util.Url', '1', [], function() {
          * @return  {Object}            Key-value pair object of the URL's hashtag 'variables'
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Url_1'], function( InkUrl ){
-         *         var hashParams = InkUrl.getAnchorString( 'http://www.sapo.pt/#var1=valueVar1&var2=valueVar2' );
-         *         console.log( hashParams );
-         *         // Result:
-         *         // {
-         *         //    var1: 'valueVar1',
-         *         //    var2: 'valueVar2'
-         *         // }
-         *     });
+         * @sample Ink_Util_Url_getAnchorString.html 
          */
         getAnchorString: function(string)
         {
@@ -11534,20 +11429,7 @@ Ink.createModule('Ink.Util.Url', '1', [], function() {
          * @return {Object} Parsed URL as a key-value object.
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Url_1'], function( InkUrl ){
-         *         var parsedURL = InkUrl.parseUrl( 'http://www.sapo.pt/index.html?var1=value1#anchor' )
-         *         console.log( parsedURL );
-         *         // Result:
-         *         // {
-         *         //   'scheme'    => 'http',
-         *         //   'host'      => 'www.sapo.pt',
-         *         //   'path'      => '/index.html',
-         *         //   'query'     => 'var1=value1',
-         *         //   'fragment'  => 'anchor'
-         *         // }
-         *     });
-         *
+         * @sample Ink_Util_Url_parseUrl.html 
          */
         parseUrl: function(url) {
             var aURL = {};
@@ -11664,6 +11546,7 @@ Ink.createModule('Ink.Util.Url', '1', [], function() {
          * @return {DOMElement|Boolean} Returns the <script> DOM Element or false if unable to find it.
          * @public
          * @static
+         * @sample Ink_Util_Url_currentScriptElement.html 
          */
         currentScriptElement: function(match)
         {
@@ -11799,6 +11682,9 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
 
     'use strict';
 
+    /**
+     * @namespace Ink.Util.Validator_1 
+     */
     var Validator = {
 
         /**
@@ -13090,6 +12976,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
     return Validator;
 
 });
+
 /**
  * Animate.css Utility
  *
@@ -13798,6 +13685,10 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
         }
         return ret;
     };
+
+    /**
+     * @namespace Ink.UI.Common_1
+     */
 
     var Common = {
 
@@ -14526,6 +14417,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
     return Common;
 
 });
+
 /**
  * Date selector
  * @module Ink.UI.DatePicker_1

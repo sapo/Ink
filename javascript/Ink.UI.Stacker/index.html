@@ -8,7 +8,7 @@ site_root:  ../
         <h1 class="fw-300">Ink.UI.Stacker_1<small>version:1</small></h1>
 
 <p>This module combines several stacks of items together, in smaller screen sizes.<br><p>The purpose is to have several stacks of items which may have different heights and as such cannot be used because of <code>float: left</code> quirks.</p><br><p>For example, when you have three different columns of information:</p><br><pre><code>[col. A: 1] [col. B: 1] [col. C: 1]<br>[col. B: 2] [col. C: 2] [col. C: 2]<br></code></pre><p>and the screen resizes and you need a layout of 2 columns, Stacker reorders the stacks so that you get:</p><br><pre><code>[col. A: 1] [col. B: 1]<br>[col. C: 1] [col. A: 2]<br>[col. B: 2] [col. C: 2]<br></code></pre><p>Note: If you just want to use a different amount of columns for your items in several viewports, but these items are guaranteed to have a fixed height, don&#39;t use this module. Use the <code>small-*</code>, <code>medium-*</code> and <code>large-*</code> classes instead.</p><br></p>
-    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p><table class="props bottom-space">
+    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space">
         <caption>Methods</caption>
         <thead>
             <tr>

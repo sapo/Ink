@@ -7,14 +7,43 @@ site_root:  ../
     <section>
         <h1 class="fw-300">Ink.Util.Cookie_1<small>version:1</small></h1>
 
-<h2>Defined functions:</h2>
-        <ul class="unstyled"><li><a href="#Ink_Util_Cookie_1-get">Ink.Util.Cookie_1.get(name)</a></li>
-        <li><a href="#Ink_Util_Cookie_1-remove">Ink.Util.Cookie_1.remove(cookieName, [path], [domain])</a></li>
-        <li><a href="#Ink_Util_Cookie_1-set">Ink.Util.Cookie_1.set(name, value, [expires], [path], [domain], [secure])</a></li>
+
+    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space"><caption>Functions</caption>
+        <thead>
+            <tr>
+                <th>Function name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
         
-        </ul><section id="Ink_Util_Cookie_1-get" class="box box-function">
+        <tbody>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Cookie_1-Ink_Util_Cookie_1-get">.get</a>
+                </td>
+                <td>Gets an object with the current page cookies.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Cookie_1-Ink_Util_Cookie_1-remove">.remove</a>
+                </td>
+                <td>Deletes a cookie.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Cookie_1-Ink_Util_Cookie_1-set">.set</a>
+                </td>
+                <td>Sets a cookie.</td>
+            </tr></tbody>
+    </table>
+    
+</section>
+
+
+
+    <section id="Ink_Util_Cookie_1-Ink_Util_Cookie_1-get" class="box box-function">
     <h1 class="fw-300">.get(name) 
-    <i>function</i></h1>
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">name</li>
@@ -34,21 +63,14 @@ site_root:  ../
             </dd>
         </dl>
         
-<p class="example-title">Example</p>
-  
-{% highlight html %}{% raw %}
-    Ink.requireModules(['Ink.Util.Cookie_1'], function( InkCookie ){
-        var myCookieValue = InkCookie.get('someVarThere');
-        console.log( myCookieValue ); // This will output the value of the cookie 'someVarThere', from the cookie object.
-    });
-{% endraw %}{% endhighlight %}
 
+<h3>Samples</h3>
+		{% include js_samples/Ink_Util_Cookie_get.html %}
+	</section>
 
-
-</section>
-    <section id="Ink_Util_Cookie_1-remove" class="box box-function">
+    <section id="Ink_Util_Cookie_1-Ink_Util_Cookie_1-remove" class="box box-function">
     <h1 class="fw-300">.remove(cookieName, [path], [domain]) 
-    <i>function</i></h1>
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">cookieName</li>
@@ -73,20 +95,14 @@ site_root:  ../
                 </label>
                 Domain of the cookie. Defaults to current hostname.</dd>
         </dl>
-<p class="example-title">Example</p>
-  
-{% highlight html %}{% raw %}
-    Ink.requireModules(['Ink.Util.Cookie_1'], function( InkCookie ){
-        InkCookie.remove( 'someVarThere' );
-    });
-{% endraw %}{% endhighlight %}
 
+<h3>Samples</h3>
+		{% include js_samples/Ink_Util_Cookie_remove.html %}
+	</section>
 
-
-</section>
-    <section id="Ink_Util_Cookie_1-set" class="box box-function">
+    <section id="Ink_Util_Cookie_1-Ink_Util_Cookie_1-set" class="box box-function">
     <h1 class="fw-300">.set(name, value, [expires], [path], [domain], [secure]) 
-    <i>function</i></h1>
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">name</li>
@@ -128,16 +144,11 @@ site_root:  ../
                 </label>
                 Flag for secure. Default 'false'.</dd>
         </dl>
-<p class="example-title">Example</p>
-  
-{% highlight html %}{% raw %}
-    Ink.requireModules(['Ink.Util.Cookie_1'], function( InkCookie ){
-        var expireDate = new Date( 2014,00,01, 0,0,0);
-        InkCookie.set( 'someVarThere', 'anyValueHere', expireDate.getTime() );
-    });
-{% endraw %}{% endhighlight %}
+
+<h3>Samples</h3>
+		{% include js_samples/Ink_Util_Cookie_set.html %}
+	</section>
 
 
 
-</section>
     

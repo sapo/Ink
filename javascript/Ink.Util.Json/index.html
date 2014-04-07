@@ -7,8 +7,8 @@ site_root:  ../
     <section>
         <h1 class="fw-300">Ink.Util.Json_1<small>version:1</small></h1>
 
-<p>Use this class to convert JSON strings to JavaScript objects<br><code>(Json.parse)</code> and also to do the opposite operation <code>(Json.stringify)</code>.<br>Internally, the standard JSON implementation is used if available<br>Otherwise, the functions mimic the standard implementation.<br><p>Here&#39;s how to produce JSON from an existing object:</p><br><pre><code> Ink.requireModules([&#39;Ink.Util.Json_1&#39;], function (Json) {<br>     var obj = {<br>         key1: &#39;value1&#39;,<br>         key2: &#39;value2&#39;,<br>         keyArray: [&#39;arrayValue1&#39;, &#39;arrayValue2&#39;, &#39;arrayValue3&#39;]<br>     };<br>     Json.stringify(obj);  // The above object as a JSON string<br> });<br></code></pre><p>And here is how to parse JSON:</p><br><pre><code> Ink.requireModules([&#39;Ink.Util.Json_1&#39;], function (Json) {<br>     var source = &#39;{&quot;key&quot;: &quot;value&quot;, &quot;array&quot;: [true, null, false]}&#39;;<br>     Json.parse(source);  // The above JSON string as an object<br> });<br></code></pre></p>
-    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p><table class="props bottom-space"><caption>Functions</caption>
+<p>Use this class to convert JSON strings to JavaScript objects<br><code>.parse()</code> and also to do the opposite operation <code>.stringify()</code>.<br>Internally, the standard JSON implementation is used if available<br>Otherwise, the functions mimic the standard implementation.<br><p>Here&#39;s how to produce JSON from an existing object:</p><br><pre><code> Ink.requireModules([&#39;Ink.Util.Json_1&#39;], function (Json) {<br>     var obj = {<br>         key1: &#39;value1&#39;,<br>         key2: &#39;value2&#39;,<br>         keyArray: [&#39;arrayValue1&#39;, &#39;arrayValue2&#39;, &#39;arrayValue3&#39;]<br>     };<br>     Json.stringify(obj);  // The above object as a JSON string<br> });<br></code></pre><p>And here is how to parse JSON:</p><br><pre><code> Ink.requireModules([&#39;Ink.Util.Json_1&#39;], function (Json) {<br>     var source = &#39;{&quot;key&quot;: &quot;value&quot;, &quot;array&quot;: [true, null, false]}&#39;;<br>     Json.parse(source);  // The above JSON string as an object<br> });<br></code></pre></p>
+    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space"><caption>Functions</caption>
         <thead>
             <tr>
                 <th>Function name</th>
@@ -19,13 +19,13 @@ site_root:  ../
         <tbody>
             <tr>
                 <td>
-                    <a href="#Ink_Util_Json_1-Ink_Util_Json-parse">.parse</a>
+                    <a href="#Ink_Util_Json_1-Ink_Util_Json_1-parse">.parse</a>
                 </td>
                 <td>Parses a JSON text through a function</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Util_Json_1-Ink_Util_Json-stringify">.stringify</a>
+                    <a href="#Ink_Util_Json_1-Ink_Util_Json_1-stringify">.stringify</a>
                 </td>
                 <td>Serializes a JSON object into a string.</td>
             </tr></tbody>
@@ -35,7 +35,7 @@ site_root:  ../
 
 
 
-    <section id="Ink_Util_Json_1-Ink_Util_Json-parse" class="box box-function">
+    <section id="Ink_Util_Json_1-Ink_Util_Json_1-parse" class="box box-function">
     <h1 class="fw-300">.parse(text, reviver) 
     <i>method</i></h1>
     <ul class="props inline">
@@ -62,26 +62,12 @@ site_root:  ../
             </dd>
         </dl>
         
-<p class="example-title">Example</p>
-  
-{% highlight html %}{% raw %}
-Simple example:
 
-     Json.parse('{"a": "3","numbers":false}',
-         function (key, value) {
-             if (!this.numbers && key === 'a') {
-                 return "NO NUMBERS";
-             } else {
-                 return value;
-             }
-         }); // -> object: {a: 'NO NUMBERS', numbers: false}
-{% endraw %}{% endhighlight %}
+<h3>Samples</h3>
+		{% include js_samples/Ink_Util_Json_parse.html %}
+	</section>
 
-
-
-</section>
-
-    <section id="Ink_Util_Json_1-Ink_Util_Json-stringify" class="box box-function">
+    <section id="Ink_Util_Json_1-Ink_Util_Json_1-stringify" class="box box-function">
     <h1 class="fw-300">.stringify(input, convertToUnicode) 
     <i>method</i></h1>
     <ul class="props inline">
@@ -108,15 +94,10 @@ Simple example:
             </dd>
         </dl>
         
-<p class="example-title">Example</p>
-  
-{% highlight html %}{% raw %}
-     Json.stringify({a:1.23}); // -> string: '{"a": 1.23}'
-{% endraw %}{% endhighlight %}
 
-
-
-</section>
+<h3>Samples</h3>
+		{% include js_samples/Ink_Util_Json_stringify.html %}
+	</section>
 
 
 

@@ -7,13 +7,37 @@ site_root:  ../
     <section>
         <h1 class="fw-300">Ink.Util.Date_1<small>version:1</small></h1>
 
-<h2>Defined functions:</h2>
-        <ul class="unstyled"><li><a href="#Ink_Util_Date_1-get">Ink.Util.Date_1.get(format, [_date])</a></li>
-        <li><a href="#Ink_Util_Date_1-set">Ink.Util.Date_1.set([format], str_date)</a></li>
+
+    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space"><caption>Functions</caption>
+        <thead>
+            <tr>
+                <th>Function name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
         
-        </ul><section id="Ink_Util_Date_1-get" class="box box-function">
+        <tbody>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Date_1-Ink_Util_Date_1-get">.get</a>
+                </td>
+                <td>Formats a date object.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Date_1-Ink_Util_Date_1-set">.set</a>
+                </td>
+                <td>Creates a date object based on a format string.</td>
+            </tr></tbody>
+    </table>
+    
+</section>
+
+
+
+    <section id="Ink_Util_Date_1-Ink_Util_Date_1-get" class="box box-function">
     <h1 class="fw-300">.get(format, [_date]) 
-    <i>function</i></h1>
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">format</li>
@@ -40,22 +64,14 @@ This works exactly as php date() function. <a href="http://php.net/manual/en/fun
             </dd>
         </dl>
         
-<p class="example-title">Example</p>
-  
-{% highlight html %}{% raw %}
-    <script>
-        Ink.requireModules( ['Ink.Util.Date_1'], function( InkDate ){
-            console.log( InkDate.get('Y-m-d') ); // Result (at the time of writing): 2013-05-07
-        });
-    </script>
-{% endraw %}{% endhighlight %}
 
+<h3>Samples</h3>
+		{% include js_samples/Ink_Util_Date_get.html %}
+	</section>
 
-
-</section>
-    <section id="Ink_Util_Date_1-set" class="box box-function">
+    <section id="Ink_Util_Date_1-Ink_Util_Date_1-set" class="box box-function">
     <h1 class="fw-300">.set([format], str_date) 
-    <i>function</i></h1>
+    <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         <li class="prop">[format]</li>
@@ -83,5 +99,10 @@ This works exactly as php date() function. <a href="http://php.net/manual/en/fun
         </dl>
         
 
-</section>
+<h3>Samples</h3>
+		{% include js_samples/Ink_Util_Date_set.html %}
+	</section>
+
+
+
     
