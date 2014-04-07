@@ -1,7 +1,7 @@
 ---
 layout: js-documentation
 title: Ink.UI.Modal_1
-description: Modal dialog prompts
+description: <p>Modal dialog prompts</p>
 site_root:  ../
 ---
     <section>
@@ -28,31 +28,31 @@ site_root:  ../
                 <td>
                     <a href="#Ink_UI_Modal_1-Ink_UI_Modal-destroy">.destroy</a>
                 </td>
-                <td>Removes the modal from the DOM</td>
+                <td><p>Removes the modal from the DOM</p></td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_Modal_1-Ink_UI_Modal-dismiss">.dismiss</a>
                 </td>
-                <td>Closes the modal</td>
+                <td><p>Closes the modal</p></td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_Modal_1-Ink_UI_Modal-getContentElement">.getContentElement</a>
                 </td>
-                <td>Returns the content DOM element</td>
+                <td><p>Returns the content DOM element</p></td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_Modal_1-Ink_UI_Modal-open">.open</a>
                 </td>
-                <td>Opens this Modal. </td>
+                <td><p>Opens this Modal. </td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_Modal_1-Ink_UI_Modal-setContentMarkup">.setContentMarkup</a>
                 </td>
-                <td>Replaces the content markup</td>
+                <td><p>Replaces the content markup</p></td>
             </tr></tbody>
     </table>
     
@@ -84,88 +84,88 @@ site_root:  ../
     </ul>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><code>String|DOMElement</code></dt>
-            <dd><label class="monospace">selector
+            <dt><label class="monospace">selector
                 </label>
-                Element or ID</dd>
-            <dt><code>Object</code></dt>
-            <dd><label class="monospace">[options]
+            </dt>
+            <dd><code>String|DOMElement</code>Element or ID</dd>
+            <dt><label class="monospace">[options]
                 
                 </label>
-                Options</dd>
-            <dt><code>String</code></dt>
-            <dd><label class="monospace">[options.width]
+            </dt>
+            <dd><code>Object</code>Options</dd>
+            <dt><label class="monospace">[options.width]
                 
                 </label>
-                Default/Initial width. Ex: '600px'</dd>
-            <dt><code>String</code></dt>
-            <dd><label class="monospace">[options.height]
+            </dt>
+            <dd><code>String</code>Default/Initial width. Ex: '600px'</dd>
+            <dt><label class="monospace">[options.height]
                 
                 </label>
-                Default/Initial height. Ex: '400px'</dd>
-            <dt><code>String</code></dt>
-            <dd><label class="monospace">[options.shadeClass]
+            </dt>
+            <dd><code>String</code>Default/Initial height. Ex: '400px'</dd>
+            <dt><label class="monospace">[options.shadeClass]
                 
                 </label>
-                Custom class to be added to the div.ink-shade</dd>
-            <dt><code>String</code></dt>
-            <dd><label class="monospace">[options.modalClass]
+            </dt>
+            <dd><code>String</code>Custom class to be added to the div.ink-shade</dd>
+            <dt><label class="monospace">[options.modalClass]
                 
                 </label>
-                Custom class to be added to the div.ink-modal</dd>
-            <dt><code>String</code></dt>
-            <dd><label class="monospace">[options.trigger]
+            </dt>
+            <dd><code>String</code>Custom class to be added to the div.ink-modal</dd>
+            <dt><label class="monospace">[options.trigger]
                 
                 </label>
-                CSS Selector for target elements that will trigger the Modal.</dd>
-            <dt><code>String</code></dt>
-            <dd><label class="monospace">[options.triggerEvent]
+            </dt>
+            <dd><code>String</code>CSS Selector for target elements that will trigger the Modal.</dd>
+            <dt><label class="monospace">[options.triggerEvent]
                 
                 </label>
-                Trigger's event to be listened. Defaults to 'click'.</dd>
-            <dt><code>Boolean</code></dt>
-            <dd><label class="monospace">[options.autoDisplay]
+            </dt>
+            <dd><code>String</code>Trigger's event to be listened. Defaults to 'click'.</dd>
+            <dt><label class="monospace">[options.autoDisplay]
                 
                 </label>
-                Displays the Modal automatically when constructed.</dd>
-            <dt><code>String</code></dt>
-            <dd><label class="monospace">[options.markup]
+            </dt>
+            <dd><code>Boolean</code>Displays the Modal automatically when constructed.</dd>
+            <dt><label class="monospace">[options.markup]
                 
                 </label>
-                Markup to be placed in the Modal when created</dd>
-            <dt><code>Function</code></dt>
-            <dd><label class="monospace">[options.onShow]
+            </dt>
+            <dd><code>String</code>Markup to be placed in the Modal when created</dd>
+            <dt><label class="monospace">[options.onShow]
                 
                 </label>
-                Callback function to run when the Modal is opened.</dd>
-            <dt><code>Function</code></dt>
-            <dd><label class="monospace">[options.onDismiss]
+            </dt>
+            <dd><code>Function</code>Callback function to run when the Modal is opened.</dd>
+            <dt><label class="monospace">[options.onDismiss]
                 
                 </label>
-                Callback function to run when the Modal is closed. Return `false` to cancel dismissing the Modal.</dd>
-            <dt><code>Boolean</code></dt>
-            <dd><label class="monospace">[options.closeOnClick]
+            </dt>
+            <dd><code>Function</code>Callback function to run when the Modal is closed. Return `false` to cancel dismissing the Modal.</dd>
+            <dt><label class="monospace">[options.closeOnClick]
                 
                 </label>
-                Flag to close the modal when clicking outside of it.</dd>
-            <dt><code>Boolean</code></dt>
-            <dd><label class="monospace">[options.closeOnEscape]
+            </dt>
+            <dd><code>Boolean</code>Flag to close the modal when clicking outside of it.</dd>
+            <dt><label class="monospace">[options.closeOnEscape]
                 
                 </label>
-                Determines if the Modal should close when "Esc" key is pressed. Defaults to true.</dd>
-            <dt><code>Boolean</code></dt>
-            <dd><label class="monospace">[options.responsive]
+            </dt>
+            <dd><code>Boolean</code>Determines if the Modal should close when "Esc" key is pressed. Defaults to true.</dd>
+            <dt><label class="monospace">[options.responsive]
                 
                 </label>
-                Determines if the Modal should behave responsively (adapt to smaller viewports).</dd>
-            <dt><code>Boolean</code></dt>
-            <dd><label class="monospace">[options.disableScroll]
+            </dt>
+            <dd><code>Boolean</code>Determines if the Modal should behave responsively (adapt to smaller viewports).</dd>
+            <dt><label class="monospace">[options.disableScroll]
                 
                 </label>
-                Determines if the Modal should 'disable' the page's scroll (not the Modal's body).</dd>
+            </dt>
+            <dd><code>Boolean</code>Determines if the Modal should 'disable' the page's scroll (not the Modal's body).</dd>
         </dl>
 
-<h3>Samples</h3>
+<!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_UI_Modal_1.html %}
 	</section>
 
@@ -201,11 +201,11 @@ Useful if you have initialized the modal</p>
 </p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><code>Event</code></dt>
-            <dd><label class="monospace">[event]
+            <dt><label class="monospace">[event]
                 
                 </label>
-                (internal) In case its fired by the internal trigger.</dd>
+            </dt>
+            <dd><code>Event</code>(internal) In case its fired by the internal trigger.</dd>
         </dl>
 
 </section>
@@ -220,10 +220,10 @@ Useful if you have initialized the modal</p>
 </p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><code>String</code></dt>
-            <dd><label class="monospace">contentMarkup
+            <dt><label class="monospace">contentMarkup
                 </label>
-                </dd>
+            </dt>
+            <dd><code>String</code></dd>
         </dl>
 
 </section>

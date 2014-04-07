@@ -1,7 +1,7 @@
 ---
 layout: js-documentation
 title: Ink.Dom.Selector_1
-description: CSS selector engine
+description: <p>CSS selector engine</p>
 site_root:  ../
 ---
     <section>
@@ -21,19 +21,19 @@ site_root:  ../
                 <td>
                     <a href="#Ink_Dom_Selector_1-Ink_Dom_Selector-matches">.matches</a>
                 </td>
-                <td>Filters elements that match a CSS selector.</td>
+                <td><p>Filters elements that match a CSS selector.</p></td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Dom_Selector_1-Ink_Dom_Selector-matchesSelector">.matchesSelector</a>
                 </td>
-                <td>Checks if an element matches a given selector</td>
+                <td><p>Checks if an element matches a given selector</p></td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Dom_Selector_1-Ink_Dom_Selector-select">.select</a>
                 </td>
-                <td>Alias for the Sizzle selector engine</td>
+                <td><p>Alias for the Sizzle selector engine</p></td>
             </tr></tbody>
     </table>
     
@@ -52,14 +52,14 @@ site_root:  ../
 </p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><code>String</code></dt>
-            <dd><label class="monospace">selector
+            <dt><label class="monospace">selector
                 </label>
-                CSS selector to search for elements</dd>
-            <dt><code>Array</code></dt>
-            <dd><label class="monospace">matches
+            </dt>
+            <dd><code>String</code>CSS selector to search for elements</dd>
+            <dt><label class="monospace">matches
                 </label>
-                Elements to be 'matched' with</dd>
+            </dt>
+            <dd><code>Array</code>Elements to be 'matched' with</dd>
         </dl>
         <h3>Returns</h3>
         <dl>
@@ -69,7 +69,7 @@ site_root:  ../
         </dl>
         
 
-<h3>Samples</h3>
+<!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_Dom_Selector_matches.html %}
 	</section>
 
@@ -84,14 +84,14 @@ site_root:  ../
 </p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><code>DOMElement</code></dt>
-            <dd><label class="monospace">element
+            <dt><label class="monospace">element
                 </label>
-                Element to test</dd>
-            <dt><code>String</code></dt>
-            <dd><label class="monospace">selector
+            </dt>
+            <dd><code>DOMElement</code>Element to test</dd>
+            <dt><label class="monospace">selector
                 </label>
-                CSS selector to test the element with</dd>
+            </dt>
+            <dd><code>String</code>CSS selector to test the element with</dd>
         </dl>
         <h3>Returns</h3>
         <dl>
@@ -101,7 +101,7 @@ site_root:  ../
         </dl>
         
 
-<h3>Samples</h3>
+<!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_Dom_Selector_matchesSelector.html %}
 	</section>
 
@@ -117,20 +117,20 @@ site_root:  ../
 </p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><code>String</code></dt>
-            <dd><label class="monospace">selector
+            <dt><label class="monospace">selector
                 </label>
-                CSS selector to search for elements</dd>
-            <dt><code>DOMElement</code></dt>
-            <dd><label class="monospace">[context]
+            </dt>
+            <dd><code>String</code>CSS selector to search for elements</dd>
+            <dt><label class="monospace">[context]
                 
                 </label>
-                By default the search is done in the document element. However, you can specify an element as search context</dd>
-            <dt><code>Array</code></dt>
-            <dd><label class="monospace">[results]
+            </dt>
+            <dd><code>DOMElement</code>By default the search is done in the document element. However, you can specify an element as search context</dd>
+            <dt><label class="monospace">[results]
                 
                 </label>
-                By default this is considered an empty array. But if you want to merge it with other searches you did, pass their result array through here.</dd>
+            </dt>
+            <dd><code>Array</code>By default this is considered an empty array. But if you want to merge it with other searches you did, pass their result array through here.</dd>
         </dl>
         <h3>Returns</h3>
         <dl>
@@ -140,7 +140,7 @@ site_root:  ../
         </dl>
         
 
-<h3>Samples</h3>
+<!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_Dom_Selector_select.html %}
 	</section>
 

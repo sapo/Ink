@@ -1,13 +1,13 @@
 ---
 layout: js-documentation
 title: Ink.UI.Stacker_1
-description: Stacking items in columns
+description: <p>Stacking items in columns</p>
 site_root:  ../
 ---
     <section>
         <h1 class="fw-300">Ink.UI.Stacker_1<small>version:1</small></h1>
 
-<p>This module combines several stacks of items together, in smaller screen sizes.<br><p>The purpose is to have several stacks of items which may have different heights and as such cannot be used because of <code>float: left</code> quirks.</p><br><p>For example, when you have three different columns of information:</p><br><pre><code>[col. A: 1] [col. B: 1] [col. C: 1]<br>[col. B: 2] [col. C: 2] [col. C: 2]<br></code></pre><p>and the screen resizes and you need a layout of 2 columns, Stacker reorders the stacks so that you get:</p><br><pre><code>[col. A: 1] [col. B: 1]<br>[col. C: 1] [col. A: 2]<br>[col. B: 2] [col. C: 2]<br></code></pre><p>Note: If you just want to use a different amount of columns for your items in several viewports, but these items are guaranteed to have a fixed height, don&#39;t use this module. Use the <code>small-*</code>, <code>medium-*</code> and <code>large-*</code> classes instead.</p><br></p>
+<p><br><br><br>[col. A: 1] [col. B: 1] [col. C: 1]<br>[col. B: 2] [col. C: 2] [col. C: 2]<br></code></pre><br>[col. A: 1] [col. B: 1]<br>[col. C: 1] [col. A: 2]<br>[col. B: 2] [col. C: 2]<br></code></pre><br></p>
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space">
         <caption>Methods</caption>
         <thead>
@@ -28,13 +28,13 @@ site_root:  ../
                 <td>
                     <a href="#Ink_UI_Stacker_1-Ink_UI_Stacker_1-addItem">.addItem</a>
                 </td>
-                <td>Adds an item to the end of your stacks.</td>
+                <td><p>Adds an item to the end of your stacks.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_Stacker_1-Ink_UI_Stacker_1-reloadItems">.reloadItems</a>
                 </td>
-                <td>Updates the layout of your items.</td>
+                <td><p>Updates the layout of your items.</td>
             </tr></tbody>
     </table>
     
@@ -72,113 +72,113 @@ site_root:  ../
     </ul>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><code>DOMElement|String</code></dt>
-            <dd><label class="monospace">[container]
+            <dt><label class="monospace">[container]
                 
                 </label>
-                Element which contains the stacks (identified by the options.column selector)</dd>
-            <dt><code>Object</code></dt>
-            <dd><label class="monospace">[options]
+            </dt>
+            <dd><code>DOMElement|String</code>Element which contains the stacks (identified by the options.column selector)</dd>
+            <dt><label class="monospace">[options]
                 
                 </label>
-                Options object.</dd>
-            <dt><code>String</code></dt>
-            <dd><label class="monospace">[options.column]
+            </dt>
+            <dd><code>Object</code>Options object.</dd>
+            <dt><label class="monospace">[options.column]
                 
                 </label>
-                Selector for the the columns inside the container element. Defaults to '.stacker-column'.</dd>
-            <dt><code>String</code></dt>
-            <dd><label class="monospace">[options.item]
+            </dt>
+            <dd><code>String</code>Selector for the the columns inside the container element. Defaults to '.stacker-column'.</dd>
+            <dt><label class="monospace">[options.item]
                 
                 </label>
-                Selector for the items in your stack. Defaults to '.stacker-item'.</dd>
-            <dt><code>Object</code></dt>
-            <dd><label class="monospace">[options.customBreakPoints]
+            </dt>
+            <dd><code>String</code>Selector for the items in your stack. Defaults to '.stacker-item'.</dd>
+            <dt><label class="monospace">[options.customBreakPoints]
                 
                 </label>
-                Options for each breakpoint name. Use this if you have more breakpoints than Ink by default (`large`, `medium`, `small`)</dd>
-            <dt><code>Object</code></dt>
-            <dd><label class="monospace">[options.customBreakpoints.BREAKPOINT_NAME]
+            </dt>
+            <dd><code>Object</code>Options for each breakpoint name. Use this if you have more breakpoints than Ink by default (`large`, `medium`, `small`)</dd>
+            <dt><label class="monospace">[options.customBreakpoints.BREAKPOINT_NAME]
                 
                 </label>
-                Custom breakpoints object.</dd>
-            <dt><code>String</code></dt>
-            <dd><label class="monospace">options.customBreakpoints.BREAKPOINT_NAME.max
+            </dt>
+            <dd><code>Object</code>Custom breakpoints object.</dd>
+            <dt><label class="monospace">options.customBreakpoints.BREAKPOINT_NAME.max
                 </label>
-                Maximum screen size as seen in your media query</dd>
-            <dt><code>String</code></dt>
-            <dd><label class="monospace">options.customBreakpoints.BREAKPOINT_NAME.min
+            </dt>
+            <dd><code>String</code>Maximum screen size as seen in your media query</dd>
+            <dt><label class="monospace">options.customBreakpoints.BREAKPOINT_NAME.min
                 </label>
-                Minimum screen size as seen in your media query</dd>
-            <dt><code>String</code></dt>
-            <dd><label class="monospace">options.customBreakpoints.BREAKPOINT_NAME.cols
+            </dt>
+            <dd><code>String</code>Minimum screen size as seen in your media query</dd>
+            <dt><label class="monospace">options.customBreakpoints.BREAKPOINT_NAME.cols
                 </label>
-                Column count for this size.</dd>
-            <dt><code>Number</code></dt>
-            <dd><label class="monospace">[options.largeMax]
+            </dt>
+            <dd><code>String</code>Column count for this size.</dd>
+            <dt><label class="monospace">[options.largeMax]
                 
                 </label>
-                Upper bound of `large` breakpoint</dd>
-            <dt><code>Number</code></dt>
-            <dd><label class="monospace">[options.largeMin]
+            </dt>
+            <dd><code>Number</code>Upper bound of `large` breakpoint</dd>
+            <dt><label class="monospace">[options.largeMin]
                 
                 </label>
-                Lower bound of `large` breakpoint. Defaults to 961.</dd>
-            <dt><code>Number</code></dt>
-            <dd><label class="monospace">[options.mediumMax]
+            </dt>
+            <dd><code>Number</code>Lower bound of `large` breakpoint. Defaults to 961.</dd>
+            <dt><label class="monospace">[options.mediumMax]
                 
                 </label>
-                Upper bound of `medium` breakpoint. Defaults to 960.</dd>
-            <dt><code>Number</code></dt>
-            <dd><label class="monospace">[options.mediumMin]
+            </dt>
+            <dd><code>Number</code>Upper bound of `medium` breakpoint. Defaults to 960.</dd>
+            <dt><label class="monospace">[options.mediumMin]
                 
                 </label>
-                Lower bound of `medium` breakpoint. Defaults to 651.</dd>
-            <dt><code>Number</code></dt>
-            <dd><label class="monospace">[options.smallMax]
+            </dt>
+            <dd><code>Number</code>Lower bound of `medium` breakpoint. Defaults to 651.</dd>
+            <dt><label class="monospace">[options.smallMax]
                 
                 </label>
-                Upper bound of `small` breakpoint. Defaults to 650.</dd>
-            <dt><code>Number</code></dt>
-            <dd><label class="monospace">[options.smallMin]
+            </dt>
+            <dd><code>Number</code>Upper bound of `small` breakpoint. Defaults to 650.</dd>
+            <dt><label class="monospace">[options.smallMin]
                 
                 </label>
-                Lower bound of `small` breakpoint</dd>
-            <dt><code>Integer</code></dt>
-            <dd><label class="monospace">[options.largeCols]
+            </dt>
+            <dd><code>Number</code>Lower bound of `small` breakpoint</dd>
+            <dt><label class="monospace">[options.largeCols]
                 
                 </label>
-                Number of columns in the `large` viewport. Defaults to 3.</dd>
-            <dt><code>Integer</code></dt>
-            <dd><label class="monospace">[options.mediumCols]
+            </dt>
+            <dd><code>Integer</code>Number of columns in the `large` viewport. Defaults to 3.</dd>
+            <dt><label class="monospace">[options.mediumCols]
                 
                 </label>
-                Number of columns in the `medium` viewport. Defaults to 2.</dd>
-            <dt><code>Integer</code></dt>
-            <dd><label class="monospace">[options.smallCols]
+            </dt>
+            <dd><code>Integer</code>Number of columns in the `medium` viewport. Defaults to 2.</dd>
+            <dt><label class="monospace">[options.smallCols]
                 
                 </label>
-                Number of columns in the `small` viewport. Defaults to 1.</dd>
-            <dt><code>Boolean</code></dt>
-            <dd><label class="monospace">[options.isOrdered]
+            </dt>
+            <dd><code>Integer</code>Number of columns in the `small` viewport. Defaults to 1.</dd>
+            <dt><label class="monospace">[options.isOrdered]
                 
                 </label>
-                When false, doesn't reorder stacks when combining them.</dd>
-            <dt><code>Function</code></dt>
-            <dd><label class="monospace">[options.onRunCallback]
+            </dt>
+            <dd><code>Boolean</code>When false, doesn't reorder stacks when combining them.</dd>
+            <dt><label class="monospace">[options.onRunCallback]
                 
                 </label>
-                Called when instantiated.</dd>
-            <dt><code>Function</code></dt>
-            <dd><label class="monospace">[options.onResizeCallback]
+            </dt>
+            <dd><code>Function</code>Called when instantiated.</dd>
+            <dt><label class="monospace">[options.onResizeCallback]
                 
                 </label>
-                Called when the window resizes.</dd>
-            <dt><code>Function</code></dt>
-            <dd><label class="monospace">[options.onAPIReloadCallback]
+            </dt>
+            <dd><code>Function</code>Called when the window resizes.</dd>
+            <dt><label class="monospace">[options.onAPIReloadCallback]
                 
                 </label>
-                Called when the reload function executes.</dd>
+            </dt>
+            <dd><code>Function</code>Called when the reload function executes.</dd>
         </dl>
 <p class="example-title">Example</p>
   
@@ -227,10 +227,10 @@ Call <code>reloadItems()</code> when you are done adding items.</p>
 </p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><code>DOMElement</code></dt>
-            <dd><label class="monospace">item
+            <dt><label class="monospace">item
                 </label>
-                Element</dd>
+            </dt>
+            <dd><code>DOMElement</code>Element</dd>
         </dl>
 
 </section>
