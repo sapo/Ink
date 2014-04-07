@@ -1,7 +1,78 @@
-<p>Basic usage</p>
+<p>Sample validated form. Try to submit it.</p>
 
 {% capture example_code %}
-<form id="my-form">
+<form id="my-form" class="ink-form" method="post" action="#">
+    <fieldset>
+        <div class="control-group required">
+            <label for="name">Name:</label>
+            <div class="control">
+                <input type="text" data-rules="required|text[true,false]" name="name" id="name" />
+            </div>
+        </div>
+
+        <div class="control-group required">
+            <label for="ip">IP address:</label>
+            <div class="control">
+                <input type="text" data-rules="required|ip" name="ip" id="ip" />
+            </div>
+        </div>
+
+        <div class="control-group required">
+            <label for="mail">Email:</label>
+            <div class="control">
+                <input type="text" name="mail" id="mail" data-rules="required|email" />
+            </div>
+        </div>
+
+        <div class="control-group required">
+            <label for="pass">Password: </label>
+            <div class="control">
+                <input type="password" name="pass" id="pass" data-rules="required|min_length[8]" />
+            </div>
+        </div>
+
+        <div class="control-group required">
+            <label for="confpass">Confirm Password:</label>
+            <div class="control">
+                <input type="password" name="confpass" id="confpass" data-rules="matches[pass]" />
+            </div>
+        </div>
+
+        <div class="control-group required">
+            <label for="number">A number between -1.23 and 2.25 with at most 2 decimal points!</label>
+            <div class="control">
+                <input type="text" name="number" id="number" data-rules="required|numeric[.,2]|range[-1.23,2.25]" />
+            </div>
+        </div>
+
+        <div class="control-group required">
+            <label for="creditcard">Credit card</label>
+            <div class="control">
+                <input type="text" name="creditcard" id="creditcard" data-rules="credit_card" />
+            </div>
+        </div>
+
+        <div class="control-group required" data-rules="atLeastOne">
+            <p class="label">Please select one option</p>
+            <ul class="control unstyled">
+                <li>
+                    <input type="radio" name="radio1" id="radio1_g" value="1" data-rules="required"/>
+                    <label for="radio1_g">radio 1</label>
+                </li>
+                <li>
+                    <input type="radio" name="radio1" id="radio2_g" value="2" data-rules="required"/>
+                    <label for="radio2_g">radio 2</label>
+                </li>
+                <li>
+                    <input type="radio" name="radio1" id="radio3_g" value="3" data-rules="required"/>
+                    <label for="radio3_g">radio 3</label>
+                </li>
+            </ul>
+        </div>
+    </fieldset>
+    <div>
+        <input type="submit" name="sub" value="Submit" class="ink-button success" />
+    </div>
 </form>
 
 <script>

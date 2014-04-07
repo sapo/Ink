@@ -24,13 +24,13 @@
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         {{~#foreach params}}
-        <li class="prop">
         {{~#if isFirstLevel~}}
+        <li class="prop">
         {{~#if isOptional~}}[{{~/if~}}
         {{~name~}}
         {{~#if isOptional~}}]{{~/if~}}
-        {{~/if~}}
         </li>
+        {{~/if~}}
         {{~/foreach}}
     </ul>
     {{~/if}}
@@ -43,52 +43,48 @@
     {{~/if~}}
 
     {{~#if text~}}
-        <p class="text">{{{text}}}</p>
+        <p class="text">{{{stripP text}}}</p>
     {{~/if~}}
 
     {{~#if params.length}}
         <h3>Accepts</h3>
         <dl class="params">
         {{~#each params}}
-            <dt>
-                {{~#if isOptional~}}
+            <dt class="level{{~countLevel name~}}">
+                 {{~#if isOptional~}}
                 <label class="monospace">[{{~name}}]
                 {{else~}}
                 <label class="monospace">{{~name}} 
                 {{~/if}}
+            </dt>
+            <dd class="level{{~countLevel name~}}">
+               {{~#if type~}}
+                    <code>{{type}}</code>
+                {{~/if~}}
                 {{#if defaultValue~}}
                     {{~defaultValue~}}
                 {{~/if~}}
                 </label>
-            </dt>
-            <dd>
-                {{~#if type~}}
-                    <code>{{type}}</code>
-                {{~/if~}}
-                
                 {{#if description~}}
                     {{~{description}~}}
                 {{~/if~}}
             </dd>
         {{~/each}}
         </dl>
-        {{~#if return}}
-        <h3>Returns</h3>
-        <dl>
-            <dt class="return">
-                {{~#if return.type}}<code>{{~return.type~}}</code>{{~/if~}}
-            </dt>
-            <dd>
-                {{~#if return.description~}}
-                    {{~{description}~}}
-                {{~/if}}
-            </dd>
-        </dl>
-        {{/if~}}
-
-
     {{~/if~}}
-
+    {{~#if return}}
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return">
+            {{~#if return.type}}<code>{{~return.type~}}</code>{{~/if~}}
+        </dt>
+        <dd>
+            {{~#if return.description~}}
+                {{~{description}~}}
+            {{~/if}}
+        </dd>
+    </dl>
+    {{/if~}}
 
     {{~> examples~}}
     {{~> samples~}}
