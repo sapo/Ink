@@ -98,6 +98,21 @@ Ink.requireModules(['Ink.UI.Tabs_1', 'Ink.UI.Common_1', 'Ink.Dom.Element_1', 'In
         });
     })
 
+    test('creating a Tabs on an element without any .tabs-nav', sinon.test(function (container) {
+        var cont = InkElement.create('div', {});
+        this.spy(Ink, 'warn')
+        new Tabs(cont);
+        ok(Ink.warn.calledWith(sinon.match(/\.tabs-nav/)),
+            'called Ink.error with a message including ".tabs-nav"');
+    }));
+
+    test('creating a Tabs on an element without any tabs in .tabs-nav', sinon.test(function (container) {
+        var cont = InkElement.create('div', {});
+        var tabsNav = InkElement.create('div', { insertBottom: cont });
+        new Tabs(cont);
+        ok(true, 'didn\'t throw an exception');
+    }));
+    
     module('change the hash in the URL', {
         setup: function () { window.location.hash = '#original-hash'; },
         teardown: function () { window.location.hash = ''; }
