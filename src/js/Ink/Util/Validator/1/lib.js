@@ -8,6 +8,9 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
 
     'use strict';
 
+    /**
+     * @namespace Ink.Util.Validator_1 
+     */
     var Validator = {
 
         /**

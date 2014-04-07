@@ -8,6 +8,9 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
 
     'use strict';
 
+    /**
+     * @namespace Ink.Util.String_1 
+     */
     var InkUtilString = {
 
         /**
