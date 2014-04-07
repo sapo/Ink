@@ -937,7 +937,6 @@ html.flexbox .example .ink-dropdown ul.dropdown-menu,
 html.flexbox .example .ink-navigation ul.dropdown,
 html.flexbox .example .ink-navigation ul.dropdown-menu {
   position: relative;
-  display: inline-block;
 }
 
 .tall {

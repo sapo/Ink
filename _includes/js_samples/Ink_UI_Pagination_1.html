@@ -1,10 +1,11 @@
-<p>Pagination just takes an element with the markup described in <a href="/ui-elements/navigation/#pagination">UI Elements: Pagination</a> and creates the page numbers automatically.</p>
+<h2 class="fw-300">Basic Usage</h3>
 
-<p>It is not very useful in and of itself, but some other UI components in Ink, such as the Table and the Carousel, use it internally.</p>
+<p>Pagination just takes an element with the markup described in <a href="/ui-elements/navigation/#pagination">UI Elements: Pagination</a> and creates the page numbers automatically.</p>
+<p><i class="fa fa-leaf"></i> It isn't very useful in and of itself, but some other UI components in Ink, such as the Table and the Carousel, use it internally.</p>
 
 {% capture example_code %}
 <nav class="ink-navigation" id="myPagination" data-size="5">
-    <ul class="pagination rounded red"></ul>
+    <ul class="pagination black"></ul>
 </nav>
 
 <script>
@@ -14,7 +15,11 @@
 </script>
 {% endcapture %}
 
+<p class="example-title">Demo</p>
+<div class="example">
 {{ example_code }}
+</div>
+
 <p class="example-title">Code</p>
 {% highlight html %}
 {{ example_code }}
@@ -24,7 +29,7 @@
 
 {% capture example_code2 %}
 <nav class="ink-navigation" id="myPagination2" data-size="25" data-max-size="5">
-    <ul class="pagination rounded red"></ul>
+    <ul class="pagination black"></ul>
 </nav>
  
 <script>
@@ -34,7 +39,11 @@
 </script>
 {% endcapture %}
 
+<p class="example-title">Demo</p>
+<div class="example">
 {{ example_code2 }}
+</div>
+
 <p class="example-title">Code</p>
 {% highlight html %}
 {{ example_code2 }}

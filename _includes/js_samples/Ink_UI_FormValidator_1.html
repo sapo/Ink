@@ -1,6 +1,6 @@
 <!-- Fiddle: http://jsfiddle.net/VK4fK/ -->
 
-<h2>What markup will I need?</h2>
+<h2 class="fw-300">What markup will I need?</h2>
 
 <p>Besides the markup structure you see in
 <a href="{{ site_url }}/ui-elements/forms/">Forms</a>, you need to add
@@ -26,7 +26,7 @@ rules in this component. Available classes are:</p>
 </ul>
 
 
-<h2>Simple usage</h2>
+<h2 class="fw-300">Simple usage</h2>
 
 <p>So you have a form and would like to validate it? This example shows
 how to validate a form and stop it from being submitted when invalid.
@@ -65,7 +65,9 @@ Ink.requireModules(['Ink.UI.FormValidator_1', 'Ink.Dom.Event_1'], function (Form
 {% endcapture %}
 
 <p class="example-title">Demo</p>
+<div class="example">
 {{ sample_code_1 }}
+</div>
 
 <p class="example-title">Code</p>
 {% highlight html %}
@@ -73,7 +75,7 @@ Ink.requireModules(['Ink.UI.FormValidator_1', 'Ink.Dom.Event_1'], function (Form
 {% endhighlight %}
 
 
-<h2>Custom rule.</h2>
+<h2 class="fw-300">Custom rule.</h2>
 
 <p>The following code validates using a custom rule named <code>minthree</code>,
 which fails if the input string has less than three characters.
@@ -120,7 +122,9 @@ Ink.requireModules(['Ink.UI.FormValidator_1', 'Ink.Dom.Event_1'], function (Form
 {% endcapture %}
 
 <p class="example-title">Demo</p>
+<div class="example">
 {{ sample_code_2 }}
+</div>
 
 <p class="example-title">Code</p>
 {% highlight html %}

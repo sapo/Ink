@@ -1,8 +1,7 @@
-
 {% capture example_code %}
-<div class="ink-navigation ink-dropdown" data-target="#my-menu-dropdown" id="my-dropdown">
-    <span class="ink-button">Dropdown</span>
-    <ul id="my-menu-dropdown" class="dropdown hide-all">
+<div class="ink-dropdown" data-target="#my-menu-dropdown" id="my-dropdown">
+    <button class="ink-button">Dropdown</button>
+    <ul id="my-menu-dropdown" class="dropdown-menu">
         <li class="heading">I am a heading</li>
         <li class="separator-above"><a href="#">Option</a></li>
         <li><a href="#">Option</a></li>
@@ -18,63 +17,14 @@
 </script>
 {% endcapture %}
 
-
-<p>Basic usage</p>
-
 <p class="example-title">Demo</p>
+<div class="example">
 {{ example_code }}
+</div>
 
 <p class="example-title">Code</p>
 {% highlight html %}
 {{ example_code }}
 {% endhighlight %}
 
-
-
-{% capture example_code2 %}
-<div class="ink-dropdown" data-target="#my-menu-dropdown2" id="my-dropdown2">
-    <span class="ink-button">Dropdown</span>
-    <ul id="my-menu-dropdown2" class="dropdown-menu hide-all">
-        <li class="heading">Have a submenu:</li>
-        <li class="submenu">
-            <a href="#" class="ink-dropdown" id="my-submenu-dropdown" data-target="#submenu">A longer option name</a>
-            <ul id="submenu" class="dropdown-menu hide-all">
-                <li class="submenu">
-                    <a href="#" class="ink-dropdown" id="my-ultrasubmenu-dropdown" data-target="#ultrasubmenu">Sub option</a>
-                    <ul id="ultrasubmenu" class="dropdown-menu hide-all">
-                        <li><a href="#">Sub option</a></li>
-                        <li><a href="#">Sub option</a></li>
-                        <li><a href="#">Sub option</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">Sub option</a></li>
-                <li><a href="#">Sub option</a></li>
-            </ul>
-        </li>
-        <li><a href="#">Option</a></li>
-    </ul>
-</div>
-
-<script>
-    // Not necessary with autoload.js
-    Ink.requireModules( ['Ink.UI.Dropdown_1'], function( Dropdown ){
-        new Dropdown('#my-dropdown2');
-        new Dropdown('#my-submenu-dropdown');
-        new Dropdown('#my-ultrasubmenu-dropdown');
-    });
-</script>
-{% endcapture %}
-
-
-<!-- No, not yet.
-    <p>Dropdown works with submenus, too.</p>
-
-    <p class="example-title">Demo</p>
-    {{ example_code2 }}
-
-    <p class="example-title">Code</p>
-    {% highlight html %}
-    {{ example_code2 }}
-    {% endhighlight %}
--->
-
+<p><i class="fa fa-leaf"></i> To get an hidden default state for the dropdown menu, just add the <code>hide-all</code> class to the <code>dropdown-menu</code> aswell.</p>
