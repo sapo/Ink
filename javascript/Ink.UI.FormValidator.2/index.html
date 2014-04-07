@@ -105,10 +105,10 @@ site_root:  ../
 
 
     <section id="Ink_UI_FormValidator_2-Ink_UI_FormValidator_2-FormValidator_2" class="box box-function">
-    <h1 class="fw-300">Ink.UI.FormValidator_2(selector, ) 
+    <h1 class="fw-300">Ink.UI.FormValidator_2(selector, [options], ) 
     <i>constructor</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">selector</li>
+        <li class="heading">Arguments:</li><li class="prop">selector</li><li class="prop">[options]</li>
     </ul>
         <h3>Accepts</h3>
         <dl class="params">
@@ -116,6 +116,11 @@ site_root:  ../
             </dt>
             <dd class="level1"><span class="ink-label orange">String|DOMElement</span></label>
                 Either a CSS Selector string, or the form's DOMElement</dd>
+            <dt class="level1"><label class="monospace">[options]
+                
+            </dt>
+            <dd class="level1"><span class="ink-label orange">Object</span></label>
+                Options object, containing the following options:</dd>
             <dt class="level2"><label class="monospace">[options.eventTrigger]
                 
             </dt>
@@ -147,17 +152,10 @@ site_root:  ../
             <dd class="level2"><span class="ink-label orange">Function</span></label>
                 Validation success callback</dd>
         </dl>
-<p class="example-title">Example</p>
-  
-{% highlight html %}{% raw %}
-    Ink.requireModules( ['Ink.UI.FormValidator_2'], function( FormValidator ){
-        var myValidator = new FormValidator( '#my-form' );
-    });
-{% endraw %}{% endhighlight %}
 
-
-
-</section>
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_UI_FormValidator_2.html %}
+	</section>
 
     <section id="Ink_UI_FormValidator_2-Ink_UI_FormValidator_2-AppendI18n" class="box box-function">
     <h1 class="fw-300">.AppendI18n() 
