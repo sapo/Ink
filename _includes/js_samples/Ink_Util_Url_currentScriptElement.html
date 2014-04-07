@@ -1,0 +1,39 @@
+<p>Find the <code>script</code> element where the script is running</p>
+<p class="example-title">Code</p>
+{% highlight html %}
+<!-- ...  -->
+<div>content</div>
+<script id="s">
+Ink.requireModules(['Ink.Util.Url_1'], function(InkUrl) {
+             
+    var scriptElm = InkUrl.currentScriptElement(); 
+            
+    Ink.log(scriptElm);
+    // <script id="s">
+});
+</script>
+<!-- ... -->
+{% endhighlight %}
+
+
+<p>When it is used in an external file, a string to help the match in script <code>src</code> should be passed</p>
+<p class="example-title">Code</p>
+{% highlight html %}
+<!-- HTML file -->
+<script src="http://cdn.ink.sapo.pt/3.0.0/js/ink-all.js"></script>
+<!-- ... -->
+<script src="other.js"></script>
+<script src="file.js"></script>
+<!-- ... -->
+{% endhighlight %}
+
+<p class="example-title">Code</p>
+{% highlight js %}
+// This is file.js 
+Ink.requireModules(['Ink.Util.Url_1'], function(InkUrl) {
+    var scriptElm = InkUrl.currentScriptElement('file.js');
+    Ink.log(scriptElm);
+    // <script src="file.js">
+});
+{% endhighlight %}
+

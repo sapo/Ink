@@ -1,0 +1,17 @@
+<p class="example-title">Code</p>
+{% highlight js %}
+Ink.requireModules(['Ink.Util.Cookie_1'], function(InkCookie) {
+             
+    InkCookie.remove('inkcookie'); 
+});
+{% endhighlight %}
+
+    
+<p>Remove a cookie setted with path and domain</p>
+<p class="example-title">Code</p>
+{% highlight js %}
+Ink.requireModules(['Ink.Util.Cookie_1'], function(InkCookie) {
+
+    InkCookie.remove('inkcookie', '/', '.topdomain.com');
+});
+{% endhighlight %}

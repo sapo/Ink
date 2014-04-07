@@ -1,0 +1,34 @@
+<p class="example-title">Code</p>
+{% highlight js %}
+Ink.requireModules(['Ink.Util.Json_1'], function(InkJson) {
+
+    var jsonStr = '{"key": "value", "array": [true, null, false]}';
+    var obj = InkJson.parse(jsonStr);
+
+    Ink.log(obj);
+    // {
+    //  key: 'value',
+    //  array: [true, null, false] 
+    // }
+});
+{% endhighlight %}
+
+<p>Using second argument</p>
+<p class="example-title">Code</p>
+{% highlight js %}
+Ink.requireModules(['Ink.Util.Json_1'], function(InkJson) {
+    
+    var jsonStr = '{"a": "3", "numbers":false}';
+    var obj = InkJson.parse(jsonStr,function(key, value) {
+        if (!this.numbers && key === 'a') {
+            return "NO NUMBERS";
+        } else {
+            return value;
+        }
+    }); 
+
+    Ink.log(obj); 
+    // {a: 'NO NUMBERS', numbers: false} 
+});
+{% endhighlight %}
+

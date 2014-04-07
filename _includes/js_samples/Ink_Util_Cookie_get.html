@@ -1,0 +1,18 @@
+<p class="example-title">Code</p>
+{% highlight js %}
+Ink.requireModules(['Ink.Util.Cookie_1'], function( InkCookie ){
+             
+    var cookie = InkCookie.get('inkcookie'); 
+    Ink.log(cookie); 
+    // one_day_ttl 
+    
+    var oCookies = InkCookie.get();
+    Ink.log(oCookies); 
+    // {inkcookie: "one_day_ttl"}
+    
+    var cookie2 = InkCookie.get('foobar');
+    Ink.log(cookie2);
+    // null 
+});
+{% endhighlight %}
+

@@ -1,0 +1,18 @@
+<p class="example-title">Code</p>
+{% highlight js %}
+Ink.requireModules(['Ink.Util.Json_1'], function(InkJson) {
+
+    var obj = {
+        key1: 'value1',
+        key2: 'value2',
+        keyArray: ['arrayValue1', 'arrayValue2', 'arrayValue3']
+    };
+
+    var jsonStr = InkJson.stringify(obj);
+
+    Ink.log(jsonStr);
+    // '{"key1":"value1","key2":"value2","keyArray":["arrayValue1","arrayValue2","arrayValue3"]}'
+});
+{% endhighlight %}
+
+

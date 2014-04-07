@@ -1,0 +1,19 @@
+<p>Set a cookie that expires in one day</p>
+<p class="example-title">Code</p>
+{% highlight js %}
+Ink.requireModules(['Ink.Util.Cookie_1'], function( InkCookie ){
+             
+    InkCookie.set( 'inkcookie', 'one_day_ttl', (60 * 60 * 24)); 
+});
+{% endhighlight %}
+
+<p>Set a <code>session cookie</code> in path <code>/</code> of top damain</p> 
+<p class="example-title">Code</p>
+{% highlight js %}
+Ink.requireModules(['Ink.Util.Cookie_1'], function( InkCookie ){
+             
+    InkCookie.set( 'inkcookie', 'one_day_ttl', 0, '/', '.topdomain.com'); 
+});
+{% endhighlight %}
+
+
