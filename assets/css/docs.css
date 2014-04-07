@@ -1249,6 +1249,22 @@ p.loader.show {
   background: #e0dacf;
 }
 
+#myToggledLabel {
+  padding: 1em;
+  color: white;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+}
+#myToggledLabel.green {
+  background: #4a9b17;
+}
+#myToggledLabel.red {
+  background: #c91111;
+}
+
 @media screen and (min-width: 641px) and (max-width: 960px) {
   #topbar .ink-navigation ul.black li.logoPlaceholder {
     float: right;

@@ -1,22 +1,28 @@
-<p>Basic usage. Scroll down and see the sticky element stick to the top of your screen</p>
+<h2 class="fw-300">Basic usage</h2>
+<p>Scroll down and see the sticky element stick to the top of your screen.</p>
 
 {% capture example_code %}
-<div class="column-group">
-    <div class="left-column all-25">
-        <nav id="my-sticky"
-                class="ink-navigation ink-sticky"
-                data-bottom-element="#bottom-element"
-                data-offset-top="60">
-            I am the sticky element
-        </nav>
-    </div>
-    <div class="all-75">
-        <!-- Lots of content: -->
-        <br><br><br><br><br>
-        <br><br><br><br><br>
-    </div>
+<div>
+    <nav id="my-sticky"
+        class="ink-navigation ink-sticky bottom-space"
+        data-bottom-element="#bottom-element"
+        data-offset-top="60">
+        <ul class="menu horizontal black">
+            <li class="heading"><a hred="">I am a sticky navigation</a></li>
+            <li><a href="">About</a></li>
+            <li><a href="">Contacts</a></li>
+        </ul>
+    </nav>
+    <h2>Duct Tape</h2>
+    <p>
+        Duct tape or duck tape is cloth- or scrim-backed pressure-sensitive tape often coated with polyethylene. There are a variety of constructions using different backings and adhesives. One variation is gaffer tape designed to be cleanly removed, while duct tape is not. Another variation is heat-resistant duct tape useful for sealing heating/ventilation/air-conditioning (HVAC) ducts, produced because standard duct tape fails quickly when used on heating ducts. Duct tape is generally gray or black but also available in other colors.
+    </p>
+
+    <p>
+        During World War II, Revolite, then a division of Johnson & Johnson, developed an adhesive tape made from a rubber-based adhesive applied to a durable duck cloth backing. This tape resisted water and was used as sealing tape on ammunition cases during World War II.
+    </p>
+    <p id="bottom-element"><span class="ink-label black">I am a bottom element</span></p>
 </div>
-<p id="bottom-element">I am the bottom element</p>
 
 <script>
     // Not required when using autoload.js
@@ -28,7 +34,9 @@
 {% endcapture %}
 
 <p class="example-title">Demo</p>
+<div class="example">
 {{ example_code }}
+</div>
 
 <p class="example-title">Code</p>
 {% highlight html %}

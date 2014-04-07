@@ -9,10 +9,31 @@
     </ul>
 
     <!-- Now just place your content -->
-    <div id="home" class="tabs-content"><h1>Home</h1></div>
-    <div id="news" class="tabs-content"><h1>News</h1></div>
-    <div id="stuff" class="tabs-content"><h1>Stuff</h1></div>
+    <div id="home" class="tabs-content">
+        <h1 class="fw-300">Home</h1>
+        <p>
+            A home is a dwelling-place used as a permanent or semi-permanent residence for an individual, family, household or several families in a tribe. It is often a house, apartment, or other building, or alternatively a mobile home, houseboat, yurt or any other portable shelter. Larger groups may live in a nursing home, children's home, convent or any similar institution. A homestead also includes agricultural land and facilities for domesticated animals. Where more secure dwellings are not available, people may live in the informal and sometimes illegal shacks found in slums and shanty towns. More generally, "home" may be considered to be a geographic area, such as a town, village, suburb, city, or country
+        </p>
+    </div>
+    <div id="news" class="tabs-content">
+        <h1 class="fw-300">News</h1>
+        <p>
+            News is the communication of selected[1] information on current events. It is shared in various ways: among individuals and small groups (such as by word of mouth or newsletters); with wider audiences (such as by publishing, either in print or online, or broadcasting, such as on television or radio); or in ways that blend those traits (such as when social media sharing starts among individuals but goes viral).
+        </p>
+    </div>
+    <div id="stuff" class="tabs-content">
+        <h1 class="fw-300">Stuff</h1>
+        <p>Stuff or Stuffed may refer to:<p>
+        <ul>
+            <li>Stuff (cloth), woven cloth or fabric or fiber</li>
+            <li>Stuffing, a substance placed in cavities of food items, often a turkey or by its self</li>
+            <li>Stuffed toy, a children's toy, created through the art of taxidermy</li>
+            <li>Stuff.co.nz, news website of Fairfax New Zealand</li>
+            <li>Physical matter</li>
+        </ul>
+    </div>
 </div>
+
 <script>
     Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.Tabs_1'], function( Selector, Tabs ){
         var tabsElement = Ink.s('#myTabs');
@@ -21,9 +42,11 @@
 </script>
 {% endcapture %}
 
-<p>Basic usage</p>
 <p class="example-title">Demo</p>
+<div class="example">
 {{demo_code}}
+</div>
+
 <p class="example-title">Code</p>
 {% highlight html %}
 {{ demo_code }}
