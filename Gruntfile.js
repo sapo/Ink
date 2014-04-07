@@ -169,17 +169,6 @@ module.exports = function(grunt) {
       },
       inkdoc: {
         files: [
-            {
-              expand: true,
-              cwd: '_includes/js/',
-              src: ['Ink_Autoload.html'],
-              dest: 'javascript/Autoload/',
-              filter: 'isFile',
-              rename: function(dest,fileName){
-                return dest + 'index.html';
-              }
-          },
-
           {
             expand: true,
             cwd: '_includes/js/',
@@ -191,13 +180,13 @@ module.exports = function(grunt) {
           {
             expand: true,
             cwd: '_includes/js/',
-            src: ['Ink_*.html', '!Ink_Autoload.html'],
+            src: ['Ink_*.html'],
             dest: 'javascript/',
             filter: 'isFile',
             rename: function(dest,fileName){
                return dest+fileName.replace('.html','').replace('_1','').replace(/[_]+/g,'.')+'/index.html';
             }
-        }
+          }
         ]
       }
     },
