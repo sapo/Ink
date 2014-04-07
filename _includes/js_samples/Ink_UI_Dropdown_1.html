@@ -1,8 +1,8 @@
 
 {% capture example_code %}
-<div class="ink-dropdown" data-target="#my-menu-dropdown" id="my-dropdown">
+<div class="ink-navigation ink-dropdown" data-target="#my-menu-dropdown" id="my-dropdown">
     <span class="ink-button">Dropdown</span>
-    <ul id="my-menu-dropdown" class="dropdown-menu hide-all">
+    <ul id="my-menu-dropdown" class="dropdown hide-all">
         <li class="heading">I am a heading</li>
         <li class="separator-above"><a href="#">Option</a></li>
         <li><a href="#">Option</a></li>
@@ -17,6 +17,18 @@
     });
 </script>
 {% endcapture %}
+
+
+<p>Basic usage</p>
+
+<p class="example-title">Demo</p>
+{{ example_code }}
+
+<p class="example-title">Code</p>
+{% highlight html %}
+{{ example_code }}
+{% endhighlight %}
+
 
 
 {% capture example_code2 %}
@@ -52,19 +64,6 @@
     });
 </script>
 {% endcapture %}
-
-
-
-
-<p>Basic usage</p>
-
-<p class="example-title">Demo</p>
-{{ example_code }}
-
-<p class="example-title">Code</p>
-{% highlight html %}
-{{ example_code }}
-{% endhighlight %}
 
 
 <!-- No, not yet.

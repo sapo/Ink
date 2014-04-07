@@ -24,13 +24,13 @@
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         {{~#foreach params}}
-        {{~#if isFirstLevel~}}
         <li class="prop">
+        {{~#if isFirstLevel~}}
         {{~#if isOptional~}}[{{~/if~}}
         {{~name~}}
         {{~#if isOptional~}}]{{~/if~}}
-        </li>
         {{~/if~}}
+        </li>
         {{~/foreach}}
     </ul>
     {{~/if}}
@@ -51,20 +51,16 @@
         <dl class="params">
         {{~#each params}}
             <dt class="level{{~countLevel name~}}">
-                {{~#if type~}}
-                    <code>{{type}}</code>
-                {{~/if~}}
-            </dt>
-            <dd class="level{{~countLevel name~}}">
-                {{~#if optionname ~}}
-                    teste
-                {{~/if~}}
-
-                {{~#if isOptional~}}
+                 {{~#if isOptional~}}
                 <label class="monospace">[{{~name}}]
                 {{else~}}
                 <label class="monospace">{{~name}} 
                 {{~/if}}
+            </dt>
+            <dd class="level{{~countLevel name~}}">
+               {{~#if type~}}
+                    <code>{{type}}</code>
+                {{~/if~}}
                 {{#if defaultValue~}}
                     {{~defaultValue~}}
                 {{~/if~}}
