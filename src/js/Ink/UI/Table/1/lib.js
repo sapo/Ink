@@ -54,7 +54,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
      *
      * To enable sorting, just set the `data-sortable` attribute of your table headers (they must be in the `thead` of the table) to "true".
      *
-     * To enable pagination, you should pass either an `Ink.UI.Pagination` instance or a selector to create the Ink.UI.Paginate element on.
+     * To enable pagination, you should pass either an `Ink.UI.Pagination` instance or a selector to create the Ink.UI.Pagination element on.
      *
      * @class Ink.UI.Table
      * @constructor
