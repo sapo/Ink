@@ -1,7 +1,7 @@
 ---
 layout: js-documentation
 title: Ink.UI.Pagination_1
-description: <p>Pagination elements</p>
+description: Pagination elements
 site_root:  ../
 ---
     <section>
@@ -28,73 +28,73 @@ site_root:  ../
                 <td>
                     <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-destroy">.destroy</a>
                 </td>
-                <td><p>Unregisters the component and removes its markup</p></td>
+                <td>Unregisters the component and removes its markup</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-getCurrent">.getCurrent</a>
                 </td>
-                <td><p>Gets the current page index</p></td>
+                <td>Gets the current page index</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-getSize">.getSize</a>
                 </td>
-                <td><p>Gets the number of pages</p></td>
+                <td>Gets the number of pages</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-hasNext">.hasNext</a>
                 </td>
-                <td><p>Checks if it has next pages</p></td>
+                <td>Checks if it has next pages</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-hasNextPage">.hasNextPage</a>
                 </td>
-                <td><p>Checks if it has a next set of pages</p></td>
+                <td>Checks if it has a next set of pages</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-hasPrevious">.hasPrevious</a>
                 </td>
-                <td><p>Checks if it has previous pages</p></td>
+                <td>Checks if it has previous pages</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-hasPreviousPage">.hasPreviousPage</a>
                 </td>
-                <td><p>Checks if it has a previous set of pages</p></td>
+                <td>Checks if it has a previous set of pages</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-isFirst">.isFirst</a>
                 </td>
-                <td><p>Checks if it&#39;s at the first page</p></td>
+                <td>Checks if it&#39;s at the first page</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-isLast">.isLast</a>
                 </td>
-                <td><p>Checks if it&#39;s on the last page</p></td>
+                <td>Checks if it&#39;s on the last page</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-setCurrent">.setCurrent</a>
                 </td>
-                <td><p>Sets the current page.</p></td>
+                <td>Sets the current page.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-setOnChange">.setOnChange</a>
                 </td>
-                <td><p>Allows you to subscribe to the onChange event</p></td>
+                <td>Allows you to subscribe to the onChange event</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-setSize">.setSize</a>
                 </td>
-                <td><p>Sets the number of pages</p></td>
+                <td>Sets the number of pages</td>
             </tr></tbody>
     </table>
     
@@ -106,176 +106,148 @@ site_root:  ../
     <h1 class="fw-300">Ink.UI.Pagination(selector, options, ) 
     <i>constructor</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">selector</li>
-        <li class="prop">options</li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
+        <li class="heading">Arguments:</li><li class="prop">selector</li><li class="prop">options</li>
     </ul>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">selector
-                </label>
+            <dt class="level1"><label class="monospace">selector
             </dt>
-            <dd><code>String|DOMElement</code>Selector or element</dd>
-            <dt><label class="monospace">options
-                </label>
+            <dd class="level1"><span class="ink-label orange">String|DOMElement</span></label>
+                Selector or element</dd>
+            <dt class="level1"><label class="monospace">options
             </dt>
-            <dd><code>Object</code>Options</dd>
-            <dt><label class="monospace">[options.size]
+            <dd class="level1"><span class="ink-label orange">Object</span></label>
+                Options</dd>
+            <dt class="level2"><label class="monospace">[options.size]
                 
-                </label>
             </dt>
-            <dd><code>Number</code>Number of pages.</dd>
-            <dt><label class="monospace">[options.totalItemCount]
+            <dd class="level2"><span class="ink-label orange">Number</span></label>
+                Number of pages.</dd>
+            <dt class="level2"><label class="monospace">[options.totalItemCount]
                 
-                </label>
             </dt>
-            <dd><code>Number</code>Total numeber of items to display</dd>
-            <dt><label class="monospace">[options.itemsPerPage]
+            <dd class="level2"><span class="ink-label orange">Number</span></label>
+                Total numeber of items to display</dd>
+            <dt class="level2"><label class="monospace">[options.itemsPerPage]
                 
-                </label>
             </dt>
-            <dd><code>Number</code>Number of items per page.</dd>
-            <dt><label class="monospace">[options.maxSize]
+            <dd class="level2"><span class="ink-label orange">Number</span></label>
+                Number of items per page.</dd>
+            <dt class="level2"><label class="monospace">[options.maxSize]
                 
-                </label>
             </dt>
-            <dd><code>Number</code>If passed, only shows at most maxSize items. displays also first|prev page and next page|last buttons</dd>
-            <dt><label class="monospace">[options.start]
+            <dd class="level2"><span class="ink-label orange">Number</span></label>
+                If passed, only shows at most maxSize items. displays also first|prev page and next page|last buttons</dd>
+            <dt class="level2"><label class="monospace">[options.start]
                 
-                </label>
             </dt>
-            <dd><code>Number</code>Start page. defaults to 1</dd>
-            <dt><label class="monospace">[options.sideButtons]
+            <dd class="level2"><span class="ink-label orange">Number</span></label>
+                Start page. defaults to 1</dd>
+            <dt class="level2"><label class="monospace">[options.sideButtons]
                 
-                true</label>
             </dt>
-            <dd><code>Boolean</code>Whether to show the first, last, previous, next, previousPage and lastPage buttons. Do not use together with maxSize.</dd>
-            <dt><label class="monospace">[options.firstLabel]
+            <dd class="level2"><span class="ink-label orange">Boolean</span>true</label>
+                Whether to show the first, last, previous, next, previousPage and lastPage buttons. Do not use together with maxSize.</dd>
+            <dt class="level2"><label class="monospace">[options.firstLabel]
                 
-                </label>
             </dt>
-            <dd><code>String</code>Text for the first page button. Defaults to 'First'.</dd>
-            <dt><label class="monospace">[options.lastLabel]
+            <dd class="level2"><span class="ink-label orange">String</span></label>
+                Text for the first page button. Defaults to 'First'.</dd>
+            <dt class="level2"><label class="monospace">[options.lastLabel]
                 
-                </label>
             </dt>
-            <dd><code>String</code>Text for the last page button. Defaults to 'Last'.</dd>
-            <dt><label class="monospace">[options.previousLabel]
+            <dd class="level2"><span class="ink-label orange">String</span></label>
+                Text for the last page button. Defaults to 'Last'.</dd>
+            <dt class="level2"><label class="monospace">[options.previousLabel]
                 
-                </label>
             </dt>
-            <dd><code>String</code>Text for the previous button. Defaults to 'Previous'-</dd>
-            <dt><label class="monospace">[options.nextLabel]
+            <dd class="level2"><span class="ink-label orange">String</span></label>
+                Text for the previous button. Defaults to 'Previous'-</dd>
+            <dt class="level2"><label class="monospace">[options.nextLabel]
                 
-                </label>
             </dt>
-            <dd><code>String</code>Text for the next button. Defaults to 'Next'</dd>
-            <dt><label class="monospace">[options.previousPageLabel]
+            <dd class="level2"><span class="ink-label orange">String</span></label>
+                Text for the next button. Defaults to 'Next'</dd>
+            <dt class="level2"><label class="monospace">[options.previousPageLabel]
                 
-                </label>
             </dt>
-            <dd><code>String</code>Text for the previous page button. Defaults to 'Previous {Items per page}'.</dd>
-            <dt><label class="monospace">[options.nextPageLabel]
+            <dd class="level2"><span class="ink-label orange">String</span></label>
+                Text for the previous page button. Defaults to 'Previous {Items per page}'.</dd>
+            <dt class="level2"><label class="monospace">[options.nextPageLabel]
                 
-                </label>
             </dt>
-            <dd><code>String</code>Text for the next page button. Defaults to 'Next {Items per page}'.</dd>
-            <dt><label class="monospace">[options.onChange]
+            <dd class="level2"><span class="ink-label orange">String</span></label>
+                Text for the next page button. Defaults to 'Next {Items per page}'.</dd>
+            <dt class="level2"><label class="monospace">[options.onChange]
                 
-                </label>
             </dt>
-            <dd><code>Function</code>Callback to be called when a page changes. Called with `(thisPaginator, newPageNumber)`.</dd>
-            <dt><label class="monospace">[options.hashParameter]
+            <dd class="level2"><span class="ink-label orange">Function</span></label>
+                Callback to be called when a page changes. Called with `(thisPaginator, newPageNumber)`.</dd>
+            <dt class="level2"><label class="monospace">[options.hashParameter]
                 
-                </label>
             </dt>
-            <dd><code>String</code>Parameter to use on setHash. Defaults to 'page'.</dd>
-            <dt><label class="monospace">[options.parentTag]
+            <dd class="level2"><span class="ink-label orange">String</span></label>
+                Parameter to use on setHash. Defaults to 'page'.</dd>
+            <dt class="level2"><label class="monospace">[options.parentTag]
                 
-                </label>
             </dt>
-            <dd><code>String</code>HTML Tag used as the parent node.</dd>
-            <dt><label class="monospace">[options.childTag]
+            <dd class="level2"><span class="ink-label orange">String</span></label>
+                HTML Tag used as the parent node.</dd>
+            <dt class="level2"><label class="monospace">[options.childTag]
                 
-                </label>
             </dt>
-            <dd><code>String</code>HTML Tag used as the child nodes.</dd>
-            <dt><label class="monospace">[options.wrapperClass]
+            <dd class="level2"><span class="ink-label orange">String</span></label>
+                HTML Tag used as the child nodes.</dd>
+            <dt class="level2"><label class="monospace">[options.wrapperClass]
                 
-                </label>
             </dt>
-            <dd><code>String</code>CSS Class used in the wrapper element</dd>
-            <dt><label class="monospace">[options.paginationClass]
+            <dd class="level2"><span class="ink-label orange">String</span></label>
+                CSS Class used in the wrapper element</dd>
+            <dt class="level2"><label class="monospace">[options.paginationClass]
                 
-                </label>
             </dt>
-            <dd><code>String</code>CSS Class used in the pagination element</dd>
-            <dt><label class="monospace">[options.activeClass]
+            <dd class="level2"><span class="ink-label orange">String</span></label>
+                CSS Class used in the pagination element</dd>
+            <dt class="level2"><label class="monospace">[options.activeClass]
                 
-                </label>
             </dt>
-            <dd><code>String</code>CSS Class used to mark page as active</dd>
-            <dt><label class="monospace">[options.disabledClass]
+            <dd class="level2"><span class="ink-label orange">String</span></label>
+                CSS Class used to mark page as active</dd>
+            <dt class="level2"><label class="monospace">[options.disabledClass]
                 
-                </label>
             </dt>
-            <dd><code>String</code>CSS Class used to mark page as disabled</dd>
-            <dt><label class="monospace">[options.hideClass]
+            <dd class="level2"><span class="ink-label orange">String</span></label>
+                CSS Class used to mark page as disabled</dd>
+            <dt class="level2"><label class="monospace">[options.hideClass]
                 
-                </label>
             </dt>
-            <dd><code>String</code>CSS Class used to hide elements</dd>
-            <dt><label class="monospace">[options.previousClass]
+            <dd class="level2"><span class="ink-label orange">String</span></label>
+                CSS Class used to hide elements</dd>
+            <dt class="level2"><label class="monospace">[options.previousClass]
                 
-                </label>
             </dt>
-            <dd><code>String</code>CSS Class used in the previous element</dd>
-            <dt><label class="monospace">[options.previousPageClass]
+            <dd class="level2"><span class="ink-label orange">String</span></label>
+                CSS Class used in the previous element</dd>
+            <dt class="level2"><label class="monospace">[options.previousPageClass]
                 
-                </label>
             </dt>
-            <dd><code>String</code>CSS Class used in the previous page element</dd>
-            <dt><label class="monospace">[options.nextClass]
+            <dd class="level2"><span class="ink-label orange">String</span></label>
+                CSS Class used in the previous page element</dd>
+            <dt class="level2"><label class="monospace">[options.nextClass]
                 
-                </label>
             </dt>
-            <dd><code>String</code>CSS Class used in the next element</dd>
-            <dt><label class="monospace">[options.nextPageClass]
+            <dd class="level2"><span class="ink-label orange">String</span></label>
+                CSS Class used in the next element</dd>
+            <dt class="level2"><label class="monospace">[options.nextPageClass]
                 
-                </label>
             </dt>
-            <dd><code>String</code>CSS Class used in the next page element</dd>
-            <dt><label class="monospace">[options.numberFormatter]
+            <dd class="level2"><span class="ink-label orange">String</span></label>
+                CSS Class used in the next page element</dd>
+            <dt class="level2"><label class="monospace">[options.numberFormatter]
                 
-                </label>
             </dt>
-            <dd><code>Function</code>Number formatter function. Receives a 0-indexed number and returns the text for the numbered page button.</dd>
+            <dd class="level2"><span class="ink-label orange">Function</span></label>
+                Number formatter function. Receives a 0-indexed number and returns the text for the numbered page button.</dd>
         </dl>
 
 <!--<h3>Samples</h3>-->
@@ -284,64 +256,111 @@ site_root:  ../
 
     <section id="Ink_UI_Pagination_1-Ink_UI_Pagination-destroy" class="box box-function">
     <h1 class="fw-300">.destroy() 
-    <i>method</i></h1><p class="text"><p>Unregisters the component and removes its markup</p>
-</p>
+    <i>method</i></h1><p class="text">Unregisters the component and removes its markup</p>
 
 </section>
 
     <section id="Ink_UI_Pagination_1-Ink_UI_Pagination-getCurrent" class="box box-function">
     <h1 class="fw-300">.getCurrent() 
-    <i>method</i></h1><p class="text"><p>Gets the current page index</p>
-</p>
+    <i>method</i></h1><p class="text">Gets the current page index</p>
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>Number</code></dt>
+        <dd>
+        </dd>
+    </dl>
+    
 
 </section>
 
     <section id="Ink_UI_Pagination_1-Ink_UI_Pagination-getSize" class="box box-function">
     <h1 class="fw-300">.getSize() 
-    <i>method</i></h1><p class="text"><p>Gets the number of pages</p>
-</p>
+    <i>method</i></h1><p class="text">Gets the number of pages</p>
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>Number</code></dt>
+        <dd>
+        </dd>
+    </dl>
+    
 
 </section>
 
     <section id="Ink_UI_Pagination_1-Ink_UI_Pagination-hasNext" class="box box-function">
     <h1 class="fw-300">.hasNext() 
-    <i>method</i></h1><p class="text"><p>Checks if it has next pages</p>
-</p>
+    <i>method</i></h1><p class="text">Checks if it has next pages</p>
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>Boolean</code></dt>
+        <dd>
+        </dd>
+    </dl>
+    
 
 </section>
 
     <section id="Ink_UI_Pagination_1-Ink_UI_Pagination-hasNextPage" class="box box-function">
     <h1 class="fw-300">.hasNextPage() 
-    <i>method</i></h1><p class="text"><p>Checks if it has a next set of pages</p>
-</p>
+    <i>method</i></h1><p class="text">Checks if it has a next set of pages</p>
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>Boolean</code></dt>
+        <dd>
+        </dd>
+    </dl>
+    
 
 </section>
 
     <section id="Ink_UI_Pagination_1-Ink_UI_Pagination-hasPrevious" class="box box-function">
     <h1 class="fw-300">.hasPrevious() 
-    <i>method</i></h1><p class="text"><p>Checks if it has previous pages</p>
-</p>
+    <i>method</i></h1><p class="text">Checks if it has previous pages</p>
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>Boolean</code></dt>
+        <dd>
+        </dd>
+    </dl>
+    
 
 </section>
 
     <section id="Ink_UI_Pagination_1-Ink_UI_Pagination-hasPreviousPage" class="box box-function">
     <h1 class="fw-300">.hasPreviousPage() 
-    <i>method</i></h1><p class="text"><p>Checks if it has a previous set of pages</p>
-</p>
+    <i>method</i></h1><p class="text">Checks if it has a previous set of pages</p>
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>Boolean</code></dt>
+        <dd>
+        </dd>
+    </dl>
+    
 
 </section>
 
     <section id="Ink_UI_Pagination_1-Ink_UI_Pagination-isFirst" class="box box-function">
     <h1 class="fw-300">.isFirst() 
-    <i>method</i></h1><p class="text"><p>Checks if it&#39;s at the first page</p>
-</p>
+    <i>method</i></h1><p class="text">Checks if it&#39;s at the first page</p>
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>Boolean</code></dt>
+        <dd>
+        </dd>
+    </dl>
+    
 
 </section>
 
     <section id="Ink_UI_Pagination_1-Ink_UI_Pagination-isLast" class="box box-function">
     <h1 class="fw-300">.isLast() 
-    <i>method</i></h1><p class="text"><p>Checks if it&#39;s on the last page</p>
-</p>
+    <i>method</i></h1><p class="text">Checks if it&#39;s on the last page</p>
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>Boolean</code></dt>
+        <dd>
+        </dd>
+    </dl>
+    
 
 </section>
 
@@ -349,21 +368,18 @@ site_root:  ../
     <h1 class="fw-300">.setCurrent(nr, isRelative) 
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">nr</li>
-        <li class="prop">isRelative</li>
-    </ul><p class="text"><p>Sets the current page.</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">nr</li><li class="prop">isRelative</li>
+    </ul><p class="text">Sets the current page.</p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">nr
-                </label>
+            <dt class="level1"><label class="monospace">nr
             </dt>
-            <dd><code>Number</code>Sets the current page to given number.</dd>
-            <dt><label class="monospace">isRelative
-                </label>
+            <dd class="level1"><span class="ink-label orange">Number</span></label>
+                Sets the current page to given number.</dd>
+            <dt class="level1"><label class="monospace">isRelative
             </dt>
-            <dd><code>Boolean</code>Flag to change the position from absolute to relative.</dd>
+            <dd class="level1"><span class="ink-label orange">Boolean</span></label>
+                Flag to change the position from absolute to relative.</dd>
         </dl>
 
 </section>
@@ -372,16 +388,14 @@ site_root:  ../
     <h1 class="fw-300">.setOnChange(cb) 
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">cb</li>
-    </ul><p class="text"><p>Allows you to subscribe to the onChange event</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">cb</li>
+    </ul><p class="text">Allows you to subscribe to the onChange event</p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">cb
-                </label>
+            <dt class="level1"><label class="monospace">cb
             </dt>
-            <dd>{Function} Callback called with `(thisPaginator, newPageNumber)`.</dd>
+            <dd class="level1"></label>
+                {Function} Callback called with `(thisPaginator, newPageNumber)`.</dd>
         </dl>
 
 </section>
@@ -390,31 +404,26 @@ site_root:  ../
     <h1 class="fw-300">.setSize(sz, setSizeInItems, totalItems, itemsPerPage) 
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">sz</li>
-        <li class="prop">setSizeInItems</li>
-        <li class="prop">totalItems</li>
-        <li class="prop">itemsPerPage</li>
-    </ul><p class="text"><p>Sets the number of pages</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">sz</li><li class="prop">setSizeInItems</li><li class="prop">totalItems</li><li class="prop">itemsPerPage</li>
+    </ul><p class="text">Sets the number of pages</p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">sz
-                </label>
+            <dt class="level1"><label class="monospace">sz
             </dt>
-            <dd><code>Number</code>number of pages</dd>
-            <dt><label class="monospace">setSizeInItems
-                </label>
+            <dd class="level1"><span class="ink-label orange">Number</span></label>
+                number of pages</dd>
+            <dt class="level1"><label class="monospace">setSizeInItems
             </dt>
-            <dd></dd>
-            <dt><label class="monospace">totalItems
-                </label>
+            <dd class="level1"></label>
+                </dd>
+            <dt class="level1"><label class="monospace">totalItems
             </dt>
-            <dd><code>Number</code>Total number of items</dd>
-            <dt><label class="monospace">itemsPerPage
-                </label>
+            <dd class="level1"><span class="ink-label orange">Number</span></label>
+                Total number of items</dd>
+            <dt class="level1"><label class="monospace">itemsPerPage
             </dt>
-            <dd><code>Number</code>Items per page</dd>
+            <dd class="level1"><span class="ink-label orange">Number</span></label>
+                Items per page</dd>
         </dl>
 
 </section>

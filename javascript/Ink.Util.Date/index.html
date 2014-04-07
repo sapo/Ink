@@ -1,7 +1,7 @@
 ---
 layout: js-documentation
 title: Ink.Util.Date_1
-description: <p>Date utility functions</p>
+description: Date utility functions
 site_root:  ../
 ---
     <section>
@@ -21,13 +21,13 @@ site_root:  ../
                 <td>
                     <a href="#Ink_Util_Date_1-Ink_Util_Date_1-get">.get</a>
                 </td>
-                <td><p>Formats a date object.</td>
+                <td>Formats a date object.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Util_Date_1-Ink_Util_Date_1-set">.set</a>
                 </td>
-                <td><p>Creates a date object based on a format string.</td>
+                <td>Creates a date object based on a format string.</td>
             </tr></tbody>
     </table>
     
@@ -39,31 +39,27 @@ site_root:  ../
     <h1 class="fw-300">.get(format, [_date]) 
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">format</li>
-        <li class="prop">[_date]</li>
-    </ul><p class="text"><p>Formats a date object.
-This works exactly as php date() function. <a href="http://php.net/manual/en/function.date.php">http://php.net/manual/en/function.date.php</a></p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">format</li><li class="prop">[_date]</li>
+    </ul><p class="text">Formats a date object.<br>This works exactly as php date() function. <a href="http://php.net/manual/en/function.date.php">http://php.net/manual/en/function.date.php</a></p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">format
-                </label>
+            <dt class="level1"><label class="monospace">format
             </dt>
-            <dd><code>String</code>The format in which the date it will be formatted.</dd>
-            <dt><label class="monospace">[_date]
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                The format in which the date it will be formatted.</dd>
+            <dt class="level1"><label class="monospace">[_date]
                 
-                </label>
             </dt>
-            <dd><code>Date</code>The date to format. Can receive unix timestamp or a date object. Defaults to current time.</dd>
+            <dd class="level1"><span class="ink-label orange">Date</span></label>
+                The date to format. Can receive unix timestamp or a date object. Defaults to current time.</dd>
         </dl>
-        <h3>Returns</h3>
-        <dl>
-            <dt class="return"><code>String</code></dt>
-            <dd>
-            </dd>
-        </dl>
-        
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>String</code></dt>
+        <dd>
+        </dd>
+    </dl>
+    
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_Util_Date_get.html %}
@@ -73,31 +69,27 @@ This works exactly as php date() function. <a href="http://php.net/manual/en/fun
     <h1 class="fw-300">.set([format], str_date) 
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">[format]</li>
-        <li class="prop">str_date</li>
-    </ul><p class="text"><p>Creates a date object based on a format string.
-This works exactly as php date() function. <a href="http://php.net/manual/en/function.date.php">http://php.net/manual/en/function.date.php</a></p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">[format]</li><li class="prop">str_date</li>
+    </ul><p class="text">Creates a date object based on a format string.<br>This works exactly as php date() function. <a href="http://php.net/manual/en/function.date.php">http://php.net/manual/en/function.date.php</a></p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">[format]
+            <dt class="level1"><label class="monospace">[format]
                 
-                </label>
             </dt>
-            <dd><code>String</code>The format in which the date will be formatted. Defaults to 'Y-m-d'</dd>
-            <dt><label class="monospace">str_date
-                </label>
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                The format in which the date will be formatted. Defaults to 'Y-m-d'</dd>
+            <dt class="level1"><label class="monospace">str_date
             </dt>
-            <dd><code>String</code>The date formatted.</dd>
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                The date formatted.</dd>
         </dl>
-        <h3>Returns</h3>
-        <dl>
-            <dt class="return"><code>Date</code></dt>
-            <dd>
-            </dd>
-        </dl>
-        
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>Date</code></dt>
+        <dd>
+        </dd>
+    </dl>
+    
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_Util_Date_set.html %}

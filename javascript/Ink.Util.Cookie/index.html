@@ -1,7 +1,7 @@
 ---
 layout: js-documentation
 title: Ink.Util.Cookie_1
-description: <p>Cookie Utilities</p>
+description: Cookie Utilities
 site_root:  ../
 ---
     <section>
@@ -21,19 +21,19 @@ site_root:  ../
                 <td>
                     <a href="#Ink_Util_Cookie_1-Ink_Util_Cookie_1-get">.get</a>
                 </td>
-                <td><p>Gets an object with the current page cookies.</p></td>
+                <td>Gets an object with the current page cookies.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Util_Cookie_1-Ink_Util_Cookie_1-remove">.remove</a>
                 </td>
-                <td><p>Deletes a cookie.</p></td>
+                <td>Deletes a cookie.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Util_Cookie_1-Ink_Util_Cookie_1-set">.set</a>
                 </td>
-                <td><p>Sets a cookie.</p></td>
+                <td>Sets a cookie.</td>
             </tr></tbody>
     </table>
     
@@ -45,24 +45,22 @@ site_root:  ../
     <h1 class="fw-300">.get(name) 
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">name</li>
-    </ul><p class="text"><p>Gets an object with the current page cookies.</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">name</li>
+    </ul><p class="text">Gets an object with the current page cookies.</p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">name
-                </label>
+            <dt class="level1"><label class="monospace">name
             </dt>
-            <dd><code>String</code>The cookie name.</dd>
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                The cookie name.</dd>
         </dl>
-        <h3>Returns</h3>
-        <dl>
-            <dt class="return"><code>String|Object</code></dt>
-            <dd>
-            </dd>
-        </dl>
-        
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>String|Object</code></dt>
+        <dd>
+        </dd>
+    </dl>
+    
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_Util_Cookie_get.html %}
@@ -72,28 +70,24 @@ site_root:  ../
     <h1 class="fw-300">.remove(cookieName, [path], [domain]) 
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">cookieName</li>
-        <li class="prop">[path]</li>
-        <li class="prop">[domain]</li>
-    </ul><p class="text"><p>Deletes a cookie.</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">cookieName</li><li class="prop">[path]</li><li class="prop">[domain]</li>
+    </ul><p class="text">Deletes a cookie.</p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">cookieName
-                </label>
+            <dt class="level1"><label class="monospace">cookieName
             </dt>
-            <dd><code>String</code>Cookie name.</dd>
-            <dt><label class="monospace">[path]
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                Cookie name.</dd>
+            <dt class="level1"><label class="monospace">[path]
                 
-                </label>
             </dt>
-            <dd><code>String</code>Path of the cookie. Defaults to '/'.</dd>
-            <dt><label class="monospace">[domain]
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                Path of the cookie. Defaults to '/'.</dd>
+            <dt class="level1"><label class="monospace">[domain]
                 
-                </label>
             </dt>
-            <dd><code>String</code>Domain of the cookie. Defaults to current hostname.</dd>
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                Domain of the cookie. Defaults to current hostname.</dd>
         </dl>
 
 <!--<h3>Samples</h3>-->
@@ -104,45 +98,38 @@ site_root:  ../
     <h1 class="fw-300">.set(name, value, [expires], [path], [domain], [secure]) 
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">name</li>
-        <li class="prop">value</li>
-        <li class="prop">[expires]</li>
-        <li class="prop">[path]</li>
-        <li class="prop">[domain]</li>
-        <li class="prop">[secure]</li>
-    </ul><p class="text"><p>Sets a cookie.</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">name</li><li class="prop">value</li><li class="prop">[expires]</li><li class="prop">[path]</li><li class="prop">[domain]</li><li class="prop">[secure]</li>
+    </ul><p class="text">Sets a cookie.</p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">name
-                </label>
+            <dt class="level1"><label class="monospace">name
             </dt>
-            <dd><code>String</code>Cookie name.</dd>
-            <dt><label class="monospace">value
-                </label>
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                Cookie name.</dd>
+            <dt class="level1"><label class="monospace">value
             </dt>
-            <dd><code>String</code>Cookie value.</dd>
-            <dt><label class="monospace">[expires]
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                Cookie value.</dd>
+            <dt class="level1"><label class="monospace">[expires]
                 
-                </label>
             </dt>
-            <dd><code>Number</code>Number of seconds the cookie will be valid for.</dd>
-            <dt><label class="monospace">[path]
+            <dd class="level1"><span class="ink-label orange">Number</span></label>
+                Number of seconds the cookie will be valid for.</dd>
+            <dt class="level1"><label class="monospace">[path]
                 
-                </label>
             </dt>
-            <dd><code>String</code>Path for the cookie. Defaults to '/'.</dd>
-            <dt><label class="monospace">[domain]
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                Path for the cookie. Defaults to '/'.</dd>
+            <dt class="level1"><label class="monospace">[domain]
                 
-                </label>
             </dt>
-            <dd><code>String</code>Domain for the cookie. Defaults to current hostname.</dd>
-            <dt><label class="monospace">[secure]
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                Domain for the cookie. Defaults to current hostname.</dd>
+            <dt class="level1"><label class="monospace">[secure]
                 
-                </label>
             </dt>
-            <dd><code>Boolean</code>Flag for secure. Default 'false'.</dd>
+            <dd class="level1"><span class="ink-label orange">Boolean</span></label>
+                Flag for secure. Default 'false'.</dd>
         </dl>
 
 <!--<h3>Samples</h3>-->

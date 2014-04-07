@@ -1,13 +1,13 @@
 ---
 layout: js-documentation
 title: Ink.UI.Toggle_1
-description: <p>Toggle the visibility of elements.</p>
+description: Toggle the visibility of elements.
 site_root:  ../
 ---
     <section>
         <h1 class="fw-300">Ink.UI.Toggle_1<small>version:1</small></h1>
 
-<p><br><br><br> element has the &quot;active&quot; class.<br>The state can be changed through JavaScript. Just call  <code>setState(true)</code> <br>to turn the Toggle on (or <code>setState(false)</code> to turn it off).<br></p>
+<p>You need two elements to use Toggle: the <code>trigger</code> element, and the <code>target</code> element (or elements). The default behaviour is to toggle the <code>target</code>(s) when you click the <code>trigger</code>.<br><p>The toggle has a state. It is either &quot;on&quot; or &quot;off&quot;. It works by switching between the CSS classes in <code>classNameOn</code> and <code>classNameOff</code> according to the current state.</p><br><p>When you initialize the Toggle, it will check if the targets are visible to figure out what the initial state is. You can force the toggle to consider itself turned &quot;on&quot; or &quot;off&quot; by setting the <code>initialState</code> option to <code>true</code> or <code>false</code>, respectively.</p><br><p>You can get the current state of the Toggle by calling <code>getState</code>, or by checking if your <code>trigger</code> element has the &quot;active&quot; class.<br>The state can be changed through JavaScript. Just call  <code>setState(true)</code> <br>to turn the Toggle on (or <code>setState(false)</code> to turn it off).</p></p>
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space">
         <caption>Methods</caption>
         <thead>
@@ -28,13 +28,13 @@ site_root:  ../
                 <td>
                     <a href="#Ink_UI_Toggle_1-Ink_UI_Toggle-getState">.getState</a>
                 </td>
-                <td><p>Gets the state of the toggle. (on/off)</p></td>
+                <td>Gets the state of the toggle. (on/off)</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_Toggle_1-Ink_UI_Toggle-setState">.setState</a>
                 </td>
-                <td><p>Sets the state of the toggle. (on/off)</p></td>
+                <td>Sets the state of the toggle. (on/off)</td>
             </tr></tbody>
     </table>
     
@@ -46,68 +46,58 @@ site_root:  ../
     <h1 class="fw-300">Ink.UI.Toggle(selector, [options], ) 
     <i>constructor</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">selector</li>
-        <li class="prop">[options]</li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
+        <li class="heading">Arguments:</li><li class="prop">selector</li><li class="prop">[options]</li>
     </ul>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">selector
-                </label>
+            <dt class="level1"><label class="monospace">selector
             </dt>
-            <dd><code>String|DOMElement</code>Trigger element. By clicking this, the target (or targets) are triggered.</dd>
-            <dt><label class="monospace">[options]
+            <dd class="level1"><span class="ink-label orange">String|DOMElement</span></label>
+                Trigger element. By clicking this, the target (or targets) are triggered.</dd>
+            <dt class="level1"><label class="monospace">[options]
                 
-                </label>
             </dt>
-            <dd><code>Object</code>Options object, containing:</dd>
-            <dt><label class="monospace">options.target
-                </label>
+            <dd class="level1"><span class="ink-label orange">Object</span></label>
+                Options object, containing:</dd>
+            <dt class="level2"><label class="monospace">options.target
             </dt>
-            <dd><code>String</code>CSS Selector that specifies the elements that this component will toggle</dd>
-            <dt><label class="monospace">[options.classNameOn]
+            <dd class="level2"><span class="ink-label orange">String</span></label>
+                CSS Selector that specifies the elements that this component will toggle</dd>
+            <dt class="level2"><label class="monospace">[options.classNameOn]
                 
-                </label>
             </dt>
-            <dd><code>String</code>CSS class to toggle when on. Defaults to 'show-all'.</dd>
-            <dt><label class="monospace">[options.classNameOff]
+            <dd class="level2"><span class="ink-label orange">String</span></label>
+                CSS class to toggle when on. Defaults to 'show-all'.</dd>
+            <dt class="level2"><label class="monospace">[options.classNameOff]
                 
-                </label>
             </dt>
-            <dd><code>String</code>CSS class to toggle when off. Defaults to 'hide-all'.</dd>
-            <dt><label class="monospace">[options.triggerEvent]
+            <dd class="level2"><span class="ink-label orange">String</span></label>
+                CSS class to toggle when off. Defaults to 'hide-all'.</dd>
+            <dt class="level2"><label class="monospace">[options.triggerEvent]
                 
-                </label>
             </dt>
-            <dd><code>String</code>Event that will trigger the toggling. Defaults to 'click'.</dd>
-            <dt><label class="monospace">[options.closeOnClick]
+            <dd class="level2"><span class="ink-label orange">String</span></label>
+                Event that will trigger the toggling. Defaults to 'click'.</dd>
+            <dt class="level2"><label class="monospace">[options.closeOnClick]
                 
-                </label>
             </dt>
-            <dd><code>Boolean</code>Flag to toggle the targe off when clicking outside the toggled content. Defaults to true.</dd>
-            <dt><label class="monospace">[options.closeOnInsideClick]
+            <dd class="level2"><span class="ink-label orange">Boolean</span></label>
+                Flag to toggle the targe off when clicking outside the toggled content. Defaults to true.</dd>
+            <dt class="level2"><label class="monospace">[options.closeOnInsideClick]
                 
-                </label>
             </dt>
-            <dd><code>String</code>Toggle off when an element matching this selector is clicked. Set to null to deactivate the check. Defaults to 'a[href]'.</dd>
-            <dt><label class="monospace">[options.initialState]
+            <dd class="level2"><span class="ink-label orange">String</span></label>
+                Toggle off when an element matching this selector is clicked. Set to null to deactivate the check. Defaults to 'a[href]'.</dd>
+            <dt class="level2"><label class="monospace">[options.initialState]
                 
-                </label>
             </dt>
-            <dd><code>Boolean</code>Flag to define initial state. false: off, true: on, null: markup. Defaults to null.</dd>
-            <dt><label class="monospace">[options.onChangeState]
+            <dd class="level2"><span class="ink-label orange">Boolean</span></label>
+                Flag to define initial state. false: off, true: on, null: markup. Defaults to null.</dd>
+            <dt class="level2"><label class="monospace">[options.onChangeState]
                 
-                </label>
             </dt>
-            <dd><code>Function</code>Callback when the toggle state changes. Return `false` to cancel the event.</dd>
+            <dd class="level2"><span class="ink-label orange">Function</span></label>
+                Callback when the toggle state changes. Return `false` to cancel the event.</dd>
         </dl>
 
 <!--<h3>Samples</h3>-->
@@ -116,8 +106,14 @@ site_root:  ../
 
     <section id="Ink_UI_Toggle_1-Ink_UI_Toggle-getState" class="box box-function">
     <h1 class="fw-300">.getState() 
-    <i>method</i></h1><p class="text"><p>Gets the state of the toggle. (on/off)</p>
-</p>
+    <i>method</i></h1><p class="text">Gets the state of the toggle. (on/off)</p>
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>Boolean</code></dt>
+        <dd>
+        </dd>
+    </dl>
+    
 
 </section>
 
@@ -125,16 +121,14 @@ site_root:  ../
     <h1 class="fw-300">.setState(newState) 
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">newState</li>
-    </ul><p class="text"><p>Sets the state of the toggle. (on/off)</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">newState</li>
+    </ul><p class="text">Sets the state of the toggle. (on/off)</p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">newState
-                </label>
+            <dt class="level1"><label class="monospace">newState
             </dt>
-            <dd>{Boolean} New state (on/off)</dd>
+            <dd class="level1"></label>
+                {Boolean} New state (on/off)</dd>
         </dl>
 
 </section>

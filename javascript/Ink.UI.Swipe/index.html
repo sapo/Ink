@@ -7,8 +7,8 @@ site_root:  ../
     <section>
         <h1 class="fw-300">Ink.UI.Swipe_1<small>version:1</small></h1>
 
-<p>Subscribe swipe gestures.<br><p>Supports filtering swipes be any combination of the criteria supported in the options.</p><br></p>
-    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please refer to <a href="/javascript/ink/#Ink_1-Ink_1-requireModules">stuff</a></p><table class="props bottom-space">
+<p>Subscribe swipe gestures.<br><p>Supports filtering swipes be any combination of the criteria supported in the options.</p></p>
+    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space">
         <caption>Methods</caption>
         <thead>
             <tr>
@@ -34,83 +34,71 @@ site_root:  ../
     <h1 class="fw-300">Ink.UI.Swipe_1(el, options, ) 
     <i>constructor</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">el</li>
-        <li class="prop">options</li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
+        <li class="heading">Arguments:</li><li class="prop">el</li><li class="prop">options</li>
     </ul>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><code>String|DOMElement</code></dt>
-            <dd><label class="monospace">el
-                </label>
+            <dt class="level1"><label class="monospace">el
+            </dt>
+            <dd class="level1"><span class="ink-label orange">String|DOMElement</span></label>
                 Element or Selector</dd>
-            <dt><code>Object</code></dt>
-            <dd><label class="monospace">options
-                </label>
+            <dt class="level1"><label class="monospace">options
+            </dt>
+            <dd class="level1"><span class="ink-label orange">Object</span></label>
                 Options Object</dd>
-            <dt><code>Function</code></dt>
-            <dd><label class="monospace">[options.onEnd]
+            <dt class="level2"><label class="monospace">[options.onEnd]
                 
-                </label>
+            </dt>
+            <dd class="level2"><span class="ink-label orange">Function</span></label>
                 Callback function for the `touchend` event. Gets all the gesture information, and is filtered by min/max Dist and Duration options (see below)</dd>
-            <dt><code>Function</code></dt>
-            <dd><label class="monospace">[options.onStart]
+            <dt class="level2"><label class="monospace">[options.onStart]
                 
-                </label>
+            </dt>
+            <dd class="level2"><span class="ink-label orange">Function</span></label>
                 Callback function for `touchstart` event.</dd>
-            <dt><code>Function</code></dt>
-            <dd><label class="monospace">[options.onMove]
+            <dt class="level2"><label class="monospace">[options.onMove]
                 
-                </label>
+            </dt>
+            <dd class="level2"><span class="ink-label orange">Function</span></label>
                 Callback function for every `touchmove` event. Gets current gesture information.</dd>
-            <dt><code>Number</code></dt>
-            <dd><label class="monospace">[options.minDist]
+            <dt class="level2"><label class="monospace">[options.minDist]
                 
-                </label>
+            </dt>
+            <dd class="level2"><span class="ink-label orange">Number</span></label>
                 Minimum allowed distance, in pixels.</dd>
-            <dt><code>Number</code></dt>
-            <dd><label class="monospace">[options.maxDist]
+            <dt class="level2"><label class="monospace">[options.maxDist]
                 
-                </label>
+            </dt>
+            <dd class="level2"><span class="ink-label orange">Number</span></label>
                 Maximum allowed distance, in pixels.</dd>
-            <dt><code>Number</code></dt>
-            <dd><label class="monospace">[options.minDuration]
+            <dt class="level2"><label class="monospace">[options.minDuration]
                 
-                </label>
+            </dt>
+            <dd class="level2"><span class="ink-label orange">Number</span></label>
                 Minimum allowed duration, in seconds.</dd>
-            <dt><code>Number</code></dt>
-            <dd><label class="monospace">[options.maxDuration]
+            <dt class="level2"><label class="monospace">[options.maxDuration]
                 
-                </label>
+            </dt>
+            <dd class="level2"><span class="ink-label orange">Number</span></label>
                 Maximum allowed duration, in seconds.</dd>
-            <dt><code>String</code></dt>
-            <dd><label class="monospace">[options.axis]
+            <dt class="level2"><label class="monospace">[options.axis]
                 
-                </label>
+            </dt>
+            <dd class="level2"><span class="ink-label orange">String</span></label>
                 If either 'x' or 'y' is passed, only swipes where the dominant axis is the given one trigger the callback</dd>
-            <dt><code>String</code></dt>
-            <dd><label class="monospace">[options.storeGesture]
+            <dt class="level2"><label class="monospace">[options.storeGesture]
                 
-                </label>
+            </dt>
+            <dd class="level2"><span class="ink-label orange">String</span></label>
                 If to store gesture information and provide it to the callback. Defaults to true.</dd>
-            <dt><code>String</code></dt>
-            <dd><label class="monospace">[options.stopEvents]
+            <dt class="level2"><label class="monospace">[options.stopEvents]
                 
-                </label>
+            </dt>
+            <dd class="level2"><span class="ink-label orange">String</span></label>
                 Flag to stop (default and propagation) of the received events. Defaults to true.</dd>
         </dl>
 
-<h3>Samples</h3>
+<!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_UI_Swipe_1.html %}
 	</section>
 

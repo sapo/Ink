@@ -1,13 +1,13 @@
 ---
 layout: js-documentation
 title: Ink_1
-description: <p>Ink Core.</p>
+description: Ink Core.
 site_root:  ../
 ---
     <section>
         <h1 class="fw-300">Ink_1</h1>
 
-<p><br></p>
+<p>This module provides the necessary methods to create and load the modules using Ink.</p>
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space"><caption>Functions</caption>
         <thead>
             <tr>
@@ -21,121 +21,121 @@ site_root:  ../
                 <td>
                     <a href="#Ink_1-Ink_1-bind">.bind</a>
                 </td>
-                <td><p>Function.prototype.bind alternative.</td>
+                <td>Function.prototype.bind alternative.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_1-Ink_1-bindEvent">.bindEvent</a>
                 </td>
-                <td><p>Function.prototype.bind alternative for event handlers.</td>
+                <td>Function.prototype.bind alternative for event handlers.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_1-Ink_1-bindMethod">.bindMethod</a>
                 </td>
-                <td><p>Function.prototype.bind alternative for class methods</td>
+                <td>Function.prototype.bind alternative for class methods</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_1-Ink_1-createExt">.createExt</a>
                 </td>
-                <td><p>Creates an Ink.Ext module</p></td>
+                <td>Creates an Ink.Ext module</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_1-Ink_1-createModule">.createModule</a>
                 </td>
-                <td><p>Creates a new module. </td>
+                <td>Creates a new module. </td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_1-Ink_1-error">.error</a>
                 </td>
-                <td><p>Calls native console.error if available.</p></td>
+                <td>Calls native console.error if available.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_1-Ink_1-extendObj">.extendObj</a>
                 </td>
-                <td><p>Extends an object with another</td>
+                <td>Extends an object with another</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_1-Ink_1-getModule">.getModule</a>
                 </td>
-                <td><p>Loads a module.</td>
+                <td>Loads a module.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_1-Ink_1-getModuleScripts">.getModuleScripts</a>
                 </td>
-                <td><p>Builds the markup needed to load the modules.</td>
+                <td>Builds the markup needed to load the modules.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_1-Ink_1-getModulesLoadOrder">.getModulesLoadOrder</a>
                 </td>
-                <td><p>Lists loaded module names.</td>
+                <td>Lists loaded module names.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_1-Ink_1-getPath">.getPath</a>
                 </td>
-                <td><p>Get the full path of a module.</td>
+                <td>Get the full path of a module.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_1-Ink_1-i">.i</a>
                 </td>
-                <td><p>Alias to document.getElementById</p></td>
+                <td>Alias to document.getElementById</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_1-Ink_1-loadScript">.loadScript</a>
                 </td>
-                <td><p>Loads a script URL.</td>
+                <td>Loads a script URL.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_1-Ink_1-log">.log</a>
                 </td>
-                <td><p>Calls native console.log if available.</p></td>
+                <td>Calls native console.log if available.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_1-Ink_1-namespace">.namespace</a>
                 </td>
-                <td><p>Defines a module namespace.</p></td>
+                <td>Defines a module namespace.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_1-Ink_1-requireModules">.requireModules</a>
                 </td>
-                <td><p>Requires modules asynchronously </td>
+                <td>Requires modules asynchronously </td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_1-Ink_1-s">.s</a>
                 </td>
-                <td><p>Alias for Ink.Dom.Selector first result</p></td>
+                <td>Alias for Ink.Dom.Selector first result</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_1-Ink_1-setPath">.setPath</a>
                 </td>
-                <td><p>Sets the URL path for a namespace.</td>
+                <td>Sets the URL path for a namespace.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_1-Ink_1-ss">.ss</a>
                 </td>
-                <td><p>Alias for Ink.Dom.Selector</p></td>
+                <td>Alias for Ink.Dom.Selector</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_1-Ink_1-warn">.warn</a>
                 </td>
-                <td><p>Calls native console.warn if available.</p></td>
+                <td>Calls native console.warn if available.</td>
             </tr></tbody>
     </table>
     
@@ -147,36 +147,31 @@ site_root:  ../
     <h1 class="fw-300">.bind(fn, context, [args*]) 
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">fn</li>
-        <li class="prop">context</li>
-        <li class="prop">[args*]</li>
-    </ul><p class="text"><p>Function.prototype.bind alternative.
-Creates a new function that, when called, has its this keyword set to the provided value, with a given sequence of arguments preceding any provided when the new function is called.</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">fn</li><li class="prop">context</li><li class="prop">[args*]</li>
+    </ul><p class="text">Function.prototype.bind alternative.<br>Creates a new function that, when called, has its this keyword set to the provided value, with a given sequence of arguments preceding any provided when the new function is called.</p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">fn
-                </label>
+            <dt class="level1"><label class="monospace">fn
             </dt>
-            <dd><code>Function</code>The function</dd>
-            <dt><label class="monospace">context
-                </label>
+            <dd class="level1"><span class="ink-label orange">Function</span></label>
+                The function</dd>
+            <dt class="level1"><label class="monospace">context
             </dt>
-            <dd><code>Object</code>The value to be passed as the this parameter to the target function when the bound function is called. If used as false, it preserves the original context and just binds the arguments.</dd>
-            <dt><label class="monospace">[args*]
+            <dd class="level1"><span class="ink-label orange">Object</span></label>
+                The value to be passed as the this parameter to the target function when the bound function is called. If used as false, it preserves the original context and just binds the arguments.</dd>
+            <dt class="level1"><label class="monospace">[args*]
                 
-                </label>
             </dt>
-            <dd><code>Any</code>Additional arguments will be sent to the original function as prefix arguments.</dd>
+            <dd class="level1"><span class="ink-label orange">Any</span></label>
+                Additional arguments will be sent to the original function as prefix arguments.</dd>
         </dl>
-        <h3>Returns</h3>
-        <dl>
-            <dt class="return"><code>Function</code></dt>
-            <dd>
-            </dd>
-        </dl>
-        
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>Function</code></dt>
+        <dd>
+        </dd>
+    </dl>
+    
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_1_bind.html %}
@@ -186,37 +181,31 @@ Creates a new function that, when called, has its this keyword set to the provid
     <h1 class="fw-300">.bindEvent(fn, context, [args*]) 
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">fn</li>
-        <li class="prop">context</li>
-        <li class="prop">[args*]</li>
-    </ul><p class="text"><p>Function.prototype.bind alternative for event handlers.
-Same as bind but keeps first argument of the call the original event.
-Set &quot;context&quot; to <code>false</code> to preserve the original context of the function and just bind the arguments.</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">fn</li><li class="prop">context</li><li class="prop">[args*]</li>
+    </ul><p class="text">Function.prototype.bind alternative for event handlers.<br>Same as bind but keeps first argument of the call the original event.<br>Set &quot;context&quot; to <code>false</code> to preserve the original context of the function and just bind the arguments.</p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">fn
-                </label>
+            <dt class="level1"><label class="monospace">fn
             </dt>
-            <dd><code>Function</code>The function</dd>
-            <dt><label class="monospace">context
-                </label>
+            <dd class="level1"><span class="ink-label orange">Function</span></label>
+                The function</dd>
+            <dt class="level1"><label class="monospace">context
             </dt>
-            <dd><code>Object</code>The value to be passed as the this parameter to the target</dd>
-            <dt><label class="monospace">[args*]
+            <dd class="level1"><span class="ink-label orange">Object</span></label>
+                The value to be passed as the this parameter to the target</dd>
+            <dt class="level1"><label class="monospace">[args*]
                 
-                </label>
             </dt>
-            <dd><code>Any</code>Additional arguments will be sent to the original function as prefix arguments</dd>
+            <dd class="level1"><span class="ink-label orange">Any</span></label>
+                Additional arguments will be sent to the original function as prefix arguments</dd>
         </dl>
-        <h3>Returns</h3>
-        <dl>
-            <dt class="return"><code>Function</code></dt>
-            <dd>
-            </dd>
-        </dl>
-        
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>Function</code></dt>
+        <dd>
+        </dd>
+    </dl>
+    
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_1_bindEvent.html %}
@@ -226,36 +215,31 @@ Set &quot;context&quot; to <code>false</code> to preserve the original context o
     <h1 class="fw-300">.bindMethod(object, methodName, [args*]) 
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">object</li>
-        <li class="prop">methodName</li>
-        <li class="prop">[args*]</li>
-    </ul><p class="text"><p>Function.prototype.bind alternative for class methods
-Creates a new function that, when called, has this k</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">object</li><li class="prop">methodName</li><li class="prop">[args*]</li>
+    </ul><p class="text">Function.prototype.bind alternative for class methods<br>Creates a new function that, when called, has this k</p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">object
-                </label>
+            <dt class="level1"><label class="monospace">object
             </dt>
-            <dd><code>Object</code>The object that contains the method to bind</dd>
-            <dt><label class="monospace">methodName
-                </label>
+            <dd class="level1"><span class="ink-label orange">Object</span></label>
+                The object that contains the method to bind</dd>
+            <dt class="level1"><label class="monospace">methodName
             </dt>
-            <dd><code>String</code>The name of the method that will be bound</dd>
-            <dt><label class="monospace">[args*]
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                The name of the method that will be bound</dd>
+            <dt class="level1"><label class="monospace">[args*]
                 
-                </label>
             </dt>
-            <dd><code>Any</code>Additional arguments will be sent to the new method as prefix arguments.</dd>
+            <dd class="level1"><span class="ink-label orange">Any</span></label>
+                Additional arguments will be sent to the new method as prefix arguments.</dd>
         </dl>
-        <h3>Returns</h3>
-        <dl>
-            <dt class="return"><code>Function</code></dt>
-            <dd>
-            </dd>
-        </dl>
-        
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>Function</code></dt>
+        <dd>
+        </dd>
+    </dl>
+    
 <p class="example-title">Example</p>
   
 {% highlight html %}{% raw %}
@@ -283,32 +267,26 @@ Creates a new function that, when called, has this k</p>
     <h1 class="fw-300">.createExt(moduleName, version, dependencies, modFn) 
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">moduleName</li>
-        <li class="prop">version</li>
-        <li class="prop">dependencies</li>
-        <li class="prop">modFn</li>
-    </ul><p class="text"><p>Creates an Ink.Ext module</p>
-<p>Does exactly the same as createModule but creates the module in the Ink.Ext namespace</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">moduleName</li><li class="prop">version</li><li class="prop">dependencies</li><li class="prop">modFn</li>
+    </ul><p class="text">Creates an Ink.Ext module<br><p>Does exactly the same as createModule but creates the module in the Ink.Ext namespace</p></p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">moduleName
-                </label>
+            <dt class="level1"><label class="monospace">moduleName
             </dt>
-            <dd><code>String</code>Extension name</dd>
-            <dt><label class="monospace">version
-                </label>
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                Extension name</dd>
+            <dt class="level1"><label class="monospace">version
             </dt>
-            <dd><code>String</code>Extension version</dd>
-            <dt><label class="monospace">dependencies
-                </label>
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                Extension version</dd>
+            <dt class="level1"><label class="monospace">dependencies
             </dt>
-            <dd><code>Array</code>Extension dependencies</dd>
-            <dt><label class="monospace">modFn
-                </label>
+            <dd class="level1"><span class="ink-label orange">Array</span></label>
+                Extension dependencies</dd>
+            <dt class="level1"><label class="monospace">modFn
             </dt>
-            <dd><code>Function</code>Function returning the extension</dd>
+            <dd class="level1"><span class="ink-label orange">Function</span></label>
+                Function returning the extension</dd>
         </dl>
 
 <!--<h3>Samples</h3>-->
@@ -319,32 +297,26 @@ Creates a new function that, when called, has this k</p>
     <h1 class="fw-300">.createModule(mod, version, deps, modFn) 
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">mod</li>
-        <li class="prop">version</li>
-        <li class="prop">deps</li>
-        <li class="prop">modFn</li>
-    </ul><p class="text"><p>Creates a new module. 
-Use this to wrap your code and benefit from the module loading used throughout the Ink library</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">mod</li><li class="prop">version</li><li class="prop">deps</li><li class="prop">modFn</li>
+    </ul><p class="text">Creates a new module. <br>Use this to wrap your code and benefit from the module loading used throughout the Ink library</p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">mod
-                </label>
+            <dt class="level1"><label class="monospace">mod
             </dt>
-            <dd><code>String</code>Module name, separated by dots. Like Ink.Dom.Selector, Ink.UI.Modal</dd>
-            <dt><label class="monospace">version
-                </label>
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                Module name, separated by dots. Like Ink.Dom.Selector, Ink.UI.Modal</dd>
+            <dt class="level1"><label class="monospace">version
             </dt>
-            <dd><code>Number</code>Version number</dd>
-            <dt><label class="monospace">deps
-                </label>
+            <dd class="level1"><span class="ink-label orange">Number</span></label>
+                Version number</dd>
+            <dt class="level1"><label class="monospace">deps
             </dt>
-            <dd><code>Array</code>Array of module names which are dependencies of the module being created. The order in which they are passed here will define the order they will be passed to the callback function.</dd>
-            <dt><label class="monospace">modFn
-                </label>
+            <dd class="level1"><span class="ink-label orange">Array</span></label>
+                Array of module names which are dependencies of the module being created. The order in which they are passed here will define the order they will be passed to the callback function.</dd>
+            <dt class="level1"><label class="monospace">modFn
             </dt>
-            <dd><code>Function</code>The callback function to be executed when all the dependencies are resolved. The dependencies are passed as arguments, in the same order they were declared. The function itself should return the module.</dd>
+            <dd class="level1"><span class="ink-label orange">Function</span></label>
+                The callback function to be executed when all the dependencies are resolved. The dependencies are passed as arguments, in the same order they were declared. The function itself should return the module.</dd>
         </dl>
 
 <!--<h3>Samples</h3>-->
@@ -355,17 +327,15 @@ Use this to wrap your code and benefit from the module loading used throughout t
     <h1 class="fw-300">.error([args*]) 
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">[args*]</li>
-    </ul><p class="text"><p>Calls native console.error if available.</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">[args*]</li>
+    </ul><p class="text">Calls native console.error if available.</p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">[args*]
+            <dt class="level1"><label class="monospace">[args*]
                 
-                </label>
             </dt>
-            <dd><code>Any</code>Arguments to be evaluated</dd>
+            <dd class="level1"><span class="ink-label orange">Any</span></label>
+                Arguments to be evaluated</dd>
         </dl>
 
 <!--<h3>Samples</h3>-->
@@ -376,36 +346,31 @@ Use this to wrap your code and benefit from the module loading used throughout t
     <h1 class="fw-300">.extendObj(destination, source, [args*]) 
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">destination</li>
-        <li class="prop">source</li>
-        <li class="prop">[args*]</li>
-    </ul><p class="text"><p>Extends an object with another
-Copy all of the properties in one or more source objects over to the destination object, and return the destination object. It&#39;s in-order, so the last source will override properties of the same name in previous arguments.</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">destination</li><li class="prop">source</li><li class="prop">[args*]</li>
+    </ul><p class="text">Extends an object with another<br>Copy all of the properties in one or more source objects over to the destination object, and return the destination object. It&#39;s in-order, so the last source will override properties of the same name in previous arguments.</p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">destination
-                </label>
+            <dt class="level1"><label class="monospace">destination
             </dt>
-            <dd><code>Object</code>The object that will receive the new/updated properties</dd>
-            <dt><label class="monospace">source
-                </label>
+            <dd class="level1"><span class="ink-label orange">Object</span></label>
+                The object that will receive the new/updated properties</dd>
+            <dt class="level1"><label class="monospace">source
             </dt>
-            <dd><code>Object</code>The object whose properties will be copied over to the destination object</dd>
-            <dt><label class="monospace">[args*]
+            <dd class="level1"><span class="ink-label orange">Object</span></label>
+                The object whose properties will be copied over to the destination object</dd>
+            <dt class="level1"><label class="monospace">[args*]
                 
-                </label>
             </dt>
-            <dd><code>Object</code>Additional source objects. The last source will override properties of the same name in the previous defined sources</dd>
+            <dd class="level1"><span class="ink-label orange">Object</span></label>
+                Additional source objects. The last source will override properties of the same name in the previous defined sources</dd>
         </dl>
-        <h3>Returns</h3>
-        <dl>
-            <dt class="return"></dt>
-            <dd>
-            </dd>
-        </dl>
-        
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"></dt>
+        <dd>
+        </dd>
+    </dl>
+    
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_1_extendObj.html %}
@@ -415,47 +380,53 @@ Copy all of the properties in one or more source objects over to the destination
     <h1 class="fw-300">.getModule(mod, [version]) 
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">mod</li>
-        <li class="prop">[version]</li>
-    </ul><p class="text"><p>Loads a module.
-A synchronous method to get the module from the registry. It assumes the module is defined and loaded already!</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">mod</li><li class="prop">[version]</li>
+    </ul><p class="text">Loads a module.<br>A synchronous method to get the module from the registry. It assumes the module is defined and loaded already!</p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">mod
-                </label>
+            <dt class="level1"><label class="monospace">mod
             </dt>
-            <dd><code>String</code>Module name</dd>
-            <dt><label class="monospace">[version]
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                Module name</dd>
+            <dt class="level1"><label class="monospace">[version]
                 
-                </label>
             </dt>
-            <dd><code>Number</code>Version number of the module</dd>
+            <dd class="level1"><span class="ink-label orange">Number</span></label>
+                Version number of the module</dd>
         </dl>
-        <h3>Returns</h3>
-        <dl>
-            <dt class="return"><code>Object|Function</code></dt>
-            <dd>
-            </dd>
-        </dl>
-        
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>Object|Function</code></dt>
+        <dd>
+        </dd>
+    </dl>
+    
 
 </section>
 
     <section id="Ink_1-Ink_1-getModuleScripts" class="box box-function">
     <h1 class="fw-300">.getModuleScripts() 
-    <i>method</i></h1><p class="text"><p>Builds the markup needed to load the modules.
-This method builds the script tags needed to load the currently used modules</p>
-</p>
+    <i>method</i></h1><p class="text">Builds the markup needed to load the modules.<br>This method builds the script tags needed to load the currently used modules</p>
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>String</code></dt>
+        <dd>
+        </dd>
+    </dl>
+    
 
 </section>
 
     <section id="Ink_1-Ink_1-getModulesLoadOrder" class="box box-function">
     <h1 class="fw-300">.getModulesLoadOrder() 
-    <i>method</i></h1><p class="text"><p>Lists loaded module names.
-The list is ordered by loaded time (oldest module comes first)</p>
-</p>
+    <i>method</i></h1><p class="text">Lists loaded module names.<br>The list is ordered by loaded time (oldest module comes first)</p>
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>Array</code></dt>
+        <dd>
+        </dd>
+    </dl>
+    
 
 </section>
 
@@ -463,23 +434,19 @@ The list is ordered by loaded time (oldest module comes first)</p>
     <h1 class="fw-300">.getPath(key, [noLib]) 
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">key</li>
-        <li class="prop">[noLib]</li>
-    </ul><p class="text"><p>Get the full path of a module.
-This method looks up the paths given in setPath (and ultimately the default Ink&#39;s path).</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">key</li><li class="prop">[noLib]</li>
+    </ul><p class="text">Get the full path of a module.<br>This method looks up the paths given in setPath (and ultimately the default Ink&#39;s path).</p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">key
-                </label>
+            <dt class="level1"><label class="monospace">key
             </dt>
-            <dd><code>String</code>Name of the module you want to get the path</dd>
-            <dt><label class="monospace">[noLib]
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                Name of the module you want to get the path</dd>
+            <dt class="level1"><label class="monospace">[noLib]
                 
-                </label>
             </dt>
-            <dd><code>Boolean</code>Flag to skip appending 'lib.js' to the returned path.</dd>
+            <dd class="level1"><span class="ink-label orange">Boolean</span></label>
+                Flag to skip appending 'lib.js' to the returned path.</dd>
         </dl>
 
 </section>
@@ -488,24 +455,22 @@ This method looks up the paths given in setPath (and ultimately the default Ink&
     <h1 class="fw-300">.i(id) 
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">id</li>
-    </ul><p class="text"><p>Alias to document.getElementById</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">id</li>
+    </ul><p class="text">Alias to document.getElementById</p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">id
-                </label>
+            <dt class="level1"><label class="monospace">id
             </dt>
-            <dd><code>String</code>Element ID</dd>
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                Element ID</dd>
         </dl>
-        <h3>Returns</h3>
-        <dl>
-            <dt class="return"><code>DOMElement</code></dt>
-            <dd>
-            </dd>
-        </dl>
-        
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>DOMElement</code></dt>
+        <dd>
+        </dd>
+    </dl>
+    
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_1_i.html %}
@@ -515,24 +480,19 @@ This method looks up the paths given in setPath (and ultimately the default Ink&
     <h1 class="fw-300">.loadScript(uri, [contentType]) 
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">uri</li>
-        <li class="prop">[contentType]</li>
-    </ul><p class="text"><p>Loads a script URL.
-This creates a <code>script</code> tag in the <code>head</code> of the document.
-Reports errors by listening to &#39;error&#39; and &#39;readystatechange&#39; events.</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">uri</li><li class="prop">[contentType]</li>
+    </ul><p class="text">Loads a script URL.<br>This creates a <code>script</code> tag in the <code>head</code> of the document.<br>Reports errors by listening to &#39;error&#39; and &#39;readystatechange&#39; events.</p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">uri
-                </label>
+            <dt class="level1"><label class="monospace">uri
             </dt>
-            <dd><code>String</code>Can be an external URL or a module name</dd>
-            <dt><label class="monospace">[contentType]
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                Can be an external URL or a module name</dd>
+            <dt class="level1"><label class="monospace">[contentType]
                 
-                &#x27;text/javascript&#x27;</label>
             </dt>
-            <dd><code>String</code>The `type` attribute of the new script tag.</dd>
+            <dd class="level1"><span class="ink-label orange">String</span>&#x27;text/javascript&#x27;</label>
+                The `type` attribute of the new script tag.</dd>
         </dl>
 
 </section>
@@ -541,17 +501,15 @@ Reports errors by listening to &#39;error&#39; and &#39;readystatechange&#39; ev
     <h1 class="fw-300">.log([args*]) 
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">[args*]</li>
-    </ul><p class="text"><p>Calls native console.log if available.</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">[args*]</li>
+    </ul><p class="text">Calls native console.log if available.</p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">[args*]
+            <dt class="level1"><label class="monospace">[args*]
                 
-                </label>
             </dt>
-            <dd><code>Any</code>Arguments to be evaluated</dd>
+            <dd class="level1"><span class="ink-label orange">Any</span></label>
+                Arguments to be evaluated</dd>
         </dl>
 
 <!--<h3>Samples</h3>-->
@@ -562,30 +520,27 @@ Reports errors by listening to &#39;error&#39; and &#39;readystatechange&#39; ev
     <h1 class="fw-300">.namespace(ns, [returnParentAndKey]) 
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">ns</li>
-        <li class="prop">[returnParentAndKey]</li>
-    </ul><p class="text"><p>Defines a module namespace.</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">ns</li><li class="prop">[returnParentAndKey]</li>
+    </ul><p class="text">Defines a module namespace.</p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">ns
-                </label>
+            <dt class="level1"><label class="monospace">ns
             </dt>
-            <dd><code>String</code>Namespace to define.</dd>
-            <dt><label class="monospace">[returnParentAndKey]
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                Namespace to define.</dd>
+            <dt class="level1"><label class="monospace">[returnParentAndKey]
                 
-                </label>
             </dt>
-            <dd><code>Boolean</code>Flag to change the return value to an array containing the namespace parent and the namespace key</dd>
+            <dd class="level1"><span class="ink-label orange">Boolean</span></label>
+                Flag to change the return value to an array containing the namespace parent and the namespace key</dd>
         </dl>
-        <h3>Returns</h3>
-        <dl>
-            <dt class="return"><code>Object|Array</code></dt>
-            <dd>
-            </dd>
-        </dl>
-        
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>Object|Array</code></dt>
+        <dd>
+        </dd>
+    </dl>
+    
 
 </section>
 
@@ -593,22 +548,18 @@ Reports errors by listening to &#39;error&#39; and &#39;readystatechange&#39; ev
     <h1 class="fw-300">.requireModules(deps, cbFn) 
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">deps</li>
-        <li class="prop">cbFn</li>
-    </ul><p class="text"><p>Requires modules asynchronously 
-Use this to get modules, even if they&#39;re not loaded yet</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">deps</li><li class="prop">cbFn</li>
+    </ul><p class="text">Requires modules asynchronously <br>Use this to get modules, even if they&#39;re not loaded yet</p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">deps
-                </label>
+            <dt class="level1"><label class="monospace">deps
             </dt>
-            <dd><code>Array</code>Array of module names. The order in which they are passed here will define the order they will be passed to the callback function.</dd>
-            <dt><label class="monospace">cbFn
-                </label>
+            <dd class="level1"><span class="ink-label orange">Array</span></label>
+                Array of module names. The order in which they are passed here will define the order they will be passed to the callback function.</dd>
+            <dt class="level1"><label class="monospace">cbFn
             </dt>
-            <dd><code>Function</code>The callback function to be executed when all the dependencies are resolved. The dependencies are passed as arguments, in the same order they were declared.</dd>
+            <dd class="level1"><span class="ink-label orange">Function</span></label>
+                The callback function to be executed when all the dependencies are resolved. The dependencies are passed as arguments, in the same order they were declared.</dd>
         </dl>
 
 <!--<h3>Samples</h3>-->
@@ -619,30 +570,27 @@ Use this to get modules, even if they&#39;re not loaded yet</p>
     <h1 class="fw-300">.s(rule, [from]) 
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">rule</li>
-        <li class="prop">[from]</li>
-    </ul><p class="text"><p>Alias for Ink.Dom.Selector first result</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">rule</li><li class="prop">[from]</li>
+    </ul><p class="text">Alias for Ink.Dom.Selector first result</p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">rule
-                </label>
+            <dt class="level1"><label class="monospace">rule
             </dt>
-            <dd><code>String</code>Selector string</dd>
-            <dt><label class="monospace">[from]
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                Selector string</dd>
+            <dt class="level1"><label class="monospace">[from]
                 
-                </label>
             </dt>
-            <dd><code>DOMElement</code>Context element. If set to a DOM element, the rule will only look for descendants of this DOM Element.</dd>
+            <dd class="level1"><span class="ink-label orange">DOMElement</span></label>
+                Context element. If set to a DOM element, the rule will only look for descendants of this DOM Element.</dd>
         </dl>
-        <h3>Returns</h3>
-        <dl>
-            <dt class="return"><code>DOMElement</code></dt>
-            <dd>
-            </dd>
-        </dl>
-        
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>DOMElement</code></dt>
+        <dd>
+        </dd>
+    </dl>
+    
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_1_s.html %}
@@ -652,23 +600,18 @@ Use this to get modules, even if they&#39;re not loaded yet</p>
     <h1 class="fw-300">.setPath(key, rootURI) 
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">key</li>
-        <li class="prop">rootURI</li>
-    </ul><p class="text"><p>Sets the URL path for a namespace.
-Use this to customize where requireModules and createModule will load dependencies from.
-This can be useful to set your own CDN for dynamic module loading or simply to change your module folder structure</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">key</li><li class="prop">rootURI</li>
+    </ul><p class="text">Sets the URL path for a namespace.<br>Use this to customize where requireModules and createModule will load dependencies from.<br>This can be useful to set your own CDN for dynamic module loading or simply to change your module folder structure</p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">key
-                </label>
+            <dt class="level1"><label class="monospace">key
             </dt>
-            <dd><code>String</code>Module or namespace</dd>
-            <dt><label class="monospace">rootURI
-                </label>
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                Module or namespace</dd>
+            <dt class="level1"><label class="monospace">rootURI
             </dt>
-            <dd><code>String</code>Base URL path and schema to be appended to the module or namespace</dd>
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                Base URL path and schema to be appended to the module or namespace</dd>
         </dl>
 <p class="example-title">Example</p>
   
@@ -690,30 +633,27 @@ This can be useful to set your own CDN for dynamic module loading or simply to c
     <h1 class="fw-300">.ss(rule, [from]) 
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">rule</li>
-        <li class="prop">[from]</li>
-    </ul><p class="text"><p>Alias for Ink.Dom.Selector</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">rule</li><li class="prop">[from]</li>
+    </ul><p class="text">Alias for Ink.Dom.Selector</p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">rule
-                </label>
+            <dt class="level1"><label class="monospace">rule
             </dt>
-            <dd><code>String</code></dd>
-            <dt><label class="monospace">[from]
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                </dd>
+            <dt class="level1"><label class="monospace">[from]
                 
-                </label>
             </dt>
-            <dd><code>DOMElement</code></dd>
+            <dd class="level1"><span class="ink-label orange">DOMElement</span></label>
+                </dd>
         </dl>
-        <h3>Returns</h3>
-        <dl>
-            <dt class="return"><code>Array</code></dt>
-            <dd>
-            </dd>
-        </dl>
-        
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>Array</code></dt>
+        <dd>
+        </dd>
+    </dl>
+    
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_1_ss.html %}
@@ -723,17 +663,15 @@ This can be useful to set your own CDN for dynamic module loading or simply to c
     <h1 class="fw-300">.warn([args*]) 
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">[args*]</li>
-    </ul><p class="text"><p>Calls native console.warn if available.</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">[args*]</li>
+    </ul><p class="text">Calls native console.warn if available.</p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">[args*]
+            <dt class="level1"><label class="monospace">[args*]
                 
-                </label>
             </dt>
-            <dd><code>Any</code>Arguments to be evaluated</dd>
+            <dd class="level1"><span class="ink-label orange">Any</span></label>
+                Arguments to be evaluated</dd>
         </dl>
 
 <!--<h3>Samples</h3>-->

@@ -1,13 +1,13 @@
 ---
 layout: js-documentation
 title: Ink.Util.I18n_1
-description: <p>Internationalization Utilities</p>
+description: Internationalization Utilities
 site_root:  ../
 ---
     <section>
         <h1 class="fw-300">Ink.Util.I18n_1<small>version:1</small></h1>
 
-<p><br></p>
+<p>Creates a new I18n helper object</p>
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space">
         <caption>Methods</caption>
         <thead>
@@ -28,67 +28,67 @@ site_root:  ../
                 <td>
                     <a href="#Ink_Util_I18n_1-Ink_Util_I18n-alias">.alias</a>
                 </td>
-                <td><p>Alias for the text method.</td>
+                <td>Alias for the text method.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Util_I18n_1-Ink_Util_I18n-append">.append</a>
                 </td>
-                <td><p>Adds translation strings for the helper to use.</p></td>
+                <td>Adds translation strings for the helper to use.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Util_I18n_1-Ink_Util_I18n-append">.append</a>
                 </td>
-                <td><p>Adds a dictionary to be used in all I18n instances for the corresponding language.</p></td>
+                <td>Adds a dictionary to be used in all I18n instances for the corresponding language.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Util_I18n_1-Ink_Util_I18n-getKey">.getKey</a>
                 </td>
-                <td><p>Gest a key from the current dictionary</p></td>
+                <td>Gest a key from the current dictionary</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Util_I18n_1-Ink_Util_I18n-lang">.lang</a>
                 </td>
-                <td><p>Gets or sets the current default language of I18n instances.</p></td>
+                <td>Gets or sets the current default language of I18n instances.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Util_I18n_1-Ink_Util_I18n-lang">.lang</a>
                 </td>
-                <td><p>Gets or sets the language.</td>
+                <td>Gets or sets the language.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Util_I18n_1-Ink_Util_I18n-ntext">.ntext</a>
                 </td>
-                <td><p>Translates and pluralizes text.</td>
+                <td>Translates and pluralizes text.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Util_I18n_1-Ink_Util_I18n-ordinal">.ordinal</a>
                 </td>
-                <td><p>Gets the ordinal suffix of a number.</p></td>
+                <td>Gets the ordinal suffix of a number.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Util_I18n_1-Ink_Util_I18n-reset">.reset</a>
                 </td>
-                <td><p>Resets I18n global state (global dictionaries, and default language for instances)</p></td>
+                <td>Resets I18n global state (global dictionaries, and default language for instances)</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Util_I18n_1-Ink_Util_I18n-testMode">.testMode</a>
                 </td>
-                <td><p>Sets or unsets test mode.</td>
+                <td>Sets or unsets test mode.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Util_I18n_1-Ink_Util_I18n-text">.text</a>
                 </td>
-                <td><p>Translates a string.</td>
+                <td>Translates a string.</td>
             </tr></tbody>
     </table>
     
@@ -100,21 +100,19 @@ site_root:  ../
     <h1 class="fw-300">Ink.Util.I18n(dict, [lang]) 
     <i>constructor</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">dict</li>
-        <li class="prop">[lang]</li>
+        <li class="heading">Arguments:</li><li class="prop">dict</li><li class="prop">[lang]</li>
     </ul>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">dict
-                </label>
+            <dt class="level1"><label class="monospace">dict
             </dt>
-            <dd><code>Object</code>Object mapping language codes (in the form of `pt_PT`, `pt_BR`, `fr`, `en_US`, etc.) to their Object dictionaries.</dd>
-            <dt><label class="monospace">[lang]
+            <dd class="level1"><span class="ink-label orange">Object</span></label>
+                Object mapping language codes (in the form of `pt_PT`, `pt_BR`, `fr`, `en_US`, etc.) to their Object dictionaries.</dd>
+            <dt class="level1"><label class="monospace">[lang]
                 
-                &#x27;pt_PT&#x27;s</label>
             </dt>
-            <dd><code>String</code>language code of the target language</dd>
+            <dd class="level1"><span class="ink-label orange">String</span>&#x27;pt_PT&#x27;s</label>
+                language code of the target language</dd>
         </dl>
 <p class="example-title">Example</p>
   
@@ -156,9 +154,14 @@ site_root:  ../
 
     <section id="Ink_Util_I18n_1-Ink_Util_I18n-alias" class="box box-function">
     <h1 class="fw-300">.alias() 
-    <i>method</i></h1><p class="text"><p>Alias for the text method.
-Returns an alias to <code>text()</code>, for convenience. The resulting function is traditionally assigned to &quot;_&quot;.</p>
-</p>
+    <i>method</i></h1><p class="text">Alias for the text method.<br>Returns an alias to <code>text()</code>, for convenience. The resulting function is traditionally assigned to &quot;_&quot;.</p>
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>Function</code></dt>
+        <dd>
+        </dd>
+    </dl>
+    
 <p class="example-title">Example</p>
   
 {% highlight html %}{% raw %}
@@ -188,16 +191,14 @@ Returns an alias to <code>text()</code>, for convenience. The resulting function
     <h1 class="fw-300">.append(dict) 
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">dict</li>
-    </ul><p class="text"><p>Adds translation strings for the helper to use.</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">dict</li>
+    </ul><p class="text">Adds translation strings for the helper to use.</p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">dict
-                </label>
+            <dt class="level1"><label class="monospace">dict
             </dt>
-            <dd><code>Object</code>Object containing language objects identified by their language code</dd>
+            <dd class="level1"><span class="ink-label orange">Object</span></label>
+                Object containing language objects identified by their language code</dd>
         </dl>
 <p class="example-title">Example</p>
   
@@ -217,21 +218,18 @@ Returns an alias to <code>text()</code>, for convenience. The resulting function
     <h1 class="fw-300">.append(dict, lang) 
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">dict</li>
-        <li class="prop">lang</li>
-    </ul><p class="text"><p>Adds a dictionary to be used in all I18n instances for the corresponding language.</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">dict</li><li class="prop">lang</li>
+    </ul><p class="text">Adds a dictionary to be used in all I18n instances for the corresponding language.</p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">dict
-                </label>
+            <dt class="level1"><label class="monospace">dict
             </dt>
-            <dd>{Object}     Dictionary to be added</dd>
-            <dt><label class="monospace">lang
-                </label>
+            <dd class="level1"></label>
+                {Object}     Dictionary to be added</dd>
+            <dt class="level1"><label class="monospace">lang
             </dt>
-            <dd>{String}     Language fo the dictionary being added</dd>
+            <dd class="level1"></label>
+                {String}     Language fo the dictionary being added</dd>
         </dl>
 
 </section>
@@ -240,24 +238,22 @@ Returns an alias to <code>text()</code>, for convenience. The resulting function
     <h1 class="fw-300">.getKey(key) 
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">key</li>
-    </ul><p class="text"><p>Gest a key from the current dictionary</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">key</li>
+    </ul><p class="text">Gest a key from the current dictionary</p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">key
-                </label>
+            <dt class="level1"><label class="monospace">key
             </dt>
-            <dd><code>String</code></dd>
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                </dd>
         </dl>
-        <h3>Returns</h3>
-        <dl>
-            <dt class="return"><code>Any</code></dt>
-            <dd>
-            </dd>
-        </dl>
-        
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>Any</code></dt>
+        <dd>
+        </dd>
+    </dl>
+    
 <p class="example-title">Example</p>
   
 {% highlight html %}{% raw %}
@@ -272,8 +268,14 @@ Returns an alias to <code>text()</code>, for convenience. The resulting function
 
     <section id="Ink_Util_I18n_1-Ink_Util_I18n-lang" class="box box-function">
     <h1 class="fw-300">.lang() 
-    <i>method</i></h1><p class="text"><p>Gets or sets the current default language of I18n instances.</p>
-</p>
+    <i>method</i></h1><p class="text">Gets or sets the current default language of I18n instances.</p>
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>String</code></dt>
+        <dd>
+        </dd>
+    </dl>
+    
 
 </section>
 
@@ -281,17 +283,14 @@ Returns an alias to <code>text()</code>, for convenience. The resulting function
     <h1 class="fw-300">.lang(lang) 
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">lang</li>
-    </ul><p class="text"><p>Gets or sets the language.
-If there are more dictionaries available in cache, they will be loaded.</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">lang</li>
+    </ul><p class="text">Gets or sets the language.<br>If there are more dictionaries available in cache, they will be loaded.</p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">lang
-                </label>
+            <dt class="level1"><label class="monospace">lang
             </dt>
-            <dd><code>String</code>Language code to set this instance to.</dd>
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                Language code to set this instance to.</dd>
         </dl>
 
 </section>
@@ -300,41 +299,35 @@ If there are more dictionaries available in cache, they will be loaded.</p>
     <h1 class="fw-300">.ntext(strSin, strPlur, count, [args*]) 
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">strSin</li>
-        <li class="prop">strPlur</li>
-        <li class="prop">count</li>
-        <li class="prop">[args*]</li>
-    </ul><p class="text"><p>Translates and pluralizes text.
-Given a singular string, a plural string and a number, translates either the singular or plural string.</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">strSin</li><li class="prop">strPlur</li><li class="prop">count</li><li class="prop">[args*]</li>
+    </ul><p class="text">Translates and pluralizes text.<br>Given a singular string, a plural string and a number, translates either the singular or plural string.</p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">strSin
-                </label>
+            <dt class="level1"><label class="monospace">strSin
             </dt>
-            <dd><code>String</code>Word to use when count is 1</dd>
-            <dt><label class="monospace">strPlur
-                </label>
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                Word to use when count is 1</dd>
+            <dt class="level1"><label class="monospace">strPlur
             </dt>
-            <dd><code>String</code>Word to use otherwise</dd>
-            <dt><label class="monospace">count
-                </label>
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                Word to use otherwise</dd>
+            <dt class="level1"><label class="monospace">count
             </dt>
-            <dd><code>Number</code>Number which defines which word to use</dd>
-            <dt><label class="monospace">[args*]
+            <dd class="level1"><span class="ink-label orange">Number</span></label>
+                Number which defines which word to use</dd>
+            <dt class="level1"><label class="monospace">[args*]
                 
-                </label>
             </dt>
-            <dd>Extra arguments, to be passed to `text()`</dd>
+            <dd class="level1"></label>
+                Extra arguments, to be passed to `text()`</dd>
         </dl>
-        <h3>Returns</h3>
-        <dl>
-            <dt class="return"><code>String</code></dt>
-            <dd>
-            </dd>
-        </dl>
-        
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>String</code></dt>
+        <dd>
+        </dd>
+    </dl>
+    
 <p class="example-title">Example</p>
   
 {% highlight html %}{% raw %}
@@ -357,43 +350,37 @@ Given a singular string, a plural string and a number, translates either the sin
     <h1 class="fw-300">.ordinal(num, [options], ) 
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">num</li>
-        <li class="prop">[options]</li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-    </ul><p class="text"><p>Gets the ordinal suffix of a number.</p>
-<p>This works by using transforms (in the form of Objects or Functions) passed into the function or found in the special key <code>_ordinals</code> in the active language dictionary.</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">num</li><li class="prop">[options]</li>
+    </ul><p class="text">Gets the ordinal suffix of a number.<br><p>This works by using transforms (in the form of Objects or Functions) passed into the function or found in the special key <code>_ordinals</code> in the active language dictionary.</p></p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">num
-                </label>
+            <dt class="level1"><label class="monospace">num
             </dt>
-            <dd><code>Number</code>Input number</dd>
-            <dt><label class="monospace">[options]
+            <dd class="level1"><span class="ink-label orange">Number</span></label>
+                Input number</dd>
+            <dt class="level1"><label class="monospace">[options]
                 
-                {}</label>
             </dt>
-            <dd><code>Object|Function</code>Maps for translating. Each of these options' fallback is found in the current language's dictionary. The lookup order is the following: `exceptions`, `byLastDigit`, `default`. Each of these may be either an `Object` or a `Function`. If it's a function, it is called (with `number` and `digit` for any function except for byLastDigit, which is called with the `lastDigit` of the number in question), and if the function returns a string, that is used. If it's an object, the property is looked up using `[...]`. If what is found is a string, it is used.</dd>
-            <dt><label class="monospace">[options.byLastDigit]
+            <dd class="level1"><span class="ink-label orange">Object|Function</span>{}</label>
+                Maps for translating. Each of these options' fallback is found in the current language's dictionary. The lookup order is the following: `exceptions`, `byLastDigit`, `default`. Each of these may be either an `Object` or a `Function`. If it's a function, it is called (with `number` and `digit` for any function except for byLastDigit, which is called with the `lastDigit` of the number in question), and if the function returns a string, that is used. If it's an object, the property is looked up using `[...]`. If what is found is a string, it is used.</dd>
+            <dt class="level2"><label class="monospace">[options.byLastDigit]
                 
-                {}</label>
             </dt>
-            <dd><code>Object|Function</code>If the language requires the last digit to be considered, mappings of last digits to ordinal suffixes can be created here.</dd>
-            <dt><label class="monospace">[options.exceptions]
+            <dd class="level2"><span class="ink-label orange">Object|Function</span>{}</label>
+                If the language requires the last digit to be considered, mappings of last digits to ordinal suffixes can be created here.</dd>
+            <dt class="level2"><label class="monospace">[options.exceptions]
                 
-                {}</label>
             </dt>
-            <dd><code>Object|Function</code>Map unique, special cases to their ordinal suffixes.</dd>
+            <dd class="level2"><span class="ink-label orange">Object|Function</span>{}</label>
+                Map unique, special cases to their ordinal suffixes.</dd>
         </dl>
-        <h3>Returns</h3>
-        <dl>
-            <dt class="return"><code>String</code></dt>
-            <dd>
-            </dd>
-        </dl>
-        
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>String</code></dt>
+        <dd>
+        </dd>
+    </dl>
+    
 <p class="example-title">Example</p>
   
 {% highlight html %}{% raw %}
@@ -455,8 +442,7 @@ Given a singular string, a plural string and a number, translates either the sin
 
     <section id="Ink_Util_I18n_1-Ink_Util_I18n-reset" class="box box-function">
     <h1 class="fw-300">.reset() 
-    <i>method</i></h1><p class="text"><p>Resets I18n global state (global dictionaries, and default language for instances)</p>
-</p>
+    <i>method</i></h1><p class="text">Resets I18n global state (global dictionaries, and default language for instances)</p>
 
 </section>
 
@@ -464,17 +450,14 @@ Given a singular string, a plural string and a number, translates either the sin
     <h1 class="fw-300">.testMode(bool) 
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">bool</li>
-    </ul><p class="text"><p>Sets or unsets test mode.
-In test mode, unknown strings are wrapped in <code>[ ... ]</code>. This is useful for debugging your application and to make sure all your translation keys are in place.</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">bool</li>
+    </ul><p class="text">Sets or unsets test mode.<br>In test mode, unknown strings are wrapped in <code>[ ... ]</code>. This is useful for debugging your application and to make sure all your translation keys are in place.</p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">bool
-                </label>
+            <dt class="level1"><label class="monospace">bool
             </dt>
-            <dd><code>Boolean</code>Flag to set the test mode state</dd>
+            <dd class="level1"><span class="ink-label orange">Boolean</span></label>
+                Flag to set the test mode state</dd>
         </dl>
 
 </section>
@@ -483,42 +466,34 @@ In test mode, unknown strings are wrapped in <code>[ ... ]</code>. This is usefu
     <h1 class="fw-300">.text(str, [namedParms], [args], [arg2], [argn*]) 
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">str</li>
-        <li class="prop">[namedParms]</li>
-        <li class="prop">[args]</li>
-        <li class="prop">[arg2]</li>
-        <li class="prop">[argn*]</li>
-    </ul><p class="text"><p>Translates a string.
-Given a translation key, return a translated string, with replaced parameters.
-When a translated string is not available, the original string is returned unchanged.</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">str</li><li class="prop">[namedParms]</li><li class="prop">[args]</li><li class="prop">[arg2]</li><li class="prop">[argn*]</li>
+    </ul><p class="text">Translates a string.<br>Given a translation key, return a translated string, with replaced parameters.<br>When a translated string is not available, the original string is returned unchanged.</p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">str
-                </label>
+            <dt class="level1"><label class="monospace">str
             </dt>
-            <dd><code>String</code>Key to look for in i18n dictionary (which is returned verbatim if unknown)</dd>
-            <dt><label class="monospace">[namedParms]
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                Key to look for in i18n dictionary (which is returned verbatim if unknown)</dd>
+            <dt class="level1"><label class="monospace">[namedParms]
                 
-                </label>
             </dt>
-            <dd><code>Object</code>Named replacements. Replaces {named} with values in this object.</dd>
-            <dt><label class="monospace">[args]
+            <dd class="level1"><span class="ink-label orange">Object</span></label>
+                Named replacements. Replaces {named} with values in this object.</dd>
+            <dt class="level1"><label class="monospace">[args]
                 
-                </label>
             </dt>
-            <dd><code>String</code>Replacement #1 (replaces first {} and all {1})</dd>
-            <dt><label class="monospace">[arg2]
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                Replacement #1 (replaces first {} and all {1})</dd>
+            <dt class="level1"><label class="monospace">[arg2]
                 
-                </label>
             </dt>
-            <dd><code>String</code>Replacement #2 (replaces second {} and all {2})</dd>
-            <dt><label class="monospace">[argn*]
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                Replacement #2 (replaces second {} and all {2})</dd>
+            <dt class="level1"><label class="monospace">[argn*]
                 
-                </label>
             </dt>
-            <dd><code>String</code>Replacement #n (replaces nth {} and all {n})</dd>
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                Replacement #n (replaces nth {} and all {n})</dd>
         </dl>
 <p class="example-title">Example</p>
   
