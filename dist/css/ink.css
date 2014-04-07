@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /**
  * Ink
  *
@@ -5456,6 +5457,7 @@ th {
   height: auto;
   width: auto;
   min-width: 10em;
+  max-width: 12em;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   -ms-border-radius: 2px;
@@ -6076,7 +6078,7 @@ hr {
 
 ul, ol {
   line-height: 1.4;
-  padding: 0 0 0 1.45;
+  padding: 0 0 0 1.45em;
   margin: 1em 0;
 }
 ul li, ol li {
@@ -8367,36 +8369,36 @@ body.ink-drawer.over.right .right-drawer {
   height: 0;
 }
 .ink-tooltip > .arrow.up {
-  border-left: 0.4em solid transparent;
-  border-right: 0.4em solid transparent;
-  border-bottom: 0.4em solid #f0f0f0;
-  top: -0.4em;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 6px solid #f0f0f0;
+  top: -6px;
   left: 50%;
-  margin-left: -0.2em;
+  margin-left: -3px;
 }
 .ink-tooltip > .arrow.down {
-  border-left: 0.4em solid transparent;
-  border-right: 0.4em solid transparent;
-  border-top: 0.4em solid #f0f0f0;
-  bottom: -0.36364em;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid #f0f0f0;
+  bottom: -5.45455px;
   left: 50%;
-  margin-left: -0.2em;
+  margin-left: -3px;
 }
 .ink-tooltip > .arrow.right {
-  border-top: 0.4em solid transparent;
-  border-bottom: 0.4em solid transparent;
-  border-left: 0.4em solid #f0f0f0;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-left: 6px solid #f0f0f0;
   top: 50%;
-  right: -0.36364em;
-  margin-top: -0.4em;
+  right: -5.45455px;
+  margin-top: -6px;
 }
 .ink-tooltip > .arrow.left {
-  border-top: 0.4em solid transparent;
-  border-bottom: 0.4em solid transparent;
-  border-right: 0.4em solid #f0f0f0;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-right: 6px solid #f0f0f0;
   top: 50%;
-  left: -0.36364em;
-  margin-top: -0.4em;
+  left: -5.45455px;
+  margin-top: -6px;
 }
 .ink-tooltip.blue > .content {
   background: #0f75da;

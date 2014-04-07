@@ -20,6 +20,10 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
         return ret;
     };
 
+    /**
+     * @namespace Ink.UI.Common_1
+     */
+
     var Common = {
 
         /**
