@@ -1,0 +1,10 @@
+<p class="example-title">Code</p>
+{% highlight js %}
+Ink.requireModules(['Ink.Util.Array_1'], function(InkArray) {
+
+    var testArray = [ 'value1', 'value2' ];
+    InkArray.insert(testArray, 1, 'value3'); 
+    Ink.log(testArray);
+    // ["value1", "value3", "value2"] 
+});
+{% endhighlight %}

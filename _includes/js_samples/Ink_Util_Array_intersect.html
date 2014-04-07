@@ -1,0 +1,13 @@
+<p class="example-title">Code</p>
+{% highlight js %}
+Ink.requireModules(['Ink.Util.Array_1'], function(InkArray) {
+
+    var testArray1 = [ 'value1', 'value2', 'value3' ];
+    var testArray2 = [ 'value2', 'value3', 'value4', 'value5', 'value6' ];
+
+    var matches = InkArray.intersect(testArray1, testArray2);
+
+    Ink.log(matches);
+    // ["value2", "value3"] 
+});
+{% endhighlight %}

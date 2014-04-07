@@ -1,0 +1,14 @@
+<p class="example-title">Code</p>
+{% highlight js %}
+Ink.requireModules(['Ink.Util.Array_1'], function(InkArray) {
+
+    var testArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    var oddArray = InkArray.filter(testArray, function(item) {
+            return ((item % 2) === 0); 
+        });
+
+    Ink.log(oddArray);
+    // [2, 4, 6, 8, 10] 
+});
+{% endhighlight %}
+
