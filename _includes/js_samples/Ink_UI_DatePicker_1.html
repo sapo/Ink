@@ -1,14 +1,12 @@
-<p>Basic usage</p>
-
 {% capture example_code %}
 <div class="ink-form">
-    <div class="control-group">
-        <div class="control">
-            <input type="text" id="myDatePicker"
-                class="ink-datepicker" />
+    <div class="control-group column-group no-margin">
+        <div class="control all-30">
+            <input type="text" id="myDatePicker" class="ink-datepicker" />
         </div>
     </div>
 </div>
+
 <script>
     // Not required if you're using autoload.js
     Ink.requireModules(['Ink.Dom.Selector_1','Ink.UI.DatePicker_1'],function( Selector, DatePicker ){
@@ -18,7 +16,9 @@
 {% endcapture %}
 
 <p class="example-title">Demo</p>
+<div class="example">
 {{ example_code }}
+</div>
 
 <p class="example-title">Code</p>
 {% highlight html %}
@@ -26,21 +26,13 @@
 {% endhighlight %}
 
 
-
-
-<hr>
-
-
-<p>Start date, end date and default date</p>
-
-<p>Below, you can only select dates between 15<sup>th</sup> November 2012 and today.</p>
-
-<p>It has December 31<sup>st</sup> 2013 filled in by default.</p>
+<p>If you need to define a start and end date, check the example below, where you can only select dates between 15<sup>th</sup> November 2012 and today.</p>
+<p><i class="fa fa-leaf"></i> It has December 31<sup>st</sup> 2013 filled in by default.</p>
 
 {% capture example_code_1 %}
 <div class="ink-form">
-    <div class="control-group">
-        <div class="control">
+    <div class="control-group column-group no-margin">
+        <div class="control all-30">
             <input type="text" id="myDatePicker2"
                 class="ink-datepicker"
                 data-date-range="2012-11-15:NOW"
@@ -48,6 +40,7 @@
         </div>
     </div>
 </div>
+
 <script>
     // Not required if you're using autoload.js
     Ink.requireModules(['Ink.UI.DatePicker_1'],function(DatePicker) {
@@ -57,8 +50,9 @@
 {% endcapture %}
 
 <p class="example-title">Demo</p>
+<div class="example">
 {{ example_code_1 }}
-
+</div>
 <p class="example-title">Code</p>
 {% highlight html %}
 {{ example_code_1 }}

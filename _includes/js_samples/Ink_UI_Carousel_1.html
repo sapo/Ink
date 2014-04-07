@@ -1,46 +1,46 @@
-<p>Basic usage, with pagination</p>
-
+<p class="example-title">Demo</p>
+<div class="example">
 {% capture demo_code %}
 <div id="my-carousel-1" class="ink-carousel">
     <ul class="stage column-group half-gutters">
-        <li class="slide xlarge-25 large-25 medium-33 small-50 tiny-100">
-        <img src="http://lorempixel.com/400/200/sports/1">
-        <div class="description">
-            <h4>Highlight Title</h4>
-            <p>This is a paragraph</p>
-        </div>
+        <li class="slide all-33 small-50 tiny-100">
+            <img class="quarter-bottom-space" src="http://lorempixel.com/400/200/sports/1">
+            <div class="description">
+                <h4>Title</h4>
+                <p>Description paragraph</p>
+            </div>
         </li>
 
-        <li class="slide xlarge-25 large-25 medium-33 small-50 tiny-100">
-        <img src="http://lorempixel.com/400/200/sports/2">
-        <div class="description">
-            <h4>Highlight Title</h4>
-            <p>This is a paragraph</p>
-        </div>
+        <li class="slide all-33 small-50 tiny-100">
+            <img class="quarter-bottom-space" src="http://lorempixel.com/400/200/sports/2">
+            <div class="description">
+                <h4>Title</h4>
+                <p>Description paragraph</p>
+            </div>
         </li>
 
-        <li class="slide xlarge-25 large-25 medium-33 small-50 tiny-100">
-        <img src="http://lorempixel.com/400/200/sports/3">
-        <div class="description">
-            <h4>Highlight Title</h4>
-            <p>This is a paragraph</p>
-        </div>
+        <li class="slide all-33 small-50 tiny-100">
+            <img class="quarter-bottom-space" src="http://lorempixel.com/400/200/sports/3">
+            <div class="description">
+                <h4>Title</h4>
+                <p>Description paragraph</p>
+            </div>
         </li>
 
-        <li class="slide xlarge-25 large-25 medium-33 small-50 tiny-100">
-        <img src="http://lorempixel.com/400/200/sports/4">
-        <div class="description">
-            <h4>Highlight Title</h4>
-            <p>This is a paragraph</p>
-        </div>
+        <li class="slide all-33 small-50 tiny-100">
+            <img class="quarter-bottom-space" src="http://lorempixel.com/400/200/sports/4">
+            <div class="description">
+                <h4>Title</h4>
+                <p>Description paragraph</p>
+            </div>
         </li>
 
-        <li class="slide xlarge-25 large-25 medium-33 small-50 tiny-100">
-        <img src="http://lorempixel.com/400/200/sports/8">
-        <div class="description">
-            <h4>Highlight Title</h4>
-            <p>This is a paragraph</p>
-        </div>
+        <li class="slide all-33 small-50 tiny-100">
+            <img class="quarter-bottom-space" src="http://lorempixel.com/400/200/sports/8">
+            <div class="description">
+                <h4>Title</h4>
+                <p>Description paragraph</p>
+            </div>
         </li>
     </ul>
 </div>
@@ -56,48 +56,44 @@
         new Carousel('#my-carousel-1', { pagination: '#my-carousel-1-pagination' })
     });
 </script>
-{% endcapture %}
 
+{% endcapture %}
 {{ demo_code }}
+</div>
+
 
 <p class="example-title">Code</p>
 {% highlight html %}
-{{ demo_code1 }}
+{{ demo_code }}
 {% endhighlight %}
 
-
-
-
-<p>Creating a simple slideshow</p>
-
 <p>Creating a slideshow is just like creating a carousel, except each slide has the <code>all-100</code> class, making it fill the whole page.</p>
-
 {% capture demo_code1 %}
 <div id="my-carousel-2" class="ink-carousel">
     <ul class="stage column-group">
         <li class="slide all-100">
-            <img src="http://lorempixel.com/400/200/sports/1">
+            <img src="http://lorempixel.com/1200/600/sports/1">
         </li>
 
         <li class="slide all-100">
-            <img src="http://lorempixel.com/400/200/sports/2">
+            <img src="http://lorempixel.com/1200/600/sports/2">
         </li>
 
         <li class="slide all-100">
-            <img src="http://lorempixel.com/400/200/sports/3">
+            <img src="http://lorempixel.com/1200/600/sports/3">
         </li>
 
         <li class="slide all-100">
-            <img src="http://lorempixel.com/400/200/sports/4">
+            <img src="http://lorempixel.com/1200/600/sports/4">
         </li>
 
         <li class="slide all-100">
-            <img src="http://lorempixel.com/400/200/sports/8">
+            <img src="http://lorempixel.com/1200/600/sports/8">
         </li>
     </ul>
 </div>
 
-<nav id="my-carousel-2-pagination" class="ink-navigation">
+<nav id="my-carousel-2-pagination" class="ink-navigation half-top-space">
     <ul class="pagination black">
     </ul>
 </nav>
@@ -110,7 +106,10 @@
 </script>
 {% endcapture %}
 
+<p class="example-title">Demo</p>
+<div class="example">
 {{ demo_code1 }}
+</div>
 
 <p class="example-title">Code</p>
 {% highlight html %}

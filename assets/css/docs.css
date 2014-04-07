@@ -5,7 +5,7 @@
 
 .fw-300, ul.props li.prop.breakpoint-aware:after, .example .ink-grid .column,
 html.flexbox .example .ink-grid .column, #home section.download a.ink-button.download,
-#home section.download a.ink-button.repo {
+#home section.download a.ink-button.repo, .example-box {
   font-weight: 300;
   font-family: Roboto;
 }
@@ -1210,6 +1210,44 @@ p.loader.show {
 #search-results .result-snippet em {
   background: rgba(255, 0, 0, 0.1);
   padding: 0 .5em;
+}
+
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@-webkit-keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.fadeOut {
+  -webkit-animation-name: fadeOut;
+  animation-name: fadeOut;
+}
+
+.example-box {
+  padding: 1em;
+  border: 1px #d0c7b7 solid;
+  background: #e0dacf;
 }
 
 @media screen and (min-width: 641px) and (max-width: 960px) {

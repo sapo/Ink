@@ -1,7 +1,7 @@
 ---
 layout: js-documentation
 title: Ink.UI.FormValidator_2
-description: Form Validation
+description: <p>Form Validation</p>
 site_root:  ../
 ---
     <section>
@@ -54,49 +54,49 @@ site_root:  ../
                 <td>
                     <a href="#Ink_UI_FormValidator_2-Ink_UI_FormValidator_2-AppendI18n">.AppendI18n</a>
                 </td>
-                <td>Add to the I18n dictionary.</td>
+                <td><p>Add to the I18n dictionary.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_FormValidator_2-Ink_UI_FormValidator_2-getElements">.getElements</a>
                 </td>
-                <td>Searches for the elements in the form.</td>
+                <td><p>Searches for the elements in the form.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_FormValidator_2-Ink_UI_FormValidator_2-getI18n">.getI18n</a>
                 </td>
-                <td>Gets the i18n object in charge of the error messages</td>
+                <td><p>Gets the i18n object in charge of the error messages</p></td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_FormValidator_2-Ink_UI_FormValidator_2-getRules">.getRules</a>
                 </td>
-                <td>Method used to get the existing defined validation functions</td>
+                <td><p>Method used to get the existing defined validation functions</p></td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_FormValidator_2-Ink_UI_FormValidator_2-setI18n">.setI18n</a>
                 </td>
-                <td>Sets the I18n object for validation error messages</td>
+                <td><p>Sets the I18n object for validation error messages</p></td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_FormValidator_2-Ink_UI_FormValidator_2-setLanguage">.setLanguage</a>
                 </td>
-                <td>Sets the language of the error messages.</td>
+                <td><p>Sets the language of the error messages.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_FormValidator_2-Ink_UI_FormValidator_2-setRule">.setRule</a>
                 </td>
-                <td>Sets or modifies validation functions</td>
+                <td><p>Sets or modifies validation functions</p></td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_FormValidator_2-Ink_UI_FormValidator_2-validate">.validate</a>
                 </td>
-                <td>Validates every registered FormElement </td>
+                <td><p>Validates every registered FormElement </td>
             </tr></tbody>
     </table>
     
@@ -119,40 +119,40 @@ site_root:  ../
     </ul>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><code>String|DOMElement</code></dt>
-            <dd><label class="monospace">selector
+            <dt><label class="monospace">selector
                 </label>
-                Either a CSS Selector string, or the form's DOMElement</dd>
-            <dt><code>String</code></dt>
-            <dd><label class="monospace">[options.eventTrigger]
+            </dt>
+            <dd><code>String|DOMElement</code>Either a CSS Selector string, or the form's DOMElement</dd>
+            <dt><label class="monospace">[options.eventTrigger]
                 
                 </label>
-                Event that will trigger the validation. Defaults to 'submit'.</dd>
-            <dt><code>Boolean</code></dt>
-            <dd><label class="monospace">[options.neverSubmit]
+            </dt>
+            <dd><code>String</code>Event that will trigger the validation. Defaults to 'submit'.</dd>
+            <dt><label class="monospace">[options.neverSubmit]
                 
                 </label>
-                Flag to cancel the submit event. Use this to avoid submitting the form.</dd>
-            <dt><code>Selector</code></dt>
-            <dd><label class="monospace">[options.searchFor]
+            </dt>
+            <dd><code>Boolean</code>Flag to cancel the submit event. Use this to avoid submitting the form.</dd>
+            <dt><label class="monospace">[options.searchFor]
                 
                 </label>
-                Selector containing the validation data-attributes. Defaults to 'input, select, textarea, .control-group'.</dd>
-            <dt><code>Function</code></dt>
-            <dd><label class="monospace">[options.beforeValidation]
+            </dt>
+            <dd><code>Selector</code>Selector containing the validation data-attributes. Defaults to 'input, select, textarea, .control-group'.</dd>
+            <dt><label class="monospace">[options.beforeValidation]
                 
                 </label>
-                Callback to be executed before validating the form</dd>
-            <dt><code>Function</code></dt>
-            <dd><label class="monospace">[options.onError]
+            </dt>
+            <dd><code>Function</code>Callback to be executed before validating the form</dd>
+            <dt><label class="monospace">[options.onError]
                 
                 </label>
-                Validation error callback</dd>
-            <dt><code>Function</code></dt>
-            <dd><label class="monospace">[options.onSuccess]
+            </dt>
+            <dd><code>Function</code>Validation error callback</dd>
+            <dt><label class="monospace">[options.onSuccess]
                 
                 </label>
-                Validation success callback</dd>
+            </dt>
+            <dd><code>Function</code>Validation success callback</dd>
         </dl>
 <p class="example-title">Example</p>
   
@@ -206,10 +206,10 @@ This method is based in the this._options.searchFor configuration.</p>
 </p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><code>Ink.Util.I18n</code></dt>
-            <dd><label class="monospace">i18n
+            <dt><label class="monospace">i18n
                 </label>
-                The I18n object.</dd>
+            </dt>
+            <dd><code>Ink.Util.I18n</code>The I18n object.</dd>
         </dl>
 
 </section>
@@ -226,10 +226,10 @@ pt_PT and en_US are available, but you can add new languages by using append()</
 </p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt></dt>
-            <dd><label class="monospace">language
+            <dt><label class="monospace">language
                 </label>
-                The language to set i18n to.</dd>
+            </dt>
+            <dd>The language to set i18n to.</dd>
         </dl>
 
 </section>
@@ -246,18 +246,18 @@ pt_PT and en_US are available, but you can add new languages by using append()</
 </p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><code>String</code></dt>
-            <dd><label class="monospace">name
+            <dt><label class="monospace">name
                 </label>
-                Name of the function. E.g. 'required'</dd>
-            <dt><code>String</code></dt>
-            <dd><label class="monospace">errorMessage
+            </dt>
+            <dd><code>String</code>Name of the function. E.g. 'required'</dd>
+            <dt><label class="monospace">errorMessage
                 </label>
-                Error message to be displayed in case of returning false. E.g. 'Oops, you passed {param1} as parameter1, lorem ipsum dolor...'</dd>
-            <dt><code>Function</code></dt>
-            <dd><label class="monospace">cb
+            </dt>
+            <dd><code>String</code>Error message to be displayed in case of returning false. E.g. 'Oops, you passed {param1} as parameter1, lorem ipsum dolor...'</dd>
+            <dt><label class="monospace">cb
                 </label>
-                Function to be executed when calling this rule</dd>
+            </dt>
+            <dd><code>Function</code>Function to be executed when calling this rule</dd>
         </dl>
 
 </section>
@@ -274,10 +274,10 @@ Also, based on the this._options.beforeValidation, this._options.onError, and th
 </p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><code>Event</code></dt>
-            <dd><label class="monospace">event
+            <dt><label class="monospace">event
                 </label>
-                Window.event object</dd>
+            </dt>
+            <dd><code>Event</code>Window.event object</dd>
         </dl>
         <h3>Returns</h3>
         <dl>
@@ -302,14 +302,14 @@ Also, based on the this._options.beforeValidation, this._options.onError, and th
 </p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><code>String</code></dt>
-            <dd><label class="monospace">value
+            <dt><label class="monospace">value
                 </label>
-                Value to be checked</dd>
-            <dt><code>Boolean</code></dt>
-            <dd><label class="monospace">supportSpaces
+            </dt>
+            <dd><code>String</code>Value to be checked</dd>
+            <dt><label class="monospace">supportSpaces
                 </label>
-                Allow whitespace</dd>
+            </dt>
+            <dd><code>Boolean</code>Allow whitespace</dd>
         </dl>
         <h3>Returns</h3>
         <dl>
@@ -330,10 +330,10 @@ Also, based on the this._options.beforeValidation, this._options.onError, and th
 </p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><code>String</code></dt>
-            <dd><label class="monospace">value
+            <dt><label class="monospace">value
                 </label>
-                Value to be checked</dd>
+            </dt>
+            <dd><code>String</code>Value to be checked</dd>
         </dl>
         <h3>Returns</h3>
         <dl>
@@ -354,10 +354,10 @@ Also, based on the this._options.beforeValidation, this._options.onError, and th
 </p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><code>String</code></dt>
-            <dd><label class="monospace">value
+            <dt><label class="monospace">value
                 </label>
-                Value to be checked</dd>
+            </dt>
+            <dd><code>String</code>Value to be checked</dd>
         </dl>
         <h3>Returns</h3>
         <dl>
@@ -378,10 +378,10 @@ Also, based on the this._options.beforeValidation, this._options.onError, and th
 </p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><code>String</code></dt>
-            <dd><label class="monospace">value
+            <dt><label class="monospace">value
                 </label>
-                Value to be checked</dd>
+            </dt>
+            <dd><code>String</code>Value to be checked</dd>
         </dl>
         <h3>Returns</h3>
         <dl>
@@ -403,14 +403,14 @@ Also, based on the this._options.beforeValidation, this._options.onError, and th
 </p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><code>String</code></dt>
-            <dd><label class="monospace">value
+            <dt><label class="monospace">value
                 </label>
-                Value to be checked</dd>
-            <dt><code>String</code></dt>
-            <dd><label class="monospace">cardType
+            </dt>
+            <dd><code>String</code>Value to be checked</dd>
+            <dt><label class="monospace">cardType
                 </label>
-                Type of credit card to be validated. The card types available are in the Ink.Util.Validator class.</dd>
+            </dt>
+            <dd><code>String</code>Type of credit card to be validated. The card types available are in the Ink.Util.Validator class.</dd>
         </dl>
         <h3>Returns</h3>
         <dl>
@@ -432,14 +432,14 @@ Also, based on the this._options.beforeValidation, this._options.onError, and th
 </p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><code>String</code></dt>
-            <dd><label class="monospace">value
+            <dt><label class="monospace">value
                 </label>
-                Value to be checked</dd>
-            <dt><code>String</code></dt>
-            <dd><label class="monospace">format
+            </dt>
+            <dd><code>String</code>Value to be checked</dd>
+            <dt><label class="monospace">format
                 </label>
-                Specific format of the date.</dd>
+            </dt>
+            <dd><code>String</code>Specific format of the date.</dd>
         </dl>
         <h3>Returns</h3>
         <dl>
@@ -463,24 +463,24 @@ Also, based on the this._options.beforeValidation, this._options.onError, and th
 </p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><code>String</code></dt>
-            <dd><label class="monospace">value
+            <dt><label class="monospace">value
                 </label>
-                Value to be checked</dd>
-            <dt><code>String</code></dt>
-            <dd><label class="monospace">decimalSeparator
+            </dt>
+            <dd><code>String</code>Value to be checked</dd>
+            <dt><label class="monospace">decimalSeparator
                 </label>
-                Character that splits the integer part from the decimal one. By default is '.'.</dd>
-            <dt><code>String</code></dt>
-            <dd><label class="monospace">[decimalPlaces]
+            </dt>
+            <dd><code>String</code>Character that splits the integer part from the decimal one. By default is '.'.</dd>
+            <dt><label class="monospace">[decimalPlaces]
                 
                 </label>
-                Maximum number of digits that the decimal part must have.</dd>
-            <dt><code>String</code></dt>
-            <dd><label class="monospace">[leftDigits]
+            </dt>
+            <dd><code>String</code>Maximum number of digits that the decimal part must have.</dd>
+            <dt><label class="monospace">[leftDigits]
                 
                 </label>
-                Maximum number of digits that the integer part must have, when provided.</dd>
+            </dt>
+            <dd><code>String</code>Maximum number of digits that the integer part must have, when provided.</dd>
         </dl>
         <h3>Returns</h3>
         <dl>
@@ -501,10 +501,10 @@ Also, based on the this._options.beforeValidation, this._options.onError, and th
 </p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><code>String</code></dt>
-            <dd><label class="monospace">value
+            <dt><label class="monospace">value
                 </label>
-                Value to be checked</dd>
+            </dt>
+            <dd><code>String</code>Value to be checked</dd>
         </dl>
         <h3>Returns</h3>
         <dl>
@@ -525,10 +525,10 @@ Also, based on the this._options.beforeValidation, this._options.onError, and th
 </p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><code>String</code></dt>
-            <dd><label class="monospace">value
+            <dt><label class="monospace">value
                 </label>
-                Value to be checked</dd>
+            </dt>
+            <dd><code>String</code>Value to be checked</dd>
         </dl>
         <h3>Returns</h3>
         <dl>
@@ -550,14 +550,14 @@ Also, based on the this._options.beforeValidation, this._options.onError, and th
 </p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><code>String</code></dt>
-            <dd><label class="monospace">value
+            <dt><label class="monospace">value
                 </label>
-                Value to be checked</dd>
-            <dt><code>String|Number</code></dt>
-            <dd><label class="monospace">exactSize
+            </dt>
+            <dd><code>String</code>Value to be checked</dd>
+            <dt><label class="monospace">exactSize
                 </label>
-                Exact number of characters.</dd>
+            </dt>
+            <dd><code>String|Number</code>Exact number of characters.</dd>
         </dl>
         <h3>Returns</h3>
         <dl>
@@ -603,14 +603,14 @@ Also, based on the this._options.beforeValidation, this._options.onError, and th
 </p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><code>String</code></dt>
-            <dd><label class="monospace">value
+            <dt><label class="monospace">value
                 </label>
-                Value to be checked</dd>
-            <dt><code>String</code></dt>
-            <dd><label class="monospace">positive
+            </dt>
+            <dd><code>String</code>Value to be checked</dd>
+            <dt><label class="monospace">positive
                 </label>
-                Flag that specifies if the integer is must be positive (unsigned).</dd>
+            </dt>
+            <dd><code>String</code>Flag that specifies if the integer is must be positive (unsigned).</dd>
         </dl>
         <h3>Returns</h3>
         <dl>
@@ -632,14 +632,14 @@ Also, based on the this._options.beforeValidation, this._options.onError, and th
 </p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><code>String</code></dt>
-            <dd><label class="monospace">value
+            <dt><label class="monospace">value
                 </label>
-                Value to be checked</dd>
-            <dt><code>String</code></dt>
-            <dd><label class="monospace">ipType
+            </dt>
+            <dd><code>String</code>Value to be checked</dd>
+            <dt><label class="monospace">ipType
                 </label>
-                Type of IP to be validated. The values are: ipv4, ipv6. By default is ipv4.</dd>
+            </dt>
+            <dd><code>String</code>Type of IP to be validated. The values are: ipv4, ipv6. By default is ipv4.</dd>
         </dl>
         <h3>Returns</h3>
         <dl>
@@ -661,14 +661,14 @@ Also, based on the this._options.beforeValidation, this._options.onError, and th
 </p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><code>String</code></dt>
-            <dd><label class="monospace">value
+            <dt><label class="monospace">value
                 </label>
-                Value to be checked.</dd>
-            <dt><code>String|Number</code></dt>
-            <dd><label class="monospace">maxSize
+            </dt>
+            <dd><code>String</code>Value to be checked.</dd>
+            <dt><label class="monospace">maxSize
                 </label>
-                Maximum number of characters.</dd>
+            </dt>
+            <dd><code>String|Number</code>Maximum number of characters.</dd>
         </dl>
         <h3>Returns</h3>
         <dl>
@@ -690,14 +690,14 @@ Also, based on the this._options.beforeValidation, this._options.onError, and th
 </p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><code>String</code></dt>
-            <dd><label class="monospace">value
+            <dt><label class="monospace">value
                 </label>
-                Value to be checked.</dd>
-            <dt><code>String|Number</code></dt>
-            <dd><label class="monospace">minSize
+            </dt>
+            <dd><code>String</code>Value to be checked.</dd>
+            <dt><label class="monospace">minSize
                 </label>
-                Minimum number of characters.</dd>
+            </dt>
+            <dd><code>String|Number</code>Minimum number of characters.</dd>
         </dl>
         <h3>Returns</h3>
         <dl>
@@ -721,24 +721,24 @@ Also, based on the this._options.beforeValidation, this._options.onError, and th
 </p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><code>String</code></dt>
-            <dd><label class="monospace">value
+            <dt><label class="monospace">value
                 </label>
-                Value to be checked</dd>
-            <dt><code>String</code></dt>
-            <dd><label class="monospace">decimalSeparator
+            </dt>
+            <dd><code>String</code>Value to be checked</dd>
+            <dt><label class="monospace">decimalSeparator
                 </label>
-                Checks if it's a valid decimal. Otherwise checks if it's a valid integer.</dd>
-            <dt><code>String</code></dt>
-            <dd><label class="monospace">[decimalPlaces]
+            </dt>
+            <dd><code>String</code>Checks if it's a valid decimal. Otherwise checks if it's a valid integer.</dd>
+            <dt><label class="monospace">[decimalPlaces]
                 
                 </label>
-                Maximum number of digits the decimal part must have.</dd>
-            <dt><code>String</code></dt>
-            <dd><label class="monospace">[leftDigits]
+            </dt>
+            <dd><code>String</code>Maximum number of digits the decimal part must have.</dd>
+            <dt><label class="monospace">[leftDigits]
                 
                 </label>
-                Maximum number of digits the integer part must have, when provided.</dd>
+            </dt>
+            <dd><code>String</code>Maximum number of digits the integer part must have, when provided.</dd>
         </dl>
         <h3>Returns</h3>
         <dl>
@@ -761,14 +761,14 @@ Supports several countries, based in the Ink.Util.Validator class.</p>
 </p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><code>String</code></dt>
-            <dd><label class="monospace">value
+            <dt><label class="monospace">value
                 </label>
-                Value to be checked</dd>
-            <dt><code>String</code></dt>
-            <dd><label class="monospace">phoneType
+            </dt>
+            <dd><code>String</code>Value to be checked</dd>
+            <dt><label class="monospace">phoneType
                 </label>
-                Country's initials to specify the type of phone number to be validated. Ex: 'AO'.</dd>
+            </dt>
+            <dd><code>String</code>Country's initials to specify the type of phone number to be validated. Ex: 'AO'.</dd>
         </dl>
         <h3>Returns</h3>
         <dl>
@@ -793,23 +793,23 @@ The parameters after the first one are used to specify the range, and are simila
 </p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><code>String</code></dt>
-            <dd><label class="monospace">value
+            <dt><label class="monospace">value
                 </label>
-                Value to be checked</dd>
-            <dt><code>String</code></dt>
-            <dd><label class="monospace">minValue
+            </dt>
+            <dd><code>String</code>Value to be checked</dd>
+            <dt><label class="monospace">minValue
                 </label>
-                Left limit of the range.</dd>
-            <dt><code>String</code></dt>
-            <dd><label class="monospace">maxValue
+            </dt>
+            <dd><code>String</code>Left limit of the range.</dd>
+            <dt><label class="monospace">maxValue
                 </label>
-                Right limit of the range.</dd>
-            <dt><code>String</code></dt>
-            <dd><label class="monospace">[multipleOf]
+            </dt>
+            <dd><code>String</code>Right limit of the range.</dd>
+            <dt><label class="monospace">[multipleOf]
                 
                 </label>
-                In case you want numbers that are only multiples of another number.</dd>
+            </dt>
+            <dd><code>String</code>In case you want numbers that are only multiples of another number.</dd>
         </dl>
         <h3>Returns</h3>
         <dl>
@@ -830,10 +830,10 @@ The parameters after the first one are used to specify the range, and are simila
 </p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><code>String</code></dt>
-            <dd><label class="monospace">value
+            <dt><label class="monospace">value
                 </label>
-                Value to be checked</dd>
+            </dt>
+            <dd><code>String</code>Value to be checked</dd>
         </dl>
         <h3>Returns</h3>
         <dl>
@@ -855,14 +855,14 @@ The parameters after the first one are used to specify the range, and are simila
 </p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><code>String</code></dt>
-            <dd><label class="monospace">value
+            <dt><label class="monospace">value
                 </label>
-                Value to be checked</dd>
-            <dt><code>Boolean</code></dt>
-            <dd><label class="monospace">fullCheck
+            </dt>
+            <dd><code>String</code>Value to be checked</dd>
+            <dt><label class="monospace">fullCheck
                 </label>
-                Flag to validate a full url (with the protocol).</dd>
+            </dt>
+            <dd><code>Boolean</code>Flag to validate a full url (with the protocol).</dd>
         </dl>
         <h3>Returns</h3>
         <dl>

@@ -51,15 +51,6 @@
         <dl class="params">
         {{~#each params}}
             <dt>
-                {{~#if type~}}
-                    <code>{{type}}</code>
-                {{~/if~}}
-            </dt>
-            <dd>
-                {{~#if optionname ~}}
-                    teste
-                {{~/if~}}
-
                 {{~#if isOptional~}}
                 <label class="monospace">[{{~name}}]
                 {{else~}}
@@ -69,6 +60,12 @@
                     {{~defaultValue~}}
                 {{~/if~}}
                 </label>
+            </dt>
+            <dd>
+                {{~#if type~}}
+                    <code>{{type}}</code>
+                {{~/if~}}
+                
                 {{#if description~}}
                     {{~{description}~}}
                 {{~/if~}}

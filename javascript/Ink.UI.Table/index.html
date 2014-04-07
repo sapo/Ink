@@ -1,13 +1,13 @@
 ---
 layout: js-documentation
 title: Ink.UI.Table_1
-description: Sort and paginate tabular data
+description: <p>Sort and paginate tabular data</p>
 site_root:  ../
 ---
     <section>
         <h1 class="fw-300">Ink.UI.Table_1<small>version:1</small></h1>
 
-<p>The Table component transforms the native/DOM table element into a sortable, paginated component.<br><p>You can use this component to display data from a JSON endpoint, or<br>from table rows in the DOM. Displaying from the DOM is more practical,<br>but sometimes you don&#39;t want to load everything at once (if you have<br>a HUGE table). In those cases, you should configure Ink.UI.Table to<br>get data from JSON endpoint.</p><br><p>To enable sorting, just set the <code>data-sortable</code> attribute of your table headers (they must be in the <code>thead</code> of the table) to &quot;true&quot;.</p><br><p>To enable pagination, you should pass either an <code>Ink.UI.Pagination</code> instance or a selector to create the Ink.UI.Paginate element on.</p><br></p>
+<p><br>You can use this component to display data from a JSON endpoint, or<br>from table rows in the DOM. Displaying from the DOM is more practical,<br>but sometimes you don&#39;t want to load everything at once (if you have<br>a HUGE table). In those cases, you should configure Ink.UI.Table to<br>get data from JSON endpoint.<br><br><br></p>
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space">
         <caption>Methods</caption>
         <thead>
@@ -28,7 +28,7 @@ site_root:  ../
                 <td>
                     <a href="#Ink_UI_Table_1-Ink_UI_Table-setEndpoint">.setEndpoint</a>
                 </td>
-                <td>Sets the AJAX endpoint.</td>
+                <td><p>Sets the AJAX endpoint.</td>
             </tr></tbody>
     </table>
     
@@ -63,103 +63,103 @@ site_root:  ../
     </ul>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><code>String|DOMElement</code></dt>
-            <dd><label class="monospace">selector
+            <dt><label class="monospace">selector
                 </label>
-                </dd>
-            <dt><code>Object</code></dt>
-            <dd><label class="monospace">[options]
+            </dt>
+            <dd><code>String|DOMElement</code></dd>
+            <dt><label class="monospace">[options]
                 
                 </label>
-                Options</dd>
-            <dt><code>Number</code></dt>
-            <dd><label class="monospace">[options.pageSize]
+            </dt>
+            <dd><code>Object</code>Options</dd>
+            <dt><label class="monospace">[options.pageSize]
                 
                 </label>
-                Number of rows per page. Omit to avoid paginating.</dd>
-            <dt><code>String</code></dt>
-            <dd><label class="monospace">[options.endpoint]
+            </dt>
+            <dd><code>Number</code>Number of rows per page. Omit to avoid paginating.</dd>
+            <dt><label class="monospace">[options.endpoint]
                 
                 </label>
-                Endpoint to get the records via AJAX. Omit if you don't want to do AJAX</dd>
-            <dt><code>Function</code></dt>
-            <dd><label class="monospace">[options.createEndpointUrl]
+            </dt>
+            <dd><code>String</code>Endpoint to get the records via AJAX. Omit if you don't want to do AJAX</dd>
+            <dt><label class="monospace">[options.createEndpointUrl]
                 
                 </label>
-                Callback to customise what URL the AJAX endpoint is at. Receives three arguments: base (the "endpoint" option), sort (`{ order: 'asc' or 'desc', field: fieldname }`) and page ({ page: page number, size: items per page })</dd>
-            <dt><code>Function</code></dt>
-            <dd><label class="monospace">[options.getDataFromEndPoint]
+            </dt>
+            <dd><code>Function</code>Callback to customise what URL the AJAX endpoint is at. Receives three arguments: base (the "endpoint" option), sort (`{ order: 'asc' or 'desc', field: fieldname }`) and page ({ page: page number, size: items per page })</dd>
+            <dt><label class="monospace">[options.getDataFromEndPoint]
                 
                 </label>
-                Callback to allow the user to retrieve the data himself given an URL.  Must accept two arguments: `url` and `callback`. This `callback` will take as a single argument a JavaScript object.</dd>
-            <dt><code>Function</code></dt>
-            <dd><label class="monospace">[options.processJSONRows]
+            </dt>
+            <dd><code>Function</code>Callback to allow the user to retrieve the data himself given an URL.  Must accept two arguments: `url` and `callback`. This `callback` will take as a single argument a JavaScript object.</dd>
+            <dt><label class="monospace">[options.processJSONRows]
                 
                 </label>
-                Retrieve an array of rows from the data which came from AJAX.</dd>
-            <dt><code>Function</code></dt>
-            <dd><label class="monospace">[options.processJSONHeaders]
+            </dt>
+            <dd><code>Function</code>Retrieve an array of rows from the data which came from AJAX.</dd>
+            <dt><label class="monospace">[options.processJSONHeaders]
                 
                 </label>
-                Get an object with all the headers' names as keys, and a { label, sortable } object as value.  Example: `{col1: {label: "Column 1"}, col2: {label: "Column 2", sortable: true}`.  Takes a single argument, the JSON response.</dd>
-            <dt><code>Function</code></dt>
-            <dd><label class="monospace">[options.processJSONRow]
+            </dt>
+            <dd><code>Function</code>Get an object with all the headers' names as keys, and a { label, sortable } object as value.  Example: `{col1: {label: "Column 1"}, col2: {label: "Column 2", sortable: true}`.  Takes a single argument, the JSON response.</dd>
+            <dt><label class="monospace">[options.processJSONRow]
                 
                 </label>
-                Process a row object before it gets on the table.</dd>
-            <dt><code>Function</code></dt>
-            <dd><label class="monospace">[options.processJSONField]
+            </dt>
+            <dd><code>Function</code>Process a row object before it gets on the table.</dd>
+            <dt><label class="monospace">[options.processJSONField]
                 
                 </label>
-                Process the field data before putting it on the table.  You can return HTML, a DOM element, or a string here.  Arguments you receive: `(column, fieldData, rowIndex)`.</dd>
-            <dt><code>Function</code></dt>
-            <dd><label class="monospace">[options.processJSONField.FIELD_NAME]
+            </dt>
+            <dd><code>Function</code>Process the field data before putting it on the table.  You can return HTML, a DOM element, or a string here.  Arguments you receive: `(column, fieldData, rowIndex)`.</dd>
+            <dt><label class="monospace">[options.processJSONField.FIELD_NAME]
                 
                 </label>
-                The same as processJSONField, but for a particular field.</dd>
-            <dt><code>Function</code></dt>
-            <dd><label class="monospace">[options.processJSONTotalRows]
+            </dt>
+            <dd><code>Function</code>The same as processJSONField, but for a particular field.</dd>
+            <dt><label class="monospace">[options.processJSONTotalRows]
                 
                 </label>
-                A callback where you have a chance to say how many rows are in the dataset (not only on this page) you have on the collection. You get as an argument the JSON response.</dd>
-            <dt><code>Function</code></dt>
-            <dd><label class="monospace">[options.getSortKey]
+            </dt>
+            <dd><code>Function</code>A callback where you have a chance to say how many rows are in the dataset (not only on this page) you have on the collection. You get as an argument the JSON response.</dd>
+            <dt><label class="monospace">[options.getSortKey]
                 
                 </label>
-                A function taking a `{ columnIndex, columnName, data, element }` object and returning a value which serves as a sort key for the sorting operation. For example, if you want to sort by a `data-sort-key` atribute, set `getSortKey` to: function (cell) { return cell.element.getAttribute('data-sort-key'); }</dd>
-            <dt><code>Function</code></dt>
-            <dd><label class="monospace">[options.getSortKey.FIELD_NAME]
+            </dt>
+            <dd><code>Function</code>A function taking a `{ columnIndex, columnName, data, element }` object and returning a value which serves as a sort key for the sorting operation. For example, if you want to sort by a `data-sort-key` atribute, set `getSortKey` to: function (cell) { return cell.element.getAttribute('data-sort-key'); }</dd>
+            <dt><label class="monospace">[options.getSortKey.FIELD_NAME]
                 
                 </label>
-                Same as `options.getSortKey`, but for a particular field.</dd>
-            <dt><code>Object</code></dt>
-            <dd><label class="monospace">[options.tdClassNames]
+            </dt>
+            <dd><code>Function</code>Same as `options.getSortKey`, but for a particular field.</dd>
+            <dt><label class="monospace">[options.tdClassNames]
                 
                 </label>
-                An object mapping each field to what classes it gets.  Example: `{ name: "large-10", isBoss: "hide-small" }`</dd>
-            <dt><code>Mixed</code></dt>
-            <dd><label class="monospace">[options.pagination]
+            </dt>
+            <dd><code>Object</code>An object mapping each field to what classes it gets.  Example: `{ name: "large-10", isBoss: "hide-small" }`</dd>
+            <dt><label class="monospace">[options.pagination]
                 
                 </label>
-                Pagination instance, element or selector.</dd>
-            <dt><code>Object</code></dt>
-            <dd><label class="monospace">[options.paginationOptions]
+            </dt>
+            <dd><code>Mixed</code>Pagination instance, element or selector.</dd>
+            <dt><label class="monospace">[options.paginationOptions]
                 
                 </label>
-                Override the options with which we instantiate the Ink.UI.Pagination.</dd>
-            <dt><code>Boolean</code></dt>
-            <dd><label class="monospace">[options.allowResetSorting]
+            </dt>
+            <dd><code>Object</code>Override the options with which we instantiate the Ink.UI.Pagination.</dd>
+            <dt><label class="monospace">[options.allowResetSorting]
                 
                 </label>
-                Allow sort order to be set to "none" in addition to "ascending" and "descending"</dd>
-            <dt><code>String|Array</code></dt>
-            <dd><label class="monospace">[options.visibleFields]
+            </dt>
+            <dd><code>Boolean</code>Allow sort order to be set to "none" in addition to "ascending" and "descending"</dd>
+            <dt><label class="monospace">[options.visibleFields]
                 
                 </label>
-                Set of fields which get shown on the table</dd>
+            </dt>
+            <dd><code>String|Array</code>Set of fields which get shown on the table</dd>
         </dl>
 
-<h3>Samples</h3>
+<!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_UI_Table_1.html %}
 	</section>
 
@@ -174,10 +174,10 @@ Useful to change the endpoint in runtime.</p>
 </p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><code>String</code></dt>
-            <dd><label class="monospace">endpoint
+            <dt><label class="monospace">endpoint
                 </label>
-                New endpoint</dd>
+            </dt>
+            <dd><code>String</code>New endpoint</dd>
         </dl>
 
 </section>

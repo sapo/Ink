@@ -1,14 +1,17 @@
 {{! fiddle: http://jsfiddle.net/hxKp7/ }}
 
-<p>Fading out a label</p>
-
 {% capture example_code %}
-<button id="animate-me" class="ink-button">Animate!</button>
-<span class="ink-label blue ink-animate"
+<button id="animate-me" class="ink-button blue">Animate!</button>
+<div class="ink-animate example-box half-top-space"
     id="animated"
     data-trigger="#animate-me"
     data-animation="fadeOut"
-    data-removeClass="false">I am the animated label</span>
+    data-removeClass="false">
+    <h3>I am the animated box</h3>
+    <p>
+        Animation is the process of creating a continuous motion and shape change illusion by means of the rapid display of a sequence of static images that minimally differ from each other. The illusion—as in motion pictures in general—is thought to rely on the phi phenomenon.
+    </p>
+</div>
 
 <script type="text/javascript">
     // Note: this step is not necessary if you are using autoload.js
@@ -20,15 +23,16 @@
 
 
 <p class="example-title">Demo</p>
+<div class="example">
 {{ example_code }}
-
+</div>
 <p class="example-title">Code</p>
 {% highlight html %}
 {{ example_code }}
 {% endhighlight %}
 
 
-<p>Fade out and remove an element</p>
+<p>Fade out and remove an element.</p>
 
 <p class="example-title">Code</p>
 {% highlight javascript %}
@@ -44,7 +48,7 @@ Ink.requireModules(['Ink.UI.Animate_1', 'Ink.Dom.Element_1'], function (Animate,
 {% endhighlight %}
 
 
-<p>Create an element, place it and fade it in</p>
+<p>Create an element, place it and fade it in.</p>
 <p class="example-title">Code</p>
 {% highlight javascript %}
 Ink.requireModules(['Ink.UI.Animate_1', 'Ink.Dom.Element_1'], function (Animate, InkElement) {
