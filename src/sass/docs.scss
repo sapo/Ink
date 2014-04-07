@@ -996,6 +996,47 @@ p.loader {
     }
 }
 
+// JS Documentation
+
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@-webkit-keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.fadeOut {
+  -webkit-animation-name: fadeOut;
+  animation-name: fadeOut;
+}
+
+.example-box {
+    padding: 1em;
+    border: 1px darken($code-background,15%) solid;
+    background: darken($code-background,7%);
+    @extend .fw-300;
+}
+
 @media screen and (min-width: 641px) and (max-width: 960px) {
     #topbar .ink-navigation ul.black li.logoPlaceholder {float: right;}
 }
