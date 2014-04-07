@@ -24,13 +24,13 @@
     <ul class="props inline">
         <li class="heading">Arguments:</li>
         {{~#foreach params}}
-        <li class="prop">
         {{~#if isFirstLevel~}}
+        <li class="prop">
         {{~#if isOptional~}}[{{~/if~}}
         {{~name~}}
         {{~#if isOptional~}}]{{~/if~}}
-        {{~/if~}}
         </li>
+        {{~/if~}}
         {{~/foreach}}
     </ul>
     {{~/if}}
