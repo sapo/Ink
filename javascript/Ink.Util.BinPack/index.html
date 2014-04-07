@@ -1,13 +1,13 @@
 ---
 layout: js-documentation
 title: Ink.Util.BinPack_1
-description: <p>Binary Packing algorithm implementation</p>
+description: Binary Packing algorithm implementation
 site_root:  ../
 ---
     <section>
         <h1 class="fw-300">Ink.Util.BinPack_1<small>version:1</small></h1>
 
-<p><br><br><br></p>
+<p>Binary Packing algorithm implementation<br><p>Based on the work of Jake Gordon</p><br><p>see <a href="https://github.com/jakesgordon/bin-packing/">https://github.com/jakesgordon/bin-packing/</a></p></p>
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space"><caption>Functions</caption>
         <thead>
             <tr>
@@ -33,40 +33,36 @@ site_root:  ../
     <h1 class="fw-300">.binPack(o, ) 
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">o</li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
+        <li class="heading">Arguments:</li><li class="prop">o</li>
     </ul>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">o
-                </label>
+            <dt class="level1"><label class="monospace">o
             </dt>
-            <dd><code>Object</code>Options</dd>
-            <dt><label class="monospace">o.blocks
-                </label>
+            <dd class="level1"><span class="ink-label orange">Object</span></label>
+                Options</dd>
+            <dt class="level2"><label class="monospace">o.blocks
             </dt>
-            <dd><code>Array</code>Array of items with width and height integer attributes.</dd>
-            <dt><label class="monospace">[o.dimensions]
+            <dd class="level2"><span class="ink-label orange">Array</span></label>
+                Array of items with width and height integer attributes.</dd>
+            <dt class="level2"><label class="monospace">[o.dimensions]
                 
-                </label>
             </dt>
-            <dd><code>Array</code>Flag to fix container dimensions</dd>
-            <dt><label class="monospace">[o.sorter]
+            <dd class="level2"><span class="ink-label orange">Array</span></label>
+                Flag to fix container dimensions</dd>
+            <dt class="level2"><label class="monospace">[o.sorter]
                 
-                </label>
             </dt>
-            <dd><code>String</code>Sorting function. One of: random, height, width, area, maxside</dd>
+            <dd class="level2"><span class="ink-label orange">String</span></label>
+                Sorting function. One of: random, height, width, area, maxside</dd>
         </dl>
-        <h3>Returns</h3>
-        <dl>
-            <dt class="return"><code>Object</code></dt>
-            <dd>
-            </dd>
-        </dl>
-        
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>Object</code></dt>
+        <dd>Returns an object containing container dimensions, filled ratio, fitted blocks, unfitted blocks and all blocks
+        </dd>
+    </dl>
+    
 
 </section>
 

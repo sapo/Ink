@@ -1,7 +1,7 @@
 ---
 layout: js-documentation
 title: Ink.UI.Carousel_1
-description: <p>Flexible Carousel</p>
+description: Flexible Carousel
 site_root:  ../
 ---
     <section>
@@ -28,61 +28,61 @@ site_root:  ../
                 <td>
                     <a href="#Ink_UI_Carousel_1-Ink_UI_Carousel_1-getPage">.getPage</a>
                 </td>
-                <td><p>Gets the current page index</p></td>
+                <td>Gets the current page index</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_Carousel_1-Ink_UI_Carousel_1-getSlidesList">.getSlidesList</a>
                 </td>
-                <td><p>Get a list of your slides (elements with the &quot;.slide&quot; class inside your stage)</p></td>
+                <td>Get a list of your slides (elements with the &quot;.slide&quot; class inside your stage)</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_Carousel_1-Ink_UI_Carousel_1-getSlidesPerPage">.getSlidesPerPage</a>
                 </td>
-                <td><p>Returns how many slides fit into a page</p></td>
+                <td>Returns how many slides fit into a page</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_Carousel_1-Ink_UI_Carousel_1-getStageElm">.getStageElm</a>
                 </td>
-                <td><p>Get the stage element (your UL with the class &quot;.stage&quot;).</p></td>
+                <td>Get the stage element (your UL with the class &quot;.stage&quot;).</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_Carousel_1-Ink_UI_Carousel_1-getTotalPages">.getTotalPages</a>
                 </td>
-                <td><p>Get the amount of pages in the carousel.</p></td>
+                <td>Get the amount of pages in the carousel.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_Carousel_1-Ink_UI_Carousel_1-getTotalSlides">.getTotalSlides</a>
                 </td>
-                <td><p>Get the total number of slides</p></td>
+                <td>Get the total number of slides</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_Carousel_1-Ink_UI_Carousel_1-nextPage">.nextPage</a>
                 </td>
-                <td><p>Goes to the next page</p></td>
+                <td>Goes to the next page</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_Carousel_1-Ink_UI_Carousel_1-previousPage">.previousPage</a>
                 </td>
-                <td><p>Goes to the previous page</p></td>
+                <td>Goes to the previous page</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_Carousel_1-Ink_UI_Carousel_1-refit">.refit</a>
                 </td>
-                <td><p>Repositions elements around.</td>
+                <td>Repositions elements around.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_Carousel_1-Ink_UI_Carousel_1-setPage">.setPage</a>
                 </td>
-                <td><p>Sets the current page index</p></td>
+                <td>Sets the current page index</td>
             </tr></tbody>
     </table>
     
@@ -94,69 +94,59 @@ site_root:  ../
     <h1 class="fw-300">Ink.UI.Carousel_1(selector, [options], ) 
     <i>constructor</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">selector</li>
-        <li class="prop">[options]</li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
+        <li class="heading">Arguments:</li><li class="prop">selector</li><li class="prop">[options]</li>
     </ul>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">selector
-                </label>
+            <dt class="level1"><label class="monospace">selector
             </dt>
-            <dd><code>String|DOMElement</code>DOM element or element id</dd>
-            <dt><label class="monospace">[options]
+            <dd class="level1"><span class="ink-label orange">String|DOMElement</span></label>
+                DOM element or element id</dd>
+            <dt class="level1"><label class="monospace">[options]
                 
-                </label>
             </dt>
-            <dd><code>Object</code>Carousel Options</dd>
-            <dt><label class="monospace">[options.autoAdvance]
+            <dd class="level1"><span class="ink-label orange">Object</span></label>
+                Carousel Options</dd>
+            <dt class="level2"><label class="monospace">[options.autoAdvance]
                 
-                </label>
             </dt>
-            <dd><code>Integer</code>Milliseconds to wait before auto-advancing pages. Set to 0 to disable auto-advance. Defaults to 0.</dd>
-            <dt><label class="monospace">[options.axis]
+            <dd class="level2"><span class="ink-label orange">Integer</span></label>
+                Milliseconds to wait before auto-advancing pages. Set to 0 to disable auto-advance. Defaults to 0.</dd>
+            <dt class="level2"><label class="monospace">[options.axis]
                 
-                </label>
             </dt>
-            <dd><code>String</code>Axis of the carousel. Set to 'y' for a vertical carousel. Defaults to 'x'.</dd>
-            <dt><label class="monospace">[options.center]
+            <dd class="level2"><span class="ink-label orange">String</span></label>
+                Axis of the carousel. Set to 'y' for a vertical carousel. Defaults to 'x'.</dd>
+            <dt class="level2"><label class="monospace">[options.center]
                 
-                </label>
             </dt>
-            <dd><code>Boolean</code>Flag to center the carousel horizontally.</dd>
-            <dt><label class="monospace">[options.initialPage]
+            <dd class="level2"><span class="ink-label orange">Boolean</span></label>
+                Flag to center the carousel horizontally.</dd>
+            <dt class="level2"><label class="monospace">[options.initialPage]
                 
-                </label>
             </dt>
-            <dd><code>Number</code>Initial index page of the carousel. Defaults to 0.</dd>
-            <dt><label class="monospace">[options.spaceAfterLastSlide]
+            <dd class="level2"><span class="ink-label orange">Number</span></label>
+                Initial index page of the carousel. Defaults to 0.</dd>
+            <dt class="level2"><label class="monospace">[options.spaceAfterLastSlide]
                 
-                true</label>
             </dt>
-            <dd><code>Boolean</code>If there are not enough slides to fill the full width of the last page, leave white space. Defaults to `true`.</dd>
-            <dt><label class="monospace">[options.swipe]
+            <dd class="level2"><span class="ink-label orange">Boolean</span>true</label>
+                If there are not enough slides to fill the full width of the last page, leave white space. Defaults to `true`.</dd>
+            <dt class="level2"><label class="monospace">[options.swipe]
                 
-                </label>
             </dt>
-            <dd><code>Boolean</code>Enable swipe support if available. Defaults to true.</dd>
-            <dt><label class="monospace">[options.pagination]
+            <dd class="level2"><span class="ink-label orange">Boolean</span></label>
+                Enable swipe support if available. Defaults to true.</dd>
+            <dt class="level2"><label class="monospace">[options.pagination]
                 
-                </label>
             </dt>
-            <dd><code>Mixed</code>Either an ul element to add pagination markup to or an `Ink.UI.Pagination` instance to use.</dd>
-            <dt><label class="monospace">[options.onChange]
+            <dd class="level2"><span class="ink-label orange">Mixed</span></label>
+                Either an ul element to add pagination markup to or an `Ink.UI.Pagination` instance to use.</dd>
+            <dt class="level2"><label class="monospace">[options.onChange]
                 
-                </label>
             </dt>
-            <dd><code>Function</code>Callback to be called when the page changes.</dd>
+            <dd class="level2"><span class="ink-label orange">Function</span></label>
+                Callback to be called when the page changes.</dd>
         </dl>
 
 <!--<h3>Samples</h3>-->
@@ -165,43 +155,79 @@ site_root:  ../
 
     <section id="Ink_UI_Carousel_1-Ink_UI_Carousel_1-getPage" class="box box-function">
     <h1 class="fw-300">.getPage() 
-    <i>method</i></h1><p class="text"><p>Gets the current page index</p>
-</p>
+    <i>method</i></h1><p class="text">Gets the current page index</p>
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"></dt>
+        <dd>The current page number
+        </dd>
+    </dl>
+    
 
 </section>
 
     <section id="Ink_UI_Carousel_1-Ink_UI_Carousel_1-getSlidesList" class="box box-function">
     <h1 class="fw-300">.getSlidesList() 
-    <i>method</i></h1><p class="text"><p>Get a list of your slides (elements with the &quot;.slide&quot; class inside your stage)</p>
-</p>
+    <i>method</i></h1><p class="text">Get a list of your slides (elements with the &quot;.slide&quot; class inside your stage)</p>
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>DOMElement[]</code></dt>
+        <dd>Array containing the slides.
+        </dd>
+    </dl>
+    
 
 </section>
 
     <section id="Ink_UI_Carousel_1-Ink_UI_Carousel_1-getSlidesPerPage" class="box box-function">
     <h1 class="fw-300">.getSlidesPerPage() 
-    <i>method</i></h1><p class="text"><p>Returns how many slides fit into a page</p>
-</p>
+    <i>method</i></h1><p class="text">Returns how many slides fit into a page</p>
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>Number</code></dt>
+        <dd>The number of slides per page
+        </dd>
+    </dl>
+    
 
 </section>
 
     <section id="Ink_UI_Carousel_1-Ink_UI_Carousel_1-getStageElm" class="box box-function">
     <h1 class="fw-300">.getStageElm() 
-    <i>method</i></h1><p class="text"><p>Get the stage element (your UL with the class &quot;.stage&quot;).</p>
-</p>
+    <i>method</i></h1><p class="text">Get the stage element (your UL with the class &quot;.stage&quot;).</p>
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>DOMElement</code></dt>
+        <dd>Stage element
+        </dd>
+    </dl>
+    
 
 </section>
 
     <section id="Ink_UI_Carousel_1-Ink_UI_Carousel_1-getTotalPages" class="box box-function">
     <h1 class="fw-300">.getTotalPages() 
-    <i>method</i></h1><p class="text"><p>Get the amount of pages in the carousel.</p>
-</p>
+    <i>method</i></h1><p class="text">Get the amount of pages in the carousel.</p>
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>Number</code></dt>
+        <dd>The number of pages
+        </dd>
+    </dl>
+    
 
 </section>
 
     <section id="Ink_UI_Carousel_1-Ink_UI_Carousel_1-getTotalSlides" class="box box-function">
     <h1 class="fw-300">.getTotalSlides() 
-    <i>method</i></h1><p class="text"><p>Get the total number of slides</p>
-</p>
+    <i>method</i></h1><p class="text">Get the total number of slides</p>
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>Number</code></dt>
+        <dd>The number of slides
+        </dd>
+    </dl>
+    
 
 </section>
 
@@ -209,17 +235,15 @@ site_root:  ../
     <h1 class="fw-300">.nextPage([wrap]) 
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">[wrap]</li>
-    </ul><p class="text"><p>Goes to the next page</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">[wrap]</li>
+    </ul><p class="text">Goes to the next page</p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">[wrap]
+            <dt class="level1"><label class="monospace">[wrap]
                 
-                </label>
             </dt>
-            <dd><code>Boolean</code>Flag to loop from last page to first page.</dd>
+            <dd class="level1"><span class="ink-label orange">Boolean</span></label>
+                Flag to loop from last page to first page.</dd>
         </dl>
 
 </section>
@@ -228,26 +252,22 @@ site_root:  ../
     <h1 class="fw-300">.previousPage([wrap]) 
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">[wrap]</li>
-    </ul><p class="text"><p>Goes to the previous page</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">[wrap]</li>
+    </ul><p class="text">Goes to the previous page</p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">[wrap]
+            <dt class="level1"><label class="monospace">[wrap]
                 
-                </label>
             </dt>
-            <dd><code>Boolean</code>Flag to loop from first page to last page.</dd>
+            <dd class="level1"><span class="ink-label orange">Boolean</span></label>
+                Flag to loop from first page to last page.</dd>
         </dl>
 
 </section>
 
     <section id="Ink_UI_Carousel_1-Ink_UI_Carousel_1-refit" class="box box-function">
     <h1 class="fw-300">.refit() 
-    <i>method</i></h1><p class="text"><p>Repositions elements around.
-Measure the carousel once again, adjusting the involved elements&#39; sizes. This is called automatically when the window resizes, in order to cater for changes from responsive media queries, for instance.</p>
-</p>
+    <i>method</i></h1><p class="text">Repositions elements around.<br>Measure the carousel once again, adjusting the involved elements&#39; sizes. This is called automatically when the window resizes, in order to cater for changes from responsive media queries, for instance.</p>
 
 </section>
 
@@ -255,22 +275,19 @@ Measure the carousel once again, adjusting the involved elements&#39; sizes. Thi
     <h1 class="fw-300">.setPage(page, [wrap]) 
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">page</li>
-        <li class="prop">[wrap]</li>
-    </ul><p class="text"><p>Sets the current page index</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">page</li><li class="prop">[wrap]</li>
+    </ul><p class="text">Sets the current page index</p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">page
-                </label>
+            <dt class="level1"><label class="monospace">page
             </dt>
-            <dd><code>Number</code>Index of the destination page.</dd>
-            <dt><label class="monospace">[wrap]
+            <dd class="level1"><span class="ink-label orange">Number</span></label>
+                Index of the destination page.</dd>
+            <dt class="level1"><label class="monospace">[wrap]
                 
-                </label>
             </dt>
-            <dd><code>Boolean</code>Flag to activate circular counting.</dd>
+            <dd class="level1"><span class="ink-label orange">Boolean</span></label>
+                Flag to activate circular counting.</dd>
         </dl>
 
 </section>

@@ -1,7 +1,7 @@
 ---
 layout: js-documentation
 title: Ink.UI.Modal_1
-description: <p>Modal dialog prompts</p>
+description: Modal dialog prompts
 site_root:  ../
 ---
     <section>
@@ -28,31 +28,31 @@ site_root:  ../
                 <td>
                     <a href="#Ink_UI_Modal_1-Ink_UI_Modal-destroy">.destroy</a>
                 </td>
-                <td><p>Removes the modal from the DOM</p></td>
+                <td>Removes the modal from the DOM</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_Modal_1-Ink_UI_Modal-dismiss">.dismiss</a>
                 </td>
-                <td><p>Closes the modal</p></td>
+                <td>Closes the modal</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_Modal_1-Ink_UI_Modal-getContentElement">.getContentElement</a>
                 </td>
-                <td><p>Returns the content DOM element</p></td>
+                <td>Returns the content DOM element</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_Modal_1-Ink_UI_Modal-open">.open</a>
                 </td>
-                <td><p>Opens this Modal. </td>
+                <td>Opens this Modal. </td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_Modal_1-Ink_UI_Modal-setContentMarkup">.setContentMarkup</a>
                 </td>
-                <td><p>Replaces the content markup</p></td>
+                <td>Replaces the content markup</td>
             </tr></tbody>
     </table>
     
@@ -64,105 +64,89 @@ site_root:  ../
     <h1 class="fw-300">Ink.UI.Modal(selector, [options], ) 
     <i>constructor</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">selector</li>
-        <li class="prop">[options]</li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
+        <li class="heading">Arguments:</li><li class="prop">selector</li><li class="prop">[options]</li>
     </ul>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">selector
-                </label>
+            <dt class="level1"><label class="monospace">selector
             </dt>
-            <dd><code>String|DOMElement</code>Element or ID</dd>
-            <dt><label class="monospace">[options]
+            <dd class="level1"><span class="ink-label orange">String|DOMElement</span></label>
+                Element or ID</dd>
+            <dt class="level1"><label class="monospace">[options]
                 
-                </label>
             </dt>
-            <dd><code>Object</code>Options</dd>
-            <dt><label class="monospace">[options.width]
+            <dd class="level1"><span class="ink-label orange">Object</span></label>
+                Options</dd>
+            <dt class="level2"><label class="monospace">[options.width]
                 
-                </label>
             </dt>
-            <dd><code>String</code>Default/Initial width. Ex: '600px'</dd>
-            <dt><label class="monospace">[options.height]
+            <dd class="level2"><span class="ink-label orange">String</span></label>
+                Default/Initial width. Ex: '600px'</dd>
+            <dt class="level2"><label class="monospace">[options.height]
                 
-                </label>
             </dt>
-            <dd><code>String</code>Default/Initial height. Ex: '400px'</dd>
-            <dt><label class="monospace">[options.shadeClass]
+            <dd class="level2"><span class="ink-label orange">String</span></label>
+                Default/Initial height. Ex: '400px'</dd>
+            <dt class="level2"><label class="monospace">[options.shadeClass]
                 
-                </label>
             </dt>
-            <dd><code>String</code>Custom class to be added to the div.ink-shade</dd>
-            <dt><label class="monospace">[options.modalClass]
+            <dd class="level2"><span class="ink-label orange">String</span></label>
+                Custom class to be added to the div.ink-shade</dd>
+            <dt class="level2"><label class="monospace">[options.modalClass]
                 
-                </label>
             </dt>
-            <dd><code>String</code>Custom class to be added to the div.ink-modal</dd>
-            <dt><label class="monospace">[options.trigger]
+            <dd class="level2"><span class="ink-label orange">String</span></label>
+                Custom class to be added to the div.ink-modal</dd>
+            <dt class="level2"><label class="monospace">[options.trigger]
                 
-                </label>
             </dt>
-            <dd><code>String</code>CSS Selector for target elements that will trigger the Modal.</dd>
-            <dt><label class="monospace">[options.triggerEvent]
+            <dd class="level2"><span class="ink-label orange">String</span></label>
+                CSS Selector for target elements that will trigger the Modal.</dd>
+            <dt class="level2"><label class="monospace">[options.triggerEvent]
                 
-                </label>
             </dt>
-            <dd><code>String</code>Trigger's event to be listened. Defaults to 'click'.</dd>
-            <dt><label class="monospace">[options.autoDisplay]
+            <dd class="level2"><span class="ink-label orange">String</span></label>
+                Trigger's event to be listened. Defaults to 'click'.</dd>
+            <dt class="level2"><label class="monospace">[options.autoDisplay]
                 
-                </label>
             </dt>
-            <dd><code>Boolean</code>Displays the Modal automatically when constructed.</dd>
-            <dt><label class="monospace">[options.markup]
+            <dd class="level2"><span class="ink-label orange">Boolean</span></label>
+                Displays the Modal automatically when constructed.</dd>
+            <dt class="level2"><label class="monospace">[options.markup]
                 
-                </label>
             </dt>
-            <dd><code>String</code>Markup to be placed in the Modal when created</dd>
-            <dt><label class="monospace">[options.onShow]
+            <dd class="level2"><span class="ink-label orange">String</span></label>
+                Markup to be placed in the Modal when created</dd>
+            <dt class="level2"><label class="monospace">[options.onShow]
                 
-                </label>
             </dt>
-            <dd><code>Function</code>Callback function to run when the Modal is opened.</dd>
-            <dt><label class="monospace">[options.onDismiss]
+            <dd class="level2"><span class="ink-label orange">Function</span></label>
+                Callback function to run when the Modal is opened.</dd>
+            <dt class="level2"><label class="monospace">[options.onDismiss]
                 
-                </label>
             </dt>
-            <dd><code>Function</code>Callback function to run when the Modal is closed. Return `false` to cancel dismissing the Modal.</dd>
-            <dt><label class="monospace">[options.closeOnClick]
+            <dd class="level2"><span class="ink-label orange">Function</span></label>
+                Callback function to run when the Modal is closed. Return `false` to cancel dismissing the Modal.</dd>
+            <dt class="level2"><label class="monospace">[options.closeOnClick]
                 
-                </label>
             </dt>
-            <dd><code>Boolean</code>Flag to close the modal when clicking outside of it.</dd>
-            <dt><label class="monospace">[options.closeOnEscape]
+            <dd class="level2"><span class="ink-label orange">Boolean</span></label>
+                Flag to close the modal when clicking outside of it.</dd>
+            <dt class="level2"><label class="monospace">[options.closeOnEscape]
                 
-                </label>
             </dt>
-            <dd><code>Boolean</code>Determines if the Modal should close when "Esc" key is pressed. Defaults to true.</dd>
-            <dt><label class="monospace">[options.responsive]
+            <dd class="level2"><span class="ink-label orange">Boolean</span></label>
+                Determines if the Modal should close when "Esc" key is pressed. Defaults to true.</dd>
+            <dt class="level2"><label class="monospace">[options.responsive]
                 
-                </label>
             </dt>
-            <dd><code>Boolean</code>Determines if the Modal should behave responsively (adapt to smaller viewports).</dd>
-            <dt><label class="monospace">[options.disableScroll]
+            <dd class="level2"><span class="ink-label orange">Boolean</span></label>
+                Determines if the Modal should behave responsively (adapt to smaller viewports).</dd>
+            <dt class="level2"><label class="monospace">[options.disableScroll]
                 
-                </label>
             </dt>
-            <dd><code>Boolean</code>Determines if the Modal should 'disable' the page's scroll (not the Modal's body).</dd>
+            <dd class="level2"><span class="ink-label orange">Boolean</span></label>
+                Determines if the Modal should 'disable' the page's scroll (not the Modal's body).</dd>
         </dl>
 
 <!--<h3>Samples</h3>-->
@@ -171,22 +155,26 @@ site_root:  ../
 
     <section id="Ink_UI_Modal_1-Ink_UI_Modal-destroy" class="box box-function">
     <h1 class="fw-300">.destroy() 
-    <i>method</i></h1><p class="text"><p>Removes the modal from the DOM</p>
-</p>
+    <i>method</i></h1><p class="text">Removes the modal from the DOM</p>
 
 </section>
 
     <section id="Ink_UI_Modal_1-Ink_UI_Modal-dismiss" class="box box-function">
     <h1 class="fw-300">.dismiss() 
-    <i>method</i></h1><p class="text"><p>Closes the modal</p>
-</p>
+    <i>method</i></h1><p class="text">Closes the modal</p>
 
 </section>
 
     <section id="Ink_UI_Modal_1-Ink_UI_Modal-getContentElement" class="box box-function">
     <h1 class="fw-300">.getContentElement() 
-    <i>method</i></h1><p class="text"><p>Returns the content DOM element</p>
-</p>
+    <i>method</i></h1><p class="text">Returns the content DOM element</p>
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>DOMElement</code></dt>
+        <dd>Modal main cointainer.
+        </dd>
+    </dl>
+    
 
 </section>
 
@@ -194,18 +182,15 @@ site_root:  ../
     <h1 class="fw-300">.open([event]) 
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">[event]</li>
-    </ul><p class="text"><p>Opens this Modal. 
-Useful if you have initialized the modal</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">[event]</li>
+    </ul><p class="text">Opens this Modal. <br>Useful if you have initialized the modal</p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">[event]
+            <dt class="level1"><label class="monospace">[event]
                 
-                </label>
             </dt>
-            <dd><code>Event</code>(internal) In case its fired by the internal trigger.</dd>
+            <dd class="level1"><span class="ink-label orange">Event</span></label>
+                (internal) In case its fired by the internal trigger.</dd>
         </dl>
 
 </section>
@@ -214,16 +199,14 @@ Useful if you have initialized the modal</p>
     <h1 class="fw-300">.setContentMarkup(contentMarkup) 
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">contentMarkup</li>
-    </ul><p class="text"><p>Replaces the content markup</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">contentMarkup</li>
+    </ul><p class="text">Replaces the content markup</p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">contentMarkup
-                </label>
+            <dt class="level1"><label class="monospace">contentMarkup
             </dt>
-            <dd><code>String</code></dd>
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                </dd>
         </dl>
 
 </section>

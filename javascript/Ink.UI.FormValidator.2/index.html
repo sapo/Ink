@@ -1,7 +1,7 @@
 ---
 layout: js-documentation
 title: Ink.UI.FormValidator_2
-description: <p>Form Validation</p>
+description: Form Validation
 site_root:  ../
 ---
     <section>
@@ -54,49 +54,49 @@ site_root:  ../
                 <td>
                     <a href="#Ink_UI_FormValidator_2-Ink_UI_FormValidator_2-AppendI18n">.AppendI18n</a>
                 </td>
-                <td><p>Add to the I18n dictionary.</td>
+                <td>Add to the I18n dictionary.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_FormValidator_2-Ink_UI_FormValidator_2-getElements">.getElements</a>
                 </td>
-                <td><p>Searches for the elements in the form.</td>
+                <td>Searches for the elements in the form.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_FormValidator_2-Ink_UI_FormValidator_2-getI18n">.getI18n</a>
                 </td>
-                <td><p>Gets the i18n object in charge of the error messages</p></td>
+                <td>Gets the i18n object in charge of the error messages</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_FormValidator_2-Ink_UI_FormValidator_2-getRules">.getRules</a>
                 </td>
-                <td><p>Method used to get the existing defined validation functions</p></td>
+                <td>Method used to get the existing defined validation functions</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_FormValidator_2-Ink_UI_FormValidator_2-setI18n">.setI18n</a>
                 </td>
-                <td><p>Sets the I18n object for validation error messages</p></td>
+                <td>Sets the I18n object for validation error messages</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_FormValidator_2-Ink_UI_FormValidator_2-setLanguage">.setLanguage</a>
                 </td>
-                <td><p>Sets the language of the error messages.</td>
+                <td>Sets the language of the error messages.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_FormValidator_2-Ink_UI_FormValidator_2-setRule">.setRule</a>
                 </td>
-                <td><p>Sets or modifies validation functions</p></td>
+                <td>Sets or modifies validation functions</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_FormValidator_2-Ink_UI_FormValidator_2-validate">.validate</a>
                 </td>
-                <td><p>Validates every registered FormElement </td>
+                <td>Validates every registered FormElement </td>
             </tr></tbody>
     </table>
     
@@ -108,51 +108,44 @@ site_root:  ../
     <h1 class="fw-300">Ink.UI.FormValidator_2(selector, ) 
     <i>constructor</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">selector</li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
+        <li class="heading">Arguments:</li><li class="prop">selector</li>
     </ul>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">selector
-                </label>
+            <dt class="level1"><label class="monospace">selector
             </dt>
-            <dd><code>String|DOMElement</code>Either a CSS Selector string, or the form's DOMElement</dd>
-            <dt><label class="monospace">[options.eventTrigger]
+            <dd class="level1"><span class="ink-label orange">String|DOMElement</span></label>
+                Either a CSS Selector string, or the form's DOMElement</dd>
+            <dt class="level2"><label class="monospace">[options.eventTrigger]
                 
-                </label>
             </dt>
-            <dd><code>String</code>Event that will trigger the validation. Defaults to 'submit'.</dd>
-            <dt><label class="monospace">[options.neverSubmit]
+            <dd class="level2"><span class="ink-label orange">String</span></label>
+                Event that will trigger the validation. Defaults to 'submit'.</dd>
+            <dt class="level2"><label class="monospace">[options.neverSubmit]
                 
-                </label>
             </dt>
-            <dd><code>Boolean</code>Flag to cancel the submit event. Use this to avoid submitting the form.</dd>
-            <dt><label class="monospace">[options.searchFor]
+            <dd class="level2"><span class="ink-label orange">Boolean</span></label>
+                Flag to cancel the submit event. Use this to avoid submitting the form.</dd>
+            <dt class="level2"><label class="monospace">[options.searchFor]
                 
-                </label>
             </dt>
-            <dd><code>Selector</code>Selector containing the validation data-attributes. Defaults to 'input, select, textarea, .control-group'.</dd>
-            <dt><label class="monospace">[options.beforeValidation]
+            <dd class="level2"><span class="ink-label orange">Selector</span></label>
+                Selector containing the validation data-attributes. Defaults to 'input, select, textarea, .control-group'.</dd>
+            <dt class="level2"><label class="monospace">[options.beforeValidation]
                 
-                </label>
             </dt>
-            <dd><code>Function</code>Callback to be executed before validating the form</dd>
-            <dt><label class="monospace">[options.onError]
+            <dd class="level2"><span class="ink-label orange">Function</span></label>
+                Callback to be executed before validating the form</dd>
+            <dt class="level2"><label class="monospace">[options.onError]
                 
-                </label>
             </dt>
-            <dd><code>Function</code>Validation error callback</dd>
-            <dt><label class="monospace">[options.onSuccess]
+            <dd class="level2"><span class="ink-label orange">Function</span></label>
+                Validation error callback</dd>
+            <dt class="level2"><label class="monospace">[options.onSuccess]
                 
-                </label>
             </dt>
-            <dd><code>Function</code>Validation success callback</dd>
+            <dd class="level2"><span class="ink-label orange">Function</span></label>
+                Validation success callback</dd>
         </dl>
 <p class="example-title">Example</p>
   
@@ -168,31 +161,46 @@ site_root:  ../
 
     <section id="Ink_UI_FormValidator_2-Ink_UI_FormValidator_2-AppendI18n" class="box box-function">
     <h1 class="fw-300">.AppendI18n() 
-    <i>method</i></h1><p class="text"><p>Add to the I18n dictionary.
-See <code>Ink.Util.I18n.append()</code> documentation.</p>
-</p>
+    <i>method</i></h1><p class="text">Add to the I18n dictionary.<br>See <code>Ink.Util.I18n.append()</code> documentation.</p>
 
 </section>
 
     <section id="Ink_UI_FormValidator_2-Ink_UI_FormValidator_2-getElements" class="box box-function">
     <h1 class="fw-300">.getElements() 
-    <i>method</i></h1><p class="text"><p>Searches for the elements in the form.
-This method is based in the this._options.searchFor configuration.</p>
-</p>
+    <i>method</i></h1><p class="text">Searches for the elements in the form.<br>This method is based in the this._options.searchFor configuration.</p>
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>Object</code></dt>
+        <dd>An object with the elements in the form, indexed by name/id
+        </dd>
+    </dl>
+    
 
 </section>
 
     <section id="Ink_UI_FormValidator_2-Ink_UI_FormValidator_2-getI18n" class="box box-function">
     <h1 class="fw-300">.getI18n() 
-    <i>method</i></h1><p class="text"><p>Gets the i18n object in charge of the error messages</p>
-</p>
+    <i>method</i></h1><p class="text">Gets the i18n object in charge of the error messages</p>
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>Ink.Util.I18n</code></dt>
+        <dd>The i18n object the FormValidator is using.
+        </dd>
+    </dl>
+    
 
 </section>
 
     <section id="Ink_UI_FormValidator_2-Ink_UI_FormValidator_2-getRules" class="box box-function">
     <h1 class="fw-300">.getRules() 
-    <i>method</i></h1><p class="text"><p>Method used to get the existing defined validation functions</p>
-</p>
+    <i>method</i></h1><p class="text">Method used to get the existing defined validation functions</p>
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>Object</code></dt>
+        <dd>Object with the rules defined
+        </dd>
+    </dl>
+    
 
 </section>
 
@@ -200,16 +208,14 @@ This method is based in the this._options.searchFor configuration.</p>
     <h1 class="fw-300">.setI18n(i18n) 
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">i18n</li>
-    </ul><p class="text"><p>Sets the I18n object for validation error messages</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">i18n</li>
+    </ul><p class="text">Sets the I18n object for validation error messages</p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">i18n
-                </label>
+            <dt class="level1"><label class="monospace">i18n
             </dt>
-            <dd><code>Ink.Util.I18n</code>The I18n object.</dd>
+            <dd class="level1"><span class="ink-label orange">Ink.Util.I18n</span></label>
+                The I18n object.</dd>
         </dl>
 
 </section>
@@ -218,18 +224,14 @@ This method is based in the this._options.searchFor configuration.</p>
     <h1 class="fw-300">.setLanguage(language) 
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">language</li>
-    </ul><p class="text"><p>Sets the language of the error messages.
-pt_PT and en_US are available, but you can add new languages by using append()</p>
-<p>See the <code>Ink.Util.I18n.lang()</code> setter</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">language</li>
+    </ul><p class="text">Sets the language of the error messages.<br>pt_PT and en_US are available, but you can add new languages by using append()<br><p>See the <code>Ink.Util.I18n.lang()</code> setter</p></p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">language
-                </label>
+            <dt class="level1"><label class="monospace">language
             </dt>
-            <dd>The language to set i18n to.</dd>
+            <dd class="level1"></label>
+                The language to set i18n to.</dd>
         </dl>
 
 </section>
@@ -238,26 +240,22 @@ pt_PT and en_US are available, but you can add new languages by using append()</
     <h1 class="fw-300">.setRule(name, errorMessage, cb) 
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">name</li>
-        <li class="prop">errorMessage</li>
-        <li class="prop">cb</li>
-    </ul><p class="text"><p>Sets or modifies validation functions</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">name</li><li class="prop">errorMessage</li><li class="prop">cb</li>
+    </ul><p class="text">Sets or modifies validation functions</p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">name
-                </label>
+            <dt class="level1"><label class="monospace">name
             </dt>
-            <dd><code>String</code>Name of the function. E.g. 'required'</dd>
-            <dt><label class="monospace">errorMessage
-                </label>
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                Name of the function. E.g. 'required'</dd>
+            <dt class="level1"><label class="monospace">errorMessage
             </dt>
-            <dd><code>String</code>Error message to be displayed in case of returning false. E.g. 'Oops, you passed {param1} as parameter1, lorem ipsum dolor...'</dd>
-            <dt><label class="monospace">cb
-                </label>
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                Error message to be displayed in case of returning false. E.g. 'Oops, you passed {param1} as parameter1, lorem ipsum dolor...'</dd>
+            <dt class="level1"><label class="monospace">cb
             </dt>
-            <dd><code>Function</code>Function to be executed when calling this rule</dd>
+            <dd class="level1"><span class="ink-label orange">Function</span></label>
+                Function to be executed when calling this rule</dd>
         </dl>
 
 </section>
@@ -266,26 +264,22 @@ pt_PT and en_US are available, but you can add new languages by using append()</
     <h1 class="fw-300">.validate(event) 
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">event</li>
-    </ul><p class="text"><p>Validates every registered FormElement 
-This method looks inside the this._formElements object for validation targets.
-Also, based on the this._options.beforeValidation, this._options.onError, and this._options.onSuccess, this callbacks are executed when defined.</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">event</li>
+    </ul><p class="text">Validates every registered FormElement <br>This method looks inside the this._formElements object for validation targets.<br>Also, based on the this._options.beforeValidation, this._options.onError, and this._options.onSuccess, this callbacks are executed when defined.</p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">event
-                </label>
+            <dt class="level1"><label class="monospace">event
             </dt>
-            <dd><code>Event</code>Window.event object</dd>
+            <dd class="level1"><span class="ink-label orange">Event</span></label>
+                Window.event object</dd>
         </dl>
-        <h3>Returns</h3>
-        <dl>
-            <dt class="return"><code>Boolean</code></dt>
-            <dd>
-            </dd>
-        </dl>
-        
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>Boolean</code></dt>
+        <dd>
+        </dd>
+    </dl>
+    
 
 </section>
 
@@ -295,589 +289,559 @@ Also, based on the this._options.beforeValidation, this._options.onError, and th
     <h1 class="fw-300">.alpha(value, supportSpaces) 
     <i>function</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">value</li>
-        <li class="prop">supportSpaces</li>
-    </ul><p class="text"><p>Checks if a value only contains alphabetical values.</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">value</li><li class="prop">supportSpaces</li>
+    </ul><p class="text">Checks if a value only contains alphabetical values.</p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">value
-                </label>
+            <dt class="level1"><label class="monospace">value
             </dt>
-            <dd><code>String</code>Value to be checked</dd>
-            <dt><label class="monospace">supportSpaces
-                </label>
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                Value to be checked</dd>
+            <dt class="level1"><label class="monospace">supportSpaces
             </dt>
-            <dd><code>Boolean</code>Allow whitespace</dd>
+            <dd class="level1"><span class="ink-label orange">Boolean</span></label>
+                Allow whitespace</dd>
         </dl>
-        <h3>Returns</h3>
-        <dl>
-            <dt class="return"><code>Boolean</code></dt>
-            <dd>
-            </dd>
-        </dl>
-        
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>Boolean</code></dt>
+        <dd>True if the value is alphabetical-only. False if not.
+        </dd>
+    </dl>
+    
 
 </section>
     <section id="Ink_UI_FormValidator_2-alpha_dashes" class="box box-function">
     <h1 class="fw-300">.alpha_dashes(value) 
     <i>function</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">value</li>
-    </ul><p class="text"><p>Checks if a value contains only alphabetical, dash or underscore characteres.</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">value</li>
+    </ul><p class="text">Checks if a value contains only alphabetical, dash or underscore characteres.</p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">value
-                </label>
+            <dt class="level1"><label class="monospace">value
             </dt>
-            <dd><code>String</code>Value to be checked</dd>
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                Value to be checked</dd>
         </dl>
-        <h3>Returns</h3>
-        <dl>
-            <dt class="return"><code>Boolean</code></dt>
-            <dd>
-            </dd>
-        </dl>
-        
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>Boolean</code></dt>
+        <dd>True if the value is a valid. False if not.
+        </dd>
+    </dl>
+    
 
 </section>
     <section id="Ink_UI_FormValidator_2-alpha_numeric" class="box box-function">
     <h1 class="fw-300">.alpha_numeric(value) 
     <i>function</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">value</li>
-    </ul><p class="text"><p>Checks if a value contains only alphabetical or numerical characters.</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">value</li>
+    </ul><p class="text">Checks if a value contains only alphabetical or numerical characters.</p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">value
-                </label>
+            <dt class="level1"><label class="monospace">value
             </dt>
-            <dd><code>String</code>Value to be checked</dd>
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                Value to be checked</dd>
         </dl>
-        <h3>Returns</h3>
-        <dl>
-            <dt class="return"><code>Boolean</code></dt>
-            <dd>
-            </dd>
-        </dl>
-        
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>Boolean</code></dt>
+        <dd>True if the value is a valid alphanumerical. False if not.
+        </dd>
+    </dl>
+    
 
 </section>
     <section id="Ink_UI_FormValidator_2-color" class="box box-function">
     <h1 class="fw-300">.color(value) 
     <i>function</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">value</li>
-    </ul><p class="text"><p>Checks if a value is a valid color.</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">value</li>
+    </ul><p class="text">Checks if a value is a valid color.</p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">value
-                </label>
+            <dt class="level1"><label class="monospace">value
             </dt>
-            <dd><code>String</code>Value to be checked</dd>
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                Value to be checked</dd>
         </dl>
-        <h3>Returns</h3>
-        <dl>
-            <dt class="return"><code>Boolean</code></dt>
-            <dd>
-            </dd>
-        </dl>
-        
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>Boolean</code></dt>
+        <dd>True if the value is a valid color. False if not.
+        </dd>
+    </dl>
+    
 
 </section>
     <section id="Ink_UI_FormValidator_2-credit_card" class="box box-function">
     <h1 class="fw-300">.credit_card(value, cardType) 
     <i>function</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">value</li>
-        <li class="prop">cardType</li>
-    </ul><p class="text"><p>Checks if a value is a valid credit card.</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">value</li><li class="prop">cardType</li>
+    </ul><p class="text">Checks if a value is a valid credit card.</p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">value
-                </label>
+            <dt class="level1"><label class="monospace">value
             </dt>
-            <dd><code>String</code>Value to be checked</dd>
-            <dt><label class="monospace">cardType
-                </label>
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                Value to be checked</dd>
+            <dt class="level1"><label class="monospace">cardType
             </dt>
-            <dd><code>String</code>Type of credit card to be validated. The card types available are in the Ink.Util.Validator class.</dd>
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                Type of credit card to be validated. The card types available are in the Ink.Util.Validator class.</dd>
         </dl>
-        <h3>Returns</h3>
-        <dl>
-            <dt class="return"><code>Boolean</code></dt>
-            <dd>
-            </dd>
-        </dl>
-        
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>Boolean</code></dt>
+        <dd>True if the value is a valid credit card number. False if not.
+        </dd>
+    </dl>
+    
 
 </section>
     <section id="Ink_UI_FormValidator_2-date" class="box box-function">
     <h1 class="fw-300">.date(value, format) 
     <i>function</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">value</li>
-        <li class="prop">format</li>
-    </ul><p class="text"><p>Checks if a value is a valid date.</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">value</li><li class="prop">format</li>
+    </ul><p class="text">Checks if a value is a valid date.</p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">value
-                </label>
+            <dt class="level1"><label class="monospace">value
             </dt>
-            <dd><code>String</code>Value to be checked</dd>
-            <dt><label class="monospace">format
-                </label>
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                Value to be checked</dd>
+            <dt class="level1"><label class="monospace">format
             </dt>
-            <dd><code>String</code>Specific format of the date.</dd>
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                Specific format of the date.</dd>
         </dl>
-        <h3>Returns</h3>
-        <dl>
-            <dt class="return"><code>Boolean</code></dt>
-            <dd>
-            </dd>
-        </dl>
-        
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>Boolean</code></dt>
+        <dd>True if the value is a valid date. False if not.
+        </dd>
+    </dl>
+    
 
 </section>
     <section id="Ink_UI_FormValidator_2-decimal" class="box box-function">
     <h1 class="fw-300">.decimal(value, decimalSeparator, [decimalPlaces], [leftDigits]) 
     <i>function</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">value</li>
-        <li class="prop">decimalSeparator</li>
-        <li class="prop">[decimalPlaces]</li>
-        <li class="prop">[leftDigits]</li>
-    </ul><p class="text"><p>Checks if a value is a valid decimal number.</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">value</li><li class="prop">decimalSeparator</li><li class="prop">[decimalPlaces]</li><li class="prop">[leftDigits]</li>
+    </ul><p class="text">Checks if a value is a valid decimal number.</p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">value
-                </label>
+            <dt class="level1"><label class="monospace">value
             </dt>
-            <dd><code>String</code>Value to be checked</dd>
-            <dt><label class="monospace">decimalSeparator
-                </label>
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                Value to be checked</dd>
+            <dt class="level1"><label class="monospace">decimalSeparator
             </dt>
-            <dd><code>String</code>Character that splits the integer part from the decimal one. By default is '.'.</dd>
-            <dt><label class="monospace">[decimalPlaces]
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                Character that splits the integer part from the decimal one. By default is '.'.</dd>
+            <dt class="level1"><label class="monospace">[decimalPlaces]
                 
-                </label>
             </dt>
-            <dd><code>String</code>Maximum number of digits that the decimal part must have.</dd>
-            <dt><label class="monospace">[leftDigits]
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                Maximum number of digits that the decimal part must have.</dd>
+            <dt class="level1"><label class="monospace">[leftDigits]
                 
-                </label>
             </dt>
-            <dd><code>String</code>Maximum number of digits that the integer part must have, when provided.</dd>
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                Maximum number of digits that the integer part must have, when provided.</dd>
         </dl>
-        <h3>Returns</h3>
-        <dl>
-            <dt class="return"><code>Boolean</code></dt>
-            <dd>
-            </dd>
-        </dl>
-        
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>Boolean</code></dt>
+        <dd>True if the value is a valid decimal number. False if not.
+        </dd>
+    </dl>
+    
 
 </section>
     <section id="Ink_UI_FormValidator_2-digit" class="box box-function">
     <h1 class="fw-300">.digit(value) 
     <i>function</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">value</li>
-    </ul><p class="text"><p>Checks if a value is a single digit.</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">value</li>
+    </ul><p class="text">Checks if a value is a single digit.</p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">value
-                </label>
+            <dt class="level1"><label class="monospace">value
             </dt>
-            <dd><code>String</code>Value to be checked</dd>
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                Value to be checked</dd>
         </dl>
-        <h3>Returns</h3>
-        <dl>
-            <dt class="return"><code>Boolean</code></dt>
-            <dd>
-            </dd>
-        </dl>
-        
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>Boolean</code></dt>
+        <dd>True if the value is a valid digit. False if not.
+        </dd>
+    </dl>
+    
 
 </section>
     <section id="Ink_UI_FormValidator_2-email" class="box box-function">
     <h1 class="fw-300">.email(value) 
     <i>function</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">value</li>
-    </ul><p class="text"><p>Checks if a value is a valid email address</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">value</li>
+    </ul><p class="text">Checks if a value is a valid email address</p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">value
-                </label>
+            <dt class="level1"><label class="monospace">value
             </dt>
-            <dd><code>String</code>Value to be checked</dd>
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                Value to be checked</dd>
         </dl>
-        <h3>Returns</h3>
-        <dl>
-            <dt class="return"><code>Boolean</code></dt>
-            <dd>
-            </dd>
-        </dl>
-        
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>Boolean</code></dt>
+        <dd>True if the value is a valid email address. False if not.
+        </dd>
+    </dl>
+    
 
 </section>
     <section id="Ink_UI_FormValidator_2-exact_length" class="box box-function">
     <h1 class="fw-300">.exact_length(value, exactSize) 
     <i>function</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">value</li>
-        <li class="prop">exactSize</li>
-    </ul><p class="text"><p>Checks if a value has an exact length</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">value</li><li class="prop">exactSize</li>
+    </ul><p class="text">Checks if a value has an exact length</p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">value
-                </label>
+            <dt class="level1"><label class="monospace">value
             </dt>
-            <dd><code>String</code>Value to be checked</dd>
-            <dt><label class="monospace">exactSize
-                </label>
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                Value to be checked</dd>
+            <dt class="level1"><label class="monospace">exactSize
             </dt>
-            <dd><code>String|Number</code>Exact number of characters.</dd>
+            <dd class="level1"><span class="ink-label orange">String|Number</span></label>
+                Exact number of characters.</dd>
         </dl>
-        <h3>Returns</h3>
-        <dl>
-            <dt class="return"><code>Boolean</code></dt>
-            <dd>
-            </dd>
-        </dl>
-        
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>Boolean</code></dt>
+        <dd>True if the length of value is equal to the size defined. False if not.
+        </dd>
+    </dl>
+    
 
 </section>
     <section id="Ink_UI_FormValidator_2-getElement" class="box box-function">
     <h1 class="fw-300">.getElement() 
-    <i>function</i></h1><p class="text"><p>Gets the DOM element related to the instance.</p>
-</p>
+    <i>function</i></h1><p class="text">Gets the DOM element related to the instance.</p>
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>Object</code></dt>
+        <dd>DOM Element
+        </dd>
+    </dl>
+    
 
 </section>
     <section id="Ink_UI_FormValidator_2-getErrors" class="box box-function">
     <h1 class="fw-300">.getErrors() 
-    <i>function</i></h1><p class="text"><p>Gets the constructed errors&#39; object.</p>
-</p>
+    <i>function</i></h1><p class="text">Gets the constructed errors&#39; object.</p>
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>Object</code></dt>
+        <dd>Errors' object
+        </dd>
+    </dl>
+    
 
 </section>
     <section id="Ink_UI_FormValidator_2-getFormElements" class="box box-function">
     <h1 class="fw-300">.getFormElements() 
-    <i>function</i></h1><p class="text"><p>Gets other elements in the same form.</p>
-</p>
+    <i>function</i></h1><p class="text">Gets other elements in the same form.</p>
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>Object</code></dt>
+        <dd>A mapping of keys to other elements in this form.
+        </dd>
+    </dl>
+    
 
 </section>
     <section id="Ink_UI_FormValidator_2-getValue" class="box box-function">
     <h1 class="fw-300">.getValue() 
-    <i>function</i></h1><p class="text"><p>Gets an element&#39;s value</p>
-</p>
+    <i>function</i></h1><p class="text">Gets an element&#39;s value</p>
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>mixed</code></dt>
+        <dd>The DOM Element's value
+        </dd>
+    </dl>
+    
 
 </section>
     <section id="Ink_UI_FormValidator_2-integer" class="box box-function">
     <h1 class="fw-300">.integer(value, positive) 
     <i>function</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">value</li>
-        <li class="prop">positive</li>
-    </ul><p class="text"><p>Checks if a value is a valid integer.</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">value</li><li class="prop">positive</li>
+    </ul><p class="text">Checks if a value is a valid integer.</p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">value
-                </label>
+            <dt class="level1"><label class="monospace">value
             </dt>
-            <dd><code>String</code>Value to be checked</dd>
-            <dt><label class="monospace">positive
-                </label>
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                Value to be checked</dd>
+            <dt class="level1"><label class="monospace">positive
             </dt>
-            <dd><code>String</code>Flag that specifies if the integer is must be positive (unsigned).</dd>
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                Flag that specifies if the integer is must be positive (unsigned).</dd>
         </dl>
-        <h3>Returns</h3>
-        <dl>
-            <dt class="return"><code>Boolean</code></dt>
-            <dd>
-            </dd>
-        </dl>
-        
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>Boolean</code></dt>
+        <dd>True if the value is a valid integer. False if not.
+        </dd>
+    </dl>
+    
 
 </section>
     <section id="Ink_UI_FormValidator_2-ip" class="box box-function">
     <h1 class="fw-300">.ip(value, ipType) 
     <i>function</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">value</li>
-        <li class="prop">ipType</li>
-    </ul><p class="text"><p>Checks if a value is a valid IP. Supports ipv4 and ipv6</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">value</li><li class="prop">ipType</li>
+    </ul><p class="text">Checks if a value is a valid IP. Supports ipv4 and ipv6</p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">value
-                </label>
+            <dt class="level1"><label class="monospace">value
             </dt>
-            <dd><code>String</code>Value to be checked</dd>
-            <dt><label class="monospace">ipType
-                </label>
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                Value to be checked</dd>
+            <dt class="level1"><label class="monospace">ipType
             </dt>
-            <dd><code>String</code>Type of IP to be validated. The values are: ipv4, ipv6. By default is ipv4.</dd>
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                Type of IP to be validated. The values are: ipv4, ipv6. By default is ipv4.</dd>
         </dl>
-        <h3>Returns</h3>
-        <dl>
-            <dt class="return"><code>Boolean</code></dt>
-            <dd>
-            </dd>
-        </dl>
-        
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>Boolean</code></dt>
+        <dd>True if the value is a valid IP address. False if not.
+        </dd>
+    </dl>
+    
 
 </section>
     <section id="Ink_UI_FormValidator_2-max_length" class="box box-function">
     <h1 class="fw-300">.max_length(value, maxSize) 
     <i>function</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">value</li>
-        <li class="prop">maxSize</li>
-    </ul><p class="text"><p>Checks if a value has a maximum length</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">value</li><li class="prop">maxSize</li>
+    </ul><p class="text">Checks if a value has a maximum length</p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">value
-                </label>
+            <dt class="level1"><label class="monospace">value
             </dt>
-            <dd><code>String</code>Value to be checked.</dd>
-            <dt><label class="monospace">maxSize
-                </label>
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                Value to be checked.</dd>
+            <dt class="level1"><label class="monospace">maxSize
             </dt>
-            <dd><code>String|Number</code>Maximum number of characters.</dd>
+            <dd class="level1"><span class="ink-label orange">String|Number</span></label>
+                Maximum number of characters.</dd>
         </dl>
-        <h3>Returns</h3>
-        <dl>
-            <dt class="return"><code>Boolean</code></dt>
-            <dd>
-            </dd>
-        </dl>
-        
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>Boolean</code></dt>
+        <dd>True if the length of value is equal or smaller than the maximum chars defined. False if not.
+        </dd>
+    </dl>
+    
 
 </section>
     <section id="Ink_UI_FormValidator_2-min_length" class="box box-function">
     <h1 class="fw-300">.min_length(value, minSize) 
     <i>function</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">value</li>
-        <li class="prop">minSize</li>
-    </ul><p class="text"><p>Checks if a value has a minimum length</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">value</li><li class="prop">minSize</li>
+    </ul><p class="text">Checks if a value has a minimum length</p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">value
-                </label>
+            <dt class="level1"><label class="monospace">value
             </dt>
-            <dd><code>String</code>Value to be checked.</dd>
-            <dt><label class="monospace">minSize
-                </label>
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                Value to be checked.</dd>
+            <dt class="level1"><label class="monospace">minSize
             </dt>
-            <dd><code>String|Number</code>Minimum number of characters.</dd>
+            <dd class="level1"><span class="ink-label orange">String|Number</span></label>
+                Minimum number of characters.</dd>
         </dl>
-        <h3>Returns</h3>
-        <dl>
-            <dt class="return"><code>Boolean</code></dt>
-            <dd>
-            </dd>
-        </dl>
-        
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>Boolean</code></dt>
+        <dd>True if the length of value is equal or bigger than the minimum chars defined. False if not.
+        </dd>
+    </dl>
+    
 
 </section>
     <section id="Ink_UI_FormValidator_2-numeric" class="box box-function">
     <h1 class="fw-300">.numeric(value, decimalSeparator, [decimalPlaces], [leftDigits]) 
     <i>function</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">value</li>
-        <li class="prop">decimalSeparator</li>
-        <li class="prop">[decimalPlaces]</li>
-        <li class="prop">[leftDigits]</li>
-    </ul><p class="text"><p>Checks if a value is a numeric value.</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">value</li><li class="prop">decimalSeparator</li><li class="prop">[decimalPlaces]</li><li class="prop">[leftDigits]</li>
+    </ul><p class="text">Checks if a value is a numeric value.</p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">value
-                </label>
+            <dt class="level1"><label class="monospace">value
             </dt>
-            <dd><code>String</code>Value to be checked</dd>
-            <dt><label class="monospace">decimalSeparator
-                </label>
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                Value to be checked</dd>
+            <dt class="level1"><label class="monospace">decimalSeparator
             </dt>
-            <dd><code>String</code>Checks if it's a valid decimal. Otherwise checks if it's a valid integer.</dd>
-            <dt><label class="monospace">[decimalPlaces]
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                Checks if it's a valid decimal. Otherwise checks if it's a valid integer.</dd>
+            <dt class="level1"><label class="monospace">[decimalPlaces]
                 
-                </label>
             </dt>
-            <dd><code>String</code>Maximum number of digits the decimal part must have.</dd>
-            <dt><label class="monospace">[leftDigits]
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                Maximum number of digits the decimal part must have.</dd>
+            <dt class="level1"><label class="monospace">[leftDigits]
                 
-                </label>
             </dt>
-            <dd><code>String</code>Maximum number of digits the integer part must have, when provided.</dd>
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                Maximum number of digits the integer part must have, when provided.</dd>
         </dl>
-        <h3>Returns</h3>
-        <dl>
-            <dt class="return"><code>Boolean</code></dt>
-            <dd>
-            </dd>
-        </dl>
-        
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>Boolean</code></dt>
+        <dd>True if the value is numeric. False if not.
+        </dd>
+    </dl>
+    
 
 </section>
     <section id="Ink_UI_FormValidator_2-phone" class="box box-function">
     <h1 class="fw-300">.phone(value, phoneType) 
     <i>function</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">value</li>
-        <li class="prop">phoneType</li>
-    </ul><p class="text"><p>Checks if a value is a valid phone number.
-Supports several countries, based in the Ink.Util.Validator class.</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">value</li><li class="prop">phoneType</li>
+    </ul><p class="text">Checks if a value is a valid phone number.<br>Supports several countries, based in the Ink.Util.Validator class.</p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">value
-                </label>
+            <dt class="level1"><label class="monospace">value
             </dt>
-            <dd><code>String</code>Value to be checked</dd>
-            <dt><label class="monospace">phoneType
-                </label>
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                Value to be checked</dd>
+            <dt class="level1"><label class="monospace">phoneType
             </dt>
-            <dd><code>String</code>Country's initials to specify the type of phone number to be validated. Ex: 'AO'.</dd>
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                Country's initials to specify the type of phone number to be validated. Ex: 'AO'.</dd>
         </dl>
-        <h3>Returns</h3>
-        <dl>
-            <dt class="return"><code>Boolean</code></dt>
-            <dd>
-            </dd>
-        </dl>
-        
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>Boolean</code></dt>
+        <dd>True if it's a valid phone number. False if not.
+        </dd>
+    </dl>
+    
 
 </section>
     <section id="Ink_UI_FormValidator_2-range" class="box box-function">
     <h1 class="fw-300">.range(value, minValue, maxValue, [multipleOf]) 
     <i>function</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">value</li>
-        <li class="prop">minValue</li>
-        <li class="prop">maxValue</li>
-        <li class="prop">[multipleOf]</li>
-    </ul><p class="text"><p>Checks if a value is in a specific range of values.
-The parameters after the first one are used to specify the range, and are similar in function to python&#39;s range() function.</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">value</li><li class="prop">minValue</li><li class="prop">maxValue</li><li class="prop">[multipleOf]</li>
+    </ul><p class="text">Checks if a value is in a specific range of values.<br>The parameters after the first one are used to specify the range, and are similar in function to python&#39;s range() function.</p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">value
-                </label>
+            <dt class="level1"><label class="monospace">value
             </dt>
-            <dd><code>String</code>Value to be checked</dd>
-            <dt><label class="monospace">minValue
-                </label>
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                Value to be checked</dd>
+            <dt class="level1"><label class="monospace">minValue
             </dt>
-            <dd><code>String</code>Left limit of the range.</dd>
-            <dt><label class="monospace">maxValue
-                </label>
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                Left limit of the range.</dd>
+            <dt class="level1"><label class="monospace">maxValue
             </dt>
-            <dd><code>String</code>Right limit of the range.</dd>
-            <dt><label class="monospace">[multipleOf]
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                Right limit of the range.</dd>
+            <dt class="level1"><label class="monospace">[multipleOf]
                 
-                </label>
             </dt>
-            <dd><code>String</code>In case you want numbers that are only multiples of another number.</dd>
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                In case you want numbers that are only multiples of another number.</dd>
         </dl>
-        <h3>Returns</h3>
-        <dl>
-            <dt class="return"><code>Boolean</code></dt>
-            <dd>
-            </dd>
-        </dl>
-        
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>Boolean</code></dt>
+        <dd>True if the value is within the range. False if not.
+        </dd>
+    </dl>
+    
 
 </section>
     <section id="Ink_UI_FormValidator_2-required" class="box box-function">
     <h1 class="fw-300">.required(value) 
     <i>function</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">value</li>
-    </ul><p class="text"><p>Checks if a value is defined and not empty</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">value</li>
+    </ul><p class="text">Checks if a value is defined and not empty</p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">value
-                </label>
+            <dt class="level1"><label class="monospace">value
             </dt>
-            <dd><code>String</code>Value to be checked</dd>
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                Value to be checked</dd>
         </dl>
-        <h3>Returns</h3>
-        <dl>
-            <dt class="return"><code>Boolean</code></dt>
-            <dd>
-            </dd>
-        </dl>
-        
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>Boolean</code></dt>
+        <dd>True case is defined, false if it's empty or not defined.
+        </dd>
+    </dl>
+    
 
 </section>
     <section id="Ink_UI_FormValidator_2-url" class="box box-function">
     <h1 class="fw-300">.url(value, fullCheck) 
     <i>function</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">value</li>
-        <li class="prop">fullCheck</li>
-    </ul><p class="text"><p>Checks if a value has a valid URL</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">value</li><li class="prop">fullCheck</li>
+    </ul><p class="text">Checks if a value has a valid URL</p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">value
-                </label>
+            <dt class="level1"><label class="monospace">value
             </dt>
-            <dd><code>String</code>Value to be checked</dd>
-            <dt><label class="monospace">fullCheck
-                </label>
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                Value to be checked</dd>
+            <dt class="level1"><label class="monospace">fullCheck
             </dt>
-            <dd><code>Boolean</code>Flag to validate a full url (with the protocol).</dd>
+            <dd class="level1"><span class="ink-label orange">Boolean</span></label>
+                Flag to validate a full url (with the protocol).</dd>
         </dl>
-        <h3>Returns</h3>
-        <dl>
-            <dt class="return"><code>Boolean</code></dt>
-            <dd>
-            </dd>
-        </dl>
-        
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>Boolean</code></dt>
+        <dd>True if the URL is considered valid. False if not.
+        </dd>
+    </dl>
+    
 
 </section>
     <section id="Ink_UI_FormValidator_2-validate" class="box box-function">
     <h1 class="fw-300">.validate() 
-    <i>function</i></h1><p class="text"><p>Validates the element based on the rules defined.
-It parses the rules defined in the _options.rules property.</p>
-</p>
+    <i>function</i></h1><p class="text">Validates the element based on the rules defined.<br>It parses the rules defined in the _options.rules property.</p>
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return"><code>Boolean</code></dt>
+        <dd>True if every rule was valid. False if one fails.
+        </dd>
+    </dl>
+    
 
 </section>
     

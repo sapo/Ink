@@ -1,13 +1,13 @@
 ---
 layout: js-documentation
 title: Ink.UI.Stacker_1
-description: <p>Stacking items in columns</p>
+description: Stacking items in columns
 site_root:  ../
 ---
     <section>
         <h1 class="fw-300">Ink.UI.Stacker_1<small>version:1</small></h1>
 
-<p><br><br><br>[col. A: 1] [col. B: 1] [col. C: 1]<br>[col. B: 2] [col. C: 2] [col. C: 2]<br></code></pre><br>[col. A: 1] [col. B: 1]<br>[col. C: 1] [col. A: 2]<br>[col. B: 2] [col. C: 2]<br></code></pre><br></p>
+<p>This module combines several stacks of items together, in smaller screen sizes.<br><p>The purpose is to have several stacks of items which may have different heights and as such cannot be used because of <code>float: left</code> quirks.</p><br><p>For example, when you have three different columns of information:</p><br><pre><code>[col. A: 1] [col. B: 1] [col. C: 1]<br>[col. B: 2] [col. C: 2] [col. C: 2]<br></code></pre><p>and the screen resizes and you need a layout of 2 columns, Stacker reorders the stacks so that you get:</p><br><pre><code>[col. A: 1] [col. B: 1]<br>[col. C: 1] [col. A: 2]<br>[col. B: 2] [col. C: 2]<br></code></pre><p>Note: If you just want to use a different amount of columns for your items in several viewports, but these items are guaranteed to have a fixed height, don&#39;t use this module. Use the <code>small-*</code>, <code>medium-*</code> and <code>large-*</code> classes instead.</p></p>
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space">
         <caption>Methods</caption>
         <thead>
@@ -28,13 +28,13 @@ site_root:  ../
                 <td>
                     <a href="#Ink_UI_Stacker_1-Ink_UI_Stacker_1-addItem">.addItem</a>
                 </td>
-                <td><p>Adds an item to the end of your stacks.</td>
+                <td>Adds an item to the end of your stacks.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_Stacker_1-Ink_UI_Stacker_1-reloadItems">.reloadItems</a>
                 </td>
-                <td><p>Updates the layout of your items.</td>
+                <td>Updates the layout of your items.</td>
             </tr></tbody>
     </table>
     
@@ -46,139 +46,117 @@ site_root:  ../
     <h1 class="fw-300">Ink.UI.Stacker_1([container], [options], ) 
     <i>constructor</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">[container]</li>
-        <li class="prop">[options]</li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
+        <li class="heading">Arguments:</li><li class="prop">[container]</li><li class="prop">[options]</li>
     </ul>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">[container]
+            <dt class="level1"><label class="monospace">[container]
                 
-                </label>
             </dt>
-            <dd><code>DOMElement|String</code>Element which contains the stacks (identified by the options.column selector)</dd>
-            <dt><label class="monospace">[options]
+            <dd class="level1"><span class="ink-label orange">DOMElement|String</span></label>
+                Element which contains the stacks (identified by the options.column selector)</dd>
+            <dt class="level1"><label class="monospace">[options]
                 
-                </label>
             </dt>
-            <dd><code>Object</code>Options object.</dd>
-            <dt><label class="monospace">[options.column]
+            <dd class="level1"><span class="ink-label orange">Object</span></label>
+                Options object.</dd>
+            <dt class="level2"><label class="monospace">[options.column]
                 
-                </label>
             </dt>
-            <dd><code>String</code>Selector for the the columns inside the container element. Defaults to '.stacker-column'.</dd>
-            <dt><label class="monospace">[options.item]
+            <dd class="level2"><span class="ink-label orange">String</span></label>
+                Selector for the the columns inside the container element. Defaults to '.stacker-column'.</dd>
+            <dt class="level2"><label class="monospace">[options.item]
                 
-                </label>
             </dt>
-            <dd><code>String</code>Selector for the items in your stack. Defaults to '.stacker-item'.</dd>
-            <dt><label class="monospace">[options.customBreakPoints]
+            <dd class="level2"><span class="ink-label orange">String</span></label>
+                Selector for the items in your stack. Defaults to '.stacker-item'.</dd>
+            <dt class="level2"><label class="monospace">[options.customBreakPoints]
                 
-                </label>
             </dt>
-            <dd><code>Object</code>Options for each breakpoint name. Use this if you have more breakpoints than Ink by default (`large`, `medium`, `small`)</dd>
-            <dt><label class="monospace">[options.customBreakpoints.BREAKPOINT_NAME]
+            <dd class="level2"><span class="ink-label orange">Object</span></label>
+                Options for each breakpoint name. Use this if you have more breakpoints than Ink by default (`large`, `medium`, `small`)</dd>
+            <dt class="level3"><label class="monospace">[options.customBreakpoints.BREAKPOINT_NAME]
                 
-                </label>
             </dt>
-            <dd><code>Object</code>Custom breakpoints object.</dd>
-            <dt><label class="monospace">options.customBreakpoints.BREAKPOINT_NAME.max
-                </label>
+            <dd class="level3"><span class="ink-label orange">Object</span></label>
+                Custom breakpoints object.</dd>
+            <dt class="level4"><label class="monospace">options.customBreakpoints.BREAKPOINT_NAME.max
             </dt>
-            <dd><code>String</code>Maximum screen size as seen in your media query</dd>
-            <dt><label class="monospace">options.customBreakpoints.BREAKPOINT_NAME.min
-                </label>
+            <dd class="level4"><span class="ink-label orange">String</span></label>
+                Maximum screen size as seen in your media query</dd>
+            <dt class="level4"><label class="monospace">options.customBreakpoints.BREAKPOINT_NAME.min
             </dt>
-            <dd><code>String</code>Minimum screen size as seen in your media query</dd>
-            <dt><label class="monospace">options.customBreakpoints.BREAKPOINT_NAME.cols
-                </label>
+            <dd class="level4"><span class="ink-label orange">String</span></label>
+                Minimum screen size as seen in your media query</dd>
+            <dt class="level4"><label class="monospace">options.customBreakpoints.BREAKPOINT_NAME.cols
             </dt>
-            <dd><code>String</code>Column count for this size.</dd>
-            <dt><label class="monospace">[options.largeMax]
+            <dd class="level4"><span class="ink-label orange">String</span></label>
+                Column count for this size.</dd>
+            <dt class="level2"><label class="monospace">[options.largeMax]
                 
-                </label>
             </dt>
-            <dd><code>Number</code>Upper bound of `large` breakpoint</dd>
-            <dt><label class="monospace">[options.largeMin]
+            <dd class="level2"><span class="ink-label orange">Number</span></label>
+                Upper bound of `large` breakpoint</dd>
+            <dt class="level2"><label class="monospace">[options.largeMin]
                 
-                </label>
             </dt>
-            <dd><code>Number</code>Lower bound of `large` breakpoint. Defaults to 961.</dd>
-            <dt><label class="monospace">[options.mediumMax]
+            <dd class="level2"><span class="ink-label orange">Number</span></label>
+                Lower bound of `large` breakpoint. Defaults to 961.</dd>
+            <dt class="level2"><label class="monospace">[options.mediumMax]
                 
-                </label>
             </dt>
-            <dd><code>Number</code>Upper bound of `medium` breakpoint. Defaults to 960.</dd>
-            <dt><label class="monospace">[options.mediumMin]
+            <dd class="level2"><span class="ink-label orange">Number</span></label>
+                Upper bound of `medium` breakpoint. Defaults to 960.</dd>
+            <dt class="level2"><label class="monospace">[options.mediumMin]
                 
-                </label>
             </dt>
-            <dd><code>Number</code>Lower bound of `medium` breakpoint. Defaults to 651.</dd>
-            <dt><label class="monospace">[options.smallMax]
+            <dd class="level2"><span class="ink-label orange">Number</span></label>
+                Lower bound of `medium` breakpoint. Defaults to 651.</dd>
+            <dt class="level2"><label class="monospace">[options.smallMax]
                 
-                </label>
             </dt>
-            <dd><code>Number</code>Upper bound of `small` breakpoint. Defaults to 650.</dd>
-            <dt><label class="monospace">[options.smallMin]
+            <dd class="level2"><span class="ink-label orange">Number</span></label>
+                Upper bound of `small` breakpoint. Defaults to 650.</dd>
+            <dt class="level2"><label class="monospace">[options.smallMin]
                 
-                </label>
             </dt>
-            <dd><code>Number</code>Lower bound of `small` breakpoint</dd>
-            <dt><label class="monospace">[options.largeCols]
+            <dd class="level2"><span class="ink-label orange">Number</span></label>
+                Lower bound of `small` breakpoint</dd>
+            <dt class="level2"><label class="monospace">[options.largeCols]
                 
-                </label>
             </dt>
-            <dd><code>Integer</code>Number of columns in the `large` viewport. Defaults to 3.</dd>
-            <dt><label class="monospace">[options.mediumCols]
+            <dd class="level2"><span class="ink-label orange">Integer</span></label>
+                Number of columns in the `large` viewport. Defaults to 3.</dd>
+            <dt class="level2"><label class="monospace">[options.mediumCols]
                 
-                </label>
             </dt>
-            <dd><code>Integer</code>Number of columns in the `medium` viewport. Defaults to 2.</dd>
-            <dt><label class="monospace">[options.smallCols]
+            <dd class="level2"><span class="ink-label orange">Integer</span></label>
+                Number of columns in the `medium` viewport. Defaults to 2.</dd>
+            <dt class="level2"><label class="monospace">[options.smallCols]
                 
-                </label>
             </dt>
-            <dd><code>Integer</code>Number of columns in the `small` viewport. Defaults to 1.</dd>
-            <dt><label class="monospace">[options.isOrdered]
+            <dd class="level2"><span class="ink-label orange">Integer</span></label>
+                Number of columns in the `small` viewport. Defaults to 1.</dd>
+            <dt class="level2"><label class="monospace">[options.isOrdered]
                 
-                </label>
             </dt>
-            <dd><code>Boolean</code>When false, doesn't reorder stacks when combining them.</dd>
-            <dt><label class="monospace">[options.onRunCallback]
+            <dd class="level2"><span class="ink-label orange">Boolean</span></label>
+                When false, doesn't reorder stacks when combining them.</dd>
+            <dt class="level2"><label class="monospace">[options.onRunCallback]
                 
-                </label>
             </dt>
-            <dd><code>Function</code>Called when instantiated.</dd>
-            <dt><label class="monospace">[options.onResizeCallback]
+            <dd class="level2"><span class="ink-label orange">Function</span></label>
+                Called when instantiated.</dd>
+            <dt class="level2"><label class="monospace">[options.onResizeCallback]
                 
-                </label>
             </dt>
-            <dd><code>Function</code>Called when the window resizes.</dd>
-            <dt><label class="monospace">[options.onAPIReloadCallback]
+            <dd class="level2"><span class="ink-label orange">Function</span></label>
+                Called when the window resizes.</dd>
+            <dt class="level2"><label class="monospace">[options.onAPIReloadCallback]
                 
-                </label>
             </dt>
-            <dd><code>Function</code>Called when the reload function executes.</dd>
+            <dd class="level2"><span class="ink-label orange">Function</span></label>
+                Called when the reload function executes.</dd>
         </dl>
 <p class="example-title">Example</p>
   
@@ -220,26 +198,21 @@ Javascript:
     <h1 class="fw-300">.addItem(item) 
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">item</li>
-    </ul><p class="text"><p>Adds an item to the end of your stacks.
-Call <code>reloadItems()</code> when you are done adding items.</p>
-</p>
+        <li class="heading">Arguments:</li><li class="prop">item</li>
+    </ul><p class="text">Adds an item to the end of your stacks.<br>Call <code>reloadItems()</code> when you are done adding items.</p>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">item
-                </label>
+            <dt class="level1"><label class="monospace">item
             </dt>
-            <dd><code>DOMElement</code>Element</dd>
+            <dd class="level1"><span class="ink-label orange">DOMElement</span></label>
+                Element</dd>
         </dl>
 
 </section>
 
     <section id="Ink_UI_Stacker_1-Ink_UI_Stacker_1-reloadItems" class="box box-function">
     <h1 class="fw-300">.reloadItems() 
-    <i>method</i></h1><p class="text"><p>Updates the layout of your items.
-Call this method after adding items or changing their dimensions. This method is automatically called when the window resizes.</p>
-</p>
+    <i>method</i></h1><p class="text">Updates the layout of your items.<br>Call this method after adding items or changing their dimensions. This method is automatically called when the window resizes.</p>
 
 </section>
 

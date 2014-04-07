@@ -1,13 +1,13 @@
 ---
 layout: js-documentation
 title: Ink.Net.JsonP_1
-description: <p>Cross Browser JsonP requests</p>
+description: Cross Browser JsonP requests
 site_root:  ../
 ---
     <section>
         <h1 class="fw-300">Ink.Net.JsonP_1<small>version:1</small></h1>
 
-<p><br></p>
+<p>Executes a JSONP request</p>
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space">
         <caption>Methods</caption>
         <thead>
@@ -34,61 +34,52 @@ site_root:  ../
     <h1 class="fw-300">Ink.Net.JsonP(uri, options, ) 
     <i>constructor</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        <li class="prop">uri</li>
-        <li class="prop">options</li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
-        <li class="prop"></li>
+        <li class="heading">Arguments:</li><li class="prop">uri</li><li class="prop">options</li>
     </ul>
         <h3>Accepts</h3>
         <dl class="params">
-            <dt><label class="monospace">uri
-                </label>
+            <dt class="level1"><label class="monospace">uri
             </dt>
-            <dd><code>String</code>Request URL</dd>
-            <dt><label class="monospace">options
-                </label>
+            <dd class="level1"><span class="ink-label orange">String</span></label>
+                Request URL</dd>
+            <dt class="level1"><label class="monospace">options
             </dt>
-            <dd><code>Object</code>Request options</dd>
-            <dt><label class="monospace">options.onSuccess
-                </label>
+            <dd class="level1"><span class="ink-label orange">Object</span></label>
+                Request options</dd>
+            <dt class="level2"><label class="monospace">options.onSuccess
             </dt>
-            <dd><code>Function</code>Success callback</dd>
-            <dt><label class="monospace">[options.onFailure]
+            <dd class="level2"><span class="ink-label orange">Function</span></label>
+                Success callback</dd>
+            <dt class="level2"><label class="monospace">[options.onFailure]
                 
-                </label>
             </dt>
-            <dd><code>Function</code>Failure callback</dd>
-            <dt><label class="monospace">[options.failureObj]
+            <dd class="level2"><span class="ink-label orange">Function</span></label>
+                Failure callback</dd>
+            <dt class="level2"><label class="monospace">[options.failureObj]
                 
-                </label>
             </dt>
-            <dd><code>Object</code>Object to be passed as argument to failure callback</dd>
-            <dt><label class="monospace">[options.timeout]
+            <dd class="level2"><span class="ink-label orange">Object</span></label>
+                Object to be passed as argument to failure callback</dd>
+            <dt class="level2"><label class="monospace">[options.timeout]
                 
-                </label>
             </dt>
-            <dd><code>Number</code>Timeout for request fail, in seconds. defaults to 10</dd>
-            <dt><label class="monospace">[options.params]
+            <dd class="level2"><span class="ink-label orange">Number</span></label>
+                Timeout for request fail, in seconds. defaults to 10</dd>
+            <dt class="level2"><label class="monospace">[options.params]
                 
-                </label>
             </dt>
-            <dd><code>Object</code>Object with the parameters and respective values to unfold</dd>
-            <dt><label class="monospace">[options.callbackParam]
+            <dd class="level2"><span class="ink-label orange">Object</span></label>
+                Object with the parameters and respective values to unfold</dd>
+            <dt class="level2"><label class="monospace">[options.callbackParam]
                 
-                </label>
             </dt>
-            <dd><code>String</code>Parameter to use as callback. defaults to 'jsoncallback'</dd>
-            <dt><label class="monospace">[options.internalCallback]
+            <dd class="level2"><span class="ink-label orange">String</span></label>
+                Parameter to use as callback. defaults to 'jsoncallback'</dd>
+            <dt class="level2"><label class="monospace">[options.internalCallback]
                 
-                </label>
             </dt>
-            <dd><code>String</code>Name of the callback function stored in the Ink.Net.JsonP object.</dd>
+            <dd class="level2"><span class="ink-label orange">String</span></label>
+                Name of the callback function stored in the Ink.Net.JsonP object.</dd>
         </dl>
 
 <!--<h3>Samples</h3>-->

@@ -36,10 +36,10 @@
     {{~/if}}
 
     {{~#if async~}}
-        <span class="tag">async</span>
+        <span class="ink-label green">async</span>
     {{~/if~}}
     {{~#if deprecated~}}
-        <span class="tag">deprecated</span>
+        <span class="ink-label red">deprecated</span>
     {{~/if~}}
 
     {{~#if text~}}
@@ -59,7 +59,7 @@
             </dt>
             <dd class="level{{~countLevel name~}}">
                {{~#if type~}}
-                    <code>{{type}}</code>
+                    <span class="ink-label orange">{{type}}</span>
                 {{~/if~}}
                 {{#if defaultValue~}}
                     {{~defaultValue~}}
@@ -80,7 +80,7 @@
         </dt>
         <dd>
             {{~#if return.description~}}
-                {{~{description}~}}
+                {{~{return.description}~}}
             {{~/if}}
         </dd>
     </dl>
