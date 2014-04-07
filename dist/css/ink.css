@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /**
  * Ink
  *
@@ -6076,7 +6077,7 @@ hr {
 
 ul, ol {
   line-height: 1.4;
-  padding: 0 0 0 1.45;
+  padding: 0 0 0 1.45em;
   margin: 1em 0;
 }
 ul li, ol li {
