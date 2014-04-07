@@ -45,7 +45,6 @@
                     {{~#if isConstructor~}}
                         <span class="ink-label green">Constructor</span>
                     {{~/if~}}
-
                 </td>
             </tr>
         {{~/each~}}
@@ -76,7 +75,7 @@
                         <span class="ink-label orange uppercase">{{type}}</span>
                     {{/if}}
                     {{~#if description}}
-                        <span class="description">{{{description}}}</span>
+                        <span class="description">{{~{stripP description}~}}</span>
                     {{/if}}
                 </td>
             </tr>
