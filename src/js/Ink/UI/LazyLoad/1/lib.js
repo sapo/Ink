@@ -65,7 +65,9 @@ LazyLoad.prototype = {
    
         if(this._options.autoInit) {
             this._activate();
-        } 
+        }
+
+        Common.registerInstance(this, this._rootElm);
     },
 
     _activate: function() 

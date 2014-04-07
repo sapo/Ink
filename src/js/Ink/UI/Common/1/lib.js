@@ -130,7 +130,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
             if (ret && ret.length) {
                 return ret;
             } else {
-                if (required || arguments.length === 2) {
+                if (required) {
                     throw new TypeError(fieldName + ' must either be a DOM Element, an Array of elements, or a selector expression!\nThe script element must also be after the DOM Element itself.');
                 } else {
                     return [];

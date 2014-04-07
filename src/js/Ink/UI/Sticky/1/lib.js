@@ -86,6 +86,7 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
             Event.observe( scrollTarget, 'scroll', this._onScroll );
             Event.observe( window, 'resize', Ink.bindEvent(Event.throttle(this._onResize, 100), this) );
             this._onScroll();
+            Common.registerInstance(this, this._rootElement)
         },
 
         /**

@@ -153,10 +153,10 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
              * If not is in markup mode, we have to do the initial request
              * to get the first data and the headers
              */
-             if( !this._markupMode ) {
-                 /* Endpoint mode */
+            if( !this._markupMode ) {
+                /* Endpoint mode */
                 this._getData(  );
-             } else /* Markup mode */ {
+            } else /* Markup mode */ {
                 this._resetSortOrder();
                 this._addHeadersClasses();
 
@@ -172,7 +172,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
                  * Set pagination if options tell us to
                  */
                 this._setPagination();
-             }
+            }
         },
 
         /**

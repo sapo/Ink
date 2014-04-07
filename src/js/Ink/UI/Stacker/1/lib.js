@@ -136,6 +136,8 @@ Stacker.prototype = {
             }
         }
         this._addEvents();
+
+        Common.registerInstance(this, this._rootElm);
     },
 
     /**
