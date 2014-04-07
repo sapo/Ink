@@ -23,6 +23,7 @@
 </div>
 <a href="#" id="myModalTrigger" class="ink-button">Open modal</a>
 <script>
+    // Not required if you are using autoload.js.
     Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.Modal_1'], function( Selector, Modal ){
         var modalElement = Ink.s('#myModal');
         var modalObj = new Modal( modalElement );
@@ -38,3 +39,4 @@
 {% highlight html %}
 {{ example_code }}
 {% endhighlight %}
+

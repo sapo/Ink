@@ -1,8 +1,6 @@
-<p></p>
+<p>Basic usage</p>
 
-<p class="example-title">Code</p>
-{% highlight html %}
-
+{% capture example_code %}
 <form id="my-form">
 </form>
 
@@ -11,5 +9,12 @@ Ink.requireModules( ['Ink.UI.FormValidator_2'], function( FormValidator ){
     var myValidator = new FormValidator( '#my-form' );
 });
 </script>
+{% endcapture %}
+
+{{ example_code }}
+
+<p class="example-title">Code</p>
+{% highlight html %}
+{{ example_code }}
 {% endhighlight %}
 
