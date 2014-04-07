@@ -8,6 +8,10 @@ Ink.createModule('Ink.Util.Dumper', '1', [], function() {
 
     'use strict';
 
+    /**
+     * @namespace Ink.Util.Dumper_1 
+     */
+
     var Dumper = {
 
         /**
