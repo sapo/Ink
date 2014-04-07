@@ -1,4 +1,4 @@
-<section class="box box-attribute">
+<section id="{{{hash}}}" class="box box-attribute">
     <h1 class="fw-300">
     {{#ifvalue parent.kind value="class"}}
        {{parent.name}}.{{name}}
@@ -10,12 +10,11 @@
         <span class="tag">deprecated</span>
     {{/if}}
     {{#if text}}
-        <p class="text">{{{text}}}</p>
+        <p class="text">{{{stripP text}}}</p>
     {{/if}}
     {{#if type}}
         <pre>{{type}}</pre>
     {{/if}}
-    <label>{{name}}</label>
     {{#if description}}
         <span class="description">{{{description}}}</span>
     {{/if}}

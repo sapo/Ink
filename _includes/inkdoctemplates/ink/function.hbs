@@ -43,19 +43,19 @@
     {{~/if~}}
 
     {{~#if text~}}
-        <p class="text">{{{text}}}</p>
+        <p class="text">{{{stripP text}}}</p>
     {{~/if~}}
 
     {{~#if params.length}}
         <h3>Accepts</h3>
         <dl class="params">
         {{~#each params}}
-            <dt {{#unless isFirstLevel~}} class="children" {{~/unless}}>
+            <dt class="level{{~countLevel name~}}">
                 {{~#if type~}}
                     <code>{{type}}</code>
                 {{~/if~}}
             </dt>
-            <dd {{#unless isFirstLevel~}} class="children" {{~/unless}}>
+            <dd class="level{{~countLevel name~}}">
                 {{~#if optionname ~}}
                     teste
                 {{~/if~}}
@@ -75,23 +75,20 @@
             </dd>
         {{~/each}}
         </dl>
-        {{~#if return}}
-        <h3>Returns</h3>
-        <dl>
-            <dt class="return">
-                {{~#if return.type}}<code>{{~return.type~}}</code>{{~/if~}}
-            </dt>
-            <dd>
-                {{~#if return.description~}}
-                    {{~{description}~}}
-                {{~/if}}
-            </dd>
-        </dl>
-        {{/if~}}
-
-
     {{~/if~}}
-
+    {{~#if return}}
+    <h3>Returns</h3>
+    <dl>
+        <dt class="return">
+            {{~#if return.type}}<code>{{~return.type~}}</code>{{~/if~}}
+        </dt>
+        <dd>
+            {{~#if return.description~}}
+                {{~{description}~}}
+            {{~/if}}
+        </dd>
+    </dl>
+    {{/if~}}
 
     {{~> examples~}}
     {{~> samples~}}
