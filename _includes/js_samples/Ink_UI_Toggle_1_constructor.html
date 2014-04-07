@@ -1,13 +1,10 @@
 {% capture demo_code %}
-<div class="example">
-<button id="myAlertToggler" class="ink-button" data-target="#myAlert">
-     See more
-</button>
+<button id="myAlertToggler" class="ink-button" data-target="#myAlert">See more</button>
 <div id="myAlert" class="ink-alert block hide-all">
     <h4>This is a details section</h4>
     <p>Insert awesome text here</p>
 </div>
-</div>
+
 <script>
     Ink.requireModules(['Ink.UI.Toggle_1'], function (Toggle) {
         new Toggle('#myAlertToggler');
@@ -16,14 +13,15 @@
 {% endcapture %}
 
 {% capture demo_code_1 %}
-<div class="example">
 <button id="myToggleClass"
     class="ink-button"
     data-target="#myToggledLabel"
     data-class-name-on="green"
     data-class-name-off="red">Click here to toggle the label</button>
-<span id="myToggledLabel" class="ink-label green">label</span>
+<div id="myToggledLabel" class="green half-top-space">
+    I can change my color if you push click the button.
 </div>
+
 <script>
     Ink.requireModules(['Ink.UI.Toggle_1'], function (Toggle) {
         new Toggle('#myToggleClass');
@@ -31,19 +29,24 @@
 </script>
 {% endcapture %}
 
-<p>Toggle an alert</p>
+<h2 class="fw-300">Basic usage</h2>
+<p>In the example below we can see an alert being toggled</p>
 <p class="example-title">Demo</p>
+<div class="example">
 {{ demo_code }}
+</div>
+
 <p class="example-title">Code</p>
 {% highlight html %}
 {{ demo_code }}
 {% endhighlight %}
 
-
-
 <p>Toggle between two classes, to switch the color of a label between red and blue.</p>
 <p class="example-title">Demo</p>
+<div class="example">
 {{ demo_code_1 }}
+</div>
+
 <p class="example-title">Code</p>
 {% highlight html %}
 {{ demo_code_1 }}

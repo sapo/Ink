@@ -1036,6 +1036,14 @@ p.loader {
     @extend .fw-300;
 }
 
+#myToggledLabel {
+    padding: 1em;
+    color: $white;
+    @include border-radius($border-radius);
+    &.green { background: $green; }
+    &.red { background: $red; }
+}
+
 @media screen and (min-width: 641px) and (max-width: 960px) {
     #topbar .ink-navigation ul.black li.logoPlaceholder {float: right;}
 }

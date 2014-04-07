@@ -1,24 +1,33 @@
 {% capture demo_code %}
-<div id="myTips" class="example">
-    <span class="ink-label grey">Default Behavior</span>
-    <span data-tip-where="up" class="white ink-label">Up</span>
-    <span data-tip-where="right" class="white ink-label">Right</span>
-    <span data-tip-where="down" class="white ink-label">Down</span>
-    <span data-tip-where="left" class="white ink-label">Left</span>
-    <span data-tip-where="mousemove" class="white ink-label">Mousemove</span>
-    <span data-tip-where="mousefix" class="white ink-label">Mousefix</span>
-    </div>
-    <script>
-    Ink.requireModules( ['Ink.UI.Tooltip_1'], function( Tooltip ){
-        var Tooltip = new Tooltip( '#myTips .ink-label',  {text: 'Hello World'});
-    });
+<div id="myTips" class="ink-navigation">
+    <ul class="pills black">
+        <li class="tip"><a href="#">Default Behavior</a></li>
+        <li class="tip" data-tip-where="up" data-tip-color="blue"><a href="#">Up</a></li>
+        <li class="tip" data-tip-where="right" data-tip-color="green"><a href="#">Right</a></li>
+        <li class="tip" data-tip-where="down" data-tip-color="orange"><a href="#">Down</a></li>
+        <li class="tip" data-tip-where="left" data-tip-color="red"><a href="#">Left</a></li>
+        <li class="tip" data-tip-where="mousemove" data-tip-color="black"><a href="#">Mousemove</a></li>
+        <li class="tip" data-tip-where="mousefix" data-tip-color="grey"><a href="#">Mousefix</a></li>
+    </ul>
+</div>
+
+<script>
+Ink.requireModules( ['Ink.UI.Tooltip_1'], function( Tooltip ){
+    var Tooltip = new Tooltip( '#myTips .tip',  {text: 'Hello World'});
+});
 </script>
 {% endcapture %}
 
-<p>Default Usage</p>
 <p class="example-title">Demo</p>
+<div class="example">
 {{ demo_code }}
+</div>
+
 <p class="example-title">Code</p>
 {% highlight html %}
 {{ demo_code }}
 {% endhighlight %}
+
+<p>
+    <i class="fa fa-leaf"></i> As show in the code example, you may change the tooltip theme and position by using the <code>data-tip-color</code> and <code>data-tip-where</code> attributes respectively.
+</p>
