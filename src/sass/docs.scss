@@ -6,6 +6,7 @@
 // Import Ink
 @import "config/common";
 @import "config/colors";
+@import "config/typography";
 
 @charset "UTF-8";
 
@@ -1042,6 +1043,22 @@ p.loader {
     @include border-radius($border-radius);
     &.green { background: $green; }
     &.red { background: $red; }
+}
+
+ul.params {
+    p { margin: .4em 0; }
+    li {
+        margin: 1em 0;
+        &.level1 { list-style-type: disc; }
+        &.level2 { 
+            list-style-type: circle;
+            margin-left: $indent-amount; 
+        }
+        &.level3 { 
+            list-style-type: circle;
+            margin-left: $indent-amount * 2; 
+        }
+    }
 }
 
 @media screen and (min-width: 641px) and (max-width: 960px) {
