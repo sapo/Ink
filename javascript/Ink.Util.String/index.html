@@ -5,7 +5,7 @@ description: String Utilities
 site_root:  ../
 ---
     <section>
-        <h1 class="fw-300">Ink.Util.String_1<small>version:1</small></h1>
+        <h1 class="fw-300">Ink.Util.String_1</h1>
 
 
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space"><caption>Functions</caption>
@@ -33,7 +33,7 @@ site_root:  ../
                 <td>
                     <a href="#Ink_Util_String_1-Ink_Util_String_1-evalJSON">.evalJSON</a>
                 </td>
-                <td>Eval a JSON string to a JS object</td>
+                <td>Eval a JSON - We recommend you Ink.Util.Json</td>
             </tr>
             <tr>
                 <td>
@@ -177,31 +177,31 @@ site_root:  ../
 
 
     <section id="Ink_Util_String_1-Ink_Util_String_1-escape" class="box box-function">
-    <h1 class="fw-300">.escape(c, c) 
+    <h1 class="fw-300">.escape(c) 
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">c</li><li class="prop">c</li>
+        <li class="heading">Arguments:</li><li class="prop">c</li>
     </ul><p class="text">Escapes a unicode character.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">c
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Character to escape</dd>
-            <dt class="level1"><label class="monospace">c
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                char</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">c</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Character to escape</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>String</code></dt>
-        <dd>Escaped character. Returns \xXX if hex smaller than 0x100, otherwise \uXXXX
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>String</code></p>Escaped character. Returns \xXX if hex smaller than 0x100, otherwise \uXXXX
+        </li>
+    </ul>
     
 
-</section>
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_String_escape.html %}
+	</section>
 
     <section id="Ink_Util_String_1-Ink_Util_String_1-escapeText" class="box box-function">
     <h1 class="fw-300">.escapeText(txt, [whiteList]) 
@@ -210,50 +210,59 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">txt</li><li class="prop">[whiteList]</li>
     </ul><p class="text">Escapes a string to unicode characters</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">txt
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                </dd>
-            <dt class="level1"><label class="monospace">[whiteList]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Array</span></label>
-                Whitelist of characters</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">txt</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                </li>
+            <li class="level1"><p>
+                    <span class="monospace">[whiteList]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Array</span></p>
+                <!--</label>-->
+                Whitelist of characters</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>String</code></dt>
-        <dd>String escaped to Unicode
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>String</code></p>String escaped to Unicode
+        </li>
+    </ul>
     
 
-</section>
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_String_escapeText.html %}
+	</section>
 
     <section id="Ink_Util_String_1-Ink_Util_String_1-evalJSON" class="box box-function">
     <h1 class="fw-300">.evalJSON(strJSON, sanitize) 
     <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li><li class="prop">strJSON</li><li class="prop">sanitize</li>
-    </ul><p class="text">Eval a JSON string to a JS object</p>
+    </ul><p class="text">Eval a JSON - We recommend you Ink.Util.Json</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">strJSON
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                JSON string to eval</dd>
-            <dt class="level1"><label class="monospace">sanitize
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Boolean</span></label>
-                Flag to sanitize input</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">strJSON</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                JSON string to eval</li>
+            <li class="level1"><span class="monospace">sanitize</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Boolean</span></p>
+                <!--</label>-->
+                Flag to sanitize input</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Object</code></dt>
-        <dd>JS Object
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Object</code></p>JS Object
+        </li>
+    </ul>
     
 
 </section>
@@ -265,21 +274,25 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">string</li>
     </ul><p class="text">Decodes string from HTML entities.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">string
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                String to be decoded</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">string</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                String to be decoded</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>String</code></dt>
-        <dd>Decoded string
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>String</code></p>Decoded string
+        </li>
+    </ul>
     
 
-</section>
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_String_htmlEntitiesDecode.html %}
+	</section>
 
     <section id="Ink_Util_String_1-Ink_Util_String_1-htmlEntitiesEncode" class="box box-function">
     <h1 class="fw-300">.htmlEntitiesEncode(string) 
@@ -288,21 +301,25 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">string</li>
     </ul><p class="text">Encodes string into HTML entities.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">string
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                </dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">string</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                </li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>String</code></dt>
-        <dd>string encoded
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>String</code></p>string encoded
+        </li>
+    </ul>
     
 
-</section>
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_String_htmlEntitiesEncode.html %}
+	</section>
 
     <section id="Ink_Util_String_1-Ink_Util_String_1-htmlEscapeUnsafe" class="box box-function">
     <h1 class="fw-300">.htmlEscapeUnsafe(str) 
@@ -311,21 +328,25 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">str</li>
     </ul><p class="text">Escapes unsafe html chars as HTML entities</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">str
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                String to escape</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">str</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                String to escape</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>String</code></dt>
-        <dd>Escaped string
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>String</code></p>Escaped string
+        </li>
+    </ul>
     
 
-</section>
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_String_htmlEscapeUnsafe.html %}
+	</section>
 
     <section id="Ink_Util_String_1-Ink_Util_String_1-isJSON" class="box box-function">
     <h1 class="fw-300">.isJSON(str) 
@@ -334,18 +355,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">str</li>
     </ul><p class="text">Checks if a string is a valid JSON object (string encoded)</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">str
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                String to check</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">str</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                String to check</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Boolean</code></dt>
-        <dd>
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Boolean</code></p>
+        </li>
+    </ul>
     
 
 </section>
@@ -357,21 +380,25 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">str</li>
     </ul><p class="text">Normalizes whitespace in string.<br>String is trimmed and sequences of whitespaces are collapsed.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">str
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                String to normalize</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">str</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                String to normalize</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>String</code></dt>
-        <dd>Normalized string
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>String</code></p>Normalized string
+        </li>
+    </ul>
     
 
-</section>
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_String_normalizeWhitespace.html %}
+	</section>
 
     <section id="Ink_Util_String_1-Ink_Util_String_1-packetize" class="box box-function">
     <h1 class="fw-300">.packetize(str, maxLen) 
@@ -380,25 +407,30 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">str</li><li class="prop">maxLen</li>
     </ul><p class="text">Splits a string into smaller chunks</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">str
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                String to divide</dd>
-            <dt class="level1"><label class="monospace">maxLen
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Number</span></label>
-                Maximum chunk size (in characters)</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">str</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                String to divide</li>
+            <li class="level1"><span class="monospace">maxLen</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Number</span></p>
+                <!--</label>-->
+                Maximum chunk size (in characters)</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Array</code></dt>
-        <dd>Chunks of the original string
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Array</code></p>Chunks of the original string
+        </li>
+    </ul>
     
 
-</section>
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_String_packetize.html %}
+	</section>
 
     <section id="Ink_Util_String_1-Ink_Util_String_1-removeAccentedChars" class="box box-function">
     <h1 class="fw-300">.removeAccentedChars(string) 
@@ -407,21 +439,25 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">string</li>
     </ul><p class="text">Removes all accented characters from a string.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">string
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                String to remove accents from</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">string</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                String to remove accents from</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>String</code></dt>
-        <dd>String without accented chars
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>String</code></p>String without accented chars
+        </li>
+    </ul>
     
 
-</section>
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_String_removeAccentedChars.html %}
+	</section>
 
     <section id="Ink_Util_String_1-Ink_Util_String_1-shortString" class="box box-function">
     <h1 class="fw-300">.shortString(str, n) 
@@ -430,25 +466,30 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">str</li><li class="prop">n</li>
     </ul><p class="text">Truncates a string without breaking words.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">str
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                String to truncate</dd>
-            <dt class="level1"><label class="monospace">n
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Number</span></label>
-                Number of chars of the short string</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">str</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                String to truncate</li>
+            <li class="level1"><span class="monospace">n</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Number</span></p>
+                <!--</label>-->
+                Number of chars of the short string</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>String</code></dt>
-        <dd>
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>String</code></p>
+        </li>
+    </ul>
     
 
-</section>
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_String_shortString.html %}
+	</section>
 
     <section id="Ink_Util_String_1-Ink_Util_String_1-strcmp" class="box box-function">
     <h1 class="fw-300">.strcmp(str1, str2) 
@@ -457,25 +498,30 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">str1</li><li class="prop">str2</li>
     </ul><p class="text">Compares two strings.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">str1
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                First String</dd>
-            <dt class="level1"><label class="monospace">str2
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Second String</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">str1</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                First String</li>
+            <li class="level1"><span class="monospace">str2</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Second String</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Number</code></dt>
-        <dd>
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Number</code></p>
+        </li>
+    </ul>
     
 
-</section>
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_String_strcmp.html %}
+	</section>
 
     <section id="Ink_Util_String_1-Ink_Util_String_1-stripTags" class="box box-function">
     <h1 class="fw-300">.stripTags(string, allowed) 
@@ -484,35 +530,30 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">string</li><li class="prop">allowed</li>
     </ul><p class="text">Strips HTML tags from strings</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">string
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                String to strip tags from.</dd>
-            <dt class="level1"><label class="monospace">allowed
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Comma separated list of allowed tags.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">string</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                String to strip tags from.</li>
+            <li class="level1"><span class="monospace">allowed</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Comma separated list of allowed tags.</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>String</code></dt>
-        <dd>Stripped string
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>String</code></p>Stripped string
+        </li>
+    </ul>
     
-<p class="example-title">Example</p>
-  
-{% highlight html %}{% raw %}
-    <script>
-         var myvar='isto e um texto <b>bold</b> com imagem <img src=""> e br <br /> um <p>paragrafo</p>';
-         SAPO.Utility.String.stripTags(myvar, 'b,u');
-    </script>
-{% endraw %}{% endhighlight %}
 
-
-
-</section>
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_String_stripTags.html %}
+	</section>
 
     <section id="Ink_Util_String_1-Ink_Util_String_1-substrCount" class="box box-function">
     <h1 class="fw-300">.substrCount(haystack, needle) 
@@ -521,25 +562,30 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">haystack</li><li class="prop">needle</li>
     </ul><p class="text">Count the number of occurrences of a specific needle in a haystack</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">haystack
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                String to search in</dd>
-            <dt class="level1"><label class="monospace">needle
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                String to search for</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">haystack</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                String to search in</li>
+            <li class="level1"><span class="monospace">needle</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                String to search for</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Number</code></dt>
-        <dd>Number of occurrences
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Number</code></p>Number of occurrences
+        </li>
+    </ul>
     
 
-</section>
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_String_substrCount.html %}
+	</section>
 
     <section id="Ink_Util_String_1-Ink_Util_String_1-toUnicode" class="box box-function">
     <h1 class="fw-300">.toUnicode(str) 
@@ -548,21 +594,25 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">str</li>
     </ul><p class="text">Converts string to unicode.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">str
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                String to convert</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">str</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                String to convert</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>String</code></dt>
-        <dd>Unicoded String
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>String</code></p>Unicoded String
+        </li>
+    </ul>
     
 
-</section>
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_String_toUnicode.html %}
+	</section>
 
     <section id="Ink_Util_String_1-Ink_Util_String_1-trim" class="box box-function">
     <h1 class="fw-300">.trim(string) 
@@ -571,21 +621,25 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">string</li>
     </ul><p class="text">Trims whitespace from strings</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">string
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                String to be trimmed</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">string</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                String to be trimmed</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>String</code></dt>
-        <dd>Trimmed string
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>String</code></p>Trimmed string
+        </li>
+    </ul>
     
 
-</section>
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_String_trim.html %}
+	</section>
 
     <section id="Ink_Util_String_1-Ink_Util_String_1-truncateString" class="box box-function">
     <h1 class="fw-300">.truncateString(str, length) 
@@ -594,25 +648,30 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">str</li><li class="prop">length</li>
     </ul><p class="text">Truncates a string, breaking words and adding ... at the end.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">str
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                String to truncate</dd>
-            <dt class="level1"><label class="monospace">length
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Number</span></label>
-                Limit for the returned string, ellipsis included.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">str</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                String to truncate</li>
+            <li class="level1"><span class="monospace">length</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Number</span></p>
+                <!--</label>-->
+                Limit for the returned string, ellipsis included.</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>String</code></dt>
-        <dd>Truncated String
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>String</code></p>Truncated String
+        </li>
+    </ul>
     
 
-</section>
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_String_truncateString.html %}
+	</section>
 
     <section id="Ink_Util_String_1-Ink_Util_String_1-ucFirst" class="box box-function">
     <h1 class="fw-300">.ucFirst(string, [firstWordOnly]) 
@@ -621,34 +680,32 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">string</li><li class="prop">[firstWordOnly]</li>
     </ul><p class="text">Capitalizes a word.<br>If param as more than one word, it converts first letter of all words that have more than 2 letters</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">string
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                String to capitalize.</dd>
-            <dt class="level1"><label class="monospace">[firstWordOnly]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Boolean</span>false</label>
-                Flag to capitalize only the first word.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">string</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                String to capitalize.</li>
+            <li class="level1"><p>
+                    <span class="monospace">[firstWordOnly]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Boolean</span></p>
+                false<!--</label>-->
+                Flag to capitalize only the first word.</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>String</code></dt>
-        <dd>Camel cased string.
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>String</code></p>Camel cased string.
+        </li>
+    </ul>
     
-<p class="example-title">Example</p>
-  
-{% highlight html %}{% raw %}
-     InkString.ucFirst('hello world'); // -> 'Hello World'
-     InkString.ucFirst('hello world', true); // -> 'Hello world'
-{% endraw %}{% endhighlight %}
 
-
-
-</section>
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_String_ucFirst.html %}
+	</section>
 
     <section id="Ink_Util_String_1-Ink_Util_String_1-unescape" class="box box-function">
     <h1 class="fw-300">.unescape(es) 
@@ -657,21 +714,25 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">es</li>
     </ul><p class="text">Unescapes a unicode character escape sequence</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">es
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Escape sequence</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">es</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Escape sequence</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>String</code></dt>
-        <dd>String un-unicoded
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>String</code></p>String un-unicoded
+        </li>
+    </ul>
     
 
-</section>
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_String_unescape.html %}
+	</section>
 
     <section id="Ink_Util_String_1-Ink_Util_String_1-unescapeText" class="box box-function">
     <h1 class="fw-300">.unescapeText(txt) 
@@ -680,21 +741,25 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">txt</li>
     </ul><p class="text">Unescapes a string</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">txt
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                </dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">txt</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                </li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>String</code></dt>
-        <dd>Unescaped string
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>String</code></p>Unescaped string
+        </li>
+    </ul>
     
 
-</section>
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_String_unescapeText.html %}
+	</section>
 
     <section id="Ink_Util_String_1-Ink_Util_String_1-utf8Decode" class="box box-function">
     <h1 class="fw-300">.utf8Decode(string) 
@@ -703,18 +768,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">string</li>
     </ul><p class="text">Decodes a string from UTF-8.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">string
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                String to be decoded</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">string</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                String to be decoded</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>String</code></dt>
-        <dd>Decoded string
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>String</code></p>Decoded string
+        </li>
+    </ul>
     
 
 </section>
@@ -726,18 +793,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">string</li>
     </ul><p class="text">Encode a string to UTF-8.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">string
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                String to be encoded</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">string</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                String to be encoded</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>String</code></dt>
-        <dd>string      UTF-8 encoded string
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>String</code></p>string      UTF-8 encoded string
+        </li>
+    </ul>
     
 
 </section>

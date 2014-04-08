@@ -1,0 +1,10 @@
+<p class="example-title">Code</p>
+{% highlight js %}
+Ink.requireModules(['Ink.Util.String_1'], function(InkString) {
+
+    InkString.strcmp('aa', 'aa'); // 0 
+    InkString.strcmp('aa', 'bb'); // -1 
+    InkString.strcmp('bb', 'aa'); // 1 
+});
+{% endhighlight %}
+

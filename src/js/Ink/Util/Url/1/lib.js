@@ -284,7 +284,7 @@ Ink.createModule('Ink.Util.Url', '1', [], function() {
          *
          * @method currentScriptElement
          * @param {String} [match] String to match against the script src attribute
-         * @return {DOMElement|Boolean} Returns the <script> DOM Element or false if unable to find it.
+         * @return {DOMElement|Boolean} Returns the `script` DOM Element or false if unable to find it.
          * @public
          * @static
          * @sample Ink_Util_Url_currentScriptElement.html 

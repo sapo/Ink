@@ -48,42 +48,44 @@
 
     {{~#if params.length}}
         <h3>Accepts</h3>
-        <dl class="params">
+        
+        <ul class="params">
         {{~#each params}}
-            <dt class="level{{~countLevel name~}}">
-                 {{~#if isOptional~}}
-                <label class="monospace">[{{~name}}]
-                {{else~}}
-                <label class="monospace">{{~name}} 
-                {{~/if}}
-            </dt>
-            <dd class="level{{~countLevel name~}}">
-               {{~#if type~}}
-                    <span class="ink-label orange">{{type}}</span>
-                {{~/if~}}
+            <li class="level{{~countLevel name~}}">
+                {{~#if isOptional~}}
+                <p>
+                    <span class="monospace">[{{~name}}]</span>
+                    {{else~}}
+                    <span class="monospace">{{~name}}</span>
+                    {{~/if}}
+                    
+                    <!--<li class="level{{~countLevel name~}}">-->
+                    {{~#if type~}}
+                    <span class="ink-label orange">{{type}}</span> 
+                    {{~/if~}}
+                </p>
                 {{#if defaultValue~}}
                     {{~defaultValue~}}
                 {{~/if~}}
-                </label>
+                <!--</label>-->
                 {{#if description~}}
                     {{~{description}~}}
                 {{~/if~}}
-            </dd>
+            </li>
         {{~/each}}
-        </dl>
+        </ul>
     {{~/if~}}
     {{~#if return}}
     <h3>Returns</h3>
-    <dl>
-        <dt class="return">
-            {{~#if return.type}}<code>{{~return.type~}}</code>{{~/if~}}
-        </dt>
-        <dd>
+    <ul class="params">
+        <li class="return">
+            <p>{{~#if return.type}}<code>{{~return.type~}}</code>{{~/if~}}</p>
+        
             {{~#if return.description~}}
                 {{~{return.description}~}}
             {{~/if}}
-        </dd>
-    </dl>
+        </li>
+    </ul>
     {{/if~}}
 
     {{~> examples~}}

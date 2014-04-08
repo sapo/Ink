@@ -5,7 +5,7 @@ description: Date selector
 site_root:  ../
 ---
     <section>
-        <h1 class="fw-300">Ink.UI.DatePicker_1<small>version:1</small></h1>
+        <h1 class="fw-300">Ink.UI.DatePicker_1</h1>
 
 
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space">
@@ -67,177 +67,245 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">selector</li><li class="prop">[options]</li>
     </ul>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">selector
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String|DOMElement</span></label>
-                </dd>
-            <dt class="level1"><label class="monospace">[options]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Object</span></label>
-                Options</dd>
-            <dt class="level2"><label class="monospace">[options.autoOpen]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Boolean</span></label>
-                Flag to automatically open the datepicker.</dd>
-            <dt class="level2"><label class="monospace">[options.cleanText]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                Text for the clean button. Defaults to 'Limpar'.</dd>
-            <dt class="level2"><label class="monospace">[options.closeText]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                Text for the close button. Defaults to 'Fechar'.</dd>
-            <dt class="level2"><label class="monospace">[options.cssClass]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                CSS class to be applied on the datepicker</dd>
-            <dt class="level2"><label class="monospace">[options.dateRange]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                Enforce limits to year, month and day for the Date, ex: '1990-08-25:2020-11'</dd>
-            <dt class="level2"><label class="monospace">[options.displayInSelect]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Boolean</span></label>
-                Flag to display the component in a select element.</dd>
-            <dt class="level2"><label class="monospace">[options.dayField]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String|DOMElement</span></label>
-                (if using options.displayInSelect) `select` field with days.</dd>
-            <dt class="level2"><label class="monospace">[options.monthField]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String|DOMElement</span></label>
-                (if using options.displayInSelect) `select` field with months.</dd>
-            <dt class="level2"><label class="monospace">[options.yearField]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String|DOMElement</span></label>
-                (if using options.displayInSelect) `select` field with years.</dd>
-            <dt class="level2"><label class="monospace">[options.format]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                Date format string</dd>
-            <dt class="level2"><label class="monospace">[options.instance]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                Unique id for the datepicker</dd>
-            <dt class="level2"><label class="monospace">[options.month]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Object</span></label>
-                Hash of month names. Defaults to portuguese month names. January is 1.</dd>
-            <dt class="level2"><label class="monospace">[options.nextLinkText]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                Text for the previous button. Defaults to '«'.</dd>
-            <dt class="level2"><label class="monospace">[options.ofText]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                Text to show between month and year. Defaults to ' of '.</dd>
-            <dt class="level2"><label class="monospace">[options.onFocus]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Boolean</span></label>
-                If the datepicker should open when the target element is focused. Defaults to true.</dd>
-            <dt class="level2"><label class="monospace">[options.onMonthSelected]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Function</span></label>
-                Callback to execute when the month is selected.</dd>
-            <dt class="level2"><label class="monospace">[options.onSetDate]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Function</span></label>
-                Callback to execute when the date is set.</dd>
-            <dt class="level2"><label class="monospace">[options.onYearSelected]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Function</span></label>
-                Callback to execute when the year is selected.</dd>
-            <dt class="level2"><label class="monospace">[options.position]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                Position for the datepicker. Either 'right' or 'bottom'. Defaults to 'right'.</dd>
-            <dt class="level2"><label class="monospace">[options.prevLinkText]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                Text for the previous button. Defaults to '«'.</dd>
-            <dt class="level2"><label class="monospace">[options.showClean]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Boolean</span></label>
-                If the clean button should be visible. Defaults to true.</dd>
-            <dt class="level2"><label class="monospace">[options.showClose]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Boolean</span></label>
-                If the close button should be visible. Defaults to true.</dd>
-            <dt class="level2"><label class="monospace">[options.shy]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Boolean</span></label>
-                If the datepicker should start automatically. Defaults to true.</dd>
-            <dt class="level2"><label class="monospace">[options.startDate]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                Date to define initial month. Must be in yyyy-mm-dd format.</dd>
-            <dt class="level2"><label class="monospace">[options.startWeekDay]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Number</span></label>
-                First day of the week. Sunday is zero. Defaults to 1 (Monday).</dd>
-            <dt class="level2"><label class="monospace">[options.validYearFn]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Function</span></label>
-                Callback to execute when 'rendering' the month (in the month view)</dd>
-            <dt class="level2"><label class="monospace">[options.validMonthFn]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Function</span></label>
-                Callback to execute when 'rendering' the month (in the month view)</dd>
-            <dt class="level2"><label class="monospace">[options.validDayFn]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Function</span></label>
-                Callback to execute when 'rendering' the day (in the month view)</dd>
-            <dt class="level2"><label class="monospace">[options.nextValidDateFn]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Function</span></label>
-                Function to calculate the next valid date, given the current. Useful when there's invalid dates or time frames.</dd>
-            <dt class="level2"><label class="monospace">[options.prevValidDateFn]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Function</span></label>
-                Function to calculate the previous valid date, given the current. Useful when there's invalid dates or time frames.</dd>
-            <dt class="level2"><label class="monospace">[options.wDay]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Object</span></label>
-                Hash of weekdays. Defaults to portuguese names. Sunday is 0.</dd>
-            <dt class="level2"><label class="monospace">[options.yearRange]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                Enforce limits to year for the Date, ex: '1990:2020' (deprecated)</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">selector</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String|DOMElement</span></p>
+                <!--</label>-->
+                </li>
+            <li class="level1"><p>
+                    <span class="monospace">[options]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                Options</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.autoOpen]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Boolean</span></p>
+                <!--</label>-->
+                Flag to automatically open the datepicker.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.cleanText]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Text for the clean button. Defaults to 'Limpar'.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.closeText]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Text for the close button. Defaults to 'Fechar'.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.cssClass]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                CSS class to be applied on the datepicker</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.dateRange]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Enforce limits to year, month and day for the Date, ex: '1990-08-25:2020-11'</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.displayInSelect]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Boolean</span></p>
+                <!--</label>-->
+                Flag to display the component in a select element.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.dayField]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String|DOMElement</span></p>
+                <!--</label>-->
+                (if using options.displayInSelect) `select` field with days.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.monthField]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String|DOMElement</span></p>
+                <!--</label>-->
+                (if using options.displayInSelect) `select` field with months.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.yearField]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String|DOMElement</span></p>
+                <!--</label>-->
+                (if using options.displayInSelect) `select` field with years.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.format]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Date format string</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.instance]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Unique id for the datepicker</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.month]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                Hash of month names. Defaults to portuguese month names. January is 1.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.nextLinkText]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Text for the previous button. Defaults to '«'.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.ofText]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Text to show between month and year. Defaults to ' of '.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.onFocus]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Boolean</span></p>
+                <!--</label>-->
+                If the datepicker should open when the target element is focused. Defaults to true.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.onMonthSelected]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Function</span></p>
+                <!--</label>-->
+                Callback to execute when the month is selected.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.onSetDate]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Function</span></p>
+                <!--</label>-->
+                Callback to execute when the date is set.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.onYearSelected]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Function</span></p>
+                <!--</label>-->
+                Callback to execute when the year is selected.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.position]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Position for the datepicker. Either 'right' or 'bottom'. Defaults to 'right'.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.prevLinkText]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Text for the previous button. Defaults to '«'.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.showClean]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Boolean</span></p>
+                <!--</label>-->
+                If the clean button should be visible. Defaults to true.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.showClose]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Boolean</span></p>
+                <!--</label>-->
+                If the close button should be visible. Defaults to true.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.shy]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Boolean</span></p>
+                <!--</label>-->
+                If the datepicker should start automatically. Defaults to true.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.startDate]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Date to define initial month. Must be in yyyy-mm-dd format.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.startWeekDay]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Number</span></p>
+                <!--</label>-->
+                First day of the week. Sunday is zero. Defaults to 1 (Monday).</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.validYearFn]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Function</span></p>
+                <!--</label>-->
+                Callback to execute when 'rendering' the month (in the month view)</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.validMonthFn]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Function</span></p>
+                <!--</label>-->
+                Callback to execute when 'rendering' the month (in the month view)</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.validDayFn]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Function</span></p>
+                <!--</label>-->
+                Callback to execute when 'rendering' the day (in the month view)</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.nextValidDateFn]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Function</span></p>
+                <!--</label>-->
+                Function to calculate the next valid date, given the current. Useful when there's invalid dates or time frames.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.prevValidDateFn]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Function</span></p>
+                <!--</label>-->
+                Function to calculate the previous valid date, given the current. Useful when there's invalid dates or time frames.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.wDay]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                Hash of weekdays. Defaults to portuguese names. Sunday is 0.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.yearRange]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Enforce limits to year for the Date, ex: '1990:2020' (deprecated)</li>
+        </ul>
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_UI_DatePicker_1.html %}
@@ -259,11 +327,11 @@ site_root:  ../
     <h1 class="fw-300">.isMonthRendered() 
     <i>method</i></h1><p class="text">Checks if the calendar screen is in &#39;select day&#39; mode</p>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Boolean</code></dt>
-        <dd>True if the calendar screen is in 'select day' mode
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Boolean</code></p>True if the calendar screen is in 'select day' mode
+        </li>
+    </ul>
     
 
 </section>
@@ -275,12 +343,14 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">dateString</li>
     </ul><p class="text">This method allows the user to set the DatePicker&#39;s date on run-time.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">dateString
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                A date string in yyyy-mm-dd format.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">dateString</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                A date string in yyyy-mm-dd format.</li>
+        </ul>
 
 </section>
 

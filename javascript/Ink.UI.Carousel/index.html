@@ -5,7 +5,7 @@ description: Flexible Carousel
 site_root:  ../
 ---
     <section>
-        <h1 class="fw-300">Ink.UI.Carousel_1<small>version:1</small></h1>
+        <h1 class="fw-300">Ink.UI.Carousel_1</h1>
 
 
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space">
@@ -97,57 +97,77 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">selector</li><li class="prop">[options]</li>
     </ul>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">selector
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String|DOMElement</span></label>
-                DOM element or element id</dd>
-            <dt class="level1"><label class="monospace">[options]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Object</span></label>
-                Carousel Options</dd>
-            <dt class="level2"><label class="monospace">[options.autoAdvance]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Integer</span></label>
-                Milliseconds to wait before auto-advancing pages. Set to 0 to disable auto-advance. Defaults to 0.</dd>
-            <dt class="level2"><label class="monospace">[options.axis]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                Axis of the carousel. Set to 'y' for a vertical carousel. Defaults to 'x'.</dd>
-            <dt class="level2"><label class="monospace">[options.center]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Boolean</span></label>
-                Flag to center the carousel horizontally.</dd>
-            <dt class="level2"><label class="monospace">[options.initialPage]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Number</span></label>
-                Initial index page of the carousel. Defaults to 0.</dd>
-            <dt class="level2"><label class="monospace">[options.spaceAfterLastSlide]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Boolean</span>true</label>
-                If there are not enough slides to fill the full width of the last page, leave white space. Defaults to `true`.</dd>
-            <dt class="level2"><label class="monospace">[options.swipe]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Boolean</span></label>
-                Enable swipe support if available. Defaults to true.</dd>
-            <dt class="level2"><label class="monospace">[options.pagination]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Mixed</span></label>
-                Either an ul element to add pagination markup to or an `Ink.UI.Pagination` instance to use.</dd>
-            <dt class="level2"><label class="monospace">[options.onChange]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Function</span></label>
-                Callback to be called when the page changes.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">selector</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String|DOMElement</span></p>
+                <!--</label>-->
+                DOM element or element id</li>
+            <li class="level1"><p>
+                    <span class="monospace">[options]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                Carousel Options</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.autoAdvance]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Integer</span></p>
+                <!--</label>-->
+                Milliseconds to wait before auto-advancing pages. Set to 0 to disable auto-advance. Defaults to 0.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.axis]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Axis of the carousel. Set to 'y' for a vertical carousel. Defaults to 'x'.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.center]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Boolean</span></p>
+                <!--</label>-->
+                Flag to center the carousel horizontally.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.initialPage]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Number</span></p>
+                <!--</label>-->
+                Initial index page of the carousel. Defaults to 0.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.spaceAfterLastSlide]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Boolean</span></p>
+                true<!--</label>-->
+                If there are not enough slides to fill the full width of the last page, leave white space. Defaults to `true`.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.swipe]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Boolean</span></p>
+                <!--</label>-->
+                Enable swipe support if available. Defaults to true.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.pagination]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Mixed</span></p>
+                <!--</label>-->
+                Either an ul element to add pagination markup to or an `Ink.UI.Pagination` instance to use.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.onChange]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Function</span></p>
+                <!--</label>-->
+                Callback to be called when the page changes.</li>
+        </ul>
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_UI_Carousel_1.html %}
@@ -157,11 +177,11 @@ site_root:  ../
     <h1 class="fw-300">.getPage() 
     <i>method</i></h1><p class="text">Gets the current page index</p>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"></dt>
-        <dd>The current page number
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p></p>The current page number
+        </li>
+    </ul>
     
 
 </section>
@@ -170,11 +190,11 @@ site_root:  ../
     <h1 class="fw-300">.getSlidesList() 
     <i>method</i></h1><p class="text">Get a list of your slides (elements with the &quot;.slide&quot; class inside your stage)</p>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>DOMElement[]</code></dt>
-        <dd>Array containing the slides.
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>DOMElement[]</code></p>Array containing the slides.
+        </li>
+    </ul>
     
 
 </section>
@@ -183,11 +203,11 @@ site_root:  ../
     <h1 class="fw-300">.getSlidesPerPage() 
     <i>method</i></h1><p class="text">Returns how many slides fit into a page</p>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Number</code></dt>
-        <dd>The number of slides per page
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Number</code></p>The number of slides per page
+        </li>
+    </ul>
     
 
 </section>
@@ -196,11 +216,11 @@ site_root:  ../
     <h1 class="fw-300">.getStageElm() 
     <i>method</i></h1><p class="text">Get the stage element (your UL with the class &quot;.stage&quot;).</p>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>DOMElement</code></dt>
-        <dd>Stage element
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>DOMElement</code></p>Stage element
+        </li>
+    </ul>
     
 
 </section>
@@ -209,11 +229,11 @@ site_root:  ../
     <h1 class="fw-300">.getTotalPages() 
     <i>method</i></h1><p class="text">Get the amount of pages in the carousel.</p>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Number</code></dt>
-        <dd>The number of pages
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Number</code></p>The number of pages
+        </li>
+    </ul>
     
 
 </section>
@@ -222,11 +242,11 @@ site_root:  ../
     <h1 class="fw-300">.getTotalSlides() 
     <i>method</i></h1><p class="text">Get the total number of slides</p>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Number</code></dt>
-        <dd>The number of slides
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Number</code></p>The number of slides
+        </li>
+    </ul>
     
 
 </section>
@@ -238,13 +258,16 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">[wrap]</li>
     </ul><p class="text">Goes to the next page</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">[wrap]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Boolean</span></label>
-                Flag to loop from last page to first page.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><p>
+                    <span class="monospace">[wrap]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Boolean</span></p>
+                <!--</label>-->
+                Flag to loop from last page to first page.</li>
+        </ul>
 
 </section>
 
@@ -255,13 +278,16 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">[wrap]</li>
     </ul><p class="text">Goes to the previous page</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">[wrap]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Boolean</span></label>
-                Flag to loop from first page to last page.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><p>
+                    <span class="monospace">[wrap]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Boolean</span></p>
+                <!--</label>-->
+                Flag to loop from first page to last page.</li>
+        </ul>
 
 </section>
 
@@ -278,17 +304,21 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">page</li><li class="prop">[wrap]</li>
     </ul><p class="text">Sets the current page index</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">page
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Number</span></label>
-                Index of the destination page.</dd>
-            <dt class="level1"><label class="monospace">[wrap]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Boolean</span></label>
-                Flag to activate circular counting.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">page</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Number</span></p>
+                <!--</label>-->
+                Index of the destination page.</li>
+            <li class="level1"><p>
+                    <span class="monospace">[wrap]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Boolean</span></p>
+                <!--</label>-->
+                Flag to activate circular counting.</li>
+        </ul>
 
 </section>
 

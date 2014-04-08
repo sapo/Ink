@@ -5,9 +5,9 @@ description: Sort and paginate tabular data
 site_root:  ../
 ---
     <section>
-        <h1 class="fw-300">Ink.UI.Table_1<small>version:1</small></h1>
+        <h1 class="fw-300">Ink.UI.Table_1</h1>
 
-<p>The Table component transforms the native/DOM table element into a sortable, paginated component.<br><p>You can use this component to display data from a JSON endpoint, or<br>from table rows in the DOM. Displaying from the DOM is more practical,<br>but sometimes you don&#39;t want to load everything at once (if you have<br>a HUGE table). In those cases, you should configure Ink.UI.Table to<br>get data from JSON endpoint.</p><br><p>To enable sorting, just set the <code>data-sortable</code> attribute of your table headers (they must be in the <code>thead</code> of the table) to &quot;true&quot;.</p><br><p>To enable pagination, you should pass either an <code>Ink.UI.Pagination</code> instance or a selector to create the Ink.UI.Paginate element on.</p></p>
+<p>The Table component transforms the native/DOM table element into a sortable, paginated component.<br>You can use this component to display data from a JSON endpoint, or from table rows in the DOM. Displaying from the DOM is more practical, but sometimes you don&#39;t want to load everything at once (if you have a HUGE table). In those cases, you should configure Ink.UI.Table to get data from JSON endpoint.<br>To enable sorting, just set the <code>data-sortable</code> attribute of your table headers (they must be in the <code>thead</code> of the table) to &quot;true&quot;. To enable pagination, you should pass either an <code>Ink.UI.Pagination</code> instance or a selector to create the Ink.UI.Paginate element on.</p>
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space">
         <caption>Methods</caption>
         <thead>
@@ -43,102 +43,140 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">selector</li><li class="prop">[options]</li>
     </ul>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">selector
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String|DOMElement</span></label>
-                </dd>
-            <dt class="level1"><label class="monospace">[options]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Object</span></label>
-                Options</dd>
-            <dt class="level2"><label class="monospace">[options.pageSize]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Number</span></label>
-                Number of rows per page. Omit to avoid paginating.</dd>
-            <dt class="level2"><label class="monospace">[options.endpoint]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                Endpoint to get the records via AJAX. Omit if you don't want to do AJAX</dd>
-            <dt class="level2"><label class="monospace">[options.createEndpointUrl]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Function</span></label>
-                Callback to customise what URL the AJAX endpoint is at. Receives three arguments: base (the "endpoint" option), sort (`{ order: 'asc' or 'desc', field: fieldname }`) and page ({ page: page number, size: items per page })</dd>
-            <dt class="level2"><label class="monospace">[options.getDataFromEndPoint]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Function</span></label>
-                Callback to allow the user to retrieve the data himself given an URL.  Must accept two arguments: `url` and `callback`. This `callback` will take as a single argument a JavaScript object.</dd>
-            <dt class="level2"><label class="monospace">[options.processJSONRows]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Function</span></label>
-                Retrieve an array of rows from the data which came from AJAX.</dd>
-            <dt class="level2"><label class="monospace">[options.processJSONHeaders]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Function</span></label>
-                Get an object with all the headers' names as keys, and a { label, sortable } object as value.  Example: `{col1: {label: "Column 1"}, col2: {label: "Column 2", sortable: true}`.  Takes a single argument, the JSON response.</dd>
-            <dt class="level2"><label class="monospace">[options.processJSONRow]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Function</span></label>
-                Process a row object before it gets on the table.</dd>
-            <dt class="level2"><label class="monospace">[options.processJSONField]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Function</span></label>
-                Process the field data before putting it on the table.  You can return HTML, a DOM element, or a string here.  Arguments you receive: `(column, fieldData, rowIndex)`.</dd>
-            <dt class="level3"><label class="monospace">[options.processJSONField.FIELD_NAME]
-                
-            </dt>
-            <dd class="level3"><span class="ink-label orange">Function</span></label>
-                The same as processJSONField, but for a particular field.</dd>
-            <dt class="level2"><label class="monospace">[options.processJSONTotalRows]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Function</span></label>
-                A callback where you have a chance to say how many rows are in the dataset (not only on this page) you have on the collection. You get as an argument the JSON response.</dd>
-            <dt class="level2"><label class="monospace">[options.getSortKey]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Function</span></label>
-                A function taking a `{ columnIndex, columnName, data, element }` object and returning a value which serves as a sort key for the sorting operation. For example, if you want to sort by a `data-sort-key` atribute, set `getSortKey` to: function (cell) { return cell.element.getAttribute('data-sort-key'); }</dd>
-            <dt class="level3"><label class="monospace">[options.getSortKey.FIELD_NAME]
-                
-            </dt>
-            <dd class="level3"><span class="ink-label orange">Function</span></label>
-                Same as `options.getSortKey`, but for a particular field.</dd>
-            <dt class="level2"><label class="monospace">[options.tdClassNames]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Object</span></label>
-                An object mapping each field to what classes it gets.  Example: `{ name: "large-10", isBoss: "hide-small" }`</dd>
-            <dt class="level2"><label class="monospace">[options.pagination]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Mixed</span></label>
-                Pagination instance, element or selector.</dd>
-            <dt class="level2"><label class="monospace">[options.paginationOptions]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Object</span></label>
-                Override the options with which we instantiate the Ink.UI.Pagination.</dd>
-            <dt class="level2"><label class="monospace">[options.allowResetSorting]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Boolean</span></label>
-                Allow sort order to be set to "none" in addition to "ascending" and "descending"</dd>
-            <dt class="level2"><label class="monospace">[options.visibleFields]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String|Array</span></label>
-                Set of fields which get shown on the table</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">selector</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String|DOMElement</span></p>
+                <!--</label>-->
+                </li>
+            <li class="level1"><p>
+                    <span class="monospace">[options]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                Options</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.pageSize]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Number</span></p>
+                <!--</label>-->
+                Number of rows per page. Omit to avoid paginating.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.endpoint]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Endpoint to get the records via AJAX. Omit if you don't want to do AJAX</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.createEndpointUrl]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Function</span></p>
+                <!--</label>-->
+                Callback to customise what URL the AJAX endpoint is at. Receives three arguments: base (the "endpoint" option), sort (`{ order: 'asc' or 'desc', field: fieldname }`) and page ({ page: page number, size: items per page })</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.getDataFromEndPoint]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Function</span></p>
+                <!--</label>-->
+                Callback to allow the user to retrieve the data himself given an URL.  Must accept two arguments: `url` and `callback`. This `callback` will take as a single argument a JavaScript object.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.processJSONRows]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Function</span></p>
+                <!--</label>-->
+                Retrieve an array of rows from the data which came from AJAX.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.processJSONHeaders]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Function</span></p>
+                <!--</label>-->
+                Get an object with all the headers' names as keys, and a { label, sortable } object as value.  Example: `{col1: {label: "Column 1"}, col2: {label: "Column 2", sortable: true}`.  Takes a single argument, the JSON response.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.processJSONRow]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Function</span></p>
+                <!--</label>-->
+                Process a row object before it gets on the table.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.processJSONField]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Function</span></p>
+                <!--</label>-->
+                Process the field data before putting it on the table.  You can return HTML, a DOM element, or a string here.  Arguments you receive: `(column, fieldData, rowIndex)`.</li>
+            <li class="level3"><p>
+                    <span class="monospace">[options.processJSONField.FIELD_NAME]</span>
+                    
+                    
+                    <!--<li class="level3">--><span class="ink-label orange">Function</span></p>
+                <!--</label>-->
+                The same as processJSONField, but for a particular field.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.processJSONTotalRows]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Function</span></p>
+                <!--</label>-->
+                A callback where you have a chance to say how many rows are in the dataset (not only on this page) you have on the collection. You get as an argument the JSON response.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.getSortKey]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Function</span></p>
+                <!--</label>-->
+                A function taking a `{ columnIndex, columnName, data, element }` object and returning a value which serves as a sort key for the sorting operation. For example, if you want to sort by a `data-sort-key` atribute, set `getSortKey` to: function (cell) { return cell.element.getAttribute('data-sort-key'); }</li>
+            <li class="level3"><p>
+                    <span class="monospace">[options.getSortKey.FIELD_NAME]</span>
+                    
+                    
+                    <!--<li class="level3">--><span class="ink-label orange">Function</span></p>
+                <!--</label>-->
+                Same as `options.getSortKey`, but for a particular field.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.tdClassNames]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                An object mapping each field to what classes it gets.  Example: `{ name: "large-10", isBoss: "hide-small" }`</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.pagination]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Mixed</span></p>
+                <!--</label>-->
+                Pagination instance, element or selector.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.paginationOptions]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                Override the options with which we instantiate the Ink.UI.Pagination.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.allowResetSorting]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Boolean</span></p>
+                <!--</label>-->
+                Allow sort order to be set to "none" in addition to "ascending" and "descending"</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.visibleFields]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String|Array</span></p>
+                <!--</label>-->
+                Set of fields which get shown on the table</li>
+        </ul>
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_UI_Table_1.html %}
@@ -151,12 +189,14 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">endpoint</li>
     </ul><p class="text">Sets the AJAX endpoint.<br>Useful to change the endpoint in runtime.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">endpoint
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                New endpoint</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">endpoint</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                New endpoint</li>
+        </ul>
 
 </section>
 

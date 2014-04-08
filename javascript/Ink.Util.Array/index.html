@@ -5,7 +5,7 @@ description: Array Utilities
 site_root:  ../
 ---
     <section>
-        <h1 class="fw-300">Ink.Util.Array_1<small>version:1</small></h1>
+        <h1 class="fw-300">Ink.Util.Array_1</h1>
 
 
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space"><caption>Functions</caption>
@@ -108,18 +108,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">arr</li>
     </ul><p class="text">Converts an array-like object to an array</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">arr
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Array</span></label>
-                Array to be converted</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">arr</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Array</span></p>
+                <!--</label>-->
+                Array to be converted</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Array</code></dt>
-        <dd>Array resulting of the conversion
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Array</code></p>Array resulting of the conversion
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -139,27 +141,32 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">array</li><li class="prop">test</li><li class="prop">[context]</li>
     </ul><p class="text">Filters an array based on a truth test.<br>This method runs a test function on all the array values and returns a new array with all the values that pass the test.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">array
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Array</span></label>
-                The array to filter</dd>
-            <dt class="level1"><label class="monospace">test
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Function</span></label>
-                A test function taking `(item, index, array)`</dd>
-            <dt class="level1"><label class="monospace">[context]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Object</span></label>
-                Object to be `this` in the test function.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">array</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Array</span></p>
+                <!--</label>-->
+                The array to filter</li>
+            <li class="level1"><span class="monospace">test</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Function</span></p>
+                <!--</label>-->
+                A test function taking `(item, index, array)`</li>
+            <li class="level1"><p>
+                    <span class="monospace">[context]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                Object to be `this` in the test function.</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Array</code></dt>
-        <dd>Returns the filtered array
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Array</code></p>Returns the filtered array
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -173,22 +180,25 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">arr</li><li class="prop">cb</li>
     </ul><p class="text">Runs a function through each of the elements of an array</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">arr
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Array</span></label>
-                The array to be cycled/iterated</dd>
-            <dt class="level1"><label class="monospace">cb
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Function</span></label>
-                The function receives as arguments the value, index and array.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">arr</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Array</span></p>
+                <!--</label>-->
+                The array to be cycled/iterated</li>
+            <li class="level1"><span class="monospace">cb</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Function</span></p>
+                <!--</label>-->
+                The function receives as arguments the value, index and array.</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Array</code></dt>
-        <dd>Iterated array.
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Array</code></p>Iterated array.
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -202,22 +212,25 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">value</li><li class="prop">arr</li>
     </ul><p class="text">Checks if a value exists in array</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">value
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Mixed</span></label>
-                Value to check</dd>
-            <dt class="level1"><label class="monospace">arr
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Array</span></label>
-                Array to search in</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">value</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Mixed</span></p>
+                <!--</label>-->
+                Value to check</li>
+            <li class="level1"><span class="monospace">arr</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Array</span></p>
+                <!--</label>-->
+                Array to search in</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Boolean</code></dt>
-        <dd>True if value exists in the array
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Boolean</code></p>True if value exists in the array
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -231,20 +244,24 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">arr</li><li class="prop">idx</li><li class="prop">value</li>
     </ul><p class="text">Inserts a value on a specified index</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">arr
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Array</span></label>
-                Array where the value will be inserted</dd>
-            <dt class="level1"><label class="monospace">idx
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Number</span></label>
-                Index of the array where the value should be inserted</dd>
-            <dt class="level1"><label class="monospace">value
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Mixed</span></label>
-                Value to be inserted</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">arr</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Array</span></p>
+                <!--</label>-->
+                Array where the value will be inserted</li>
+            <li class="level1"><span class="monospace">idx</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Number</span></p>
+                <!--</label>-->
+                Index of the array where the value should be inserted</li>
+            <li class="level1"><span class="monospace">value</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Mixed</span></p>
+                <!--</label>-->
+                Value to be inserted</li>
+        </ul>
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_Util_Array_insert.html %}
@@ -257,22 +274,25 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">arr1</li><li class="prop">arr2</li>
     </ul><p class="text">Compares the values of two arrays and return the matches</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">arr1
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Array</span></label>
-                First array</dd>
-            <dt class="level1"><label class="monospace">arr2
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Array</span></label>
-                Second array</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">arr1</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Array</span></p>
+                <!--</label>-->
+                First array</li>
+            <li class="level1"><span class="monospace">arr2</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Array</span></p>
+                <!--</label>-->
+                Second array</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Array</code></dt>
-        <dd>Empty array if one of the arrays is false (or do not intersect) | Array with the intersected values
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Array</code></p>Empty array if one of the arrays is false (or do not intersect) | Array with the intersected values
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -286,27 +306,32 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">value</li><li class="prop">arr</li><li class="prop">[first]</li>
     </ul><p class="text">Gets the indexes of a value in an array</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">value
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Value to search for.</dd>
-            <dt class="level1"><label class="monospace">arr
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Array</span></label>
-                Array to run the search in.</dd>
-            <dt class="level1"><label class="monospace">[first]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Boolean</span></label>
-                Flag to stop the search at the first match. It also returns an index number instead of an array of indexes.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">value</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Value to search for.</li>
+            <li class="level1"><span class="monospace">arr</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Array</span></p>
+                <!--</label>-->
+                Array to run the search in.</li>
+            <li class="level1"><p>
+                    <span class="monospace">[first]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Boolean</span></p>
+                <!--</label>-->
+                Flag to stop the search at the first match. It also returns an index number instead of an array of indexes.</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Boolean|Number|Array</code></dt>
-        <dd>False for no matches. Array of matches or first match index.
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Boolean|Number|Array</code></p>False for no matches. Array of matches or first match index.
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -320,21 +345,26 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">array</li><li class="prop">map</li><li class="prop">[context]</li>
     </ul><p class="text">Runs a function for each item in the array. <br>That function will receive each item as an argument and its return value will change the corresponding array item.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">array
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Array</span></label>
-                The array to map over</dd>
-            <dt class="level1"><label class="monospace">map
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Function</span></label>
-                The map function. Will take `(item, index, array)` as arguments and `this` will be the `context` argument.</dd>
-            <dt class="level1"><label class="monospace">[context]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Object</span></label>
-                Object to be `this` in the map function.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">array</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Array</span></p>
+                <!--</label>-->
+                The array to map over</li>
+            <li class="level1"><span class="monospace">map</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Function</span></p>
+                <!--</label>-->
+                The map function. Will take `(item, index, array)` as arguments and `this` will be the `context` argument.</li>
+            <li class="level1"><p>
+                    <span class="monospace">[context]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                Object to be `this` in the map function.</li>
+        </ul>
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_Util_Array_map.html %}
@@ -347,26 +377,30 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">arr</li><li class="prop">from</li><li class="prop">rLen</li>
     </ul><p class="text">Removes a range of values from the array</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">arr
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Array</span></label>
-                Array where the value will be removed</dd>
-            <dt class="level1"><label class="monospace">from
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Number</span></label>
-                Index of the array where the removal will start removing.</dd>
-            <dt class="level1"><label class="monospace">rLen
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Number</span></label>
-                Number of items to be removed from the index onwards.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">arr</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Array</span></p>
+                <!--</label>-->
+                Array where the value will be removed</li>
+            <li class="level1"><span class="monospace">from</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Number</span></p>
+                <!--</label>-->
+                Index of the array where the removal will start removing.</li>
+            <li class="level1"><span class="monospace">rLen</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Number</span></p>
+                <!--</label>-->
+                Number of items to be removed from the index onwards.</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Array</code></dt>
-        <dd>An array with the remaining values
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Array</code></p>An array with the remaining values
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -380,18 +414,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">arr</li>
     </ul><p class="text">Shuffles an array.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">arr
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Array</span></label>
-                Array to shuffle</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">arr</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Array</span></p>
+                <!--</label>-->
+                Array to shuffle</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Array|Boolean</code></dt>
-        <dd>Shuffled Array or false if not an array.
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Array|Boolean</code></p>Shuffled Array or false if not an array.
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -405,26 +441,30 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">arr</li><li class="prop">cb</li><li class="prop">context</li>
     </ul><p class="text">Checks if some element in the array passes a truth test</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">arr
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Array</span></label>
-                The array to iterate through</dd>
-            <dt class="level1"><label class="monospace">cb
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Function</span></label>
-                The callback to be called on the array's elements. It receives the value, the index and the array as arguments.</dd>
-            <dt class="level1"><label class="monospace">context
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Object</span></label>
-                Object of the callback function</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">arr</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Array</span></p>
+                <!--</label>-->
+                The array to iterate through</li>
+            <li class="level1"><span class="monospace">cb</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Function</span></p>
+                <!--</label>-->
+                The callback to be called on the array's elements. It receives the value, the index and the array as arguments.</li>
+            <li class="level1"><span class="monospace">context</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                Object of the callback function</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Boolean</code></dt>
-        <dd>True if the callback returns true at any point, false otherwise
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Boolean</code></p>True if the callback returns true at any point, false otherwise
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -438,22 +478,25 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">arr</li><li class="prop">key</li>
     </ul><p class="text">Sorts an array of objects by an object property</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">arr
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Array</span></label>
-                Array of objects to sort</dd>
-            <dt class="level1"><label class="monospace">key
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Property to sort by</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">arr</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Array</span></p>
+                <!--</label>-->
+                Array of objects to sort</li>
+            <li class="level1"><span class="monospace">key</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Property to sort by</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Array|Boolean</code></dt>
-        <dd>False if it's not an array, returns a sorted array if it's an array.
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Array|Boolean</code></p>False if it's not an array, returns a sorted array if it's an array.
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->

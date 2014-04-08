@@ -1,0 +1,12 @@
+<p class="example-title">Code</p>
+{% highlight js %}
+Ink.requireModules(['Ink.Util.String_1'], function(InkString) {
+
+    var result1 = InkString.ucFirst('text sample');
+    Ink.log(result1); // Text Sample 
+    
+    var result2 = InkString.ucFirst('text sample', true);
+    Ink.log(result2); // Text sample 
+});
+{% endhighlight %}
+

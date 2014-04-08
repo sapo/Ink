@@ -1,0 +1,12 @@
+<p class="example-title">Code</p>
+{% highlight js %}
+Ink.requireModules(['Ink.Util.String_1'], function(InkString) {
+
+    var result1 = InkString.stripTags('<p>text <span>sample</span> with a <a href="#">link</a></p>');
+    Ink.log(result1); // text sample with a link 
+    
+    var result2 = InkString.stripTags('<p>text <span>sample</span> with a <a href="#">link</a></p>', 'a,span');
+    Ink.log(result2); // text <span>sample</span> with a <a href="#">link</a>
+});
+{% endhighlight %}
+

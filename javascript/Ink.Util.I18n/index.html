@@ -5,7 +5,7 @@ description: Internationalization Utilities
 site_root:  ../
 ---
     <section>
-        <h1 class="fw-300">Ink.Util.I18n_1<small>version:1</small></h1>
+        <h1 class="fw-300">Ink.Util.I18n_1</h1>
 
 <p>Creates a new I18n helper object</p>
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space">
@@ -103,17 +103,21 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">dict</li><li class="prop">[lang]</li>
     </ul>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">dict
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Object</span></label>
-                Object mapping language codes (in the form of `pt_PT`, `pt_BR`, `fr`, `en_US`, etc.) to their Object dictionaries.</dd>
-            <dt class="level1"><label class="monospace">[lang]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span>&#x27;pt_PT&#x27;s</label>
-                language code of the target language</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">dict</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                Object mapping language codes (in the form of `pt_PT`, `pt_BR`, `fr`, `en_US`, etc.) to their Object dictionaries.</li>
+            <li class="level1"><p>
+                    <span class="monospace">[lang]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                &#x27;pt_PT&#x27;s<!--</label>-->
+                language code of the target language</li>
+        </ul>
 <p class="example-title">Example</p>
   
 {% highlight html %}{% raw %}
@@ -156,11 +160,11 @@ site_root:  ../
     <h1 class="fw-300">.alias() 
     <i>method</i></h1><p class="text">Alias for the text method.<br>Returns an alias to <code>text()</code>, for convenience. The resulting function is traditionally assigned to &quot;_&quot;.</p>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Function</code></dt>
-        <dd>an alias to `text()`. You can also access the rest of the translation API through this alias.
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Function</code></p>an alias to `text()`. You can also access the rest of the translation API through this alias.
+        </li>
+    </ul>
     
 <p class="example-title">Example</p>
   
@@ -194,12 +198,14 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">dict</li>
     </ul><p class="text">Adds translation strings for the helper to use.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">dict
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Object</span></label>
-                Object containing language objects identified by their language code</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">dict</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                Object containing language objects identified by their language code</li>
+        </ul>
 <p class="example-title">Example</p>
   
 {% highlight html %}{% raw %} 
@@ -221,16 +227,19 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">dict</li><li class="prop">lang</li>
     </ul><p class="text">Adds a dictionary to be used in all I18n instances for the corresponding language.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">dict
-            </dt>
-            <dd class="level1"></label>
-                {Object}     Dictionary to be added</dd>
-            <dt class="level1"><label class="monospace">lang
-            </dt>
-            <dd class="level1"></label>
-                {String}     Language fo the dictionary being added</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">dict</span>
+                    
+                    <!--<li class="level1">--></p>
+                <!--</label>-->
+                {Object}     Dictionary to be added</li>
+            <li class="level1"><span class="monospace">lang</span>
+                    
+                    <!--<li class="level1">--></p>
+                <!--</label>-->
+                {String}     Language fo the dictionary being added</li>
+        </ul>
 
 </section>
 
@@ -241,18 +250,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">key</li>
     </ul><p class="text">Gest a key from the current dictionary</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">key
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                </dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">key</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                </li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Any</code></dt>
-        <dd>The object which happened to be in the current language dictionary on the given key.
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Any</code></p>The object which happened to be in the current language dictionary on the given key.
+        </li>
+    </ul>
     
 <p class="example-title">Example</p>
   
@@ -270,11 +281,11 @@ site_root:  ../
     <h1 class="fw-300">.lang() 
     <i>method</i></h1><p class="text">Gets or sets the current default language of I18n instances.</p>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>String</code></dt>
-        <dd>language code
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>String</code></p>language code
+        </li>
+    </ul>
     
 
 </section>
@@ -286,12 +297,14 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">lang</li>
     </ul><p class="text">Gets or sets the language.<br>If there are more dictionaries available in cache, they will be loaded.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">lang
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Language code to set this instance to.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">lang</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Language code to set this instance to.</li>
+        </ul>
 
 </section>
 
@@ -302,31 +315,37 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">strSin</li><li class="prop">strPlur</li><li class="prop">count</li><li class="prop">[args*]</li>
     </ul><p class="text">Translates and pluralizes text.<br>Given a singular string, a plural string and a number, translates either the singular or plural string.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">strSin
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Word to use when count is 1</dd>
-            <dt class="level1"><label class="monospace">strPlur
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Word to use otherwise</dd>
-            <dt class="level1"><label class="monospace">count
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Number</span></label>
-                Number which defines which word to use</dd>
-            <dt class="level1"><label class="monospace">[args*]
-                
-            </dt>
-            <dd class="level1"></label>
-                Extra arguments, to be passed to `text()`</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">strSin</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Word to use when count is 1</li>
+            <li class="level1"><span class="monospace">strPlur</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Word to use otherwise</li>
+            <li class="level1"><span class="monospace">count</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Number</span></p>
+                <!--</label>-->
+                Number which defines which word to use</li>
+            <li class="level1"><p>
+                    <span class="monospace">[args*]</span>
+                    
+                    
+                    <!--<li class="level1">--></p>
+                <!--</label>-->
+                Extra arguments, to be passed to `text()`</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>String</code></dt>
-        <dd>
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>String</code></p>
+        </li>
+    </ul>
     
 <p class="example-title">Example</p>
   
@@ -353,33 +372,41 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">num</li><li class="prop">[options]</li>
     </ul><p class="text">Gets the ordinal suffix of a number.<br><p>This works by using transforms (in the form of Objects or Functions) passed into the function or found in the special key <code>_ordinals</code> in the active language dictionary.</p></p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">num
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Number</span></label>
-                Input number</dd>
-            <dt class="level1"><label class="monospace">[options]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Object|Function</span>{}</label>
-                Maps for translating. Each of these options' fallback is found in the current language's dictionary. The lookup order is the following: `exceptions`, `byLastDigit`, `default`. Each of these may be either an `Object` or a `Function`. If it's a function, it is called (with `number` and `digit` for any function except for byLastDigit, which is called with the `lastDigit` of the number in question), and if the function returns a string, that is used. If it's an object, the property is looked up using `[...]`. If what is found is a string, it is used.</dd>
-            <dt class="level2"><label class="monospace">[options.byLastDigit]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Object|Function</span>{}</label>
-                If the language requires the last digit to be considered, mappings of last digits to ordinal suffixes can be created here.</dd>
-            <dt class="level2"><label class="monospace">[options.exceptions]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Object|Function</span>{}</label>
-                Map unique, special cases to their ordinal suffixes.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">num</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Number</span></p>
+                <!--</label>-->
+                Input number</li>
+            <li class="level1"><p>
+                    <span class="monospace">[options]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Object|Function</span></p>
+                {}<!--</label>-->
+                Maps for translating. Each of these options' fallback is found in the current language's dictionary. The lookup order is the following: `exceptions`, `byLastDigit`, `default`. Each of these may be either an `Object` or a `Function`. If it's a function, it is called (with `number` and `digit` for any function except for byLastDigit, which is called with the `lastDigit` of the number in question), and if the function returns a string, that is used. If it's an object, the property is looked up using `[...]`. If what is found is a string, it is used.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.byLastDigit]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Object|Function</span></p>
+                {}<!--</label>-->
+                If the language requires the last digit to be considered, mappings of last digits to ordinal suffixes can be created here.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.exceptions]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Object|Function</span></p>
+                {}<!--</label>-->
+                Map unique, special cases to their ordinal suffixes.</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>String</code></dt>
-        <dd>Ordinal suffix for `num`.
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>String</code></p>Ordinal suffix for `num`.
+        </li>
+    </ul>
     
 <p class="example-title">Example</p>
   
@@ -453,12 +480,14 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">bool</li>
     </ul><p class="text">Sets or unsets test mode.<br>In test mode, unknown strings are wrapped in <code>[ ... ]</code>. This is useful for debugging your application and to make sure all your translation keys are in place.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">bool
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Boolean</span></label>
-                Flag to set the test mode state</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">bool</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Boolean</span></p>
+                <!--</label>-->
+                Flag to set the test mode state</li>
+        </ul>
 
 </section>
 
@@ -469,32 +498,42 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">str</li><li class="prop">[namedParms]</li><li class="prop">[args]</li><li class="prop">[arg2]</li><li class="prop">[argn*]</li>
     </ul><p class="text">Translates a string.<br>Given a translation key, return a translated string, with replaced parameters.<br>When a translated string is not available, the original string is returned unchanged.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">str
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Key to look for in i18n dictionary (which is returned verbatim if unknown)</dd>
-            <dt class="level1"><label class="monospace">[namedParms]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Object</span></label>
-                Named replacements. Replaces {named} with values in this object.</dd>
-            <dt class="level1"><label class="monospace">[args]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Replacement #1 (replaces first {} and all {1})</dd>
-            <dt class="level1"><label class="monospace">[arg2]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Replacement #2 (replaces second {} and all {2})</dd>
-            <dt class="level1"><label class="monospace">[argn*]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Replacement #n (replaces nth {} and all {n})</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">str</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Key to look for in i18n dictionary (which is returned verbatim if unknown)</li>
+            <li class="level1"><p>
+                    <span class="monospace">[namedParms]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                Named replacements. Replaces {named} with values in this object.</li>
+            <li class="level1"><p>
+                    <span class="monospace">[args]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Replacement #1 (replaces first {} and all {1})</li>
+            <li class="level1"><p>
+                    <span class="monospace">[arg2]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Replacement #2 (replaces second {} and all {2})</li>
+            <li class="level1"><p>
+                    <span class="monospace">[argn*]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Replacement #n (replaces nth {} and all {n})</li>
+        </ul>
 <p class="example-title">Example</p>
   
 {% highlight html %}{% raw %}

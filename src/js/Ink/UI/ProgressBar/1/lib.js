@@ -54,6 +54,8 @@ Ink.createModule('Ink.UI.ProgressBar', '1', ['Ink.UI.Common_1', 'Ink.Dom.Selecto
             this._options.onStart = Ink.bind(this._options.onStart,this);
             this._options.onEnd = Ink.bind(this._options.onEnd,this);
             this.setValue( this._options.startValue );
+
+            Common.registerInstance(this, this._elementBar);
         },
 
         /**

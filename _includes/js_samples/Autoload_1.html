@@ -1,0 +1,54 @@
+
+<p>Autoload makes creating Ink components easy. You just have to include a certain class in your elements (or otherwise make them match a certain selector) and Autoload will find them and create the components for you.</p>
+
+{% highlight html %}
+<div id="my-something">
+    ...
+</div>
+<script>
+    Ink.requireModules(['Ink.UI.Something_1'], function (Something) {
+        new Something('#my-sticky', { someOption: true, numberOption: 3 });
+    });
+</script>
+{% endhighlight %}
+
+<p>Notice how the ID is required to find the element and create it.</p>
+
+{% highlight html %}
+<div class="ink-something" data-some-option="true" data-number-option="3">
+    ...
+</div>
+
+<script src="/path/to/autoload.js"></script>
+{% endhighlight %}
+
+<p>Autoload will automatically wait until the page loads and create the UI modules for you.</p>
+
+<p>The following modules are available to be loaded by Autoload</p>
+
+<table class="ink-table">
+    <thead>
+        <th>Module</th>
+        <th>Selector</th>
+    </thead>
+    <tbody>
+        <tr><td>Animate_1</td>     <td>.ink-animate</td></tr>
+        <tr><td>Carousel_1</td>    <td>.ink-carousel</td></tr>
+        <tr><td>DatePicker_1</td>  <td>.ink-datepicker</td></tr>
+        <tr><td>Dropdown_1</td>    <td>.ink-dropdown</td></tr>
+        <tr><td>Gallery_1</td>     <td>ul.ink-gallery-source</td></tr>
+        <tr><td>Modal_1</td>       <td>.ink-modal</td></tr>
+        <tr><td>ProgressBar_1</td> <td>.ink-progress-bar</td></tr>
+        <tr><td>SortableList_1</td><td>.ink-sortable-list</td></tr>
+        <tr><td>Spy_1</td>         <td>[data-spy="true"]</td></tr>
+        <tr><td>Stacker_1</td>     <td>.ink-stacker</td></tr>
+        <tr><td>Sticky_1</td>      <td>.ink-sticky, .sticky</td></tr>
+        <tr><td>Table_1</td>       <td>.ink-table</td></tr>
+        <tr><td>Tabs_1</td>        <td>.ink-tabs</td></tr>
+        <tr><td>Toggle_1</td>      <td>.ink-toggle, .toggle</td></tr>
+        <tr><td>Tooltip_1</td>     <td>.ink-tooltip, .tooltip</td></tr>
+        <tr><td>TreeView_1</td>    <td>.ink-tree-view</td></tr>
+</tbody>
+</table>
+
+

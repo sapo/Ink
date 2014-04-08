@@ -5,7 +5,7 @@ description: Highlight elements as you scroll
 site_root:  ../
 ---
     <section>
-        <h1 class="fw-300">Ink.UI.Spy_1<small>version:1</small></h1>
+        <h1 class="fw-300">Ink.UI.Spy_1</h1>
 
 <p>Spy is an UI component which tells the user which section is currently visible.<br>Spy can be used to highlight a menu item for the section which is visible to the user.<br>You need two things: A menu element (which contains your links inside <code>li</code> tags), and an element containing your section&#39;s content.<br>The links must be inside <code>li</code> tags. These will get the &#39;active&#39; class, to signal which item is currently visible. In your CSS you need to add styling for this class.<br>To use Ink.UI.Spy for more than one section, loop through your sections (as you see in the sample below), or just load <code>autoload.js</code> and set add the <code>data-spy=&quot;true&quot;</code> attribute to your sections.<br>The currently visible element&#39;s corresponding link in the menu gets the &#39;visible&#39; class added to it.</p>
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space">
@@ -37,21 +37,26 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">selector</li><li class="prop">[options]</li>
     </ul>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">selector
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String|DOMElement</span></label>
-                </dd>
-            <dt class="level1"><label class="monospace">[options]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Object</span></label>
-                Options</dd>
-            <dt class="level2"><label class="monospace">options.target
-            </dt>
-            <dd class="level2"><span class="ink-label orange">DOMElement|String</span></label>
-                Target menu where the spy will highlight the right option.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">selector</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String|DOMElement</span></p>
+                <!--</label>-->
+                </li>
+            <li class="level1"><p>
+                    <span class="monospace">[options]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                Options</li>
+            <li class="level2"><span class="monospace">options.target</span>
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">DOMElement|String</span></p>
+                <!--</label>-->
+                Target menu where the spy will highlight the right option.</li>
+        </ul>
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_UI_Spy_1.html %}

@@ -5,9 +5,9 @@ description: Display tabbed content
 site_root:  ../
 ---
     <section>
-        <h1 class="fw-300">Ink.UI.Tabs_1<small>version:1</small></h1>
+        <h1 class="fw-300">Ink.UI.Tabs_1</h1>
 
-<p>The Tabs Component offers a simple way to build a tab-separated layout, allowing you to offer multiple content in the same space with intuitive navigation.<br><p>This component requires your markup to have:</p><br><ul><br><li>A container element (this is what you call the Ink.UI.Tabs constructor on), containing everything.<ul><br><li>An element with the <code>tabs-nav</code> class, to contain links.<ul><br><li>Your links with <code>href=&quot;#ID_OF_SECTION&quot;</code></li><br></ul><br></li><br><li>Your sections with the corresponding <code>id</code> attributes.<ul><br><li>The content for each section.</li><br></ul><br></li><br></ul><br></li><br></ul><br><p>When the user clicks in the links inside <code>tabs-nav</code>, the tab with the corresponding ID is then activated.</p><br><p>The tab which is active when the tab component is initialized has its hash in the browser URL. If there is no hash, then the <code>active</code> option kicks in. Otherwise, Tabs will fall back to showing the tab corresponding to the first link.</p><br><p>You can disable some (or all) tabs by passing an array for the <code>disabled</code> option.</p></p>
+<p>The Tabs Component offers a simple way to build a tab-separated layout, allowing you to offer multiple content in the same space with intuitive navigation.<br>This component requires your markup to have:<br><ul><br><li>A container element (this is what you call the Ink.UI.Tabs constructor on), containing everything.</li><br><li>An element with the <code>tabs-nav</code> class, to contain links.</li><br><li>Your links with <code>href=&quot;#ID_OF_SECTION&quot;</code></li><br><li>Your sections with the corresponding <code>id</code> attributes.</li><br><li>The content for each section.</li><br></ul><br><p>When the user clicks in the links inside <code>tabs-nav</code>, the tab with the corresponding ID is then activated. The active tab when the tab component is initialized has its hash in the browser URL. If there is no hash, then the <code>active</code> option kicks in. Otherwise, Tabs will fall back to showing the tab corresponding to the first link.<br>You can disable some (or all) tabs by passing an array for the <code>disabled</code> option.</p></p>
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space">
         <caption>Methods</caption>
         <thead>
@@ -85,47 +85,63 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">selector</li><li class="prop">[options]</li>
     </ul>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">selector
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String|DOMElement</span></label>
-                </dd>
-            <dt class="level1"><label class="monospace">[options]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Object</span></label>
-                Options</dd>
-            <dt class="level2"><label class="monospace">[options.preventUrlChange]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Boolean</span></label>
-                Flag that determines if follows the link on click or stops the event</dd>
-            <dt class="level2"><label class="monospace">[options.active]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                ID of the tab to activate on creation</dd>
-            <dt class="level2"><label class="monospace">[options.disabled]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Array</span></label>
-                IDs of the tabs that will be disabled on creation</dd>
-            <dt class="level2"><label class="monospace">[options.onBeforeChange]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Function</span></label>
-                Callback to be executed before changing tabs</dd>
-            <dt class="level2"><label class="monospace">[options.onChange]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Function</span></label>
-                Callback to be executed after changing tabs</dd>
-            <dt class="level2"><label class="monospace">[options.triggerEventsOnLoad]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Boolean</span></label>
-                Trigger the above events when the page is loaded.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">selector</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String|DOMElement</span></p>
+                <!--</label>-->
+                </li>
+            <li class="level1"><p>
+                    <span class="monospace">[options]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                Options</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.preventUrlChange]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Boolean</span></p>
+                <!--</label>-->
+                Flag that determines if follows the link on click or stops the event</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.active]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                ID of the tab to activate on creation</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.disabled]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Array</span></p>
+                <!--</label>-->
+                IDs of the tabs that will be disabled on creation</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.onBeforeChange]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Function</span></p>
+                <!--</label>-->
+                Callback to be executed before changing tabs</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.onChange]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Function</span></p>
+                <!--</label>-->
+                Callback to be executed after changing tabs</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.triggerEventsOnLoad]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Boolean</span></p>
+                <!--</label>-->
+                Trigger the above events when the page is loaded.</li>
+        </ul>
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_UI_Tabs_1.html %}
@@ -135,11 +151,11 @@ site_root:  ../
     <h1 class="fw-300">.activeContentTab() 
     <i>method</i></h1><p class="text">Gets the currently active section<br><p>(Each section contains content for a tab, and must have an <code>id</code> attribute)</p></p>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>DOMElement|null</code></dt>
-        <dd>Active section, or `null` if there is none.
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>DOMElement|null</code></p>Active section, or `null` if there is none.
+        </li>
+    </ul>
     
 
 </section>
@@ -148,24 +164,24 @@ site_root:  ../
     <h1 class="fw-300">.activeMenuLink() 
     <i>method</i></h1><p class="text">Gets the currently active Menu link (the links which the user clicks on to change tabs)</p>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>DOMElement|null</code></dt>
-        <dd>Active menu link, or `null` if there is none.
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>DOMElement|null</code></p>Active menu link, or `null` if there is none.
+        </li>
+    </ul>
     
 
 </section>
 
     <section id="Ink_UI_Tabs_1-Ink_UI_Tabs-activeMenuTab" class="box box-function">
     <h1 class="fw-300">.activeMenuTab() 
-    <i>method</i></h1><span class="tag">deprecated</span><p class="text">Returns the parent of the currently active menu link.<br><p>This is useful if you want to have <code>li</code> elements wrapping your links<br>and want to access the currently visible one.</p><br><p>(This method is deprecated)</p></p>
+    <i>method</i></h1><span class="ink-label red">deprecated</span><p class="text">Returns the parent of the currently active menu link.<br><p>This is useful if you want to have <code>li</code> elements wrapping your links<br>and want to access the currently visible one.</p><br><p>(This method is deprecated)</p></p>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>DOMElement|null</code></dt>
-        <dd>Active menu LI, or `null` if there is none.
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>DOMElement|null</code></p>Active menu LI, or `null` if there is none.
+        </li>
+    </ul>
     
 
 </section>
@@ -174,11 +190,11 @@ site_root:  ../
     <h1 class="fw-300">.activeTab() 
     <i>method</i></h1><p class="text">Returns the active tab id</p>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>String</code></dt>
-        <dd>ID of the active tab.
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>String</code></p>ID of the active tab.
+        </li>
+    </ul>
     
 
 </section>
@@ -190,12 +206,14 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">selector</li>
     </ul><p class="text">Changes the active tab<br><p>Pass a selector/element identifying what tab you want</p></p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">selector
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String|DOMElement</span></label>
-                Selector of the desired tab or the link that links to it</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">selector</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String|DOMElement</span></p>
+                <!--</label>-->
+                Selector of the desired tab or the link that links to it</li>
+        </ul>
 
 </section>
 
@@ -212,12 +230,14 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">selector</li>
     </ul><p class="text">Disables the desired tag</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">selector
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String|DOMElement</span></label>
-                the id of the desired tab or the link that links to it</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">selector</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String|DOMElement</span></p>
+                <!--</label>-->
+                the id of the desired tab or the link that links to it</li>
+        </ul>
 
 </section>
 
@@ -228,12 +248,14 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">selector</li>
     </ul><p class="text">Enables the desired tag</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">selector
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String|DOMElement</span></label>
-                The id of the desired tab or the link that links to it</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">selector</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String|DOMElement</span></p>
+                <!--</label>-->
+                The id of the desired tab or the link that links to it</li>
+        </ul>
 
 </section>
 

@@ -5,7 +5,7 @@ description: Scroll to content
 site_root:  ../
 ---
     <section>
-        <h1 class="fw-300">Ink.UI.SmoothScroller_1<small>version:1</small></h1>
+        <h1 class="fw-300">Ink.UI.SmoothScroller_1</h1>
 
 
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space"><caption>Functions</caption>
@@ -99,20 +99,24 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">el</li><li class="prop">event</li><li class="prop">fn</li>
     </ul><p class="text">Attaches an event for an element</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">el
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement</span></label>
-                DOMElement to make the listening of the event</dd>
-            <dt class="level1"><label class="monospace">event
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Event name to be listened</dd>
-            <dt class="level1"><label class="monospace">fn
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement</span></label>
-                Callback function to run when the event is triggered.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">el</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement</span></p>
+                <!--</label>-->
+                DOMElement to make the listening of the event</li>
+            <li class="level1"><span class="monospace">event</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Event name to be listened</li>
+            <li class="level1"><span class="monospace">fn</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement</span></p>
+                <!--</label>-->
+                Callback function to run when the event is triggered.</li>
+        </ul>
 
 </section>
 
@@ -123,12 +127,14 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">e</li>
     </ul><p class="text">Kill an event of an element</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">e
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Event to be killed/stopped</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">e</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Event to be killed/stopped</li>
+        </ul>
 
 </section>
 
@@ -139,18 +145,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">d</li>
     </ul><p class="text">Returns the Y position of an element, relative to the document</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">d
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement</span></label>
-                DOMElement to get the Y position from</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">d</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement</span></p>
+                <!--</label>-->
+                DOMElement to get the Y position from</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Number</code></dt>
-        <dd>Y position of div 'd'
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Number</code></p>Y position of div 'd'
+        </li>
+    </ul>
     
 
 </section>
@@ -162,13 +170,16 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">[selector]</li>
     </ul><p class="text">Has smooth scrolling applied to relevant elements upon page load.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">[selector]
-                
-            </dt>
-            <dd class="level1">&#x27;a.scrollableLink,a.ink-smooth-scroll&#x27;</label>
-                Selector string for finding links with smooth scrolling enabled.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><p>
+                    <span class="monospace">[selector]</span>
+                    
+                    
+                    <!--<li class="level1">--></p>
+                &#x27;a.scrollableLink,a.ink-smooth-scroll&#x27;<!--</label>-->
+                Selector string for finding links with smooth scrolling enabled.</li>
+        </ul>
 
 </section>
 
@@ -191,12 +202,14 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">d</li>
     </ul><p class="text">Moves the scrollbar to the target element. This is the function<br>which animates the scroll position bit by bit. It calls itself in<br>the end through requestAnimationFrame</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">d
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Number</span></label>
-                Y coordinate value to stop</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">d</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Number</span></p>
+                <!--</label>-->
+                Y coordinate value to stop</li>
+        </ul>
 
 </section>
 
@@ -204,11 +217,11 @@ site_root:  ../
     <h1 class="fw-300">.scrollTop() 
     <i>method</i></h1><p class="text">Returns the current scroll position</p>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Number</code></dt>
-        <dd>Current scroll position
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Number</code></p>Current scroll position
+        </li>
+    </ul>
     
 
 </section>

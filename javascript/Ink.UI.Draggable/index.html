@@ -5,7 +5,7 @@ description: Dragging elements around
 site_root:  ../
 ---
     <section>
-        <h1 class="fw-300">Ink.UI.Draggable_1<small>version:1</small></h1>
+        <h1 class="fw-300">Ink.UI.Draggable_1</h1>
 
 
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space">
@@ -43,107 +43,147 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">target</li><li class="prop">[options]</li>
     </ul>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">target
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String|DOMElement</span></label>
-                Target element.</dd>
-            <dt class="level1"><label class="monospace">[options]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Object</span></label>
-                Optional object to configure the component.</dd>
-            <dt class="level2"><label class="monospace">[options.constraint]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                Movement constraint. None by default. Can be `vertical`, `horizontal`, or `both`.</dd>
-            <dt class="level2"><label class="monospace">[options.constraintElm]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String|DOMElement</span></label>
-                Constrain dragging to be within this element. None by default.</dd>
-            <dt class="level2"><label class="monospace">[options.top]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Number</span></label>
-                Limits to constrain draggable movement.</dd>
-            <dt class="level2"><label class="monospace">[options.right]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Number</span></label>
-                Limits to constrain draggable movement.</dd>
-            <dt class="level2"><label class="monospace">[options.bottom]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Number</span></label>
-                Limits to constrain draggable movement.</dd>
-            <dt class="level2"><label class="monospace">[options.left]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Number</span></label>
-                Limits to constrain draggable movement.</dd>
-            <dt class="level2"><label class="monospace">[options.handle]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String|DOMElement</span></label>
-                If specified, this element or CSS ID will be used as a handle for dragging.</dd>
-            <dt class="level2"><label class="monospace">[options.revert]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Boolean</span></label>
-                Flag to revert the draggable to the original position when dragging stops.</dd>
-            <dt class="level2"><label class="monospace">[options.cursor]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                Cursor type (CSS `cursor` value) used when the mouse is over the draggable object.</dd>
-            <dt class="level2"><label class="monospace">[options.zIndex]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Number</span></label>
-                Z-index applied to the draggable element while dragged.</dd>
-            <dt class="level2"><label class="monospace">[options.fps]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Number</span></label>
-                If set, throttles the drag effect to this number of frames per second.</dd>
-            <dt class="level2"><label class="monospace">[options.droppableProxy]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">DOMElement</span></label>
-                If set, a shallow copy of this element will be moved around with transparent background.</dd>
-            <dt class="level2"><label class="monospace">[options.mouseAnchor]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                Anchor for the drag. Can be one of: 'left','center','right','top','center','bottom'.</dd>
-            <dt class="level2"><label class="monospace">[options.dragClass]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                Class to add when the draggable is being dragged. Defaults to drag.</dd>
-            <dt class="level2"><label class="monospace">[options.onStart]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Function</span></label>
-                Callback called when dragging starts.</dd>
-            <dt class="level2"><label class="monospace">[options.onEnd]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Function</span></label>
-                Callback called when dragging stops.</dd>
-            <dt class="level2"><label class="monospace">[options.onDrag]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Function</span></label>
-                Callback called while dragging, prior to position updates.</dd>
-            <dt class="level2"><label class="monospace">[options.onChange]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Function</span></label>
-                Callback called while dragging, after position updates.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">target</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String|DOMElement</span></p>
+                <!--</label>-->
+                Target element.</li>
+            <li class="level1"><p>
+                    <span class="monospace">[options]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                Optional object to configure the component.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.constraint]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Movement constraint. None by default. Can be `vertical`, `horizontal`, or `both`.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.constraintElm]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String|DOMElement</span></p>
+                <!--</label>-->
+                Constrain dragging to be within this element. None by default.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.top]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Number</span></p>
+                <!--</label>-->
+                Limits to constrain draggable movement.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.right]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Number</span></p>
+                <!--</label>-->
+                Limits to constrain draggable movement.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.bottom]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Number</span></p>
+                <!--</label>-->
+                Limits to constrain draggable movement.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.left]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Number</span></p>
+                <!--</label>-->
+                Limits to constrain draggable movement.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.handle]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String|DOMElement</span></p>
+                <!--</label>-->
+                If specified, this element or CSS ID will be used as a handle for dragging.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.revert]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Boolean</span></p>
+                <!--</label>-->
+                Flag to revert the draggable to the original position when dragging stops.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.cursor]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Cursor type (CSS `cursor` value) used when the mouse is over the draggable object.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.zIndex]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Number</span></p>
+                <!--</label>-->
+                Z-index applied to the draggable element while dragged.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.fps]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Number</span></p>
+                <!--</label>-->
+                If set, throttles the drag effect to this number of frames per second.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.droppableProxy]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">DOMElement</span></p>
+                <!--</label>-->
+                If set, a shallow copy of this element will be moved around with transparent background.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.mouseAnchor]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Anchor for the drag. Can be one of: 'left','center','right','top','center','bottom'.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.dragClass]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Class to add when the draggable is being dragged. Defaults to drag.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.onStart]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Function</span></p>
+                <!--</label>-->
+                Callback called when dragging starts.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.onEnd]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Function</span></p>
+                <!--</label>-->
+                Callback called when dragging stops.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.onDrag]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Function</span></p>
+                <!--</label>-->
+                Callback called while dragging, prior to position updates.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.onChange]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Function</span></p>
+                <!--</label>-->
+                Callback called while dragging, after position updates.</li>
+        </ul>
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_UI_Draggable_1.html %}

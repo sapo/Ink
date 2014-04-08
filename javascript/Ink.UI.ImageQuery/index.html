@@ -5,7 +5,7 @@ description: Responsive image loading
 site_root:  ../
 ---
     <section>
-        <h1 class="fw-300">Ink.UI.ImageQuery_1<small>version:1</small></h1>
+        <h1 class="fw-300">Ink.UI.ImageQuery_1</h1>
 
 
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space">
@@ -37,47 +37,63 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">selector</li><li class="prop">[options]</li>
     </ul>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">selector
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String|DOMElement</span></label>
-                Selector or element</dd>
-            <dt class="level1"><label class="monospace">[options]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Object</span></label>
-                Options object</dd>
-            <dt class="level2"><label class="monospace">[options.src]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String|Function</span></label>
-                String or Callback function (that returns a string) with the path to be used to get the images.</dd>
-            <dt class="level2"><label class="monospace">[options.retina]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String|Function</span></label>
-                String or Callback function (that returns a string) with the path to be used to get RETINA specific images.</dd>
-            <dt class="level2"><label class="monospace">[options.queries]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Array</span></label>
-                Array of queries</dd>
-            <dt class="level3"><label class="monospace">[options.queries.label]
-                
-            </dt>
-            <dd class="level3"><span class="ink-label orange">String</span></label>
-                Label of the query. Ex. 'small'</dd>
-            <dt class="level3"><label class="monospace">[options.queries.width]
-                
-            </dt>
-            <dd class="level3"><span class="ink-label orange">Number</span></label>
-                Min-width to use this query</dd>
-            <dt class="level2"><label class="monospace">[options.onLoad]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Function</span></label>
-                Date format string</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">selector</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String|DOMElement</span></p>
+                <!--</label>-->
+                Selector or element</li>
+            <li class="level1"><p>
+                    <span class="monospace">[options]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                Options object</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.src]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String|Function</span></p>
+                <!--</label>-->
+                String or Callback function (that returns a string) with the path to be used to get the images.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.retina]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String|Function</span></p>
+                <!--</label>-->
+                String or Callback function (that returns a string) with the path to be used to get RETINA specific images.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.queries]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Array</span></p>
+                <!--</label>-->
+                Array of queries</li>
+            <li class="level3"><p>
+                    <span class="monospace">[options.queries.label]</span>
+                    
+                    
+                    <!--<li class="level3">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Label of the query. Ex. 'small'</li>
+            <li class="level3"><p>
+                    <span class="monospace">[options.queries.width]</span>
+                    
+                    
+                    <!--<li class="level3">--><span class="ink-label orange">Number</span></p>
+                <!--</label>-->
+                Min-width to use this query</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.onLoad]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Function</span></p>
+                <!--</label>-->
+                Date format string</li>
+        </ul>
 <p class="example-title">Example</p>
   
 {% highlight html %}{% raw %}

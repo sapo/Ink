@@ -1,0 +1,9 @@
+<p class="example-title">Code</p>
+{% highlight js %}
+Ink.requireModules(['Ink.Util.String_1'], function(InkString) {
+
+    var result1 = InkString.toUnicode('some áudío çapo');
+    Ink.log(result1); // some \u00e1ud\u00edo \u00e7apo 
+});
+{% endhighlight %}
+

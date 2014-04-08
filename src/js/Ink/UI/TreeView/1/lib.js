@@ -107,6 +107,8 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
                     this._setNodeOpen(item, isOpen);
                 }
             },this));
+
+            Common.registerInstance(this, this._element);
         },
 
         _getIcon: function (node) {

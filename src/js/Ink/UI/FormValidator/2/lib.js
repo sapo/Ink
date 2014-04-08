@@ -622,6 +622,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
      * @version 2
      * @constructor
      * @param {String|DOMElement}   selector                        Either a CSS Selector string, or the form's DOMElement
+     * @param {Object}              [options]                       Options object, containing the following options:
      * @param {String}              [options.eventTrigger]          Event that will trigger the validation. Defaults to 'submit'.
      * @param {Boolean}             [options.neverSubmit]           Flag to cancel the submit event. Use this to avoid submitting the form.
      * @param {Selector}            [options.searchFor]             Selector containing the validation data-attributes. Defaults to 'input, select, textarea, .control-group'.
@@ -629,10 +630,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
      * @param {Function}            [options.onError]               Validation error callback
      * @param {Function}            [options.onSuccess]             Validation success callback
      *
-     * @example
-     *     Ink.requireModules( ['Ink.UI.FormValidator_2'], function( FormValidator ){
-     *         var myValidator = new FormValidator( '#my-form' );
-     *     });
+     * @sample Ink_UI_FormValidator_2.html
      */
     var FormValidator = function( selector, options ){
 
@@ -689,6 +687,8 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         if( typeof this._options.eventTrigger === 'string' ){
             Event.observe( this._rootElement,this._options.eventTrigger, Ink.bindEvent(this.validate,this) );
         }
+
+        Common.registerInstance(this, this._rootElement);
 
         this._init();
     };

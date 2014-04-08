@@ -42,16 +42,19 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">form</li><li class="prop">map2</li>
     </ul><p class="text">Sets form elements&#39; values with values from an object<br><p>Note: You can&#39;t set the values of an input with <code>type=&quot;file&quot;</code> (browser prohibits it)</p></p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">form
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement|String</span></label>
-                Form element to be populated</dd>
-            <dt class="level1"><label class="monospace">map2
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Object</span></label>
-                Map of fieldName -> String|String[]|Boolean</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">form</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement|String</span></p>
+                <!--</label>-->
+                Form element to be populated</li>
+            <li class="level1"><span class="monospace">map2</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                Map of fieldName -> String|String[]|Boolean</li>
+        </ul>
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_Dom_FormSerialize_fillIn.html %}
@@ -64,18 +67,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">form</li>
     </ul><p class="text">Serializes a form element into a JS object<br>It turns field names into keys and field values into values.<br><p>note: Multi-select and checkboxes with multiple values will result in arrays</p></p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">form
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement|String</span></label>
-                Form element to extract data</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">form</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement|String</span></p>
+                <!--</label>-->
+                Form element to extract data</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Object</code></dt>
-        <dd>Map of fieldName -> String|String[]|Boolean
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Object</code></p>Map of fieldName -> String|String[]|Boolean
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->

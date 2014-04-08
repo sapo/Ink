@@ -5,7 +5,7 @@ description: Form Validation
 site_root:  ../
 ---
     <section>
-        <h1 class="fw-300">Ink.UI.FormValidator_2<small>version:2</small></h1>
+        <h1 class="fw-300">Ink.UI.FormValidator_2</h1>
 
 <h2>Defined functions:</h2>
         <ul class="unstyled"><li><a href="#Ink_UI_FormValidator_2-alpha">Ink.UI.FormValidator_2.alpha(value, supportSpaces)</a></li>
@@ -105,59 +105,73 @@ site_root:  ../
 
 
     <section id="Ink_UI_FormValidator_2-Ink_UI_FormValidator_2-FormValidator_2" class="box box-function">
-    <h1 class="fw-300">Ink.UI.FormValidator_2(selector, ) 
+    <h1 class="fw-300">Ink.UI.FormValidator_2(selector, [options], ) 
     <i>constructor</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">selector</li>
+        <li class="heading">Arguments:</li><li class="prop">selector</li><li class="prop">[options]</li>
     </ul>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">selector
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String|DOMElement</span></label>
-                Either a CSS Selector string, or the form's DOMElement</dd>
-            <dt class="level2"><label class="monospace">[options.eventTrigger]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                Event that will trigger the validation. Defaults to 'submit'.</dd>
-            <dt class="level2"><label class="monospace">[options.neverSubmit]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Boolean</span></label>
-                Flag to cancel the submit event. Use this to avoid submitting the form.</dd>
-            <dt class="level2"><label class="monospace">[options.searchFor]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Selector</span></label>
-                Selector containing the validation data-attributes. Defaults to 'input, select, textarea, .control-group'.</dd>
-            <dt class="level2"><label class="monospace">[options.beforeValidation]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Function</span></label>
-                Callback to be executed before validating the form</dd>
-            <dt class="level2"><label class="monospace">[options.onError]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Function</span></label>
-                Validation error callback</dd>
-            <dt class="level2"><label class="monospace">[options.onSuccess]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Function</span></label>
-                Validation success callback</dd>
-        </dl>
-<p class="example-title">Example</p>
-  
-{% highlight html %}{% raw %}
-    Ink.requireModules( ['Ink.UI.FormValidator_2'], function( FormValidator ){
-        var myValidator = new FormValidator( '#my-form' );
-    });
-{% endraw %}{% endhighlight %}
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">selector</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String|DOMElement</span></p>
+                <!--</label>-->
+                Either a CSS Selector string, or the form's DOMElement</li>
+            <li class="level1"><p>
+                    <span class="monospace">[options]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                Options object, containing the following options:</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.eventTrigger]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Event that will trigger the validation. Defaults to 'submit'.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.neverSubmit]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Boolean</span></p>
+                <!--</label>-->
+                Flag to cancel the submit event. Use this to avoid submitting the form.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.searchFor]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Selector</span></p>
+                <!--</label>-->
+                Selector containing the validation data-attributes. Defaults to 'input, select, textarea, .control-group'.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.beforeValidation]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Function</span></p>
+                <!--</label>-->
+                Callback to be executed before validating the form</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.onError]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Function</span></p>
+                <!--</label>-->
+                Validation error callback</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.onSuccess]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Function</span></p>
+                <!--</label>-->
+                Validation success callback</li>
+        </ul>
 
-
-
-</section>
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_UI_FormValidator_2.html %}
+	</section>
 
     <section id="Ink_UI_FormValidator_2-Ink_UI_FormValidator_2-AppendI18n" class="box box-function">
     <h1 class="fw-300">.AppendI18n() 
@@ -169,11 +183,11 @@ site_root:  ../
     <h1 class="fw-300">.getElements() 
     <i>method</i></h1><p class="text">Searches for the elements in the form.<br>This method is based in the this._options.searchFor configuration.</p>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Object</code></dt>
-        <dd>An object with the elements in the form, indexed by name/id
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Object</code></p>An object with the elements in the form, indexed by name/id
+        </li>
+    </ul>
     
 
 </section>
@@ -182,11 +196,11 @@ site_root:  ../
     <h1 class="fw-300">.getI18n() 
     <i>method</i></h1><p class="text">Gets the i18n object in charge of the error messages</p>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Ink.Util.I18n</code></dt>
-        <dd>The i18n object the FormValidator is using.
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Ink.Util.I18n</code></p>The i18n object the FormValidator is using.
+        </li>
+    </ul>
     
 
 </section>
@@ -195,11 +209,11 @@ site_root:  ../
     <h1 class="fw-300">.getRules() 
     <i>method</i></h1><p class="text">Method used to get the existing defined validation functions</p>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Object</code></dt>
-        <dd>Object with the rules defined
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Object</code></p>Object with the rules defined
+        </li>
+    </ul>
     
 
 </section>
@@ -211,12 +225,14 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">i18n</li>
     </ul><p class="text">Sets the I18n object for validation error messages</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">i18n
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Ink.Util.I18n</span></label>
-                The I18n object.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">i18n</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Ink.Util.I18n</span></p>
+                <!--</label>-->
+                The I18n object.</li>
+        </ul>
 
 </section>
 
@@ -227,12 +243,14 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">language</li>
     </ul><p class="text">Sets the language of the error messages.<br>pt_PT and en_US are available, but you can add new languages by using append()<br><p>See the <code>Ink.Util.I18n.lang()</code> setter</p></p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">language
-            </dt>
-            <dd class="level1"></label>
-                The language to set i18n to.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">language</span>
+                    
+                    <!--<li class="level1">--></p>
+                <!--</label>-->
+                The language to set i18n to.</li>
+        </ul>
 
 </section>
 
@@ -243,20 +261,24 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">name</li><li class="prop">errorMessage</li><li class="prop">cb</li>
     </ul><p class="text">Sets or modifies validation functions</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">name
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Name of the function. E.g. 'required'</dd>
-            <dt class="level1"><label class="monospace">errorMessage
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Error message to be displayed in case of returning false. E.g. 'Oops, you passed {param1} as parameter1, lorem ipsum dolor...'</dd>
-            <dt class="level1"><label class="monospace">cb
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Function</span></label>
-                Function to be executed when calling this rule</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">name</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Name of the function. E.g. 'required'</li>
+            <li class="level1"><span class="monospace">errorMessage</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Error message to be displayed in case of returning false. E.g. 'Oops, you passed {param1} as parameter1, lorem ipsum dolor...'</li>
+            <li class="level1"><span class="monospace">cb</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Function</span></p>
+                <!--</label>-->
+                Function to be executed when calling this rule</li>
+        </ul>
 
 </section>
 
@@ -267,18 +289,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">event</li>
     </ul><p class="text">Validates every registered FormElement <br>This method looks inside the this._formElements object for validation targets.<br>Also, based on the this._options.beforeValidation, this._options.onError, and this._options.onSuccess, this callbacks are executed when defined.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">event
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Event</span></label>
-                Window.event object</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">event</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Event</span></p>
+                <!--</label>-->
+                Window.event object</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Boolean</code></dt>
-        <dd>
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Boolean</code></p>
+        </li>
+    </ul>
     
 
 </section>
@@ -292,22 +316,25 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">value</li><li class="prop">supportSpaces</li>
     </ul><p class="text">Checks if a value only contains alphabetical values.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">value
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Value to be checked</dd>
-            <dt class="level1"><label class="monospace">supportSpaces
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Boolean</span></label>
-                Allow whitespace</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">value</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Value to be checked</li>
+            <li class="level1"><span class="monospace">supportSpaces</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Boolean</span></p>
+                <!--</label>-->
+                Allow whitespace</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Boolean</code></dt>
-        <dd>True if the value is alphabetical-only. False if not.
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Boolean</code></p>True if the value is alphabetical-only. False if not.
+        </li>
+    </ul>
     
 
 </section>
@@ -318,18 +345,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">value</li>
     </ul><p class="text">Checks if a value contains only alphabetical, dash or underscore characteres.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">value
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Value to be checked</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">value</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Value to be checked</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Boolean</code></dt>
-        <dd>True if the value is a valid. False if not.
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Boolean</code></p>True if the value is a valid. False if not.
+        </li>
+    </ul>
     
 
 </section>
@@ -340,18 +369,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">value</li>
     </ul><p class="text">Checks if a value contains only alphabetical or numerical characters.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">value
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Value to be checked</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">value</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Value to be checked</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Boolean</code></dt>
-        <dd>True if the value is a valid alphanumerical. False if not.
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Boolean</code></p>True if the value is a valid alphanumerical. False if not.
+        </li>
+    </ul>
     
 
 </section>
@@ -362,18 +393,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">value</li>
     </ul><p class="text">Checks if a value is a valid color.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">value
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Value to be checked</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">value</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Value to be checked</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Boolean</code></dt>
-        <dd>True if the value is a valid color. False if not.
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Boolean</code></p>True if the value is a valid color. False if not.
+        </li>
+    </ul>
     
 
 </section>
@@ -384,22 +417,25 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">value</li><li class="prop">cardType</li>
     </ul><p class="text">Checks if a value is a valid credit card.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">value
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Value to be checked</dd>
-            <dt class="level1"><label class="monospace">cardType
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Type of credit card to be validated. The card types available are in the Ink.Util.Validator class.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">value</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Value to be checked</li>
+            <li class="level1"><span class="monospace">cardType</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Type of credit card to be validated. The card types available are in the Ink.Util.Validator class.</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Boolean</code></dt>
-        <dd>True if the value is a valid credit card number. False if not.
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Boolean</code></p>True if the value is a valid credit card number. False if not.
+        </li>
+    </ul>
     
 
 </section>
@@ -410,22 +446,25 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">value</li><li class="prop">format</li>
     </ul><p class="text">Checks if a value is a valid date.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">value
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Value to be checked</dd>
-            <dt class="level1"><label class="monospace">format
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Specific format of the date.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">value</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Value to be checked</li>
+            <li class="level1"><span class="monospace">format</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Specific format of the date.</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Boolean</code></dt>
-        <dd>True if the value is a valid date. False if not.
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Boolean</code></p>True if the value is a valid date. False if not.
+        </li>
+    </ul>
     
 
 </section>
@@ -436,32 +475,39 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">value</li><li class="prop">decimalSeparator</li><li class="prop">[decimalPlaces]</li><li class="prop">[leftDigits]</li>
     </ul><p class="text">Checks if a value is a valid decimal number.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">value
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Value to be checked</dd>
-            <dt class="level1"><label class="monospace">decimalSeparator
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Character that splits the integer part from the decimal one. By default is '.'.</dd>
-            <dt class="level1"><label class="monospace">[decimalPlaces]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Maximum number of digits that the decimal part must have.</dd>
-            <dt class="level1"><label class="monospace">[leftDigits]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Maximum number of digits that the integer part must have, when provided.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">value</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Value to be checked</li>
+            <li class="level1"><span class="monospace">decimalSeparator</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Character that splits the integer part from the decimal one. By default is '.'.</li>
+            <li class="level1"><p>
+                    <span class="monospace">[decimalPlaces]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Maximum number of digits that the decimal part must have.</li>
+            <li class="level1"><p>
+                    <span class="monospace">[leftDigits]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Maximum number of digits that the integer part must have, when provided.</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Boolean</code></dt>
-        <dd>True if the value is a valid decimal number. False if not.
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Boolean</code></p>True if the value is a valid decimal number. False if not.
+        </li>
+    </ul>
     
 
 </section>
@@ -472,18 +518,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">value</li>
     </ul><p class="text">Checks if a value is a single digit.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">value
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Value to be checked</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">value</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Value to be checked</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Boolean</code></dt>
-        <dd>True if the value is a valid digit. False if not.
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Boolean</code></p>True if the value is a valid digit. False if not.
+        </li>
+    </ul>
     
 
 </section>
@@ -494,18 +542,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">value</li>
     </ul><p class="text">Checks if a value is a valid email address</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">value
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Value to be checked</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">value</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Value to be checked</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Boolean</code></dt>
-        <dd>True if the value is a valid email address. False if not.
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Boolean</code></p>True if the value is a valid email address. False if not.
+        </li>
+    </ul>
     
 
 </section>
@@ -516,22 +566,25 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">value</li><li class="prop">exactSize</li>
     </ul><p class="text">Checks if a value has an exact length</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">value
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Value to be checked</dd>
-            <dt class="level1"><label class="monospace">exactSize
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String|Number</span></label>
-                Exact number of characters.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">value</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Value to be checked</li>
+            <li class="level1"><span class="monospace">exactSize</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String|Number</span></p>
+                <!--</label>-->
+                Exact number of characters.</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Boolean</code></dt>
-        <dd>True if the length of value is equal to the size defined. False if not.
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Boolean</code></p>True if the length of value is equal to the size defined. False if not.
+        </li>
+    </ul>
     
 
 </section>
@@ -539,11 +592,11 @@ site_root:  ../
     <h1 class="fw-300">.getElement() 
     <i>function</i></h1><p class="text">Gets the DOM element related to the instance.</p>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Object</code></dt>
-        <dd>DOM Element
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Object</code></p>DOM Element
+        </li>
+    </ul>
     
 
 </section>
@@ -551,11 +604,11 @@ site_root:  ../
     <h1 class="fw-300">.getErrors() 
     <i>function</i></h1><p class="text">Gets the constructed errors&#39; object.</p>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Object</code></dt>
-        <dd>Errors' object
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Object</code></p>Errors' object
+        </li>
+    </ul>
     
 
 </section>
@@ -563,11 +616,11 @@ site_root:  ../
     <h1 class="fw-300">.getFormElements() 
     <i>function</i></h1><p class="text">Gets other elements in the same form.</p>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Object</code></dt>
-        <dd>A mapping of keys to other elements in this form.
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Object</code></p>A mapping of keys to other elements in this form.
+        </li>
+    </ul>
     
 
 </section>
@@ -575,11 +628,11 @@ site_root:  ../
     <h1 class="fw-300">.getValue() 
     <i>function</i></h1><p class="text">Gets an element&#39;s value</p>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>mixed</code></dt>
-        <dd>The DOM Element's value
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>mixed</code></p>The DOM Element's value
+        </li>
+    </ul>
     
 
 </section>
@@ -590,22 +643,25 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">value</li><li class="prop">positive</li>
     </ul><p class="text">Checks if a value is a valid integer.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">value
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Value to be checked</dd>
-            <dt class="level1"><label class="monospace">positive
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Flag that specifies if the integer is must be positive (unsigned).</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">value</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Value to be checked</li>
+            <li class="level1"><span class="monospace">positive</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Flag that specifies if the integer is must be positive (unsigned).</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Boolean</code></dt>
-        <dd>True if the value is a valid integer. False if not.
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Boolean</code></p>True if the value is a valid integer. False if not.
+        </li>
+    </ul>
     
 
 </section>
@@ -616,22 +672,25 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">value</li><li class="prop">ipType</li>
     </ul><p class="text">Checks if a value is a valid IP. Supports ipv4 and ipv6</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">value
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Value to be checked</dd>
-            <dt class="level1"><label class="monospace">ipType
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Type of IP to be validated. The values are: ipv4, ipv6. By default is ipv4.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">value</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Value to be checked</li>
+            <li class="level1"><span class="monospace">ipType</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Type of IP to be validated. The values are: ipv4, ipv6. By default is ipv4.</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Boolean</code></dt>
-        <dd>True if the value is a valid IP address. False if not.
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Boolean</code></p>True if the value is a valid IP address. False if not.
+        </li>
+    </ul>
     
 
 </section>
@@ -642,22 +701,25 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">value</li><li class="prop">maxSize</li>
     </ul><p class="text">Checks if a value has a maximum length</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">value
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Value to be checked.</dd>
-            <dt class="level1"><label class="monospace">maxSize
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String|Number</span></label>
-                Maximum number of characters.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">value</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Value to be checked.</li>
+            <li class="level1"><span class="monospace">maxSize</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String|Number</span></p>
+                <!--</label>-->
+                Maximum number of characters.</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Boolean</code></dt>
-        <dd>True if the length of value is equal or smaller than the maximum chars defined. False if not.
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Boolean</code></p>True if the length of value is equal or smaller than the maximum chars defined. False if not.
+        </li>
+    </ul>
     
 
 </section>
@@ -668,22 +730,25 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">value</li><li class="prop">minSize</li>
     </ul><p class="text">Checks if a value has a minimum length</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">value
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Value to be checked.</dd>
-            <dt class="level1"><label class="monospace">minSize
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String|Number</span></label>
-                Minimum number of characters.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">value</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Value to be checked.</li>
+            <li class="level1"><span class="monospace">minSize</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String|Number</span></p>
+                <!--</label>-->
+                Minimum number of characters.</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Boolean</code></dt>
-        <dd>True if the length of value is equal or bigger than the minimum chars defined. False if not.
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Boolean</code></p>True if the length of value is equal or bigger than the minimum chars defined. False if not.
+        </li>
+    </ul>
     
 
 </section>
@@ -694,32 +759,39 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">value</li><li class="prop">decimalSeparator</li><li class="prop">[decimalPlaces]</li><li class="prop">[leftDigits]</li>
     </ul><p class="text">Checks if a value is a numeric value.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">value
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Value to be checked</dd>
-            <dt class="level1"><label class="monospace">decimalSeparator
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Checks if it's a valid decimal. Otherwise checks if it's a valid integer.</dd>
-            <dt class="level1"><label class="monospace">[decimalPlaces]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Maximum number of digits the decimal part must have.</dd>
-            <dt class="level1"><label class="monospace">[leftDigits]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Maximum number of digits the integer part must have, when provided.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">value</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Value to be checked</li>
+            <li class="level1"><span class="monospace">decimalSeparator</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Checks if it's a valid decimal. Otherwise checks if it's a valid integer.</li>
+            <li class="level1"><p>
+                    <span class="monospace">[decimalPlaces]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Maximum number of digits the decimal part must have.</li>
+            <li class="level1"><p>
+                    <span class="monospace">[leftDigits]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Maximum number of digits the integer part must have, when provided.</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Boolean</code></dt>
-        <dd>True if the value is numeric. False if not.
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Boolean</code></p>True if the value is numeric. False if not.
+        </li>
+    </ul>
     
 
 </section>
@@ -730,22 +802,25 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">value</li><li class="prop">phoneType</li>
     </ul><p class="text">Checks if a value is a valid phone number.<br>Supports several countries, based in the Ink.Util.Validator class.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">value
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Value to be checked</dd>
-            <dt class="level1"><label class="monospace">phoneType
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Country's initials to specify the type of phone number to be validated. Ex: 'AO'.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">value</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Value to be checked</li>
+            <li class="level1"><span class="monospace">phoneType</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Country's initials to specify the type of phone number to be validated. Ex: 'AO'.</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Boolean</code></dt>
-        <dd>True if it's a valid phone number. False if not.
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Boolean</code></p>True if it's a valid phone number. False if not.
+        </li>
+    </ul>
     
 
 </section>
@@ -756,31 +831,37 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">value</li><li class="prop">minValue</li><li class="prop">maxValue</li><li class="prop">[multipleOf]</li>
     </ul><p class="text">Checks if a value is in a specific range of values.<br>The parameters after the first one are used to specify the range, and are similar in function to python&#39;s range() function.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">value
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Value to be checked</dd>
-            <dt class="level1"><label class="monospace">minValue
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Left limit of the range.</dd>
-            <dt class="level1"><label class="monospace">maxValue
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Right limit of the range.</dd>
-            <dt class="level1"><label class="monospace">[multipleOf]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                In case you want numbers that are only multiples of another number.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">value</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Value to be checked</li>
+            <li class="level1"><span class="monospace">minValue</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Left limit of the range.</li>
+            <li class="level1"><span class="monospace">maxValue</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Right limit of the range.</li>
+            <li class="level1"><p>
+                    <span class="monospace">[multipleOf]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                In case you want numbers that are only multiples of another number.</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Boolean</code></dt>
-        <dd>True if the value is within the range. False if not.
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Boolean</code></p>True if the value is within the range. False if not.
+        </li>
+    </ul>
     
 
 </section>
@@ -791,18 +872,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">value</li>
     </ul><p class="text">Checks if a value is defined and not empty</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">value
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Value to be checked</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">value</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Value to be checked</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Boolean</code></dt>
-        <dd>True case is defined, false if it's empty or not defined.
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Boolean</code></p>True case is defined, false if it's empty or not defined.
+        </li>
+    </ul>
     
 
 </section>
@@ -813,22 +896,25 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">value</li><li class="prop">fullCheck</li>
     </ul><p class="text">Checks if a value has a valid URL</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">value
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Value to be checked</dd>
-            <dt class="level1"><label class="monospace">fullCheck
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Boolean</span></label>
-                Flag to validate a full url (with the protocol).</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">value</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Value to be checked</li>
+            <li class="level1"><span class="monospace">fullCheck</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Boolean</span></p>
+                <!--</label>-->
+                Flag to validate a full url (with the protocol).</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Boolean</code></dt>
-        <dd>True if the URL is considered valid. False if not.
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Boolean</code></p>True if the URL is considered valid. False if not.
+        </li>
+    </ul>
     
 
 </section>
@@ -836,11 +922,11 @@ site_root:  ../
     <h1 class="fw-300">.validate() 
     <i>function</i></h1><p class="text">Validates the element based on the rules defined.<br>It parses the rules defined in the _options.rules property.</p>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Boolean</code></dt>
-        <dd>True if every rule was valid. False if one fails.
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Boolean</code></p>True if every rule was valid. False if one fails.
+        </li>
+    </ul>
     
 
 </section>

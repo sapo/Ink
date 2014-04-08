@@ -1,0 +1,39 @@
+<p class="example-title">Code</p>
+{% highlight js %}
+Ink.requireModules(['Ink.Util.Dumper_1'], function(Dumper) {
+
+    var obj = {
+        name: 'John',
+        age: 33, 
+        hasGlasses: true,
+        cars: ['Audi', 'BMW', 'Ferrari'],
+        pets: {
+            cat: 'Max',
+            dog: 'Rex'
+        }
+    };
+  
+    Dumper.windowDump(obj); 
+    // will open a window with the object content 
+    /*
+        Object 
+        {
+            [name] => John
+            [age] => 33
+            [hasGlasses] => true
+            [cars] => Array
+            {
+                [0] => Audi
+                [1] => BMW
+                [2] => Ferrari
+            }
+            [pets] => Object
+            {
+                [cat] => Max
+                [dog] => Rex
+            }
+        }
+    */
+});
+{% endhighlight %}
+

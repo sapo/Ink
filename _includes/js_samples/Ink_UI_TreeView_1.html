@@ -18,6 +18,7 @@
         </ul>
     </li>
 </ul>
+
 <script>
     Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.TreeView_1'], function( Selector, TreeView ){
         var treeViewElement = Ink.s('#myTree1');
@@ -25,6 +26,7 @@
     });
 </script>
 {% endcapture %}
+
 {% capture data_demo %}
 <ul id="myTree2" class="ink-tree-view" data-open-class="fa fa-folder-open" data-closed-class="fa fa-folder">
     <li data-open="true"><a href="#">root</a>
@@ -45,6 +47,7 @@
         </ul>
     </li>
 </ul>
+
 <script>
     Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.TreeView_1'], function( Selector, TreeView ){
         var treeViewElement = Ink.s('#myTree2');
@@ -53,10 +56,11 @@
 </script>
 {% endcapture %}
 
-
-<p>Default usage</p>
 <p class="example-title">Demo</p>
+<div class="example">
 {{ demo_code }}
+</div>
+
 <p class="example-title">Code</p>
 {% highlight html %}
 {{ demo_code }}
@@ -64,7 +68,10 @@
 
 <p>Usage with data-attributes</p>
 <p class="example-title">Demo</p>
+<div class="example">
 {{ data_demo }}
+</div>
+
 <p class="example-title">Code</p>
 {% highlight html %}
 {{ data_demo }}

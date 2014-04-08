@@ -5,7 +5,7 @@ description: Auxiliar utilities for UI Modules
 site_root:  ../
 ---
     <section>
-        <h1 class="fw-300">Ink.UI.Common_1<small>version:1</small></h1>
+        <h1 class="fw-300">Ink.UI.Common_1</h1>
 
 
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space"><caption>Functions</caption>
@@ -169,22 +169,26 @@ site_root:  ../
     <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li><li class="prop">endpoint</li><li class="prop">params</li><li class="prop">cb</li>
-    </ul><span class="tag">async</span><p class="text">AJAX JSON request shortcut method<br>It provides a more convenient way to do an AJAX request and expect a JSON response.<br>It offers a callback option, as third parameter, for better async handling.</p>
+    </ul><span class="ink-label green">async</span><p class="text">AJAX JSON request shortcut method<br>It provides a more convenient way to do an AJAX request and expect a JSON response.<br>It offers a callback option, as third parameter, for better async handling.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">endpoint
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Valid URL to be used as target by the request.</dd>
-            <dt class="level1"><label class="monospace">params
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Object</span></label>
-                This field is used in the thrown Exception to identify the parameter.</dd>
-            <dt class="level1"><label class="monospace">cb
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Function</span></label>
-                Callback for the request.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">endpoint</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Valid URL to be used as target by the request.</li>
+            <li class="level1"><span class="monospace">params</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                This field is used in the thrown Exception to identify the parameter.</li>
+            <li class="level1"><span class="monospace">cb</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Function</span></p>
+                <!--</label>-->
+                Callback for the request.</li>
+        </ul>
 <p class="example-title">Example</p>
   
 {% highlight html %}{% raw %}
@@ -203,18 +207,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">childEl</li>
     </ul><p class="text">Gets an element&#39;s one-base index relative to its parent.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">childEl
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement</span></label>
-                Valid DOM Element.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">childEl</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement</span></p>
+                <!--</label>-->
+                Valid DOM Element.</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Number</code></dt>
-        <dd>Numerical position of an element relatively to its parent.
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Number</code></p>Numerical position of an element relatively to its parent.
+        </li>
+    </ul>
     
 <p class="example-title">Example</p>
   
@@ -244,12 +250,14 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">parentEl</li>
     </ul><p class="text">Removes children nodes from a given object.<br>This method was initially created to help solve a problem in Internet Explorer(s) that occurred when trying to set the innerHTML of some specific elements like &#39;table&#39;.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">parentEl
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement</span></label>
-                Valid DOM Element</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">parentEl</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement</span></p>
+                <!--</label>-->
+                Valid DOM Element</li>
+        </ul>
 <p class="example-title">Example</p>
   
 {% highlight html %}{% raw %}
@@ -280,18 +288,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">o</li>
     </ul><p class="text">Deep copy (clone) an object.<br>Note: The object cannot have referece loops.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">o
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Object</span></label>
-                The object to be cloned/copied.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">o</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                The object to be cloned/copied.</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Object</code></dt>
-        <dd>Returns the result of the clone/copy.
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Object</code></p>Returns the result of the clone/copy.
+        </li>
+    </ul>
     
 <p class="example-title">Example</p>
   
@@ -312,11 +322,11 @@ site_root:  ../
     <h1 class="fw-300">.currentLayout() 
     <i>method</i></h1><p class="text">Gets the current Ink layout.</p>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>String</code></dt>
-        <dd>A string representation of the current layout name.
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>String</code></p>A string representation of the current layout name.
+        </li>
+    </ul>
     
 <p class="example-title">Example</p>
   
@@ -344,22 +354,25 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">elOrSelector</li><li class="prop">fieldName</li>
     </ul><p class="text">Gets a DOM Element.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">elOrSelector
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement|String</span></label>
-                DOM Element or CSS Selector</dd>
-            <dt class="level1"><label class="monospace">fieldName
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                The name of the field. Commonly used for debugging.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">elOrSelector</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement|String</span></p>
+                <!--</label>-->
+                DOM Element or CSS Selector</li>
+            <li class="level1"><span class="monospace">fieldName</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                The name of the field. Commonly used for debugging.</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>DOMElement</code></dt>
-        <dd>Returns the DOMElement passed or the first result of the CSS Selector. Otherwise it throws an exception.
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>DOMElement</code></p>Returns the DOMElement passed or the first result of the CSS Selector. Otherwise it throws an exception.
+        </li>
+    </ul>
     
 <p class="example-title">Example</p>
   
@@ -379,26 +392,30 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">elOrSelector</li><li class="prop">fieldName</li><li class="prop">required</li>
     </ul><p class="text">Alias for <code>elOrSelector</code> but returns an array of elements.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">elOrSelector
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement|String</span></label>
-                DOM Element or CSS Selector</dd>
-            <dt class="level1"><label class="monospace">fieldName
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                The name of the field. Commonly used for debugging.</dd>
-            <dt class="level1"><label class="monospace">required
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Boolean</span></label>
-                Flag to accept an empty array as output.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">elOrSelector</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement|String</span></p>
+                <!--</label>-->
+                DOM Element or CSS Selector</li>
+            <li class="level1"><span class="monospace">fieldName</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                The name of the field. Commonly used for debugging.</li>
+            <li class="level1"><span class="monospace">required</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Boolean</span></p>
+                <!--</label>-->
+                Flag to accept an empty array as output.</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Array</code></dt>
-        <dd>The selected DOM Elements.
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Array</code></p>The selected DOM Elements.
+        </li>
+    </ul>
     
 <p class="example-title">Example</p>
   
@@ -417,18 +434,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">instanceIdOrElement</li>
     </ul><p class="text">Gets an UI instance from an element or instance id.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">instanceIdOrElement
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String|DOMElement</span></label>
-                Instance's id or DOM Element from which we want the instances.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">instanceIdOrElement</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String|DOMElement</span></p>
+                <!--</label>-->
+                Instance's id or DOM Element from which we want the instances.</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Object|Array</code></dt>
-        <dd>Returns an instance or a collection of instances.
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Object|Array</code></p>Returns an instance or a collection of instances.
+        </li>
+    </ul>
     
 
 </section>
@@ -440,18 +459,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">selector</li>
     </ul><p class="text">Gets an instance based on a selector.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">selector
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                CSS selector to get the instances from.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">selector</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                CSS selector to get the instances from.</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Object|Array</code></dt>
-        <dd>Returns an instance or a collection of instances.
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Object|Array</code></p>Returns an instance or a collection of instances.
+        </li>
+    </ul>
     
 
 </section>
@@ -460,11 +481,11 @@ site_root:  ../
     <h1 class="fw-300">.getInstanceIds() 
     <i>method</i></h1><p class="text">Gets all the instance ids</p>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Array</code></dt>
-        <dd>Collection of instance ids
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Array</code></p>Collection of instance ids
+        </li>
+    </ul>
     
 
 </section>
@@ -473,11 +494,11 @@ site_root:  ../
     <h1 class="fw-300">.getInstances() 
     <i>method</i></h1><p class="text">Gets all the instances</p>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Array</code></dt>
-        <dd>Collection of existing instances.
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Array</code></p>Collection of existing instances.
+        </li>
+    </ul>
     
 
 </section>
@@ -489,12 +510,14 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">o</li>
     </ul><p class="text">Sets the location&#39;s hash (window.location.hash).</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">o
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Object</span></label>
-                Object with the info to be placed in the location's hash.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">o</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                Object with the info to be placed in the location's hash.</li>
+        </ul>
 <p class="example-title">Example</p>
   
 {% highlight html %}{% raw %}
@@ -517,18 +540,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">o</li>
     </ul><p class="text">Checks if an item is a valid DOM Element.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">o
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Mixed</span></label>
-                The object to be checked.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">o</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Mixed</span></p>
+                <!--</label>-->
+                The object to be checked.</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Boolean</code></dt>
-        <dd>True if it's a valid DOM Element.
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Boolean</code></p>True if it's a valid DOM Element.
+        </li>
+    </ul>
     
 <p class="example-title">Example</p>
   
@@ -552,18 +577,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">n</li>
     </ul><p class="text">Checks if an item is a valid integer.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">n
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Mixed</span></label>
-                The value to be checked.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">n</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Mixed</span></p>
+                <!--</label>-->
+                The value to be checked.</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Boolean</code></dt>
-        <dd>True if it's a valid integer.
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Boolean</code></p>True if it's a valid integer.
+        </li>
+    </ul>
     
 <p class="example-title">Example</p>
   
@@ -587,26 +614,33 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">[fieldId]</li><li class="prop">defaults</li><li class="prop">overrides</li><li class="prop">[element]</li>
     </ul><p class="text">Gets options an object and element&#39;s metadata.<br><p>The element&#39;s data attributes take precedence. Values from the element&#39;s data-atrributes are coerced into the required type.</p></p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">[fieldId]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Object</span></label>
-                Name to be used in debugging features.</dd>
-            <dt class="level1"><label class="monospace">defaults
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Object</span></label>
-                Object with the options' types and defaults.</dd>
-            <dt class="level1"><label class="monospace">overrides
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Object</span></label>
-                Options to override the defaults. Usually passed when instantiating an UI module.</dd>
-            <dt class="level1"><label class="monospace">[element]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement</span></label>
-                Element with data-attributes</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><p>
+                    <span class="monospace">[fieldId]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                Name to be used in debugging features.</li>
+            <li class="level1"><span class="monospace">defaults</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                Object with the options' types and defaults.</li>
+            <li class="level1"><span class="monospace">overrides</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                Options to override the defaults. Usually passed when instantiating an UI module.</li>
+            <li class="level1"><p>
+                    <span class="monospace">[element]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement</span></p>
+                <!--</label>-->
+                Element with data-attributes</li>
+        </ul>
 <p class="example-title">Example</p>
   
 {% highlight html %}{% raw %}
@@ -660,21 +694,26 @@ Options which go to default:
         <li class="heading">Arguments:</li><li class="prop">inst</li><li class="prop">el</li><li class="prop">[optionalPrefix]</li>
     </ul><p class="text">Saves a component&#39;s instance reference for later retrieval.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">inst
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Object</span></label>
-                Object that holds the instance.</dd>
-            <dt class="level1"><label class="monospace">el
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement</span></label>
-                DOM Element to associate with the object.</dd>
-            <dt class="level1"><label class="monospace">[optionalPrefix]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Object</span></label>
-                Defaults to 'instance'</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">inst</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                Object that holds the instance.</li>
+            <li class="level1"><span class="monospace">el</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement</span></p>
+                <!--</label>-->
+                DOM Element to associate with the object.</li>
+            <li class="level1"><p>
+                    <span class="monospace">[optionalPrefix]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                Defaults to 'instance'</li>
+        </ul>
 
 </section>
 
@@ -685,16 +724,19 @@ Options which go to default:
         <li class="heading">Arguments:</li><li class="prop">toEl</li><li class="prop">inObj</li>
     </ul><p class="text">Sets the id and className properties of an element based</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">toEl
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement</span></label>
-                Valid DOM Element to set the id and classes on.</dd>
-            <dt class="level1"><label class="monospace">inObj
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Object</span></label>
-                Object where the id and classes to be set are. This method uses the same format as the one given in `storeIdAndClasses`</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">toEl</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement</span></p>
+                <!--</label>-->
+                Valid DOM Element to set the id and classes on.</li>
+            <li class="level1"><span class="monospace">inObj</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                Object where the id and classes to be set are. This method uses the same format as the one given in `storeIdAndClasses`</li>
+        </ul>
 <p class="example-title">Example</p>
   
 {% highlight html %}{% raw %}
@@ -724,16 +766,19 @@ Options which go to default:
         <li class="heading">Arguments:</li><li class="prop">fromEl</li><li class="prop">inObj</li>
     </ul><p class="text">Stores the id and/or classes of an element in an object.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">fromEl
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement</span></label>
-                Valid DOM Element to get the id and classes from.</dd>
-            <dt class="level1"><label class="monospace">inObj
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Object</span></label>
-                Object where the id and classes will be saved.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">fromEl</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement</span></p>
+                <!--</label>-->
+                Valid DOM Element to get the id and classes from.</li>
+            <li class="level1"><span class="monospace">inObj</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                Object where the id and classes will be saved.</li>
+        </ul>
 <p class="example-title">Example</p>
   
 {% highlight html %}{% raw %}
@@ -761,12 +806,14 @@ Options which go to default:
         <li class="heading">Arguments:</li><li class="prop">id</li>
     </ul><p class="text">Deletes an instance with a given id.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">id
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Id of the instance to be destroyed.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">id</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Id of the instance to be destroyed.</li>
+        </ul>
 
 </section>
 

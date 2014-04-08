@@ -1,0 +1,10 @@
+<p class="example-title">Code</p>
+{% highlight js %}
+Ink.requireModules(['Ink.Util.Validator_1'], function(Validator) {
+
+    Validator.isIP('192.168.1.254');  // true 
+    Validator.isIP('192.168.1001.254');  // false 
+    Validator.isIP('2001:0db8:0000:0000:0000:ff00:0042:8329', 'ipv6');  // true 
+});
+{% endhighlight %}
+

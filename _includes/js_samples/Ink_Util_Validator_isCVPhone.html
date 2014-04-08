@@ -1,0 +1,11 @@
+<p class="example-title">Code</p>
+{% highlight js %}
+Ink.requireModules(['Ink.Util.Validator_1'], function(Validator) {
+
+    Validator.isCVPhone('2610303');  // true 
+    Validator.isCVPhone('002382610303');  // true 
+    Validator.isCVPhone('+2382610303');  // true 
+    Validator.isCVPhone('1');  // false 
+});
+{% endhighlight %}
+

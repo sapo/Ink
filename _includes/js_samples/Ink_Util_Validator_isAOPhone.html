@@ -1,0 +1,11 @@
+<p class="example-title">Code</p>
+{% highlight js %}
+Ink.requireModules(['Ink.Util.Validator_1'], function(Validator) {
+
+    Validator.isAOPhone('244222396385');  // true 
+    Validator.isAOPhone('00244222396385');  // true 
+    Validator.isAOPhone('+244222396385');  // true 
+    Validator.isAOPhone('1');  // false 
+});
+{% endhighlight %}
+

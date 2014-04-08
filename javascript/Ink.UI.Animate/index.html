@@ -5,7 +5,7 @@ description: Animate.css Utility
 site_root:  ../
 ---
     <section>
-        <h1 class="fw-300">Ink.UI.Animate_1<small>version:1</small></h1>
+        <h1 class="fw-300">Ink.UI.Animate_1</h1>
 
 
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space">
@@ -68,35 +68,45 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">element</li><li class="prop">options</li>
     </ul>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">element
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement</span></label>
-                Animated element</dd>
-            <dt class="level1"><label class="monospace">options
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Object</span></label>
-                Options object</dd>
-            <dt class="level2"><label class="monospace">options.animation
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                Animation name</dd>
-            <dt class="level2"><label class="monospace">[options.duration]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String|Number</span></label>
-                Duration name (fast|medium|slow) or duration in milliseconds. Defaults to 'medium'.</dd>
-            <dt class="level2"><label class="monospace">[options.removeClass]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Boolean</span></label>
-                Flag to remove the CSS class when finished animating. Defaults to false.</dd>
-            <dt class="level2"><label class="monospace">[options.onEnd]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Function</span></label>
-                Callback for the animation end</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">element</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement</span></p>
+                <!--</label>-->
+                Animated element</li>
+            <li class="level1"><span class="monospace">options</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                Options object</li>
+            <li class="level2"><span class="monospace">options.animation</span>
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Animation name</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.duration]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String|Number</span></p>
+                <!--</label>-->
+                Duration name (fast|medium|slow) or duration in milliseconds. Defaults to 'medium'.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.removeClass]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Boolean</span></p>
+                <!--</label>-->
+                Flag to remove the CSS class when finished animating. Defaults to false.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.onEnd]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Function</span></p>
+                <!--</label>-->
+                Callback for the animation end</li>
+        </ul>
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_Animate_1.html %}
@@ -109,36 +119,47 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">element</li><li class="prop">animation</li><li class="prop">[options]</li>
     </ul>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">element
-            </dt>
-            <dd class="level1"></label>
-                {DOMElement} animated element</dd>
-            <dt class="level1"><label class="monospace">animation
-            </dt>
-            <dd class="level1"></label>
-                {String} animation name</dd>
-            <dt class="level1"><label class="monospace">[options]
-                
-            </dt>
-            <dd class="level1"></label>
-                {Object}</dd>
-            <dt class="level2"><label class="monospace">[options.onEnd]
-                
-            </dt>
-            <dd class="level2">null</label>
-                {Function} callback for animation end</dd>
-            <dt class="level2"><label class="monospace">[options.removeClass]
-                
-            </dt>
-            <dd class="level2">false</label>
-                {Boolean} whether to remove the Css class when finished</dd>
-            <dt class="level2"><label class="monospace">[options.duration]
-                
-            </dt>
-            <dd class="level2">medium</label>
-                {String|Number} duration name (fast|medium|slow) or duration in ms</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">element</span>
+                    
+                    <!--<li class="level1">--></p>
+                <!--</label>-->
+                {DOMElement} animated element</li>
+            <li class="level1"><span class="monospace">animation</span>
+                    
+                    <!--<li class="level1">--></p>
+                <!--</label>-->
+                {String} animation name</li>
+            <li class="level1"><p>
+                    <span class="monospace">[options]</span>
+                    
+                    
+                    <!--<li class="level1">--></p>
+                <!--</label>-->
+                {Object}</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.onEnd]</span>
+                    
+                    
+                    <!--<li class="level2">--></p>
+                null<!--</label>-->
+                {Function} callback for animation end</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.removeClass]</span>
+                    
+                    
+                    <!--<li class="level2">--></p>
+                false<!--</label>-->
+                {Boolean} whether to remove the Css class when finished</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.duration]</span>
+                    
+                    
+                    <!--<li class="level2">--></p>
+                medium<!--</label>-->
+                {String|Number} duration name (fast|medium|slow) or duration in ms</li>
+        </ul>
 <p class="example-title">Example</p>
   
 {% highlight html %}{% raw %}

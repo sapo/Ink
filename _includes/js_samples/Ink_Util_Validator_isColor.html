@@ -1,0 +1,10 @@
+<p class="example-title">Code</p>
+{% highlight js %}
+Ink.requireModules(['Ink.Util.Validator_1'], function(Validator) {
+
+    Validator.isColor('#FF00FF');  // true 
+    Validator.isColor('rgb(200, 100, 150)');  // true 
+    Validator.isColor('amdafasfs');  // false 
+});
+{% endhighlight %}
+

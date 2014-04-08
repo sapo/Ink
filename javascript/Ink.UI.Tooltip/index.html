@@ -5,7 +5,7 @@ description: Content Tooltips
 site_root:  ../
 ---
     <section>
-        <h1 class="fw-300">Ink.UI.Tooltip_1<small>version:1</small></h1>
+        <h1 class="fw-300">Ink.UI.Tooltip_1</h1>
 
 <p>Tooltips are useful as a means to display information about functionality while avoiding clutter.<br><p>Tooltips show up when you hover elements which &quot;have&quot; tooltips.</p><br><p>This class will &quot;give&quot; a tooltip to many elements, selected by its first argument (<code>target</code>). This is contrary to the other UI modules in Ink, which are created once per element.</p><br><p>You can define options either through the second argument of the Tooltip constructor, or as data-attributes in each <code>target</code> element. Options set through data-attributes all start with &quot;data-tip&quot;, and override options passed into the Tooltip constructor.</p></p>
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space">
@@ -43,82 +43,112 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">target</li><li class="prop">[options]</li>
     </ul>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">target
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement|String</span></label>
-                Target element or selector of elements, to display the tooltips on.</dd>
-            <dt class="level1"><label class="monospace">[options]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Object</span></label>
-                Options object</dd>
-            <dt class="level2"><label class="monospace">[options.text]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                Text content for the tooltip.</dd>
-            <dt class="level2"><label class="monospace">[options.html]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                HTML for the tooltip. Same as above, but won't escape HTML.</dd>
-            <dt class="level2"><label class="monospace">[options.where]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                Positioning for the tooltip. Options are 'up', 'down', 'left', 'right', 'mousemove' (follows the cursor), and 'mousefix' (stays fixed). Defaults to 'up'.</dd>
-            <dt class="level2"><label class="monospace">[options.color]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                Color of the tooltip. Options are red, orange, blue, green and black. Default is white.</dd>
-            <dt class="level2"><label class="monospace">[options.fade]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Number</span></label>
-                Number of seconds to fade in/out. Defaults to 0.3.</dd>
-            <dt class="level2"><label class="monospace">[options.forever]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Boolean</span></label>
-                Flag to prevent the tooltip from being erased when the mouse hovers away from the target.</dd>
-            <dt class="level2"><label class="monospace">[options.timeout]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Number</span></label>
-                Number of seconds the tooltip will stay open. Useful together with options.forever. Defaults to 0.</dd>
-            <dt class="level2"><label class="monospace">[options.delay]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Number</span></label>
-                Time the tooltip waits until it is displayed. Useful to avoid getting the attention of the user unnecessarily</dd>
-            <dt class="level2"><label class="monospace">[options.template]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">DOMElement|Selector</span></label>
-                Element or selector containing HTML to be cloned into the tooltips. Can be a hidden element, because CSS `display` is set to `block`.</dd>
-            <dt class="level2"><label class="monospace">[options.templatefield]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                Selector within the template element to choose where the text is inserted into the tooltip. Useful when a wrapper DIV is required.</dd>
-            <dt class="level2"><label class="monospace">[options.left]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Number</span></label>
-                Spacing from the target to the tooltip, when `where` is `mousemove` or `mousefix`. Defaults to 10.</dd>
-            <dt class="level2"><label class="monospace">[options.top]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Number</span></label>
-                Spacing from the target to the tooltip, when `where` is `mousemove` or `mousefix`. Defaults to 10.</dd>
-            <dt class="level2"><label class="monospace">[options.spacing]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Number</span></label>
-                Spacing between the tooltip and the target element, when `where` is not `mousemove` or `mousefix`. Defaults to 8.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">target</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement|String</span></p>
+                <!--</label>-->
+                Target element or selector of elements, to display the tooltips on.</li>
+            <li class="level1"><p>
+                    <span class="monospace">[options]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                Options object</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.text]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Text content for the tooltip.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.html]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                HTML for the tooltip. Same as above, but won't escape HTML.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.where]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Positioning for the tooltip. Options are 'up', 'down', 'left', 'right', 'mousemove' (follows the cursor), and 'mousefix' (stays fixed). Defaults to 'up'.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.color]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Color of the tooltip. Options are red, orange, blue, green and black. Default is white.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.fade]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Number</span></p>
+                <!--</label>-->
+                Number of seconds to fade in/out. Defaults to 0.3.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.forever]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Boolean</span></p>
+                <!--</label>-->
+                Flag to prevent the tooltip from being erased when the mouse hovers away from the target.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.timeout]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Number</span></p>
+                <!--</label>-->
+                Number of seconds the tooltip will stay open. Useful together with options.forever. Defaults to 0.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.delay]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Number</span></p>
+                <!--</label>-->
+                Time the tooltip waits until it is displayed. Useful to avoid getting the attention of the user unnecessarily</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.template]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">DOMElement|Selector</span></p>
+                <!--</label>-->
+                Element or selector containing HTML to be cloned into the tooltips. Can be a hidden element, because CSS `display` is set to `block`.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.templatefield]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Selector within the template element to choose where the text is inserted into the tooltip. Useful when a wrapper DIV is required.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.left]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Number</span></p>
+                <!--</label>-->
+                Spacing from the target to the tooltip, when `where` is `mousemove` or `mousefix`. Defaults to 10.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.top]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Number</span></p>
+                <!--</label>-->
+                Spacing from the target to the tooltip, when `where` is `mousemove` or `mousefix`. Defaults to 10.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.spacing]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Number</span></p>
+                <!--</label>-->
+                Spacing between the tooltip and the target element, when `where` is not `mousemove` or `mousefix`. Defaults to 8.</li>
+        </ul>
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_UI_Tooltip_1.html %}

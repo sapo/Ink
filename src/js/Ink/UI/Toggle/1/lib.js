@@ -71,6 +71,8 @@
         }
 
         this._init();
+
+        Common.registerInstance(this, this._rootElement);
     };
 
     Toggle.prototype = {
