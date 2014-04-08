@@ -7,17 +7,8 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
     'use strict';
 
     /**
-     * Ink.UI.Sticky makes an element "stick" to the screen and stay in the same place as the user scrolls.
-     *
-     * To use it, just select an element as you create the Sticky. As you scroll past it, it will stick to the top of the screen.
-     *
-     * The `activateInLayouts` option controls in what layouts this behaviour happens. By default, it is disabled for the `small` and `tiny` layouts.
-     * Pass a comma-separated string to choose just the layouts you need.
-     *
-     * You can use the `offsetTop` option if you want it to keep some distance from the top of the screen.
-     *
-     * To avoid it going under the footer of your page, pass a selector to your footer as the `bottomElement` option.
-     *
+     * Ink.UI.Sticky makes an element "stick" to the screen and stay in the same place as the user scrolls. To use it, just select an element as you create the Sticky. As you scroll past it, it will stick to the top of the screen.
+     * The `activateInLayouts` option controls in what layouts this behaviour happens. By default, it is disabled for the `small` and `tiny` layouts. Pass a comma-separated string to choose just the layouts you need. You can use the `offsetTop` option if you want it to keep some distance from the top of the screen. To avoid it going under the footer of your page, pass a selector to your footer as the `bottomElement` option.
      *
      * @class Ink.UI.Sticky
      * @constructor
