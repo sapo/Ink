@@ -88,7 +88,6 @@ Stacker.prototype = {
      *     });
      **/
     _init: function(selector, options) {
-        /* globals console */
         this._rootElm = Common.elsOrSelector(selector, 'Ink.UI.Stacker root element')[0] || null;
         if(this._rootElm === null) {
             Ink.warn('Ink.UI.Stacker: No root element');
