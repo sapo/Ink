@@ -43,7 +43,7 @@ site_root:  ../
 
 <h2 class="fw-thin">Ink.requireModules</h2>
 
-<p>The <a href="{{ site.url }}/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules()</a> method is our implementation of <acronym title="Asynchronous Module Definition">AMDs</acronym> <a href="https://github.com/amdjs/amdjs-api/blob/master/require.md">require</a> pattern. It handles dependency loading, provides aliases for modules and a callback function that gets executed. <strong>We recommend that you use it.</strong></p>
+<p>The <a href="{{ site.url }}/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules()</a> method is our implementation of <acronym title="Asynchronous Module Definition">AMDs</acronym> <a target="_blank" href="https://github.com/amdjs/amdjs-api/blob/master/require.md">require</a> pattern. It handles dependency loading, provides aliases for modules and a callback function that gets executed. <strong>We recommend that you use it.</strong></p>
 
 <p>As you'll see throughout our documentation, the provided examples use <a href="{{ site.url }}javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules()</a>. Don't worry you don't have to use with every method invocation, but wrapping you code in its callback function will keep your code isolated and the DOMs global scope clean of clutter.</p>
 
@@ -134,7 +134,7 @@ Ink.requireModules(['Ink.UI.Carousel_1'], function(Carousel) {
 
 
 <h2 class="fw-thin">Ink.Ext</h2>
-<p>The Ink.Ext is a special namespace. It was created to allow the community to contribute with new modules or components. These contributions may eventually be integrated into Inks core. Read more on how to contribute on our <a href="https://github.com/sapo/Ink/blob/develop/CONTRIBUTING.md">Github repository</a>.</p>
+<p>The Ink.Ext is a special namespace. It was created to allow the community to contribute with new modules or components. <a href="https://github.com/sapo/Ink/wiki/Projects-using-Ink" target="_blank">These contributions</a> may eventually be integrated into Inks core. Read more on how to contribute on our <a href="https://github.com/sapo/Ink/blob/develop/CONTRIBUTING.md" target="_blank">Github repository</a>.</p>
 <p>To create your own extension use the <a href="{{ site.url }}/javascript/Ink/#Ink_1-Ink_1-createExt">Ink.createExt()</a>. Your extension will become available under the Ink.Ext namespace.</p>
 
 <p class="example-title">Code</p>
