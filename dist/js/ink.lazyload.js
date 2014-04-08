@@ -1,10 +1,10 @@
 /**
- * @module Ink.UI.LazyLoad_1
  * Delays content loading
+ * @module Ink.UI.LazyLoad_1
  * @version 1
  */
 
-Ink.createModule('Ink.UI.LazyLoad', '1', ['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1'], function(UICommon, InkEvent, InkElement) {
+Ink.createModule('Ink.UI.LazyLoad', '1', ['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1'], function(Common, InkEvent, InkElement) {
 'use strict';
 
 var LazyLoad = function(selector, options) {
@@ -43,9 +43,9 @@ LazyLoad.prototype = {
      * @sample Ink_UI_LazyLoad_1.html
      */
     _init: function(selector) {
-        this._rootElm = UICommon.elsOrSelector(selector, 'Ink.UI.LazyLoad root element')[0] || null;
+        this._rootElm = Common.elsOrSelector(selector, 'Ink.UI.LazyLoad root element')[0] || null;
 
-        this._options = UICommon.options({
+        this._options = Common.options({
             item: ['String', '.lazyload-item'],
             placeholder: ['String', null],
             source: ['String', 'data-src'],
@@ -65,7 +65,9 @@ LazyLoad.prototype = {
    
         if(this._options.autoInit) {
             this._activate();
-        } 
+        }
+
+        Common.registerInstance(this, this._rootElm);
     },
 
     _activate: function() 
@@ -183,7 +185,7 @@ LazyLoad.prototype = {
         if(this._hasEvents) {
             this._removeEvents();
         }
-        UICommon.destroyComponent.call(this);
+        Common.destroyComponent.call(this);
     }
 };
 

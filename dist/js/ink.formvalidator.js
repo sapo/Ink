@@ -1,6 +1,6 @@
 /**
- * @module Ink.UI.FormValidator_1
  * Form Validation
+ * @module Ink.UI.FormValidator_1
  * @version 1
  **/
 

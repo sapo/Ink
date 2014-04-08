@@ -1,6 +1,6 @@
 /**
- * @module Ink.UI.Tooltip_1
  * Content Tooltips
+ * @module Ink.UI.Tooltip_1
  * @version 1
  */
 Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1', 'Ink.Util.Array_1', 'Ink.Dom.Css_1', 'Ink.Dom.Browser_1'], function (Common, InkEvent, InkElement, Selector, InkArray, Css) {
@@ -130,6 +130,8 @@ Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Common_1', 'Ink.Dom.Event_1', '
             this.element = elm;
             this._delayTimeout = null;
             this.tooltip = null;
+
+            Common.registerInstance(this, this.element);
         },
         _makeTooltip: function (mousePosition) {
             if (!this._getOpt('text') &&
