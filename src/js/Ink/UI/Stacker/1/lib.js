@@ -91,9 +91,7 @@ Stacker.prototype = {
         /* globals console */
         this._rootElm = Common.elsOrSelector(selector, 'Ink.UI.Stacker root element')[0] || null;
         if(this._rootElm === null) {
-            if(typeof console !== 'undefined') {
-                console.warn('Ink.UI.Stacker: No root element');
-            }
+            Ink.warn('Ink.UI.Stacker: No root element');
         }
 
         this._options = Common.options({

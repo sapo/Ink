@@ -17,15 +17,17 @@ tags: user interface, components, elements, responsive, customization
   <p>If you don't want or need to host Inks code you can use our CDN. All of our releases are available:</p>
 
 {% highlight html %}
-<link rel="stylesheet" type="text/css" href="http://cdn.ink.sapo.pt/x.x.x/">
+<link rel="stylesheet" type="text/css" href="{{ site.cdn_url }}x.x.x/">
 {% endhighlight %}
 
 <p>x.x.x will be the version number and inside each version the CDN mimicks the distibution bundle:</p>
 
 {% highlight html %}
-<link rel="stylesheet" type="text/css" href="http://cdn.ink.sapo.pt/3.0.0/css/ink.css"> <!-- inks css file -->
-<script type="text/javascript" src="http://cdn.ink.sapo.pt/3.0.0/js/ink-all.js"></script> <!-- inks js bundle -->
+<link rel="stylesheet" type="text/css" href="{{ site.cdn_url }}{{ site.version }}/css/ink.css"> <!-- inks css file -->
+<script type="text/javascript" src="{{ site.cdn_url }}{{ site.version }}/js/ink-all.js"></script> <!-- inks js bundle -->
 {% endhighlight %}
+
+<p>If you need we also serve all of our files over HTTPS.</p>
 
   <h2 class="fw-300">Browser support</h2>
   <p>From version 3.0.0 onward we're dropping support for Internet Explorer 7. Here's our current browser support table:</p>

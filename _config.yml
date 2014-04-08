@@ -18,6 +18,7 @@ version: 3.0.0
 download_url: https://github.com/sapo/Ink/releases/download/
 download_src_url: https://github.com/sapo/Ink/archive/
 repo_url: https://github.com/sapo/Ink/
+cdn_url: http://cdn.ink.sapo.pt/
 
 # ASSETS PATHS
 images_path: /assets/img/
@@ -156,6 +157,7 @@ sections:
 
 releases:
   - 3.0.0
+  - 2.3.2
   - 2.3.1
   - 2.3.0
   - 2.2.1
@@ -168,4 +170,3 @@ releases:
 
 # ANALYTICS
 analytics: FC2C65EF-D60C-4BC2-9D76-251A50DADC3D
-markdown: kramdown

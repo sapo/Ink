@@ -80,7 +80,7 @@ site_root:  ../
                     
                     <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
                 <!--</label>-->
-                Options</li>
+                Options object, containing:</li>
             <li class="level2"><p>
                     <span class="monospace">[options.width]</span>
                     
@@ -116,13 +116,6 @@ site_root:  ../
                     <!--<li class="level2">--><span class="ink-label orange">String</span></p>
                 <!--</label>-->
                 CSS Selector for target elements that will trigger the Modal.</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.triggerEvent]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
-                Trigger's event to be listened. Defaults to 'click'.</li>
             <li class="level2"><p>
                     <span class="monospace">[options.autoDisplay]</span>
                     
@@ -179,6 +172,13 @@ site_root:  ../
                     <!--<li class="level2">--><span class="ink-label orange">Boolean</span></p>
                 <!--</label>-->
                 Determines if the Modal should 'disable' the page's scroll (not the Modal's body).</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.triggerEvent]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                (advanced) Trigger's event to be listened. Defaults to 'click'.</li>
         </ul>
 
 <!--<h3>Samples</h3>-->
@@ -215,7 +215,7 @@ site_root:  ../
     <i>method</i></h1>
     <ul class="props inline">
         <li class="heading">Arguments:</li><li class="prop">[event]</li>
-    </ul><p class="text">Opens this Modal. <br>Useful if you have initialized the modal</p>
+    </ul><p class="text">Opens this Modal. <br>Use this if you created the modal with <code>autoOpen: false</code><br>to open the modal when you want to.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
