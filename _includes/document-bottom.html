@@ -3,28 +3,21 @@
       var inkDrawer = new Drawer({ sides: 'left', mode: 'push' });
     });
     </script>
-    <script type="text/javascript" src="{{ site.url }}{{ site.js_path }}modernizr.js"></script>
-    <script type="text/javascript" src="{{ site.url }}{{ site.js_path }}search.js"></script>
-    <script type="text/javascript">
-        Modernizr.load({
-          test: Modernizr.flexbox,
-          nope : '{{ site.url }}{{  site.css_path  }}ink-flex-legacy.min.css',
-        });
-    </script>
+    <script type="text/javascript" src="{{ site.js_path }}search.js"></script>
     {% if site.environment == 'production' %}
-    <script type="text/javascript" src="http://js.sapo.pt/SAPOWebAnalytics/"></script>    
-    <script>
-      SAPO.WebAnalytics.track({swakt:"{{ site.analytics }}"}); 
-      SAPO.WebAnalytics.registerClick();
-    </script>
-    <div id="fb-root"></div>
-    <script>(function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=82073436953";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
+        <script type="text/javascript" src="http://js.sapo.pt/SAPOWebAnalytics/"></script>    
+        <script>
+          SAPO.WebAnalytics.track({swakt:"{{ site.analytics }}"}); 
+          SAPO.WebAnalytics.registerClick();
+        </script>
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=82073436953";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
     {% endif %}
   </body>
 </html>
