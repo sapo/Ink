@@ -90,6 +90,8 @@ Ink.createModule('Ink.UI.Swipe', '1', ['Ink.Dom.Event_1', 'Ink.Dom.Element_1', '
             }
             InkEvent.observe(db, 'touchend', this._handlers.up);
             this._isOn = false;
+
+            Common.registerInstance(this, this._element);
         },
 
         _isMeOrParent: function(el, parentEl) {

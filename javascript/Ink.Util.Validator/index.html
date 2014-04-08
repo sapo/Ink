@@ -162,7 +162,9 @@ site_root:  ../
                 Optional configuration object. See createRegexp</dd>
         </dl>
 
-</section>
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_Validator_ascii.html %}
+	</section>
 
     <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-checkCharacterGroups" class="box box-function">
     <h1 class="fw-300">.checkCharacterGroups(s, [groups]) 
@@ -183,7 +185,9 @@ site_root:  ../
                 What groups are included. See createRegexp</dd>
         </dl>
 
-</section>
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_Validator_checkCharacterGroups.html %}
+	</section>
 
     <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-codPostal" class="box box-function">
     <h1 class="fw-300">.codPostal(cp1, cp2, returnBothResults) 
@@ -213,19 +217,10 @@ site_root:  ../
         </dd>
     </dl>
     
-<p class="example-title">Example</p>
-  
-{% highlight html %}{% raw %}
-    Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){
-        console.log( InkValidator.codPostal( '1069', '300' ) );        // Result: true
-        console.log( InkValidator.codPostal( '1069', '300', true ) );  // Result: [true, true]
-    });
 
-{% endraw %}{% endhighlight %}
-
-
-
-</section>
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_Validator_codPostal.html %}
+	</section>
 
     <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-createRegExp" class="box box-function">
     <h1 class="fw-300">.createRegExp(Groups*) 
@@ -263,20 +258,10 @@ site_root:  ../
         </dd>
     </dl>
     
-<p class="example-title">Example</p>
-  
-{% highlight html %}{% raw %}
-    Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){
-        console.log( InkValidator.isAOPhone( '244222396385' ) );     // Result: true
-        console.log( InkValidator.isAOPhone( '00244222396385' ) );   // Result: true
-        console.log( InkValidator.isAOPhone( '+244222396385' ) );    // Result: true
-        console.log( InkValidator.isAOPhone( '1' ) );                // Result: false
-    });
-{% endraw %}{% endhighlight %}
 
-
-
-</section>
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_Validator_isAOPhone.html %}
+	</section>
 
     <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-isCVPhone" class="box box-function">
     <h1 class="fw-300">.isCVPhone(phone) 
@@ -298,20 +283,10 @@ site_root:  ../
         </dd>
     </dl>
     
-<p class="example-title">Example</p>
-  
-{% highlight html %}{% raw %}
-    Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){
-        console.log( InkValidator.isCVPhone( '2610303' ) );        // Result: true
-        console.log( InkValidator.isCVPhone( '002382610303' ) );   // Result: true
-        console.log( InkValidator.isCVPhone( '+2382610303' ) );    // Result: true
-        console.log( InkValidator.isCVPhone( '1' ) );              // Result: false
-    });
-{% endraw %}{% endhighlight %}
 
-
-
-</section>
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_Validator_isCVPhone.html %}
+	</section>
 
     <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-isColor" class="box box-function">
     <h1 class="fw-300">.isColor(str) 
@@ -333,18 +308,10 @@ site_root:  ../
         </dd>
     </dl>
     
-<p class="example-title">Example</p>
-  
-{% highlight html %}{% raw %}
-    Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){
-        console.log( InkValidator.isColor( '#FF00FF' ) );        // Result: true
-        console.log( InkValidator.isColor( 'amdafasfs' ) );      // Result: false
-    });
-{% endraw %}{% endhighlight %}
 
-
-
-</section>
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_Validator_isColor.html %}
+	</section>
 
     <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-isCreditCard" class="box box-function">
     <h1 class="fw-300">.isCreditCard(num, creditCardType) 
@@ -371,7 +338,9 @@ site_root:  ../
     </dl>
     
 
-</section>
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_Validator_isCreditCard.html %}
+	</section>
 
     <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-isDate" class="box box-function">
     <h1 class="fw-300">.isDate(format, dateStr) 
@@ -397,17 +366,10 @@ site_root:  ../
         </dd>
     </dl>
     
-<p class="example-title">Example</p>
-  
-{% highlight html %}{% raw %}
-    Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){
-        console.log( InkValidator.isDate( 'yyyy-mm-dd', '2012-05-21' ) );        // Result: true
-    });
-{% endraw %}{% endhighlight %}
 
-
-
-</section>
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_Validator_isDate.html %}
+	</section>
 
     <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-isIP" class="box box-function">
     <h1 class="fw-300">.isIP(value, ipType) 
@@ -434,7 +396,9 @@ site_root:  ../
     </dl>
     
 
-</section>
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_Validator_isIP.html %}
+	</section>
 
     <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-isMZPhone" class="box box-function">
     <h1 class="fw-300">.isMZPhone(phone) 
@@ -456,20 +420,10 @@ site_root:  ../
         </dd>
     </dl>
     
-<p class="example-title">Example</p>
-  
-{% highlight html %}{% raw %}
-    Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){
-        console.log( InkValidator.isMZPhone( '21426861' ) );        // Result: true
-        console.log( InkValidator.isMZPhone( '0025821426861' ) );   // Result: true
-        console.log( InkValidator.isMZPhone( '+25821426861' ) );    // Result: true
-        console.log( InkValidator.isMZPhone( '1' ) );              // Result: false
-    });
-{% endraw %}{% endhighlight %}
 
-
-
-</section>
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_Validator_isMZPhone.html %}
+	</section>
 
     <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-isPTPhone" class="box box-function">
     <h1 class="fw-300">.isPTPhone(phone) 
@@ -491,20 +445,10 @@ site_root:  ../
         </dd>
     </dl>
     
-<p class="example-title">Example</p>
-  
-{% highlight html %}{% raw %}
-    Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){
-        console.log( InkValidator.isPTPhone( '213919264' ) );        // Result: true
-        console.log( InkValidator.isPTPhone( '00351213919264' ) );   // Result: true
-        console.log( InkValidator.isPTPhone( '+351213919264' ) );    // Result: true
-        console.log( InkValidator.isPTPhone( '1' ) );                // Result: false
-    });
-{% endraw %}{% endhighlight %}
 
-
-
-</section>
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_Validator_isPTPhone.html %}
+	</section>
 
     <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-isPhone" class="box box-function">
     <h1 class="fw-300">.isPhone(phone, [countryCode]) 
@@ -531,17 +475,10 @@ site_root:  ../
         </dd>
     </dl>
     
-<p class="example-title">Example</p>
-  
-{% highlight html %}{% raw %}
-    Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){
-        console.log( InkValidator.isPhone( '6703331234' ) );        // Result: true
-    });
-{% endraw %}{% endhighlight %}
 
-
-
-</section>
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_Validator_isPhone.html %}
+	</section>
 
     <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-isPortuguesePhone" class="box box-function">
     <h1 class="fw-300">.isPortuguesePhone(phone) 
@@ -563,18 +500,6 @@ site_root:  ../
         </dd>
     </dl>
     
-<p class="example-title">Example</p>
-  
-{% highlight html %}{% raw %}
-    Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){
-        console.log( InkValidator.isPortuguesePhone( '213919264' ) );        // Result: true
-        console.log( InkValidator.isPortuguesePhone( '00351213919264' ) );   // Result: true
-        console.log( InkValidator.isPortuguesePhone( '+351213919264' ) );    // Result: true
-        console.log( InkValidator.isPortuguesePhone( '1' ) );                // Result: false
-    });
-{% endraw %}{% endhighlight %}
-
-
 
 </section>
 
@@ -598,20 +523,10 @@ site_root:  ../
         </dd>
     </dl>
     
-<p class="example-title">Example</p>
-  
-{% highlight html %}{% raw %}
-    Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){
-        console.log( InkValidator.isTLPhone( '6703331234' ) );     // Result: true
-        console.log( InkValidator.isTLPhone( '006703331234' ) );   // Result: true
-        console.log( InkValidator.isTLPhone( '+6703331234' ) );    // Result: true
-        console.log( InkValidator.isTLPhone( '1' ) );              // Result: false
-    });
-{% endraw %}{% endhighlight %}
 
-
-
-</section>
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_Validator_isTLPhone.html %}
+	</section>
 
     <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-latin1" class="box box-function">
     <h1 class="fw-300">.latin1(s, [options]) 
@@ -632,7 +547,9 @@ site_root:  ../
                 Optional configuration object. See createRegexp</dd>
         </dl>
 
-</section>
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_Validator_latin1.html %}
+	</section>
 
     <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-mail" class="box box-function">
     <h1 class="fw-300">.mail(email) 
@@ -654,18 +571,10 @@ site_root:  ../
         </dd>
     </dl>
     
-<p class="example-title">Example</p>
-  
-{% highlight html %}{% raw %}
-    Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){
-        console.log( InkValidator.email( 'agfsdfgfdsgdsf' ) ); // Result: false
-        console.log( InkValidator.email( 'inkdev\u0040sapo.pt' ) ); // Result: true (where \u0040 is at sign)
-    });
-{% endraw %}{% endhighlight %}
 
-
-
-</section>
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_Validator_mail.html %}
+	</section>
 
     <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-number" class="box box-function">
     <h1 class="fw-300">.number(numb, [options], ) 
@@ -721,7 +630,9 @@ site_root:  ../
                 When this option is true, return the number itself when the value is valid.</dd>
         </dl>
 
-</section>
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_Validator_number.html %}
+	</section>
 
     <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-unicode" class="box box-function">
     <h1 class="fw-300">.unicode(s, [options]) 
@@ -769,19 +680,10 @@ site_root:  ../
         </dd>
     </dl>
     
-<p class="example-title">Example</p>
-  
-{% highlight html %}{% raw %}
-    Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){
-        console.log( InkValidator.url( 'www.sapo.pt' ) );                // Result: true
-        console.log( InkValidator.url( 'http://www.sapo.pt', true ) );   // Result: true
-        console.log( InkValidator.url( 'meh' ) );                        // Result: false
-    });
-{% endraw %}{% endhighlight %}
 
-
-
-</section>
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_Validator_url.html %}
+	</section>
 
 
 

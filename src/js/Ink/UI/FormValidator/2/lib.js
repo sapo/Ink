@@ -688,6 +688,8 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
             Event.observe( this._rootElement,this._options.eventTrigger, Ink.bindEvent(this.validate,this) );
         }
 
+        Common.registerInstance(this, this._rootElement);
+
         this._init();
     };
 
