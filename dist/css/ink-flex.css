@@ -8749,6 +8749,9 @@ table.ink-table tbody > tr.yellow td {
   zoom: 1;
   *display: inline;
 }
+.ink-carousel .ink-navigation {
+  position: static;
+}
 
 .ink-carousel {
   width: 100%;
