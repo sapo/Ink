@@ -11,8 +11,8 @@
   >
 <channel>
     <title xml:lang="en">{{ site.title }}</title>
-    <atom:link type="application/atom+xml" href="{{ site.url }}feed.xml" rel="self"/>
-    <link>{{ site.url }}</link>
+    <atom:link type="application/atom+xml" href="http://ink.sapo.pt/feed.xml" rel="self"/>
+    <link>http://ink.sapo.pt/</link>
     <pubDate>{{ site.time | date: "%a, %d %b %Y %H:%M:%S GMT" }}</pubDate>
     <lastBuildDate>{{ site.time | date: "%a, %d %b %Y %H:%M:%S GMT" }}</lastBuildDate>
     <language>en-US</language>
@@ -20,7 +20,7 @@
     {% for page in site.pages %}
     <item>
         <title>{{ page.title }}</title>
-        <link>{{ site.url }}{{ page.url | remove: 'index.html' | replace_first: '/','' }}</link>
+        <link>http://ink.sapo.pt/{{ page.url | remove: 'index.html' | replace_first: '/','' }}</link>
         <pubDate>{{ site.time | date: "%a, %d %b %Y %H:%M:%S GMT" }}</pubDate>
         {% for tag in page.tags %}<category>{{ tag }}</category>{% endfor %}
         <guid isPermaLink="false">{{ page.id }}</guid>
