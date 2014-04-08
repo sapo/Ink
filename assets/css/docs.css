@@ -1,4 +1,3 @@
-@charset "UTF-8";
 .fw-100 {
   font-weight: 100;
   font-family: Roboto;
@@ -1264,6 +1263,24 @@ p.loader.show {
 }
 #myToggledLabel.red {
   background: #c91111;
+}
+
+ul.params p {
+  margin: .4em 0;
+}
+ul.params li {
+  margin: 1em 0;
+}
+ul.params li.level1 {
+  list-style-type: disc;
+}
+ul.params li.level2 {
+  list-style-type: circle;
+  margin-left: 25px;
+}
+ul.params li.level3 {
+  list-style-type: circle;
+  margin-left: 50px;
 }
 
 @media screen and (min-width: 641px) and (max-width: 960px) {
