@@ -34,7 +34,12 @@ Ink.createModule('Ink.Autoload', 1, ['Ink.Dom.Selector_1', 'Ink.Dom.Loaded_1', '
         },
         defaultOptions: {},
         run: function (parentEl, options){
-            options = options || {};
+            options = Ink.extendObj({
+                waitForDOMLoaded: false,
+                createClose: false,
+                createSmoothScroller: false,
+                selectors: Autoload.selectors
+            }, options || {});
 
             if (options.waitForDOMLoaded) {
                 Loaded.run(autoload);
@@ -43,7 +48,7 @@ Ink.createModule('Ink.Autoload', 1, ['Ink.Dom.Selector_1', 'Ink.Dom.Loaded_1', '
             }
 
             function autoload() {
-                for(var mod in Autoload.selectors) if (Autoload.selectors.hasOwnProperty(mod)) {
+                for(var mod in options.selectors) if (options.selectors.hasOwnProperty(mod)) {
                     // `elements` need to be in a closure because requireModules is async.
                     findElements(mod);
                 }
@@ -57,7 +62,7 @@ Ink.createModule('Ink.Autoload', 1, ['Ink.Dom.Selector_1', 'Ink.Dom.Loaded_1', '
 
             function findElements(mod) {
                 var modName = 'Ink.UI.' + mod;
-                var elements = Selector.select( Autoload.selectors[mod], parentEl );
+                var elements = Selector.select( options.selectors[mod], parentEl );
                 if( elements.length ){
                     Ink.requireModules( [modName], function( Component ) {
                         for (var i = 0, len = elements.length; i < len; i++) {
