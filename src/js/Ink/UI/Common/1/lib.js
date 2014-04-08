@@ -394,8 +394,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
 
         /**
          * AJAX JSON request shortcut method
-         * It provides a more convenient way to do an AJAX request and expect a JSON response.
-         * It offers a callback option, as third parameter, for better async handling.
+         * It provides a more convenient way to do an AJAX request and expect a JSON response.It also offers a callback option, as third parameter, for better async handling.
          *
          * @method ajaxJSON
          * @static
