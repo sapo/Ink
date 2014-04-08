@@ -1,0 +1,14 @@
+<p class="example-title">Code</p>
+{% highlight js %}
+<script>
+Ink.requireModules(['Ink.Util.Validator_1'], function(Validator) {
+
+    var result1 = Validator.codPostal('1069', '300');
+    Ink.log(result1); // true 
+  
+    var result2 = Validator.codPostal('1069', '300', true);
+    Ink.log(result2); // [true, true]
+});
+</script>
+{% endhighlight %}
+

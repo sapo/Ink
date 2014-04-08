@@ -1,0 +1,23 @@
+<p class="example-title">Code</p>
+{% highlight js %}
+<script>
+Ink.requireModules(['Ink.Util.Validator_1'], function(Validator) {
+
+    var result1 = Validator.number(12345);
+    Ink.log(result1); // true
+  
+    var result2 = Validator.number(255, {min: 50, max: 100});
+    Ink.log(result2); // false  
+    
+    var result3 = Validator.number(75, {min: 50, max: 100});
+    Ink.log(result3); // true  
+    
+    var result4 = Validator.number(42.255, {decimalPlaces: 2});
+    Ink.log(result4); // false 
+    
+    var result5 = Validator.number(42.25, {decimalPlaces: 2});
+    Ink.log(result5); // true
+});
+</script>
+{% endhighlight %}
+

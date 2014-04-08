@@ -1,0 +1,25 @@
+<p class="example-title">Code</p>
+{% highlight html %}
+<div id="dump_container">
+</div>
+<script>
+Ink.requireModules(['Ink.Util.Dumper_1'], function(Dumper) {
+
+    var obj = {
+        name: 'John',
+        age: 33, 
+        hasGlasses: true,
+        cars: ['Audi', 'BMW', 'Ferrari'],
+        pets: {
+            cat: 'Max',
+            dog: 'Rex'
+        }
+    };
+  
+    Dumper.printDump(obj, 'dump_container'); 
+    // will print to <div id="dump_container"> the object content
+});
+
+</script>
+{% endhighlight %}
+

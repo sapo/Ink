@@ -1,0 +1,13 @@
+<p class="example-title">Code</p>
+{% highlight js %}
+<script>
+Ink.requireModules(['Ink.Util.Validator_1'], function(Validator) {
+
+    Validator.isMZPhone('21426861');  // true 
+    Validator.isMZPhone('0025821426861');  // true 
+    Validator.isMZPhone('+25821426861');  // true 
+    Validator.isMZPhone('1');  // false 
+});
+</script>
+{% endhighlight %}
+

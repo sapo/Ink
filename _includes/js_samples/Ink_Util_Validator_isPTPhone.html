@@ -1,0 +1,13 @@
+<p class="example-title">Code</p>
+{% highlight js %}
+<script>
+Ink.requireModules(['Ink.Util.Validator_1'], function(Validator) {
+
+    Validator.isPTPhone('213919264');  // true 
+    Validator.isPTPhone('00351213919264');  // true 
+    Validator.isPTPhone('+351213919264');  // true 
+    Validator.isPTPhone('1');  // false 
+});
+</script>
+{% endhighlight %}
+
