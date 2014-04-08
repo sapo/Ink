@@ -1,5 +1,7 @@
     <script>
-      var inkDrawer = new Ink.UI.Drawer_1({ sides: 'left', mode: 'push' });
+    Ink.requireModules(['Ink.UI.Drawer_1'], function(Drawer) {
+      var inkDrawer = new Drawer({ sides: 'left', mode: 'push' });
+    });
     </script>
     <script type="text/javascript" src="{{ site.url }}{{ site.js_path }}modernizr.js"></script>
     <script type="text/javascript" src="{{ site.url }}{{ site.js_path }}search.js"></script>
