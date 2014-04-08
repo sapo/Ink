@@ -164,7 +164,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
         }
 
         if( this._options.trigger ) {
-            var triggerElements = Common.elsOrSelector(this._options.trigger, '', false /* don't throw */);
+            var triggerElements = Common.elsOrSelector(this._options.trigger, '');
             Event.observeMulti(triggerElements, this._options.triggerEvent, Ink.bindEvent(this.open, this));
         } else if ( this._options.autoDisplay.toString() === "true" ) {
             this.open();
