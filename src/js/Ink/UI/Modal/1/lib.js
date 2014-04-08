@@ -16,13 +16,12 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
      * @constructor
      * @version 1
      * @param {String|DOMElement}   selector                        Element or ID
-     * @param {Object}              [options]                       Options
+     * @param {Object}              [options]                       Options object, containing:
      * @param {String}              [options.width]                 Default/Initial width. Ex: '600px'
      * @param {String}              [options.height]                Default/Initial height. Ex: '400px'
      * @param {String}              [options.shadeClass]            Custom class to be added to the div.ink-shade
      * @param {String}              [options.modalClass]            Custom class to be added to the div.ink-modal
      * @param {String}              [options.trigger]               CSS Selector for target elements that will trigger the Modal.
-     * @param {String}              [options.triggerEvent]          Trigger's event to be listened. Defaults to 'click'.
      * @param {Boolean}             [options.autoDisplay]           Displays the Modal automatically when constructed.
      * @param {String}              [options.markup]                Markup to be placed in the Modal when created
      * @param {Function}            [options.onShow]                Callback function to run when the Modal is opened.
@@ -31,6 +30,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
      * @param {Boolean}             [options.closeOnEscape]         Determines if the Modal should close when "Esc" key is pressed. Defaults to true.
      * @param {Boolean}             [options.responsive]            Determines if the Modal should behave responsively (adapt to smaller viewports).
      * @param {Boolean}             [options.disableScroll]         Determines if the Modal should 'disable' the page's scroll (not the Modal's body).
+     * @param {String}              [options.triggerEvent]          (advanced) Trigger's event to be listened. Defaults to 'click'.
      *
      * @sample Ink_UI_Modal_1.html
      */
@@ -338,7 +338,8 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
 
         /**
          * Opens this Modal. 
-         * Useful if you have initialized the modal
+         * Use this if you created the modal with `autoOpen: false`
+         * to open the modal when you want to.
          * @method open 
          * @param {Event} [event] (internal) In case its fired by the internal trigger.
          */
@@ -562,10 +563,6 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
 
                     var toAdd = tempHeader.concat([body]).concat(tempFooter);
                     InkArray.each(toAdd, Ink.bindMethod(this._modalDiv, 'appendChild'));
-
-                    // InkArray.each(tempHeader,Ink.bind(function( element ){ this._modalDiv.appendChild(element); },this));
-                    // this._modalDiv.appendChild(body);
-                    // InkArray.each(tempFooter,Ink.bind(function( element ){ this._modalDiv.appendChild(element); },this));
 
                     this._contentContainer = Selector.select(".modal-body",this._modalDiv);
                 }
