@@ -1,7 +1,7 @@
 /** 
- * Autoload Modules with data attributes
  * @module Ink.Autoload
  * @version 1
+ * Create Ink UI components easily
  */
 Ink.createModule('Ink.Autoload', 1, ['Ink.Dom.Selector_1', 'Ink.Dom.Loaded_1', 'Ink.UI.SmoothScroller_1', 'Ink.UI.Close_1'], function( Selector, Loaded, Scroller, Close ){
     'use strict';
@@ -33,6 +33,19 @@ Ink.createModule('Ink.Autoload', 1, ['Ink.Dom.Selector_1', 'Ink.Dom.Loaded_1', '
             'TreeView_1'    : '.ink-tree-view'
         },
         defaultOptions: {},
+
+        /**
+         * Run Autoload on a specific element.
+         *
+         * Useful when you load something from AJAX and want it to have automatically loaded Ink modules.
+         * @method run
+         * @param {DOMElement} parentEl  
+         * @param {Object}  [options] Options object, containing:
+         * @param {Boolean} [options.createClose] Whether to create the Ink.UI.Close component. Defaults to `true`.
+         * @param {Boolean} [options.createSmoothScroller] Whether to create the Scroller component. Defaults to `true`.
+         * @public
+         * @sample Autoload_1.html
+         **/
         run: function (parentEl, options){
             options = Ink.extendObj({
                 waitForDOMLoaded: false,
@@ -41,23 +54,15 @@ Ink.createModule('Ink.Autoload', 1, ['Ink.Dom.Selector_1', 'Ink.Dom.Loaded_1', '
                 selectors: Autoload.selectors
             }, options || {});
 
-            if (options.waitForDOMLoaded) {
-                Loaded.run(autoload);
-            } else {
-                autoload();
+            for(var mod in options.selectors) if (options.selectors.hasOwnProperty(mod)) {
+                // `elements` need to be in a closure because requireModules is async.
+                findElements(mod);
             }
-
-            function autoload() {
-                for(var mod in options.selectors) if (options.selectors.hasOwnProperty(mod)) {
-                    // `elements` need to be in a closure because requireModules is async.
-                    findElements(mod);
-                }
-                if (options.createClose) {
-                    new Close();
-                }
-                if (options.createSmoothScroller) {
-                    Scroller.init();
-                }
+            if (options.createClose !== false) {
+                new Close();
+            }
+            if (options.createSmoothScroller !== false) {
+                Scroller.init();
             }
 
             function findElements(mod) {
@@ -79,12 +84,13 @@ Ink.createModule('Ink.Autoload', 1, ['Ink.Dom.Selector_1', 'Ink.Dom.Loaded_1', '
     }
 
     if (!window.INK_NO_AUTO_LOAD) {
-        Autoload.run(document, {
-            waitForDOMLoaded: true,
-            createSmoothScroller: true,
-            createClose: true
+        Loaded.run(function () {
+            Autoload.run(document, {
+                createSmoothScroller: true,
+                createClose: true
+            });
+            Autoload.firstRunDone = true;
         });
-        Autoload.firstRunDone = true;
     }
 
     return Autoload;

@@ -1,12 +1,7 @@
 <div class="left-drawer">
-    <ul class="menu vertical">
+    <ul>
         <li class="search">
-            <input placeholder="Search..." class="side-search-input" value="" type="search"><span class="fa fa-search"></span>
-            <div class="ink-dropdown red side-search-results" style="display: none;">
-                <ul class="dropdown-menu side-search-results-list">
-
-                </ul>
-            </div>
+            {% include search.html %}
         </li>
 
         {% for section in site.sections %}
@@ -20,14 +15,15 @@
         {% include section-selector.html %}
 
         {% for component in section.components %}
-          <li class="heading">{{ component.title }}{% if component.topics %}
+        <li class="heading">{{ component.title }}{% if component.topics %}
             {% for topic in component.topics %}
               <li><a href="{{ site.url }}{{ section.title | downcase | replace: ' ','-' }}/{{ topic.title | replace: ' ','-' }}" title="{{ topic.title }}">{{ topic.title }}</a></li>{% endfor %}
             {% endif %}
-          </li>{% endfor %}
-        
-
-        <li><a class="ink-button blue" href="{{ site.download_url }}{{ site.version }}.zip" data-trackerlink="content|menujsdrawer|downloadzip">Download</a></li>
+        </li>
+        {% endfor %}
+        <li>
+            <a class="ink-button blue" href="{{ site.download_url }}{{ site.version }}.zip" data-trackerlink="content|menujsdrawer|downloadzip">Download</a>
+        </li>
 
     </ul>
 </div>
