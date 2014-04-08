@@ -250,24 +250,6 @@ site_root:  ../
         </li>
     </ul>
     
-<p class="example-title">Example</p>
-  
-{% highlight html %}{% raw %}
- // Build a function which calls Ink.Dom.Element.remove on an element.
- var removeMyElem = Ink.bindMethod(Ink.Dom.Element, 'remove', someElement);
-
- removeMyElem();  // no arguments, nor Ink.Dom.Element, needed
-{% endraw %}{% endhighlight %}
-  
-{% highlight html %}{% raw %}
- // (comparison with using Ink.bind to the same effect).
- // The following two calls are equivalent
-
- Ink.bind(this.remove, this, myElem);
- Ink.bindMethod(this, 'remove', myElem);
-{% endraw %}{% endhighlight %}
-
-
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_1_bindMethod.html %}

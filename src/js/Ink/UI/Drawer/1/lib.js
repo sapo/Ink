@@ -31,7 +31,7 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
          * @xparam {String}     [options.rightTrigger]          Right trigger selector (see `options.leftTrigger`)
          * @xparam {String}     [options.contentDrawer]         Selector for the content drawer.
          * @param {Boolean}     [options.closeOnContentClick]   Flag to close the drawer when someone clicks on the `.contentDrawer`
-         * @param {String}      [options.mode]                  This can be 'push' or 'hide'.
+         * @param {String}      [options.mode]                  This can be 'push' or 'over'.
          * @param {String}      [options.sides]                 Can be 'left', 'right', or 'both'. Controls what sides have a drawer.
          *
          * @example
