@@ -144,7 +144,6 @@ sections:
       - title: Utilities
         topics:
           - title: Ink.Util.Array
-          - title: Ink.Util.BinPack
           - title: Ink.Util.Cookie
           - title: Ink.Util.Date
           - title: Ink.Util.Dumper

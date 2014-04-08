@@ -30,10 +30,30 @@ Ink.requireModules(['Ink.Net.Ajax_1', 'Ink.Dom.Event_1', 'Ink.Util.Url_1', 'Ink.
                 hlId = json.highlighting[cur.RSSWorksId];
                 var result = InkElement.create('li',{
                   className: 'result-item',
-                  insertBottom: resultsList,
-                  setHTML: '<h2><a href="'+cur.Url+'" title="'+cur.Title+'">'+cur.Title+'</a></h2><div class="result-snippet">'+hlId.Content[0]+'</div>'
+                  insertBottom: resultsList
                 });
-                InkCss.addClassName(result,'show');
+
+                var resultTitle, resultLink, resultSnippet;
+
+                resultTitle = InkElement.create('h2', {
+                    insertBottom: result
+                });
+
+                resultLink = InkElement.create('a',{
+                    href: cur.Url,
+                    setTextContent: cur.Title,
+                    insertBottom: resultTitle
+                });
+
+                resultSnippet = InkElement.create('div',{
+                    className: 'result-snippet',
+                    setTextContent: hlId.Content[0].replace( /\n/g, '').replace(/<em>/g, '[em]').replace(/<\/em>/g, '[/em]'),
+                    insertBottom: result
+                });
+
+                resultSnippet.innerHTML = resultSnippet.innerHTML.replace(/\[em\]/g,'<em>').replace(/\[\/em\]/g, '</em>');
+
+                InkCss.addClassName(result,'show');                
             }
         } else {
             InkCss.addClassName(results,'show');
