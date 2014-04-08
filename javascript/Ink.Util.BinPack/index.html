@@ -7,7 +7,10 @@ site_root:  ../
     <section>
         <h1 class="fw-300">Ink.Util.BinPack_1</h1>
 
-<p>Binary Packing algorithm implementation<br><p>Based on the work of Jake Gordon</p><br><p>see <a href="https://github.com/jakesgordon/bin-packing/">https://github.com/jakesgordon/bin-packing/</a></p></p>
+<p>Binary Packing algorithm implementation</p>
+<p>Based on the work of Jake Gordon</p>
+<p>see <a href="https://github.com/jakesgordon/bin-packing/">https://github.com/jakesgordon/bin-packing/</a></p>
+
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space"><caption>Functions</caption>
         <thead>
             <tr>
@@ -30,43 +33,36 @@ site_root:  ../
 
 
     <section id="Ink_Util_BinPack_1-Ink_Util_BinPack-binPack" class="box box-function">
-    <h1 class="fw-300">.binPack(o, ) 
+    <h1 class="fw-300">.binPack(o)
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">o</li>
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         o</li>
     </ul>
         <h3>Accepts</h3>
         
         <ul class="params">
-            <li class="level1"><span class="monospace">o</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>o
+                    <span class="label mandatory"></span><span class="label object"></span></p>
                 Options</li>
-            <li class="level2"><span class="monospace">o.blocks</span>
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">Array</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>o.blocks
+                    <span class="label mandatory"></span><span class="label array"></span></p>
                 Array of items with width and height integer attributes.</li>
-            <li class="level2"><p>
-                    <span class="monospace">[o.dimensions]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">Array</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>o.dimensions
+                    <span class="label array"></span></p>
                 Flag to fix container dimensions</li>
-            <li class="level2"><p>
-                    <span class="monospace">[o.sorter]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>o.sorter
+                    <span class="label string"></span></p>
                 Sorting function. One of: random, height, width, area, maxside</li>
         </ul>
     <h3>Returns</h3>
     <ul class="params">
         <li class="return">
-            <p><code>Object</code></p>Returns an object containing container dimensions, filled ratio, fitted blocks, unfitted blocks and all blocks
+            <p><span class="label object"></span> </p>Returns an object containing container dimensions, filled ratio, fitted blocks, unfitted blocks and all blocks
         </li>
     </ul>
     

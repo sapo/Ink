@@ -7,7 +7,9 @@ site_root:  ../
     <section>
         <h1 class="fw-300">Ink.Dom.FormSerialize_1</h1>
 
-<p>Two way serialization of form data and javascript objects.<br>Valid applications are ad hoc AJAX/syndicated submission of forms, restoring form values from server side state, etc.</p>
+<p>Two way serialization of form data and javascript objects.
+Valid applications are ad hoc AJAX/syndicated submission of forms, restoring form values from server side state, etc.</p>
+
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space"><caption>Functions</caption>
         <thead>
             <tr>
@@ -21,13 +23,13 @@ site_root:  ../
                 <td>
                     <a href="#Ink_Dom_FormSerialize_1-Ink_Dom_FormSerialize-fillIn">.fillIn</a>
                 </td>
-                <td>Sets form elements&#39; values with values from an object</td>
+                <td> Sets form elements&#39; values with values from an object</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Dom_FormSerialize_1-Ink_Dom_FormSerialize-serialize">.serialize</a>
                 </td>
-                <td>Serializes a form element into a JS object</td>
+                <td> Serializes a form element into a JS object</td>
             </tr></tbody>
     </table>
     
@@ -36,23 +38,23 @@ site_root:  ../
 
 
     <section id="Ink_Dom_FormSerialize_1-Ink_Dom_FormSerialize-fillIn" class="box box-function">
-    <h1 class="fw-300">.fillIn(form, map2) 
+    <h1 class="fw-300">.fillIn(form, map2)
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">form</li><li class="prop">map2</li>
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         form</li><li class="prop mandatory">
+         map2</li>
     </ul><p class="text">Sets form elements&#39; values with values from an object<br><p>Note: You can&#39;t set the values of an input with <code>type=&quot;file&quot;</code> (browser prohibits it)</p></p>
         <h3>Accepts</h3>
         
         <ul class="params">
-            <li class="level1"><span class="monospace">form</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">DOMElement|String</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>form
+                    <span class="label mandatory"></span><span class="label domelement"></span><span class="label string"></span></p>
                 Form element to be populated</li>
-            <li class="level1"><span class="monospace">map2</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>map2
+                    <span class="label mandatory"></span><span class="label object"></span></p>
                 Map of fieldName -> String|String[]|Boolean</li>
         </ul>
 
@@ -61,24 +63,24 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_FormSerialize_1-Ink_Dom_FormSerialize-serialize" class="box box-function">
-    <h1 class="fw-300">.serialize(form) 
+    <h1 class="fw-300">.serialize(form)
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">form</li>
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         form</li>
     </ul><p class="text">Serializes a form element into a JS object<br>It turns field names into keys and field values into values.<br><p>note: Multi-select and checkboxes with multiple values will result in arrays</p></p>
         <h3>Accepts</h3>
         
         <ul class="params">
-            <li class="level1"><span class="monospace">form</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">DOMElement|String</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>form
+                    <span class="label mandatory"></span><span class="label domelement"></span><span class="label string"></span></p>
                 Form element to extract data</li>
         </ul>
     <h3>Returns</h3>
     <ul class="params">
         <li class="return">
-            <p><code>Object</code></p>Map of fieldName -> String|String[]|Boolean
+            <p><span class="label object"></span> </p>Map of fieldName -> String|String[]|Boolean
         </li>
     </ul>
     

@@ -21,19 +21,19 @@ site_root:  ../
                 <td>
                     <a href="#Ink_UI_Droppable_1-Ink_UI_Droppable-add">.add</a>
                 </td>
-                <td>Makes an element droppable.</td>
+                <td> Makes an element droppable.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_Droppable_1-Ink_UI_Droppable-remove">.remove</a>
                 </td>
-                <td>Removes an element from the droppable stack and removes the droppable behavior</td>
+                <td> Removes an element from the droppable stack and removes the droppable behavior</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_Droppable_1-Ink_UI_Droppable-update">.update</a>
                 </td>
-                <td>Updates location and size of droppable element</td>
+                <td> Updates location and size of droppable element</td>
             </tr></tbody>
     </table>
     
@@ -42,60 +42,43 @@ site_root:  ../
 
 
     <section id="Ink_UI_Droppable_1-Ink_UI_Droppable-add" class="box box-function">
-    <h1 class="fw-300">.add(element, [options], ) 
+    <h1 class="fw-300">.add(element, options)
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">element</li><li class="prop">[options]</li>
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         element</li><li class="prop">
+         options</li>
     </ul><p class="text">Makes an element droppable.<br>This method adds it to the stack of droppable elements.<br>Can consider it a constructor of droppable elements, but where no Droppable object is returned.<br><p>In the following arguments, any events/callbacks you may pass, can be either functions or strings. If the &#39;move&#39; or &#39;copy&#39; strings are passed, the draggable gets moved into this droppable. If &#39;revert&#39; is passed, an acceptable droppable is moved back to the element it came from.</p></p>
         <h3>Accepts</h3>
         
         <ul class="params">
-            <li class="level1"><span class="monospace">element</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">String|DOMElement</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>element
+                    <span class="label mandatory"></span><span class="label string"></span><span class="label domelement"></span></p>
                 Target element</li>
-            <li class="level1"><p>
-                    <span class="monospace">[options]</span>
-                    
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>options
+                    <span class="label object"></span></p>
                 Options object</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.hoverClass]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.hoverClass
+                    <span class="label string"></span></p>
                 Classname(s) applied when an acceptable draggable element is hovering the element</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.accept]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.accept
+                    <span class="label string"></span></p>
                 Selector for choosing draggables which can be dropped in this droppable.</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.onHover]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">Function</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.onHover
+                    <span class="label function"></span></p>
                 Callback when an acceptable draggable element is hovering the droppable. Gets the draggable and the droppable element as parameters.</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.onDrop]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">Function|String</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.onDrop
+                    <span class="label function"></span><span class="label string"></span></p>
                 Callback when an acceptable draggable element is dropped. Gets the draggable, the droppable and the event as parameters.</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.onDropOut]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">Function|String</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.onDropOut
+                    <span class="label function"></span><span class="label string"></span></p>
                 Callback when a droppable is dropped outside this droppable. Gets the draggable, the droppable and the event as parameters. (see above for string options).</li>
         </ul>
 
@@ -104,24 +87,24 @@ site_root:  ../
 	</section>
 
     <section id="Ink_UI_Droppable_1-Ink_UI_Droppable-remove" class="box box-function">
-    <h1 class="fw-300">.remove(elOrSelector) 
+    <h1 class="fw-300">.remove(elOrSelector)
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">elOrSelector</li>
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         elOrSelector</li>
     </ul><p class="text">Removes an element from the droppable stack and removes the droppable behavior</p>
         <h3>Accepts</h3>
         
         <ul class="params">
-            <li class="level1"><span class="monospace">elOrSelector</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">String|DOMElement</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>elOrSelector
+                    <span class="label mandatory"></span><span class="label string"></span><span class="label domelement"></span></p>
                 Droppable element to disable.</li>
         </ul>
     <h3>Returns</h3>
     <ul class="params">
         <li class="return">
-            <p><code>Boolean</code></p>Whether the object was found and deleted
+            <p><span class="label boolean"></span> </p>Whether the object was found and deleted
         </li>
     </ul>
     
@@ -129,18 +112,18 @@ site_root:  ../
 </section>
 
     <section id="Ink_UI_Droppable_1-Ink_UI_Droppable-update" class="box box-function">
-    <h1 class="fw-300">.update(element) 
+    <h1 class="fw-300">.update(element)
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">element</li>
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         element</li>
     </ul><p class="text">Updates location and size of droppable element</p>
         <h3>Accepts</h3>
         
         <ul class="params">
-            <li class="level1"><span class="monospace">element</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">String|DOMElement</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>element
+                    <span class="label mandatory"></span><span class="label string"></span><span class="label domelement"></span></p>
                 Target element</li>
         </ul>
 

@@ -8,6 +8,7 @@ site_root:  ../
         <h1 class="fw-300">Ink.UI.SortableList_1</h1>
 
 <p>Adds sortable behaviour to any list.</p>
+
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space">
         <caption>Methods</caption>
         <thead>
@@ -28,7 +29,7 @@ site_root:  ../
                 <td>
                     <a href="#Ink_UI_SortableList_1-Ink_UI_SortableList-destroy">.destroy</a>
                 </td>
-                <td>Unregisters the component and removes its markup</td>
+                <td> Unregisters the component and removes its markup</td>
             </tr></tbody>
     </table>
     
@@ -37,74 +38,50 @@ site_root:  ../
 
 
     <section id="Ink_UI_SortableList_1-Ink_UI_SortableList-SortableList" class="box box-function">
-    <h1 class="fw-300">Ink.UI.SortableList(selector, ) 
+    <h1 class="fw-300">Ink.UI.SortableList(selector)
     <i>constructor</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">selector</li>
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         selector</li>
     </ul>
         <h3>Accepts</h3>
         
         <ul class="params">
-            <li class="level1"><span class="monospace">selector</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">String|DOMElement</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>selector
+                    <span class="label mandatory"></span><span class="label string"></span><span class="label domelement"></span></p>
                 </li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.placeholderClass]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.placeholderClass
+                    <span class="label string"></span></p>
                 CSS class added to the "ghost" element being dragged around. Defaults to 'placeholder'.</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.draggedClass]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.draggedClass
+                    <span class="label string"></span></p>
                 CSS class added to the original element being dragged around. Defaults to 'hide-all'.</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.draggingClass]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.draggingClass
+                    <span class="label string"></span></p>
                 CSS class added to the html element when the user is dragging. Defaults to 'dragging'.</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.dragSelector]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.dragSelector
+                    <span class="label string"></span></p>
                 CSS selector for the drag enabled nodes. Defaults to 'li'.</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.handleSelector]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.handleSelector
+                    <span class="label string"></span></p>
                 CSS selector for the drag handle. If present, you can only drag nodes by this selector.</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.moveSelector]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.moveSelector
+                    <span class="label string"></span></p>
                 CSS selector to validate a node move. If present, you can only move nodes inside this selector.</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.swap]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">Boolean</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.swap
+                    <span class="label boolean"></span></p>
                 Flag to swap dragged element and target element instead of reordering it.</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.cancelMouseOut]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">Boolean</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.cancelMouseOut
+                    <span class="label boolean"></span></p>
                 Flag to cancel draggin if mouse leaves the container element.</li>
         </ul>
 
@@ -113,7 +90,7 @@ site_root:  ../
 	</section>
 
     <section id="Ink_UI_SortableList_1-Ink_UI_SortableList-destroy" class="box box-function">
-    <h1 class="fw-300">.destroy() 
+    <h1 class="fw-300">.destroy()
     <i>method</i></h1><p class="text">Unregisters the component and removes its markup</p>
 
 </section>

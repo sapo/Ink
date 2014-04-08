@@ -28,73 +28,73 @@ site_root:  ../
                 <td>
                     <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-destroy">.destroy</a>
                 </td>
-                <td>Unregisters the component and removes its markup</td>
+                <td> Unregisters the component and removes its markup</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-getCurrent">.getCurrent</a>
                 </td>
-                <td>Gets the current page index</td>
+                <td> Gets the current page index</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-getSize">.getSize</a>
                 </td>
-                <td>Gets the number of pages</td>
+                <td> Gets the number of pages</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-hasNext">.hasNext</a>
                 </td>
-                <td>Checks if it has next pages</td>
+                <td> Checks if it has next pages</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-hasNextPage">.hasNextPage</a>
                 </td>
-                <td>Checks if it has a next set of pages</td>
+                <td> Checks if it has a next set of pages</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-hasPrevious">.hasPrevious</a>
                 </td>
-                <td>Checks if it has previous pages</td>
+                <td> Checks if it has previous pages</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-hasPreviousPage">.hasPreviousPage</a>
                 </td>
-                <td>Checks if it has a previous set of pages</td>
+                <td> Checks if it has a previous set of pages</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-isFirst">.isFirst</a>
                 </td>
-                <td>Checks if it&#39;s at the first page</td>
+                <td> Checks if it&#39;s at the first page</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-isLast">.isLast</a>
                 </td>
-                <td>Checks if it&#39;s on the last page</td>
+                <td> Checks if it&#39;s on the last page</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-setCurrent">.setCurrent</a>
                 </td>
-                <td>Sets the current page.</td>
+                <td> Sets the current page.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-setOnChange">.setOnChange</a>
                 </td>
-                <td>Allows you to subscribe to the onChange event</td>
+                <td> Allows you to subscribe to the onChange event</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-setSize">.setSize</a>
                 </td>
-                <td>Sets the number of pages</td>
+                <td> Sets the number of pages</td>
             </tr></tbody>
     </table>
     
@@ -103,205 +103,127 @@ site_root:  ../
 
 
     <section id="Ink_UI_Pagination_1-Ink_UI_Pagination-Pagination" class="box box-function">
-    <h1 class="fw-300">Ink.UI.Pagination(selector, options, ) 
+    <h1 class="fw-300">Ink.UI.Pagination(selector, options)
     <i>constructor</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">selector</li><li class="prop">options</li>
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         selector</li><li class="prop mandatory">
+         options</li>
     </ul>
         <h3>Accepts</h3>
         
         <ul class="params">
-            <li class="level1"><span class="monospace">selector</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">String|DOMElement</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>selector
+                    <span class="label mandatory"></span><span class="label string"></span><span class="label domelement"></span></p>
                 Selector or element</li>
-            <li class="level1"><span class="monospace">options</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>options
+                    <span class="label mandatory"></span><span class="label object"></span></p>
                 Options</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.size]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">Number</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.size
+                    <span class="label number"></span></p>
                 Number of pages.</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.totalItemCount]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">Number</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.totalItemCount
+                    <span class="label number"></span></p>
                 Total numeber of items to display</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.itemsPerPage]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">Number</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.itemsPerPage
+                    <span class="label number"></span></p>
                 Number of items per page.</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.maxSize]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">Number</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.maxSize
+                    <span class="label number"></span></p>
                 If passed, only shows at most maxSize items. displays also first|prev page and next page|last buttons</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.start]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">Number</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.start
+                    <span class="label number"></span></p>
                 Start page. defaults to 1</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.sideButtons]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">Boolean</span></p>
-                true<!--</label>-->
-                Whether to show the first, last, previous, next, previousPage and lastPage buttons. Do not use together with maxSize.</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.firstLabel]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.sideButtons
+                    <span class="label boolean"></span></p>
+                trueWhether to show the first, last, previous, next, previousPage and lastPage buttons. Do not use together with maxSize.</li>
+            <li class="level2">
+                <p>options.firstLabel
+                    <span class="label string"></span></p>
                 Text for the first page button. Defaults to 'First'.</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.lastLabel]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.lastLabel
+                    <span class="label string"></span></p>
                 Text for the last page button. Defaults to 'Last'.</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.previousLabel]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.previousLabel
+                    <span class="label string"></span></p>
                 Text for the previous button. Defaults to 'Previous'-</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.nextLabel]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.nextLabel
+                    <span class="label string"></span></p>
                 Text for the next button. Defaults to 'Next'</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.previousPageLabel]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.previousPageLabel
+                    <span class="label string"></span></p>
                 Text for the previous page button. Defaults to 'Previous {Items per page}'.</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.nextPageLabel]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.nextPageLabel
+                    <span class="label string"></span></p>
                 Text for the next page button. Defaults to 'Next {Items per page}'.</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.onChange]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">Function</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.onChange
+                    <span class="label function"></span></p>
                 Callback to be called when a page changes. Called with `(thisPaginator, newPageNumber)`.</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.hashParameter]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.hashParameter
+                    <span class="label string"></span></p>
                 Parameter to use on setHash. Defaults to 'page'.</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.parentTag]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.parentTag
+                    <span class="label string"></span></p>
                 HTML Tag used as the parent node.</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.childTag]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.childTag
+                    <span class="label string"></span></p>
                 HTML Tag used as the child nodes.</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.wrapperClass]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.wrapperClass
+                    <span class="label string"></span></p>
                 CSS Class used in the wrapper element</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.paginationClass]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.paginationClass
+                    <span class="label string"></span></p>
                 CSS Class used in the pagination element</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.activeClass]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.activeClass
+                    <span class="label string"></span></p>
                 CSS Class used to mark page as active</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.disabledClass]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.disabledClass
+                    <span class="label string"></span></p>
                 CSS Class used to mark page as disabled</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.hideClass]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.hideClass
+                    <span class="label string"></span></p>
                 CSS Class used to hide elements</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.previousClass]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.previousClass
+                    <span class="label string"></span></p>
                 CSS Class used in the previous element</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.previousPageClass]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.previousPageClass
+                    <span class="label string"></span></p>
                 CSS Class used in the previous page element</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.nextClass]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.nextClass
+                    <span class="label string"></span></p>
                 CSS Class used in the next element</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.nextPageClass]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.nextPageClass
+                    <span class="label string"></span></p>
                 CSS Class used in the next page element</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.numberFormatter]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">Function</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.numberFormatter
+                    <span class="label function"></span></p>
                 Number formatter function. Receives a 0-indexed number and returns the text for the numbered page button.</li>
         </ul>
 
@@ -310,18 +232,18 @@ site_root:  ../
 	</section>
 
     <section id="Ink_UI_Pagination_1-Ink_UI_Pagination-destroy" class="box box-function">
-    <h1 class="fw-300">.destroy() 
+    <h1 class="fw-300">.destroy()
     <i>method</i></h1><p class="text">Unregisters the component and removes its markup</p>
 
 </section>
 
     <section id="Ink_UI_Pagination_1-Ink_UI_Pagination-getCurrent" class="box box-function">
-    <h1 class="fw-300">.getCurrent() 
+    <h1 class="fw-300">.getCurrent()
     <i>method</i></h1><p class="text">Gets the current page index</p>
     <h3>Returns</h3>
     <ul class="params">
         <li class="return">
-            <p><code>Number</code></p>Current page
+            <p><span class="label number"></span> </p>Current page
         </li>
     </ul>
     
@@ -329,12 +251,12 @@ site_root:  ../
 </section>
 
     <section id="Ink_UI_Pagination_1-Ink_UI_Pagination-getSize" class="box box-function">
-    <h1 class="fw-300">.getSize() 
+    <h1 class="fw-300">.getSize()
     <i>method</i></h1><p class="text">Gets the number of pages</p>
     <h3>Returns</h3>
     <ul class="params">
         <li class="return">
-            <p><code>Number</code></p>Number of pages
+            <p><span class="label number"></span> </p>Number of pages
         </li>
     </ul>
     
@@ -342,12 +264,12 @@ site_root:  ../
 </section>
 
     <section id="Ink_UI_Pagination_1-Ink_UI_Pagination-hasNext" class="box box-function">
-    <h1 class="fw-300">.hasNext() 
+    <h1 class="fw-300">.hasNext()
     <i>method</i></h1><p class="text">Checks if it has next pages</p>
     <h3>Returns</h3>
     <ul class="params">
         <li class="return">
-            <p><code>Boolean</code></p>True if has pages ahead
+            <p><span class="label boolean"></span> </p>True if has pages ahead
         </li>
     </ul>
     
@@ -355,12 +277,12 @@ site_root:  ../
 </section>
 
     <section id="Ink_UI_Pagination_1-Ink_UI_Pagination-hasNextPage" class="box box-function">
-    <h1 class="fw-300">.hasNextPage() 
+    <h1 class="fw-300">.hasNextPage()
     <i>method</i></h1><p class="text">Checks if it has a next set of pages</p>
     <h3>Returns</h3>
     <ul class="params">
         <li class="return">
-            <p><code>Boolean</code></p>Returns true iif has set of page(s) ahead
+            <p><span class="label boolean"></span> </p>Returns true iif has set of page(s) ahead
         </li>
     </ul>
     
@@ -368,12 +290,12 @@ site_root:  ../
 </section>
 
     <section id="Ink_UI_Pagination_1-Ink_UI_Pagination-hasPrevious" class="box box-function">
-    <h1 class="fw-300">.hasPrevious() 
+    <h1 class="fw-300">.hasPrevious()
     <i>method</i></h1><p class="text">Checks if it has previous pages</p>
     <h3>Returns</h3>
     <ul class="params">
         <li class="return">
-            <p><code>Boolean</code></p>True if has prior pages
+            <p><span class="label boolean"></span> </p>True if has prior pages
         </li>
     </ul>
     
@@ -381,12 +303,12 @@ site_root:  ../
 </section>
 
     <section id="Ink_UI_Pagination_1-Ink_UI_Pagination-hasPreviousPage" class="box box-function">
-    <h1 class="fw-300">.hasPreviousPage() 
+    <h1 class="fw-300">.hasPreviousPage()
     <i>method</i></h1><p class="text">Checks if it has a previous set of pages</p>
     <h3>Returns</h3>
     <ul class="params">
         <li class="return">
-            <p><code>Boolean</code></p>Returns true iif has prior set of page(s)
+            <p><span class="label boolean"></span> </p>Returns true iif has prior set of page(s)
         </li>
     </ul>
     
@@ -394,12 +316,12 @@ site_root:  ../
 </section>
 
     <section id="Ink_UI_Pagination_1-Ink_UI_Pagination-isFirst" class="box box-function">
-    <h1 class="fw-300">.isFirst() 
+    <h1 class="fw-300">.isFirst()
     <i>method</i></h1><p class="text">Checks if it&#39;s at the first page</p>
     <h3>Returns</h3>
     <ul class="params">
         <li class="return">
-            <p><code>Boolean</code></p>True if at first page
+            <p><span class="label boolean"></span> </p>True if at first page
         </li>
     </ul>
     
@@ -407,12 +329,12 @@ site_root:  ../
 </section>
 
     <section id="Ink_UI_Pagination_1-Ink_UI_Pagination-isLast" class="box box-function">
-    <h1 class="fw-300">.isLast() 
+    <h1 class="fw-300">.isLast()
     <i>method</i></h1><p class="text">Checks if it&#39;s on the last page</p>
     <h3>Returns</h3>
     <ul class="params">
         <li class="return">
-            <p><code>Boolean</code></p>True if at last page
+            <p><span class="label boolean"></span> </p>True if at last page
         </li>
     </ul>
     
@@ -420,74 +342,74 @@ site_root:  ../
 </section>
 
     <section id="Ink_UI_Pagination_1-Ink_UI_Pagination-setCurrent" class="box box-function">
-    <h1 class="fw-300">.setCurrent(nr, isRelative) 
+    <h1 class="fw-300">.setCurrent(nr, isRelative)
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">nr</li><li class="prop">isRelative</li>
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         nr</li><li class="prop mandatory">
+         isRelative</li>
     </ul><p class="text">Sets the current page.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
-            <li class="level1"><span class="monospace">nr</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">Number</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>nr
+                    <span class="label mandatory"></span><span class="label number"></span></p>
                 Sets the current page to given number.</li>
-            <li class="level1"><span class="monospace">isRelative</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">Boolean</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>isRelative
+                    <span class="label mandatory"></span><span class="label boolean"></span></p>
                 Flag to change the position from absolute to relative.</li>
         </ul>
 
 </section>
 
     <section id="Ink_UI_Pagination_1-Ink_UI_Pagination-setOnChange" class="box box-function">
-    <h1 class="fw-300">.setOnChange(cb) 
+    <h1 class="fw-300">.setOnChange(cb)
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">cb</li>
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         cb</li>
     </ul><p class="text">Allows you to subscribe to the onChange event</p>
         <h3>Accepts</h3>
         
         <ul class="params">
-            <li class="level1"><span class="monospace">cb</span>
-                    
-                    <!--<li class="level1">--></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>cb
+                    <span class="label mandatory"></span></p>
                 {Function} Callback called with `(thisPaginator, newPageNumber)`.</li>
         </ul>
 
 </section>
 
     <section id="Ink_UI_Pagination_1-Ink_UI_Pagination-setSize" class="box box-function">
-    <h1 class="fw-300">.setSize(sz, setSizeInItems, totalItems, itemsPerPage) 
+    <h1 class="fw-300">.setSize(sz, setSizeInItems, totalItems, itemsPerPage)
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">sz</li><li class="prop">setSizeInItems</li><li class="prop">totalItems</li><li class="prop">itemsPerPage</li>
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         sz</li><li class="prop mandatory">
+         setSizeInItems</li><li class="prop mandatory">
+         totalItems</li><li class="prop mandatory">
+         itemsPerPage</li>
     </ul><p class="text">Sets the number of pages</p>
         <h3>Accepts</h3>
         
         <ul class="params">
-            <li class="level1"><span class="monospace">sz</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">Number</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>sz
+                    <span class="label mandatory"></span><span class="label number"></span></p>
                 number of pages</li>
-            <li class="level1"><span class="monospace">setSizeInItems</span>
-                    
-                    <!--<li class="level1">--></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>setSizeInItems
+                    <span class="label mandatory"></span></p>
                 </li>
-            <li class="level1"><span class="monospace">totalItems</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">Number</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>totalItems
+                    <span class="label mandatory"></span><span class="label number"></span></p>
                 Total number of items</li>
-            <li class="level1"><span class="monospace">itemsPerPage</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">Number</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>itemsPerPage
+                    <span class="label mandatory"></span><span class="label number"></span></p>
                 Items per page</li>
         </ul>
 
