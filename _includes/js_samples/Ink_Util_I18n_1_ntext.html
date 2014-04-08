@@ -1,0 +1,8 @@
+{% highlight javascript %}
+i18n.ntext('platypus', 'platypuses', 1); // returns 'ornitorrinco'
+i18n.ntext('platypus', 'platypuses', 2); // returns 'ornitorrincos'
+
+// The "count" argument is passed to text()
+i18n.ntext('{} platypus', '{} platypuses', 1); // returns '1 ornitorrinco'
+i18n.ntext('{} platypus', '{} platypuses', 2); // returns '2 ornitorrincos'
+{% endhighlight %}

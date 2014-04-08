@@ -1,0 +1,19 @@
+{% highlight javascript %}
+var i18n = new I18n({
+    'pt_PT': {
+        'hi': 'olá',
+        '{} day': '{} dia',
+        '{} days': '{} dias',
+        '_ordinals': {
+            'default': 'º'
+        }
+    }
+}, 'pt_PT');
+var _ = i18n.alias();
+_('hi');  // -> 'olá'
+_('{} days', 3);  // -> '3 dias'
+_.ntext('{} day', '{} days', 2);  // -> '2 dias'
+_.ntext('{} day', '{} days', 1);  // -> '1 dia'
+_.ordinal(3);  // -> 'º'
+{% endhighlight %}
+

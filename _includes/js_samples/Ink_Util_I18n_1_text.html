@@ -1,0 +1,23 @@
+{% highlight javascript %}
+_('Gosto muito de {} e o céu é {}.', 'carros', 'azul');
+// returns 'Gosto muito de carros e o céu é azul.'
+
+_('O {1} é {2} como {2} é a cor do {3}.', 'carro', 'azul', 'FCP');
+// returns 'O carro é azul como azul é o FCP.'
+
+_('O {person1} dava-se com a {person2}', {person1: 'coisinho', person2: 'coisinha'});
+// -> 'O coisinho dava-se com a coisinha'
+
+// This is a bit more complex
+var i18n = make().lang('pt_PT').append({
+    pt_PT: {
+        array: [1, 2],
+        object: {'a': '-a-', 'b': '-b-'},
+        func: function (a, b) {return '[[' + a + ',' + b + ']]';}
+    }
+});
+i18n.text('array', 0); // -> '1'
+i18n.text('object', 'a'); // -> '-a-'
+i18n.text('func', 'a', 'b'); // -> '[[a,b]]'
+
+{% endhighlight %}
