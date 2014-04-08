@@ -1,12 +1,10 @@
 <p class="example-title">Code</p>
 {% highlight js %}
-<script>
 Ink.requireModules(['Ink.Util.Validator_1'], function(Validator) {
 
     Validator.isCreditCard('4000000000000002', 'visa');  // true 
     Validator.isCreditCard('4000000000000002', 'mastercard');  // false 
     Validator.isCreditCard('41111111111111', 'visa');  // false 
 });
-</script>
 {% endhighlight %}
 
