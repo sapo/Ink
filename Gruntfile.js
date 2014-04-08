@@ -125,6 +125,15 @@ module.exports = function(grunt) {
           spawn: false,
           // interrupt: true,
         }
+      },
+      inkdoc: {
+        files: ['_includes/inkdoctemplates/ink/**/*.js','_includes/inkdoctemplates/ink/**/*.hbs'],
+        tasks: ['shell:inkdoc', 'copy:inkdoc'],
+        options: {
+          atBegin: true,
+          spawn: false,
+          // interrupt: true,
+        }
       }
     },
 

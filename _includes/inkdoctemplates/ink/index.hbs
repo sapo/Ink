@@ -5,16 +5,178 @@ description: Ink comes with a highly powerful and completely modular JavaScript 
 site_root:  ../
 ---
 <section id="Introduction">
-  <h1>Introduction</h1>
-  <p>Inks JavaScript library extends native JavaScript functionality without interfering with native objects. It also provides a powerful abstraction layer that makes handling different implementations of the language very straightforward.</p>
-</section>
-<section>
-  <h1>Structure</h1>
-  <p>Our library is written in a modular fashion so that you can load only the necessary modules for a given task.</p>
+<h1>Introduction</h1>
+<p>Our JavaScript library has a modular architecture and our code is organized in namespaces:</p>
+<ul>
+<li>Ink - Modulo base onde existem métodos transversáis a todos os módulos </li>
+<li>Ink.Dom - Módulos que tenham qualquer tipo de interação com o DOM (criar e manipular elementos, gestão de eventos e  serialização de formulários) </li>
+<li>Ink.Net - Módulos de comunicação AJAX e JsonP </li>
+<li>Ink.UI - Módulos com métodos utilitários. </li>
+<li>Ink.Util - Módulos com métodos utilitários. </li>
+<li>Ink.Ext - Módulos de extensões, que não se enquadram em nenhum dos outros namespaces ou sem maturidade suficiente para fazerem parte dos namespaces core. </li>
+</ul>
+
+
+<p>The Core provides the foundation for all other components, such as DOM manipulation, event management, AJAX and JsonP requests along with tons of additional utilities.</p>
+<p>The UI module contains visual components that allow you to enhance your pages with interactivity, like <a href="{{ site.url }}/javascript/Ink.UI.Carousel">carousels</a>, <a href="{{ site.url }}javascript/Ink.UI.Modal">modal windows</a>, <a href="{{ site.url }}javascript/Ink.UI.Tooltip">tooltips</a>, etc.</p>
+
+<p>The Ink.Ext is a special namespace. It was created to allow the community to contribute with new modules or components. These contributions may eventually be integrated with Inks core. Read more on how to contribute on our <a href="https://github.com/sapo/Ink/blob/develop/CONTRIBUTING.md">Github repository</a>.</p>
+
+<h2 class="fw-300">CDN</h2>
+  <p>If you don't want or need to host Inks code you can use our CDN. All of our releases are available:</p>
+
+{% highlight html %}
+<link rel="stylesheet" type="text/css" href="http://cdn.ink.sapo.pt/x.x.x/">
+{% endhighlight %}
+
+<p>x.x.x will be the version number and inside each version the CDN mimicks the distibution bundle:</p>
+
+{% highlight html %}
+<link rel="stylesheet" type="text/css" href="http://cdn.ink.sapo.pt/3.0.0/css/ink.css"> <!-- inks css file -->
+<script type="text/javascript" src="http://cdn.ink.sapo.pt/3.0.0/js/ink-all.js"></script> <!-- inks js bundle -->
+{% endhighlight %}
+
+<p>If you need we also serve all of our files over HTTPS.</p>
+
+<ul>
+<li>ink.js - Contains: Ink, Ink.Dom, Ink.Net and Ink.Util modules. Minified version available: ink.min.js</li>
+<li>ink-ui.js - Contains the Ink.UI module. Minified version available: ink-ui.min.js</li>
+<li>ink-all.js - ink.js and ink-ui.js bundled together. Minified version available: ink-all.min.js</li>
+<li>autoload.js - UI component automatic initialization. Use with ink-all.js.</li>
+<li>modernizr.js - Used for browser feature detection, mainly useful if you intend to use our <a href="{{ site.url }}ui-elements/flexbox/">flex grid</a>.</li>
+</ul>
+
+
+<h2>UI</h2>
+
+<p>UI components can be used in two ways:</p>
+
+<h3>Using data-attributes</h3>
+
+<p>You'll need to have <code>autoload.js</code> on your page and set the appropriate initialization options:</p>
+
+<p class="example-title">Code</p>
+{% highlight html %}
+<!-- Load the js files -->
+<script type="text/javascript" src="http://cdn.ink.sapo.pt/3.0.0/js/ink-all.js"></script>
+<script type="text/javascript" src="http://cdn.ink.sapo.pt/3.0.0/js/autoload.js"></script>
+...
+<!-- Set the init options on the component markup with data-attributes -->
+<div id="carousel" class="ink-carousel" data-pagination="#carousel-pagination">
+  <ul class="stage column-group">
+    <li class="slide">...</li>
+    <li class="slide">...</li>
+    <li class="slide">...</li>
+  </ul>
+</div>
+<nav id="carousel-pagination" class="ink-navigation">
+  <ul class="pagination black">
+  </ul>
+</nav>
+{% endhighlight %}
+
+<h3>Using JavaScript</h3>
+
+Os componentes UI têm duas formas de serem integrados. 
+- Integração com "data-attributes" (utilizando o autoload.js): 
+    - basta identificar os componentes pelo selector mapeado no autoload.js e definindo as várias opções como data-attributes. Quando o site é carregado, o autoload.js irá instanciar os módulos identificados no site. 
+    Ex: 
+    <div id="carousel" class="ink-carousel" data-pagination="#carousel-pagination">
+        <ul class="stage column-group">
+            <li class="slide">...</li>
+            <li class="slide">...</li>
+            <li class="slide">...</li>
+        </ul>
+    </div>
+    <nav id="carousel-pagination" class="ink-navigation">
+        <ul class="pagination black">
+        </ul>
+    </nav>
+    Quando o site carrega o autoload.js é executado, irá procurar os módulos identificados no site, para cada um recolhe as opções definidas com data-attributes e instancia o módulo passando as opções recolhidas. 
+
+- Integração instanciando com JavaScript 
+    - Usando o Ink.requireModules define-se o módulo pertendido com a respectiva versão e instancia-se passando o selector e as opções. 
+    Ex:
+    <script>
+    Ink.requireModules(['Ink.UI.Carousel_1'], function(Carousel) {
+        new Carousel('#carousel', {pagination: '#carousel-pagination'});
+    });
+    </script>
+    As opções têm o mesmo nome que os data-atributes, mas sem o "data-" e em "Camel case" Ex: ("data-space-after-last-slide" passa a "spaceAfterLastSlide". 
+
+
+Core: 
+A biblioteca está organizada nos seguintes namespaces:   
+Ink - Modulo base onde existem métodos transversáis a todos os módulos 
+Ink.Dom - Módulos que tenham qualquer tipo de interação com o DOM (criar e manipular elementos, gestão de eventos e  serialização de formulários) 
+Ink.Net - Módulos de comunicação AJAX e JsonP 
+Ink.Util - Módulos com métodos utilitários. 
+Ink.Ext - Módulos de extensões, que não se enquadram em nenhum dos outros namespaces ou sem maturidade suficiente para fazerem parte dos namespaces core. 
+
+
+Como usar o Ink core no seu projecto? 
+
+Recomendamos que use o Ink.requireModules() indicando os nomes dos módulos e escreva o código dentro da função de callback. Desta forma conseguirá gerire melhor quais as dependências e não irá poluir o scope global com variáveis. 
+
+Todos os exemplos da documentação estão o usar o Ink.requireModules... não tem necessidade de o utilizar para a invocação de cada método. Veja o exemplo em baixo de como seria o ficheiro de JavaScript do seu projecto. 
+
+Ex: 
+/* Start of my_project.js file */
+Ink.requireModules([
+            'Ink.Dom.Loaded_1',
+            'Ink.Dom.Element_1',
+            'Ink.Dom.Event_1',
+            'Ink.Dom.Css_1',
+            'Ink.Net.Ajax_1',
+            'Ink.UI.Modal_1',
+            'Ink.UI.Carousel_1'
+    ], function(Loaded, InkElement, InkEvent, InkCss, Ajax, Modal, Carousel){
+
+    var body = Ink.s('body');
+    var container = Ink.ss('#container')[0];
+
+    function onClickBody() {
+        InkCss.addClassName(body, 'body-class'); 
+
+        var newElm = InkElement.create('div', {
+                className:'some-class',
+                id: 'newdiv',
+                setTextContent: 'Element text content',
+                insertBottom: container
+            });
+    }
+
+    function addEvents() {
+        InkEvent.on(body, 'click touchstart', onClickBody);
+    }
+
+    /* ... more code ... */
+
+    function initProject() {
+        addEvents();
+        new Modal('#project-modal', {trigger: '#open-modal'});
+        new Carousel('#project-carousel', {pagination: '#carousel-pagination'})
+    }
+
+    Loaded.run(function() { // will run on DOMContentLoaded 
+        initProject();
+    });
+
+});
+/* End of my_project.js file */
+
+
+Leia com atenção a página de documentação do <a href="/javascript/Ink/">namespace Ink</a>, em especial os métodos Ink.requireModules, Ink.createModule, Ink.bind, Ink.bindEvent, Ink.i, Ink.s e Ink.ss. 
+
+Se pretender criar os seus próprios módulos de Ink, recomendamos que utilize o Ink.createExt(). O módulo ficará disponível no namespace Ink.Ext. Se disponibilizar a sua extensão num repositório público e nos informar, teremos todo o prazer em o listar na nossa página de <a href="https://github.com/sapo/Ink/wiki/Ink-Ext-js">extensões Ink (a página não está criada ou então usar a de projectos que usam Ink que já existe)</a>
+
+
+
+
 </section>
 {{~> module~}}
 {{~#each modules~}}
     {{~> module~}}
 {{~/each~}}
 </div>
-<script type="text/javascript" src="multipage.js"></script>
+{{!-- <script type="text/javascript" src="multipage.js"></script> --}}
