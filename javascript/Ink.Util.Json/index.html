@@ -21,13 +21,13 @@ site_root:  ../
                 <td>
                     <a href="#Ink_Util_Json_1-Ink_Util_Json_1-parse">.parse</a>
                 </td>
-                <td>Parses a JSON text through a function</td>
+                <td> Parses a JSON text through a function</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Util_Json_1-Ink_Util_Json_1-stringify">.stringify</a>
                 </td>
-                <td>Serializes a JSON object into a string.</td>
+                <td> Serializes a JSON object into a string.</td>
             </tr></tbody>
     </table>
     
@@ -36,29 +36,29 @@ site_root:  ../
 
 
     <section id="Ink_Util_Json_1-Ink_Util_Json_1-parse" class="box box-function">
-    <h1 class="fw-300">.parse(text, reviver) 
+    <h1 class="fw-300">.parse(text, reviver)
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">text</li><li class="prop">reviver</li>
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         text</li><li class="prop mandatory">
+         reviver</li>
     </ul><p class="text">Parses a JSON text through a function</p>
         <h3>Accepts</h3>
         
         <ul class="params">
-            <li class="level1"><span class="monospace">text</span>
-                    
-                    <!--<li class="level1">--></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>text
+                    <span class="label mandatory"></span></p>
                 {String}    Input string</li>
-            <li class="level1"><span class="monospace">reviver</span>
-                    
-                    <!--<li class="level1">--></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>reviver
+                    <span class="label mandatory"></span></p>
                 {Function}  Function receiving `(key, value)`, and `this`=(containing object), used to walk objects.</li>
         </ul>
     <h3>Returns</h3>
     <ul class="params">
         <li class="return">
-            <p><code>Object</code></p>JSON object
+            <p><span class="label object"></span> </p>JSON object
         </li>
     </ul>
     
@@ -68,29 +68,29 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_Json_1-Ink_Util_Json_1-stringify" class="box box-function">
-    <h1 class="fw-300">.stringify(input, convertToUnicode) 
+    <h1 class="fw-300">.stringify(input, convertToUnicode)
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">input</li><li class="prop">convertToUnicode</li>
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         input</li><li class="prop mandatory">
+         convertToUnicode</li>
     </ul><p class="text">Serializes a JSON object into a string.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
-            <li class="level1"><span class="monospace">input</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>input
+                    <span class="label mandatory"></span><span class="label object"></span></p>
                 Data to be serialized into JSON</li>
-            <li class="level1"><span class="monospace">convertToUnicode</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">Boolean</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>convertToUnicode
+                    <span class="label mandatory"></span><span class="label boolean"></span></p>
                 When `true`, converts string contents to unicode \uXXXX</li>
         </ul>
     <h3>Returns</h3>
     <ul class="params">
         <li class="return">
-            <p><code>String</code></p>Serialized string
+            <p><span class="label string"></span> </p>Serialized string
         </li>
     </ul>
     

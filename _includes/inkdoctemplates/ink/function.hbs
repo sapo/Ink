@@ -25,10 +25,8 @@
         <li class="heading">Arguments:</li>
         {{~#foreach params}}
         {{~#if isFirstLevel~}}
-        <li class="prop">
-        {{~#if isOptional~}}[{{~/if~}}
-        {{~name~}}
-        {{~#if isOptional~}}]{{~/if~}}
+        <li class="prop{{#unless isOptional}} mandatory{{/unless}}">
+         {{name~}}
         </li>
         {{~/if~}}
         {{~/foreach}}
@@ -45,9 +43,10 @@
         <ul class="params">
         {{~#each params}}
             <li class="level{{~countLevel name~}}">
-                <p>
-                    <span class="monospace {{#unless isOptional}}mandatory{{/unless}}">{{~name}}</span>
-                    {{~#if type~}}{{#each type}}<span class="ink-label {{toLowerCase this}}"></span>{{/each}}{{~/if~}}
+                <p> 
+                    {{~stripP name}}
+                    {{#unless isOptional}}<span class="label mandatory"></span>{{/unless}}
+                    {{~#if type~}}{{#each type}}<span class="label {{toLowerCase this}}"></span>{{/each}}{{~/if~}}
                 </p>
                 {{#if defaultValue~}}
                     {{~defaultValue~}}
@@ -63,7 +62,7 @@
     <h3>Returns</h3>
     <ul class="params">
         <li class="return">
-            <p>{{~#if return.type}}{{#each return.type}}<span class="ink-label {{toLowerCase this}}"></span> {{/each}}
+            <p>{{~#if return.type}}{{#each return.type}}<span class="label {{toLowerCase this}}"></span> {{/each}}
 {{~/if~}}</p>
         
             {{~#if return.description~}}

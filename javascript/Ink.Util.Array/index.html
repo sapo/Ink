@@ -21,79 +21,79 @@ site_root:  ../
                 <td>
                     <a href="#Ink_Util_Array_1-Ink_Util_Array_1-convert">.convert</a>
                 </td>
-                <td>Converts an array-like object to an array</td>
+                <td> Converts an array-like object to an array</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Util_Array_1-Ink_Util_Array_1-each">.each</a>
                 </td>
-                <td>Alias for backwards compatibility. See forEach</td>
+                <td> Alias for backwards compatibility. See forEach</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Util_Array_1-Ink_Util_Array_1-filter">.filter</a>
                 </td>
-                <td>Filters an array based on a truth test.</td>
+                <td> Filters an array based on a truth test.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Util_Array_1-Ink_Util_Array_1-forEach">.forEach</a>
                 </td>
-                <td>Runs a function through each of the elements of an array</td>
+                <td> Runs a function through each of the elements of an array</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Util_Array_1-Ink_Util_Array_1-inArray">.inArray</a>
                 </td>
-                <td>Checks if a value exists in array</td>
+                <td> Checks if a value exists in array</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Util_Array_1-Ink_Util_Array_1-insert">.insert</a>
                 </td>
-                <td>Inserts a value on a specified index</td>
+                <td> Inserts a value on a specified index</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Util_Array_1-Ink_Util_Array_1-intersect">.intersect</a>
                 </td>
-                <td>Compares the values of two arrays and return the matches</td>
+                <td> Compares the values of two arrays and return the matches</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Util_Array_1-Ink_Util_Array_1-keyValue">.keyValue</a>
                 </td>
-                <td>Gets the indexes of a value in an array</td>
+                <td> Gets the indexes of a value in an array</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Util_Array_1-Ink_Util_Array_1-map">.map</a>
                 </td>
-                <td>Runs a function for each item in the array. </td>
+                <td> Runs a function for each item in the array. </td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Util_Array_1-Ink_Util_Array_1-remove">.remove</a>
                 </td>
-                <td>Removes a range of values from the array</td>
+                <td> Removes a range of values from the array</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Util_Array_1-Ink_Util_Array_1-shuffle">.shuffle</a>
                 </td>
-                <td>Shuffles an array.</td>
+                <td> Shuffles an array.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Util_Array_1-Ink_Util_Array_1-some">.some</a>
                 </td>
-                <td>Checks if some element in the array passes a truth test</td>
+                <td> Checks if some element in the array passes a truth test</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Util_Array_1-Ink_Util_Array_1-sortMulti">.sortMulti</a>
                 </td>
-                <td>Sorts an array of objects by an object property</td>
+                <td> Sorts an array of objects by an object property</td>
             </tr></tbody>
     </table>
     
@@ -102,24 +102,24 @@ site_root:  ../
 
 
     <section id="Ink_Util_Array_1-Ink_Util_Array_1-convert" class="box box-function">
-    <h1 class="fw-300">.convert(arr) 
+    <h1 class="fw-300">.convert(arr)
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">arr</li>
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         arr</li>
     </ul><p class="text">Converts an array-like object to an array</p>
         <h3>Accepts</h3>
         
         <ul class="params">
-            <li class="level1"><span class="monospace">arr</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">Array</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>arr
+                    <span class="label mandatory"></span><span class="label array"></span></p>
                 Array to be converted</li>
         </ul>
     <h3>Returns</h3>
     <ul class="params">
         <li class="return">
-            <p><code>Array</code></p>Array resulting of the conversion
+            <p><span class="label array"></span> </p>Array resulting of the conversion
         </li>
     </ul>
     
@@ -129,42 +129,40 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_Array_1-Ink_Util_Array_1-each" class="box box-function">
-    <h1 class="fw-300">.each() 
+    <h1 class="fw-300">.each()
     <i>method</i></h1><p class="text">Alias for backwards compatibility. See forEach</p>
 
 </section>
 
     <section id="Ink_Util_Array_1-Ink_Util_Array_1-filter" class="box box-function">
-    <h1 class="fw-300">.filter(array, test, [context]) 
+    <h1 class="fw-300">.filter(array, test, context)
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">array</li><li class="prop">test</li><li class="prop">[context]</li>
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         array</li><li class="prop mandatory">
+         test</li><li class="prop">
+         context</li>
     </ul><p class="text">Filters an array based on a truth test.<br>This method runs a test function on all the array values and returns a new array with all the values that pass the test.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
-            <li class="level1"><span class="monospace">array</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">Array</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>array
+                    <span class="label mandatory"></span><span class="label array"></span></p>
                 The array to filter</li>
-            <li class="level1"><span class="monospace">test</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">Function</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>test
+                    <span class="label mandatory"></span><span class="label function"></span></p>
                 A test function taking `(item, index, array)`</li>
-            <li class="level1"><p>
-                    <span class="monospace">[context]</span>
-                    
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>context
+                    <span class="label object"></span></p>
                 Object to be `this` in the test function.</li>
         </ul>
     <h3>Returns</h3>
     <ul class="params">
         <li class="return">
-            <p><code>Array</code></p>Returns the filtered array
+            <p><span class="label array"></span> </p>Returns the filtered array
         </li>
     </ul>
     
@@ -174,29 +172,29 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_Array_1-Ink_Util_Array_1-forEach" class="box box-function">
-    <h1 class="fw-300">.forEach(arr, cb) 
+    <h1 class="fw-300">.forEach(arr, cb)
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">arr</li><li class="prop">cb</li>
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         arr</li><li class="prop mandatory">
+         cb</li>
     </ul><p class="text">Runs a function through each of the elements of an array</p>
         <h3>Accepts</h3>
         
         <ul class="params">
-            <li class="level1"><span class="monospace">arr</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">Array</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>arr
+                    <span class="label mandatory"></span><span class="label array"></span></p>
                 The array to be cycled/iterated</li>
-            <li class="level1"><span class="monospace">cb</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">Function</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>cb
+                    <span class="label mandatory"></span><span class="label function"></span></p>
                 The function receives as arguments the value, index and array.</li>
         </ul>
     <h3>Returns</h3>
     <ul class="params">
         <li class="return">
-            <p><code>Array</code></p>Iterated array.
+            <p><span class="label array"></span> </p>Iterated array.
         </li>
     </ul>
     
@@ -206,29 +204,29 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_Array_1-Ink_Util_Array_1-inArray" class="box box-function">
-    <h1 class="fw-300">.inArray(value, arr) 
+    <h1 class="fw-300">.inArray(value, arr)
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">value</li><li class="prop">arr</li>
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         value</li><li class="prop mandatory">
+         arr</li>
     </ul><p class="text">Checks if a value exists in array</p>
         <h3>Accepts</h3>
         
         <ul class="params">
-            <li class="level1"><span class="monospace">value</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">Mixed</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>value
+                    <span class="label mandatory"></span><span class="label mixed"></span></p>
                 Value to check</li>
-            <li class="level1"><span class="monospace">arr</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">Array</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>arr
+                    <span class="label mandatory"></span><span class="label array"></span></p>
                 Array to search in</li>
         </ul>
     <h3>Returns</h3>
     <ul class="params">
         <li class="return">
-            <p><code>Boolean</code></p>True if value exists in the array
+            <p><span class="label boolean"></span> </p>True if value exists in the array
         </li>
     </ul>
     
@@ -238,28 +236,28 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_Array_1-Ink_Util_Array_1-insert" class="box box-function">
-    <h1 class="fw-300">.insert(arr, idx, value) 
+    <h1 class="fw-300">.insert(arr, idx, value)
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">arr</li><li class="prop">idx</li><li class="prop">value</li>
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         arr</li><li class="prop mandatory">
+         idx</li><li class="prop mandatory">
+         value</li>
     </ul><p class="text">Inserts a value on a specified index</p>
         <h3>Accepts</h3>
         
         <ul class="params">
-            <li class="level1"><span class="monospace">arr</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">Array</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>arr
+                    <span class="label mandatory"></span><span class="label array"></span></p>
                 Array where the value will be inserted</li>
-            <li class="level1"><span class="monospace">idx</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">Number</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>idx
+                    <span class="label mandatory"></span><span class="label number"></span></p>
                 Index of the array where the value should be inserted</li>
-            <li class="level1"><span class="monospace">value</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">Mixed</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>value
+                    <span class="label mandatory"></span><span class="label mixed"></span></p>
                 Value to be inserted</li>
         </ul>
 
@@ -268,29 +266,29 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_Array_1-Ink_Util_Array_1-intersect" class="box box-function">
-    <h1 class="fw-300">.intersect(arr1, arr2) 
+    <h1 class="fw-300">.intersect(arr1, arr2)
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">arr1</li><li class="prop">arr2</li>
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         arr1</li><li class="prop mandatory">
+         arr2</li>
     </ul><p class="text">Compares the values of two arrays and return the matches</p>
         <h3>Accepts</h3>
         
         <ul class="params">
-            <li class="level1"><span class="monospace">arr1</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">Array</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>arr1
+                    <span class="label mandatory"></span><span class="label array"></span></p>
                 First array</li>
-            <li class="level1"><span class="monospace">arr2</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">Array</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>arr2
+                    <span class="label mandatory"></span><span class="label array"></span></p>
                 Second array</li>
         </ul>
     <h3>Returns</h3>
     <ul class="params">
         <li class="return">
-            <p><code>Array</code></p>Empty array if one of the arrays is false (or do not intersect) | Array with the intersected values
+            <p><span class="label array"></span> </p>Empty array if one of the arrays is false (or do not intersect) | Array with the intersected values
         </li>
     </ul>
     
@@ -300,36 +298,34 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_Array_1-Ink_Util_Array_1-keyValue" class="box box-function">
-    <h1 class="fw-300">.keyValue(value, arr, [first]) 
+    <h1 class="fw-300">.keyValue(value, arr, first)
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">value</li><li class="prop">arr</li><li class="prop">[first]</li>
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         value</li><li class="prop mandatory">
+         arr</li><li class="prop">
+         first</li>
     </ul><p class="text">Gets the indexes of a value in an array</p>
         <h3>Accepts</h3>
         
         <ul class="params">
-            <li class="level1"><span class="monospace">value</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>value
+                    <span class="label mandatory"></span><span class="label string"></span></p>
                 Value to search for.</li>
-            <li class="level1"><span class="monospace">arr</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">Array</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>arr
+                    <span class="label mandatory"></span><span class="label array"></span></p>
                 Array to run the search in.</li>
-            <li class="level1"><p>
-                    <span class="monospace">[first]</span>
-                    
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">Boolean</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>first
+                    <span class="label boolean"></span></p>
                 Flag to stop the search at the first match. It also returns an index number instead of an array of indexes.</li>
         </ul>
     <h3>Returns</h3>
     <ul class="params">
         <li class="return">
-            <p><code>Boolean|Number|Array</code></p>False for no matches. Array of matches or first match index.
+            <p><span class="label boolean"></span> <span class="label number"></span> <span class="label array"></span> </p>False for no matches. Array of matches or first match index.
         </li>
     </ul>
     
@@ -339,30 +335,28 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_Array_1-Ink_Util_Array_1-map" class="box box-function">
-    <h1 class="fw-300">.map(array, map, [context]) 
+    <h1 class="fw-300">.map(array, map, context)
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">array</li><li class="prop">map</li><li class="prop">[context]</li>
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         array</li><li class="prop mandatory">
+         map</li><li class="prop">
+         context</li>
     </ul><p class="text">Runs a function for each item in the array. <br>That function will receive each item as an argument and its return value will change the corresponding array item.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
-            <li class="level1"><span class="monospace">array</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">Array</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>array
+                    <span class="label mandatory"></span><span class="label array"></span></p>
                 The array to map over</li>
-            <li class="level1"><span class="monospace">map</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">Function</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>map
+                    <span class="label mandatory"></span><span class="label function"></span></p>
                 The map function. Will take `(item, index, array)` as arguments and `this` will be the `context` argument.</li>
-            <li class="level1"><p>
-                    <span class="monospace">[context]</span>
-                    
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>context
+                    <span class="label object"></span></p>
                 Object to be `this` in the map function.</li>
         </ul>
 
@@ -371,34 +365,34 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_Array_1-Ink_Util_Array_1-remove" class="box box-function">
-    <h1 class="fw-300">.remove(arr, from, rLen) 
+    <h1 class="fw-300">.remove(arr, from, rLen)
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">arr</li><li class="prop">from</li><li class="prop">rLen</li>
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         arr</li><li class="prop mandatory">
+         from</li><li class="prop mandatory">
+         rLen</li>
     </ul><p class="text">Removes a range of values from the array</p>
         <h3>Accepts</h3>
         
         <ul class="params">
-            <li class="level1"><span class="monospace">arr</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">Array</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>arr
+                    <span class="label mandatory"></span><span class="label array"></span></p>
                 Array where the value will be removed</li>
-            <li class="level1"><span class="monospace">from</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">Number</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>from
+                    <span class="label mandatory"></span><span class="label number"></span></p>
                 Index of the array where the removal will start removing.</li>
-            <li class="level1"><span class="monospace">rLen</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">Number</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>rLen
+                    <span class="label mandatory"></span><span class="label number"></span></p>
                 Number of items to be removed from the index onwards.</li>
         </ul>
     <h3>Returns</h3>
     <ul class="params">
         <li class="return">
-            <p><code>Array</code></p>An array with the remaining values
+            <p><span class="label array"></span> </p>An array with the remaining values
         </li>
     </ul>
     
@@ -408,24 +402,24 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_Array_1-Ink_Util_Array_1-shuffle" class="box box-function">
-    <h1 class="fw-300">.shuffle(arr) 
+    <h1 class="fw-300">.shuffle(arr)
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">arr</li>
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         arr</li>
     </ul><p class="text">Shuffles an array.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
-            <li class="level1"><span class="monospace">arr</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">Array</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>arr
+                    <span class="label mandatory"></span><span class="label array"></span></p>
                 Array to shuffle</li>
         </ul>
     <h3>Returns</h3>
     <ul class="params">
         <li class="return">
-            <p><code>Array|Boolean</code></p>Shuffled Array or false if not an array.
+            <p><span class="label array"></span> <span class="label boolean"></span> </p>Shuffled Array or false if not an array.
         </li>
     </ul>
     
@@ -435,34 +429,34 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_Array_1-Ink_Util_Array_1-some" class="box box-function">
-    <h1 class="fw-300">.some(arr, cb, context) 
+    <h1 class="fw-300">.some(arr, cb, context)
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">arr</li><li class="prop">cb</li><li class="prop">context</li>
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         arr</li><li class="prop mandatory">
+         cb</li><li class="prop mandatory">
+         context</li>
     </ul><p class="text">Checks if some element in the array passes a truth test</p>
         <h3>Accepts</h3>
         
         <ul class="params">
-            <li class="level1"><span class="monospace">arr</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">Array</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>arr
+                    <span class="label mandatory"></span><span class="label array"></span></p>
                 The array to iterate through</li>
-            <li class="level1"><span class="monospace">cb</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">Function</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>cb
+                    <span class="label mandatory"></span><span class="label function"></span></p>
                 The callback to be called on the array's elements. It receives the value, the index and the array as arguments.</li>
-            <li class="level1"><span class="monospace">context</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>context
+                    <span class="label mandatory"></span><span class="label object"></span></p>
                 Object of the callback function</li>
         </ul>
     <h3>Returns</h3>
     <ul class="params">
         <li class="return">
-            <p><code>Boolean</code></p>True if the callback returns true at any point, false otherwise
+            <p><span class="label boolean"></span> </p>True if the callback returns true at any point, false otherwise
         </li>
     </ul>
     
@@ -472,29 +466,29 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_Array_1-Ink_Util_Array_1-sortMulti" class="box box-function">
-    <h1 class="fw-300">.sortMulti(arr, key) 
+    <h1 class="fw-300">.sortMulti(arr, key)
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">arr</li><li class="prop">key</li>
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         arr</li><li class="prop mandatory">
+         key</li>
     </ul><p class="text">Sorts an array of objects by an object property</p>
         <h3>Accepts</h3>
         
         <ul class="params">
-            <li class="level1"><span class="monospace">arr</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">Array</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>arr
+                    <span class="label mandatory"></span><span class="label array"></span></p>
                 Array of objects to sort</li>
-            <li class="level1"><span class="monospace">key</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>key
+                    <span class="label mandatory"></span><span class="label string"></span></p>
                 Property to sort by</li>
         </ul>
     <h3>Returns</h3>
     <ul class="params">
         <li class="return">
-            <p><code>Array|Boolean</code></p>False if it's not an array, returns a sorted array if it's an array.
+            <p><span class="label array"></span> <span class="label boolean"></span> </p>False if it's not an array, returns a sorted array if it's an array.
         </li>
     </ul>
     

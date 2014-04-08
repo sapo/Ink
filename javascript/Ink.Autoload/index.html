@@ -21,7 +21,7 @@ site_root:  ../
                 <td>
                     <a href="#Ink_Autoload-Ink_Autoload-run">.run</a>
                 </td>
-                <td>Run Autoload on a specific element.</td>
+                <td> Run Autoload on a specific element.</td>
             </tr></tbody>
     </table>
     
@@ -30,39 +30,31 @@ site_root:  ../
 
 
     <section id="Ink_Autoload-Ink_Autoload-run" class="box box-function">
-    <h1 class="fw-300">.run(parentEl, [options], ) 
+    <h1 class="fw-300">.run(parentEl, options)
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">parentEl</li><li class="prop">[options]</li>
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         parentEl</li><li class="prop">
+         options</li>
     </ul><p class="text">Run Autoload on a specific element.<br><p>Useful when you load something from AJAX and want it to have automatically loaded Ink modules.</p></p>
         <h3>Accepts</h3>
         
         <ul class="params">
-            <li class="level1"><span class="monospace">parentEl</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">DOMElement</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>parentEl
+                    <span class="label mandatory"></span><span class="label domelement"></span></p>
                 </li>
-            <li class="level1"><p>
-                    <span class="monospace">[options]</span>
-                    
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>options
+                    <span class="label object"></span></p>
                 Options object, containing:</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.createClose]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">Boolean</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.createClose
+                    <span class="label boolean"></span></p>
                 Whether to create the Ink.UI.Close component. Defaults to `true`.</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.createSmoothScroller]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">Boolean</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.createSmoothScroller
+                    <span class="label boolean"></span></p>
                 Whether to create the Scroller component. Defaults to `true`.</li>
         </ul>
 

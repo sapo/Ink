@@ -31,67 +31,47 @@ site_root:  ../
 
 
     <section id="Ink_UI_ImageQuery_1-Ink_UI_ImageQuery-ImageQuery" class="box box-function">
-    <h1 class="fw-300">Ink.UI.ImageQuery(selector, [options], ) 
+    <h1 class="fw-300">Ink.UI.ImageQuery(selector, options)
     <i>constructor</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">selector</li><li class="prop">[options]</li>
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         selector</li><li class="prop">
+         options</li>
     </ul>
         <h3>Accepts</h3>
         
         <ul class="params">
-            <li class="level1"><span class="monospace">selector</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">String|DOMElement</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>selector
+                    <span class="label mandatory"></span><span class="label string"></span><span class="label domelement"></span></p>
                 Selector or element</li>
-            <li class="level1"><p>
-                    <span class="monospace">[options]</span>
-                    
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>options
+                    <span class="label object"></span></p>
                 Options object</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.src]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">String|Function</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.src
+                    <span class="label string"></span><span class="label function"></span></p>
                 String or Callback function (that returns a string) with the path to be used to get the images.</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.retina]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">String|Function</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.retina
+                    <span class="label string"></span><span class="label function"></span></p>
                 String or Callback function (that returns a string) with the path to be used to get RETINA specific images.</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.queries]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">Array</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.queries
+                    <span class="label array"></span></p>
                 Array of queries</li>
-            <li class="level3"><p>
-                    <span class="monospace">[options.queries.label]</span>
-                    
-                    
-                    <!--<li class="level3">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level3">
+                <p>options.queries.label
+                    <span class="label string"></span></p>
                 Label of the query. Ex. 'small'</li>
-            <li class="level3"><p>
-                    <span class="monospace">[options.queries.width]</span>
-                    
-                    
-                    <!--<li class="level3">--><span class="ink-label orange">Number</span></p>
-                <!--</label>-->
+            <li class="level3">
+                <p>options.queries.width
+                    <span class="label number"></span></p>
                 Min-width to use this query</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.onLoad]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">Function</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.onLoad
+                    <span class="label function"></span></p>
                 Date format string</li>
         </ul>
 <p class="example-title">Example</p>

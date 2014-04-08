@@ -21,13 +21,13 @@ site_root:  ../
                 <td>
                     <a href="#Ink_UI_FormValidator_1-Ink_UI_FormValidator-reset">.reset</a>
                 </td>
-                <td>Resets previously generated validation errors</td>
+                <td> Resets previously generated validation errors</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_FormValidator_1-Ink_UI_FormValidator-validate">.validate</a>
                 </td>
-                <td>Checks if a form is valid</td>
+                <td> Checks if a form is valid</td>
             </tr></tbody>
     </table>
     
@@ -44,32 +44,24 @@ site_root:  ../
             <tr>
                 <td><a href="#Ink_UI_FormValidator_1-Ink_UI_FormValidator-confirmElms">.confirmElms</a></td>
                 <td>This property holds the objects needed to cross-check for the &#39;confirm&#39; rule
-                        <span class="ink-label orange uppercase">Object</span>
-                    
                 </td>
             </tr>
             
             <tr>
                 <td><a href="#Ink_UI_FormValidator_1-Ink_UI_FormValidator-elements">.elements</a></td>
                 <td>This property holds all form elements for later validation
-                        <span class="ink-label orange uppercase">Object</span>
-                    
                 </td>
             </tr>
             
             <tr>
                 <td><a href="#Ink_UI_FormValidator_1-Ink_UI_FormValidator-hasConfirm">.hasConfirm</a></td>
                 <td>This property holds the previous elements in the confirmElms property, but with a
-                        <span class="ink-label orange uppercase">Object</span>
-                    
                 </td>
             </tr>
             
             <tr>
                 <td><a href="#Ink_UI_FormValidator_1-Ink_UI_FormValidator-version">.version</a></td>
                 <td>Specifies the version of the component
-                        <span class="ink-label orange uppercase">String</span>
-                    
                 </td>
             </tr>
             
@@ -81,56 +73,47 @@ site_root:  ../
 
 
     <section id="Ink_UI_FormValidator_1-Ink_UI_FormValidator-reset" class="box box-function">
-    <h1 class="fw-300">.reset() 
+    <h1 class="fw-300">.reset()
     <i>method</i></h1><p class="text">Resets previously generated validation errors</p>
 
 </section>
 
     <section id="Ink_UI_FormValidator_1-Ink_UI_FormValidator-validate" class="box box-function">
-    <h1 class="fw-300">.validate(elm, options, ) 
+    <h1 class="fw-300">.validate(elm, options)
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">elm</li><li class="prop">options</li>
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         elm</li><li class="prop mandatory">
+         options</li>
     </ul><p class="text">Checks if a form is valid</p>
         <h3>Accepts</h3>
         
         <ul class="params">
-            <li class="level1"><span class="monospace">elm</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">DOMElement|String</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>elm
+                    <span class="label mandatory"></span><span class="label domelement"></span><span class="label string"></span></p>
                 DOM form element or form id</li>
-            <li class="level1"><span class="monospace">options</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>options
+                    <span class="label mandatory"></span><span class="label object"></span></p>
                 Configuration options</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.onSuccess]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">Function</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.onSuccess
+                    <span class="label function"></span></p>
                 Callback to run when form is valid</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.onError]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">Function</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.onError
+                    <span class="label function"></span></p>
                 Callback to run when form is not valid</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.customFlag]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">Array</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.customFlag
+                    <span class="label array"></span></p>
                 Custom flags to use to validate form fields</li>
         </ul>
     <h3>Returns</h3>
     <ul class="params">
         <li class="return">
-            <p><code>Boolean</code></p>Whether the form is deemed valid or not.
+            <p><span class="label boolean"></span> </p>Whether the form is deemed valid or not.
         </li>
     </ul>
     

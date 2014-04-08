@@ -21,13 +21,13 @@ site_root:  ../
                 <td>
                     <a href="#Ink_Util_Date_1-Ink_Util_Date_1-get">.get</a>
                 </td>
-                <td>Formats a date object.</td>
+                <td> Formats a date object.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Util_Date_1-Ink_Util_Date_1-set">.set</a>
                 </td>
-                <td>Creates a date object based on a format string.</td>
+                <td> Creates a date object based on a format string.</td>
             </tr></tbody>
     </table>
     
@@ -36,31 +36,29 @@ site_root:  ../
 
 
     <section id="Ink_Util_Date_1-Ink_Util_Date_1-get" class="box box-function">
-    <h1 class="fw-300">.get(format, [_date]) 
+    <h1 class="fw-300">.get(format, _date)
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">format</li><li class="prop">[_date]</li>
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         format</li><li class="prop">
+         _date</li>
     </ul><p class="text">Formats a date object.<br>This works exactly as php date() function. <a href="http://php.net/manual/en/function.date.php">http://php.net/manual/en/function.date.php</a></p>
         <h3>Accepts</h3>
         
         <ul class="params">
-            <li class="level1"><span class="monospace">format</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>format
+                    <span class="label mandatory"></span><span class="label string"></span></p>
                 The format in which the date it will be formatted.</li>
-            <li class="level1"><p>
-                    <span class="monospace">[_date]</span>
-                    
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">Date</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>_date
+                    <span class="label date"></span></p>
                 The date to format. Can receive unix timestamp or a date object. Defaults to current time.</li>
         </ul>
     <h3>Returns</h3>
     <ul class="params">
         <li class="return">
-            <p><code>String</code></p>Formatted date
+            <p><span class="label string"></span> </p>Formatted date
         </li>
     </ul>
     
@@ -70,31 +68,29 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_Date_1-Ink_Util_Date_1-set" class="box box-function">
-    <h1 class="fw-300">.set([format], str_date) 
+    <h1 class="fw-300">.set(format, str_date)
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">[format]</li><li class="prop">str_date</li>
+        <li class="heading">Arguments:</li><li class="prop">
+         format</li><li class="prop mandatory">
+         str_date</li>
     </ul><p class="text">Creates a date object based on a format string.<br>This works exactly as php date() function. <a href="http://php.net/manual/en/function.date.php">http://php.net/manual/en/function.date.php</a></p>
         <h3>Accepts</h3>
         
         <ul class="params">
-            <li class="level1"><p>
-                    <span class="monospace">[format]</span>
-                    
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>format
+                    <span class="label string"></span></p>
                 The format in which the date will be formatted. Defaults to 'Y-m-d'</li>
-            <li class="level1"><span class="monospace">str_date</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>str_date
+                    <span class="label mandatory"></span><span class="label string"></span></p>
                 The date formatted.</li>
         </ul>
     <h3>Returns</h3>
     <ul class="params">
         <li class="return">
-            <p><code>Date</code></p>Date object based on the formatted date and format
+            <p><span class="label date"></span> </p>Date object based on the formatted date and format
         </li>
     </ul>
     

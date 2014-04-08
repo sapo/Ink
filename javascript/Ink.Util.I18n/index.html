@@ -28,67 +28,67 @@ site_root:  ../
                 <td>
                     <a href="#Ink_Util_I18n_1-Ink_Util_I18n-alias">.alias</a>
                 </td>
-                <td>Create an alias.</td>
+                <td> Create an alias.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Util_I18n_1-Ink_Util_I18n-append">.append</a>
                 </td>
-                <td>Adds translation strings for the helper to use.</td>
+                <td> Adds translation strings for the helper to use.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Util_I18n_1-Ink_Util_I18n-appendGlobal">.appendGlobal</a>
                 </td>
-                <td>Adds a dictionary to be used in all I18n instances for the corresponding language.</td>
+                <td> Adds a dictionary to be used in all I18n instances for the corresponding language.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Util_I18n_1-Ink_Util_I18n-getKey">.getKey</a>
                 </td>
-                <td>Gest a key from the current dictionary</td>
+                <td> Gest a key from the current dictionary</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Util_I18n_1-Ink_Util_I18n-lang">.lang</a>
                 </td>
-                <td>Gets or sets the language.</td>
+                <td> Gets or sets the language.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Util_I18n_1-Ink_Util_I18n-langGlobal">.langGlobal</a>
                 </td>
-                <td>Gets or sets the current default language of I18n instances.</td>
+                <td> Gets or sets the current default language of I18n instances.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Util_I18n_1-Ink_Util_I18n-ntext">.ntext</a>
                 </td>
-                <td>Translates and pluralizes text.</td>
+                <td> Translates and pluralizes text.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Util_I18n_1-Ink_Util_I18n-ordinal">.ordinal</a>
                 </td>
-                <td>Gets the ordinal suffix of a number.</td>
+                <td> Gets the ordinal suffix of a number.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Util_I18n_1-Ink_Util_I18n-reset">.reset</a>
                 </td>
-                <td>Resets I18n global state (global dictionaries, and default language for instances)</td>
+                <td> Resets I18n global state (global dictionaries, and default language for instances)</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Util_I18n_1-Ink_Util_I18n-testMode">.testMode</a>
                 </td>
-                <td>Sets or unsets test mode.</td>
+                <td> Sets or unsets test mode.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Util_I18n_1-Ink_Util_I18n-text">.text</a>
                 </td>
-                <td>Translates a string.</td>
+                <td> Translates a string.</td>
             </tr></tbody>
     </table>
     
@@ -97,26 +97,24 @@ site_root:  ../
 
 
     <section id="Ink_Util_I18n_1-Ink_Util_I18n-I18n" class="box box-function">
-    <h1 class="fw-300">Ink.Util.I18n(dict, [lang]) 
+    <h1 class="fw-300">Ink.Util.I18n(dict, lang)
     <i>constructor</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">dict</li><li class="prop">[lang]</li>
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         dict</li><li class="prop">
+         lang</li>
     </ul>
         <h3>Accepts</h3>
         
         <ul class="params">
-            <li class="level1"><span class="monospace">dict</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>dict
+                    <span class="label mandatory"></span><span class="label object"></span></p>
                 Object mapping language codes (in the form of `pt_PT`, `pt_BR`, `fr`, `en_US`, etc.) to their `dictionaries`</li>
-            <li class="level1"><p>
-                    <span class="monospace">[lang]</span>
-                    
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
-                &#x27;pt_PT&#x27;<!--</label>-->
-                language code of the target language</li>
+            <li class="level1">
+                <p>lang
+                    <span class="label string"></span></p>
+                &#x27;pt_PT&#x27;language code of the target language</li>
         </ul>
 
 <!--<h3>Samples</h3>-->
@@ -124,12 +122,12 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_I18n_1-Ink_Util_I18n-alias" class="box box-function">
-    <h1 class="fw-300">.alias() 
+    <h1 class="fw-300">.alias()
     <i>method</i></h1><p class="text">Create an alias.<br><p>Returns an alias to this I18n instance. It contains the I18n methods documented here, but is also a function. If you call it, it just calls <code>text()</code>. This is commonly assigned to &quot;_&quot;.</p></p>
     <h3>Returns</h3>
     <ul class="params">
         <li class="return">
-            <p><code>Function</code></p>an alias to `text()` on this instance. You can also access the rest of the translation API through this alias.
+            <p><span class="label function"></span> </p>an alias to `text()` on this instance. You can also access the rest of the translation API through this alias.
         </li>
     </ul>
     
@@ -159,18 +157,18 @@ _.ordinal(3);  // -> 'º'
 </section>
 
     <section id="Ink_Util_I18n_1-Ink_Util_I18n-append" class="box box-function">
-    <h1 class="fw-300">.append(dict) 
+    <h1 class="fw-300">.append(dict)
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">dict</li>
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         dict</li>
     </ul><p class="text">Adds translation strings for the helper to use.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
-            <li class="level1"><span class="monospace">dict</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>dict
+                    <span class="label mandatory"></span><span class="label object"></span></p>
                 Object containing language objects identified by their language code</li>
         </ul>
 <p class="example-title">Example</p>
@@ -188,47 +186,47 @@ i18n.text('sfraggles') // -> 'braggles'
 </section>
 
     <section id="Ink_Util_I18n_1-Ink_Util_I18n-appendGlobal" class="box box-function">
-    <h1 class="fw-300">.appendGlobal(dict, lang) 
+    <h1 class="fw-300">.appendGlobal(dict, lang)
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">dict</li><li class="prop">lang</li>
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         dict</li><li class="prop mandatory">
+         lang</li>
     </ul><p class="text">Adds a dictionary to be used in all I18n instances for the corresponding language.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
-            <li class="level1"><span class="monospace">dict</span>
-                    
-                    <!--<li class="level1">--></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>dict
+                    <span class="label mandatory"></span></p>
                 {Object}     Dictionary to be added</li>
-            <li class="level1"><span class="monospace">lang</span>
-                    
-                    <!--<li class="level1">--></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>lang
+                    <span class="label mandatory"></span></p>
                 {String}     Language fo the dictionary being added</li>
         </ul>
 
 </section>
 
     <section id="Ink_Util_I18n_1-Ink_Util_I18n-getKey" class="box box-function">
-    <h1 class="fw-300">.getKey(key) 
+    <h1 class="fw-300">.getKey(key)
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">key</li>
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         key</li>
     </ul><p class="text">Gest a key from the current dictionary</p>
         <h3>Accepts</h3>
         
         <ul class="params">
-            <li class="level1"><span class="monospace">key</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>key
+                    <span class="label mandatory"></span><span class="label string"></span></p>
                 </li>
         </ul>
     <h3>Returns</h3>
     <ul class="params">
         <li class="return">
-            <p><code>Mixed</code></p>The object which happened to be in the current language dictionary on the given key.
+            <p><span class="label mixed"></span> </p>The object which happened to be in the current language dictionary on the given key.
         </li>
     </ul>
     
@@ -245,42 +243,42 @@ _.getKey('afunction'); // -> function () { return 'this is a localized function'
 </section>
 
     <section id="Ink_Util_I18n_1-Ink_Util_I18n-lang" class="box box-function">
-    <h1 class="fw-300">.lang(lang) 
+    <h1 class="fw-300">.lang(lang)
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">lang</li>
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         lang</li>
     </ul><p class="text">Gets or sets the language.<br>If there are more dictionaries available in cache, they will be loaded.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
-            <li class="level1"><span class="monospace">lang</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>lang
+                    <span class="label mandatory"></span><span class="label string"></span></p>
                 Language code to set this instance to.</li>
         </ul>
 
 </section>
 
     <section id="Ink_Util_I18n_1-Ink_Util_I18n-langGlobal" class="box box-function">
-    <h1 class="fw-300">.langGlobal(lang) 
+    <h1 class="fw-300">.langGlobal(lang)
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">lang</li>
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         lang</li>
     </ul><p class="text">Gets or sets the current default language of I18n instances.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
-            <li class="level1"><span class="monospace">lang</span>
-                    
-                    <!--<li class="level1">--></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>lang
+                    <span class="label mandatory"></span></p>
                 the new language for all I18n instances</li>
         </ul>
     <h3>Returns</h3>
     <ul class="params">
         <li class="return">
-            <p><code>String</code></p>language code
+            <p><span class="label string"></span> </p>language code
         </li>
     </ul>
     
@@ -288,41 +286,39 @@ _.getKey('afunction'); // -> function () { return 'this is a localized function'
 </section>
 
     <section id="Ink_Util_I18n_1-Ink_Util_I18n-ntext" class="box box-function">
-    <h1 class="fw-300">.ntext(strSin, strPlur, count, [args*]) 
+    <h1 class="fw-300">.ntext(strSin, strPlur, count, args*)
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">strSin</li><li class="prop">strPlur</li><li class="prop">count</li><li class="prop">[args*]</li>
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         strSin</li><li class="prop mandatory">
+         strPlur</li><li class="prop mandatory">
+         count</li><li class="prop">
+         args*</li>
     </ul><p class="text">Translates and pluralizes text.<br>Given a singular string, a plural string and a number, translates either the singular or plural string.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
-            <li class="level1"><span class="monospace">strSin</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>strSin
+                    <span class="label mandatory"></span><span class="label string"></span></p>
                 Word to use when count is 1</li>
-            <li class="level1"><span class="monospace">strPlur</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>strPlur
+                    <span class="label mandatory"></span><span class="label string"></span></p>
                 Word to use otherwise</li>
-            <li class="level1"><span class="monospace">count</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">Number</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>count
+                    <span class="label mandatory"></span><span class="label number"></span></p>
                 Number which defines which word to use</li>
-            <li class="level1"><p>
-                    <span class="monospace">[args*]</span>
-                    
-                    
-                    <!--<li class="level1">--></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>args*
+                    </p>
                 Extra arguments, to be passed to `text()`</li>
         </ul>
     <h3>Returns</h3>
     <ul class="params">
         <li class="return">
-            <p><code>String</code></p>
+            <p><span class="label string"></span> </p>
         </li>
     </ul>
     
@@ -345,45 +341,37 @@ i18n.ntext('{} platypus', '{} platypuses', 2); // returns '2 ornitorrincos'
 </section>
 
     <section id="Ink_Util_I18n_1-Ink_Util_I18n-ordinal" class="box box-function">
-    <h1 class="fw-300">.ordinal(num, [options], ) 
+    <h1 class="fw-300">.ordinal(num, options)
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">num</li><li class="prop">[options]</li>
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         num</li><li class="prop">
+         options</li>
     </ul><p class="text">Gets the ordinal suffix of a number.<br><p>This works by using transforms (in the form of Objects or Functions) passed into the function or found in the special key <code>_ordinals</code> in the active language dictionary.</p></p>
         <h3>Accepts</h3>
         
         <ul class="params">
-            <li class="level1"><span class="monospace">num</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">Number</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>num
+                    <span class="label mandatory"></span><span class="label number"></span></p>
                 Input number</li>
-            <li class="level1"><p>
-                    <span class="monospace">[options]</span>
-                    
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">Object|Function</span></p>
-                {}<!--</label>-->
-                Dictionaries for translating. Each of these options' fallback is found in the current language's dictionary. The lookup order is the following: `exceptions`, `byLastDigit`, `default`. Each of these may be either an `Object` or a `Function`. If it's a function, it is called (with `number` and `digit` for any function except for byLastDigit, which is called with the `lastDigit` of the number in question), and if the function returns a string, that is used. If it's an object, the property is looked up using `obj[prop]`. If what is found is a string, it is used directly.</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.byLastDigit]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">Object|Function</span></p>
-                {}<!--</label>-->
-                If the language requires the last digit to be considered, mappings of last digits to ordinal suffixes can be created here.</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.exceptions]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">Object|Function</span></p>
-                {}<!--</label>-->
-                Map unique, special cases to their ordinal suffixes.</li>
+            <li class="level1">
+                <p>options
+                    <span class="label object"></span><span class="label function"></span></p>
+                {}Dictionaries for translating. Each of these options' fallback is found in the current language's dictionary. The lookup order is the following: `exceptions`, `byLastDigit`, `default`. Each of these may be either an `Object` or a `Function`. If it's a function, it is called (with `number` and `digit` for any function except for byLastDigit, which is called with the `lastDigit` of the number in question), and if the function returns a string, that is used. If it's an object, the property is looked up using `obj[prop]`. If what is found is a string, it is used directly.</li>
+            <li class="level2">
+                <p>options.byLastDigit
+                    <span class="label object"></span><span class="label function"></span></p>
+                {}If the language requires the last digit to be considered, mappings of last digits to ordinal suffixes can be created here.</li>
+            <li class="level2">
+                <p>options.exceptions
+                    <span class="label object"></span><span class="label function"></span></p>
+                {}Map unique, special cases to their ordinal suffixes.</li>
         </ul>
     <h3>Returns</h3>
     <ul class="params">
         <li class="return">
-            <p><code>String</code></p>Ordinal suffix for `num`.
+            <p><span class="label string"></span> </p>Ordinal suffix for `num`.
         </li>
     </ul>
     
@@ -446,70 +434,62 @@ i18n.ordinal(5);    // returns 'th'
 </section>
 
     <section id="Ink_Util_I18n_1-Ink_Util_I18n-reset" class="box box-function">
-    <h1 class="fw-300">.reset() 
+    <h1 class="fw-300">.reset()
     <i>method</i></h1><p class="text">Resets I18n global state (global dictionaries, and default language for instances)</p>
 
 </section>
 
     <section id="Ink_Util_I18n_1-Ink_Util_I18n-testMode" class="box box-function">
-    <h1 class="fw-300">.testMode(bool) 
+    <h1 class="fw-300">.testMode(bool)
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">bool</li>
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         bool</li>
     </ul><p class="text">Sets or unsets test mode.<br>In test mode, unknown strings are wrapped in <code>[ ... ]</code>. This is useful for debugging your application and to make sure all your translation keys are in place.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
-            <li class="level1"><span class="monospace">bool</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">Boolean</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>bool
+                    <span class="label mandatory"></span><span class="label boolean"></span></p>
                 Flag to set the test mode state</li>
         </ul>
 
 </section>
 
     <section id="Ink_Util_I18n_1-Ink_Util_I18n-text" class="box box-function">
-    <h1 class="fw-300">.text(str, [namedParms], [args], [arg2], [argn*]) 
+    <h1 class="fw-300">.text(str, namedParms, args, arg2, argn*)
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">str</li><li class="prop">[namedParms]</li><li class="prop">[args]</li><li class="prop">[arg2]</li><li class="prop">[argn*]</li>
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         str</li><li class="prop">
+         namedParms</li><li class="prop">
+         args</li><li class="prop">
+         arg2</li><li class="prop">
+         argn*</li>
     </ul><p class="text">Translates a string.<br>Given a translation key, return a translated string, with replaced parameters.<br>When a translated string is not available, the original string is returned unchanged.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
-            <li class="level1"><span class="monospace">str</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>str
+                    <span class="label mandatory"></span><span class="label string"></span></p>
                 Key to look for in i18n dictionary (which is returned verbatim if unknown)</li>
-            <li class="level1"><p>
-                    <span class="monospace">[namedParms]</span>
-                    
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>namedParms
+                    <span class="label object"></span></p>
                 Named replacements. Replaces {named} with values in this object.</li>
-            <li class="level1"><p>
-                    <span class="monospace">[args]</span>
-                    
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>args
+                    <span class="label string"></span></p>
                 Replacement #1 (replaces first {} and all {1})</li>
-            <li class="level1"><p>
-                    <span class="monospace">[arg2]</span>
-                    
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>arg2
+                    <span class="label string"></span></p>
                 Replacement #2 (replaces second {} and all {2})</li>
-            <li class="level1"><p>
-                    <span class="monospace">[argn*]</span>
-                    
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>argn*
+                    <span class="label string"></span></p>
                 Replacement #n (replaces nth {} and all {n})</li>
         </ul>
 <p class="example-title">Example</p>

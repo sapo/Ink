@@ -21,49 +21,49 @@ site_root:  ../
                 <td>
                     <a href="#Ink_Util_Url_1-Ink_Util_Url_1-currentScriptElement">.currentScriptElement</a>
                 </td>
-                <td>Gets the last loaded script element</td>
+                <td> Gets the last loaded script element</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Util_Url_1-Ink_Util_Url_1-format">.format</a>
                 </td>
-                <td>Formats an URL object into an URL string.</td>
+                <td> Formats an URL object into an URL string.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Util_Url_1-Ink_Util_Url_1-genQueryString">.genQueryString</a>
                 </td>
-                <td>Generates an URL string.</td>
+                <td> Generates an URL string.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Util_Url_1-Ink_Util_Url_1-getAnchor">.getAnchor</a>
                 </td>
-                <td>Gets the URL hash value</td>
+                <td> Gets the URL hash value</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Util_Url_1-Ink_Util_Url_1-getAnchorString">.getAnchorString</a>
                 </td>
-                <td>Gets the anchor string of an URL</td>
+                <td> Gets the anchor string of an URL</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Util_Url_1-Ink_Util_Url_1-getQueryString">.getQueryString</a>
                 </td>
-                <td>Gets an object from an URL encoded string.</td>
+                <td> Gets an object from an URL encoded string.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Util_Url_1-Ink_Util_Url_1-getUrl">.getUrl</a>
                 </td>
-                <td>Gets URL of current page</td>
+                <td> Gets URL of current page</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Util_Url_1-Ink_Util_Url_1-parseUrl">.parseUrl</a>
                 </td>
-                <td>Parses URL string into URL parts</td>
+                <td> Parses URL string into URL parts</td>
             </tr></tbody>
     </table>
     
@@ -72,26 +72,24 @@ site_root:  ../
 
 
     <section id="Ink_Util_Url_1-Ink_Util_Url_1-currentScriptElement" class="box box-function">
-    <h1 class="fw-300">.currentScriptElement([match]) 
+    <h1 class="fw-300">.currentScriptElement(match)
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">[match]</li>
+        <li class="heading">Arguments:</li><li class="prop">
+         match</li>
     </ul><p class="text">Gets the last loaded script element</p>
         <h3>Accepts</h3>
         
         <ul class="params">
-            <li class="level1"><p>
-                    <span class="monospace">[match]</span>
-                    
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>match
+                    <span class="label string"></span></p>
                 String to match against the script src attribute</li>
         </ul>
     <h3>Returns</h3>
     <ul class="params">
         <li class="return">
-            <p><code>DOMElement|Boolean</code></p>Returns the `script` DOM Element or false if unable to find it.
+            <p><span class="label domelement"></span> <span class="label boolean"></span> </p>Returns the `script` DOM Element or false if unable to find it.
         </li>
     </ul>
     
@@ -101,24 +99,24 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_Url_1-Ink_Util_Url_1-format" class="box box-function">
-    <h1 class="fw-300">.format(urlObj) 
+    <h1 class="fw-300">.format(urlObj)
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">urlObj</li>
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         urlObj</li>
     </ul><p class="text">Formats an URL object into an URL string.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
-            <li class="level1"><span class="monospace">urlObj</span>
-                    
-                    <!--<li class="level1">--></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>urlObj
+                    <span class="label mandatory"></span></p>
                 Window.location, a.href, or parseUrl object to format</li>
         </ul>
     <h3>Returns</h3>
     <ul class="params">
         <li class="return">
-            <p><code>String</code></p>Full URL.
+            <p><span class="label string"></span> </p>Full URL.
         </li>
     </ul>
     
@@ -126,29 +124,29 @@ site_root:  ../
 </section>
 
     <section id="Ink_Util_Url_1-Ink_Util_Url_1-genQueryString" class="box box-function">
-    <h1 class="fw-300">.genQueryString(uri, params) 
+    <h1 class="fw-300">.genQueryString(uri, params)
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">uri</li><li class="prop">params</li>
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         uri</li><li class="prop mandatory">
+         params</li>
     </ul><p class="text">Generates an URL string.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
-            <li class="level1"><span class="monospace">uri</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>uri
+                    <span class="label mandatory"></span><span class="label string"></span></p>
                 Base URL</li>
-            <li class="level1"><span class="monospace">params</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>params
+                    <span class="label mandatory"></span><span class="label object"></span></p>
                 Object to transform to query string</li>
         </ul>
     <h3>Returns</h3>
     <ul class="params">
         <li class="return">
-            <p><code>String</code></p>URI with query string set
+            <p><span class="label string"></span> </p>URI with query string set
         </li>
     </ul>
     
@@ -158,26 +156,24 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_Url_1-Ink_Util_Url_1-getAnchor" class="box box-function">
-    <h1 class="fw-300">.getAnchor([str]) 
+    <h1 class="fw-300">.getAnchor(str)
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">[str]</li>
+        <li class="heading">Arguments:</li><li class="prop">
+         str</li>
     </ul><p class="text">Gets the URL hash value</p>
         <h3>Accepts</h3>
         
         <ul class="params">
-            <li class="level1"><p>
-                    <span class="monospace">[str]</span>
-                    
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>str
+                    <span class="label string"></span></p>
                 URL String. Defaults to current page URL.</li>
         </ul>
     <h3>Returns</h3>
     <ul class="params">
         <li class="return">
-            <p><code>String|Boolean</code></p>Hash in the URL. If there's no hash, returns false.
+            <p><span class="label string"></span> <span class="label boolean"></span> </p>Hash in the URL. If there's no hash, returns false.
         </li>
     </ul>
     
@@ -187,26 +183,24 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_Url_1-Ink_Util_Url_1-getAnchorString" class="box box-function">
-    <h1 class="fw-300">.getAnchorString([string]) 
+    <h1 class="fw-300">.getAnchorString(string)
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">[string]</li>
+        <li class="heading">Arguments:</li><li class="prop">
+         string</li>
     </ul><p class="text">Gets the anchor string of an URL</p>
         <h3>Accepts</h3>
         
         <ul class="params">
-            <li class="level1"><p>
-                    <span class="monospace">[string]</span>
-                    
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>string
+                    <span class="label string"></span></p>
                 URL to parse. Defaults to current URL.</li>
         </ul>
     <h3>Returns</h3>
     <ul class="params">
         <li class="return">
-            <p><code>Object</code></p>Key-value pair object of the URL's hashtag 'variables'
+            <p><span class="label object"></span> </p>Key-value pair object of the URL's hashtag 'variables'
         </li>
     </ul>
     
@@ -216,26 +210,24 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_Url_1-Ink_Util_Url_1-getQueryString" class="box box-function">
-    <h1 class="fw-300">.getQueryString([str]) 
+    <h1 class="fw-300">.getQueryString(str)
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">[str]</li>
+        <li class="heading">Arguments:</li><li class="prop">
+         str</li>
     </ul><p class="text">Gets an object from an URL encoded string.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
-            <li class="level1"><p>
-                    <span class="monospace">[str]</span>
-                    
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>str
+                    <span class="label string"></span></p>
                 URL String. When not specified it uses the current URL.</li>
         </ul>
     <h3>Returns</h3>
     <ul class="params">
         <li class="return">
-            <p><code>Object</code></p>Key-Value pair object
+            <p><span class="label object"></span> </p>Key-Value pair object
         </li>
     </ul>
     
@@ -245,7 +237,7 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_Url_1-Ink_Util_Url_1-getUrl" class="box box-function">
-    <h1 class="fw-300">.getUrl() 
+    <h1 class="fw-300">.getUrl()
     <i>method</i></h1><p class="text">Gets URL of current page</p>
     <h3>Returns</h3>
     <ul class="params">
@@ -260,24 +252,24 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_Url_1-Ink_Util_Url_1-parseUrl" class="box box-function">
-    <h1 class="fw-300">.parseUrl(url) 
+    <h1 class="fw-300">.parseUrl(url)
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">url</li>
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         url</li>
     </ul><p class="text">Parses URL string into URL parts</p>
         <h3>Accepts</h3>
         
         <ul class="params">
-            <li class="level1"><span class="monospace">url</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>url
+                    <span class="label mandatory"></span><span class="label string"></span></p>
                 URL to be parsed</li>
         </ul>
     <h3>Returns</h3>
     <ul class="params">
         <li class="return">
-            <p><code>Object</code></p>Parsed URL as a key-value object.
+            <p><span class="label object"></span> </p>Parsed URL as a key-value object.
         </li>
     </ul>
     

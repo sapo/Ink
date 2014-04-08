@@ -28,13 +28,13 @@ site_root:  ../
                 <td>
                     <a href="#Ink_UI_LazyLoad_1-Ink_UI_LazyLoad_1-destroy">.destroy</a>
                 </td>
-                <td>Destroy this component</td>
+                <td> Destroy this component</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_LazyLoad_1-Ink_UI_LazyLoad_1-reload">.reload</a>
                 </td>
-                <td>Load or reload the component.</td>
+                <td> Load or reload the component.</td>
             </tr></tbody>
     </table>
     
@@ -43,109 +43,71 @@ site_root:  ../
 
 
     <section id="Ink_UI_LazyLoad_1-Ink_UI_LazyLoad_1-LazyLoad_1" class="box box-function">
-    <h1 class="fw-300">Ink.UI.LazyLoad_1(rootElement, [options], ) 
+    <h1 class="fw-300">Ink.UI.LazyLoad_1(rootElement, options)
     <i>constructor</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">rootElement</li><li class="prop">[options]</li>
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         rootElement</li><li class="prop">
+         options</li>
     </ul>
         <h3>Accepts</h3>
         
         <ul class="params">
-            <li class="level1"><span class="monospace">rootElement</span>
-                    
-                    <!--<li class="level1">--></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>rootElement
+                    <span class="label mandatory"></span></p>
                 {String|DOMElement} The element which contains the lazily-loaded items.</li>
-            <li class="level1"><p>
-                    <span class="monospace">[options]</span>
-                    
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>options
+                    <span class="label object"></span></p>
                 Options object, containing:</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.item]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.item
+                    <span class="label string"></span></p>
                 Item selector. Defaults to '.lazyload-item'.</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.placeholder]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.placeholder
+                    <span class="label string"></span></p>
                 Placeholder value for items which are not 'visible', in case they don't already have a value set.</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.source]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.source
+                    <span class="label string"></span></p>
                 Source attribute. When an item is 'visible', use this attribute's value to set its destination attribute. Defaults to 'data-src'.</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.destination]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.destination
+                    <span class="label string"></span></p>
                 Destination attribute. Attribute to change when the element is 'visible'. Defaults to 'src'.</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.delay]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">Number</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.delay
+                    <span class="label number"></span></p>
                 Milliseconds to wait before trying to load items. Defaults to 100.</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.delta]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">Number</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.delta
+                    <span class="label number"></span></p>
                 Offset distance in pixels. Determines how far the top of an item must be from the viewport be considered 'visible'. Negative values shrink the considered 'visible' viewport while positive values enlarge it. Defaults to 0.</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.image]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">Boolean</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.image
+                    <span class="label boolean"></span></p>
                 Set to false to make this component do nothing to any elements and just give you the onInsideViewport callback.</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.scrollElement]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">DOMElement</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.scrollElement
+                    <span class="label domelement"></span></p>
                 (advanced) What element is to be listened for the scroll event. Defaults to document.window.</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.touchEvents]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">Boolean</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.touchEvents
+                    <span class="label boolean"></span></p>
                 Subscribe to touch events in addition to scroll events. Useful in mobile safari because 'scroll' events aren't frequent enough. Defaults to true.</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.onInsideViewport]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">Function</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.onInsideViewport
+                    <span class="label function"></span></p>
                 Callback function for when an `item` is 'visible'. Receives an object containing the item's element as an argument.</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.onAfterAttributeChange]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">Function</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.onAfterAttributeChange
+                    <span class="label function"></span></p>
                 (advanced) Callback function when an item's attribute changes. Receives an object containing the item's element as an argument.</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.autoInit]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">Boolean</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.autoInit
+                    <span class="label boolean"></span></p>
                 (advanced) Set to false if you want to start LazyLoad yourself with `reload()`. Defaults to true.</li>
         </ul>
 
@@ -154,13 +116,13 @@ site_root:  ../
 	</section>
 
     <section id="Ink_UI_LazyLoad_1-Ink_UI_LazyLoad_1-destroy" class="box box-function">
-    <h1 class="fw-300">.destroy() 
+    <h1 class="fw-300">.destroy()
     <i>method</i></h1><p class="text">Destroy this component</p>
 
 </section>
 
     <section id="Ink_UI_LazyLoad_1-Ink_UI_LazyLoad_1-reload" class="box box-function">
-    <h1 class="fw-300">.reload() 
+    <h1 class="fw-300">.reload()
     <i>method</i></h1><p class="text">Load or reload the component.<br>Adding the &#39;scroll&#39; event listener if necessary and checks if anything needs to be loaded now.<br><p>You can use this to manually invoke the loading logic without user action.</p></p>
 
 </section>

@@ -28,31 +28,31 @@ site_root:  ../
                 <td>
                     <a href="#Ink_UI_TreeView_1-Ink_UI_TreeView-close">.close</a>
                 </td>
-                <td>Closes one of the tree nodes</td>
+                <td> Closes one of the tree nodes</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_TreeView_1-Ink_UI_TreeView-isOpen">.isOpen</a>
                 </td>
-                <td>Checks if a node is open.</td>
+                <td> Checks if a node is open.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_TreeView_1-Ink_UI_TreeView-isParent">.isParent</a>
                 </td>
-                <td>Checks if a node is a parent.</td>
+                <td> Checks if a node is a parent.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_TreeView_1-Ink_UI_TreeView-open">.open</a>
                 </td>
-                <td>Opens one of the tree nodes</td>
+                <td> Opens one of the tree nodes</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_UI_TreeView_1-Ink_UI_TreeView-toggle">.toggle</a>
                 </td>
-                <td>Toggles a node state</td>
+                <td> Toggles a node state</td>
             </tr></tbody>
     </table>
     
@@ -61,81 +61,55 @@ site_root:  ../
 
 
     <section id="Ink_UI_TreeView_1-Ink_UI_TreeView-TreeView" class="box box-function">
-    <h1 class="fw-300">Ink.UI.TreeView(selector, [options], ) 
+    <h1 class="fw-300">Ink.UI.TreeView(selector, options)
     <i>constructor</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">selector</li><li class="prop">[options]</li>
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         selector</li><li class="prop">
+         options</li>
     </ul>
         <h3>Accepts</h3>
         
         <ul class="params">
-            <li class="level1"><span class="monospace">selector</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">String|DOMElement</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>selector
+                    <span class="label mandatory"></span><span class="label string"></span><span class="label domelement"></span></p>
                 Element or selector.</li>
-            <li class="level1"><p>
-                    <span class="monospace">[options]</span>
-                    
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>options
+                    <span class="label string"></span></p>
                 Options object, containing:</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.node]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.node
+                    <span class="label string"></span></p>
                 Selector for the nodes. Defaults to 'li'.</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.children]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.children
+                    <span class="label string"></span></p>
                 Selector for the children. Defaults to 'ul'.</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.parentClass]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.parentClass
+                    <span class="label string"></span></p>
                 CSS classes to be added to parent nodes. Defaults to 'parent'.</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.openClass]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.openClass
+                    <span class="label string"></span></p>
                 CSS classes to be added to the icon when a parent is open. Defaults to 'fa fa-minus-circle'.</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.closedClass]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.closedClass
+                    <span class="label string"></span></p>
                 CSS classes to be added to the icon when a parent is closed. Defaults to 'fa fa-plus-circle'.</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.hideClass]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.hideClass
+                    <span class="label string"></span></p>
                 CSS Class to toggle visibility of the children. Defaults to 'hide-all'.</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.iconTag]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.iconTag
+                    <span class="label string"></span></p>
                 The name of icon tag. The component tries to find a tag with that name as a direct child of the node. If it doesn't find it, it creates it. Defaults to 'i'.</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.stopDefault]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">Boolean</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.stopDefault
+                    <span class="label boolean"></span></p>
                 Flag to stops the default behavior of the click handler. Defaults to true.</li>
         </ul>
 <p class="example-title">Example</p>
@@ -176,90 +150,90 @@ site_root:  ../
 	</section>
 
     <section id="Ink_UI_TreeView_1-Ink_UI_TreeView-close" class="box box-function">
-    <h1 class="fw-300">.close(node) 
+    <h1 class="fw-300">.close(node)
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">node</li>
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         node</li>
     </ul><p class="text">Closes one of the tree nodes<br><p>Make sure you pass the node&#39;s DOMElement</p></p>
         <h3>Accepts</h3>
         
         <ul class="params">
-            <li class="level1"><span class="monospace">node</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">DOMElement</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>node
+                    <span class="label mandatory"></span><span class="label domelement"></span></p>
                 The node you wish to close.</li>
         </ul>
 
 </section>
 
     <section id="Ink_UI_TreeView_1-Ink_UI_TreeView-isOpen" class="box box-function">
-    <h1 class="fw-300">.isOpen(node) 
+    <h1 class="fw-300">.isOpen(node)
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">node</li>
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         node</li>
     </ul><p class="text">Checks if a node is open.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
-            <li class="level1"><span class="monospace">node</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">DOMElement</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>node
+                    <span class="label mandatory"></span><span class="label domelement"></span></p>
                 The tree node to check</li>
         </ul>
 
 </section>
 
     <section id="Ink_UI_TreeView_1-Ink_UI_TreeView-isParent" class="box box-function">
-    <h1 class="fw-300">.isParent(node) 
+    <h1 class="fw-300">.isParent(node)
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">node</li>
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         node</li>
     </ul><p class="text">Checks if a node is a parent.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
-            <li class="level1"><span class="monospace">node</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">DOMElement</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>node
+                    <span class="label mandatory"></span><span class="label domelement"></span></p>
                 Node to check</li>
         </ul>
 
 </section>
 
     <section id="Ink_UI_TreeView_1-Ink_UI_TreeView-open" class="box box-function">
-    <h1 class="fw-300">.open(node) 
+    <h1 class="fw-300">.open(node)
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">node</li>
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         node</li>
     </ul><p class="text">Opens one of the tree nodes<br><p>Make sure you pass the node&#39;s DOMElement</p></p>
         <h3>Accepts</h3>
         
         <ul class="params">
-            <li class="level1"><span class="monospace">node</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">DOMElement</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>node
+                    <span class="label mandatory"></span><span class="label domelement"></span></p>
                 The node you wish to open.</li>
         </ul>
 
 </section>
 
     <section id="Ink_UI_TreeView_1-Ink_UI_TreeView-toggle" class="box box-function">
-    <h1 class="fw-300">.toggle(node) 
+    <h1 class="fw-300">.toggle(node)
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">node</li>
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         node</li>
     </ul><p class="text">Toggles a node state</p>
         <h3>Accepts</h3>
         
         <ul class="params">
-            <li class="level1"><span class="monospace">node</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">DOMElement</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>node
+                    <span class="label mandatory"></span><span class="label domelement"></span></p>
                 The node to toggle.</li>
         </ul>
 

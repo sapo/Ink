@@ -31,70 +31,51 @@ site_root:  ../
 
 
     <section id="Ink_Net_JsonP_1-Ink_Net_JsonP-JsonP" class="box box-function">
-    <h1 class="fw-300">Ink.Net.JsonP(uri, options, ) 
+    <h1 class="fw-300">Ink.Net.JsonP(uri, options)
     <i>constructor</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">uri</li><li class="prop">options</li>
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         uri</li><li class="prop mandatory">
+         options</li>
     </ul>
         <h3>Accepts</h3>
         
         <ul class="params">
-            <li class="level1"><span class="monospace">uri</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>uri
+                    <span class="label mandatory"></span><span class="label string"></span></p>
                 Request URL</li>
-            <li class="level1"><span class="monospace">options</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>options
+                    <span class="label mandatory"></span><span class="label object"></span></p>
                 Request options</li>
-            <li class="level2"><span class="monospace">options.onSuccess</span>
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">Function</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.onSuccess
+                    <span class="label mandatory"></span><span class="label function"></span></p>
                 Success callback</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.onFailure]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">Function</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.onFailure
+                    <span class="label function"></span></p>
                 Failure callback</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.failureObj]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">Object</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.failureObj
+                    <span class="label object"></span></p>
                 Object to be passed as argument to failure callback</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.timeout]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">Number</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.timeout
+                    <span class="label number"></span></p>
                 Timeout for request fail, in seconds. defaults to 10</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.params]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">Object</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.params
+                    <span class="label object"></span></p>
                 Object with the parameters and respective values to unfold</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.callbackParam]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.callbackParam
+                    <span class="label string"></span></p>
                 Parameter to use as callback. defaults to 'jsoncallback'</li>
-            <li class="level2"><p>
-                    <span class="monospace">[options.internalCallback]</span>
-                    
-                    
-                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level2">
+                <p>options.internalCallback
+                    <span class="label string"></span></p>
                 Name of the callback function stored in the Ink.Net.JsonP object.</li>
         </ul>
 
