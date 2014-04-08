@@ -836,42 +836,61 @@ span.label:after {
   -ms-border-radius: 2px;
   -o-border-radius: 2px;
   border-radius: 2px;
+  color: white;
+  text-transform: uppercase;
 }
 span.label.mandatory:after {
   background: #d64c4c;
-  color: white;
   content: "Mandatory";
-  text-transform: uppercase;
 }
 span.label.breakpoint-aware:after {
   background: #77b451;
-  color: white;
   content: "Breakpoint aware";
-  text-transform: uppercase;
 }
 span.label.context-aware:after {
   background: #77b451;
-  color: white;
   content: "Context aware";
-  text-transform: uppercase;
 }
 span.label.halves-quarters:after {
   background: #ffb43f;
-  color: white;
   content: "Double, Half & Quarter";
-  text-transform: uppercase;
 }
 span.label.js:after {
   background: #4b97e3;
-  color: white;
   content: "JavaScript";
-  text-transform: uppercase;
 }
 span.label.flexbox:after {
   background: #3fb2b2;
-  color: white;
   content: "Flexbox";
-  text-transform: uppercase;
+}
+span.label.string:after {
+  content: "String";
+  background: #4b97e3;
+}
+span.label.selector:after {
+  content: "Selector";
+  background: #77b451;
+}
+span.label.number:after {
+  content: "number";
+  background: #ffb43f;
+}
+span.label.domelement:after {
+  content: "DOMElement";
+  background: black;
+  text-transform: none;
+}
+span.label.object:after {
+  content: "object";
+  background: #3fb2b2;
+}
+span.label.array:after {
+  content: "Array";
+  background: #a66d14;
+}
+span.label.function:after {
+  content: "Function";
+  background: #7a6ed8;
 }
 
 p.example-title {
