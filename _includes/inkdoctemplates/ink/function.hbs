@@ -9,7 +9,7 @@
             .{{~name~}}
         {{~/ifvalue~}}
     {{~/if~}}
-    ({{#foreach params}}{{#if isFirstLevel}}{{#if isOptional}}[{{/if}}{{name}}{{#if isOptional}}]{{/if}}{{#unless $last}}, {{/unless}}{{/if}}{{/foreach}}) 
+    ({{#each params}}{{#if isFirstLevel}}{{#if @index}}, {{/if}}{{name}}{{/if}}{{/each}})
     {{#if isConstructor~}}
         <i>constructor</i>
     {{~else~}}
@@ -52,22 +52,13 @@
         <ul class="params">
         {{~#each params}}
             <li class="level{{~countLevel name~}}">
-                {{~#if isOptional~}}
                 <p>
-                    <span class="monospace">[{{~name}}]</span>
-                    {{else~}}
-                    <span class="monospace">{{~name}}</span>
-                    {{~/if}}
-                    
-                    <!--<li class="level{{~countLevel name~}}">-->
-                    {{~#if type~}}
-                    <span class="ink-label orange">{{type}}</span> 
-                    {{~/if~}}
+                    <span class="monospace {{#unless isOptional}}mandatory{{/unless}}">{{~name}}</span>
+                    {{~#if type~}}{{#each type}}<span class="ink-label {{toLowerCase this}}"></span>{{/each}}{{~/if~}}
                 </p>
                 {{#if defaultValue~}}
                     {{~defaultValue~}}
                 {{~/if~}}
-                <!--</label>-->
                 {{#if description~}}
                     {{~{description}~}}
                 {{~/if~}}
@@ -79,7 +70,8 @@
     <h3>Returns</h3>
     <ul class="params">
         <li class="return">
-            <p>{{~#if return.type}}<code>{{~return.type~}}</code>{{~/if~}}</p>
+            <p>{{~#if return.type}}{{#each return.type}}<span class="ink-label {{toLowerCase this}}"></span> {{/each}}
+{{~/if~}}</p>
         
             {{~#if return.description~}}
                 {{~{return.description}~}}
