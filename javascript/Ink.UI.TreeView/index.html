@@ -5,7 +5,7 @@ description: Elements in a tree structure
 site_root:  ../
 ---
     <section>
-        <h1 class="fw-300">Ink.UI.TreeView_1<small>version:1</small></h1>
+        <h1 class="fw-300">Ink.UI.TreeView_1</h1>
 
 <p>Shows elements in a tree structure which can be expanded and contracted.<br>A TreeView is built with &quot;node&quot;s and &quot;children&quot;. &quot;node&quot;s are <code>li</code> tags, and &quot;children&quot; are <code>ul</code> tags.<br>You can build your TreeView out of a regular UL and  LI element structure which you already use to display lists with several levels.<br>If you want a node to be open when the TreeView is built, just add the data-open=&quot;true&quot; attribute to it.</p>
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space">
@@ -67,57 +67,77 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">selector</li><li class="prop">[options]</li>
     </ul>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">selector
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String|DOMElement</span></label>
-                Element or selector.</dd>
-            <dt class="level1"><label class="monospace">[options]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Options object, containing:</dd>
-            <dt class="level2"><label class="monospace">[options.node]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                Selector for the nodes. Defaults to 'li'.</dd>
-            <dt class="level2"><label class="monospace">[options.children]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                Selector for the children. Defaults to 'ul'.</dd>
-            <dt class="level2"><label class="monospace">[options.parentClass]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                CSS classes to be added to parent nodes. Defaults to 'parent'.</dd>
-            <dt class="level2"><label class="monospace">[options.openClass]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                CSS classes to be added to the icon when a parent is open. Defaults to 'fa fa-minus-circle'.</dd>
-            <dt class="level2"><label class="monospace">[options.closedClass]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                CSS classes to be added to the icon when a parent is closed. Defaults to 'fa fa-plus-circle'.</dd>
-            <dt class="level2"><label class="monospace">[options.hideClass]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                CSS Class to toggle visibility of the children. Defaults to 'hide-all'.</dd>
-            <dt class="level2"><label class="monospace">[options.iconTag]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                The name of icon tag. The component tries to find a tag with that name as a direct child of the node. If it doesn't find it, it creates it. Defaults to 'i'.</dd>
-            <dt class="level2"><label class="monospace">[options.stopDefault]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Boolean</span></label>
-                Flag to stops the default behavior of the click handler. Defaults to true.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">selector</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String|DOMElement</span></p>
+                <!--</label>-->
+                Element or selector.</li>
+            <li class="level1"><p>
+                    <span class="monospace">[options]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Options object, containing:</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.node]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Selector for the nodes. Defaults to 'li'.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.children]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Selector for the children. Defaults to 'ul'.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.parentClass]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                CSS classes to be added to parent nodes. Defaults to 'parent'.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.openClass]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                CSS classes to be added to the icon when a parent is open. Defaults to 'fa fa-minus-circle'.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.closedClass]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                CSS classes to be added to the icon when a parent is closed. Defaults to 'fa fa-plus-circle'.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.hideClass]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                CSS Class to toggle visibility of the children. Defaults to 'hide-all'.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.iconTag]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                The name of icon tag. The component tries to find a tag with that name as a direct child of the node. If it doesn't find it, it creates it. Defaults to 'i'.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.stopDefault]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Boolean</span></p>
+                <!--</label>-->
+                Flag to stops the default behavior of the click handler. Defaults to true.</li>
+        </ul>
 <p class="example-title">Example</p>
   
 {% highlight html %}{% raw %}
@@ -162,12 +182,14 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">node</li>
     </ul><p class="text">Closes one of the tree nodes<br><p>Make sure you pass the node&#39;s DOMElement</p></p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">node
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement</span></label>
-                The node you wish to close.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">node</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement</span></p>
+                <!--</label>-->
+                The node you wish to close.</li>
+        </ul>
 
 </section>
 
@@ -178,12 +200,14 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">node</li>
     </ul><p class="text">Checks if a node is open.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">node
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement</span></label>
-                The tree node to check</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">node</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement</span></p>
+                <!--</label>-->
+                The tree node to check</li>
+        </ul>
 
 </section>
 
@@ -194,12 +218,14 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">node</li>
     </ul><p class="text">Checks if a node is a parent.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">node
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement</span></label>
-                Node to check</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">node</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement</span></p>
+                <!--</label>-->
+                Node to check</li>
+        </ul>
 
 </section>
 
@@ -210,12 +236,14 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">node</li>
     </ul><p class="text">Opens one of the tree nodes<br><p>Make sure you pass the node&#39;s DOMElement</p></p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">node
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement</span></label>
-                The node you wish to open.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">node</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement</span></p>
+                <!--</label>-->
+                The node you wish to open.</li>
+        </ul>
 
 </section>
 
@@ -226,12 +254,14 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">node</li>
     </ul><p class="text">Toggles a node state</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">node
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement</span></label>
-                The node to toggle.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">node</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement</span></p>
+                <!--</label>-->
+                The node to toggle.</li>
+        </ul>
 
 </section>
 

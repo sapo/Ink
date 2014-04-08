@@ -5,7 +5,7 @@ description: Validation Utilities
 site_root:  ../
 ---
     <section>
-        <h1 class="fw-300">Ink.Util.Validator_1<small>version:1</small></h1>
+        <h1 class="fw-300">Ink.Util.Validator_1</h1>
 
 
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space"><caption>Functions</caption>
@@ -150,17 +150,21 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">s</li><li class="prop">[options]</li>
     </ul><p class="text">Checks if a field only contains only ASCII alphanumeric characters. <br>Takes options for allowing singleline whitespace, cross-line whitespace and punctuation.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">s
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                The validation string</dd>
-            <dt class="level1"><label class="monospace">[options]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Object</span>{}</label>
-                Optional configuration object. See createRegexp</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">s</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                The validation string</li>
+            <li class="level1"><p>
+                    <span class="monospace">[options]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
+                {}<!--</label>-->
+                Optional configuration object. See createRegexp</li>
+        </ul>
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_Util_Validator_ascii.html %}
@@ -173,17 +177,21 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">s</li><li class="prop">[groups]</li>
     </ul><p class="text">Checks if a field has the required groups.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">s
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                The validation string</dd>
-            <dt class="level1"><label class="monospace">[groups]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Object</span>{}</label>
-                What groups are included. See createRegexp</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">s</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                The validation string</li>
+            <li class="level1"><p>
+                    <span class="monospace">[groups]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
+                {}<!--</label>-->
+                What groups are included. See createRegexp</li>
+        </ul>
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_Util_Validator_checkCharacterGroups.html %}
@@ -196,26 +204,30 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">cp1</li><li class="prop">cp2</li><li class="prop">returnBothResults</li>
     </ul><p class="text">Validates if a zip code is valid in Portugal</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">cp1
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Number|String</span></label>
-                </dd>
-            <dt class="level1"><label class="monospace">cp2
-            </dt>
-            <dd class="level1"><span class="ink-label orange">optional Number|String</span></label>
-                </dd>
-            <dt class="level1"><label class="monospace">returnBothResults
-            </dt>
-            <dd class="level1"><span class="ink-label orange">optional Boolean</span></label>
-                </dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">cp1</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Number|String</span></p>
+                <!--</label>-->
+                </li>
+            <li class="level1"><span class="monospace">cp2</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">optional Number|String</span></p>
+                <!--</label>-->
+                </li>
+            <li class="level1"><span class="monospace">returnBothResults</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">optional Boolean</span></p>
+                <!--</label>-->
+                </li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Boolean</code></dt>
-        <dd>True if it's a valid zip code
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Boolean</code></p>True if it's a valid zip code
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -229,12 +241,14 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">Groups*</li>
     </ul><p class="text">Creates a regular expression for several character groups.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">Groups*
-            </dt>
-            <dd class="level1"></label>
-                {Object}</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">Groups*</span>
+                    
+                    <!--<li class="level1">--></p>
+                <!--</label>-->
+                {Object}</li>
+        </ul>
 
 </section>
 
@@ -245,18 +259,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">phone</li>
     </ul><p class="text">Checks if a phone is valid in Angola</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">phone
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Number</span></label>
-                Phone number to be checked</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">phone</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Number</span></p>
+                <!--</label>-->
+                Phone number to be checked</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Boolean</code></dt>
-        <dd>True if it's a valid Angolan Phone
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Boolean</code></p>True if it's a valid Angolan Phone
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -270,18 +286,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">phone</li>
     </ul><p class="text">Checks if a phone is valid in Cabo Verde</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">phone
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Number</span></label>
-                Phone number to be checked</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">phone</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Number</span></p>
+                <!--</label>-->
+                Phone number to be checked</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Boolean</code></dt>
-        <dd>True if it's a valid Cape Verdean Phone
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Boolean</code></p>True if it's a valid Cape Verdean Phone
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -295,18 +313,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">str</li>
     </ul><p class="text">Checks if a string is a valid color</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">str
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Color string to be checked</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">str</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Color string to be checked</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Boolean</code></dt>
-        <dd>True if it's a valid color string
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Boolean</code></p>True if it's a valid color string
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -320,22 +340,25 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">num</li><li class="prop">creditCardType</li>
     </ul><p class="text">Checks if a number is of a specific credit card type</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">num
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Number to be validates</dd>
-            <dt class="level1"><label class="monospace">creditCardType
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String|Array</span></label>
-                Credit card type. See _creditCardSpecs for the list of supported values.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">num</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Number to be validates</li>
+            <li class="level1"><span class="monospace">creditCardType</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String|Array</span></p>
+                <!--</label>-->
+                Credit card type. See _creditCardSpecs for the list of supported values.</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Boolean</code></dt>
-        <dd>
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Boolean</code></p>
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -349,22 +372,25 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">format</li><li class="prop">dateStr</li>
     </ul><p class="text">Checks if a date is valid in a given format</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">format
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Format defined in _dateParsers</dd>
-            <dt class="level1"><label class="monospace">dateStr
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Date string</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">format</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Format defined in _dateParsers</li>
+            <li class="level1"><span class="monospace">dateStr</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Date string</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Boolean</code></dt>
-        <dd>True if it's a valid date and in the specified format
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Boolean</code></p>True if it's a valid date and in the specified format
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -378,22 +404,25 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">value</li><li class="prop">ipType</li>
     </ul><p class="text">Checks if the value is a valid IP.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">value
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Value to be checked</dd>
-            <dt class="level1"><label class="monospace">ipType
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Type of IP to be validated. The values are: ipv4, ipv6. By default is ipv4.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">value</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Value to be checked</li>
+            <li class="level1"><span class="monospace">ipType</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Type of IP to be validated. The values are: ipv4, ipv6. By default is ipv4.</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Boolean</code></dt>
-        <dd>True if the value is a valid IP address. False if not.
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Boolean</code></p>True if the value is a valid IP address. False if not.
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -407,18 +436,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">phone</li>
     </ul><p class="text">Checks if a phone is valid in Mozambique</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">phone
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Number</span></label>
-                Phone number to be checked</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">phone</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Number</span></p>
+                <!--</label>-->
+                Phone number to be checked</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Boolean</code></dt>
-        <dd>True if it's a valid Mozambican Phone
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Boolean</code></p>True if it's a valid Mozambican Phone
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -432,18 +463,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">phone</li>
     </ul><p class="text">Checks if a phone is valid in Portugal</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">phone
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Number</span></label>
-                Phone number to be checked</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">phone</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Number</span></p>
+                <!--</label>-->
+                Phone number to be checked</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Boolean</code></dt>
-        <dd>True if it's a valid Portuguese Phone
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Boolean</code></p>True if it's a valid Portuguese Phone
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -457,23 +490,27 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">phone</li><li class="prop">[countryCode]</li>
     </ul><p class="text">Checks if a number is a phone number.<br>This method validates the number in all country codes available the ones set in the second param</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">phone
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Phone number to validate</dd>
-            <dt class="level1"><label class="monospace">[countryCode]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String|Array</span></label>
-                Country code or  array of countries to validate</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">phone</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Phone number to validate</li>
+            <li class="level1"><p>
+                    <span class="monospace">[countryCode]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String|Array</span></p>
+                <!--</label>-->
+                Country code or  array of countries to validate</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Boolean</code></dt>
-        <dd>True if it's a valid phone in any country available
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Boolean</code></p>True if it's a valid phone in any country available
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -487,18 +524,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">phone</li>
     </ul><p class="text">Alias function for isPTPhone</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">phone
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Number</span></label>
-                Phone number to be checked</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">phone</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Number</span></p>
+                <!--</label>-->
+                Phone number to be checked</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Boolean</code></dt>
-        <dd>True if it's a valid Portuguese Phone
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Boolean</code></p>True if it's a valid Portuguese Phone
+        </li>
+    </ul>
     
 
 </section>
@@ -510,18 +549,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">phone</li>
     </ul><p class="text">Checks if a phone is valid in Timor</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">phone
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Number</span></label>
-                Phone number to be checked</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">phone</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Number</span></p>
+                <!--</label>-->
+                Phone number to be checked</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Boolean</code></dt>
-        <dd>True if it's a valid phone from Timor-Leste
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Boolean</code></p>True if it's a valid phone from Timor-Leste
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -535,17 +576,21 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">s</li><li class="prop">[options]</li>
     </ul><p class="text">Checks if a field only contains latin-1 alphanumeric characters. <br>Takes options for allowing singleline whitespace, cross-line whitespace and punctuation.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">s
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                The validation string</dd>
-            <dt class="level1"><label class="monospace">[options]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Object</span>{}</label>
-                Optional configuration object. See createRegexp</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">s</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                The validation string</li>
+            <li class="level1"><p>
+                    <span class="monospace">[options]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
+                {}<!--</label>-->
+                Optional configuration object. See createRegexp</li>
+        </ul>
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_Util_Validator_latin1.html %}
@@ -558,18 +603,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">email</li>
     </ul><p class="text">Checks if an email is valid</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">email
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                </dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">email</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                </li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Boolean</code></dt>
-        <dd>True if it's valid
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Boolean</code></p>True if it's valid
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -583,52 +630,70 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">numb</li><li class="prop">[options]</li>
     </ul><p class="text">Checks if a number is a valid</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">numb
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                The number</dd>
-            <dt class="level1"><label class="monospace">[options]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Object</span></label>
-                Further options</dd>
-            <dt class="level2"><label class="monospace">[options.decimalSep]
-                
-            </dt>
-            <dd class="level2">&#x27;.&#x27;</label>
-                Allow decimal separator.</dd>
-            <dt class="level2"><label class="monospace">[options.thousandSep]
-                
-            </dt>
-            <dd class="level2">&quot;,&quot;</label>
-                Strip this character from the number.</dd>
-            <dt class="level2"><label class="monospace">[options.negative]
-                
-            </dt>
-            <dd class="level2">false</label>
-                Allow negative numbers.</dd>
-            <dt class="level2"><label class="monospace">[options.decimalPlaces]
-                
-            </dt>
-            <dd class="level2">null</label>
-                Maximum number of decimal places. Use `0` for an integer number.</dd>
-            <dt class="level2"><label class="monospace">[options.max]
-                
-            </dt>
-            <dd class="level2">null</label>
-                Maximum number</dd>
-            <dt class="level2"><label class="monospace">[options.min]
-                
-            </dt>
-            <dd class="level2">null</label>
-                Minimum number</dd>
-            <dt class="level2"><label class="monospace">[options.returnNumber]
-                
-            </dt>
-            <dd class="level2">false</label>
-                When this option is true, return the number itself when the value is valid.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">numb</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                The number</li>
+            <li class="level1"><p>
+                    <span class="monospace">[options]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                Further options</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.decimalSep]</span>
+                    
+                    
+                    <!--<li class="level2">--></p>
+                &#x27;.&#x27;<!--</label>-->
+                Allow decimal separator.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.thousandSep]</span>
+                    
+                    
+                    <!--<li class="level2">--></p>
+                &quot;,&quot;<!--</label>-->
+                Strip this character from the number.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.negative]</span>
+                    
+                    
+                    <!--<li class="level2">--></p>
+                false<!--</label>-->
+                Allow negative numbers.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.decimalPlaces]</span>
+                    
+                    
+                    <!--<li class="level2">--></p>
+                null<!--</label>-->
+                Maximum number of decimal places. Use `0` for an integer number.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.max]</span>
+                    
+                    
+                    <!--<li class="level2">--></p>
+                null<!--</label>-->
+                Maximum number</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.min]</span>
+                    
+                    
+                    <!--<li class="level2">--></p>
+                null<!--</label>-->
+                Minimum number</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.returnNumber]</span>
+                    
+                    
+                    <!--<li class="level2">--></p>
+                false<!--</label>-->
+                When this option is true, return the number itself when the value is valid.</li>
+        </ul>
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_Util_Validator_number.html %}
@@ -641,17 +706,21 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">s</li><li class="prop">[options]</li>
     </ul><p class="text">Checks if a field contains unicode printable characters.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">s
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                The validation string</dd>
-            <dt class="level1"><label class="monospace">[options]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Object</span>{}</label>
-                Optional configuration object. See createRegexp</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">s</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                The validation string</li>
+            <li class="level1"><p>
+                    <span class="monospace">[options]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
+                {}<!--</label>-->
+                Optional configuration object. See createRegexp</li>
+        </ul>
 
 </section>
 
@@ -662,23 +731,27 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">url</li><li class="prop">[full]</li>
     </ul><p class="text">Checks if an url is valid</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">url
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                URL to be checked</dd>
-            <dt class="level1"><label class="monospace">[full]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Boolean</span></label>
-                If true, validates a full URL (one that should start with 'http')</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">url</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                URL to be checked</li>
+            <li class="level1"><p>
+                    <span class="monospace">[full]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Boolean</span></p>
+                <!--</label>-->
+                If true, validates a full URL (one that should start with 'http')</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Boolean</code></dt>
-        <dd>True if valid
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Boolean</code></p>True if valid
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->

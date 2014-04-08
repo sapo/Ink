@@ -5,7 +5,7 @@ description: CSS Utilities and toolbox
 site_root:  ../
 ---
     <section>
-        <h1 class="fw-300">Ink.Dom.Css_1<small>version:1</small></h1>
+        <h1 class="fw-300">Ink.Dom.Css_1</h1>
 
 
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space"><caption>Functions</caption>
@@ -156,16 +156,19 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">elm</li><li class="prop">className</li>
     </ul><p class="text">Adds a class to a given element</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">elm
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement|String</span></label>
-                DOM element or element id</dd>
-            <dt class="level1"><label class="monospace">className
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String|Array</span></label>
-                Classes</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">elm</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement|String</span></p>
+                <!--</label>-->
+                DOM element or element id</li>
+            <li class="level1"><span class="monospace">className</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String|Array</span></p>
+                <!--</label>-->
+                Classes</li>
+        </ul>
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_Dom_Css_addClassName.html %}
@@ -178,20 +181,24 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">elm</li><li class="prop">className</li><li class="prop">addRemState</li>
     </ul><p class="text">Adds of removes a class.<br>Depending on addRemState, this method either adds a class if it&#39;s true or removes if if false.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">elm
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement|string</span></label>
-                DOM element or element id</dd>
-            <dt class="level1"><label class="monospace">className
-            </dt>
-            <dd class="level1"><span class="ink-label orange">string</span></label>
-                class name to add or remove.</dd>
-            <dt class="level1"><label class="monospace">addRemState
-            </dt>
-            <dd class="level1"><span class="ink-label orange">boolean</span></label>
-                Whether to add or remove. `true` to add, `false` to remove.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">elm</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement|string</span></p>
+                <!--</label>-->
+                DOM element or element id</li>
+            <li class="level1"><span class="monospace">className</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">string</span></p>
+                <!--</label>-->
+                class name to add or remove.</li>
+            <li class="level1"><span class="monospace">addRemState</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">boolean</span></p>
+                <!--</label>-->
+                Whether to add or remove. `true` to add, `false` to remove.</li>
+        </ul>
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_Dom_Css_addRemoveClassName.html %}
@@ -204,30 +211,38 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">selector</li><li class="prop">style</li><li class="prop">options</li>
     </ul><p class="text">Injects style tags with rules to the page.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">selector
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                The css selector for the rule</dd>
-            <dt class="level1"><label class="monospace">style
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                The content of the style rule</dd>
-            <dt class="level1"><label class="monospace">options
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Object</span></label>
-                Options for the tag</dd>
-            <dt class="level2"><label class="monospace">[options.type]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span>&#x27;text/css&#x27;</label>
-                File type</dd>
-            <dt class="level2"><label class="monospace">[options.force]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Boolean</span>false</label>
-                If true, the style tag will be appended to end of head</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">selector</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                The css selector for the rule</li>
+            <li class="level1"><span class="monospace">style</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                The content of the style rule</li>
+            <li class="level1"><span class="monospace">options</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                Options for the tag</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.type]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                &#x27;text/css&#x27;<!--</label>-->
+                File type</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.force]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Boolean</span></p>
+                false<!--</label>-->
+                If true, the style tag will be appended to end of head</li>
+        </ul>
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_Dom_Css_appendStyleTag.html %}
@@ -240,31 +255,40 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">path</li><li class="prop">options</li>
     </ul><p class="text">Injects an external link tag.<br>This method add a stylesheet to the head of a page</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">path
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                File path</dd>
-            <dt class="level1"><label class="monospace">options
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Object</span></label>
-                Options for the tag</dd>
-            <dt class="level2"><label class="monospace">[options.media]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span>&#x27;screen&#x27;</label>
-                Media type</dd>
-            <dt class="level2"><label class="monospace">[options.type]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span>&#x27;text/css&#x27;</label>
-                File type</dd>
-            <dt class="level2"><label class="monospace">[options.force]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Boolean</span>false</label>
-                If true, tag will be appended to end of head</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">path</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                File path</li>
+            <li class="level1"><span class="monospace">options</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                Options for the tag</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.media]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                &#x27;screen&#x27;<!--</label>-->
+                Media type</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.type]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                &#x27;text/css&#x27;<!--</label>-->
+                File type</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.force]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Boolean</span></p>
+                false<!--</label>-->
+                If true, tag will be appended to end of head</li>
+        </ul>
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_Dom_Css_appendStylesheet.html %}
@@ -277,17 +301,21 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">cssURI</li><li class="prop">[callback]</li>
     </ul><p class="text">Injects an external link tag.<br>Loads CSS via LINK element inclusion in HEAD (skips append if already there)<br><p>Works similarly to appendStylesheet but:<br>  supports optional callback which gets invoked once the CSS has been applied</p></p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">cssURI
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                URI of the CSS to load, if empty ignores and just calls back directly</dd>
-            <dt class="level1"><label class="monospace">[callback]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Function(cssURI)</span></label>
-                optional callback which will be called once the CSS is loaded</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">cssURI</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                URI of the CSS to load, if empty ignores and just calls back directly</li>
+            <li class="level1"><p>
+                    <span class="monospace">[callback]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Function(cssURI)</span></p>
+                <!--</label>-->
+                optional callback which will be called once the CSS is loaded</li>
+        </ul>
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_Dom_Css_appendStylesheetCb.html %}
@@ -300,24 +328,29 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">elm</li><li class="prop">className</li><li class="prop">timeout</li><li class="prop">negate</li>
     </ul><p class="text">Blinks a class from an element<br>Add and removes the class from the element with a timeout, so it blinks</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">elm
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement|String</span></label>
-                DOM element or element id</dd>
-            <dt class="level1"><label class="monospace">className
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String|Array</span></label>
-                Class name(s) to blink</dd>
-            <dt class="level1"><label class="monospace">timeout
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Number</span></label>
-                timeout in ms between adding and removing, default 100 ms</dd>
-            <dt class="level1"><label class="monospace">negate
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Boolean</span></label>
-                is true, class is removed then added</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">elm</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement|String</span></p>
+                <!--</label>-->
+                DOM element or element id</li>
+            <li class="level1"><span class="monospace">className</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String|Array</span></p>
+                <!--</label>-->
+                Class name(s) to blink</li>
+            <li class="level1"><span class="monospace">timeout</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Number</span></p>
+                <!--</label>-->
+                timeout in ms between adding and removing, default 100 ms</li>
+            <li class="level1"><span class="monospace">negate</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Boolean</span></p>
+                <!--</label>-->
+                is true, class is removed then added</li>
+        </ul>
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_Dom_Css_blinkClass.html %}
@@ -330,31 +363,40 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">selector</li><li class="prop">delta</li><li class="prop">[op]</li><li class="prop">[minVal]</li><li class="prop">[maxVal]</li>
     </ul><p class="text">Change the font size of elements.<br>Changes the font size of the elements which match the given CSS rule<br>For this function to work, the CSS file must be in the same domain than the host page, otherwise JS can&#39;t access it.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">selector
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                CSS selector rule</dd>
-            <dt class="level1"><label class="monospace">delta
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Number</span></label>
-                Number of pixels to change on font-size</dd>
-            <dt class="level1"><label class="monospace">[op]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Supported operations are '+' and '*'. defaults to '+'</dd>
-            <dt class="level1"><label class="monospace">[minVal]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Number</span></label>
-                If result gets smaller than minVal, change does not occurr</dd>
-            <dt class="level1"><label class="monospace">[maxVal]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Number</span></label>
-                If result gets bigger  than maxVal, change does not occurr</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">selector</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                CSS selector rule</li>
+            <li class="level1"><span class="monospace">delta</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Number</span></p>
+                <!--</label>-->
+                Number of pixels to change on font-size</li>
+            <li class="level1"><p>
+                    <span class="monospace">[op]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Supported operations are '+' and '*'. defaults to '+'</li>
+            <li class="level1"><p>
+                    <span class="monospace">[minVal]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Number</span></p>
+                <!--</label>-->
+                If result gets smaller than minVal, change does not occurr</li>
+            <li class="level1"><p>
+                    <span class="monospace">[maxVal]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Number</span></p>
+                <!--</label>-->
+                If result gets bigger  than maxVal, change does not occurr</li>
+        </ul>
 
 </section>
 
@@ -365,18 +407,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">dec</li>
     </ul><p class="text">Converts decimal to hexadecimal values<br>Useful to convert colors to their hexadecimal representation.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">dec
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Either a single decimal value, an rgb(r, g, b) string or an Object with r, g and b properties</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">dec</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Either a single decimal value, an rgb(r, g, b) string or an Object with r, g and b properties</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>String</code></dt>
-        <dd>Hexadecimal value
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>String</code></p>Hexadecimal value
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -390,22 +434,25 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">selector</li><li class="prop">property</li>
     </ul><p class="text">Get a single property from a stylesheet.<br>Use this to obtain the value of a CSS property (searched from loaded CSS documents)</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">selector
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                a CSS rule. must be an exact match</dd>
-            <dt class="level1"><label class="monospace">property
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                a CSS property</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">selector</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                a CSS rule. must be an exact match</li>
+            <li class="level1"><span class="monospace">property</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                a CSS property</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>String</code></dt>
-        <dd>value of the found property, or null if it wasn't matched
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>String</code></p>value of the found property, or null if it wasn't matched
+        </li>
+    </ul>
     
 
 </section>
@@ -417,22 +464,25 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">elm</li><li class="prop">style</li>
     </ul><p class="text">Gets the value for an element&#39;s style attribute</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">elm
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement|String</span></label>
-                DOM element or element id</dd>
-            <dt class="level1"><label class="monospace">style
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Which css attribute to fetch</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">elm</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement|String</span></p>
+                <!--</label>-->
+                DOM element or element id</li>
+            <li class="level1"><span class="monospace">style</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Which css attribute to fetch</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"></dt>
-        <dd>Style value
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p></p>Style value
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -446,27 +496,32 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">elm</li><li class="prop">className</li><li class="prop">[all]</li>
     </ul><p class="text">Checks if an element has a class.<br>This method verifies if an element has ONE of a list of classes. If the last argument is flagged as true, instead checks if the element has ALL the classes</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">elm
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement|String</span></label>
-                DOM element or element id</dd>
-            <dt class="level1"><label class="monospace">className
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String|Array</span></label>
-                Class names to test</dd>
-            <dt class="level1"><label class="monospace">[all]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Boolean</span>false</label>
-                If flagged as true, it will check if the element contains ALL the CSS classes</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">elm</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement|String</span></p>
+                <!--</label>-->
+                DOM element or element id</li>
+            <li class="level1"><span class="monospace">className</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String|Array</span></p>
+                <!--</label>-->
+                Class names to test</li>
+            <li class="level1"><p>
+                    <span class="monospace">[all]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Boolean</span></p>
+                false<!--</label>-->
+                If flagged as true, it will check if the element contains ALL the CSS classes</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Boolean</code></dt>
-        <dd>true if a given class is applied to a given element
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Boolean</code></p>true if a given class is applied to a given element
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -480,18 +535,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">hex</li>
     </ul><p class="text">Converts hexadecimal values to decimal<br>Useful to use with CSS colors</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">hex
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                hexadecimal Value with 6, 3, 2 or 1 characters</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">hex</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                hexadecimal Value with 6, 3, 2 or 1 characters</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Number</code></dt>
-        <dd>Object with properties r, g, b if length of number is >= 3 or decimal value instead.
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Number</code></p>Object with properties r, g, b if length of number is >= 3 or decimal value instead.
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -505,12 +562,14 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">elm</li>
     </ul><p class="text">Hides an element.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">elm
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement|String</span></label>
-                DOM element or element id</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">elm</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement|String</span></p>
+                <!--</label>-->
+                DOM element or element id</li>
+        </ul>
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_Dom_Css_hide.html %}
@@ -523,16 +582,19 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">elm</li><li class="prop">className</li>
     </ul><p class="text">Removes a class from a given element</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">elm
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement|String</span></label>
-                DOM element or element id</dd>
-            <dt class="level1"><label class="monospace">className
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String|Array</span></label>
-                Class names to remove. You can either use a space separated string of classnames, comma-separated list or an array</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">elm</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement|String</span></p>
+                <!--</label>-->
+                DOM element or element id</li>
+            <li class="level1"><span class="monospace">className</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String|Array</span></p>
+                <!--</label>-->
+                Class names to remove. You can either use a space separated string of classnames, comma-separated list or an array</li>
+        </ul>
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_Dom_Css_removeClassName.html %}
@@ -545,21 +607,26 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">elm</li><li class="prop">className</li><li class="prop">[add]</li>
     </ul><p class="text">Alias to addRemoveClassName. <br>Utility function, saves many if/elses.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">elm
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement|String</span></label>
-                DOM element or element id</dd>
-            <dt class="level1"><label class="monospace">className
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String|Array</span></label>
-                Class names to add\remove. Comma separated, space separated or simply an Array</dd>
-            <dt class="level1"><label class="monospace">[add]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Boolean</span>false</label>
-                Flag to switch behavior from removal to addition. true to add, false to remove</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">elm</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement|String</span></p>
+                <!--</label>-->
+                DOM element or element id</li>
+            <li class="level1"><span class="monospace">className</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String|Array</span></p>
+                <!--</label>-->
+                Class names to add\remove. Comma separated, space separated or simply an Array</li>
+            <li class="level1"><p>
+                    <span class="monospace">[add]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Boolean</span></p>
+                false<!--</label>-->
+                Flag to switch behavior from removal to addition. true to add, false to remove</li>
+        </ul>
 
 </section>
 
@@ -570,16 +637,19 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">elm</li><li class="prop">value</li>
     </ul><p class="text">Sets the opacity of given element</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">elm
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement|String</span></label>
-                DOM element or element id</dd>
-            <dt class="level1"><label class="monospace">value
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Number</span></label>
-                allows 0 to 1(default mode decimal) or percentage (warning using 0 or 1 will reset to default mode)</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">elm</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement|String</span></p>
+                <!--</label>-->
+                DOM element or element id</li>
+            <li class="level1"><span class="monospace">value</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Number</span></p>
+                <!--</label>-->
+                allows 0 to 1(default mode decimal) or percentage (warning using 0 or 1 will reset to default mode)</li>
+        </ul>
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_Dom_Css_setOpacity.html %}
@@ -592,16 +662,19 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">elm</li><li class="prop">style</li>
     </ul><p class="text">Adds CSS rules to an element&#39;s style attribute.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">elm
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement|String</span></label>
-                DOM element or element id</dd>
-            <dt class="level1"><label class="monospace">style
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Which css attribute to set</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">elm</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement|String</span></p>
+                <!--</label>-->
+                DOM element or element id</li>
+            <li class="level1"><span class="monospace">style</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Which css attribute to set</li>
+        </ul>
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_Dom_Css_setStyle.html %}
@@ -614,17 +687,21 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">elm</li><li class="prop">[forceDisplayProperty]</li>
     </ul><p class="text">Shows an element.<br>Internally it unsets the display property of an element. You can force a specific display property using forceDisplayProperty</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">elm
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement|String</span></label>
-                DOM element or element id</dd>
-            <dt class="level1"><label class="monospace">[forceDisplayProperty]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Css display property to apply on show</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">elm</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement|String</span></p>
+                <!--</label>-->
+                DOM element or element id</li>
+            <li class="level1"><p>
+                    <span class="monospace">[forceDisplayProperty]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Css display property to apply on show</li>
+        </ul>
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_Dom_Css_show.html %}
@@ -637,17 +714,21 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">elm</li><li class="prop">[show]</li>
     </ul><p class="text">Shows or hides an element.<br>If the show parameter is true, it shows the element. Otherwise, hides it.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">elm
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement|String</span></label>
-                DOM element or element id</dd>
-            <dt class="level1"><label class="monospace">[show]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">boolean</span>false</label>
-                Whether to show or hide `elm`.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">elm</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement|String</span></p>
+                <!--</label>-->
+                DOM element or element id</li>
+            <li class="level1"><p>
+                    <span class="monospace">[show]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">boolean</span></p>
+                false<!--</label>-->
+                Whether to show or hide `elm`.</li>
+        </ul>
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_Dom_Css_showHide.html %}
@@ -660,16 +741,19 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">elm</li><li class="prop">forceShow</li>
     </ul><p class="text">Toggles an element visibility.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">elm
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement|String</span></label>
-                DOM element or element id</dd>
-            <dt class="level1"><label class="monospace">forceShow
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Boolean</span></label>
-                Forces showing if element is hidden</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">elm</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement|String</span></p>
+                <!--</label>-->
+                DOM element or element id</li>
+            <li class="level1"><span class="monospace">forceShow</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Boolean</span></p>
+                <!--</label>-->
+                Forces showing if element is hidden</li>
+        </ul>
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_Dom_Css_toggle.html %}
@@ -682,21 +766,26 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">elm</li><li class="prop">className</li><li class="prop">[forceAdd]</li>
     </ul><p class="text">Toggles a class name from a given element</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">elm
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement|String</span></label>
-                DOM element or element id</dd>
-            <dt class="level1"><label class="monospace">className
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Class name</dd>
-            <dt class="level1"><label class="monospace">[forceAdd]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Boolean</span></label>
-                Flag to force adding the the classe names if they don't exist yet.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">elm</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement|String</span></p>
+                <!--</label>-->
+                DOM element or element id</li>
+            <li class="level1"><span class="monospace">className</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Class name</li>
+            <li class="level1"><p>
+                    <span class="monospace">[forceAdd]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Boolean</span></p>
+                <!--</label>-->
+                Flag to force adding the the classe names if they don't exist yet.</li>
+        </ul>
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_Dom_Css_toggleClassName.html %}

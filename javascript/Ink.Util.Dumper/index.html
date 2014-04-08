@@ -5,7 +5,7 @@ description: Dump/Profiling Utilities
 site_root:  ../
 ---
     <section>
-        <h1 class="fw-300">Ink.Util.Dumper_1<small>version:1</small></h1>
+        <h1 class="fw-300">Ink.Util.Dumper_1</h1>
 
 
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space"><caption>Functions</caption>
@@ -54,12 +54,14 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">param</li>
     </ul><p class="text">Alert a variable&#39;s structure.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">param
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Any</span></label>
-                Variable to be dumped.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">param</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Any</span></p>
+                <!--</label>-->
+                Variable to be dumped.</li>
+        </ul>
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_Util_Dumper_alertDump.html %}
@@ -72,17 +74,21 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">param</li><li class="prop">[target]</li>
     </ul><p class="text">Prints variable structure.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">param
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Any</span></label>
-                Variable to be dumped.</dd>
-            <dt class="level1"><label class="monospace">[target]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement|String</span></label>
-                Element to print the dump on.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">param</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Any</span></p>
+                <!--</label>-->
+                Variable to be dumped.</li>
+            <li class="level1"><p>
+                    <span class="monospace">[target]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement|String</span></p>
+                <!--</label>-->
+                Element to print the dump on.</li>
+        </ul>
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_Util_Dumper_printDump.html %}
@@ -95,18 +101,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">param</li>
     </ul><p class="text">Get a variable&#39;s structure.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">param
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Any</span></label>
-                Variable to get the structure.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">param</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Any</span></p>
+                <!--</label>-->
+                Variable to get the structure.</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>String</code></dt>
-        <dd>The variable's structure.
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>String</code></p>The variable's structure.
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -120,12 +128,14 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">param</li>
     </ul><p class="text">Prints the variable structure to a new window.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">param
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Any</span></label>
-                Variable to be dumped.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">param</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Any</span></p>
+                <!--</label>-->
+                Variable to be dumped.</li>
+        </ul>
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_Util_Dumper_windowDump.html %}

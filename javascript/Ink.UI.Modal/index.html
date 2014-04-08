@@ -5,7 +5,7 @@ description: Modal dialog prompts
 site_root:  ../
 ---
     <section>
-        <h1 class="fw-300">Ink.UI.Modal_1<small>version:1</small></h1>
+        <h1 class="fw-300">Ink.UI.Modal_1</h1>
 
 
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space">
@@ -67,87 +67,119 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">selector</li><li class="prop">[options]</li>
     </ul>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">selector
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String|DOMElement</span></label>
-                Element or ID</dd>
-            <dt class="level1"><label class="monospace">[options]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Object</span></label>
-                Options</dd>
-            <dt class="level2"><label class="monospace">[options.width]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                Default/Initial width. Ex: '600px'</dd>
-            <dt class="level2"><label class="monospace">[options.height]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                Default/Initial height. Ex: '400px'</dd>
-            <dt class="level2"><label class="monospace">[options.shadeClass]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                Custom class to be added to the div.ink-shade</dd>
-            <dt class="level2"><label class="monospace">[options.modalClass]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                Custom class to be added to the div.ink-modal</dd>
-            <dt class="level2"><label class="monospace">[options.trigger]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                CSS Selector for target elements that will trigger the Modal.</dd>
-            <dt class="level2"><label class="monospace">[options.triggerEvent]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                Trigger's event to be listened. Defaults to 'click'.</dd>
-            <dt class="level2"><label class="monospace">[options.autoDisplay]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Boolean</span></label>
-                Displays the Modal automatically when constructed.</dd>
-            <dt class="level2"><label class="monospace">[options.markup]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                Markup to be placed in the Modal when created</dd>
-            <dt class="level2"><label class="monospace">[options.onShow]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Function</span></label>
-                Callback function to run when the Modal is opened.</dd>
-            <dt class="level2"><label class="monospace">[options.onDismiss]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Function</span></label>
-                Callback function to run when the Modal is closed. Return `false` to cancel dismissing the Modal.</dd>
-            <dt class="level2"><label class="monospace">[options.closeOnClick]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Boolean</span></label>
-                Flag to close the modal when clicking outside of it.</dd>
-            <dt class="level2"><label class="monospace">[options.closeOnEscape]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Boolean</span></label>
-                Determines if the Modal should close when "Esc" key is pressed. Defaults to true.</dd>
-            <dt class="level2"><label class="monospace">[options.responsive]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Boolean</span></label>
-                Determines if the Modal should behave responsively (adapt to smaller viewports).</dd>
-            <dt class="level2"><label class="monospace">[options.disableScroll]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Boolean</span></label>
-                Determines if the Modal should 'disable' the page's scroll (not the Modal's body).</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">selector</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String|DOMElement</span></p>
+                <!--</label>-->
+                Element or ID</li>
+            <li class="level1"><p>
+                    <span class="monospace">[options]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                Options</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.width]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Default/Initial width. Ex: '600px'</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.height]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Default/Initial height. Ex: '400px'</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.shadeClass]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Custom class to be added to the div.ink-shade</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.modalClass]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Custom class to be added to the div.ink-modal</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.trigger]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                CSS Selector for target elements that will trigger the Modal.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.triggerEvent]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Trigger's event to be listened. Defaults to 'click'.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.autoDisplay]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Boolean</span></p>
+                <!--</label>-->
+                Displays the Modal automatically when constructed.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.markup]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Markup to be placed in the Modal when created</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.onShow]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Function</span></p>
+                <!--</label>-->
+                Callback function to run when the Modal is opened.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.onDismiss]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Function</span></p>
+                <!--</label>-->
+                Callback function to run when the Modal is closed. Return `false` to cancel dismissing the Modal.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.closeOnClick]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Boolean</span></p>
+                <!--</label>-->
+                Flag to close the modal when clicking outside of it.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.closeOnEscape]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Boolean</span></p>
+                <!--</label>-->
+                Determines if the Modal should close when "Esc" key is pressed. Defaults to true.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.responsive]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Boolean</span></p>
+                <!--</label>-->
+                Determines if the Modal should behave responsively (adapt to smaller viewports).</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.disableScroll]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Boolean</span></p>
+                <!--</label>-->
+                Determines if the Modal should 'disable' the page's scroll (not the Modal's body).</li>
+        </ul>
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_UI_Modal_1.html %}
@@ -169,11 +201,11 @@ site_root:  ../
     <h1 class="fw-300">.getContentElement() 
     <i>method</i></h1><p class="text">Returns the content DOM element</p>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>DOMElement</code></dt>
-        <dd>Modal main cointainer.
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>DOMElement</code></p>Modal main cointainer.
+        </li>
+    </ul>
     
 
 </section>
@@ -185,13 +217,16 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">[event]</li>
     </ul><p class="text">Opens this Modal. <br>Useful if you have initialized the modal</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">[event]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Event</span></label>
-                (internal) In case its fired by the internal trigger.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><p>
+                    <span class="monospace">[event]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Event</span></p>
+                <!--</label>-->
+                (internal) In case its fired by the internal trigger.</li>
+        </ul>
 
 </section>
 
@@ -202,12 +237,14 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">contentMarkup</li>
     </ul><p class="text">Replaces the content markup</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">contentMarkup
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                </dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">contentMarkup</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                </li>
+        </ul>
 
 </section>
 

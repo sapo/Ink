@@ -5,7 +5,7 @@ description: Off-canvas menu
 site_root:  ../
 ---
     <section>
-        <h1 class="fw-300">Ink.UI.Drawer_1<small>version:1</small></h1>
+        <h1 class="fw-300">Ink.UI.Drawer_1</h1>
 
 <p>Displays off-canvas content which can be triggered by clicking elements with the &#39;left-drawer-trigger&#39; and &#39;right-drawer-trigger&#39;, respectively.<br><p>The left drawer has the &#39;left-drawer&#39; class, and the right drawer has the &#39;right-drawer&#39; class.</p><br><p>The content drawer (EG your <code>&lt;div id=&quot;main&quot;&gt;</code>) must have the &#39;content-drawer&#39; class.</p><br><p>For more, see the example below, or try the sample.</p></p>
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space">
@@ -37,23 +37,30 @@ site_root:  ../
         <li class="heading">Arguments:</li>
     </ul>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level2"><label class="monospace">[options.closeOnContentClick]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Boolean</span></label>
-                Flag to close the drawer when someone clicks on the `.contentDrawer`</dd>
-            <dt class="level2"><label class="monospace">[options.mode]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                This can be 'push' or 'hide'.</dd>
-            <dt class="level2"><label class="monospace">[options.sides]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                Can be 'left', 'right', or 'both'. Controls what sides have a drawer.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level2"><p>
+                    <span class="monospace">[options.closeOnContentClick]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Boolean</span></p>
+                <!--</label>-->
+                Flag to close the drawer when someone clicks on the `.contentDrawer`</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.mode]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                This can be 'push' or 'hide'.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.sides]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Can be 'left', 'right', or 'both'. Controls what sides have a drawer.</li>
+        </ul>
 <p class="example-title">Example</p>
   
 {% highlight html %}{% raw %}

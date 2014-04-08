@@ -5,7 +5,7 @@ description: URL Utilities
 site_root:  ../
 ---
     <section>
-        <h1 class="fw-300">Ink.Util.Url_1<small>version:1</small></h1>
+        <h1 class="fw-300">Ink.Util.Url_1</h1>
 
 
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space"><caption>Functions</caption>
@@ -78,19 +78,22 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">[match]</li>
     </ul><p class="text">Gets the last loaded script element</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">[match]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                String to match against the script src attribute</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><p>
+                    <span class="monospace">[match]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                String to match against the script src attribute</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>DOMElement|Boolean</code></dt>
-        <dd>Returns the `script` DOM Element or false if unable to find it.
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>DOMElement|Boolean</code></p>Returns the `script` DOM Element or false if unable to find it.
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -104,18 +107,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">urlObj</li>
     </ul><p class="text">Formats an URL object into an URL string.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">urlObj
-            </dt>
-            <dd class="level1"></label>
-                Window.location, a.href, or parseUrl object to format</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">urlObj</span>
+                    
+                    <!--<li class="level1">--></p>
+                <!--</label>-->
+                Window.location, a.href, or parseUrl object to format</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>String</code></dt>
-        <dd>Full URL.
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>String</code></p>Full URL.
+        </li>
+    </ul>
     
 
 </section>
@@ -127,22 +132,25 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">uri</li><li class="prop">params</li>
     </ul><p class="text">Generates an URL string.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">uri
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Base URL</dd>
-            <dt class="level1"><label class="monospace">params
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Object</span></label>
-                Object to transform to query string</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">uri</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Base URL</li>
+            <li class="level1"><span class="monospace">params</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                Object to transform to query string</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>String</code></dt>
-        <dd>URI with query string set
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>String</code></p>URI with query string set
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -156,19 +164,22 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">[str]</li>
     </ul><p class="text">Gets the URL hash value</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">[str]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                URL String. Defaults to current page URL.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><p>
+                    <span class="monospace">[str]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                URL String. Defaults to current page URL.</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>String|Boolean</code></dt>
-        <dd>Hash in the URL. If there's no hash, returns false.
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>String|Boolean</code></p>Hash in the URL. If there's no hash, returns false.
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -182,19 +193,22 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">[string]</li>
     </ul><p class="text">Gets the anchor string of an URL</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">[string]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                URL to parse. Defaults to current URL.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><p>
+                    <span class="monospace">[string]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                URL to parse. Defaults to current URL.</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Object</code></dt>
-        <dd>Key-value pair object of the URL's hashtag 'variables'
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Object</code></p>Key-value pair object of the URL's hashtag 'variables'
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -208,19 +222,22 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">[str]</li>
     </ul><p class="text">Gets an object from an URL encoded string.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">[str]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                URL String. When not specified it uses the current URL.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><p>
+                    <span class="monospace">[str]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                URL String. When not specified it uses the current URL.</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Object</code></dt>
-        <dd>Key-Value pair object
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Object</code></p>Key-Value pair object
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -231,11 +248,11 @@ site_root:  ../
     <h1 class="fw-300">.getUrl() 
     <i>method</i></h1><p class="text">Gets URL of current page</p>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"></dt>
-        <dd>Current URL
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p></p>Current URL
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -249,18 +266,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">url</li>
     </ul><p class="text">Parses URL string into URL parts</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">url
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                URL to be parsed</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">url</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                URL to be parsed</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Object</code></dt>
-        <dd>Parsed URL as a key-value object.
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Object</code></p>Parsed URL as a key-value object.
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->

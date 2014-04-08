@@ -5,7 +5,7 @@ description: Date utility functions
 site_root:  ../
 ---
     <section>
-        <h1 class="fw-300">Ink.Util.Date_1<small>version:1</small></h1>
+        <h1 class="fw-300">Ink.Util.Date_1</h1>
 
 
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space"><caption>Functions</caption>
@@ -42,23 +42,27 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">format</li><li class="prop">[_date]</li>
     </ul><p class="text">Formats a date object.<br>This works exactly as php date() function. <a href="http://php.net/manual/en/function.date.php">http://php.net/manual/en/function.date.php</a></p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">format
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                The format in which the date it will be formatted.</dd>
-            <dt class="level1"><label class="monospace">[_date]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Date</span></label>
-                The date to format. Can receive unix timestamp or a date object. Defaults to current time.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">format</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                The format in which the date it will be formatted.</li>
+            <li class="level1"><p>
+                    <span class="monospace">[_date]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Date</span></p>
+                <!--</label>-->
+                The date to format. Can receive unix timestamp or a date object. Defaults to current time.</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>String</code></dt>
-        <dd>Formatted date
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>String</code></p>Formatted date
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -72,23 +76,27 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">[format]</li><li class="prop">str_date</li>
     </ul><p class="text">Creates a date object based on a format string.<br>This works exactly as php date() function. <a href="http://php.net/manual/en/function.date.php">http://php.net/manual/en/function.date.php</a></p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">[format]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                The format in which the date will be formatted. Defaults to 'Y-m-d'</dd>
-            <dt class="level1"><label class="monospace">str_date
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                The date formatted.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><p>
+                    <span class="monospace">[format]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                The format in which the date will be formatted. Defaults to 'Y-m-d'</li>
+            <li class="level1"><span class="monospace">str_date</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                The date formatted.</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Date</code></dt>
-        <dd>Date object based on the formatted date and format
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Date</code></p>Date object based on the formatted date and format
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->

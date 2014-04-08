@@ -5,7 +5,7 @@ description: DOM Traversal and manipulation
 site_root:  ../
 ---
     <section>
-        <h1 class="fw-300">Ink.Dom.Element_1<small>version:1</small></h1>
+        <h1 class="fw-300">Ink.Dom.Element_1</h1>
 
 
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space"><caption>Functions</caption>
@@ -432,16 +432,19 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">elm</li><li class="prop">html</li>
     </ul><p class="text">Appends HTML to an element.<br>This method parses the html string and doesn&#39;t modify its contents</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">elm
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String|DOMElement</span></label>
-                Element</dd>
-            <dt class="level1"><label class="monospace">html
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Markup string</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">elm</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String|DOMElement</span></p>
+                <!--</label>-->
+                Element</li>
+            <li class="level1"><span class="monospace">html</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Markup string</li>
+        </ul>
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_Dom_Element_1_appendHTML.html %}
@@ -454,18 +457,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">elm</li>
     </ul><p class="text">Counts the number of children of an element</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">elm
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String|DOMElement</span></label>
-                element</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">elm</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String|DOMElement</span></p>
+                <!--</label>-->
+                element</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Number</code></dt>
-        <dd>number of child elements
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Number</code></p>number of child elements
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -479,22 +484,25 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">cloneTo</li><li class="prop">cloneFrom</li>
     </ul><p class="text">Clones an element&#39;s position to another</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">cloneTo
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement</span></label>
-                element to be position cloned</dd>
-            <dt class="level1"><label class="monospace">cloneFrom
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement</span></label>
-                element to get the cloned position</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">cloneTo</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement</span></p>
+                <!--</label>-->
+                element to be position cloned</li>
+            <li class="level1"><span class="monospace">cloneFrom</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement</span></p>
+                <!--</label>-->
+                element to get the cloned position</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>DOMElement</code></dt>
-        <dd>The element with positionClone
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>DOMElement</code></p>The element with positionClone
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -508,16 +516,19 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">tag</li><li class="prop">properties</li>
     </ul><p class="text">Creates a DOM element</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">tag
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                tag name</dd>
-            <dt class="level1"><label class="monospace">properties
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Object</span></label>
-                object with properties to be set on the element. You can also call other functions in Ink.Dom.Element like this</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">tag</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                tag name</li>
+            <li class="level1"><span class="monospace">properties</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                object with properties to be set on the element. You can also call other functions in Ink.Dom.Element like this</li>
+        </ul>
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_Dom_Element_1_create.html %}
@@ -530,18 +541,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">selector</li>
     </ul><p class="text">Gets data attributes from an element</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">selector
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String|DOMElement</span></label>
-                Element or CSS selector</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">selector</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String|DOMElement</span></p>
+                <!--</label>-->
+                Element or CSS selector</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Object</code></dt>
-        <dd>Object with the data-* properties. If no data-attributes are present, an empty object is returned.
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Object</code></p>Object with the data-* properties. If no data-attributes are present, an empty object is returned.
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -555,22 +568,25 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">node</li><li class="prop">descendant</li>
     </ul><p class="text">Checks if a node is descendant of another</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">node
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMNode</span></label>
-                The ancestor</dd>
-            <dt class="level1"><label class="monospace">descendant
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMNode</span></label>
-                The descendant</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">node</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMNode</span></p>
+                <!--</label>-->
+                The ancestor</li>
+            <li class="level1"><span class="monospace">descendant</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMNode</span></p>
+                <!--</label>-->
+                The descendant</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Boolean</code></dt>
-        <dd>true if 'descendant' is descendant of 'node'
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Boolean</code></p>true if 'descendant' is descendant of 'node'
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -584,18 +600,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">element</li>
     </ul><p class="text">Get an element&#39;s dimensions in pixels.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">element
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement|string</span></label>
-                DOM element or target ID</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">element</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement|string</span></p>
+                <!--</label>-->
+                DOM element or target ID</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Array</code></dt>
-        <dd>Array with element's width and height
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Array</code></p>Array with element's width and height
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -609,18 +627,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">element</li>
     </ul><p class="text">Get an element&#39;s height in pixels.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">element
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement|String</span></label>
-                DOM element or target ID</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">element</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement|String</span></p>
+                <!--</label>-->
+                DOM element or target ID</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Number</code></dt>
-        <dd>The element's height
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Number</code></p>The element's height
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -634,18 +654,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">element</li>
     </ul><p class="text">Deprecated. Alias for offsetLeft()</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">element
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement|String</span></label>
-                DOM element or target ID</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">element</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement|String</span></p>
+                <!--</label>-->
+                DOM element or target ID</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Number</code></dt>
-        <dd>Element's left position
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Number</code></p>Element's left position
+        </li>
+    </ul>
     
 
 </section>
@@ -657,18 +679,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">element</li>
     </ul><p class="text">Deprecated. Alias for offsetTop()</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">element
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement|string</span></label>
-                Target DOM element or target ID</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">element</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement|string</span></p>
+                <!--</label>-->
+                Target DOM element or target ID</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Number</code></dt>
-        <dd>element's top position
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Number</code></p>element's top position
+        </li>
+    </ul>
     
 
 </section>
@@ -680,18 +704,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">element</li>
     </ul><p class="text">Get an element&#39;s width in pixels.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">element
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement|String</span></label>
-                Target DOM element or target ID</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">element</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement|String</span></p>
+                <!--</label>-->
+                Target DOM element or target ID</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Number</code></dt>
-        <dd>The element's width
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Number</code></p>The element's width
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -705,17 +731,21 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">element</li><li class="prop">[ellipsis]</li>
     </ul><p class="text">Text-overflow: ellipsis emulation<br>Slices off a piece of text at the end of the element and adds the ellipsis so all text fits inside.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">element
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement</span></label>
-                Element to modify text content</dd>
-            <dt class="level1"><label class="monospace">[ellipsis]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span>&#x27;\u2026&#x27;</label>
-                String to append to the chopped text</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">element</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement</span></p>
+                <!--</label>-->
+                Element to modify text content</li>
+            <li class="level1"><p>
+                    <span class="monospace">[ellipsis]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                &#x27;\u2026&#x27;<!--</label>-->
+                String to append to the chopped text</li>
+        </ul>
 
 </section>
 
@@ -726,41 +756,51 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">insertAfterEl</li><li class="prop">name</li><li class="prop">data</li><li class="prop">[skipEmpty]</li><li class="prop">[defaultValue]</li><li class="prop">[splitEl]</li>
     </ul><p class="text">Creates set of checkbox buttons</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">insertAfterEl
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement|String</span></label>
-                Element after which the input elements will be created</dd>
-            <dt class="level1"><label class="monospace">name
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Name for the form field ([] is added if not present as a suffix)</dd>
-            <dt class="level1"><label class="monospace">data
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Array</span></label>
-                Data to populate the component</dd>
-            <dt class="level1"><label class="monospace">[skipEmpty]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Boolean</span></label>
-                Flag to skip creation of empty options</dd>
-            <dt class="level1"><label class="monospace">[defaultValue]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String|Number</span></label>
-                Initial selected value</dd>
-            <dt class="level1"><label class="monospace">[splitEl]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Name of element to add after each input element (example: 'br')</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">insertAfterEl</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement|String</span></p>
+                <!--</label>-->
+                Element after which the input elements will be created</li>
+            <li class="level1"><span class="monospace">name</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Name for the form field ([] is added if not present as a suffix)</li>
+            <li class="level1"><span class="monospace">data</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Array</span></p>
+                <!--</label>-->
+                Data to populate the component</li>
+            <li class="level1"><p>
+                    <span class="monospace">[skipEmpty]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Boolean</span></p>
+                <!--</label>-->
+                Flag to skip creation of empty options</li>
+            <li class="level1"><p>
+                    <span class="monospace">[defaultValue]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String|Number</span></p>
+                <!--</label>-->
+                Initial selected value</li>
+            <li class="level1"><p>
+                    <span class="monospace">[splitEl]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Name of element to add after each input element (example: 'br')</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>DOMElement</code></dt>
-        <dd>Wrapper element around the checkboxes
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>DOMElement</code></p>Wrapper element around the checkboxes
+        </li>
+    </ul>
     
 
 </section>
@@ -772,41 +812,51 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">insertAfterEl</li><li class="prop">name</li><li class="prop">data</li><li class="prop">[skipEmpty]</li><li class="prop">[defaultValue]</li><li class="prop">[splitEl]</li>
     </ul><p class="text">Creates a set of radio buttons from an array of data</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">insertAfterEl
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement|String</span></label>
-                Element after which the input elements will be created</dd>
-            <dt class="level1"><label class="monospace">name
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Name for the form field ([] is added if not present as a suffix)</dd>
-            <dt class="level1"><label class="monospace">data
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Array</span></label>
-                Data to populate the component</dd>
-            <dt class="level1"><label class="monospace">[skipEmpty]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Boolean</span></label>
-                Flag to skip creation of empty options</dd>
-            <dt class="level1"><label class="monospace">[defaultValue]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String|Number</span></label>
-                Initial selected value</dd>
-            <dt class="level1"><label class="monospace">[splitEl]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Name of element to add after each input element (example: 'br')</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">insertAfterEl</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement|String</span></p>
+                <!--</label>-->
+                Element after which the input elements will be created</li>
+            <li class="level1"><span class="monospace">name</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Name for the form field ([] is added if not present as a suffix)</li>
+            <li class="level1"><span class="monospace">data</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Array</span></p>
+                <!--</label>-->
+                Data to populate the component</li>
+            <li class="level1"><p>
+                    <span class="monospace">[skipEmpty]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Boolean</span></p>
+                <!--</label>-->
+                Flag to skip creation of empty options</li>
+            <li class="level1"><p>
+                    <span class="monospace">[defaultValue]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String|Number</span></p>
+                <!--</label>-->
+                Initial selected value</li>
+            <li class="level1"><p>
+                    <span class="monospace">[splitEl]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Name of element to add after each input element (example: 'br')</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>DOMElement</code></dt>
-        <dd>Wrapper element around the radio buttons
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>DOMElement</code></p>Wrapper element around the radio buttons
+        </li>
+    </ul>
     
 
 </section>
@@ -818,26 +868,33 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">container</li><li class="prop">data</li><li class="prop">[skipEmpty]</li><li class="prop">[defaultValue]</li>
     </ul><p class="text">Fills a select element with options</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">container
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement|String</span></label>
-                Select element which will get filled</dd>
-            <dt class="level1"><label class="monospace">data
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Array</span></label>
-                Data to populate the component</dd>
-            <dt class="level1"><label class="monospace">[skipEmpty]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Boolean</span></label>
-                Flag to skip empty option</dd>
-            <dt class="level1"><label class="monospace">[defaultValue]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String|Number</span></label>
-                Initial selected value</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">container</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement|String</span></p>
+                <!--</label>-->
+                Select element which will get filled</li>
+            <li class="level1"><span class="monospace">data</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Array</span></p>
+                <!--</label>-->
+                Data to populate the component</li>
+            <li class="level1"><p>
+                    <span class="monospace">[skipEmpty]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Boolean</span></p>
+                <!--</label>-->
+                Flag to skip empty option</li>
+            <li class="level1"><p>
+                    <span class="monospace">[defaultValue]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String|Number</span></p>
+                <!--</label>-->
+                Initial selected value</li>
+        </ul>
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_Dom_Element_1_fillSelect.html %}
@@ -850,22 +907,25 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">element</li><li class="prop">className</li>
     </ul><p class="text">Finds the closest ancestor by class name</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">element
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement</span></label>
-                Element to base the search from</dd>
-            <dt class="level1"><label class="monospace">className
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Class name to search</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">element</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement</span></p>
+                <!--</label>-->
+                Element to base the search from</li>
+            <li class="level1"><span class="monospace">className</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Class name to search</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>DOMElement|false</code></dt>
-        <dd>The matched element or false if did not match
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>DOMElement|false</code></p>The matched element or false if did not match
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -879,22 +939,25 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">element</li><li class="prop">id</li>
     </ul><p class="text">Finds the closest ancestor by id</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">element
-            </dt>
-            <dd class="level1"><span class="ink-label orange">HtmlElement</span></label>
-                Element to base the search from</dd>
-            <dt class="level1"><label class="monospace">id
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                ID to search</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">element</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">HtmlElement</span></p>
+                <!--</label>-->
+                Element to base the search from</li>
+            <li class="level1"><span class="monospace">id</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                ID to search</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>HtmlElement|false</code></dt>
-        <dd>The matched element or false if did not match
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>HtmlElement|false</code></p>The matched element or false if did not match
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -908,22 +971,25 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">element</li><li class="prop">sel</li>
     </ul><p class="text">Finds the closest ancestor by CSS selector</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">element
-            </dt>
-            <dd class="level1"><span class="ink-label orange">HtmlElement</span></label>
-                Element to base the search from</dd>
-            <dt class="level1"><label class="monospace">sel
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                CSS selector</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">element</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">HtmlElement</span></p>
+                <!--</label>-->
+                Element to base the search from</li>
+            <li class="level1"><span class="monospace">sel</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                CSS selector</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>HtmlElement|false</code></dt>
-        <dd>The matched element or false if did not match
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>HtmlElement|false</code></p>The matched element or false if did not match
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -937,22 +1003,25 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">element</li><li class="prop">tag</li>
     </ul><p class="text">Finds the closest ancestor by tag name</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">element
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement</span></label>
-                Element to base the search from</dd>
-            <dt class="level1"><label class="monospace">tag
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Tag to search</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">element</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement</span></p>
+                <!--</label>-->
+                Element to base the search from</li>
+            <li class="level1"><span class="monospace">tag</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Tag to search</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>DOMElement|false</code></dt>
-        <dd>the matched element or false if did not match
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>DOMElement|false</code></p>the matched element or false if did not match
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -966,22 +1035,25 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">element</li><li class="prop">boolTest</li>
     </ul><p class="text">Finds the closest ancestor element matching your test function</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">element
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement</span></label>
-                Element to base the search from</dd>
-            <dt class="level1"><label class="monospace">boolTest
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Function</span></label>
-                Testing function</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">element</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement</span></p>
+                <!--</label>-->
+                Element to base the search from</li>
+            <li class="level1"><span class="monospace">boolTest</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Function</span></p>
+                <!--</label>-->
+                Testing function</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>DOMElement|false</code></dt>
-        <dd>The matched element or false if did not match
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>DOMElement|false</code></p>The matched element or false if did not match
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -995,18 +1067,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">elm</li>
     </ul><p class="text">Get first child element of another</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">elm
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement</span></label>
-                Parent node</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">elm</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement</span></p>
+                <!--</label>-->
+                Parent node</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>DOMElement</code></dt>
-        <dd>the Element child
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>DOMElement</code></p>the Element child
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -1020,18 +1094,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">elm</li>
     </ul><p class="text">Shortcut for <code>document.getElementById</code></p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">elm
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String|DOMElement</span></label>
-                Either an ID of an element, or an element.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">elm</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String|DOMElement</span></p>
+                <!--</label>-->
+                Either an ID of an element, or an element.</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>DOMElement|null</code></dt>
-        <dd>The DOM element with the given id or null when it was not found
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>DOMElement|null</code></p>The DOM element with the given id or null when it was not found
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -1045,23 +1121,27 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">el</li><li class="prop">[removeIt]</li>
     </ul><p class="text">Gets the trimmed text of an element</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">el
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement</span></label>
-                Element to base the search from</dd>
-            <dt class="level1"><label class="monospace">[removeIt]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Boolean</span></label>
-                Flag to remove the text from the element</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">el</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement</span></p>
+                <!--</label>-->
+                Element to base the search from</li>
+            <li class="level1"><p>
+                    <span class="monospace">[removeIt]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Boolean</span></p>
+                <!--</label>-->
+                Flag to remove the text from the element</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>String</code></dt>
-        <dd>Text found
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>String</code></p>Text found
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -1075,18 +1155,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">select</li>
     </ul><p class="text">Gets value of a select element</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">select
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement|String</span></label>
-                element</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">select</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement|String</span></p>
+                <!--</label>-->
+                element</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Array</code></dt>
-        <dd>The selected values
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Array</code></p>The selected values
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -1100,22 +1182,25 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">elm</li><li class="prop">attr</li>
     </ul><p class="text">Checks if an element has an attribute</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">elm
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Object</span></label>
-                Target element</dd>
-            <dt class="level1"><label class="monospace">attr
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Attribute name</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">elm</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                Target element</li>
+            <li class="level1"><span class="monospace">attr</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Attribute name</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Boolean</code></dt>
-        <dd>Boolean based on existance of attribute
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Boolean</code></p>Boolean based on existance of attribute
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -1129,18 +1214,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">html</li>
     </ul><p class="text">Creates a documentFragment from an HTML string.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">html
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                HTML string</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">html</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                HTML string</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>DocumentFragment</code></dt>
-        <dd>DocumentFragment containing all of the elements from the html string
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>DocumentFragment</code></p>DocumentFragment containing all of the elements from the html string
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -1154,33 +1241,41 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">element</li><li class="prop">[options]</li>
     </ul><p class="text">Check if an element is inside the viewport</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">element
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement</span></label>
-                DOM Element</dd>
-            <dt class="level1"><label class="monospace">[options]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Object</span></label>
-                Options object. If you pass a Boolean value here, it is interpreted as `options.partial`</dd>
-            <dt class="level2"><label class="monospace">[options.partial]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Boolean</span>false</label>
-                Return `true` even if it is only partially visible.</dd>
-            <dt class="level2"><label class="monospace">[options.margin]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Number</span>0</label>
-                Consider a margin all around the viewport with `opts.margin` width a dead zone.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">element</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement</span></p>
+                <!--</label>-->
+                DOM Element</li>
+            <li class="level1"><p>
+                    <span class="monospace">[options]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                Options object. If you pass a Boolean value here, it is interpreted as `options.partial`</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.partial]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Boolean</span></p>
+                false<!--</label>-->
+                Return `true` even if it is only partially visible.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.margin]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Number</span></p>
+                0<!--</label>-->
+                Consider a margin all around the viewport with `opts.margin` width a dead zone.</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Boolean</code></dt>
-        <dd>
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Boolean</code></p>
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -1194,16 +1289,19 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">newElm</li><li class="prop">targetElm</li>
     </ul><p class="text">Inserts an element right after another</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">newElm
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement</span></label>
-                Element to be inserted</dd>
-            <dt class="level1"><label class="monospace">targetElm
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement|String</span></label>
-                Key element</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">newElm</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement</span></p>
+                <!--</label>-->
+                Element to be inserted</li>
+            <li class="level1"><span class="monospace">targetElm</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement|String</span></p>
+                <!--</label>-->
+                Key element</li>
+        </ul>
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_Dom_Element_1_insertAfter.html %}
@@ -1216,16 +1314,19 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">newElm</li><li class="prop">targetElm</li>
     </ul><p class="text">Inserts an element before another</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">newElm
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement</span></label>
-                Element to be inserted</dd>
-            <dt class="level1"><label class="monospace">targetElm
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement|String</span></label>
-                Key element</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">newElm</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement</span></p>
+                <!--</label>-->
+                Element to be inserted</li>
+            <li class="level1"><span class="monospace">targetElm</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement|String</span></p>
+                <!--</label>-->
+                Key element</li>
+        </ul>
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_Dom_Element_1_insertBefore.html %}
@@ -1238,16 +1339,19 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">newElm</li><li class="prop">targetElm</li>
     </ul><p class="text">Inserts an element as the last child of another</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">newElm
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement</span></label>
-                Element to be inserted</dd>
-            <dt class="level1"><label class="monospace">targetElm
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement|String</span></label>
-                Key element</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">newElm</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement</span></p>
+                <!--</label>-->
+                Element to be inserted</li>
+            <li class="level1"><span class="monospace">targetElm</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement|String</span></p>
+                <!--</label>-->
+                Key element</li>
+        </ul>
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_Dom_Element_1_insertBottom.html %}
@@ -1260,16 +1364,19 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">newElm</li><li class="prop">targetElm</li>
     </ul><p class="text">Inserts an element as the first child of another</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">newElm
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement</span></label>
-                Element to be inserted</dd>
-            <dt class="level1"><label class="monospace">targetElm
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement|String</span></label>
-                Key element</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">newElm</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement</span></p>
+                <!--</label>-->
+                Element to be inserted</li>
+            <li class="level1"><span class="monospace">targetElm</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement|String</span></p>
+                <!--</label>-->
+                Key element</li>
+        </ul>
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_Dom_Element_1_insertTop.html %}
@@ -1282,22 +1389,25 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">ancestor</li><li class="prop">node</li>
     </ul><p class="text">Checks if a node is an ancestor of another</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">ancestor
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMNode</span></label>
-                Ancestor node</dd>
-            <dt class="level1"><label class="monospace">node
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMNode</span></label>
-                Descendant node</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">ancestor</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMNode</span></p>
+                <!--</label>-->
+                Ancestor node</li>
+            <li class="level1"><span class="monospace">node</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMNode</span></p>
+                <!--</label>-->
+                Descendant node</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Boolean</code></dt>
-        <dd>
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Boolean</code></p>
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -1311,18 +1421,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">element</li>
     </ul><p class="text">Check if an element is hidden.<br>Taken from Mootools Element extras ( <a href="https://gist.github.com/cheeaun/73342">https://gist.github.com/cheeaun/73342</a> )<br>Does not take into account visibility:hidden</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">element
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement</span></label>
-                Element to check</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">element</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement</span></p>
+                <!--</label>-->
+                Element to check</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Boolean</code></dt>
-        <dd>
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Boolean</code></p>
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -1336,18 +1448,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">node</li>
     </ul><p class="text">Checks if an element is a link</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">node
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMNode</span></label>
-                Node to check if it's link</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">node</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMNode</span></p>
+                <!--</label>-->
+                Node to check if it's link</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Boolean</code></dt>
-        <dd>
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Boolean</code></p>
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -1361,18 +1475,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">element</li>
     </ul><p class="text">Check if an element is visible</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">element
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement</span></label>
-                Element to check</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">element</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement</span></p>
+                <!--</label>-->
+                Element to check</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Boolean</code></dt>
-        <dd>
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Boolean</code></p>
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -1386,18 +1502,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">elm</li>
     </ul><p class="text">Get the last child element of another</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">elm
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement</span></label>
-                Parent node</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">elm</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement</span></p>
+                <!--</label>-->
+                Parent node</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>DOMElement</code></dt>
-        <dd>the Element child
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>DOMElement</code></p>the Element child
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -1411,16 +1529,19 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">el</li><li class="prop">t</li>
     </ul><p class="text">Move the cursor on an input or textarea element.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">el
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement</span></label>
-                Input or Textarea element</dd>
-            <dt class="level1"><label class="monospace">t
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Number</span></label>
-                Index of the character to move the cursor to</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">el</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement</span></p>
+                <!--</label>-->
+                Input or Textarea element</li>
+            <li class="level1"><span class="monospace">t</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Number</span></p>
+                <!--</label>-->
+                Index of the character to move the cursor to</li>
+        </ul>
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_Dom_Element_1_moveCursorTo.html %}
@@ -1433,18 +1554,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">node</li>
     </ul><p class="text">Get the first sibling element after the node</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">node
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMNode</span></label>
-                The current node</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">node</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMNode</span></p>
+                <!--</label>-->
+                The current node</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>DOMElement|Null</code></dt>
-        <dd>The first sibling element after node or null if none is found
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>DOMElement|Null</code></p>The first sibling element after node or null if none is found
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -1458,18 +1581,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">elm</li>
     </ul><p class="text">Gets the next siblings of an element</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">elm
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String|DOMElement</span></label>
-                Element</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">elm</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String|DOMElement</span></p>
+                <!--</label>-->
+                Element</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Array</code></dt>
-        <dd>Array of next sibling elements
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Array</code></p>Array of next sibling elements
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -1483,18 +1608,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">elm</li>
     </ul>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">elm
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement|String</span></label>
-                Target element</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">elm</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement|String</span></p>
+                <!--</label>-->
+                Target element</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>[Number, Number]</code></dt>
-        <dd>Array with pixel distance from the target element to the top left corner of the document
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>[Number, Number]</code></p>Array with pixel distance from the target element to the top left corner of the document
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -1520,18 +1647,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">elm</li>
     </ul><p class="text">Gets the left offset of an element</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">elm
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement|String</span></label>
-                Target element</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">elm</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement|String</span></p>
+                <!--</label>-->
+                Target element</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Number</code></dt>
-        <dd>Offset from the target element to the left of the document
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Number</code></p>Offset from the target element to the left of the document
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -1545,18 +1674,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">elm</li>
     </ul><p class="text">Gets the top offset of an element</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">elm
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement|String</span></label>
-                Target element</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">elm</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement|String</span></p>
+                <!--</label>-->
+                Target element</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Number</code></dt>
-        <dd>Offset from the target element to the top of the document
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Number</code></p>Offset from the target element to the top of the document
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -1570,18 +1701,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">element</li>
     </ul><p class="text">Get the outer dimensions of an element in pixels.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">element
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement</span></label>
-                Target element</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">element</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement</span></p>
+                <!--</label>-->
+                Target element</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Array</code></dt>
-        <dd>Array with element width and height.
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Array</code></p>Array with element width and height.
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -1592,11 +1725,11 @@ site_root:  ../
     <h1 class="fw-300">.pageHeight() 
     <i>method</i></h1><p class="text">Get the page&#39;s height.</p>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Number</code></dt>
-        <dd>Page height in pixels
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Number</code></p>Page height in pixels
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -1607,11 +1740,11 @@ site_root:  ../
     <h1 class="fw-300">.pageWidth() 
     <i>method</i></h1><p class="text">Get the page&#39;s width.</p>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Number</code></dt>
-        <dd>Page width in pixels
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Number</code></p>Page width in pixels
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -1625,22 +1758,25 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">parentEl</li><li class="prop">childEl</li>
     </ul><p class="text">Gets the index of an element relative to a parent</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">parentEl
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement</span></label>
-                Element to parse</dd>
-            <dt class="level1"><label class="monospace">childEl
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement</span></label>
-                Child Element to look for</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">parentEl</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement</span></p>
+                <!--</label>-->
+                Element to parse</li>
+            <li class="level1"><span class="monospace">childEl</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement</span></p>
+                <!--</label>-->
+                Child Element to look for</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Number</code></dt>
-        <dd>The index of the childEl inside parentEl. Returns -1 if it's not a direct child
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Number</code></p>The index of the childEl inside parentEl. Returns -1 if it's not a direct child
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -1654,18 +1790,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">elm</li>
     </ul><p class="text">Gets the relative offset of an element</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">elm
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement|String</span></label>
-                Target element</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">elm</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement|String</span></p>
+                <!--</label>-->
+                Target element</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Array</code></dt>
-        <dd>Array with the element offsetleft and offsettop relative to the closest positioned ancestor
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Array</code></p>Array with the element offsetleft and offsettop relative to the closest positioned ancestor
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -1679,16 +1817,19 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">elm</li><li class="prop">html</li>
     </ul><p class="text">Prepends HTML to an element.<br>This method parses the html string and doesn&#39;t modify its contents</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">elm
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String|DOMElement</span></label>
-                Element</dd>
-            <dt class="level1"><label class="monospace">html
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Markup string</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">elm</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String|DOMElement</span></p>
+                <!--</label>-->
+                Element</li>
+            <li class="level1"><span class="monospace">html</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Markup string</li>
+        </ul>
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_Dom_Element_1_prependHTML.html %}
@@ -1701,18 +1842,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">node</li>
     </ul><p class="text">Get the first sibling element before the node</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">node
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMNode</span></label>
-                The current node</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">node</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMNode</span></p>
+                <!--</label>-->
+                The current node</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>DOMElement|Null</code></dt>
-        <dd>The first element sibling before node or null if none is found
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>DOMElement|Null</code></p>The first element sibling before node or null if none is found
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -1726,18 +1869,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">elm</li>
     </ul><p class="text">Gets the previous siblings of an element</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">elm
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String|DOMElement</span></label>
-                Element</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">elm</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String|DOMElement</span></p>
+                <!--</label>-->
+                Element</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Array</code></dt>
-        <dd>Array of previous sibling elements
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Array</code></p>Array of previous sibling elements
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -1751,12 +1896,14 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">elm</li>
     </ul><p class="text">Removes a DOM Element</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">elm
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement</span></label>
-                The element to remove</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">elm</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement</span></p>
+                <!--</label>-->
+                The element to remove</li>
+        </ul>
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_Dom_Element_1_remove.html %}
@@ -1769,12 +1916,14 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">el</li>
     </ul><p class="text">Removes direct text children.<br>Useful to remove nasty layout gaps generated by whitespace on the markup.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">el
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement</span></label>
-                Element to remove text from</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">el</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement</span></p>
+                <!--</label>-->
+                Element to remove text from</li>
+        </ul>
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_Dom_Element_1_removeTextNodeChildren.html %}
@@ -1787,16 +1936,19 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">element</li><li class="prop">replacement</li>
     </ul><p class="text">Replaces an element with another.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">element
-            </dt>
-            <dd class="level1"></label>
-                The element to be replaced.</dd>
-            <dt class="level1"><label class="monospace">replacement
-            </dt>
-            <dd class="level1"></label>
-                The new element.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">element</span>
+                    
+                    <!--<li class="level1">--></p>
+                <!--</label>-->
+                The element to be replaced.</li>
+            <li class="level1"><span class="monospace">replacement</span>
+                    
+                    <!--<li class="level1">--></p>
+                <!--</label>-->
+                The new element.</li>
+        </ul>
 <p class="example-title">Example</p>
   
 {% highlight html %}{% raw %}
@@ -1818,19 +1970,22 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">[elm]</li>
     </ul><p class="text">Gets the scroll of the element</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">[elm]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement|String</span></label>
-                Target element or document.body</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><p>
+                    <span class="monospace">[elm]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement|String</span></p>
+                <!--</label>-->
+                Target element or document.body</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Array</code></dt>
-        <dd>offset values for x and y scroll
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Array</code></p>offset values for x and y scroll
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -1841,11 +1996,11 @@ site_root:  ../
     <h1 class="fw-300">.scrollHeight() 
     <i>method</i></h1><p class="text">Get the scroll&#39;s height.</p>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Number</code></dt>
-        <dd>Scroll height
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Number</code></p>Scroll height
+        </li>
+    </ul>
     
 
 </section>
@@ -1857,12 +2012,14 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">elm</li>
     </ul><p class="text">Scrolls the window to an element</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">elm
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement|String</span></label>
-                Element where to scroll</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">elm</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement|String</span></p>
+                <!--</label>-->
+                Element where to scroll</li>
+        </ul>
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_Dom_Element_1_scrollTo.html %}
@@ -1872,11 +2029,11 @@ site_root:  ../
     <h1 class="fw-300">.scrollWidth() 
     <i>method</i></h1><p class="text">Get the scroll&#39;s width.</p>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Number</code></dt>
-        <dd>Scroll width
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Number</code></p>Scroll width
+        </li>
+    </ul>
     
 
 </section>
@@ -1888,16 +2045,19 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">elm</li><li class="prop">html</li>
     </ul><p class="text">Sets the inner HTML of an element.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">elm
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String|DOMElement</span></label>
-                Element</dd>
-            <dt class="level1"><label class="monospace">html
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Markup string</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">elm</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String|DOMElement</span></p>
+                <!--</label>-->
+                Element</li>
+            <li class="level1"><span class="monospace">html</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Markup string</li>
+        </ul>
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_Dom_Element_1_setHTML.html %}
@@ -1910,16 +2070,19 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">node</li><li class="prop">text</li>
     </ul><p class="text">Replaces text content of a DOM Node<br>This method removes any child node previously present</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">node
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMNode</span></label>
-                node Target node where the text will be added.</dd>
-            <dt class="level1"><label class="monospace">text
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                text Text to be added on the node.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">node</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMNode</span></p>
+                <!--</label>-->
+                node Target node where the text will be added.</li>
+            <li class="level1"><span class="monospace">text</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                text Text to be added on the node.</li>
+        </ul>
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_Dom_Element_1_setTextContent.html %}
@@ -1932,18 +2095,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">elm</li>
     </ul><p class="text">Gets the all siblings of an element</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">elm
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String|DOMElement</span></label>
-                Element</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">elm</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String|DOMElement</span></p>
+                <!--</label>-->
+                Element</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Array</code></dt>
-        <dd>Array of sibling elements
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Array</code></p>Array of sibling elements
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -1957,18 +2122,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">node</li>
     </ul><p class="text">Retrieves textContent from node</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">node
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMNode</span></label>
-                Where to retreive text from. Can be any node type.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">node</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMNode</span></p>
+                <!--</label>-->
+                Where to retreive text from. Can be any node type.</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>String</code></dt>
-        <dd>the text
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>String</code></p>the text
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -1982,17 +2149,21 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">elem</li><li class="prop">[wrapperSelector]</li>
     </ul><p class="text">Places an element outside a wrapper.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">elem
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement</span></label>
-                The element you're trying to unwrap. This should be an ancestor of the wrapper.</dd>
-            <dt class="level1"><label class="monospace">[wrapperSelector]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                CSS Selector for the ancestor. Use this if your wrapper is not the direct parent of elem.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">elem</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement</span></p>
+                <!--</label>-->
+                The element you're trying to unwrap. This should be an ancestor of the wrapper.</li>
+            <li class="level1"><p>
+                    <span class="monospace">[wrapperSelector]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                CSS Selector for the ancestor. Use this if your wrapper is not the direct parent of elem.</li>
+        </ul>
 <p class="example-title">Example</p>
   
 {% highlight html %}{% raw %}
@@ -2024,11 +2195,11 @@ You get this:
     <h1 class="fw-300">.viewportHeight() 
     <i>method</i></h1><p class="text">Get the viewport&#39;s height.</p>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Number</code></dt>
-        <dd>Viewport height in pixels
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Number</code></p>Viewport height in pixels
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -2039,11 +2210,11 @@ You get this:
     <h1 class="fw-300">.viewportWidth() 
     <i>method</i></h1><p class="text">Get the viewport&#39;s width.</p>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Number</code></dt>
-        <dd>Viewport width in pixels
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Number</code></p>Viewport width in pixels
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -2057,22 +2228,25 @@ You get this:
         <li class="heading">Arguments:</li><li class="prop">target</li><li class="prop">container</li>
     </ul><p class="text">Wraps an element inside a container.<br><p>The container may or may not be in the document yet.</p></p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">target
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String|DOMElement</span></label>
-                Element to be wrapped</dd>
-            <dt class="level1"><label class="monospace">container
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String|DOMElement</span></label>
-                Element to wrap the target</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">target</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String|DOMElement</span></p>
+                <!--</label>-->
+                Element to be wrapped</li>
+            <li class="level1"><span class="monospace">container</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String|DOMElement</span></p>
+                <!--</label>-->
+                Element to wrap the target</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"></dt>
-        <dd>Container element
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p></p>Container element
+        </li>
+    </ul>
     
 <p class="example-title">Example</p>
   

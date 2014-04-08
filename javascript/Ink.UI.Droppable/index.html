@@ -5,7 +5,7 @@ description: Drop elements around
 site_root:  ../
 ---
     <section>
-        <h1 class="fw-300">Ink.UI.Droppable_1<small>version:1</small></h1>
+        <h1 class="fw-300">Ink.UI.Droppable_1</h1>
 
 
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space"><caption>Functions</caption>
@@ -48,42 +48,56 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">element</li><li class="prop">[options]</li>
     </ul><p class="text">Makes an element droppable.<br>This method adds it to the stack of droppable elements.<br>Can consider it a constructor of droppable elements, but where no Droppable object is returned.<br><p>In the following arguments, any events/callbacks you may pass, can be either functions or strings. If the &#39;move&#39; or &#39;copy&#39; strings are passed, the draggable gets moved into this droppable. If &#39;revert&#39; is passed, an acceptable droppable is moved back to the element it came from.</p></p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">element
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String|DOMElement</span></label>
-                Target element</dd>
-            <dt class="level1"><label class="monospace">[options]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Object</span></label>
-                Options object</dd>
-            <dt class="level2"><label class="monospace">[options.hoverClass]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                Classname(s) applied when an acceptable draggable element is hovering the element</dd>
-            <dt class="level2"><label class="monospace">[options.accept]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                Selector for choosing draggables which can be dropped in this droppable.</dd>
-            <dt class="level2"><label class="monospace">[options.onHover]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Function</span></label>
-                Callback when an acceptable draggable element is hovering the droppable. Gets the draggable and the droppable element as parameters.</dd>
-            <dt class="level2"><label class="monospace">[options.onDrop]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Function|String</span></label>
-                Callback when an acceptable draggable element is dropped. Gets the draggable, the droppable and the event as parameters.</dd>
-            <dt class="level2"><label class="monospace">[options.onDropOut]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Function|String</span></label>
-                Callback when a droppable is dropped outside this droppable. Gets the draggable, the droppable and the event as parameters. (see above for string options).</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">element</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String|DOMElement</span></p>
+                <!--</label>-->
+                Target element</li>
+            <li class="level1"><p>
+                    <span class="monospace">[options]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                Options object</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.hoverClass]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Classname(s) applied when an acceptable draggable element is hovering the element</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.accept]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Selector for choosing draggables which can be dropped in this droppable.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.onHover]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Function</span></p>
+                <!--</label>-->
+                Callback when an acceptable draggable element is hovering the droppable. Gets the draggable and the droppable element as parameters.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.onDrop]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Function|String</span></p>
+                <!--</label>-->
+                Callback when an acceptable draggable element is dropped. Gets the draggable, the droppable and the event as parameters.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.onDropOut]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Function|String</span></p>
+                <!--</label>-->
+                Callback when a droppable is dropped outside this droppable. Gets the draggable, the droppable and the event as parameters. (see above for string options).</li>
+        </ul>
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_UI_Droppable_1.html %}
@@ -96,18 +110,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">elOrSelector</li>
     </ul><p class="text">Removes an element from the droppable stack and removes the droppable behavior</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">elOrSelector
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String|DOMElement</span></label>
-                Droppable element to disable.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">elOrSelector</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String|DOMElement</span></p>
+                <!--</label>-->
+                Droppable element to disable.</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Boolean</code></dt>
-        <dd>Whether the object was found and deleted
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Boolean</code></p>Whether the object was found and deleted
+        </li>
+    </ul>
     
 
 </section>
@@ -119,12 +135,14 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">element</li>
     </ul><p class="text">Updates location and size of droppable element</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">element
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String|DOMElement</span></label>
-                Target element</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">element</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String|DOMElement</span></p>
+                <!--</label>-->
+                Target element</li>
+        </ul>
 
 </section>
 

@@ -5,7 +5,7 @@ description: Event management
 site_root:  ../
 ---
     <section>
-        <h1 class="fw-300">Ink.Dom.Event_1<small>version:1</small></h1>
+        <h1 class="fw-300">Ink.Dom.Event_1</h1>
 
 
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space"><caption>Functions</caption>
@@ -174,27 +174,32 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">destElement</li><li class="prop">srcElement</li><li class="prop">[eventType]</li>
     </ul><p class="text">Clones events from one object to another<br>bean.clone() is a method for cloning events from one DOM element or object to another.<br><a href="http://github.com/fat/bean#clone">http://github.com/fat/bean#clone</a></p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">destElement
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement|Object</span></label>
-                An HTML DOM element or any JavaScript Object to copy events to</dd>
-            <dt class="level1"><label class="monospace">srcElement
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                An HTML DOM element or any JavaScript Object to copy events from</dd>
-            <dt class="level1"><label class="monospace">[eventType]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                An Event (or multiple events, space separated) to clone</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">destElement</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement|Object</span></p>
+                <!--</label>-->
+                An HTML DOM element or any JavaScript Object to copy events to</li>
+            <li class="level1"><span class="monospace">srcElement</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                An HTML DOM element or any JavaScript Object to copy events from</li>
+            <li class="level1"><p>
+                    <span class="monospace">[eventType]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                An Event (or multiple events, space separated) to clone</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>DOMElement|Object</code></dt>
-        <dd>Returns the original DOM Element or Javascript Object
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>DOMElement|Object</code></p>Returns the original DOM Element or Javascript Object
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -208,18 +213,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">ev</li>
     </ul><p class="text">Gets the event&#39;s target element.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">ev
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Object</span></label>
-                Event object</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">ev</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                Event object</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>DOMNode</code></dt>
-        <dd>The target
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>DOMNode</code></p>The target
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -233,27 +240,32 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">ev</li><li class="prop">elmTagName</li><li class="prop">[force]</li>
     </ul><p class="text">Find closest ancestor element by tag name related to the event target.<br>Navigate up the DOM tree, looking for a tag with the name <code>elmTagName</code>.<br><p>If such tag is not found, <code>document</code> is returned.</p></p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">ev
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Object</span></label>
-                Event object</dd>
-            <dt class="level1"><label class="monospace">elmTagName
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Tag name to find</dd>
-            <dt class="level1"><label class="monospace">[force]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Boolean</span>false</label>
-                Flag to skip returning `document` and to return `false` instead.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">ev</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                Event object</li>
+            <li class="level1"><span class="monospace">elmTagName</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Tag name to find</li>
+            <li class="level1"><p>
+                    <span class="monospace">[force]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Boolean</span></p>
+                false<!--</label>-->
+                Flag to skip returning `document` and to return `false` instead.</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>DOMElement</code></dt>
-        <dd>the first element which matches given tag name or the document element if the wanted tag is not found
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>DOMElement</code></p>the first element which matches given tag name or the document element if the wanted tag is not found
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -267,27 +279,32 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">destElement</li><li class="prop">eventType</li>
     </ul><p class="text">Triggers events.<br><a href="http://github.com/fat/bean#fire">http://github.com/fat/bean#fire</a></p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">destElement
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement|Object</span></label>
-                An HTML DOM element or any JavaScript Object fire the event on</dd>
-            <dt class="level1"><label class="monospace">eventType
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                An Event (or multiple events, space separated) to fire</dd>
-            <dt class="level4"><label class="monospace">[args...]
-                
-            </dt>
-            <dd class="level4"></label>
-                Additional arguments to pass to the callback function when triggered</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">destElement</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement|Object</span></p>
+                <!--</label>-->
+                An HTML DOM element or any JavaScript Object fire the event on</li>
+            <li class="level1"><span class="monospace">eventType</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                An Event (or multiple events, space separated) to fire</li>
+            <li class="level4"><p>
+                    <span class="monospace">[args...]</span>
+                    
+                    
+                    <!--<li class="level4">--></p>
+                <!--</label>-->
+                Additional arguments to pass to the callback function when triggered</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>DOMElement|Object</code></dt>
-        <dd>Returns the original DOM Element or Javascript Object
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>DOMElement|Object</code></p>Returns the original DOM Element or Javascript Object
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -301,23 +318,27 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">event</li><li class="prop">[changeCasing]</li>
     </ul><p class="text">Gets character from an event.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">event
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Object</span></label>
-                Keyboard event</dd>
-            <dt class="level1"><label class="monospace">[changeCasing]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Boolean</span></label>
-                If true uppercases, if false lowercases, otherwise keeps casing</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">event</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                Keyboard event</li>
+            <li class="level1"><p>
+                    <span class="monospace">[changeCasing]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Boolean</span></p>
+                <!--</label>-->
+                If true uppercases, if false lowercases, otherwise keeps casing</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>String</code></dt>
-        <dd>Character representation of pressed key combination
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>String</code></p>Character representation of pressed key combination
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -331,18 +352,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">ev</li>
     </ul><p class="text">Checks if an event is a left click.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">ev
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Object</span></label>
-                Event object</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">ev</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                Event object</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Boolean</code></dt>
-        <dd>True if the event is a left click
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Boolean</code></p>True if the event is a left click
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -356,18 +379,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">ev</li>
     </ul><p class="text">Checks if an event is a middle click.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">ev
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Object</span></label>
-                Event object</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">ev</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                Event object</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Boolean</code></dt>
-        <dd>True if the event is a middle click
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Boolean</code></p>True if the event is a middle click
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -381,18 +406,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">ev</li>
     </ul><p class="text">Checks if an event is a right click.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">ev
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Object</span></label>
-                Event object</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">ev</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                Event object</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Boolean</code></dt>
-        <dd>True if the event is a right click
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Boolean</code></p>True if the event is a right click
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -406,31 +433,37 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">element</li><li class="prop">eventName</li><li class="prop">callBack</li><li class="prop">[useCapture]</li>
     </ul><p class="text">Attaches an event to element</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">element
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement|String</span></label>
-                Element id or element</dd>
-            <dt class="level1"><label class="monospace">eventName
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Event name</dd>
-            <dt class="level1"><label class="monospace">callBack
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Function</span></label>
-                Receives the event object as a parameter. If you're manually firing custom events, check it's eventName property to make sure you're handling the right event.</dd>
-            <dt class="level1"><label class="monospace">[useCapture]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Boolean</span></label>
-                Flag to change event listening from bubbling to capture.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">element</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement|String</span></p>
+                <!--</label>-->
+                Element id or element</li>
+            <li class="level1"><span class="monospace">eventName</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Event name</li>
+            <li class="level1"><span class="monospace">callBack</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Function</span></p>
+                <!--</label>-->
+                Receives the event object as a parameter. If you're manually firing custom events, check it's eventName property to make sure you're handling the right event.</li>
+            <li class="level1"><p>
+                    <span class="monospace">[useCapture]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Boolean</span></p>
+                <!--</label>-->
+                Flag to change event listening from bubbling to capture.</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Function</code></dt>
-        <dd>The event handler used. Hang on to this if you want to `stopObserving` later.
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Function</code></p>The event handler used. Hang on to this if you want to `stopObserving` later.
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -444,30 +477,35 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">element</li><li class="prop">eventName</li><li class="prop">selector</li><li class="prop">callback</li>
     </ul><p class="text">Observes an event on an element and its descendants matching the selector.<br><p>Requires Ink.Dom.Selector if you need to use a selector.</p></p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">element
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement|String</span></label>
-                Element to observe.</dd>
-            <dt class="level1"><label class="monospace">eventName
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Event name to observe.</dd>
-            <dt class="level1"><label class="monospace">selector
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Child element selector. When null, finds any element.</dd>
-            <dt class="level1"><label class="monospace">callback
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Function</span></label>
-                Callback to be called when the event is fired</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">element</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement|String</span></p>
+                <!--</label>-->
+                Element to observe.</li>
+            <li class="level1"><span class="monospace">eventName</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Event name to observe.</li>
+            <li class="level1"><span class="monospace">selector</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Child element selector. When null, finds any element.</li>
+            <li class="level1"><span class="monospace">callback</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Function</span></p>
+                <!--</label>-->
+                Callback to be called when the event is fired</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Function</code></dt>
-        <dd>The used callback, for ceasing to listen to the event later.
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Function</code></p>The used callback, for ceasing to listen to the event later.
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -481,31 +519,37 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">elements</li><li class="prop">eventName</li><li class="prop">callBack</li><li class="prop">[useCapture]</li>
     </ul><p class="text">Attaches an event to a selector or array of elements.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">elements
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Array|String</span></label>
-                </dd>
-            <dt class="level1"><label class="monospace">eventName
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Event name</dd>
-            <dt class="level1"><label class="monospace">callBack
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Function</span></label>
-                Receives the event object as a parameter. If you're manually firing custom events, check it's eventName property to make sure you're handling the right event.</dd>
-            <dt class="level1"><label class="monospace">[useCapture]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Boolean</span></label>
-                Flag change event listening from bubbling to capture.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">elements</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Array|String</span></p>
+                <!--</label>-->
+                </li>
+            <li class="level1"><span class="monospace">eventName</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Event name</li>
+            <li class="level1"><span class="monospace">callBack</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Function</span></p>
+                <!--</label>-->
+                Receives the event object as a parameter. If you're manually firing custom events, check it's eventName property to make sure you're handling the right event.</li>
+            <li class="level1"><p>
+                    <span class="monospace">[useCapture]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Boolean</span></p>
+                <!--</label>-->
+                Flag change event listening from bubbling to capture.</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Function</code></dt>
-        <dd>The used callback.
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Function</code></p>The used callback.
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -519,31 +563,37 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">element</li><li class="prop">eventName</li><li class="prop">callBack</li><li class="prop">[useCapture]</li>
     </ul><p class="text">Like observe, but listen to the event only once.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">element
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement|String</span></label>
-                Element id or element</dd>
-            <dt class="level1"><label class="monospace">eventName
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Event name</dd>
-            <dt class="level1"><label class="monospace">callBack
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Function</span></label>
-                Receives the event object as a parameter. If you're manually firing custom events, check it's eventName property to make sure you're handling the right event.</dd>
-            <dt class="level1"><label class="monospace">[useCapture]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Boolean</span></label>
-                Flag to change event listening from bubbling to capture.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">element</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement|String</span></p>
+                <!--</label>-->
+                Element id or element</li>
+            <li class="level1"><span class="monospace">eventName</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Event name</li>
+            <li class="level1"><span class="monospace">callBack</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Function</span></p>
+                <!--</label>-->
+                Receives the event object as a parameter. If you're manually firing custom events, check it's eventName property to make sure you're handling the right event.</li>
+            <li class="level1"><p>
+                    <span class="monospace">[useCapture]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Boolean</span></p>
+                <!--</label>-->
+                Flag to change event listening from bubbling to capture.</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Function</code></dt>
-        <dd>The event handler used. Hang on to this if you want to `stopObserving` later.
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Function</code></p>The event handler used. Hang on to this if you want to `stopObserving` later.
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -557,27 +607,32 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">element</li><li class="prop">eventType</li><li class="prop">[handler]</li>
     </ul><p class="text">Removes event handlers.<br>bean.off() is how you get rid of handlers once you no longer want them active. It&#39;s also a good idea to call off on elements before you remove them from your DOM; this gives Bean a chance to clean up some things and prevents memory leaks.<br><a href="http://github.com/fat/bean#off">http://github.com/fat/bean#off</a></p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">element
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement|Object</span></label>
-                An HTML DOM element or any JavaScript Object</dd>
-            <dt class="level1"><label class="monospace">eventType
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                An Event (or multiple events, space separated) to remove</dd>
-            <dt class="level1"><label class="monospace">[handler]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Function</span></label>
-                The specific callback function to remove</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">element</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement|Object</span></p>
+                <!--</label>-->
+                An HTML DOM element or any JavaScript Object</li>
+            <li class="level1"><span class="monospace">eventType</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                An Event (or multiple events, space separated) to remove</li>
+            <li class="level1"><p>
+                    <span class="monospace">[handler]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Function</span></p>
+                <!--</label>-->
+                The specific callback function to remove</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>DOMElement|Object</code></dt>
-        <dd>Returns the original DOM Element or Javascript Object
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>DOMElement|Object</code></p>Returns the original DOM Element or Javascript Object
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -591,37 +646,46 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">element</li><li class="prop">eventType</li><li class="prop">[selector]</li><li class="prop">[handler]</li>
     </ul><p class="text">Lets you attach event listeners to both elements and objects.<br><a href="http://github.com/fat/bean#on">http://github.com/fat/bean#on</a></p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">element
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement|Object</span></label>
-                An HTML DOM element or any JavaScript Object</dd>
-            <dt class="level1"><label class="monospace">eventType
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                An Event (or multiple events, space separated) to listen to</dd>
-            <dt class="level1"><label class="monospace">[selector]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                A CSS DOM Element selector string to bind the listener to child elements matching the selector</dd>
-            <dt class="level1"><label class="monospace">[handler]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Function</span></label>
-                The callback function</dd>
-            <dt class="level4"><label class="monospace">[args...]
-                
-            </dt>
-            <dd class="level4"><span class="ink-label orange">Object</span></label>
-                Additional arguments to pass to the callback function when triggered</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">element</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement|Object</span></p>
+                <!--</label>-->
+                An HTML DOM element or any JavaScript Object</li>
+            <li class="level1"><span class="monospace">eventType</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                An Event (or multiple events, space separated) to listen to</li>
+            <li class="level1"><p>
+                    <span class="monospace">[selector]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                A CSS DOM Element selector string to bind the listener to child elements matching the selector</li>
+            <li class="level1"><p>
+                    <span class="monospace">[handler]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Function</span></p>
+                <!--</label>-->
+                The callback function</li>
+            <li class="level4"><p>
+                    <span class="monospace">[args...]</span>
+                    
+                    
+                    <!--<li class="level4">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                Additional arguments to pass to the callback function when triggered</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>DOMElement|Object</code></dt>
-        <dd>Returns the original DOM Element or Javascript Object
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>DOMElement|Object</code></p>Returns the original DOM Element or Javascript Object
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -635,37 +699,46 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">element</li><li class="prop">eventType</li><li class="prop">[selector]</li><li class="prop">[handler]</li>
     </ul><p class="text">Alias for <code>on</code> but will only be executed once.<br>bean.one() is an alias for bean.on() except that the handler will only be executed once and then removed for the event type(s).<br><a href="http://github.com/fat/bean#one">http://github.com/fat/bean#one</a></p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">element
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement|Object</span></label>
-                An HTML DOM element or any JavaScript Object</dd>
-            <dt class="level1"><label class="monospace">eventType
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                An Event (or multiple events, space separated) to listen to</dd>
-            <dt class="level1"><label class="monospace">[selector]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                A CSS DOM Element selector string to bind the listener to child elements matching the selector</dd>
-            <dt class="level1"><label class="monospace">[handler]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Function</span></label>
-                The callback function</dd>
-            <dt class="level4"><label class="monospace">[args...]
-                
-            </dt>
-            <dd class="level4"></label>
-                Additional arguments to pass to the callback function when triggered</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">element</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement|Object</span></p>
+                <!--</label>-->
+                An HTML DOM element or any JavaScript Object</li>
+            <li class="level1"><span class="monospace">eventType</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                An Event (or multiple events, space separated) to listen to</li>
+            <li class="level1"><p>
+                    <span class="monospace">[selector]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                A CSS DOM Element selector string to bind the listener to child elements matching the selector</li>
+            <li class="level1"><p>
+                    <span class="monospace">[handler]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Function</span></p>
+                <!--</label>-->
+                The callback function</li>
+            <li class="level4"><p>
+                    <span class="monospace">[args...]</span>
+                    
+                    
+                    <!--<li class="level4">--></p>
+                <!--</label>-->
+                Additional arguments to pass to the callback function when triggered</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>DOMElement|Object</code></dt>
-        <dd>Returns the original DOM Element or Javascript Object
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>DOMElement|Object</code></p>Returns the original DOM Element or Javascript Object
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -679,18 +752,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">ev</li>
     </ul><p class="text">Gets the pointer&#39;s coordinates from the event object.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">ev
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Object</span></label>
-                Event object</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">ev</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                Event object</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Object</code></dt>
-        <dd>An object with the mouse X and Y position
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Object</code></p>An object with the mouse X and Y position
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -704,18 +779,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">ev</li>
     </ul><p class="text">Gets the pointer&#39;s X coordinate.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">ev
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Object</span></label>
-                Event object</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">ev</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                Event object</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Number</code></dt>
-        <dd>Mouse X position
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Number</code></p>Mouse X position
+        </li>
+    </ul>
     
 
 </section>
@@ -727,18 +804,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">ev</li>
     </ul><p class="text">Gets the pointer&#39;s Y coordinate.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">ev
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Object</span></label>
-                Event object</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">ev</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                Event object</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Number</code></dt>
-        <dd>Mouse Y position
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Number</code></p>Mouse Y position
+        </li>
+    </ul>
     
 
 </section>
@@ -750,18 +829,20 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">ev</li>
     </ul><p class="text">Gets the event&#39;s related target element.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">ev
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Object</span></label>
-                event object</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">ev</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                event object</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>DOMNode</code></dt>
-        <dd>The related target
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>DOMNode</code></p>The related target
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -775,12 +856,14 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">event</li>
     </ul><p class="text">Stops event propagation and bubbling.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">event
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Object</span></label>
-                Event handle</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">event</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                Event handle</li>
+        </ul>
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_Dom_Event_1_stop.html %}
@@ -793,12 +876,14 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">event</li>
     </ul><p class="text">Stops event default behaviour.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">event
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Object</span></label>
-                Event handle</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">event</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                Event handle</li>
+        </ul>
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_Dom_Event_1_stopDefault.html %}
@@ -811,25 +896,31 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">element</li><li class="prop">eventName</li><li class="prop">callBack</li><li class="prop">[useCapture]</li>
     </ul><p class="text">Removes an event attached to an element.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">element
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement|String</span></label>
-                Element id or element</dd>
-            <dt class="level1"><label class="monospace">eventName
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Event name</dd>
-            <dt class="level1"><label class="monospace">callBack
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Function</span></label>
-                Callback function</dd>
-            <dt class="level1"><label class="monospace">[useCapture]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Boolean</span></label>
-                Set to true if the event was being observed with useCapture set to true as well.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">element</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement|String</span></p>
+                <!--</label>-->
+                Element id or element</li>
+            <li class="level1"><span class="monospace">eventName</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Event name</li>
+            <li class="level1"><span class="monospace">callBack</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Function</span></p>
+                <!--</label>-->
+                Callback function</li>
+            <li class="level1"><p>
+                    <span class="monospace">[useCapture]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Boolean</span></p>
+                <!--</label>-->
+                Set to true if the event was being observed with useCapture set to true as well.</li>
+        </ul>
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_Dom_Event_1_stopObserving.html %}
@@ -842,12 +933,14 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">event</li>
     </ul><p class="text">Stops event propagation.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">event
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Object</span></label>
-                Event handle</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">event</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                Event handle</li>
+        </ul>
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_Dom_Event_1_stopPropagation.html %}
@@ -860,17 +953,21 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">func</li><li class="prop">[wait]</li>
     </ul><p class="text">Creates a debounced version of a function.<br>Returns a function which calls <code>func</code>, waiting at least <code>wait</code> milliseconds between calls. This is useful for events such as <code>scroll</code> or <code>resize</code>, which can be triggered too many times per second, slowing down the browser with needless function calls.<br><p><em>note:</em> This does not delay the first function call to the function.</p></p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">func
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Function</span></label>
-                Function to call. Arguments and context are both passed.</dd>
-            <dt class="level1"><label class="monospace">[wait]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Number</span>0</label>
-                Milliseconds to wait between calls.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">func</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Function</span></p>
+                <!--</label>-->
+                Function to call. Arguments and context are both passed.</li>
+            <li class="level1"><p>
+                    <span class="monospace">[wait]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Number</span></p>
+                0<!--</label>-->
+                Milliseconds to wait between calls.</li>
+        </ul>
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_Dom_Event_1_throttle.html %}

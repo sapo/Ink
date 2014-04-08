@@ -5,7 +5,7 @@ description: Pagination elements
 site_root:  ../
 ---
     <section>
-        <h1 class="fw-300">Ink.UI.Pagination_1<small>version:1</small></h1>
+        <h1 class="fw-300">Ink.UI.Pagination_1</h1>
 
 
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space">
@@ -109,146 +109,201 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">selector</li><li class="prop">options</li>
     </ul>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">selector
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String|DOMElement</span></label>
-                Selector or element</dd>
-            <dt class="level1"><label class="monospace">options
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Object</span></label>
-                Options</dd>
-            <dt class="level2"><label class="monospace">[options.size]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Number</span></label>
-                Number of pages.</dd>
-            <dt class="level2"><label class="monospace">[options.totalItemCount]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Number</span></label>
-                Total numeber of items to display</dd>
-            <dt class="level2"><label class="monospace">[options.itemsPerPage]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Number</span></label>
-                Number of items per page.</dd>
-            <dt class="level2"><label class="monospace">[options.maxSize]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Number</span></label>
-                If passed, only shows at most maxSize items. displays also first|prev page and next page|last buttons</dd>
-            <dt class="level2"><label class="monospace">[options.start]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Number</span></label>
-                Start page. defaults to 1</dd>
-            <dt class="level2"><label class="monospace">[options.sideButtons]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Boolean</span>true</label>
-                Whether to show the first, last, previous, next, previousPage and lastPage buttons. Do not use together with maxSize.</dd>
-            <dt class="level2"><label class="monospace">[options.firstLabel]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                Text for the first page button. Defaults to 'First'.</dd>
-            <dt class="level2"><label class="monospace">[options.lastLabel]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                Text for the last page button. Defaults to 'Last'.</dd>
-            <dt class="level2"><label class="monospace">[options.previousLabel]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                Text for the previous button. Defaults to 'Previous'-</dd>
-            <dt class="level2"><label class="monospace">[options.nextLabel]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                Text for the next button. Defaults to 'Next'</dd>
-            <dt class="level2"><label class="monospace">[options.previousPageLabel]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                Text for the previous page button. Defaults to 'Previous {Items per page}'.</dd>
-            <dt class="level2"><label class="monospace">[options.nextPageLabel]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                Text for the next page button. Defaults to 'Next {Items per page}'.</dd>
-            <dt class="level2"><label class="monospace">[options.onChange]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Function</span></label>
-                Callback to be called when a page changes. Called with `(thisPaginator, newPageNumber)`.</dd>
-            <dt class="level2"><label class="monospace">[options.hashParameter]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                Parameter to use on setHash. Defaults to 'page'.</dd>
-            <dt class="level2"><label class="monospace">[options.parentTag]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                HTML Tag used as the parent node.</dd>
-            <dt class="level2"><label class="monospace">[options.childTag]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                HTML Tag used as the child nodes.</dd>
-            <dt class="level2"><label class="monospace">[options.wrapperClass]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                CSS Class used in the wrapper element</dd>
-            <dt class="level2"><label class="monospace">[options.paginationClass]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                CSS Class used in the pagination element</dd>
-            <dt class="level2"><label class="monospace">[options.activeClass]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                CSS Class used to mark page as active</dd>
-            <dt class="level2"><label class="monospace">[options.disabledClass]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                CSS Class used to mark page as disabled</dd>
-            <dt class="level2"><label class="monospace">[options.hideClass]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                CSS Class used to hide elements</dd>
-            <dt class="level2"><label class="monospace">[options.previousClass]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                CSS Class used in the previous element</dd>
-            <dt class="level2"><label class="monospace">[options.previousPageClass]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                CSS Class used in the previous page element</dd>
-            <dt class="level2"><label class="monospace">[options.nextClass]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                CSS Class used in the next element</dd>
-            <dt class="level2"><label class="monospace">[options.nextPageClass]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                CSS Class used in the next page element</dd>
-            <dt class="level2"><label class="monospace">[options.numberFormatter]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Function</span></label>
-                Number formatter function. Receives a 0-indexed number and returns the text for the numbered page button.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">selector</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String|DOMElement</span></p>
+                <!--</label>-->
+                Selector or element</li>
+            <li class="level1"><span class="monospace">options</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                Options</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.size]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Number</span></p>
+                <!--</label>-->
+                Number of pages.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.totalItemCount]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Number</span></p>
+                <!--</label>-->
+                Total numeber of items to display</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.itemsPerPage]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Number</span></p>
+                <!--</label>-->
+                Number of items per page.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.maxSize]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Number</span></p>
+                <!--</label>-->
+                If passed, only shows at most maxSize items. displays also first|prev page and next page|last buttons</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.start]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Number</span></p>
+                <!--</label>-->
+                Start page. defaults to 1</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.sideButtons]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Boolean</span></p>
+                true<!--</label>-->
+                Whether to show the first, last, previous, next, previousPage and lastPage buttons. Do not use together with maxSize.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.firstLabel]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Text for the first page button. Defaults to 'First'.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.lastLabel]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Text for the last page button. Defaults to 'Last'.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.previousLabel]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Text for the previous button. Defaults to 'Previous'-</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.nextLabel]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Text for the next button. Defaults to 'Next'</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.previousPageLabel]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Text for the previous page button. Defaults to 'Previous {Items per page}'.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.nextPageLabel]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Text for the next page button. Defaults to 'Next {Items per page}'.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.onChange]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Function</span></p>
+                <!--</label>-->
+                Callback to be called when a page changes. Called with `(thisPaginator, newPageNumber)`.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.hashParameter]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Parameter to use on setHash. Defaults to 'page'.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.parentTag]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                HTML Tag used as the parent node.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.childTag]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                HTML Tag used as the child nodes.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.wrapperClass]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                CSS Class used in the wrapper element</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.paginationClass]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                CSS Class used in the pagination element</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.activeClass]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                CSS Class used to mark page as active</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.disabledClass]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                CSS Class used to mark page as disabled</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.hideClass]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                CSS Class used to hide elements</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.previousClass]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                CSS Class used in the previous element</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.previousPageClass]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                CSS Class used in the previous page element</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.nextClass]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                CSS Class used in the next element</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.nextPageClass]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                CSS Class used in the next page element</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.numberFormatter]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Function</span></p>
+                <!--</label>-->
+                Number formatter function. Receives a 0-indexed number and returns the text for the numbered page button.</li>
+        </ul>
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_UI_Pagination_1.html %}
@@ -264,11 +319,11 @@ site_root:  ../
     <h1 class="fw-300">.getCurrent() 
     <i>method</i></h1><p class="text">Gets the current page index</p>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Number</code></dt>
-        <dd>Current page
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Number</code></p>Current page
+        </li>
+    </ul>
     
 
 </section>
@@ -277,11 +332,11 @@ site_root:  ../
     <h1 class="fw-300">.getSize() 
     <i>method</i></h1><p class="text">Gets the number of pages</p>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Number</code></dt>
-        <dd>Number of pages
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Number</code></p>Number of pages
+        </li>
+    </ul>
     
 
 </section>
@@ -290,11 +345,11 @@ site_root:  ../
     <h1 class="fw-300">.hasNext() 
     <i>method</i></h1><p class="text">Checks if it has next pages</p>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Boolean</code></dt>
-        <dd>True if has pages ahead
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Boolean</code></p>True if has pages ahead
+        </li>
+    </ul>
     
 
 </section>
@@ -303,11 +358,11 @@ site_root:  ../
     <h1 class="fw-300">.hasNextPage() 
     <i>method</i></h1><p class="text">Checks if it has a next set of pages</p>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Boolean</code></dt>
-        <dd>Returns true iif has set of page(s) ahead
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Boolean</code></p>Returns true iif has set of page(s) ahead
+        </li>
+    </ul>
     
 
 </section>
@@ -316,11 +371,11 @@ site_root:  ../
     <h1 class="fw-300">.hasPrevious() 
     <i>method</i></h1><p class="text">Checks if it has previous pages</p>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Boolean</code></dt>
-        <dd>True if has prior pages
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Boolean</code></p>True if has prior pages
+        </li>
+    </ul>
     
 
 </section>
@@ -329,11 +384,11 @@ site_root:  ../
     <h1 class="fw-300">.hasPreviousPage() 
     <i>method</i></h1><p class="text">Checks if it has a previous set of pages</p>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Boolean</code></dt>
-        <dd>Returns true iif has prior set of page(s)
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Boolean</code></p>Returns true iif has prior set of page(s)
+        </li>
+    </ul>
     
 
 </section>
@@ -342,11 +397,11 @@ site_root:  ../
     <h1 class="fw-300">.isFirst() 
     <i>method</i></h1><p class="text">Checks if it&#39;s at the first page</p>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Boolean</code></dt>
-        <dd>True if at first page
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Boolean</code></p>True if at first page
+        </li>
+    </ul>
     
 
 </section>
@@ -355,11 +410,11 @@ site_root:  ../
     <h1 class="fw-300">.isLast() 
     <i>method</i></h1><p class="text">Checks if it&#39;s on the last page</p>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Boolean</code></dt>
-        <dd>True if at last page
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Boolean</code></p>True if at last page
+        </li>
+    </ul>
     
 
 </section>
@@ -371,16 +426,19 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">nr</li><li class="prop">isRelative</li>
     </ul><p class="text">Sets the current page.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">nr
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Number</span></label>
-                Sets the current page to given number.</dd>
-            <dt class="level1"><label class="monospace">isRelative
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Boolean</span></label>
-                Flag to change the position from absolute to relative.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">nr</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Number</span></p>
+                <!--</label>-->
+                Sets the current page to given number.</li>
+            <li class="level1"><span class="monospace">isRelative</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Boolean</span></p>
+                <!--</label>-->
+                Flag to change the position from absolute to relative.</li>
+        </ul>
 
 </section>
 
@@ -391,12 +449,14 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">cb</li>
     </ul><p class="text">Allows you to subscribe to the onChange event</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">cb
-            </dt>
-            <dd class="level1"></label>
-                {Function} Callback called with `(thisPaginator, newPageNumber)`.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">cb</span>
+                    
+                    <!--<li class="level1">--></p>
+                <!--</label>-->
+                {Function} Callback called with `(thisPaginator, newPageNumber)`.</li>
+        </ul>
 
 </section>
 
@@ -407,24 +467,29 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">sz</li><li class="prop">setSizeInItems</li><li class="prop">totalItems</li><li class="prop">itemsPerPage</li>
     </ul><p class="text">Sets the number of pages</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">sz
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Number</span></label>
-                number of pages</dd>
-            <dt class="level1"><label class="monospace">setSizeInItems
-            </dt>
-            <dd class="level1"></label>
-                </dd>
-            <dt class="level1"><label class="monospace">totalItems
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Number</span></label>
-                Total number of items</dd>
-            <dt class="level1"><label class="monospace">itemsPerPage
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Number</span></label>
-                Items per page</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">sz</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Number</span></p>
+                <!--</label>-->
+                number of pages</li>
+            <li class="level1"><span class="monospace">setSizeInItems</span>
+                    
+                    <!--<li class="level1">--></p>
+                <!--</label>-->
+                </li>
+            <li class="level1"><span class="monospace">totalItems</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Number</span></p>
+                <!--</label>-->
+                Total number of items</li>
+            <li class="level1"><span class="monospace">itemsPerPage</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Number</span></p>
+                <!--</label>-->
+                Items per page</li>
+        </ul>
 
 </section>
 

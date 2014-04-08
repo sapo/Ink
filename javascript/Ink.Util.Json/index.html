@@ -5,7 +5,7 @@ description: JSON Utilities
 site_root:  ../
 ---
     <section>
-        <h1 class="fw-300">Ink.Util.Json_1<small>version:1</small></h1>
+        <h1 class="fw-300">Ink.Util.Json_1</h1>
 
 <p>Use this class to convert JSON strings to JavaScript objects<br><code>.parse()</code> and also to do the opposite operation <code>.stringify()</code>.<br>Internally, the standard JSON implementation is used if available<br>Otherwise, the functions mimic the standard implementation.<br><p>Here&#39;s how to produce JSON from an existing object:</p><br><pre><code> Ink.requireModules([&#39;Ink.Util.Json_1&#39;], function (Json) {<br>     var obj = {<br>         key1: &#39;value1&#39;,<br>         key2: &#39;value2&#39;,<br>         keyArray: [&#39;arrayValue1&#39;, &#39;arrayValue2&#39;, &#39;arrayValue3&#39;]<br>     };<br>     Json.stringify(obj);  // The above object as a JSON string<br> });<br></code></pre><p>And here is how to parse JSON:</p><br><pre><code> Ink.requireModules([&#39;Ink.Util.Json_1&#39;], function (Json) {<br>     var source = &#39;{&quot;key&quot;: &quot;value&quot;, &quot;array&quot;: [true, null, false]}&#39;;<br>     Json.parse(source);  // The above JSON string as an object<br> });<br></code></pre></p>
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space"><caption>Functions</caption>
@@ -42,22 +42,25 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">text</li><li class="prop">reviver</li>
     </ul><p class="text">Parses a JSON text through a function</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">text
-            </dt>
-            <dd class="level1"></label>
-                {String}    Input string</dd>
-            <dt class="level1"><label class="monospace">reviver
-            </dt>
-            <dd class="level1"></label>
-                {Function}  Function receiving `(key, value)`, and `this`=(containing object), used to walk objects.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">text</span>
+                    
+                    <!--<li class="level1">--></p>
+                <!--</label>-->
+                {String}    Input string</li>
+            <li class="level1"><span class="monospace">reviver</span>
+                    
+                    <!--<li class="level1">--></p>
+                <!--</label>-->
+                {Function}  Function receiving `(key, value)`, and `this`=(containing object), used to walk objects.</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>Object</code></dt>
-        <dd>JSON object
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>Object</code></p>JSON object
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->
@@ -71,22 +74,25 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">input</li><li class="prop">convertToUnicode</li>
     </ul><p class="text">Serializes a JSON object into a string.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">input
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Object</span></label>
-                Data to be serialized into JSON</dd>
-            <dt class="level1"><label class="monospace">convertToUnicode
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Boolean</span></label>
-                When `true`, converts string contents to unicode \uXXXX</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">input</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                Data to be serialized into JSON</li>
+            <li class="level1"><span class="monospace">convertToUnicode</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Boolean</span></p>
+                <!--</label>-->
+                When `true`, converts string contents to unicode \uXXXX</li>
+        </ul>
     <h3>Returns</h3>
-    <dl>
-        <dt class="return"><code>String</code></dt>
-        <dd>Serialized string
-        </dd>
-    </dl>
+    <ul class="params">
+        <li class="return">
+            <p><code>String</code></p>Serialized string
+        </li>
+    </ul>
     
 
 <!--<h3>Samples</h3>-->

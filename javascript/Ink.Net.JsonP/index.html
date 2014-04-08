@@ -5,7 +5,7 @@ description: Cross Browser JsonP requests
 site_root:  ../
 ---
     <section>
-        <h1 class="fw-300">Ink.Net.JsonP_1<small>version:1</small></h1>
+        <h1 class="fw-300">Ink.Net.JsonP_1</h1>
 
 <p>Executes a JSONP request</p>
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space">
@@ -37,50 +37,66 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">uri</li><li class="prop">options</li>
     </ul>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">uri
-            </dt>
-            <dd class="level1"><span class="ink-label orange">String</span></label>
-                Request URL</dd>
-            <dt class="level1"><label class="monospace">options
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Object</span></label>
-                Request options</dd>
-            <dt class="level2"><label class="monospace">options.onSuccess
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Function</span></label>
-                Success callback</dd>
-            <dt class="level2"><label class="monospace">[options.onFailure]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Function</span></label>
-                Failure callback</dd>
-            <dt class="level2"><label class="monospace">[options.failureObj]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Object</span></label>
-                Object to be passed as argument to failure callback</dd>
-            <dt class="level2"><label class="monospace">[options.timeout]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Number</span></label>
-                Timeout for request fail, in seconds. defaults to 10</dd>
-            <dt class="level2"><label class="monospace">[options.params]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Object</span></label>
-                Object with the parameters and respective values to unfold</dd>
-            <dt class="level2"><label class="monospace">[options.callbackParam]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                Parameter to use as callback. defaults to 'jsoncallback'</dd>
-            <dt class="level2"><label class="monospace">[options.internalCallback]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                Name of the callback function stored in the Ink.Net.JsonP object.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">uri</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Request URL</li>
+            <li class="level1"><span class="monospace">options</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                Request options</li>
+            <li class="level2"><span class="monospace">options.onSuccess</span>
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Function</span></p>
+                <!--</label>-->
+                Success callback</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.onFailure]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Function</span></p>
+                <!--</label>-->
+                Failure callback</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.failureObj]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                Object to be passed as argument to failure callback</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.timeout]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Number</span></p>
+                <!--</label>-->
+                Timeout for request fail, in seconds. defaults to 10</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.params]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                Object with the parameters and respective values to unfold</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.callbackParam]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Parameter to use as callback. defaults to 'jsoncallback'</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.internalCallback]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Name of the callback function stored in the Ink.Net.JsonP object.</li>
+        </ul>
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_Net_JsonP_1.html %}

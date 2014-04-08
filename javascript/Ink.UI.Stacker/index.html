@@ -5,7 +5,7 @@ description: Stacking items in columns
 site_root:  ../
 ---
     <section>
-        <h1 class="fw-300">Ink.UI.Stacker_1<small>version:1</small></h1>
+        <h1 class="fw-300">Ink.UI.Stacker_1</h1>
 
 <p>This module combines several stacks of items together, in smaller screen sizes.<br><p>The purpose is to have several stacks of items which may have different heights and as such cannot be used because of <code>float: left</code> quirks.</p><br><p>For example, when you have three different columns of information:</p><br><pre><code>[col. A: 1] [col. B: 1] [col. C: 1]<br>[col. B: 2] [col. C: 2] [col. C: 2]<br></code></pre><p>and the screen resizes and you need a layout of 2 columns, Stacker reorders the stacks so that you get:</p><br><pre><code>[col. A: 1] [col. B: 1]<br>[col. C: 1] [col. A: 2]<br>[col. B: 2] [col. C: 2]<br></code></pre><p>Note: If you just want to use a different amount of columns for your items in several viewports, but these items are guaranteed to have a fixed height, don&#39;t use this module. Use the <code>small-*</code>, <code>medium-*</code> and <code>large-*</code> classes instead.</p></p>
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space">
@@ -49,115 +49,157 @@ site_root:  ../
         <li class="heading">Arguments:</li><li class="prop">[container]</li><li class="prop">[options]</li>
     </ul>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">[container]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement|String</span></label>
-                Element which contains the stacks (identified by the options.column selector)</dd>
-            <dt class="level1"><label class="monospace">[options]
-                
-            </dt>
-            <dd class="level1"><span class="ink-label orange">Object</span></label>
-                Options object.</dd>
-            <dt class="level2"><label class="monospace">[options.column]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                Selector for the the columns inside the container element. Defaults to '.stacker-column'.</dd>
-            <dt class="level2"><label class="monospace">[options.item]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">String</span></label>
-                Selector for the items in your stack. Defaults to '.stacker-item'.</dd>
-            <dt class="level2"><label class="monospace">[options.customBreakPoints]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Object</span></label>
-                Options for each breakpoint name. Use this if you have more breakpoints than Ink by default (`large`, `medium`, `small`)</dd>
-            <dt class="level3"><label class="monospace">[options.customBreakpoints.BREAKPOINT_NAME]
-                
-            </dt>
-            <dd class="level3"><span class="ink-label orange">Object</span></label>
-                Custom breakpoints object.</dd>
-            <dt class="level4"><label class="monospace">options.customBreakpoints.BREAKPOINT_NAME.max
-            </dt>
-            <dd class="level4"><span class="ink-label orange">String</span></label>
-                Maximum screen size as seen in your media query</dd>
-            <dt class="level4"><label class="monospace">options.customBreakpoints.BREAKPOINT_NAME.min
-            </dt>
-            <dd class="level4"><span class="ink-label orange">String</span></label>
-                Minimum screen size as seen in your media query</dd>
-            <dt class="level4"><label class="monospace">options.customBreakpoints.BREAKPOINT_NAME.cols
-            </dt>
-            <dd class="level4"><span class="ink-label orange">String</span></label>
-                Column count for this size.</dd>
-            <dt class="level2"><label class="monospace">[options.largeMax]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Number</span></label>
-                Upper bound of `large` breakpoint</dd>
-            <dt class="level2"><label class="monospace">[options.largeMin]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Number</span></label>
-                Lower bound of `large` breakpoint. Defaults to 961.</dd>
-            <dt class="level2"><label class="monospace">[options.mediumMax]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Number</span></label>
-                Upper bound of `medium` breakpoint. Defaults to 960.</dd>
-            <dt class="level2"><label class="monospace">[options.mediumMin]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Number</span></label>
-                Lower bound of `medium` breakpoint. Defaults to 651.</dd>
-            <dt class="level2"><label class="monospace">[options.smallMax]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Number</span></label>
-                Upper bound of `small` breakpoint. Defaults to 650.</dd>
-            <dt class="level2"><label class="monospace">[options.smallMin]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Number</span></label>
-                Lower bound of `small` breakpoint</dd>
-            <dt class="level2"><label class="monospace">[options.largeCols]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Integer</span></label>
-                Number of columns in the `large` viewport. Defaults to 3.</dd>
-            <dt class="level2"><label class="monospace">[options.mediumCols]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Integer</span></label>
-                Number of columns in the `medium` viewport. Defaults to 2.</dd>
-            <dt class="level2"><label class="monospace">[options.smallCols]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Integer</span></label>
-                Number of columns in the `small` viewport. Defaults to 1.</dd>
-            <dt class="level2"><label class="monospace">[options.isOrdered]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Boolean</span></label>
-                When false, doesn't reorder stacks when combining them.</dd>
-            <dt class="level2"><label class="monospace">[options.onRunCallback]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Function</span></label>
-                Called when instantiated.</dd>
-            <dt class="level2"><label class="monospace">[options.onResizeCallback]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Function</span></label>
-                Called when the window resizes.</dd>
-            <dt class="level2"><label class="monospace">[options.onAPIReloadCallback]
-                
-            </dt>
-            <dd class="level2"><span class="ink-label orange">Function</span></label>
-                Called when the reload function executes.</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><p>
+                    <span class="monospace">[container]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement|String</span></p>
+                <!--</label>-->
+                Element which contains the stacks (identified by the options.column selector)</li>
+            <li class="level1"><p>
+                    <span class="monospace">[options]</span>
+                    
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                Options object.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.column]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Selector for the the columns inside the container element. Defaults to '.stacker-column'.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.item]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Selector for the items in your stack. Defaults to '.stacker-item'.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.customBreakPoints]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                Options for each breakpoint name. Use this if you have more breakpoints than Ink by default (`large`, `medium`, `small`)</li>
+            <li class="level3"><p>
+                    <span class="monospace">[options.customBreakpoints.BREAKPOINT_NAME]</span>
+                    
+                    
+                    <!--<li class="level3">--><span class="ink-label orange">Object</span></p>
+                <!--</label>-->
+                Custom breakpoints object.</li>
+            <li class="level4"><span class="monospace">options.customBreakpoints.BREAKPOINT_NAME.max</span>
+                    
+                    <!--<li class="level4">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Maximum screen size as seen in your media query</li>
+            <li class="level4"><span class="monospace">options.customBreakpoints.BREAKPOINT_NAME.min</span>
+                    
+                    <!--<li class="level4">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Minimum screen size as seen in your media query</li>
+            <li class="level4"><span class="monospace">options.customBreakpoints.BREAKPOINT_NAME.cols</span>
+                    
+                    <!--<li class="level4">--><span class="ink-label orange">String</span></p>
+                <!--</label>-->
+                Column count for this size.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.largeMax]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Number</span></p>
+                <!--</label>-->
+                Upper bound of `large` breakpoint</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.largeMin]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Number</span></p>
+                <!--</label>-->
+                Lower bound of `large` breakpoint. Defaults to 961.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.mediumMax]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Number</span></p>
+                <!--</label>-->
+                Upper bound of `medium` breakpoint. Defaults to 960.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.mediumMin]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Number</span></p>
+                <!--</label>-->
+                Lower bound of `medium` breakpoint. Defaults to 651.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.smallMax]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Number</span></p>
+                <!--</label>-->
+                Upper bound of `small` breakpoint. Defaults to 650.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.smallMin]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Number</span></p>
+                <!--</label>-->
+                Lower bound of `small` breakpoint</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.largeCols]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Integer</span></p>
+                <!--</label>-->
+                Number of columns in the `large` viewport. Defaults to 3.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.mediumCols]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Integer</span></p>
+                <!--</label>-->
+                Number of columns in the `medium` viewport. Defaults to 2.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.smallCols]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Integer</span></p>
+                <!--</label>-->
+                Number of columns in the `small` viewport. Defaults to 1.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.isOrdered]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Boolean</span></p>
+                <!--</label>-->
+                When false, doesn't reorder stacks when combining them.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.onRunCallback]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Function</span></p>
+                <!--</label>-->
+                Called when instantiated.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.onResizeCallback]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Function</span></p>
+                <!--</label>-->
+                Called when the window resizes.</li>
+            <li class="level2"><p>
+                    <span class="monospace">[options.onAPIReloadCallback]</span>
+                    
+                    
+                    <!--<li class="level2">--><span class="ink-label orange">Function</span></p>
+                <!--</label>-->
+                Called when the reload function executes.</li>
+        </ul>
 <p class="example-title">Example</p>
   
 {% highlight html %}{% raw %}
@@ -201,12 +243,14 @@ Javascript:
         <li class="heading">Arguments:</li><li class="prop">item</li>
     </ul><p class="text">Adds an item to the end of your stacks.<br>Call <code>reloadItems()</code> when you are done adding items.</p>
         <h3>Accepts</h3>
-        <dl class="params">
-            <dt class="level1"><label class="monospace">item
-            </dt>
-            <dd class="level1"><span class="ink-label orange">DOMElement</span></label>
-                Element</dd>
-        </dl>
+        
+        <ul class="params">
+            <li class="level1"><span class="monospace">item</span>
+                    
+                    <!--<li class="level1">--><span class="ink-label orange">DOMElement</span></p>
+                <!--</label>-->
+                Element</li>
+        </ul>
 
 </section>
 
