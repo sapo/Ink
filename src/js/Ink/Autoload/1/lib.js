@@ -54,17 +54,15 @@ Ink.createModule('Ink.Autoload', 1, ['Ink.Dom.Selector_1', 'Ink.Dom.Loaded_1', '
                 selectors: Autoload.selectors
             }, options || {});
 
-            function autoload() {
-                for(var mod in options.selectors) if (options.selectors.hasOwnProperty(mod)) {
-                    // `elements` need to be in a closure because requireModules is async.
-                    findElements(mod);
-                }
-                if (options.createClose !== false) {
-                    new Close();
-                }
-                if (options.createSmoothScroller !== false) {
-                    Scroller.init();
-                }
+            for(var mod in options.selectors) if (options.selectors.hasOwnProperty(mod)) {
+                // `elements` need to be in a closure because requireModules is async.
+                findElements(mod);
+            }
+            if (options.createClose !== false) {
+                new Close();
+            }
+            if (options.createSmoothScroller !== false) {
+                Scroller.init();
             }
 
             function findElements(mod) {
