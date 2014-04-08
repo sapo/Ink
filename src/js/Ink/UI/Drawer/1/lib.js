@@ -19,17 +19,11 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
     Drawer.prototype = {
         /**
          * Displays off-canvas content which can be triggered by clicking elements with the 'left-drawer-trigger' and 'right-drawer-trigger', respectively.
-         *
-         * The left drawer has the 'left-drawer' class, and the right drawer has the 'right-drawer' class.
-         *
-         * The content drawer (EG your `<div id="main">`) must have the 'content-drawer' class.
-         *
-         * For more, see the example below, or try the sample.
-         *
+         * The left drawer has the 'left-drawer' class, and the right drawer has the 'right-drawer' class. The content drawer (EG your `<div id="main">`) must have the 'content-drawer' class. For more, see the example below, or try the sample.
          * @class Ink.UI.Drawer_1
          * @constructor
          *
-         * @xparam {Object}     [options]                       Configuration options.
+         * @param {Object}      [options]                       Configuration options.
          * @xparam {String}     [options.parentSelector]        The class you are using in your wrapper (in the example below, it's the `body` tag.
          * @xparam {String}     [options.leftDrawer]            Selector for the left drawer element. This element is placed outside the screen and shown when you click the `leftTrigger` element.
          * @xparam {String}     [options.leftTrigger]           Selector for the left drawer trigger(s). When you click this trigger, the `leftDrawer` is shown.

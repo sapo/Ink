@@ -1,0 +1,33 @@
+
+<p>Some API functions</p>
+
+<p class="example-title">Code</p>
+{% highlight js %}{% raw %}
+var dictionaries = {    // This could come from a JSONP request from your server
+    'pt_PT': {
+        'hello': 'olá',
+        'me': 'eu',
+        'i have a {} for you': 'tenho um {} para ti' // Old syntax using `{%s}` tokens still available
+    },
+    'pt_BR': {
+        'hello': 'oi',
+        'me': 'eu',
+        'i have a {} for you': 'tenho um {} para você'
+    }
+};
+Ink.requireModules(['Ink.Util.I18n_1'], function (I18n) {
+    var i18n = new I18n(dictionaries, 'pt_PT');
+    i18n.text('hello');  // returns 'olá'
+    i18n.text('i have a {} for you', 'IRON SWORD'); // returns 'tenho um IRON SWORD' para ti
+    
+    i18n.lang('pt_BR');  // Changes language. pt_BR dictionary is loaded
+    i18n.text('hello');  // returns 'oi'
+
+    i18n.lang('en_US');  // Missing language.
+    i18n.text('hello');  // returns 'hello'. If testMode is on, returns '[hello]'
+});
+
+// The old {%s} syntax from libsapo's i18n is still supported
+i18n.text('hello, {%s}!', 'someone'); // -> 'olá, someone!'
+{% endraw %}{% endhighlight %}
+
