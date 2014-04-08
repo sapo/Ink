@@ -60,6 +60,7 @@ Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'In
         } else {
             this.animate();
         }
+        Common.registerInstance(this, this._element);
     }
 
     Animate.prototype.animate = function () {

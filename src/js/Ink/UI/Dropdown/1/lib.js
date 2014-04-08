@@ -60,6 +60,8 @@ Ink.createModule('Ink.UI.Dropdown', '1', ['Ink.UI.Common_1', 'Ink.UI.Toggle_1', 
             InkEvent.observe(this._options.target, 'click', Ink.bindMethod(this, '_onInsideClick'));
             // to call dismissOnOutsideClick and onOutsideClick
             InkEvent.observe(document, 'click', Ink.bindMethod(this, '_onOutsideClick'));
+
+            Common.registerInstance(this, this._element);
         },
 
         /**

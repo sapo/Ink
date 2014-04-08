@@ -109,6 +109,8 @@ Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
             // Imediate call to apply the right images based on the current viewport
             this._onResize();
+
+            Common.registerInstance(this, this._element);
         },
 
         /**
