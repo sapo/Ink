@@ -1,0 +1,9 @@
+<p class="example-title">Code</p>
+{% highlight js %}
+Ink.requireModules(['Ink.Util.String_1'], function(InkString) {
+
+    var result1 = InkString.htmlEscapeUnsafe('this a <span>sample</span> text & with "more" text');
+    Ink.log(result1); // this a &lt;span&gt;sample&lt;/span&gt; text &amp; with &quot;more&quot; text 
+});
+{% endhighlight %}
+

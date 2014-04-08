@@ -1,0 +1,9 @@
+<p class="example-title">Code</p>
+{% highlight js %}
+Ink.requireModules(['Ink.Util.String_1'], function(InkString) {
+
+    var result1 = InkString.unescapeText('some \xe1ud\xedo \xe7apo');
+    Ink.log(result1); // some áudío çapo 
+});
+{% endhighlight %}
+

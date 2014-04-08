@@ -1,0 +1,9 @@
+<p class="example-title">Code</p>
+{% highlight js %}
+Ink.requireModules(['Ink.Util.String_1'], function(InkString) {
+
+    var result1 = InkString.htmlEntitiesDecode('&lt;p&gt;text with a &lt;a href=&quot;#&quot;&gt;link&lt;/a&gt;&lt;/p&gt;'); 
+    Ink.log(result1); // <p>text sample with a <a href="#">link</a></p> 
+});
+{% endhighlight %}
+

@@ -1,0 +1,12 @@
+<p class="example-title">Code</p>
+{% highlight js %}
+Ink.requireModules(['Ink.Util.String_1'], function(InkString) {
+
+    var result1 = InkString.unescape('\x000063');
+    Ink.log(result1); // c 
+
+    var result2 = InkString.unescape('\x0000E7');
+    Ink.log(result2); // ç 
+});
+{% endhighlight %}
+
