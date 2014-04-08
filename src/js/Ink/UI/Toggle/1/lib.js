@@ -52,7 +52,7 @@
             onChangeState: null
         }, options || {}, InkElement.data(this._rootElement));
 
-        this._targets = Common.elsOrSelector(this._options.target, 'Ink.UI.Toggle target option');
+        this._targets = Common.elsOrSelector(this._options.target, 'Ink.UI.Toggle target option', true);
 
         // Boolean option handling
         this._options.closeOnClick = this._options.closeOnClick.toString() === 'true';
@@ -71,6 +71,8 @@
         }
 
         this._init();
+
+        Common.registerInstance(this, this._rootElement);
     };
 
     Toggle.prototype = {

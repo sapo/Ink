@@ -131,6 +131,7 @@ Ink.createModule('Ink.Util.Dumper', '1', [], function() {
          * @param {DOMElement|String}   [target]    Element to print the dump on.
          * @public
          * @static
+         * @sample Ink_Util_Dumper_printDump.html 
          */
         printDump: function(param, target)
         {
@@ -156,6 +157,7 @@ Ink.createModule('Ink.Util.Dumper', '1', [], function() {
          * @return  {String}            The variable's structure.
          * @public
          * @static
+         * @sample Ink_Util_Dumper_returnDump.html 
          */
         returnDump: function(param)
         {
@@ -169,6 +171,7 @@ Ink.createModule('Ink.Util.Dumper', '1', [], function() {
          * @param {Any}     param     Variable to be dumped.
          * @public
          * @static
+         * @sample Ink_Util_Dumper_alertDump.html 
          */
         alertDump: function(param)
         {
@@ -182,6 +185,7 @@ Ink.createModule('Ink.Util.Dumper', '1', [], function() {
          * @param {Any}     param   Variable to be dumped.
          * @public
          * @static
+         * @sample Ink_Util_Dumper_windowDump.html 
          */
         windowDump: function(param)
         {

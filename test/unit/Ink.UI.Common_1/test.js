@@ -33,9 +33,10 @@ Ink.requireModules(['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1', '
             Common.elsOrSelector('#bag #i-do-not-exist', 'TestFieldName', true);
         }, /TestFieldName/, '');
 
-        throws(function () {
-            Common.elsOrSelector('#bag #i-do-not-exist', 'TestFieldName' /* [true] */);
-        }, /TestFieldName/, '');
+        deepEqual(
+            Common.elsOrSelector('#bag #i-do-not-exist', 'TestFieldName' /* [false] */),
+            [],
+            'When ommitted, defaults to `false`');
     });
 
     bagTest('send an invalid selector', function () {
