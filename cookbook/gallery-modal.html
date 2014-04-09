@@ -31,7 +31,6 @@
         <!-- Place your Javascript here -->
         <script type="text/javascript" src="http://cdn.ink.sapo.pt/3.0.0/js/modernizr.js"></script>
         <script type="text/javascript">
-        console.log(Modernizr);
             Modernizr.load({
               test: Modernizr.flexbox,
               nope : 'http://cdn.ink.sapo.pt/3.0.0/css/ink-legacy.min.css'
@@ -243,7 +242,6 @@ Ink.requireModules(['Ink.UI.Carousel_1', 'Ink.UI.Modal_1', 'Ink.Dom.Event_1', 'I
             }
         
             InkCss.addClassName(aThumbsElms[page], 'active');
-                Ink.log(page, aThumbsElms[page]);
         }
 
     }
@@ -266,11 +264,9 @@ Ink.requireModules(['Ink.UI.Carousel_1', 'Ink.UI.Modal_1', 'Ink.Dom.Event_1', 'I
     InkEvent.observe(instThumbs.getStageElm(), 'click', function(event) {
                 InkEvent.stopDefault(event);
                 var aElms = instThumbs.getSlidesList();
-                Ink.log(aElms);
 
                 var tgt = InkEvent.element(event);
                 var slideElm = InkElement.findUpwardsByClass(tgt, 'slide');
-                Ink.log(tgt, slideElm);
                 if(slideElm) {
                     for(var i=0, len=aElms.length; i < len; i++) {
                         if(aElms[i] === slideElm) {
