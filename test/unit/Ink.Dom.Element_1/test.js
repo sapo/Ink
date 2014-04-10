@@ -197,9 +197,23 @@ Ink.requireModules(['Ink.Dom.Element_1', 'Ink.Dom.Selector_1', 'Ink.Dom.Css_1'],
         var theParent = InkElement.create('div');
         var wrapper = InkElement.create('div', { insertBottom: theParent, className: 'outer-wrapper'});
         var anotherWrapper = InkElement.create('div', { insertBottom: wrapper, className: 'another-wrapper'});
-        var child = InkElement.create('div', { insertBottom: wrapper });
+        var child = InkElement.create('div', { insertBottom: anotherWrapper });
 
         InkElement.unwrap(child, '.outer-wrapper');
+
+        strictEqual(child.parentNode, theParent);
+        strictEqual(child.nextSibling, wrapper);
+        strictEqual(wrapper.firstChild, anotherWrapper);
+        strictEqual(anotherWrapper.firstChild, null);
+    });
+
+    test('unwrap(elem, elem)', function () {
+        var theParent = InkElement.create('div');
+        var wrapper = InkElement.create('div', { insertBottom: theParent, className: 'outer-wrapper'});
+        var anotherWrapper = InkElement.create('div', { insertBottom: wrapper, className: 'another-wrapper'});
+        var child = InkElement.create('div', { insertBottom: anotherWrapper });
+
+        InkElement.unwrap(child, wrapper);
 
         strictEqual(child.parentNode, theParent);
         strictEqual(child.nextSibling, wrapper);
@@ -237,16 +251,6 @@ Ink.requireModules(['Ink.Dom.Element_1', 'Ink.Dom.Selector_1', 'Ink.Dom.Css_1'],
         equal(InkElement.outerDimensions(elm)[0], 40);
         equal(InkElement.outerDimensions(elm)[1], 20);
 
-        elm.style.width = '30.25px';
-        elm.style.paddingRight = '5.25px';
-        elm.style.marginRight = '5.25px';
-        equal(InkElement.outerDimensions(elm)[0], 40.75);
-
-        elm.style.height = '10.25px'
-        elm.style.paddingBottom = '5.25px'
-        elm.style.marginBottom = '5.25px'
-        equal(InkElement.outerDimensions(elm)[1], 20.75);
-
         document.body.removeChild(elm);
     });
 
@@ -268,4 +272,116 @@ Ink.requireModules(['Ink.Dom.Element_1', 'Ink.Dom.Selector_1', 'Ink.Dom.Css_1'],
         equal(typeof InkElement.outerDimensions(elm)[1], 'number');
 
     });
+
+    test('inViewport', sinon.test(function () {
+        // This test occurs inside a 100 X 100 screen
+        var height = this.stub(InkElement, 'viewportHeight').returns(100);
+        var width = this.stub(InkElement, 'viewportWidth').returns(100);
+
+        var fakeEl = {};
+        var rect = fakeEl.getBoundingClientRect = this.stub();
+
+        // Off to the left
+        rect.returns({left: -101, right: -1, top: 10, bottom: 10})
+        ok(!InkElement.inViewport(fakeEl))
+        ok(rect.called, 'sanity check')
+
+        // Off to the right
+        rect.returns({left: 101, right: 200, top: 10, bottom: 10})
+        ok(!InkElement.inViewport(fakeEl))
+
+        // Off to the top
+        rect.returns({top: -101, bottom: -1, left: 10, right: 10})
+        ok(!InkElement.inViewport(fakeEl))
+
+        // Off to the bottom
+        rect.returns({top: 101, bottom: 200, left: 10, right: 10})
+        ok(!InkElement.inViewport(fakeEl))
+
+        // Partially inside from the left
+        rect.returns({left: -101, right: 1, top: 10, bottom: 10})
+        ok(InkElement.inViewport(fakeEl, true))
+
+        // Partially inside from the right
+        rect.returns({left: 99, right: 200, top: 10, bottom: 10})
+        ok(InkElement.inViewport(fakeEl, true))
+
+        // Partially inside from the top
+        rect.returns({top: -101, bottom: 1, left: 10, right: 10})
+        ok(InkElement.inViewport(fakeEl, true))
+
+        // Partially inside from the bottom
+        rect.returns({top: 99, bottom: 200, left: 10, right: 10})
+        ok(InkElement.inViewport(fakeEl, true))
+
+        function dumbRect(x, y) {
+            return { left: x, right: x, top: y, bottom: y };
+        }
+
+        // Try with partial = false, then with partial = true.
+        for (var partial = false; partial < 2; partial += 1) {
+            partial = !!partial;
+
+
+            ok(true, 'Testing with opts.partial = ' + partial + ', within the margin');
+
+            rect.returns(dumbRect(-3, 3))
+            ok(InkElement.inViewport(fakeEl, { margin: 4, partial: partial }), 'inside from the left, because within margin')
+
+            rect.returns(dumbRect(103, 3))
+            ok(InkElement.inViewport(fakeEl, { margin: 4, partial: partial }), 'inside from the right, because within margin')
+
+            rect.returns(dumbRect(3, -3))
+            ok(InkElement.inViewport(fakeEl, { margin: 4, partial: partial }), 'inside from the top, because within margin')
+
+            rect.returns(dumbRect(3, 103))
+            ok(InkElement.inViewport(fakeEl, { margin: 4, partial: partial }), 'inside from the bottom, because within margin')
+
+
+            ok(true, 'Testing with opts.partial = ' + partial + ', outside the margin');
+
+            rect.returns(dumbRect(-3, 3))
+            ok(!InkElement.inViewport(fakeEl, { margin: 2, partial: partial }), 'outside from the left, because outside margin')
+
+            rect.returns(dumbRect(103, 3))
+            ok(!InkElement.inViewport(fakeEl, { margin: 2, partial: partial }), 'outside from the right, because outside margin')
+
+            rect.returns(dumbRect(3, -3))
+            ok(!InkElement.inViewport(fakeEl, { margin: 2, partial: partial }), 'outside from the top, because outside margin')
+
+            rect.returns(dumbRect(3, 103))
+            ok(!InkElement.inViewport(fakeEl, { margin: 2, partial: partial }), 'outside from the bottom, because outside margin')
+        }
+    }));
+
+    test('ellipsizeText', function () {
+        var elem = document.createElement('div');
+        elem.innerHTML = (new Array(100)).join('text ')
+        elem.style.width = '100px';
+        document.body.appendChild(elem);
+        var rectng = elem.getBoundingClientRect();
+        var h = rectng.bottom - rectng.top;
+        InkElement.ellipsizeText(elem);
+        rectng = elem.getBoundingClientRect();
+        var newH = rectng.bottom - rectng.top;
+        ok(newH < h);
+        document.body.removeChild(elem);
+    });
+
+    test('fillSelect', function () {
+        var container = document.createElement('select');
+        var data = [
+            ['1', 'a'],
+            ['2', 'b'],
+            ['3', 'c']
+        ];
+        InkElement.fillSelect(container, data, true);
+        equal(container.children.length, 3);
+
+        for (var i = 0, len = container.children.length; i < len; i++) {
+            strictEqual(container.children[i].getAttribute('value'), data[i][0]);
+            strictEqual(InkElement.textContent(container.children[i]), data[i][1]);
+        }
+    });
 });
+

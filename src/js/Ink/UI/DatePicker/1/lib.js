@@ -1,8 +1,9 @@
 /**
+ * Date selector
  * @module Ink.UI.DatePicker_1
- * @author inkdev AT sapo.pt
  * @version 1
  */
+
 Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1','Ink.Util.Date_1', 'Ink.Dom.Browser_1'], function(Common, Event, Css, InkElement, Selector, InkArray, InkDate ) {
     'use strict';
 
@@ -41,49 +42,42 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
      * @constructor
      * @version 1
      *
-     * @param {String|DOMElement} selector
-     * @param {Object} [options] Options
-     *      @param {Boolean}   [options.autoOpen=false]  set to `true` to automatically open the datepicker.
-     *      @param {String}    [options.cleanText]       text to display on clean button. defaults to 'Limpar'
-     *      @param {String}    [options.closeText]       text to display on close button. defaults to 'Fechar'
-     *      @param {String}    [options.cssClass]        CSS class to be applied to the datepicker
-     *      @param {String}    [options.dateRange]       enforce limits to year, month and day for the Date, ex: '1990-08-25:2020-11'
-     *      @param {Boolean}   [options.displayInSelect] whether to display the component in a select. defaults to false.
-     *      @param {String|DOMElement} [options.dayField]   (if using options.displayInSelect) `<select>` field with days.
-     *      @param {String|DOMElement} [options.monthField] (if using options.displayInSelect)  `<select>` field with months.
-     *      @param {String|DOMElement} [options.yearField]  (if using options.displayInSelect)  `<select>` field with years.
-     *      @param {String}    [options.format]          Date format string
-     *      @param {String}    [options.instance]        unique id for the datepicker
-     *      @param {Object}    [options.month]           Hash of month names. Defaults to portuguese month names. January is 1.
-     *      @param {String}    [options.nextLinkText]    text to display on the previous button. defaults to '«'
-     *      @param {String}    [options.ofText=' of ']   text to display between month and year. defaults to ' de '
-     *      @param {Boolean}   [options.onFocus=true]    if the datepicker should open when the target element is focused
-     *      @param {Function}  [options.onMonthSelected] callback function to execute when the month is selected
-     *      @param {Function}  [options.onSetDate]       callback to execute when set date
-     *      @param {Function}  [options.onYearSelected]  callback function to execute when the year is selected
-     *      @param {String}    [options.position]        position the datepicker. Accept right or bottom, default is right
-     *      @param {String}    [options.prevLinkText]    text to display on the previous button. defaults to '«'
-     *      @param {Boolean}   [options.showClean]       whether to display the clean button or not. defaults to true.
-     *      @param {Boolean}   [options.showClose]       whether to display the close button or not. defaults to true.
-     *      @param {Boolean}   [options.shy=true]        whether the datepicker starts automatically.
-     *      @param {String}    [options.startDate]       Date to define init month. Must be in yyyy-mm-dd format
-     *      @param {Number}    [options.startWeekDay]    day to use as first column on the calendar view. Defaults to Monday (1)
-     *      @param {Function}  [options.validYearFn]    callback function to execute when 'rendering' the month (in the month view)
-     *      @param {Function}  [options.validMonthFn]    callback function to execute when 'rendering' the month (in the month view)
-     *      @param {Function}  [options.validDayFn]      callback function to execute when 'rendering' the day (in the month view)
-     *      @param {Function}  [options.nextValidDateFn] Find the next valid date, given the current Date. Necessary when the calendar has a lot of "holes", and not many dates are valid and they are separated by many months or years so it doesn't make sense to have the user click the "next" button too many times and not see any valid date.
-     *      @param {Function}  [options.prevValidDateFn] See nextValidDateFn. Find the previous valid date.
-     *      @param {Object}    [options.wDay]            Hash of weekdays. Defaults to portuguese month names. Sunday is 0.
-     *      @param {String}    [options.yearRange]       enforce limits to year for the Date, ex: '1990:2020' (deprecated)
+     * @param {String|DOMElement}   selector
+     * @param {Object}              [options]                   Options
+     * @param {Boolean}             [options.autoOpen]          Flag to automatically open the datepicker.
+     * @param {String}              [options.cleanText]         Text for the clean button. Defaults to 'Limpar'.
+     * @param {String}              [options.closeText]         Text for the close button. Defaults to 'Fechar'.
+     * @param {String}              [options.cssClass]          CSS class to be applied on the datepicker
+     * @param {String}              [options.dateRange]         Enforce limits to year, month and day for the Date, ex: '1990-08-25:2020-11'
+     * @param {Boolean}             [options.displayInSelect]   Flag to display the component in a select element.
+     * @param {String|DOMElement}   [options.dayField]          (if using options.displayInSelect) `select` field with days.
+     * @param {String|DOMElement}   [options.monthField]        (if using options.displayInSelect) `select` field with months.
+     * @param {String|DOMElement}   [options.yearField]         (if using options.displayInSelect) `select` field with years.
+     * @param {String}              [options.format]            Date format string
+     * @param {String}              [options.instance]          Unique id for the datepicker
+     * @param {Object}              [options.month]             Hash of month names. Defaults to portuguese month names. January is 1.
+     * @param {String}              [options.nextLinkText]      Text for the previous button. Defaults to '«'.
+     * @param {String}              [options.ofText]            Text to show between month and year. Defaults to ' of '.
+     * @param {Boolean}             [options.onFocus]           If the datepicker should open when the target element is focused. Defaults to true.
+     * @param {Function}            [options.onMonthSelected]   Callback to execute when the month is selected.
+     * @param {Function}            [options.onSetDate]         Callback to execute when the date is set.
+     * @param {Function}            [options.onYearSelected]    Callback to execute when the year is selected.
+     * @param {String}              [options.position]          Position for the datepicker. Either 'right' or 'bottom'. Defaults to 'right'.
+     * @param {String}              [options.prevLinkText]      Text for the previous button. Defaults to '«'.
+     * @param {Boolean}             [options.showClean]         If the clean button should be visible. Defaults to true.
+     * @param {Boolean}             [options.showClose]         If the close button should be visible. Defaults to true.
+     * @param {Boolean}             [options.shy]               If the datepicker should start automatically. Defaults to true.
+     * @param {String}              [options.startDate]         Date to define initial month. Must be in yyyy-mm-dd format.
+     * @param {Number}              [options.startWeekDay]      First day of the week. Sunday is zero. Defaults to 1 (Monday).
+     * @param {Function}            [options.validYearFn]       Callback to execute when 'rendering' the month (in the month view)
+     * @param {Function}            [options.validMonthFn]      Callback to execute when 'rendering' the month (in the month view)
+     * @param {Function}            [options.validDayFn]        Callback to execute when 'rendering' the day (in the month view)
+     * @param {Function}            [options.nextValidDateFn]   Function to calculate the next valid date, given the current. Useful when there's invalid dates or time frames.
+     * @param {Function}            [options.prevValidDateFn]   Function to calculate the previous valid date, given the current. Useful when there's invalid dates or time frames.
+     * @param {Object}              [options.wDay]              Hash of weekdays. Defaults to portuguese names. Sunday is 0.
+     * @param {String}              [options.yearRange]         Enforce limits to year for the Date, ex: '1990:2020' (deprecated)
      *
-     * @example
-     *     <input type="text" id="dPicker" />
-     *     <script>
-     *         Ink.requireModules(['Ink.Dom.Selector_1','Ink.UI.DatePicker_1'],function( Selector, DatePicker ){
-     *             var datePickerElement = Ink.s('#dPicker');
-     *             var datePickerObj = new DatePicker( datePickerElement );
-     *         });
-     *     </script>
+     * @sample Ink_UI_DatePicker_1.html
      */
     var DatePicker = function(selector, options) {
         this._element = selector &&
@@ -106,7 +100,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             format:          ['String', 'yyyy-mm-dd'],
             instance:        ['String', 'scdp_' + Math.round(99999 * Math.random())],
             nextLinkText:    ['String', '»'],
-            ofText:          ['String', ' of '],
+            ofText:          ['String', ' de '],
             onFocus:         ['Boolean', true],
             onMonthSelected: ['Function', null],
             onSetDate:       ['Function', null],
@@ -173,6 +167,11 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             this._year  = today.getFullYear( );
         }
 
+        if (this._options.startWeekDay < 0 || this._options.startWeekDay > 6) {
+            Ink.warn('Ink.UI.DatePicker_1: option "startWeekDay" must be between 0 (sunday) and 6 (saturday)');
+            this._options.startWeekDay = clamp(this._options.startWeekDay, 0, 6);
+        }
+
         if(this._options.displayInSelect &&
                 !(this._options.dayField && this._options.monthField && this._options.yearField)){
             throw new Error(
@@ -187,8 +186,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         version: '0.1',
 
         /**
-         * Initialization function. Called by the constructor and
-         * receives the same parameters.
+         * Initialization function. Called by the constructor and receives the same parameters.
          *
          * @method _init
          * @private
@@ -203,7 +201,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         },
 
         /**
-         * Renders the DatePicker's markup
+         * Renders the DatePicker's markup.
          *
          * @method _render
          * @private
@@ -309,7 +307,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         },
 
         /**
-         * Shows the calendar
+         * Shows the calendar.
          *
          * @method show
          **/
@@ -365,7 +363,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         },
 
         /**
-         * Create the markup of the view with months.
+         * Creates the markup of the view with months.
          *
          * @method _renderMonthSelector
          * @private
@@ -387,7 +385,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         },
 
         /**
-         * Render a single month button.
+         * Renders a single month button.
          */
         _renderMonthButton: function (mon) {
             var liMonth = document.createElement('li');
@@ -485,7 +483,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         },
 
         /**
-         * Handle click events on a changer (« ») for next/prev year/month
+         * Handles click events on a changer (« ») for next/prev year/month
          * @method _onChangerClick
          * @private
          **/
@@ -507,7 +505,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         },
 
         /**
-         * Handle click events on an atom-changer (day button, month button, year button)
+         * Handles click events on an atom-changer (day button, month button, year button)
          *
          * @method _onAbsoluteChangerClick
          * @private
@@ -551,10 +549,11 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         },
 
         /**
-         * Hides the DatePicker. If the component is shy (options.shy), behaves differently.
+         * Hides the DatePicker.
+         * If the component is shy (options.shy), behaves differently.
          *
          * @method _hide
-         * @param [blur=true] Set to false to indicate this is not just a blur and force hiding even if the component is shy.
+         * @param {Boolean}    [blur]   If false, forces hiding even if the component is shy.
          */
         _hide: function(blur) {
             blur = blur === undefined ? true : blur;
@@ -611,7 +610,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                     lim = dateishFromYMDString(data.date);
 
                     lim._month = clamp(lim._month, 0, 11);
-                    lim._day = clamp(lim._day, 1, this._daysInMonth( lim._year, lim._month ));
+                    lim._day = clamp(lim._day, 1, this._daysInMonth( lim._year, lim._month + 1 ));
                 }
 
                 this[data.name] = lim;
@@ -965,7 +964,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         },
 
         /**
-         * Get the current date as a JavaScript date.
+         * Gets the currently selected date as a JavaScript date.
          *
          * @method getDate
          */
@@ -1213,45 +1212,67 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         _renderMonth: function(){
             var month = this._month;
             var year = this._year;
-            
-            // Week day of the first day in the month
-            var wDayFirst = (new Date( year , month , 1 )).getDay();
-
-            var startWeekDay = this._options.startWeekDay || 0;
 
             this._showDefaultView();
 
-            if(startWeekDay > wDayFirst) {
-                wDayFirst = 7 + startWeekDay - wDayFirst;
-            } else {
-                wDayFirst += startWeekDay;
-            }
-
             var html = '';
 
-            html += this._getMonthCalendarHeaderHtml(startWeekDay);
+            html += this._getMonthCalendarHeaderHtml(this._options.startWeekDay);
 
             var counter = 0;
             html+='<ul>';
 
             var emptyHtml = '<li class="ink-calendar-empty">&nbsp;</li>';
 
+            var firstDayIndex = this._getFirstDayIndex(year, month);
+
             // Add padding if the first day of the month is not monday.
-            if(wDayFirst !== 0) {
-                var empties = wDayFirst - startWeekDay - 1;
-                counter += empties;
-                html += strRepeat(empties, emptyHtml);
+            if(firstDayIndex > 0) {
+                counter += firstDayIndex;
+                html += strRepeat(firstDayIndex, emptyHtml);
             }
 
-            html += this._getDayButtonsHtml(counter, year, month);
+            html += this._getDayButtonsHtml(year, month);
 
             html += '</ul>';
 
             this._monthContainer.innerHTML = html;
         },
 
-        _getDayButtonsHtml: function (counter, year, month) {
-            var daysInMonth = this._daysInMonth(year, month);
+        /**
+         * Figure out where the first day of a month lies
+         * in the first row of the calendar.
+         *
+         *      having options.startWeekDay === 0
+         *
+         *      Su Mo Tu We Th Fr Sa  
+         *                         1  <- The "1" is in the 7th day. return 6.
+         *       2  3  4  5  6  7  8  
+         *       9 10 11 12 13 14 15  
+         *      16 17 18 19 20 21 22  
+         *      23 24 25 26 27 28 29  
+         *      30 31
+         *
+         * This obviously changes according to the user option "startWeekDay"
+         **/
+        _getFirstDayIndex: function (year, month) {
+            var wDayFirst = (new Date( year , month , 1 )).getDay();  // Sunday=0
+            var startWeekDay = this._options.startWeekDay || 0;  // Sunday=0
+
+            var result = wDayFirst - startWeekDay;
+
+            result %= 7;
+
+            if (result < 0) {
+                result += 6;
+            }
+
+            return result;
+        },
+
+        _getDayButtonsHtml: function (year, month) {
+            var counter = this._getFirstDayIndex(year, month);
+            var daysInMonth = this._daysInMonth(year, month + 1);
             var ret = '';
             for (var day = 1; day <= daysInMonth; day++) {
                 if (counter === 7){ // new week
@@ -1339,16 +1360,17 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             }
         },
 
-        /**
+        /*
+         * // TODO implement this
          * Prototype's method to allow the 'i18n files' to change all objects' language at once.
-         * @param  {Object} options Object with the texts' configuration.
-         *     @param {String} closeText Text of the close anchor
-         *     @param {String} cleanText Text of the clean text anchor
-         *     @param {String} prevLinkText "Previous" link's text
-         *     @param {String} nextLinkText "Next" link's text
-         *     @param {String} ofText The text "of", present in 'May of 2013'
-         *     @param {Object} month An object with keys from 1 to 12 that have the full months' names
-         *     @param {Object} wDay An object with keys from 0 to 6 that have the full weekdays' names
+         * @param {Object} options                  Object with the texts' configuration.
+         * @param {String} options.closeText        Text of the close anchor
+         * @param {String} options.cleanText        Text of the clean text anchor
+         * @param {String} options.prevLinkText     "Previous" link's text
+         * @param {String} options.nextLinkText     "Next" link's text
+         * @param {String} options.ofText           The text "of", present in 'May of 2013'
+         * @param {Object} options.month            An object with keys from 1 to 12 for the full months' names
+         * @param {Object} options.wDay             An object with keys from 0 to 6 for the full weekdays' names
          * @public
          */
         lang: function( options ){
@@ -1358,17 +1380,16 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         /**
          * This calls the rendering of the selected month. (Deprecated: use show() instead)
          *
-         * @method showMonth
-         * @public
          */
         showMonth: function(){
             this._renderMonth();
         },
 
         /**
-         * Returns true if the calendar sceen is in 'select day' mode
+         * Checks if the calendar screen is in 'select day' mode
          * 
-         * @return {Boolean} True if the calendar sceen is in 'select day' mode
+         * @method isMonthRendered
+         * @return {Boolean} True if the calendar screen is in 'select day' mode
          * @public
          */
         isMonthRendered: function(){
@@ -1381,6 +1402,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         /**
          * Destroys this datepicker, removing it from the page.
          *
+         * @method destroy
          * @public
          **/
         destroy: function () {

@@ -1,6 +1,10 @@
 /**
+ * Animate.css Utility
+ *
+ * This module is a wrapper around animate.css's CSS classes to produce animation.
+ * It contains options to ease common tasks, like listen to the "animationend" event with all necessary prefixes, remove the necessary class names when the animation finishes, or configure the duration of your animation with the necessary browser prefix.
+ *
  * @module Ink.UI.Animate_1
- * @author inkdev AT sapo.pt
  * @version 1
  */
 
@@ -25,28 +29,14 @@ Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'In
      * @class Ink.UI.Animate_1
      * @constructor
      *
-     * @param element {DOMElement} animated element
-     * @param options {Object} options object
-     * @param options.animation {String} animation name
-     * @param [options.duration=medium] {String|Number} duration name (fast|medium|slow) or duration in ms
-     * @param [options.removeClass=true] {Boolean} Whether to remove the `animation` class when finished animating
-     * @param [options.onEnd=null] {Function} callback for animation end
+     * @param {DOMElement}      element                     Animated element
+     * @param {Object}          options                     Options object
+     * @param {String}          options.animation           Animation name
+     * @param {String|Number}   [options.duration]          Duration name (fast|medium|slow) or duration in milliseconds. Defaults to 'medium'.
+     * @param {Boolean}         [options.removeClass]       Flag to remove the CSS class when finished animating. Defaults to false.
+     * @param {Function}        [options.onEnd]             Callback for the animation end
      *
-     * @example
-     *
-     *     <button id="animate-me" class="ink-button">Animate me!</button>
-     *     <span class="ink-label info ink-animate"
-     *         id="animated"
-     *         data-trigger="#animate-me"
-     *         data-animation="fadeOut"
-     *         data-removeClass="false">Hi!</span>    
-     *
-     *     <script type="text/javascript">
-     *         // Note: this step is not necessary if you are using autoload.js
-     *         Ink.requireModules(['Ink.UI.Animate_1'], function (Animate) {
-     *             new Animate('#animated');
-     *         });
-     *     </script>
+     * @sample Ink_UI_Animate_1.html
      *
      **/
     function Animate(elOrSelector, options) {
@@ -70,6 +60,7 @@ Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'In
         } else {
             this.animate();
         }
+        Common.registerInstance(this, this._element);
     }
 
     Animate.prototype.animate = function () {
@@ -78,7 +69,7 @@ Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'In
 
     Ink.extendObj(Animate, {
         /**
-         * Prefix for CSS animation-related properties in this browser.
+         * Browser prefix for the CSS animations.
          *
          * @property _animationPrefix
          * @private
@@ -86,31 +77,23 @@ Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'In
         _animationPrefix: animationPrefix,
 
         /**
-         * Whether CSS3 animation is supported in this browser.
+         * Boolean which says whether this browser has CSS3 animation support.
          *
-         * @property {Boolean} animationSupported
+         * @property animationSupported
          **/
         animationSupported: !!animationPrefix,
 
         /**
-         * The correct event for the animationend event in this browser, with the correct prefix
+         * Prefixed 'animationend' event name.
          *
-         * @property {String} animationEndEventName
+         * @property animationEndEventName
          **/
         animationEndEventName: animationEndEventName,
 
         /**
-         * Animate a div using one of the animate.css classes
+         * Animate an element using one of the animate.css classes
          *
          * **Note: This is a utility method inside the `Animate` class, which you can access through `Animate.animate()`. Do not mix these up.**
-         *
-         * @example
-         *
-         *      Animate.animate(myDiv, 'shake', {
-         *          onEnd: function () {
-         *              alert('Finished shaking!');
-         *          }
-         *      });
          *
          * @static
          * @method animate
@@ -120,6 +103,8 @@ Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'In
          *     @param [options.onEnd=null] {Function} callback for animation end
          *     @param [options.removeClass=false] {Boolean} whether to remove the Css class when finished
          *     @param [options.duration=medium] {String|Number} duration name (fast|medium|slow) or duration in ms
+         *
+         * @sample Ink_UI_Animate_1_animate.html
          **/
         animate: function (element, animation, options) {
             element = Common.elOrSelector(element);
@@ -172,4 +157,3 @@ Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'In
 
     return Animate;
 });
-

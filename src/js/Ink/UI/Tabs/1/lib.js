@@ -1,64 +1,48 @@
 /**
+ * Display tabbed content
  * @module Ink.UI.Tabs_1
- * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Common, Event, Css, Element, Selector, InkArray ) {
+Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1'], function(Common, Event, Css, Element, Selector) {
     'use strict';
 
     /**
-     * Tabs component
-     * 
+     * The Tabs Component offers a simple way to build a tab-separated layout, allowing you to offer multiple content in the same space with intuitive navigation.
+     * This component requires your markup to have:
+     * - A container element (this is what you call the Ink.UI.Tabs constructor on), containing everything.
+     * - An element with the `tabs-nav` class, to contain links.
+     * - Your links with `href="#ID_OF_SECTION"`
+     * - Your sections with the corresponding `id` attributes.
+     * - The content for each section.
+     *
+     * When the user clicks in the links inside `tabs-nav`, the tab with the corresponding ID is then activated. The active tab when the tab component is initialized has its hash in the browser URL. If there is no hash, then the `active` option kicks in. Otherwise, Tabs will fall back to showing the tab corresponding to the first link.
+     * You can disable some (or all) tabs by passing an array for the `disabled` option.
+     *
      * @class Ink.UI.Tabs
      * @constructor
      * @version 1
-     * @param {String|DOMElement} selector
-     * @param {Object} [options] Options
-     *     @param {Boolean}      [options.preventUrlChange]        Flag that determines if follows the link on click or stops the event
-     *     @param {String}       [options.active]                  ID of the tab to activate on creation
-     *     @param {Array}        [options.disabled]                IDs of the tabs that will be disabled on creation
-     *     @param {Function}     [options.onBeforeChange]          Callback to be executed before changing tabs
-     *     @param {Function}     [options.onChange]                Callback to be executed after changing tabs
-     *     @param {Boolean}      [options.triggerEventsOnLoad]     Trigger the above events when the page is loaded.
-     * @example
-     *      <div class="ink-tabs top"> <!-- replace 'top' with 'bottom', 'left' or 'right' to place navigation -->
-     *          
-     *          <!-- put navigation first if using top, left or right positioning -->
-     *          <ul class="tabs-nav">
-     *              <li><a href="#home">Home</a></li>
-     *              <li><a href="#news">News</a></li>
-     *              <li><a href="#description">Description</a></li>
-     *              <li><a href="#stuff">Stuff</a></li>
-     *              <li><a href="#more_stuff">More stuff</a></li>
-     *          </ul>
-     *          
-     *          <!-- Put your content second if using top, left or right navigation -->
-     *          <div id="home" class="tabs-content"><p>Content</p></div>
-     *          <div id="news" class="tabs-content"><p>Content</p></div>
-     *          <div id="description" class="tabs-content"><p>Content</p></div>
-     *          <div id="stuff" class="tabs-content"><p>Content</p></div>
-     *          <div id="more_stuff" class="tabs-content"><p>Content</p></div>
-     *          <!-- If you're using bottom navigation, switch the nav block with the content blocks -->
-     *       
-     *      </div>
-     *      <script>
-     *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.Tabs_1'], function( Selector, Tabs ){
-     *              var tabsElement = Ink.s('.ink-tabs');
-     *              var tabsObj = new Tabs( tabsElement );
-     *          });
-     *      </script>
+     * @param {String|DOMElement}   selector
+     * @param {Object}              [options]                       Options
+     * @param {Boolean}             [options.preventUrlChange]      Flag that determines if follows the link on click or stops the event
+     * @param {String}              [options.active]                ID of the tab to activate on creation
+     * @param {Array}               [options.disabled]              IDs of the tabs that will be disabled on creation
+     * @param {Function}            [options.onBeforeChange]        Callback to be executed before changing tabs
+     * @param {Function}            [options.onChange]              Callback to be executed after changing tabs
+     * @param {Boolean}             [options.triggerEventsOnLoad]   Trigger the above events when the page is loaded.
+     *
+     * @sample Ink_UI_Tabs_1.html
      */
     var Tabs = function(selector, options) {
         this._element = Common.elOrSelector(selector, 'Ink.UI.Tabs tab container');
 
-        this._options = Ink.extendObj({
-            preventUrlChange: false,
-            active: undefined,
-            disabled: [],
-            onBeforeChange: undefined,
-            onChange: undefined,
-            triggerEventsOnLoad: true
-        }, options || {}, Element.data(this._element));
+        this._options = Common.options({
+            preventUrlChange:   ['Boolean', false],
+            active:             ['String', undefined],
+            disabled:           ['Object', []],
+            onBeforeChange:     ['Function', undefined],
+            onChange:           ['Function', undefined],
+            triggerEventsOnLoad:['Boolean', true]
+        }, options || {}, this._element, 'Ink.UI.Tabs_1');
 
         this._handlers = {
             tabClicked: Ink.bindEvent(this._onTabClicked,this),
@@ -79,7 +63,10 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          */
         _init: function() {
             this._menu = Selector.select('.tabs-nav', this._element)[0];
-            this._menuTabs = this._menu.children;
+            if (!this._menu) {
+                Ink.warn('Ink.UI.Tabs: An element selected by ".tabs-nav" needs to exist inside the element!');
+                return;
+            }
             this._contentTabs = Selector.select('.tabs-content', this._element);
 
             //initialization of the tabs, hides all content before setting the active tab
@@ -93,7 +80,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
 
             this._handlers.resize();
 
-            Common.registerInstance(this, this._element, 'tabs');
+            Common.registerInstance(this, this._element, 'Tabs');
         },
 
         /**
@@ -103,8 +90,10 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          * @private
          */
         _initializeDom: function(){
-            for(var i = 0; i < this._contentTabs.length; i++){
-                Css.addClassName(this._contentTabs[i], 'hide-all');
+            var contentTabs = Selector.select('.tabs-content', this._element);
+
+            for(var i = 0; i < contentTabs.length; i++){
+                Css.addClassName(contentTabs[i], 'hide-all');
             }
         },
 
@@ -115,15 +104,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          * @private
          */
         _observe: function() {
-            InkArray.each(this._menuTabs,Ink.bind(function(elem){
-                var link = Selector.select('a', elem)[0];
-                if(InkArray.inArray(link.getAttribute('href'), this._options.disabled)){
-                    this.disable(link);
-                } else {
-                    this.enable(link);
-                }
-            },this));
-
+            Event.on(this._menu, 'click', '> *', Ink.bindMethod(this, '_onTabClickedGeneric'));
             Event.observe(window, 'resize', this._handlers.resize);
         },
 
@@ -183,6 +164,20 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
         },
 
         /**
+         * Generic Tab clicked handler.
+         * Just calls _onTabClicked or _onDisabledTabClicked
+         *
+         * @private
+         **/
+        _onTabClickedGeneric: function (event) {
+            if (!Css.hasClassName(event.currentTarget, 'ink-disabled')) {
+                this._onTabClicked(event);
+            } else {
+                this._onDisabledTabClicked(event);
+            }
+        },
+
+        /**
          * Tab clicked handler
          * 
          * @method _onTabClicked
@@ -236,7 +231,13 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
                 return;
             }
 
-            if(currentLayout === Common.Layouts.SMALL || currentLayout === Common.Layouts.MEDIUM){
+            // wtf
+            var smallLayout =
+                currentLayout === Common.Layouts.TINY ||
+                currentLayout === Common.Layouts.SMALL ||
+                currentLayout === Common.Layouts.MEDIUM;
+
+            if(smallLayout){
                 Css.removeClassName(this._menu, 'menu');
                 Css.removeClassName(this._menu, 'horizontal');
                 // Css.addClassName(this._menu, 'pills');
@@ -287,10 +288,12 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          **************/
 
         /**
-         * Changes to the desired tag
+         * Changes the active tab
+         *
+         * Pass a selector/element identifying what tab you want
          * 
          * @method changeTab
-         * @param {String|DOMElement} selector      the id of the desired tab or the link that links to it
+         * @param {String|DOMElement} selector      Selector of the desired tab or the link that links to it
          * @public
          */
         changeTab: function(selector) {
@@ -302,6 +305,18 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
         },
 
         /**
+         * The enable() and disable() functions do exactly the same thing.
+         * one adds the className and the other removes it.
+         **/
+        _enableOrDisableDRY: function (selector, isEnable) {
+            var element = (selector.nodeType === 1)? selector : this._findLinkByHref(this._hashify(selector));
+            if(!element){
+                return;
+            }
+            Css.setClassName(element, 'ink-disabled', !isEnable);
+        },
+
+        /**
          * Disables the desired tag
          * 
          * @method disable
@@ -309,30 +324,18 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          * @public
          */
         disable: function(selector){
-            var element = (selector.nodeType === 1)? selector : this._findLinkByHref(this._hashify(selector));
-            if(!element){
-                return;
-            }
-            Event.stopObserving(element, 'click', this._handlers.tabClicked);
-            Event.observe(element, 'click', this._handlers.disabledTabClicked);
-            Css.addClassName(element, 'ink-disabled');
+            this._enableOrDisableDRY(selector, false);
         },
 
-         /**
+        /**
          * Enables the desired tag
          * 
          * @method enable
-         * @param {String|DOMElement} selector      the id of the desired tab or the link that links to it
+         * @param {String|DOMElement} selector      The id of the desired tab or the link that links to it
          * @public
          */
         enable: function(selector){
-            var element = (selector.nodeType === 1)? selector : this._findLinkByHref(this._hashify(selector));
-            if(!element){
-                return;
-            }
-            Event.stopObserving(element, 'click', this._handlers.disabledTabClicked);
-            Event.observe(element, 'click', this._handlers.tabClicked);
-            Css.removeClassName(element, 'ink-disabled');
+            this._enableOrDisableDRY(selector, true);
         },
 
         /***********
@@ -351,21 +354,29 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
         },
 
         /**
-         * Returns the current active Menu LI
-         * 
+         *
+         * Returns the parent of the currently active menu link.
+         *
+         * This is useful if you want to have `li` elements wrapping your links
+         * and want to access the currently visible one.
+         *
+         * (This method is deprecated)
          * @method activeMenuTab
-         * @return {DOMElement} Active menu LI.
+         * @deprecated
+         * @return {DOMElement|null} Active menu LI, or `null` if there is none.
          * @public
          */
         activeMenuTab: function(){
+            // [3.1.0] remove this
+            Ink.warn('Ink.UI.Tabs.activeMenuTab() is deprecated');
             return this._activeMenuTab;
         },
 
         /**
-         * Returns the current active Menu anchorChanges to the desired tag
+         * Gets the currently active Menu link (the links which the user clicks on to change tabs)
          * 
          * @method activeMenuLink
-         * @return {DOMElement} Active menu link
+         * @return {DOMElement|null} Active menu link, or `null` if there is none.
          * @public
          */
         activeMenuLink: function(){
@@ -373,10 +384,12 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
         },
 
         /**
-         * Returns the current active Content Tab
+         * Gets the currently active section
+         *
+         * (Each section contains content for a tab, and must have an `id` attribute)
          * 
          * @method activeContentTab
-         * @return {DOMElement} Active Content Tab
+         * @return {DOMElement|null} Active section, or `null` if there is none.
          * @public
          */
         activeContentTab: function(){
@@ -384,7 +397,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
         },
 
         /**
-         * Unregisters the component and removes its markup from the DOM
+         * Unregisters the component and removes its markup
          * 
          * @method destroy
          * @public

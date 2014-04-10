@@ -1,7 +1,7 @@
 /**
+ * JSON Utilities
  * @module Ink.Util.Json_1
- *
- * @author inkdev AT sapo.pt
+ * @version 1
  */
 
 Ink.createModule('Ink.Util.Json', '1', [], function() {
@@ -35,7 +35,7 @@ Ink.createModule('Ink.Util.Json', '1', [], function() {
 
     /**
      * Use this class to convert JSON strings to JavaScript objects
-     * `(Json.parse)` and also to do the opposite operation `(Json.stringify)`.
+     * `.parse()` and also to do the opposite operation `.stringify()`.
      * Internally, the standard JSON implementation is used if available
      * Otherwise, the functions mimic the standard implementation.
      *
@@ -56,7 +56,8 @@ Ink.createModule('Ink.Util.Json', '1', [], function() {
      *          var source = '{"key": "value", "array": [true, null, false]}';
      *          Json.parse(source);  // The above JSON string as an object
      *      });
-     * @class Ink.Util.Json
+     *
+     * @namespace Ink.Util.Json_1 
      * @static
      * 
      */
@@ -191,15 +192,14 @@ Ink.createModule('Ink.Util.Json', '1', [], function() {
         },
 
         /**
-         * serializes a JSON object into a string.
+         * Serializes a JSON object into a string.
          *
          * @method stringify
-         * @param {Object}      input               Data to be serialized into JSON
-         * @param {Boolean}     convertToUnicode    When `true`, converts string contents to unicode \uXXXX
-         * @return {String}     serialized string
+         * @param   {Object}      input                 Data to be serialized into JSON
+         * @param   {Boolean}     convertToUnicode      When `true`, converts string contents to unicode \uXXXX
+         * @return  {String}                            Serialized string
          *
-         * @example
-         *      Json.stringify({a:1.23}); // -> string: '{"a": 1.23}'
+         * @sample Ink_Util_Json_stringify.html 
          */
         stringify: function(input, convertToUnicode) {
             this._convertToUnicode = !!convertToUnicode;
@@ -210,21 +210,15 @@ Ink.createModule('Ink.Util.Json', '1', [], function() {
         },
         
         /**
+         * Parses a JSON text through a function
+         * 
          * @method parse
          * @param text      {String}    Input string
          * @param reviver   {Function}  Function receiving `(key, value)`, and `this`=(containing object), used to walk objects.
          * 
-         * @example
-         * Simple example:
+         * @return {Object}             JSON object
          *
-         *      Json.parse('{"a": "3","numbers":false}',
-         *          function (key, value) {
-         *              if (!this.numbers && key === 'a') {
-         *                  return "NO NUMBERS";
-         *              } else {
-         *                  return value;
-         *              }
-         *          }); // -> object: {a: 'NO NUMBERS', numbers: false}
+         * @sample Ink_Util_Json_parse.html 
          */
         /* From https://github.com/douglascrockford/JSON-js/blob/master/json.js */
         parse: function (text, reviver) {

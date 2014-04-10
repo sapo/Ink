@@ -1,0 +1,196 @@
+html {
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    color: $text-color;
+    @include ink-font-stack(sans);
+    line-height: $base-line-height;
+}
+
+.fw-100, .fw-light { font-weight: 100; }
+.fw-300, .fw-thin { font-weight: 300; }
+.fw-400, .fw-regular { font-weight: 400; }
+.fw-500, .fw-medium { font-weight: 500; }
+.fw-700, .fw-bold { font-weight: 700; }
+.fw-900, .fw-black { font-weight: 900; }
+
+.condensed-300, .condensed-thin { font-weight: 200; font-family: $condensed-font-stack; }
+.condensed-400, .condensed-regular { font-weight: 400; font-family: $condensed-font-stack; }
+.condensed-700, .condensed-bold { font-weight: 700; font-family: $condensed-font-stack; }
+
+.slab-100, .slab-light { font-weight: 100; font-family: $slab-font-stack; }
+.slab-300, .slab-thin { font-weight: 300; font-family: $slab-font-stack; }
+.slab-400, .slab-regular { font-weight: 400; font-family: $slab-font-stack; }
+.slab-700, .slab-bold { font-weight: 700; font-family: $slab-font-stack; }
+
+.sans       { font-family: $sans-serif-font-stack; }
+.serif      { font-family: $serif-font-stack; }
+.monospace  { font-family: $mono-font-stack; }
+.condensed  { font-family: $condensed-font-stack; }
+.slab       { font-family: $slab-font-stack; }
+
+.italic { font-style: italic; }
+.uppercase { text-transform: uppercase; }
+.lowercase { text-transform: lowercase; }
+.capitalizer { text-transform: capitalize; }
+
+.fa { font-size: 14px; }
+
+a {
+    color: $link-color;
+    text-decoration: none;
+    cursor: pointer;
+    // @include transition (compact(all 140ms ease-in-out));
+
+    &:hover {
+        color: $link-hover-color;
+        text-decoration: underline;
+    }
+}
+
+@include vertical-rhythm();
+
+/* Headings  */
+h1, h2, h3, h4, h5, h6 {
+    color: $headings-color;
+    font-weight: 700;
+    line-height: $base-line-height * 0.8;
+}
+
+small {
+    color: tint($text-color, 30%);
+    //font-size: .6em;
+}
+
+input, textarea {
+    color: #666;
+}
+
+h1 small, h2 small, h3 small, h4 small {
+    color: #bbb;
+    font-size: .6em;
+    font-weight: 100;
+    line-height: 1;
+}
+
+mark {
+    background: lighten($link-color,30%)
+}
+
+address {
+    color: tint($text-color, 20%);
+    font-size: 1em;
+    line-height: 1.4;
+
+    p { margin-top: 0 }
+
+    h6 { color: $text-color; }
+}
+
+abbr {
+    &:hover {
+        cursor: help;
+    }
+}
+
+blockquote {
+    border-left: 4px solid #ddd;
+    padding-left: $indent-amount;
+    margin:1em 0;
+    font-weight: 200;
+    font-size: 1.1em;
+
+    small {
+        font-size: .9em;
+
+        &::before,
+        &::after {
+            content: ' — ';
+        }
+    }
+}
+
+.note {
+    font-size: .9em;
+    color: tint($text-color, 20%);
+    strong {color: $text-color;}
+}
+
+.small      { font-size: .75em; }
+.medium      { font-size: .85em; }
+.large      { font-size: 1.2em; }
+.extralarge { font-size: 1.45em !important; }
+
+hr {
+    border: 0;
+    border-top: 1px solid #ddd;
+    margin:1em 0
+}
+
+.lead {
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+ul, ol {
+    line-height:1.4;
+    padding: 0 0 0 $base-line-height * 1em;
+    margin: 1em 0;
+
+    li {
+        margin: .5em 0;
+    }
+}
+
+ul {
+
+    &.unstyled {
+        list-style: none;
+        padding-left: 0em;
+
+        ul  {
+            list-style:disc outside;
+        }
+    }
+
+    &.inline {
+        list-style: none;
+
+        li {
+            display: inline-block;
+            padding: 0 .5em;
+            &:first-child {
+                padding: 0 .5em 0 0;
+            }
+        }
+    }
+}
+
+dl {
+    margin: 1em 0;
+    dt {
+        font-weight: bold;
+        margin: .5em 0;
+    }
+
+    dd { margin: .5em 0 .5em $indent-amount; }
+
+    &.inline {
+        dt {
+            float: left;
+            clear: left;
+            text-align: right;
+            width: 180px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            margin: 0;
+        }
+
+        dd {
+            margin: .5em 0 .5em 200px;
+        }
+    }
+}

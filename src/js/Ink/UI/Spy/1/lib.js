@@ -1,6 +1,6 @@
 /**
+ * Highlight elements as you scroll
  * @module Ink.UI.Spy_1
- * @author inkdev AT sapo.pt
  * @version 1
  */
 Ink.createModule('Ink.UI.Spy', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1'], function(Common, Event, Css, Element, Selector ) {
@@ -72,12 +72,12 @@ Ink.createModule('Ink.UI.Spy', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Do
          *          _____ 
          *         |_____| element 1  (active element)
          *
-         *                              ---
-         *          _____                 |
-         *         |     |  element 2     |    viewport visible area         
-         *         |     |                |
-         *         |_____|                |
-         *                              ---
+         *      ------------------------ 
+         *     |    _____               |
+         *     |   |     |  element 2   |
+         *     |   |     |              |
+         *     |   |_____|              |
+         *      ------- Viewport ------- 
          */
 
         // Remember that getBoundingClientRect returns coordinates
@@ -103,45 +103,40 @@ Ink.createModule('Ink.UI.Spy', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Do
     }
 
     /**
-     * Spy is a component that 'spies' an element (or a group of elements) and when they leave the viewport (through the top),
-     * highlight an option - related to that element being spied - that resides in a menu, initially identified as target.
-     * 
+     * Spy is an UI component which tells the user which section is currently visible.
+     * Spy can be used to highlight a menu item for the section which is visible to the user.
+     * You need two things: A menu element (which contains your links inside `li` tags), and an element containing your section's content.
+	 * The links must be inside `li` tags. These will get the 'active' class, to signal which item is currently visible. In your CSS you need to add styling for this class.
+     * To use Ink.UI.Spy for more than one section, loop through your sections (as you see in the sample below), or just load `autoload.js` and set add the `data-spy="true"` attribute to your sections.
+     * The currently visible element's corresponding link in the menu gets the 'visible' class added to it.
+     *
      * @class Ink.UI.Spy
      * @constructor
      * @version 1
      * @param {String|DOMElement} selector
      * @param {Object} [options] Options
-     *     @param {DOMElement|String}     options.target          Target menu on where the spy will highlight the right option.
-     *     TODO @xparam {String}                [options.activeClass='active'] Class which marks the "li" as active.
-     * @example
-     *      <script>
-     *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.Spy_1'], function( Selector, Spy ){
-     *              var menuElement = Ink.s('#menu');
-     *              var specialAnchorToSpy = Ink.s('#specialAnchor');
-     *              var spyObj = new Spy( specialAnchorToSpy, {
-     *                  target: menuElement
-     *              });
-     *          });
-     *      </script>
+     * @param {DOMElement|String}     options.target          Target menu where the spy will highlight the right option.
+     *
+     * @sample Ink_UI_Spy_1.html
      */
     var Spy = function( selector, options ){
 
-        this._rootElement = Common.elOrSelector(selector,'1st argument');
+        this._element = Common.elOrSelector( selector, 'Ink.UI.Spy_1: Section element' );
 
         /**
          * Setting default options and - if needed - overriding it with the data attributes
          */
         this._options = Ink.extendObj({
             target: undefined,
-            activeClass: 'active'
-        }, Element.data( this._rootElement ) );
+            activeClass: 'active' // [todo] Spy#_options.activeClass
+        }, Element.data( this._element ) );
 
         /**
          * In case options have been defined when creating the instance, they've precedence
          */
         this._options = Ink.extendObj(this._options,options || {});
 
-        this._options.target = Common.elOrSelector( this._options.target, 'Target' );
+        this._options.target = Common.elOrSelector( this._options.target, 'Ink.UI.Spy_1: Target element' );
 
         this._init();
     };
@@ -154,9 +149,11 @@ Ink.createModule('Ink.UI.Spy', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Do
          * @private
          */
         _init: function() {
-            addSpied(this._rootElement, this._options.target);
+            addSpied(this._element, this._options.target);
             observeOnScroll();
             onScroll();
+
+            Common.registerInstance(this, this._element);
         }
     };
 

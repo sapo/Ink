@@ -1,17 +1,16 @@
 /**
+ * Browser Detection and User Agent sniffing
  * @module Ink.Dom.Browser_1
- * @author inkdev AT sapo.pt
  * @version 1
  */
 Ink.createModule('Ink.Dom.Browser', '1', [], function() {
     'use strict';    
 
     /**
-     * @class Ink.Dom.Browser
+     * @namespace Ink.Dom.Browser
      * @version 1
      * @static
      * @example
-     *     <input type="text" id="dPicker" />
      *     <script>
      *         Ink.requireModules(['Ink.Dom.Browser_1'],function( InkBrowser ){
      *             if( InkBrowser.CHROME ){
@@ -82,7 +81,8 @@ Ink.createModule('Ink.Dom.Browser', '1', [], function() {
         CHROME: false,
 
         /**
-         * The specific browser model. False if it is unavailable.
+         * The specific browser model.
+         * False if it is unavailable.
          *
          * @property model
          * @type {Boolean|String}
@@ -92,7 +92,8 @@ Ink.createModule('Ink.Dom.Browser', '1', [], function() {
         model: false,
 
         /**
-         * The browser version. False if it is unavailable.
+         * The browser version.
+         * False if it is unavailable.
          *
          * @property version
          * @type {Boolean|String}
@@ -102,7 +103,8 @@ Ink.createModule('Ink.Dom.Browser', '1', [], function() {
         version: false,
 
         /**
-         * The user agent string. False if it is unavailable.
+         * The user agent string.
+         * False if it is unavailable.
          *
          * @property userAgent
          * @type {Boolean|String}
@@ -110,6 +112,27 @@ Ink.createModule('Ink.Dom.Browser', '1', [], function() {
          * @static
          */
         userAgent: false,
+
+        /**
+         * The CSS prefix (-moz-, -webkit-, -ms-, ...)
+         * False if it is unavailable 
+         *
+         * @property cssPrefix 
+         * @type {Boolean|String}
+         * @public 
+         * @static 
+         */
+        cssPrefix: false, 
+
+        /**
+         * The DOM prefix (Moz, Webkit, ms, ...)
+         * False if it is unavailable 
+         * @property domPrefix 
+         * @type {Boolean|String}
+         * @public 
+         * @static 
+         */
+        domPrefix: false,
 
         /**
          * Initialization function for the Browser object.
@@ -252,28 +275,14 @@ Ink.createModule('Ink.Dom.Browser', '1', [], function() {
          *
          * @method debug
          * @public
-         *
-         * @example
-         *  
-         *  The following code
-         *
-         *      Ink.requireModules(['Ink.Dom.Browser_1'], function (Browser) {
-         *          Browser.debug();
-         *      });
-         *
-         *  Alerts (On Firefox 22):
-         *
-         *      known browsers: (ie, gecko, opera, safari, konqueror) 
-         *      false,true,false,false,false
-         *      model -> firefox
-         *      version -> 22.0
-         *      
-         *      original UA -> Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:22.0) Gecko/20100101 Firefox/22.0
+         * @sample Ink_Dom_Browser_1_debug.html
          */
         debug: function() {
             /*global alert:false */
             var str = "known browsers: (ie, gecko, opera, safari, konqueror) \n";
                 str += [this.IE, this.GECKO, this.OPERA, this.SAFARI, this.KONQUEROR] +"\n";
+                str += "cssPrefix -> "+this.cssPrefix+"\n";
+                str += "domPrefix -> "+this.domPrefix+"\n";
                 str += "model -> "+this.model+"\n";
                 str += "version -> "+this.version+"\n";
                 str += "\n";

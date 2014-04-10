@@ -1,26 +1,31 @@
 /**
+ * Elements in a tree structure
  * @module Ink.UI.TreeView_1
- * @author inkdev AT sapo.pt
  * @version 1
  */
 Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Common, Event, Css, Element, Selector, InkArray ) {
     'use strict';
 
+
     /**
-     * Shows elements in a tree-like hierarchical structure.
+     * Shows elements in a tree structure which can be expanded and contracted.
+     * A TreeView is built with "node"s and "children". "node"s are `li` tags, and "children" are `ul` tags.
+     * You can build your TreeView out of a regular UL and  LI element structure which you already use to display lists with several levels.
+     * If you want a node to be open when the TreeView is built, just add the data-open="true" attribute to it.
      * 
      * @class Ink.UI.TreeView
      * @constructor
      * @version 1
-     * @param {String|DOMElement} selector
-     * @param {String} [options.node='li'] Selector to define which elements are seen as nodes.
-     * @param {String} [options.children='ul'] Selector to define which elements are represented as children.
-     * @param {String} [options.parentClass='parent'] Classes to be added to the parent node.
-     * @param {String} [options.openClass='icon icon-minus-circle'] Classes to be added to the icon when a parent is open.
-     * @param {String} [options.closedClass='icon icon-plus-circle'] Classes to be added to the icon when a parent is closed.
-     * @param {String} [options.hideClass='hide-all'] Class to toggle visibility of the children.
-     * @param {String} [options.iconTag='i'] The name of icon tag. The component tries to find a tag with that name as a direct child of the node. If it doesn't find it, it creates it.
-     * @param {Boolean} [options.stopDefault=true] Stops the default behavior of the click handler.
+     * @param {String|DOMElement}   selector                    Element or selector.
+     * @param {String}              [options]                   Options object, containing:
+     * @param {String}              [options.node]              Selector for the nodes. Defaults to 'li'.
+     * @param {String}              [options.children]          Selector for the children. Defaults to 'ul'.
+     * @param {String}              [options.parentClass]       CSS classes to be added to parent nodes. Defaults to 'parent'.
+     * @param {String}              [options.openClass]         CSS classes to be added to the icon when a parent is open. Defaults to 'fa fa-minus-circle'.
+     * @param {String}              [options.closedClass]       CSS classes to be added to the icon when a parent is closed. Defaults to 'fa fa-plus-circle'.
+     * @param {String}              [options.hideClass]         CSS Class to toggle visibility of the children. Defaults to 'hide-all'.
+     * @param {String}              [options.iconTag]           The name of icon tag. The component tries to find a tag with that name as a direct child of the node. If it doesn't find it, it creates it. Defaults to 'i'.
+     * @param {Boolean}             [options.stopDefault]       Flag to stops the default behavior of the click handler. Defaults to true.
      * @example
      *      <ul class="ink-tree-view">
      *        <li data-open="true"><a href="#">root</a>
@@ -47,6 +52,8 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
      *              var treeViewObj = new TreeView( treeViewElement );
      *          });
      *      </script>
+     * 
+     * @sample Ink_UI_TreeView_1.html
      */
     var TreeView = function(selector, options){
         this._element = Common.elOrSelector(selector, '[Ink.UI.TreeView_1]');
@@ -54,15 +61,12 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
         this._options = Common.options('Treeview', {
             'node':   ['String', 'li'],
             // [3.0.1] Deprecate this terrible, terrible name
-            'child':  ['String','ul'],
+            'child':  ['String',null],
             'children':  ['String','ul'],
             'parentClass': ['String','parent'],
-            // [3.0.0] use these classes because you'll have font-awesome 4
-            // 'openClass': ['String','fa fa-minus-circle'],
-            // 'closedClass': ['String','fa fa-plus-circle'],
             'openNodeClass': ['String', 'open'],
-            'openClass': ['String','icon-minus-sign'],
-            'closedClass': ['String','icon-plus-sign'],
+            'openClass': ['String','fa fa-minus-circle'],
+            'closedClass': ['String','fa fa-plus-circle'],
             'hideClass': ['String','hide-all'],
             'iconTag': ['String', 'i'],
             'stopDefault' : ['Boolean', true]
@@ -103,12 +107,20 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
                     this._setNodeOpen(item, isOpen);
                 }
             },this));
+
+            Common.registerInstance(this, this._element);
         },
 
         _getIcon: function (node) {
             return Ink.s('> ' + this._options.iconTag, node);
         },
 
+        /**
+         * Checks if a node is open.
+         *
+         * @method isOpen
+         * @param {DOMElement} node  The tree node to check
+         **/
         isOpen: function (node) {
             if (!this._getChild(node)) {
                 throw new Error('not a node!');
@@ -118,6 +130,12 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
                 Css.hasClassName(node, this._options.openNodeClass);
         },
 
+        /**
+         * Checks if a node is a parent.
+         *
+         * @method isParent
+         * @param {DOMElement} node     Node to check
+         **/
         isParent: function (node) {
             return Css.hasClassName(node, this._options.parentClass) ||
                 this._getChild(node) != null;
@@ -131,22 +149,58 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
 
                 node.setAttribute('data-open', beOpen);
 
-                Css.setClassName(icon, this._options.openClass, beOpen);
-                Css.setClassName(icon, this._options.closedClass, !beOpen);
+                /*
+                 * Don't refactor this to
+                 *
+                 * setClassName(el, className, status); setClassName(el, className, !status);
+                 *
+                 * because it won't work with multiple classes.
+                 *
+                 * Doing:
+                 * setClassName(el, 'fa fa-whatever', true);setClassName(el, 'fa fa-whatever-else', false);
+                 *
+                 * will remove 'fa' although it is a class we want.
+                 */
+
+                var toAdd = beOpen ? this._options.openClass : this._options.closedClass;
+                var toRemove = beOpen ? this._options.closedClass : this._options.openClass;
+                Css.removeClassName(icon, toRemove);
+                Css.addClassName(icon, toAdd);
+
                 Css.setClassName(node, this._options.openNodeClass, beOpen);
             } else {
                 Ink.error('Ink.UI.TreeView: node', node, 'is not a node!');
             }
         },
 
+        /**
+         * Opens one of the tree nodes
+         *
+         * Make sure you pass the node's DOMElement
+         * @method open
+         * @param {DOMElement} node     The node you wish to open.
+         **/
         open: function (node) {
             this._setNodeOpen(node, true);
         },
 
+        /**
+         * Closes one of the tree nodes
+         *
+         * Make sure you pass the node's DOMElement
+         * @method close
+         * @param {DOMElement} node     The node you wish to close.
+         **/
         close: function (node) {
             this._setNodeOpen(node, false);
         },
 
+        /**
+         * Toggles a node state
+         *
+         * @method toggle
+         * @param {DOMElement} node     The node to toggle.
+         **/
         toggle: function (node) {
             if (this.isOpen(node)) {
                 this.close(node);
@@ -156,7 +210,7 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
         },
 
         _getChild: function (node) {
-            return Selector.select(this._options.child, node)[0] || null;
+            return Selector.select(this._options.children, node)[0] || null;
         },
 
         /**
@@ -175,7 +229,7 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
 
             if (!this.isParent(ev.currentTarget) ||
                     Selector.matchesSelector(ev.target, this._options.node) ||
-                    Selector.matchesSelector(ev.target, this._options.child)) {
+                    Selector.matchesSelector(ev.target, this._options.children)) {
                 return;
             }
 

@@ -1,18 +1,15 @@
 /**
+ * Date utility functions
  * @module Ink.Util.Date_1
- * @author inkdev AT sapo.pt
  * @version 1
  */
+
 Ink.createModule('Ink.Util.Date', '1', [], function() {
 
     'use strict';
 
     /**
-     * Class to provide the same features that php date does
-     *
-     * @class Ink.Util.Date
-     * @version 1
-     * @static
+     * @namespace Ink.Util.Date_1 
      */
     var InkDate = {
 
@@ -160,21 +157,16 @@ Ink.createModule('Ink.Util.Date', '1', [], function() {
         },
 
         /**
-         * Function that works exactly as php date() function
-         * Works like PHP 5.2.2 <a href="http://php.net/manual/en/function.date.php" target="_blank">PHP Date function</a>
+         * Formats a date object.
+         * This works exactly as php date() function. http://php.net/manual/en/function.date.php
          *
          * @method get
-         * @param {String}        format - as the string in which the date it will be formatted - mandatory
-         * @param {Date} [_date] - the date to format. If undefined it will do it on now() date. Can receive unix timestamp or a date object
-         * @return {String} Formatted date
+         * @param   {String}      format    The format in which the date it will be formatted.
+         * @param   {Date}        [_date]   The date to format. Can receive unix timestamp or a date object. Defaults to current time.
+         * @return  {String}                Formatted date
          * @public
          * @static
-         * @example
-         *     <script>
-         *         Ink.requireModules( ['Ink.Util.Date_1'], function( InkDate ){
-         *             console.log( InkDate.get('Y-m-d') ); // Result (at the time of writing): 2013-05-07
-         *         });
-         *     </script>
+         * @sample Ink_Util_Date_get.html 
          */
         get: function(format, _date){
             /*jshint maxcomplexity:65 */
@@ -405,15 +397,16 @@ Ink.createModule('Ink.Util.Date', '1', [], function() {
         },
 
         /**
-         * Functions that works like php date() function but return a date based on the formatted string
-         * Works like PHP 5.2.2 <a href="http://php.net/manual/en/function.date.php" target="_blank">PHP Date function</a>
+         * Creates a date object based on a format string.
+         * This works exactly as php date() function. http://php.net/manual/en/function.date.php
          *
          * @method set
-         * @param {String} [format] As the string in which the date it will be formatted. By default is 'Y-m-d'
-         * @param {String} str_date The date formatted - Mandatory.
-         * @return {Date} Date object based on the formatted date
+         * @param   {String}    [format]    The format in which the date will be formatted. Defaults to 'Y-m-d'
+         * @param   {String}    str_date    The date formatted.
+         * @return  {Date}                  Date object based on the formatted date and format
          * @public
          * @static
+         * @sample Ink_Util_Date_set.html 
          */
         set : function( format , str_date ) {
             if ( typeof str_date === 'undefined' ) { return ; }

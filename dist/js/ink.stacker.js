@@ -1,7 +1,10 @@
 /**
+ * Stacking items in columns
  * @module Ink.UI.Stacker_1
+ * @version 1
  **/
-Ink.createModule('Ink.UI.Stacker', 1, ['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1'], function(InkUICommon, InkEvent, InkElement) {
+
+Ink.createModule('Ink.UI.Stacker', 1, ['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1'], function(Common, InkEvent, InkElement) {
     'use strict';
 
 function Stacker(selector, options) {
@@ -30,49 +33,47 @@ Stacker.prototype = {
      * @class Ink.UI.Stacker_1
      *
      * @constructor
-     * @param [container] {DOMElement|String} Element which contains the stacks (identified by the options.column selector)
-     * @param [options]
-     * @param [options.column='.stacker-column'] {String}   Select the columns inside the `container`
-     * @param [options.item='.stacker-item']     {String}   Select items in your stack
+     * @param {DOMElement|String}   [container]                                     Element which contains the stacks (identified by the options.column selector)
+     * @param {Object}              [options]                                       Options object.
+     * @param {String}              [options.column]                                Selector for the the columns inside the container element. Defaults to '.stacker-column'.
+     * @param {String}              [options.item]                                  Selector for the items in your stack. Defaults to '.stacker-item'.
+     * @param {Object}              [options.customBreakPoints]                     Options for each breakpoint name. Use this if you have more breakpoints than Ink by default (`large`, `medium`, `small`)
+     * @param {Object}              [options.customBreakpoints.BREAKPOINT_NAME]     Custom breakpoints object.
+     * @param {String}              options.customBreakpoints.BREAKPOINT_NAME.max   Maximum screen size as seen in your media query
+     * @param {String}              options.customBreakpoints.BREAKPOINT_NAME.min   Minimum screen size as seen in your media query
+     * @param {String}              options.customBreakpoints.BREAKPOINT_NAME.cols  Column count for this size.
+     * @param {Number}              [options.largeMax]                              Upper bound of `large` breakpoint
+     * @param {Number}              [options.largeMin]                              Lower bound of `large` breakpoint. Defaults to 961.
+     * @param {Number}              [options.mediumMax]                             Upper bound of `medium` breakpoint. Defaults to 960.
+     * @param {Number}              [options.mediumMin]                             Lower bound of `medium` breakpoint. Defaults to 651.
+     * @param {Number}              [options.smallMax]                              Upper bound of `small` breakpoint. Defaults to 650.
+     * @param {Number}              [options.smallMin]                              Lower bound of `small` breakpoint
      *
-     * @param [options.customBreakPoints]        {Object}   options for each breakpoint name. Use this if you have more breakpoints than Ink by default (`large`, `medium`, `small`)
-     * @param [options.customBreakpoints.(breakpoint)] {Object} 
-     * @param options.customBreakpoints.(breakpoint).max    Maximum screen size as seen in your media query
-     * @param options.customBreakpoints.(breakpoint).min    Minimum screen size as seen in your media query
-     * @param options.customBreakpoints.(breakpoint).cols   Column count for this size.
+     * @param {Integer}             [options.largeCols]                             Number of columns in the `large` viewport. Defaults to 3.
+     * @param {Integer}             [options.mediumCols]                            Number of columns in the `medium` viewport. Defaults to 2.
+     * @param {Integer}             [options.smallCols]                             Number of columns in the `small` viewport. Defaults to 1.
      *
-     * @param [options.largeMax]                 {Number}   Upper bound of `large` breakpoint
-     * @param [options.largeMin=961]             {Number}   Lower bound of `large` breakpoint
-     * @param [options.mediumMax=960]            {Number}   Upper bound of `medium` breakpoint
-     * @param [options.mediumMin=651]            {Number}   Lower bound of `medium` breakpoint
-     * @param [options.smallMax=650]             {Number}   Upper bound of `small` breakpoint
-     * @param [options.smallMin]                 {Number}   Lower bound of `small` breakpoint
-     *
-     * @param [options.largeCols=3]              {Integer}  Number of columns in the `large` viewport
-     * @param [options.mediumCols=2]             {Integer}  Number of columns in the `medium` viewport
-     * @param [options.smallCols=1]              {Integer}  Number of columns in the `small` viewport
-     *
-     * @param [options.isOrdered=true]           {Boolean}  When `false`, do not reorder stacks when combining them.
-     * @param [options.onRunCallback]            {Function} Called when instantiated
-     * @param [options.onResizeCallback]         {Function} Called when resized because the window resized.
-     * @param [options.onAPIReloadCallback]      {Function} Called when you ask to reload stack items from the DOM.
+     * @param {Boolean}             [options.isOrdered]                             When false, doesn't reorder stacks when combining them.
+     * @param {Function}            [options.onRunCallback]                         Called when instantiated.
+     * @param {Function}            [options.onResizeCallback]                      Called when the window resizes.
+     * @param {Function}            [options.onAPIReloadCallback]                   Called when the reload function executes.
      *
      * @example
      *
      * Html:
      *
      *     <div id="stacker-container">  <!-- Stacker element -->
-     *         <div class="large-33 medium-50 small-100 stacker-column"> <!-- Column element ('.stacker-column' is the default selector) -->
+     *         <div class="xlarge-33 large-33 medium-50 tiny-100 stacker-column"> <!-- Column element ('.stacker-column' is the default selector) -->
      *             <div id="a" class="stacker-item">a</div> <!-- Item ('.stacker-item' is the default selector) -->
      *             <div id="d" class="stacker-item">d</div>
      *             <div id="g" class="stacker-item">g</div>
      *         </div>
-     *         <div class="large-33 medium-50 small-100 hide-small stacker-column">
+     *         <div class="xlarge-33 large-33 medium-50 tiny-100 hide-small stacker-column">
      *             <div id="b" class="stacker-item">b</div>
      *             <div id="e" class="stacker-item">e</div>
      *             <div id="h" class="stacker-item">h</div>
      *         </div>
-     *         <div class="large-33 medium-50 small-100 hide-medium hide-small stacker-column">
+     *         <div class="xlarge-33 large-33 medium-50 tiny-100 hide-medium hide-small stacker-column">
      *             <div id="c" class="stacker-item">c</div>
      *             <div id="f" class="stacker-item">f</div>
      *             <div id="i" class="stacker-item">i</div>
@@ -87,15 +88,12 @@ Stacker.prototype = {
      *     });
      **/
     _init: function(selector, options) {
-        /* globals console */
-        this._rootElm = InkUICommon.elsOrSelector(selector, 'Ink.UI.Stacker root element')[0] || null;
+        this._rootElm = Common.elsOrSelector(selector, 'Ink.UI.Stacker root element')[0] || null;
         if(this._rootElm === null) {
-            if(typeof console !== 'undefined') {
-                console.warn('Ink.UI.Stacker: No root element');
-            }
+            Ink.warn('Ink.UI.Stacker: No root element');
         }
 
-        this._options = InkUICommon.options({
+        this._options = Common.options({
             column: ['String', '.stacker-column'],
             item: ['String', '.stacker-item'],
 
@@ -135,24 +133,23 @@ Stacker.prototype = {
             }
         }
         this._addEvents();
+
+        Common.registerInstance(this, this._rootElm);
     },
 
     /**
-     * Add an item to the end of your stacks. Call `reloadItems()` when you are done adding items.
+     * Adds an item to the end of your stacks.
+     * Call `reloadItems()` when you are done adding items.
      * @method addItem
-     * @param {DOMElement} item
+     * @param {DOMElement} item     Element
      **/
     addItem: function(item) {
         this._aList.push(item);
     },
 
     /**
-     * Update the layout of your items.
-     *
-     * Call this when:
-     *
-     *  - The width has changed, but not because of the window resizing.
-     *  - You used addItem to add some items
+     * Updates the layout of your items.
+     * Call this method after adding items or changing their dimensions. This method is automatically called when the window resizes.
      *
      * @method reloadItems
      **/

@@ -1,9 +1,12 @@
 /**
- * @module Ink.UI.Dropdown_1
+ * Dropdown menus
  *
- * @author inkdev AT sapo.pt
+ * @module Ink.UI.Dropdown_1
+ * Use this UI module to achieve a dropdown menu.
+ *
  * @version 1
  */
+ 
 Ink.createModule('Ink.UI.Dropdown', '1', ['Ink.UI.Common_1', 'Ink.UI.Toggle_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1'], function(Common, Toggle, InkEvent, InkElement) {
     'use strict';
 
@@ -13,14 +16,14 @@ Ink.createModule('Ink.UI.Dropdown', '1', ['Ink.UI.Common_1', 'Ink.UI.Toggle_1', 
 
     Dropdown.prototype = {
         /**
-         * Use this UI module to achieve a dropdown menu.
-         *
          * @class Ink.UI.Dropdown
          *
          * @constructor
-         * @param {DOMElement|String}   trigger
-         * @param {Object}              options
+         * @param {DOMElement|String}   trigger         Trigger Element
+         * @param {Object}              options         Options Object
          * @param {DOMElement|String}   options.target Target of the dropdown action.
+         *
+         * @sample Ink_UI_Dropdown_1.html
          */
         _init: function(trigger, options) {
             this._element = Common.elOrSelector(trigger);
@@ -57,6 +60,8 @@ Ink.createModule('Ink.UI.Dropdown', '1', ['Ink.UI.Common_1', 'Ink.UI.Toggle_1', 
             InkEvent.observe(this._options.target, 'click', Ink.bindMethod(this, '_onInsideClick'));
             // to call dismissOnOutsideClick and onOutsideClick
             InkEvent.observe(document, 'click', Ink.bindMethod(this, '_onOutsideClick'));
+
+            Common.registerInstance(this, this._element);
         },
 
         /**
@@ -104,16 +109,15 @@ Ink.createModule('Ink.UI.Dropdown', '1', ['Ink.UI.Common_1', 'Ink.UI.Toggle_1', 
          */
         _onInsideClick: function (event) {
             var ret = this._handlerCall('onInsideClick', InkEvent.element(event));
-            if (ret === false) { return false; }
+            if (ret === false) { return; }
             if (this._options.dismissOnInsideClick) {
                 this.dismiss(true);
             }
-            InkEvent.stop(event);
         },
 
         /**
          * Handle clicks outside the dropdown.
-         * @method _onInsideClick
+         * @method _onOutsideClick
          * @private
          */
         _onOutsideClick: function (event) {
@@ -127,16 +131,15 @@ Ink.createModule('Ink.UI.Dropdown', '1', ['Ink.UI.Common_1', 'Ink.UI.Toggle_1', 
 
             if (!foundElem && !foundTarget) {
                 var ret = this._handlerCall('onOutsideClick', target);
-                if (ret === false) { return false; }
+                if (ret === false) { return; }
                 if (this._options.dismissOnOutsideClick) {
                     this.dismiss(true);
                 }
-                InkEvent.stop(event);
             }
         },
 
         /**
-         * Dismiss the dropdown.
+         * Closes the dropdown.
          *
          * @method dismiss
          * @param [callHandler=false] call onDismiss handler
@@ -146,7 +149,7 @@ Ink.createModule('Ink.UI.Dropdown', '1', ['Ink.UI.Common_1', 'Ink.UI.Toggle_1', 
         },
 
         /**
-         * Open the dropdown
+         * Opens the dropdown
          *
          * @method open
          * @param [callHandler=false] call onOpen handler
@@ -181,8 +184,8 @@ Ink.createModule('Ink.UI.Dropdown', '1', ['Ink.UI.Common_1', 'Ink.UI.Toggle_1', 
          * call a method given by the user through the options
          *
          * @method _handlerCall
-         * @params handler {String} The handler name in this._options
-         * @params ... Arguments to pass to function
+         * @param handler {String} The handler name in this._options
+         * @param [args*] Arguments to pass to function
          */
         _handlerCall: function (handler/*, ... */) {
             if (this._options[handler]) {
@@ -193,4 +196,3 @@ Ink.createModule('Ink.UI.Dropdown', '1', ['Ink.UI.Common_1', 'Ink.UI.Toggle_1', 
 
     return Dropdown;
 });
-

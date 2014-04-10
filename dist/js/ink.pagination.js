@@ -1,8 +1,9 @@
 /**
+ * Pagination elements
  * @module Ink.UI.Pagination_1
- * @author inkdev AT sapo.pt
  * @version 1
  */
+ 
 Ink.createModule('Ink.UI.Pagination', '1',
     ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1'],
     function(Common, Event, Css, Element, Selector ) {
@@ -12,16 +13,23 @@ Ink.createModule('Ink.UI.Pagination', '1',
      * Function to create the pagination anchors
      *
      * @method genAel
+     * @private
      * @param  {String} inner HTML to be placed inside the anchor.
      * @return {DOMElement}  Anchor created
      */
-    var genAEl = function(inner, index) {
+    var genAEl = function(inner, index, options) {
         var aEl = document.createElement('a');
         aEl.setAttribute('href', '#');
-        if (index !== undefined) {
+        if (typeof index === 'number') {
             aEl.setAttribute('data-index', index);
         }
-        aEl.innerHTML = inner;
+        if(options && options.wrapText) {
+            var spanEl = document.createElement('span');
+            aEl.appendChild(spanEl);
+            spanEl.innerHTML = inner;
+        } else {
+            aEl.innerHTML = inner;
+        }
         return aEl;
     };
 
@@ -29,33 +37,36 @@ Ink.createModule('Ink.UI.Pagination', '1',
      * @class Ink.UI.Pagination
      * @constructor
      * @version 1
-     * @param {String|DOMElement} selector
-     * @param {Object} options Options
-     * @param {Number}   [options.size]              number of pages.
-     * @param {Number}   [options.totalItemCount]    Total numeber of items to display
-     * @param {Number}   [options.itemsPerPage]      number of items per page.
-     * @param {Number}   [options.maxSize]           If passed, only shows at most maxSize items. displays also first|prev page and next page|last buttons
-     * @param {Number}   [options.start]             start page. defaults to 1
-     * @param {String}   [options.firstLabel]        label to display on first page button
-     * @param {String}   [options.lastLabel]         label to display on last page button
-     * @param {String}   [options.previousLabel]     label to display on previous button
-     * @param {String}   [options.nextLabel]         label to display on next button
-     * @param {String}   [options.previousPageLabel] label to display on previous page button
-     * @param {String}   [options.nextPageLabel]     label to display on next page button
-     * @param {Function} [options.onChange]          optional callback. Called with `(thisPaginator, newPageNumber)`.
-     * @param {String}   [options.hashParameter]     parameter to use on setHash. by default uses 'page'
-     * @param {String}   [options.parentTag]         HTML Tag used as the parent node.
-     * @param {String}   [options.childTag]          HTML Tag used as the child nodes.
-     * @param {String}   [options.wrapperClass]      CSS Class used in the wrapper element
-     * @param {String}   [options.paginationClass]   CSS Class used in the pagination element
-     * @param {String}   [options.activeClass]       CSS Class used to mark page as active
-     * @param {String}   [options.disabledClass]     CSS Class used to mark page as disabled
-     * @param {String}   [options.hideClass]         CSS Class used to hide elements
-     * @param {String}   [options.previousClass]     CSS Class used in the previous element
-     * @param {String}   [options.previousPageClass] CSS Class used in the previous page element
-     * @param {String}   [options.nextClass]         CSS Class used in the next element
-     * @param {String}   [options.nextPageClass]     CSS Class used in the next page element
-     * @param {Function} [options.numberFormatter]   optional function which takes and 0-indexed number and returns the string which appears on a numbered button
+     * @param {String|DOMElement}   selector                    Selector or element
+     * @param {Object}              options                     Options
+     * @param {Number}              [options.size]              Number of pages.
+     * @param {Number}              [options.totalItemCount]    Total numeber of items to display
+     * @param {Number}              [options.itemsPerPage]      Number of items per page.
+     * @param {Number}              [options.maxSize]           If passed, only shows at most maxSize items. displays also first|prev page and next page|last buttons
+     * @param {Number}              [options.start]             Start page. defaults to 1
+     * @param {Boolean}             [options.sideButtons=true]  Whether to show the first, last, previous, next, previousPage and lastPage buttons. Do not use together with maxSize.
+     * @param {String}              [options.firstLabel]        Text for the first page button. Defaults to 'First'.
+     * @param {String}              [options.lastLabel]         Text for the last page button. Defaults to 'Last'.
+     * @param {String}              [options.previousLabel]     Text for the previous button. Defaults to 'Previous'-
+     * @param {String}              [options.nextLabel]         Text for the next button. Defaults to 'Next'
+     * @param {String}              [options.previousPageLabel] Text for the previous page button. Defaults to 'Previous {Items per page}'.
+     * @param {String}              [options.nextPageLabel]     Text for the next page button. Defaults to 'Next {Items per page}'.
+     * @param {Function}            [options.onChange]          Callback to be called when a page changes. Called with `(thisPaginator, newPageNumber)`.
+     * @param {String}              [options.hashParameter]     Parameter to use on setHash. Defaults to 'page'.
+     * @param {String}              [options.parentTag]         HTML Tag used as the parent node.
+     * @param {String}              [options.childTag]          HTML Tag used as the child nodes.
+     * @param {String}              [options.wrapperClass]      CSS Class used in the wrapper element
+     * @param {String}              [options.paginationClass]   CSS Class used in the pagination element
+     * @param {String}              [options.activeClass]       CSS Class used to mark page as active
+     * @param {String}              [options.disabledClass]     CSS Class used to mark page as disabled
+     * @param {String}              [options.hideClass]         CSS Class used to hide elements
+     * @param {String}              [options.previousClass]     CSS Class used in the previous element
+     * @param {String}              [options.previousPageClass] CSS Class used in the previous page element
+     * @param {String}              [options.nextClass]         CSS Class used in the next element
+     * @param {String}              [options.nextPageClass]     CSS Class used in the next page element
+     * @param {Function}            [options.numberFormatter]   Number formatter function. Receives a 0-indexed number and returns the text for the numbered page button.
+     *
+     * @sample Ink_UI_Pagination_1.html
      */
     var Pagination = function(selector, options) {
 
@@ -67,6 +78,8 @@ Ink.createModule('Ink.UI.Pagination', '1',
             itemsPerPage:      ['Integer', null],
             maxSize:           ['Integer', null],
             start:             ['Integer', 1],
+            sideButtons:       ['Boolean', 1 /* actually `true` but we want to see if user is using the default or not. */],
+            // TODO add pagination-type which accepts color strings, "chevron" and "dotted". Basically classes to add to the UL.
             firstLabel:        ['String', 'First'],
             lastLabel:         ['String', 'Last'],
             previousLabel:     ['String', 'Previous'],
@@ -103,23 +116,12 @@ Ink.createModule('Ink.UI.Pagination', '1',
         };
 
         if (Common.isInteger(this._options.totalItemCount) && Common.isInteger(this._options.itemsPerPage)) {
-            this._size = Math.ceil(this._options.totalItemCount / this._options.itemsPerPage);
+            this._size = this._calculateSize(this._options.totalItemCount, this._options.itemsPerPage);
         } else if (Common.isInteger(this._options.size)) {
             this._size = this._options.size;
         } else {
-            throw new TypeError('Ink.UI.Pagination: Please supply a size option or totalItemCount and itemsPerPage options.');
-        }
-
-        if (!Common.isInteger(this._options.start) && this._options.start > 0 && this._options.start <= this._size) {
-            throw new TypeError('start option is a required integer between 1 and size!');
-        }
-
-        if (this._options.maxSize && !Common.isInteger(this._options.maxSize) && this._options.maxSize > 0) {
-            throw new TypeError('maxSize option is a positive integer!');
-        }
-
-        else if (this._size < 0) {
-            throw new RangeError('size option must be equal or more than 0!');
+            Ink.error('Ink.UI.Pagination: Please supply a size option or totalItemCount and itemsPerPage options.');
+            this._size = 0;
         }
 
         this.setOnChange(this._options.onChange);
@@ -161,6 +163,17 @@ Ink.createModule('Ink.UI.Pagination', '1',
         },
 
         /**
+         * Calculate how many pages are necessary for `count` items, and `itemsPerPage` items per page.
+         *
+         * @method _calculateSize
+         * @param count
+         * @param itemsPerPage
+         * @private
+         **/
+        _calculateSize: function (count, itemsPerPage) {
+            return Math.ceil(count / itemsPerPage);
+        },
+        /**
          * Updates the markup everytime there's a change in the Pagination object.
          *
          * @method _updateItems
@@ -190,6 +203,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
                 for (i = 0, f = this._size; i < f; ++i) {
                     liEl = document.createElement(this._options.childTag);
                     liEl.appendChild( genAEl( this._options.numberFormatter(i), i) );
+                    // add "active" class if this is the active element.
                     Css.setClassName(liEl, this._options.activeClass, i === this._current);
                     this._ulEl.insertBefore(liEl, this._nextEl);
                     liEls.push(liEl);
@@ -220,8 +234,12 @@ Ink.createModule('Ink.UI.Pagination', '1',
             }
 
             // update prev and next
-            Css.setClassName(this._prevEl, this._options.disabledClass, !this.hasPrevious());
-            Css.setClassName(this._nextEl, this._options.disabledClass, !this.hasNext());
+            if (this._prevEl) {
+                Css.setClassName(this._prevEl, this._options.disabledClass, !this.hasPrevious());
+            }
+            if (this._nextEl) {
+                Css.setClassName(this._nextEl, this._options.disabledClass, !this.hasNext());
+            }
         },
 
         /**
@@ -234,54 +252,44 @@ Ink.createModule('Ink.UI.Pagination', '1',
         _generateMarkup: function(el) {
             Css.addClassName(el, 'ink-navigation');
 
-            var ulEl,liEl,
-                hasUlAlready = false;
-            if( ( ulEl = Selector.select('.' + this._options.paginationClass,el)).length < 1 ){
+            var ulEl = Ink.s('.' + this._options.paginationClass, el);
+            var hasUlAlready = false;
+
+            if( !ulEl ){
                 ulEl = document.createElement(this._options.parentTag);
                 Css.addClassName(ulEl, this._options.paginationClass);
             } else {
                 hasUlAlready = true;
-                ulEl = ulEl[0];
             }
 
-            if (this._options.maxSize) {
-                liEl = document.createElement(this._options.childTag);
-                liEl.appendChild( genAEl(this._options.firstLabel) );
-                this._firstEl = liEl;
-                Css.addClassName(liEl, this._options.firstClass);
-                ulEl.appendChild(liEl);
+            var isChevron = Css.hasClassName(ulEl, 'chevron');
+            var isDotted = Css.hasClassName(ulEl, 'dotted');
 
-                liEl = document.createElement(this._options.childTag);
-                liEl.appendChild( genAEl(this._options.previousPageLabel) );
-                this._prevPageEl = liEl;
-                Css.addClassName(liEl, this._options.previousPageClass);
+            // Creates <li> elements for firstPage, nextPage, first, last, etc.
+            var createLiEl = Ink.bind(function (name, options) {
+                var liEl = document.createElement(this._options.childTag);
+                var aEl = genAEl(this._options[name + 'Label'], undefined, { wrapText: options && options.wrapText });
+                Css.addClassName(liEl, this._options[name + 'Class']);
+                liEl.appendChild(aEl);
                 ulEl.appendChild(liEl);
+                return liEl;
+            }, this);
+
+            if (!isDotted && this._options.maxSize) {
+                this._firstEl = createLiEl('first');
+                this._prevPageEl = createLiEl('previousPage');
             }
 
-            liEl = document.createElement(this._options.childTag);
-            liEl.appendChild( genAEl(this._options.previousLabel) );
-            this._prevEl = liEl;
-            Css.addClassName(liEl, this._options.previousClass);
-            ulEl.appendChild(liEl);
+            // When we're dotted, the default for sideButtons is `false`. When we're note, it's `true`.
+            // Since the default is actually "1", we do a === true check when we're dotted, and a truthish check when we're not.
+            if ((isDotted && this._options.sideButtons === true) || (!isDotted && this._options.sideButtons)) {
+                this._prevEl = createLiEl('previous', { wrapText: isChevron });
+                this._nextEl = createLiEl('next', { wrapText: isChevron });
+            }
 
-            liEl = document.createElement(this._options.childTag);
-            liEl.appendChild( genAEl(this._options.nextLabel) );
-            this._nextEl = liEl;
-            Css.addClassName(liEl, this._options.nextClass);
-            ulEl.appendChild(liEl);
-
-            if (this._options.maxSize) {
-                liEl = document.createElement(this._options.childTag);
-                liEl.appendChild( genAEl(this._options.nextPageLabel) );
-                this._nextPageEl = liEl;
-                Css.addClassName(liEl, this._options.nextPageClass);
-                ulEl.appendChild(liEl);
-
-                liEl = document.createElement(this._options.childTag);
-                liEl.appendChild( genAEl(this._options.lastLabel) );
-                this._lastEl = liEl;
-                Css.addClassName(liEl, this._options.lastClass);
-                ulEl.appendChild(liEl);
+            if (!isDotted && this._options.maxSize) {
+                this._nextPageEl = createLiEl('nextPage');
+                this._lastEl = createLiEl('last');
             }
 
             if( !hasUlAlready ){
@@ -319,14 +327,14 @@ Ink.createModule('Ink.UI.Pagination', '1',
                 this.setCurrent(this._size - 1);
             }
             else if (isPrevPage || isNextPage) {
-                this.setCurrent( (isPrevPage ? -1 : 1) * this._options.maxSize, true);
+                this.setCurrent( (isPrevPage ? -1 : 1) * this._options.maxSize, true /* relative */);
             }
             else if (isPrev || isNext) {
-                this.setCurrent(isPrev ? -1 : 1, true);
+                this.setCurrent(isPrev ? -1 : 1, true /* relative */);
             }
             else {
-                var aElem = Ink.s('[data-index]', liEl);
-                var nr = parseInt( aElem.getAttribute('data-index'), 10);
+                var aElem = Selector.select('[data-index]', liEl)[0];
+                var nr = aElem && parseInt( aElem.getAttribute('data-index'), 10);
                 this.setCurrent(nr);
             }
         },
@@ -367,11 +375,11 @@ Ink.createModule('Ink.UI.Pagination', '1',
         },
 
         /**
-         * Calculate the number of pages, then call setSize().
+         * Sets the number of pages, then call setSize().
          *
          * @param setSizeInItems
-         * @param {Number} totalItems
-         * @param {Number} itemsPerPage
+         * @param {Number} totalItems       Total number of items
+         * @param {Number} itemsPerPage     Items per page
          */
         setSizeInItems: function (totalItems, itemsPerPage) {
             var pageNumber = Math.ceil(totalItems / itemsPerPage);
@@ -379,11 +387,11 @@ Ink.createModule('Ink.UI.Pagination', '1',
         },
 
         /**
-         * Sets the current page
+         * Sets the current page.
          *
          * @method setCurrent
-         * @param {Number} nr sets the current page to given number
-         * @param {Boolean} isRelative trueish to set relative change instead of absolute (default)
+         * @param {Number} nr           Sets the current page to given number.
+         * @param {Boolean} isRelative  Flag to change the position from absolute to relative.
          * @public
          */
         setCurrent: function(nr, isRelative) {
@@ -418,7 +426,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
         },
 
         /**
-         * Returns the number of pages
+         * Gets the number of pages
          *
          * @method getSize
          * @return {Number} Number of pages
@@ -429,7 +437,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
         },
 
         /**
-         * Returns current page
+         * Gets the current page index
          *
          * @method getCurrent
          * @return {Number} Current page
@@ -440,7 +448,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
         },
 
         /**
-         * Returns true iif at first page
+         * Checks if it's at the first page
          *
          * @method isFirst
          * @return {Boolean} True if at first page
@@ -451,7 +459,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
         },
 
         /**
-         * Returns true iif at last page
+         * Checks if it's on the last page
          *
          * @method isLast
          * @return {Boolean} True if at last page
@@ -462,7 +470,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
         },
 
         /**
-         * Returns true iif has prior pages
+         * Checks if it has previous pages
          *
          * @method hasPrevious
          * @return {Boolean} True if has prior pages
@@ -473,7 +481,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
         },
 
         /**
-         * Returns true iif has pages ahead
+         * Checks if it has next pages
          *
          * @method hasNext
          * @return {Boolean} True if has pages ahead
@@ -484,7 +492,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
         },
 
         /**
-         * Returns true iif has prior set of page(s)
+         * Checks if it has a previous set of pages
          *
          * @method hasPreviousPage
          * @return {Boolean} Returns true iif has prior set of page(s)
@@ -495,7 +503,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
         },
 
         /**
-         * Returns true iif has set of page(s) ahead
+         * Checks if it has a next set of pages
          *
          * @method hasNextPage
          * @return {Boolean} Returns true iif has set of page(s) ahead
@@ -506,7 +514,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
         },
 
         /**
-         * Unregisters the component and removes its markup from the DOM
+         * Unregisters the component and removes its markup
          *
          * @method destroy
          * @public

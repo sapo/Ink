@@ -1,18 +1,15 @@
 /**
+ * URL Utilities
  * @module Ink.Util.Url_1
- * @author inkdev AT sapo.pt
  * @version 1
  */
+
 Ink.createModule('Ink.Util.Url', '1', [], function() {
 
     'use strict';
 
     /**
-     * Utility functions to use with URLs
-     *
-     * @class Ink.Util.Url
-     * @version 1
-     * @static
+     * @namespace Ink.Util.Url_1
      */
     var Url = {
 
@@ -28,16 +25,13 @@ Ink.createModule('Ink.Util.Url', '1', [], function() {
 
 
         /**
-         * Get current URL of page
+         * Gets URL of current page
          *
          * @method getUrl
-         * @return {String}    Current URL
+         * @return Current URL
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Url_1'], function( InkUrl ){
-         *         console.log( InkUrl.getUrl() ); // Will return it's window URL
-         *     });
+         * @sample Ink_Util_Url_getUrl.html 
          */
         getUrl: function()
         {
@@ -45,23 +39,15 @@ Ink.createModule('Ink.Util.Url', '1', [], function() {
         },
 
         /**
-         * Generates an uri with query string based on the parameters object given
+         * Generates an URL string.
          *
          * @method genQueryString
-         * @param {String} uri
-         * @param {Object} params
+         * @param {String} uri      Base URL
+         * @param {Object} params   Object to transform to query string
          * @return {String} URI with query string set
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Url_1'], function( InkUrl ){
-         *         var queryString = InkUrl.genQueryString( 'http://www.sapo.pt/', {
-         *             'param1': 'valueParam1',
-         *             'param2': 'valueParam2'
-         *         });
-         *
-         *         console.log( queryString ); // Result: http://www.sapo.pt/?param1=valueParam1&param2=valueParam2
-         *     });
+         * @sample Ink_Util_Url_genQueryString.html 
          */
         genQueryString: function(uri, params) {
             var hasQuestionMark = uri.indexOf('?') !== -1;
@@ -87,23 +73,14 @@ Ink.createModule('Ink.Util.Url', '1', [], function() {
         },
 
         /**
-         * Get query string of current or passed URL
+         * Gets an object from an URL encoded string.
          *
          * @method getQueryString
-         * @param {String} [str] URL String. When not specified it uses the current URL.
-         * @return {Object} Key-Value object with the pairs variable: value
+         * @param   {String} [str]      URL String. When not specified it uses the current URL.
+         * @return  {Object}            Key-Value pair object
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Url_1'], function( InkUrl ){
-         *         var queryStringParams = InkUrl.getQueryString( 'http://www.sapo.pt/?var1=valueVar1&var2=valueVar2' );
-         *         console.log( queryStringParams );
-         *         // Result:
-         *         // {
-         *         //    var1: 'valueVar1',
-         *         //    var2: 'valueVar2'
-         *         // }
-         *     });
+         * @sample Ink_Util_Url_getQueryString.html 
          */
         getQueryString: function(str)
         {
@@ -128,18 +105,14 @@ Ink.createModule('Ink.Util.Url', '1', [], function() {
         },
 
         /**
-         * Get URL hash
+         * Gets the URL hash value
          *
          * @method getAnchor
-         * @param {String} [str] URL String. If not set, it will get the current URL.
-         * @return {String|Boolean} Hash in the URL. If there's no hash, returns false.
+         * @param   {String}            [str]   URL String. Defaults to current page URL.
+         * @return  {String|Boolean}            Hash in the URL. If there's no hash, returns false.
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Url_1'], function( InkUrl ){
-         *         var anchor = InkUrl.getAnchor( 'http://www.sapo.pt/page.php#TEST' );
-         *         console.log( anchor ); // Result: TEST
-         *     });
+         * @sample Ink_Util_Url_getAnchor.html 
          */
         getAnchor: function(str)
         {
@@ -157,23 +130,14 @@ Ink.createModule('Ink.Util.Url', '1', [], function() {
         },
 
         /**
-         * Get anchor string of current or passed URL
+         * Gets the anchor string of an URL
          *
          * @method getAnchorString
-         * @param {String} [string] If not provided it uses the current URL.
-         * @return {Object} Returns a key-value object of the 'variables' available in the hashtag of the URL
+         * @param   {String} [string]   URL to parse. Defaults to current URL.
+         * @return  {Object}            Key-value pair object of the URL's hashtag 'variables'
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Url_1'], function( InkUrl ){
-         *         var hashParams = InkUrl.getAnchorString( 'http://www.sapo.pt/#var1=valueVar1&var2=valueVar2' );
-         *         console.log( hashParams );
-         *         // Result:
-         *         // {
-         *         //    var1: 'valueVar1',
-         *         //    var2: 'valueVar2'
-         *         // }
-         *     });
+         * @sample Ink_Util_Url_getAnchorString.html 
          */
         getAnchorString: function(string)
         {
@@ -199,27 +163,14 @@ Ink.createModule('Ink.Util.Url', '1', [], function() {
 
 
         /**
-         * Parse passed URL
+         * Parses URL string into URL parts
          *
          * @method parseUrl
          * @param {String} url URL to be parsed
          * @return {Object} Parsed URL as a key-value object.
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Url_1'], function( InkUrl ){
-         *         var parsedURL = InkUrl.parseUrl( 'http://www.sapo.pt/index.html?var1=value1#anchor' )
-         *         console.log( parsedURL );
-         *         // Result:
-         *         // {
-         *         //   'scheme'    => 'http',
-         *         //   'host'      => 'www.sapo.pt',
-         *         //   'path'      => '/index.html',
-         *         //   'query'     => 'var1=value1',
-         *         //   'fragment'  => 'anchor'
-         *         // }
-         *     });
-         *
+         * @sample Ink_Util_Url_parseUrl.html 
          */
         parseUrl: function(url) {
             var aURL = {};
@@ -286,11 +237,10 @@ Ink.createModule('Ink.Util.Url', '1', [], function() {
         },
 
         /**
-         * Take a URL object from Ink.Util.Url.parseUrl or a window.location
-         * object and returns a URL string.
+         * Formats an URL object into an URL string.
          *
          * @method format
-         * @param urlObj window.location, a.href, or parseUrl object to format
+         * @param urlObj Window.location, a.href, or parseUrl object to format
          * @return {String} Full URL.
          */
         format: function (urlObj) {
@@ -330,13 +280,14 @@ Ink.createModule('Ink.Util.Url', '1', [], function() {
         },
 
         /**
-         * Get last loaded script element
+         * Gets the last loaded script element
          *
          * @method currentScriptElement
          * @param {String} [match] String to match against the script src attribute
-         * @return {DOMElement|Boolean} Returns the <script> DOM Element or false if unable to find it.
+         * @return {DOMElement|Boolean} Returns the `script` DOM Element or false if unable to find it.
          * @public
          * @static
+         * @sample Ink_Util_Url_currentScriptElement.html 
          */
         currentScriptElement: function(match)
         {

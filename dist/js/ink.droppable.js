@@ -1,8 +1,9 @@
 /**
+ * Drop elements around
  * @module Ink.UI.Droppable_1
- * @author inkdev AT sapo.pt
  * @version 1
  */
+
 Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", "Ink.Dom.Css_1", "Ink.UI.Common_1", "Ink.Util.Array_1", "Ink.Dom.Selector_1"], function( InkElement, InkEvent, Css, Common, InkArray, Selector) {
     'use strict';
 
@@ -15,13 +16,13 @@ Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
     };
 
     /**
-     * @class Ink.UI.Droppable
+     * @namespace Ink.UI.Droppable
      * @version 1
      * @static
      */
     var Droppable = {
         /**
-         * Flag that determines if it's in debug mode or not
+         * Flag to activate debug mode
          *
          * @property debug
          * @type {Boolean}
@@ -48,50 +49,24 @@ Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
         _draggables: [],
 
         /**
-         * Makes an element droppable and adds it to the stack of droppable elements.
+         * Makes an element droppable.
+         * This method adds it to the stack of droppable elements.
          * Can consider it a constructor of droppable elements, but where no Droppable object is returned.
          * 
          * In the following arguments, any events/callbacks you may pass, can be either functions or strings. If the 'move' or 'copy' strings are passed, the draggable gets moved into this droppable. If 'revert' is passed, an acceptable droppable is moved back to the element it came from.
 
          *
          * @method add
-         * @param {String|DOMElement}       element     Target element
-         * @param {Object}                  [options]   options object
-         *     @param {String}      [options.hoverClass] Classname(s) applied when an acceptable draggable element is hovering the element
-         *     @param {String}      [options.accept]    Selector for choosing draggables which can be dropped in this droppable.
-         *     @param {Function}    [options.onHover]   callback called when an acceptable draggable element is hovering the droppable. Gets the draggable and the droppable element as parameters.
-         *     @param {Function|String} [options.onDrop] callback called when an acceptable draggable element is dropped. Gets the draggable, the droppable and the event as parameters.
-         *     @param {Function|String} [options.onDropOut] callback called when a droppable is dropped outside this droppable. Gets the draggable, the droppable and the event as parameters. (see above for string options).
+         * @param {String|DOMElement}   element                 Target element
+         * @param {Object}              [options]               Options object
+         * @param {String}              [options.hoverClass]    Classname(s) applied when an acceptable draggable element is hovering the element
+         * @param {String}              [options.accept]        Selector for choosing draggables which can be dropped in this droppable.
+         * @param {Function}            [options.onHover]       Callback when an acceptable draggable element is hovering the droppable. Gets the draggable and the droppable element as parameters.
+         * @param {Function|String}     [options.onDrop]        Callback when an acceptable draggable element is dropped. Gets the draggable, the droppable and the event as parameters.
+         * @param {Function|String}     [options.onDropOut]     Callback when a droppable is dropped outside this droppable. Gets the draggable, the droppable and the event as parameters. (see above for string options).
          * @public
          *
-         * @example
-         *
-         *       <style type="text/css">
-         *           .hover {
-         *               border: 1px solid red;
-         *           }
-         *           .left, .right {
-         *               float: left; width: 50%;
-         *               outline: 1px solid gray;
-         *               min-height: 2em;
-         *           }
-         *       </style>
-         *        <ul class="left">
-         *            <li>Draggable 1</li>
-         *            <li>Draggable 2</li>
-         *            <li>Draggable 3</li>
-         *        </ul>
-         *        <ul class="right">
-         *        </ul>
-         *        <script type="text/javascript">
-         *            Ink.requireModules(['Ink.UI.Draggable_1', 'Ink.UI.Droppable_1'], function (Draggable, Droppable) {
-         *                new Draggable('.left li:eq(0)', {});
-         *                new Draggable('.left li:eq(1)', {});
-         *                new Draggable('.left li:eq(2)', {});
-         *                Droppable.add('.left', {onDrop: 'move', onDropOut: 'revert'});
-         *                Droppable.add('.right', {onDrop: 'move', onDropOut: 'revert'});
-         *            })
-         *        </script>
+         * @sample Ink_UI_Droppable_1.html
          *
          */
         add: function(element, options) {
@@ -161,7 +136,7 @@ Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
         },
         
         /**
-         * find droppable data about `element`. this data is added in `.add`
+         * Finds droppable data about `element`. this data is added in `.add`
          *
          * @method _findData
          * @param {DOMElement} element  Needle
@@ -177,7 +152,7 @@ Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
             }
         },
         /**
-         * Find draggable data about `element`
+         * Finds draggable data about `element`
          *
          * @method _findDraggable
          * @param {DOMElement} element  Needle
@@ -206,8 +181,9 @@ Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
         /**
          * Updates location and size of droppable element
          * 
-         * @method update * @param {String|DOMElement} element - target element
-         * @private
+         * @method update
+         * @param {String|DOMElement} element Target element
+         * @public
          */
         update: function(element) {
             this._update(this._findData(element));
@@ -243,13 +219,13 @@ Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
         },
 
         /**
-         * Method called by a draggable to execute an action on a droppable
+         * Executes an action on a droppable
          * 
          * @method action
-         * @param {Object} coords    coordinates where the action happened
-         * @param {String} type      type of action. drag or drop.
-         * @param {Object} ev        Event object
-         * @param {Object} draggable draggable element
+         * @param {Object} coords       Coordinates where the action happened
+         * @param {String} type         Type of action. 'drag' or 'drop'.
+         * @param {Object} ev           Event object
+         * @param {Object} draggable    Draggable element
          * @private
          */
         action: function(coords, type, ev, draggable) {

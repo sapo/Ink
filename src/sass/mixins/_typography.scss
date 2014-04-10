@@ -1,0 +1,77 @@
+@mixin ink-font-stack ($style: sans) {
+
+    @if $style == sans {
+      font-family: $sans-serif-font-stack;
+    }
+
+    @if $style == serif {
+      font-family: $serif-font-stack;
+    }
+
+    @if $style == condensed {
+      font-family: $condensed-font-stack;
+    }
+
+    @if $style == slab {
+      font-family: $slab-font-stack;
+    }
+
+    @if $style == mono {
+      font-family: $mono-font-stack;
+    }
+}
+
+@mixin text-vertical-spacing($font-size) {
+  margin-top: 0;
+  margin-bottom: ((($base-font-size / $font-size) * $vertical-rhythm-unit) / 100) * 1em;
+}
+
+
+@mixin vertical-rhythm() {
+  h1 {
+    font-size: $h1-font-size;
+    @include text-vertical-spacing($h1-font-size);
+  }
+
+  h2 {
+    font-size: $h2-font-size;
+    @include text-vertical-spacing($h2-font-size);
+  }
+
+  h3 {
+    font-size: $h3-font-size;
+    @include text-vertical-spacing($h3-font-size);
+  }
+
+  h4 {
+    font-size: $h4-font-size;
+    @include text-vertical-spacing($h4-font-size);
+  }
+
+  h5 {
+    font-size: $h5-font-size;
+    @include text-vertical-spacing($h5-font-size);
+  }
+
+  h6 {
+    font-size: $h5-font-size;
+    @include text-vertical-spacing($h5-font-size);
+  }
+
+  p {
+    font-size: $p-font-size;
+    @include text-vertical-spacing($p-font-size);
+  }
+
+  table {
+    font-size: $p-font-size;
+    @include text-vertical-spacing($p-font-size);
+  }
+
+  h1,h2,h3,h4,h5,h6,p {
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+}

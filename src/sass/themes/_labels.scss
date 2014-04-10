@@ -1,0 +1,38 @@
+.#{$label-class-name} {
+    color: $white;
+    font-weight: 300;
+    font-size: $label-font-size;
+    @include border-radius($border-radius);
+
+    &.white {
+        background: $white;
+        color: $text-color;
+    }
+    &.black {
+        background: $black;
+    }
+    &.orange {
+        background: $orange;
+    }
+    &.red {
+        background: $red;
+    }
+    &.green {
+        background: $green;
+    }
+    &.blue {
+        background: $blue;
+    }
+    &.yellow {
+        background: $yellow;
+        color: $text-color;
+    }
+    &.grey {
+        background: $grey-50;
+    }
+
+    & + .#{$label-class-name} {
+        margin-left: .2em;
+    }
+
+}

@@ -1,8 +1,10 @@
 module.exports = function (grunt) {
+    var child_process = require('child_process');
     var path = require('path');
+    var async = require('async');
 
     require('jit-grunt')(grunt, {
-        'bower': 'grunt-bower-task'
+        'bower': 'grunt-bower-task',
     });
 
     var jshintFile = './src/js/.jshintrc';
@@ -27,9 +29,13 @@ module.exports = function (grunt) {
                     dist: './dist/js/'
                 },
                 css: {
-                    src: './src/less/',
+                    src: './src/sass/',
                     dist: './dist/css/'
                 }
+            },
+            test: {
+                connect_port: process.env['INK_TEST_CONNECT_PORT'] || 8000,
+                root: '.',
             }
         },
         // handle 3rd party dependencies
@@ -42,34 +48,30 @@ module.exports = function (grunt) {
                     install: true,
                     verbose: false,
                     cleanTargetDir: false,
-                    bowerOptions: {
-                        forceLatest: true
-                    }
+                    cleanBowerDir: true
                 }
             }
         },
-        //
         copy: {
-            /*
-            [3.0.0]: uncomment this
             fontAwesome: {
-                files: [{
-                    cwd: '<%= ink.folders.bower %>font-awesome/less/',
-                    src: [
-                        '*.less',
-                        '!variables.less',
-                    ],
-                    dest: '<%= ink.folders.css.src %>modules/icons/',
-                    expand: true
-                }]
+                files: [
+                    {
+                        cwd: '<%= ink.folders.bower %>font-awesome/scss/',
+                        src: '*.scss',
+                        dest: 'src/sass/contrib/font-awesome/',
+                        expand: true,
+                    }
+                ]
             },
-            */
             animate: {
                 files: [{
                     cwd: '<%= ink.folders.bower %>animate.css',
                     src: ['animate.css'],
-                    dest: '<%= ink.folders.css.src %>modules/animations/',
+                    dest: 'src/sass/contrib/animations/',
                     expand: true,
+                    rename: function (dest, src) {
+                        return dest + 'animate.css';
+                    }
                 }]
             },
             modernizr: {
@@ -80,16 +82,22 @@ module.exports = function (grunt) {
                     expand: true
                 }]
             },
-            html5shiv: {
-                files: [{
-                    cwd: '<%= ink.folders.bower %>html5shiv/dist',
-                    src: '*',
-                    dest: '<%= ink.folders.js.dist %>',
-                    expand: true,
-                }]
+
+            compass: {
+                files: [
+                    {
+                        cwd: '<%= ink.folders.bower %>bower-compass-core/compass/stylesheets/',
+                        src: '**/*.scss',
+                        dest: 'src/sass/contrib/',
+                        expand: true,
+                    }
+                ]
+            },
+            facss: {
+              src: 'dist/css/contrib/font-awesome/font-awesome.css',
+              dest: 'dist/css/font-awesome.css'
             }
         },
-
 
         // builds the javascript bundles
         concat: {
@@ -202,37 +210,13 @@ module.exports = function (grunt) {
                 ]
             },
             css: {
-                src: ['<%= ink.folders.css.dist %>/ink*.css']
-            },
-            /*
-            [3.0.0]: uncomment this
-            fontAwesome: {
                 src: [
-                    '<%= ink.folders.css.src %>modules/icons/*',
-                    '!<%= ink.folders.css.src %>modules/icons/variables.less'
+                  '<%= ink.folders.css.dist %>/*.css',
+                  '<%= ink.folders.css.dist %>/*.css.map',
+                  '!<%= ink.folders.css.dist %>/quick-start.css'
                 ]
             },
-            */
-        },
-
-        // [TODO] check if this works okay
-        qunit: {
-            options: {
-                // inject: 'js/tests/assets/phantom.js',
-                urls: ['http://localhost:8000/js/tests/index.html']
-            },
-            files: ['<%= ink.folders.js.src %>/tests/unit/**/*.html']
-        },
-
-        connect: {
-            server: {
-                options: {
-                    port: 8000,
-                    debug: true,
-                    base: '.',
-                    keepalive: true
-                }
-            }
+            csscontrib: [ '<%= ink.folders.css.dist %>/contrib' ]
         },
 
         // CONCATENATE JS
@@ -298,48 +282,6 @@ module.exports = function (grunt) {
             }
         },
 
-        // COMPILES THE CSS
-        less: {
-            distMin: {
-                files: {
-                    '<%= ink.folders.css.dist %><%= pkg.name %>-min.css': ['<%= ink.folders.css.src %><%= pkg.name %>.less'],
-                },
-                // COMPILES THE MINIFIED CSS
-                options: {
-                    compress: true,
-                    // LESS source maps
-                    // To enable, set sourceMap to true and update sourceMapRootpath based on your install
-                    sourceMap: true,
-                    sourceMapFilename: '<%= ink.folders.css.dist %><%= pkg.name %>-min.css.map',
-                    sourceMapRootpath: '../../'
-                }
-            },
-            IEMin: {
-                files: {
-                    '<%= ink.folders.css.dist %><%= pkg.name %>-ie7-min.css': ['<%= ink.folders.css.src %><%= pkg.name %>-ie7.less']
-                }
-            },
-            dist: {
-                files: {
-                    '<%= ink.folders.css.dist %><%= pkg.name %>.css': ['<%= ink.folders.css.src %><%= pkg.name %>.less'],
-                },
-                // COMPILES THE MINIFIED CSS
-                options: {
-                    compress: false,
-                    // LESS source maps
-                    // To enable, set sourceMap to true and update sourceMapRootpath based on your install
-                    sourceMap: true,
-                    sourceMapFilename: '<%= ink.folders.css.dist %><%= pkg.name %>.css.map',
-                    sourceMapRootpath: '../../'
-                }
-            },
-            IE: {
-                files: {
-                    '<%= ink.folders.css.dist %><%= pkg.name %>-ie7.css': ['<%= ink.folders.css.src %><%= pkg.name %>-ie7.less']
-                }
-            }
-        },
-
         // Runs JSHint on the Ink.js JavaScript source
         jshint: {
             inkjs: {
@@ -349,7 +291,48 @@ module.exports = function (grunt) {
                 files: {
                     src: '<%= ink.folders.js.src %>**/lib.js'
                 }
+            },
+        },
+
+        compass: {
+            css: {
+                options: {
+                    outputStyle: 'expanded',
+                    noLineComments: true,
+                    relativeAssets: true,
+                    sassDir: 'src/sass',
+                    cssDir: "dist/css",
+                    fontsDir: 'dist/fonts',
+                    imagesDir: 'dist/img'
+                }
+            },
+        },
+
+        cssmin: {
+            minify: {
+                expand: true,
+                cwd: '<%= ink.folders.css.dist %>',
+                src: ['*.css', '!quick-start.css', '!*min*'],
+                dest: '<%= ink.folders.css.dist %>',
+                ext: '.min.css',
+                options: {
+                    keepSpecialComments: 0,
+                    report: 'min',
+                    sourceMap: true,
+                    sourceMapFilename: '<%= ink.folders.css.dist %><%= pkg.name %>-min.css.map',
+                    sourceMapRootpath: '../../'
+                }
             }
+        },
+
+        connect: {
+            test: {
+                options: {
+                    port: '<%= ink.test.connect_port %>',
+                    base: '<%= ink.test.root %>',
+                    keepalive: false
+                }
+            },
         },
 
         // Creates a plato report
@@ -364,11 +347,96 @@ module.exports = function (grunt) {
                     '<%= ink.folders.js.srcBase %>report': '<%= ink.folders.js.src %>**/lib.js'
                 }
             }
+        },
+
+        watch: {
+            css: {
+                files: [
+                    'src/**/*.scss'
+                ],
+                tasks: ['css'],
+                options: {
+                    spawn: false,
+                    interrupt: true,
+                }
+            },
+            js: {
+                files: ['<%= ink.folders.js.src %>/**/*.js'],
+                tasks: ['js'],
+                options: {
+                    spawn: false,
+                    interrupt: true,
+                }
+            },
+        },
+
+        compress: {
+          main: {
+            options: {
+              archive: '<%= pkg.name %>-<%= pkg.version %>.zip'
+            },
+            files: [
+              {src: ['dist/**'], dest: '/'} // includes files in path and its subdirs
+            ]
+          }
         }
+
     });
 
-    grunt.registerTask('default', ['bower', 'copy', 'clean:css', 'less', 'clean:js', 'concat', 'uglify']);
-    grunt.registerTask('test', ['connect', 'qunit']);
+    grunt.registerTask('js', ['clean:js', 'concat', 'uglify']);
+    grunt.registerTask('css', ['clean:css', 'compass', 'copy:facss', 'clean:csscontrib', 'cssmin']);
+    grunt.registerTask('dist', ['css', 'js', 'compress']);
+    //grunt.registerTask('dependencies', ['bower', 'copy:fontAwesome', 'copy:modernizr', 'copy:compass']);
+    grunt.registerTask('dependencies', ['bower', 'copy:fontAwesome', 'copy:compass']);
+    grunt.registerTask('default', ['dependencies','css','js']);
+    grunt.registerTask('_phantomjs', function (module) {
+        this.requires('connect:test');
+
+        var options = this.options({
+            module: '**'
+        });
+
+        var failures = [];
+
+        var testFiles = grunt.file.expand('test/unit/' + options.module + '/index.html');
+
+        var done = this.async();
+
+        async.eachSeries(testFiles, function (testFile, next) {
+            var url = 'http://localhost:' + grunt.config.get('ink.test.connect_port') + '/' + testFile;
+            var displayName = path.basename(path.dirname(testFile));
+
+            console.log('\nrunning tests for ' + testFile);
+            console.log('(visiting ' + url + ')');
+            phantomjsProcess = child_process.spawn('./node_modules/phantomjs/bin/phantomjs', [
+                    'test/phantomjs-qunit.js',
+                    url
+                ]);
+            phantomjsProcess.on('close', function(exitCode) {
+                if (exitCode) {
+                    failures.push(displayName);
+                }
+                next(null);
+            });
+            phantomjsProcess.stdout.pipe(process.stdout);
+            phantomjsProcess.stderr.pipe(process.stdout);
+        }, function afterAllTests() {
+            if (failures.length) {
+                console.log('\n# %d suites (in %d) FAILED: %s',
+                    failures.length, testFiles.length, failures.join(' ,'));
+                process.exit(failures.length);
+            } else {
+                console.log('\n# %d suites passed', testFiles.length);
+            }
+            done(failures.length);
+        });
+    });
+	grunt.registerTask('test', function (moduleName) {
+        if (moduleName) {
+            grunt.config.set('_phantomjs.options.module', moduleName);
+        }
+        grunt.task.run(['connect:test', '_phantomjs:test']);
+    });
     grunt.registerTask('custom_bundle', 'Create your custom bundle from a json file', function (fileName) {
         if (arguments.length === 0) {
             grunt.log.error('You need to specify a file name');

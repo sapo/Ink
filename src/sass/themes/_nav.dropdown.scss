@@ -1,0 +1,9 @@
+.#{$dropdown-class-name} {
+
+    &.blue      { @include nav-dropdown($blue); }
+    &.green     { @include nav-dropdown($green); }
+    &.orange    { @include nav-dropdown($orange); }
+    &.red       { @include nav-dropdown($red); }
+    &.black     { @include nav-dropdown($grey-90); }
+    &.blue      { @include nav-dropdown($blue); }
+}

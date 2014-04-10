@@ -1,0 +1,8 @@
+// TABLES
+$table-cell-padding         : 5px 10px !default;
+$table-background           : $body-background !default;
+$table-cell-borderColor     : #bbb !default;
+$table-alternating-rowColor : darken($table-background,4%) !default;
+$table-row-line-height      : 1.3 !default;
+$table-row-hoverColor       : #fefbd6 !default;
+$table-border-radius        : $border-radius !default;

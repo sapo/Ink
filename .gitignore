@@ -1,38 +1,34 @@
 # ignore diff backups
 *.orig
 *.bak
-# ignore compiled css files
-!prettify.css
-!demo.css
-# ignore CI log files
-*/logs/log-*.php
-*/logs/!index.html
-# ignore CI cache files
-*/cache/*
-*/cache/!index.html
-# ignore temp InK build files
-*/builds/*
-*/builds/!index.html
+
 # ignore OS generated files
 .DS_Store
 .DS_Store?
 ._*
 .Spotlight-V100
 .Trashes
-
 ehthumbs.db
 Thumbs.db
 *.zip
-ink_to_prod_dir
 
-/build-docs.sh
-/.sass-cache/
-
-node_modules/*
-bower_components/*
+# ignore dev folders
+node_modules
+bower_components
 .sass-cache
+npm-debug.log
 
+# ignore gh-pages folders
+_site
+_includes
+assets
+
+# legacy build files
 src/js/builds
 src/js/report
 src/js/serverUtils/moduleDirs.json
 src/js/serverUtils/moduleFiles.json
+src/sass/docs.scss
+dist/css/docs.css
+dist/css/docs.min.css
+dist/css/contrib/font-awesome/font-awesome.css

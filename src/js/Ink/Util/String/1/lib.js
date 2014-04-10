@@ -1,18 +1,15 @@
 /**
+ * String Utilities
  * @module Ink.Util.String_1
- * @author inkdev AT sapo.pt
  * @version 1
  */
+
 Ink.createModule('Ink.Util.String', '1', [], function() {
 
     'use strict';
 
     /**
-     * String Manipulation Utilities
-     *
-     * @class Ink.Util.String
-     * @version 1
-     * @static
+     * @namespace Ink.Util.String_1 
      */
     var InkUtilString = {
 
@@ -113,19 +110,16 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
         _htmlUnsafeChars:{'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;',"'":'&apos;'},
 
         /**
-         * Convert first letter of a word to upper case <br />
+         * Capitalizes a word.
          * If param as more than one word, it converts first letter of all words that have more than 2 letters
          *
          * @method ucFirst
-         * @param {String} string
-         * @param {Boolean} [firstWordOnly=false] capitalize only first word.
-         * @return {String} string camel cased
+         * @param   {String}  string                String to capitalize.
+         * @param   {Boolean} [firstWordOnly]=false Flag to capitalize only the first word.
+         * @return  {String}                        Camel cased string.
          * @public
          * @static
-         *
-         * @example
-         *      InkString.ucFirst('hello world'); // -> 'Hello World'
-         *      InkString.ucFirst('hello world', true); // -> 'Hello world'
+         * @sample Ink_Util_String_ucFirst.html 
          */
         ucFirst: function(string, firstWordOnly) {
             var replacer = firstWordOnly ? /(^|\s)(\w)(\S{2,})/ : /(^|\s)(\w)(\S{2,})/g;
@@ -135,13 +129,14 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
         },
 
         /**
-         * Remove spaces and new line from biggin and ends of string
+         * Trims whitespace from strings
          *
          * @method trim
-         * @param {String} string
-         * @return {String} string trimmed
+         * @param   {String} string     String to be trimmed
+         * @return  {String}            Trimmed string
          * @public
          * @static
+         * @sample Ink_Util_String_trim.html 
          */
         trim: function(string)
         {
@@ -152,19 +147,15 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
         },
 
         /**
-         * Removes HTML tags of string
+         * Strips HTML tags from strings
          *
          * @method stripTags
-         * @param {String} string
-         * @param {String} allowed
-         * @return {String} String stripped from HTML tags, leaving only the allowed ones (if any)
+         * @param   {String} string     String to strip tags from.
+         * @param   {String} allowed    Comma separated list of allowed tags.
+         * @return  {String}            Stripped string
          * @public
          * @static
-         * @example
-         *     <script>
-         *          var myvar='isto e um texto <b>bold</b> com imagem <img src=""> e br <br /> um <p>paragrafo</p>';
-         *          SAPO.Utility.String.stripTags(myvar, 'b,u');
-         *     </script>
+         * @sample Ink_Util_String_stripTags.html 
          */
         stripTags: function(string, allowed)
         {
@@ -195,13 +186,14 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
         },
 
         /**
-         * Convert listed characters to HTML entities
+         * Encodes string into HTML entities.
          *
          * @method htmlEntitiesEncode
          * @param {String} string
          * @return {String} string encoded
          * @public
          * @static
+         * @sample Ink_Util_String_htmlEntitiesEncode.html 
          */
         htmlEntitiesEncode: function(string)
         {
@@ -216,13 +208,14 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
         },
 
         /**
-         * Convert listed HTML entities to character
+         * Decodes string from HTML entities.
          *
          * @method htmlEntitiesDecode
-         * @param {String} string
-         * @return {String} string decoded
+         * @param   {String}    string  String to be decoded
+         * @return  {String}            Decoded string
          * @public
          * @static
+         * @sample Ink_Util_String_htmlEntitiesDecode.html 
          */
         htmlEntitiesDecode: function(string)
         {
@@ -245,11 +238,11 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
         },
 
         /**
-         * Encode a string to UTF8
+         * Encode a string to UTF-8.
          *
          * @method utf8Encode
-         * @param {String} string
-         * @return {String} string utf8 encoded
+         * @param   {String}    string      String to be encoded
+         * @return  {String}    string      UTF-8 encoded string
          * @public
          * @static
          */
@@ -280,14 +273,15 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
         },
 
         /**
-         * Make a string shorter without cutting words
+         * Truncates a string without breaking words.
          *
          * @method shortString
-         * @param {String} str
-         * @param {Number} n - number of chars of the short string
-         * @return {String} string shortened
+         * @param   {String}    str     String to truncate
+         * @param   {Number}    n       Number of chars of the short string
+         * @return  {String}        
          * @public
          * @static
+         * @sample Ink_Util_String_shortString.html 
          */
         shortString: function(str,n) {
           var words = str.split(' ');
@@ -303,15 +297,15 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
         },
 
         /**
-         * Truncates a string, breaking words and adding ... at the end
+         * Truncates a string, breaking words and adding ... at the end.
          *
          * @method truncateString
-         * @param {String} str
-         * @param {Number} length - length limit for the string. String will be
-         *        at most this big, ellipsis included.
-         * @return {String} string truncated
+         * @param   {String} str        String to truncate
+         * @param   {Number} length     Limit for the returned string, ellipsis included.
+         * @return  {String}            Truncated String
          * @public
          * @static
+         * @sample Ink_Util_String_truncateString.html 
          */
         truncateString: function(str, length) {
             if(str.length - 1 > length) {
@@ -322,11 +316,11 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
         },
 
         /**
-         * Decode a string from UTF8
+         * Decodes a string from UTF-8.
          *
          * @method utf8Decode
-         * @param {String} string
-         * @return {String} string utf8 decoded
+         * @param   {String} string     String to be decoded
+         * @return  {String}            Decoded string
          * @public
          * @static
          */
@@ -360,13 +354,14 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
         },
 
         /**
-         * Convert all accented chars to char without accent.
+         * Removes all accented characters from a string.
          *
          * @method removeAccentedChars
-         * @param {String} string
-         * @return {String} string without accented chars
+         * @param   {String} string     String to remove accents from
+         * @return  {String}            String without accented chars
          * @public
          * @static
+         * @sample Ink_Util_String_removeAccentedChars.html 
          */
         removeAccentedChars: function(string)
         {
@@ -383,11 +378,12 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
          * Count the number of occurrences of a specific needle in a haystack
          *
          * @method substrCount
-         * @param {String} haystack
-         * @param {String} needle
-         * @return {Number} Number of occurrences
+         * @param   {String} haystack   String to search in
+         * @param   {String} needle     String to search for
+         * @return  {Number}            Number of occurrences
          * @public
          * @static
+         * @sample Ink_Util_String_substrCount.html 
          */
         substrCount: function(haystack,needle)
         {
@@ -395,12 +391,12 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
         },
 
         /**
-         * Eval a JSON string to a JS object
+         * Eval a JSON - We recommend you Ink.Util.Json
          *
          * @method evalJSON
-         * @param {String} strJSON
-         * @param {Boolean} sanitize
-         * @return {Object} JS Object
+         * @param   {String}    strJSON     JSON string to eval
+         * @param   {Boolean}   sanitize    Flag to sanitize input
+         * @return  {Object}                JS Object
          * @public
          * @static
          */
@@ -421,9 +417,9 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
         /**
          * Checks if a string is a valid JSON object (string encoded)
          *
-         * @method isJSON
-         * @param {String} str
-         * @return {Boolean}
+         * @method isJSON       
+         * @param   {String}    str      String to check
+         * @return  {Boolean}
          * @public
          * @static
          */
@@ -434,13 +430,14 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
         },
 
         /**
-         * Escapes unsafe html chars to their entities
+         * Escapes unsafe html chars as HTML entities
          *
          * @method htmlEscapeUnsafe
          * @param {String} str String to escape
          * @return {String} Escaped string
          * @public
          * @static
+         * @sample Ink_Util_String_htmlEscapeUnsafe.html 
          */
         htmlEscapeUnsafe: function(str){
             var chars = InkUtilString._htmlUnsafeChars;
@@ -449,27 +446,28 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
 
         /**
          * Normalizes whitespace in string.
-         * String is trimmed and sequences of many
-         * Whitespaces are collapsed.
+         * String is trimmed and sequences of whitespaces are collapsed.
          *
          * @method normalizeWhitespace
-         * @param {String} str String to normalize
-         * @return {String} string normalized
+         * @param   {String}    str     String to normalize
+         * @return  {String}            Normalized string
          * @public
          * @static
+         * @sample Ink_Util_String_normalizeWhitespace.html 
          */
         normalizeWhitespace: function(str){
             return str !== null ? InkUtilString.trim(String(str).replace(/\s+/g,' ')) : str;
         },
 
         /**
-         * Converts string to unicode
+         * Converts string to unicode.
          *
          * @method toUnicode
-         * @param {String} str
-         * @return {String} string unicoded
+         * @param   {String} str    String to convert
+         * @return  {String}        Unicoded String
          * @public
          * @static
+         * @sample Ink_Util_String_toUnicode.html 
          */
         toUnicode: function(str) {
             if (typeof str === 'string') {
@@ -529,17 +527,14 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
         },
 
         /**
-         * Escapes a unicode character. returns \xXX if hex smaller than 0x100, otherwise \uXXXX
+         * Escapes a unicode character.
          *
          * @method escape
-         * @param {String} c Char
-         * @return {String} escaped char
+         * @param {String}  c   Character to escape
+         * @return {String} Escaped character. Returns \xXX if hex smaller than 0x100, otherwise \uXXXX
          * @public
          * @static
-         */
-
-        /**
-         * @param {String} c char
+         * @sample Ink_Util_String_escape.html 
          */
         escape: function(c) {
             var hex = (c).charCodeAt(0).toString(16).split('');
@@ -560,10 +555,11 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
          * Unescapes a unicode character escape sequence
          *
          * @method unescape
-         * @param {String} es Escape sequence
-         * @return {String} String des-unicoded
+         * @param   {String} es     Escape sequence
+         * @return  {String}        String un-unicoded
          * @public
          * @static
+         * @sample Ink_Util_String_unescape.html 
          */
         unescape: function(es) {
             var idx = es.lastIndexOf('0');
@@ -579,11 +575,12 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
          * Escapes a string to unicode characters
          *
          * @method escapeText
-         * @param {String} txt
-         * @param {Array} [whiteList]
-         * @return {String} Escaped to Unicoded string
+         * @param   {String}    txt             
+         * @param   {Array}     [whiteList]     Whitelist of characters
+         * @return  {String}                    String escaped to Unicode
          * @public
          * @static
+         * @sample Ink_Util_String_escapeText.html 
          */
         escapeText: function(txt, whiteList) {
             if (whiteList === undefined) {
@@ -621,6 +618,7 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
          * @return {String} Unescaped string
          * @public
          * @static
+         * @sample Ink_Util_String_unescapeText.html 
          */
         unescapeText: function(txt) {
             /*jshint boss:true */
@@ -634,29 +632,30 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
         },
 
         /**
-         * Compares two strings
+         * Compares two strings.
          *
          * @method strcmp
-         * @param {String} str1
-         * @param {String} str2
-         * @return {Number}
+         * @param   {String}    str1     First String
+         * @param   {String}    str2     Second String
+         * @return  {Number}
          * @public
          * @static
+         * @sample Ink_Util_String_strcmp.html 
          */
         strcmp: function(str1, str2) {
             return ((str1 === str2) ? 0 : ((str1 > str2) ? 1 : -1));
         },
 
         /**
-         * Splits long string into string of, at most, maxLen (that is, all but last have length maxLen,
-         * last can measure maxLen or less)
+         * Splits a string into smaller chunks
          *
          * @method packetize
-         * @param {String} string string to divide
-         * @param {Number} maxLen packet size
-         * @return {Array} string divided
+         * @param   {String} str        String to divide
+         * @param   {Number} maxLen     Maximum chunk size (in characters)
+         * @return  {Array}             Chunks of the original string
          * @public
          * @static
+         * @sample Ink_Util_String_packetize.html 
          */
         packetize: function(str, maxLen) {
             var len = str.length;

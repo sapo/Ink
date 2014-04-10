@@ -1,8 +1,9 @@
 /**
+ * Auxiliar utilities for UI Modules
  * @module Ink.UI.Common_1
- * @author inkdev AT sapo.pt
  * @version 1
  */
+ 
 Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Dom.Selector_1','Ink.Util.Url_1'], function(InkElement, Ajax,Css,Selector,Url) {
 
     'use strict';
@@ -20,12 +21,9 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
     };
 
     /**
-     * The Common class provides auxiliar methods to ease some of the most common/repetitive UI tasks.
-     *
-     * @class Ink.UI.Common
-     * @version 1
-     * @static
+     * @namespace Ink.UI.Common_1
      */
+
     var Common = {
 
         /**
@@ -36,18 +34,20 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          * @readOnly
          */
         Layouts: {
+            TINY: 'tiny',
             SMALL:  'small',
             MEDIUM: 'medium',
-            LARGE:  'large'
+            LARGE:  'large',
+            XLARGE: 'xlarge'
         },
 
         /**
-         * Method to check if an item is a valid DOM Element.
+         * Checks if an item is a valid DOM Element.
          *
          * @method isDOMElement
          * @static
-         * @param {Mixed} o     The object to be checked.
-         * @return {Boolean}    True if it's a valid DOM Element.
+         * @param   {Mixed}     o   The object to be checked.
+         * @return  {Boolean}       True if it's a valid DOM Element.
          * @example
          *     var el = Ink.s('#element');
          *     if( Ink.UI.Common.isDOMElement( el ) === true ){
@@ -61,12 +61,12 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
         },
 
         /**
-         * Method to check if an item is a valid integer.
+         * Checks if an item is a valid integer.
          *
          * @method isInteger
          * @static
          * @param {Mixed} n     The value to be checked.
-         * @return {Boolean}    True if 'n' is a valid integer.
+         * @return {Boolean}    True if it's a valid integer.
          * @example
          *     var value = 1;
          *     if( Ink.UI.Common.isInteger( value ) === true ){
@@ -80,13 +80,12 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
         },
 
         /**
-         * Method to get a DOM Element. The first parameter should be either a DOM Element or a valid CSS Selector.
-         * If not, then it will throw an exception. Otherwise, it returns a DOM Element.
+         * Gets a DOM Element. 
          *
          * @method elOrSelector
          * @static
-         * @param  {DOMElement|String} elOrSelector DOM Element or CSS Selector
-         * @param  {String}            fieldName    This field is used in the thrown Exception to identify the parameter.
+         * @param  {DOMElement|String}      elOrSelector    DOM Element or CSS Selector
+         * @param  {String}                 fieldName       The name of the field. Commonly used for debugging.
          * @return {DOMElement} Returns the DOMElement passed or the first result of the CSS Selector. Otherwise it throws an exception.
          * @example
          *     // In case there are several .myInput, it will retrieve the first found
@@ -95,23 +94,25 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
         elOrSelector: function(elOrSelector, fieldName) {
             if (!this.isDOMElement(elOrSelector)) {
                 var t = Selector.select(elOrSelector);
-                if (t.length === 0) { throw new TypeError(fieldName + ' must either be a DOM Element or a selector expression!\nThe script element must also be after the DOM Element itself.'); }
+                if (t.length === 0) {
+                    Ink.warn(fieldName + ' must either be a DOM Element or a selector expression!\nThe script element must also be after the DOM Element itself.');
+                    return null;
+                }
                 return t[0];
             }
             return elOrSelector;
         },
 
         /**
-         * Does the same as `elOrSelector` but returns an array of elements.
-         *
-         * see elOrSelector
+         * Alias for `elOrSelector` but returns an array of elements.
          *
          * @method elsOrSelector
          *
          * @static
-         *
-         * @param ... (See elOrSelector's params)
-         * @param {Boolean} required If true, accept an empty array as output.
+         * @param  {DOMElement|String}      elOrSelector    DOM Element or CSS Selector
+         * @param  {String}                 fieldName       The name of the field. Commonly used for debugging.
+         * @return {DOMElement} Returns the DOMElement passed or the first result of the CSS Selector. Otherwise it throws an exception.
+         * @param {Boolean} required Flag to accept an empty array as output.
          * @return {Array} The selected DOM Elements.
          * @example
          *     var elements = Ink.UI.Common.elsOrSelector('input.my-inputs', 'My Input');
@@ -129,7 +130,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
             if (ret && ret.length) {
                 return ret;
             } else {
-                if (required || arguments.length === 2) {
+                if (required) {
                     throw new TypeError(fieldName + ' must either be a DOM Element, an Array of elements, or a selector expression!\nThe script element must also be after the DOM Element itself.');
                 } else {
                     return [];
@@ -138,20 +139,16 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
         },
 
         /**
-         * Get options from an "options" object and the Element's data attributes.
+         * Gets options an object and element's metadata.
          *
-         * The element's data attributes take precedence.
-         * 
-         * Values from the element's data-atrributes are coerced into the required type.
-         *
-         * Mainly for Ink UI.* modules
+         * The element's data attributes take precedence. Values from the element's data-atrributes are coerced into the required type.
          *
          * @method options
          *
-         * @param {Object}     [fieldId=''] Tag used in thrown exceptions: "<fieldId>: ..."
-         * @param {Object}      defaults    Object with arrays of option defaults
-         * @param {Object}      overrides   Object containing options given from user through JavaScript
-         * @param {DOMElement} [element]    Element with data-attributes
+         * @param {Object}      [fieldId]   Name to be used in debugging features.
+         * @param {Object}      defaults    Object with the options' types and defaults.
+         * @param {Object}      overrides   Options to override the defaults. Usually passed when instantiating an UI module.
+         * @param {DOMElement}  [element]   Element with data-attributes
          *
          * @example
          *
@@ -205,14 +202,14 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
             var lType;
             var defaultVal;
 
-			var invalidStr = function (str) {
+            var invalidStr = function (str) {
                 if (fieldId) { str = fieldId + ': "' + ('' + str).replace(/"/, '\\"') + '"'; }
-				return str;
-			};
+                return str;
+            };
 
-			var quote = function (str) {
-				return '"' + ('' + str).replace(/"/, '\\"') + '"';
-			};
+            var quote = function (str) {
+                return '"' + ('' + str).replace(/"/, '\\"') + '"';
+            };
 
             var invalidThrow = function (str) {
                 throw new Error(invalidStr(str));
@@ -263,7 +260,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
 
             for (var key in defaults) {
                 if (defaults.hasOwnProperty(key)) {
-					out[key] = optionValue(key);
+                    out[key] = optionValue(key);
                 }
             }
 
@@ -303,8 +300,8 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
                 },
                 string: function (val) { return val; },
                 'function': function (val, paramName, fieldId) {
-					Ink.error(fieldId + ': You cannot specify the option "' + paramName + '" through data-attributes because it\'s a function');
-					return nothing;
+                    Ink.error(fieldId + ': You cannot specify the option "' + paramName + '" through data-attributes because it\'s a function');
+                    return nothing;
                 }
             };
             ret['float'] = ret.integer = ret.number;
@@ -337,8 +334,8 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
         }()),
 
         /**
-         * Method to make a deep copy (clone) of an object.
-         * Note: The object cannot have loops.
+         * Deep copy (clone) an object.
+         * Note: The object cannot have referece loops.
          *
          * @method clone
          * @static
@@ -362,12 +359,12 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
 
 
         /**
-         * Method to return the 'nth' position that an element occupies relatively to its parent.
+         * Gets an element's one-base index relative to its parent.
          *
          * @method childIndex
          * @static
-         * @param  {DOMElement} childEl Valid DOM Element.
-         * @return {Number} Numerical position of an element relatively to its parent.
+         * @param  {DOMElement}     childEl     Valid DOM Element.
+         * @return {Number}                     Numerical position of an element relatively to its parent.
          * @example
          *     <!-- Imagine the following HTML: -->
          *     <ul>
@@ -396,14 +393,15 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
 
 
         /**
-         * This method provides a more convenient way to do an async AJAX request and expect a JSON response.
-         * It offers a callback option, as third paramenter, for a better async handling.
+         * AJAX JSON request shortcut method
+         * It provides a more convenient way to do an AJAX request and expect a JSON response.It also offers a callback option, as third parameter, for better async handling.
          *
          * @method ajaxJSON
          * @static
          * @async
-         * @param  {String} endpoint    Valid URL to be used as target by the request.
-         * @param  {Object} params      This field is used in the thrown Exception to identify the parameter.
+         * @param   {String}    endpoint    Valid URL to be used as target by the request.
+         * @param   {Object}    params      This field is used in the thrown Exception to identify the parameter.
+         * @param   {Function}  cb          Callback for the request.
          * @example
          *     // In case there are several .myInput, it will retrieve the first found
          *     var el = Ink.UI.Common.elOrSelector('.myInput','My Input');
@@ -437,11 +435,11 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
 
 
         /**
-         * Method to get the current Ink layout applied.
+         * Gets the current Ink layout.
          *
          * @method currentLayout
          * @static
-         * @return {String}         'small', 'medium' or 'large'
+         * @return {String}         A string representation of the current layout name.
          * @example
          *      var inkLayout = Ink.UI.Common.currentLayout();
          *      if (inkLayout === 'small') {
@@ -484,7 +482,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
 
 
         /**
-         * Method to set the location's hash (window.location.hash).
+         * Sets the location's hash (window.location.hash).
          *
          * @method hashSet
          * @static
@@ -505,9 +503,8 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
         },
 
         /**
-         * Method to remove children nodes from a given object.
-         * This method was initially created to help solve a problem in Internet Explorer(s) that occurred when trying
-         * to set the innerHTML of some specific elements like 'table'.
+         * Removes children nodes from a given object.
+         * This method was initially created to help solve a problem in Internet Explorer(s) that occurred when trying to set the innerHTML of some specific elements like 'table'.
          *
          * @method cleanChildren
          * @static
@@ -541,7 +538,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
         },
 
         /**
-         * This method stores the id and/or the classes of a given element in a given object.
+         * Stores the id and/or classes of an element in an object.
          *
          * @method storeIdAndClasses
          * @static
@@ -577,13 +574,12 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
         },
 
         /**
-         * This method sets the id and className properties of a given DOM Element based on a given similar object
-         * resultant of the previous function 'storeIdAndClasses'.
+         * Sets the id and className properties of an element based 
          *
          * @method restoreIdAndClasses
          * @static
          * @param  {DOMElement} toEl    Valid DOM Element to set the id and classes on.
-         * @param  {Object}     inObj   Object where the id and classes to be set are.
+         * @param  {Object}     inObj   Object where the id and classes to be set are. This method uses the same format as the one given in `storeIdAndClasses`
          * @example
          *     <div></div>
          *
@@ -620,7 +616,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
         },
 
         /**
-         * This method saves a component's instance reference for later retrieval.
+         * Saves a component's instance reference for later retrieval.
          *
          * @method registerInstance
          * @static
@@ -646,7 +642,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
         },
 
         /**
-         * This method deletes/destroy an instance with a given id.
+         * Deletes an instance with a given id.
          *
          * @method unregisterInstance
          * @static
@@ -657,12 +653,12 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
         },
 
         /**
-         * This method retrieves the registered instance(s) of a given element or instance id.
+         * Gets an UI instance from an element or instance id.
          *
          * @method getInstance
          * @static
          * @param  {String|DOMElement}      instanceIdOrElement      Instance's id or DOM Element from which we want the instances.
-         * @return  {Object|Object[]}       Returns an instance or a collection of instances.
+         * @return  {Object|Array}       Returns an instance or a collection of instances.
          */
         getInstance: function(instanceIdOrElement) {
             var ids;
@@ -690,12 +686,12 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
         },
 
         /**
-         * This method retrieves the registered instance(s) of an element based on the given selector.
+         * Gets an instance based on a selector.
          *
          * @method getInstanceFromSelector
          * @static
-         * @param  {String}             selector    CSS selector to define the element from which it'll get the instance(s).
-         * @return  {Object|Object[]}               Returns an instance or a collection of instances.
+         * @param  {String}             selector    CSS selector to get the instances from.
+         * @return  {Object|Array}               Returns an instance or a collection of instances.
          */
         getInstanceFromSelector: function(selector) {
             var el = Selector.select(selector)[0];
@@ -704,11 +700,11 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
         },
 
         /**
-         * This method retrieves the registered instances' ids of all instances.
+         * Gets all the instance ids
          *
          * @method getInstanceIds
          * @static
-         * @return  {String[]}     Id or collection of ids of all existing instances.
+         * @return  {Array}     Collection of instance ids
          */
         getInstanceIds: function() {
             var res = [];
@@ -721,11 +717,11 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
         },
 
         /**
-         * This method retrieves all existing instances.
+         * Gets all the instances
          *
          * @method getInstances
          * @static
-         * @return  {Object[]}     Collection of existing instances.
+         * @return  {Array}     Collection of existing instances.
          */
         getInstances: function() {
             var res = [];
@@ -738,8 +734,8 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
         },
 
         /**
-         * This method is not to supposed to be invoked by the Common component.
-         * Components should copy this method as its destroy method.
+         * Boilerplate method to destroy a component.
+         * Components should copy this method as its destroy method and modify it.
          *
          * @method destroyComponent
          * @static

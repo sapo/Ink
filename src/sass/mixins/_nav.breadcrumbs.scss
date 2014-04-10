@@ -1,0 +1,68 @@
+// Breadcrumbs navigation
+@mixin nav-breadcrumbs($nav-color: null) {
+
+    // defines default theme
+    @if $nav-color == null {
+        
+        li {
+            &.active {
+                a { 
+                    background: none;
+                    color: $grey-40; 
+                    &:hover {
+                        cursor: default;
+                        text-decoration: none;
+                    }
+                }
+            }
+            a {
+                &:hover {
+                    background: none;
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+
+    @if $nav-color != null and lightness($nav-color) <= 10% {
+        background: desaturate($nav-color,10%);
+        li {
+            a,
+            &:after {
+                color: $white;
+            }
+            &.active a { 
+                color: lighten($nav-color,30%);
+                @include text-shadow(darken($nav-color,20%) 0 -1px 0);
+            }
+        }
+    }
+
+    @if $nav-color != null and lightness($nav-color) > 32% and lightness($nav-color) <= 80% {
+        background: desaturate($nav-color,10%);
+        li {
+            a,
+            &:after {
+                color: $white;
+            }
+            &.active a { 
+                color: darken($nav-color,20%); 
+                @include text-shadow(lighten($nav-color,6%) 0 1px 0);
+            }
+        }
+    }
+
+    @if $nav-color != null and lightness($nav-color) > 80% {
+        background: $nav-color;
+        li {
+            a,
+            &:after {
+                color: $text-color;
+            }
+            &.active a { 
+                color: darken($nav-color,20%); 
+                @include text-shadow(lighten($nav-color,8%) 0 1px 0);
+            }
+        }
+    }
+}

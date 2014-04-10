@@ -1,34 +1,27 @@
 /**
+ * Cookie Utilities
  * @module Ink.Util.Cookie_1
- * @author inkdev AT sapo.pt
  * @version 1
  */
+
 Ink.createModule('Ink.Util.Cookie', '1', [], function() {
 
     'use strict';
 
     /**
-     * Utilities for Cookie handling
-     *
-     * @class Ink.Util.Cookie
-     * @version 1
-     * @static
+     * @namespace Ink.Util.Cookie_1
      */
     var Cookie = {
 
         /**
-         * Gets an object with current page cookies
+         * Gets an object with the current page cookies.
          *
          * @method get
-         * @param {String} name
-         * @return {String|Object} If the name is specified, it returns the value related to that property. Otherwise it returns the full cookie object
+         * @param   {String}          name      The cookie name.
+         * @return  {String|Object}             If the name is specified, it returns the value of that key. Otherwise it returns the full cookie object
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Cookie_1'], function( InkCookie ){
-         *         var myCookieValue = InkCookie.get('someVarThere');
-         *         console.log( myCookieValue ); // This will output the value of the cookie 'someVarThere', from the cookie object.
-         *     });
+         * @sample Ink_Util_Cookie_get.html
          */
         get: function(name)
         {
@@ -60,22 +53,18 @@ Ink.createModule('Ink.Util.Cookie', '1', [], function() {
         },
 
         /**
-         * Sets a cookie
+         * Sets a cookie.
          *
          * @method set
-         * @param {String} name Cookie name
-         * @param {String} value Cookie value
-         * @param {Number} [expires] Number to add to current Date in seconds
-         * @param {String} [path] Path to sets cookie (default '/')
-         * @param {String} [domain] Domain to sets cookie (default current hostname)
-         * @param {Boolean} [secure] True if wants secure, default 'false'
+         * @param {String}      name        Cookie name.
+         * @param {String}      value       Cookie value.
+         * @param {Number}      [expires]   Number of seconds the cookie will be valid for.
+         * @param {String}      [path]      Path for the cookie. Defaults to '/'.
+         * @param {String}      [domain]    Domain for the cookie. Defaults to current hostname.
+         * @param {Boolean}     [secure]    Flag for secure. Default 'false'.
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Cookie_1'], function( InkCookie ){
-         *         var expireDate = new Date( 2014,00,01, 0,0,0);
-         *         InkCookie.set( 'someVarThere', 'anyValueHere', expireDate.getTime() );
-         *     });
+         * @sample Ink_Util_Cookie_set.html
          */
         set: function(name, value, expires, path, domain, secure)
         {
@@ -133,18 +122,15 @@ Ink.createModule('Ink.Util.Cookie', '1', [], function() {
         },
 
         /**
-         * Delete a cookie
+         * Deletes a cookie.
          *
          * @method remove
-         * @param {String} cookieName Cookie name
-         * @param {String} [path] Path of the cookie (default '/')
-         * @param {String} [domain] Domain of the cookie (default current hostname)
+         * @param {String}  cookieName   Cookie name.
+         * @param {String}  [path]       Path of the cookie. Defaults to '/'.
+         * @param {String}  [domain]     Domain of the cookie. Defaults to current hostname.
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Cookie_1'], function( InkCookie ){
-         *         InkCookie.remove( 'someVarThere' );
-         *     });
+         * @sample Ink_Util_Cookie_remove.html
          */
         remove: function(cookieName, path, domain)
         {

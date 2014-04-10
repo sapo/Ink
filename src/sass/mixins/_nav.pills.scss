@@ -1,0 +1,91 @@
+// Pill Navigation
+@mixin nav-pills($nav-color: null) {
+
+    @if $nav-color == null {
+        li {
+            background: $white;
+            font-weight: $navigation-font-weight;
+            @include border-radius($navigation-border-radius);
+
+            a {
+                color: $text-color;
+                background: none;
+                &:hover { background: lighten($black,90%); }
+            } 
+
+            &.active a { background: lighten($black,90%); }
+
+            &.disabled {
+                a {
+                    color: $grey-40;
+                    @include text-shadow(lighten($grey-40,40%) 0 1px 0);
+                    &:hover { background: none; }
+                }
+            }
+
+        }
+    }
+    
+    @if $nav-color != null and lightness($nav-color) <= 10% {
+        li {
+            background: desaturate($nav-color,10%);
+
+            &.active a { background: lighten($nav-color,10%); }
+            
+            &.disabled {
+                a {
+                    color: lighten($nav-color,30%);
+                    @include text-shadow(darken($nav-color,20%) 0 -1px 0);
+                    &:hover { background: none; }
+                }
+            }
+            
+            a { 
+                color: $white; 
+                &:hover { background: lighten($nav-color,6%); }
+            }
+        }
+    }
+
+    @if $nav-color != null and lightness($nav-color) > 10% and lightness($nav-color) <= 80% {
+        li {
+            background: desaturate($nav-color,10%);
+
+            &.active a { background: darken($nav-color,10%); }
+            
+            &.disabled {
+                a {
+                    color: darken($nav-color,20%);
+                    @include text-shadow(lighten($nav-color,8%) 0 1px 0);
+                    &:hover { background: none; }
+                }
+            }
+            
+            a { 
+                color: $white; 
+                &:hover { background: darken($nav-color,5%); }
+            }
+        }
+    }
+
+    @if $nav-color != null and lightness($nav-color) > 80% {
+        li {
+            background: desaturate($nav-color,10%);
+
+            &.active a { background: darken($nav-color,10%); }
+            
+            &.disabled {
+                a {
+                    color: darken($nav-color,20%);
+                    @include text-shadow(lighten($nav-color,8%) 0 1px 0);
+                    &:hover { background: none; }
+                }
+            }
+            
+            a { 
+                color: $text-color; 
+                &:hover { background: darken($nav-color,5%); }
+            }
+        }
+    }
+}

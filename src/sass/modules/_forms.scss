@@ -1,0 +1,331 @@
+.#{$form-class-name} {
+
+    fieldset {
+        border: none;
+        margin-bottom: 1.5em;
+        padding: 0;
+        margin: 0;
+
+        legend {
+            font-size: 1.438em;
+            font-weight: 700;
+            width: 100%;
+            border-bottom:1px solid #ddd;
+
+            & + * {
+                -webkit-margin-top-collapse: separate; // webkit hack that makes the legend margins work like they should
+                margin: 2em 0;
+            }
+        }
+    }
+
+    p {
+        &.tip {
+            font-size: .875em;
+            color: tint($text-color,35%);
+            position: relative;
+            margin: .2em 0 0 .1em;
+        }
+
+        &.label {
+            padding: 0;
+            margin: 0;
+            color: $text-color;
+            white-space: normal;
+        }
+    }
+
+    select,
+    textarea,
+    input[type="text"],
+    input[type="password"],
+    input[type="datetime"],
+    input[type="datetime-local"],
+    input[type="date"],
+    input[type="month"],
+    input[type="time"],
+    input[type="week"],
+    input[type="number"],
+    input[type="email"],
+    input[type="url"],
+    input[type="search"],
+    input[type="tel"],
+    input[type="color"] {
+        font-family: $form-field-font;
+        font-weight: $form-field-fontWeight;
+        @include border-radius($border-radius);
+        padding: $form-field-padding;
+        border: 1px solid shade($form-field-borderColor,10%);
+        resize: none;
+        background: $form-field-bg;
+        vertical-align: middle;
+
+        &:focus {
+            @include input-focus($focusBlurSize, $focusColor);
+            outline: 0 none;
+        }
+
+        &:disabled {
+            background: $form-field-disabled-bg;
+            cursor: not-allowed;
+        }
+    }
+
+    .input-file {
+        @include border-radius($border-radius);
+        padding: 6px;
+        border: 1px solid shade($form-field-borderColor,10%);
+        background: $form-field-bg;
+        vertical-align: middle;
+        line-height: 1.2;
+        
+        input[type="file"] {
+            @include border-radius(0);
+            border:none;
+            padding: 0;
+            background: none;
+            width: 100%;
+        }
+    }
+
+    .#{$button-class-name} {
+        margin: 0 5px;
+    }
+
+    label {
+        cursor: pointer;
+    }
+
+    select {
+        line-height: 2;
+        cursor: pointer;
+    }
+
+    textarea {
+        min-height: 5em;
+    }
+
+    .control-group {
+        line-height: 2;
+        margin-bottom: 1em;
+        @include pie-clearfix;
+
+        .control {
+            position: relative;
+            @include pie-clearfix;
+
+            & > li {
+                margin: 0;
+                @include pie-clearfix;    
+            }
+
+            & > input,
+            & > select,
+            & > textarea {
+                width: 100%;
+                
+                & + [class^="icon-"],
+                & + [class*=" icon-"] {
+                    display: none;
+                }
+            }
+            
+            &.append-button,
+            &.append-symbol,
+            &.prepend-button,
+            &.prepend-symbol {
+                
+                span {
+                    width: 100%;
+                    position: relative;
+
+                    & > input,
+                    & > select,
+                    & > textarea {
+                        width: 100%;
+                    }
+                }
+
+                & > input[type="submit"],
+                & > input[type="button"],
+                & > input[type="reset"] {
+                    width: auto;
+                }
+            }
+
+            &.append-button {
+
+                display: table;
+
+                span {
+                    
+                    display: table-cell;
+
+                    & > input,
+                    & > select,
+                    & > textarea {
+                        @include border-radius($border-radius 0 0 $border-radius);
+                    }
+                }
+                
+                .#{$button-class-name} {
+                    margin: 0;
+                    @include border-radius(0 $border-radius $border-radius 0);
+                    border-left: none;
+                }
+            }
+
+            &.prepend-button {
+
+                display: table;
+
+                span {
+                    
+                    display: table-cell;
+                
+                    & > input,
+                    & > select,
+                    & > textarea {
+                        @include border-radius(0 $border-radius $border-radius 0);
+                    }
+                }
+                
+                .#{$button-class-name} {
+                    margin: 0;
+                    @include border-radius($border-radius 0 0 $border-radius);
+                    border-right: none;
+                }
+            }
+
+            &.append-symbol {
+
+                span {
+
+                    display: block;
+
+                    & > input,
+                    & > select,
+                    & > textarea {
+                        padding-right: $form-append-width;
+                    }
+
+                    & > [class^="fa-"],
+                    & > [class*=" fa-"] {
+                        position: absolute;
+                        right: 1em;
+                        top: .86em;
+                        pointer-events: none;
+                    }
+                }
+            }
+
+            &.prepend-symbol {
+                
+                span {
+
+                    display: block;
+
+                    & > input,
+                    & > select,
+                    & > textarea {
+                        padding-left: $form-append-width;
+                    }
+                    
+                    & > [class^="fa-"],
+                    & > [class*=" fa-"] {
+                        position: absolute;
+                        left: 1em;
+                        top: .86em;
+                        pointer-events: none;
+                    }
+                }
+            }
+        }
+
+        input[type="radio"],
+        input[type="checkbox"] {
+            //line-height: 2;
+            padding: 0;
+            margin: .55em 0;
+            border: none;
+            //margin-top: .55em;
+            clear: left;
+            float: left;
+            cursor: pointer;
+
+            & + label {
+                float: left;
+                //line-height: 2.5;
+                //margin-left: .55em;
+                //margin-top: -.4em;
+                margin: .25em 0 .25em .4em;
+            }
+        }
+
+        .inline {
+
+            li {
+                padding: 0;
+
+                label {
+                    margin-right: 1em;
+                }
+            }
+        }
+
+        &.validation {  
+
+            &.error {
+
+                input, textarea, select {
+                    @include input-focus($focusBlurSize, $errorColor);
+                    border: 1px solid $errorColor;
+                }
+
+                p {
+                    &.tip {
+                        color: shade($errorColor,10%);
+                    }
+                }
+            }
+
+            &.warning {
+                input, textarea, select {
+                    @include input-focus($focusBlurSize, $warningColor);
+                    border: 1px solid $warningColor;
+                }
+
+                p {
+                    &.tip {
+                        color: darken($warningColor,10%);                               
+                    }
+                }
+            }
+        }
+
+        &.required {
+
+            & label,
+            & p.label {
+                color: $text-color;
+
+                &:after {
+                    content: "\f069";
+                    color: $error-bg;
+                    margin-left: .6em;
+                    font-family: FontAwesome;
+                    font-size: .75em;
+                    width: 1.25em;
+                }
+            }
+
+            ul.control {
+                label {
+                    &:after {
+                        content: "";
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,21 @@
+// FORMS
+
+// Font
+$form-field-font            : $sans-serif-font-stack    !default;
+$form-field-fontSize        : 14px                      !default;
+$form-field-fontWeight      : 300                       !default;
+
+// Offset
+$form-field-padding         : 8px 6px                   !default;
+$form-field-margin          : 0 5px                     !default;
+$form-append-width          : 2.5em                     !default;
+
+// Color
+$form-field-borderColor     : #ddd                      !default;
+$form-field-bg              : #FFF                      !default;
+$form-field-disabled-bg     : $grey-5                   !default;
+$focusColor                 : rgba(153, 153, 153, 0.6)  !default; // This value must be rbga
+$focusBlurSize              : 10px                      !default;
+$disabledColor              : #eee                      !default;
+$errorColor                 : rgba(200, 10, 16, 0.5)    !default;
+$warningColor               : rgba(255, 156, 0, 0.6)    !default;

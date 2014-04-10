@@ -1,8 +1,9 @@
 /**
+ * Flexible Carousel
  * @module Ink.UI.Carousel_1
- * @author inkdev AT sapo.pt
  * @version 1
  */
+
 Ink.createModule('Ink.UI.Carousel', '1',
     ['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'Ink.Dom.Css_1', 'Ink.Dom.Element_1', 'Ink.UI.Pagination_1', 'Ink.Dom.Browser_1', 'Ink.Dom.Selector_1'],
     function(Common, InkEvent, Css, InkElement, Pagination, Browser/*, Selector*/) {
@@ -26,16 +27,18 @@ Ink.createModule('Ink.UI.Carousel', '1',
      * @class Ink.UI.Carousel_1
      * @constructor
      *
-     * @param {String|DOMElement} selector
-     * @param {Object} [options]
-     *  @param {Integer} [autoAdvance=0] The number of milliseconds to wait between auto-advancing pages. Set to 0 to disable auto-advance.
-     *  @param {String} [options.axis='x'] Can be `'x'` or `'y'`, for a horizontal or vertical carousel
-     *  @param {Boolean} [options.center=false] Center the carousel.
-     *  @param {Number} [options.initialPage=0] When initialized, set the page to this.
-     *  @TODO @param {Boolean} [options.keyboardSupport=false] Enable keyboard support
-     *  @param {Boolean} [options.swipe=true] Enable swipe support where available
-     *  @param {String|DOMElement|Ink.UI.Pagination_1} [options.pagination] Either an `<ul>` element to add pagination markup to, or an `Ink.UI.Pagination` instance to use.
-     *  @param {Function} [options.onChange] Callback for when the page is changed.
+     * @param {String|DOMElement}   selector                    DOM element or element id
+     * @param {Object}              [options]                   Carousel Options
+     * @param {Integer}             [options.autoAdvance]       Milliseconds to wait before auto-advancing pages. Set to 0 to disable auto-advance. Defaults to 0.
+     * @param {String}              [options.axis]              Axis of the carousel. Set to 'y' for a vertical carousel. Defaults to 'x'.
+     * @param {Boolean}             [options.center]            Flag to center the carousel horizontally.
+     * @param {Number}              [options.initialPage]       Initial index page of the carousel. Defaults to 0.
+     * @param {Boolean}             [options.spaceAfterLastSlide=true] If there are not enough slides to fill the full width of the last page, leave white space. Defaults to `true`.
+     * @param {Boolean}             [options.swipe]             Enable swipe support if available. Defaults to true.
+     * @param {Mixed}               [options.pagination]        Either an ul element to add pagination markup to or an `Ink.UI.Pagination` instance to use.
+     * @param {Function}            [options.onChange]          Callback to be called when the page changes.
+     *
+     * @sample Ink_UI_Carousel_1.html
      */
     var Carousel = function(selector, options) {
         this._handlers = {
@@ -51,11 +54,13 @@ Ink.createModule('Ink.UI.Carousel', '1',
             autoAdvance:    ['Integer', 0],
             axis:           ['String', 'x'],
             initialPage:    ['Integer', 0],
+            spaceAfterLastSlide: ['Boolean', true],
             hideLast:       ['Boolean', false],
             center:         ['Boolean', false],
             keyboardSupport:['Boolean', false],
             pagination:     ['String', null],
             onChange:       ['Function', null],
+            onInit:         ['Function', function () {}],
             swipe:          ['Boolean', true]
             // TODO exponential swipe
             // TODO specify break point for next page when moving finger
@@ -67,6 +72,10 @@ Ink.createModule('Ink.UI.Carousel', '1',
         this._ulEl = ulEl;
 
         InkElement.removeTextNodeChildren(ulEl);
+
+        if (this._options.pagination == null) {
+            this._currentPage = this._options.initialPage;
+        }
 
         this.refit(); // recalculate this._numPages
 
@@ -84,13 +93,16 @@ Ink.createModule('Ink.UI.Carousel', '1',
         this._setUpPagination();
         this._setUpAutoAdvance();
         this._setUpHider();
+
+        this._options.onInit.call(this, this);
+
+        Common.registerInstance(this, this._element);
     };
 
     Carousel.prototype = {
         /**
-         * Measure the carousel once again, adjusting the involved elements'
-         * sizes. Called automatically when the window resizes, in order to
-         * cater for changes from responsive media queries, for instance.
+         * Repositions elements around.
+         * Measure the carousel once again, adjusting the involved elements' sizes. This is called automatically when the window resizes, in order to cater for changes from responsive media queries, for instance.
          *
          * @method refit
          * @public
@@ -126,7 +138,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
             if (this._pagination && numPagesChanged) {
                 this._pagination.setSize(this._numPages);
             }
-            this.setPage(limitRange(this.getPage(), 1, this._numPages));
+            this.setPage(limitRange(this.getPage(), 0, this._numPages));
         },
 
         _setUpPagination: function () {
@@ -190,7 +202,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
 
         _updateHider: function() {
             if (!this._hiderEl) { return; }
-            if ((!this._pagination) || this._pagination.getCurrent() === 0) {
+            if (this.getPage() === 0) {
                 var gap = Math.floor( this._ctnLength - (this._elLength * this._slidesPerPage) );
                 if (this._options.center) {
                     gap /= 2;
@@ -202,7 +214,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
         },
         
         /**
-         * Refit stuff for IE7 because it won't support inline-block.
+         * Refits elements for IE7 because it doesn't support inline-block.
          *
          * @method _IE7
          * @private
@@ -237,8 +249,8 @@ Ink.createModule('Ink.UI.Carousel', '1',
 
             this._touchMoveIsFirstTouchMove = true;
 
-            // event.preventDefault();
-            event.stopPropagation();
+            // InkEvent.stopDefault(event);
+            InkEvent.stopPropagation(event);
         },
 
         _onTouchMove: function (event) {
@@ -262,12 +274,12 @@ Ink.createModule('Ink.UI.Carousel', '1',
             }
 
             if (!this._scrolling && this._swipeData) {
-                event.preventDefault();
+                InkEvent.stopDefault(event);
 
                 this._swipeData.pointerPos = this._isY ? pointerY : pointerX;
             }
 
-            event.stopPropagation();
+            InkEvent.stopPropagation(event);
         },
 
         _onAnimationFrame: function () {
@@ -297,7 +309,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
                 var snapToNext = 0.1;  // swipe 10% of the way to change page
                 var progress = - this._swipeData.lastUlPos;
 
-                var curPage = this._pagination.getCurrent();
+                var curPage = this.getPage();
                 var estimatedPage = progress / this._elLength / this._slidesPerPage;
 
                 if (Math.round(estimatedPage) === curPage) {
@@ -312,8 +324,8 @@ Ink.createModule('Ink.UI.Carousel', '1',
 
                 this.setPage(curPage);
 
-                event.stopPropagation();
-                // event.preventDefault();
+                InkEvent.stopPropagation(event);
+                InkEvent.stopDefault(event);
             }
 
             setTransitionProperty(this._ulEl, null /* transition: left, top */);
@@ -327,22 +339,23 @@ Ink.createModule('Ink.UI.Carousel', '1',
         },
 
         /**
-         * Get the currently displayed page.
+         * Gets the current page index
          * @method getPage
+         * @return The current page number
          **/
         getPage: function () {
             if (this._pagination) {
                 return this._pagination.getCurrent();
             } else {
-                return this._currentPage;
+                return this._currentPage || 0;
             }
         },
 
         /**
-         * Set the current page to `page`
+         * Sets the current page index
          * @method setPage
-         * @param page
-         * @param [wrap=false] Wrap over the first and last pages. (For example, going to the 5th page when there are only 4 pages goes to the 1st page)
+         * @param {Number}  page    Index of the destination page.
+         * @param {Boolean} [wrap]  Flag to activate circular counting.
          **/
         setPage: function (page, wrap) {
             if (wrap) {
@@ -360,8 +373,18 @@ Ink.createModule('Ink.UI.Carousel', '1',
         },
 
         _setPage: function (page) {
+            var _lengthToGo = page * this._deltaLength;
+            var isLastPage = page === (this._numPages - 1);
+
+            if (!this._options.spaceAfterLastSlide && isLastPage && page > 0) { 
+                var _itemsInLastPage = this._liEls.length - (page * this._slidesPerPage);
+                if(_itemsInLastPage < this._slidesPerPage) {
+                    _lengthToGo = ((page - 1) * this._deltaLength) + (_itemsInLastPage * this._elLength);
+                }
+            }
+
             this._ulEl.style[ this._isY ? 'top' : 'left'] =
-                ['-', page * this._deltaLength, 'px'].join('');
+                ['-', _lengthToGo, 'px'].join('');
 
             if (this._options.onChange) {
                 this._options.onChange.call(this, page);
@@ -373,20 +396,70 @@ Ink.createModule('Ink.UI.Carousel', '1',
         },
 
         /**
-         * Change to the next page
+         * Goes to the next page
          * @method nextPage
-         * @param {Boolean} [wrap=false] If true, going to the page after the last page takes you to the first page.
+         * @param {Boolean} [wrap] Flag to loop from last page to first page.
          **/
         nextPage: function (wrap) {
             this.setPage(this.getPage() + 1, wrap);
         },
 
         /**
-         * Change to the previous page
+         * Goes to the previous page
          * @method previousPage
-         * @param {Boolean} [wrap=false] If true, going to the page after the last page takes you to the first page.
+         * @param {Boolean} [wrap] Flag to loop from first page to last page.
          **/
-        previousPage: function (wrap) { this.setPage(this.getPage() - 1, wrap); }
+        previousPage: function (wrap) { this.setPage(this.getPage() - 1, wrap); },
+
+        /**
+         * Returns how many slides fit into a page
+         * @method getSlidesPerPage
+         * @return {Number} The number of slides per page
+         * @public
+         */
+        getSlidesPerPage: function() {
+            return this._slidesPerPage;
+        },
+
+        /**
+         * Get the amount of pages in the carousel.
+         * @method getTotalPages
+         * @return {Number} The number of pages
+         * @public
+         */
+        getTotalPages: function() {
+            return this._numPages;
+        },
+
+        /**
+         * Get the stage element (your UL with the class ".stage").
+         * @method getStageElm
+         * @public
+         * @return {DOMElement} Stage element
+         **/
+        getStageElm: function() {
+            return this._ulEl;
+        },
+
+        /**
+         * Get a list of your slides (elements with the ".slide" class inside your stage)
+         * @method getSlidesList
+         * @return {DOMElement[]} Array containing the slides.
+         * @public
+         */
+        getSlidesList: function() {
+            return this._liEls;
+        },
+
+        /**
+         * Get the total number of slides
+         * @method getTotalSlides
+         * @return {Number} The number of slides
+         * @public
+         */
+        getTotalSlides: function() {
+            return this.getSlidesList().length;
+        }
     };
 
     function setTransitionProperty(el, newTransition) {

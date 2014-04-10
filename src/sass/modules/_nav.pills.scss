@@ -1,0 +1,31 @@
+.#{$navigation-class-name} {
+    
+    .pills {
+
+        li {
+
+            overflow: hidden;
+            display: block;
+            float: left;
+            margin: 0 .5em .5em 0;
+            line-height: $navigation-line-height;
+            
+            a {
+                display: block;
+                padding: $navigation-padding;
+                // @include transition(compact(background 140ms ease-in-out));
+
+                &:hover {
+                    text-decoration: none;
+                }
+            }
+
+            &.active a,
+            &.disabled a { 
+                cursor: default; 
+            }
+        }
+
+        @include clearfix;
+    }
+}
