@@ -176,7 +176,9 @@
     
 
     <script>
-        new Ink.UI.Carousel('#car1', {pagination: '#p1'})
+        Ink.requireModules(['Ink.UI.Carousel_1'], function(InkCarousel) {
+            new InkCarousel('#car1', {pagination: '#p1'});
+        });
     </script>
 
 
@@ -255,7 +257,9 @@
 
 
     <script>
-        new Ink.UI.Carousel('#car2', {pagination: '#p2'})
+        Ink.requireModules(['Ink.UI.Carousel_1'], function(InkCarousel) {
+            new InkCarousel('#car2', {pagination: '#p2'})
+        });
     </script>
 
 
@@ -324,14 +328,16 @@
             
 
             <nav id="p3" class="ink-navigation" data-instance="pagination3" data-previous-label="" data-next-label="">
-                <ul class="pagination chevron blue">
+                <ul class="pagination chevron">
                 </ul>
             </nav>
 
         </div>
 
         <script>
-            new Ink.UI.Carousel('#car3', {pagination: '#p3', nextLabel: '', previousLabel: ''})
+            Ink.requireModules(['Ink.UI.Carousel_1'], function(InkCarousel) {
+                new InkCarousel('#car3', { pagination: '#p3', nextLabel: '', previousLabel: ''});
+            });
         </script>
 
     </div>

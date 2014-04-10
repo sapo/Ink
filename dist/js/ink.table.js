@@ -1,6 +1,6 @@
 /**
- * @module Ink.UI.Table_1
  * Sort and paginate tabular data
+ * @module Ink.UI.Table_1
  * @version 1
  */
 Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','Ink.Net.Ajax_1','Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1','Ink.Util.String_1', 'Ink.Util.Json_1'], function(InkUrl,Pagination, Ajax, Common, Event, Css, Element, Selector, InkArray, InkString, Json) {
@@ -45,16 +45,8 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
     function sameSame(obj) { return obj; }
     /**
      * The Table component transforms the native/DOM table element into a sortable, paginated component.
-     *
-     * You can use this component to display data from a JSON endpoint, or
-     * from table rows in the DOM. Displaying from the DOM is more practical,
-     * but sometimes you don't want to load everything at once (if you have
-     * a HUGE table). In those cases, you should configure Ink.UI.Table to
-     * get data from JSON endpoint.
-     *
-     * To enable sorting, just set the `data-sortable` attribute of your table headers (they must be in the `thead` of the table) to "true".
-     *
-     * To enable pagination, you should pass either an `Ink.UI.Pagination` instance or a selector to create the Ink.UI.Paginate element on.
+     * You can use this component to display data from a JSON endpoint, or from table rows in the DOM. Displaying from the DOM is more practical, but sometimes you don't want to load everything at once (if you have a HUGE table). In those cases, you should configure Ink.UI.Table to get data from JSON endpoint.
+     * To enable sorting, just set the `data-sortable` attribute of your table headers (they must be in the `thead` of the table) to "true". To enable pagination, you should pass either an `Ink.UI.Pagination` instance or a selector to create the Ink.UI.Pagination element on.
      *
      * @class Ink.UI.Table
      * @constructor
@@ -161,10 +153,10 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
              * If not is in markup mode, we have to do the initial request
              * to get the first data and the headers
              */
-             if( !this._markupMode ) {
-                 /* Endpoint mode */
+            if( !this._markupMode ) {
+                /* Endpoint mode */
                 this._getData(  );
-             } else /* Markup mode */ {
+            } else /* Markup mode */ {
                 this._resetSortOrder();
                 this._addHeadersClasses();
 
@@ -180,7 +172,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
                  * Set pagination if options tell us to
                  */
                 this._setPagination();
-             }
+            }
         },
 
         /**

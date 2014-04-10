@@ -1,15 +1,15 @@
 /**
+ * Closing utilities
  * @module Ink.UI.Close_1
  * @version 1
- * Closing utilities
  */
 Ink.createModule('Ink.UI.Close', '1', ['Ink.Dom.Event_1','Ink.Dom.Element_1'], function(InkEvent, InkElement) {
     'use strict';
 
     /**
      * Subscribes clicks on the document.body.
-     * Whenever an ".ink-close,.ink-dismiss" element is clicked, this module finds an ancestor ".ink-alert,.ink-alert-block" element and removes it from the DOM.
-     * This module should be called only once per page.
+     * Whenever an element with the classes ".ink-close" or ".ink-dismiss" is clicked, this module finds an ancestor ".ink-alert" or ".ink-alert-block" element and removes it from the DOM.
+     * This module should be created only once per page.
      * 
      * @class Ink.UI.Close
      * @constructor
@@ -33,9 +33,9 @@ Ink.createModule('Ink.UI.Close', '1', ['Ink.Dom.Event_1','Ink.Dom.Element_1'], f
                 return;  // ink-close or ink-dismiss class not found
             }
 
-            var toRemove = el;
-            toRemove = InkElement.findUpwardsByClass(el, 'ink-alert') ||
-                       InkElement.findUpwardsByClass(el, 'ink-alert-block');
+            var toRemove = InkElement.findUpwardsByClass(el, 'ink-alert') ||
+                           InkElement.findUpwardsByClass(el, 'ink-alert-block') ||
+                           el;
 
             if (toRemove) {
                 InkEvent.stop(ev);
@@ -45,5 +45,4 @@ Ink.createModule('Ink.UI.Close', '1', ['Ink.Dom.Event_1','Ink.Dom.Element_1'], f
     };
 
     return Close;
-
 });

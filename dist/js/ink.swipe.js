@@ -1,6 +1,6 @@
 /**
- * @module Ink.UI.Swipe_1
  * Swipe gestures
+ * @module Ink.UI.Swipe_1
  * @version 1
  */
 Ink.createModule('Ink.UI.Swipe', '1', ['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.UI.Common_1'], function(InkEvent, InkElement, Common) {
@@ -90,6 +90,8 @@ Ink.createModule('Ink.UI.Swipe', '1', ['Ink.Dom.Event_1', 'Ink.Dom.Element_1', '
             }
             InkEvent.observe(db, 'touchend', this._handlers.up);
             this._isOn = false;
+
+            Common.registerInstance(this, this._element);
         },
 
         _isMeOrParent: function(el, parentEl) {

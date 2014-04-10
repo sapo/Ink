@@ -1,6 +1,6 @@
 /**
- * @module Ink_1
  * Ink Core.
+ * @module Ink_1
  * This module provides the necessary methods to create and load the modules using Ink.
  */
 
@@ -468,18 +468,6 @@
          * @param {Any}   [args*]     Additional arguments will be sent to the new method as prefix arguments.
          * @return {Function}
          * @sample Ink_1_bindMethod.html 
-         *  
-         * @example
-         *  // Build a function which calls Ink.Dom.Element.remove on an element.
-         *  var removeMyElem = Ink.bindMethod(Ink.Dom.Element, 'remove', someElement);
-         *
-         *  removeMyElem();  // no arguments, nor Ink.Dom.Element, needed
-         * @example
-         *  // (comparison with using Ink.bind to the same effect).
-         *  // The following two calls are equivalent
-         *
-         *  Ink.bind(this.remove, this, myElem);
-         *  Ink.bindMethod(this, 'remove', myElem);
          */
         bindMethod: function (object, methodName) {
             return Ink.bind.apply(Ink,
@@ -670,8 +658,8 @@
 }(window, document));
 
 /**
- * @module Ink.Net.Ajax_1
  * Cross Browser Ajax requests
+ * @module Ink.Net.Ajax_1
  * @version 1
  */
 
@@ -707,18 +695,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
      * @param {Boolean}         [options.sanitizeJSON]          Flag to sanitize the content of responseText before evaluation
      * @param {String}          [options.xhrProxy]              URI for proxy service hosted on the same server as the web app, that can fetch documents from other domains. The service must pipe all input and output untouched (some input sanitization is allowed, like clearing cookies). e.g., requesting http://example.org/doc can become /proxy/http%3A%2F%2Fexample.org%2Fdoc The proxy service will be used for cross-domain requests, if set, else a network error is returned as exception.
      *
-     * @example
-     *     new Ajax('test.json', {
-     *         method: 'get',
-     *         onSuccess: function (ajx, responseJSON) {
-     *             // Do stuff with responseJSON or ajx.responseText
-     *             console.log(responseJSON.something.length);
-     *         },
-     *         onFailure: function (ajx, errorResponse) {
-     *             // Deal with it
-     *             alert(ajx.status);  // The HTTP response code
-     *         }
-     *     });
+     * @sample Ink_Net_Ajax_1.html 
      */
     var Ajax = function(url, options){
 
@@ -1400,17 +1377,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
      * @param {Function} callback   Callback to be executed if the request is successful
      * @return {Object}             XMLHttpRequest object
      *
-     * @example
-     *      Ajax.load('some/text/file', function (responseText) {
-     *          doSomething(responseText);
-     *      });
-     *      Ajax.load('some/xml/file', function (responseXML) {
-     *          doSomething(responseXML);
-     *      });
-     *      Ajax.load('some/json/file', function (responseJSON) {
-     *          doSomething(responseJSON);
-     *      });
-     *
+     * @sample Ink_Net_Ajax_load.html 
      */
     Ajax.load = function(url, callback){
         return new Ajax(url, {
@@ -1446,8 +1413,8 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
 });
 
 /**
+ * Cross Browser JsonP requests
  * @module Ink.Net.JsonP_1
- * Cross Browser Ajax requests
  * @version 1
  */
 
@@ -1471,20 +1438,7 @@ Ink.createModule('Ink.Net.JsonP', '1', [], function() {
      * @param {String}      [options.callbackParam]     Parameter to use as callback. defaults to 'jsoncallback'
      * @param {String}      [options.internalCallback]  Name of the callback function stored in the Ink.Net.JsonP object.
      *
-     * @example
-     *      Ink.requireModules(['Ink.Net.JsonP_1'], function (JsonP) {
-     *          var jsonp = new JsonP('http://path.to.jsonp/endpoint', {
-     *              // When the JSONP response arrives, this callback is called:
-     *              onSuccess: function (gameData) {
-     *                  game.startGame(gameData);
-     *              },
-     *              // after options.timeout seconds, this callback gets called:
-     *              onFailure: function () {
-     *                  game.error('Could not load game data!');
-     *              },
-     *              timeout: 5
-     *          });
-     *      });
+     * @sample Ink_Net_JsonP_1.html 
      */
     var JsonP = function(uri, options) {
         this.init(uri, options);
@@ -1604,10 +1558,11 @@ Ink.createModule('Ink.Net.JsonP', '1', [], function() {
     return JsonP;
 
 });
+
 /**
+ * Browser Detection and User Agent sniffing
  * @module Ink.Dom.Browser_1
  * @version 1
- * Browser Detection and User Agent sniffing
  */
 Ink.createModule('Ink.Dom.Browser', '1', [], function() {
     'use strict';    
@@ -1718,6 +1673,27 @@ Ink.createModule('Ink.Dom.Browser', '1', [], function() {
          * @static
          */
         userAgent: false,
+
+        /**
+         * The CSS prefix (-moz-, -webkit-, -ms-, ...)
+         * False if it is unavailable 
+         *
+         * @property cssPrefix 
+         * @type {Boolean|String}
+         * @public 
+         * @static 
+         */
+        cssPrefix: false, 
+
+        /**
+         * The DOM prefix (Moz, Webkit, ms, ...)
+         * False if it is unavailable 
+         * @property domPrefix 
+         * @type {Boolean|String}
+         * @public 
+         * @static 
+         */
+        domPrefix: false,
 
         /**
          * Initialization function for the Browser object.
@@ -1860,28 +1836,14 @@ Ink.createModule('Ink.Dom.Browser', '1', [], function() {
          *
          * @method debug
          * @public
-         *
-         * @example
-         *  
-         *  The following code
-         *
-         *      Ink.requireModules(['Ink.Dom.Browser_1'], function (Browser) {
-         *          Browser.debug();
-         *      });
-         *
-         *  Alerts (On Firefox 22):
-         *
-         *      known browsers: (ie, gecko, opera, safari, konqueror) 
-         *      false,true,false,false,false
-         *      model -> firefox
-         *      version -> 22.0
-         *      
-         *      original UA -> Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:22.0) Gecko/20100101 Firefox/22.0
+         * @sample Ink_Dom_Browser_1_debug.html
          */
         debug: function() {
             /*global alert:false */
             var str = "known browsers: (ie, gecko, opera, safari, konqueror) \n";
                 str += [this.IE, this.GECKO, this.OPERA, this.SAFARI, this.KONQUEROR] +"\n";
+                str += "cssPrefix -> "+this.cssPrefix+"\n";
+                str += "domPrefix -> "+this.domPrefix+"\n";
                 str += "model -> "+this.model+"\n";
                 str += "version -> "+this.version+"\n";
                 str += "\n";
@@ -1897,9 +1859,9 @@ Ink.createModule('Ink.Dom.Browser', '1', [], function() {
 });
 
 /**
+ * CSS Utilities and toolbox
  * @module Ink.Dom.Css_1
  * @version 1
- * CSS Utilities and toolbox
  */
 
 Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
@@ -1923,12 +1885,7 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          * @param {DOMElement|string}   elm          DOM element or element id
          * @param {string}              className    class name to add or remove.
          * @param {boolean}             addRemState  Whether to add or remove. `true` to add, `false` to remove.
-         *
-         * @example
-         *      Ink.requireModules(['Ink.Dom.Css_1'], function (Css) {
-         *          Css.addRemoveClassName(myElm, 'classss', true);  // Adds the `classss` class.
-         *          Css.addRemoveClassName(myElm, 'classss', false);  // Removes the `classss` class.
-         *      });
+         * @sample Ink_Dom_Css_addRemoveClassName.html 
          */
         addRemoveClassName: function(elm, className, addRemState) {
             if (addRemState) {
@@ -1943,6 +1900,7 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          * @method addClassName
          * @param {DOMElement|String}   elm          DOM element or element id
          * @param {String|Array}        className    Classes 
+         * @sample Ink_Dom_Css_addClassName.html
          */
         addClassName: function(elm, className) {
             elm = Ink.i(elm);
@@ -1966,6 +1924,7 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          * @method removeClassName
          * @param {DOMElement|String}   elm        DOM element or element id
          * @param {String|Array}        className  Class names to remove. You can either use a space separated string of classnames, comma-separated list or an array
+         * @sample Ink_Dom_Css_removeClassName.html 
          */
         removeClassName: function(elm, className) {
             elm = Ink.i(elm);
@@ -2015,6 +1974,7 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          * @param {String|Array}       className   Class names to test
          * @param {Boolean}            [all]=false If flagged as true, it will check if the element contains ALL the CSS classes
          * @return {Boolean} true if a given class is applied to a given element
+         * @sample Ink_Dom_Css_hasClassName.html 
          */
         hasClassName: function(elm, className, all) {
             elm = Ink.i(elm);
@@ -2059,8 +2019,9 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          * @uses addRemoveClassName
          * @param {DOMElement|String}  elm        DOM element or element id
          * @param {String|Array}       className  Class name(s) to blink
-         * @param {Boolean}            timeout    timeout in ms between adding and removing, default 100 ms
+         * @param {Number}            timeout    timeout in ms between adding and removing, default 100 ms
          * @param {Boolean}            negate     is true, class is removed then added
+         * @sample Ink_Dom_Css_blinkClass.html 
          */
         blinkClass: function(element, className, timeout, negate){
             element = Ink.i(element);
@@ -2077,6 +2038,7 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          * @param {DOMElement|String}  elm        DOM element or element id
          * @param {String}             className  Class name
          * @param {Boolean}            [forceAdd] Flag to force adding the the classe names if they don't exist yet.
+         * @sample Ink_Dom_Css_toggleClassName.html 
          */
         toggleClassName: function(elm, className, forceAdd) {
             if (elm && className){
@@ -2111,6 +2073,7 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          * @method setOpacity
          * @param {DOMElement|String}  elm    DOM element or element id
          * @param {Number}             value  allows 0 to 1(default mode decimal) or percentage (warning using 0 or 1 will reset to default mode)
+         * @sample Ink_Dom_Css_setOpacity.html 
          */
         setOpacity: function(elm, value) {
             elm = Ink.i(elm);
@@ -2154,6 +2117,7 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          * @param {DOMElement|String}  elm    DOM element or element id
          * @param {String}             style  Which css attribute to fetch
          * @return Style value
+         * @sample Ink_Dom_Css_getStyle.html 
          */
          getStyle: function(elm, style) {
              elm = Ink.i(elm);
@@ -2194,21 +2158,7 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          * @method setStyle
          * @param {DOMElement|String}  elm    DOM element or element id
          * @param {String}             style  Which css attribute to set
-         *
-         * @example
-         *     <a href="#" class="change-color">Change his color</a>
-         *     <p class="him">"He" is me</p>
-         *     <script type="text/javascript">
-         *         Ink.requireModules(['Ink.Dom.Css_1', 'Ink.Dom.Event_1', 'Ink.Dom.Selector_1'], function (Css, InkEvent, Selector) {
-         *             var btn = Selector.select('.change-color')[0];
-         *             var other = Selector.select('.him')[0];
-         *             InkEvent.observe(btn, 'click', function () {
-         *                 Css.setStyle(other, 'background-color: black');
-         *                 Css.setStyle(other, 'color: white');
-         *             });
-         *         });
-         *     </script>
-         *
+         * @sample Ink_Dom_Css_setStyle.html 
          */
         setStyle: function(elm, style) {
             elm = Ink.i(elm);
@@ -2249,6 +2199,7 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          * @method show
          * @param {DOMElement|String}  elm                      DOM element or element id
          * @param {String}             [forceDisplayProperty]   Css display property to apply on show
+         * @sample Ink_Dom_Css_show.html 
          */
         show: function(elm, forceDisplayProperty) {
             elm = Ink.i(elm);
@@ -2262,6 +2213,7 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          *
          * @method hide
          * @param {DOMElement|String}  elm  DOM element or element id
+         * @sample Ink_Dom_Css_hide.html 
          */
         hide: function(elm) {
             elm = Ink.i(elm);
@@ -2277,6 +2229,7 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          * @method showHide
          * @param {DOMElement|String}  elm          DOM element or element id
          * @param {boolean}            [show]=false Whether to show or hide `elm`.
+         * @sample Ink_Dom_Css_showHide.html 
          */
         showHide: function(elm, show) {
             elm = Ink.i(elm);
@@ -2291,6 +2244,7 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          * @method toggle
          * @param {DOMElement|String}  elm        DOM element or element id
          * @param {Boolean}            forceShow  Forces showing if element is hidden
+         * @sample Ink_Dom_Css_toggle.html 
          */
         toggle: function(elm, forceShow) {
             elm = Ink.i(elm);
@@ -2334,6 +2288,8 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          * @param {Object}  options   Options for the tag
          *    @param {String}  [options.type]='text/css'   File type
          *    @param {Boolean} [options.force]=false  If true, the style tag will be appended to end of head
+         * 
+         * @sample Ink_Dom_Css_appendStyleTag.html 
          */
         appendStyleTag: function(selector, style, options){
             options = Ink.extendObj({
@@ -2389,6 +2345,7 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          *    @param {String}   [options.media]='screen'    Media type
          *    @param {String}   [options.type]='text/css'   File type
          *    @param {Boolean}  [options.force]=false       If true, tag will be appended to end of head
+         * @sample Ink_Dom_Css_appendStylesheet.html 
          */
         appendStylesheet: function(path, options){
             options = Ink.extendObj({
@@ -2422,12 +2379,12 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          * Loads CSS via LINK element inclusion in HEAD (skips append if already there)
          *
          * Works similarly to appendStylesheet but:
-         *   a) supports all browsers;
-         *   b) supports optional callback which gets invoked once the CSS has been applied
+         *   supports optional callback which gets invoked once the CSS has been applied
          *
          * @method appendStylesheetCb
          * @param {String}            cssURI      URI of the CSS to load, if empty ignores and just calls back directly
          * @param {Function(cssURI)}  [callback]  optional callback which will be called once the CSS is loaded
+         * @sample Ink_Dom_Css_appendStylesheetCb.html 
          */
         _loadingCSSFiles: {},
         _loadedCSSFiles:  {},
@@ -2490,7 +2447,8 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          *
          * @method decToHex
          * @param {String} dec Either a single decimal value, an rgb(r, g, b) string or an Object with r, g and b properties
-         * @return Hexadecimal value
+         * @return {String} Hexadecimal value
+         * @sample Ink_Dom_Css_decToHex.html 
          */
         decToHex: function(dec) {
             var normalizeTo2 = function(val) {
@@ -2528,6 +2486,7 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          * @method hexToDec
          * @param {String}  hex  hexadecimal Value with 6, 3, 2 or 1 characters
          * @return {Number} Object with properties r, g, b if length of number is >= 3 or decimal value instead.
+         * @sample Ink_Dom_Css_hexToDec.html 
          */
         hexToDec: function(hex){
             if (hex.indexOf('#') === 0) {
@@ -2752,9 +2711,9 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
 });
 
 /**
+ * DOM Traversal and manipulation
  * @module Ink.Dom.Element_1
  * @version 1
- * DOM Traversal and manipulation
  */
 
 Ink.createModule('Ink.Dom.Element', 1, [], function() {
@@ -4462,9 +4421,9 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
 });
 
 /**
+ * Event management
  * @module Ink.Dom.Event_1
  * @version 1
- * Event management
  */
 
 Ink.createModule('Ink.Dom.Event', 1, [], function() {
@@ -5256,34 +5215,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * @method throttle
      * @param {Function} func   Function to call. Arguments and context are both passed.
      * @param {Number} [wait]=0 Milliseconds to wait between calls.
-     *
-     * @example
-     *  
-     * Suppose you are observing the `scroll` event, but your application is lagging because `scroll` is triggered too many times.
-     *
-     *     // BEFORE
-     *     InkEvent.observe(window, 'scroll', function () {
-     *         ...
-     *     }); // When scrolling on mobile devices or on firefox's smooth scroll
-     *         // this is expensive because onscroll is called many times
-     *
-     *     // AFTER
-     *     InkEvent.observe(window, 'scroll', InkEvent.throttle(function () {
-     *         ...
-     *     }, 100)); // The event handler is called only every 100ms. Problem solved.
-     *
-     * @example
-     *     var handler = InkEvent.throttle(function () {
-     *         ...
-     *     }, 100);
-     *
-     *     InkEvent.observe(window, 'scroll', handler);
-     *     InkEvent.observe(window, 'resize', handler);
-     *
-     *     // on resize, both the "scroll" and the "resize" events are triggered
-     *     // a LOT of times. This prevents both of them being called a lot of
-     *     // times when the window is being resized by a user.
-     *
+     * @sample Ink_Dom_Event_1_throttle.html 
      **/
     throttle: function (func, wait) {
         wait = wait || 0;
@@ -5315,6 +5247,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * @method element
      * @param {Object} ev  Event object
      * @return {DOMNode} The target
+     * @sample Ink_Dom_Event_1_element.html 
      */
     element: function(ev) {
         var node = ev.delegationTarget ||
@@ -5335,6 +5268,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * @method relatedTarget
      * @param {Object} ev event object
      * @return {DOMNode} The related target
+     * @sample Ink_Dom_Event_1_relatedTarget.html 
      */
     relatedTarget: function(ev){
         var node = ev.relatedTarget ||
@@ -5358,6 +5292,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * @param {String}  elmTagName      Tag name to find
      * @param {Boolean} [force]=false   Flag to skip returning `document` and to return `false` instead.
      * @return {DOMElement} the first element which matches given tag name or the document element if the wanted tag is not found
+     * @sample Ink_Dom_Event_1_findElement.html 
      */
     findElement: function(ev, elmTagName, force)
     {
@@ -5390,6 +5325,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * @param {Function}           callBack     Receives the event object as a parameter. If you're manually firing custom events, check it's eventName property to make sure you're handling the right event.
      * @param {Boolean}            [useCapture] Flag to change event listening from bubbling to capture.
      * @return {Function} The event handler used. Hang on to this if you want to `stopObserving` later.
+     * @sample Ink_Dom_Event_1_observe.html 
      */
     observe: function(element, eventName, callBack, useCapture) {
         element = Ink.i(element);
@@ -5412,6 +5348,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * @param {Function}           callBack     Receives the event object as a parameter. If you're manually firing custom events, check it's eventName property to make sure you're handling the right event.
      * @param {Boolean}            [useCapture] Flag to change event listening from bubbling to capture.
      * @return {Function} The event handler used. Hang on to this if you want to `stopObserving` later.
+     * @sample Ink_Dom_Event_1_observeOnce.html 
      */
     observeOnce: function (element, eventName, callBack, useCapture) {
         var onceBack = function () {
@@ -5430,6 +5367,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * @param {Function}            callBack     Receives the event object as a parameter. If you're manually firing custom events, check it's eventName property to make sure you're handling the right event.
      * @param {Boolean}            [useCapture]  Flag change event listening from bubbling to capture.
      * @return {Function} The used callback.
+     * @sample Ink_Dom_Event_1_observeMulti.html 
      */
     observeMulti: function (elements, eventName, callBack, useCapture) {
         if (typeof elements === 'string') {
@@ -5456,6 +5394,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * @param {String}            selector  Child element selector. When null, finds any element.
      * @param {Function}          callback  Callback to be called when the event is fired
      * @return {Function} The used callback, for ceasing to listen to the event later.
+     * @sample Ink_Dom_Event_1_observeDelegated.html 
      **/
     observeDelegated: function (element, eventName, selector, callback) {
         return InkEvent.observe(element, eventName, function (event) {
@@ -5483,6 +5422,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * @param {String}             eventName     Event name
      * @param {Function}           callBack      Callback function
      * @param {Boolean}            [useCapture]  Set to true if the event was being observed with useCapture set to true as well.
+     * @sample Ink_Dom_Event_1_stopObserving.html 
      */
     stopObserving: function(element, eventName, callBack, useCapture) {
         element = Ink.i(element);
@@ -5501,6 +5441,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      *
      * @method stop
      * @param {Object} event  Event handle
+     * @sample Ink_Dom_Event_1_stop.html 
      */
     stop: function(event)
     {
@@ -5526,6 +5467,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      *
      * @method stopPropagation
      * @param {Object} event  Event handle
+     * @sample Ink_Dom_Event_1_stopPropagation.html 
      */
     stopPropagation: function(event) {
         if(event.cancelBubble !== null) {
@@ -5541,6 +5483,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      *
      * @method stopDefault
      * @param {Object} event  Event handle
+     * @sample Ink_Dom_Event_1_stopDefault.html 
      */
     stopDefault: function(event)
     {
@@ -5561,6 +5504,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * @method pointer
      * @param {Object} ev Event object
      * @return {Object} An object with the mouse X and Y position
+     * @sample Ink_Dom_Event_1_pointer.html 
      */
     pointer: function(ev)
     {
@@ -5604,6 +5548,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * @method isLeftClick
      * @param {Object} ev  Event object
      * @return {Boolean} True if the event is a left click
+     * @sample Ink_Dom_Event_1_isLeftClick.html 
      */
     isLeftClick: function(ev) {
         if (window.addEventListener) {
@@ -5626,6 +5571,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * @method isRightClick
      * @param {Object} ev  Event object
      * @return {Boolean} True if the event is a right click
+     * @sample Ink_Dom_Event_1_isRightClick.html 
      */
     isRightClick: function(ev) {
         return (ev.button === 2);
@@ -5637,6 +5583,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * @method isMiddleClick
      * @param {Object} ev  Event object
      * @return {Boolean} True if the event is a middle click
+     * @sample Ink_Dom_Event_1_isMiddleClick.html 
      */
     isMiddleClick: function(ev) {
         if (window.addEventListener) {
@@ -5650,12 +5597,12 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
 
     /**
      * Gets character from an event.
-     * Used in SAPO.Component.MaskedInput
      *
      * @method getCharFromKeyboardEvent
      * @param {Object}   event           Keyboard event
      * @param {Boolean}  [changeCasing]  If true uppercases, if false lowercases, otherwise keeps casing
      * @return {String} Character representation of pressed key combination
+     * @sample Ink_Dom_Event_1_getCharFromKeyboardEvent.html 
      */
     getCharFromKeyboardEvent: function(event, changeCasing) {
         var k = event.keyCode;
@@ -5693,6 +5640,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
  * @param {Object}            [args...] Additional arguments to pass to the callback function when triggered
  * 
  * @return {DOMElement|Object} Returns the original DOM Element or Javascript Object
+ * @sample Ink_Dom_Event_1_on.html 
  */
 
 /**
@@ -5708,6 +5656,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
  * @param                     [args...] Additional arguments to pass to the callback function when triggered
  * 
  * @return {DOMElement|Object} Returns the original DOM Element or Javascript Object
+ * @sample Ink_Dom_Event_1_one.html 
  */
 
 /**
@@ -5721,6 +5670,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
  * @param {Function}          [handler] The specific callback function to remove
  * 
  * @return {DOMElement|Object} Returns the original DOM Element or Javascript Object
+ * @sample Ink_Dom_Event_1_off.html 
  */
 
 /**
@@ -5734,6 +5684,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
  * @param {String}            [eventType] An Event (or multiple events, space separated) to clone
  * 
  * @return {DOMElement|Object} Returns the original DOM Element or Javascript Object
+ * @sample Ink_Dom_Event_1_clone.html 
  */
 
 /**
@@ -5746,6 +5697,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
  * @param                     [args...] Additional arguments to pass to the callback function when triggered
  *
  * @return {DOMElement|Object} Returns the original DOM Element or Javascript Object
+ * @sample Ink_Dom_Event_1_fire.html 
  */
 
 return Ink.extendObj(InkEvent, bean);
@@ -5776,20 +5728,7 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, [], function () {
          * @method serialize
          * @param {DOMElement|String}   form    Form element to extract data
          * @return {Object} Map of fieldName -> String|String[]|Boolean
-         *
-         * @example
-         *     <form id="frm">
-         *         <input type="text" name="field1">
-         *         <button type="submit">Submit</button>
-         *     </form>
-         *     <script type="text/javascript">
-         *         Ink.requireModules(['Ink.Dom.FormSerialize_1', 'Ink.Dom.Event_1'], function (FormSerialize, InkEvent) {
-         *             InkEvent.observe('frm', 'submit', function (event) {
-         *                 var formData = FormSerialize.serialize('frm'); // -> {field1:"123"}
-         *                 InkEvent.stop(event);
-         *             });
-         *         });
-         *     </script>
+         * @sample Ink_Dom_FormSerialize_serialize.html 
          */
         serialize: function(form) {
             form = Ink.i(form);
@@ -5820,18 +5759,7 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, [], function () {
          * @method fillIn 
          * @param {DOMElement|String}   form    Form element to be populated
          * @param {Object}              map2    Map of fieldName -> String|String[]|Boolean
-         * @example
-         *     <form id="frm">
-         *         <input type="text" name="field1">
-         *         <button type="submit">Submit</button>
-         *     </form>
-         *     <script type="text/javascript">
-         *         Ink.requireModules(['Ink.Dom.FormSerialize_1'], function (FormSerialize) {
-         *             var values = {field1: 'CTHULHU'};
-         *             FormSerialize.fillIn('frm', values);
-         *             // At this point the form is pre-filled with the values above.
-         *         });
-         *     </script>
+         * @sample Ink_Dom_FormSerialize_fillIn.html 
          */
         fillIn: function(form, map2) {
             form = Ink.i(form);
@@ -5942,7 +5870,9 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, [], function () {
 
             switch(nodeName) {
                 case 'select':
-                    if (fieldInputs.length > 1) {    throw 'Got multiple select elements with same name!';    }
+                    if (fieldInputs.length > 1) {    
+                        Ink.warn('FormSerialize - Got multiple select elements with same name!');
+                    }
                     for (i = 0, f = fieldInputs[0].options.length; i < f; ++i) {
                         el = fieldInputs[0].options[i];
                         el.selected = (fieldValues instanceof Array) ? this._valInArray(el.value, fieldValues) : el.value === fieldValues;
@@ -5958,7 +5888,9 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, [], function () {
                         }
                     }
                     else {
-                        if (fieldInputs.length > 1) {    throw 'Got multiple input elements with same name!';    }
+                        if (fieldInputs.length > 1) {
+                            Ink.warn('FormSerialize - Got multiple input elements with same name!'); 
+                        }
                         if (type !== 'file') {
                             fieldInputs[0].value = fieldValues;
                         }
@@ -5966,16 +5898,17 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, [], function () {
                     break;
 
                 default:
-                    throw 'Unsupported element: "' + nodeName + '"!';
+                    Ink.warn('FormSerialize - Unsupported element: "' + nodeName + '"!');
             }
         }
     };
 
     return FormSerialize;
 });
+
 /**
- * @module Ink.Dom.Loaded_1
  * Execute code only when the DOM is loaded.
+ * @module Ink.Dom.Loaded_1
  * @version 1
  */
  
@@ -6006,12 +5939,7 @@ Ink.createModule('Ink.Dom.Loaded', 1, [], function() {
          * @param {Object}   [win]=window   Window object to attach/add the event
          * @param {Function} fn             Callback function to be executed after the DOM is ready
          * @public
-         * @example
-         *     Ink.requireModules(['Ink.Dom.Loaded_1'], function(Loaded){
-         *         Loaded.run(function(){
-         *             console.log('This will run when the page/document is ready/loaded');
-         *         });
-         *     });
+         * @sample Ink_Dom_Loaded_run.html 
          */
         run: function(win, fn) {
             if (!fn) {
@@ -6141,8 +6069,8 @@ Ink.createModule('Ink.Dom.Loaded', 1, [], function() {
 });
 
 /**
- * @module Ink.Dom.Selector_1
  * CSS selector engine
+ * @module Ink.Dom.Selector_1
  * @version 1
  */
  
@@ -8069,6 +7997,7 @@ support.detectDuplicates = hasDuplicate;
  * @param {DOMElement}  [context]   By default the search is done in the document element. However, you can specify an element as search context
  * @param {Array}       [results]   By default this is considered an empty array. But if you want to merge it with other searches you did, pass their result array through here.
  * @return {Array} Array of resulting DOM Elements
+ * @sample Ink_Dom_Selector_select.html
  */
 
 /**
@@ -8078,6 +8007,7 @@ support.detectDuplicates = hasDuplicate;
  * @param {String}  selector    CSS selector to search for elements
  * @param {Array}   matches     Elements to be 'matched' with
  * @return {Array} Elements that matched
+ * @sample Ink_Dom_Selector_matches.html
  */
 
 /**
@@ -8087,6 +8017,7 @@ support.detectDuplicates = hasDuplicate;
  * @param {DOMElement} element Element to test
  * @param {String}     selector CSS selector to test the element with
  * @return {Boolean} True if element matches the CSS selector
+ * @sample Ink_Dom_Selector_matchesSelector.html 
  */
 
 return {
@@ -8097,9 +8028,10 @@ return {
 
 
 }); //( window );
+
 /**
- * @module Ink.Util.Array_1
  * Array Utilities
+ * @module Ink.Util.Array_1
  * @version 1
  */
 
@@ -8108,6 +8040,10 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
     'use strict';
 
     var arrayProto = Array.prototype;
+
+    /**
+     * @namespace Ink.Util.Array_1
+     */
 
     var InkArray = {
 
@@ -8120,15 +8056,7 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          * @param {Mixed} value     Value to check
          * @param {Array} arr       Array to search in
          * @return {Boolean}        True if value exists in the array
-         * @example
-         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
-         *         var testArray = [ 'value1', 'value2', 'value3' ];
-         *         if( InkArray.inArray( 'value2', testArray ) === true ){
-         *             console.log( "Yep it's in the array." );
-         *         } else {
-         *             console.log( "No it's NOT in the array." );
-         *         }
-         *     });
+         * @sample Ink_Util_Array_inArray.html 
          */
         inArray: function(value, arr) {
             if (typeof arr === 'object') {
@@ -8150,16 +8078,7 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          * @return {Array|Boolean}      False if it's not an array, returns a sorted array if it's an array.
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
-         *         var testArray = [
-         *             { 'myKey': 'value1' },
-         *             { 'myKey': 'value2' },
-         *             { 'myKey': 'value3' }
-         *         ];
-         *
-         *         InkArray.sortMulti( testArray, 'myKey' );
-         *     });
+         * @sample Ink_Util_Array_sortMulti.html 
          */
         sortMulti: function(arr, key) {
             if (typeof arr === 'undefined' || arr.constructor !== Array) { return false; }
@@ -8185,12 +8104,7 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          * @return  {Boolean|Number|Array}  False for no matches. Array of matches or first match index.
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
-         *         var testArray = [ 'value1', 'value2', 'value3', 'value2' ];
-         *         console.log( InkArray.keyValue( 'value2', testArray, true ) ); // Result: 1
-         *         console.log( InkArray.keyValue( 'value2', testArray ) ); // Result: [1, 3]
-         *     });
+         * @sample Ink_Util_Array_keyValue.html 
          */
         keyValue: function(value, arr, first) {
             if (typeof value !== 'undefined' && typeof arr === 'object' && this.inArray(value, arr)) {
@@ -8217,11 +8131,7 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          * @return  {Array|Boolean}      Shuffled Array or false if not an array.
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
-         *         var testArray = [ 'value1', 'value2', 'value3', 'value2' ];
-         *         console.log( InkArray.shuffle( testArray ) ); // Result example: [ 'value3', 'value2', 'value2', 'value1' ]
-         *     });
+         * @sample Ink_Util_Array_shuffle.html 
          */
         shuffle: function(arr) {
             if (typeof(arr) !== 'undefined' && arr.constructor !== Array) { return false; }
@@ -8247,13 +8157,7 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          * @return  {Array}             Iterated array.
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
-         *         var testArray = [ 'value1', 'value2', 'value3', 'value2' ];
-         *         InkArray.forEach( testArray, function( value, index, arr ){
-         *             console.log( 'The value is: ' + value + ' | The index is: ' + index );
-         *         });
-         *     });
+         * @sample Ink_Util_Array_forEach.html 
          */
         forEach: function(array, callback, context) {
             if (arrayProto.forEach) {
@@ -8279,12 +8183,9 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          * @method map
          * @param {Array}       array       The array to map over
          * @param {Function}    map         The map function. Will take `(item, index, array)` as arguments and `this` will be the `context` argument.
-         * @param {Object}      [context]   Object to be `this` in the map function.
+         * @param {Object}      [context]   Object to be `this` in the map function. 
          *
-         * @example
-         *      InkArray.map([1, 2, 3, 4], function (item) {
-         *          return item + 1;
-         *      }); // -> [2, 3, 4, 5]
+         * @sample Ink_Util_Array_map.html 
          */
         map: function (array, callback, context) {
             if (arrayProto.map) {
@@ -8300,15 +8201,13 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
         /**
          * Filters an array based on a truth test.
          * This method runs a test function on all the array values and returns a new array with all the values that pass the test.
+         * @method filter
          * @param {Array}       array       The array to filter
          * @param {Function}    test        A test function taking `(item, index, array)`
          * @param {Object}      [context]   Object to be `this` in the test function.
          * @return {Array}                  Returns the filtered array
          *
-         * @example
-         *      InkArray.filter([1, 2, 3, 4, 5], function (val) {
-         *          return val > 2;
-         *      })  // -> [3, 4, 5]
+         * @sample Ink_Util_Array_filter.html 
          */
         filter: function (array, test, context) {
             if (arrayProto.filter) {
@@ -8335,20 +8234,7 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          * @return  {Boolean}               True if the callback returns true at any point, false otherwise
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
-         *         var testArray1 = [ 10, 20, 50, 100, 30 ];
-         *         var testArray2 = [ 1, 2, 3, 4, 5 ];
-         *
-         *         function myTestFunction( value, index, arr ){
-         *             if( value > 90 ){
-         *                 return true;
-         *             }
-         *             return false;
-         *         }
-         *         console.log( InkArray.some( testArray1, myTestFunction, null ) ); // Result: true
-         *         console.log( InkArray.some( testArray2, myTestFunction, null ) ); // Result: false
-         *     });
+         * @sample Ink_Util_Array_some.html 
          */
         some: function(arr, cb, context){
 
@@ -8376,12 +8262,7 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          * @return  {Array}             Empty array if one of the arrays is false (or do not intersect) | Array with the intersected values
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
-         *         var testArray1 = [ 'value1', 'value2', 'value3' ];
-         *         var testArray2 = [ 'value2', 'value3', 'value4', 'value5', 'value6' ];
-         *         console.log( InkArray.intersect( testArray1,testArray2 ) ); // Result: [ 'value2', 'value3' ]
-         *     });
+         * @sample Ink_Util_Array_intersect.html 
          */
         intersect: function(arr1, arr2) {
             if (!arr1 || !arr2 || arr1 instanceof Array === false || arr2 instanceof Array === false) {
@@ -8408,15 +8289,7 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          * @return  {Array}         Array resulting of the conversion
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
-         *         var testArray = [ 'value1', 'value2' ];
-         *         testArray.myMethod = function(){
-         *             console.log('stuff');
-         *         }
-         *
-         *         console.log( InkArray.convert( testArray ) ); // Result: [ 'value1', 'value2' ]
-         *     });
+         * @sample Ink_Util_Array_convert.html 
          */
         convert: function(arr) {
             return arrayProto.slice.call(arr || [], 0);
@@ -8431,11 +8304,7 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          * @param {Mixed}   value   Value to be inserted
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
-         *         var testArray = [ 'value1', 'value2' ];
-         *         console.log( InkArray.insert( testArray, 1, 'value3' ) ); // Result: [ 'value1', 'value3', 'value2' ]
-         *     });
+         * @sample Ink_Util_Array_insert.html 
          */
         insert: function(arr, idx, value) {
             arr.splice(idx, 0, value);
@@ -8451,11 +8320,7 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          * @return  {Array}             An array with the remaining values
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
-         *         var testArray = [ 'value1', 'value2', 'value3', 'value4', 'value5' ];
-         *         console.log( InkArray.remove( testArray, 1, 3 ) ); // Result: [ 'value1', 'value4', 'value5' ]
-         *     });
+         * @sample Ink_Util_Array_remove.html 
          */
         remove: function(arr, from, rLen){
             var output = [];
@@ -8475,9 +8340,10 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
     return InkArray;
 
 });
+
 /**
- * @module Ink.Util.BinPack_1
  * Binary Packing algorithm implementation
+ * @module Ink.Util.BinPack_1
  * @version 1
  */
 
@@ -8785,8 +8651,8 @@ Ink.createModule('Ink.Util.BinPack', '1', [], function() {
 
 });
 /**
- * @module Ink.Util.Cookie_1
  * Cookie Utilities
+ * @module Ink.Util.Cookie_1
  * @version 1
  */
 
@@ -8794,6 +8660,9 @@ Ink.createModule('Ink.Util.Cookie', '1', [], function() {
 
     'use strict';
 
+    /**
+     * @namespace Ink.Util.Cookie_1
+     */
     var Cookie = {
 
         /**
@@ -8804,11 +8673,7 @@ Ink.createModule('Ink.Util.Cookie', '1', [], function() {
          * @return  {String|Object}             If the name is specified, it returns the value of that key. Otherwise it returns the full cookie object
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Cookie_1'], function( InkCookie ){
-         *         var myCookieValue = InkCookie.get('someVarThere');
-         *         console.log( myCookieValue ); // This will output the value of the cookie 'someVarThere', from the cookie object.
-         *     });
+         * @sample Ink_Util_Cookie_get.html
          */
         get: function(name)
         {
@@ -8851,11 +8716,7 @@ Ink.createModule('Ink.Util.Cookie', '1', [], function() {
          * @param {Boolean}     [secure]    Flag for secure. Default 'false'.
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Cookie_1'], function( InkCookie ){
-         *         var expireDate = new Date( 2014,00,01, 0,0,0);
-         *         InkCookie.set( 'someVarThere', 'anyValueHere', expireDate.getTime() );
-         *     });
+         * @sample Ink_Util_Cookie_set.html
          */
         set: function(name, value, expires, path, domain, secure)
         {
@@ -8921,10 +8782,7 @@ Ink.createModule('Ink.Util.Cookie', '1', [], function() {
          * @param {String}  [domain]     Domain of the cookie. Defaults to current hostname.
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Cookie_1'], function( InkCookie ){
-         *         InkCookie.remove( 'someVarThere' );
-         *     });
+         * @sample Ink_Util_Cookie_remove.html
          */
         remove: function(cookieName, path, domain)
         {
@@ -8954,8 +8812,8 @@ Ink.createModule('Ink.Util.Cookie', '1', [], function() {
 });
 
 /**
- * @module Ink.Util.Date_1
  * Date utility functions
+ * @module Ink.Util.Date_1
  * @version 1
  */
 
@@ -8963,6 +8821,9 @@ Ink.createModule('Ink.Util.Date', '1', [], function() {
 
     'use strict';
 
+    /**
+     * @namespace Ink.Util.Date_1 
+     */
     var InkDate = {
 
         /**
@@ -9118,12 +8979,7 @@ Ink.createModule('Ink.Util.Date', '1', [], function() {
          * @return  {String}                Formatted date
          * @public
          * @static
-         * @example
-         *     <script>
-         *         Ink.requireModules( ['Ink.Util.Date_1'], function( InkDate ){
-         *             console.log( InkDate.get('Y-m-d') ); // Result (at the time of writing): 2013-05-07
-         *         });
-         *     </script>
+         * @sample Ink_Util_Date_get.html 
          */
         get: function(format, _date){
             /*jshint maxcomplexity:65 */
@@ -9363,6 +9219,7 @@ Ink.createModule('Ink.Util.Date', '1', [], function() {
          * @return  {Date}                  Date object based on the formatted date and format
          * @public
          * @static
+         * @sample Ink_Util_Date_set.html 
          */
         set : function( format , str_date ) {
             if ( typeof str_date === 'undefined' ) { return ; }
@@ -9725,14 +9582,18 @@ Ink.createModule('Ink.Util.Date', '1', [], function() {
 });
 
 /**
- * @module Ink.Util.Dumper_1
  * Dump/Profiling Utilities
+ * @module Ink.Util.Dumper_1
  * @version 1
  */
 
 Ink.createModule('Ink.Util.Dumper', '1', [], function() {
 
     'use strict';
+
+    /**
+     * @namespace Ink.Util.Dumper_1 
+     */
 
     var Dumper = {
 
@@ -9853,6 +9714,7 @@ Ink.createModule('Ink.Util.Dumper', '1', [], function() {
          * @param {DOMElement|String}   [target]    Element to print the dump on.
          * @public
          * @static
+         * @sample Ink_Util_Dumper_printDump.html 
          */
         printDump: function(param, target)
         {
@@ -9878,6 +9740,7 @@ Ink.createModule('Ink.Util.Dumper', '1', [], function() {
          * @return  {String}            The variable's structure.
          * @public
          * @static
+         * @sample Ink_Util_Dumper_returnDump.html 
          */
         returnDump: function(param)
         {
@@ -9891,6 +9754,7 @@ Ink.createModule('Ink.Util.Dumper', '1', [], function() {
          * @param {Any}     param     Variable to be dumped.
          * @public
          * @static
+         * @sample Ink_Util_Dumper_alertDump.html 
          */
         alertDump: function(param)
         {
@@ -9904,6 +9768,7 @@ Ink.createModule('Ink.Util.Dumper', '1', [], function() {
          * @param {Any}     param   Variable to be dumped.
          * @public
          * @static
+         * @sample Ink_Util_Dumper_windowDump.html 
          */
         windowDump: function(param)
         {
@@ -9923,9 +9788,10 @@ Ink.createModule('Ink.Util.Dumper', '1', [], function() {
     return Dumper;
 
 });
+
 /**
- * @module Ink.Util.I18n_1
  * Internationalization Utilities 
+ * @module Ink.Util.I18n_1
  * @version 1
  */
 
@@ -9945,42 +9811,15 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
     };
 
     /**
-     * Creates a new I18n helper object
+     * You can use this module to internationalize your applications. It roughly emulates GNU gettext's API.
      *
      * @class Ink.Util.I18n
      * @constructor
      *
-     * @param {Object} dict         Object mapping language codes (in the form of `pt_PT`, `pt_BR`, `fr`, `en_US`, etc.) to their Object dictionaries.
-     * @param {String} [lang]='pt_PT's language code of the target language
+     * @param {Object} dict         Object mapping language codes (in the form of `pt_PT`, `pt_BR`, `fr`, `en_US`, etc.) to their `dictionaries`
+     * @param {String} [lang='pt_PT'] language code of the target language
      *
-     * @example
-     *      var dictionaries = {    // This could come from a JSONP request from your server
-     *          'pt_PT': {
-     *              'hello': 'olá',
-     *              'me': 'eu',
-     *              'i have a {} for you': 'tenho um {} para ti' // Old syntax using `{%s}` tokens still available
-     *          },
-     *          'pt_BR': {
-     *              'hello': 'oi',
-     *              'me': 'eu',
-     *              'i have a {} for you': 'tenho um {} para você'
-     *          }
-     *      };
-     *      Ink.requireModules(['Ink.Util.I18n_1'], function (I18n) {
-     *          var i18n = new I18n(dictionaries, 'pt_PT');
-     *          i18n.text('hello');  // returns 'olá'
-     *          i18n.text('i have a {} for you', 'IRON SWORD'); // returns 'tenho um IRON SWORD' para ti
-     *          
-     *          i18n.lang('pt_BR');  // Changes language. pt_BR dictionary is loaded
-     *          i18n.text('hello');  // returns 'oi'
-     *
-     *          i18n.lang('en_US');  // Missing language.
-     *          i18n.text('hello');  // returns 'hello'. If testMode is on, returns '[hello]'
-     *      });
-     *      
-     *  @example
-     *      // The old {%s} syntax from libsapo's i18n is still supported
-     *      i18n.text('hello, {%s}!', 'someone'); // -> 'olá, someone!'
+     * @sample Ink_Util_I18n_1.html
      */
     var I18n = function( dict , lang , testMode ) {
         if ( !( this instanceof I18n ) ) { return new I18n( dict , lang , testMode ); }
@@ -10003,14 +9842,10 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
         /**
          * Adds translation strings for the helper to use.
          *
-         * @method  append
+         * @method append
          * @param   {Object} dict Object containing language objects identified by their language code
-         * @example 
-         *     var i18n = new I18n({}, 'pt_PT');
-         *     i18n.append({'pt_PT': {
-         *         'sfraggles': 'braggles'
-         *     }});
-         *     i18n.text('sfraggles') // -> 'braggles'
+         *
+         * @sample Ink_Util_I18n_1_append.html
          */
         append: function( dict ) {
             this._dicts.push( dict );
@@ -10061,12 +9896,9 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
          *
          * @method getKey
          * @param {String} key
-         * @return {Any} The object which happened to be in the current language dictionary on the given key.
+         * @return {Mixed} The object which happened to be in the current language dictionary on the given key.
          *
-         * @example
-         *      _.getKey('astring'); // -> 'a translated string'
-         *      _.getKey('anobject'); // -> {'a': 'translated object'}
-         *      _.getKey('afunction'); // -> function () { return 'this is a localized function' }
+         * @sample Ink_Util_I18n_1_getKey.html
          */
         getKey: function( key ) {
             var ret;
@@ -10098,30 +9930,7 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
          * @param {String} [arg2]       Replacement #2 (replaces second {} and all {2})
          * @param {String} [argn*]      Replacement #n (replaces nth {} and all {n})
          *
-         * @example
-         *      _('Gosto muito de {} e o céu é {}.', 'carros', 'azul');
-         *      // returns 'Gosto muito de carros e o céu é azul.'
-         *
-         * @example
-         *      _('O {1} é {2} como {2} é a cor do {3}.', 'carro', 'azul', 'FCP');
-         *      // returns 'O carro é azul como azul é o FCP.'
-         *
-         *  @example
-         *      _('O {person1} dava-se com a {person2}', {person1: 'coisinho', person2: 'coisinha'});
-         *      // -> 'O coisinho dava-se com a coisinha'
-         *
-         *  @example
-         *      // This is a bit more complex
-         *      var i18n = make().lang('pt_PT').append({
-         *          pt_PT: {
-         *              array: [1, 2],
-         *              object: {'a': '-a-', 'b': '-b-'},
-         *              func: function (a, b) {return '[[' + a + ',' + b + ']]';}
-         *          }
-         *      });
-         *      i18n.text('array', 0); // -> '1'
-         *      i18n.text('object', 'a'); // -> '-a-'
-         *      i18n.text('func', 'a', 'b'); // -> '[[a,b]]'
+         * @sample Ink_Util_I18n_1_text.html
          */
         text: function( str /*, replacements...*/ ) {
             if ( typeof str !== 'string' ) { return; } // Backwards-compat
@@ -10165,14 +9974,7 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
          * @param {Number} count    Number which defines which word to use
          * @param [args*]           Extra arguments, to be passed to `text()`
          *
-         * @example
-         *     i18n.ntext('platypus', 'platypuses', 1); // returns 'ornitorrinco'
-         *     i18n.ntext('platypus', 'platypuses', 2); // returns 'ornitorrincos'
-         * 
-         * @example
-         *     // The "count" argument is passed to text()
-         *     i18n.ntext('{} platypus', '{} platypuses', 1); // returns '1 ornitorrinco'
-         *     i18n.ntext('{} platypus', '{} platypuses', 2); // returns '2 ornitorrincos'
+         * @sample Ink_Util_I18n_1_ntext.html
          */
         ntext: function( strSin , strPlur , count ) {
             var pars = Array.prototype.slice.apply( arguments );
@@ -10200,63 +10002,13 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
          * @method ordinal
          *
          * @param {Number}          num                         Input number
-         * @param {Object|Function} [options]={}                Maps for translating. Each of these options' fallback is found in the current language's dictionary. The lookup order is the following: `exceptions`, `byLastDigit`, `default`. Each of these may be either an `Object` or a `Function`. If it's a function, it is called (with `number` and `digit` for any function except for byLastDigit, which is called with the `lastDigit` of the number in question), and if the function returns a string, that is used. If it's an object, the property is looked up using `[...]`. If what is found is a string, it is used.
+         * @param {Object|Function} [options]={}                Dictionaries for translating. Each of these options' fallback is found in the current language's dictionary. The lookup order is the following: `exceptions`, `byLastDigit`, `default`. Each of these may be either an `Object` or a `Function`. If it's a function, it is called (with `number` and `digit` for any function except for byLastDigit, which is called with the `lastDigit` of the number in question), and if the function returns a string, that is used. If it's an object, the property is looked up using `obj[prop]`. If what is found is a string, it is used directly.
          * @param {Object|Function} [options.byLastDigit]={}    If the language requires the last digit to be considered, mappings of last digits to ordinal suffixes can be created here.
          * @param {Object|Function} [options.exceptions]={}     Map unique, special cases to their ordinal suffixes.
          *
          * @returns {String}        Ordinal suffix for `num`.
          *
-         * @example
-         *     var i18n = new I18n({
-         *         pt_PT: {  // 1º, 2º, 3º, 4º, ...
-         *             _ordinal: {  // The _ordinals key each translation dictionary is special.
-         *                 'default': "º" // Usually the suffix is "º" in portuguese...
-         *             }
-         *         },
-         *         fr: {  // 1er, 2e, 3e, 4e, ...
-         *             _ordinal: {  // The _ordinals key is special.
-         *                 'default': "e", // Usually the suffix is "e" in french...
-         *                 exceptions: {
-         *                     1: "er"   // ... Except for the number one.
-         *                 }
-         *             }
-         *         },
-         *         en_US: {  // 1st, 2nd, 3rd, 4th, ..., 11th, 12th, ... 21st, 22nd...
-         *             _ordinal: {
-         *                 'default': "th",// Usually the digit is "th" in english...
-         *                 byLastDigit: {
-         *                     1: "st",  // When the last digit is 1, use "th"...
-         *                     2: "nd",  // When the last digit is 2, use "nd"...
-         *                     3: "rd"   // When the last digit is 3, use "rd"...
-         *                 },
-         *                 exceptions: { // But these numbers are special
-         *                     0: "",
-         *                     11: "th",
-         *                     12: "th",
-         *                     13: "th"
-         *                 }
-         *             }
-         *         }
-         *     }, 'pt_PT');
-         *
-         *     i18n.ordinal(1);    // returns 'º'
-         *     i18n.ordinal(2);    // returns 'º'
-         *     i18n.ordinal(11);   // returns 'º'
-         * 
-         *     i18n.lang('fr');
-         *     i18n.ordinal(1);    // returns 'er'
-         *     i18n.ordinal(2);    // returns 'e'
-         *     i18n.ordinal(11);   // returns 'e'
-         *
-         *     i18n.lang('en_US');
-         *     i18n.ordinal(1);    // returns 'st'
-         *     i18n.ordinal(2);    // returns 'nd'
-         *     i18n.ordinal(12);   // returns 'th'
-         *     i18n.ordinal(22);   // returns 'nd'
-         *     i18n.ordinal(3);    // returns 'rd'
-         *     i18n.ordinal(4);    // returns 'th'
-         *     i18n.ordinal(5);    // returns 'th'
-         *
+         * @sample Ink_Util_I18n_1_ordinal.html
          **/
         ordinal: function( num ) {
             if ( num === undefined ) { return ''; }
@@ -10302,29 +10054,14 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
         },
 
         /**
-         * Alias for the text method.
-         * Returns an alias to `text()`, for convenience. The resulting function is traditionally assigned to "_".
+         * Create an alias.
+         *
+         * Returns an alias to this I18n instance. It contains the I18n methods documented here, but is also a function. If you call it, it just calls `text()`. This is commonly assigned to "_".
          *
          * @method alias
-         * @returns {Function} an alias to `text()`. You can also access the rest of the translation API through this alias.
+         * @returns {Function} an alias to `text()` on this instance. You can also access the rest of the translation API through this alias.
          *
-         * @example
-         *     var i18n = new I18n({
-         *         'pt_PT': {
-         *             'hi': 'olá',
-         *             '{} day': '{} dia',
-         *             '{} days': '{} dias',
-         *             '_ordinals': {
-         *                 'default': 'º'
-         *             }
-         *         }
-         *     }, 'pt_PT');
-         *     var _ = i18n.alias();
-         *     _('hi');  // -> 'olá'
-         *     _('{} days', 3);  // -> '3 dias'
-         *     _.ntext('{} day', '{} days', 2);  // -> '2 dias'
-         *     _.ntext('{} day', '{} days', 1);  // -> '1 dia'
-         *     _.ordinal(3);  // -> 'º'
+         * @sample Ink_Util_I18n_1_alias.html
          */
         alias: function( ) {
             var ret      = Ink.bind( I18n.prototype.text     , this );
@@ -10354,14 +10091,14 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
     /**
      * Adds a dictionary to be used in all I18n instances for the corresponding language.
      *
-     * @method append
+     * @method appendGlobal
      * @static
      *
      * @param dict {Object}     Dictionary to be added
      * @param lang {String}     Language fo the dictionary being added
      *
      */
-    I18n.append = function( dict , lang ) {
+    I18n.appendGlobal = function( dict , lang ) {
         if ( lang ) {
             if ( !( lang in dict ) ) {
                 var obj = { };
@@ -10379,15 +10116,23 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
         Ink.extendObj( I18n.prototype._gDict , dict[ I18n.prototype._gLang ] );
     };
 
+    I18n.append = function () {
+        // [3.1.0] remove this alias
+        Ink.warn('Ink.Util.I18n.append() was renamed to appendGlobal().');
+        return I18n.appendGlobal.apply(I18n, [].slice.call(arguments));
+    };
+
     /**
      * Gets or sets the current default language of I18n instances.
      *
-     * @method lang
+     * @method langGlobal
+     * @param lang the new language for all I18n instances
+     *
      * @static
      *
      * @return {String} language code
      */
-    I18n.lang = function( lang ) {
+    I18n.langGlobal = function( lang ) {
         if ( !arguments.length ) { return I18n.prototype._gLang; }
 
         if ( lang && I18n.prototype._gLang !== lang ) {
@@ -10400,12 +10145,18 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
             }
         }
     };
+
+    I18n.lang = function () {
+        // [3.1.0] remove this alias
+        Ink.warn('Ink.Util.I18n.lang() was renamed to langGlobal().');
+        return I18n.langGlobal.apply(I18n, [].slice.call(arguments));
+    };
     
     return I18n;
 });
 /**
- * @module Ink.Util.Json_1
  * JSON Utilities
+ * @module Ink.Util.Json_1
  * @version 1
  */
 
@@ -10440,7 +10191,7 @@ Ink.createModule('Ink.Util.Json', '1', [], function() {
 
     /**
      * Use this class to convert JSON strings to JavaScript objects
-     * `(Json.parse)` and also to do the opposite operation `(Json.stringify)`.
+     * `.parse()` and also to do the opposite operation `.stringify()`.
      * Internally, the standard JSON implementation is used if available
      * Otherwise, the functions mimic the standard implementation.
      *
@@ -10461,7 +10212,8 @@ Ink.createModule('Ink.Util.Json', '1', [], function() {
      *          var source = '{"key": "value", "array": [true, null, false]}';
      *          Json.parse(source);  // The above JSON string as an object
      *      });
-     * @namespace Ink.Util.Json
+     *
+     * @namespace Ink.Util.Json_1 
      * @static
      * 
      */
@@ -10603,8 +10355,7 @@ Ink.createModule('Ink.Util.Json', '1', [], function() {
          * @param   {Boolean}     convertToUnicode      When `true`, converts string contents to unicode \uXXXX
          * @return  {String}                            Serialized string
          *
-         * @example
-         *      Json.stringify({a:1.23}); // -> string: '{"a": 1.23}'
+         * @sample Ink_Util_Json_stringify.html 
          */
         stringify: function(input, convertToUnicode) {
             this._convertToUnicode = !!convertToUnicode;
@@ -10622,17 +10373,8 @@ Ink.createModule('Ink.Util.Json', '1', [], function() {
          * @param reviver   {Function}  Function receiving `(key, value)`, and `this`=(containing object), used to walk objects.
          * 
          * @return {Object}             JSON object
-         * @example
-         * Simple example:
          *
-         *      Json.parse('{"a": "3","numbers":false}',
-         *          function (key, value) {
-         *              if (!this.numbers && key === 'a') {
-         *                  return "NO NUMBERS";
-         *              } else {
-         *                  return value;
-         *              }
-         *          }); // -> object: {a: 'NO NUMBERS', numbers: false}
+         * @sample Ink_Util_Json_parse.html 
          */
         /* From https://github.com/douglascrockford/JSON-js/blob/master/json.js */
         parse: function (text, reviver) {
@@ -10719,9 +10461,10 @@ Ink.createModule('Ink.Util.Json', '1', [], function() {
 
     return InkJson;
 });
+
 /**
- * @module Ink.Util.String_1
  * String Utilities
+ * @module Ink.Util.String_1
  * @version 1
  */
 
@@ -10729,6 +10472,9 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
 
     'use strict';
 
+    /**
+     * @namespace Ink.Util.String_1 
+     */
     var InkUtilString = {
 
         /**
@@ -10837,10 +10583,7 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
          * @return  {String}                        Camel cased string.
          * @public
          * @static
-         *
-         * @example
-         *      InkString.ucFirst('hello world'); // -> 'Hello World'
-         *      InkString.ucFirst('hello world', true); // -> 'Hello world'
+         * @sample Ink_Util_String_ucFirst.html 
          */
         ucFirst: function(string, firstWordOnly) {
             var replacer = firstWordOnly ? /(^|\s)(\w)(\S{2,})/ : /(^|\s)(\w)(\S{2,})/g;
@@ -10857,6 +10600,7 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
          * @return  {String}            Trimmed string
          * @public
          * @static
+         * @sample Ink_Util_String_trim.html 
          */
         trim: function(string)
         {
@@ -10875,11 +10619,7 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
          * @return  {String}            Stripped string
          * @public
          * @static
-         * @example
-         *     <script>
-         *          var myvar='isto e um texto <b>bold</b> com imagem <img src=""> e br <br /> um <p>paragrafo</p>';
-         *          SAPO.Utility.String.stripTags(myvar, 'b,u');
-         *     </script>
+         * @sample Ink_Util_String_stripTags.html 
          */
         stripTags: function(string, allowed)
         {
@@ -10917,6 +10657,7 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
          * @return {String} string encoded
          * @public
          * @static
+         * @sample Ink_Util_String_htmlEntitiesEncode.html 
          */
         htmlEntitiesEncode: function(string)
         {
@@ -10938,6 +10679,7 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
          * @return  {String}            Decoded string
          * @public
          * @static
+         * @sample Ink_Util_String_htmlEntitiesDecode.html 
          */
         htmlEntitiesDecode: function(string)
         {
@@ -11003,6 +10745,7 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
          * @return  {String}        
          * @public
          * @static
+         * @sample Ink_Util_String_shortString.html 
          */
         shortString: function(str,n) {
           var words = str.split(' ');
@@ -11026,6 +10769,7 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
          * @return  {String}            Truncated String
          * @public
          * @static
+         * @sample Ink_Util_String_truncateString.html 
          */
         truncateString: function(str, length) {
             if(str.length - 1 > length) {
@@ -11081,6 +10825,7 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
          * @return  {String}            String without accented chars
          * @public
          * @static
+         * @sample Ink_Util_String_removeAccentedChars.html 
          */
         removeAccentedChars: function(string)
         {
@@ -11102,6 +10847,7 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
          * @return  {Number}            Number of occurrences
          * @public
          * @static
+         * @sample Ink_Util_String_substrCount.html 
          */
         substrCount: function(haystack,needle)
         {
@@ -11109,7 +10855,7 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
         },
 
         /**
-         * Eval a JSON string to a JS object
+         * Eval a JSON - We recommend you Ink.Util.Json
          *
          * @method evalJSON
          * @param   {String}    strJSON     JSON string to eval
@@ -11155,6 +10901,7 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
          * @return {String} Escaped string
          * @public
          * @static
+         * @sample Ink_Util_String_htmlEscapeUnsafe.html 
          */
         htmlEscapeUnsafe: function(str){
             var chars = InkUtilString._htmlUnsafeChars;
@@ -11170,6 +10917,7 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
          * @return  {String}            Normalized string
          * @public
          * @static
+         * @sample Ink_Util_String_normalizeWhitespace.html 
          */
         normalizeWhitespace: function(str){
             return str !== null ? InkUtilString.trim(String(str).replace(/\s+/g,' ')) : str;
@@ -11183,6 +10931,7 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
          * @return  {String}        Unicoded String
          * @public
          * @static
+         * @sample Ink_Util_String_toUnicode.html 
          */
         toUnicode: function(str) {
             if (typeof str === 'string') {
@@ -11249,10 +10998,7 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
          * @return {String} Escaped character. Returns \xXX if hex smaller than 0x100, otherwise \uXXXX
          * @public
          * @static
-         */
-
-        /**
-         * @param {String} c char
+         * @sample Ink_Util_String_escape.html 
          */
         escape: function(c) {
             var hex = (c).charCodeAt(0).toString(16).split('');
@@ -11277,6 +11023,7 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
          * @return  {String}        String un-unicoded
          * @public
          * @static
+         * @sample Ink_Util_String_unescape.html 
          */
         unescape: function(es) {
             var idx = es.lastIndexOf('0');
@@ -11297,6 +11044,7 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
          * @return  {String}                    String escaped to Unicode
          * @public
          * @static
+         * @sample Ink_Util_String_escapeText.html 
          */
         escapeText: function(txt, whiteList) {
             if (whiteList === undefined) {
@@ -11334,6 +11082,7 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
          * @return {String} Unescaped string
          * @public
          * @static
+         * @sample Ink_Util_String_unescapeText.html 
          */
         unescapeText: function(txt) {
             /*jshint boss:true */
@@ -11355,6 +11104,7 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
          * @return  {Number}
          * @public
          * @static
+         * @sample Ink_Util_String_strcmp.html 
          */
         strcmp: function(str1, str2) {
             return ((str1 === str2) ? 0 : ((str1 > str2) ? 1 : -1));
@@ -11369,6 +11119,7 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
          * @return  {Array}             Chunks of the original string
          * @public
          * @static
+         * @sample Ink_Util_String_packetize.html 
          */
         packetize: function(str, maxLen) {
             var len = str.length;
@@ -11389,8 +11140,8 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
 });
 
 /**
- * @module Ink.Util.Url_1
  * URL Utilities
+ * @module Ink.Util.Url_1
  * @version 1
  */
 
@@ -11398,6 +11149,9 @@ Ink.createModule('Ink.Util.Url', '1', [], function() {
 
     'use strict';
 
+    /**
+     * @namespace Ink.Util.Url_1
+     */
     var Url = {
 
         /**
@@ -11418,10 +11172,7 @@ Ink.createModule('Ink.Util.Url', '1', [], function() {
          * @return Current URL
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Url_1'], function( InkUrl ){
-         *         console.log( InkUrl.getUrl() ); // Will return it's window URL
-         *     });
+         * @sample Ink_Util_Url_getUrl.html 
          */
         getUrl: function()
         {
@@ -11437,15 +11188,7 @@ Ink.createModule('Ink.Util.Url', '1', [], function() {
          * @return {String} URI with query string set
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Url_1'], function( InkUrl ){
-         *         var queryString = InkUrl.genQueryString( 'http://www.sapo.pt/', {
-         *             'param1': 'valueParam1',
-         *             'param2': 'valueParam2'
-         *         });
-         *
-         *         console.log( queryString ); // Result: http://www.sapo.pt/?param1=valueParam1&param2=valueParam2
-         *     });
+         * @sample Ink_Util_Url_genQueryString.html 
          */
         genQueryString: function(uri, params) {
             var hasQuestionMark = uri.indexOf('?') !== -1;
@@ -11478,16 +11221,7 @@ Ink.createModule('Ink.Util.Url', '1', [], function() {
          * @return  {Object}            Key-Value pair object
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Url_1'], function( InkUrl ){
-         *         var queryStringParams = InkUrl.getQueryString( 'http://www.sapo.pt/?var1=valueVar1&var2=valueVar2' );
-         *         console.log( queryStringParams );
-         *         // Result:
-         *         // {
-         *         //    var1: 'valueVar1',
-         *         //    var2: 'valueVar2'
-         *         // }
-         *     });
+         * @sample Ink_Util_Url_getQueryString.html 
          */
         getQueryString: function(str)
         {
@@ -11519,11 +11253,7 @@ Ink.createModule('Ink.Util.Url', '1', [], function() {
          * @return  {String|Boolean}            Hash in the URL. If there's no hash, returns false.
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Url_1'], function( InkUrl ){
-         *         var anchor = InkUrl.getAnchor( 'http://www.sapo.pt/page.php#TEST' );
-         *         console.log( anchor ); // Result: TEST
-         *     });
+         * @sample Ink_Util_Url_getAnchor.html 
          */
         getAnchor: function(str)
         {
@@ -11548,16 +11278,7 @@ Ink.createModule('Ink.Util.Url', '1', [], function() {
          * @return  {Object}            Key-value pair object of the URL's hashtag 'variables'
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Url_1'], function( InkUrl ){
-         *         var hashParams = InkUrl.getAnchorString( 'http://www.sapo.pt/#var1=valueVar1&var2=valueVar2' );
-         *         console.log( hashParams );
-         *         // Result:
-         *         // {
-         *         //    var1: 'valueVar1',
-         *         //    var2: 'valueVar2'
-         *         // }
-         *     });
+         * @sample Ink_Util_Url_getAnchorString.html 
          */
         getAnchorString: function(string)
         {
@@ -11590,20 +11311,7 @@ Ink.createModule('Ink.Util.Url', '1', [], function() {
          * @return {Object} Parsed URL as a key-value object.
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Url_1'], function( InkUrl ){
-         *         var parsedURL = InkUrl.parseUrl( 'http://www.sapo.pt/index.html?var1=value1#anchor' )
-         *         console.log( parsedURL );
-         *         // Result:
-         *         // {
-         *         //   'scheme'    => 'http',
-         *         //   'host'      => 'www.sapo.pt',
-         *         //   'path'      => '/index.html',
-         *         //   'query'     => 'var1=value1',
-         *         //   'fragment'  => 'anchor'
-         *         // }
-         *     });
-         *
+         * @sample Ink_Util_Url_parseUrl.html 
          */
         parseUrl: function(url) {
             var aURL = {};
@@ -11717,9 +11425,10 @@ Ink.createModule('Ink.Util.Url', '1', [], function() {
          *
          * @method currentScriptElement
          * @param {String} [match] String to match against the script src attribute
-         * @return {DOMElement|Boolean} Returns the <script> DOM Element or false if unable to find it.
+         * @return {DOMElement|Boolean} Returns the `script` DOM Element or false if unable to find it.
          * @public
          * @static
+         * @sample Ink_Util_Url_currentScriptElement.html 
          */
         currentScriptElement: function(match)
         {
@@ -11846,8 +11555,8 @@ Ink.createModule('Ink.Util.Url', '1', [], function() {
 });
 
 /**
- * @module Ink.Util.Validator_1
  * Validation Utilities
+ * @module Ink.Util.Validator_1
  * @version 1
  */
  
@@ -11855,6 +11564,9 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
 
     'use strict';
 
+    /**
+     * @namespace Ink.Util.Validator_1 
+     */
     var Validator = {
 
         /**
@@ -12142,6 +11854,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
          * @method checkCharacterGroups
          * @param {String}  s               The validation string
          * @param {Object}  [groups]={}     What groups are included. See createRegexp
+         * @sample Ink_Util_Validator_checkCharacterGroups.html 
          */
         checkCharacterGroups: function (s, groups) {
             return Validator.createRegExp(groups).test(s);
@@ -12167,6 +11880,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
          *
          * @param {String}  s               The validation string
          * @param {Object}  [options]={}    Optional configuration object. See createRegexp
+         * @sample Ink_Util_Validator_latin1.html  
          */
         latin1: function (s, options) {
             return Validator.checkCharacterGroups(s, Ink.extendObj({
@@ -12181,6 +11895,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
          *
          * @param {String}  s               The validation string
          * @param {Object}  [options]={}    Optional configuration object. See createRegexp
+         * @sample Ink_Util_Validator_ascii.html 
          */
         ascii: function (s, options) {
             return Validator.checkCharacterGroups(s, Ink.extendObj({
@@ -12200,6 +11915,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
          *  @param  [options.max]=null          Maximum number
          *  @param  [options.min]=null          Minimum number
          *  @param  [options.returnNumber]=false When this option is true, return the number itself when the value is valid.
+         *  @sample Ink_Util_Validator_number.html 
          */
         number: function (numb, inOptions) {
             numb = numb + '';
@@ -12388,11 +12104,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
          * @return {Boolean} True if it's valid
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){
-         *         console.log( InkValidator.email( 'agfsdfgfdsgdsf' ) ); // Result: false
-         *         console.log( InkValidator.email( 'inkdev\u0040sapo.pt' ) ); // Result: true (where \u0040 is at sign)
-         *     });
+         * @sample Ink_Util_Validator_mail.html 
          */
         email: function(email)
         {
@@ -12423,12 +12135,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
          * @return {Boolean} True if valid
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){
-         *         console.log( InkValidator.url( 'www.sapo.pt' ) );                // Result: true
-         *         console.log( InkValidator.url( 'http://www.sapo.pt', true ) );   // Result: true
-         *         console.log( InkValidator.url( 'meh' ) );                        // Result: false
-         *     });
+         * @sample Ink_Util_Validator_url.html 
          */
         url: function(url, full)
         {
@@ -12455,13 +12162,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
          * @return {Boolean} True if it's a valid Portuguese Phone
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){
-         *         console.log( InkValidator.isPTPhone( '213919264' ) );        // Result: true
-         *         console.log( InkValidator.isPTPhone( '00351213919264' ) );   // Result: true
-         *         console.log( InkValidator.isPTPhone( '+351213919264' ) );    // Result: true
-         *         console.log( InkValidator.isPTPhone( '1' ) );                // Result: false
-         *     });
+         * @sample Ink_Util_Validator_isPTPhone.html
          */
         isPTPhone: function(phone)
         {
@@ -12502,13 +12203,6 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
          * @return {Boolean} True if it's a valid Portuguese Phone
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){
-         *         console.log( InkValidator.isPortuguesePhone( '213919264' ) );        // Result: true
-         *         console.log( InkValidator.isPortuguesePhone( '00351213919264' ) );   // Result: true
-         *         console.log( InkValidator.isPortuguesePhone( '+351213919264' ) );    // Result: true
-         *         console.log( InkValidator.isPortuguesePhone( '1' ) );                // Result: false
-         *     });
          */
         isPortuguesePhone: function(phone)
         {
@@ -12523,13 +12217,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
          * @return {Boolean} True if it's a valid Cape Verdean Phone
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){
-         *         console.log( InkValidator.isCVPhone( '2610303' ) );        // Result: true
-         *         console.log( InkValidator.isCVPhone( '002382610303' ) );   // Result: true
-         *         console.log( InkValidator.isCVPhone( '+2382610303' ) );    // Result: true
-         *         console.log( InkValidator.isCVPhone( '1' ) );              // Result: false
-         *     });
+         * @sample Ink_Util_Validator_isCVPhone.html 
          */
         isCVPhone: function(phone)
         {
@@ -12569,13 +12257,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
          * @return {Boolean} True if it's a valid Angolan Phone
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){
-         *         console.log( InkValidator.isAOPhone( '244222396385' ) );     // Result: true
-         *         console.log( InkValidator.isAOPhone( '00244222396385' ) );   // Result: true
-         *         console.log( InkValidator.isAOPhone( '+244222396385' ) );    // Result: true
-         *         console.log( InkValidator.isAOPhone( '1' ) );                // Result: false
-         *     });
+         * @sample Ink_Util_Validator_isAOPhone.html 
          */
         isAOPhone: function(phone)
         {
@@ -12616,13 +12298,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
          * @return {Boolean} True if it's a valid Mozambican Phone
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){
-         *         console.log( InkValidator.isMZPhone( '21426861' ) );        // Result: true
-         *         console.log( InkValidator.isMZPhone( '0025821426861' ) );   // Result: true
-         *         console.log( InkValidator.isMZPhone( '+25821426861' ) );    // Result: true
-         *         console.log( InkValidator.isMZPhone( '1' ) );              // Result: false
-         *     });
+         * @sample Ink_Util_Validator_isMZPhone.html 
          */
         isMZPhone: function(phone)
         {
@@ -12666,13 +12342,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
          * @return {Boolean} True if it's a valid phone from Timor-Leste
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){
-         *         console.log( InkValidator.isTLPhone( '6703331234' ) );     // Result: true
-         *         console.log( InkValidator.isTLPhone( '006703331234' ) );   // Result: true
-         *         console.log( InkValidator.isTLPhone( '+6703331234' ) );    // Result: true
-         *         console.log( InkValidator.isTLPhone( '1' ) );              // Result: false
-         *     });
+         * @sample Ink_Util_Validator_isTLPhone.html 
          */
         isTLPhone: function(phone)
         {
@@ -12715,10 +12385,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
          * @return  {Boolean}                       True if it's a valid phone in any country available
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){
-         *         console.log( InkValidator.isPhone( '6703331234' ) );        // Result: true
-         *     });
+         * @sample Ink_Util_Validator_isPhone.html
          */
         isPhone: function(){
             var index;
@@ -12766,12 +12433,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
          * @return {Boolean} True if it's a valid zip code
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){
-         *         console.log( InkValidator.codPostal( '1069', '300' ) );        // Result: true
-         *         console.log( InkValidator.codPostal( '1069', '300', true ) );  // Result: [true, true]
-         *     });
-         *
+         * @sample Ink_Util_Validator_codPostal.html 
          */
         codPostal: function(cp1,cp2,returnBothResults){
 
@@ -12831,10 +12493,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
          * @return {Boolean} True if it's a valid date and in the specified format
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){
-         *         console.log( InkValidator.isDate( 'yyyy-mm-dd', '2012-05-21' ) );        // Result: true
-         *     });
+         * @sample Ink_Util_Validator_isDate.html 
          */
         isDate: function(format, dateStr){
 
@@ -12882,11 +12541,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
          * @return {Boolean} True if it's a valid color string
          * @public
          * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Validator_1'], function( InkValidator ){
-         *         console.log( InkValidator.isColor( '#FF00FF' ) );        // Result: true
-         *         console.log( InkValidator.isColor( 'amdafasfs' ) );      // Result: false
-         *     });
+         * @sample Ink_Util_Validator_isColor.html 
          */
         isColor: function(str){
             var match, valid = false,
@@ -12970,6 +12625,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
          * @param  {String} value   Value to be checked
          * @param  {String} ipType Type of IP to be validated. The values are: ipv4, ipv6. By default is ipv4.
          * @return {Boolean}         True if the value is a valid IP address. False if not.
+         * @sample Ink_Util_Validator_isIP.html 
          */
         isIP: function( value, ipType ){
             if( typeof value !== 'string' ){
@@ -13092,6 +12748,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
          * @param  {String}  num            Number to be validates
          * @param  {String|Array}  creditCardType Credit card type. See _creditCardSpecs for the list of supported values.
          * @return {Boolean}
+         * @sample Ink_Util_Validator_isCreditCard.html 
          */
         isCreditCard: function(num, creditCardType){
 

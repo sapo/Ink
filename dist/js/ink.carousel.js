@@ -1,6 +1,6 @@
 /**
- * @module Ink.UI.Carousel_1
  * Flexible Carousel
+ * @module Ink.UI.Carousel_1
  * @version 1
  */
 
@@ -35,7 +35,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
      * @param {Number}              [options.initialPage]       Initial index page of the carousel. Defaults to 0.
      * @param {Boolean}             [options.spaceAfterLastSlide=true] If there are not enough slides to fill the full width of the last page, leave white space. Defaults to `true`.
      * @param {Boolean}             [options.swipe]             Enable swipe support if available. Defaults to true.
-     * @param {Mixed}               [options.pagination]        Either an `<ul>` element to add pagination markup to or an `Ink.UI.Pagination` instance to use.
+     * @param {Mixed}               [options.pagination]        Either an ul element to add pagination markup to or an `Ink.UI.Pagination` instance to use.
      * @param {Function}            [options.onChange]          Callback to be called when the page changes.
      *
      * @sample Ink_UI_Carousel_1.html
@@ -95,6 +95,8 @@ Ink.createModule('Ink.UI.Carousel', '1',
         this._setUpHider();
 
         this._options.onInit.call(this, this);
+
+        Common.registerInstance(this, this._element);
     };
 
     Carousel.prototype = {
@@ -407,7 +409,57 @@ Ink.createModule('Ink.UI.Carousel', '1',
          * @method previousPage
          * @param {Boolean} [wrap] Flag to loop from first page to last page.
          **/
-        previousPage: function (wrap) { this.setPage(this.getPage() - 1, wrap); }
+        previousPage: function (wrap) { this.setPage(this.getPage() - 1, wrap); },
+
+        /**
+         * Returns how many slides fit into a page
+         * @method getSlidesPerPage
+         * @return {Number} The number of slides per page
+         * @public
+         */
+        getSlidesPerPage: function() {
+            return this._slidesPerPage;
+        },
+
+        /**
+         * Get the amount of pages in the carousel.
+         * @method getTotalPages
+         * @return {Number} The number of pages
+         * @public
+         */
+        getTotalPages: function() {
+            return this._numPages;
+        },
+
+        /**
+         * Get the stage element (your UL with the class ".stage").
+         * @method getStageElm
+         * @public
+         * @return {DOMElement} Stage element
+         **/
+        getStageElm: function() {
+            return this._ulEl;
+        },
+
+        /**
+         * Get a list of your slides (elements with the ".slide" class inside your stage)
+         * @method getSlidesList
+         * @return {DOMElement[]} Array containing the slides.
+         * @public
+         */
+        getSlidesList: function() {
+            return this._liEls;
+        },
+
+        /**
+         * Get the total number of slides
+         * @method getTotalSlides
+         * @return {Number} The number of slides
+         * @public
+         */
+        getTotalSlides: function() {
+            return this.getSlidesList().length;
+        }
     };
 
     function setTransitionProperty(el, newTransition) {
