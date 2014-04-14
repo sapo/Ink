@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    
+
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -10,9 +10,9 @@
         <meta name="HandheldFriendly" content="True">
         <meta name="MobileOptimized" content="320">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-        
+
         <!-- Place favicon.ico and apple-touch-icon(s) here  -->
-        
+
         <link rel="shortcut icon" href="http://cdn.ink.sapo.pt/3.0.0/img/favicon.ico">
         <link rel="apple-touch-icon-precomposed" href="http://cdn.ink.sapo.pt/3.0.0/img/touch-icon.57.png">
         <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://cdn.ink.sapo.pt/3.0.0/img/touch-icon.72.png">
@@ -20,29 +20,30 @@
         <link rel="apple-touch-startup-image" href="http://cdn.ink.sapo.pt/3.0.0/img/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
         <link rel="apple-touch-startup-image" href="http://cdn.ink.sapo.pt/3.0.0/img/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
         <link rel="apple-touch-startup-image" href="http://cdn.ink.sapo.pt/3.0.0/img/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
-        
-        <!-- Place your CSS here  -->
 
+        <!-- load inks css from the cdn -->
         <link rel="stylesheet" type="text/css" href="http://cdn.ink.sapo.pt/3.0.0/css/ink-flex.min.css">
         <link rel="stylesheet" type="text/css" href="http://cdn.ink.sapo.pt/3.0.0/css/font-awesome.min.css">
-        
+
+        <!-- load inks css for IE8 -->
         <!--[if lt IE 9 ]>
             <link rel="stylesheet" href="http://cdn.ink.sapo.pt/3.0.0/css/ink-ie.min.css" type="text/css" media="screen" title="no title" charset="utf-8">
         <![endif]-->
-        
-        <!-- Place your Javascript here  -->
+
+        <!-- test browser flexbox support and load legacy grid if unsupported -->
         <script type="text/javascript" src="http://cdn.ink.sapo.pt/3.0.0/js/modernizr.js"></script>
         <script type="text/javascript">
             Modernizr.load({
               test: Modernizr.flexbox,
               nope : 'http://cdn.ink.sapo.pt/3.0.0/css/ink-legacy.min.css'
             });
-        </script>  
+        </script>
 
+        <!-- load inks javascript files from the cdn -->
         <script type="text/javascript" src="http://cdn.ink.sapo.pt/3.0.0/js/holder.js"></script>
         <script type="text/javascript" src="http://cdn.ink.sapo.pt/3.0.0/js/ink-all.min.js"></script>
         <script type="text/javascript" src="http://cdn.ink.sapo.pt/3.0.0/js/autoload.js"></script>
-        
+
 
         <style>
             .screen-size-helper {
@@ -82,18 +83,26 @@
                 font-weight: bold;
                 font-size: inherit !important;
             }
-            .screen-size-helper ul li.tiny,
-            .screen-size-helper ul li.small,
-            .screen-size-helper ul li.medium,
-            .screen-size-helper ul li.large,
+            .screen-size-helper ul li.tiny {
+              color: #0f75da;
+            }
+            .screen-size-helper ul li.small {
+              color: #4a9b17;
+            }
+            .screen-size-helper ul li.medium {
+              color: #ff9c00;
+            }
+            .screen-size-helper ul li.large {
+              color: #c91111;
+            }
             .screen-size-helper ul li.xlarge {
-                color: #80c431;
+              color: white;
             }
         </style>
 
     </head>
-    
-    <body>        
+
+    <body>
 
         <!--[if lte IE 9 ]>
         <div class="ink-alert basic">
@@ -104,9 +113,9 @@
             </p>
         </div>
         -->
-        
+
         <!-- Add your site or application content here -->
-    
+
         <div class="screen-size-helper">
             <p class="title">Screen size:</p>
             <ul class="unstyled">
@@ -117,6 +126,6 @@
                 <li class="hide-all show-xlarge xlarge">XLARGE</li>
             </ul>
         </div>
-        
+
     </body>
 </html>
