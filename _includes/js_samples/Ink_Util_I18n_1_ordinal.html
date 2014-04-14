@@ -1,0 +1,51 @@
+{% highlight javascript %}
+var i18n = new I18n({
+    pt_PT: {  // 1º, 2º, 3º, 4º, ...
+        _ordinal: {  // The _ordinals key each translation dictionary is special.
+            'default': "º" // Usually the suffix is "º" in portuguese...
+        }
+    },
+    fr: {  // 1er, 2e, 3e, 4e, ...
+        _ordinal: {  // The _ordinals key is special.
+            'default': "e", // Usually the suffix is "e" in french...
+            exceptions: {
+                1: "er"   // ... Except for the number one.
+            }
+        }
+    },
+    en_US: {  // 1st, 2nd, 3rd, 4th, ..., 11th, 12th, ... 21st, 22nd...
+        _ordinal: {
+            'default': "th",// Usually the digit is "th" in english...
+            byLastDigit: {
+                1: "st",  // When the last digit is 1, use "th"...
+                2: "nd",  // When the last digit is 2, use "nd"...
+                3: "rd"   // When the last digit is 3, use "rd"...
+            },
+            exceptions: { // But these numbers are special
+                0: "",
+                11: "th",
+                12: "th",
+                13: "th"
+            }
+        }
+    }
+}, 'pt_PT');
+
+i18n.ordinal(1);    // returns 'º'
+i18n.ordinal(2);    // returns 'º'
+i18n.ordinal(11);   // returns 'º'
+
+i18n.lang('fr');
+i18n.ordinal(1);    // returns 'er'
+i18n.ordinal(2);    // returns 'e'
+i18n.ordinal(11);   // returns 'e'
+
+i18n.lang('en_US');
+i18n.ordinal(1);    // returns 'st'
+i18n.ordinal(2);    // returns 'nd'
+i18n.ordinal(12);   // returns 'th'
+i18n.ordinal(22);   // returns 'nd'
+i18n.ordinal(3);    // returns 'rd'
+i18n.ordinal(4);    // returns 'th'
+i18n.ordinal(5);    // returns 'th'
+{% endhighlight %}

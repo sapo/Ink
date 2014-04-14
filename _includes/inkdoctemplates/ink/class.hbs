@@ -1,5 +1,5 @@
     {{~#if text~}}
-    <p>{{~{stripP text}~}}</p>
+    {{~{text}~}}
     {{~/if}}
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="{{site.url}}/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p>
     {{~#if functions.length~}}
@@ -34,13 +34,12 @@
                     </a>
                 </td>
                 <td>{{~#if deprecated~}}
-                    <span class="ink-label red">deprecated</span>
+                    <span class="ink-label red">deprecated</span>  
                     {{~/if~}}
-                    {{~#if text ~}}{{~{firstP text}~}}{{~/if~}}
-                    {{~#if type~}}
-                        <pre>{{~type~}}</pre>
-                    {{~/if~}}
-                    {{~#if description~}}{{~{stripP description}~}}{{~/if~}}
+                    {{~#if text }} {{{firstP text}~}}{{~/if~}}
+                    {{~#if type~}}{{#each type}}<span class="label {{toLowerCase this}}"></span>{{/each}}{{~/if~}}
+
+                    {{~#if description~}} {{{stripP description}~}}{{~/if~}}
                     {{~#if isConstructor~}}
                         <span class="ink-label green">Constructor</span>
                     {{~/if~}}
@@ -70,9 +69,8 @@
                     {{~#if text}}
                         {{~{firstP text}~}}
                     {{/if}}
-                    {{~#if type}}
-                        <span class="ink-label orange uppercase">{{type}}</span>
-                    {{/if}}
+                    {{~#if type~}}{{#each type}}<span class="label {{toLowerCase this}}"></span>{{/each}}{{~/if~}}
+
                     {{~#if description}}
                         <span class="description">{{~{stripP description}~}}</span>
                     {{/if}}

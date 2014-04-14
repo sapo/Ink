@@ -468,18 +468,6 @@
          * @param {Any}   [args*]     Additional arguments will be sent to the new method as prefix arguments.
          * @return {Function}
          * @sample Ink_1_bindMethod.html 
-         *  
-         * @example
-         *  // Build a function which calls Ink.Dom.Element.remove on an element.
-         *  var removeMyElem = Ink.bindMethod(Ink.Dom.Element, 'remove', someElement);
-         *
-         *  removeMyElem();  // no arguments, nor Ink.Dom.Element, needed
-         * @example
-         *  // (comparison with using Ink.bind to the same effect).
-         *  // The following two calls are equivalent
-         *
-         *  Ink.bind(this.remove, this, myElem);
-         *  Ink.bindMethod(this, 'remove', myElem);
          */
         bindMethod: function (object, methodName) {
             return Ink.bind.apply(Ink,

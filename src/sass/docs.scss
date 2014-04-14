@@ -593,56 +593,91 @@ span.label {
 
     &:after {
         padding: 0 .35em;
-        @include border-radius(2px);
+        @include border-radius($border-radius);
+        color: $white;
+        text-transform: uppercase;
     }
 
     &.mandatory {
-            &:after {
-                background: tint($red,25%);
-                color: $white;
-                content: "Mandatory";
-                text-transform: uppercase;
-            }
+        &:after {
+            background: tint($red,25%);
+            content: "Mandatory";
+        }
     }
     &.breakpoint-aware {
-            &:after {
-                background: tint($green,25%);
-                color: $white;
-                content: "Breakpoint aware";
-                text-transform: uppercase;
-            }
+        &:after {
+            background: tint($green,25%);
+            content: "Breakpoint aware";
+        }
     }
     &.context-aware {
-            &:after {
-                background: tint($green,25%);
-                color: $white;
-                content: "Context aware";
-                text-transform: uppercase;
-            }
+        &:after {
+            background: tint($green,25%);
+            content: "Context aware";
+        }
     }
     &.halves-quarters {
-            &:after {
-                background: tint($orange,25%);
-                color: $white;
-                content: "Double, Half & Quarter";
-                text-transform: uppercase;
-            }
+        &:after {
+            background: tint($orange,25%);
+            content: "Double, Half & Quarter";
+        }
     }
     &.js {
-            &:after {
-                background: tint($blue,25%);
-                color: $white;
-                content: "JavaScript";
-                text-transform: uppercase;
-            }
+        &:after {
+            background: tint($blue,25%);
+            content: "JavaScript";
+        }
     }
     &.flexbox {
-            &:after {
-                background: tint($teal,25%);
-                color: white;
-                content: "Flexbox";
-                text-transform: uppercase;
-            }
+        &:after {
+            background: tint($teal,25%);
+            content: "Flexbox";
+        }
+    }
+
+    &.string {
+        &:after {
+            content: "String";
+            background: tint($blue,25%);
+        }
+    }
+    &.selector {
+        &:after {
+            content: "Selector";
+            background: tint($green,25%);
+        }
+    }
+    &.number {
+        &:after {
+            content: "number";
+            background: tint($orange,25%);
+        }
+    }
+    &.domelement {
+        &:after {
+            content: "DOMElement";
+            background: $black;
+            text-transform: none;
+        }
+    }
+    &.object {
+        &:after {
+            content: "object";
+            background: tint($teal,25%);
+            
+        }
+    }
+    &.array {
+        &:after {
+            content: "Array";
+            background: #b2a858;
+        }
+    }
+    &.function {
+        &:after {
+            content: "Function";
+            background: #8e85e5;
+        }
     }
 }
 

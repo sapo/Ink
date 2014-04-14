@@ -36,7 +36,7 @@ Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'In
      * @param {Boolean}         [options.removeClass]       Flag to remove the CSS class when finished animating. Defaults to false.
      * @param {Function}        [options.onEnd]             Callback for the animation end
      *
-     * @sample Ink_Animate_1.html
+     * @sample Ink_UI_Animate_1.html
      *
      **/
     function Animate(elOrSelector, options) {
@@ -103,15 +103,8 @@ Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'In
          *     @param [options.onEnd=null] {Function} callback for animation end
          *     @param [options.removeClass=false] {Boolean} whether to remove the Css class when finished
          *     @param [options.duration=medium] {String|Number} duration name (fast|medium|slow) or duration in ms
-         * @example
-         *  Animate.animate(myDiv, 'fadeIn')
          *
-         * @example
-         *  Animate.animate(myDiv, 'shake', {
-         *      onEnd: function () {
-         *          alert('Finished shaking!');
-         *      }
-         *  });
+         * @sample Ink_UI_Animate_1_animate.html
          **/
         animate: function (element, animation, options) {
             element = Common.elOrSelector(element);

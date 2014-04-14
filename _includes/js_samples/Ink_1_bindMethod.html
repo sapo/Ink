@@ -1,13 +1,25 @@
-<p>Desc... <code>this</code> </p>
+<p>Build a function which calls method <code>remove</code> of <code>Ink.Dom.Element</code> on an element</p> 
 
 <p class="example-title">Code</p>
-{% highlight js %}
+{% highlight html %}
+<div id="element">
+  Text content
+</div>
+<script>
+Ink.requireModules(['Ink.Dom.Element_1'], function(InkElement) {
+
+    var elm = Ink.i('element');
+    var methodBinded = Ink.bindMethod(InkElement, 'remove', elm); 
+              
+    methodBinded();
+});
+</script>
 {% endhighlight %}
 
-<p></p> 
+<p>Comparing with Ink.bind to the same effect. The following two calls are equivalent</p> 
 <p class="example-title">Code</p>
 {% highlight js %}
-
+Ink.bind(this.doWithSomething, this, 'something');
+Ink.bindMethod(this, 'doWithSomething', 'something');
 {% endhighlight %}
-
 

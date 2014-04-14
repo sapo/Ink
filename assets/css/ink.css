@@ -7674,6 +7674,9 @@ table.ink-table tbody > tr.yellow td {
   zoom: 1;
   *display: inline;
 }
+.ink-carousel .ink-navigation {
+  position: static;
+}
 
 .ink-datepicker-wrapper {
   position: relative;

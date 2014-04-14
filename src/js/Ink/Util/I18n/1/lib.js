@@ -54,12 +54,7 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
          * @method append
          * @param   {Object} dict Object containing language objects identified by their language code
          *
-         * @example
-         * var i18n = new I18n({}, 'pt_PT');
-         * i18n.append({'pt_PT': {
-         *     'sfraggles': 'braggles'
-         * }});
-         * i18n.text('sfraggles') // -> 'braggles'
+         * @sample Ink_Util_I18n_1_append.html
          */
         append: function( dict ) {
             this._dicts.push( dict );
@@ -112,10 +107,7 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
          * @param {String} key
          * @return {Mixed} The object which happened to be in the current language dictionary on the given key.
          *
-         * @example
-         * _.getKey('astring'); // -> 'a translated string'
-         * _.getKey('anobject'); // -> {'a': 'translated object'}
-         * _.getKey('afunction'); // -> function () { return 'this is a localized function' }
+         * @sample Ink_Util_I18n_1_getKey.html
          */
         getKey: function( key ) {
             var ret;
@@ -147,30 +139,7 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
          * @param {String} [arg2]       Replacement #2 (replaces second {} and all {2})
          * @param {String} [argn*]      Replacement #n (replaces nth {} and all {n})
          *
-         * @example
-         * _('Gosto muito de {} e o céu é {}.', 'carros', 'azul');
-         * // returns 'Gosto muito de carros e o céu é azul.'
-         *
-         * @example
-         * _('O {1} é {2} como {2} é a cor do {3}.', 'carro', 'azul', 'FCP');
-         * // returns 'O carro é azul como azul é o FCP.'
-         *
-         * @example
-         * _('O {person1} dava-se com a {person2}', {person1: 'coisinho', person2: 'coisinha'});
-         * // -> 'O coisinho dava-se com a coisinha'
-         *
-         * @example
-         * // This is a bit more complex
-         * var i18n = make().lang('pt_PT').append({
-         *     pt_PT: {
-         *         array: [1, 2],
-         *         object: {'a': '-a-', 'b': '-b-'},
-         *         func: function (a, b) {return '[[' + a + ',' + b + ']]';}
-         *     }
-         * });
-         * i18n.text('array', 0); // -> '1'
-         * i18n.text('object', 'a'); // -> '-a-'
-         * i18n.text('func', 'a', 'b'); // -> '[[a,b]]'
+         * @sample Ink_Util_I18n_1_text.html
          */
         text: function( str /*, replacements...*/ ) {
             if ( typeof str !== 'string' ) { return; } // Backwards-compat
@@ -214,14 +183,7 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
          * @param {Number} count    Number which defines which word to use
          * @param [args*]           Extra arguments, to be passed to `text()`
          *
-         * @example
-         * i18n.ntext('platypus', 'platypuses', 1); // returns 'ornitorrinco'
-         * i18n.ntext('platypus', 'platypuses', 2); // returns 'ornitorrincos'
-         * 
-         * @example
-         * // The "count" argument is passed to text()
-         * i18n.ntext('{} platypus', '{} platypuses', 1); // returns '1 ornitorrinco'
-         * i18n.ntext('{} platypus', '{} platypuses', 2); // returns '2 ornitorrincos'
+         * @sample Ink_Util_I18n_1_ntext.html
          */
         ntext: function( strSin , strPlur , count ) {
             var pars = Array.prototype.slice.apply( arguments );
@@ -255,56 +217,7 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
          *
          * @returns {String}        Ordinal suffix for `num`.
          *
-         * @example
-         * var i18n = new I18n({
-         *     pt_PT: {  // 1º, 2º, 3º, 4º, ...
-         *         _ordinal: {  // The _ordinals key each translation dictionary is special.
-         *             'default': "º" // Usually the suffix is "º" in portuguese...
-         *         }
-         *     },
-         *     fr: {  // 1er, 2e, 3e, 4e, ...
-         *         _ordinal: {  // The _ordinals key is special.
-         *             'default': "e", // Usually the suffix is "e" in french...
-         *             exceptions: {
-         *                 1: "er"   // ... Except for the number one.
-         *             }
-         *         }
-         *     },
-         *     en_US: {  // 1st, 2nd, 3rd, 4th, ..., 11th, 12th, ... 21st, 22nd...
-         *         _ordinal: {
-         *             'default': "th",// Usually the digit is "th" in english...
-         *             byLastDigit: {
-         *                 1: "st",  // When the last digit is 1, use "th"...
-         *                 2: "nd",  // When the last digit is 2, use "nd"...
-         *                 3: "rd"   // When the last digit is 3, use "rd"...
-         *             },
-         *             exceptions: { // But these numbers are special
-         *                 0: "",
-         *                 11: "th",
-         *                 12: "th",
-         *                 13: "th"
-         *             }
-         *         }
-         *     }
-         * }, 'pt_PT');
-         *
-         * i18n.ordinal(1);    // returns 'º'
-         * i18n.ordinal(2);    // returns 'º'
-         * i18n.ordinal(11);   // returns 'º'
-         * 
-         * i18n.lang('fr');
-         * i18n.ordinal(1);    // returns 'er'
-         * i18n.ordinal(2);    // returns 'e'
-         * i18n.ordinal(11);   // returns 'e'
-         *
-         * i18n.lang('en_US');
-         * i18n.ordinal(1);    // returns 'st'
-         * i18n.ordinal(2);    // returns 'nd'
-         * i18n.ordinal(12);   // returns 'th'
-         * i18n.ordinal(22);   // returns 'nd'
-         * i18n.ordinal(3);    // returns 'rd'
-         * i18n.ordinal(4);    // returns 'th'
-         * i18n.ordinal(5);    // returns 'th'
+         * @sample Ink_Util_I18n_1_ordinal.html
          **/
         ordinal: function( num ) {
             if ( num === undefined ) { return ''; }
@@ -357,23 +270,7 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
          * @method alias
          * @returns {Function} an alias to `text()` on this instance. You can also access the rest of the translation API through this alias.
          *
-         * @example
-         * var i18n = new I18n({
-         *     'pt_PT': {
-         *         'hi': 'olá',
-         *         '{} day': '{} dia',
-         *         '{} days': '{} dias',
-         *         '_ordinals': {
-         *             'default': 'º'
-         *         }
-         *     }
-         * }, 'pt_PT');
-         * var _ = i18n.alias();
-         * _('hi');  // -> 'olá'
-         * _('{} days', 3);  // -> '3 dias'
-         * _.ntext('{} day', '{} days', 2);  // -> '2 dias'
-         * _.ntext('{} day', '{} days', 1);  // -> '1 dia'
-         * _.ordinal(3);  // -> 'º'
+         * @sample Ink_Util_I18n_1_alias.html
          */
         alias: function( ) {
             var ret      = Ink.bind( I18n.prototype.text     , this );

@@ -1,0 +1,11 @@
+{% highlight javascript %}
+Ink.requireModules(['Ink.UI.Animate_1'], function (Animate) {
+    Animate.animate(myDiv, 'fadeIn')
+
+    Animate.animate(myDiv, 'shake', {
+        onEnd: function () {
+            alert('Finished shaking!');
+        }
+    });
+});
+{% endhighlight %}

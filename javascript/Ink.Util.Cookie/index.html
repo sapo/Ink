@@ -21,19 +21,19 @@ site_root:  ../
                 <td>
                     <a href="#Ink_Util_Cookie_1-Ink_Util_Cookie_1-get">.get</a>
                 </td>
-                <td>Gets an object with the current page cookies.</td>
+                <td> Gets an object with the current page cookies.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Util_Cookie_1-Ink_Util_Cookie_1-remove">.remove</a>
                 </td>
-                <td>Deletes a cookie.</td>
+                <td> Deletes a cookie.</td>
             </tr>
             <tr>
                 <td>
                     <a href="#Ink_Util_Cookie_1-Ink_Util_Cookie_1-set">.set</a>
                 </td>
-                <td>Sets a cookie.</td>
+                <td> Sets a cookie.</td>
             </tr></tbody>
     </table>
     
@@ -42,24 +42,24 @@ site_root:  ../
 
 
     <section id="Ink_Util_Cookie_1-Ink_Util_Cookie_1-get" class="box box-function">
-    <h1 class="fw-300">.get(name) 
+    <h1 class="fw-300">.get(name)
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">name</li>
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         name</li>
     </ul><p class="text">Gets an object with the current page cookies.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
-            <li class="level1"><span class="monospace">name</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>name
+                    <span class="label mandatory"></span><span class="label string"></span></p>
                 The cookie name.</li>
         </ul>
     <h3>Returns</h3>
     <ul class="params">
         <li class="return">
-            <p><code>String|Object</code></p>If the name is specified, it returns the value of that key. Otherwise it returns the full cookie object
+            <p><span class="label string"></span> <span class="label object"></span> </p>If the name is specified, it returns the value of that key. Otherwise it returns the full cookie object
         </li>
     </ul>
     
@@ -69,32 +69,28 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_Cookie_1-Ink_Util_Cookie_1-remove" class="box box-function">
-    <h1 class="fw-300">.remove(cookieName, [path], [domain]) 
+    <h1 class="fw-300">.remove(cookieName, path, domain)
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">cookieName</li><li class="prop">[path]</li><li class="prop">[domain]</li>
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         cookieName</li><li class="prop">
+         path</li><li class="prop">
+         domain</li>
     </ul><p class="text">Deletes a cookie.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
-            <li class="level1"><span class="monospace">cookieName</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>cookieName
+                    <span class="label mandatory"></span><span class="label string"></span></p>
                 Cookie name.</li>
-            <li class="level1"><p>
-                    <span class="monospace">[path]</span>
-                    
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>path
+                    <span class="label string"></span></p>
                 Path of the cookie. Defaults to '/'.</li>
-            <li class="level1"><p>
-                    <span class="monospace">[domain]</span>
-                    
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>domain
+                    <span class="label string"></span></p>
                 Domain of the cookie. Defaults to current hostname.</li>
         </ul>
 
@@ -103,51 +99,43 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_Cookie_1-Ink_Util_Cookie_1-set" class="box box-function">
-    <h1 class="fw-300">.set(name, value, [expires], [path], [domain], [secure]) 
+    <h1 class="fw-300">.set(name, value, expires, path, domain, secure)
     <i>method</i></h1>
     <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">name</li><li class="prop">value</li><li class="prop">[expires]</li><li class="prop">[path]</li><li class="prop">[domain]</li><li class="prop">[secure]</li>
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         name</li><li class="prop mandatory">
+         value</li><li class="prop">
+         expires</li><li class="prop">
+         path</li><li class="prop">
+         domain</li><li class="prop">
+         secure</li>
     </ul><p class="text">Sets a cookie.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
-            <li class="level1"><span class="monospace">name</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>name
+                    <span class="label mandatory"></span><span class="label string"></span></p>
                 Cookie name.</li>
-            <li class="level1"><span class="monospace">value</span>
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>value
+                    <span class="label mandatory"></span><span class="label string"></span></p>
                 Cookie value.</li>
-            <li class="level1"><p>
-                    <span class="monospace">[expires]</span>
-                    
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">Number</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>expires
+                    <span class="label number"></span></p>
                 Number of seconds the cookie will be valid for.</li>
-            <li class="level1"><p>
-                    <span class="monospace">[path]</span>
-                    
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>path
+                    <span class="label string"></span></p>
                 Path for the cookie. Defaults to '/'.</li>
-            <li class="level1"><p>
-                    <span class="monospace">[domain]</span>
-                    
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">String</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>domain
+                    <span class="label string"></span></p>
                 Domain for the cookie. Defaults to current hostname.</li>
-            <li class="level1"><p>
-                    <span class="monospace">[secure]</span>
-                    
-                    
-                    <!--<li class="level1">--><span class="ink-label orange">Boolean</span></p>
-                <!--</label>-->
+            <li class="level1">
+                <p>secure
+                    <span class="label boolean"></span></p>
                 Flag for secure. Default 'false'.</li>
         </ul>
 

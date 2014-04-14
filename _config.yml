@@ -3,7 +3,7 @@ exclude: [".gitignore", ".git", "config.rb", "package.json", "Gruntfile.js", "bo
 
 destination: ./_site
 
-url: http://ink3.sapo.pt/
+url: http://ink.sapo.pt/
 environment: production
 description: Ink is a set of tools for quick development of web interfaces.
 timezone: Europe/Lisbon
@@ -33,7 +33,6 @@ sections:
           - title: Basic principles
           - title: Dividing space
           - title: Gutters
-          - title: Vertical spacing
           - title: Multiple screen sizes
       - title: Navigation
         topics:
@@ -113,6 +112,7 @@ sections:
           - title: Ink.UI.Dropdown
           - title: Ink.UI.FormValidator
           - title: Ink.UI.FormValidator.2
+          - title: Ink.UI.ImageQuery
           - title: Ink.UI.LazyLoad
           - title: Ink.UI.Modal
           - title: Ink.UI.Pagination
@@ -170,3 +170,4 @@ releases:
 
 # ANALYTICS
 analytics: FC2C65EF-D60C-4BC2-9D76-251A50DADC3D
+markdown: kramdown
