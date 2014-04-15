@@ -11,7 +11,25 @@ Ink.createModule('Ink.Autoload', 1, ['Ink.Dom.Selector_1', 'Ink.Dom.Loaded_1', '
      * @static
      */
 
+    var el = document.createElement('div');
+    // See if a selector is valid.
+    function validSelector(sel) {
+        try {
+            Selector.select(sel, el);
+        } catch(e) {
+            Ink.error(e);
+            return false;
+        }
+        return true;
+    }
+
     var Autoload = {
+        /**
+         * Matches module names to default selectors.
+         * 
+         * @property selectors {Object}
+         * @public
+         **/
         selectors: {
             /* Match module names to element classes (or more complex selectors)
              * which get the UI modules instantiated automatically. */
@@ -76,6 +94,29 @@ Ink.createModule('Ink.Autoload', 1, ['Ink.Dom.Selector_1', 'Ink.Dom.Loaded_1', '
                     });
                 }
             }
+        },
+        /**
+         * Add a new entry to be autoloaded.
+         * @method add
+         * @param moduleName {String}
+         * @param selector   {String}
+         */
+        add: function (moduleName, selector) {
+            if (!validSelector(selector)) { return false; }
+
+            if (Autoload.selectors[moduleName]) {
+                Autoload.selectors[moduleName] += ', ' + selector;
+            } else {
+                Autoload.selectors[moduleName] = selector;
+            }
+        },
+        /**
+         * Removes a module from autoload, making it not be automatically loaded.
+         * @method remove
+         * @param moduleName {String}
+         **/
+        remove: function (moduleName) {
+            delete Autoload.selectors[moduleName];
         }
     };
 
