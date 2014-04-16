@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    
+
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -10,9 +10,9 @@
         <meta name="HandheldFriendly" content="True">
         <meta name="MobileOptimized" content="320">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-        
+
         <!-- Place favicon.ico and apple-touch-icon(s) here  -->
-        
+
         <link rel="shortcut icon" href="http://cdn.ink.sapo.pt/3.0.0/img/favicon.ico">
         <link rel="apple-touch-icon-precomposed" href="http://cdn.ink.sapo.pt/3.0.0/img/touch-icon.57.png">
         <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://cdn.ink.sapo.pt/3.0.0/img/touch-icon.72.png">
@@ -20,32 +20,33 @@
         <link rel="apple-touch-startup-image" href="http://cdn.ink.sapo.pt/3.0.0/img/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
         <link rel="apple-touch-startup-image" href="http://cdn.ink.sapo.pt/3.0.0/img/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
         <link rel="apple-touch-startup-image" href="http://cdn.ink.sapo.pt/3.0.0/img/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
-        
-        <!-- Place your CSS here  -->
 
+        <!-- load inks css from the cdn -->
         <link rel="stylesheet" type="text/css" href="http://cdn.ink.sapo.pt/3.0.0/css/ink-flex.min.css">
         <link rel="stylesheet" type="text/css" href="http://cdn.ink.sapo.pt/3.0.0/css/font-awesome.min.css">
-        
+
+        <!-- load inks css for IE8 -->
         <!--[if lt IE 9 ]>
             <link rel="stylesheet" href="http://cdn.ink.sapo.pt/3.0.0/css/ink-ie.min.css" type="text/css" media="screen" title="no title" charset="utf-8">
         <![endif]-->
-        
-        <!-- Place your Javascript here  -->
+
+        <!-- test browser flexbox support and load legacy grid if unsupported -->
         <script type="text/javascript" src="http://cdn.ink.sapo.pt/3.0.0/js/modernizr.js"></script>
         <script type="text/javascript">
             Modernizr.load({
               test: Modernizr.flexbox,
               nope : 'http://cdn.ink.sapo.pt/3.0.0/css/ink-legacy.min.css'
             });
-        </script>  
+        </script>
 
+        <!-- load inks javascript files from the cdn -->
         <script type="text/javascript" src="http://cdn.ink.sapo.pt/3.0.0/js/holder.js"></script>
         <script type="text/javascript" src="http://cdn.ink.sapo.pt/3.0.0/js/ink-all.min.js"></script>
         <script type="text/javascript" src="http://cdn.ink.sapo.pt/3.0.0/js/autoload.js"></script>
-        
-        
+
+
         <style type="text/css">
-            
+
             body {
                 background: #ededed;
             }
@@ -68,7 +69,7 @@
         </style>
 
     </head>
-    
+
     <body>
         <div class="ink-grid">
 
@@ -81,9 +82,9 @@
                 </p>
             </div>
             -->
-            
+
             <!-- Add your site or application content here -->
-            
+
             <header>
                 <h1>site name<small>smaller text</small></h1>
                 <nav class="ink-navigation">
@@ -92,21 +93,21 @@
                         <li><a href="#">item</a></li>
                         <li><a href="#">item</a></li>
                     </ul>
-                </nav>             
+                </nav>
             </header>
-            
+
             <div class="column-group gutters">
-                
+
                 <form action="" class="ink-form all-50 small-100 tiny-100">
                     <fieldset>
                         <div class="control-group required column-group gutters">
-                            <label for="email" class="all-20 align-right">Name</label>
+                            <label for="first-name" class="all-20 align-right">Name</label>
                             <div class="control all-40">
-                                <input type="text" id="email">
+                                <input type="text" id="first-name">
                                 <p class="tip">First Name</p>
                             </div>
                             <div class="control all-40">
-                                <input type="text" id="email">
+                                <input type="text" id="last-name">
                                 <p class="tip">Last Name</p>
                             </div>
                         </div>
@@ -135,7 +136,7 @@
                         </div>
                     </fieldset>
                 </form>
-                
+
                 <div class="all-50 small-100 tiny-100">
                     <p>
                         Chuck Norris once kicked a baby elephant into puberty. Crop circles are Chuck Norris' way of telling the world that sometimes corn needs to lie the f*ck down.
@@ -144,28 +145,28 @@
                 </div>
 
             </div>
-            
 
-            
+
+
             <form action="#" class="ink-form column-group gutters">
                 <fieldset class="all-33 small-100 tiny-100">
                     <legend>Fieldset title</legend>
                     <div class="control-group">
-                        <label for="name">Name</label>
+                        <label for="name2">Name</label>
                         <div class="control">
-                            <input type="text" id="name">
+                            <input type="text" id="name2">
                         </div>
                     </div>
                     <div class="control-group">
-                        <label for="phone">Phone</label>
+                        <label for="phone2">Phone</label>
                         <div class="control">
-                            <input type="text" id="phone">
+                            <input type="text" id="phone2">
                         </div>
                     </div>
                     <div class="control-group">
-                        <label for="email">Email</label>
+                        <label for="email2">Email</label>
                         <div class="control">
-                            <input type="text" id="email">
+                            <input type="text" id="email2">
                         </div>
                     </div>
                 </fieldset>
@@ -175,15 +176,15 @@
                     <div class="control-group">
                         <p class="label">Please select one or more options</p>
                         <ul class="control unstyled">
-                            <li><input type="checkbox" id="cb4" name="cb4" value=""><label for="cb4">Chimaira</label></li>
-                            <li><input type="checkbox" id="cb3" name="cb3" value=""><label for="cb3">Metallica</label></li>
-                            <li><input type="checkbox" id="cb4" name="cb4" value=""><label for="cb4">Motörhead</label></li>
-                            <li><input type="checkbox" id="cb2" name="cb2" value=""><label for="cb2">Pantera</label></li>
-                            <li><input type="checkbox" id="cb1" name="cb1" value=""><label for="cb1">Slayer</label></li>
-                            <li><input type="checkbox" id="cb4" name="cb4" value=""><label for="cb4">Switchtense</label></li>
+                            <li><input type="checkbox" id="cb1" name="cb1" value=""><label for="cb1">Chimaira</label></li>
+                            <li><input type="checkbox" id="cb2" name="cb2" value=""><label for="cb2">Metallica</label></li>
+                            <li><input type="checkbox" id="cb3" name="cb3" value=""><label for="cb3">Motörhead</label></li>
+                            <li><input type="checkbox" id="cb4" name="cb4" value=""><label for="cb4">Pantera</label></li>
+                            <li><input type="checkbox" id="cb5" name="cb5" value=""><label for="cb5">Slayer</label></li>
+                            <li><input type="checkbox" id="cb6" name="cb6" value=""><label for="cb6">Switchtense</label></li>
                         </ul>
                     </div>
-                </fieldset>                     
+                </fieldset>
 
                 <fieldset class="all-33 small-100 tiny-100">
                     <legend>Pick a card</legend>
@@ -192,10 +193,10 @@
                         <ul class="control unstyled">
                             <li><input type="radio" id="rb1" name="rb" value=""><label for="rb1">Ace of Spades</label></li>
                             <li><input type="radio" id="rb2" name="rb" value=""><label for="rb2">Queen of Diamonds</label></li>
-                            <li><input type="radio" id="rb2" name="rb" value=""><label for="rb2">Queen of Spades</label></li>
-                            <li><input type="radio" id="rb3" name="rb" value=""><label for="rb3">Jack of Hearts</label></li>
-                            <li><input type="radio" id="rb4" name="rb" value=""><label for="rb4">King of Clubs</label></li>
-                            <li><input type="radio" id="rb4" name="rb" value=""><label for="rb4">King of Diamonds</label></li>
+                            <li><input type="radio" id="rb3" name="rb" value=""><label for="rb3">Queen of Spades</label></li>
+                            <li><input type="radio" id="rb4" name="rb" value=""><label for="rb4">Jack of Hearts</label></li>
+                            <li><input type="radio" id="rb5" name="rb" value=""><label for="rb5">King of Clubs</label></li>
+                            <li><input type="radio" id="rb6" name="rb" value=""><label for="rb6">King of Diamonds</label></li>
                         </ul>
                     </div>
                 </fieldset>
@@ -205,39 +206,39 @@
             <form action="#" class="ink-form">
                 <h4>Inline form with inline fields</h4>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla gravida lacus purus. Integer turpis enim, condimentum non pellentesque vel, consequat vitae diam. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. 
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla gravida lacus purus. Integer turpis enim, condimentum non pellentesque vel, consequat vitae diam. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
                 </p>
-                <fieldset class="column-group gutters vertical-space">
-                    
+                <div class="column-group gutters vertical-space">
+
                     <div class="control-group all-33 small-100 tiny-100">
                         <div class="column-group gutters">
-                            <label for="name" class="all-20 align-right">Name</label>
+                            <label for="name3" class="all-20 align-right">Name</label>
                             <div class="control all-80">
-                                <input type="text" id="name">
+                                <input type="text" id="name3">
                             </div>
-                            
+
                         </div>
                     </div>
 
                     <div class="control-group all-33 small-100 tiny-100">
                         <div class="column-group gutters">
-                            <label for="phone" class="all-20 align-right">Phone</label>
+                            <label for="phone3" class="all-20 align-right">Phone</label>
                             <div class="control all-80">
-                                <input type="text" id="phone">
+                                <input type="text" id="phone3">
                             </div>
                         </div>
                     </div>
 
                     <div class="control-group all-33 small-100 tiny-100">
                         <div class="column-group gutters">
-                            <label for="email" class="all-20 align-right">Email</label>
+                            <label for="email3" class="all-20 align-right">Email</label>
                             <div class="control all-80">
-                                <input type="text" id="email">
+                                <input type="text" id="email3">
                             </div>
                         </div>
                     </div>
-
-                </fieldset>
+                  </filedset>
+                </div>
             </form>
 
             <form action="#" class="ink-form">
@@ -247,21 +248,21 @@
                 </p>
                 <fieldset class="column-group gutters vertical-space">
                     <div class="control-group all-33 small-100 tiny-100">
-                        <label for="name">Name</label>
+                        <label for="name4">Name</label>
                         <div class="control">
-                            <input type="text" id="name">
+                            <input type="text" id="name4">
                         </div>
                     </div>
                     <div class="control-group all-33 small-100 tiny-100">
-                        <label for="phone">Phone</label>
+                        <label for="phone4">Phone</label>
                         <div class="control">
-                            <input type="text" id="phone">
+                            <input type="text" id="phone4">
                         </div>
                     </div>
                     <div class="control-group all-33 small-100 tiny-100">
-                        <label for="email">Email</label>
+                        <label for="email4">Email</label>
                         <div class="control">
-                            <input type="text" id="email">
+                            <input type="text" id="email4">
                         </div>
                     </div>
                 </fieldset>
@@ -270,53 +271,48 @@
             <form action="#" class="ink-form">
                 <h4>Appended and prepended buttons and symbols</h4>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla gravida lacus purus. Integer turpis enim, condimentum non pellentesque vel, consequat vitae diam. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. 
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla gravida lacus purus. Integer turpis enim, condimentum non pellentesque vel, consequat vitae diam. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
                 </p>
-                <fieldset class="column-group gutters vertical-space">
-                    
+              <fieldset>
+                <div class="column-group gutters vertical-space">
                     <div class="control-group all-50 small-100 tiny-100">
                         <div class="column-group gutters">
-                            <label for="name" class="all-20 align-right">Name</label>
-                            <div class="control all-80 append-button">
-                                <span><input type="text" id="name"></span>
+                            <div class="control all-100 small-100 tiny-100 append-button">
+                                <span><input type="text" id="name5"></span>
                                 <button class="ink-button"><i class="icon-search"></i> Search</button>
                             </div>
-                            
                         </div>
                         <div class="column-group gutters">
-                            <label for="phone" class="all-20 align-right">Phone</label>
-                            <div class="control all-80 prepend-button">
+                            <div class="control all-100 small-100 tiny-100 prepend-button">
                                 <input type="submit" value="Search" class="ink-button">
-                                <span><input type="text" id="phone"></span>
+                                <span><input type="text" id="phone5"></span>
                             </div>
                         </div>
                     </div>
 
                     <div class="control-group all-50 small-100 tiny-100">
                         <div class="column-group gutters">
-                            <label for="email" class="all-20 align-right">Email</label>
-                            <div class="control all-80 append-symbol">
+                            <div class="control all-100 small-100 tiny-100 append-symbol">
                                 <span>
-                                    <input type="text" id="email">
+                                    <input type="text" id="email5">
                                     <i class="fa fa-envelope-o"></i>
                                 </span>
-                                
+
                             </div>
                         </div>
                         <div class="column-group gutters">
-                            <label for="email" class="all-20 align-right">Email</label>
-                            <div class="control all-80 prepend-symbol">
+                            <div class="control all-100 small-100 tiny-100 prepend-symbol">
                                 <span>
-                                    <input type="text" id="email">
+                                    <input type="text" id="email6">
                                     <i class="fa fa-envelope-o"></i>
                                 </span>
                             </div>
                         </div>
                     </div>
-
-                </fieldset>
+                </div>
+              </fieldset>
             </form>
-        
+
         </div>
 
         <footer class="clearfix">

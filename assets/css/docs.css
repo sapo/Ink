@@ -155,6 +155,7 @@ a, .ink-button {
   color: #bbbbbb;
   border: none;
   padding: .8em .8em .8em 0;
+  float: left;
 }
 #topbar .ink-navigation ul.black li button.fa-bars:hover, #topbar .ink-navigation ul.black li button.fa-bars:active, #topbar .ink-navigation ul.black li button.fa-bars:focus {
   color: white;
