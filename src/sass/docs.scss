@@ -22,41 +22,21 @@ $code-border        : darken($code-background,8%);
 $teal               : #009999;
 $code-font-size     : .85em;
 
-
-.fw-100 { font-weight: 100; font-family: Roboto; }
-.fw-300 { font-weight: 300; font-family: Roboto; }
-.fw-400 { font-weight: 400; font-family: Roboto; }
-.fw-500 { font-weight: 500; font-family: Roboto; }
-.fw-700 { font-weight: 700; font-family: Roboto; }
-.fw-900 { font-weight: 900; font-family: Roboto; }
-
-.condensed-300 { font-weight: 200; font-family: Roboto_condensed; }
-.condensed-400 { font-weight: 400; font-family: Roboto_condensed; }
-.condensed-700 { font-weight: 700; font-family: Roboto_condensed; }
-
-.slab-100 { font-weight: 100; font-family: Roboto_slab; }
-.slab-300 { font-weight: 300; font-family: Roboto_slab; }
-.slab-400 { font-weight: 400; font-family: Roboto_slab; }
-.slab-700 { font-weight: 700; font-family: Roboto_slab; }
-
-.italic { font-style: italic; }
-.uppercase { text-transform: uppercase; }
-
 a.hover {
-color: $link-hover-color;
-text-decoration: underline;
+    color: $link-hover-color;
+    text-decoration: underline;
 }
 
 a.active {
-color: $link-active-color;
+    color: $link-active-color;
 }
 
 a.visited {
-color: $link-visited-color;
+    color: $link-visited-color;
 }
 
 a, .ink-button {
-  @include transition(compact(all 140ms ease-in-out));
+    @include transition(compact(all 140ms ease-in-out));
 }
 
 #topbar {
@@ -121,6 +101,7 @@ a, .ink-button {
                         color: $topbar-color;
                         border: none;
                         padding: .8em .8em .8em 0;
+                        float: left;
 
                         &:hover, &:active, &:focus {
                             color: $topbar-colorHover;
