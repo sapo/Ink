@@ -5,7 +5,10 @@ Ink.requireModules(['Ink.Dom.FormSerialize_1', 'Ink.Dom.Selector_1'], function (
         document.body.appendChild(form)
         return form
     }
-    test('Testing serialize()', function () {
+
+    module('serialize()');
+
+    test('Example in docs', function () {
         var form = mkForm()
         form.textfield.value = 'foo'
         form.radio[1].checked = true
@@ -19,7 +22,63 @@ Ink.requireModules(['Ink.Dom.FormSerialize_1', 'Ink.Dom.Selector_1'], function (
         document.body.removeChild(form)
     })
 
-    test('testing fillIn', function () {
+    test('Multiple input[type="text"] with name ending in "[]"', function () {
+        var form = document.createElement('form');
+        form.innerHTML = '<input type="text" value="bar" name="foo[]">' +
+            '<input type="text" value="bar" name="foo[]">';
+
+        deepEqual(FormSerialize.serialize(form), {
+            foo: ['bar', 'bar']
+        })
+    })
+
+    test('Serializing <option>s', function () {
+        var form = document.createElement('form');
+        form.innerHTML = [
+            '<select name="number">',
+            '<option value="1" selected="selected">one</option>',
+            '<option value="2">two</option>',
+            '</select>'].join('\n');
+        deepEqual(FormSerialize.serialize(form), {
+            number: '1'
+        });
+    });
+
+    test('Serializing <option multiple>s', function () {
+        var form = document.createElement('form');
+        form.innerHTML = [
+            '<select name="numbers" multiple="multiple">',
+            '<option value="1" selected="selected">one</option>',
+            '<option value="2">two</option>',
+            '<option value="3" selected="selected">three</option>',
+            '</select>'].join('\n');
+        deepEqual(FormSerialize.serialize(form), {
+            numbers: ['1', '3']
+        });
+
+        form = document.createElement('form');
+        form.innerHTML = [
+            '<select name="numbers" multiple="multiple">',
+            '<option value="1">one</option>',
+            '<option value="2">two</option>',
+            '<option value="3" selected="selected">three</option>',
+            '</select>'].join('\n');
+        deepEqual(FormSerialize.serialize(form), {
+            numbers: ['3']
+        });
+    });
+
+    test('serializing <textarea>s', function () {
+        var form = document.createElement('form')
+        form.innerHTML = '<textarea name="foo">bar</textarea>'
+        deepEqual(FormSerialize.serialize(form), { foo: 'bar' })
+    })
+
+    // TODO Ink.warn() is called when multiple elements share same name and using serialize(), advises to use asPairs
+
+    module('fillIn()');
+
+    test('example in docs', function () {
         var form = mkForm();
         var toFillForm = {
             textfield: 'foobar',
@@ -34,6 +93,29 @@ Ink.requireModules(['Ink.Dom.FormSerialize_1', 'Ink.Dom.Selector_1'], function (
         equal(form['check[]'][1].checked, false)
         document.body.removeChild(form)
     });
+
+    test('Filling in <select>s', function () {
+        var form = document.createElement('form')
+        form.innerHTML = '<select name="sel">' +
+            '<option value="1"></option>' +
+            '<option value="2"></option>' +
+            '</select>'
+
+        FormSerialize.fillIn(form, { sel: '1' });
+        equal(form['sel'].children[0].selected, true)
+
+        form.sel.setAttribute('multiple', 'multiple');
+        FormSerialize.fillIn(form, { sel: ['1', '2'] })
+        equal(form['sel'].children[0].selected, true)
+        equal(form['sel'].children[1].selected, true)
+
+        form.sel.setAttribute('multiple', 'multiple');
+        FormSerialize.fillIn(form, { sel: ['1'] })
+        equal(form['sel'].children[0].selected, true)
+        equal(form['sel'].children[1].selected, false)
+    });
+
+    module('pairs');
 
     function mkMultiValueForm() {
         var form = mkForm('.test-form-template-multival')
@@ -57,8 +139,6 @@ Ink.requireModules(['Ink.Dom.FormSerialize_1', 'Ink.Dom.Selector_1'], function (
 
     test('asPairs()', function () {
         var form = mkMultiValueForm();
-        equal(typeof FormSerialize.asPairs(form), 'object')
-        ok(FormSerialize.asPairs(form).length)
         deepEqual(FormSerialize.asPairs(form), [
             ['textfield', 'foo'],
             ['textfield', 'foo'],

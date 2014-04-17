@@ -209,6 +209,7 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, [], function () {
                         if (fieldInputs.length > 1) {
                             Ink.warn('FormSerialize - Got multiple input elements with same name!'); 
                         }
+
                         if (type !== 'file') {
                             fieldInputs[0].value = fieldValues;
                         }
