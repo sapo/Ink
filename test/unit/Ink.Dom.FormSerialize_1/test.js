@@ -1,7 +1,7 @@
-Ink.requireModules(['Ink.Dom.FormSerialize_1'], function (FormSerialize) {
+Ink.requireModules(['Ink.Dom.FormSerialize_1', 'Ink.Dom.Selector_1'], function (FormSerialize, Selector) {
     function mkForm(whatForm) {
         var form = document.createElement('form')
-        form.innerHTML = document.getElementsByClassName(whatForm || 'test-form-template')[0].innerHTML
+        form.innerHTML = Ink.ss(whatForm || '.test-form-template')[0].innerHTML;
         document.body.appendChild(form)
         return form
     }
@@ -35,27 +35,28 @@ Ink.requireModules(['Ink.Dom.FormSerialize_1'], function (FormSerialize) {
         document.body.removeChild(form)
     });
 
-    test('_getInputs()', function () {
-        var form = mkForm('test-form-template-multival')
+    function mkMultiValueForm() {
+        var form = mkForm('.test-form-template-multival')
         form.textfield[0].value = 'foo'
         form.textfield[1].value = 'foo'
         form.radio[1].checked = true
         form['check[]'][1].checked = true
+        return form;
+    }
+
+    test('_getInputs()', function () {
+        var form = mkMultiValueForm();
         deepEqual(FormSerialize._getInputs(form), [
             form.textfield[0],
             form.textfield[1],
             form.radio[1],
-            form['check[]'][1],
+            form['check[]'][1]
         ])
         document.body.removeChild(form)
     })
 
     test('asPairs()', function () {
-        var form = mkForm('test-form-template-multival')
-        form.textfield[0].value = 'foo'
-        form.textfield[1].value = 'foo'
-        form.radio[1].checked = true
-        form['check[]'][1].checked = true
+        var form = mkMultiValueForm();
         equal(typeof FormSerialize.asPairs(form), 'object')
         ok(FormSerialize.asPairs(form).length)
         deepEqual(FormSerialize.asPairs(form), [

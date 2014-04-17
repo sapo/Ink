@@ -29,13 +29,9 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, [], function () {
             var map = this._getFieldNameInputsMap(form);
 
             var map2 = {};
-            for (var k in map) if (map.hasOwnProperty(k)) {
-                if(k !== null) {
-                    var tmpK = k.replace(/\[\]$/, '');
-                    map2[tmpK] = this._getValuesOfField( map[k] );
-                } else {
-                    map2[k] = this._getValuesOfField( map[k] );
-                }
+            for (var k in map) if (k && map.hasOwnProperty(k)) {
+                var tmpK = k.replace(/\[\]$/, '');
+                map2[tmpK] = this._getValuesOfField( map[k] );
             }
 
             return map2;
