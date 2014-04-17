@@ -46,7 +46,6 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, [], function () {
                 var inputs = this._getInputs(form);
                 var out = [];
                 for (var i = 0, len = inputs.length; i < len; i++) {
-                    if (inputs[i].checked === false) { continue; }
                     out.push([inputs[i].name, inputs[i].value])
                 }
                 return out;
@@ -106,15 +105,10 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, [], function () {
                 }
 
                 if (name !== 'null') {
-                    var infoObj = {
-                        name: el.name,
-                        value: el.value,
-                        el: formEl.elements[i],
-                        checked: /(checkbox|radio)/i.test(el.type) ?
-                            el.checked :
-                            undefined
+                    if (el.type === 'checkbox' || el.type === 'radio') {
+                        if (el.checked === false) { continue; }
                     }
-                    out.push(infoObj);
+                    out.push(el);
                 }
             }
             return out;
@@ -127,8 +121,7 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, [], function () {
             var i, f, j, o, el, m, res = [];
 
             switch(nodeName) {
-                case 'select'
-:
+                case 'select':
                     for (i = 0, f = fieldInputs.length; i < f; ++i) {
                         res[i] = [];
                         m = fieldInputs[i].getAttribute('multiple');

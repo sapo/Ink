@@ -40,15 +40,12 @@ Ink.requireModules(['Ink.Dom.FormSerialize_1'], function (FormSerialize) {
         form.textfield[0].value = 'foo'
         form.textfield[1].value = 'foo'
         form.radio[1].checked = true
-        form['check[]'][0].checked = true
         form['check[]'][1].checked = true
         deepEqual(FormSerialize._getInputs(form), [
-            { name: 'textfield', value: 'foo', el: form.textfield[0], checked: undefined },
-            { name: 'textfield', value: 'foo', el: form.textfield[1], checked: undefined },
-            { name: 'radio', value: '1', el: form.radio[0], checked: false },
-            { name: 'radio', value: '2', el: form.radio[1], checked: true },
-            { name: 'check[]', value: '1', el: form['check[]'][0], checked: true },
-            { name: 'check[]', value: '2', el: form['check[]'][1], checked: true }
+            form.textfield[0],
+            form.textfield[1],
+            form.radio[1],
+            form['check[]'][1],
         ])
         document.body.removeChild(form)
     })
@@ -69,4 +66,6 @@ Ink.requireModules(['Ink.Dom.FormSerialize_1'], function (FormSerialize) {
         ])
         document.body.removeChild(form)
     })
+
+    // TODO fillIn works with pairs
 })
