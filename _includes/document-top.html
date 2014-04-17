@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script type="text/javascript" src="{{ site.js_path }}modernizr.js"></script>
+    <script type="text/javascript" src="{{ site.cdn_url }}{{ site.version }}/js/modernizr.js"></script>
     <script type="text/javascript">
         Modernizr.load({
           test: Modernizr.flexbox,
           nope : '{{ site.css_path }}ink-legacy.min.css'
         });
-    </script>  
-    <link rel="stylesheet" type="text/css" href="{{ site.css_path }}ink-flex.min.css">
-    <link rel="stylesheet" type="text/css" href="{{ site.css_path }}font-awesome.min.css">
+    </script>
+    <link rel="stylesheet" type="text/css" href="{{ site.cdn_url }}{{ site.version }}/css/ink-flex.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ site.cdn_url }}{{ site.version }}/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="{{ site.css_path }}docs.min.css">
 
     <meta charset="utf-8">
@@ -46,12 +46,12 @@
     <link rel="apple-tousplash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
 
     <!-- Load Documentation site CSS -->
-    
+
     <!--[if lt IE 9 ]>
         <link rel="stylesheet" href="{{ site.css_path }}ink-ie.min.css" type="text/css" media="screen" title="no title" charset="utf-8">
     <![endif]-->
 
-    <script type="text/javascript" src="{{ site.js_path }}ink-all.min.js"></script>
+    <script type="text/javascript" src="{{ site.cdn_url }}{{ site.version }}/js/ink-all.min.js"></script>
 </head>
 <body class="ink-drawer">
 <div id="fb-root"></div>
