@@ -6,6 +6,8 @@ branches:
     - master
     - staging
     - develop
+    - gh-pages
+    - neo-pages
 before_script:
   - gem install compass
   - npm install -g grunt-cli
