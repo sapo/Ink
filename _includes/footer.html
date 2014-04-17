@@ -2,94 +2,90 @@
 
     <div class="ink-grid half-top-space">
 
-        <div class="column-group gutters">
-
-            <div class="xlarge-70 large-70 medium-100 small-100 tiny-100">
-
-                <nav class="ink-navigation">
-                    <ul class="menu horizontal">
-                        <li><a href="{{ site.url }}changelog/">Changelog</a></li>
-                        <li>Ink's code is licensed under <a class="license" rel="license" href="http://opensource.org/licenses/MIT">MIT</a>, documentation under <a class="license" rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/">cc-by-nc</a></li>
-                    </ul>
-                </nav>
-
-                <div class="socialplugins half-top-space">
-                    <div class="half-bottom-space">
-                        <a href="https://twitter.com/share" class="twitter-share-button" data-via="inksapo">Tweet</a>
-                        {% if site.environment == 'production' %}<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>{% endif %}
-                        <a href="https://twitter.com/inksapo" class="twitter-follow-button" data-show-count="false">Follow @inksapo</a>
-                        {% if site.environment == 'production' %}<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>{% endif %}
-                    </div>
-                    <!--<div class="fb-like hide-tiny hide-small" data-href="https://www.facebook.com/inksapo" data-layout="standard" data-action="like" data-share="true" data-show-faces="false"></div>
-                    <div class="fb-like _hide-all _show-tiny _show-small" data-href="https://facebook.com/inksapo" data-layout="button_count" data-action="like" data-share="true" data-show-faces="false"></div>-->
-                    <div class="fb-like" data-href="https://facebook.com/inksapo/" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
+        <ul class="unstyled inline fw-300 align-center">
+            <li><a href="{{ site.url }}changelog/">Changelog</a></li>
+            <li>Ink's code is licensed under <a class="license" rel="license" href="http://opensource.org/licenses/MIT">MIT</a>, documentation under <a class="license" rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/">cc-by-nc</a></li>
+        </ul>
+        
+        <div class="credits">
+            <h3 class="slab align-center no-margin">Ink is built with:</h3>
+            <ul class="unstyled inline align-center">
+                <li>
+                    <a class="uppercase" href="http://sass-lang.com/">SASS</a><br>
+                    <small>(<a href="http://opensource.org/licenses/MIT">MIT License</a>)</small>
+                </li>
+                <li class="separator"></li>
+                <li>
+                    <a class="uppercase" href="http://compass-style.org/">Compass</a><br>
+                    <small>(<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/us/">cc-by-3.0</a>)</small>
+                </li>
+                <li class="separator"></li>
+                <li>
+                    <a class="uppercase" href="http://necolas.github.io/normalize.css/">normalize.css</a><br>
+                    <small>(<a href="https://github.com/necolas/normalize.css/blob/master/LICENSE.md">normalize license</a>)</small>
+                </li>
+                <li class="separator"></li>
+                <li>
+                    <a class="uppercase" href="http://fortawesome.github.io/Font-Awesome/">FontAwesome</a><br>
+                    <small>(<a href="http://creativecommons.org/licenses/by/3.0/">cc-by-3.0</a>)</small>
+                </li>
+                <li class="separator"></li>
+                <li>
+                    <a class="uppercase" href="http://modernizr.com/">Modernizr</a><br>
+                    <small>(<a href="http://opensource.org/licenses/MIT">MIT License</a>)</small>
+                </li>
+                <li class="separator"></li>
+                <li>
+                    <a class="uppercase" href="http://nodejs.org/">Node.js</a><br>
+                    <small>(<a href="http://opensource.org/licenses/MIT">MIT License</a>)</small>
+                </li>
+                <li class="separator"></li>
+                <li>
+                    <a class="uppercase" href="http://gruntjs.com/">Grunt</a><br>
+                    <small>(<a href="http://opensource.org/licenses/MIT">MIT License</a>)</small>
+                </li>
+                <li class="separator"></li>
+                <li>
+                    <a class="uppercase" href="http://bower.io/">Bower</a><br>
+                    <small>(<a href="http://opensource.org/licenses/MIT">MIT License</a>)</small>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="align-center socialplugins top-space">
+            
+            <h4 class="slab">Follow Ink</h4>
+            <div class="column-group horizontal-gutters tiny-vertical-gutters">
+                <div class="all-33 tiny-100 align-center">
+                    <a href="https://twitter.com/share" class="twitter-share-button" data-via="inksapo">Tweet</a>
+                    {% if site.environment == 'production' %}<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>{% endif %}
+                    <a href="https://twitter.com/inksapo" class="twitter-follow-button" data-show-count="false">Follow @inksapo</a>
+                    {% if site.environment == 'production' %}<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>{% endif %}
                 </div>
-
-                <div class="copyright top-space column-group gutters">
-
-                    <div class="all-25 small-30 tiny-100"><a class="SAPOlogo" href="http://www.sapo.pt">sapo.pt</a></div>
-                    <div class="all-75 small-70 tiny-100">
-                        <a class="PTClogo" href="http://www.telecom.pt">
-                            <small>
-                                PTC - All rights reserved.<br>
-                                SAPO is a trademark and a search engine created at the University of Aveiro.
-                            </small>
-                        </a>
-                    </div>
-
+                <div class="fb-like all-33 tiny-100 align-center" data-href="https://facebook.com/inksapo/" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
+                <div class="all-33 align-center tiny-100">
+                    <iframe src="http://ghbtns.com/github-btn.html?user=sapo&repo=Ink&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"></iframe>
+                    <iframe src="http://ghbtns.com/github-btn.html?user=sapo&repo=Ink&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"></iframe>
                 </div>
             </div>
+        </div>
 
+        <div class="copyright top-space column-group gutters">
 
-            <div class="xlarge-30 large-30 medium-100 small-100 tiny-100">
-
-                <h3 class="quarter-vertical-space">Ink is built with:</h3>
-
-                <div class="column-group horizontal-gutters">
-
-                    <ul class="unstyled credits all-50">
-                        <li>
-                            <a href="http://sass-lang.com/">SASS</a><br>
-                            <small>(<a href="http://opensource.org/licenses/MIT">MIT License</a>)</small>
-                        </li>
-                        <li>
-                            <a href="http://compass-style.org/">Compass</a><br>
-                            <small>(<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/us/">cc-by-3.0</a>)</small>
-                        </li>
-                        <li>
-                            <a href="http://necolas.github.io/normalize.css/">normalize.css</a><br>
-                            <small>(<a href="https://github.com/necolas/normalize.css/blob/master/LICENSE.md">normalize license</a>)</small>
-                        </li>
-                        <li>
-                            <a href="http://fortawesome.github.io/Font-Awesome/">FontAwesome</a><br>
-                            <small>(<a href="http://creativecommons.org/licenses/by/3.0/">cc-by-3.0</a>)</small>
-                        </li>
-                    </ul>
-
-                    <ul class="unstyled credits all-50">
-                        <li>
-                            <a href="http://modernizr.com/">Modernizr</a><br>
-                            <small>(<a href="http://opensource.org/licenses/MIT">MIT License</a>)</small>
-                        </li>
-                        <li>
-                            <a href="http://nodejs.org/">Node.js</a><br>
-                            <small>(<a href="http://opensource.org/licenses/MIT">MIT License</a>)</small>
-                        </li>
-                        <li>
-                            <a href="http://gruntjs.com/">Grunt</a><br>
-                            <small>(<a href="http://opensource.org/licenses/MIT">MIT License</a>)</small>
-                        </li>
-                        <li>
-                            <a href="http://bower.io/">Bower</a><br>
-                            <small>(<a href="http://opensource.org/licenses/MIT">MIT License</a>)</small>
-                        </li>
-                    </ul>
-
-                </div>
-
+            <div class="all-50 small-100 tiny-100">
+                <a class="PTClogo" href="http://www.telecom.pt">
+                    <small>
+                        PTC - All rights reserved.<br>
+                        SAPO is a trademark and a search engine created at the University of Aveiro.
+                    </small>
+                </a>
+            </div>
+            <div class="all-50 small-100 tiny-100 xlarge-align-right large-align-right medium-align-right">
+                <a class="SAPOlogo" href="http://www.sapo.pt">sapo.pt</a>
             </div>
 
         </div>
+
     </div>
 
 </footer>
