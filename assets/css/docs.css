@@ -3,7 +3,7 @@
 }
 
 .fw-300, ul.props li.prop.breakpoint-aware:after, .example .ink-grid .column,
-html.flexbox .example .ink-grid .column, footer .credits, #home section.download a.ink-button.download,
+html.flexbox .example .ink-grid .column, footer .credits, .copyright .PTClogo small, #home section.download a.ink-button.download,
 #home section.download a.ink-button.repo, .example-box, .fw-thin {
   font-weight: 300;
 }
@@ -999,7 +999,7 @@ footer .socialplugins .fb-like span {
 .copyright .SAPOlogo {
   background: url("../img/SAPOlogo.png") no-repeat;
   text-indent: -9999px;
-  color: transparent;
+  color: transparent !important;
   display: inline-block;
   width: 101px;
   min-height: 43px;
