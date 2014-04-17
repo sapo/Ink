@@ -3,6 +3,8 @@ node_js:
   - "0.10.x"
 branches:
   only:
+    - staging
+    - develop
     - gh-pages
 before_script:
   - npm install -g grunt-cli
