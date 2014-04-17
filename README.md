@@ -5,6 +5,7 @@ Ink is an interface kit for quick development of web interfaces, simple to use a
 Ink is part of [SAPOs Open Source Software initiative](http://oss.sapo.pt).
 
 ## Current Version: 3.0.0
+[![Build Status](https://travis-ci.org/sapo/Ink.svg?branch=staging)](https://travis-ci.org/sapo/Ink)
 
 You can read our full documentation, examples and recipes in http://ink.sapo.pt
 
