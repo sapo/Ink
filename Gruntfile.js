@@ -102,14 +102,26 @@ module.exports = function(grunt) {
     },
 
     shell: {
-        inkdoc: {
-            options: {
-                stdout: true,
-                stderr: true,
-                failOnError: true
-            },
-            command: './node_modules/inkdoc/bin/inkdoc'
-        }
+      src: {
+        options: {
+          stdout: true,
+          stderr: true,
+          failOnError: true
+        },
+        command: 'rm -rf develop.zip Ink-develop src/js;' +
+          'wget https://github.com/sapo/Ink/archive/develop.zip;' +
+          'unzip develop;' +
+          'mv Ink-develop/src/js src/;' +
+          'rm -rf Ink-develop develop.zip'
+      },
+      inkdoc: {
+          options: {
+              stdout: true,
+              stderr: true,
+              failOnError: true
+          },
+          command: './node_modules/inkdoc/bin/inkdoc'
+      }
     },
 
     copy: {
@@ -147,7 +159,7 @@ module.exports = function(grunt) {
           port: 4000,
         }
       },
-      devNoServe: {
+      build: {
         options: {
           config: '_config.yml,_config.dev.yml',
         }
@@ -171,7 +183,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   // Default task(s).
-  grunt.registerTask('default', ['css']);
+  grunt.registerTask('default', ['css','update','inkdoc','jekyll:build']);
+  grunt.registerTask('update', ['shell:src']);
   grunt.registerTask('docs', ['inkdoc','jekyll']);
   grunt.registerTask('dev', ['watch']);
   grunt.registerTask('inkdoc', ['shell:inkdoc', 'copy:inkdoc', 'clean:inkdoc']);
