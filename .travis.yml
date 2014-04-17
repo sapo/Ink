@@ -10,5 +10,6 @@ branches:
     - neo-pages
 before_script:
   - gem install compass
+  - gem install jekyll
   - npm install -g grunt-cli
 script: "grunt --verbose"
