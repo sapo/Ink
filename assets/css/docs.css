@@ -1,68 +1,82 @@
-.fw-100 {
+.fw-100, .fw-light {
   font-weight: 100;
-  font-family: Roboto;
 }
 
 .fw-300, ul.props li.prop.breakpoint-aware:after, .example .ink-grid .column,
 html.flexbox .example .ink-grid .column, #home section.download a.ink-button.download,
-#home section.download a.ink-button.repo, .example-box {
+#home section.download a.ink-button.repo, .example-box, .fw-thin {
   font-weight: 300;
-  font-family: Roboto;
 }
 
-.fw-400, .sidebar.ink-navigation ul.menu.vertical li.heading ul a {
+.fw-400, .sidebar.ink-navigation ul.menu.vertical li.heading ul a, .fw-regular {
   font-weight: 400;
-  font-family: Roboto;
 }
 
-.fw-500, .sidebar.ink-navigation ul.menu.vertical li.heading {
+.fw-500, .sidebar.ink-navigation ul.menu.vertical li.heading, .fw-medium {
   font-weight: 500;
-  font-family: Roboto;
 }
 
-.fw-700, .mosaic .title, ul.props li.heading {
+.fw-700, .mosaic .title, ul.props li.heading, .fw-bold {
   font-weight: 700;
-  font-family: Roboto;
 }
 
-.fw-900 {
+.fw-900, .fw-black {
   font-weight: 900;
-  font-family: Roboto;
 }
 
-.condensed-300 {
+.condensed-300, .condensed-thin {
   font-weight: 200;
-  font-family: Roboto_condensed;
+  font-family: Roboto_condensed, Arial, Helvetica, sans-serif;
 }
 
-.condensed-400 {
+.condensed-400, .condensed-regular {
   font-weight: 400;
-  font-family: Roboto_condensed;
+  font-family: Roboto_condensed, Arial, Helvetica, sans-serif;
 }
 
-.condensed-700 {
+.condensed-700, .condensed-bold {
   font-weight: 700;
-  font-family: Roboto_condensed;
+  font-family: Roboto_condensed, Arial, Helvetica, sans-serif;
 }
 
-.slab-100 {
+.slab-100, .slab-light {
   font-weight: 100;
-  font-family: Roboto_slab;
+  font-family: Roboto_slab, Arial, Helvetica, sans-serif;
 }
 
-.slab-300 {
+.slab-300, .slab-thin {
   font-weight: 300;
-  font-family: Roboto_slab;
+  font-family: Roboto_slab, Arial, Helvetica, sans-serif;
 }
 
-.slab-400, ul.props li.prop {
+.slab-400, ul.props li.prop, .slab-regular {
   font-weight: 400;
-  font-family: Roboto_slab;
+  font-family: Roboto_slab, Arial, Helvetica, sans-serif;
 }
 
-.slab-700 {
+.slab-700, .slab-bold {
   font-weight: 700;
-  font-family: Roboto_slab;
+  font-family: Roboto_slab, Arial, Helvetica, sans-serif;
+}
+
+.sans {
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
+}
+
+.serif {
+  font-family: Times, "Times New Roman", serif;
+}
+
+.monospace {
+  font-family: Monaco, "Andale Mono", "Courier New", monospace;
+}
+
+.condensed {
+  font-family: Roboto_condensed, Arial, Helvetica, sans-serif;
+}
+
+.slab {
+  font-family: Roboto_slab, Arial, Helvetica, sans-serif;
 }
 
 .italic {
@@ -72,6 +86,14 @@ html.flexbox .example .ink-grid .column, #home section.download a.ink-button.dow
 .uppercase, .mosaic .title, .example .ink-grid .column,
 html.flexbox .example .ink-grid .column {
   text-transform: uppercase;
+}
+
+.lowercase {
+  text-transform: lowercase;
+}
+
+.capitalizer {
+  text-transform: capitalize;
 }
 
 a.hover {
@@ -131,9 +153,6 @@ a, .ink-button {
   margin: 5px 1em;
   font-size: .875em;
   -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
   border-radius: 2px;
 }
 #topbar .ink-navigation ul.black li a.ink-button:hover {
@@ -190,12 +209,9 @@ a, .ink-button {
 }
 .sidebar.ink-navigation ul.menu.vertical li.search input[type=search] {
   -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
   border-radius: 2px;
-  -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   padding: .4em .6em .4em 1.9em;
   width: 100%;
@@ -218,12 +234,9 @@ a, .ink-button {
 
 .panel {
   -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
   border-radius: 2px;
-  -webkit-box-shadow: #dddddd 0 1px 1px 0;
   -moz-box-shadow: #dddddd 0 1px 1px 0;
+  -webkit-box-shadow: #dddddd 0 1px 1px 0;
   box-shadow: #dddddd 0 1px 1px 0;
   padding: 1em;
   border: 1px solid #BBB;
@@ -254,12 +267,9 @@ body.ink-drawer .right-drawer li.search {
 body.ink-drawer .left-drawer li.search input[type=search],
 body.ink-drawer .right-drawer li.search input[type=search] {
   -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
   border-radius: 2px;
-  -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   padding: .4em .6em .4em 1.9em;
   width: 100%;
@@ -330,9 +340,6 @@ body.ink-drawer .right-drawer li:last-child {
   padding: 1em;
   border: 1px solid #d9d9d9;
   -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
   border-radius: 2px;
 }
 .mosaic .title {
@@ -357,9 +364,6 @@ body.ink-drawer .right-drawer li:last-child {
   background: #eeebe5;
   margin-bottom: 1.5em;
   -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
   border-radius: 2px;
 }
 
@@ -749,9 +753,6 @@ table.props {
   border-collapse: initial;
   background: #eeebe5;
   -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
   border-radius: 2px;
   margin: 1.5em 0;
 }
@@ -833,9 +834,6 @@ span.label + span.label {
 span.label:after {
   padding: 0 .35em;
   -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
   border-radius: 2px;
   color: white;
   text-transform: uppercase;
@@ -918,9 +916,6 @@ html.flexbox .example {
   padding: 1em;
   background: #eeebe5;
   -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
   border-radius: 2px;
   margin-bottom: 1.5em;
 }
@@ -972,9 +967,6 @@ footer .socialplugins {
   padding: 1em;
   border: 1px solid #afafaf;
   -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
   border-radius: 2px;
 }
 footer .copyright .SAPOlogo {
@@ -1220,9 +1212,6 @@ p.loader.show {
   padding: 1em;
   background: #eeebe5;
   -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
   border-radius: 2px;
   margin-bottom: 1.5em;
 }
@@ -1273,9 +1262,6 @@ p.loader.show {
   padding: 1em;
   color: white;
   -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
   border-radius: 2px;
 }
 #myToggledLabel.green {
