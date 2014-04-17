@@ -38,10 +38,20 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, [], function () {
                 }
             }
 
-            delete map2['null'];    // this can occur. if so, delete it...
             return map2;
         },
 
+        asPairs: function (form) {
+            if ((form = Ink.i(form))) {
+                var inputs = this._getInputs(form);
+                var out = [];
+                for (var i = 0, len = inputs.length; i < len; i++) {
+                    if (inputs[i].checked === false) { continue; }
+                    out.push([inputs[i].name, inputs[i].value])
+                }
+                return out;
+            }
+        },
 
 
 
@@ -58,7 +68,6 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, [], function () {
         fillIn: function(form, map2) {
             form = Ink.i(form);
             var map = this._getFieldNameInputsMap(form);
-            delete map['null']; // this can occur. if so, delete it...
 
             for (var k in map2) if (map2.hasOwnProperty(k)) {
                 this._setValuesOfField( map[k], map2[k] );
@@ -81,10 +90,35 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, [], function () {
                     map[name].push(el);
                 }
             }
+            delete map['null']
             return map;
         },
 
 
+        _getInputs: function(formEl) {
+            var name, nodeName, el, out = [];
+            for (var i = 0, f = formEl.elements.length; i < f; ++i) {
+                el = formEl.elements[i];
+                name = el.getAttribute('name');
+                nodeName = el.nodeName.toLowerCase();
+                if (!name || nodeName === 'fieldset') {
+                    continue;
+                }
+
+                if (name !== 'null') {
+                    var infoObj = {
+                        name: el.name,
+                        value: el.value,
+                        el: formEl.elements[i],
+                        checked: /(checkbox|radio)/i.test(el.type) ?
+                            el.checked :
+                            undefined
+                    }
+                    out.push(infoObj);
+                }
+            }
+            return out;
+        },
 
         _getValuesOfField: function(fieldInputs) {
             var nodeName = fieldInputs[0].nodeName.toLowerCase();
@@ -93,7 +127,8 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, [], function () {
             var i, f, j, o, el, m, res = [];
 
             switch(nodeName) {
-                case 'select':
+                case 'select'
+:
                     for (i = 0, f = fieldInputs.length; i < f; ++i) {
                         res[i] = [];
                         m = fieldInputs[i].getAttribute('multiple');
