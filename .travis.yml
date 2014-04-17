@@ -1,9 +1,9 @@
 language: node_js
 node_js:
-  - "0.8.x"
+  - "0.10.x"
 branches:
   only:
     - gh-pages
 before_script:
   - npm install -g grunt-cli
-script: grunt
+script: "grunt --verbose"
