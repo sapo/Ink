@@ -975,7 +975,7 @@ footer .credits li.separator {
   height: .4em;
   width: .4em;
   padding: 0;
-  margin: 0 1.2em;
+  margin: 0 1em;
   border: none;
   display: inline-block;
   vertical-align: middle;
@@ -1004,7 +1004,7 @@ footer .socialplugins .fb-like span {
   min-height: 43px;
 }
 .copyright .PTClogo {
-  background: url("../img/logoPT.png") no-repeat 0 top;
+  background: url("../img/PTlogo.png") no-repeat 0 top;
   display: block;
   min-height: 43px;
   padding-left: 60px;
@@ -1305,5 +1305,6 @@ ul.params li.level3 {
 
   footer .credits li {
     display: block;
+    margin: 0;
   }
 }
