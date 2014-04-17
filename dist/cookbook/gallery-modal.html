@@ -10,9 +10,9 @@
         <meta name="HandheldFriendly" content="True">
         <meta name="MobileOptimized" content="320">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-        
+
         <!-- Place favicon.ico and apple-touch-icon(s) here  -->
-        
+
         <link rel="shortcut icon" href="http://cdn.ink.sapo.pt/3.0.0/img/favicon.ico">
         <link rel="apple-touch-icon-precomposed" href="http://cdn.ink.sapo.pt/3.0.0/img/touch-icon.57.png">
         <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://cdn.ink.sapo.pt/3.0.0/img/touch-icon.72.png">
@@ -21,24 +21,27 @@
         <link rel="apple-touch-startup-image" href="http://cdn.ink.sapo.pt/3.0.0/img/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
         <link rel="apple-touch-startup-image" href="http://cdn.ink.sapo.pt/3.0.0/img/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
 
-        <!-- Place your CSS here  -->
+        <!-- load inks css from the cdn -->
         <link rel="stylesheet" type="text/css" href="http://cdn.ink.sapo.pt/3.0.0/css/ink-flex.min.css">
         <link rel="stylesheet" type="text/css" href="http://cdn.ink.sapo.pt/3.0.0/css/font-awesome.min.css">
+
+        <!-- load inks css for IE8 -->
         <!--[if lt IE 9 ]>
             <link rel="stylesheet" href="http://cdn.ink.sapo.pt/3.0.0/css/ink-ie.min.css" type="text/css" media="screen" title="no title" charset="utf-8">
         <![endif]-->
-        
-        <!-- Place your Javascript here -->
+
+        <!-- test browser flexbox support and load legacy grid if unsupported -->
         <script type="text/javascript" src="http://cdn.ink.sapo.pt/3.0.0/js/modernizr.js"></script>
         <script type="text/javascript">
             Modernizr.load({
               test: Modernizr.flexbox,
               nope : 'http://cdn.ink.sapo.pt/3.0.0/css/ink-legacy.min.css'
             });
-        </script>  
+        </script>
 
-        <script type="text/javascript" src="http://cdn.ink.sapo.pt/3.0.0/js/holder.js"></script>
+        <!-- load inks javascript files from the cdn -->
         <script type="text/javascript" src="http://cdn.ink.sapo.pt/3.0.0/js/ink-all.min.js"></script>
+        <script type="text/javascript" src="http://cdn.ink.sapo.pt/3.0.0/js/autoload.js"></script>
         <style>
 
             body {
@@ -246,7 +249,7 @@ Ink.requireModules(['Ink.UI.Carousel_1', 'Ink.UI.Modal_1', 'Ink.Dom.Event_1', 'I
 
     var modalActive = false;
 
-    new Modal('#modal-window', { 
+    new Modal('#modal-window', {
             onShow: function() {
                 modalActive = true;
                 instModal.refit();
@@ -258,18 +261,18 @@ Ink.requireModules(['Ink.UI.Carousel_1', 'Ink.UI.Modal_1', 'Ink.Dom.Event_1', 'I
         });
 
     var thumbsItemsPerPage = instThumbs.getSlidesPerPage();
-    var thumbsTotalItems = instThumbs.getTotalSlides(); 
-    
+    var thumbsTotalItems = instThumbs.getTotalSlides();
+
     function onMainChange(page) {
-        
+
         if(instMain && instThumbs) {
-                
+
             var aThumbsElms = instThumbs.getSlidesList();
             for(var tIdx=0, tLen=aThumbsElms.length; tIdx < tLen; tIdx++) {
                 InkCss.removeClassName(aThumbsElms[tIdx], 'active');
             }
 
-            var thumbsCurPage = instThumbs.getPage(); 
+            var thumbsCurPage = instThumbs.getPage();
             var thumbsMinItem = thumbsCurPage * thumbsItemsPerPage;
             var thumbsMaxItem = (thumbsMinItem + thumbsItemsPerPage) - 1;
             if(thumbsMaxItem > thumbsTotalItems -  1) {
@@ -283,7 +286,7 @@ Ink.requireModules(['Ink.UI.Carousel_1', 'Ink.UI.Modal_1', 'Ink.Dom.Event_1', 'I
                     instThumbs.nextPage();
                 }
             }
-        
+
             InkCss.addClassName(aThumbsElms[page], 'active');
         }
 
