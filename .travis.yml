@@ -5,7 +5,6 @@ branches:
   only:
     - staging
     - develop
-    - gh-pages
 before_script:
   - npm install -g grunt-cli
 script: "grunt --verbose"
