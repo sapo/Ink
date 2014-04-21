@@ -42,6 +42,44 @@ Ink.requireModules(['Ink.Dom.FormSerialize_1', 'Ink.Dom.Selector_1'], function (
         deepEqual(FormSerialize.serialize(form), {
             number: '1'
         });
+
+        deepEqual(FormSerialize.asPairs(form), [
+            ['number', '1']
+        ]);
+    });
+
+    test('Serializing empty <option>s', function () {
+        var form = document.createElement('form');
+        form.innerHTML = [
+            '<select name="number">',
+            '</select>'].join('\n');
+        
+        strictEqual(form.elements.number.value, '', 'sanity check.')
+
+        deepEqual(FormSerialize.serialize(form), {
+            number: ''
+        });
+
+        deepEqual(FormSerialize.asPairs(form), [
+            ['number', '']
+        ]);
+    });
+
+    test('Serializing unselected <option>s', function () {
+        var form = document.createElement('form');
+        form.innerHTML = [
+            '<select name="number">',
+            '<option value="1">one</option>',
+            '<option value="2">two</option>',
+            '</select>'].join('\n');
+
+        deepEqual(FormSerialize.serialize(form), {
+            number: '1'
+        });
+
+        deepEqual(FormSerialize.asPairs(form), [
+            ['number', '1']
+        ]);
     });
 
     test('Serializing <option multiple>s', function () {
@@ -56,17 +94,38 @@ Ink.requireModules(['Ink.Dom.FormSerialize_1', 'Ink.Dom.Selector_1'], function (
             numbers: ['1', '3']
         });
 
+        deepEqual(FormSerialize.asPairs(form), [
+            ['numbers', '1'],
+            ['numbers', '3']
+        ]);
+
         form = document.createElement('form');
         form.innerHTML = [
             '<select name="numbers" multiple="multiple">',
             '<option value="1">one</option>',
             '<option value="2">two</option>',
-            '<option value="3" selected="selected">three</option>',
             '</select>'].join('\n');
+
+
         deepEqual(FormSerialize.serialize(form), {
-            numbers: ['3']
+            numbers: []
         });
+
+        deepEqual(FormSerialize.asPairs(form), [
+        ]);
     });
+
+    test('serializing checkboxes', function () {
+        var form = document.createElement('form')
+        form.innerHTML = '<input type="checkbox" name="foo" value=1>' +
+            '<input type="checkbox" name="foo" checked value=2>' +
+            '<input type="checkbox" name="foo" checked value=3>';
+        deepEqual(FormSerialize.serialize(form), { foo: ["2", "3"] })
+        deepEqual(FormSerialize.asPairs(form), [
+            ['foo', '2'],
+            ['foo', '3']
+        ])
+    })
 
     test('serializing <textarea>s', function () {
         var form = document.createElement('form')
@@ -126,19 +185,21 @@ Ink.requireModules(['Ink.Dom.FormSerialize_1', 'Ink.Dom.Selector_1'], function (
         return form;
     }
 
-    test('_getInputs()', function () {
+    test('_isSerialized()', function () {
+        ok(!FormSerialize._isSerialized(null))
         var form = mkMultiValueForm();
-        deepEqual(FormSerialize._getInputs(form), [
-            form.textfield[0],
-            form.textfield[1],
-            form.radio[1],
-            form['check[]'][1]
-        ])
+        ok(FormSerialize._isSerialized(form.textfield[0]))
+        ok(FormSerialize._isSerialized(form.textfield[1]))
+        ok(!FormSerialize._isSerialized(form.radio[0]))
+        ok(FormSerialize._isSerialized(form.radio[1]))
+        ok(!FormSerialize._isSerialized(form['check[]'][0]))
+        ok(FormSerialize._isSerialized(form['check[]'][1]))
         document.body.removeChild(form)
     })
 
     test('asPairs()', function () {
         var form = mkMultiValueForm();
+
         deepEqual(FormSerialize.asPairs(form), [
             ['textfield', 'foo'],
             ['textfield', 'foo'],
@@ -147,6 +208,4 @@ Ink.requireModules(['Ink.Dom.FormSerialize_1', 'Ink.Dom.Selector_1'], function (
         ])
         document.body.removeChild(form)
     })
-
-    // TODO fillIn works with pairs
 })

@@ -4,7 +4,7 @@
  * Valid applications are ad hoc AJAX/syndicated submission of forms, restoring form values from server side state, etc.
  */
 
-Ink.createModule('Ink.Dom.FormSerialize', 1, [], function () {
+Ink.createModule('Ink.Dom.FormSerialize', 1, ['Ink.UI.Common_1', 'Ink.Util.Array_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1'], function (Common, InkArray, InkElement, Selector) {
     'use strict';
 
     /**
@@ -26,23 +26,60 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, [], function () {
          */
         serialize: function(form) {
             form = Ink.i(form);
-            var map = this._getFieldNameInputsMap(form);
+            if (!form) { return; }
 
-            var map2 = {};
-            for (var k in map) if (k && map.hasOwnProperty(k)) {
-                var tmpK = k.replace(/\[\]$/, '');
-                map2[tmpK] = this._getValuesOfField( map[k] );
-            }
+            var out = {};
+            var emptySelectMultiToken = {};
 
-            return map2;
+            var pairs = this.asPairs(form, { elements: true, emptySelectMulti: emptySelectMultiToken });
+            InkArray.forEach(pairs, function (pair) {
+                var name = pair[0].replace(/\[\]$/, '');
+                var value = pair[1];
+                var el = pair[2];
+
+                if (value === emptySelectMultiToken) {
+                    out[name] = [];  // It's an empty select[multiple]
+                } else if (!FormSerialize._resultsInArray(el)) {
+                    out[name] = value;
+                } else {
+                    out[name] = out[name] || [];
+                    out[name].push(value);
+                }
+            });
+
+            return out;
         },
 
-        asPairs: function (form) {
+        asPairs: function (form, options) {
+            var out = [];
+            options = options || {};
+            function emit(name, val, el) {
+                if (options.elements) {
+                    out.push([name, val, el]);
+                } else {
+                    out.push([name, val]);
+                }
+            }
+
+            function serializeEl(el) {
+                if (el.nodeName.toLowerCase() === 'select' && el.multiple) {
+                    var didEmit = false;
+                    InkArray.forEach(Selector.select('option:checked', el), function (thisOption) {
+                        emit(el.name, thisOption.value, el);
+                        didEmit = true;
+                    });
+                    if (!didEmit && 'emptySelectMulti' in options) {
+                        emit(el.name, options.emptySelectMulti, el);
+                    }
+                } else {
+                    emit(el.name, el.value, el);
+                }
+            }
+
             if ((form = Ink.i(form))) {
-                var inputs = this._getInputs(form);
-                var out = [];
+                var inputs = InkArray.filter(form.elements, FormSerialize._isSerialized);
                 for (var i = 0, len = inputs.length; i < len; i++) {
-                    out.push([inputs[i].name, inputs[i].value])
+                    serializeEl(inputs[i]);
                 }
                 return out;
             }
@@ -85,90 +122,40 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, [], function () {
                     map[name].push(el);
                 }
             }
-            delete map['null']
+            delete map['null'];
             return map;
         },
 
+        /**
+         * Whether FormSerialize.serialize() should produce an array when looking at this element.
+         * @method _resultsInArray
+         * @private
+         * @param element
+         **/
+        _resultsInArray: function (element) {
+            if (/\[\]$/.test(element.name)) { return true; }
 
-        _getInputs: function(formEl) {
-            var name, nodeName, el, out = [];
-            for (var i = 0, f = formEl.elements.length; i < f; ++i) {
-                el = formEl.elements[i];
-                name = el.getAttribute('name');
-                nodeName = el.nodeName.toLowerCase();
-                if (!name || nodeName === 'fieldset') {
-                    continue;
-                }
+            var type = element.getAttribute('type');
+            var nodeName = element.nodeName.toLowerCase();
 
-                if (name !== 'null') {
-                    if (el.type === 'checkbox' || el.type === 'radio') {
-                        if (el.checked === false) { continue; }
-                    }
-                    out.push(el);
-                }
-            }
-            return out;
+            return type === 'checkbox' ||
+                (nodeName === 'select' && element.hasAttribute('multiple'));
         },
 
-        _getValuesOfField: function(fieldInputs) {
-            var nodeName = fieldInputs[0].nodeName.toLowerCase();
-            var type = fieldInputs[0].getAttribute('type');
-            var value = fieldInputs[0].value;
-            var i, f, j, o, el, m, res = [];
+        _isSerialized: function (element) {
+            if (!Common.isDOMElement(element)) { return false; }
+            if (!InkElement.hasAttribute(element, 'name')) { return false; }
 
-            switch(nodeName) {
-                case 'select':
-                    for (i = 0, f = fieldInputs.length; i < f; ++i) {
-                        res[i] = [];
-                        m = fieldInputs[i].getAttribute('multiple');
-                        for (j = 0, o = fieldInputs[i].options.length; j < o; ++j) {
-                            el = fieldInputs[i].options[j];
-                            if (el.selected) {
-                                if (m) {
-                                    res[i].push(el.value);
-                                } else {
-                                    res[i] = el.value;
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                    return ((fieldInputs.length > 0 && /\[[^\]]*\]$/.test(fieldInputs[0].getAttribute('name'))) ? res : res[0]);
+            var nodeName = element.nodeName.toLowerCase();
 
-                case 'textarea':
-                case 'input':
-                    if (type === 'checkbox' || type === 'radio') {
-                        for (i = 0, f = fieldInputs.length; i < f; ++i) {
-                            el = fieldInputs[i];
-                            if (el.checked) {
-                                res.push(    el.value    );
-                            }
-                        }
-                        if (type === 'checkbox') {
-                            return (fieldInputs.length > 1) ? res : !!(res.length);
-                        }
-                        return (fieldInputs.length > 1) ? res[0] : !!(res.length);    // on radios only 1 option is selected at most
-                    }
-                    else {
-                        //if (fieldInputs.length > 1) {    throw 'Got multiple input elements with same name!';    }
-                        if(fieldInputs.length > 0 && /\[[^\]]*\]$/.test(fieldInputs[0].getAttribute('name'))) {
-                            var tmpValues = [];
-                            for(i=0, f = fieldInputs.length; i < f; ++i) {
-                                tmpValues.push(fieldInputs[i].value);
-                            }
-                            return tmpValues;
-                        } else {
-                            return value;
-                        }
-                    }
-                    break;    // to keep JSHint happy...  (reply to this comment by gamboa: - ROTFL)
+            if (!nodeName || nodeName === 'fieldset') { return false; }
 
-                default:
-                    //throw 'Unsupported element: "' + nodeName + '"!';
-                    return undefined;
+            if (element.type === 'checkbox' || element.type === 'radio') {
+                return !!element.checked;
             }
-        },
 
+            return true;
+        },
 
 
         _valInArray: function(val, arr) {
