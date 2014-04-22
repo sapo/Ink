@@ -172,7 +172,40 @@ Ink.requireModules(['Ink.Dom.FormSerialize_1', 'Ink.Dom.Selector_1'], function (
         FormSerialize.fillIn(form, { sel: ['1'] })
         equal(form['sel'].children[0].selected, true)
         equal(form['sel'].children[1].selected, false)
+
+        form.sel.setAttribute('multiple', 'multiple');
+        form.sel.children[0].selected = false;
+        form.sel.children[1].selected = true;
+        FormSerialize.fillIn(form, {})
+        equal(form['sel'].children[0].selected, false)
+        equal(form['sel'].children[1].selected, true)
+
+        form.sel.setAttribute('multiple', 'multiple');
+        form.sel.children[0].selected = true;
+        form.sel.children[1].selected = true;
+        FormSerialize.fillIn(form, { sel: [] })
+        equal(form['sel'].children[0].selected, false)
+        equal(form['sel'].children[1].selected, false)
     });
+
+    test('Ink.warn() called when the number of elements mismatches the number of passed values', sinon.test(function () {
+        var form = document.createElement('form')
+        var el = '<input name="foo">'
+        form.innerHTML = el + el + el;  // (3 elements)
+
+        this.spy(Ink, 'warn');
+
+        FormSerialize.fillIn(form, { 'foo': ['val1', 'val2', 'val3'] });
+
+        ok(Ink.warn.notCalled);
+
+        FormSerialize.fillIn(form, { 'foo': ['val1', 'val2' /* no val3! */] });
+
+        ok(Ink.warn.calledOnce);
+
+        ok(Ink.warn.calledWithMatch(/3 inputs/), 'warning message included "3 inputs"')
+        ok(Ink.warn.calledWithMatch(/2 values/), 'warning message included "2 values"')
+    }));
 
     module('pairs');
 

@@ -25,13 +25,11 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, ['Ink.UI.Common_1', 'Ink.Util.Array
          * @sample Ink_Dom_FormSerialize_serialize.html 
          */
         serialize: function(form) {
-            form = Ink.i(form);
-            if (!form) { return; }
-
             var out = {};
-            var emptySelectMultiToken = {};
+            var emptySelectMultiToken = {};  // A hack so that empty select[multiple] elements appear although empty.
 
             var pairs = this.asPairs(form, { elements: true, emptySelectMulti: emptySelectMultiToken });
+            if (pairs == null) { return pairs; }
             InkArray.forEach(pairs, function (pair) {
                 var name = pair[0].replace(/\[\]$/, '');
                 var value = pair[1];
@@ -83,9 +81,9 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, ['Ink.UI.Common_1', 'Ink.Util.Array
                 }
                 return out;
             }
+
+            return null;
         },
-
-
 
         /**
          * Sets form elements' values with values from an object
@@ -98,32 +96,61 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, ['Ink.UI.Common_1', 'Ink.Util.Array
          * @sample Ink_Dom_FormSerialize_fillIn.html 
          */
         fillIn: function(form, map2) {
-            form = Ink.i(form);
-            var map = this._getFieldNameInputsMap(form);
+            // TODO should work with map2 being an array
+            if (!(form = Ink.i(form))) { return; }
 
-            for (var k in map2) if (map2.hasOwnProperty(k)) {
-                this._setValuesOfField( map[k], map2[k] );
+            function isArrayIsh(obj) {
+                return obj != null &&
+                    (InkArray.isArray(obj) || (typeof obj !== 'string' && typeof obj.length === 'number'));
+            }
+
+            for (var name in map2) if (map2.hasOwnProperty(name)) {
+                var inputs = form[name] || form[name + '[]'];
+                var values = map2[name] || map2[name.replace(/\[\]$/, '')];
+
+                if (!InkArray.isArray(values)) {
+                    values = [values];
+                }
+
+                if (!isArrayIsh(inputs) || Common.isDOMElement(inputs)) {
+                    inputs = [inputs];
+                }
+
+                FormSerialize._fillInOne(name, inputs, values);
             }
         },
 
+        _fillInOne: function (name, inputs, values) {
+            var firstOne = inputs[0];
+            var firstNodeName = firstOne.nodeName.toLowerCase();
+            var firstType = firstOne.getAttribute('type');
+            firstType = firstType && firstType.toLowerCase();
+            var isSelectMulti = firstNodeName === 'select' && InkElement.hasAttribute(firstOne, 'multiple');
 
+            if (firstType === 'checkbox' || firstType === 'radio') {
+                FormSerialize._fillInBoolean(inputs, values, 'checked');
+            } else if (isSelectMulti) {
+                if (inputs.length > 1) {
+                    throw 'COVER ME';
+                    Ink.warn('Form had more than one <select> element with [name="' + name + '"] but they have the [multiple] attribute');
+                }
+                FormSerialize._fillInBoolean(inputs[0].options, values, 'selected');
+            } else {
+                if (inputs.length !== values.length) {
+                    Ink.warn('Form had ' + inputs.length + ' inputs named "' + name + '", but received ' + values.length + ' values.');
+                }
 
-        _getFieldNameInputsMap: function(formEl) {
-            var name, nodeName, el, map = {};
-            for (var i = 0, f = formEl.elements.length; i < f; ++i) {
-                el = formEl.elements[i];
-                name = el.getAttribute('name');
-                nodeName = el.nodeName.toLowerCase();
-                if (nodeName === 'fieldset') {
-                    continue;
-                } else if (map[name] === undefined) {
-                    map[name] = [el];
-                } else {
-                    map[name].push(el);
+                for (var i = 0, len = Math.min(inputs.length, values.length); i < len; i += 1) {
+                    inputs[i].value = values[i];
                 }
             }
-            delete map['null'];
-            return map;
+        },
+
+        _fillInBoolean: function (inputs, values, checkAttr /* 'selected' or 'checked' */) {
+            InkArray.forEach(inputs, function (input) {
+                var isChecked = InkArray.inArray(input.value, values);
+                input[checkAttr] = isChecked;
+            });
         },
 
         /**
@@ -155,57 +182,6 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, ['Ink.UI.Common_1', 'Ink.Util.Array
             }
 
             return true;
-        },
-
-
-        _valInArray: function(val, arr) {
-            for (var i = 0, f = arr.length; i < f; ++i) {
-                if (arr[i] === val) {    return true;    }
-            }
-            return false;
-        },
-
-
-
-        _setValuesOfField: function(fieldInputs, fieldValues) {
-            if (!fieldInputs) {    return;    }
-            var nodeName = fieldInputs[0].nodeName.toLowerCase();
-            var type = fieldInputs[0].getAttribute('type');
-            var i, f, el;
-
-            switch(nodeName) {
-                case 'select':
-                    if (fieldInputs.length > 1) {    
-                        Ink.warn('FormSerialize - Got multiple select elements with same name!');
-                    }
-                    for (i = 0, f = fieldInputs[0].options.length; i < f; ++i) {
-                        el = fieldInputs[0].options[i];
-                        el.selected = (fieldValues instanceof Array) ? this._valInArray(el.value, fieldValues) : el.value === fieldValues;
-                    }
-                    break;
-                case 'textarea':
-                case 'input':
-                    if (type === 'checkbox' || type === 'radio') {
-                        for (i = 0, f = fieldInputs.length; i < f; ++i) {
-                            el = fieldInputs[i];
-                            //el.checked = (fieldValues instanceof Array) ? this._valInArray(el.value, fieldValues) : el.value === fieldValues;
-                            el.checked = (fieldValues instanceof Array) ? this._valInArray(el.value, fieldValues) : (fieldInputs.length > 1 ? el.value === fieldValues : !!fieldValues);
-                        }
-                    }
-                    else {
-                        if (fieldInputs.length > 1) {
-                            Ink.warn('FormSerialize - Got multiple input elements with same name!'); 
-                        }
-
-                        if (type !== 'file') {
-                            fieldInputs[0].value = fieldValues;
-                        }
-                    }
-                    break;
-
-                default:
-                    Ink.warn('FormSerialize - Unsupported element: "' + nodeName + '"!');
-            }
         }
     };
 

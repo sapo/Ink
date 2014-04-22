@@ -17,6 +17,16 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
     var InkArray = {
 
         /**
+         * Checks if a value is an array
+         *
+         * @method isArray
+         * @param testedObject {Mixed} The object we want to check
+         **/
+        isArray: Array.isArray || function (testedObject) {
+            return {}.toString.call(testedObject) === '[object Array]';
+        },
+
+        /**
          * Checks if a value exists in array
          *
          * @method inArray
