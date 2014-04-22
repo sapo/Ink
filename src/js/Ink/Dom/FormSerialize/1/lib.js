@@ -108,12 +108,12 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, ['Ink.UI.Common_1', 'Ink.Util.Array
                 var inputs = form[name] || form[name + '[]'];
                 var values = map2[name] || map2[name.replace(/\[\]$/, '')];
 
-                if (!InkArray.isArray(values)) {
-                    values = [values];
-                }
-
                 if (!isArrayIsh(inputs) || Common.isDOMElement(inputs)) {
                     inputs = [inputs];
+                }
+
+                if (!InkArray.isArray(values)) {
+                    values = [values];
                 }
 
                 FormSerialize._fillInOne(name, inputs, values);
@@ -166,7 +166,7 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, ['Ink.UI.Common_1', 'Ink.Util.Array
             var nodeName = element.nodeName.toLowerCase();
 
             return type === 'checkbox' ||
-                (nodeName === 'select' && element.hasAttribute('multiple'));
+                (nodeName === 'select' && InkElement.hasAttribute(element, 'multiple'));
         },
 
         _isSerialized: function (element) {
