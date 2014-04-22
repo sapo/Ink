@@ -14,7 +14,6 @@
         list-style-type: none;
         white-space: nowrap;
         position: relative;
-        overflow: visible;
         @include transition(compact(all 0.5s ease));
 
         &.#{$grid-column-group-class-name} {
