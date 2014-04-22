@@ -373,10 +373,13 @@ module.exports = function (grunt) {
         compress: {
           main: {
             options: {
-              archive: '<%= pkg.name %>-<%= pkg.version %>.zip'
+              archive: '<%= pkg.name %>-<%= pkg.version %>.zip',
+              mode: "zip",
+              level: 9,
+              pretty: true
             },
             files: [
-              {src: ['dist/**'], dest: '/'} // includes files in path and its subdirs
+              {expand: true, cwd: "dist/", src: ['**'], dest: '/<%= pkg.name %>-<%= pkg.version %>'} // includes files in path and its subdirs
             ]
           }
         }
@@ -386,7 +389,6 @@ module.exports = function (grunt) {
     grunt.registerTask('js', ['clean:js', 'concat', 'uglify']);
     grunt.registerTask('css', ['clean:css', 'compass', 'copy:facss', 'clean:csscontrib', 'cssmin']);
     grunt.registerTask('dist', ['css', 'js', 'compress']);
-    //grunt.registerTask('dependencies', ['bower', 'copy:fontAwesome', 'copy:modernizr', 'copy:compass']);
     grunt.registerTask('dependencies', ['bower', 'copy:fontAwesome', 'copy:compass']);
     grunt.registerTask('default', ['dependencies','css','js']);
     grunt.registerTask('_phantomjs', function (module) {
