@@ -841,54 +841,69 @@ footer {
 
     border-top: 1px solid #DDD;
     background: #f0f0f0;
+    
+    .credits { 
+        font-size: .938em;
+        @extend .fw-300;
 
+        li {
+            text-align: center;
+            vertical-align: middle;
+            @include border-radius($border-radius);
+
+            &.separator {
+                
+                height: .4em;
+                width: .4em;
+                padding: 0;
+                margin: 0 1em;
+                border: none;
+                display: inline-block;
+                vertical-align: middle;
+                background: $text-color;
+                @include border-radius(50%);
+            }
+
+            &:first-child {
+                padding: 0;
+            }
+        }
+    }
+    
     .socialplugins {
         background: $grey-10;
         padding: 1em;
-        border: 1px solid #afafaf;
         @include border-radius($border-radius);
-    }
 
-    .copyright {
-
-        .SAPOlogo {
-            background: url("#{$img-path}SAPOlogo.png") no-repeat;
-            text-indent: -9999px;
-            display: block;
-            width: 101px;
-            height: 43px;
-            margin-top: .2em;
-            margin-right: 2em;
-        }
-
-        .PTClogo {
-            background: url("#{$img-path}icon_Sprite.png") no-repeat 0 top;
-            display: block;
-            height: 43px;
-            padding-left: 60px;
-            text-decoration: none;
-
-            small {
-                display: block;
-                line-height: 1.6;
-            }
+        .fb-like span {
+            vertical-align: inherit !important;
         }
     }
 
-    .credits { margin: 0; }
+}
 
-    .ink-navigation {
-        ul.menu.horizontal {
+.copyright {
 
-            li {
-                a {
-                    padding: .5em 1em .5em 0;
-                    display: inline-block;
-                    &.license {
-                        padding: .5em 0;
-                    }
-                }
-            }
+    .SAPOlogo {
+        background: url("#{$img-path}SAPOlogo.png") no-repeat;
+        text-indent: -9999px;
+        color: transparent !important;
+        display: inline-block;
+        width: 101px;
+        min-height: 43px;
+    }
+
+    .PTClogo {
+        background: url("#{$img-path}PTlogo.png") no-repeat 0 top;
+        display: block;
+        min-height: 43px;
+        padding-left: 60px;
+        text-decoration: none;
+
+        small {
+            display: block;
+            line-height: 1.6;
+            @extend .fw-300;
         }
     }
 }
@@ -1073,35 +1088,15 @@ $who: lighten(#CA8A4E,10%);
         height: 100%;
         .column-group {
             height: inherit;
+
+            .column-group.copyright a {
+                text-decoration: none;
+                small { color:white; }
+            }
         }
       }
 
     }
-}
-
-.copyright {
-
-    line-height: 1.25;
-
-  .PTClogo a {
-    background: url("../img/icon_Sprite.png") no-repeat 0 top;
-    text-indent: -9999px;
-    display: inline-block;
-    float: left;
-    width: 41px;
-    height: 43px;
-    margin-right: .6em;
-  }
-
-  .SAPOlogo {
-    background: url("../img/SAPOlogo.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
-    text-indent: -9999px;
-    display: inline-block;
-    width: 101px;
-    height: 30px;
-    margin-bottom: 1em;
-    color: transparent !important;
-  }
 }
 
 p.loader {
@@ -1217,5 +1212,9 @@ ul.params {
 
 @media screen and (max-width: 320px) {
     #topbar .ink-navigation ul.black li.logoPlaceholder {float: right;}
+    footer .credits li {
+        display: block;
+        margin: 0;
+    }
 
 }
