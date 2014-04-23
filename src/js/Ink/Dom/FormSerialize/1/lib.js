@@ -110,28 +110,52 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, ['Ink.UI.Common_1', 'Ink.Util.Array
         fillIn: function(form, map2) {
             if (!(form = Ink.i(form))) { return; }
 
-            if (isArrayIsh(map2)) {
-                return FormSerialize._fillInPairs(form, map2);
-            } else if (map2 && typeof map2 === 'object') {
-                return FormSerialize._fillInObj(form, map2);
+            if (typeof map2 === 'object' && !isArrayIsh(map2)) {
+                // It's an object! convert it to pairs right away!
+                var pairs = [];
+                var val;
+                for (var name in map2) if (map2.hasOwnProperty(name)) {
+                    val = toArray(map2[name]);
+                    for (var i = 0, len = val.length; i < len; i++) {
+                        pairs.push([name, val[i]]);
+                    }
+                    if (len === 0) {
+                        pairs.push([name, []]);
+                    }
+                }
+            } else if (isArrayIsh(map2)) {
+                pairs = map2;
             } else {
-                Ink.error('FormSerialize.fillIn(): An invalid object was passed: ' + map2);
+                return null;
             }
-        },
 
-        _fillInObj: function (form, map2) {
-            var inputs;
-            var values;
-            for (var name in map2) if (map2.hasOwnProperty(name)) {
-                inputs = toArray(form[name] || form[name + '[]']);
-                values = toArray(map2[name] || map2[name.replace(/\[\]$/, '')]);
-
-                FormSerialize._fillInOne(name, inputs, values);
-            }
+            return FormSerialize._fillInPairs(form, pairs);
         },
 
         _fillInPairs: function (form, pairs) {
-            throw 'COVER ME TODO LOL'
+            pairs = InkArray.groupBy(pairs, {
+                key: function (pair) { return pair[0].replace(/\[\]$/, ''); }
+            });
+
+            // For each chunk...
+            pairs = InkArray.map(pairs, function (pair) {
+                // Join the items in the chunk by concatenating the values together and leaving the names alone
+                var values = InkArray.reduce(pair, function (left, right) {
+                    return [null, left[1].concat([right[1]])];
+                }, [null, []])[1];
+                return [pair[0][0], values];
+            });
+
+            var name;
+            var inputs;
+            var values;
+            for (var i = 0, len = pairs.length; i < len; i++) {
+                name = pairs[i][0];
+                inputs = toArray(form[name] || form[name + '[]']);
+                values = toArray(pairs[i][1]);
+
+                FormSerialize._fillInOne(name, inputs, values);
+            }
         },
 
         _fillInOne: function (name, inputs, values) {

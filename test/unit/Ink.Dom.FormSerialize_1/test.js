@@ -141,7 +141,7 @@ Ink.requireModules(['Ink.Dom.FormSerialize_1', 'Ink.Dom.Selector_1'], function (
         FormSerialize.fillIn(form, {
             textfield: 'foobar',
             radio: "2",
-            "check[]": ["1"]
+            "check[]": "1"
         });
         check();
 
