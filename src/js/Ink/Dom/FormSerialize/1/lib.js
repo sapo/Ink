@@ -7,6 +7,18 @@
 Ink.createModule('Ink.Dom.FormSerialize', 1, ['Ink.UI.Common_1', 'Ink.Util.Array_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1'], function (Common, InkArray, InkElement, Selector) {
     'use strict';
 
+    // Check whether something is not a string or a DOM element, but still has length.
+    function isArrayIsh(obj) {
+        return obj != null &&
+            (!Common.isDOMElement(obj)) &&
+            (InkArray.isArray(obj) || (typeof obj !== 'string' && typeof obj.length === 'number'));
+    }
+
+    function toArray(obj) {
+        if (isArrayIsh(obj)) { return obj; }
+        else { return [obj]; }
+    }
+
     /**
      * @namespace Ink.Dom.FormSerialize
      * @static
@@ -96,28 +108,30 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, ['Ink.UI.Common_1', 'Ink.Util.Array
          * @sample Ink_Dom_FormSerialize_fillIn.html 
          */
         fillIn: function(form, map2) {
-            // TODO should work with map2 being an array
             if (!(form = Ink.i(form))) { return; }
 
-            function isArrayIsh(obj) {
-                return obj != null &&
-                    (InkArray.isArray(obj) || (typeof obj !== 'string' && typeof obj.length === 'number'));
+            if (isArrayIsh(map2)) {
+                return FormSerialize._fillInPairs(form, map2);
+            } else if (map2 && typeof map2 === 'object') {
+                return FormSerialize._fillInObj(form, map2);
+            } else {
+                Ink.error('FormSerialize.fillIn(): An invalid object was passed: ' + map2);
             }
+        },
 
+        _fillInObj: function (form, map2) {
+            var inputs;
+            var values;
             for (var name in map2) if (map2.hasOwnProperty(name)) {
-                var inputs = form[name] || form[name + '[]'];
-                var values = map2[name] || map2[name.replace(/\[\]$/, '')];
-
-                if (!isArrayIsh(inputs) || Common.isDOMElement(inputs)) {
-                    inputs = [inputs];
-                }
-
-                if (!InkArray.isArray(values)) {
-                    values = [values];
-                }
+                inputs = toArray(form[name] || form[name + '[]']);
+                values = toArray(map2[name] || map2[name.replace(/\[\]$/, '')]);
 
                 FormSerialize._fillInOne(name, inputs, values);
             }
+        },
+
+        _fillInPairs: function (form, pairs) {
+            throw 'COVER ME TODO LOL'
         },
 
         _fillInOne: function (name, inputs, values) {

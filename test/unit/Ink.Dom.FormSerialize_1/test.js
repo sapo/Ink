@@ -133,24 +133,34 @@ Ink.requireModules(['Ink.Dom.FormSerialize_1', 'Ink.Dom.Selector_1'], function (
         deepEqual(FormSerialize.serialize(form), { foo: 'bar' })
     })
 
-    // TODO Ink.warn() is called when multiple elements share same name and using serialize(), advises to use asPairs
-
     module('fillIn()');
 
     test('example in docs', function () {
         var form = mkForm();
-        var toFillForm = {
+
+        FormSerialize.fillIn(form, {
             textfield: 'foobar',
             radio: "2",
             "check[]": ["1"]
-        };
-        FormSerialize.fillIn(form, toFillForm);
-        equal(form.textfield.value, 'foobar')
-        equal(form.radio[0].checked, false)
-        equal(form.radio[1].checked, true)
-        equal(form['check[]'][0].checked, true)
-        equal(form['check[]'][1].checked, false)
-        document.body.removeChild(form)
+        });
+        check();
+
+        form = mkForm();
+        FormSerialize.fillIn(form, [
+            ['textfield', 'foobar'],
+            ['radio', '2'],
+            ['check', '1']
+        ]);
+        check();
+
+        function check() {
+            equal(form.textfield.value, 'foobar')
+            equal(form.radio[0].checked, false)
+            equal(form.radio[1].checked, true)
+            equal(form['check[]'][0].checked, true)
+            equal(form['check[]'][1].checked, false)
+            document.body.removeChild(form)
+        }
     });
 
     test('Filling in <select>s', function () {
@@ -185,6 +195,23 @@ Ink.requireModules(['Ink.Dom.FormSerialize_1', 'Ink.Dom.Selector_1'], function (
         form.sel.children[1].selected = true;
         FormSerialize.fillIn(form, { sel: [] })
         equal(form['sel'].children[0].selected, false)
+        equal(form['sel'].children[1].selected, false)
+
+        form.sel.setAttribute('multiple', 'multiple');
+        form.sel.children[0].selected = true;
+        form.sel.children[1].selected = true;
+        FormSerialize.fillIn(form, [
+            ['sel', []]
+        ])
+        equal(form['sel'].children[0].selected, false)
+        equal(form['sel'].children[1].selected, false)
+
+        form.sel.setAttribute('multiple', 'multiple');
+        form.sel.children[0].selected = true;
+        form.sel.children[1].selected = false;
+        FormSerialize.fillIn(form, [
+        ])
+        equal(form['sel'].children[0].selected, true)
         equal(form['sel'].children[1].selected, false)
     });
 
