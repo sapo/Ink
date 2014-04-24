@@ -24,6 +24,7 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Css_1',
      * @param {String} [options.moveSelector=null] CSS selector to validate a node move. If present, you can only move nodes into this selector.
      * @param {Boolean} [options.swap=false] Flag to swap moving element with target element instead of changing its order.
      * @param {Boolean} [options.cancelMouseOut=false] Flag to cancel moving if mouse leaves the container element.
+     * @param {Function}            [options.onDrop]                    Callback to be executed after dropping an element. Receives { droppedElement: DOMElement } as an argument.
 
      * @example
      *      <ul class="unstyled ink-sortable-list" id="slist" data-handle-selector=".ink-label">
@@ -51,7 +52,8 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Css_1',
             'handleSelector': ['String', null],
             'moveSelector': ['String', false],
             'swap': ['Boolean', false],
-            'cancelMouseOut': ['Boolean', false]
+            'cancelMouseOut': ['Boolean', false],
+            'onDrop': ['Function', function(){}]
         }, options || {}, this._element);
 
         if (this._options.dragObject != null) {
@@ -148,6 +150,7 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Css_1',
             if (ev.currentTarget === this._placeholder) { return; }
             Element.insertBefore(this._isMoving, this._placeholder);
             this.stopMoving();
+            this._options.onDrop.call(this, { droppedElement: ev.currentTarget });
             return false;
         },
 
