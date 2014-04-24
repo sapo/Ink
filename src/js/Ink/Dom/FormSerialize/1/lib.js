@@ -38,18 +38,18 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, ['Ink.UI.Common_1', 'Ink.Util.Array
          */
         serialize: function(form) {
             var out = {};
-            var emptySelectMultiToken = {};  // A hack so that empty select[multiple] elements appear although empty.
+            var emptyArrayToken = {};  // A hack so that empty select[multiple] elements appear although empty.
 
-            var pairs = this.asPairs(form, { elements: true, emptySelectMulti: emptySelectMultiToken });
+            var pairs = this.asPairs(form, { elements: true, emptyArray: emptyArrayToken });
             if (pairs == null) { return pairs; }
             InkArray.forEach(pairs, function (pair) {
                 var name = pair[0].replace(/\[\]$/, '');
                 var value = pair[1];
                 var el = pair[2];
 
-                if (value === emptySelectMultiToken) {
+                if (value === emptyArrayToken) {
                     out[name] = [];  // It's an empty select[multiple]
-                } else if (!FormSerialize._resultsInArray(el)) {
+                } else if (!(FormSerialize._resultsInArray(el) || /\[\]$/.test(pair[0]))) {
                     out[name] = value;
                 } else {
                     out[name] = out[name] || [];
@@ -60,9 +60,20 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, ['Ink.UI.Common_1', 'Ink.Util.Array
             return out;
         },
 
+        /**
+         * Like `serialize`, but returns an array of [fieldName, value] pairs.
+         *
+         * @method asPairs
+         * @param {DOMElement|String} form  Form element
+         * @param {Object} [options] Options object, containing:
+         * @param {Object} [options.elements] Instead of returning an array of [fieldName, value] pairs, return an array of [fieldName, value, fieldElement] triples.
+         * @param {Object} [options.emptyArray] What to emit as the value of an empty select[multiple]. If you don't pass this option, nothing comes out.
+         * @return {Array[]} Array of [fieldName, value] pairs.
+         **/
         asPairs: function (form, options) {
             var out = [];
             options = options || {};
+
             function emit(name, val, el) {
                 if (options.elements) {
                     out.push([name, val, el]);
@@ -78,8 +89,8 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, ['Ink.UI.Common_1', 'Ink.Util.Array
                         emit(el.name, thisOption.value, el);
                         didEmit = true;
                     });
-                    if (!didEmit && 'emptySelectMulti' in options) {
-                        emit(el.name, options.emptySelectMulti, el);
+                    if (!didEmit && 'emptyArray' in options) {
+                        emit(el.name, options.emptyArray, el);
                     }
                 } else {
                     emit(el.name, el.value, el);
@@ -157,8 +168,18 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, ['Ink.UI.Common_1', 'Ink.Util.Array
             var values;
             for (var i = 0, len = pairs.length; i < len; i++) {
                 name = pairs[i][0];
-                inputs = toArray(form[name] || form[name + '[]']);
-                values = toArray(pairs[i][1]);
+
+                if (name in form) {
+                    inputs = form[name];
+                } else if ((name + '[]') in form) {
+                    inputs = form[name + '[]'];
+                    name = name + '[]'
+                } else {
+                    continue;
+                }
+
+                inputs = toArray(inputs);
+                values = pairs[i][1];
 
                 FormSerialize._fillInOne(name, inputs, values);
             }
@@ -175,7 +196,7 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, ['Ink.UI.Common_1', 'Ink.Util.Array
                 FormSerialize._fillInBoolean(inputs, values, 'checked');
             } else if (isSelectMulti) {
                 if (inputs.length > 1) {
-                    throw 'COVER ME';
+                    throw 'COVER ME';  // TODO
                     Ink.warn('Form had more than one <select> element with [name="' + name + '"] but they have the [multiple] attribute');
                 }
                 FormSerialize._fillInBoolean(inputs[0].options, values, 'selected');
@@ -204,8 +225,6 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, ['Ink.UI.Common_1', 'Ink.Util.Array
          * @param element
          **/
         _resultsInArray: function (element) {
-            if (/\[\]$/.test(element.name)) { return true; }
-
             var type = element.getAttribute('type');
             var nodeName = element.nodeName.toLowerCase();
 

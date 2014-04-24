@@ -38,6 +38,16 @@ Ink.requireModules(['Ink.Dom.FormSerialize_1', 'Ink.Dom.Selector_1'], function (
         deepEqual(FormSerialize.serialize(form), {
             foo: ['bar', 'bar']
         })
+
+        form.removeChild(Ink.s('input:first', form));
+        deepEqual(FormSerialize.serialize(form), {
+            foo: ['bar']
+        })
+
+        Ink.s('input[name="foo[]"]', form).setAttribute('name', 'foo');
+        deepEqual(FormSerialize.serialize(form), {
+            foo: 'bar'
+        });
     })
 
     test('Serializing <option>s', function () {
@@ -143,25 +153,35 @@ Ink.requireModules(['Ink.Dom.FormSerialize_1', 'Ink.Dom.Selector_1'], function (
 
     module('fillIn()');
 
-    test('calls _objToPairs with the correct arguments, then _fillInPairs is called with the return value of _objToPairs', sinon.test(function () {
+    test('calls _objToPairs if necessary, to convert to pairs', sinon.test(function () {
         var form = mkForm();
-        var sentinel = [['I am an array of pairs', null]];
 
-        this.stub(FormSerialize, '_objToPairs').returns(sentinel);
+        this.stub(FormSerialize, '_objToPairs');
         this.stub(FormSerialize, '_fillInPairs');
 
-        FormSerialize.fillIn(form, sentinel)
+        // Calling with legit pairs first
+        FormSerialize.fillIn(form, [['I am an array of pairs', null]]);
 
-        ok(FormSerialize._objToPairs.notCalled);
+        ok(FormSerialize._objToPairs.notCalled,
+            '_objToPairs was not called because fillIn() received a legit list of pairs');
 
         var sentinelObj = { notAn: ['array of pairs']};
         FormSerialize.fillIn(form, sentinelObj)
 
         ok(FormSerialize._objToPairs.calledOnce)
         ok(FormSerialize._objToPairs.calledWith(sentinelObj))
+    }));
 
-        ok(FormSerialize._fillInPairs.calledTwice)
-        ok(FormSerialize._fillInPairs.alwaysCalledWith(form, sentinel))
+    test('_fillInPairs is called with the return value of _objToPairs', sinon.test(function () {
+        var form = mkForm();
+
+        this.stub(FormSerialize, '_objToPairs').returns([['fake', 'pairs']]);
+        this.stub(FormSerialize, '_fillInPairs');
+
+        FormSerialize.fillIn(form, {})
+
+        ok(FormSerialize._fillInPairs.calledOnce)
+        deepEqual(FormSerialize._fillInPairs.lastCall.args, [form, [[ 'fake', 'pairs']] ])
     }));
 
     module('_fillInPairs (does the dirty work for fillIn())');
@@ -182,6 +202,62 @@ Ink.requireModules(['Ink.Dom.FormSerialize_1', 'Ink.Dom.Selector_1'], function (
         equal(form['check[]'][1].checked, false)
         document.body.removeChild(form)
     });
+
+    test('calls _fillInOne with the correct arguments', sinon.test(function () {
+        var form = mkForm();
+        var spy = this.stub(FormSerialize, '_fillInOne');
+
+        FormSerialize._fillInPairs(form, [
+            ['textfield', 2]
+        ]);
+        ok(spy.calledOnce);
+        deepEqual(spy.lastCall.args, ['textfield', [form.textfield], [2]]);
+        spy.reset();
+
+
+        FormSerialize._fillInPairs(form, [
+            ['textfield', 1],
+            ['textfield', 2]
+        ]);
+        ok(spy.calledOnce);
+        deepEqual(spy.lastCall.args, ['textfield', [form.textfield], [1, 2]]);
+
+        spy.reset();
+        FormSerialize._fillInPairs(form, [
+            ['notexistfield', 1]
+        ]);
+        ok(spy.notCalled);
+
+        spy.reset();
+        FormSerialize._fillInPairs(form, [
+            ['textfield', 1],
+            ['check[]', 1],
+            ['check[]', 2],
+            ['textfield', 2]
+        ]);
+        ok(spy.calledThrice);
+        deepEqual(spy.firstCall.args,  ['textfield', [form.textfield], [1]]);
+        deepEqual(spy.secondCall.args, ['check[]', form['check[]'], [1, 2]]);
+        deepEqual(spy.thirdCall.args,  ['textfield', [form.textfield], [2]]);
+    }))
+
+    test('When elements end in "[]", add it for the user, and still pass the correct element and element name onto _fillInOne', sinon.test(function () {
+        var form = mkForm();
+        var spy = this.stub(FormSerialize, '_fillInOne');
+
+        FormSerialize._fillInPairs(form, [
+            ['check', 1],
+            ['check', 2]
+        ]);
+
+        FormSerialize._fillInPairs(form, [
+            ['check[]', 1],
+            ['check[]', 2]
+        ]);
+        ok(spy.calledTwice);
+        deepEqual(spy.firstCall.args, ['check[]', form['check[]'], [1, 2]]);
+        deepEqual(spy.firstCall.args, spy.secondCall.args);
+    }))
 
     test('Filling in <select>s', function () {
         var form = document.createElement('form')
@@ -204,6 +280,16 @@ Ink.requireModules(['Ink.Dom.FormSerialize_1', 'Ink.Dom.Selector_1'], function (
         equal(form['sel'].children[0].selected, true)
         equal(form['sel'].children[1].selected, true)
 
+
+        form.sel.setAttribute('multiple', 'multiple');
+        form.sel.children[0].selected = true;
+        form.sel.children[1].selected = false;
+        FormSerialize.fillIn(form, [
+            ['sel', null]
+        ])
+        equal(form['sel'].children[0].selected, false)
+        equal(form['sel'].children[1].selected, false)
+
         form.sel.setAttribute('multiple', 'multiple');
         form.sel.children[0].selected = true;
         form.sel.children[1].selected = true;
@@ -212,6 +298,7 @@ Ink.requireModules(['Ink.Dom.FormSerialize_1', 'Ink.Dom.Selector_1'], function (
         ])
         equal(form['sel'].children[0].selected, false)
         equal(form['sel'].children[1].selected, false)
+
 
         form.sel.setAttribute('multiple', 'multiple');
         form.sel.children[0].selected = true;
