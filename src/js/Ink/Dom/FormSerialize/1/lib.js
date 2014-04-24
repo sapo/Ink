@@ -104,25 +104,16 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, ['Ink.UI.Common_1', 'Ink.Util.Array
          *
          * @method fillIn 
          * @param {DOMElement|String}   form    Form element to be populated
-         * @param {Object}              map2    Map of fieldName -> String|String[]|Boolean
+         * @param {Object|Array[]}      map2    mapping of fields to values contained in fields. Can be an object (keys for names, strings or arrays for values), or an array of [name, value] pairs.
          * @sample Ink_Dom_FormSerialize_fillIn.html 
          */
         fillIn: function(form, map2) {
-            if (!(form = Ink.i(form))) { return; }
+            if (!(form = Ink.i(form))) { return null; }
+
+            var pairs;
 
             if (typeof map2 === 'object' && !isArrayIsh(map2)) {
-                // It's an object! convert it to pairs right away!
-                var pairs = [];
-                var val;
-                for (var name in map2) if (map2.hasOwnProperty(name)) {
-                    val = toArray(map2[name]);
-                    for (var i = 0, len = val.length; i < len; i++) {
-                        pairs.push([name, val[i]]);
-                    }
-                    if (len === 0) {
-                        pairs.push([name, []]);
-                    }
-                }
+                pairs = FormSerialize._objToPairs(map2);
             } else if (isArrayIsh(map2)) {
                 pairs = map2;
             } else {
@@ -130,6 +121,21 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, ['Ink.UI.Common_1', 'Ink.Util.Array
             }
 
             return FormSerialize._fillInPairs(form, pairs);
+        },
+
+        _objToPairs: function (obj) {
+            var pairs = [];
+            var val;
+            for (var name in obj) if (obj.hasOwnProperty(name)) {
+                val = toArray(obj[name]);
+                for (var i = 0, len = val.length; i < len; i++) {
+                    pairs.push([name, val[i]]);
+                }
+                if (len === 0) {
+                    pairs.push([name, []]);
+                }
+            }
+            return pairs;
         },
 
         _fillInPairs: function (form, pairs) {
