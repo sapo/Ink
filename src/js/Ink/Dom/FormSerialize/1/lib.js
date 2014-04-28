@@ -66,9 +66,10 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, ['Ink.UI.Common_1', 'Ink.Util.Array
          * @method asPairs
          * @param {DOMElement|String} form  Form element
          * @param {Object} [options] Options object, containing:
-         * @param {Object} [options.elements] Instead of returning an array of [fieldName, value] pairs, return an array of [fieldName, value, fieldElement] triples.
-         * @param {Object} [options.emptyArray] What to emit as the value of an empty select[multiple]. If you don't pass this option, nothing comes out.
-         * @return {Array[]} Array of [fieldName, value] pairs.
+         * @param {Boolean} [options.elements] Instead of returning an array of [fieldName, value] pairs, return an array of [fieldName, value, fieldElement] triples.
+         * @param {Boolean} [options.emptyArray] What to emit as the value of an empty select[multiple]. If you don't pass this option, nothing comes out.
+         *
+         * @return Array of [fieldName, value] pairs.
          **/
         asPairs: function (form, options) {
             var out = [];
@@ -115,7 +116,7 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, ['Ink.UI.Common_1', 'Ink.Util.Array
          *
          * @method fillIn 
          * @param {DOMElement|String}   form    Form element to be populated
-         * @param {Object|Array[]}      map2    mapping of fields to values contained in fields. Can be an object (keys for names, strings or arrays for values), or an array of [name, value] pairs.
+         * @param {Object|Array}      map2    mapping of fields to values contained in fields. Can be a hash (keys as names, strings or arrays for values), or an array of [name, value] pairs.
          * @sample Ink_Dom_FormSerialize_fillIn.html 
          */
         fillIn: function(form, map2) {
