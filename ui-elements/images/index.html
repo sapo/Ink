@@ -8,7 +8,7 @@ site_root: ../../
 
 <section id="#basic-principles">
   <h1 class="fw-300">Basic principles</h1>
-  <p>Images are an essential comunication tool and as such, Ink provides a few simple styling and functional solutions to handle them in a sematic fashion.</p>
+  <p>Images are an essential comunication tool and as such, Ink provides a few simple styling and functional solutions to handle them in a semantic fashion.</p>
 
   <table class="props css">
     <caption>CSS CLASSES</caption>
@@ -44,7 +44,7 @@ site_root: ../../
   <ul class="unstyled">
     <li><span class="label mandatory"></span> This class must be used for the {{page.title | downcase }} to work.</li>
   </ul>
-  <p>We chose to make use of HTML5 tags, so the markup structure for our images element is:</p> 
+  <p>We chose to make use of HTML5 tags, so the markup structure for our image element is:</p> 
   <p class="example-title">Structure</p>
 {% highlight html %}
 <figure>
@@ -162,7 +162,7 @@ site_root: ../../
 </section>
 <section id="targeting-multiple-devices">
   <h1 class="fw-300">Targeting multiple devices</h1>
-  <p>When dealing with multiple devices, one major concearn should be asset size optimization. So Ink gives you a way to serve images with the appropriate size to your client devices.</p>
+  <p>When dealing with multiple devices, one major concern should be asset size optimization. So Ink gives you a way to serve images with the appropriate size to your client devices.</p>
   <p>This is done with our <a href="{{ site.url }}javascript/ink.ui.imagequery">Ink.UI.ImageQuery</a> JavaScript component, that'll detect the screen size and serve a larger version of the image if required.</p>
   <p>By default we'll load the smallest image to save quota for mobile phones and tablets.</p>
 <p class="example-title">Javascript</p>
@@ -196,7 +196,7 @@ site_root: ../../
 
 <p>In the script above the <code>src</code> property sets the image base path. It can be relative or absolute. The rest of the url is a template that translates into properties of the <code>queries</code> array.</p>
 <p>In the example above <code>{:label}</code> will be a folder under the base path, and <code>{:file}</code> is the filename, which in this case defaults to the original file name.</p>
-<p><a href="{{ site.url }}javascript/ink.ui.imagequery">Ink.UI.ImageQuery</a> will then look at the <code>queries.width</code> property and the device screen width and decide if a larger images should be served to the device by rewriting the</p>
+<p><a href="{{ site.url }}javascript/ink.ui.imagequery">Ink.UI.ImageQuery</a> will then look at the <code>queries.width</code> property and the device screen width and decide if a larger image should be served to the device by rewriting the <code>src</code> attribute.</p>
 
 </section>
 
