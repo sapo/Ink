@@ -98,9 +98,9 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
             // From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce#Polyfill
             var t = Object( array ), len = t.length >>> 0, k = 0, value;
             if ( arguments.length >= 3 ) {
-                value = arguments[2];
+                value = initial;
             } else {
-                while ( k < len && ! k in t ) k++; 
+                while ( k < len && !(k in t) ) k++; 
                 if ( k >= len )
                     throw new TypeError('Reduce of empty array with no initial value');
                 value = t[ k++ ];

@@ -173,7 +173,7 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, ['Ink.UI.Common_1', 'Ink.Util.Array
                     inputs = form[name];
                 } else if ((name + '[]') in form) {
                     inputs = form[name + '[]'];
-                    name = name + '[]'
+                    name = name + '[]';
                 } else {
                     continue;
                 }
