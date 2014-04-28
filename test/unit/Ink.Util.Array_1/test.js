@@ -40,7 +40,7 @@ Ink.requireModules(['Ink.Util.Array_1'], function (InkArray) {
         InkArray.forEach(inp, function (v, i, all) {
             deepEqual(v, inp[i]);
             deepEqual(all, inp);
-            all[i] = 'mess'[i];
+            all[i] = ('mess').charAt(i);
         });
         deepEqual(inp, ['m','e','s','s']);
     });
@@ -56,7 +56,6 @@ Ink.requireModules(['Ink.Util.Array_1'], function (InkArray) {
         deepEqual(filtered, [3, 2]);
     });
 
-    module('ES5 additions: reduce');
     var sum = function (a, b) { return a + b }
 
     test('reduce', function () {

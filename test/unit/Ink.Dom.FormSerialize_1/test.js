@@ -1,4 +1,4 @@
-Ink.requireModules(['Ink.Dom.FormSerialize_1', 'Ink.Dom.Selector_1'], function (FormSerialize, Selector) {
+Ink.requireModules(['Ink.Dom.FormSerialize_1', 'Ink.Dom.Selector_1', 'Ink.Util.Array_1', 'Ink.Dom.Element_1'], function (FormSerialize, Selector, InkArray, InkElement) {
     function mkForm(whatForm) {
         var form = document.createElement('form')
         form.innerHTML = Ink.ss(whatForm || '.test-form-template')[0].innerHTML;
@@ -236,8 +236,12 @@ Ink.requireModules(['Ink.Dom.FormSerialize_1', 'Ink.Dom.Selector_1'], function (
             ['textfield', 2]
         ]);
         ok(spy.calledThrice);
+
         deepEqual(spy.firstCall.args,  ['textfield', [form.textfield], [1]]);
-        deepEqual(spy.secondCall.args, ['check[]', form['check[]'], [1, 2]]);
+        deepEqual(spy.secondCall.args[0], 'check[]');
+        deepEqual(spy.secondCall.args[1][0], form['check[]'][0]);
+        deepEqual(spy.secondCall.args[1][1], form['check[]'][1]);
+        deepEqual(spy.secondCall.args[2], [1, 2]);
         deepEqual(spy.thirdCall.args,  ['textfield', [form.textfield], [2]]);
     }))
 
@@ -255,8 +259,13 @@ Ink.requireModules(['Ink.Dom.FormSerialize_1', 'Ink.Dom.Selector_1'], function (
             ['check[]', 2]
         ]);
         ok(spy.calledTwice);
-        deepEqual(spy.firstCall.args, ['check[]', form['check[]'], [1, 2]]);
-        deepEqual(spy.firstCall.args, spy.secondCall.args);
+
+        InkArray.forEach([spy.firstCall.args, spy.secondCall.args], function (callArgs) {
+            equal(callArgs[0], 'check[]');
+            strictEqual(callArgs[1][0], form['check[]'][0]);
+            strictEqual(callArgs[1][1], form['check[]'][1]);
+            deepEqual(callArgs[2], [1, 2]);
+        })
     }))
 
     test('Filling in <select>s', function () {
@@ -268,11 +277,12 @@ Ink.requireModules(['Ink.Dom.FormSerialize_1', 'Ink.Dom.Selector_1'], function (
                 sel.children[2].selected];
         }
 
-        sel.innerHTML = '<option value="1"></option>' +
-            '<option value="2"></option>' +
-            '<option value="3"></option>';
-        FormSerialize._fillInOne('sel', [sel], ['1']);
-        equal(sel.value, '1');
+        sel.appendChild(InkElement.create('option', { value: 1 }));
+        sel.appendChild(InkElement.create('option', { value: 2 }));
+        sel.appendChild(InkElement.create('option', { value: 3 }));
+
+        FormSerialize._fillInOne('sel', [sel], ['2']);
+        equal(sel[1].selected, true);
 
         sel.setAttribute('multiple', 'multiple');
         FormSerialize._fillInOne('sel', [sel], ['1', '2']);
