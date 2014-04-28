@@ -260,54 +260,38 @@ Ink.requireModules(['Ink.Dom.FormSerialize_1', 'Ink.Dom.Selector_1'], function (
     }))
 
     test('Filling in <select>s', function () {
-        var form = document.createElement('form')
-        form.innerHTML = '<select name="sel">' +
-            '<option value="1"></option>' +
+        var sel = document.createElement('select')
+        sel.setAttribute('name', 'sel');
+
+        function selected() {
+            return [sel.children[0].selected, sel.children[1].selected,
+                sel.children[2].selected];
+        }
+
+        sel.innerHTML = '<option value="1"></option>' +
             '<option value="2"></option>' +
-            '</select>'
+            '<option value="3"></option>';
+        FormSerialize._fillInOne('sel', [sel], ['1']);
+        equal(sel.value, '1');
 
-        FormSerialize._fillInPairs(form, [
-            ['sel', '1']
-        ]);
-        equal(form['sel'].children[0].selected, true)
+        sel.setAttribute('multiple', 'multiple');
+        FormSerialize._fillInOne('sel', [sel], ['1', '2']);
+        deepEqual(selected(), [true, true, false]);
 
+        sel[0].selected =
+            sel[1].selected =
+            sel[2].selected = true;
+        FormSerialize._fillInOne('sel', [sel], [null]);
+        deepEqual(selected(), [false, false, false]);
 
-        form.sel.setAttribute('multiple', 'multiple');
-        FormSerialize._fillInPairs(form, [
-            ['sel', '1'],
-            ['sel', '2']
-        ])
-        equal(form['sel'].children[0].selected, true)
-        equal(form['sel'].children[1].selected, true)
-
-
-        form.sel.setAttribute('multiple', 'multiple');
-        form.sel.children[0].selected = true;
-        form.sel.children[1].selected = false;
-        FormSerialize.fillIn(form, [
-            ['sel', null]
-        ])
-        equal(form['sel'].children[0].selected, false)
-        equal(form['sel'].children[1].selected, false)
-
-        form.sel.setAttribute('multiple', 'multiple');
-        form.sel.children[0].selected = true;
-        form.sel.children[1].selected = true;
-        FormSerialize.fillIn(form, [
-            ['sel', []]
-        ])
-        equal(form['sel'].children[0].selected, false)
-        equal(form['sel'].children[1].selected, false)
-
-
-        form.sel.setAttribute('multiple', 'multiple');
-        form.sel.children[0].selected = true;
-        form.sel.children[1].selected = false;
-        FormSerialize.fillIn(form, [
-        ])
-        equal(form['sel'].children[0].selected, true)
-        equal(form['sel'].children[1].selected, false)
+        sel[0].selected =
+            sel[1].selected =
+            sel[2].selected = true;
+        FormSerialize._fillInOne('sel', [sel], []);
+        deepEqual(selected(), [false, false, false]);
     });
+
+    module('_fillInOne() (called by _fillInPairs)');
 
     test('Ink.warn() called when the number of elements mismatches the number of passed values', sinon.test(function () {
         var form = document.createElement('form')
@@ -316,17 +300,10 @@ Ink.requireModules(['Ink.Dom.FormSerialize_1', 'Ink.Dom.Selector_1'], function (
 
         this.spy(Ink, 'warn');
 
-        FormSerialize._fillInPairs(form, [
-            ['foo', 'val1'],
-            ['foo', 'val2'],
-            ['foo', 'val3']
-        ]);
+        FormSerialize._fillInOne('foo', form.foo, ['val1', 'val2', 'val3']);
         ok(Ink.warn.notCalled);
 
-        FormSerialize._fillInPairs(form, [
-            ['foo', 'val1'],
-            ['foo', 'val2']
-        ]);
+        FormSerialize._fillInOne('foo', form.foo, ['val1', 'val2' /* no val3! */]);
         ok(Ink.warn.calledOnce);
         ok(Ink.warn.calledWithMatch(/3 inputs/), 'warning message included "3 inputs"')
         ok(Ink.warn.calledWithMatch(/2 values/), 'warning message included "2 values"')

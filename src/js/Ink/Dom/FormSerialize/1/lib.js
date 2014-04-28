@@ -195,10 +195,6 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, ['Ink.UI.Common_1', 'Ink.Util.Array
             if (firstType === 'checkbox' || firstType === 'radio') {
                 FormSerialize._fillInBoolean(inputs, values, 'checked');
             } else if (isSelectMulti) {
-                if (inputs.length > 1) {
-                    throw 'COVER ME';  // TODO
-                    Ink.warn('Form had more than one <select> element with [name="' + name + '"] but they have the [multiple] attribute');
-                }
                 FormSerialize._fillInBoolean(inputs[0].options, values, 'selected');
             } else {
                 if (inputs.length !== values.length) {
