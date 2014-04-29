@@ -321,6 +321,7 @@ Ink.createModule('Ink.UI.Upload', '1', [
 
 
         _setFileButton: function() {
+            if (!this._fileButton) { return; }
             var btns = this._fileButton;
             Event.observeMulti(btns, 'change', Ink.bindEvent(this._fileChangeHandler, this));
         },
@@ -355,31 +356,55 @@ Ink.createModule('Ink.UI.Upload', '1', [
         //_events: {},
         
         /**
-         * Upload component
+         * This component is used to enable HTML5 upload on forms easily. It
+         * evens out differences between browsers which support HTML5 upload,
+         * and supports chunked uploads and directory tree uploads.
+         *
+         * Choose a drop zone and/or a file input. When the user drops the file
+         * on the drop zone element, or chooses it using the file input,
+         * Ink.UI.Upload takes care of uploading it through AJAX POST.
+         *
+         * The name given to the file in the POST request's data is chosen
+         * through the `fileFormName` option.
+         *
+         * On the server side, you will receive a POST with a Content-type of
+         * `multipart/form-data` or `x-www-form/urlencoded` if `useChunks`
+         * is `true`.
          *
          * @class Ink.UI.Upload_1
          * @constructor
          *
          * @param options {Object} Options hash, containing:
+         * @param [options.dropzone] {Element} Element where the user can drop files onto.
+         * @param [options.fileButton] {Element} An `input[type="file"]` for the user to choose a file using a native dialog.
+         * @param [options.fileFormName='Ink_Filelist'] The name of the file in the POST request.
+         * @param [options.endpoint=window.location] The URL where we're POSTing the files to. Defaults to the current location, like a HTML form.
+         * @param [options.maxFileSize] Maximum file size in bytes. Defaults to 300mb.
+         * @param [INVALID_FILE_NAME] A regular expression to invalidate file names. For example, set this to `/\.png$/` if you don't want files with the ".png" extension. Remember that file extensions are just hints!
+         * TODO @xparam [options.extraData]
+         * TODO chunk options, also write a bit above about chunking and the serverside of chunking.
+         * TODO directory options, also write a bit above about directories and the server end of directories.
          */
         init: function(options) {
             if (typeof options === 'string') {
                 options = Element.data(Common.elOrSelector(options, '1st argument'));
             }
             this._options = Ink.extendObj({
-                extraData:          {},
-                fileFormName:       'Ink_Filelist',
                 dropzone:           undefined,
                 fileButton:         undefined,
+                fileFormName:       'Ink_Filelist',  // TODO default to fileButton's [name] if available.
                 endpoint:           '',
-                endpointChunk:      '',
-                endpointChunkCommit:'',
                 maxFilesize:        300 << 20, //300mb
+                INVALID_FILE_NAME:  undefined,
+                extraData:          {},
+                // Chunks
+                useChunks:          false,
                 chunkSize:          4194304,  // 4MB
                 minSizeToUseChunks: 20971520, // 20mb
-                INVALID_FILE_NAME:  undefined,
-                foldersEnabled:     true,
-                useChunks:          true,
+                endpointChunk:      '',
+                endpointChunkCommit:'',
+                // Directory trees
+                foldersEnabled:     false,
                 directoryMaxDepth:  10
             }, options || {});
 
@@ -390,12 +415,12 @@ Ink.createModule('Ink.UI.Upload', '1', [
 
             if(this._options.dropzone) {
                 this._options.dropzone =
-                    Common.elOrSelector(this._options.dropzone, 'Ink.UI.Upload - dropzone');
+                    Common.elsOrSelector(this._options.dropzone, 'Ink.UI.Upload - dropzone');
             }
 
             if(this._options.fileButton) {
                 this._options.fileButton =
-                    Common.elOrSelector(this._options.fileButton, 'Ink.UI.Upload - fileButton');
+                    Common.elsOrSelector(this._options.fileButton, 'Ink.UI.Upload - fileButton');
             }
 
             if(!this._options.dropzone && !this._options.fileButton) {
