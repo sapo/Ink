@@ -43,6 +43,12 @@ site_root:  ../
             </tr>
             <tr>
                 <td>
+                    <a href="#Ink_Util_Array_1-Ink_Util_Array_1-groupBy">.groupBy</a>
+                </td>
+                <td> Loops through an array, grouping similar items together.</td>
+            </tr>
+            <tr>
+                <td>
                     <a href="#Ink_Util_Array_1-Ink_Util_Array_1-inArray">.inArray</a>
                 </td>
                 <td> Checks if a value exists in array</td>
@@ -61,6 +67,12 @@ site_root:  ../
             </tr>
             <tr>
                 <td>
+                    <a href="#Ink_Util_Array_1-Ink_Util_Array_1-isArray">.isArray</a>
+                </td>
+                <td> Checks if a value is an array</td>
+            </tr>
+            <tr>
+                <td>
                     <a href="#Ink_Util_Array_1-Ink_Util_Array_1-keyValue">.keyValue</a>
                 </td>
                 <td> Gets the indexes of a value in an array</td>
@@ -70,6 +82,12 @@ site_root:  ../
                     <a href="#Ink_Util_Array_1-Ink_Util_Array_1-map">.map</a>
                 </td>
                 <td> Runs a function for each item in the array. </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Array_1-Ink_Util_Array_1-reduce">.reduce</a>
+                </td>
+                <td> Replacement for Array.prototype.reduce.</td>
             </tr>
             <tr>
                 <td>
@@ -203,6 +221,55 @@ site_root:  ../
 		{% include js_samples/Ink_Util_Array_forEach.html %}
 	</section>
 
+    <section id="Ink_Util_Array_1-Ink_Util_Array_1-groupBy" class="box box-function">
+    <h1 class="fw-300">.groupBy(arr, options)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         arr</li><li class="prop">
+         options</li>
+    </ul><p class="text">Loops through an array, grouping similar items together.</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>arr
+                    <span class="label mandatory"></span></p>
+                {Array} The input array.</li>
+            <li class="level1">
+                <p>options
+                    </p>
+                {Object} options object, containing:</li>
+            <li class="level2">
+                <p>options.key
+                    </p>
+                {Function} A function which computes the group key by which the items are grouped.</li>
+            <li class="level2">
+                <p>options.pairs
+                    </p>
+                {Boolean} Set to `true` if you want to output an array of `[key, [group...]]` pairs instead of an array of groups.</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label array"></span> </p>An array of arrays of chunks.
+        </li>
+    </ul>
+    
+<p class="example-title">Example</p>
+  
+{% highlight html %}{% raw %}
+
+       InkArray.groupBy([1, 1, 2, 2, 3, 1])  // -> [ [1, 1], [2, 2], [3], [1] ]
+       InkArray.groupBy([1.1, 1.2, 2.1], { key: Math.floor })  // -> [ [1.1, 1.2], [2.1] ]
+       InkArray.groupBy([1.1, 1.2, 2.1], { key: Math.floor, pairs: true })  // -> [ [1, [1.1, 1.2]], [2, [2.1]] ]
+
+{% endraw %}{% endhighlight %}
+
+
+
+</section>
+
     <section id="Ink_Util_Array_1-Ink_Util_Array_1-inArray" class="box box-function">
     <h1 class="fw-300">.inArray(value, arr)
     <i>method</i></h1>
@@ -297,6 +364,24 @@ site_root:  ../
 		{% include js_samples/Ink_Util_Array_intersect.html %}
 	</section>
 
+    <section id="Ink_Util_Array_1-Ink_Util_Array_1-isArray" class="box box-function">
+    <h1 class="fw-300">.isArray(testedObject)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         testedObject</li>
+    </ul><p class="text">Checks if a value is an array</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>testedObject
+                    <span class="label mandatory"></span></p>
+                {Mixed} The object we want to check</li>
+        </ul>
+
+</section>
+
     <section id="Ink_Util_Array_1-Ink_Util_Array_1-keyValue" class="box box-function">
     <h1 class="fw-300">.keyValue(value, arr, first)
     <i>method</i></h1>
@@ -363,6 +448,41 @@ site_root:  ../
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_Util_Array_map.html %}
 	</section>
+
+    <section id="Ink_Util_Array_1-Ink_Util_Array_1-reduce" class="box box-function">
+    <h1 class="fw-300">.reduce(array, callback, initial)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         array</li><li class="prop mandatory">
+         callback</li><li class="prop mandatory">
+         initial</li>
+    </ul><p class="text">Replacement for Array.prototype.reduce.<br><p>Produces a single result from a list of values by calling an &quot;aggregator&quot; function.</p><br><p>Falls back to Array.prototype.reduce if available.</p></p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>array
+                    <span class="label mandatory"></span></p>
+                {Array} Input array to be reduced.</li>
+            <li class="level1">
+                <p>callback
+                    <span class="label mandatory"></span></p>
+                {Function} `function (previousValue, currentValue, index, all) { return {Mixed} }` to execute for each value.</li>
+            <li class="level1">
+                <p>initial
+                    <span class="label mandatory"></span></p>
+                {Mixed} Object used as the first argument to the first call of `callback`</li>
+        </ul>
+<p class="example-title">Example</p>
+  
+{% highlight html %}{% raw %}
+         var sum = InkArray.reduce([1, 2, 3], function (a, b) { return a + b; });  // -> 6
+{% endraw %}{% endhighlight %}
+
+
+
+</section>
 
     <section id="Ink_Util_Array_1-Ink_Util_Array_1-remove" class="box box-function">
     <h1 class="fw-300">.remove(arr, from, rLen)
