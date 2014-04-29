@@ -21,6 +21,12 @@ Valid applications are ad hoc AJAX/syndicated submission of forms, restoring for
         <tbody>
             <tr>
                 <td>
+                    <a href="#Ink_Dom_FormSerialize_1-Ink_Dom_FormSerialize-asPairs">.asPairs</a>
+                </td>
+                <td> Like <code>serialize</code>, but returns an array of [fieldName, value] pairs.</td>
+            </tr>
+            <tr>
+                <td>
                     <a href="#Ink_Dom_FormSerialize_1-Ink_Dom_FormSerialize-fillIn">.fillIn</a>
                 </td>
                 <td> Sets form elements&#39; values with values from an object</td>
@@ -36,6 +42,44 @@ Valid applications are ad hoc AJAX/syndicated submission of forms, restoring for
 </section>
 
 
+
+    <section id="Ink_Dom_FormSerialize_1-Ink_Dom_FormSerialize-asPairs" class="box box-function">
+    <h1 class="fw-300">.asPairs(form, options)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         form</li><li class="prop">
+         options</li>
+    </ul><p class="text">Like <code>serialize</code>, but returns an array of [fieldName, value] pairs.</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>form
+                    <span class="label mandatory"></span><span class="label domelement"></span><span class="label string"></span></p>
+                Form element</li>
+            <li class="level1">
+                <p>options
+                    <span class="label object"></span></p>
+                Options object, containing:</li>
+            <li class="level2">
+                <p>options.elements
+                    <span class="label object"></span></p>
+                Instead of returning an array of [fieldName, value] pairs, return an array of [fieldName, value, fieldElement] triples.</li>
+            <li class="level2">
+                <p>options.emptyArray
+                    <span class="label object"></span></p>
+                What to emit as the value of an empty select[multiple]. If you don't pass this option, nothing comes out.</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label array[]"></span> </p>Array of [fieldName, value] pairs.
+        </li>
+    </ul>
+    
+
+</section>
 
     <section id="Ink_Dom_FormSerialize_1-Ink_Dom_FormSerialize-fillIn" class="box box-function">
     <h1 class="fw-300">.fillIn(form, map2)
@@ -54,8 +98,8 @@ Valid applications are ad hoc AJAX/syndicated submission of forms, restoring for
                 Form element to be populated</li>
             <li class="level1">
                 <p>map2
-                    <span class="label mandatory"></span><span class="label object"></span></p>
-                Map of fieldName -> String|String[]|Boolean</li>
+                    <span class="label mandatory"></span><span class="label object"></span><span class="label array[]"></span></p>
+                mapping of fields to values contained in fields. Can be an object (keys for names, strings or arrays for values), or an array of [name, value] pairs.</li>
         </ul>
 
 <!--<h3>Samples</h3>-->

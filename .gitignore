@@ -8,6 +8,7 @@
 
 # ignore temp InK build files
 */builds/*
+src/js
 */builds/!index.html
 ._*
 
