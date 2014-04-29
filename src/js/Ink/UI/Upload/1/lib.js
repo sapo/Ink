@@ -12,7 +12,7 @@ Ink.createModule('Ink.UI.Upload', '1', [
 
     DirectoryReader.prototype = {
         init: function(options) {
-            this.options = Ink.extendObj({
+            this._options = Ink.extendObj({
                 entry:      undefined,
                 maxDepth:   10
             }, options || {});
@@ -26,8 +26,9 @@ Ink.createModule('Ink.UI.Upload', '1', [
 
 
         _read: function() {
-            if(!this.options.entry) {
-                throw("The entry specify you must");
+            if(!this._options.entry) {
+                Ink.error('You must specify the entry!');
+                return;
             }
 
             try {
@@ -58,7 +59,7 @@ Ink.createModule('Ink.UI.Upload', '1', [
                             maxDepth = this.clearArray(res[i].fullPath.split('/'));
                             maxDepth.shift();
                             maxDepth = maxDepth.length;
-                            if(maxDepth <= this.options.maxDepth) {
+                            if(maxDepth <= this._options.maxDepth) {
                                 _readEntries(res[i]);
                             }
                         }
@@ -73,11 +74,11 @@ Ink.createModule('Ink.UI.Upload', '1', [
                         running = false;
                     }
                 }, this), Ink.bind(function(err) {
-                    this.options.readError(err, currentEntry);
+                    this._options.readError(err, currentEntry);
                 }, this));
             }, this);
 
-            _readEntries(this.options.entry);
+            _readEntries(this._options.entry);
 
             var activity;
             var checkActivity = function() {
@@ -85,8 +86,8 @@ Ink.createModule('Ink.UI.Upload', '1', [
                     return false;
                 }
                 clearInterval(activity);
-                if(this.options.readComplete && typeof this.options.readComplete === 'function') {
-                    this.options.readComplete(entries);
+                if(this._options.readComplete && typeof this._options.readComplete === 'function') {
+                    this._options.readComplete(entries);
                 }
                 return true;
             };
@@ -260,8 +261,8 @@ Ink.createModule('Ink.UI.Upload', '1', [
 
     UI.prototype = {
         init: function() {
-            this._fileButton = this.Upload.options.fileButton;
-            this._dropzone = this.Upload.options.dropzone;
+            this._fileButton = this.Upload._options.fileButton;
+            this._dropzone = this.Upload._options.dropzone;
             this._setDropEvent();
             this._setFileButton();
         },
@@ -269,10 +270,13 @@ Ink.createModule('Ink.UI.Upload', '1', [
 
         _setDropEvent: function() {
             var dropzones = this._dropzone;
+            if (!dropzones) { return; }
+
             for(var i = 0, len = dropzones.length; i<len; i++) {
                 dropzones[i].ondrop        = Ink.bindEvent(this.Upload._dropEventHandler, this.Upload);
                 dropzones[i].ondragleave   = Ink.bindEvent(this._onDragLeave, this);
                 dropzones[i].ondragend     = Ink.bindEvent(this._onDragEndEventHandler, this);
+                dropzones[i].ondragdrop    = Ink.bindEvent(this._onDragEndEventHandler, this);
                 dropzones[i].ondragenter   = Ink.bindEvent(this._onDragEnterHandler, this);
                 dropzones[i].ondragover    = Ink.bindEvent(this._onDragOverHandler, this);
             }
@@ -349,12 +353,20 @@ Ink.createModule('Ink.UI.Upload', '1', [
 
     Upload.prototype = {
         //_events: {},
-
+        
+        /**
+         * Upload component
+         *
+         * @class Ink.UI.Upload_1
+         * @constructor
+         *
+         * @param options {Object} Options hash, containing:
+         */
         init: function(options) {
             if (typeof options === 'string') {
                 options = Element.data(Common.elOrSelector(options, '1st argument'));
             }
-            this.options = Ink.extendObj({
+            this._options = Ink.extendObj({
                 extraData:          {},
                 fileFormName:       'Ink_Filelist',
                 dropzone:           undefined,
@@ -376,30 +388,30 @@ Ink.createModule('Ink.UI.Upload', '1', [
             this._folders           = {};
 
 
-            if(this.options.dropzone) {
-                Common.elOrSelector(this.options.dropzone, 'Upload - dropzone');
+            if(this._options.dropzone) {
+                this._options.dropzone =
+                    Common.elOrSelector(this._options.dropzone, 'Ink.UI.Upload - dropzone');
             }
 
-            if(this.options.fileButton) {
-                Common.elOrSelector(this.options.fileButton, 'Upload - fileButton');
+            if(this._options.fileButton) {
+                this._options.fileButton =
+                    Common.elOrSelector(this._options.fileButton, 'Ink.UI.Upload - fileButton');
             }
 
-            if(!this.options.dropzone && ! this.options.fileButton) {
-                throw new TypeError('A file button or dropzone, specify you must, my young padawan');
+            if(!this._options.dropzone && !this._options.fileButton) {
+                throw new TypeError(
+                    'Ink.UI.Upload: Specify a fileButton or a Dropzone!');
             }
-
-            this.options.dropzone = Ink.ss(this.options.dropzone);
-            this.options.fileButton= Ink.ss(this.options.fileButton);
 
             new UI(this);
         },
 
 
         _supportChunks: function(size) {
-            return this.options.useChunks &&
+            return this._options.useChunks &&
                     'Blob' in window &&
                     (new Blob()).slice &&
-                    size > this.options.minSizeToUseChunks;
+                    size > this._options.minSizeToUseChunks;
         },
 
 
@@ -427,7 +439,7 @@ Ink.createModule('Ink.UI.Upload', '1', [
 
             // check if webkitGetAsEntry exists on first item
             if(data.items && data.items[0] && data.items[0].webkitGetAsEntry) {
-                if(!this.options.foldersEnabled) {
+                if(!this._options.foldersEnabled) {
                     return setTimeout(Ink.bind(this._addFilesToQueue, this, this._files), 0);
                 }
                 var entry, folders = [];
@@ -504,7 +516,7 @@ Ink.createModule('Ink.UI.Upload', '1', [
 
                 new DirectoryReader({
                     entry:      folders[index],
-                    maxDepth:   this.options.directoryMaxDepth,
+                    maxDepth:   this._options.directoryMaxDepth,
                     readComplete: Ink.bind(function(entries) {
                         files = files.concat(getFiles(entries));
                         // adding root dirs
@@ -555,14 +567,14 @@ Ink.createModule('Ink.UI.Upload', '1', [
 
                 if(!file.isDirectory) {
                     // dirty hack to allow 0B files avoiding folders on GECKO
-                    if(file === null || (!file.type && file.size % 4096 === 0 && (!Browser.CHROME || !this.options.foldersEnabled))) {
+                    if(file === null || (!file.type && file.size % 4096 === 0 && (!Browser.CHROME || !this._options.foldersEnabled))) {
                         this.publish('InvalidFile', file, 'size');
                         continue;
                     }
                 }
 
-                if(file.size > this.options.maxFilesize) {
-                    this.publish('MaxSizeFailure', file, this.options.maxFilesize);
+                if(file.size > this._options.maxFilesize) {
+                    this.publish('MaxSizeFailure', file, this._options.maxFilesize);
                     continue;
                 }
 
@@ -642,7 +654,7 @@ Ink.createModule('Ink.UI.Upload', '1', [
                 xhr = new XMLHttpRequest(),
                 fileID = o.fileID;
 
-            this.publish('BeforeUpload', file, this.options.extraData, fileID, xhr, this._supportChunks(file.size));
+            this.publish('BeforeUpload', file, this._options.extraData, fileID, xhr, this._supportChunks(file.size));
 
             var forceAbort = function(showError) {
                 if(o.cb && typeof(o.cb === 'function')) {
@@ -660,8 +672,8 @@ Ink.createModule('Ink.UI.Upload', '1', [
                 xhr.abort();
             };
 
-            if(this.options.INVALID_FILE_NAME && this.options.INVALID_FILE_NAME instanceof RegExp) {
-                if(this.options.INVALID_FILE_NAME.test(o.file.name)) {
+            if(this._options.INVALID_FILE_NAME && this._options.INVALID_FILE_NAME instanceof RegExp) {
+                if(this._options.INVALID_FILE_NAME.test(o.file.name)) {
                     forceAbort.call(this);
                     return;
                 }
@@ -679,10 +691,10 @@ Ink.createModule('Ink.UI.Upload', '1', [
             var endpoint, method;
             if(this._supportChunks(file.size)) {
                 if(file.size <= file.chunk_offset) {
-                    endpoint = this.options.endpointChunkCommit;
+                    endpoint = this._options.endpointChunkCommit;
                     method = 'POST';
                 } else {
-                    endpoint = this.options.endpointChunk;
+                    endpoint = this._options.endpointChunk;
                     if(file.chunk_upload_id) {
                         endpoint += '?upload_id=' + file.chunk_upload_id;
                     }
@@ -692,7 +704,7 @@ Ink.createModule('Ink.UI.Upload', '1', [
                     method = 'PUT';
                 }
             } else {
-                endpoint = this.options.endpoint;
+                endpoint = this._options.endpoint;
                 method = 'POST';
             }
 
@@ -710,18 +722,18 @@ Ink.createModule('Ink.UI.Upload', '1', [
                 blob = new Blob([file], { type: file.type });
                 if(this._supportChunks(file.size)) {
                     file.chunk_offset = file.chunk_offset || 0;
-                    blob = blob.slice(file.chunk_offset, file.chunk_offset + this.options.chunkSize);
+                    blob = blob.slice(file.chunk_offset, file.chunk_offset + this._options.chunkSize);
                 } else {
-                    fd.append(this.options.fileFormName, blob, file.name);
+                    fd.append(this._options.fileFormName, blob, file.name);
                 }
             } else {
-                fd.append(this.options.fileFormName, file);
+                fd.append(this._options.fileFormName, file);
             }
 
             if(!this._supportChunks(file.size)) {
-                for(var k in this.options.extraData) {
-                    if(this.options.extraData.hasOwnProperty(k)) {
-                        fd.append(k, this.options.extraData[k]);
+                for(var k in this._options.extraData) {
+                    if(this._options.extraData.hasOwnProperty(k)) {
+                        fd.append(k, this._options.extraData[k]);
                     }
                 }
             } else {
@@ -740,7 +752,7 @@ Ink.createModule('Ink.UI.Upload', '1', [
                     }
                 }
             } else {
-                this.publish('cbCreateFolder', file.parentID, file.fullPath, this.options.extraData, this._folders, file.rootPath, Ink.bind(function() {
+                this.publish('cbCreateFolder', file.parentID, file.fullPath, this._options.extraData, this._folders, file.rootPath, Ink.bind(function() {
                     if(!this._supportChunks(file.size)) {
                         xhr.send(fd);
                     } else {
@@ -761,7 +773,7 @@ Ink.createModule('Ink.UI.Upload', '1', [
                         var response = JSON.parse(xhr.response);
 
                         // check expected offset
-                        var invalidOffset = file.chunk_offset && response.offset !== (file.chunk_offset + this.options.chunkSize) && file.size !== response.offset;
+                        var invalidOffset = file.chunk_offset && response.offset !== (file.chunk_offset + this._options.chunkSize) && file.size !== response.offset;
                         if(invalidOffset) {
                             if(o.cb) {
                                 o.cb();
