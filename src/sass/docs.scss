@@ -1,14 +1,115 @@
-// Import Compass Core
-@import "contrib/compass/css3";
-@import "contrib/compass/utilities";
-@import "contrib/compass/typography";
+@mixin text-color($color,$elements...) {
+  #{$elements} {
+    color: $color;
+  }
+}
 
-// Import Ink
-@import "config/common";
-@import "config/colors";
-@import "config/typography";
+@mixin pie-clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  *zoom: 1;
+}
+
+@mixin border-radius($br) {
+    -webkit-border-radius: $br;
+    border-radius: $br;
+}
+
+@mixin box-sizing($bs) {
+    -moz-box-sizing: $bs;
+    -webkit-box-sizing: $bs;
+    box-sizing: $bs;
+}
+
+@mixin box-shadow($bs){
+    -moz-box-shadow: $bs;
+    -webkit-box-shadow: $bs;
+    box-shadow: $bs;
+}
 
 @charset "UTF-8";
+
+$white                      : #fff !default;
+$black                      : #000 !default;
+$orange                     : #ff9c00 !default;
+$red                        : #c91111 !default;
+$green                      : #4a9b17 !default;
+$blue                       : #0f75da !default;
+$yellow                     : #ffd500 !default;
+$grey-90                    : lighten($black, 10%) !default;
+$grey-25                    : lighten($black, 75%) !default;
+$grey-15                    : lighten($black, 85%) !default;
+$grey-10                    : lighten($black, 90%) !default;
+$body-background            : #fff !default;
+$text-color                 : #555 !default;
+
+$base-line-height: 24px;
+
+$link-color                 : #6998C9 !default;
+$link-visited-color         : #808080 !default;
+$link-active-color          : shade(red,5%) !default;
+$link-hover-color           : #007ED5 !default;
+$link-focus-color           : $link-color !default;
+
+$border-radius: 2px !default;
+$layer-100: 100 !default;
+
+// The font sizes for h1-h6.
+$h1-font-size: 2.2em !default;
+$h2-font-size: 1.75em !default;
+$h3-font-size: 1.50em !default;
+$h4-font-size: 1.25em !default;
+$h5-font-size: 1.1em !default;
+$h6-font-size: 1em !default;
+$p-font-size: 1em !default;
+
+// The amount lists and blockquotes are indented.
+$indent-amount: 25px !default;
+
+// sans-serif font stack
+$sans-serif-font-stack      : "Roboto", Arial, Helvetica, sans-serif !default;
+
+// serif font stack
+$serif-font-stack           : Times, "Times New Roman", serif !default;
+
+// mono font stack
+$mono-font-stack            : Monaco, 'Andale Mono', 'Courier New', monospace !default;
+
+// condensed font stack
+$condensed-font-stack       : Roboto_condensed, Arial, Helvetica, sans-serif !default;
+
+// condensed font stack
+$slab-font-stack            : Roboto_slab, Arial, Helvetica, sans-serif !default;
+
+.fw-100, .fw-light { font-weight: 100; }
+.fw-300, .fw-thin { font-weight: 300; }
+.fw-400, .fw-regular { font-weight: 400; }
+.fw-500, .fw-medium { font-weight: 500; }
+.fw-700, .fw-bold { font-weight: 700; }
+.fw-900, .fw-black { font-weight: 900; }
+
+.condensed-300, .condensed-thin { font-weight: 200; font-family: $condensed-font-stack; }
+.condensed-400, .condensed-regular { font-weight: 400; font-family: $condensed-font-stack; }
+.condensed-700, .condensed-bold { font-weight: 700; font-family: $condensed-font-stack; }
+
+.slab-100, .slab-light { font-weight: 100; font-family: $slab-font-stack; }
+.slab-300, .slab-thin { font-weight: 300; font-family: $slab-font-stack; }
+.slab-400, .slab-regular { font-weight: 400; font-family: $slab-font-stack; }
+.slab-700, .slab-bold { font-weight: 700; font-family: $slab-font-stack; }
+
+.sans       { font-family: $sans-serif-font-stack; }
+.serif      { font-family: $serif-font-stack; }
+.monospace  { font-family: $mono-font-stack; }
+.condensed  { font-family: $condensed-font-stack; }
+.slab       { font-family: $slab-font-stack; }
+
+.italic { font-style: italic; }
+.uppercase { text-transform: uppercase; }
+.lowercase { text-transform: lowercase; }
+.capitalizer { text-transform: capitalize; }
 
 // Variables
 $themeBackground    : #DEEDF1;
@@ -21,42 +122,27 @@ $code-background    : #EEEBE5;
 $code-border        : darken($code-background,8%);
 $teal               : #009999;
 $code-font-size     : .85em;
-
-
-.fw-100 { font-weight: 100; font-family: Roboto; }
-.fw-300 { font-weight: 300; font-family: Roboto; }
-.fw-400 { font-weight: 400; font-family: Roboto; }
-.fw-500 { font-weight: 500; font-family: Roboto; }
-.fw-700 { font-weight: 700; font-family: Roboto; }
-.fw-900 { font-weight: 900; font-family: Roboto; }
-
-.condensed-300 { font-weight: 200; font-family: Roboto_condensed; }
-.condensed-400 { font-weight: 400; font-family: Roboto_condensed; }
-.condensed-700 { font-weight: 700; font-family: Roboto_condensed; }
-
-.slab-100 { font-weight: 100; font-family: Roboto_slab; }
-.slab-300 { font-weight: 300; font-family: Roboto_slab; }
-.slab-400 { font-weight: 400; font-family: Roboto_slab; }
-.slab-700 { font-weight: 700; font-family: Roboto_slab; }
-
-.italic { font-style: italic; }
-.uppercase { text-transform: uppercase; }
+$indent-amount: 25px !default;
 
 a.hover {
-color: $link-hover-color;
-text-decoration: underline;
+    color: $link-hover-color;
+    text-decoration: underline;
 }
 
 a.active {
-color: $link-active-color;
+    color: $link-active-color;
 }
 
 a.visited {
-color: $link-visited-color;
+    color: $link-visited-color;
 }
 
 a, .ink-button {
-  @include transition(compact(all 140ms ease-in-out));
+    // @include transition(compact(all 140ms ease-in-out));
+    -webkit-transition: all 140ms ease-in-out;
+    -moz-transition: all 140ms ease-in-out;
+    -o-transition: all 140ms ease-in-out;
+    transition: all 140ms ease-in-out;
 }
 
 #topbar {
@@ -121,6 +207,7 @@ a, .ink-button {
                         color: $topbar-color;
                         border: none;
                         padding: .8em .8em .8em 0;
+                        float: left;
 
                         &:hover, &:active, &:focus {
                             color: $topbar-colorHover;
@@ -437,7 +524,11 @@ body.ink-drawer {
 
     .border {
         background: url("#{$img-path}home_bkg.png") center 0px;
-        @include background-image(linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57));
+        background-image: -webkit-gradient(linear, 0% 50%, 100% 50%, color-stop(0%, #e65d5b), color-stop(14%, #f3af32), color-stop(28%, #e6d168), color-stop(40%, #7bd369), color-stop(55%, #50c6a2), color-stop(70%, #a7d37c), color-stop(85%, #a7b958), color-stop(100%, #e35c57));
+        background-image: -webkit-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
+        background-image: -moz-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
+        background-image: -o-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
+        background-image: linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
         clear: both;
         margin: 0;
         height: .3em;
@@ -453,7 +544,9 @@ section {
 
     padding-top: 5em;
     //margin: -1em 0 0;
-    @include background-clip(padding-box);
+    -webkit-background-clip: padding;
+      -moz-background-clip: padding;
+      background-clip: padding-box;
 
     & + section {
         margin-top: 3em;
@@ -664,7 +757,7 @@ span.label {
         &:after {
             content: "object";
             background: tint($teal,25%);
-            
+
         }
     }
     &.array {
@@ -732,9 +825,9 @@ html.flexbox .example {
         a { top: auto; }
     }
 
-    .ink-dropdown ul.dropdown, 
-    .ink-dropdown ul.dropdown-menu, 
-    .ink-navigation ul.dropdown, 
+    .ink-dropdown ul.dropdown,
+    .ink-dropdown ul.dropdown-menu,
+    .ink-navigation ul.dropdown,
     .ink-navigation ul.dropdown-menu {
         position: relative;
     }
@@ -748,54 +841,69 @@ footer {
 
     border-top: 1px solid #DDD;
     background: #f0f0f0;
+    
+    .credits { 
+        font-size: .938em;
+        @extend .fw-300;
 
+        li {
+            text-align: center;
+            vertical-align: middle;
+            @include border-radius($border-radius);
+
+            &.separator {
+                
+                height: .4em;
+                width: .4em;
+                padding: 0;
+                margin: 0 1em;
+                border: none;
+                display: inline-block;
+                vertical-align: middle;
+                background: $text-color;
+                @include border-radius(50%);
+            }
+
+            &:first-child {
+                padding: 0;
+            }
+        }
+    }
+    
     .socialplugins {
         background: $grey-10;
         padding: 1em;
-        border: 1px solid #afafaf;
         @include border-radius($border-radius);
-    }
 
-    .copyright {
-
-        .SAPOlogo {
-            background: url("#{$img-path}SAPOlogo.png") no-repeat;
-            text-indent: -9999px;
-            display: block;
-            width: 101px;
-            height: 43px;
-            margin-top: .2em;
-            margin-right: 2em;
-        }
-
-        .PTClogo {
-            background: url("#{$img-path}icon_Sprite.png") no-repeat 0 top;
-            display: block;
-            height: 43px;
-            padding-left: 60px;
-            text-decoration: none;
-
-            small {
-                display: block;
-                line-height: 1.6;
-            }
+        .fb-like span {
+            vertical-align: inherit !important;
         }
     }
 
-    .credits { margin: 0; }
+}
 
-    .ink-navigation {
-        ul.menu.horizontal {
+.copyright {
 
-            li {
-                a {
-                    padding: .5em 1em .5em 0;
-                    display: inline-block;
-                    &.license {
-                        padding: .5em 0;
-                    }
-                }
-            }
+    .SAPOlogo {
+        background: url("#{$img-path}SAPOlogo.png") no-repeat;
+        text-indent: -9999px;
+        color: transparent !important;
+        display: inline-block;
+        width: 101px;
+        min-height: 43px;
+    }
+
+    .PTClogo {
+        background: url("#{$img-path}PTlogo.png") no-repeat 0 top;
+        display: block;
+        min-height: 43px;
+        padding-left: 60px;
+        text-decoration: none;
+
+        small {
+            display: block;
+            line-height: 1.6;
+            @extend .fw-300;
         }
     }
 }
@@ -852,12 +960,6 @@ $who: lighten(#CA8A4E,10%);
     text-decoration: underline;
   }
 
-@mixin text-color($color,$elements...) {
-  #{$elements} {
-    color: $color;
-  }
-}
-
   section {
     border: none;
     padding: 2em 0;
@@ -873,7 +975,14 @@ $who: lighten(#CA8A4E,10%);
 
   section.ink {
       background: $ink;
-      @include background-image(radial-gradient($ink, darken($ink,20%)));
+
+
+  background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, color-stop(0%, #bcb098), color-stop(100%, #907f5e));
+  background-image: -webkit-radial-gradient(#bcb098, #907f5e);
+  background-image: -moz-radial-gradient(#bcb098, #907f5e);
+  background-image: -o-radial-gradient(#bcb098, #907f5e);
+  background-image: radial-gradient(#bcb098, #907f5e);
+
       @include text-color($white,h1,h2,h3,p,ul);
 
       .ink-grid {
@@ -887,7 +996,12 @@ $who: lighten(#CA8A4E,10%);
 
     section.what {
       background: $what;
-      @include background-image(radial-gradient($what, darken($what,10%)));
+
+  background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, color-stop(0%, #709dc7), color-stop(100%, #4b84b9));
+  background-image: -webkit-radial-gradient(#709dc7, #4b84b9);
+  background-image: -moz-radial-gradient(#709dc7, #4b84b9);
+  background-image: -o-radial-gradient(#709dc7, #4b84b9);
+  background-image: radial-gradient(#709dc7, #4b84b9);
       @include text-color($white,h1,h2,h3,p,ul);
 
 
@@ -902,10 +1016,14 @@ $who: lighten(#CA8A4E,10%);
 
     section.showcase {
       background: $showcase;
-      @include background-image(radial-gradient($showcase, darken($showcase,20%)));
+  background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, color-stop(0%, #a5ad85), color-stop(100%, #727a52));
+  background-image: -webkit-radial-gradient(#a5ad85, #727a52);
+  background-image: -moz-radial-gradient(#a5ad85, #727a52);
+  background-image: -o-radial-gradient(#a5ad85, #727a52);
+  background-image: radial-gradient(#a5ad85, #727a52);
       @include text-color($white,h1,h2,h3,p,ul);
 
-    
+
         img {
             border: $text-color 1px solid;
         }
@@ -922,7 +1040,11 @@ $who: lighten(#CA8A4E,10%);
 
     section.download {
       background: $download;
-      @include background-image(radial-gradient($download, darken($download,20%)));
+        background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, color-stop(0%, #cd6969), color-stop(100%, #9c3434));
+  background-image: -webkit-radial-gradient(#cd6969, #9c3434);
+  background-image: -moz-radial-gradient(#cd6969, #9c3434);
+  background-image: -o-radial-gradient(#cd6969, #9c3434);
+  background-image: radial-gradient(#cd6969, #9c3434);
       @include text-color($white,h1,h2,h3,p,ul);
 
     a.ink-button.download,
@@ -955,42 +1077,26 @@ $who: lighten(#CA8A4E,10%);
 
     section.who {
       background: $who;
-      @include background-image(radial-gradient($who, darken($who,20%)));
+  background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, color-stop(0%, #d6a475), color-stop(100%, #b07135));
+  background-image: -webkit-radial-gradient(#d6a475, #b07135);
+  background-image: -moz-radial-gradient(#d6a475, #b07135);
+  background-image: -o-radial-gradient(#d6a475, #b07135);
+  background-image: radial-gradient(#d6a475, #b07135);
       @include text-color($white,h1,h2,h3,p,ul);
 
       .ink-grid {
         height: 100%;
         .column-group {
             height: inherit;
+
+            .column-group.copyright a {
+                text-decoration: none;
+                small { color:white; }
+            }
         }
       }
 
     }
-}
-
-.copyright {
-
-    line-height: 1.25;
-
-  .PTClogo a {
-    background: url("../img/icon_Sprite.png") no-repeat 0 top;
-    text-indent: -9999px;
-    display: inline-block;
-    float: left;
-    width: 41px;
-    height: 43px;
-    margin-right: .6em;
-  }
-
-  .SAPOlogo {
-    background: url("../img/SAPOlogo.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
-    text-indent: -9999px;
-    display: inline-block;
-    width: 101px;
-    height: 30px;
-    margin-bottom: 1em;
-    color: transparent !important;
-  }
 }
 
 p.loader {
@@ -1085,13 +1191,13 @@ ul.params {
     li {
         margin: 1em 0;
         &.level1 { list-style-type: disc; }
-        &.level2 { 
+        &.level2 {
             list-style-type: circle;
-            margin-left: $indent-amount; 
+            margin-left: $indent-amount;
         }
-        &.level3 { 
+        &.level3 {
             list-style-type: circle;
-            margin-left: $indent-amount * 2; 
+            margin-left: $indent-amount * 2;
         }
     }
 }
@@ -1106,5 +1212,9 @@ ul.params {
 
 @media screen and (max-width: 320px) {
     #topbar .ink-navigation ul.black li.logoPlaceholder {float: right;}
+    footer .credits li {
+        display: block;
+        margin: 0;
+    }
 
 }

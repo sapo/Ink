@@ -1,68 +1,82 @@
-.fw-100 {
+.fw-100, .fw-light {
   font-weight: 100;
-  font-family: Roboto;
 }
 
 .fw-300, ul.props li.prop.breakpoint-aware:after, .example .ink-grid .column,
-html.flexbox .example .ink-grid .column, #home section.download a.ink-button.download,
-#home section.download a.ink-button.repo, .example-box {
+html.flexbox .example .ink-grid .column, footer .credits, .copyright .PTClogo small, #home section.download a.ink-button.download,
+#home section.download a.ink-button.repo, .example-box, .fw-thin {
   font-weight: 300;
-  font-family: Roboto;
 }
 
-.fw-400, .sidebar.ink-navigation ul.menu.vertical li.heading ul a {
+.fw-400, .sidebar.ink-navigation ul.menu.vertical li.heading ul a, .fw-regular {
   font-weight: 400;
-  font-family: Roboto;
 }
 
-.fw-500, .sidebar.ink-navigation ul.menu.vertical li.heading {
+.fw-500, .sidebar.ink-navigation ul.menu.vertical li.heading, .fw-medium {
   font-weight: 500;
-  font-family: Roboto;
 }
 
-.fw-700, .mosaic .title, ul.props li.heading {
+.fw-700, .mosaic .title, ul.props li.heading, .fw-bold {
   font-weight: 700;
-  font-family: Roboto;
 }
 
-.fw-900 {
+.fw-900, .fw-black {
   font-weight: 900;
-  font-family: Roboto;
 }
 
-.condensed-300 {
+.condensed-300, .condensed-thin {
   font-weight: 200;
-  font-family: Roboto_condensed;
+  font-family: Roboto_condensed, Arial, Helvetica, sans-serif;
 }
 
-.condensed-400 {
+.condensed-400, .condensed-regular {
   font-weight: 400;
-  font-family: Roboto_condensed;
+  font-family: Roboto_condensed, Arial, Helvetica, sans-serif;
 }
 
-.condensed-700 {
+.condensed-700, .condensed-bold {
   font-weight: 700;
-  font-family: Roboto_condensed;
+  font-family: Roboto_condensed, Arial, Helvetica, sans-serif;
 }
 
-.slab-100 {
+.slab-100, .slab-light {
   font-weight: 100;
-  font-family: Roboto_slab;
+  font-family: Roboto_slab, Arial, Helvetica, sans-serif;
 }
 
-.slab-300 {
+.slab-300, .slab-thin {
   font-weight: 300;
-  font-family: Roboto_slab;
+  font-family: Roboto_slab, Arial, Helvetica, sans-serif;
 }
 
-.slab-400, ul.props li.prop {
+.slab-400, ul.props li.prop, .slab-regular {
   font-weight: 400;
-  font-family: Roboto_slab;
+  font-family: Roboto_slab, Arial, Helvetica, sans-serif;
 }
 
-.slab-700 {
+.slab-700, .slab-bold {
   font-weight: 700;
-  font-family: Roboto_slab;
+  font-family: Roboto_slab, Arial, Helvetica, sans-serif;
+}
+
+.sans {
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
+}
+
+.serif {
+  font-family: Times, "Times New Roman", serif;
+}
+
+.monospace {
+  font-family: Monaco, "Andale Mono", "Courier New", monospace;
+}
+
+.condensed {
+  font-family: Roboto_condensed, Arial, Helvetica, sans-serif;
+}
+
+.slab {
+  font-family: Roboto_slab, Arial, Helvetica, sans-serif;
 }
 
 .italic {
@@ -72,6 +86,14 @@ html.flexbox .example .ink-grid .column, #home section.download a.ink-button.dow
 .uppercase, .mosaic .title, .example .ink-grid .column,
 html.flexbox .example .ink-grid .column {
   text-transform: uppercase;
+}
+
+.lowercase {
+  text-transform: lowercase;
+}
+
+.capitalizer {
+  text-transform: capitalize;
 }
 
 a.hover {
@@ -131,9 +153,6 @@ a, .ink-button {
   margin: 5px 1em;
   font-size: .875em;
   -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
   border-radius: 2px;
 }
 #topbar .ink-navigation ul.black li a.ink-button:hover {
@@ -155,6 +174,7 @@ a, .ink-button {
   color: #bbbbbb;
   border: none;
   padding: .8em .8em .8em 0;
+  float: left;
 }
 #topbar .ink-navigation ul.black li button.fa-bars:hover, #topbar .ink-navigation ul.black li button.fa-bars:active, #topbar .ink-navigation ul.black li button.fa-bars:focus {
   color: white;
@@ -189,12 +209,9 @@ a, .ink-button {
 }
 .sidebar.ink-navigation ul.menu.vertical li.search input[type=search] {
   -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
   border-radius: 2px;
-  -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   padding: .4em .6em .4em 1.9em;
   width: 100%;
@@ -217,12 +234,9 @@ a, .ink-button {
 
 .panel {
   -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
   border-radius: 2px;
-  -webkit-box-shadow: #dddddd 0 1px 1px 0;
   -moz-box-shadow: #dddddd 0 1px 1px 0;
+  -webkit-box-shadow: #dddddd 0 1px 1px 0;
   box-shadow: #dddddd 0 1px 1px 0;
   padding: 1em;
   border: 1px solid #BBB;
@@ -253,12 +267,9 @@ body.ink-drawer .right-drawer li.search {
 body.ink-drawer .left-drawer li.search input[type=search],
 body.ink-drawer .right-drawer li.search input[type=search] {
   -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
   border-radius: 2px;
-  -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   padding: .4em .6em .4em 1.9em;
   width: 100%;
@@ -329,9 +340,6 @@ body.ink-drawer .right-drawer li:last-child {
   padding: 1em;
   border: 1px solid #d9d9d9;
   -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
   border-radius: 2px;
 }
 .mosaic .title {
@@ -356,9 +364,6 @@ body.ink-drawer .right-drawer li:last-child {
   background: #eeebe5;
   margin-bottom: 1.5em;
   -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
   border-radius: 2px;
 }
 
@@ -748,9 +753,6 @@ table.props {
   border-collapse: initial;
   background: #eeebe5;
   -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
   border-radius: 2px;
   margin: 1.5em 0;
 }
@@ -832,9 +834,6 @@ span.label + span.label {
 span.label:after {
   padding: 0 .35em;
   -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
   border-radius: 2px;
   color: white;
   text-transform: uppercase;
@@ -917,9 +916,6 @@ html.flexbox .example {
   padding: 1em;
   background: #eeebe5;
   -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
   border-radius: 2px;
   margin-bottom: 1.5em;
 }
@@ -966,45 +962,58 @@ footer {
   border-top: 1px solid #DDD;
   background: #f0f0f0;
 }
+footer .credits {
+  font-size: .938em;
+}
+footer .credits li {
+  text-align: center;
+  vertical-align: middle;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+}
+footer .credits li.separator {
+  height: .4em;
+  width: .4em;
+  padding: 0;
+  margin: 0 1em;
+  border: none;
+  display: inline-block;
+  vertical-align: middle;
+  background: #555555;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
+footer .credits li:first-child {
+  padding: 0;
+}
 footer .socialplugins {
   background: #e6e6e6;
   padding: 1em;
-  border: 1px solid #afafaf;
   -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
   border-radius: 2px;
 }
-footer .copyright .SAPOlogo {
+footer .socialplugins .fb-like span {
+  vertical-align: inherit !important;
+}
+
+.copyright .SAPOlogo {
   background: url("../img/SAPOlogo.png") no-repeat;
   text-indent: -9999px;
-  display: block;
+  color: transparent !important;
+  display: inline-block;
   width: 101px;
-  height: 43px;
-  margin-top: .2em;
-  margin-right: 2em;
+  min-height: 43px;
 }
-footer .copyright .PTClogo {
-  background: url("../img/icon_Sprite.png") no-repeat 0 top;
+.copyright .PTClogo {
+  background: url("../img/PTlogo.png") no-repeat 0 top;
   display: block;
-  height: 43px;
+  min-height: 43px;
   padding-left: 60px;
   text-decoration: none;
 }
-footer .copyright .PTClogo small {
+.copyright .PTClogo small {
   display: block;
   line-height: 1.6;
-}
-footer .credits {
-  margin: 0;
-}
-footer .ink-navigation ul.menu.horizontal li a {
-  padding: .5em 1em .5em 0;
-  display: inline-block;
-}
-footer .ink-navigation ul.menu.horizontal li a.license {
-  padding: .5em 0;
 }
 
 .screen-size-helper {
@@ -1168,27 +1177,11 @@ footer .ink-navigation ul.menu.horizontal li a.license {
 #home section.who .ink-grid .column-group {
   height: inherit;
 }
-
-.copyright {
-  line-height: 1.25;
+#home section.who .ink-grid .column-group .column-group.copyright a {
+  text-decoration: none;
 }
-.copyright .PTClogo a {
-  background: url("../img/icon_Sprite.png") no-repeat 0 top;
-  text-indent: -9999px;
-  display: inline-block;
-  float: left;
-  width: 41px;
-  height: 43px;
-  margin-right: .6em;
-}
-.copyright .SAPOlogo {
-  background: url("../img/SAPOlogo.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
-  text-indent: -9999px;
-  display: inline-block;
-  width: 101px;
-  height: 30px;
-  margin-bottom: 1em;
-  color: transparent !important;
+#home section.who .ink-grid .column-group .column-group.copyright a small {
+  color: white;
 }
 
 p.loader {
@@ -1219,9 +1212,6 @@ p.loader.show {
   padding: 1em;
   background: #eeebe5;
   -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
   border-radius: 2px;
   margin-bottom: 1.5em;
 }
@@ -1272,9 +1262,6 @@ p.loader.show {
   padding: 1em;
   color: white;
   -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
   border-radius: 2px;
 }
 #myToggledLabel.green {
@@ -1315,5 +1302,10 @@ ul.params li.level3 {
 @media screen and (max-width: 320px) {
   #topbar .ink-navigation ul.black li.logoPlaceholder {
     float: right;
+  }
+
+  footer .credits li {
+    display: block;
+    margin: 0;
   }
 }

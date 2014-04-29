@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script type="text/javascript" src="{{ site.js_path }}modernizr.js"></script>
+    <script type="text/javascript" src="{{ site.cdn_url }}{{ site.version }}/js/modernizr.js"></script>
     <script type="text/javascript">
         Modernizr.load({
           test: Modernizr.flexbox,
           nope : '{{ site.css_path }}ink-legacy.min.css'
         });
-    </script>  
-    <link rel="stylesheet" type="text/css" href="{{ site.css_path }}ink-flex.min.css">
-    <link rel="stylesheet" type="text/css" href="{{ site.css_path }}font-awesome.min.css">
+    </script>
+    <link rel="stylesheet" type="text/css" href="{{ site.cdn_url }}{{ site.version }}/css/ink-flex.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ site.cdn_url }}{{ site.version }}/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="{{ site.css_path }}docs.min.css">
 
     <meta charset="utf-8">
@@ -17,6 +17,14 @@
     <title>{{ site.title }} - {{ page.title }}</title>
     <meta name="description" content="Ink is a set of tools for quick development of web interfaces. It offers a fluid and responsive grid, common interface elements, interactive components, a design-first approach with ease of use and simplicity at its core. Start integrating Ink in your projects and remove the hassle of building the basics, staying free to focus on what's important. ">
     <meta name="author" content="SAPO WEB & MEDIA DESIGN">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@inksapo">
+    <meta name="twitter:title" content="Ink">
+    <meta name="twitter:description" content="Create responsive web interfaces quick and efficiently.">
+    <meta name="twitter:creator" content="@inksapo">
+    <meta name="twitter:image:src" content="http://imgs.sapo.pt/ink/assets/imgs/ink_opengraph.png">
+    <meta name="twitter:domain" content="http://ink.sapo.pt">
 
     <meta property="og:title" content="Ink - Interface Kit"/>
     <meta property="og:type" content="website"/>
@@ -38,12 +46,12 @@
     <link rel="apple-tousplash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
 
     <!-- Load Documentation site CSS -->
-    
+
     <!--[if lt IE 9 ]>
         <link rel="stylesheet" href="{{ site.css_path }}ink-ie.min.css" type="text/css" media="screen" title="no title" charset="utf-8">
     <![endif]-->
 
-    <script type="text/javascript" src="{{ site.js_path }}ink-all.min.js"></script>
+    <script type="text/javascript" src="{{ site.cdn_url }}{{ site.version }}/js/ink-all.min.js"></script>
 </head>
 <body class="ink-drawer">
 <div id="fb-root"></div>

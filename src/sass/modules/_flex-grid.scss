@@ -1,3 +1,0 @@
-// generate the grid css
-@include generate-flex-grid($grid-breakpoints);
-@include css-js-bridge($grid-breakpoints);

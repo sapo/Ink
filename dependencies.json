@@ -1,0 +1,123 @@
+{
+    "global": {
+      "source": [
+        "contrib/compass/css3",
+        "contrib/compass/utilities",
+        "config/common",
+        "config/colors",
+        "config/classnames",
+        "config/typography"
+      ]
+    },
+    "modules": {
+        "alerts": {
+            "source": [
+                "config/alerts",
+                "mixins/alerts",
+                "modules/alerts",
+                "themes/alerts"
+            ]
+        },
+        "badges": {
+            "source": [
+                "config/badges",
+                "modules/badges",
+                "themes/buttons"
+            ]
+        },
+        "buttons": {
+            "source": [
+                "config/buttons",
+                "mixins/buttons",
+                "modules/buttons",
+                "themes/buttons"
+            ]
+        },
+        "forms": {
+            "dependencies": [
+                "modules.grid"
+            ],
+            "source": [
+                "config/forms",
+                "mixins/forms",
+                "modules/forms"
+            ]
+        },
+        "grid": {
+            "source": [
+                "config/grid",
+                "mixins/grid",
+                "modules/grid"
+            ],
+            "submodules": {
+                "flex": [
+                    "mixins/flex-grid",
+                    "modules/flex-grid"
+                ]
+            }
+        },
+        "images": {
+            "source": [
+                "config/images",
+                "modules/images"
+            ]
+        },
+        "labels": {
+            "source": [
+                "config/labels",
+                "modules/labels",
+                "themes/labels"
+            ]
+        },
+        "navigation": {
+            "source": [
+                "config/navigation"
+            ],
+            "submodules": {
+                "breadcrumbs": [
+                    "mixins/nav.breadcrumbs",
+                    "modules/nav.breadcrumbs",
+                    "themes/nav.breadcrumbs"
+                ],
+                "dropdown": [
+                    "mixins/nav.dropdown",
+                    "modules/nav.dropdown",
+                    "themes/nav.dropdown"
+                ],
+                "menu": [
+                    "mixins/nav.menu",
+                    "modules/nav.menu",
+                    "themes/nav.menu"
+                ],
+                "pagination": [
+                    "mixins/nav.pagination",
+                    "modules/nav.pagination",
+                    "themes/nav.pagination"
+                ],
+                "pills": [
+                    "mixins/nav.pills",
+                    "modules/nav.pills",
+                    "themes/nav.pills"
+                ]
+            }
+        },
+        "tables": {
+            "source": [
+                "config/tables",
+                "modules/tables",
+                "themes/tables"
+            ]
+        },
+        "typography": {
+            "source": [
+                "modules/typography",
+                "themes/typography"
+            ],
+            "submodules": {
+                "fonts": [
+                    "modules/fonts"
+                ]
+            }
+        }
+    }
+}

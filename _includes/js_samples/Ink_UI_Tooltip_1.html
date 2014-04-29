@@ -1,19 +1,19 @@
 {% capture demo_code %}
 <div id="myTips" class="ink-navigation">
     <ul class="pills black">
-        <li class="tip"><a href="#">Default Behavior</a></li>
-        <li class="tip" data-tip-where="up" data-tip-color="blue"><a href="#">Up</a></li>
-        <li class="tip" data-tip-where="right" data-tip-color="green"><a href="#">Right</a></li>
-        <li class="tip" data-tip-where="down" data-tip-color="orange"><a href="#">Down</a></li>
-        <li class="tip" data-tip-where="left" data-tip-color="red"><a href="#">Left</a></li>
-        <li class="tip" data-tip-where="mousemove" data-tip-color="black"><a href="#">Mousemove</a></li>
-        <li class="tip" data-tip-where="mousefix" data-tip-color="grey"><a href="#">Mousefix</a></li>
+        <li class="tip" data-tip-text="Hello world!"><a href="#">Default Behavior</a></li>
+        <li class="tip" data-tip-text="Hello world!" data-tip-where="up" data-tip-color="blue"><a href="#">Up</a></li>
+        <li class="tip" data-tip-text="Hello world!" data-tip-where="right" data-tip-color="green"><a href="#">Right</a></li>
+        <li class="tip" data-tip-text="Hello world!" data-tip-where="down" data-tip-color="orange"><a href="#">Down</a></li>
+        <li class="tip" data-tip-text="Hello world!" data-tip-where="left" data-tip-color="red"><a href="#">Left</a></li>
+        <li class="tip" data-tip-text="Hello world!" data-tip-where="mousemove" data-tip-color="black"><a href="#">Mousemove</a></li>
+        <li class="tip" data-tip-text="Hello world!" data-tip-where="mousefix" data-tip-color="grey"><a href="#">Mousefix</a></li>
     </ul>
 </div>
 
 <script>
 Ink.requireModules( ['Ink.UI.Tooltip_1'], function( Tooltip ){
-    var Tooltip = new Tooltip( '#myTips .tip',  {text: 'Hello World'});
+    var Tooltip = new Tooltip( '#myTips .tip');
 });
 </script>
 {% endcapture %}
@@ -29,5 +29,5 @@ Ink.requireModules( ['Ink.UI.Tooltip_1'], function( Tooltip ){
 {% endhighlight %}
 
 <p>
-    <i class="fa fa-leaf"></i> As show in the code example, you may change the tooltip theme and position by using the <code>data-tip-color</code> and <code>data-tip-where</code> attributes respectively.
+    <i class="fa fa-leaf"></i> As shown in the example above, you may change the tooltip theme and position by using the <code>data-tip-color</code> and <code>data-tip-where</code> attributes respectively.
 </p>

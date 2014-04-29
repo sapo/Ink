@@ -23,11 +23,11 @@ tags:
             <div class="column-group horizontal-gutters small-vertical-gutters tiny-vertical-gutters">
               <div class="all-33 small-100 tiny-100">
                 <a href="{{site.download_url}}{{site.version}}/ink-{{site.version}}.zip" data-trackerlink="content|maincontainer|downloadzip" class="ink-button download">Download</a>
-                <p class="half-top-space">This file contains Css, JavaScript and their minified versions, images, fonts and the cookbook.</p>
+                <p class="half-top-space">This file contains CSS, JavaScript and their minified versions, images, fonts and the cookbook.</p>
               </div>
               <div class="all-33 small-100 tiny-100">
                 <a href="{{site.download_src_url}}{{site.version}}.zip" data-trackerlink="content|maincontainer|downloadsourcezip" class="ink-button download">Download with source</a>
-                <p class="half-top-space">This file contains Sass and JavaScript source code, distribution versions and the build tools config files.</p>
+                <p class="half-top-space">This file contains SASS and JavaScript source code, distribution versions and the build tools config files.</p>
               </div>
               <div class="all-33 small-100 tiny-100">
                 <a href="{{site.repo_url}}" data-trackerlink="external|maincontainer|gotogithub" class="ink-button repo">Github</a>
@@ -68,7 +68,7 @@ tags:
       </div>
       <div class="xlarge-50 large-50 medium-50 small-100 tiny-100">
         <h2 class="fw-light">More than HTML and CSS</h2>
-        <p>We've developed our own Javascript library based on the latest coding standards and a modular architecture. Using <a href="{{ site.url }}javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules()</a> method make sure all of Ink power is at your finger tips.</p>
+        <p>We've developed our own JavaScript library based on the latest coding standards and a modular architecture. The <a href="{{ site.url }}javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules()</a> method ensures all of Ink's power is at your fingertips.</p>
 {% highlight js %}
 Ink.requireModules(
   ['Ink.Dom.Css_1'],
@@ -81,7 +81,7 @@ Ink.requireModules(
       </div>
       <div class="xlarge-50 large-50 medium-50 small-100 tiny-100">
         <h2 class="fw-light">Customizable</h2>
-        <p>Inks CSS is created with <a href="http://sass-lang.com/" target="_blank">SASS</a>. Breakpoints, dimensions, color, font sizes and even class names are defined as variables and are easily reconfigurable. Just <a href="{{ site.url }}ui-elements/">edit a couple of files</a>, recompile and you'll have your unique build.</p>
+        <p>Ink's CSS is created with <a href="http://sass-lang.com/" target="_blank">SASS</a>. Breakpoints, dimensions, color, font sizes and even class names are defined as variables and are easily reconfigurable. Just <a href="{{ site.url }}ui-elements/">edit a couple of files</a>, recompile and you'll have your unique custom build.</p>
 {% highlight scss %}
 // scss
 $ink-class-prefix: my-;
@@ -105,7 +105,7 @@ $navigation-class-name: #{$ink-class-prefix}nav
   </div>
   <div class="all-25 medium-50 small-50 tiny-100 align-center">
     <p><a href="http://beta.videos.sapo.pt/" title="Sapo Vídeos"><img src="{{ site.url }}{{ site.images_path }}videos.jpg" alt="Sapo Vídeos"></a></p>
-    <p class="fw-thin">Sapos video hosting and streaming service and platfom.</p>
+    <p class="fw-thin">Sapo's video hosting and streaming service and platfom.</p>
   </div>
   <div class="all-25 medium-50 small-50 tiny-100 align-center">
     <p><a href="http://fernandopessoa.labs.sapo.pt/" title="O Mundo em pessoa"><img src="{{ site.url }}{{ site.images_path }}pessoa.jpg" alt="O Mundo em Pessoa"></a></p>
@@ -113,7 +113,7 @@ $navigation-class-name: #{$ink-class-prefix}nav
   </div>
   <div class="all-25 medium-50 small-50 tiny-100 align-center">
     <p><a href="https://codebits.eu/" title="Codebits"><img src="{{ site.url }}{{ site.images_path }}codebits.jpg" alt="Codebits"></a></p>
-    <p class="fw-thin">Portugals largest tech event organized yearly by Sapo.</p>
+    <p class="fw-thin">Portugal's largest tech event organized yearly by Sapo.</p>
   </div>
   </div>
 </div>
@@ -124,20 +124,22 @@ $navigation-class-name: #{$ink-class-prefix}nav
       <div class="all-90 align-center push-center">
         <h1 class="fw-light">Ink is made at Sapo</h1>
         <p>
-          For the last 18 years, Sapo has lead the way, in web development, in Portugal. We've always contributed to and made use of many open source projects, many of which are critical to our operations. So, Ink is made as part of our <a href="http://oss.sapo.pt">open source initiative</a> and made available under <a href="http://opensource.org/licenses/MIT">MIT</a> license.
+          For the last 18 years, Sapo has lead the way in web development, in Portugal. We've always contributed to and made use of many open source projects, many of which are critical to our operations. Ink is developed under our <a href="http://oss.sapo.pt">open source initiative</a> and made freely available under the <a href="http://opensource.org/licenses/MIT">MIT</a> license.
         </p>
         <p>
           <iframe src="http://ghbtns.com/github-btn.html?user=sapo&repo=Ink&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"></iframe>
           <iframe src="http://ghbtns.com/github-btn.html?user=sapo&repo=Ink&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"></iframe>
         </p>
-        <div class="column-group copyright">
-          <div class="xlarge-60 large-60 medium-60 small-100 tiny-100 align-left">
-            <p class="PTClogo">
-                <a href="http://www.telecom.pt">PTC logo</a>PTC - All rights reserved.<br>
-                SAPO is a trademark and a search engine created at the University of Aveiro.
-            </p>
+        <div class="column-group gutters copyright">
+          <div class="all-70 small-100 tiny-100 align-left">
+            <a class="PTClogo" href="http://www.telecom.pt">
+                <small>
+                    PTC - All rights reserved.<br>
+                    SAPO is a trademark and a search engine created at the University of Aveiro.
+                </small>
+            </a>
           </div>
-          <div class="xlarge-40 large-40 medium-40 small-100 tiny-100 align-right">
+          <div class="all-30 small-100 tiny-100 align-right small-align-left tiny-align-left">
             <p><a class="SAPOlogo" href="http://www.sapo.pt">sapo.pt</a></p>
           </div>
         </div>
