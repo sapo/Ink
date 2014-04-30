@@ -321,8 +321,8 @@ Ink.createModule('Ink.UI.Upload', '1', [
 
 
         _setFileButton: function() {
-            if (!this._fileButton) { return; }
             var btns = this._fileButton;
+            if (!btns) { return; }
             Event.observeMulti(btns, 'change', Ink.bindEvent(this._fileChangeHandler, this));
         },
 
@@ -381,7 +381,7 @@ Ink.createModule('Ink.UI.Upload', '1', [
          * @param [options.endpoint=window.location] The URL where we're POSTing the files to. Defaults to the current location, like a HTML form.
          * @param [options.maxFileSize] Maximum file size in bytes. Defaults to 300mb.
          * @param [INVALID_FILE_NAME] A regular expression to invalidate file names. For example, set this to `/\.png$/` if you don't want files with the ".png" extension. Remember that file extensions are just hints!
-         * TODO @xparam [options.extraData]
+         * @param [options.extraData] Add more data to your POST request. Each key in this hash gets added to the form data sent to the server.
          * TODO chunk options, also write a bit above about chunking and the serverside of chunking.
          * TODO directory options, also write a bit above about directories and the server end of directories.
          */
@@ -401,8 +401,8 @@ Ink.createModule('Ink.UI.Upload', '1', [
                 useChunks:          false,
                 chunkSize:          4194304,  // 4MB
                 minSizeToUseChunks: 20971520, // 20mb
-                endpointChunk:      '',
-                endpointChunkCommit:'',
+                endpointChunk:      '',  // Where to send chunk data.
+                endpointChunkCommit:'',  // Where to send the "chunk transaction" commit.
                 // Directory trees
                 foldersEnabled:     false,
                 directoryMaxDepth:  10
@@ -441,15 +441,7 @@ Ink.createModule('Ink.UI.Upload', '1', [
 
 
         _dropEventHandler: function(ev) {
-            if(ev && ev.stopPropagation) {
-                ev.stopPropagation();
-            }
-            if(ev && ev.preventDefault) {
-                ev.preventDefault();
-            }
-            if(ev) {
-                ev.returnValue = false;
-            }
+            Event.stop(ev);
 
             this.publish('DropComplete', ev.dataTransfer);
 
