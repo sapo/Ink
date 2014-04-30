@@ -14,6 +14,41 @@ Ink.requireModules(['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1', '
         });
     }
 
+    var elm, inst;
+    module('UI module registry', {
+        setup: function () { elm = InkElement.create('div'); inst = {} },
+    });
+    test('registerInstance adds data-instance attributes to elements to find them later', function () {
+        Common.registerInstance(inst, elm);
+        ok(elm.getAttribute('data-instance'))
+    });
+
+    test('Holds elements, can retrieve them', function () {
+        Common.registerInstance(inst, elm);
+        strictEqual(Common.getInstance(elm), inst);
+    });
+
+    test('calls _warnDoubleInstantiation', sinon.test(function () {
+        this.spy(Common, '_warnDoubleInstantiation');
+        Common.registerInstance(inst, elm);
+        ok(Common._warnDoubleInstantiation.calledOnce);
+        deepEqual(Common._warnDoubleInstantiation.lastCall.args[0], elm);
+    }))
+
+    test('_warnDoubleInstantiation calls Ink.warn if not the first module of the same type to be initialized', sinon.test(function () {
+        function SomeConstructor() {}
+        SomeConstructor._name = 'Modal_1';
+
+        inst = new SomeConstructor();
+
+        this.spy(Ink, 'warn');
+        Common._warnDoubleInstantiation(elm, inst);
+        ok(Ink.warn.notCalled, 'Ink.warn wasn\'t called');
+        Common.registerInstance(inst, elm);
+        Common._warnDoubleInstantiation(elm, inst);
+        ok(Ink.warn.called, 'Ink.warn was called');
+    }))
+
     module('elsOrSelector()');
 
     bagTest('send a valid selector with elements', function () {

@@ -615,6 +615,29 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
             }
         },
 
+        _warnDoubleInstantiation: function (elm, newInstance) {
+            var instances = Common.getInstance(elm);
+
+            if (getName(newInstance) === '') { return; }
+            if (!instances) { return; }
+
+            var nameWithoutVersion = getName(newInstance);
+
+            for (var i = 0, len = instances.length; i < len; i++) {
+                if (nameWithoutVersion === getName(instances[i])) {
+                    Ink.warn('Creating more than one ' + nameWithoutVersion + '.',
+                            '(Was creating a ' + nameWithoutVersion + ' on:', elm, '.' +
+                            'Existing element was: ', instances[i]._element);
+                }
+            }
+
+            function getName(thing) {
+                return ((thing.constructor && (thing.constructor._name || thing.constructor.name)) ||
+                    thing._name ||
+                    '').replace(/_.*?$/, '');
+            }
+        },
+
         /**
          * Saves a component's instance reference for later retrieval.
          *
@@ -622,18 +645,14 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          * @static
          * @param  {Object}     inst                Object that holds the instance.
          * @param  {DOMElement} el                  DOM Element to associate with the object.
-         * @param  {Object}     [optionalPrefix]    Defaults to 'instance'
          */
-        registerInstance: function(inst, el, optionalPrefix) {
-            if (inst._instanceId) { return; }
+        registerInstance: function(inst, el) {
+            if (!inst || inst._instanceId) { return; }
 
-            if (typeof inst !== 'object') { throw new TypeError('1st argument must be a JavaScript object!'); }
+            if (!this.isDOMElement(el)) { throw new TypeError('Ink.UI.Common.registerInstance: The element passed in is not a DOM element!'); }
 
-            if (inst._options && inst._options.skipRegister) { return; }
-
-            if (!this.isDOMElement(el)) { throw new TypeError('2nd argument must be a DOM element!'); }
-            if (optionalPrefix !== undefined && typeof optionalPrefix !== 'string') { throw new TypeError('3rd argument must be a string!'); }
-            var id = (optionalPrefix || 'instance') + (++lastIdNum);
+            Common._warnDoubleInstantiation(el, inst);
+            var id = 'instance' + (++lastIdNum);
             instances[id] = inst;
             inst._instanceId = id;
             var dataInst = el.getAttribute('data-instance');
@@ -664,7 +683,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
             var ids;
             if (this.isDOMElement(instanceIdOrElement)) {
                 ids = instanceIdOrElement.getAttribute('data-instance');
-                if (ids === null) { throw new Error('argument is not a DOM instance element!'); }
+                if (ids === null) { return null; }
             }
             else {
                 ids = instanceIdOrElement;
@@ -682,7 +701,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
                 res.push(inst);
             }
 
-            return (l === 1) ? res[0] : res;
+            return res;
         },
 
         /**
