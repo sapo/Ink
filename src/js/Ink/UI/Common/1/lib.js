@@ -463,21 +463,14 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
                 document.body.appendChild(detectorEl);
             }
 
-            var result = '';
-            var resultCount = 0;
-            for (i = 0, f = detectorEl.childNodes.length; i < f; ++i) {
-                el = detectorEl.childNodes[i];
+            for (i = 0, f = detectorEl.children.length; i < f; ++i) {
+                el = detectorEl.children[i];
                 if (Css.getStyle(el, 'display') === 'block') {
-                    result = el.getAttribute('data-ink-layout');
-                    resultCount += 1;
+                    return el.getAttribute('data-ink-layout');
                 }
             }
 
-            if (resultCount === 1) {
-                return result;
-            } else {
-                return 'large';
-            }
+            return 'large';
         },
 
 
