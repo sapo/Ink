@@ -74,6 +74,35 @@ Ink.requireModules(['Ink.UI.Tabs_1', 'Ink.UI.Common_1', 'Ink.Dom.Element_1', 'In
         });
     });
 
+    testTabs('When a tab has the class tabs-tab, ignore any other <a> tags (new feature with backwards compat)', function (tabComponent, container) {
+        stop();
+        var spy = sinon.spy(tabComponent, '_changeTab');
+        var theTabLink = Ink.s('a[href$="#news"]', container);
+        Ink.s('a[href$="#home"]', container).className += ' tabs-tab';
+        Syn.click(theTabLink, function () {
+            ok(spy.notCalled, '_changeTab must not be called because this is not a legit tab.');
+            start();
+        });
+    })
+
+    testTabs('unless it\'s a disabled tab', function (tabComponent, container) {
+        stop();
+        var spy = sinon.spy(tabComponent, '_changeTab');
+        var theTabLink = Ink.s('a[href$="#news"]', container);
+        tabComponent.disable(theTabLink)
+        Syn.click(theTabLink, function () {
+            ok(spy.notCalled);
+            start();
+        });
+    });
+
+    test('regression test: tabs would crash if there were no menus to use', function () {
+        var cont = makeContainer();
+        Ink.s('.tabs-nav', cont).innerHTML = '';
+        new Tabs(cont);
+        ok(true, 'didn\'t throw');
+    });
+
     test('regression test: #245', function () {
         var cont = makeContainer();
         var home = Ink.s('a[href$="#home"]', cont);
