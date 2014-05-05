@@ -45,9 +45,10 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
      * @param {String|DOMElement}   selector
      * @param {Object}              [options]                   Options
      * @param {Boolean}             [options.autoOpen]          Flag to automatically open the datepicker.
-     * @param {String}              [options.cleanText]         Text for the clean button. Defaults to 'Limpar'.
-     * @param {String}              [options.closeText]         Text for the close button. Defaults to 'Fechar'.
+     * @param {String}              [options.cleanText]         Text for the clean button. Defaults to 'Clear'.
+     * @param {String}              [options.closeText]         Text for the close button. Defaults to 'Close'.
      * @param {String}              [options.cssClass]          CSS class to be applied on the datepicker
+     * @param {String|DOMElement}   [options.pickerField]       (if not using in an input[type="text"]) Element which displays the DatePicker when clicked. Defaults to an "open" link.
      * @param {String}              [options.dateRange]         Enforce limits to year, month and day for the Date, ex: '1990-08-25:2020-11'
      * @param {Boolean}             [options.displayInSelect]   Flag to display the component in a select element.
      * @param {String|DOMElement}   [options.dayField]          (if using options.displayInSelect) `select` field with days.
@@ -74,7 +75,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
      * @param {Function}            [options.validDayFn]        Callback to execute when 'rendering' the day (in the month view)
      * @param {Function}            [options.nextValidDateFn]   Function to calculate the next valid date, given the current. Useful when there's invalid dates or time frames.
      * @param {Function}            [options.prevValidDateFn]   Function to calculate the previous valid date, given the current. Useful when there's invalid dates or time frames.
-     * @param {Object}              [options.wDay]              Hash of weekdays. Defaults to portuguese names. Sunday is 0.
+     * @param {Object}              [options.wDay]              Hash of week day names. Sunday is 0. Defaults to { 0:'Sunday', 1:'Monday', etc...
      * @param {String}              [options.yearRange]         Enforce limits to year for the Date, ex: '1990:2020' (deprecated)
      *
      * @sample Ink_UI_DatePicker_1.html
@@ -87,6 +88,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             autoOpen:        ['Boolean', false],
             cleanText:       ['String', 'Clear'],
             closeText:       ['String', 'Close'],
+            pickerField:     ['Element', null],
             containerElement:['Element', null],
             cssClass:        ['String', 'ink-calendar bottom'],
             dateRange:       ['String', null],
@@ -151,8 +153,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
         this._hoverPicker = false;
 
-        this._picker = this._options.pickerField &&
-            Common.elOrSelector(this._options.pickerField, 'pickerField');
+        this._picker = this._options.pickerField || null;
 
         this._setMinMax( this._options.dateRange || this._options.yearRange );
 
