@@ -261,7 +261,7 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          */
          getStyle: function(elm, style) {
              elm = Ink.i(elm);
-             if (elm !== null) {
+             if (elm !== null && elm.style) {
                  style = style === 'float' ? 'cssFloat': this._camelCase(style);
 
                  var value = elm.style[style];
