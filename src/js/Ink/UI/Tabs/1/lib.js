@@ -127,7 +127,9 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
                                  (this._options.active && this._findLinkByHref(this._options.active)) ||
                                  Selector.select('a', this._menu)[0];
 
-            this._changeTab(activeMenuLink, this._options.triggerEventsOnLoad);
+            if (activeMenuLink) {
+                this._changeTab(activeMenuLink, this._options.triggerEventsOnLoad);
+            }
         },
 
         /**

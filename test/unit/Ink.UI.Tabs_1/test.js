@@ -96,6 +96,13 @@ Ink.requireModules(['Ink.UI.Tabs_1', 'Ink.UI.Common_1', 'Ink.Dom.Element_1', 'In
         });
     });
 
+    test('regression test: tabs would crash if there were no menus to use', function () {
+        var cont = makeContainer();
+        Ink.s('.tabs-nav', cont).innerHTML = '';
+        new Tabs(cont);
+        ok(true, 'didn\'t throw');
+    });
+
     test('regression test: #245', function () {
         var cont = makeContainer();
         var home = Ink.s('a[href$="#home"]', cont);
