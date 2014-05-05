@@ -189,12 +189,15 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          * @param {Event} ev
          * @private
          */
-        _onTabClicked: function(ev) {
-            event.preventDefault();
-            event.stopPropagation();
-
+        _onTabClicked: function(event) {
             var target = event.target;
             if(!target) {
+                return;
+            }
+
+            if (!Selector.matchesSelector(target, this._options.tabSelector) &&
+                    Ink.s(this._options.tabSelector, this._menu)) {
+                // If the markup has at least a .tabs-tab, and it's not this one, ignore the event.
                 return;
             }
 
@@ -204,7 +207,10 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
                 return;
             }
 
-            if (this._options.preventUrlChange.toString() !== 'true') {
+            event.preventDefault();
+            event.stopPropagation();
+
+            if (!this._options.preventUrlChange) {
                 window.location.hash = href;
             }
 
