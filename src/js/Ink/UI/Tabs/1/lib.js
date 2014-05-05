@@ -12,7 +12,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
      * - A container element (this is what you call the Ink.UI.Tabs constructor on), containing everything.
      * - An element with the `tabs-nav` class, to contain links.
      * - Your links with `href="#ID_OF_SECTION"`
-     * - Your sections with the corresponding `id` attributes.
+     * - Your sections with the corresponding `id` attributes and the `tabs-content` class.
      * - The content for each section.
      *
      * When the user clicks in the links inside `tabs-nav`, the tab with the corresponding ID is then activated. The active tab when the tab component is initialized has its hash in the browser URL. If there is no hash, then the `active` option kicks in. Otherwise, Tabs will fall back to showing the tab corresponding to the first link.
@@ -28,6 +28,11 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
      * @param {Array}               [options.disabled]              IDs of the tabs that will be disabled on creation
      * @param {Function}            [options.onBeforeChange]        Callback to be executed before changing tabs
      * @param {Function}            [options.onChange]              Callback to be executed after changing tabs
+     * 
+     * @param {String}              [options.menuSelector='.tabs-nav'] Selector to find the menu element
+     * @param {String}              [options.contentSelector='.tabs-content'] Selector to find the menu element
+     * @param {String}              [options.tabSelector='.tabs-tab'] Selector to find the menu element
+     *
      * @param {Boolean}             [options.triggerEventsOnLoad]   Trigger the above events when the page is loaded.
      *
      * @sample Ink_UI_Tabs_1.html
@@ -41,12 +46,13 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
             disabled:           ['Object', []],
             onBeforeChange:     ['Function', undefined],
             onChange:           ['Function', undefined],
+            menuSelector:       ['String', '.tabs-nav'],
+            contentSelector:    ['String', '.tabs-content'],
+            tabSelector:        ['String', '.tabs-tab'],
             triggerEventsOnLoad:['Boolean', true]
         }, options || {}, this._element, 'Ink.UI.Tabs_1');
 
         this._handlers = {
-            tabClicked: Ink.bindEvent(this._onTabClicked,this),
-            disabledTabClicked: Ink.bindEvent(this._onDisabledTabClicked,this),
             resize: Ink.bindEvent(Event.throttle(this._onResize, 100),this)
         };
 
@@ -62,12 +68,11 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          * @private
          */
         _init: function() {
-            this._menu = Selector.select('.tabs-nav', this._element)[0];
+            this._menu = Selector.select(this._options.menuSelector, this._element)[0];
             if (!this._menu) {
                 Ink.warn('Ink.UI.Tabs: An element selected by ".tabs-nav" needs to exist inside the element!');
                 return;
             }
-            this._contentTabs = Selector.select('.tabs-content', this._element);
 
             //initialization of the tabs, hides all content before setting the active tab
             this._initializeDom();
@@ -90,7 +95,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          * @private
          */
         _initializeDom: function(){
-            var contentTabs = Selector.select('.tabs-content', this._element);
+            var contentTabs = Selector.select(this._options.contentSelector, this._element);
 
             for(var i = 0; i < contentTabs.length; i++){
                 Css.addClassName(contentTabs[i], 'hide-all');
@@ -104,7 +109,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          * @private
          */
         _observe: function() {
-            Event.on(this._menu, 'click', '> *', Ink.bindMethod(this, '_onTabClickedGeneric'));
+            Event.on(this._menu, 'click', 'a', Ink.bindMethod(this, '_onTabClickedGeneric'));
             Event.observe(window, 'resize', this._handlers.resize);
         },
 
@@ -185,10 +190,11 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          * @private
          */
         _onTabClicked: function(ev) {
-            Event.stop(ev);
+            event.preventDefault();
+            event.stopPropagation();
 
-            var target = Event.findElement(ev, 'A');
-            if(!target || target.nodeName.toLowerCase() !== 'a') {
+            var target = event.target;
+            if(!target) {
                 return;
             }
 
