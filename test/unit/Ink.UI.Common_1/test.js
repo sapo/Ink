@@ -23,9 +23,22 @@ Ink.requireModules(['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1', '
         ok(elm.getAttribute('data-instance'))
     });
 
-    test('Holds elements, can retrieve them', function () {
+    test('Holds instances, can retrieve them', function () {
         Common.registerInstance(inst, elm);
-        strictEqual(Common.getInstance(elm), inst);
+        strictEqual(Common.getInstance(elm)[0], inst);
+    });
+
+    test('Adds a data-instance attribute', function () {
+        Common.registerInstance(inst, elm);
+        ok(elm.getAttribute('data-instance'));
+    });
+
+    test('Can hold instances of different components, ordering them', function () {
+        var inst2 = {};
+        Common.registerInstance(inst, elm);
+        Common.registerInstance(inst2, elm);
+
+        deepEqual(Common.getInstance(elm), [inst, inst2]);
     });
 
     test('calls _warnDoubleInstantiation', sinon.test(function () {

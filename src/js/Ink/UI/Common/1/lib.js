@@ -674,7 +674,8 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          */
         getInstance: function(instanceIdOrElement) {
             var ids;
-            if (this.isDOMElement(instanceIdOrElement)) {
+            instanceIdOrElement = Common.elOrSelector(instanceIdOrElement);
+            if (instanceIdOrElement) {
                 ids = instanceIdOrElement.getAttribute('data-instance');
                 if (ids === null) { return null; }
             }
@@ -682,7 +683,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
                 ids = instanceIdOrElement;
             }
 
-            ids = ids.split(' ');
+            ids = ids.split(/\s+/g);
             var inst, id, i, l = ids.length;
 
             var res = [];
