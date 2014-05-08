@@ -362,6 +362,41 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
         },
 
         /**
+         * Simulates python's range(start, stop, step) function.
+         *
+         * Creates a list with numbers from start until stop, using a for loop.
+         *
+         * The optional step argument defines how to step ahead.
+         *
+         * @method range
+         * @param {Integer} start
+         * @param {Integer} stop
+         * @param {Integer} [step=1]
+         *
+         * @sample Ink.Util.Array_1.range
+         **/
+        range: function range(a, b, step) {
+            // From: https://github.com/mcandre/node-range
+            if (!step) {
+                step = 1;
+            }
+
+            var r = [];
+
+            if (step > 0) {
+                for (var x = a; x < b; x += step) {
+                    r.push(x);
+                }
+            } else {
+                for (var x = a; x > b; x += step) {
+                    r.push(x);
+                }
+            }
+
+            return r;
+        },
+
+        /**
          * Inserts a value on a specified index
          *
          * @method insert
