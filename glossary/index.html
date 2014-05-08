@@ -7,7 +7,7 @@ site_root: ../
 
 
 <section>
-  
+
       <table class="props css">
         <caption>ALERTS</caption>
         <thead>
@@ -40,8 +40,12 @@ site_root: ../
                 <td><code>ink-dismiss</code></td>
                 <td>Defines a dismissing action button.</td>
             </tr>
-        </tbody>    
+        </tbody>
     </table>
+
+    <ul class="unstyled">
+      <li><span class="label mandatory"></span> This class must be used for the component to work.</li>
+    </ul>
 
     <table class="props css">
         <caption>BUTTONS</caption>
@@ -74,8 +78,12 @@ site_root: ../
                 <td><code>button-toolbar</code></td>
                 <td>Defines a wrapper to build a button toolbar. Used with a <code>&ltdiv&gt</code> element.</td>
             </tr>
-        </tbody>    
+        </tbody>
     </table>
+
+    <ul class="unstyled">
+      <li><span class="label mandatory"></span> This class must be used for the component to work.</li>
+    </ul>
 
       <table class="props css">
     <caption>FLEXBOX</caption>
@@ -133,6 +141,12 @@ site_root: ../
     </tbody>
   </table>
 
+  <ul class="unstyled">
+    <li><span class="label mandatory"></span> This class must be used for the component to work.</li>
+    <li><span class="label breakpoint-aware"></span> This class has breakpoint dependent variants, e.g. <code>large-class-name</code>.</li>
+    <li><span class="label flexbox"></span> This feature is only available with ink-flex.css</li>
+  </ul>
+
   <table class="props css">
         <caption>FORMS</caption>
         <thead>
@@ -180,6 +194,10 @@ site_root: ../
         </tbody>
     </table>
 
+    <ul class="unstyled">
+      <li><span class="label mandatory"></span> This class must be used for the component to work.</li>
+    </ul>
+
     <table class="props css">
     <caption>GRID</caption>
     <thead>
@@ -215,18 +233,24 @@ site_root: ../
         </tr>
         <tr>
           <td><code>medium-x%</code></td>
-          <td>Sets x% element width for the '<a href="{{ site.url }}ui-elements/grid/#breakpoints">medium</a>' breakpoint.</td>            
+          <td>Sets x% element width for the '<a href="{{ site.url }}ui-elements/grid/#breakpoints">medium</a>' breakpoint.</td>
         </tr>
         <tr>
           <td><code>large-x%</code></td>
-          <td>Sets x% element width for the '<a href="{{ site.url }}ui-elements/grid/#breakpoints">large</a>' breakpoint.</td>           
+          <td>Sets x% element width for the '<a href="{{ site.url }}ui-elements/grid/#breakpoints">large</a>' breakpoint.</td>
         </tr>
         <tr>
           <td><code>xlarge-x%</code></td>
-          <td>Sets element x% width for the '<a href="{{ site.url }}ui-elements/grid/#breakpoints">extra-large</a>' breakpoint.</td> 
+          <td>Sets element x% width for the '<a href="{{ site.url }}ui-elements/grid/#breakpoints">extra-large</a>' breakpoint.</td>
         </tr>
-    </tbody>    
+    </tbody>
   </table>
+
+  <ul class="unstyled">
+    <li><span class="label mandatory"></span> This class must be used for the component to work.</li>
+    <li><span class="label breakpoint-aware"></span> This class has breakpoint dependent variants, e.g. <code>large-class-name</code>.</li>
+    <li><span class="label halves-quarters"></span> This class has half and quarter size variants, e.g. <code>half-class-name</code>.</li>
+  </ul>
 
     <table class="props css">
     <caption>HELPERS</caption>
@@ -293,9 +317,14 @@ site_root: ../
           <td><code>show</code></td>
           <td>Sets display css property to its default visible state. <span class="label breakpoint-aware"></span></td>
         </tr>
-    </tbody>    
+    </tbody>
   </table>
-  
+
+  <ul class="unstyled">
+    <li><span class="label breakpoint-aware"></span> This class has breakpoint dependent variants, e.g. <code>large-class-name</code>.</li>
+    <li><span class="label halves-quarters"></span> This class has half and quarter size variants, e.g. <code>half-class-name</code>.</li>
+  </ul>
+
     <table class="props css">
     <caption>IMAGES & CAPTIONS</caption>
     <thead>
@@ -325,8 +354,13 @@ site_root: ../
           <td><code>imagequery</code></td>
           <td>Identifies images that will be handled by the <a href="{{ site.url }}javascript/Ink.UI.ImageQuery">Ink.UI.ImageQuery</a> component. <span class="label js"></span></td>
         </tr>
-    </tbody>    
+    </tbody>
   </table>
+
+<ul class="unstyled">
+  <li><span class="label mandatory"></span> This class must be used for the component to work.</li>
+  <li><span class="label js"></span> Requires JavaScript</li>
+</ul>
 
   <table class="props css">
         <caption>Navigation</caption>
@@ -361,10 +395,14 @@ site_root: ../
                     <code>orange</code><br>
                     <code>red</code>
                 </td>
-                <td>Defines the navigation theme color. <span class="label context-aware"></span></td>
+                <td>Defines the navigation theme color.</td>
             </tr>
         </tbody>
     </table>
+
+    <ul class="unstyled">
+      <li><span class="label mandatory"></span> This class must be used for the component to work.</li>
+    </ul>
 
       <table class="props css">
     <caption>TABLES</caption>
@@ -403,8 +441,12 @@ site_root: ../
           </td>
           <td>Sets a background color on a table row<td>
         </tr>
-    </tbody>    
+    </tbody>
   </table>
+
+  <ul class="unstyled">
+    <li><span class="label mandatory"></span> This class must be used for the component to work.</li>
+  </ul>
 
       <table class="props css">
     <caption>TYPOGRAPHY</caption>
@@ -487,7 +529,7 @@ site_root: ../
         <td><code>lowercase</code></td>
         <td>Transforms character to upper case</td>
       </tr>
-    </tbody>    
+    </tbody>
   </table>
 
     <ul class="unstyled">
