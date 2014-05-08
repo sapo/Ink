@@ -3,9 +3,9 @@
 <div id="myTabs" class="ink-tabs top">
     <!-- If you're using 'bottom' positioning, put this div AFTER the content. -->
     <ul class="tabs-nav">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#news">News</a></li>
-        <li><a href="#stuff">Stuff</a></li>
+        <li><a class="tabs-tab" href="#home">Home</a></li>
+        <li><a class="tabs-tab" href="#news">News</a></li>
+        <li><a class="tabs-tab" href="#stuff">Stuff</a></li>
     </ul>
 
     <!-- Now just place your content -->
@@ -36,8 +36,7 @@
 
 <script>
     Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.Tabs_1'], function( Selector, Tabs ){
-        var tabsElement = Ink.s('#myTabs');
-        var tabsObj = new Tabs( tabsElement );
+        var tabsObj = new Tabs('#myTabs');
     });
 </script>
 {% endcapture %}

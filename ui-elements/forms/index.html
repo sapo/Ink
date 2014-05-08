@@ -354,9 +354,9 @@ site_root: ../../
 {% highlight html %}
 <form class="ink-form">
     <div class="control-group required">
-        <label for="text-input">Passw</label> 
+        <label for="text-input">Password</label> 
         <div class="control">
-            <input id="text-input" type="text" placeholder="Please input some text">
+            <input id="text-input" type="text" placeholder="Please enter your password">
         </div>
         <p clas="tip">This field is required</p>
     </div>
@@ -366,9 +366,9 @@ site_root: ../../
     <div class="example">
         <form class="ink-form">
             <div class="control-group required">
-                <label for="text-input">Passw</label> 
+                <label for="text-input">Password</label> 
                 <div class="control">
-                    <input id="text-input" type="text" placeholder="Please input some text">
+                    <input id="text-input" type="text" placeholder="Please enter your password">
                 </div>
                 <p class="tip">This field is required</p>
             </div>
@@ -380,9 +380,9 @@ site_root: ../../
 {% highlight html %}
 <form class="ink-form">
     <div class="control-group required validation warning">
-        <label for="text-input">Passw</label> 
+        <label for="text-input">Password</label> 
         <div class="control">
-            <input id="text-input" type="text" placeholder="Please input some text">
+            <input id="text-input" type="text" placeholder="Please enter your password">
         </div>
         <p class="tip">Warn about something</p>
     </div>
@@ -392,9 +392,9 @@ site_root: ../../
     <div class="example">
         <form class="ink-form">
             <div class="control-group required validation warning">
-                <label for="text-input">Passw</label> 
+                <label for="text-input">Password</label> 
                 <div class="control">
-                    <input id="text-input" type="text" placeholder="Please input some text">
+                    <input id="text-input" type="text" placeholder="Please enter your password">
                 </div>
                 <p class="tip">This field is required</p>
             </div>
@@ -577,9 +577,9 @@ site_root: ../../
         <div class="control-group">
             <p class="label">Please select one or more options</p>
             <ul class="control unstyled">
-                <li><input type="checkbox" id="cb4" name="cb4" value="Chimaira"><label for="cb4">Chimaira</label></li>
-                <li><input type="checkbox" id="cb3" name="cb3" value="Metallica"><label for="cb3">Metallica</label></li>
-                <li><input type="checkbox" id="cb4" name="cb4" value="Motorhead"><label for="cb4">Motörhead</label></li>
+                <li><input type="checkbox" id="cb5" name="cb5" value="Chimaira"><label for="cb5">Chimaira</label></li>
+                <li><input type="checkbox" id="cb4" name="cb4" value="Metallica"><label for="cb4">Metallica</label></li>
+                <li><input type="checkbox" id="cb3" name="cb3" value="Motorhead"><label for="cb3">Motörhead</label></li>
                 <li><input type="checkbox" id="cb2" name="cb2" value="Pantera"><label for="cb2">Pantera</label></li>
                 <li><input type="checkbox" id="cb1" name="cb1" value="Slayer"><label for="cb1">Slayer</label></li>
             </ul>
@@ -595,9 +595,9 @@ site_root: ../../
                 <div class="control-group">
                     <p class="label">Please select one or more options</p>
                     <ul class="control unstyled">
-                        <li><input type="checkbox" id="cb4" name="cb4" value="Chimaira"><label for="cb4">Chimaira</label></li>
-                        <li><input type="checkbox" id="cb3" name="cb3" value="Metallica"><label for="cb3">Metallica</label></li>
-                        <li><input type="checkbox" id="cb4" name="cb4" value="Motorhead"><label for="cb4">Motörhead</label></li>
+                        <li><input type="checkbox" id="cb5" name="cb5" value="Chimaira"><label for="cb5">Chimaira</label></li>
+                        <li><input type="checkbox" id="cb4" name="cb4" value="Metallica"><label for="cb4">Metallica</label></li>
+                        <li><input type="checkbox" id="cb3" name="cb3" value="Motorhead"><label for="cb3">Motörhead</label></li>
                         <li><input type="checkbox" id="cb2" name="cb2" value="Pantera"><label for="cb2">Pantera</label></li>
                         <li><input type="checkbox" id="cb1" name="cb1" value="Slayer"><label for="cb1">Slayer</label></li>
                     </ul>
@@ -609,21 +609,19 @@ site_root: ../../
     <h2>Radio buttons</h2>
 {% highlight html %}
 <form class="ink-form">
-    <form class="ink-form">
-        <fieldset>
-            <legend>Pick a card</legend>
-            <div class="control-group">
-                <p class="label">Please select one of these options</p>
-                <ul class="control unstyled">
-                    <li><input type="radio" id="rb1" name="rb" value="Ace of Spades"><label for="rb1">Ace of Spades</label></li>
-                    <li><input type="radio" id="rb2" name="rb" value="Queen of Diamonds"><label for="rb2">Queen of Diamonds</label></li>
-                    <li><input type="radio" id="rb2" name="rb" value="Queen of Spades"><label for="rb2">Queen of Spades</label></li>
-                    <li><input type="radio" id="rb3" name="rb" value="Jack of Hearts"><label for="rb3">Jack of Hearts</label></li>
-                    <li><input type="radio" id="rb4" name="rb" value="King of Clubs"><label for="rb4">King of Clubs</label></li>
-                </ul>
-            </div>
-        </fieldset>
-    </form>
+    <fieldset>
+        <legend>Pick a card</legend>
+        <div class="control-group">
+            <p class="label">Please select one of these options</p>
+            <ul class="control unstyled">
+                <li><input type="radio" id="rb1" name="rb" value="Ace of Spades"><label for="rb1">Ace of Spades</label></li>
+                <li><input type="radio" id="rb2" name="rb" value="Queen of Diamonds"><label for="rb2">Queen of Diamonds</label></li>
+                <li><input type="radio" id="rb3" name="rb" value="Queen of Spades"><label for="rb3">Queen of Spades</label></li>
+                <li><input type="radio" id="rb4" name="rb" value="Jack of Hearts"><label for="rb4">Jack of Hearts</label></li>
+                <li><input type="radio" id="rb5" name="rb" value="King of Clubs"><label for="rb5">King of Clubs</label></li>
+            </ul>
+        </div>
+    </fieldset>
 </form>{% endhighlight %}
 
     <p class="example-title">Example</p>

@@ -1,7 +1,7 @@
 <p class="example-title">Demo</p>
 <div class="example">
 {% capture demo_code %}
-<div id="my-carousel-1" class="ink-carousel">
+<div id="my-carousel-1" class="ink-carousel" data-pagination="#my-carousel-1-pagination">
     <ul class="stage column-group half-gutters">
         <li class="slide all-33 small-50 tiny-100">
             <img class="quarter-bottom-space" src="http://lorempixel.com/400/200/sports/1">
@@ -53,7 +53,7 @@
 <script>
     // Not required if you're using autoload.js
     Ink.requireModules(['Ink.UI.Carousel_1'], function (Carousel) {
-        new Carousel('#my-carousel-1', { pagination: '#my-carousel-1-pagination' })
+        new Carousel('#my-carousel-1');
     });
 </script>
 
@@ -69,7 +69,7 @@
 
 <p>Creating a slideshow is just like creating a carousel, except each slide has the <code>all-100</code> class, making it fill the whole page.</p>
 {% capture demo_code1 %}
-<div id="my-carousel-2" class="ink-carousel">
+<div id="my-carousel-2" class="ink-carousel" data-pagination="#my-carousel-2-pagination">
     <ul class="stage column-group">
         <li class="slide all-100">
             <img src="http://lorempixel.com/1200/600/sports/1">
@@ -101,7 +101,7 @@
 <script>
     // Not required if you're using autoload.js
     Ink.requireModules(['Ink.UI.Carousel_1'], function (Carousel) {
-        new Carousel('#my-carousel-2', { pagination: '#my-carousel-2-pagination' })
+        new Carousel('#my-carousel-2');
     });
 </script>
 {% endcapture %}

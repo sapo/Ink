@@ -110,7 +110,7 @@ module.exports = function(grunt) {
         },
         command: 'rm -rf develop.zip Ink-develop src/js;' +
           'wget https://github.com/sapo/Ink/archive/develop.zip;' +
-          'unzip develop;' +
+          'unzip -q develop;' +
           'mv Ink-develop/src/js src/;' +
           'rm -rf Ink-develop develop.zip'
       },
