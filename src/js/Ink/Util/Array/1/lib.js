@@ -364,16 +364,16 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
         /**
          * Simulates python's range(start, stop, step) function.
          *
-         * Creates a list with numbers from start until stop, using a for loop.
-         *
-         * The optional step argument defines how to step ahead.
+         * Creates a list with numbers counting from start until stop, using a for loop.
+         *.
+         * The optional step argument defines how to step ahead. You can pass a negative number to count backwards (see the examples below).
          *
          * @method range
-         * @param {Integer} start
-         * @param {Integer} stop
-         * @param {Integer} [step=1]
+         * @param {Number} start    The array's first element.
+         * @param {Number} stop     Stop counting before this number.
+         * @param {Number} [step=1] Interval between numbers. You can use a negative number to count backwards.
          *
-         * @sample Ink.Util.Array_1.range
+         * @sample Ink_Util_Array_1_range.html
          **/
         range: function range(a, b, step) {
             // From: https://github.com/mcandre/node-range
