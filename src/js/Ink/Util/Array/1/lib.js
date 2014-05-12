@@ -382,13 +382,14 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
             }
 
             var r = [];
+            var x;
 
             if (step > 0) {
-                for (var x = a; x < b; x += step) {
+                for (x = a; x < b; x += step) {
                     r.push(x);
                 }
             } else {
-                for (var x = a; x > b; x += step) {
+                for (x = a; x > b; x += step) {
                     r.push(x);
                 }
             }
