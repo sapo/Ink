@@ -5717,16 +5717,13 @@ th {
 .ink-navigation ul.menu li {
   *height: 100%;
 }
-.ink-navigation ul.menu li:hover ul.submenu {
+.ink-navigation ul.menu li:hover > ul.submenu {
   display: block;
 }
 .ink-navigation ul.menu li ul.submenu {
   display: none;
   position: absolute;
   z-index: 10;
-}
-.ink-navigation ul.menu li ul.submenu li {
-  overflow: hidden;
 }
 .ink-navigation ul.menu li ul.submenu li a {
   padding: 0.5em 1em;
@@ -5749,9 +5746,26 @@ th {
   min-width: 100%;
   left: 0;
   z-index: 50;
+  top: auto;
+  left: auto;
 }
 .ink-navigation ul.menu.horizontal li ul.submenu li {
   float: none;
+}
+.ink-navigation ul.menu.horizontal li ul.submenu li .flyout {
+  position: absolute;
+  top: 0;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+}
+.ink-navigation ul.menu.horizontal li ul.submenu li .flyout.left {
+  right: 100%;
+}
+.ink-navigation ul.menu.horizontal li ul.submenu li .flyout.right {
+  left: 100%;
 }
 .ink-navigation ul.menu.vertical li {
   line-height: 1.7;
