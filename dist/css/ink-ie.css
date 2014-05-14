@@ -260,8 +260,8 @@
   margin-left: -1.75em;
 }
 .column-group.large-gutters > [class*=large-], .column-group.large-gutters > [class*=all-] {
-  padding-left: 0.4375em;
-  margin-bottom: 0.4375em;
+  padding-left: 1.75em;
+  margin-bottom: 1.75em;
 }
 
 .column-group.large-horizontal-gutters {
