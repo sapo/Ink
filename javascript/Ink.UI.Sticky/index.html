@@ -1,101 +1,13 @@
 ---
 layout: js-documentation
 title: Ink.UI.Sticky_1
-description: Stick elements to the viewportStick elements to the viewport
+description: Stick elements to the viewport
 site_root:  ../
 ---
     <section>
         <h1 class="fw-300">Ink.UI.Sticky_1</h1>
 
 <p>Ink.UI.Sticky makes an element &quot;stick&quot; to the screen and stay in the same place as the user scrolls. To use it, just select an element as you create the Sticky. As you scroll past it, it will stick to the top of the screen.
-The <code>activateInLayouts</code> option controls in what layouts this behaviour happens. By default, it is disabled for the <code>small</code> and <code>tiny</code> layouts. Pass a comma-separated string to choose just the layouts you need. You can use the <code>offsetTop</code> option if you want it to keep some distance from the top of the screen. To avoid it going under the footer of your page, pass a selector to your footer as the <code>bottomElement</code> option.</p>
-
-    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space">
-        <caption>Methods</caption>
-        <thead>
-            <tr>
-                <th>Method name</th>
-                <th>Description</th>
-            </tr>
-        </thead>
-        
-        <tbody>
-            <tr>
-                <td>
-                    <a href="#Ink_UI_Sticky_1-Ink_UI_Sticky-Sticky"><em>(constructor)</em></a>
-                </td>
-                <td><span class="ink-label green">Constructor</span></td>
-            </tr></tbody>
-    </table>
-    
-</section>
-
-
-
-    <section id="Ink_UI_Sticky_1-Ink_UI_Sticky-Sticky" class="box box-function">
-    <h1 class="fw-300">Ink.UI.Sticky(selector, options)
-    <i>constructor</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         selector</li><li class="prop">
-         options</li>
-    </ul>
-        <h3>Accepts</h3>
-        
-        <ul class="params">
-            <li class="level1">
-                <p>selector
-                    <span class="label mandatory"></span><span class="label string"></span><span class="label domelement"></span></p>
-                Element or selector</li>
-            <li class="level1">
-                <p>options
-                    <span class="label object"></span></p>
-                Options           Options object.</li>
-            <li class="level2">
-                <p>options.offsetBottom
-                    <span class="label number"></span></p>
-                Number of pixels of distance from the bottomElement. Defaults to 0.</li>
-            <li class="level2">
-                <p>options.offsetTop
-                    <span class="label number"></span></p>
-                Number of pixels of distance from the topElement. Defaults to 0.</li>
-            <li class="level2">
-                <p>options.inlineDimensions
-                    <span class="label boolean"></span></p>
-                Set to false to disable setting inline CSS dimensions. Use this if you want to use CSS to define your own dimensions. Defaults to true.</li>
-            <li class="level2">
-                <p>options.inlinePosition
-                    <span class="label boolean"></span></p>
-                Set to false to disable setting inline CSS positions. Use this if you want to use CSS to define your own positioning. Defaults to true.</li>
-            <li class="level2">
-                <p>options.wrapperClass
-                    <span class="label string"></span></p>
-                CSS class for the wrapper element. Defaults to 'ink-sticky-wrapper'.</li>
-            <li class="level2">
-                <p>options.stickyClass
-                    <span class="label string"></span></p>
-                CSS class to stick the element to the screen. Defaults to 'ink-sticky-stuck'.</li>
-            <li class="level2">
-                <p>options.topElement
-                    <span class="label string"></span></p>
-                CSS Selector that specifies a top element with which the component could collide.</li>
-            <li class="level2">
-                <p>options.bottomElement
-                    <span class="label string"></span></p>
-                CSS Selector that specifies a bottom element with which the component could collide.</li>
-            <li class="level2">
-                <p>options.activateInLayouts
-                    <span class="label array"></span><span class="label string"></span></p>
-                Layouts in which the sticky behaviour is present. Pass an array or comma-separated string. Defaults to 'tiny,small,medium,large,xlarge'.</li>
-        </ul>
-
-<!--<h3>Samples</h3>-->
-		{% include js_samples/Ink_UI_Sticky_1.html %}
-	</section>
-
-
-
-    <p>Ink.UI.Sticky makes an element &quot;stick&quot; to the screen and stay in the same place as the user scrolls. To use it, just select an element as you create the Sticky. As you scroll past it, it will stick to the top of the screen.
 The <code>activateInLayouts</code> option controls in what layouts this behaviour happens. By default, it is disabled for the <code>small</code> and <code>tiny</code> layouts. Pass a comma-separated string to choose just the layouts you need. You can use the <code>offsetTop</code> option if you want it to keep some distance from the top of the screen. To avoid it going under the footer of your page, pass a selector to your footer as the <code>bottomElement</code> option.</p>
 
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space">

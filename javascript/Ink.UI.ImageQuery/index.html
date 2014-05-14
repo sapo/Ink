@@ -1,116 +1,13 @@
 ---
 layout: js-documentation
 title: Ink.UI.ImageQuery_1
-description: Responsive image loadingResponsive image loading
+description: Responsive image loading
 site_root:  ../
 ---
     <section>
         <h1 class="fw-300">Ink.UI.ImageQuery_1</h1>
 
 
-    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space">
-        <caption>Methods</caption>
-        <thead>
-            <tr>
-                <th>Method name</th>
-                <th>Description</th>
-            </tr>
-        </thead>
-        
-        <tbody>
-            <tr>
-                <td>
-                    <a href="#Ink_UI_ImageQuery_1-Ink_UI_ImageQuery-ImageQuery"><em>(constructor)</em></a>
-                </td>
-                <td><span class="ink-label green">Constructor</span></td>
-            </tr></tbody>
-    </table>
-    
-</section>
-
-
-
-    <section id="Ink_UI_ImageQuery_1-Ink_UI_ImageQuery-ImageQuery" class="box box-function">
-    <h1 class="fw-300">Ink.UI.ImageQuery(selector, options)
-    <i>constructor</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         selector</li><li class="prop">
-         options</li>
-    </ul>
-        <h3>Accepts</h3>
-        
-        <ul class="params">
-            <li class="level1">
-                <p>selector
-                    <span class="label mandatory"></span><span class="label string"></span><span class="label domelement"></span></p>
-                Selector or element</li>
-            <li class="level1">
-                <p>options
-                    <span class="label object"></span></p>
-                Options object</li>
-            <li class="level2">
-                <p>options.src
-                    <span class="label string"></span><span class="label function"></span></p>
-                String or Callback function (that returns a string) with the path to be used to get the images.</li>
-            <li class="level2">
-                <p>options.retina
-                    <span class="label string"></span><span class="label function"></span></p>
-                String or Callback function (that returns a string) with the path to be used to get RETINA specific images.</li>
-            <li class="level2">
-                <p>options.queries
-                    <span class="label array"></span></p>
-                Array of queries</li>
-            <li class="level3">
-                <p>options.queries.label
-                    <span class="label string"></span></p>
-                Label of the query. Ex. 'small'</li>
-            <li class="level3">
-                <p>options.queries.width
-                    <span class="label number"></span></p>
-                Min-width to use this query</li>
-            <li class="level2">
-                <p>options.onLoad
-                    <span class="label function"></span></p>
-                Date format string</li>
-        </ul>
-<p class="example-title">Example</p>
-  
-{% highlight html %}{% raw %}
-     <div class="imageQueryExample all-100 content-center clearfix vspace">
-         <img src="/assets/imgs/imagequery/small/image.jpg" />
-     </div>
-     <script type="text/javascript">
-     Ink.requireModules( ['Ink.Dom.Selector_1', 'Ink.UI.ImageQuery_1'], function( Selector, ImageQuery ){
-         var imageQueryElement = Ink.s('.imageQueryExample img');
-         var imageQueryObj = new ImageQuery('.imageQueryExample img',{
-             src: '/assets/imgs/imagequery/{:label}/{:file}',
-             queries: [
-                 {
-                     label: 'small',
-                     width: 480
-                 },
-                 {
-                     label: 'medium',
-                     width: 640
-                 },
-                 {
-                     label: 'large',
-                     width: 1024
-                 }   
-             ]
-         });
-     } );
-     </script>
-{% endraw %}{% endhighlight %}
-
-
-
-</section>
-
-
-
-    
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space">
         <caption>Methods</caption>
         <thead>

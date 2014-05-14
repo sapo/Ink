@@ -1,95 +1,13 @@
 ---
 layout: js-documentation
 title: Ink.UI.Drawer_1
-description: Off-canvas menuOff-canvas menu
+description: Off-canvas menu
 site_root:  ../
 ---
     <section>
         <h1 class="fw-300">Ink.UI.Drawer_1</h1>
 
 <p>Displays off-canvas content which can be triggered by clicking elements with the &#39;left-drawer-trigger&#39; and &#39;right-drawer-trigger&#39;, respectively.
-The left drawer has the &#39;left-drawer&#39; class, and the right drawer has the &#39;right-drawer&#39; class. The content drawer (EG your <code>&lt;div id=&quot;main&quot;&gt;</code>) must have the &#39;content-drawer&#39; class. For more, see the example below, or try the sample.</p>
-
-    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space">
-        <caption>Methods</caption>
-        <thead>
-            <tr>
-                <th>Method name</th>
-                <th>Description</th>
-            </tr>
-        </thead>
-        
-        <tbody>
-            <tr>
-                <td>
-                    <a href="#Ink_UI_Drawer_1-Ink_UI_Drawer_1-Drawer_1"><em>(constructor)</em></a>
-                </td>
-                <td><span class="ink-label green">Constructor</span></td>
-            </tr></tbody>
-    </table>
-    
-</section>
-
-
-
-    <section id="Ink_UI_Drawer_1-Ink_UI_Drawer_1-Drawer_1" class="box box-function">
-    <h1 class="fw-300">Ink.UI.Drawer_1(options)
-    <i>constructor</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">
-         options</li>
-    </ul>
-        <h3>Accepts</h3>
-        
-        <ul class="params">
-            <li class="level1">
-                <p>options
-                    <span class="label object"></span></p>
-                Configuration options.</li>
-            <li class="level2">
-                <p>options.closeOnContentClick
-                    <span class="label boolean"></span></p>
-                Flag to close the drawer when someone clicks on the `.contentDrawer`</li>
-            <li class="level2">
-                <p>options.mode
-                    <span class="label string"></span></p>
-                This can be 'push' or 'over'.</li>
-            <li class="level2">
-                <p>options.sides
-                    <span class="label string"></span></p>
-                Can be 'left', 'right', or 'both'. Controls what sides have a drawer.</li>
-        </ul>
-<p class="example-title">Example</p>
-  
-{% highlight html %}{% raw %}
-<body class="ink-drawer">
-    <div class="left-drawer">
-        Right drawer content...
-    </div>
-    <div class="right-drawer">
-        Left drawer content...
-    </div>
-    <div id="main-content" class="content-drawer ink-grid">
-        <a class="left-drawer-trigger" href="">Open left drawer</a>
-        <a class="right-drawer-trigger" href="">Open right drawer</a>
-        Content...
-    </div>
-</body>
-
-<script>
-    Ink.requireModules(['Ink.UI.Drawer_1'], function (Drawer) {
-        new Drawer();
-    });
-</script>
-{% endraw %}{% endhighlight %}
-
-
-
-</section>
-
-
-
-    <p>Displays off-canvas content which can be triggered by clicking elements with the &#39;left-drawer-trigger&#39; and &#39;right-drawer-trigger&#39;, respectively.
 The left drawer has the &#39;left-drawer&#39; class, and the right drawer has the &#39;right-drawer&#39; class. The content drawer (EG your <code>&lt;div id=&quot;main&quot;&gt;</code>) must have the &#39;content-drawer&#39; class. For more, see the example below, or try the sample.</p>
 
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space">
