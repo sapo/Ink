@@ -523,10 +523,10 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
                 case 'select':
                     return Ink.s('option:selected',this._element).value;
                 case 'textarea':
-                    return this._element.innerHTML;
+                    return this._element.value;
                 case 'input':
                     if( "type" in this._element ){
-                        if( (this._element.type === 'radio') && (this._element.type === 'checkbox') ){
+                        if( (this._element.type === 'radio') || (this._element.type === 'checkbox') ){
                             if( this._element.checked ){
                                 return this._element.value;
                             }
