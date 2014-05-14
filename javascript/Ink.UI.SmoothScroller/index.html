@@ -1,13 +1,247 @@
 ---
 layout: js-documentation
 title: Ink.UI.SmoothScroller_1
-description: Scroll to content
+description: Scroll to contentScroll to content
 site_root:  ../
 ---
     <section>
         <h1 class="fw-300">Ink.UI.SmoothScroller_1</h1>
 
 
+    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space"><caption>Functions</caption>
+        <thead>
+            <tr>
+                <th>Function name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-add">.add</a>
+                </td>
+                <td> Attaches an event for an element</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-end">.end</a>
+                </td>
+                <td> Kill an event of an element</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-getTop">.getTop</a>
+                </td>
+                <td> Returns the Y position of an element, relative to the document</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-init">.init</a>
+                </td>
+                <td> Has smooth scrolling applied to relevant elements upon page load.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-onClick">.onClick</a>
+                </td>
+                <td> Click handler</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-render">.render</a>
+                </td>
+                <td> This method extracts all the anchors and validates them as # and attaches the events</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-scroll">.scroll</a>
+                </td>
+                <td> Moves the scrollbar to the target element. This is the function</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-scrollTop">.scrollTop</a>
+                </td>
+                <td> Returns the current scroll position</td>
+            </tr></tbody>
+    </table>
+    
+    <table class="props">
+        <caption>Properties</caption>
+        <thead>
+            <tr>
+                <th>Property name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            <tr>
+                <td><a href="#Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-speed">.speed</a></td>
+                <td>Sets the speed of the scrolling
+                </td>
+            </tr>
+            
+        </tbody>
+    </table>
+    
+</section>
+
+
+
+    <section id="Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-add" class="box box-function">
+    <h1 class="fw-300">.add(el, event, fn)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         el</li><li class="prop mandatory">
+         event</li><li class="prop mandatory">
+         fn</li>
+    </ul><p class="text">Attaches an event for an element</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>el
+                    <span class="label mandatory"></span><span class="label domelement"></span></p>
+                DOMElement to make the listening of the event</li>
+            <li class="level1">
+                <p>event
+                    <span class="label mandatory"></span><span class="label string"></span></p>
+                Event name to be listened</li>
+            <li class="level1">
+                <p>fn
+                    <span class="label mandatory"></span><span class="label domelement"></span></p>
+                Callback function to run when the event is triggered.</li>
+        </ul>
+
+</section>
+
+    <section id="Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-end" class="box box-function">
+    <h1 class="fw-300">.end(e)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         e</li>
+    </ul><p class="text">Kill an event of an element</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>e
+                    <span class="label mandatory"></span><span class="label string"></span></p>
+                Event to be killed/stopped</li>
+        </ul>
+
+</section>
+
+    <section id="Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-getTop" class="box box-function">
+    <h1 class="fw-300">.getTop(d)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         d</li>
+    </ul><p class="text">Returns the Y position of an element, relative to the document</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>d
+                    <span class="label mandatory"></span><span class="label domelement"></span></p>
+                DOMElement to get the Y position from</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label number"></span> </p>Y position of div 'd'
+        </li>
+    </ul>
+    
+
+</section>
+
+    <section id="Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-init" class="box box-function">
+    <h1 class="fw-300">.init(selector)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop">
+         selector</li>
+    </ul><p class="text">Has smooth scrolling applied to relevant elements upon page load.</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>selector
+                    </p>
+                &#x27;a.scrollableLink,a.ink-smooth-scroll&#x27;Selector string for finding links with smooth scrolling enabled.</li>
+        </ul>
+
+</section>
+
+    <section id="Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-onClick" class="box box-function">
+    <h1 class="fw-300">.onClick()
+    <i>method</i></h1><p class="text">Click handler</p>
+
+</section>
+
+    <section id="Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-render" class="box box-function">
+    <h1 class="fw-300">.render()
+    <i>method</i></h1><p class="text">This method extracts all the anchors and validates them as # and attaches the events</p>
+
+</section>
+
+    <section id="Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-scroll" class="box box-function">
+    <h1 class="fw-300">.scroll(d)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         d</li>
+    </ul><p class="text">Moves the scrollbar to the target element. This is the function<br>which animates the scroll position bit by bit. It calls itself in<br>the end through requestAnimationFrame</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>d
+                    <span class="label mandatory"></span><span class="label number"></span></p>
+                Y coordinate value to stop</li>
+        </ul>
+
+</section>
+
+    <section id="Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-scrollTop" class="box box-function">
+    <h1 class="fw-300">.scrollTop()
+    <i>method</i></h1><p class="text">Returns the current scroll position</p>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label number"></span> </p>Current scroll position
+        </li>
+    </ul>
+    
+
+</section>
+
+
+    <section id="Ink_UI_SmoothScroller_1-Ink_UI_SmoothScroller-speed" class="box box-attribute">
+    <h1 class="fw-300">
+    
+       Ink.UI.SmoothScroller.speed
+    
+    <i>attribute</i></h1>
+    
+    
+        <p class="text">Sets the speed of the scrolling</p>
+    
+    
+        <pre>Number</pre>
+    
+    
+</section>
+
+
+
+    
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space"><caption>Functions</caption>
         <thead>
             <tr>

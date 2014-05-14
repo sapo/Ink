@@ -1,13 +1,766 @@
 ---
 layout: js-documentation
 title: Ink.Dom.Css_1
-description: CSS Utilities and toolbox
+description: CSS Utilities and toolboxCSS Utilities and toolbox
 site_root:  ../
 ---
     <section>
         <h1 class="fw-300">Ink.Dom.Css_1</h1>
 
 
+    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space"><caption>Functions</caption>
+        <thead>
+            <tr>
+                <th>Function name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Css_1-Ink_Dom_Css-addClassName">.addClassName</a>
+                </td>
+                <td> Adds a class to a given element</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Css_1-Ink_Dom_Css-addRemoveClassName">.addRemoveClassName</a>
+                </td>
+                <td> Adds of removes a class.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Css_1-Ink_Dom_Css-appendStyleTag">.appendStyleTag</a>
+                </td>
+                <td> Injects style tags with rules to the page.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Css_1-Ink_Dom_Css-appendStylesheet">.appendStylesheet</a>
+                </td>
+                <td> Injects an external link tag.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Css_1-Ink_Dom_Css-appendStylesheetCb">.appendStylesheetCb</a>
+                </td>
+                <td> Injects an external link tag.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Css_1-Ink_Dom_Css-blinkClass">.blinkClass</a>
+                </td>
+                <td> Blinks a class from an element</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Css_1-Ink_Dom_Css-changeFontSize">.changeFontSize</a>
+                </td>
+                <td> Change the font size of elements.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Css_1-Ink_Dom_Css-decToHex">.decToHex</a>
+                </td>
+                <td> Converts decimal to hexadecimal values</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Css_1-Ink_Dom_Css-getPropertyFromStylesheet">.getPropertyFromStylesheet</a>
+                </td>
+                <td> Get a single property from a stylesheet.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Css_1-Ink_Dom_Css-getStyle">.getStyle</a>
+                </td>
+                <td> Gets the value for an element&#39;s style attribute</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Css_1-Ink_Dom_Css-hasClassName">.hasClassName</a>
+                </td>
+                <td> Checks if an element has a class.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Css_1-Ink_Dom_Css-hexToDec">.hexToDec</a>
+                </td>
+                <td> Converts hexadecimal values to decimal</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Css_1-Ink_Dom_Css-hide">.hide</a>
+                </td>
+                <td> Hides an element.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Css_1-Ink_Dom_Css-removeClassName">.removeClassName</a>
+                </td>
+                <td> Removes a class from a given element</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Css_1-Ink_Dom_Css-setClassName">.setClassName</a>
+                </td>
+                <td> Alias to addRemoveClassName. </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Css_1-Ink_Dom_Css-setOpacity">.setOpacity</a>
+                </td>
+                <td> Sets the opacity of given element</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Css_1-Ink_Dom_Css-setStyle">.setStyle</a>
+                </td>
+                <td> Adds CSS rules to an element&#39;s style attribute.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Css_1-Ink_Dom_Css-show">.show</a>
+                </td>
+                <td> Shows an element.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Css_1-Ink_Dom_Css-showHide">.showHide</a>
+                </td>
+                <td> Shows or hides an element.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Css_1-Ink_Dom_Css-toggle">.toggle</a>
+                </td>
+                <td> Toggles an element visibility.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Css_1-Ink_Dom_Css-toggleClassName">.toggleClassName</a>
+                </td>
+                <td> Toggles a class name from a given element</td>
+            </tr></tbody>
+    </table>
+    
+</section>
+
+
+
+    <section id="Ink_Dom_Css_1-Ink_Dom_Css-addClassName" class="box box-function">
+    <h1 class="fw-300">.addClassName(elm, className)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         elm</li><li class="prop mandatory">
+         className</li>
+    </ul><p class="text">Adds a class to a given element</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>elm
+                    <span class="label mandatory"></span><span class="label domelement"></span><span class="label string"></span></p>
+                DOM element or element id</li>
+            <li class="level1">
+                <p>className
+                    <span class="label mandatory"></span><span class="label string"></span><span class="label array"></span></p>
+                Classes</li>
+        </ul>
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Dom_Css_addClassName.html %}
+	</section>
+
+    <section id="Ink_Dom_Css_1-Ink_Dom_Css-addRemoveClassName" class="box box-function">
+    <h1 class="fw-300">.addRemoveClassName(elm, className, addRemState)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         elm</li><li class="prop mandatory">
+         className</li><li class="prop mandatory">
+         addRemState</li>
+    </ul><p class="text">Adds of removes a class.<br>Depending on addRemState, this method either adds a class if it&#39;s true or removes if if false.</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>elm
+                    <span class="label mandatory"></span><span class="label domelement"></span><span class="label string"></span></p>
+                DOM element or element id</li>
+            <li class="level1">
+                <p>className
+                    <span class="label mandatory"></span><span class="label string"></span></p>
+                class name to add or remove.</li>
+            <li class="level1">
+                <p>addRemState
+                    <span class="label mandatory"></span><span class="label boolean"></span></p>
+                Whether to add or remove. `true` to add, `false` to remove.</li>
+        </ul>
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Dom_Css_addRemoveClassName.html %}
+	</section>
+
+    <section id="Ink_Dom_Css_1-Ink_Dom_Css-appendStyleTag" class="box box-function">
+    <h1 class="fw-300">.appendStyleTag(selector, style, options)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         selector</li><li class="prop mandatory">
+         style</li><li class="prop mandatory">
+         options</li>
+    </ul><p class="text">Injects style tags with rules to the page.</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>selector
+                    <span class="label mandatory"></span><span class="label string"></span></p>
+                The css selector for the rule</li>
+            <li class="level1">
+                <p>style
+                    <span class="label mandatory"></span><span class="label string"></span></p>
+                The content of the style rule</li>
+            <li class="level1">
+                <p>options
+                    <span class="label mandatory"></span><span class="label object"></span></p>
+                Options for the tag</li>
+            <li class="level2">
+                <p>options.type
+                    <span class="label string"></span></p>
+                &#x27;text/css&#x27;File type</li>
+            <li class="level2">
+                <p>options.force
+                    <span class="label boolean"></span></p>
+                falseIf true, the style tag will be appended to end of head</li>
+        </ul>
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Dom_Css_appendStyleTag.html %}
+	</section>
+
+    <section id="Ink_Dom_Css_1-Ink_Dom_Css-appendStylesheet" class="box box-function">
+    <h1 class="fw-300">.appendStylesheet(path, options)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         path</li><li class="prop mandatory">
+         options</li>
+    </ul><p class="text">Injects an external link tag.<br>This method add a stylesheet to the head of a page</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>path
+                    <span class="label mandatory"></span><span class="label string"></span></p>
+                File path</li>
+            <li class="level1">
+                <p>options
+                    <span class="label mandatory"></span><span class="label object"></span></p>
+                Options for the tag</li>
+            <li class="level2">
+                <p>options.media
+                    <span class="label string"></span></p>
+                &#x27;screen&#x27;Media type</li>
+            <li class="level2">
+                <p>options.type
+                    <span class="label string"></span></p>
+                &#x27;text/css&#x27;File type</li>
+            <li class="level2">
+                <p>options.force
+                    <span class="label boolean"></span></p>
+                falseIf true, tag will be appended to end of head</li>
+        </ul>
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Dom_Css_appendStylesheet.html %}
+	</section>
+
+    <section id="Ink_Dom_Css_1-Ink_Dom_Css-appendStylesheetCb" class="box box-function">
+    <h1 class="fw-300">.appendStylesheetCb(cssURI, callback)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         cssURI</li><li class="prop">
+         callback</li>
+    </ul><p class="text">Injects an external link tag.<br>Loads CSS via LINK element inclusion in HEAD (skips append if already there)<br><p>Works similarly to appendStylesheet but:<br>  supports optional callback which gets invoked once the CSS has been applied</p></p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>cssURI
+                    <span class="label mandatory"></span><span class="label string"></span></p>
+                URI of the CSS to load, if empty ignores and just calls back directly</li>
+            <li class="level1">
+                <p>callback
+                    <span class="label function(cssuri)"></span></p>
+                optional callback which will be called once the CSS is loaded</li>
+        </ul>
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Dom_Css_appendStylesheetCb.html %}
+	</section>
+
+    <section id="Ink_Dom_Css_1-Ink_Dom_Css-blinkClass" class="box box-function">
+    <h1 class="fw-300">.blinkClass(elm, className, timeout, negate)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         elm</li><li class="prop mandatory">
+         className</li><li class="prop mandatory">
+         timeout</li><li class="prop mandatory">
+         negate</li>
+    </ul><p class="text">Blinks a class from an element<br>Add and removes the class from the element with a timeout, so it blinks</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>elm
+                    <span class="label mandatory"></span><span class="label domelement"></span><span class="label string"></span></p>
+                DOM element or element id</li>
+            <li class="level1">
+                <p>className
+                    <span class="label mandatory"></span><span class="label string"></span><span class="label array"></span></p>
+                Class name(s) to blink</li>
+            <li class="level1">
+                <p>timeout
+                    <span class="label mandatory"></span><span class="label number"></span></p>
+                timeout in ms between adding and removing, default 100 ms</li>
+            <li class="level1">
+                <p>negate
+                    <span class="label mandatory"></span><span class="label boolean"></span></p>
+                is true, class is removed then added</li>
+        </ul>
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Dom_Css_blinkClass.html %}
+	</section>
+
+    <section id="Ink_Dom_Css_1-Ink_Dom_Css-changeFontSize" class="box box-function">
+    <h1 class="fw-300">.changeFontSize(selector, delta, op, minVal, maxVal)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         selector</li><li class="prop mandatory">
+         delta</li><li class="prop">
+         op</li><li class="prop">
+         minVal</li><li class="prop">
+         maxVal</li>
+    </ul><p class="text">Change the font size of elements.<br>Changes the font size of the elements which match the given CSS rule<br>For this function to work, the CSS file must be in the same domain than the host page, otherwise JS can&#39;t access it.</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>selector
+                    <span class="label mandatory"></span><span class="label string"></span></p>
+                CSS selector rule</li>
+            <li class="level1">
+                <p>delta
+                    <span class="label mandatory"></span><span class="label number"></span></p>
+                Number of pixels to change on font-size</li>
+            <li class="level1">
+                <p>op
+                    <span class="label string"></span></p>
+                Supported operations are '+' and '*'. defaults to '+'</li>
+            <li class="level1">
+                <p>minVal
+                    <span class="label number"></span></p>
+                If result gets smaller than minVal, change does not occurr</li>
+            <li class="level1">
+                <p>maxVal
+                    <span class="label number"></span></p>
+                If result gets bigger  than maxVal, change does not occurr</li>
+        </ul>
+
+</section>
+
+    <section id="Ink_Dom_Css_1-Ink_Dom_Css-decToHex" class="box box-function">
+    <h1 class="fw-300">.decToHex(dec)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         dec</li>
+    </ul><p class="text">Converts decimal to hexadecimal values<br>Useful to convert colors to their hexadecimal representation.</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>dec
+                    <span class="label mandatory"></span><span class="label string"></span></p>
+                Either a single decimal value, an rgb(r, g, b) string or an Object with r, g and b properties</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label string"></span> </p>Hexadecimal value
+        </li>
+    </ul>
+    
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Dom_Css_decToHex.html %}
+	</section>
+
+    <section id="Ink_Dom_Css_1-Ink_Dom_Css-getPropertyFromStylesheet" class="box box-function">
+    <h1 class="fw-300">.getPropertyFromStylesheet(selector, property)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         selector</li><li class="prop mandatory">
+         property</li>
+    </ul><p class="text">Get a single property from a stylesheet.<br>Use this to obtain the value of a CSS property (searched from loaded CSS documents)</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>selector
+                    <span class="label mandatory"></span><span class="label string"></span></p>
+                a CSS rule. must be an exact match</li>
+            <li class="level1">
+                <p>property
+                    <span class="label mandatory"></span><span class="label string"></span></p>
+                a CSS property</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label string"></span> </p>value of the found property, or null if it wasn't matched
+        </li>
+    </ul>
+    
+
+</section>
+
+    <section id="Ink_Dom_Css_1-Ink_Dom_Css-getStyle" class="box box-function">
+    <h1 class="fw-300">.getStyle(elm, style)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         elm</li><li class="prop mandatory">
+         style</li>
+    </ul><p class="text">Gets the value for an element&#39;s style attribute</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>elm
+                    <span class="label mandatory"></span><span class="label domelement"></span><span class="label string"></span></p>
+                DOM element or element id</li>
+            <li class="level1">
+                <p>style
+                    <span class="label mandatory"></span><span class="label string"></span></p>
+                Which css attribute to fetch</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p></p>Style value
+        </li>
+    </ul>
+    
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Dom_Css_getStyle.html %}
+	</section>
+
+    <section id="Ink_Dom_Css_1-Ink_Dom_Css-hasClassName" class="box box-function">
+    <h1 class="fw-300">.hasClassName(elm, className, all)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         elm</li><li class="prop mandatory">
+         className</li><li class="prop">
+         all</li>
+    </ul><p class="text">Checks if an element has a class.<br>This method verifies if an element has ONE of a list of classes. If the last argument is flagged as true, instead checks if the element has ALL the classes</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>elm
+                    <span class="label mandatory"></span><span class="label domelement"></span><span class="label string"></span></p>
+                DOM element or element id</li>
+            <li class="level1">
+                <p>className
+                    <span class="label mandatory"></span><span class="label string"></span><span class="label array"></span></p>
+                Class names to test</li>
+            <li class="level1">
+                <p>all
+                    <span class="label boolean"></span></p>
+                falseIf flagged as true, it will check if the element contains ALL the CSS classes</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label boolean"></span> </p>true if a given class is applied to a given element
+        </li>
+    </ul>
+    
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Dom_Css_hasClassName.html %}
+	</section>
+
+    <section id="Ink_Dom_Css_1-Ink_Dom_Css-hexToDec" class="box box-function">
+    <h1 class="fw-300">.hexToDec(hex)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         hex</li>
+    </ul><p class="text">Converts hexadecimal values to decimal<br>Useful to use with CSS colors</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>hex
+                    <span class="label mandatory"></span><span class="label string"></span></p>
+                hexadecimal Value with 6, 3, 2 or 1 characters</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label number"></span> </p>Object with properties r, g, b if length of number is >= 3 or decimal value instead.
+        </li>
+    </ul>
+    
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Dom_Css_hexToDec.html %}
+	</section>
+
+    <section id="Ink_Dom_Css_1-Ink_Dom_Css-hide" class="box box-function">
+    <h1 class="fw-300">.hide(elm)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         elm</li>
+    </ul><p class="text">Hides an element.</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>elm
+                    <span class="label mandatory"></span><span class="label domelement"></span><span class="label string"></span></p>
+                DOM element or element id</li>
+        </ul>
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Dom_Css_hide.html %}
+	</section>
+
+    <section id="Ink_Dom_Css_1-Ink_Dom_Css-removeClassName" class="box box-function">
+    <h1 class="fw-300">.removeClassName(elm, className)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         elm</li><li class="prop mandatory">
+         className</li>
+    </ul><p class="text">Removes a class from a given element</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>elm
+                    <span class="label mandatory"></span><span class="label domelement"></span><span class="label string"></span></p>
+                DOM element or element id</li>
+            <li class="level1">
+                <p>className
+                    <span class="label mandatory"></span><span class="label string"></span><span class="label array"></span></p>
+                Class names to remove. You can either use a space separated string of classnames, comma-separated list or an array</li>
+        </ul>
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Dom_Css_removeClassName.html %}
+	</section>
+
+    <section id="Ink_Dom_Css_1-Ink_Dom_Css-setClassName" class="box box-function">
+    <h1 class="fw-300">.setClassName(elm, className, add)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         elm</li><li class="prop mandatory">
+         className</li><li class="prop">
+         add</li>
+    </ul><p class="text">Alias to addRemoveClassName. <br>Utility function, saves many if/elses.</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>elm
+                    <span class="label mandatory"></span><span class="label domelement"></span><span class="label string"></span></p>
+                DOM element or element id</li>
+            <li class="level1">
+                <p>className
+                    <span class="label mandatory"></span><span class="label string"></span><span class="label array"></span></p>
+                Class names to add\remove. Comma separated, space separated or simply an Array</li>
+            <li class="level1">
+                <p>add
+                    <span class="label boolean"></span></p>
+                falseFlag to switch behavior from removal to addition. true to add, false to remove</li>
+        </ul>
+
+</section>
+
+    <section id="Ink_Dom_Css_1-Ink_Dom_Css-setOpacity" class="box box-function">
+    <h1 class="fw-300">.setOpacity(elm, value)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         elm</li><li class="prop mandatory">
+         value</li>
+    </ul><p class="text">Sets the opacity of given element</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>elm
+                    <span class="label mandatory"></span><span class="label domelement"></span><span class="label string"></span></p>
+                DOM element or element id</li>
+            <li class="level1">
+                <p>value
+                    <span class="label mandatory"></span><span class="label number"></span></p>
+                allows 0 to 1(default mode decimal) or percentage (warning using 0 or 1 will reset to default mode)</li>
+        </ul>
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Dom_Css_setOpacity.html %}
+	</section>
+
+    <section id="Ink_Dom_Css_1-Ink_Dom_Css-setStyle" class="box box-function">
+    <h1 class="fw-300">.setStyle(elm, style)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         elm</li><li class="prop mandatory">
+         style</li>
+    </ul><p class="text">Adds CSS rules to an element&#39;s style attribute.</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>elm
+                    <span class="label mandatory"></span><span class="label domelement"></span><span class="label string"></span></p>
+                DOM element or element id</li>
+            <li class="level1">
+                <p>style
+                    <span class="label mandatory"></span><span class="label string"></span></p>
+                Which css attribute to set</li>
+        </ul>
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Dom_Css_setStyle.html %}
+	</section>
+
+    <section id="Ink_Dom_Css_1-Ink_Dom_Css-show" class="box box-function">
+    <h1 class="fw-300">.show(elm, forceDisplayProperty)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         elm</li><li class="prop">
+         forceDisplayProperty</li>
+    </ul><p class="text">Shows an element.<br>Internally it unsets the display property of an element. You can force a specific display property using forceDisplayProperty</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>elm
+                    <span class="label mandatory"></span><span class="label domelement"></span><span class="label string"></span></p>
+                DOM element or element id</li>
+            <li class="level1">
+                <p>forceDisplayProperty
+                    <span class="label string"></span></p>
+                Css display property to apply on show</li>
+        </ul>
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Dom_Css_show.html %}
+	</section>
+
+    <section id="Ink_Dom_Css_1-Ink_Dom_Css-showHide" class="box box-function">
+    <h1 class="fw-300">.showHide(elm, show)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         elm</li><li class="prop">
+         show</li>
+    </ul><p class="text">Shows or hides an element.<br>If the show parameter is true, it shows the element. Otherwise, hides it.</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>elm
+                    <span class="label mandatory"></span><span class="label domelement"></span><span class="label string"></span></p>
+                DOM element or element id</li>
+            <li class="level1">
+                <p>show
+                    <span class="label boolean"></span></p>
+                falseWhether to show or hide `elm`.</li>
+        </ul>
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Dom_Css_showHide.html %}
+	</section>
+
+    <section id="Ink_Dom_Css_1-Ink_Dom_Css-toggle" class="box box-function">
+    <h1 class="fw-300">.toggle(elm, forceShow)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         elm</li><li class="prop mandatory">
+         forceShow</li>
+    </ul><p class="text">Toggles an element visibility.</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>elm
+                    <span class="label mandatory"></span><span class="label domelement"></span><span class="label string"></span></p>
+                DOM element or element id</li>
+            <li class="level1">
+                <p>forceShow
+                    <span class="label mandatory"></span><span class="label boolean"></span></p>
+                Forces showing if element is hidden</li>
+        </ul>
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Dom_Css_toggle.html %}
+	</section>
+
+    <section id="Ink_Dom_Css_1-Ink_Dom_Css-toggleClassName" class="box box-function">
+    <h1 class="fw-300">.toggleClassName(elm, className, forceAdd)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         elm</li><li class="prop mandatory">
+         className</li><li class="prop">
+         forceAdd</li>
+    </ul><p class="text">Toggles a class name from a given element</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>elm
+                    <span class="label mandatory"></span><span class="label domelement"></span><span class="label string"></span></p>
+                DOM element or element id</li>
+            <li class="level1">
+                <p>className
+                    <span class="label mandatory"></span><span class="label string"></span></p>
+                Class name</li>
+            <li class="level1">
+                <p>forceAdd
+                    <span class="label boolean"></span></p>
+                Flag to force adding the the classe names if they don't exist yet.</li>
+        </ul>
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Dom_Css_toggleClassName.html %}
+	</section>
+
+
+
+    
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space"><caption>Functions</caption>
         <thead>
             <tr>

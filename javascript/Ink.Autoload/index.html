@@ -123,6 +123,10 @@ site_root:  ../
                     <span class="label object"></span></p>
                 Options object, containing:</li>
             <li class="level2">
+                <p>options.forceAutoload
+                    <span class="label boolean"></span></p>
+                Autoload things on elements even if they have `data-autoload="false"`</li>
+            <li class="level2">
                 <p>options.createClose
                     <span class="label boolean"></span></p>
                 Whether to create the Ink.UI.Close component. Defaults to `true`.</li>
@@ -130,6 +134,175 @@ site_root:  ../
                 <p>options.createSmoothScroller
                     <span class="label boolean"></span></p>
                 Whether to create the Scroller component. Defaults to `true`.</li>
+            <li class="level2">
+                <p>options.selectors
+                    <span class="label object"></span></p>
+                Ink.Autoload.selectorsA hash mapping module names to selectors that match elements to load these modules. For example, `{ 'Modal_1': '.my-specific-modal' }`.</li>
+            <li class="level2">
+                <p>options.waitForDOMLoaded
+                    <span class="label boolean"></span></p>
+                falseDo nothing until the DOM is loaded. Uses Ink.Dom.Loaded.run();</li>
+        </ul>
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Autoload_1.html %}
+	</section>
+
+
+    <section id="Ink_Autoload-Ink_Autoload-selectors" class="box box-attribute">
+    <h1 class="fw-300">
+    
+       Ink.Autoload.selectors
+    
+    <i>attribute</i></h1>
+    
+    
+        <p class="text">Matches module names to default selectors.</p>
+    
+    
+    
+        <span class="description"><p>{Object}</p>
+</span>
+    
+</section>
+
+
+
+    
+    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space"><caption>Functions</caption>
+        <thead>
+            <tr>
+                <th>Function name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            <tr>
+                <td>
+                    <a href="#Ink_Autoload-Ink_Autoload-add">.add</a>
+                </td>
+                <td> Add a new entry to be autoloaded.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Autoload-Ink_Autoload-remove">.remove</a>
+                </td>
+                <td> Removes a module from autoload, making it not be automatically loaded.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Autoload-Ink_Autoload-run">.run</a>
+                </td>
+                <td> Run Autoload on a specific element.</td>
+            </tr></tbody>
+    </table>
+    
+    <table class="props">
+        <caption>Properties</caption>
+        <thead>
+            <tr>
+                <th>Property name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            <tr>
+                <td><a href="#Ink_Autoload-Ink_Autoload-selectors">.selectors</a></td>
+                <td>Matches module names to default selectors.
+                        <span class="description">{Object}</span>
+                    
+                </td>
+            </tr>
+            
+        </tbody>
+    </table>
+    
+</section>
+
+
+
+    <section id="Ink_Autoload-Ink_Autoload-add" class="box box-function">
+    <h1 class="fw-300">.add(moduleName, selector)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         moduleName</li><li class="prop mandatory">
+         selector</li>
+    </ul><p class="text">Add a new entry to be autoloaded.</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>moduleName
+                    <span class="label mandatory"></span></p>
+                {String}</li>
+            <li class="level1">
+                <p>selector
+                    <span class="label mandatory"></span></p>
+                {String}</li>
+        </ul>
+
+</section>
+
+    <section id="Ink_Autoload-Ink_Autoload-remove" class="box box-function">
+    <h1 class="fw-300">.remove(moduleName)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         moduleName</li>
+    </ul><p class="text">Removes a module from autoload, making it not be automatically loaded.</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>moduleName
+                    <span class="label mandatory"></span></p>
+                {String}</li>
+        </ul>
+
+</section>
+
+    <section id="Ink_Autoload-Ink_Autoload-run" class="box box-function">
+    <h1 class="fw-300">.run(parentEl, options)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         parentEl</li><li class="prop">
+         options</li>
+    </ul><p class="text">Run Autoload on a specific element.<br><p>Useful when you load something from AJAX and want it to have automatically loaded Ink modules.</p></p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>parentEl
+                    <span class="label mandatory"></span><span class="label domelement"></span></p>
+                </li>
+            <li class="level1">
+                <p>options
+                    <span class="label object"></span></p>
+                Options object, containing:</li>
+            <li class="level2">
+                <p>options.forceAutoload
+                    <span class="label boolean"></span></p>
+                Autoload things on elements even if they have `data-autoload="false"`</li>
+            <li class="level2">
+                <p>options.createClose
+                    <span class="label boolean"></span></p>
+                Whether to create the Ink.UI.Close component. Defaults to `true`.</li>
+            <li class="level2">
+                <p>options.createSmoothScroller
+                    <span class="label boolean"></span></p>
+                Whether to create the Scroller component. Defaults to `true`.</li>
+            <li class="level2">
+                <p>options.selectors
+                    <span class="label object"></span></p>
+                Ink.Autoload.selectorsA hash mapping module names to selectors that match elements to load these modules. For example, `{ 'Modal_1': '.my-specific-modal' }`.</li>
+            <li class="level2">
+                <p>options.waitForDOMLoaded
+                    <span class="label boolean"></span></p>
+                falseDo nothing until the DOM is loaded. Uses Ink.Dom.Loaded.run();</li>
         </ul>
 
 <!--<h3>Samples</h3>-->

@@ -1,7 +1,7 @@
 ---
 layout: js-documentation
 title: Ink.Util.Array_1
-description: Array Utilities
+description: Array UtilitiesArray Utilities
 site_root:  ../
 ---
     <section>
@@ -82,6 +82,12 @@ site_root:  ../
                     <a href="#Ink_Util_Array_1-Ink_Util_Array_1-map">.map</a>
                 </td>
                 <td> Runs a function for each item in the array. </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Array_1-Ink_Util_Array_1-range">.range</a>
+                </td>
+                <td> Simulates python&#39;s range(start, stop, step) function.</td>
             </tr>
             <tr>
                 <td>
@@ -447,6 +453,684 @@ site_root:  ../
 
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_Util_Array_map.html %}
+	</section>
+
+    <section id="Ink_Util_Array_1-Ink_Util_Array_1-range" class="box box-function">
+    <h1 class="fw-300">.range(start, stop, step)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         start</li><li class="prop mandatory">
+         stop</li><li class="prop">
+         step</li>
+    </ul><p class="text">Simulates python&#39;s range(start, stop, step) function.<br><p>Creates a list with numbers counting from start until stop, using a for loop.<br>.<br>The optional step argument defines how to step ahead. You can pass a negative number to count backwards (see the examples below).</p></p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>start
+                    <span class="label mandatory"></span><span class="label number"></span></p>
+                The array's first element.</li>
+            <li class="level1">
+                <p>stop
+                    <span class="label mandatory"></span><span class="label number"></span></p>
+                Stop counting before this number.</li>
+            <li class="level1">
+                <p>step
+                    <span class="label number"></span></p>
+                1Interval between numbers. You can use a negative number to count backwards.</li>
+        </ul>
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_Array_1_range.html %}
+	</section>
+
+    <section id="Ink_Util_Array_1-Ink_Util_Array_1-reduce" class="box box-function">
+    <h1 class="fw-300">.reduce(array, callback, initial)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         array</li><li class="prop mandatory">
+         callback</li><li class="prop mandatory">
+         initial</li>
+    </ul><p class="text">Replacement for Array.prototype.reduce.<br><p>Produces a single result from a list of values by calling an &quot;aggregator&quot; function.</p><br><p>Falls back to Array.prototype.reduce if available.</p></p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>array
+                    <span class="label mandatory"></span></p>
+                {Array} Input array to be reduced.</li>
+            <li class="level1">
+                <p>callback
+                    <span class="label mandatory"></span></p>
+                {Function} `function (previousValue, currentValue, index, all) { return {Mixed} }` to execute for each value.</li>
+            <li class="level1">
+                <p>initial
+                    <span class="label mandatory"></span></p>
+                {Mixed} Object used as the first argument to the first call of `callback`</li>
+        </ul>
+<p class="example-title">Example</p>
+  
+{% highlight html %}{% raw %}
+         var sum = InkArray.reduce([1, 2, 3], function (a, b) { return a + b; });  // -> 6
+{% endraw %}{% endhighlight %}
+
+
+
+</section>
+
+    <section id="Ink_Util_Array_1-Ink_Util_Array_1-remove" class="box box-function">
+    <h1 class="fw-300">.remove(arr, from, rLen)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         arr</li><li class="prop mandatory">
+         from</li><li class="prop mandatory">
+         rLen</li>
+    </ul><p class="text">Removes a range of values from the array</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>arr
+                    <span class="label mandatory"></span><span class="label array"></span></p>
+                Array where the value will be removed</li>
+            <li class="level1">
+                <p>from
+                    <span class="label mandatory"></span><span class="label number"></span></p>
+                Index of the array where the removal will start removing.</li>
+            <li class="level1">
+                <p>rLen
+                    <span class="label mandatory"></span><span class="label number"></span></p>
+                Number of items to be removed from the index onwards.</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label array"></span> </p>An array with the remaining values
+        </li>
+    </ul>
+    
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_Array_remove.html %}
+	</section>
+
+    <section id="Ink_Util_Array_1-Ink_Util_Array_1-shuffle" class="box box-function">
+    <h1 class="fw-300">.shuffle(arr)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         arr</li>
+    </ul><p class="text">Shuffles an array.</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>arr
+                    <span class="label mandatory"></span><span class="label array"></span></p>
+                Array to shuffle</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label array"></span> <span class="label boolean"></span> </p>Shuffled Array or false if not an array.
+        </li>
+    </ul>
+    
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_Array_shuffle.html %}
+	</section>
+
+    <section id="Ink_Util_Array_1-Ink_Util_Array_1-some" class="box box-function">
+    <h1 class="fw-300">.some(arr, cb, context)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         arr</li><li class="prop mandatory">
+         cb</li><li class="prop mandatory">
+         context</li>
+    </ul><p class="text">Checks if some element in the array passes a truth test</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>arr
+                    <span class="label mandatory"></span><span class="label array"></span></p>
+                The array to iterate through</li>
+            <li class="level1">
+                <p>cb
+                    <span class="label mandatory"></span><span class="label function"></span></p>
+                The callback to be called on the array's elements. It receives the value, the index and the array as arguments.</li>
+            <li class="level1">
+                <p>context
+                    <span class="label mandatory"></span><span class="label object"></span></p>
+                Object of the callback function</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label boolean"></span> </p>True if the callback returns true at any point, false otherwise
+        </li>
+    </ul>
+    
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_Array_some.html %}
+	</section>
+
+    <section id="Ink_Util_Array_1-Ink_Util_Array_1-sortMulti" class="box box-function">
+    <h1 class="fw-300">.sortMulti(arr, key)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         arr</li><li class="prop mandatory">
+         key</li>
+    </ul><p class="text">Sorts an array of objects by an object property</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>arr
+                    <span class="label mandatory"></span><span class="label array"></span></p>
+                Array of objects to sort</li>
+            <li class="level1">
+                <p>key
+                    <span class="label mandatory"></span><span class="label string"></span></p>
+                Property to sort by</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label array"></span> <span class="label boolean"></span> </p>False if it's not an array, returns a sorted array if it's an array.
+        </li>
+    </ul>
+    
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_Array_sortMulti.html %}
+	</section>
+
+
+
+    
+    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space"><caption>Functions</caption>
+        <thead>
+            <tr>
+                <th>Function name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Array_1-Ink_Util_Array_1-convert">.convert</a>
+                </td>
+                <td> Converts an array-like object to an array</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Array_1-Ink_Util_Array_1-each">.each</a>
+                </td>
+                <td> Alias for backwards compatibility. See forEach</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Array_1-Ink_Util_Array_1-filter">.filter</a>
+                </td>
+                <td> Filters an array based on a truth test.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Array_1-Ink_Util_Array_1-forEach">.forEach</a>
+                </td>
+                <td> Runs a function through each of the elements of an array</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Array_1-Ink_Util_Array_1-groupBy">.groupBy</a>
+                </td>
+                <td> Loops through an array, grouping similar items together.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Array_1-Ink_Util_Array_1-inArray">.inArray</a>
+                </td>
+                <td> Checks if a value exists in array</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Array_1-Ink_Util_Array_1-insert">.insert</a>
+                </td>
+                <td> Inserts a value on a specified index</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Array_1-Ink_Util_Array_1-intersect">.intersect</a>
+                </td>
+                <td> Compares the values of two arrays and return the matches</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Array_1-Ink_Util_Array_1-isArray">.isArray</a>
+                </td>
+                <td> Checks if a value is an array</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Array_1-Ink_Util_Array_1-keyValue">.keyValue</a>
+                </td>
+                <td> Gets the indexes of a value in an array</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Array_1-Ink_Util_Array_1-map">.map</a>
+                </td>
+                <td> Runs a function for each item in the array. </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Array_1-Ink_Util_Array_1-range">.range</a>
+                </td>
+                <td> Simulates python&#39;s range(start, stop, step) function.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Array_1-Ink_Util_Array_1-reduce">.reduce</a>
+                </td>
+                <td> Replacement for Array.prototype.reduce.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Array_1-Ink_Util_Array_1-remove">.remove</a>
+                </td>
+                <td> Removes a range of values from the array</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Array_1-Ink_Util_Array_1-shuffle">.shuffle</a>
+                </td>
+                <td> Shuffles an array.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Array_1-Ink_Util_Array_1-some">.some</a>
+                </td>
+                <td> Checks if some element in the array passes a truth test</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Array_1-Ink_Util_Array_1-sortMulti">.sortMulti</a>
+                </td>
+                <td> Sorts an array of objects by an object property</td>
+            </tr></tbody>
+    </table>
+    
+</section>
+
+
+
+    <section id="Ink_Util_Array_1-Ink_Util_Array_1-convert" class="box box-function">
+    <h1 class="fw-300">.convert(arr)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         arr</li>
+    </ul><p class="text">Converts an array-like object to an array</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>arr
+                    <span class="label mandatory"></span><span class="label array"></span></p>
+                Array to be converted</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label array"></span> </p>Array resulting of the conversion
+        </li>
+    </ul>
+    
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_Array_convert.html %}
+	</section>
+
+    <section id="Ink_Util_Array_1-Ink_Util_Array_1-each" class="box box-function">
+    <h1 class="fw-300">.each()
+    <i>method</i></h1><p class="text">Alias for backwards compatibility. See forEach</p>
+
+</section>
+
+    <section id="Ink_Util_Array_1-Ink_Util_Array_1-filter" class="box box-function">
+    <h1 class="fw-300">.filter(array, test, context)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         array</li><li class="prop mandatory">
+         test</li><li class="prop">
+         context</li>
+    </ul><p class="text">Filters an array based on a truth test.<br>This method runs a test function on all the array values and returns a new array with all the values that pass the test.</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>array
+                    <span class="label mandatory"></span><span class="label array"></span></p>
+                The array to filter</li>
+            <li class="level1">
+                <p>test
+                    <span class="label mandatory"></span><span class="label function"></span></p>
+                A test function taking `(item, index, array)`</li>
+            <li class="level1">
+                <p>context
+                    <span class="label object"></span></p>
+                Object to be `this` in the test function.</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label array"></span> </p>Returns the filtered array
+        </li>
+    </ul>
+    
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_Array_filter.html %}
+	</section>
+
+    <section id="Ink_Util_Array_1-Ink_Util_Array_1-forEach" class="box box-function">
+    <h1 class="fw-300">.forEach(arr, cb)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         arr</li><li class="prop mandatory">
+         cb</li>
+    </ul><p class="text">Runs a function through each of the elements of an array</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>arr
+                    <span class="label mandatory"></span><span class="label array"></span></p>
+                The array to be cycled/iterated</li>
+            <li class="level1">
+                <p>cb
+                    <span class="label mandatory"></span><span class="label function"></span></p>
+                The function receives as arguments the value, index and array.</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label array"></span> </p>Iterated array.
+        </li>
+    </ul>
+    
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_Array_forEach.html %}
+	</section>
+
+    <section id="Ink_Util_Array_1-Ink_Util_Array_1-groupBy" class="box box-function">
+    <h1 class="fw-300">.groupBy(arr, options)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         arr</li><li class="prop">
+         options</li>
+    </ul><p class="text">Loops through an array, grouping similar items together.</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>arr
+                    <span class="label mandatory"></span></p>
+                {Array} The input array.</li>
+            <li class="level1">
+                <p>options
+                    </p>
+                {Object} options object, containing:</li>
+            <li class="level2">
+                <p>options.key
+                    </p>
+                {Function} A function which computes the group key by which the items are grouped.</li>
+            <li class="level2">
+                <p>options.pairs
+                    </p>
+                {Boolean} Set to `true` if you want to output an array of `[key, [group...]]` pairs instead of an array of groups.</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label array"></span> </p>An array of arrays of chunks.
+        </li>
+    </ul>
+    
+<p class="example-title">Example</p>
+  
+{% highlight html %}{% raw %}
+
+       InkArray.groupBy([1, 1, 2, 2, 3, 1])  // -> [ [1, 1], [2, 2], [3], [1] ]
+       InkArray.groupBy([1.1, 1.2, 2.1], { key: Math.floor })  // -> [ [1.1, 1.2], [2.1] ]
+       InkArray.groupBy([1.1, 1.2, 2.1], { key: Math.floor, pairs: true })  // -> [ [1, [1.1, 1.2]], [2, [2.1]] ]
+
+{% endraw %}{% endhighlight %}
+
+
+
+</section>
+
+    <section id="Ink_Util_Array_1-Ink_Util_Array_1-inArray" class="box box-function">
+    <h1 class="fw-300">.inArray(value, arr)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         value</li><li class="prop mandatory">
+         arr</li>
+    </ul><p class="text">Checks if a value exists in array</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>value
+                    <span class="label mandatory"></span><span class="label mixed"></span></p>
+                Value to check</li>
+            <li class="level1">
+                <p>arr
+                    <span class="label mandatory"></span><span class="label array"></span></p>
+                Array to search in</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label boolean"></span> </p>True if value exists in the array
+        </li>
+    </ul>
+    
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_Array_inArray.html %}
+	</section>
+
+    <section id="Ink_Util_Array_1-Ink_Util_Array_1-insert" class="box box-function">
+    <h1 class="fw-300">.insert(arr, idx, value)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         arr</li><li class="prop mandatory">
+         idx</li><li class="prop mandatory">
+         value</li>
+    </ul><p class="text">Inserts a value on a specified index</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>arr
+                    <span class="label mandatory"></span><span class="label array"></span></p>
+                Array where the value will be inserted</li>
+            <li class="level1">
+                <p>idx
+                    <span class="label mandatory"></span><span class="label number"></span></p>
+                Index of the array where the value should be inserted</li>
+            <li class="level1">
+                <p>value
+                    <span class="label mandatory"></span><span class="label mixed"></span></p>
+                Value to be inserted</li>
+        </ul>
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_Array_insert.html %}
+	</section>
+
+    <section id="Ink_Util_Array_1-Ink_Util_Array_1-intersect" class="box box-function">
+    <h1 class="fw-300">.intersect(arr1, arr2)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         arr1</li><li class="prop mandatory">
+         arr2</li>
+    </ul><p class="text">Compares the values of two arrays and return the matches</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>arr1
+                    <span class="label mandatory"></span><span class="label array"></span></p>
+                First array</li>
+            <li class="level1">
+                <p>arr2
+                    <span class="label mandatory"></span><span class="label array"></span></p>
+                Second array</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label array"></span> </p>Empty array if one of the arrays is false (or do not intersect) | Array with the intersected values
+        </li>
+    </ul>
+    
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_Array_intersect.html %}
+	</section>
+
+    <section id="Ink_Util_Array_1-Ink_Util_Array_1-isArray" class="box box-function">
+    <h1 class="fw-300">.isArray(testedObject)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         testedObject</li>
+    </ul><p class="text">Checks if a value is an array</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>testedObject
+                    <span class="label mandatory"></span></p>
+                {Mixed} The object we want to check</li>
+        </ul>
+
+</section>
+
+    <section id="Ink_Util_Array_1-Ink_Util_Array_1-keyValue" class="box box-function">
+    <h1 class="fw-300">.keyValue(value, arr, first)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         value</li><li class="prop mandatory">
+         arr</li><li class="prop">
+         first</li>
+    </ul><p class="text">Gets the indexes of a value in an array</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>value
+                    <span class="label mandatory"></span><span class="label string"></span></p>
+                Value to search for.</li>
+            <li class="level1">
+                <p>arr
+                    <span class="label mandatory"></span><span class="label array"></span></p>
+                Array to run the search in.</li>
+            <li class="level1">
+                <p>first
+                    <span class="label boolean"></span></p>
+                Flag to stop the search at the first match. It also returns an index number instead of an array of indexes.</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label boolean"></span> <span class="label number"></span> <span class="label array"></span> </p>False for no matches. Array of matches or first match index.
+        </li>
+    </ul>
+    
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_Array_keyValue.html %}
+	</section>
+
+    <section id="Ink_Util_Array_1-Ink_Util_Array_1-map" class="box box-function">
+    <h1 class="fw-300">.map(array, map, context)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         array</li><li class="prop mandatory">
+         map</li><li class="prop">
+         context</li>
+    </ul><p class="text">Runs a function for each item in the array. <br>That function will receive each item as an argument and its return value will change the corresponding array item.</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>array
+                    <span class="label mandatory"></span><span class="label array"></span></p>
+                The array to map over</li>
+            <li class="level1">
+                <p>map
+                    <span class="label mandatory"></span><span class="label function"></span></p>
+                The map function. Will take `(item, index, array)` as arguments and `this` will be the `context` argument.</li>
+            <li class="level1">
+                <p>context
+                    <span class="label object"></span></p>
+                Object to be `this` in the map function.</li>
+        </ul>
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_Array_map.html %}
+	</section>
+
+    <section id="Ink_Util_Array_1-Ink_Util_Array_1-range" class="box box-function">
+    <h1 class="fw-300">.range(start, stop, step)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         start</li><li class="prop mandatory">
+         stop</li><li class="prop">
+         step</li>
+    </ul><p class="text">Simulates python&#39;s range(start, stop, step) function.<br><p>Creates a list with numbers counting from start until stop, using a for loop.<br>.<br>The optional step argument defines how to step ahead. You can pass a negative number to count backwards (see the examples below).</p></p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>start
+                    <span class="label mandatory"></span><span class="label number"></span></p>
+                The array's first element.</li>
+            <li class="level1">
+                <p>stop
+                    <span class="label mandatory"></span><span class="label number"></span></p>
+                Stop counting before this number.</li>
+            <li class="level1">
+                <p>step
+                    <span class="label number"></span></p>
+                1Interval between numbers. You can use a negative number to count backwards.</li>
+        </ul>
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_Array_1_range.html %}
 	</section>
 
     <section id="Ink_Util_Array_1-Ink_Util_Array_1-reduce" class="box box-function">

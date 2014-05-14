@@ -1,13 +1,131 @@
 ---
 layout: js-documentation
 title: Ink.UI.Tooltip_1
-description: Content Tooltips
+description: Content TooltipsContent Tooltips
 site_root:  ../
 ---
     <section>
         <h1 class="fw-300">Ink.UI.Tooltip_1</h1>
 
 <p>Tooltips are useful as a means to display information about functionality while avoiding clutter.</p>
+<p>Tooltips show up when you hover elements which &quot;have&quot; tooltips.</p>
+<p>This class will &quot;give&quot; a tooltip to many elements, selected by its first argument (<code>target</code>). This is contrary to the other UI modules in Ink, which are created once per element.</p>
+<p>You can define options either through the second argument of the Tooltip constructor, or as data-attributes in each <code>target</code> element. Options set through data-attributes all start with &quot;data-tip&quot;, and override options passed into the Tooltip constructor.</p>
+
+    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space">
+        <caption>Methods</caption>
+        <thead>
+            <tr>
+                <th>Method name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Tooltip_1-Ink_UI_Tooltip-Tooltip"><em>(constructor)</em></a>
+                </td>
+                <td><span class="ink-label green">Constructor</span></td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Tooltip_1-Ink_UI_Tooltip-destroy">.destroy</a>
+                </td>
+                <td> Destroys the tooltips created by this instance</td>
+            </tr></tbody>
+    </table>
+    
+</section>
+
+
+
+    <section id="Ink_UI_Tooltip_1-Ink_UI_Tooltip-Tooltip" class="box box-function">
+    <h1 class="fw-300">Ink.UI.Tooltip(target, options)
+    <i>constructor</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         target</li><li class="prop">
+         options</li>
+    </ul>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>target
+                    <span class="label mandatory"></span><span class="label domelement"></span><span class="label string"></span></p>
+                Target element or selector of elements, to display the tooltips on.</li>
+            <li class="level1">
+                <p>options
+                    <span class="label object"></span></p>
+                Options object</li>
+            <li class="level2">
+                <p>options.text
+                    <span class="label string"></span></p>
+                Text content for the tooltip.</li>
+            <li class="level2">
+                <p>options.html
+                    <span class="label string"></span></p>
+                HTML for the tooltip. Same as above, but won't escape HTML.</li>
+            <li class="level2">
+                <p>options.where
+                    <span class="label string"></span></p>
+                Positioning for the tooltip. Options are 'up', 'down', 'left', 'right', 'mousemove' (follows the cursor), and 'mousefix' (stays fixed). Defaults to 'up'.</li>
+            <li class="level2">
+                <p>options.color
+                    <span class="label string"></span></p>
+                Color of the tooltip. Options are red, orange, blue, green and black. Default is white.</li>
+            <li class="level2">
+                <p>options.fade
+                    <span class="label number"></span></p>
+                Number of seconds to fade in/out. Defaults to 0.3.</li>
+            <li class="level2">
+                <p>options.forever
+                    <span class="label boolean"></span></p>
+                Flag to prevent the tooltip from being erased when the mouse hovers away from the target.</li>
+            <li class="level2">
+                <p>options.timeout
+                    <span class="label number"></span></p>
+                Number of seconds the tooltip will stay open. Useful together with options.forever. Defaults to 0.</li>
+            <li class="level2">
+                <p>options.delay
+                    <span class="label number"></span></p>
+                Time the tooltip waits until it is displayed. Useful to avoid getting the attention of the user unnecessarily</li>
+            <li class="level2">
+                <p>options.template
+                    <span class="label domelement"></span><span class="label selector"></span></p>
+                Element or selector containing HTML to be cloned into the tooltips. Can be a hidden element, because CSS `display` is set to `block`.</li>
+            <li class="level2">
+                <p>options.templatefield
+                    <span class="label string"></span></p>
+                Selector within the template element to choose where the text is inserted into the tooltip. Useful when a wrapper DIV is required.</li>
+            <li class="level2">
+                <p>options.left
+                    <span class="label number"></span></p>
+                Spacing from the target to the tooltip, when `where` is `mousemove` or `mousefix`. Defaults to 10.</li>
+            <li class="level2">
+                <p>options.top
+                    <span class="label number"></span></p>
+                Spacing from the target to the tooltip, when `where` is `mousemove` or `mousefix`. Defaults to 10.</li>
+            <li class="level2">
+                <p>options.spacing
+                    <span class="label number"></span></p>
+                Spacing between the tooltip and the target element, when `where` is not `mousemove` or `mousefix`. Defaults to 8.</li>
+        </ul>
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_UI_Tooltip_1.html %}
+	</section>
+
+    <section id="Ink_UI_Tooltip_1-Ink_UI_Tooltip-destroy" class="box box-function">
+    <h1 class="fw-300">.destroy()
+    <i>method</i></h1><p class="text">Destroys the tooltips created by this instance</p>
+
+</section>
+
+
+
+    <p>Tooltips are useful as a means to display information about functionality while avoiding clutter.</p>
 <p>Tooltips show up when you hover elements which &quot;have&quot; tooltips.</p>
 <p>This class will &quot;give&quot; a tooltip to many elements, selected by its first argument (<code>target</code>). This is contrary to the other UI modules in Ink, which are created once per element.</p>
 <p>You can define options either through the second argument of the Tooltip constructor, or as data-attributes in each <code>target</code> element. Options set through data-attributes all start with &quot;data-tip&quot;, and override options passed into the Tooltip constructor.</p>

@@ -1,13 +1,946 @@
 ---
 layout: js-documentation
 title: Ink.Dom.Event_1
-description: Event management
+description: Event managementEvent management
 site_root:  ../
 ---
     <section>
         <h1 class="fw-300">Ink.Dom.Event_1</h1>
 
 
+    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space"><caption>Functions</caption>
+        <thead>
+            <tr>
+                <th>Function name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-clone">.clone</a>
+                </td>
+                <td> Clones events from one object to another</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-element">.element</a>
+                </td>
+                <td> Gets the event&#39;s target element.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-findElement">.findElement</a>
+                </td>
+                <td> Find closest ancestor element by tag name related to the event target.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-fire">.fire</a>
+                </td>
+                <td> Triggers events.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-getCharFromKeyboardEvent">.getCharFromKeyboardEvent</a>
+                </td>
+                <td> Gets character from an event.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-isLeftClick">.isLeftClick</a>
+                </td>
+                <td> Checks if an event is a left click.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-isMiddleClick">.isMiddleClick</a>
+                </td>
+                <td> Checks if an event is a middle click.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-isRightClick">.isRightClick</a>
+                </td>
+                <td> Checks if an event is a right click.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-observe">.observe</a>
+                </td>
+                <td> Attaches an event to element</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-observeDelegated">.observeDelegated</a>
+                </td>
+                <td> Observes an event on an element and its descendants matching the selector.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-observeMulti">.observeMulti</a>
+                </td>
+                <td> Attaches an event to a selector or array of elements.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-observeOnce">.observeOnce</a>
+                </td>
+                <td> Like observe, but listen to the event only once.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-off">.off</a>
+                </td>
+                <td> Removes event handlers.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-on">.on</a>
+                </td>
+                <td> Lets you attach event listeners to both elements and objects.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-one">.one</a>
+                </td>
+                <td> Alias for <code>on</code> but will only be executed once.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-pointer">.pointer</a>
+                </td>
+                <td> Gets the pointer&#39;s coordinates from the event object.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-pointerX">.pointerX</a>
+                </td>
+                <td> Gets the pointer&#39;s X coordinate.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-pointerY">.pointerY</a>
+                </td>
+                <td> Gets the pointer&#39;s Y coordinate.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-relatedTarget">.relatedTarget</a>
+                </td>
+                <td> Gets the event&#39;s related target element.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-stop">.stop</a>
+                </td>
+                <td> Stops event propagation and bubbling.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-stopDefault">.stopDefault</a>
+                </td>
+                <td> Stops event default behaviour.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-stopObserving">.stopObserving</a>
+                </td>
+                <td> Removes an event attached to an element.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-stopPropagation">.stopPropagation</a>
+                </td>
+                <td> Stops event propagation.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-throttle">.throttle</a>
+                </td>
+                <td> Creates a debounced version of a function.</td>
+            </tr></tbody>
+    </table>
+    
+</section>
+
+
+
+    <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-clone" class="box box-function">
+    <h1 class="fw-300">.clone(destElement, srcElement, eventType)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         destElement</li><li class="prop mandatory">
+         srcElement</li><li class="prop">
+         eventType</li>
+    </ul><p class="text">Clones events from one object to another<br>bean.clone() is a method for cloning events from one DOM element or object to another.<br><a href="http://github.com/fat/bean#clone">http://github.com/fat/bean#clone</a></p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>destElement
+                    <span class="label mandatory"></span><span class="label domelement"></span><span class="label object"></span></p>
+                An HTML DOM element or any JavaScript Object to copy events to</li>
+            <li class="level1">
+                <p>srcElement
+                    <span class="label mandatory"></span><span class="label string"></span></p>
+                An HTML DOM element or any JavaScript Object to copy events from</li>
+            <li class="level1">
+                <p>eventType
+                    <span class="label string"></span></p>
+                An Event (or multiple events, space separated) to clone</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label domelement"></span> <span class="label object"></span> </p>Returns the original DOM Element or Javascript Object
+        </li>
+    </ul>
+    
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Dom_Event_1_clone.html %}
+	</section>
+
+    <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-element" class="box box-function">
+    <h1 class="fw-300">.element(ev)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         ev</li>
+    </ul><p class="text">Gets the event&#39;s target element.</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>ev
+                    <span class="label mandatory"></span><span class="label object"></span></p>
+                Event object</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label domnode"></span> </p>The target
+        </li>
+    </ul>
+    
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Dom_Event_1_element.html %}
+	</section>
+
+    <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-findElement" class="box box-function">
+    <h1 class="fw-300">.findElement(ev, elmTagName, force)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         ev</li><li class="prop mandatory">
+         elmTagName</li><li class="prop">
+         force</li>
+    </ul><p class="text">Find closest ancestor element by tag name related to the event target.<br>Navigate up the DOM tree, looking for a tag with the name <code>elmTagName</code>.<br><p>If such tag is not found, <code>document</code> is returned.</p></p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>ev
+                    <span class="label mandatory"></span><span class="label object"></span></p>
+                Event object</li>
+            <li class="level1">
+                <p>elmTagName
+                    <span class="label mandatory"></span><span class="label string"></span></p>
+                Tag name to find</li>
+            <li class="level1">
+                <p>force
+                    <span class="label boolean"></span></p>
+                falseFlag to skip returning `document` and to return `false` instead.</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label domelement"></span> </p>the first element which matches given tag name or the document element if the wanted tag is not found
+        </li>
+    </ul>
+    
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Dom_Event_1_findElement.html %}
+	</section>
+
+    <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-fire" class="box box-function">
+    <h1 class="fw-300">.fire(destElement, eventType)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         destElement</li><li class="prop mandatory">
+         eventType</li>
+    </ul><p class="text">Triggers events.<br><a href="http://github.com/fat/bean#fire">http://github.com/fat/bean#fire</a></p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>destElement
+                    <span class="label mandatory"></span><span class="label domelement"></span><span class="label object"></span></p>
+                An HTML DOM element or any JavaScript Object fire the event on</li>
+            <li class="level1">
+                <p>eventType
+                    <span class="label mandatory"></span><span class="label string"></span></p>
+                An Event (or multiple events, space separated) to fire</li>
+            <li class="level4">
+                <p>args...
+                    </p>
+                Additional arguments to pass to the callback function when triggered</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label domelement"></span> <span class="label object"></span> </p>Returns the original DOM Element or Javascript Object
+        </li>
+    </ul>
+    
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Dom_Event_1_fire.html %}
+	</section>
+
+    <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-getCharFromKeyboardEvent" class="box box-function">
+    <h1 class="fw-300">.getCharFromKeyboardEvent(event, changeCasing)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         event</li><li class="prop">
+         changeCasing</li>
+    </ul><p class="text">Gets character from an event.</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>event
+                    <span class="label mandatory"></span><span class="label object"></span></p>
+                Keyboard event</li>
+            <li class="level1">
+                <p>changeCasing
+                    <span class="label boolean"></span></p>
+                If true uppercases, if false lowercases, otherwise keeps casing</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label string"></span> </p>Character representation of pressed key combination
+        </li>
+    </ul>
+    
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Dom_Event_1_getCharFromKeyboardEvent.html %}
+	</section>
+
+    <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-isLeftClick" class="box box-function">
+    <h1 class="fw-300">.isLeftClick(ev)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         ev</li>
+    </ul><p class="text">Checks if an event is a left click.</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>ev
+                    <span class="label mandatory"></span><span class="label object"></span></p>
+                Event object</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label boolean"></span> </p>True if the event is a left click
+        </li>
+    </ul>
+    
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Dom_Event_1_isLeftClick.html %}
+	</section>
+
+    <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-isMiddleClick" class="box box-function">
+    <h1 class="fw-300">.isMiddleClick(ev)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         ev</li>
+    </ul><p class="text">Checks if an event is a middle click.</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>ev
+                    <span class="label mandatory"></span><span class="label object"></span></p>
+                Event object</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label boolean"></span> </p>True if the event is a middle click
+        </li>
+    </ul>
+    
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Dom_Event_1_isMiddleClick.html %}
+	</section>
+
+    <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-isRightClick" class="box box-function">
+    <h1 class="fw-300">.isRightClick(ev)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         ev</li>
+    </ul><p class="text">Checks if an event is a right click.</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>ev
+                    <span class="label mandatory"></span><span class="label object"></span></p>
+                Event object</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label boolean"></span> </p>True if the event is a right click
+        </li>
+    </ul>
+    
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Dom_Event_1_isRightClick.html %}
+	</section>
+
+    <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-observe" class="box box-function">
+    <h1 class="fw-300">.observe(element, eventName, callBack, useCapture)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         element</li><li class="prop mandatory">
+         eventName</li><li class="prop mandatory">
+         callBack</li><li class="prop">
+         useCapture</li>
+    </ul><p class="text">Attaches an event to element</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>element
+                    <span class="label mandatory"></span><span class="label domelement"></span><span class="label string"></span></p>
+                Element id or element</li>
+            <li class="level1">
+                <p>eventName
+                    <span class="label mandatory"></span><span class="label string"></span></p>
+                Event name</li>
+            <li class="level1">
+                <p>callBack
+                    <span class="label mandatory"></span><span class="label function"></span></p>
+                Receives the event object as a parameter. If you're manually firing custom events, check it's eventName property to make sure you're handling the right event.</li>
+            <li class="level1">
+                <p>useCapture
+                    <span class="label boolean"></span></p>
+                Flag to change event listening from bubbling to capture.</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label function"></span> </p>The event handler used. Hang on to this if you want to `stopObserving` later.
+        </li>
+    </ul>
+    
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Dom_Event_1_observe.html %}
+	</section>
+
+    <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-observeDelegated" class="box box-function">
+    <h1 class="fw-300">.observeDelegated(element, eventName, selector, callback)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         element</li><li class="prop mandatory">
+         eventName</li><li class="prop mandatory">
+         selector</li><li class="prop mandatory">
+         callback</li>
+    </ul><p class="text">Observes an event on an element and its descendants matching the selector.<br><p>Requires Ink.Dom.Selector if you need to use a selector.</p></p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>element
+                    <span class="label mandatory"></span><span class="label domelement"></span><span class="label string"></span></p>
+                Element to observe.</li>
+            <li class="level1">
+                <p>eventName
+                    <span class="label mandatory"></span><span class="label string"></span></p>
+                Event name to observe.</li>
+            <li class="level1">
+                <p>selector
+                    <span class="label mandatory"></span><span class="label string"></span></p>
+                Child element selector. When null, finds any element.</li>
+            <li class="level1">
+                <p>callback
+                    <span class="label mandatory"></span><span class="label function"></span></p>
+                Callback to be called when the event is fired</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label function"></span> </p>The used callback, for ceasing to listen to the event later.
+        </li>
+    </ul>
+    
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Dom_Event_1_observeDelegated.html %}
+	</section>
+
+    <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-observeMulti" class="box box-function">
+    <h1 class="fw-300">.observeMulti(elements, eventName, callBack, useCapture)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         elements</li><li class="prop mandatory">
+         eventName</li><li class="prop mandatory">
+         callBack</li><li class="prop">
+         useCapture</li>
+    </ul><p class="text">Attaches an event to a selector or array of elements.</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>elements
+                    <span class="label mandatory"></span><span class="label array"></span><span class="label string"></span></p>
+                </li>
+            <li class="level1">
+                <p>eventName
+                    <span class="label mandatory"></span><span class="label string"></span></p>
+                Event name</li>
+            <li class="level1">
+                <p>callBack
+                    <span class="label mandatory"></span><span class="label function"></span></p>
+                Receives the event object as a parameter. If you're manually firing custom events, check it's eventName property to make sure you're handling the right event.</li>
+            <li class="level1">
+                <p>useCapture
+                    <span class="label boolean"></span></p>
+                Flag change event listening from bubbling to capture.</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label function"></span> </p>The used callback.
+        </li>
+    </ul>
+    
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Dom_Event_1_observeMulti.html %}
+	</section>
+
+    <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-observeOnce" class="box box-function">
+    <h1 class="fw-300">.observeOnce(element, eventName, callBack, useCapture)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         element</li><li class="prop mandatory">
+         eventName</li><li class="prop mandatory">
+         callBack</li><li class="prop">
+         useCapture</li>
+    </ul><p class="text">Like observe, but listen to the event only once.</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>element
+                    <span class="label mandatory"></span><span class="label domelement"></span><span class="label string"></span></p>
+                Element id or element</li>
+            <li class="level1">
+                <p>eventName
+                    <span class="label mandatory"></span><span class="label string"></span></p>
+                Event name</li>
+            <li class="level1">
+                <p>callBack
+                    <span class="label mandatory"></span><span class="label function"></span></p>
+                Receives the event object as a parameter. If you're manually firing custom events, check it's eventName property to make sure you're handling the right event.</li>
+            <li class="level1">
+                <p>useCapture
+                    <span class="label boolean"></span></p>
+                Flag to change event listening from bubbling to capture.</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label function"></span> </p>The event handler used. Hang on to this if you want to `stopObserving` later.
+        </li>
+    </ul>
+    
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Dom_Event_1_observeOnce.html %}
+	</section>
+
+    <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-off" class="box box-function">
+    <h1 class="fw-300">.off(element, eventType, handler)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         element</li><li class="prop mandatory">
+         eventType</li><li class="prop">
+         handler</li>
+    </ul><p class="text">Removes event handlers.<br>bean.off() is how you get rid of handlers once you no longer want them active. It&#39;s also a good idea to call off on elements before you remove them from your DOM; this gives Bean a chance to clean up some things and prevents memory leaks.<br><a href="http://github.com/fat/bean#off">http://github.com/fat/bean#off</a></p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>element
+                    <span class="label mandatory"></span><span class="label domelement"></span><span class="label object"></span></p>
+                An HTML DOM element or any JavaScript Object</li>
+            <li class="level1">
+                <p>eventType
+                    <span class="label mandatory"></span><span class="label string"></span></p>
+                An Event (or multiple events, space separated) to remove</li>
+            <li class="level1">
+                <p>handler
+                    <span class="label function"></span></p>
+                The specific callback function to remove</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label domelement"></span> <span class="label object"></span> </p>Returns the original DOM Element or Javascript Object
+        </li>
+    </ul>
+    
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Dom_Event_1_off.html %}
+	</section>
+
+    <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-on" class="box box-function">
+    <h1 class="fw-300">.on(element, eventType, selector, handler)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         element</li><li class="prop mandatory">
+         eventType</li><li class="prop">
+         selector</li><li class="prop">
+         handler</li>
+    </ul><p class="text">Lets you attach event listeners to both elements and objects.<br><a href="http://github.com/fat/bean#on">http://github.com/fat/bean#on</a></p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>element
+                    <span class="label mandatory"></span><span class="label domelement"></span><span class="label object"></span></p>
+                An HTML DOM element or any JavaScript Object</li>
+            <li class="level1">
+                <p>eventType
+                    <span class="label mandatory"></span><span class="label string"></span></p>
+                An Event (or multiple events, space separated) to listen to</li>
+            <li class="level1">
+                <p>selector
+                    <span class="label string"></span></p>
+                A CSS DOM Element selector string to bind the listener to child elements matching the selector</li>
+            <li class="level1">
+                <p>handler
+                    <span class="label function"></span></p>
+                The callback function</li>
+            <li class="level4">
+                <p>args...
+                    <span class="label object"></span></p>
+                Additional arguments to pass to the callback function when triggered</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label domelement"></span> <span class="label object"></span> </p>Returns the original DOM Element or Javascript Object
+        </li>
+    </ul>
+    
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Dom_Event_1_on.html %}
+	</section>
+
+    <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-one" class="box box-function">
+    <h1 class="fw-300">.one(element, eventType, selector, handler)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         element</li><li class="prop mandatory">
+         eventType</li><li class="prop">
+         selector</li><li class="prop">
+         handler</li>
+    </ul><p class="text">Alias for <code>on</code> but will only be executed once.<br>bean.one() is an alias for bean.on() except that the handler will only be executed once and then removed for the event type(s).<br><a href="http://github.com/fat/bean#one">http://github.com/fat/bean#one</a></p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>element
+                    <span class="label mandatory"></span><span class="label domelement"></span><span class="label object"></span></p>
+                An HTML DOM element or any JavaScript Object</li>
+            <li class="level1">
+                <p>eventType
+                    <span class="label mandatory"></span><span class="label string"></span></p>
+                An Event (or multiple events, space separated) to listen to</li>
+            <li class="level1">
+                <p>selector
+                    <span class="label string"></span></p>
+                A CSS DOM Element selector string to bind the listener to child elements matching the selector</li>
+            <li class="level1">
+                <p>handler
+                    <span class="label function"></span></p>
+                The callback function</li>
+            <li class="level4">
+                <p>args...
+                    </p>
+                Additional arguments to pass to the callback function when triggered</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label domelement"></span> <span class="label object"></span> </p>Returns the original DOM Element or Javascript Object
+        </li>
+    </ul>
+    
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Dom_Event_1_one.html %}
+	</section>
+
+    <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-pointer" class="box box-function">
+    <h1 class="fw-300">.pointer(ev)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         ev</li>
+    </ul><p class="text">Gets the pointer&#39;s coordinates from the event object.</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>ev
+                    <span class="label mandatory"></span><span class="label object"></span></p>
+                Event object</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label object"></span> </p>An object with the mouse X and Y position
+        </li>
+    </ul>
+    
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Dom_Event_1_pointer.html %}
+	</section>
+
+    <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-pointerX" class="box box-function">
+    <h1 class="fw-300">.pointerX(ev)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         ev</li>
+    </ul><p class="text">Gets the pointer&#39;s X coordinate.</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>ev
+                    <span class="label mandatory"></span><span class="label object"></span></p>
+                Event object</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label number"></span> </p>Mouse X position
+        </li>
+    </ul>
+    
+
+</section>
+
+    <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-pointerY" class="box box-function">
+    <h1 class="fw-300">.pointerY(ev)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         ev</li>
+    </ul><p class="text">Gets the pointer&#39;s Y coordinate.</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>ev
+                    <span class="label mandatory"></span><span class="label object"></span></p>
+                Event object</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label number"></span> </p>Mouse Y position
+        </li>
+    </ul>
+    
+
+</section>
+
+    <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-relatedTarget" class="box box-function">
+    <h1 class="fw-300">.relatedTarget(ev)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         ev</li>
+    </ul><p class="text">Gets the event&#39;s related target element.</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>ev
+                    <span class="label mandatory"></span><span class="label object"></span></p>
+                event object</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label domnode"></span> </p>The related target
+        </li>
+    </ul>
+    
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Dom_Event_1_relatedTarget.html %}
+	</section>
+
+    <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-stop" class="box box-function">
+    <h1 class="fw-300">.stop(event)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         event</li>
+    </ul><p class="text">Stops event propagation and bubbling.</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>event
+                    <span class="label mandatory"></span><span class="label object"></span></p>
+                Event handle</li>
+        </ul>
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Dom_Event_1_stop.html %}
+	</section>
+
+    <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-stopDefault" class="box box-function">
+    <h1 class="fw-300">.stopDefault(event)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         event</li>
+    </ul><p class="text">Stops event default behaviour.</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>event
+                    <span class="label mandatory"></span><span class="label object"></span></p>
+                Event handle</li>
+        </ul>
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Dom_Event_1_stopDefault.html %}
+	</section>
+
+    <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-stopObserving" class="box box-function">
+    <h1 class="fw-300">.stopObserving(element, eventName, callBack, useCapture)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         element</li><li class="prop mandatory">
+         eventName</li><li class="prop mandatory">
+         callBack</li><li class="prop">
+         useCapture</li>
+    </ul><p class="text">Removes an event attached to an element.</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>element
+                    <span class="label mandatory"></span><span class="label domelement"></span><span class="label string"></span></p>
+                Element id or element</li>
+            <li class="level1">
+                <p>eventName
+                    <span class="label mandatory"></span><span class="label string"></span></p>
+                Event name</li>
+            <li class="level1">
+                <p>callBack
+                    <span class="label mandatory"></span><span class="label function"></span></p>
+                Callback function</li>
+            <li class="level1">
+                <p>useCapture
+                    <span class="label boolean"></span></p>
+                Set to true if the event was being observed with useCapture set to true as well.</li>
+        </ul>
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Dom_Event_1_stopObserving.html %}
+	</section>
+
+    <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-stopPropagation" class="box box-function">
+    <h1 class="fw-300">.stopPropagation(event)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         event</li>
+    </ul><p class="text">Stops event propagation.</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>event
+                    <span class="label mandatory"></span><span class="label object"></span></p>
+                Event handle</li>
+        </ul>
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Dom_Event_1_stopPropagation.html %}
+	</section>
+
+    <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-throttle" class="box box-function">
+    <h1 class="fw-300">.throttle(func, wait)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         func</li><li class="prop">
+         wait</li>
+    </ul><p class="text">Creates a debounced version of a function.<br>Returns a function which calls <code>func</code>, waiting at least <code>wait</code> milliseconds between calls. This is useful for events such as <code>scroll</code> or <code>resize</code>, which can be triggered too many times per second, slowing down the browser with needless function calls.<br><p><em>note:</em> This does not delay the first function call to the function.</p></p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>func
+                    <span class="label mandatory"></span><span class="label function"></span></p>
+                Function to call. Arguments and context are both passed.</li>
+            <li class="level1">
+                <p>wait
+                    <span class="label number"></span></p>
+                0Milliseconds to wait between calls.</li>
+        </ul>
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Dom_Event_1_throttle.html %}
+	</section>
+
+
+
+    
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space"><caption>Functions</caption>
         <thead>
             <tr>

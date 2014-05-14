@@ -1,13 +1,731 @@
 ---
 layout: js-documentation
 title: Ink.Util.Validator_1
-description: Validation Utilities
+description: Validation UtilitiesValidation Utilities
 site_root:  ../
 ---
     <section>
         <h1 class="fw-300">Ink.Util.Validator_1</h1>
 
 
+    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space"><caption>Functions</caption>
+        <thead>
+            <tr>
+                <th>Function name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-ascii">.ascii</a>
+                </td>
+                <td> Checks if a field only contains only ASCII alphanumeric characters. </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-checkCharacterGroups">.checkCharacterGroups</a>
+                </td>
+                <td> Checks if a field has the required groups.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-codPostal">.codPostal</a>
+                </td>
+                <td> Validates if a zip code is valid in Portugal</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-createRegExp">.createRegExp</a>
+                </td>
+                <td> Creates a regular expression for several character groups.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-isAOPhone">.isAOPhone</a>
+                </td>
+                <td> Checks if a phone is valid in Angola</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-isCVPhone">.isCVPhone</a>
+                </td>
+                <td> Checks if a phone is valid in Cabo Verde</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-isColor">.isColor</a>
+                </td>
+                <td> Checks if a string is a valid color</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-isCreditCard">.isCreditCard</a>
+                </td>
+                <td> Checks if a number is of a specific credit card type</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-isDate">.isDate</a>
+                </td>
+                <td> Checks if a date is valid in a given format</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-isIP">.isIP</a>
+                </td>
+                <td> Checks if the value is a valid IP.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-isMZPhone">.isMZPhone</a>
+                </td>
+                <td> Checks if a phone is valid in Mozambique</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-isPTPhone">.isPTPhone</a>
+                </td>
+                <td> Checks if a phone is valid in Portugal</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-isPhone">.isPhone</a>
+                </td>
+                <td> Checks if a number is a phone number.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-isPortuguesePhone">.isPortuguesePhone</a>
+                </td>
+                <td> Alias function for isPTPhone</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-isTLPhone">.isTLPhone</a>
+                </td>
+                <td> Checks if a phone is valid in Timor</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-latin1">.latin1</a>
+                </td>
+                <td> Checks if a field only contains latin-1 alphanumeric characters. </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-mail">.mail</a>
+                </td>
+                <td> Checks if an email is valid</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-number">.number</a>
+                </td>
+                <td> Checks if a number is a valid</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-unicode">.unicode</a>
+                </td>
+                <td> Checks if a field contains unicode printable characters.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-url">.url</a>
+                </td>
+                <td> Checks if an url is valid</td>
+            </tr></tbody>
+    </table>
+    
+</section>
+
+
+
+    <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-ascii" class="box box-function">
+    <h1 class="fw-300">.ascii(s, options)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         s</li><li class="prop">
+         options</li>
+    </ul><p class="text">Checks if a field only contains only ASCII alphanumeric characters. <br>Takes options for allowing singleline whitespace, cross-line whitespace and punctuation.</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>s
+                    <span class="label mandatory"></span><span class="label string"></span></p>
+                The validation string</li>
+            <li class="level1">
+                <p>options
+                    <span class="label object"></span></p>
+                {}Optional configuration object. See createRegexp</li>
+        </ul>
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_Validator_ascii.html %}
+	</section>
+
+    <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-checkCharacterGroups" class="box box-function">
+    <h1 class="fw-300">.checkCharacterGroups(s, groups)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         s</li><li class="prop">
+         groups</li>
+    </ul><p class="text">Checks if a field has the required groups.</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>s
+                    <span class="label mandatory"></span><span class="label string"></span></p>
+                The validation string</li>
+            <li class="level1">
+                <p>groups
+                    <span class="label object"></span></p>
+                {}What groups are included. See createRegexp</li>
+        </ul>
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_Validator_checkCharacterGroups.html %}
+	</section>
+
+    <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-codPostal" class="box box-function">
+    <h1 class="fw-300">.codPostal(cp1, cp2, returnBothResults)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         cp1</li><li class="prop mandatory">
+         cp2</li><li class="prop mandatory">
+         returnBothResults</li>
+    </ul><p class="text">Validates if a zip code is valid in Portugal</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>cp1
+                    <span class="label mandatory"></span><span class="label number"></span><span class="label string"></span></p>
+                </li>
+            <li class="level1">
+                <p>cp2
+                    <span class="label mandatory"></span><span class="label optional number"></span><span class="label string"></span></p>
+                </li>
+            <li class="level1">
+                <p>returnBothResults
+                    <span class="label mandatory"></span><span class="label optional boolean"></span></p>
+                </li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label boolean"></span> </p>True if it's a valid zip code
+        </li>
+    </ul>
+    
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_Validator_codPostal.html %}
+	</section>
+
+    <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-createRegExp" class="box box-function">
+    <h1 class="fw-300">.createRegExp(Groups*)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         Groups*</li>
+    </ul><p class="text">Creates a regular expression for several character groups.</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>Groups*
+                    <span class="label mandatory"></span></p>
+                {Object}</li>
+        </ul>
+
+</section>
+
+    <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-isAOPhone" class="box box-function">
+    <h1 class="fw-300">.isAOPhone(phone)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         phone</li>
+    </ul><p class="text">Checks if a phone is valid in Angola</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>phone
+                    <span class="label mandatory"></span><span class="label number"></span></p>
+                Phone number to be checked</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label boolean"></span> </p>True if it's a valid Angolan Phone
+        </li>
+    </ul>
+    
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_Validator_isAOPhone.html %}
+	</section>
+
+    <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-isCVPhone" class="box box-function">
+    <h1 class="fw-300">.isCVPhone(phone)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         phone</li>
+    </ul><p class="text">Checks if a phone is valid in Cabo Verde</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>phone
+                    <span class="label mandatory"></span><span class="label number"></span></p>
+                Phone number to be checked</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label boolean"></span> </p>True if it's a valid Cape Verdean Phone
+        </li>
+    </ul>
+    
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_Validator_isCVPhone.html %}
+	</section>
+
+    <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-isColor" class="box box-function">
+    <h1 class="fw-300">.isColor(str)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         str</li>
+    </ul><p class="text">Checks if a string is a valid color</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>str
+                    <span class="label mandatory"></span><span class="label string"></span></p>
+                Color string to be checked</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label boolean"></span> </p>True if it's a valid color string
+        </li>
+    </ul>
+    
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_Validator_isColor.html %}
+	</section>
+
+    <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-isCreditCard" class="box box-function">
+    <h1 class="fw-300">.isCreditCard(num, creditCardType)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         num</li><li class="prop mandatory">
+         creditCardType</li>
+    </ul><p class="text">Checks if a number is of a specific credit card type</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>num
+                    <span class="label mandatory"></span><span class="label string"></span></p>
+                Number to be validates</li>
+            <li class="level1">
+                <p>creditCardType
+                    <span class="label mandatory"></span><span class="label string"></span><span class="label array"></span></p>
+                Credit card type. See _creditCardSpecs for the list of supported values.</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label boolean"></span> </p>
+        </li>
+    </ul>
+    
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_Validator_isCreditCard.html %}
+	</section>
+
+    <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-isDate" class="box box-function">
+    <h1 class="fw-300">.isDate(format, dateStr)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         format</li><li class="prop mandatory">
+         dateStr</li>
+    </ul><p class="text">Checks if a date is valid in a given format</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>format
+                    <span class="label mandatory"></span><span class="label string"></span></p>
+                Format defined in _dateParsers</li>
+            <li class="level1">
+                <p>dateStr
+                    <span class="label mandatory"></span><span class="label string"></span></p>
+                Date string</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label boolean"></span> </p>True if it's a valid date and in the specified format
+        </li>
+    </ul>
+    
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_Validator_isDate.html %}
+	</section>
+
+    <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-isIP" class="box box-function">
+    <h1 class="fw-300">.isIP(value, ipType)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         value</li><li class="prop mandatory">
+         ipType</li>
+    </ul><p class="text">Checks if the value is a valid IP.</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>value
+                    <span class="label mandatory"></span><span class="label string"></span></p>
+                Value to be checked</li>
+            <li class="level1">
+                <p>ipType
+                    <span class="label mandatory"></span><span class="label string"></span></p>
+                Type of IP to be validated. The values are: ipv4, ipv6. By default is ipv4.</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label boolean"></span> </p>True if the value is a valid IP address. False if not.
+        </li>
+    </ul>
+    
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_Validator_isIP.html %}
+	</section>
+
+    <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-isMZPhone" class="box box-function">
+    <h1 class="fw-300">.isMZPhone(phone)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         phone</li>
+    </ul><p class="text">Checks if a phone is valid in Mozambique</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>phone
+                    <span class="label mandatory"></span><span class="label number"></span></p>
+                Phone number to be checked</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label boolean"></span> </p>True if it's a valid Mozambican Phone
+        </li>
+    </ul>
+    
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_Validator_isMZPhone.html %}
+	</section>
+
+    <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-isPTPhone" class="box box-function">
+    <h1 class="fw-300">.isPTPhone(phone)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         phone</li>
+    </ul><p class="text">Checks if a phone is valid in Portugal</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>phone
+                    <span class="label mandatory"></span><span class="label number"></span></p>
+                Phone number to be checked</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label boolean"></span> </p>True if it's a valid Portuguese Phone
+        </li>
+    </ul>
+    
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_Validator_isPTPhone.html %}
+	</section>
+
+    <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-isPhone" class="box box-function">
+    <h1 class="fw-300">.isPhone(phone, countryCode)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         phone</li><li class="prop">
+         countryCode</li>
+    </ul><p class="text">Checks if a number is a phone number.<br>This method validates the number in all country codes available the ones set in the second param</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>phone
+                    <span class="label mandatory"></span><span class="label string"></span></p>
+                Phone number to validate</li>
+            <li class="level1">
+                <p>countryCode
+                    <span class="label string"></span><span class="label array"></span></p>
+                Country code or  array of countries to validate</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label boolean"></span> </p>True if it's a valid phone in any country available
+        </li>
+    </ul>
+    
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_Validator_isPhone.html %}
+	</section>
+
+    <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-isPortuguesePhone" class="box box-function">
+    <h1 class="fw-300">.isPortuguesePhone(phone)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         phone</li>
+    </ul><p class="text">Alias function for isPTPhone</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>phone
+                    <span class="label mandatory"></span><span class="label number"></span></p>
+                Phone number to be checked</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label boolean"></span> </p>True if it's a valid Portuguese Phone
+        </li>
+    </ul>
+    
+
+</section>
+
+    <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-isTLPhone" class="box box-function">
+    <h1 class="fw-300">.isTLPhone(phone)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         phone</li>
+    </ul><p class="text">Checks if a phone is valid in Timor</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>phone
+                    <span class="label mandatory"></span><span class="label number"></span></p>
+                Phone number to be checked</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label boolean"></span> </p>True if it's a valid phone from Timor-Leste
+        </li>
+    </ul>
+    
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_Validator_isTLPhone.html %}
+	</section>
+
+    <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-latin1" class="box box-function">
+    <h1 class="fw-300">.latin1(s, options)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         s</li><li class="prop">
+         options</li>
+    </ul><p class="text">Checks if a field only contains latin-1 alphanumeric characters. <br>Takes options for allowing singleline whitespace, cross-line whitespace and punctuation.</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>s
+                    <span class="label mandatory"></span><span class="label string"></span></p>
+                The validation string</li>
+            <li class="level1">
+                <p>options
+                    <span class="label object"></span></p>
+                {}Optional configuration object. See createRegexp</li>
+        </ul>
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_Validator_latin1.html %}
+	</section>
+
+    <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-mail" class="box box-function">
+    <h1 class="fw-300">.mail(email)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         email</li>
+    </ul><p class="text">Checks if an email is valid</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>email
+                    <span class="label mandatory"></span><span class="label string"></span></p>
+                </li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label boolean"></span> </p>True if it's valid
+        </li>
+    </ul>
+    
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_Validator_mail.html %}
+	</section>
+
+    <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-number" class="box box-function">
+    <h1 class="fw-300">.number(numb, options)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         numb</li><li class="prop">
+         options</li>
+    </ul><p class="text">Checks if a number is a valid</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>numb
+                    <span class="label mandatory"></span><span class="label string"></span></p>
+                The number</li>
+            <li class="level1">
+                <p>options
+                    <span class="label object"></span></p>
+                Further options</li>
+            <li class="level2">
+                <p>options.decimalSep
+                    </p>
+                &#x27;.&#x27;Allow decimal separator.</li>
+            <li class="level2">
+                <p>options.thousandSep
+                    </p>
+                &quot;,&quot;Strip this character from the number.</li>
+            <li class="level2">
+                <p>options.negative
+                    </p>
+                falseAllow negative numbers.</li>
+            <li class="level2">
+                <p>options.decimalPlaces
+                    </p>
+                nullMaximum number of decimal places. Use `0` for an integer number.</li>
+            <li class="level2">
+                <p>options.max
+                    </p>
+                nullMaximum number</li>
+            <li class="level2">
+                <p>options.min
+                    </p>
+                nullMinimum number</li>
+            <li class="level2">
+                <p>options.returnNumber
+                    </p>
+                falseWhen this option is true, return the number itself when the value is valid.</li>
+        </ul>
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_Validator_number.html %}
+	</section>
+
+    <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-unicode" class="box box-function">
+    <h1 class="fw-300">.unicode(s, options)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         s</li><li class="prop">
+         options</li>
+    </ul><p class="text">Checks if a field contains unicode printable characters.</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>s
+                    <span class="label mandatory"></span><span class="label string"></span></p>
+                The validation string</li>
+            <li class="level1">
+                <p>options
+                    <span class="label object"></span></p>
+                {}Optional configuration object. See createRegexp</li>
+        </ul>
+
+</section>
+
+    <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-url" class="box box-function">
+    <h1 class="fw-300">.url(url, full)
+    <i>method</i></h1>
+    <ul class="props inline">
+        <li class="heading">Arguments:</li><li class="prop mandatory">
+         url</li><li class="prop">
+         full</li>
+    </ul><p class="text">Checks if an url is valid</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>url
+                    <span class="label mandatory"></span><span class="label string"></span></p>
+                URL to be checked</li>
+            <li class="level1">
+                <p>full
+                    <span class="label boolean"></span></p>
+                If true, validates a full URL (one that should start with 'http')</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label boolean"></span> </p>True if valid
+        </li>
+    </ul>
+    
+
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_Util_Validator_url.html %}
+	</section>
+
+
+
+    
     <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space"><caption>Functions</caption>
         <thead>
             <tr>
