@@ -47,8 +47,7 @@ module.exports = function (grunt) {
                     layout: 'byType',
                     install: true,
                     verbose: false,
-                    cleanTargetDir: false,
-                    cleanBowerDir: true
+                    cleanTargetDir: false
                 }
             }
         },
@@ -223,8 +222,7 @@ module.exports = function (grunt) {
         uglify: {
             options: {
                 report: 'min',
-                sourceMapRoot: sourceMapPathToInkSource,
-                sourceMapPrefix: 3,
+                sourceMapIncludeSources: true,
                 compress: {
                     sequences: true,
                     properties: true,
@@ -237,7 +235,7 @@ module.exports = function (grunt) {
                     booleans: true,
                     loops: true,
                     unused: false,
-                    hoist_funs: false,
+                    hoist_funs: true,
                     hoist_vars: false,
                     if_return: true,
                     join_vars: true,
@@ -252,10 +250,10 @@ module.exports = function (grunt) {
                     '<%= ink.folders.js.src %>Util/**/lib.js',
                 ],
                 options: {
-                    sourceMap: '<%= ink.folders.js.dist %><%= pkg.name %>.js.map',
-                    sourceMappingURL: '<%= pkg.name %>.js.map'
+                    sourceMap: '<%= ink.folders.js.dist %>ink.js.map',
+                    sourceMappingURL: 'ink.js.map'
                 },
-                dest: '<%= ink.folders.js.dist %><%= pkg.name %>.min.js'
+                dest: '<%= ink.folders.js.dist %>ink.min.js'
             },
             ink_all: {
                 src: [
@@ -267,18 +265,18 @@ module.exports = function (grunt) {
                     '<%= ink.folders.js.src %>Util/**/lib.js',
                 ],
                 options: {
-                    sourceMap: '<%= ink.folders.js.dist %><%= pkg.name %>-all.js.map',
-                    sourceMappingURL: '<%= pkg.name %>-all.js.map'
+                    sourceMap: '<%= ink.folders.js.dist %>ink-all.js.map',
+                    sourceMappingURL: 'ink-all.js.map'
                 },
-                dest: '<%= ink.folders.js.dist %><%= pkg.name %>-all.min.js'
+                dest: '<%= ink.folders.js.dist %>ink-all.min.js'
             },
             ink_ui: {
                 src: ['<%= ink.folders.js.src %>UI/**/lib.js'],
                 options: {
-                    sourceMap: '<%= ink.folders.js.dist %><%= pkg.name %>-ui.js.map',
-                    sourceMappingURL: '<%= pkg.name %>-ui.js.map'
+                    sourceMap: '<%= ink.folders.js.dist %>ink-ui.js.map',
+                    sourceMappingURL: 'ink-ui.js.map'
                 },
-                dest: '<%= ink.folders.js.dist %><%= pkg.name %>-ui.min.js'
+                dest: '<%= ink.folders.js.dist %>ink-ui.min.js'
             }
         },
 
@@ -319,7 +317,7 @@ module.exports = function (grunt) {
                     keepSpecialComments: 0,
                     report: 'min',
                     sourceMap: true,
-                    sourceMapFilename: '<%= ink.folders.css.dist %><%= pkg.name %>-min.css.map',
+                    sourceMapFilename: '<%= ink.folders.css.dist %>ink-min.css.map',
                     sourceMapRootpath: '../../'
                 }
             }
@@ -373,13 +371,13 @@ module.exports = function (grunt) {
         compress: {
           main: {
             options: {
-              archive: '<%= pkg.name %>-<%= pkg.version %>.zip',
+              archive: 'ink-<%= pkg.version %>.zip',
               mode: "zip",
               level: 9,
               pretty: true
             },
             files: [
-              {expand: true, cwd: "dist/", src: ['**'], dest: '/<%= pkg.name %>-<%= pkg.version %>'} // includes files in path and its subdirs
+              {expand: true, cwd: "dist/", src: ['**'], dest: '/ink-<%= pkg.version %>'} // includes files in path and its subdirs
             ]
           }
         }

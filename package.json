@@ -25,7 +25,7 @@
     "phantomjs": "~1.9.7-1",
     "inkdoc": "~0.2.5",
     "grunt-lib-phantomjs": "~0.5.0",
-    "grunt-contrib-uglify": "~0.2.7",
+    "grunt-contrib-uglify": "~0.3.0",
     "grunt-contrib-concat": "~0.3.0",
     "grunt-contrib-clean": "~0.5.0",
     "grunt-contrib-qunit": "~0.3.0",

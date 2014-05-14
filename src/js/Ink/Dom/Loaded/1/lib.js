@@ -75,7 +75,7 @@ Ink.createModule('Ink.Dom.Loaded', 1, [], function() {
 
             var csf = context.handlers.checkState;
             var alreadyLoaded = (
-                context.doc.readyState === 'complete' &&
+                /complete|interactive|loaded/.test(context.doc.readyState) &&
                 context.win.location.toString() !== 'about:blank');  // https://code.google.com/p/chromium/issues/detail?id=32357
 
             if (alreadyLoaded){

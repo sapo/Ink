@@ -3,7 +3,7 @@
  * @version 1
  * Create Ink UI components easily
  */
-Ink.createModule('Ink.Autoload', 1, ['Ink.Dom.Selector_1', 'Ink.Dom.Loaded_1', 'Ink.UI.SmoothScroller_1', 'Ink.UI.Close_1'], function( Selector, Loaded, Scroller, Close ){
+Ink.createModule('Ink.Autoload', 1, ['Ink.Dom.Selector_1', 'Ink.Util.Array_1', 'Ink.Dom.Loaded_1', 'Ink.UI.SmoothScroller_1', 'Ink.UI.Close_1'], function( Selector, InkArray, Loaded, Scroller, Close ){
     'use strict';
 
     /**
@@ -59,16 +59,21 @@ Ink.createModule('Ink.Autoload', 1, ['Ink.Dom.Selector_1', 'Ink.Dom.Loaded_1', '
          * @method run
          * @param {DOMElement} parentEl  
          * @param {Object}  [options] Options object, containing:
+         * @param {Boolean} [options.forceAutoload] Autoload things on elements even if they have `data-autoload="false"`
          * @param {Boolean} [options.createClose] Whether to create the Ink.UI.Close component. Defaults to `true`.
          * @param {Boolean} [options.createSmoothScroller] Whether to create the Scroller component. Defaults to `true`.
+         * @param {Object} [options.selectors=Ink.Autoload.selectors] A hash mapping module names to selectors that match elements to load these modules. For example, `{ 'Modal_1': '.my-specific-modal' }`.
+         * @param {Boolean} [options.waitForDOMLoaded=false] Do nothing until the DOM is loaded. Uses Ink.Dom.Loaded.run();
          * @public
          * @sample Autoload_1.html
          **/
         run: function (parentEl, options){
             options = Ink.extendObj({
-                waitForDOMLoaded: false,
-                createClose: false,
-                createSmoothScroller: false,
+                // The below lines are not required because undefined is falsy anyway..
+                // forceAutoload: false,
+                // waitForDOMLoaded: false,
+                // createClose: false,
+                // createSmoothScroller: false,
                 selectors: Autoload.selectors
             }, options || {});
 
@@ -86,12 +91,22 @@ Ink.createModule('Ink.Autoload', 1, ['Ink.Dom.Selector_1', 'Ink.Dom.Loaded_1', '
             function findElements(mod) {
                 var modName = 'Ink.UI.' + mod;
                 var elements = Selector.select( options.selectors[mod], parentEl );
+
+                elements = InkArray.filter(elements, autoloadElement);
+
                 if( elements.length ){
                     Ink.requireModules( [modName], function( Component ) {
-                        for (var i = 0, len = elements.length; i < len; i++) {
-                            new Component(elements[i], Autoload.defaultOptions[modName]);
-                        }
+                        InkArray.forEach(elements, function (el) {
+                            new Component(el, Autoload.defaultOptions[modName]);
+                        });
                     });
+                }
+            }
+
+            function autoloadElement(element) {
+                if (options.forceAutoload === true) { return true; }
+                if (typeof element.getAttribute === 'function') {
+                    return element.getAttribute('data-autoload') !== 'false';
                 }
             }
         },

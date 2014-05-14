@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Carousel with modal</title>
+        <title>Modal gallery</title>
         <meta name="description" content="">
         <meta name="author" content="ink, cookbook, recipes">
         <meta name="HandheldFriendly" content="True">
@@ -13,35 +13,37 @@
 
         <!-- Place favicon.ico and apple-touch-icon(s) here  -->
 
-        <link rel="shortcut icon" href="http://cdn.ink.sapo.pt/3.0.0/img/favicon.ico">
-        <link rel="apple-touch-icon-precomposed" href="http://cdn.ink.sapo.pt/3.0.0/img/touch-icon.57.png">
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://cdn.ink.sapo.pt/3.0.0/img/touch-icon.72.png">
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://cdn.ink.sapo.pt/3.0.0/img/touch-icon.114.png">
-        <link rel="apple-touch-startup-image" href="http://cdn.ink.sapo.pt/3.0.0/img/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
-        <link rel="apple-touch-startup-image" href="http://cdn.ink.sapo.pt/3.0.0/img/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
-        <link rel="apple-touch-startup-image" href="http://cdn.ink.sapo.pt/3.0.0/img/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <link rel="apple-touch-icon-precomposed" href="../img/touch-icon.57.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../img/touch-icon.72.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../img/touch-icon.114.png">
+        <link rel="apple-touch-startup-image" href="../img/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
+        <link rel="apple-touch-startup-image" href="../img/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+        <link rel="apple-touch-startup-image" href="../img/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
 
-        <!-- load inks css from the cdn -->
-        <link rel="stylesheet" type="text/css" href="http://cdn.ink.sapo.pt/3.0.0/css/ink-flex.min.css">
-        <link rel="stylesheet" type="text/css" href="http://cdn.ink.sapo.pt/3.0.0/css/font-awesome.min.css">
+        <!-- load inks CSS -->
+        <link rel="stylesheet" type="text/css" href="../css/ink-flex.min.css">
+        <link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css">
 
-        <!-- load inks css for IE8 -->
+        <!-- load inks CSS for IE8 -->
         <!--[if lt IE 9 ]>
-            <link rel="stylesheet" href="http://cdn.ink.sapo.pt/3.0.0/css/ink-ie.min.css" type="text/css" media="screen" title="no title" charset="utf-8">
+            <link rel="stylesheet" href="../css/ink-ie.min.css" type="text/css" media="screen" title="no title" charset="utf-8">
         <![endif]-->
 
         <!-- test browser flexbox support and load legacy grid if unsupported -->
-        <script type="text/javascript" src="http://cdn.ink.sapo.pt/3.0.0/js/modernizr.js"></script>
+        <script type="text/javascript" src="../js/modernizr.js"></script>
         <script type="text/javascript">
             Modernizr.load({
               test: Modernizr.flexbox,
-              nope : 'http://cdn.ink.sapo.pt/3.0.0/css/ink-legacy.min.css'
+              nope : '../css/ink-legacy.min.css'
             });
         </script>
 
-        <!-- load inks javascript files from the cdn -->
-        <script type="text/javascript" src="http://cdn.ink.sapo.pt/3.0.0/js/ink-all.min.js"></script>
-        <script type="text/javascript" src="http://cdn.ink.sapo.pt/3.0.0/js/autoload.js"></script>
+        <!-- load inks javascript files -->
+        <script type="text/javascript" src="../js/holder.js"></script>
+        <script type="text/javascript" src="../js/ink-all.min.js"></script>
+        <script type="text/javascript" src="../js/autoload.js"></script>
+
         <style>
 
             body {
@@ -80,7 +82,7 @@
             <ul class="stage column-group gutters" id="trigger-modal">
                 <li class="slide all-100">
                     <figure class="ink-image">
-                        <a href="#"><img src="http://lorempixel.com/1280/720/city/1"></a>
+                        <a href="#"><img src="http://lorempixel.com/1650/928/city/1"></a>
                         <figcaption class="dark">
                             This caption is placed after the image
                         </figcaption>
@@ -88,7 +90,7 @@
                 </li>
                 <li class="slide all-100">
                     <figure class="ink-image">
-                        <a href="#"><img src="http://lorempixel.com/1280/720/city/2"></a>
+                        <a href="#"><img src="http://lorempixel.com/1650/928/city/2"></a>
                         <figcaption class="dark">
                             This caption is placed after the image
                         </figcaption>
@@ -96,7 +98,7 @@
                 </li>
                 <li class="slide all-100">
                     <figure class="ink-image">
-                        <a href="#"><img src="http://lorempixel.com/1280/720/city/3"></a>
+                        <a href="#"><img src="http://lorempixel.com/1650/928/city/3"></a>
                         <figcaption class="dark">
                             This caption is placed after the image
                         </figcaption>
@@ -104,7 +106,7 @@
                 </li>
                 <li class="slide all-100">
                     <figure class="ink-image">
-                        <a href="#"><img src="http://lorempixel.com/1280/720/city/4"></a>
+                        <a href="#"><img src="http://lorempixel.com/1650/928/city/4"></a>
                         <figcaption class="dark">
                             This caption is placed after the image
                         </figcaption>
@@ -112,7 +114,7 @@
                 </li>
                 <li class="slide all-100">
                     <figure class="ink-image">
-                        <a href="#"><img src="http://lorempixel.com/1280/720/city/5"></a>
+                        <a href="#"><img src="http://lorempixel.com/1650/928/city/5"></a>
                         <figcaption class="dark">
                             This caption is placed after the image
                         </figcaption>
@@ -120,7 +122,7 @@
                 </li>
                 <li class="slide all-100">
                     <figure class="ink-image">
-                        <a href="#"><img src="http://lorempixel.com/1280/720/city/6"></a>
+                        <a href="#"><img src="http://lorempixel.com/1650/928/city/6"></a>
                         <figcaption class="dark">
                             This caption is placed after the image
                         </figcaption>
@@ -128,7 +130,7 @@
                 </li>
                 <li class="slide all-100">
                     <figure class="ink-image">
-                        <a href="#"><img src="http://lorempixel.com/1280/720/city/7"></a>
+                        <a href="#"><img src="http://lorempixel.com/1650/928/city/7"></a>
                         <figcaption class="dark">
                             This caption is placed after the image
                         </figcaption>
@@ -136,7 +138,7 @@
                 </li>
                 <li class="slide all-100">
                     <figure class="ink-image">
-                        <a href="#"><img src="http://lorempixel.com/1280/720/city/8"></a>
+                        <a href="#"><img src="http://lorempixel.com/1650/928/city/8"></a>
                         <figcaption class="dark">
                             This caption is placed after the image
                         </figcaption>
@@ -200,28 +202,28 @@
 
                         <ul class="stage column-group half-gutters unstyled">
                             <li class="slide all-100">
-                                <img src="http://lorempixel.com/1280/720/city/1">
+                                <img src="http://lorempixel.com/1650/928/city/1">
                             </li>
                             <li class="slide all-100">
-                                <img src="http://lorempixel.com/1280/720/city/2">
+                                <img src="http://lorempixel.com/1650/928/city/2">
                             </li>
                             <li class="slide all-100">
-                                <img src="http://lorempixel.com/1280/720/city/3">
+                                <img src="http://lorempixel.com/1650/928/city/3">
                             </li>
                             <li class="slide all-100">
-                                <img src="http://lorempixel.com/1280/720/city/4">
+                                <img src="http://lorempixel.com/1650/928/city/4">
                             </li>
                             <li class="slide all-100">
-                                <img src="http://lorempixel.com/1280/720/city/5">
+                                <img src="http://lorempixel.com/1650/928/city/5">
                             </li>
                             <li class="slide all-100">
-                                <img src="http://lorempixel.com/1280/720/city/6">
+                                <img src="http://lorempixel.com/1650/928/city/6">
                             </li>
                             <li class="slide all-100">
-                                <img src="http://lorempixel.com/1280/720/city/7">
+                                <img src="http://lorempixel.com/1650/928/city/7">
                             </li>
                             <li class="slide all-100">
-                                <img src="http://lorempixel.com/1280/720/city/8">
+                                <img src="http://lorempixel.com/1650/928/city/8">
                             </li>
                         </ul>
 

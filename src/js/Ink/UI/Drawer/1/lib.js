@@ -158,23 +158,23 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
                 } else {
                     this.open(side);
                 }
+                ev.preventDefault();
             }, this);
 
-            if(Selector.matchesSelector(ev.currentTarget,this._options.leftTrigger)){
+            if(Element.findUpwardsBySelector(ev.currentTarget,this._options.leftTrigger)){
                 // Clicked on the left trigger
                 triggerClicked('left');
-            } else if(Selector.matchesSelector(ev.currentTarget,this._options.rightTrigger)){
+            } else if(Element.findUpwardsBySelector(ev.currentTarget,this._options.rightTrigger)){
                 triggerClicked('right');
-            } else if(Selector.matchesSelector(ev.currentTarget,this._options.contentDrawer)){
+            } else if(Element.findUpwardsBySelector(ev.currentTarget,this._options.contentDrawer)){
                 // Clicked on the rest of the body
                 if(this._options.closeOnContentClick) {
+                    ev.preventDefault();
                     this.close();
                 }
-            }
-
-            // Clicked on a link
-            if (this._options.closeOnLinkClick && Element.isLink(ev.target)) {
+            } else if (this._options.closeOnLinkClick && Element.isLink(ev.target)) {
                 this.close();
+                // No preventDefault() here
             }
         },
 
