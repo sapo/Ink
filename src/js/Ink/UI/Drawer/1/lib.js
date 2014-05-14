@@ -169,7 +169,6 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
             } else if(Element.findUpwardsBySelector(ev.currentTarget,this._options.contentDrawer)){
                 // Clicked on the rest of the body
                 if(this._options.closeOnContentClick) {
-                    ev.preventDefault();
                     this.close();
                 }
             } else if (this._options.closeOnLinkClick && Element.isLink(ev.target)) {

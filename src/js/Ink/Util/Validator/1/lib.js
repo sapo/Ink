@@ -289,6 +289,10 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
                     re += Validator._characterGroups[key].join('');
                 }
             }
+            if (re === '^[') {
+                // No changes
+                return new RegExp('$^'); // match nothing
+            }
             return new RegExp(re + ']*?$');
         },
 

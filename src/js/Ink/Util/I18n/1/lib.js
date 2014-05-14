@@ -117,11 +117,11 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
             if ( key in this._dict ) {
                 ret = this._dict[ key ];
             } else {
-                I18n.lang( lang );
+                I18n.langGlobal( lang );
     
                 ret = this._gDict[ key ];
     
-                I18n.lang( gLang );
+                I18n.langGlobal( gLang );
             }
     
             return ret;
@@ -317,7 +317,7 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
                 dict = obj;
             }
 
-            if ( lang !== I18n.prototype._gLang ) { I18n.lang( lang ); }
+            if ( lang !== I18n.prototype._gLang ) { I18n.langGlobal( lang ); }
         }
 
         I18n.prototype._gDicts.push( dict );

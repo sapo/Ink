@@ -602,7 +602,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
                             }
 
                         } else {
-
+                            Ink.warn('Rule "' + rule + '" not found. Used in element:', this._element);
                             this._addError( null );
                             return false;
                         }
@@ -707,7 +707,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         validationFunctions[ name ] = cb;
         if (validationMessages.getKey('formvalidator.' + name) !== errorMessage) {
             var langObj = {}; langObj['formvalidator.' + name] = errorMessage;
-            var dictObj = {}; dictObj[validationMessages.lang()] = langObj;
+            var dictObj = {}; dictObj[validationMessages.langGlobal()] = langObj;
             validationMessages.append(dictObj);
         }
     };
@@ -746,13 +746,13 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
      * Sets the language of the error messages.
      * pt_PT and en_US are available, but you can add new languages by using append()
      *
-     * See the `Ink.Util.I18n.lang()` setter
+     * See the `Ink.Util.I18n.langGlobal()` setter
      *
      * @method setLanguage
      * @param language  The language to set i18n to.
      */
     FormValidator.setLanguage = function (language) {
-        validationMessages.lang(language);
+        validationMessages.langGlobal(language);
     };
 
     /**
