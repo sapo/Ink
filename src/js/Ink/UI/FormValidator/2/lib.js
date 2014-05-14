@@ -863,7 +863,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
                 }
 
                 // [3.0.0] remove this, it's a little backwards compat quirk
-                if(event && this._options.cancelEventOnSuccess.toString() === 'true') {
+                if(event && this._options.cancelEventOnSuccess + '' === 'true') {
                     Event.stopDefault(event);
                     return false;
                 }
