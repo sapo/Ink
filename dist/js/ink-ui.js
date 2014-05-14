@@ -1148,21 +1148,14 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
                 document.body.appendChild(detectorEl);
             }
 
-            var result = '';
-            var resultCount = 0;
-            for (i = 0, f = detectorEl.childNodes.length; i < f; ++i) {
-                el = detectorEl.childNodes[i];
+            for (i = 0, f = detectorEl.children.length; i < f; ++i) {
+                el = detectorEl.children[i];
                 if (Css.getStyle(el, 'display') === 'block') {
-                    result = el.getAttribute('data-ink-layout');
-                    resultCount += 1;
+                    return el.getAttribute('data-ink-layout');
                 }
             }
 
-            if (resultCount === 1) {
-                return result;
-            } else {
-                return 'large';
-            }
+            return 'large';
         },
 
 
@@ -1300,6 +1293,29 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
             }
         },
 
+        _warnDoubleInstantiation: function (elm, newInstance) {
+            var instances = Common.getInstance(elm);
+
+            if (getName(newInstance) === '') { return; }
+            if (!instances) { return; }
+
+            var nameWithoutVersion = getName(newInstance);
+
+            for (var i = 0, len = instances.length; i < len; i++) {
+                if (nameWithoutVersion === getName(instances[i])) {
+                    Ink.warn('Creating more than one ' + nameWithoutVersion + '.',
+                            '(Was creating a ' + nameWithoutVersion + ' on:', elm, '.' +
+                            'Existing element was: ', instances[i]._element);
+                }
+            }
+
+            function getName(thing) {
+                return ((thing.constructor && (thing.constructor._name || thing.constructor.name)) ||
+                    thing._name ||
+                    '').replace(/_.*?$/, '');
+            }
+        },
+
         /**
          * Saves a component's instance reference for later retrieval.
          *
@@ -1307,18 +1323,14 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          * @static
          * @param  {Object}     inst                Object that holds the instance.
          * @param  {DOMElement} el                  DOM Element to associate with the object.
-         * @param  {Object}     [optionalPrefix]    Defaults to 'instance'
          */
-        registerInstance: function(inst, el, optionalPrefix) {
-            if (inst._instanceId) { return; }
+        registerInstance: function(inst, el) {
+            if (!inst || inst._instanceId) { return; }
 
-            if (typeof inst !== 'object') { throw new TypeError('1st argument must be a JavaScript object!'); }
+            if (!this.isDOMElement(el)) { throw new TypeError('Ink.UI.Common.registerInstance: The element passed in is not a DOM element!'); }
 
-            if (inst._options && inst._options.skipRegister) { return; }
-
-            if (!this.isDOMElement(el)) { throw new TypeError('2nd argument must be a DOM element!'); }
-            if (optionalPrefix !== undefined && typeof optionalPrefix !== 'string') { throw new TypeError('3rd argument must be a string!'); }
-            var id = (optionalPrefix || 'instance') + (++lastIdNum);
+            Common._warnDoubleInstantiation(el, inst);
+            var id = 'instance' + (++lastIdNum);
             instances[id] = inst;
             inst._instanceId = id;
             var dataInst = el.getAttribute('data-instance');
@@ -1347,15 +1359,16 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          */
         getInstance: function(instanceIdOrElement) {
             var ids;
-            if (this.isDOMElement(instanceIdOrElement)) {
+            instanceIdOrElement = Common.elOrSelector(instanceIdOrElement);
+            if (instanceIdOrElement) {
                 ids = instanceIdOrElement.getAttribute('data-instance');
-                if (ids === null) { throw new Error('argument is not a DOM instance element!'); }
+                if (ids === null) { return null; }
             }
             else {
                 ids = instanceIdOrElement;
             }
 
-            ids = ids.split(' ');
+            ids = ids.split(/\s+/g);
             var inst, id, i, l = ids.length;
 
             var res = [];
@@ -1367,7 +1380,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
                 res.push(inst);
             }
 
-            return (l === 1) ? res[0] : res;
+            return res;
         },
 
         /**
@@ -1483,9 +1496,10 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
      * @param {String|DOMElement}   selector
      * @param {Object}              [options]                   Options
      * @param {Boolean}             [options.autoOpen]          Flag to automatically open the datepicker.
-     * @param {String}              [options.cleanText]         Text for the clean button. Defaults to 'Limpar'.
-     * @param {String}              [options.closeText]         Text for the close button. Defaults to 'Fechar'.
+     * @param {String}              [options.cleanText]         Text for the clean button. Defaults to 'Clear'.
+     * @param {String}              [options.closeText]         Text for the close button. Defaults to 'Close'.
      * @param {String}              [options.cssClass]          CSS class to be applied on the datepicker
+     * @param {String|DOMElement}   [options.pickerField]       (if not using in an input[type="text"]) Element which displays the DatePicker when clicked. Defaults to an "open" link.
      * @param {String}              [options.dateRange]         Enforce limits to year, month and day for the Date, ex: '1990-08-25:2020-11'
      * @param {Boolean}             [options.displayInSelect]   Flag to display the component in a select element.
      * @param {String|DOMElement}   [options.dayField]          (if using options.displayInSelect) `select` field with days.
@@ -1512,7 +1526,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
      * @param {Function}            [options.validDayFn]        Callback to execute when 'rendering' the day (in the month view)
      * @param {Function}            [options.nextValidDateFn]   Function to calculate the next valid date, given the current. Useful when there's invalid dates or time frames.
      * @param {Function}            [options.prevValidDateFn]   Function to calculate the previous valid date, given the current. Useful when there's invalid dates or time frames.
-     * @param {Object}              [options.wDay]              Hash of weekdays. Defaults to portuguese names. Sunday is 0.
+     * @param {Object}              [options.wDay]              Hash of week day names. Sunday is 0. Defaults to { 0:'Sunday', 1:'Monday', etc...
      * @param {String}              [options.yearRange]         Enforce limits to year for the Date, ex: '1990:2020' (deprecated)
      *
      * @sample Ink_UI_DatePicker_1.html
@@ -1525,6 +1539,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             autoOpen:        ['Boolean', false],
             cleanText:       ['String', 'Clear'],
             closeText:       ['String', 'Close'],
+            pickerField:     ['Element', null],
             containerElement:['Element', null],
             cssClass:        ['String', 'ink-calendar bottom'],
             dateRange:       ['String', null],
@@ -1538,7 +1553,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             format:          ['String', 'yyyy-mm-dd'],
             instance:        ['String', 'scdp_' + Math.round(99999 * Math.random())],
             nextLinkText:    ['String', '»'],
-            ofText:          ['String', ' de '],
+            ofText:          ['String', ' of '],
             onFocus:         ['Boolean', true],
             onMonthSelected: ['Function', null],
             onSetDate:       ['Function', null],
@@ -1589,8 +1604,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
         this._hoverPicker = false;
 
-        this._picker = this._options.pickerField &&
-            Common.elOrSelector(this._options.pickerField, 'pickerField');
+        this._picker = this._options.pickerField || null;
 
         this._setMinMax( this._options.dateRange || this._options.yearRange );
 
@@ -3459,23 +3473,22 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
                 } else {
                     this.open(side);
                 }
+                ev.preventDefault();
             }, this);
 
-            if(Selector.matchesSelector(ev.currentTarget,this._options.leftTrigger)){
+            if(Element.findUpwardsBySelector(ev.currentTarget,this._options.leftTrigger)){
                 // Clicked on the left trigger
                 triggerClicked('left');
-            } else if(Selector.matchesSelector(ev.currentTarget,this._options.rightTrigger)){
+            } else if(Element.findUpwardsBySelector(ev.currentTarget,this._options.rightTrigger)){
                 triggerClicked('right');
-            } else if(Selector.matchesSelector(ev.currentTarget,this._options.contentDrawer)){
+            } else if(Element.findUpwardsBySelector(ev.currentTarget,this._options.contentDrawer)){
                 // Clicked on the rest of the body
                 if(this._options.closeOnContentClick) {
                     this.close();
                 }
-            }
-
-            // Clicked on a link
-            if (this._options.closeOnLinkClick && Element.isLink(ev.target)) {
+            } else if (this._options.closeOnLinkClick && Element.isLink(ev.target)) {
                 this.close();
+                // No preventDefault() here
             }
         },
 
@@ -5181,10 +5194,10 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
                 case 'select':
                     return Ink.s('option:selected',this._element).value;
                 case 'textarea':
-                    return this._element.innerHTML;
+                    return this._element.value;
                 case 'input':
                     if( "type" in this._element ){
-                        if( (this._element.type === 'radio') && (this._element.type === 'checkbox') ){
+                        if( (this._element.type === 'radio') || (this._element.type === 'checkbox') ){
                             if( this._element.checked ){
                                 return this._element.value;
                             }
@@ -5260,7 +5273,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
                             }
 
                         } else {
-
+                            Ink.warn('Rule "' + rule + '" not found. Used in element:', this._element);
                             this._addError( null );
                             return false;
                         }
@@ -5365,7 +5378,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         validationFunctions[ name ] = cb;
         if (validationMessages.getKey('formvalidator.' + name) !== errorMessage) {
             var langObj = {}; langObj['formvalidator.' + name] = errorMessage;
-            var dictObj = {}; dictObj[validationMessages.lang()] = langObj;
+            var dictObj = {}; dictObj[validationMessages.langGlobal()] = langObj;
             validationMessages.append(dictObj);
         }
     };
@@ -5404,13 +5417,13 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
      * Sets the language of the error messages.
      * pt_PT and en_US are available, but you can add new languages by using append()
      *
-     * See the `Ink.Util.I18n.lang()` setter
+     * See the `Ink.Util.I18n.langGlobal()` setter
      *
      * @method setLanguage
      * @param language  The language to set i18n to.
      */
     FormValidator.setLanguage = function (language) {
-        validationMessages.lang(language);
+        validationMessages.langGlobal(language);
     };
 
     /**
@@ -5521,7 +5534,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
                 }
 
                 // [3.0.0] remove this, it's a little backwards compat quirk
-                if(event && this._options.cancelEventOnSuccess.toString() === 'true') {
+                if(event && this._options.cancelEventOnSuccess + '' === 'true') {
                     Event.stopDefault(event);
                     return false;
                 }
@@ -6782,7 +6795,12 @@ Ink.createModule('Ink.UI.Pagination', '1',
                     liEl.appendChild( genAEl( this._options.numberFormatter(i), i) );
                     // add "active" class if this is the active element.
                     Css.setClassName(liEl, this._options.activeClass, i === this._current);
-                    this._ulEl.insertBefore(liEl, this._nextEl);
+                    if (this._nextEl) {
+                        this._ulEl.insertBefore(liEl, this._nextEl);
+                    } else {
+                        this._ulEl.appendChild(liEl);
+                    }
+
                     liEls.push(liEl);
                 }
                 this._itemLiEls = liEls;
@@ -7466,6 +7484,7 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Css_1',
      * @param {String}              [options.moveSelector]              CSS selector to validate a node move. If present, you can only move nodes inside this selector.
      * @param {Boolean}             [options.swap]                      Flag to swap dragged element and target element instead of reordering it.
      * @param {Boolean}             [options.cancelMouseOut]            Flag to cancel draggin if mouse leaves the container element.
+     * @param {Function}            [options.onDrop]                    Callback to be executed after dropping an element. Receives { droppedElement: DOMElement } as an argument.
      *
      * @sample Ink_UI_SortableList_1.html
      */
@@ -7482,7 +7501,8 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Css_1',
             'handleSelector': ['String', null],
             'moveSelector': ['String', false],
             'swap': ['Boolean', false],
-            'cancelMouseOut': ['Boolean', false]
+            'cancelMouseOut': ['Boolean', false],
+            'onDrop': ['Function', function(){}]
         }, options || {}, this._element);
 
         if (this._options.dragObject != null) {
@@ -7579,6 +7599,7 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Css_1',
             if (ev.currentTarget === this._placeholder) { return; }
             Element.insertBefore(this._isMoving, this._placeholder);
             this.stopMoving();
+            this._options.onDrop.call(this, { droppedElement: ev.currentTarget });
             return false;
         },
 
@@ -9334,7 +9355,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
      * - A container element (this is what you call the Ink.UI.Tabs constructor on), containing everything.
      * - An element with the `tabs-nav` class, to contain links.
      * - Your links with `href="#ID_OF_SECTION"`
-     * - Your sections with the corresponding `id` attributes.
+     * - Your sections with the corresponding `id` attributes and the `tabs-content` class.
      * - The content for each section.
      *
      * When the user clicks in the links inside `tabs-nav`, the tab with the corresponding ID is then activated. The active tab when the tab component is initialized has its hash in the browser URL. If there is no hash, then the `active` option kicks in. Otherwise, Tabs will fall back to showing the tab corresponding to the first link.
@@ -9350,6 +9371,11 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
      * @param {Array}               [options.disabled]              IDs of the tabs that will be disabled on creation
      * @param {Function}            [options.onBeforeChange]        Callback to be executed before changing tabs
      * @param {Function}            [options.onChange]              Callback to be executed after changing tabs
+     * 
+     * @param {String}              [options.menuSelector='.tabs-nav'] Selector to find the menu element
+     * @param {String}              [options.contentSelector='.tabs-content'] Selector to find the menu element
+     * @param {String}              [options.tabSelector='.tabs-tab'] Selector to find the menu element
+     *
      * @param {Boolean}             [options.triggerEventsOnLoad]   Trigger the above events when the page is loaded.
      *
      * @sample Ink_UI_Tabs_1.html
@@ -9363,12 +9389,13 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
             disabled:           ['Object', []],
             onBeforeChange:     ['Function', undefined],
             onChange:           ['Function', undefined],
+            menuSelector:       ['String', '.tabs-nav'],
+            contentSelector:    ['String', '.tabs-content'],
+            tabSelector:        ['String', '.tabs-tab'],
             triggerEventsOnLoad:['Boolean', true]
         }, options || {}, this._element, 'Ink.UI.Tabs_1');
 
         this._handlers = {
-            tabClicked: Ink.bindEvent(this._onTabClicked,this),
-            disabledTabClicked: Ink.bindEvent(this._onDisabledTabClicked,this),
             resize: Ink.bindEvent(Event.throttle(this._onResize, 100),this)
         };
 
@@ -9384,12 +9411,11 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          * @private
          */
         _init: function() {
-            this._menu = Selector.select('.tabs-nav', this._element)[0];
+            this._menu = Selector.select(this._options.menuSelector, this._element)[0];
             if (!this._menu) {
                 Ink.warn('Ink.UI.Tabs: An element selected by ".tabs-nav" needs to exist inside the element!');
                 return;
             }
-            this._contentTabs = Selector.select('.tabs-content', this._element);
 
             //initialization of the tabs, hides all content before setting the active tab
             this._initializeDom();
@@ -9412,7 +9438,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          * @private
          */
         _initializeDom: function(){
-            var contentTabs = Selector.select('.tabs-content', this._element);
+            var contentTabs = Selector.select(this._options.contentSelector, this._element);
 
             for(var i = 0; i < contentTabs.length; i++){
                 Css.addClassName(contentTabs[i], 'hide-all');
@@ -9426,7 +9452,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          * @private
          */
         _observe: function() {
-            Event.on(this._menu, 'click', '> *', Ink.bindMethod(this, '_onTabClickedGeneric'));
+            Event.on(this._menu, 'click', 'a', Ink.bindMethod(this, '_onTabClickedGeneric'));
             Event.observe(window, 'resize', this._handlers.resize);
         },
 
@@ -9444,7 +9470,9 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
                                  (this._options.active && this._findLinkByHref(this._options.active)) ||
                                  Selector.select('a', this._menu)[0];
 
-            this._changeTab(activeMenuLink, this._options.triggerEventsOnLoad);
+            if (activeMenuLink) {
+                this._changeTab(activeMenuLink, this._options.triggerEventsOnLoad);
+            }
         },
 
         /**
@@ -9506,11 +9534,15 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          * @param {Event} ev
          * @private
          */
-        _onTabClicked: function(ev) {
-            Event.stop(ev);
+        _onTabClicked: function(event) {
+            var target = event.target;
+            if(!target) {
+                return;
+            }
 
-            var target = Event.findElement(ev, 'A');
-            if(!target || target.nodeName.toLowerCase() !== 'a') {
+            if (!Selector.matchesSelector(target, this._options.tabSelector) &&
+                    Ink.s(this._options.tabSelector, this._menu)) {
+                // If the markup has at least a .tabs-tab, and it's not this one, ignore the event.
                 return;
             }
 
@@ -9520,7 +9552,10 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
                 return;
             }
 
-            if (this._options.preventUrlChange.toString() !== 'true') {
+            event.preventDefault();
+            event.stopPropagation();
+
+            if (!this._options.preventUrlChange) {
                 window.location.hash = href;
             }
 
@@ -10977,7 +11012,7 @@ Ink.createModule('Ink.UI.Upload', '1', [
 
     DirectoryReader.prototype = {
         init: function(options) {
-            this.options = Ink.extendObj({
+            this._options = Ink.extendObj({
                 entry:      undefined,
                 maxDepth:   10
             }, options || {});
@@ -10991,8 +11026,9 @@ Ink.createModule('Ink.UI.Upload', '1', [
 
 
         _read: function() {
-            if(!this.options.entry) {
-                throw("The entry specify you must");
+            if(!this._options.entry) {
+                Ink.error('You must specify the entry!');
+                return;
             }
 
             try {
@@ -11023,7 +11059,7 @@ Ink.createModule('Ink.UI.Upload', '1', [
                             maxDepth = this.clearArray(res[i].fullPath.split('/'));
                             maxDepth.shift();
                             maxDepth = maxDepth.length;
-                            if(maxDepth <= this.options.maxDepth) {
+                            if(maxDepth <= this._options.maxDepth) {
                                 _readEntries(res[i]);
                             }
                         }
@@ -11038,11 +11074,11 @@ Ink.createModule('Ink.UI.Upload', '1', [
                         running = false;
                     }
                 }, this), Ink.bind(function(err) {
-                    this.options.readError(err, currentEntry);
+                    this._options.readError(err, currentEntry);
                 }, this));
             }, this);
 
-            _readEntries(this.options.entry);
+            _readEntries(this._options.entry);
 
             var activity;
             var checkActivity = function() {
@@ -11050,8 +11086,8 @@ Ink.createModule('Ink.UI.Upload', '1', [
                     return false;
                 }
                 clearInterval(activity);
-                if(this.options.readComplete && typeof this.options.readComplete === 'function') {
-                    this.options.readComplete(entries);
+                if(this._options.readComplete && typeof this._options.readComplete === 'function') {
+                    this._options.readComplete(entries);
                 }
                 return true;
             };
@@ -11225,8 +11261,8 @@ Ink.createModule('Ink.UI.Upload', '1', [
 
     UI.prototype = {
         init: function() {
-            this._fileButton = this.Upload.options.fileButton;
-            this._dropzone = this.Upload.options.dropzone;
+            this._fileButton = this.Upload._options.fileButton;
+            this._dropzone = this.Upload._options.dropzone;
             this._setDropEvent();
             this._setFileButton();
         },
@@ -11234,10 +11270,13 @@ Ink.createModule('Ink.UI.Upload', '1', [
 
         _setDropEvent: function() {
             var dropzones = this._dropzone;
+            if (!dropzones) { return; }
+
             for(var i = 0, len = dropzones.length; i<len; i++) {
                 dropzones[i].ondrop        = Ink.bindEvent(this.Upload._dropEventHandler, this.Upload);
                 dropzones[i].ondragleave   = Ink.bindEvent(this._onDragLeave, this);
                 dropzones[i].ondragend     = Ink.bindEvent(this._onDragEndEventHandler, this);
+                dropzones[i].ondragdrop    = Ink.bindEvent(this._onDragEndEventHandler, this);
                 dropzones[i].ondragenter   = Ink.bindEvent(this._onDragEnterHandler, this);
                 dropzones[i].ondragover    = Ink.bindEvent(this._onDragOverHandler, this);
             }
@@ -11283,6 +11322,7 @@ Ink.createModule('Ink.UI.Upload', '1', [
 
         _setFileButton: function() {
             var btns = this._fileButton;
+            if (!btns) { return; }
             Event.observeMulti(btns, 'change', Ink.bindEvent(this._fileChangeHandler, this));
         },
 
@@ -11314,25 +11354,57 @@ Ink.createModule('Ink.UI.Upload', '1', [
 
     Upload.prototype = {
         //_events: {},
-
+        
+        /**
+         * This component is used to enable HTML5 upload on forms easily. It
+         * evens out differences between browsers which support HTML5 upload,
+         * and supports chunked uploads and directory tree uploads.
+         *
+         * Choose a drop zone and/or a file input. When the user drops the file
+         * on the drop zone element, or chooses it using the file input,
+         * Ink.UI.Upload takes care of uploading it through AJAX POST.
+         *
+         * The name given to the file in the POST request's data is chosen
+         * through the `fileFormName` option.
+         *
+         * On the server side, you will receive a POST with a Content-type of
+         * `multipart/form-data` or `x-www-form/urlencoded` if `useChunks`
+         * is `true`.
+         *
+         * @class Ink.UI.Upload_1
+         * @constructor
+         *
+         * @param options {Object} Options hash, containing:
+         * @param [options.dropzone] {Element} Element where the user can drop files onto.
+         * @param [options.fileButton] {Element} An `input[type="file"]` for the user to choose a file using a native dialog.
+         * @param [options.fileFormName='Ink_Filelist'] The name of the file in the POST request.
+         * @param [options.endpoint=window.location] The URL where we're POSTing the files to. Defaults to the current location, like a HTML form.
+         * @param [options.maxFileSize] Maximum file size in bytes. Defaults to 300mb.
+         * @param [INVALID_FILE_NAME] A regular expression to invalidate file names. For example, set this to `/\.png$/` if you don't want files with the ".png" extension. Remember that file extensions are just hints!
+         * @param [options.extraData] Add more data to your POST request. Each key in this hash gets added to the form data sent to the server.
+         * TODO chunk options, also write a bit above about chunking and the serverside of chunking.
+         * TODO directory options, also write a bit above about directories and the server end of directories.
+         */
         init: function(options) {
             if (typeof options === 'string') {
                 options = Element.data(Common.elOrSelector(options, '1st argument'));
             }
-            this.options = Ink.extendObj({
-                extraData:          {},
-                fileFormName:       'Ink_Filelist',
+            this._options = Ink.extendObj({
                 dropzone:           undefined,
                 fileButton:         undefined,
+                fileFormName:       'Ink_Filelist',  // TODO default to fileButton's [name] if available.
                 endpoint:           '',
-                endpointChunk:      '',
-                endpointChunkCommit:'',
                 maxFilesize:        300 << 20, //300mb
+                INVALID_FILE_NAME:  undefined,
+                extraData:          {},
+                // Chunks
+                useChunks:          false,
                 chunkSize:          4194304,  // 4MB
                 minSizeToUseChunks: 20971520, // 20mb
-                INVALID_FILE_NAME:  undefined,
-                foldersEnabled:     true,
-                useChunks:          true,
+                endpointChunk:      '',  // Where to send chunk data.
+                endpointChunkCommit:'',  // Where to send the "chunk transaction" commit.
+                // Directory trees
+                foldersEnabled:     false,
                 directoryMaxDepth:  10
             }, options || {});
 
@@ -11341,43 +11413,35 @@ Ink.createModule('Ink.UI.Upload', '1', [
             this._folders           = {};
 
 
-            if(this.options.dropzone) {
-                Common.elOrSelector(this.options.dropzone, 'Upload - dropzone');
+            if(this._options.dropzone) {
+                this._options.dropzone =
+                    Common.elsOrSelector(this._options.dropzone, 'Ink.UI.Upload - dropzone');
             }
 
-            if(this.options.fileButton) {
-                Common.elOrSelector(this.options.fileButton, 'Upload - fileButton');
+            if(this._options.fileButton) {
+                this._options.fileButton =
+                    Common.elsOrSelector(this._options.fileButton, 'Ink.UI.Upload - fileButton');
             }
 
-            if(!this.options.dropzone && ! this.options.fileButton) {
-                throw new TypeError('A file button or dropzone, specify you must, my young padawan');
+            if(!this._options.dropzone && !this._options.fileButton) {
+                throw new TypeError(
+                    'Ink.UI.Upload: Specify a fileButton or a Dropzone!');
             }
-
-            this.options.dropzone = Ink.ss(this.options.dropzone);
-            this.options.fileButton= Ink.ss(this.options.fileButton);
 
             new UI(this);
         },
 
 
         _supportChunks: function(size) {
-            return this.options.useChunks &&
+            return this._options.useChunks &&
                     'Blob' in window &&
                     (new Blob()).slice &&
-                    size > this.options.minSizeToUseChunks;
+                    size > this._options.minSizeToUseChunks;
         },
 
 
         _dropEventHandler: function(ev) {
-            if(ev && ev.stopPropagation) {
-                ev.stopPropagation();
-            }
-            if(ev && ev.preventDefault) {
-                ev.preventDefault();
-            }
-            if(ev) {
-                ev.returnValue = false;
-            }
+            Event.stop(ev);
 
             this.publish('DropComplete', ev.dataTransfer);
 
@@ -11392,7 +11456,7 @@ Ink.createModule('Ink.UI.Upload', '1', [
 
             // check if webkitGetAsEntry exists on first item
             if(data.items && data.items[0] && data.items[0].webkitGetAsEntry) {
-                if(!this.options.foldersEnabled) {
+                if(!this._options.foldersEnabled) {
                     return setTimeout(Ink.bind(this._addFilesToQueue, this, this._files), 0);
                 }
                 var entry, folders = [];
@@ -11469,7 +11533,7 @@ Ink.createModule('Ink.UI.Upload', '1', [
 
                 new DirectoryReader({
                     entry:      folders[index],
-                    maxDepth:   this.options.directoryMaxDepth,
+                    maxDepth:   this._options.directoryMaxDepth,
                     readComplete: Ink.bind(function(entries) {
                         files = files.concat(getFiles(entries));
                         // adding root dirs
@@ -11520,14 +11584,14 @@ Ink.createModule('Ink.UI.Upload', '1', [
 
                 if(!file.isDirectory) {
                     // dirty hack to allow 0B files avoiding folders on GECKO
-                    if(file === null || (!file.type && file.size % 4096 === 0 && (!Browser.CHROME || !this.options.foldersEnabled))) {
+                    if(file === null || (!file.type && file.size % 4096 === 0 && (!Browser.CHROME || !this._options.foldersEnabled))) {
                         this.publish('InvalidFile', file, 'size');
                         continue;
                     }
                 }
 
-                if(file.size > this.options.maxFilesize) {
-                    this.publish('MaxSizeFailure', file, this.options.maxFilesize);
+                if(file.size > this._options.maxFilesize) {
+                    this.publish('MaxSizeFailure', file, this._options.maxFilesize);
                     continue;
                 }
 
@@ -11607,7 +11671,7 @@ Ink.createModule('Ink.UI.Upload', '1', [
                 xhr = new XMLHttpRequest(),
                 fileID = o.fileID;
 
-            this.publish('BeforeUpload', file, this.options.extraData, fileID, xhr, this._supportChunks(file.size));
+            this.publish('BeforeUpload', file, this._options.extraData, fileID, xhr, this._supportChunks(file.size));
 
             var forceAbort = function(showError) {
                 if(o.cb && typeof(o.cb === 'function')) {
@@ -11625,8 +11689,8 @@ Ink.createModule('Ink.UI.Upload', '1', [
                 xhr.abort();
             };
 
-            if(this.options.INVALID_FILE_NAME && this.options.INVALID_FILE_NAME instanceof RegExp) {
-                if(this.options.INVALID_FILE_NAME.test(o.file.name)) {
+            if(this._options.INVALID_FILE_NAME && this._options.INVALID_FILE_NAME instanceof RegExp) {
+                if(this._options.INVALID_FILE_NAME.test(o.file.name)) {
                     forceAbort.call(this);
                     return;
                 }
@@ -11644,10 +11708,10 @@ Ink.createModule('Ink.UI.Upload', '1', [
             var endpoint, method;
             if(this._supportChunks(file.size)) {
                 if(file.size <= file.chunk_offset) {
-                    endpoint = this.options.endpointChunkCommit;
+                    endpoint = this._options.endpointChunkCommit;
                     method = 'POST';
                 } else {
-                    endpoint = this.options.endpointChunk;
+                    endpoint = this._options.endpointChunk;
                     if(file.chunk_upload_id) {
                         endpoint += '?upload_id=' + file.chunk_upload_id;
                     }
@@ -11657,7 +11721,7 @@ Ink.createModule('Ink.UI.Upload', '1', [
                     method = 'PUT';
                 }
             } else {
-                endpoint = this.options.endpoint;
+                endpoint = this._options.endpoint;
                 method = 'POST';
             }
 
@@ -11675,18 +11739,18 @@ Ink.createModule('Ink.UI.Upload', '1', [
                 blob = new Blob([file], { type: file.type });
                 if(this._supportChunks(file.size)) {
                     file.chunk_offset = file.chunk_offset || 0;
-                    blob = blob.slice(file.chunk_offset, file.chunk_offset + this.options.chunkSize);
+                    blob = blob.slice(file.chunk_offset, file.chunk_offset + this._options.chunkSize);
                 } else {
-                    fd.append(this.options.fileFormName, blob, file.name);
+                    fd.append(this._options.fileFormName, blob, file.name);
                 }
             } else {
-                fd.append(this.options.fileFormName, file);
+                fd.append(this._options.fileFormName, file);
             }
 
             if(!this._supportChunks(file.size)) {
-                for(var k in this.options.extraData) {
-                    if(this.options.extraData.hasOwnProperty(k)) {
-                        fd.append(k, this.options.extraData[k]);
+                for(var k in this._options.extraData) {
+                    if(this._options.extraData.hasOwnProperty(k)) {
+                        fd.append(k, this._options.extraData[k]);
                     }
                 }
             } else {
@@ -11705,7 +11769,7 @@ Ink.createModule('Ink.UI.Upload', '1', [
                     }
                 }
             } else {
-                this.publish('cbCreateFolder', file.parentID, file.fullPath, this.options.extraData, this._folders, file.rootPath, Ink.bind(function() {
+                this.publish('cbCreateFolder', file.parentID, file.fullPath, this._options.extraData, this._folders, file.rootPath, Ink.bind(function() {
                     if(!this._supportChunks(file.size)) {
                         xhr.send(fd);
                     } else {
@@ -11726,7 +11790,7 @@ Ink.createModule('Ink.UI.Upload', '1', [
                         var response = JSON.parse(xhr.response);
 
                         // check expected offset
-                        var invalidOffset = file.chunk_offset && response.offset !== (file.chunk_offset + this.options.chunkSize) && file.size !== response.offset;
+                        var invalidOffset = file.chunk_offset && response.offset !== (file.chunk_offset + this._options.chunkSize) && file.size !== response.offset;
                         if(invalidOffset) {
                             if(o.cb) {
                                 o.cb();
