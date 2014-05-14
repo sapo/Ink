@@ -76,7 +76,10 @@
 </form>
 
 <script>
-Ink.requireModules( ['Ink.UI.FormValidator_2'], function( FormValidator ){
+Ink.requireModules( ['Ink.UI.FormValidator_2', 'Ink.Dom.Selector_1'], function( FormValidator, Selector ){
+    FormValidator.setRule('atLeastOne', 'Select at least one of the radio options', function( value ){
+        return !!Selector.select('input[type="radio"]:checked',this.getElement()).length;
+    });
     var myValidator = new FormValidator( '#my-form' );
 });
 </script>
