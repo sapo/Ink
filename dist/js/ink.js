@@ -1437,6 +1437,7 @@ Ink.createModule('Ink.Net.JsonP', '1', [], function() {
      * @param {Object}      [options.params]            Object with the parameters and respective values to unfold
      * @param {String}      [options.callbackParam]     Parameter to use as callback. defaults to 'jsoncallback'
      * @param {String}      [options.internalCallback]  Name of the callback function stored in the Ink.Net.JsonP object.
+     * @param {String}      [options.randVar]           (Advanced, not recommended unless you know what you're doing) A string to append to the callback name. By default, generate a random number. Use an empty string if you already passed the correct name in the internalCallback option.
      *
      * @sample Ink_Net_JsonP_1.html 
      */
@@ -2121,7 +2122,7 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          */
          getStyle: function(elm, style) {
              elm = Ink.i(elm);
-             if (elm !== null) {
+             if (elm !== null && elm.style) {
                  style = style === 'float' ? 'cssFloat': this._camelCase(style);
 
                  var value = elm.style[style];
@@ -5710,8 +5711,20 @@ return Ink.extendObj(InkEvent, bean);
  * Valid applications are ad hoc AJAX/syndicated submission of forms, restoring form values from server side state, etc.
  */
 
-Ink.createModule('Ink.Dom.FormSerialize', 1, [], function () {
+Ink.createModule('Ink.Dom.FormSerialize', 1, ['Ink.UI.Common_1', 'Ink.Util.Array_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1'], function (Common, InkArray, InkElement, Selector) {
     'use strict';
+
+    // Check whether something is not a string or a DOM element, but still has length.
+    function isArrayIsh(obj) {
+        return obj != null &&
+            (!Common.isDOMElement(obj)) &&
+            (InkArray.isArray(obj) || (typeof obj !== 'string' && typeof obj.length === 'number'));
+    }
+
+    function toArray(obj) {
+        if (isArrayIsh(obj)) { return obj; }
+        else { return [obj]; }
+    }
 
     /**
      * @namespace Ink.Dom.FormSerialize
@@ -5731,25 +5744,77 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, [], function () {
          * @sample Ink_Dom_FormSerialize_serialize.html 
          */
         serialize: function(form) {
-            form = Ink.i(form);
-            var map = this._getFieldNameInputsMap(form);
+            var out = {};
+            var emptyArrayToken = {};  // A hack so that empty select[multiple] elements appear although empty.
 
-            var map2 = {};
-            for (var k in map) if (map.hasOwnProperty(k)) {
-                if(k !== null) {
-                    var tmpK = k.replace(/\[\]$/, '');
-                    map2[tmpK] = this._getValuesOfField( map[k] );
+            var pairs = this.asPairs(form, { elements: true, emptyArray: emptyArrayToken });
+            if (pairs == null) { return pairs; }
+            InkArray.forEach(pairs, function (pair) {
+                var name = pair[0].replace(/\[\]$/, '');
+                var value = pair[1];
+                var el = pair[2];
+
+                if (value === emptyArrayToken) {
+                    out[name] = [];  // It's an empty select[multiple]
+                } else if (!(FormSerialize._resultsInArray(el) || /\[\]$/.test(pair[0]))) {
+                    out[name] = value;
                 } else {
-                    map2[k] = this._getValuesOfField( map[k] );
+                    out[name] = out[name] || [];
+                    out[name].push(value);
+                }
+            });
+
+            return out;
+        },
+
+        /**
+         * Like `serialize`, but returns an array of [fieldName, value] pairs.
+         *
+         * @method asPairs
+         * @param {DOMElement|String} form  Form element
+         * @param {Object} [options] Options object, containing:
+         * @param {Boolean} [options.elements] Instead of returning an array of [fieldName, value] pairs, return an array of [fieldName, value, fieldElement] triples.
+         * @param {Boolean} [options.emptyArray] What to emit as the value of an empty select[multiple]. If you don't pass this option, nothing comes out.
+         *
+         * @return Array of [fieldName, value] pairs.
+         **/
+        asPairs: function (form, options) {
+            var out = [];
+            options = options || {};
+
+            function emit(name, val, el) {
+                if (options.elements) {
+                    out.push([name, val, el]);
+                } else {
+                    out.push([name, val]);
                 }
             }
 
-            delete map2['null'];    // this can occur. if so, delete it...
-            return map2;
+            function serializeEl(el) {
+                if (el.nodeName.toLowerCase() === 'select' && el.multiple) {
+                    var didEmit = false;
+                    InkArray.forEach(Selector.select('option:checked', el), function (thisOption) {
+                        emit(el.name, thisOption.value, el);
+                        didEmit = true;
+                    });
+                    if (!didEmit && 'emptyArray' in options) {
+                        emit(el.name, options.emptyArray, el);
+                    }
+                } else {
+                    emit(el.name, el.value, el);
+                }
+            }
+
+            if ((form = Ink.i(form))) {
+                var inputs = InkArray.filter(form.elements, FormSerialize._isSerialized);
+                for (var i = 0, len = inputs.length; i < len; i++) {
+                    serializeEl(inputs[i]);
+                }
+                return out;
+            }
+
+            return null;
         },
-
-
-
 
         /**
          * Sets form elements' values with values from an object
@@ -5758,148 +5823,132 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, [], function () {
          *
          * @method fillIn 
          * @param {DOMElement|String}   form    Form element to be populated
-         * @param {Object}              map2    Map of fieldName -> String|String[]|Boolean
+         * @param {Object|Array}      map2    mapping of fields to values contained in fields. Can be a hash (keys as names, strings or arrays for values), or an array of [name, value] pairs.
          * @sample Ink_Dom_FormSerialize_fillIn.html 
          */
         fillIn: function(form, map2) {
-            form = Ink.i(form);
-            var map = this._getFieldNameInputsMap(form);
-            delete map['null']; // this can occur. if so, delete it...
+            if (!(form = Ink.i(form))) { return null; }
 
-            for (var k in map2) if (map2.hasOwnProperty(k)) {
-                this._setValuesOfField( map[k], map2[k] );
+            var pairs;
+
+            if (typeof map2 === 'object' && !isArrayIsh(map2)) {
+                pairs = FormSerialize._objToPairs(map2);
+            } else if (isArrayIsh(map2)) {
+                pairs = map2;
+            } else {
+                return null;
             }
+
+            return FormSerialize._fillInPairs(form, pairs);
         },
 
-
-
-        _getFieldNameInputsMap: function(formEl) {
-            var name, nodeName, el, map = {};
-            for (var i = 0, f = formEl.elements.length; i < f; ++i) {
-                el = formEl.elements[i];
-                name = el.getAttribute('name');
-                nodeName = el.nodeName.toLowerCase();
-                if (nodeName === 'fieldset') {
-                    continue;
-                } else if (map[name] === undefined) {
-                    map[name] = [el];
-                } else {
-                    map[name].push(el);
+        _objToPairs: function (obj) {
+            var pairs = [];
+            var val;
+            for (var name in obj) if (obj.hasOwnProperty(name)) {
+                val = toArray(obj[name]);
+                for (var i = 0, len = val.length; i < len; i++) {
+                    pairs.push([name, val[i]]);
+                }
+                if (len === 0) {
+                    pairs.push([name, []]);
                 }
             }
-            return map;
+            return pairs;
         },
 
+        _fillInPairs: function (form, pairs) {
+            pairs = InkArray.groupBy(pairs, {
+                key: function (pair) { return pair[0].replace(/\[\]$/, ''); }
+            });
 
+            // For each chunk...
+            pairs = InkArray.map(pairs, function (pair) {
+                // Join the items in the chunk by concatenating the values together and leaving the names alone
+                var values = InkArray.reduce(pair, function (left, right) {
+                    return [null, left[1].concat([right[1]])];
+                }, [null, []])[1];
+                return [pair[0][0], values];
+            });
 
-        _getValuesOfField: function(fieldInputs) {
-            var nodeName = fieldInputs[0].nodeName.toLowerCase();
-            var type = fieldInputs[0].getAttribute('type');
-            var value = fieldInputs[0].value;
-            var i, f, j, o, el, m, res = [];
+            var name;
+            var inputs;
+            var values;
+            for (var i = 0, len = pairs.length; i < len; i++) {
+                name = pairs[i][0];
 
-            switch(nodeName) {
-                case 'select':
-                    for (i = 0, f = fieldInputs.length; i < f; ++i) {
-                        res[i] = [];
-                        m = fieldInputs[i].getAttribute('multiple');
-                        for (j = 0, o = fieldInputs[i].options.length; j < o; ++j) {
-                            el = fieldInputs[i].options[j];
-                            if (el.selected) {
-                                if (m) {
-                                    res[i].push(el.value);
-                                } else {
-                                    res[i] = el.value;
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                    return ((fieldInputs.length > 0 && /\[[^\]]*\]$/.test(fieldInputs[0].getAttribute('name'))) ? res : res[0]);
+                if (name in form) {
+                    inputs = form[name];
+                } else if ((name + '[]') in form) {
+                    inputs = form[name + '[]'];
+                    name = name + '[]';
+                } else {
+                    continue;
+                }
 
-                case 'textarea':
-                case 'input':
-                    if (type === 'checkbox' || type === 'radio') {
-                        for (i = 0, f = fieldInputs.length; i < f; ++i) {
-                            el = fieldInputs[i];
-                            if (el.checked) {
-                                res.push(    el.value    );
-                            }
-                        }
-                        if (type === 'checkbox') {
-                            return (fieldInputs.length > 1) ? res : !!(res.length);
-                        }
-                        return (fieldInputs.length > 1) ? res[0] : !!(res.length);    // on radios only 1 option is selected at most
-                    }
-                    else {
-                        //if (fieldInputs.length > 1) {    throw 'Got multiple input elements with same name!';    }
-                        if(fieldInputs.length > 0 && /\[[^\]]*\]$/.test(fieldInputs[0].getAttribute('name'))) {
-                            var tmpValues = [];
-                            for(i=0, f = fieldInputs.length; i < f; ++i) {
-                                tmpValues.push(fieldInputs[i].value);
-                            }
-                            return tmpValues;
-                        } else {
-                            return value;
-                        }
-                    }
-                    break;    // to keep JSHint happy...  (reply to this comment by gamboa: - ROTFL)
+                inputs = toArray(inputs);
+                values = pairs[i][1];
 
-                default:
-                    //throw 'Unsupported element: "' + nodeName + '"!';
-                    return undefined;
+                FormSerialize._fillInOne(name, inputs, values);
             }
         },
 
+        _fillInOne: function (name, inputs, values) {
+            var firstOne = inputs[0];
+            var firstNodeName = firstOne.nodeName.toLowerCase();
+            var firstType = firstOne.getAttribute('type');
+            firstType = firstType && firstType.toLowerCase();
+            var isSelectMulti = firstNodeName === 'select' && InkElement.hasAttribute(firstOne, 'multiple');
 
+            if (firstType === 'checkbox' || firstType === 'radio') {
+                FormSerialize._fillInBoolean(inputs, values, 'checked');
+            } else if (isSelectMulti) {
+                FormSerialize._fillInBoolean(inputs[0].options, values, 'selected');
+            } else {
+                if (inputs.length !== values.length) {
+                    Ink.warn('Form had ' + inputs.length + ' inputs named "' + name + '", but received ' + values.length + ' values.');
+                }
 
-        _valInArray: function(val, arr) {
-            for (var i = 0, f = arr.length; i < f; ++i) {
-                if (arr[i] === val) {    return true;    }
+                for (var i = 0, len = Math.min(inputs.length, values.length); i < len; i += 1) {
+                    inputs[i].value = values[i];
+                }
             }
-            return false;
         },
 
+        _fillInBoolean: function (inputs, values, checkAttr /* 'selected' or 'checked' */) {
+            InkArray.forEach(inputs, function (input) {
+                var isChecked = InkArray.inArray(input.value, values);
+                input[checkAttr] = isChecked;
+            });
+        },
 
+        /**
+         * Whether FormSerialize.serialize() should produce an array when looking at this element.
+         * @method _resultsInArray
+         * @private
+         * @param element
+         **/
+        _resultsInArray: function (element) {
+            var type = element.getAttribute('type');
+            var nodeName = element.nodeName.toLowerCase();
 
-        _setValuesOfField: function(fieldInputs, fieldValues) {
-            if (!fieldInputs) {    return;    }
-            var nodeName = fieldInputs[0].nodeName.toLowerCase();
-            var type = fieldInputs[0].getAttribute('type');
-            var i, f, el;
+            return type === 'checkbox' ||
+                (nodeName === 'select' && InkElement.hasAttribute(element, 'multiple'));
+        },
 
-            switch(nodeName) {
-                case 'select':
-                    if (fieldInputs.length > 1) {    
-                        Ink.warn('FormSerialize - Got multiple select elements with same name!');
-                    }
-                    for (i = 0, f = fieldInputs[0].options.length; i < f; ++i) {
-                        el = fieldInputs[0].options[i];
-                        el.selected = (fieldValues instanceof Array) ? this._valInArray(el.value, fieldValues) : el.value === fieldValues;
-                    }
-                    break;
-                case 'textarea':
-                case 'input':
-                    if (type === 'checkbox' || type === 'radio') {
-                        for (i = 0, f = fieldInputs.length; i < f; ++i) {
-                            el = fieldInputs[i];
-                            //el.checked = (fieldValues instanceof Array) ? this._valInArray(el.value, fieldValues) : el.value === fieldValues;
-                            el.checked = (fieldValues instanceof Array) ? this._valInArray(el.value, fieldValues) : (fieldInputs.length > 1 ? el.value === fieldValues : !!fieldValues);
-                        }
-                    }
-                    else {
-                        if (fieldInputs.length > 1) {
-                            Ink.warn('FormSerialize - Got multiple input elements with same name!'); 
-                        }
-                        if (type !== 'file') {
-                            fieldInputs[0].value = fieldValues;
-                        }
-                    }
-                    break;
+        _isSerialized: function (element) {
+            if (!Common.isDOMElement(element)) { return false; }
+            if (!InkElement.hasAttribute(element, 'name')) { return false; }
 
-                default:
-                    Ink.warn('FormSerialize - Unsupported element: "' + nodeName + '"!');
+            var nodeName = element.nodeName.toLowerCase();
+
+            if (!nodeName || nodeName === 'fieldset') { return false; }
+
+            if (element.type === 'checkbox' || element.type === 'radio') {
+                return !!element.checked;
             }
+
+            return true;
         }
     };
 
@@ -5983,7 +6032,7 @@ Ink.createModule('Ink.Dom.Loaded', 1, [], function() {
 
             var csf = context.handlers.checkState;
             var alreadyLoaded = (
-                context.doc.readyState === 'complete' &&
+                /complete|interactive|loaded/.test(context.doc.readyState) &&
                 context.win.location.toString() !== 'about:blank');  // https://code.google.com/p/chromium/issues/detail?id=32357
 
             if (alreadyLoaded){
@@ -8048,6 +8097,103 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
     var InkArray = {
 
         /**
+         * Checks if a value is an array
+         *
+         * @method isArray
+         * @param testedObject {Mixed} The object we want to check
+         **/
+        isArray: Array.isArray || function (testedObject) {
+            return {}.toString.call(testedObject) === '[object Array]';
+        },
+
+        /**
+         * Loops through an array, grouping similar items together.
+         * @method groupBy
+         * @param arr {Array} The input array.
+         * @param [options] {Object} options object, containing:
+         * @param [options.key] {Function} A function which computes the group key by which the items are grouped.
+         * @param [options.pairs] {Boolean} Set to `true` if you want to output an array of `[key, [group...]]` pairs instead of an array of groups.
+         * @return {Array} An array of arrays of chunks.
+         *
+         * @example
+         *
+         *        InkArray.groupBy([1, 1, 2, 2, 3, 1])  // -> [ [1, 1], [2, 2], [3], [1] ]
+         *        InkArray.groupBy([1.1, 1.2, 2.1], { key: Math.floor })  // -> [ [1.1, 1.2], [2.1] ]
+         *        InkArray.groupBy([1.1, 1.2, 2.1], { key: Math.floor, pairs: true })  // -> [ [1, [1.1, 1.2]], [2, [2.1]] ]
+         *
+         **/
+        groupBy: function (arr, options) {
+            options = options || {};
+            var ret = [];
+            var latestGroup;
+            function eq(a, b) {
+                return outKey(a) === outKey(b);
+            }
+            function outKey(item) {
+                if (typeof options.key === 'function') {
+                    return options.key(item);
+                } else {
+                    return item;
+                }
+            }
+
+            for (var i = 0, len = arr.length; i < len; i++) {
+                latestGroup = [arr[i]];
+
+                // Chunkin'
+                while ((i + 1 < len) && eq(arr[i], arr[i + 1])) {
+                    latestGroup.push(arr[i + 1]);
+                    i++;
+                }
+
+                if (options.pairs) {
+                    ret.push([outKey(arr[i]), latestGroup]);
+                } else {
+                    ret.push(latestGroup);
+                }
+            }
+            return ret;
+        },
+
+        /**
+         * Replacement for Array.prototype.reduce.
+         *
+         * Produces a single result from a list of values by calling an "aggregator" function.
+         *
+         * Falls back to Array.prototype.reduce if available.
+         *
+         * @method reduce
+         * @param array {Array} Input array to be reduced.
+         * @param callback {Function} `function (previousValue, currentValue, index, all) { return {Mixed} }` to execute for each value.
+         * @param initial {Mixed} Object used as the first argument to the first call of `callback`
+         *
+         * @example
+         *          var sum = InkArray.reduce([1, 2, 3], function (a, b) { return a + b; });  // -> 6
+         */
+        reduce: function (array, callback, initial) {
+            if (arrayProto.reduce) {
+                return arrayProto.reduce.apply(array, [].slice.call(arguments, 1));
+            }
+
+            // From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce#Polyfill
+            var t = Object( array ), len = t.length >>> 0, k = 0, value;
+            if ( arguments.length >= 3 ) {
+                value = initial;
+            } else {
+                while ( k < len && !(k in t) ) k++; 
+                if ( k >= len )
+                    throw new TypeError('Reduce of empty array with no initial value');
+                value = t[ k++ ];
+            }
+            for ( ; k < len ; k++ ) {
+                if ( k in t ) {
+                    value = callback( value, t[k], k, t );
+                }
+            }
+            return value;
+        },
+
+        /**
          * Checks if a value exists in array
          *
          * @method inArray
@@ -8293,6 +8439,42 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          */
         convert: function(arr) {
             return arrayProto.slice.call(arr || [], 0);
+        },
+
+        /**
+         * Simulates python's range(start, stop, step) function.
+         *
+         * Creates a list with numbers counting from start until stop, using a for loop.
+         *.
+         * The optional step argument defines how to step ahead. You can pass a negative number to count backwards (see the examples below).
+         *
+         * @method range
+         * @param {Number} start    The array's first element.
+         * @param {Number} stop     Stop counting before this number.
+         * @param {Number} [step=1] Interval between numbers. You can use a negative number to count backwards.
+         *
+         * @sample Ink_Util_Array_1_range.html
+         **/
+        range: function range(a, b, step) {
+            // From: https://github.com/mcandre/node-range
+            if (!step) {
+                step = 1;
+            }
+
+            var r = [];
+            var x;
+
+            if (step > 0) {
+                for (x = a; x < b; x += step) {
+                    r.push(x);
+                }
+            } else {
+                for (x = a; x > b; x += step) {
+                    r.push(x);
+                }
+            }
+
+            return r;
         },
 
         /**
@@ -9908,11 +10090,11 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
             if ( key in this._dict ) {
                 ret = this._dict[ key ];
             } else {
-                I18n.lang( lang );
+                I18n.langGlobal( lang );
     
                 ret = this._gDict[ key ];
     
-                I18n.lang( gLang );
+                I18n.langGlobal( gLang );
             }
     
             return ret;
@@ -10108,7 +10290,7 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
                 dict = obj;
             }
 
-            if ( lang !== I18n.prototype._gLang ) { I18n.lang( lang ); }
+            if ( lang !== I18n.prototype._gLang ) { I18n.langGlobal( lang ); }
         }
 
         I18n.prototype._gDicts.push( dict );
@@ -11844,6 +12026,10 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
                 } else if (groups[key]) {
                     re += Validator._characterGroups[key].join('');
                 }
+            }
+            if (re === '^[') {
+                // No changes
+                return new RegExp('$^'); // match nothing
             }
             return new RegExp(re + ']*?$');
         },

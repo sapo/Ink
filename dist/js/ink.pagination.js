@@ -205,7 +205,12 @@ Ink.createModule('Ink.UI.Pagination', '1',
                     liEl.appendChild( genAEl( this._options.numberFormatter(i), i) );
                     // add "active" class if this is the active element.
                     Css.setClassName(liEl, this._options.activeClass, i === this._current);
-                    this._ulEl.insertBefore(liEl, this._nextEl);
+                    if (this._nextEl) {
+                        this._ulEl.insertBefore(liEl, this._nextEl);
+                    } else {
+                        this._ulEl.appendChild(liEl);
+                    }
+
                     liEls.push(liEl);
                 }
                 this._itemLiEls = liEls;

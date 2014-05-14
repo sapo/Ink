@@ -17,6 +17,103 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
     var InkArray = {
 
         /**
+         * Checks if a value is an array
+         *
+         * @method isArray
+         * @param testedObject {Mixed} The object we want to check
+         **/
+        isArray: Array.isArray || function (testedObject) {
+            return {}.toString.call(testedObject) === '[object Array]';
+        },
+
+        /**
+         * Loops through an array, grouping similar items together.
+         * @method groupBy
+         * @param arr {Array} The input array.
+         * @param [options] {Object} options object, containing:
+         * @param [options.key] {Function} A function which computes the group key by which the items are grouped.
+         * @param [options.pairs] {Boolean} Set to `true` if you want to output an array of `[key, [group...]]` pairs instead of an array of groups.
+         * @return {Array} An array of arrays of chunks.
+         *
+         * @example
+         *
+         *        InkArray.groupBy([1, 1, 2, 2, 3, 1])  // -> [ [1, 1], [2, 2], [3], [1] ]
+         *        InkArray.groupBy([1.1, 1.2, 2.1], { key: Math.floor })  // -> [ [1.1, 1.2], [2.1] ]
+         *        InkArray.groupBy([1.1, 1.2, 2.1], { key: Math.floor, pairs: true })  // -> [ [1, [1.1, 1.2]], [2, [2.1]] ]
+         *
+         **/
+        groupBy: function (arr, options) {
+            options = options || {};
+            var ret = [];
+            var latestGroup;
+            function eq(a, b) {
+                return outKey(a) === outKey(b);
+            }
+            function outKey(item) {
+                if (typeof options.key === 'function') {
+                    return options.key(item);
+                } else {
+                    return item;
+                }
+            }
+
+            for (var i = 0, len = arr.length; i < len; i++) {
+                latestGroup = [arr[i]];
+
+                // Chunkin'
+                while ((i + 1 < len) && eq(arr[i], arr[i + 1])) {
+                    latestGroup.push(arr[i + 1]);
+                    i++;
+                }
+
+                if (options.pairs) {
+                    ret.push([outKey(arr[i]), latestGroup]);
+                } else {
+                    ret.push(latestGroup);
+                }
+            }
+            return ret;
+        },
+
+        /**
+         * Replacement for Array.prototype.reduce.
+         *
+         * Produces a single result from a list of values by calling an "aggregator" function.
+         *
+         * Falls back to Array.prototype.reduce if available.
+         *
+         * @method reduce
+         * @param array {Array} Input array to be reduced.
+         * @param callback {Function} `function (previousValue, currentValue, index, all) { return {Mixed} }` to execute for each value.
+         * @param initial {Mixed} Object used as the first argument to the first call of `callback`
+         *
+         * @example
+         *          var sum = InkArray.reduce([1, 2, 3], function (a, b) { return a + b; });  // -> 6
+         */
+        reduce: function (array, callback, initial) {
+            if (arrayProto.reduce) {
+                return arrayProto.reduce.apply(array, [].slice.call(arguments, 1));
+            }
+
+            // From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce#Polyfill
+            var t = Object( array ), len = t.length >>> 0, k = 0, value;
+            if ( arguments.length >= 3 ) {
+                value = initial;
+            } else {
+                while ( k < len && !(k in t) ) k++; 
+                if ( k >= len )
+                    throw new TypeError('Reduce of empty array with no initial value');
+                value = t[ k++ ];
+            }
+            for ( ; k < len ; k++ ) {
+                if ( k in t ) {
+                    value = callback( value, t[k], k, t );
+                }
+            }
+            return value;
+        },
+
+        /**
          * Checks if a value exists in array
          *
          * @method inArray
@@ -262,6 +359,42 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          */
         convert: function(arr) {
             return arrayProto.slice.call(arr || [], 0);
+        },
+
+        /**
+         * Simulates python's range(start, stop, step) function.
+         *
+         * Creates a list with numbers counting from start until stop, using a for loop.
+         *.
+         * The optional step argument defines how to step ahead. You can pass a negative number to count backwards (see the examples below).
+         *
+         * @method range
+         * @param {Number} start    The array's first element.
+         * @param {Number} stop     Stop counting before this number.
+         * @param {Number} [step=1] Interval between numbers. You can use a negative number to count backwards.
+         *
+         * @sample Ink_Util_Array_1_range.html
+         **/
+        range: function range(a, b, step) {
+            // From: https://github.com/mcandre/node-range
+            if (!step) {
+                step = 1;
+            }
+
+            var r = [];
+            var x;
+
+            if (step > 0) {
+                for (x = a; x < b; x += step) {
+                    r.push(x);
+                }
+            } else {
+                for (x = a; x > b; x += step) {
+                    r.push(x);
+                }
+            }
+
+            return r;
         },
 
         /**

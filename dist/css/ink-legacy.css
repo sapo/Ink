@@ -478,8 +478,8 @@ html.no-flexboxlegacy [class~=all-100] {
   html.no-flexbox .column-group.xlarge-gutters > [class*=xlarge-], html.no-flexbox .column-group.xlarge-gutters > [class*=all-],
   html.no-flexboxlegacy .column-group.xlarge-gutters > [class*=xlarge-],
   html.no-flexboxlegacy .column-group.xlarge-gutters > [class*=all-] {
-    padding-left: 0.5em;
-    margin-bottom: 0.5em;
+    padding-left: 2em;
+    margin-bottom: 2em;
   }
   html.no-flexbox .column-group.xlarge-horizontal-gutters,
   html.no-flexboxlegacy .column-group.xlarge-horizontal-gutters {
@@ -1347,8 +1347,8 @@ html.no-flexboxlegacy [class~=all-100] {
   html.no-flexbox .column-group.large-gutters > [class*=large-], html.no-flexbox .column-group.large-gutters > [class*=all-],
   html.no-flexboxlegacy .column-group.large-gutters > [class*=large-],
   html.no-flexboxlegacy .column-group.large-gutters > [class*=all-] {
-    padding-left: 0.4375em;
-    margin-bottom: 0.4375em;
+    padding-left: 1.75em;
+    margin-bottom: 1.75em;
   }
   html.no-flexbox .column-group.large-horizontal-gutters,
   html.no-flexboxlegacy .column-group.large-horizontal-gutters {
@@ -2216,8 +2216,8 @@ html.no-flexboxlegacy [class~=all-100] {
   html.no-flexbox .column-group.medium-gutters > [class*=medium-], html.no-flexbox .column-group.medium-gutters > [class*=all-],
   html.no-flexboxlegacy .column-group.medium-gutters > [class*=medium-],
   html.no-flexboxlegacy .column-group.medium-gutters > [class*=all-] {
-    padding-left: 0.375em;
-    margin-bottom: 0.375em;
+    padding-left: 1.5em;
+    margin-bottom: 1.5em;
   }
   html.no-flexbox .column-group.medium-horizontal-gutters,
   html.no-flexboxlegacy .column-group.medium-horizontal-gutters {
@@ -3085,8 +3085,8 @@ html.no-flexboxlegacy [class~=all-100] {
   html.no-flexbox .column-group.small-gutters > [class*=small-], html.no-flexbox .column-group.small-gutters > [class*=all-],
   html.no-flexboxlegacy .column-group.small-gutters > [class*=small-],
   html.no-flexboxlegacy .column-group.small-gutters > [class*=all-] {
-    padding-left: 0.3125em;
-    margin-bottom: 0.3125em;
+    padding-left: 1.25em;
+    margin-bottom: 1.25em;
   }
   html.no-flexbox .column-group.small-horizontal-gutters,
   html.no-flexboxlegacy .column-group.small-horizontal-gutters {
@@ -3954,8 +3954,8 @@ html.no-flexboxlegacy [class~=all-100] {
   html.no-flexbox .column-group.tiny-gutters > [class*=tiny-], html.no-flexbox .column-group.tiny-gutters > [class*=all-],
   html.no-flexboxlegacy .column-group.tiny-gutters > [class*=tiny-],
   html.no-flexboxlegacy .column-group.tiny-gutters > [class*=all-] {
-    padding-left: 0.25em;
-    margin-bottom: 0.25em;
+    padding-left: 1em;
+    margin-bottom: 1em;
   }
   html.no-flexbox .column-group.tiny-horizontal-gutters,
   html.no-flexboxlegacy .column-group.tiny-horizontal-gutters {
