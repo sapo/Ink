@@ -23,6 +23,7 @@ Ink.createModule('Ink.Net.JsonP', '1', [], function() {
      * @param {Object}      [options.params]            Object with the parameters and respective values to unfold
      * @param {String}      [options.callbackParam]     Parameter to use as callback. defaults to 'jsoncallback'
      * @param {String}      [options.internalCallback]  Name of the callback function stored in the Ink.Net.JsonP object.
+     * @param {String}      [options.randVar]           (Advanced, not recommended unless you know what you're doing) A string to append to the callback name. By default, generate a random number. Use an empty string if you already passed the correct name in the internalCallback option.
      *
      * @sample Ink_Net_JsonP_1.html 
      */

@@ -76,6 +76,14 @@ Ink.requireModules(['Ink.Dom.Css_1', 'Ink.Dom.Element_1'], function (Css) {
         classNames(false);  // test with classList
         classNames(true);  // use className
     } else {
-        classNames(false);
+        classNames(false); // test with className
     }
+
+    module('getStyle');
+
+    test('regression: doesn\'t crash if given a text node', function () {
+        var t = document.createTextNode('foo!');
+        Css.getStyle(t, 'height');
+        ok(true);
+    });
 });
