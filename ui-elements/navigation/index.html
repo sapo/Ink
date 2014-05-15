@@ -106,6 +106,9 @@ site_root: ../../
         <li class="prop">disabled</li>
         <li class="prop">active</li>
         <li class="prop">submenu</li>
+        <li class="prop">flyout</li>
+        <li class="prop">left</li>
+        <li class="prop">right</li>
         <li class="prop">white</li>
         <li class="prop">grey</li>
         <li class="prop">black</li>
@@ -163,8 +166,7 @@ site_root: ../../
 </nav>
 </div>
 
-<p>To add a submenu, create an unordered list with the <code>submenu</code> class within the appropriate top level list item:</p>
-
+<p>To add a submenu, create an <code>&ltul&gt</code>with the <code>submenu</code> class within the appropriate top level list item:</p>
 
 <p class="example-title">Code</p>
 {% highlight html %}
@@ -176,6 +178,37 @@ site_root: ../../
             <ul class="submenu">
                 <li><a href="#">January</a></li>
                 <li><a href="#">February</a></li>
+                <li><a href="#">March</a></li>
+                <li><a href="#">...</a></li>
+            </ul>
+        </li>
+        <li><a href="#">About</a></li>
+    </ul>
+</nav>
+{% endhighlight %}
+
+
+<p><span class="fa fa-leaf"></span> If you need to create more levels, Ink has flyout menus that can be created within the <code>submenu</code> elements. To choose to which side they open just add the <code>left</code> or <code>right</code> class to the <code>flyout</code> <code>&ltul&gt</code> element.</p>
+
+
+<p class="example-title">Code</p>
+{% highlight html %}
+<nav class="ink-navigation">
+    <ul class="menu horizontal black">
+        <li class="heading"><a href="#">Home</a></li>
+        <li>
+            <a href="#">Post archive</a>
+            <ul class="submenu">
+                <li><a href="#">January</a></li>
+                <li>
+                    <a href="#">February</a>
+                    <ul class="submenu flyout right">
+                        <li><a href="#">1st week</a></li>
+                        <li><a href="#">2nd week</a></li>
+                        <li><a href="#">3rd week</a></li>
+                        <li><a href="#">4th week</a></li>
+                    </ul>
+                </li>
                 <li><a href="#">March</a></li>
                 <li><a href="#">...</a></li>
             </ul>
@@ -215,7 +248,15 @@ site_root: ../../
             <a href="#">Post archive</a>
             <ul class="submenu">
                 <li><a href="#">January</a></li>
-                <li><a href="#">February</a></li>
+                <li>
+                    <a href="#">February</a>
+                    <ul class="submenu flyout right">
+                        <li><a href="#">1st week</a></li>
+                        <li><a href="#">2nd week</a></li>
+                        <li><a href="#">3rd week</a></li>
+                        <li><a href="#">4th week</a></li>
+                    </ul>
+                </li>
                 <li><a href="#">March</a></li>
                 <li><a href="#">...</a></li>
             </ul>
