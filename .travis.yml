@@ -1,13 +1,12 @@
 language: node_js
 node_js:
-  - "0.10.25"
+  - "0.10"
 branches:
   only:
     - master
     - staging
     - develop
     - gh-pages
-    - neo-pages
 before_script:
   - gem install compass
   - gem install jekyll
