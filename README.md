@@ -4,7 +4,7 @@ Ink is an interface kit for quick development of web interfaces, simple to use a
 
 Ink is part of [SAPOs Open Source Software initiative](http://oss.sapo.pt).
 
-## Current Version: 3.0.0
+## Current Version: 3.0.1
 
 You can read our full documentation, examples and recipes in http://ink.sapo.pt
 
@@ -173,6 +173,7 @@ git checkout -b origin/gh-pages gh-pages
 + [Bower](http://bower.io/)
 
 ## Versions
+* [Ink 3.0.1](https://github.com/sapo/Ink/archive/3.0.1.zip)
 * [Ink 3.0.0](https://github.com/sapo/Ink/archive/3.0.0.zip)
 * [Ink 2.3.1](https://github.com/sapo/Ink/archive/2.3.1.zip)
 * [Ink 2.3.0](https://github.com/sapo/Ink/archive/2.3.0.zip)
