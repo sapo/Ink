@@ -68,6 +68,11 @@ test('getPath, setPath', function () {
     equal(Ink.getPath('Plug.Sub.Module_1'), 'http://example.com/subplugversion1/lib.js');
 });
 
+test('getPath when root path is not recognized', function () {
+    strictEqual(Ink.getPath('Unknown123'), null, 'Getting the path of an unknown root module should yield null')
+    strictEqual(Ink.getPath('Unknown123.Asd'), null, 'Submodules of unknown root modules, too, yield null')
+});
+
 test('setPath supports using no trailing slash', function () {
     Ink.setPath('Abc.Def', '/baz');
     equal(Ink.getPath('Abc.Def_1'), '/baz/1/lib.js');

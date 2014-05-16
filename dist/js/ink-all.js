@@ -94,6 +94,7 @@
             var i;
             var root;
             var path;
+
             // Look for Ink.Dom.Element.1, Ink.Dom.Element, Ink.Dom, Ink in this order.
             for (i = split.length; i >= 0; i -= 1) {
                 curKey = split.slice(0, i + 1).join('.');  // See comment in setPath
@@ -102,11 +103,20 @@
                     break;
                 }
             }
-            path = paths[root || 'Ink'];
+
+            if (root in paths) {
+                path = paths[root];
+            } else {
+                return null;
+            }
+
             if (!/\/$/.test(path)) {
                 path += '/';
             }
             if (i < split.length) {
+                // Add the rest of the path. For example, if we found
+                // paths['Ink.Dom'] to be 'http://example.com/Ink/Dom/',
+                // we now add '/Element/' to get the full path.
                 path += split.slice(i + 1).join('/') + '/';
             }
             if (!noLib) {
@@ -154,7 +164,13 @@
             /*jshint evil:true */
 
             if (uri.indexOf('/') === -1) {
+                var givenUri = uri;  // For the error message
                 uri = this.getPath(uri);
+                if (uri === null) {
+                    throw new Error('Could not load script "' + givenUri + '". ' +
+                        'Path not found in the registry. Did you misspell ' +
+                        'the name, or forgot to call setPath()?');
+                }
             }
 
             var scriptEl = document.createElement('script');
@@ -225,7 +241,8 @@
 
         /**
          * Loads a module.
-         * A synchronous method to get the module from the registry. It assumes the module is defined and loaded already!
+         * A synchronous method to get the module from the internal registry.
+         * It assumes the module is defined and loaded already!
          *
          * @method getModule
          * @param  {String}  mod        Module name
@@ -242,7 +259,6 @@
          * Use this to wrap your code and benefit from the module loading used throughout the Ink library
          *
          * @method createModule
-         * @uses   requireModules
          * @param  {String}    mod      Module name, separated by dots. Like Ink.Dom.Selector, Ink.UI.Modal
          * @param  {Number}    version  Version number
          * @param  {Array}     deps     Array of module names which are dependencies of the module being created. The order in which they are passed here will define the order they will be passed to the callback function.
@@ -346,7 +362,7 @@
         requireModules: function(deps, cbFn) { // require
             //console.log(['requireModules([', deps.join(', '), '], ', !!cbFn, ')'].join(''));
             var i, f, o, dep, mod;
-            f = deps.length;
+            f = deps && deps.length;
             o = {
                 args: new Array(f),
                 left: {},
@@ -619,10 +635,6 @@
             }
         }
     };
-
-    Ink.setPath('Ink',
-        ('INK_PATH' in window) ? window.INK_PATH : window.location.protocol + '//js.ink.sapo.pt/Ink/');
-
 
 
     // TODO for debug - to detect pending stuff
@@ -18370,7 +18382,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         validationFunctions[ name ] = cb;
         if (validationMessages.getKey('formvalidator.' + name) !== errorMessage) {
             var langObj = {}; langObj['formvalidator.' + name] = errorMessage;
-            var dictObj = {}; dictObj[validationMessages.langGlobal()] = langObj;
+            var dictObj = {}; dictObj[validationMessages.lang()] = langObj;
             validationMessages.append(dictObj);
         }
     };
@@ -18409,13 +18421,13 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
      * Sets the language of the error messages.
      * pt_PT and en_US are available, but you can add new languages by using append()
      *
-     * See the `Ink.Util.I18n.langGlobal()` setter
+     * See the `Ink.Util.I18n.lang()` setter
      *
      * @method setLanguage
      * @param language  The language to set i18n to.
      */
     FormValidator.setLanguage = function (language) {
-        validationMessages.langGlobal(language);
+        validationMessages.lang(language);
     };
 
     /**

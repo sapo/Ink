@@ -94,6 +94,7 @@
             var i;
             var root;
             var path;
+
             // Look for Ink.Dom.Element.1, Ink.Dom.Element, Ink.Dom, Ink in this order.
             for (i = split.length; i >= 0; i -= 1) {
                 curKey = split.slice(0, i + 1).join('.');  // See comment in setPath
@@ -102,11 +103,20 @@
                     break;
                 }
             }
-            path = paths[root || 'Ink'];
+
+            if (root in paths) {
+                path = paths[root];
+            } else {
+                return null;
+            }
+
             if (!/\/$/.test(path)) {
                 path += '/';
             }
             if (i < split.length) {
+                // Add the rest of the path. For example, if we found
+                // paths['Ink.Dom'] to be 'http://example.com/Ink/Dom/',
+                // we now add '/Element/' to get the full path.
                 path += split.slice(i + 1).join('/') + '/';
             }
             if (!noLib) {
@@ -154,7 +164,13 @@
             /*jshint evil:true */
 
             if (uri.indexOf('/') === -1) {
+                var givenUri = uri;  // For the error message
                 uri = this.getPath(uri);
+                if (uri === null) {
+                    throw new Error('Could not load script "' + givenUri + '". ' +
+                        'Path not found in the registry. Did you misspell ' +
+                        'the name, or forgot to call setPath()?');
+                }
             }
 
             var scriptEl = document.createElement('script');
@@ -225,7 +241,8 @@
 
         /**
          * Loads a module.
-         * A synchronous method to get the module from the registry. It assumes the module is defined and loaded already!
+         * A synchronous method to get the module from the internal registry.
+         * It assumes the module is defined and loaded already!
          *
          * @method getModule
          * @param  {String}  mod        Module name
@@ -242,7 +259,6 @@
          * Use this to wrap your code and benefit from the module loading used throughout the Ink library
          *
          * @method createModule
-         * @uses   requireModules
          * @param  {String}    mod      Module name, separated by dots. Like Ink.Dom.Selector, Ink.UI.Modal
          * @param  {Number}    version  Version number
          * @param  {Array}     deps     Array of module names which are dependencies of the module being created. The order in which they are passed here will define the order they will be passed to the callback function.
@@ -346,7 +362,7 @@
         requireModules: function(deps, cbFn) { // require
             //console.log(['requireModules([', deps.join(', '), '], ', !!cbFn, ')'].join(''));
             var i, f, o, dep, mod;
-            f = deps.length;
+            f = deps && deps.length;
             o = {
                 args: new Array(f),
                 left: {},
@@ -619,10 +635,6 @@
             }
         }
     };
-
-    Ink.setPath('Ink',
-        ('INK_PATH' in window) ? window.INK_PATH : window.location.protocol + '//js.ink.sapo.pt/Ink/');
-
 
 
     // TODO for debug - to detect pending stuff
