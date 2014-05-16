@@ -5,6 +5,33 @@ description: Track Ink's latest changes
 site_root:  ../
 ---
 
+
+<section class="no-padding half-top-space">
+    <h1 class="fw-400">3.0.2</h3>
+    <p><time>16 - May - 2014</time></p>
+    <p class="clearfix">
+        <a href="{{site.download_url}}3.0.2/ink-3.0.2.zip" class="ink-button black">Download</a>
+        <a href="{{site.download_src_url}}3.0.2.zip" class="ink-button black">Download with source</a>
+    </p>
+
+    <p><strong>Breaking changes</strong>:</p>
+
+    <p>If you were using requireModules to load modules asynchronously (eg. not using ink-all.js), now there is no default URL for the Ink namespace. This will only affect you if you are using requireModules asynchronously and are not calling setPath() yourself. We're not bumping a major because this is not likely to affect anyone although, theoretically, it's a breaking change.</p>
+
+    <h2 class="fw-300">CSS</h2>
+
+    <ul>
+        <li>Removes a fade() call left over from the old LESS source (<a href="https://github.com/sapo/Ink/issues/349" class="issue-link" title="I think this is a bug">#349</a>)</li>
+    </ul>
+
+    <h2 class="fw-300">JS</h2>
+    <ul>
+        <li>Fixing FormValidator</li>
+        <li>Removing the default Ink.setPath() call. We removed this because it causes surprising results and brings no benefits, and causes people to accidentally use <a href="http://js.ink.sapo.pt">http://js.ink.sapo.pt</a> every time they misspelled a module name. Now you will get an error.</li>
+    </ul>
+</section>
+
+
 <section class="no-padding half-top-space">
     <h1 class="fw-400">3.0.1</h3>
     <p><time>15 - May - 2014</time></p>
