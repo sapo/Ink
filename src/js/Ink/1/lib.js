@@ -94,6 +94,7 @@
             var i;
             var root;
             var path;
+
             // Look for Ink.Dom.Element.1, Ink.Dom.Element, Ink.Dom, Ink in this order.
             for (i = split.length; i >= 0; i -= 1) {
                 curKey = split.slice(0, i + 1).join('.');  // See comment in setPath
@@ -102,11 +103,20 @@
                     break;
                 }
             }
-            path = paths[root || 'Ink'];
+
+            if (root in paths) {
+                path = paths[root];
+            } else {
+                return null;
+            }
+
             if (!/\/$/.test(path)) {
                 path += '/';
             }
             if (i < split.length) {
+                // Add the rest of the path. For example, if we found
+                // paths['Ink.Dom'] to be 'http://example.com/Ink/Dom/',
+                // we now add '/Element/' to get the full path.
                 path += split.slice(i + 1).join('/') + '/';
             }
             if (!noLib) {
@@ -619,10 +629,6 @@
             }
         }
     };
-
-    Ink.setPath('Ink',
-        ('INK_PATH' in window) ? window.INK_PATH : window.location.protocol + '//js.ink.sapo.pt/Ink/');
-
 
 
     // TODO for debug - to detect pending stuff
