@@ -154,6 +154,7 @@ sections:
           - title: Ink.Util.Validator
   - title: Cookbook
   - title: Glossary
+  - title: Extensions
 
 releases:
   - 3.0.0
