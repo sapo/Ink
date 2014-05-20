@@ -49,11 +49,8 @@
 
     &[disabled]{
         background: lighten($grey-15,5%);
-        border: none;
-        &:hover {
-            border: none;
-            @include box-shadow(none);
-        }
+        border: 1px solid lighten($grey-15,5%);
+        &:hover { @include box-shadow(none); }
     }
     
     &.blue      { @include ink-button($blue, $white); }
@@ -68,6 +65,14 @@
 .button-group {
 
     & > .#{$button-class-name}  {
+
+        &[disabled]{
+            background: lighten($grey-15,5%);
+            border: 1px solid transparentize($grey-15,.4);
+            &:hover {
+                @include box-shadow(none);
+            }
+        }
 
         &.blue      { @include button-group($blue);}
         &.green     { @include button-group($green);}
