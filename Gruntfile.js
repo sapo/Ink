@@ -380,8 +380,18 @@ module.exports = function (grunt) {
               {expand: true, cwd: "dist/", src: ['**'], dest: '/ink-<%= pkg.version %>'} // includes files in path and its subdirs
             ]
           }
-        }
+        },
 
+        bump : {
+            options: {
+                files: [ 'bower.json', 'package.json', '<%= ink.folders.js.src %>/1/lib.js'],
+                push: false,
+                commit: false,
+                tagName: '%VERSION%',
+                createTag: false,
+                commitFiles: []
+            }    
+        }
     });
 
     grunt.registerTask('js', ['clean:js', 'concat', 'uglify']);
