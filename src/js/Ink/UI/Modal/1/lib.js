@@ -29,7 +29,6 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
      * @param {Boolean}             [options.closeOnClick]          Flag to close the modal when clicking outside of it.
      * @param {Boolean}             [options.closeOnEscape]         Determines if the Modal should close when "Esc" key is pressed. Defaults to true.
      * @param {Boolean}             [options.responsive]            Determines if the Modal should behave responsively (adapt to smaller viewports).
-     * @param {Boolean}             [options.disableScroll]         Determines if the Modal should 'disable' the page's scroll (not the Modal's body).
      * @param {String}              [options.triggerEvent]          (advanced) Trigger's event to be listened. Defaults to 'click'.
      *
      * @sample Ink_UI_Modal_1.html
@@ -81,8 +80,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             onDismiss:    undefined,
             closeOnClick: false,
             closeOnEscape: true,
-            responsive:    true,
-            disableScroll: true
+            responsive:    true
         };
 
 
@@ -293,8 +291,6 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
          * @private
          */
         _resizeContainer: function() {
-            // [3.0.0] drop this because everyone should have the new CSS now, which has this rule already with .ink-modal-is-open.
-            this._contentElement.style.overflow = this._contentElement.style.overflowX = this._contentElement.style.overflowY = 'hidden';
             var containerHeight = InkElement.elementHeight(this._modalDiv);
 
             this._modalHeader = Selector.select('.modal-header',this._modalDiv)[0];
@@ -313,23 +309,6 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             }
 
             if( this._markupMode ){ return; }
-
-            this._contentContainer.style.overflow = this._contentContainer.style.overflowX = 'hidden';
-            this._contentContainer.style.overflowY = 'auto';
-            this._contentElement.style.overflow = this._contentElement.style.overflowX = this._contentElement.style.overflowY = 'visible';
-        },
-
-        /**
-         * Responsible for 'disabling' the page scroll
-         * 
-         * @method _disableScroll
-         * @private
-         */
-        _disableScroll: function() {
-            var htmlEl = document.documentElement;
-            this._oldHtmlOverflows = [ htmlEl.style.overflowX,
-                htmlEl.style.overflowY ];
-            htmlEl.style.overflowX = htmlEl.style.overflowY = 'hidden';
         },
 
         /**************
@@ -418,10 +397,6 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                 this._options.onShow(this);
             }
 
-            if(this._options.disableScroll.toString() === 'true') {
-                this._disableScroll();
-            }
-
             // subscribe events
             Event.observe(this._shadeElement, 'click', this._handlers.click);
             if (this._options.closeOnEscape.toString() === 'true') {
@@ -433,7 +408,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             this._wasDismissed = false;
             openModals.push(this);
 
-            Css.addClassName(document.documentElement, 'ink-modal-is-open');
+            Css.addClassName(document.documentElement, 'ink-modal-open');
         },
 
         /**
@@ -475,14 +450,8 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             if (openModals.length === 0) {  // Document level stuff now there are no modals in play.
                 var htmlEl = document.documentElement;
 
-                // Reenable scroll
-                if(this._options.disableScroll) {
-                    htmlEl.style.overflowX = this._oldHtmlOverflows[0];
-                    htmlEl.style.overflowY = this._oldHtmlOverflows[1];
-                }
-
                 // Remove the class from the HTML element.
-                Css.removeClassName(htmlEl, 'ink-modal-is-open');
+                Css.removeClassName(htmlEl, 'ink-modal-open');
             }
         },
 
