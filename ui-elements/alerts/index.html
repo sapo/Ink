@@ -66,32 +66,32 @@ site_root: ../../
     <p>Basic alerts are useful for simple interaction with the user, such as showing a state on a web application or giving a warning on a form.</p>
 
 {% highlight html %}
-<div class="ink-alert basic">
+<div class="ink-alert basic" role="alert">
     <button class="ink-dismiss">&times;</button>
     <p><b>Warning:</b> There's a warning for you</p>
 </div>{% endhighlight %}
 
     <div class="column-group horizontal-gutters">
         <div class="all-50 small-100 tiny-100">
-            <div class="ink-alert basic">
+            <div class="ink-alert basic" role="alert">
                 <button class="ink-dismiss">&times;</button>
                 <p><b>Warning:</b> There's a warning for you</p>
             </div>
         </div>
         <div class="all-50 small-100 tiny-100">
-            <div class="ink-alert basic success">
+            <div class="ink-alert basic success" role="alert">
                 <button class="ink-dismiss">&times;</button>
                 <p><b>Done:</b> Process completed successfully</p>
             </div>
         </div>
         <div class="all-50 small-100 tiny-100">
-            <div class="ink-alert basic info">
+            <div class="ink-alert basic info" role="alert">
                 <button class="ink-dismiss">&times;</button>
                 <p><b>Note:</b> You have 5 minutes to leave, before self-destruction</p>
             </div>
         </div>
         <div class="all-50 small-100 tiny-100">
-            <div class="ink-alert basic error">
+            <div class="ink-alert basic error" role="alert">
                 <button class="ink-dismiss">&times;</button>
                 <p><b>Error:</b> The system has failed</p>
             </div>
@@ -116,29 +116,29 @@ site_root: ../../
     <p>Block alerts are ideal for messages that require further explanation, since they're comprised of a title.</p>
 
 {% highlight html %}
-<div class="ink-alert block">
+<div class="ink-alert block" role="alert">
     <button class="ink-dismiss">&times;</button>
     <h4>System maintenance scheduled</h4>
     <p>Please note that, due to a platypus invasion on our datacenter early last morning, the servers will have to undergo a maintenance cleaning today at 23:00 GMT.</p>
 </div>{% endhighlight %}
 
-        <div class="ink-alert block">
+        <div class="ink-alert block" role="alert">
             <button class="ink-dismiss">&times;</button>
             <h4>System maintenance scheduled</h4>
             <p>Please note that, due to a platypus invasion on our datacenter early last morning, the servers will have to undergo a maintenance cleaning today at 23:00 GMT.</p>
         </div>
-        <div class="ink-alert block success">
+        <div class="ink-alert block success" role="alert">
             <button class="ink-dismiss">&times;</button>
             <h4>Thank you for buying!</h4>
             <p>Your payment has been received and your plutonium will be shipped shortly. Check your e-mail for tracking information.</p>
         </div>
 
-        <div class="ink-alert block info">
+        <div class="ink-alert block info" role="alert">
             <button class="ink-dismiss">&times;</button>
             <h4>Additional info</h4>
             <p>A ring of weapons-grade 99.96% pure electrorefined plutonium is enough for one bomb core.</p>
         </div>
-        <div class="ink-alert block error">
+        <div class="ink-alert block error" role="alert">
             <button class="ink-dismiss">&times;</button>
             <h4>System is down</h4>
             <ul>
