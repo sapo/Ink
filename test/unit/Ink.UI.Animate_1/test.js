@@ -94,6 +94,13 @@ Ink.requireModules(['Ink.Dom.Element_1', 'Ink.Dom.Css_1', 'Ink.UI.Animate_1', 'I
         return;
     }
 
+    test('(regression) Can take only two arguments, the element and animation name.', function () {
+        var el = InkElement.create('div');
+        Animate.animate(el, 'fadeIn');
+        ok(Css.hasClassName(el, 'fadeIn'));
+        ok(Css.hasClassName(el, 'animated'));
+    });
+
     test('adds the "animated" class together with the animation name', function () {
         var el = InkElement.create('div');
         Animate.animate(el, 'fadeIn', { duration: 100 });

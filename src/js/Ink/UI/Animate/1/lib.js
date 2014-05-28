@@ -111,6 +111,8 @@ Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'In
 
             if (typeof options === 'number' || typeof options === 'string') {
                 options = { duration: options };
+            } else if (!options) {
+                options = {};
             }
 
             if (typeof arguments[3] === 'function') {
