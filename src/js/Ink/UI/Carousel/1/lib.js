@@ -40,66 +40,68 @@ Ink.createModule('Ink.UI.Carousel', '1',
      *
      * @sample Ink_UI_Carousel_1.html
      */
-    var Carousel = function(selector, options) {
-        this._handlers = {
-            paginationChange: Ink.bindMethod(this, '_onPaginationChange'),
-            windowResize:     InkEvent.throttle(Ink.bindMethod(this, 'refit'), 200)
-        };
+    function Carousel() {
+        Common.BaseUIComponent.apply(this, arguments);
+    }
 
-        InkEvent.observe(window, 'resize', this._handlers.windowResize);
+    Carousel._name = 'Carousel_1';
 
-        var element = this._element = Common.elOrSelector(selector, '1st argument');
-
-        var opts = this._options = Common.options({
-            autoAdvance:    ['Integer', 0],
-            axis:           ['String', 'x'],
-            initialPage:    ['Integer', 0],
-            spaceAfterLastSlide: ['Boolean', true],
-            hideLast:       ['Boolean', false],
-            center:         ['Boolean', false],
-            keyboardSupport:['Boolean', false],
-            pagination:     ['String', null],
-            onChange:       ['Function', null],
-            onInit:         ['Function', function () {}],
-            swipe:          ['Boolean', true]
-            // TODO exponential swipe
-            // TODO specify break point for next page when moving finger
-        }, options || {}, element, this);
-
-        this._isY = (opts.axis === 'y');
-
-        var ulEl = Ink.s('ul.stage', element);
-        this._ulEl = ulEl;
-
-        InkElement.removeTextNodeChildren(ulEl);
-
-        if (this._options.pagination == null) {
-            this._currentPage = this._options.initialPage;
-        }
-
-        this.refit(); // recalculate this._numPages
-
-        if (this._isY) {
-            // Override white-space: no-wrap which is only necessary to make sure horizontal stuff stays horizontal, but breaks stuff intended to be vertical.
-            this._ulEl.style.whiteSpace = 'normal';
-        }
-
-        if (opts.swipe) {
-            InkEvent.observe(element, 'touchstart', Ink.bindMethod(this, '_onTouchStart'));
-            InkEvent.observe(element, 'touchmove', Ink.bindMethod(this, '_onTouchMove'));
-            InkEvent.observe(element, 'touchend', Ink.bindMethod(this, '_onTouchEnd'));
-        }
-
-        this._setUpPagination();
-        this._setUpAutoAdvance();
-        this._setUpHider();
-
-        this._options.onInit.call(this, this);
-
-        Common.registerInstance(this, this._element);
+    Carousel._optionDefinition = {
+        autoAdvance:    ['Integer', 0],
+        axis:           ['String', 'x'],
+        initialPage:    ['Integer', 0],
+        spaceAfterLastSlide: ['Boolean', true],
+        hideLast:       ['Boolean', false],
+        center:         ['Boolean', false],
+        keyboardSupport:['Boolean', false],
+        pagination:     ['String', null],
+        onChange:       ['Function', null],
+        onInit:         ['Function', function () {}],
+        swipe:          ['Boolean', true]
+        // TODO exponential swipe
+        // TODO specify break point for next page when moving finger
     };
 
     Carousel.prototype = {
+        _init: function () {
+            this._handlers = {
+                paginationChange: Ink.bindMethod(this, '_onPaginationChange'),
+                windowResize:     InkEvent.throttle(Ink.bindMethod(this, 'refit'), 200)
+            };
+
+            InkEvent.observe(window, 'resize', this._handlers.windowResize);
+
+            this._isY = (this._options.axis === 'y');
+
+            var ulEl = Ink.s('ul.stage', this._element);
+            this._ulEl = ulEl;
+
+            InkElement.removeTextNodeChildren(ulEl);
+
+            if (this._options.pagination == null) {
+                this._currentPage = this._options.initialPage;
+            }
+
+            this.refit(); // recalculate this._numPages
+
+            if (this._isY) {
+                // Override white-space: no-wrap which is only necessary to make sure horizontal stuff stays horizontal, but breaks stuff intended to be vertical.
+                this._ulEl.style.whiteSpace = 'normal';
+            }
+
+            if (this._options.swipe) {
+                InkEvent.observe(this._element, 'touchstart', Ink.bindMethod(this, '_onTouchStart'));
+                InkEvent.observe(this._element, 'touchmove', Ink.bindMethod(this, '_onTouchMove'));
+                InkEvent.observe(this._element, 'touchend', Ink.bindMethod(this, '_onTouchEnd'));
+            }
+
+            this._setUpPagination();
+            this._setUpAutoAdvance();
+            this._setUpHider();
+
+            this._options.onInit.call(this, this);
+        },
+
         /**
          * Repositions elements around.
          * Measure the carousel once again, adjusting the involved elements' sizes. This is called automatically when the window resizes, in order to cater for changes from responsive media queries, for instance.
@@ -472,6 +474,8 @@ Ink.createModule('Ink.UI.Carousel', '1',
         el.style.mozTransitionProperty =
         el.style.webkitTransitionProperty = newTransition;
     }
+
+    Common.createUIComponent(Carousel);
 
     return Carousel;
 

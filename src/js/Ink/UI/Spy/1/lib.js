@@ -119,26 +119,15 @@ Ink.createModule('Ink.UI.Spy', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Do
      *
      * @sample Ink_UI_Spy_1.html
      */
-    var Spy = function( selector, options ){
+    function Spy(){
+        Common.BaseUIComponent.apply(this, arguments);
+    }
 
-        this._element = Common.elOrSelector( selector, 'Ink.UI.Spy_1: Section element' );
+    Spy._name = 'Spy_1';
 
-        /**
-         * Setting default options and - if needed - overriding it with the data attributes
-         */
-        this._options = Ink.extendObj({
-            target: undefined,
-            activeClass: 'active' // [todo] Spy#_options.activeClass
-        }, Element.data( this._element ) );
-
-        /**
-         * In case options have been defined when creating the instance, they've precedence
-         */
-        this._options = Ink.extendObj(this._options,options || {});
-
-        this._options.target = Common.elOrSelector( this._options.target, 'Ink.UI.Spy_1: Target element' );
-
-        this._init();
+    Spy._optionDefinition = {
+        target: ['Element', undefined],
+        activeClass: ['String', 'active'] // [todo] Spy#_options.activeClass
     };
 
     Spy.prototype = {
@@ -152,10 +141,10 @@ Ink.createModule('Ink.UI.Spy', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Do
             addSpied(this._element, this._options.target);
             observeOnScroll();
             onScroll();
-
-            Common.registerInstance(this, this._element);
         }
     };
+
+    Common.createUIComponent(Spy);
 
     return Spy;
 

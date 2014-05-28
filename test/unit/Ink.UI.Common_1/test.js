@@ -1,5 +1,3 @@
-
-
 Ink.requireModules(['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1', 'Ink.Dom.Browser_1'], function (Common, InkEvent, InkElement, Selector, Browser) {
     'use strict';
 
@@ -16,11 +14,11 @@ Ink.requireModules(['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1', '
 
     var elm, inst;
     module('UI module registry', {
-        setup: function () { elm = InkElement.create('div'); inst = {} },
+        setup: function () { elm = InkElement.create('div'); inst = {}; },
     });
     test('registerInstance adds data-instance attributes to elements to find them later', function () {
         Common.registerInstance(inst, elm);
-        ok(elm.getAttribute('data-instance'))
+        ok(elm.getAttribute('data-instance'));
     });
 
     test('Holds instances, can retrieve them', function () {
@@ -46,7 +44,7 @@ Ink.requireModules(['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1', '
         Common.registerInstance(inst, elm);
         ok(Common._warnDoubleInstantiation.calledOnce);
         deepEqual(Common._warnDoubleInstantiation.lastCall.args[0], elm);
-    }))
+    }));
 
     test('_warnDoubleInstantiation calls Ink.warn if not the first module of the same type to be initialized', sinon.test(function () {
         function SomeConstructor() {}
@@ -60,7 +58,7 @@ Ink.requireModules(['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1', '
         Common.registerInstance(inst, elm);
         Common._warnDoubleInstantiation(elm, inst);
         ok(Ink.warn.called, 'Ink.warn was called');
-    }))
+    }));
 
     module('elsOrSelector()');
 
@@ -273,5 +271,168 @@ Ink.requireModules(['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1', '
             });
         }, /fieldIdTheMostWeirdArgumentNameEVER/);
     });
+
+    var testFunc;
+    module('createUIComponent', {
+        setup: function () {
+            testFunc = function testFunc () {
+                Common.BaseUIComponent.apply(this, arguments);
+            }
+
+            testFunc._name = 'TestModule_1';
+            testFunc._optionDefinition = {};
+        }
+    })
+
+    function throwsWithArgument(argument) {
+        throws(function () { Common.createUIComponent(argument) })
+    }
+
+    test('Fails on null/undefined constructors', function () {
+        throwsWithArgument(null);
+        throwsWithArgument(undefined);
+        throwsWithArgument('');
+    });
+    test('Fails on constructors without required properties', function () {
+        Common.createUIComponent(testFunc);
+        delete testFunc._name;
+        delete testFunc._optionDefinition;
+        throwsWithArgument(testFunc);
+    });
+    test('Makes the module inherit BaseUIComponent', function () {
+        Common.createUIComponent(testFunc)
+        ok((new testFunc(document.createElement('div'))) instanceof Common.BaseUIComponent);
+    });
+    test('Doesn\'t hurt existing prototype', function () {
+        testFunc.prototype.foobarbaz = 'foobarbaz'
+        Common.createUIComponent(testFunc);
+        equal(testFunc.prototype.foobarbaz, 'foobarbaz');
+    });
+
+    var testEl;
+    var testOpts;
+
+    module('BaseUIComponent', {
+        setup: function () {
+            testFunc = function TestFunc () {
+                Common.BaseUIComponent.apply(this, arguments);
+            };
+
+            testFunc.prototype._init = function () {};
+            testFunc._name = 'TestModule_1';
+            testFunc._optionDefinition = {
+                foo: ['String', null]
+            };
+
+            testEl = document.createElement('div');
+            testOpts = { foo: 'bar' };
+
+            Common.createUIComponent(testFunc);
+        }
+    });
+
+    test('its constructor: calls _init, populates _options and _element', sinon.test(function () {
+        this.stub(testFunc.prototype, '_init');
+        var instance = new testFunc(testEl, testOpts);
+        equal(testFunc.prototype._init.calledOnce, true, '_init was called');
+        ok(testFunc.prototype._init.calledOn(instance), '_init was called on the instance');
+
+        deepEqual(instance._options, testOpts, 'options were created upon the instance');
+        strictEqual(instance._element, testEl, 'element was passed');
+    }));
+
+    test('its constructor: (regression) calls Ink.error() when selector finds nothing', sinon.test(function () {
+        this.stub(Common, 'elsOrSelector').returns([])
+        this.stub(Ink, 'error');
+
+        var instance = new testFunc(testEl, testOpts);
+
+        ok(Ink.error.called);
+    }))
+
+    test('its constructor: calls BaseUIComponent._validateInstance', sinon.test(function () {
+        this.stub(Common.BaseUIComponent, '_validateInstance');
+
+        var instance = new testFunc(testEl, testOpts);
+
+        ok(Common.BaseUIComponent._validateInstance.calledOnce);
+        ok(Common.BaseUIComponent._validateInstance.calledWith(instance));
+    }));
+
+    test('its constructor: calls Common.registerInstance', sinon.test(function () {
+        this.stub(Common, 'registerInstance');
+
+        var instance = new testFunc(testEl, testOpts);
+
+        ok(Common.registerInstance.calledOnce);
+        ok(Common.registerInstance.calledWith(instance, testEl));
+    }));
+
+    test('its constructor: if BaseUIComponent._validateInstance returns false, stubs the instance by calling BaseUIComponent._stubInstance', sinon.test(function () {
+        this.stub(Common.BaseUIComponent, '_stubInstance');
+        var stub = this.stub(Common.BaseUIComponent, '_validateInstance');
+        stub.returns(true);
+
+        equal(Common.BaseUIComponent._validateInstance(), true, 'sanity check');
+
+        new testFunc(testEl, testOpts);
+        equal(Common.BaseUIComponent._stubInstance.callCount, 0);
+
+        stub.returns(false);
+        equal(Common.BaseUIComponent._validateInstance(), false, 'sanity check');
+
+        var inst = new testFunc(testEl, testOpts);
+
+        equal(Common.BaseUIComponent._stubInstance.callCount, 1, '_stubInstance was called once');
+        equal(Common.BaseUIComponent._stubInstance.calledWith(inst), true, '... with the instance');
+    }));
+
+    test('_validateInstance calls the instance\'s _validate() method, returns false if it returnsor throws an error', function () {
+        var _validateInstance = Ink.bindMethod(Common.BaseUIComponent, '_validateInstance');
+        var mockInstance = {}
+
+        mockInstance._validate = sinon.stub().returns(undefined) 
+        equal(
+            _validateInstance(mockInstance, testFunc, 'TestFunc_1'),
+            true,
+            'validate returned non-error');
+
+        mockInstance._validate = sinon.stub().returns(new Error);
+        equal(
+            _validateInstance(mockInstance, testFunc, 'TestFunc_1'),
+            false,
+            '_validate() returned an error');
+
+        mockInstance._validate = sinon.stub().throws(new Error('Oops! I threw it again!'));
+        equal(
+            _validateInstance(mockInstance, testFunc, 'TestFunc_1'),
+            false,
+            '_validate() threw an error');
+    });
+
+    test('_stubInstance Replaces instance\'s functions with stubs which do nothing other than call Ink.warn', sinon.test(function () {
+        var _stubInstance = Ink.bindMethod(Common.BaseUIComponent, '_stubInstance');
+
+        var fooMeth = sinon.stub();
+        var mockInstance = { 'foo': fooMeth }
+
+        sinon.stub(Ink, 'warn');
+        _stubInstance(mockInstance, { prototype: { foo: function () {} } }, 'THE_NAME')
+        ok(Ink.warn.calledWith(sinon.match('THE_NAME')))
+
+        notStrictEqual(mockInstance.foo, fooMeth);
+
+        mockInstance.foo();
+        ok(Ink.warn.calledTwice);
+    }));
+
+    var baseUIProto = Common.BaseUIComponent.prototype;
+    test('#getOption and #getElement', function() {
+        var inst = new testFunc(testEl, { foo: 'qux' });
+
+        strictEqual(inst.getOption('foo'), 'qux');
+        strictEqual(inst.getElement(), testEl);
+    });
+
 });
 

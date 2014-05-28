@@ -27,17 +27,6 @@ Ink.requireModules(['Ink.UI.Toggle_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1', 'In
         });
     }
     
-    bagTest('option "target" is required', function (bag) {
-        throws(function () {
-            new Toggle(Ink.s('.trigger'), { target: '.resultless-selector' });
-        });
-        throws(function () {
-            new Toggle(Ink.s('.trigger'), { target: null });
-        });
-        // doesn't throw:
-        new Toggle(Ink.s('.trigger'), { target: '.target-1' });
-    });
-
     bagTest('initialState, when defined, controls the state the toggle shows up on', function (_, trigger, targets) {
         equal(
             new Toggle(trigger, { initialState: true, target: targets })

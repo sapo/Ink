@@ -37,26 +37,22 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
      *
      * @sample Ink_UI_Tabs_1.html
      */
-    var Tabs = function(selector, options) {
-        this._element = Common.elOrSelector(selector, 'Ink.UI.Tabs tab container');
+    function Tabs() {
+        Common.BaseUIComponent.apply(this, arguments);
+    }
 
-        this._options = Common.options({
-            preventUrlChange:   ['Boolean', false],
-            active:             ['String', undefined],
-            disabled:           ['Object', []],
-            onBeforeChange:     ['Function', undefined],
-            onChange:           ['Function', undefined],
-            menuSelector:       ['String', '.tabs-nav'],
-            contentSelector:    ['String', '.tabs-content'],
-            tabSelector:        ['String', '.tabs-tab'],
-            triggerEventsOnLoad:['Boolean', true]
-        }, options || {}, this._element, 'Ink.UI.Tabs_1');
+    Tabs._name = 'Tabs_1';
 
-        this._handlers = {
-            resize: Ink.bindEvent(Event.throttle(this._onResize, 100),this)
-        };
-
-        this._init();
+    Tabs._optionDefinition = {
+        preventUrlChange:   ['Boolean', false],
+        active:             ['String', undefined],
+        disabled:           ['Object', []],
+        onBeforeChange:     ['Function', undefined],
+        onChange:           ['Function', undefined],
+        menuSelector:       ['String', '.tabs-nav'],
+        contentSelector:    ['String', '.tabs-content'],
+        tabSelector:        ['String', '.tabs-tab'],
+        triggerEventsOnLoad:['Boolean', true]
     };
 
     Tabs.prototype = {
@@ -68,7 +64,12 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          * @private
          */
         _init: function() {
+            this._handlers = {
+                resize: Ink.bindEvent(Event.throttle(this._onResize, 100),this)
+            };
+
             this._menu = Selector.select(this._options.menuSelector, this._element)[0];
+
             if (!this._menu) {
                 Ink.warn('Ink.UI.Tabs: An element selected by ".tabs-nav" needs to exist inside the element!');
                 return;
@@ -84,8 +85,6 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
             this._setFirstActive();
 
             this._handlers.resize();
-
-            Common.registerInstance(this, this._element, 'Tabs');
         },
 
         /**
@@ -418,6 +417,8 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          */
         destroy: Common.destroyComponent
     };
+
+    Common.createUIComponent(Tabs);
 
     return Tabs;
 

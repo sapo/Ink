@@ -45,131 +45,118 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
 
     var openModals = [];
 
-    var Modal = function(selector, options) {
-        if (!selector) {
-            this._element = null;
-        } else {
-            this._element = Common.elOrSelector(selector, 'Ink.UI.Modal markup');
-        }
+    function Modal() {
+        Common.BaseUIComponent.apply(this, arguments);
+    }
 
-        this._options = {
-            /**
-             * Width, height and markup really optional, as they can be obtained by the element
-             */
-            width:        undefined,
-            height:       undefined,
+    Modal._name = 'Modal_1';
 
-            /**
-             * To add extra classes
-             */
-            shadeClass: undefined,
-            modalClass: undefined,
-
-            /**
-             * Optional trigger properties
-             */
-            trigger:      undefined,
-            triggerEvent: 'click',
-            autoDisplay:  true,
-
-            /**
-             * Remaining options
-             */
-            markup:       undefined,
-            onShow:       undefined,
-            onDismiss:    undefined,
-            closeOnClick: false,
-            closeOnEscape: true,
-            responsive:    true
-        };
-
-
-        this._handlers = {
-            click:   Ink.bindEvent(this._onShadeClick, this),
-            keyDown: Ink.bindEvent(this._onKeyDown, this),
-            resize:  Ink.bindEvent(this._onResize, this)
-        };
-
-        this._wasDismissed = false;
+    Modal._optionDefinition = {
+        /**
+         * Width, height and markup really optional, as they can be obtained by the element
+         */
+        width:        ['Number', undefined],
+        height:       ['Number', undefined],
 
         /**
-         * Modal Markup
+         * To add extra classes
          */
-        if( this._element ){
-            this._markupMode = Css.hasClassName(this._element,'ink-modal'); // Check if the full modal comes from the markup
-        } else {
-            this._markupMode = false;
-        }
-
-        if( !this._markupMode ){
-            this._modalShadow      = document.createElement('div');
-            this._modalShadowStyle = this._modalShadow.style;
-
-            this._modalDiv         = document.createElement('div');
-            this._modalDivStyle    = this._modalDiv.style;
-
-            if( !!this._element ){
-                this._options.markup = this._element.innerHTML;
-            }
-
-            /**
-             * Not in full markup mode, let's set the classes and css configurations
-             */
-            Css.addClassName( this._modalShadow,'ink-shade' );
-            Css.addClassName( this._modalDiv,'ink-modal ink-space' );
-
-            /**
-             * Applying the main css styles
-             */
-            // this._modalDivStyle.position = 'absolute';
-            this._modalShadow.appendChild( this._modalDiv);
-            document.body.appendChild( this._modalShadow );
-        } else {
-            this._modalDiv         = this._element;
-            this._modalDivStyle    = this._modalDiv.style;
-            this._modalShadow      = this._modalDiv.parentNode;
-            this._modalShadowStyle = this._modalShadow.style;
-
-            this._contentContainer = Selector.select(".modal-body", this._modalDiv)[0];
-            if( !this._contentContainer){
-                throw new Error('Ink.UI.Modal: Missing div with class "modal-body"');
-            }
-
-            this._options.markup = this._contentContainer.innerHTML;
-
-            /**
-             * First, will handle the least important: The dataset
-             */
-            this._options = Ink.extendObj(this._options,InkElement.data(this._element));
-
-        }
+        shadeClass:   ['String', undefined],
+        modalClass:   ['String', undefined],
 
         /**
-         * Now, the most important, the initialization options
+         * Optional trigger properties
          */
-        this._options = Ink.extendObj(this._options,options || {});
+        trigger:      ['String', undefined],
+        triggerEvent: ['String', 'click'],
+        autoDisplay:  ['Boolean', true],
 
-        if( !this._markupMode ){
-            this.setContentMarkup(this._options.markup);
-        }
-
-        if( typeof this._options.shadeClass === 'string' ){
-            Css.addClassName(this._modalShadow, this._options.shadeClass);
-        }
-
-        if( typeof this._options.modalClass === 'string' ){
-            Css.addClassName(this._modalDiv, this._options.modalClass);
-        }
-
-        if( this._options.trigger ) {
-            var triggerElements = Common.elsOrSelector(this._options.trigger, '');
-            Event.observeMulti(triggerElements, this._options.triggerEvent, Ink.bindEvent(this.open, this));
-        } else if ( this._options.autoDisplay.toString() === "true" ) {
-            this.open();
-        }
+        /**
+         * Remaining options
+         */
+        markup:       ['String', undefined],
+        onShow:       ['Function', undefined],
+        onDismiss:    ['Function', undefined],
+        closeOnClick: ['Boolean', false],
+        closeOnEscape: ['Boolean', true],
+        responsive:    ['Boolean', true]
     };
 
     Modal.prototype = {
+        _init: function () {
+            this._handlers = {
+                click:   Ink.bindEvent(this._onShadeClick, this),
+                keyDown: Ink.bindEvent(this._onKeyDown, this),
+                resize:  Ink.bindEvent(this._onResize, this)
+            };
+
+            this._wasDismissed = false;
+
+            /**
+             * Modal Markup
+             */
+            if( this._element ){
+                this._markupMode = Css.hasClassName(this._element,'ink-modal'); // Check if the full modal comes from the markup
+            } else {
+                this._markupMode = false;
+            }
+
+            if( !this._markupMode ){
+                this._modalShadow      = document.createElement('div');
+                this._modalShadowStyle = this._modalShadow.style;
+
+                this._modalDiv         = document.createElement('div');
+                this._modalDivStyle    = this._modalDiv.style;
+
+                if( !!this._element ){
+                    this._options.markup = this._element.innerHTML;
+                }
+
+                /**
+                 * Not in full markup mode, let's set the classes and css configurations
+                 */
+                Css.addClassName( this._modalShadow,'ink-shade' );
+                Css.addClassName( this._modalDiv,'ink-modal ink-space' );
+
+                /**
+                 * Applying the main css styles
+                 */
+                // this._modalDivStyle.position = 'absolute';
+                this._modalShadow.appendChild( this._modalDiv);
+                document.body.appendChild( this._modalShadow );
+            } else {
+                this._modalDiv         = this._element;
+                this._modalDivStyle    = this._modalDiv.style;
+                this._modalShadow      = this._modalDiv.parentNode;
+                this._modalShadowStyle = this._modalShadow.style;
+
+                this._contentContainer = Selector.select(".modal-body", this._modalDiv)[0];
+                if( !this._contentContainer){
+                    throw new Error('Ink.UI.Modal: Missing div with class "modal-body"');
+                }
+
+                this._options.markup = this._contentContainer.innerHTML;
+            }
+
+            if( !this._markupMode ){
+                this.setContentMarkup(this._options.markup);
+            }
+
+            if( typeof this._options.shadeClass === 'string' ){
+                Css.addClassName(this._modalShadow, this._options.shadeClass);
+            }
+
+            if( typeof this._options.modalClass === 'string' ){
+                Css.addClassName(this._modalDiv, this._options.modalClass);
+            }
+
+            if( this._options.trigger ) {
+                var triggerElements = Common.elsOrSelector(this._options.trigger, '');
+                Event.observeMulti(triggerElements, this._options.triggerEvent, Ink.bindEvent(this.open, this));
+            } else if ( this._options.autoDisplay.toString() === "true" ) {
+                this.open();
+            }
+        },
 
         /**
          * Responsible for repositioning the modal
@@ -403,8 +390,6 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                 Event.observe(document, 'keydown', this._handlers.keyDown);
             }
 
-            Common.registerInstance(this, this._shadeElement, 'modal');
-
             this._wasDismissed = false;
             openModals.push(this);
 
@@ -544,6 +529,8 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
         }
 
     };
+
+    Common.createUIComponent(Modal, { elementIsOptional: true });
 
     return Modal;
 

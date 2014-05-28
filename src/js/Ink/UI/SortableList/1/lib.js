@@ -29,44 +29,26 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Css_1',
      *
      * @sample Ink_UI_SortableList_1.html
      */
-    var SortableList = function(selector, options) {
+    function SortableList() {
+        Common.BaseUIComponent.apply(this, arguments);
+    }
 
-        this._element = Common.elOrSelector(selector, 'Ink.UI.SortableList');
+    SortableList._name = 'SortableList_1';
 
-        this._options = Common.options('Sortable', {
-            'placeholderClass': ['String', 'placeholder'],
-            'draggedClass': ['String', 'hide-all'],
-            'draggingClass': ['String', 'dragging'],
-            'dragSelector': ['String', 'li'],
-            'dragObject': ['String', null], // Deprecated. Use handleSelector instead.
-            'handleSelector': ['String', null],
-            'moveSelector': ['String', false],
-            'swap': ['Boolean', false],
-            'cancelMouseOut': ['Boolean', false],
-            'onDrop': ['Function', function(){}]
-        }, options || {}, this._element);
-
-        if (this._options.dragObject != null) {
-            // [3.0.0] Remove this deprecation notice and stop providing backwards compatibility
-            Ink.warn('Ink.UI.SortableList: options.dragObject is now deprecated. ' +
-                    'Please use options.handleSelector instead.');
-            this._options.handleSelector =
-                this._options.handleSelector || this._options.dragObject;
-        }
-
-        this._handlers = {
-            down: Ink.bind(this._onDown, this),
-            move: Ink.bind(this._onMove, this),
-            up:   Ink.bind(this._onUp, this)
-        };
-
-        this._isMoving = false;
-
-        this._init();
+    SortableList._optionDefinition = {
+        'placeholderClass': ['String', 'placeholder'],
+        'draggedClass': ['String', 'hide-all'],
+        'draggingClass': ['String', 'dragging'],
+        'dragSelector': ['String', 'li'],
+        'dragObject': ['String', null], // Deprecated. Use handleSelector instead.
+        'handleSelector': ['String', null],
+        'moveSelector': ['String', false],
+        'swap': ['Boolean', false],
+        'cancelMouseOut': ['Boolean', false],
+        'onDrop': ['Function', function(){}]
     };
 
     SortableList.prototype = {
-
         /**
          * Init function called by the constructor.
          * 
@@ -74,12 +56,27 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Css_1',
          * @private
          */
         _init: function() {
+            if (this._options.dragObject != null) {
+                // [3.0.0] Remove this deprecation notice and stop providing backwards compatibility
+                Ink.warn('Ink.UI.SortableList: options.dragObject is now deprecated. ' +
+                        'Please use options.handleSelector instead.');
+                this._options.handleSelector =
+                    this._options.handleSelector || this._options.dragObject;
+            }
+
+            this._handlers = {
+                down: Ink.bind(this._onDown, this),
+                move: Ink.bind(this._onMove, this),
+                up:   Ink.bind(this._onUp, this)
+            };
+
+            this._isMoving = false;
+
             this._down = hasTouch ? 'touchstart mousedown' : 'mousedown';
             this._move = hasTouch ? 'touchmove mousemove' : 'mousemove';
             this._up   = hasTouch ? 'touchend mouseup' : 'mouseup';
 
             this._observe();
-            Common.registerInstance(this, this._element, 'sortableList');
         },
 
         /**
@@ -247,6 +244,8 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Css_1',
         }
 
     };
+
+    Common.createUIComponent(SortableList);
 
     return SortableList;
 });

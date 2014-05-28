@@ -283,7 +283,7 @@ test('set', function () {
 test('show', function () {
     equal(Css.getStyle(dt._containerObject, 'display'), 'none');
     dt.show();
-    equal(Css.getStyle(dt._containerObject, 'display'), 'inline-block');
+    equal(Css.getStyle(dt._containerObject, 'display'), 'block');
 });
 
 test('destroy', function () {
