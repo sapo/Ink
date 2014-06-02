@@ -6366,6 +6366,7 @@ img {
 .ink-button[disabled] {
   background: #e6e6e6;
   border: 1px solid #e6e6e6;
+  color: rgba(0, 0, 0, 0.6);
 }
 .ink-button[disabled]:hover {
   -webkit-box-shadow: none;
@@ -6389,6 +6390,7 @@ img {
 .ink-button.blue[disabled] {
   background: rgba(15, 117, 218, 0.6);
   border: 1px solid rgba(15, 117, 218, 0);
+  color: rgba(255, 255, 255, 0.6);
 }
 .ink-button.blue[disabled]:hover {
   -webkit-box-shadow: none;
@@ -6412,6 +6414,7 @@ img {
 .ink-button.green[disabled] {
   background: rgba(74, 155, 23, 0.6);
   border: 1px solid rgba(74, 155, 23, 0);
+  color: rgba(255, 255, 255, 0.6);
 }
 .ink-button.green[disabled]:hover {
   -webkit-box-shadow: none;
@@ -6435,6 +6438,7 @@ img {
 .ink-button.orange[disabled] {
   background: rgba(255, 156, 0, 0.6);
   border: 1px solid rgba(255, 156, 0, 0);
+  color: rgba(255, 255, 255, 0.6);
 }
 .ink-button.orange[disabled]:hover {
   -webkit-box-shadow: none;
@@ -6458,6 +6462,7 @@ img {
 .ink-button.red[disabled] {
   background: rgba(201, 17, 17, 0.6);
   border: 1px solid rgba(201, 17, 17, 0);
+  color: rgba(255, 255, 255, 0.6);
 }
 .ink-button.red[disabled]:hover {
   -webkit-box-shadow: none;
@@ -6481,6 +6486,7 @@ img {
 .ink-button.black[disabled] {
   background: rgba(26, 26, 26, 0.6);
   border: 1px solid rgba(26, 26, 26, 0);
+  color: rgba(255, 255, 255, 0.6);
 }
 .ink-button.black[disabled]:hover {
   -webkit-box-shadow: none;
@@ -6504,6 +6510,7 @@ img {
 .ink-button.white[disabled] {
   background: rgba(255, 255, 255, 0.6);
   border: 1px solid rgba(255, 255, 255, 0);
+  color: rgba(85, 85, 85, 0.6);
 }
 .ink-button.white[disabled]:hover {
   -webkit-box-shadow: none;
