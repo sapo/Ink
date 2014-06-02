@@ -6,8 +6,10 @@ site_root:  ../
 ---
     {{#if name~}}
         <section>
-        <h1 class="fw-300">{{~name~}}</h1>
     {{~/if~}}
+
+    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="{{site.url}}/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p>
+
     {{~> examples~}}
     {{~> samples~}}
     {{#if functions.length~}}

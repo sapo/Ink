@@ -1,7 +1,7 @@
 <section id="{{{hash}}}" class="box box-function">
-    <h1 class="fw-300">
+    <h1 class="fw-300 function-desc">
     {{~#if isConstructor~}}
-        {{~parent.name~}}
+        new {{parent.name~}}
     {{~else~}}
         {{~#ifvalue parent.kind value="class"~}}
             .{{~name~}}
@@ -11,7 +11,6 @@
     {{~/if~}}
     ({{#each params}}{{#if isFirstLevel}}{{#if @index}}, {{/if}}{{name}}{{/if}}{{/each}})
     {{#if isConstructor~}}
-        <i>constructor</i>
     {{~else~}}
         {{~#ifvalue parent.kind value="class"~}}
             <i>method</i>
@@ -20,18 +19,6 @@
         {{~/ifvalue~}}
     {{~/if~}}
     </h1>
-    {{~#if params}}
-    <ul class="props inline">
-        <li class="heading">Arguments:</li>
-        {{~#foreach params}}
-        {{~#if isFirstLevel~}}
-        <li class="prop{{#unless isOptional}} mandatory{{/unless}}">
-         {{name~}}
-        </li>
-        {{~/if~}}
-        {{~/foreach}}
-    </ul>
-    {{~/if}}
 
     {{~#if text~}}
         <p class="text">{{{stripP text}}}</p>
