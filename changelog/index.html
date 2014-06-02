@@ -7,11 +7,11 @@ site_root:  ../
 
 
 <section class="no-padding half-top-space">
-    <h1 class="fw-400">3.0.2</h3>
-    <p><time>16 - May - 2014</time></p>
+    <h1 class="fw-300">3.0.2</h3>
+    <p><time>May 16, 2014</time></p>
     <p class="clearfix">
-        <a href="{{site.download_url}}3.0.2/ink-3.0.2.zip" class="ink-button black">Download</a>
-        <a href="{{site.download_src_url}}3.0.2.zip" class="ink-button black">Download with source</a>
+        <a href="{{site.download_url}}{{site.version}}/ink-{{site.version}}.zip" class="ink-button black">Download</a>
+        <a href="{{site.download_src_url}}{{site.version}}.zip" class="ink-button black">Download with source</a>
     </p>
 
     <p><strong>Breaking changes</strong>:</p>
@@ -33,8 +33,8 @@ site_root:  ../
 
 
 <section>
-    <h1 class="fw-400">3.0.1</h3>
-    <p><time>15 - May - 2014</time></p>
+    <h1 class="fw-300">3.0.1</h3>
+    <p><time>May 15, 2014</time></p>
     <p class="clearfix">
         <a href="{{site.download_url}}3.0.1/ink-3.0.1.zip" class="ink-button black">Download</a>
         <a href="{{site.download_src_url}}3.0.1.zip" class="ink-button black">Download with source</a>
@@ -53,8 +53,8 @@ site_root:  ../
 </section>
 
 <section>
-    <h1 class="fw-400">3.0.0</h3>
-    <p><time>10 - April - 2014</time></p>
+    <h1 class="fw-300">3.0.0</h3>
+    <p><time>April 10, 2014</time></p>
     <p class="clearfix">
         <a href="{{site.download_url}}3.0.0/ink-3.0.0.zip" class="ink-button black">Download</a>
         <a href="{{site.download_src_url}}3.0.0.zip" class="ink-button black">Download with source</a>
@@ -81,8 +81,151 @@ site_root:  ../
 </section>
 
 <section>
+    <h1 class="fw-300">2.3.2</h3>
+    <p><time>April 2, 2014</time></p>
+    <p class="clearfix">
+        <a href="{{site.download_url}}2.3.2/ink-2.3.2.zip" class="ink-button black">Download</a>
+        <a href="{{site.download_src_url}}2.3.2.zip" class="ink-button black">Download with source</a>
+    </p>
+
+    <h2 class="fw-300">LESS/CSS</h2>
+
+<ul>
+    <li>Fixes backwards compatibility issues with older versions of the less compiler.</li>
+</ul>
+
+<h2 class="fw-300">JavaScript</h2>
+
+<h3 class="fw-300">UI</h3>
+
+<ul>
+    <li>Fixes erratic swipe behaviour in the Ink.UI.Carousel component on some devices.</li>
+</ul>
+
+</section>
+
+<section>
+    <h1 class="fw-300">2.3.1</h3>
+    <p><time>March 6, 2014</time></p>
+    <p class="clearfix">
+        <a href="{{site.download_url}}2.3.1/ink-2.3.1.zip" class="ink-button black">Download</a>
+        <a href="{{site.download_src_url}}2.3.1.zip" class="ink-button black">Download with source</a>
+    </p>
+
+    <h2 class="fw-300">LESS/CSS</h2>
+
+<ul>
+    <li>Fixes backwards compatibility issues with older versions of the less compiler.</li>
+</ul>
+
+<h2 class="fw-300">JavaScript</h2>
+
+<h3 class="fw-300">UI</h3>
+
+<ul>
+    <li>Fixes erratic swipe behaviour in the Ink.UI.Carousel component on some devices.</li>
+</ul>
+
+</section>
+
+<section>
+    <h1 class="fw-300">2.3.0</h3>
+    <p><time>March 3, 2014</time></p>
+
+    <p class="clearfix">
+        <a href="{{site.download_url}}2.3.0/ink-2.3.0.zip" class="ink-button black">Download</a>
+        <a href="{{site.download_src_url}}2.3.0.zip" class="ink-button black">Download with source</a>
+    </p>
+
+
+    <h2 class="fw-300">Global</h2>
+
+<ul>
+    <li>Drops the makefiles and unifies the dependency management and build process with grunt and bower.</li>
+    <li>Changes the repository structure. Source code is now kept under "src" and compiled/distributable code is kept in the "dist" folder.</li>
+</ul>
+
+<h2 class="fw-300">CSS</h2>
+
+<h3 class="fw-300">Layout</h3>
+
+<ul>
+    <li>Default ink-grid maximum width increased to 1400px.</li>
+    <li>Adds 2 breakpoints: "tiny" for screen widths below 320px and "extra-large" for screen widths over 1200px. The new breakpoints are disabled by default. To use them you'll need to edit src/less/grid.less and src/less/config/__grid.less and uncomment the code that creates the additional breakpoints.</li>
+    <li>Adds breakpoint dependent spacing and column horizontal alignment classes i.e. small-top-space, small-push-center.</li>
+    <li>Adds breakpoint dependent text alignment classes i.e. small-align-center.</li>
+    <li>Adds breakpoint dependent gutters i.e. small-gutters.</li>
+    <li>Adds "double" size variant for gutters and spacing class i.e. double-gutters.</li>
+</ul>
+<h3 class="fw-300">Typography</h3>
+
+<ul>
+    <li>Typography Removes overzealous typographic vertical spacing rules.</li>
+    <li>Bug fixes and improvements</li>
+    <li>Improves CSS selector specificity to avoid class name collisions in several components.</li>
+    <li>Several bug fixes.</li>
+</ul>
+<h2 class="fw-300">JavaScript</h2>
+
+<h3 class="fw-300">UI</h3>
+
+<ul>
+    <li>Adds UI Carousel component.</li>
+    <li>Improves UI Sticky component.</li>
+    <li>Improves UI DatePicker component.</li>
+    <li>Improves UI Common.options() component. enables UI modules to receive options of several types including Numbers, Booleans and Selectors (this improves most other components)</li>
+    <li>Renames Ink.UI.Aux to Ink.UI.Common.</li>
+    <li>Global fixes and changes</li>
+    <li>Core Event API change/addition. Integrated Bean ( https://github.com/fat/bean ) in the module. New methods on the API ( on, one, off, clone, fire ). Also created observeDelegated(element, eventName, selector, callback)</li>
+    <li>Ink.Dom.Element.create() can now call Ink.Dom.Event functions for quick creation and placement of elements: InkElement.create('div', { insertBottom: document.body });</li>
+    <li>Ink.Dom.Element.wrap() and unwrap.</li>
+    <li>Core Ajax</li>
+    <li>Formvalidator v1</li>
+    <li>Treeview</li>
+    <li>SortableList</li>
+    <li>Tagfield</li>
+    <li>Table</li>
+    <li>Modal</li>
+    <li>Sticky</li>
+    <li>Datepicker</li>
+    <li>Promoted Ink.Autoload to an Ink module. It now has the Autoload.run() function for running Autoload on dynamically generated content.</li>
+    <li>Core Bug fixes.</li>
+</ul>
+
+</section>
+
+<section>
+    <h1 class="fw-300">2.2.1</h3>
+    <p><time>September 25, 2013</time></p>
+
+    <p class="clearfix">
+        <a href="{{site.download_url}}2.2.1/ink-2.2.1.zip" class="ink-button black">Download</a>
+        <a href="{{site.download_src_url}}2.2.1.zip" class="ink-button black">Download with source</a>
+    </p>
+
+    <h2 class="fw-300">Repository</h2>
+    <ul>
+        <li>structural change: Ink.js Git submodule dropped, now Ink and Ink.js are the same repository</li>
+    </ul>
+
+    <h2 class="fw-300">Javascript</h2>
+    <ul>
+        <li>Ink.UI.Sticky bugfixes</li>
+        <li>Ink.UI.Draggables improved</li>
+        <li>Ink.Dom.Event improvements: throttle (limit the amount of times a function can be called) and observeMulti (attaches an event to a selector or array of elements).</li>
+        <li>Ink.UI.Toggle now toggles several elements at once, if the selector selects many elements.</li>
+    </ul>
+
+    <h2 class="fw-300">Global</h2>
+    <ul>
+        <li>HTML/CSS legacy IE fixes</li>
+        <li>Javascript minor bug fixes</li>
+    </ul>
+</section>
+
+<section>
     <h1 class="fw-300">2.2.0</h3>
-    <p><time>29 - July - 2013</time></p>
+    <p><time>July 29, 2013</time></p>
     <p>
         <a href="{{site.download_url}}2.2.0/ink-2.2.0.zip" class="ink-button black">Download</a>
         <a href="{{site.download_src_url}}2.2.0.zip" class="ink-button black">Download with source</a>
@@ -98,7 +241,7 @@ site_root:  ../
         <li>Solved layering issue with datepicker component.</li>
     </ul>
     <h2 class="fw-300">JavaScript</h2>
-    <ul>        
+    <ul>
         <li>Bug fixes in Ink.UI.Draggable and Ink.UI.Droppable</li>
         <li>Bug fixes in Ink.UI.Toggle</li>
         <li>Improvement in Ink.Dom.Loaded</li>
@@ -109,7 +252,7 @@ site_root:  ../
 
 <section>
     <h1 class="fw-300">2.1.1</h3>
-    <p><time>12 - July - 2013</time></p>
+    <p><time>July 12, 2013</time></p>
     <p>
         <a href="{{site.download_url}}2.1.1/ink-2.1.1.zip" class="ink-button black">Download</a>
         <a href="{{site.download_src_url}}2.1.1.zip" class="ink-button black">Download with source</a>
@@ -127,29 +270,29 @@ site_root:  ../
 <section>
     <h1 class="fw-300">2.1.0</h3>
     <p>
-        <time>5 - July - 2013</time>
+        <time>July 5, 2013</time>
     </p>
     <p>
         <a href="{{site.download_url}}2.1.0/ink-2.1.0.zip" class="ink-button black">Download</a>
         <a href="{{site.download_src_url}}2.1.0.zip" class="ink-button black">Download with source</a>
     </p>
     <h2 class="fw-300">Documentation</h2>
-    <ul>        
+    <ul>
         <li>Improved documentation and site layout.</li>
     </ul>
     <h2 class="fw-300">HTML/CSS</h2>
-    <ul>        
+    <ul>
         <li>Badges.</li>
         <li>Appended and prepended input fields.</li>
         <li>
-            Added more spacing and gutter size options. E. g. <code>.half-space</code>, <code>.quarter-space</code>, <code>top-space</code>, 
+            Added more spacing and gutter size options. E. g. <code>.half-space</code>, <code>.quarter-space</code>, <code>top-space</code>,
             <code>.bottom-space</code>, <code>.left-space</code>, <code>.right-space</code>, <code>.half-gutters</code>, <code>.horizontal-gutters</code> and much more.
         </li>
     </ul>
     <h2 class="fw-300">JavaScript</h2>
     <ul>
         <li>Added UI component Draggable.</li>
-        <li>Added UI component Droppable.</li>        
+        <li>Added UI component Droppable.</li>
     </ul>
 </section>
 
@@ -159,7 +302,9 @@ site_root:  ../
         <a href="{{site.download_url}}2.0.0/ink-2.0.0.zip" class="ink-button black">Download</a>
         <a href="{{site.download_src_url}}2.0.0.zip" class="ink-button black">Download with source</a>
     </p>
-    <h4>2013</h4>
+    <p>
+        <time>May 30, 2013</time>
+    </p>
     <h2 class="fw-300">Documentation</h2>
     <ul>
         <li>Improved documentation and better site layout.</li>
@@ -168,7 +313,7 @@ site_root:  ../
     <ul>
         <li>Layout component rewritten to use less markup and be easier to implement.</li>
         <li>Extensive new typography rules for better looking typesetting with little effort.</li>
-        <li>Added more flexibility to forms.</li>    
+        <li>Added more flexibility to forms.</li>
     </ul>
     <h2 class="fw-300">JavaScript</h2>
     <ul>
@@ -181,13 +326,13 @@ site_root:  ../
     </ul>
 </section>
 
-<section>
+<section class="bottom-space">
     <h1 class="fw-300">1.1.0</h3>
     <p>
         <a href="{{site.download_url}}1.1.0/ink-1.1.0.zip" class="ink-button black">Download</a>
         <a href="{{site.download_src_url}}1.1.0.zip" class="ink-button black">Download with source</a>
     </p>
-    <h4>15 - November - 2012</h4>
+    <p><time>November 15, 2012</time></p>
     <ul class="unstyled">
         <li>Ink launched at <a href="http://codebits.eu">Codebits</a>.</li>
         <li>Truly fluid layout.</li>

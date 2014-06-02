@@ -70,6 +70,16 @@
 <body>
 <div class="ink-grid vertical-space">
 
+    <!--[if lte IE 9 ]>
+    <div class="ink-alert basic" role="alert">
+        <button class="ink-dismiss">&times;</button>
+        <p>
+            <strong>You are using an outdated Internet Explorer version.</strong>
+            Please <a href="http://browsehappy.com/">upgrade to a modern browser</a> to improve your web experience.
+        </p>
+    </div>
+    -->
+
     <h1>Modal Gallery</h1>
 
     <div class="panel">
@@ -188,10 +198,10 @@
 
         <!-- MODAL -->
         <div class="ink-shade fade">
-            <div id="modal-window" class="ink-modal fade" data-trigger="#trigger-modal" data-width="95%" data-height="95%">
+            <div id="modal-window" class="ink-modal fade" data-trigger="#trigger-modal" data-width="95%" data-height="95%" role="dialog" aria-hidden="true" aria-labelled-by="modal-title">
                 <div class="modal-header">
                     <button class="modal-close ink-dismiss"></button>
-                    <h2>Use arrow left/right to navigate</h2>
+                    <h2 id="modal-title">Use arrow left/right to navigate</h2>
                 </div>
                 <div class="modal-body" id="modalContent">
                 <!-- CAROUSEL MODAL -->
