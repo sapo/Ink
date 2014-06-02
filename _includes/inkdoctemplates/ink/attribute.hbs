@@ -1,7 +1,7 @@
 <section id="{{{hash}}}" class="box box-attribute">
     <h1 class="fw-300">
     {{#ifvalue parent.kind value="class"}}
-       {{parent.name}}.{{name}}
+        .{{name}}
     {{else}}
         {{name}}
     {{/ifvalue}}
@@ -9,11 +9,11 @@
     {{#if deprecated}}
         <span class="tag">deprecated</span>
     {{/if}}
-    {{#if text}}
-        <p class="text">{{{stripP text}}}</p>
-    {{/if}}
     {{#if type}}
         <pre>{{type}}</pre>
+    {{/if}}
+    {{#if text}}
+        <p class="text">{{{stripP text}}}</p>
     {{/if}}
     {{#if description}}
         <span class="description">{{{description}}}</span>
