@@ -9,7 +9,7 @@
             .{{~name~}}
         {{~/ifvalue~}}
     {{~/if~}}
-    ({{#each params}}{{#if isFirstLevel}}{{#if @index}}, {{/if}}{{name}}{{/if}}{{/each}})
+    {{> shortparams}}
     {{#if isConstructor~}}
     {{~else~}}
         {{~#ifvalue parent.kind value="class"~}}

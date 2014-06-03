@@ -27,9 +27,9 @@
                 <td>
                     <a href="#{{{hash}}}">
                         {{~#if isConstructor~}}
-                            new {{name~}}
+                            new {{name~}}{{>shortparams}}
                         {{~else~}}
-                            .{{~name~}}
+                            .{{~name~}}{{>shortparams}}
                         {{~/if~}}
                     </a>
                 </td>

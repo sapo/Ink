@@ -22,7 +22,7 @@ site_root:  ../
             {{~else~}}
                 {{parent.name}}.{{name}}
             {{~/if~}}
-            ({{#foreach params}}{{#if isFirstLevel}}{{#if isOptional}}[{{~/if~}}{{name}}{{#if isOptional}}]{{~/if~}}{{#unless $last}}, {{/unless}}{{~/if~}}{{/foreach}})</a></li>
+            {{> shortparams ~}}</a></li>
         {{/each}}
         </ul>
     {{~/if~}}
