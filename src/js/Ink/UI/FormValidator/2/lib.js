@@ -382,7 +382,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
      * @param  {Object} options Object with configuration options
      * @param  {String} [options.label] Label for this element. It is used in the error message. If not specified, the text in the `label` tag in the control-group is used.
      * @param  {String} [options.rules] Rules string to be parsed.
-     * @param  {FormValidator} [options.form] FormValidator instance.
+     * @param  {FormValidator} options.form FormValidator instance.
      */
     function FormElement(){
         Common.BaseUIComponent.apply(this, arguments);
@@ -796,10 +796,10 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
                     }
 
                     if( !(key in this._formElements) ){
-                        this._formElements[key] = [ new FormElement( element, options ) ];
-                    } else {
-                        this._formElements[key].push( new FormElement( element, options ) );
+                        this._formElements[key] = [];
                     }
+
+                    this._formElements[key].push( new FormElement( element, options ) );
                 }
             }
 
