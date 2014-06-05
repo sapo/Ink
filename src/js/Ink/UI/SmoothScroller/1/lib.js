@@ -78,10 +78,14 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.UI.Common_1', 'Ink.Dom.Even
 
             var endPos = Math.round(d - margin);
 
+            var speed = options.speed !== null ?
+                options.speed :
+                SmoothScroller.speed;
+
             if (endPos > a) {
-                a += Math.ceil((endPos - a) / SmoothScroller.speed);
+                a += Math.ceil((endPos - a) / speed);
             } else {
-                a = a + (endPos - a) / SmoothScroller.speed;
+                a = a + (endPos - a) / speed;
             }
 
             cancelAnimationFrame(SmoothScroller.interval);
@@ -152,8 +156,9 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.UI.Common_1', 'Ink.Dom.Even
 
                     var options = Common.options('SmoothScroller link options', {
                         margin: ['Number', 0],
+                        speed: ['Number', null],
                         noHashChange: ['Boolean', false]
-                    }, {}, elm);
+                    }, {}, link);
 
                     SmoothScroller.hash = hash;
                     
