@@ -157,7 +157,7 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.UI.Common_1', 'Ink.Dom.Even
                     var options = Common.options('SmoothScroller link options', {
                         margin: ['Number', 0],
                         speed: ['Number', null],
-                        noHashChange: ['Boolean', false]
+                        changeHash: ['Boolean', true]
                     }, {}, link);
 
                     SmoothScroller.hash = hash;
@@ -169,9 +169,13 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.UI.Common_1', 'Ink.Dom.Even
 
         /**
          * Called when the scroll movement is done. Updates browser address.
+         *
+         * @method onDone
+         * @param {Object} options Options object from the element.
+         * @private
          */
         onDone: function (options) {
-            if (!options.noHashChange) {
+            if (options.changeHash === true) {
                 window.location.hash = SmoothScroller.hash;
             }
 
