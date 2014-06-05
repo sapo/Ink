@@ -15,7 +15,7 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.UI.Common_1', 'Ink.Dom.Even
         function (id) { clearTimeout(id); };
 
     /**
-     * @namespace Ink.UI.SmoothScroller
+     * @namespace SmoothScroller
      * @version 1
      * @static
      *
@@ -52,14 +52,35 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.UI.Common_1', 'Ink.Dom.Even
     var SmoothScroller = {
 
         /**
-         * Sets the speed of the scrolling
+         * The default scrolling speed. Higher is slower. Defaults to 10.
          *
          * @property speed
          * @type {Number}
-         * @readOnly
+         * @default 10
          * @static
          */
         speed: 10,
+
+        /**
+         * Change the URL hash (location.hash) when done scrolling? Defaults to true.
+         *
+         * @property changeHash
+         * @default true
+         * @type {Boolean}
+         * @static
+         */
+        changeHash: true,
+
+        /**
+         * The default top margin.
+         * Use this when you want the scroll motion to stop before it reaches its destination, for example when you want to add some breathing space or have a position:fixed top bar in front of your content.
+         *
+         * @property margin
+         * @default 0
+         * @type {Number}
+         * @static
+         */
+        margin: 0,
 
 
         /**
@@ -69,23 +90,18 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.UI.Common_1', 'Ink.Dom.Even
          *
          * @method scroll
          * @param  {Number} d Y coordinate value to stop
-         * @public
+         * @private
          * @static
          */
         scroll: function(d, options) {
             var a = Math.round(InkElement.scrollHeight());
-            var margin = options.margin || 0;
 
-            var endPos = Math.round(d - margin);
-
-            var speed = options.speed !== null ?
-                options.speed :
-                SmoothScroller.speed;
+            var endPos = Math.round(d - options.margin);
 
             if (endPos > a) {
-                a += Math.ceil((endPos - a) / speed);
+                a += Math.ceil((endPos - a) / options.speed);
             } else {
-                a = a + (endPos - a) / speed;
+                a = a + (endPos - a) / options.speed;
             }
 
             cancelAnimationFrame(SmoothScroller.interval);
@@ -105,9 +121,18 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.UI.Common_1', 'Ink.Dom.Even
         /**
          * Has smooth scrolling applied to relevant elements upon page load.
          *
+         * Listens to the click event on the document.
+         *
+         * Anything which matches the selector will be considered a "link" by SmoothScroller and handled as such.
+         *
+         * When a link is clicked, it is checked for several options:
+         *
+         * - `data-margin="0"` - A margin in pixels -- useful when you have a position:fixed top bar.
+         * - `data-speed="10"` - Inverse speed of the scrolling motion. Smaller is faster.
+         * - `data-change-hash="true"` - Change the URL hash (location.hash) when done scrolling.
+         *
          * @method init
-         * @param [selector='a.scrollableLink,a.ink-smooth-scroll'] Selector string for finding links with smooth scrolling enabled.
-         * @public
+         * @param [selector='a.scrollableLink,a.ink-smooth-scroll'] {String} Selector string for finding links with smooth scrolling enabled.
          * @static
          */
         init: function(selector) {
@@ -121,7 +146,7 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.UI.Common_1', 'Ink.Dom.Even
          * Handles clicks on link elements
          *
          * @method onClick
-         * @public
+         * @private
          * @static
          */
         onClick: function(event) {
@@ -155,9 +180,9 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.UI.Common_1', 'Ink.Dom.Even
                     }
 
                     var options = Common.options('SmoothScroller link options', {
-                        margin: ['Number', 0],
-                        speed: ['Number', null],
-                        changeHash: ['Boolean', true]
+                        margin: ['Number', SmoothScroller.margin],
+                        speed: ['Number', SmoothScroller.speed],
+                        changeHash: ['Boolean', SmoothScroller.changeHash]
                     }, {}, link);
 
                     SmoothScroller.hash = hash;
