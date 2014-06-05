@@ -54,6 +54,7 @@
  * 
  * Here's an example: ( class-name-prefix, minimum-width, maximum-width, gutter-width, no-media-query).
  * 
+ * media: media type.
  * class-name-prefix: this is the prefix used in tons of inks classes i.e.: large-100, small-40, etc.
  * minimum-width: (pixels|null) the minimum width for the breakpoint 
  * maximum-width: (pixels|null) the maximum width for the breakpoint 
@@ -262,7 +263,7 @@ html.no-flexboxlegacy [class~=all-100] {
   float: none;
   clear: both;
 }
-@media screen and (min-width: 1261px) {
+@media screen {
   html.no-flexbox .ink-grid,
   html.no-flexboxlegacy .ink-grid {
     padding: 0 2em;
@@ -4607,14 +4608,14 @@ html.no-flexboxlegacy [class~=all-100] {
     display: table-cell;
   }
 }
-@media screen and (min-width: 1261px) {
+@media screen {
   html.no-flexbox html,
   html.no-flexboxlegacy html {
     font-size: 1.08em;
   }
   html.no-flexbox html:after,
   html.no-flexboxlegacy html:after {
-    content: '{"name":"xlarge", "size":{"min":"1261px","max":""}}';
+    content: '{"name":"xlarge", "size":{"min":"","max":""}}';
     display: none;
   }
 }
