@@ -118,6 +118,7 @@ sections:
           - title: Ink.UI.Pagination
           - title: Ink.UI.ProgressBar
           - title: Ink.UI.SortableList
+          - title: Ink.UI.SmoothScroller
           - title: Ink.UI.Spy
           - title: Ink.UI.Sticky
           - title: Ink.UI.Table

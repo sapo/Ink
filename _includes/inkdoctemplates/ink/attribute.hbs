@@ -1,11 +1,16 @@
 <section id="{{{hash}}}" class="box box-attribute">
     <h1 class="fw-300">
-    {{#ifvalue parent.kind value="class"}}
-        .{{name}}
-    {{else}}
-        {{name}}
-    {{/ifvalue}}
-    <i>attribute</i></h1>
+        {{#if static}}
+            {{ parent.name }}.{{name}}
+        {{else}}
+            .{{name}}
+        {{/if}}
+        {{#if defaultValue }}
+            <span class="defaultValue">= {{ defaultValue }}</span>
+        {{ else }}
+            <i>attribute</i>
+        {{/if}}
+    </h1>
     {{#if deprecated}}
         <span class="tag">deprecated</span>
     {{/if}}

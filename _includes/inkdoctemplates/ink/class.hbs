@@ -1,4 +1,10 @@
-    <h2 class="fw-300 class-name">{{~name~}}</h2>
+    <h2 class="fw-300 class-name">
+        {{#if static}}
+            {{~name}} <i>namespace</i>
+        {{ else }}
+            {{~name}} <i>class</i>
+        {{/if}}
+    </h2>
     {{~#if text~}}
     {{~{text}~}}
     {{~/if}}
