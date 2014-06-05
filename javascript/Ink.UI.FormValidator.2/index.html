@@ -4,37 +4,18 @@ title: Ink.UI.FormValidator_2
 description: Form Validation
 site_root:  ../
 ---
-    <section>
-        <h1 class="fw-300">Ink.UI.FormValidator_2</h1>
+    <section><p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p>
 
-<h2>Defined functions:</h2>
-        <ul class="unstyled"><li><a href="#Ink_UI_FormValidator_2-alpha">Ink.UI.FormValidator_2.alpha(value, supportSpaces)</a></li>
-        <li><a href="#Ink_UI_FormValidator_2-alpha_dashes">Ink.UI.FormValidator_2.alpha_dashes(value)</a></li>
-        <li><a href="#Ink_UI_FormValidator_2-alpha_numeric">Ink.UI.FormValidator_2.alpha_numeric(value)</a></li>
-        <li><a href="#Ink_UI_FormValidator_2-color">Ink.UI.FormValidator_2.color(value)</a></li>
-        <li><a href="#Ink_UI_FormValidator_2-credit_card">Ink.UI.FormValidator_2.credit_card(value, cardType)</a></li>
-        <li><a href="#Ink_UI_FormValidator_2-date">Ink.UI.FormValidator_2.date(value, format)</a></li>
-        <li><a href="#Ink_UI_FormValidator_2-decimal">Ink.UI.FormValidator_2.decimal(value, decimalSeparator, [decimalPlaces], [leftDigits])</a></li>
-        <li><a href="#Ink_UI_FormValidator_2-digit">Ink.UI.FormValidator_2.digit(value)</a></li>
-        <li><a href="#Ink_UI_FormValidator_2-email">Ink.UI.FormValidator_2.email(value)</a></li>
-        <li><a href="#Ink_UI_FormValidator_2-exact_length">Ink.UI.FormValidator_2.exact_length(value, exactSize)</a></li>
-        <li><a href="#Ink_UI_FormValidator_2-getElement">Ink.UI.FormValidator_2.getElement()</a></li>
-        <li><a href="#Ink_UI_FormValidator_2-getErrors">Ink.UI.FormValidator_2.getErrors()</a></li>
-        <li><a href="#Ink_UI_FormValidator_2-getFormElements">Ink.UI.FormValidator_2.getFormElements()</a></li>
-        <li><a href="#Ink_UI_FormValidator_2-getValue">Ink.UI.FormValidator_2.getValue()</a></li>
-        <li><a href="#Ink_UI_FormValidator_2-integer">Ink.UI.FormValidator_2.integer(value, positive)</a></li>
-        <li><a href="#Ink_UI_FormValidator_2-ip">Ink.UI.FormValidator_2.ip(value, ipType)</a></li>
-        <li><a href="#Ink_UI_FormValidator_2-max_length">Ink.UI.FormValidator_2.max_length(value, maxSize)</a></li>
-        <li><a href="#Ink_UI_FormValidator_2-min_length">Ink.UI.FormValidator_2.min_length(value, minSize)</a></li>
-        <li><a href="#Ink_UI_FormValidator_2-numeric">Ink.UI.FormValidator_2.numeric(value, decimalSeparator, [decimalPlaces], [leftDigits])</a></li>
-        <li><a href="#Ink_UI_FormValidator_2-phone">Ink.UI.FormValidator_2.phone(value, phoneType)</a></li>
-        <li><a href="#Ink_UI_FormValidator_2-range">Ink.UI.FormValidator_2.range(value, minValue, maxValue, [multipleOf])</a></li>
-        <li><a href="#Ink_UI_FormValidator_2-required">Ink.UI.FormValidator_2.required(value)</a></li>
-        <li><a href="#Ink_UI_FormValidator_2-url">Ink.UI.FormValidator_2.url(value, fullCheck)</a></li>
-        <li><a href="#Ink_UI_FormValidator_2-validate">Ink.UI.FormValidator_2.validate()</a></li>
+    <h2 class="fw-300 class-name">
+        FormValidator.FormElement <i>class</i>
         
-        </ul>
-    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space">
+    </h2><p>A FormElement represents a single form element to be validated.</p>
+<p>It is constructed with a DOM form element, and options.</p>
+<p>This class contains methods to parse rules and apply them to its element,
+and also formats the error messages to be displayed in case of an error.</p>
+<p>You don&#39;t normally call &quot;new FormElement&quot; yourself. This is done
+internally.</p>
+<table class="props bottom-space">
         <caption>Methods</caption>
         <thead>
             <tr>
@@ -46,55 +27,778 @@ site_root:  ../
         <tbody>
             <tr>
                 <td>
-                    <a href="#Ink_UI_FormValidator_2-Ink_UI_FormValidator_2-FormValidator_2"><em>(constructor)</em></a>
+                    <a href="#Ink_UI_FormValidator_2-FormValidator_FormElement-FormElement">new FormElement(element, options)
+</a>
                 </td>
                 <td><span class="ink-label green">Constructor</span></td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_UI_FormValidator_2-Ink_UI_FormValidator_2-AppendI18n">.AppendI18n</a>
+                    <a href="#Ink_UI_FormValidator_2-FormValidator_FormElement-getElement">.getElement()
+</a>
+                </td>
+                <td> Gets the DOM element related to the instance.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_FormValidator_2-FormValidator_FormElement-getErrors">.getErrors()
+</a>
+                </td>
+                <td> Gets the constructed errors&#39; object.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_FormValidator_2-FormValidator_FormElement-getFormElements">.getFormElements()
+</a>
+                </td>
+                <td> Gets other elements in the same form.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_FormValidator_2-FormValidator_FormElement-getValue">.getValue()
+</a>
+                </td>
+                <td> Gets an element&#39;s value</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_FormValidator_2-FormValidator_FormElement-validate">.validate()
+</a>
+                </td>
+                <td> Validates the element based on the rules defined.</td>
+            </tr></tbody>
+    </table>
+    
+</section>
+
+
+
+    <section id="Ink_UI_FormValidator_2-FormValidator_FormElement-FormElement" class="box box-function">
+    <h1 class="fw-300 function-desc">new FormValidator.FormElement(element, options)
+
+    </h1>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>element
+                    <span class="label mandatory"></span><span class="label domelement"></span></p>
+                DOM Element</li>
+            <li class="level1">
+                <p>options
+                    <span class="label mandatory"></span><span class="label object"></span></p>
+                Object with configuration options</li>
+            <li class="level2">
+                <p>options.label
+                    <span class="label string"></span></p>
+                Label for this element. It is used in the error message. If not specified, the text in the `label` tag in the control-group is used.</li>
+            <li class="level2">
+                <p>options.rules
+                    <span class="label string"></span></p>
+                Rules string to be parsed.</li>
+            <li class="level2">
+                <p>options.form
+                    <span class="label mandatory"></span><span class="label formvalidator"></span></p>
+                FormValidator instance.</li>
+        </ul>
+
+</section>
+
+    <section id="Ink_UI_FormValidator_2-FormValidator_FormElement-getElement" class="box box-function">
+    <h1 class="fw-300 function-desc">.getElement()
+
+    <i>method</i></h1><p class="text">Gets the DOM element related to the instance.</p>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label object"></span> </p>DOM Element
+        </li>
+    </ul>
+    
+
+</section>
+
+    <section id="Ink_UI_FormValidator_2-FormValidator_FormElement-getErrors" class="box box-function">
+    <h1 class="fw-300 function-desc">.getErrors()
+
+    <i>method</i></h1><p class="text">Gets the constructed errors&#39; object.</p>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label object"></span> </p>Errors' object
+        </li>
+    </ul>
+    
+
+</section>
+
+    <section id="Ink_UI_FormValidator_2-FormValidator_FormElement-getFormElements" class="box box-function">
+    <h1 class="fw-300 function-desc">.getFormElements()
+
+    <i>method</i></h1><p class="text">Gets other elements in the same form.</p>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label object"></span> </p>A mapping of keys to other elements in this form.
+        </li>
+    </ul>
+    
+
+</section>
+
+    <section id="Ink_UI_FormValidator_2-FormValidator_FormElement-getValue" class="box box-function">
+    <h1 class="fw-300 function-desc">.getValue()
+
+    <i>method</i></h1><p class="text">Gets an element&#39;s value</p>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label mixed"></span> </p>The DOM Element's value
+        </li>
+    </ul>
+    
+
+</section>
+
+    <section id="Ink_UI_FormValidator_2-FormValidator_FormElement-validate" class="box box-function">
+    <h1 class="fw-300 function-desc">.validate()
+
+    <i>method</i></h1><p class="text">Validates the element based on the rules defined.<br>It parses the rules defined in the _options.rules property.</p>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label boolean"></span> </p>True if every rule was valid. False if one fails.
+        </li>
+    </ul>
+    
+
+</section>
+
+
+
+        <h2 class="fw-300 class-name">
+        FormValidator.validationFunctions <i>namespace</i>
+        
+    </h2><p>Validation Functions to be used</p>
+<p>Some functions are a port from PHP, others are the &#39;best&#39; solutions available</p>
+<table class="props bottom-space">
+        <caption>Methods</caption>
+        <thead>
+            <tr>
+                <th>Method name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_FormValidator_2-FormValidator_validationFunctions-alpha">.alpha(supportSpaces)
+</a>
+                </td>
+                <td> Checks if a value only contains alphabetical values.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_FormValidator_2-FormValidator_validationFunctions-alpha_dash">.alpha_dash()
+</a>
+                </td>
+                <td> Checks if a value contains only alphabetical, dash or underscore characteres.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_FormValidator_2-FormValidator_validationFunctions-alpha_numeric">.alpha_numeric()
+</a>
+                </td>
+                <td> Checks if a value contains only alphabetical or numerical characters.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_FormValidator_2-FormValidator_validationFunctions-color">.color()
+</a>
+                </td>
+                <td> Checks if a value is a valid color.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_FormValidator_2-FormValidator_validationFunctions-credit_card">.credit_card(cardType)
+</a>
+                </td>
+                <td> Checks if a value is a valid credit card.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_FormValidator_2-FormValidator_validationFunctions-date">.date(format)
+</a>
+                </td>
+                <td> Checks if a value is a valid date.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_FormValidator_2-FormValidator_validationFunctions-decimal">.decimal(decimalSeparator, [decimalPlaces], [leftDigits])
+</a>
+                </td>
+                <td> Checks if a value is a valid decimal number.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_FormValidator_2-FormValidator_validationFunctions-digit">.digit()
+</a>
+                </td>
+                <td> Checks if a value is a single digit.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_FormValidator_2-FormValidator_validationFunctions-email">.email()
+</a>
+                </td>
+                <td> Checks if a value is a valid email address</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_FormValidator_2-FormValidator_validationFunctions-exact_length">.exact_length(exactSize)
+</a>
+                </td>
+                <td> Checks if a value has an exact length</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_FormValidator_2-FormValidator_validationFunctions-integer">.integer(positive)
+</a>
+                </td>
+                <td> Checks if a value is a valid integer.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_FormValidator_2-FormValidator_validationFunctions-ip">.ip(ipType)
+</a>
+                </td>
+                <td> Checks if a value is a valid IP. Supports ipv4 and ipv6</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_FormValidator_2-FormValidator_validationFunctions-max_length">.max_length(maxSize)
+</a>
+                </td>
+                <td> Checks if a value has a maximum length</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_FormValidator_2-FormValidator_validationFunctions-min_length">.min_length(minSize)
+</a>
+                </td>
+                <td> Checks if a value has a minimum length</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_FormValidator_2-FormValidator_validationFunctions-numeric">.numeric(decimalSeparator, [decimalPlaces], [leftDigits])
+</a>
+                </td>
+                <td> Checks if a value is a numeric value.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_FormValidator_2-FormValidator_validationFunctions-phone">.phone(phoneType)
+</a>
+                </td>
+                <td> Checks if a value is a valid phone number.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_FormValidator_2-FormValidator_validationFunctions-range">.range(minValue, maxValue, [multipleOf])
+</a>
+                </td>
+                <td> Checks if a value is in a specific range of values.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_FormValidator_2-FormValidator_validationFunctions-required">.required()
+</a>
+                </td>
+                <td> Checks if a value is defined and not empty</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_FormValidator_2-FormValidator_validationFunctions-url">.url(fullCheck)
+</a>
+                </td>
+                <td> Checks if a value has a valid URL</td>
+            </tr></tbody>
+    </table>
+    
+</section>
+
+
+
+    <section id="Ink_UI_FormValidator_2-FormValidator_validationFunctions-alpha" class="box box-function">
+    <h1 class="fw-300 function-desc">.alpha(supportSpaces)
+
+    <i>method</i></h1><p class="text">Checks if a value only contains alphabetical values.</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>supportSpaces
+                    <span class="label mandatory"></span><span class="label boolean"></span></p>
+                Allow whitespace</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label boolean"></span> </p>True if the value is alphabetical-only. False if not.
+        </li>
+    </ul>
+    
+
+</section>
+
+    <section id="Ink_UI_FormValidator_2-FormValidator_validationFunctions-alpha_dash" class="box box-function">
+    <h1 class="fw-300 function-desc">.alpha_dash()
+
+    <i>method</i></h1><p class="text">Checks if a value contains only alphabetical, dash or underscore characteres.</p>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label boolean"></span> </p>True if the value is a valid. False if not.
+        </li>
+    </ul>
+    
+
+</section>
+
+    <section id="Ink_UI_FormValidator_2-FormValidator_validationFunctions-alpha_numeric" class="box box-function">
+    <h1 class="fw-300 function-desc">.alpha_numeric()
+
+    <i>method</i></h1><p class="text">Checks if a value contains only alphabetical or numerical characters.</p>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label boolean"></span> </p>True if the value is a valid alphanumerical. False if not.
+        </li>
+    </ul>
+    
+
+</section>
+
+    <section id="Ink_UI_FormValidator_2-FormValidator_validationFunctions-color" class="box box-function">
+    <h1 class="fw-300 function-desc">.color()
+
+    <i>method</i></h1><p class="text">Checks if a value is a valid color.</p>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label boolean"></span> </p>True if the value is a valid color. False if not.
+        </li>
+    </ul>
+    
+
+</section>
+
+    <section id="Ink_UI_FormValidator_2-FormValidator_validationFunctions-credit_card" class="box box-function">
+    <h1 class="fw-300 function-desc">.credit_card(cardType)
+
+    <i>method</i></h1><p class="text">Checks if a value is a valid credit card.</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>cardType
+                    <span class="label mandatory"></span><span class="label string"></span></p>
+                Type of credit card to be validated. The card types available are in the Ink.Util.Validator class.</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label boolean"></span> </p>True if the value is a valid credit card number. False if not.
+        </li>
+    </ul>
+    
+
+</section>
+
+    <section id="Ink_UI_FormValidator_2-FormValidator_validationFunctions-date" class="box box-function">
+    <h1 class="fw-300 function-desc">.date(format)
+
+    <i>method</i></h1><p class="text">Checks if a value is a valid date.</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>format
+                    <span class="label mandatory"></span><span class="label string"></span></p>
+                Specific format of the date.</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label boolean"></span> </p>True if the value is a valid date. False if not.
+        </li>
+    </ul>
+    
+
+</section>
+
+    <section id="Ink_UI_FormValidator_2-FormValidator_validationFunctions-decimal" class="box box-function">
+    <h1 class="fw-300 function-desc">.decimal(decimalSeparator, [decimalPlaces], [leftDigits])
+
+    <i>method</i></h1><p class="text">Checks if a value is a valid decimal number.</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>decimalSeparator
+                    <span class="label mandatory"></span><span class="label string"></span></p>
+                Character that splits the integer part from the decimal one. By default is '.'.</li>
+            <li class="level1">
+                <p>decimalPlaces
+                    <span class="label string"></span></p>
+                Maximum number of digits that the decimal part must have.</li>
+            <li class="level1">
+                <p>leftDigits
+                    <span class="label string"></span></p>
+                Maximum number of digits that the integer part must have, when provided.</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label boolean"></span> </p>True if the value is a valid decimal number. False if not.
+        </li>
+    </ul>
+    
+
+</section>
+
+    <section id="Ink_UI_FormValidator_2-FormValidator_validationFunctions-digit" class="box box-function">
+    <h1 class="fw-300 function-desc">.digit()
+
+    <i>method</i></h1><p class="text">Checks if a value is a single digit.</p>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label boolean"></span> </p>True if the value is a valid digit. False if not.
+        </li>
+    </ul>
+    
+
+</section>
+
+    <section id="Ink_UI_FormValidator_2-FormValidator_validationFunctions-email" class="box box-function">
+    <h1 class="fw-300 function-desc">.email()
+
+    <i>method</i></h1><p class="text">Checks if a value is a valid email address</p>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label boolean"></span> </p>True if the value is a valid email address. False if not.
+        </li>
+    </ul>
+    
+
+</section>
+
+    <section id="Ink_UI_FormValidator_2-FormValidator_validationFunctions-exact_length" class="box box-function">
+    <h1 class="fw-300 function-desc">.exact_length(exactSize)
+
+    <i>method</i></h1><p class="text">Checks if a value has an exact length</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>exactSize
+                    <span class="label mandatory"></span><span class="label string"></span><span class="label number"></span></p>
+                Exact number of characters.</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label boolean"></span> </p>True if the length of value is equal to the size defined. False if not.
+        </li>
+    </ul>
+    
+
+</section>
+
+    <section id="Ink_UI_FormValidator_2-FormValidator_validationFunctions-integer" class="box box-function">
+    <h1 class="fw-300 function-desc">.integer(positive)
+
+    <i>method</i></h1><p class="text">Checks if a value is a valid integer.</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>positive
+                    <span class="label mandatory"></span><span class="label string"></span></p>
+                Flag that specifies if the integer is must be positive (unsigned).</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label boolean"></span> </p>True if the value is a valid integer. False if not.
+        </li>
+    </ul>
+    
+
+</section>
+
+    <section id="Ink_UI_FormValidator_2-FormValidator_validationFunctions-ip" class="box box-function">
+    <h1 class="fw-300 function-desc">.ip(ipType)
+
+    <i>method</i></h1><p class="text">Checks if a value is a valid IP. Supports ipv4 and ipv6</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>ipType
+                    <span class="label mandatory"></span><span class="label string"></span></p>
+                Type of IP to be validated. The values are: ipv4, ipv6. By default is ipv4.</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label boolean"></span> </p>True if the value is a valid IP address. False if not.
+        </li>
+    </ul>
+    
+
+</section>
+
+    <section id="Ink_UI_FormValidator_2-FormValidator_validationFunctions-max_length" class="box box-function">
+    <h1 class="fw-300 function-desc">.max_length(maxSize)
+
+    <i>method</i></h1><p class="text">Checks if a value has a maximum length</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>maxSize
+                    <span class="label mandatory"></span><span class="label string"></span><span class="label number"></span></p>
+                Maximum number of characters.</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label boolean"></span> </p>True if the length of value is equal or smaller than the maximum chars defined. False if not.
+        </li>
+    </ul>
+    
+
+</section>
+
+    <section id="Ink_UI_FormValidator_2-FormValidator_validationFunctions-min_length" class="box box-function">
+    <h1 class="fw-300 function-desc">.min_length(minSize)
+
+    <i>method</i></h1><p class="text">Checks if a value has a minimum length</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>minSize
+                    <span class="label mandatory"></span><span class="label string"></span><span class="label number"></span></p>
+                Minimum number of characters.</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label boolean"></span> </p>True if the length of value is equal or bigger than the minimum chars defined. False if not.
+        </li>
+    </ul>
+    
+
+</section>
+
+    <section id="Ink_UI_FormValidator_2-FormValidator_validationFunctions-numeric" class="box box-function">
+    <h1 class="fw-300 function-desc">.numeric(decimalSeparator, [decimalPlaces], [leftDigits])
+
+    <i>method</i></h1><p class="text">Checks if a value is a numeric value.</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>decimalSeparator
+                    <span class="label mandatory"></span><span class="label string"></span></p>
+                Checks if it's a valid decimal. Otherwise checks if it's a valid integer.</li>
+            <li class="level1">
+                <p>decimalPlaces
+                    <span class="label string"></span></p>
+                Maximum number of digits the decimal part must have.</li>
+            <li class="level1">
+                <p>leftDigits
+                    <span class="label string"></span></p>
+                Maximum number of digits the integer part must have, when provided.</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label boolean"></span> </p>True if the value is numeric. False if not.
+        </li>
+    </ul>
+    
+
+</section>
+
+    <section id="Ink_UI_FormValidator_2-FormValidator_validationFunctions-phone" class="box box-function">
+    <h1 class="fw-300 function-desc">.phone(phoneType)
+
+    <i>method</i></h1><p class="text">Checks if a value is a valid phone number.<br>Supports several countries, based in the Ink.Util.Validator class.</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>phoneType
+                    <span class="label mandatory"></span><span class="label string"></span></p>
+                Country's initials to specify the type of phone number to be validated. Ex: 'AO'.</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label boolean"></span> </p>True if it's a valid phone number. False if not.
+        </li>
+    </ul>
+    
+
+</section>
+
+    <section id="Ink_UI_FormValidator_2-FormValidator_validationFunctions-range" class="box box-function">
+    <h1 class="fw-300 function-desc">.range(minValue, maxValue, [multipleOf])
+
+    <i>method</i></h1><p class="text">Checks if a value is in a specific range of values.<br>The parameters after the first one are used to specify the range, and are similar in function to python&#39;s range() function.</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>minValue
+                    <span class="label mandatory"></span><span class="label string"></span></p>
+                Left limit of the range.</li>
+            <li class="level1">
+                <p>maxValue
+                    <span class="label mandatory"></span><span class="label string"></span></p>
+                Right limit of the range.</li>
+            <li class="level1">
+                <p>multipleOf
+                    <span class="label string"></span></p>
+                In case you want numbers that are only multiples of another number.</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label boolean"></span> </p>True if the value is within the range. False if not.
+        </li>
+    </ul>
+    
+
+</section>
+
+    <section id="Ink_UI_FormValidator_2-FormValidator_validationFunctions-required" class="box box-function">
+    <h1 class="fw-300 function-desc">.required()
+
+    <i>method</i></h1><p class="text">Checks if a value is defined and not empty</p>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label boolean"></span> </p>True case is defined, false if it's empty or not defined.
+        </li>
+    </ul>
+    
+
+</section>
+
+    <section id="Ink_UI_FormValidator_2-FormValidator_validationFunctions-url" class="box box-function">
+    <h1 class="fw-300 function-desc">.url(fullCheck)
+
+    <i>method</i></h1><p class="text">Checks if a value has a valid URL</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>fullCheck
+                    <span class="label mandatory"></span><span class="label boolean"></span></p>
+                Flag to validate a full url (with the protocol).</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label boolean"></span> </p>True if the URL is considered valid. False if not.
+        </li>
+    </ul>
+    
+
+</section>
+
+
+
+        <h2 class="fw-300 class-name">
+        FormValidator_2 <i>class</i>
+        
+    </h2><table class="props bottom-space">
+        <caption>Methods</caption>
+        <thead>
+            <tr>
+                <th>Method name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_FormValidator_2-FormValidator_2-FormValidator_2">new FormValidator_2(selector, [options])
+</a>
+                </td>
+                <td><span class="ink-label green">Constructor</span></td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_FormValidator_2-FormValidator_2-appendI18n">.appendI18n()
+</a>
                 </td>
                 <td> Add to the I18n dictionary.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_UI_FormValidator_2-Ink_UI_FormValidator_2-getElements">.getElements</a>
+                    <a href="#Ink_UI_FormValidator_2-FormValidator_2-getElements">.getElements()
+</a>
                 </td>
                 <td> Searches for the elements in the form.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_UI_FormValidator_2-Ink_UI_FormValidator_2-getI18n">.getI18n</a>
+                    <a href="#Ink_UI_FormValidator_2-FormValidator_2-getI18n">.getI18n()
+</a>
                 </td>
                 <td> Gets the i18n object in charge of the error messages</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_UI_FormValidator_2-Ink_UI_FormValidator_2-getRules">.getRules</a>
+                    <a href="#Ink_UI_FormValidator_2-FormValidator_2-getRules">.getRules()
+</a>
                 </td>
                 <td> Method used to get the existing defined validation functions</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_UI_FormValidator_2-Ink_UI_FormValidator_2-setI18n">.setI18n</a>
+                    <a href="#Ink_UI_FormValidator_2-FormValidator_2-setI18n">.setI18n(i18n)
+</a>
                 </td>
                 <td> Sets the I18n object for validation error messages</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_UI_FormValidator_2-Ink_UI_FormValidator_2-setLanguage">.setLanguage</a>
+                    <a href="#Ink_UI_FormValidator_2-FormValidator_2-setLanguage">.setLanguage(language)
+</a>
                 </td>
                 <td> Sets the language of the error messages.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_UI_FormValidator_2-Ink_UI_FormValidator_2-setRule">.setRule</a>
+                    <a href="#Ink_UI_FormValidator_2-FormValidator_2-setRule">.setRule(name, errorMessage, cb)
+</a>
                 </td>
                 <td> Sets or modifies validation functions</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_UI_FormValidator_2-Ink_UI_FormValidator_2-validate">.validate</a>
+                    <a href="#Ink_UI_FormValidator_2-FormValidator_2-validate">.validate(event)
+</a>
                 </td>
                 <td> Validates every registered FormElement </td>
             </tr></tbody>
@@ -104,14 +808,10 @@ site_root:  ../
 
 
 
-    <section id="Ink_UI_FormValidator_2-Ink_UI_FormValidator_2-FormValidator_2" class="box box-function">
-    <h1 class="fw-300">Ink.UI.FormValidator_2(selector, options)
-    <i>constructor</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         selector</li><li class="prop">
-         options</li>
-    </ul>
+    <section id="Ink_UI_FormValidator_2-FormValidator_2-FormValidator_2" class="box box-function">
+    <h1 class="fw-300 function-desc">new FormValidator_2(selector, [options])
+
+    </h1>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -153,14 +853,16 @@ site_root:  ../
 		{% include js_samples/Ink_UI_FormValidator_2.html %}
 	</section>
 
-    <section id="Ink_UI_FormValidator_2-Ink_UI_FormValidator_2-AppendI18n" class="box box-function">
-    <h1 class="fw-300">.AppendI18n()
+    <section id="Ink_UI_FormValidator_2-FormValidator_2-appendI18n" class="box box-function">
+    <h1 class="fw-300 function-desc">.appendI18n()
+
     <i>method</i></h1><p class="text">Add to the I18n dictionary.<br>See <code>Ink.Util.I18n.append()</code> documentation.</p>
 
 </section>
 
-    <section id="Ink_UI_FormValidator_2-Ink_UI_FormValidator_2-getElements" class="box box-function">
-    <h1 class="fw-300">.getElements()
+    <section id="Ink_UI_FormValidator_2-FormValidator_2-getElements" class="box box-function">
+    <h1 class="fw-300 function-desc">.getElements()
+
     <i>method</i></h1><p class="text">Searches for the elements in the form.<br>This method is based in the this._options.searchFor configuration.</p>
     <h3>Returns</h3>
     <ul class="params">
@@ -172,8 +874,9 @@ site_root:  ../
 
 </section>
 
-    <section id="Ink_UI_FormValidator_2-Ink_UI_FormValidator_2-getI18n" class="box box-function">
-    <h1 class="fw-300">.getI18n()
+    <section id="Ink_UI_FormValidator_2-FormValidator_2-getI18n" class="box box-function">
+    <h1 class="fw-300 function-desc">.getI18n()
+
     <i>method</i></h1><p class="text">Gets the i18n object in charge of the error messages</p>
     <h3>Returns</h3>
     <ul class="params">
@@ -185,8 +888,9 @@ site_root:  ../
 
 </section>
 
-    <section id="Ink_UI_FormValidator_2-Ink_UI_FormValidator_2-getRules" class="box box-function">
-    <h1 class="fw-300">.getRules()
+    <section id="Ink_UI_FormValidator_2-FormValidator_2-getRules" class="box box-function">
+    <h1 class="fw-300 function-desc">.getRules()
+
     <i>method</i></h1><p class="text">Method used to get the existing defined validation functions</p>
     <h3>Returns</h3>
     <ul class="params">
@@ -198,13 +902,10 @@ site_root:  ../
 
 </section>
 
-    <section id="Ink_UI_FormValidator_2-Ink_UI_FormValidator_2-setI18n" class="box box-function">
-    <h1 class="fw-300">.setI18n(i18n)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         i18n</li>
-    </ul><p class="text">Sets the I18n object for validation error messages</p>
+    <section id="Ink_UI_FormValidator_2-FormValidator_2-setI18n" class="box box-function">
+    <h1 class="fw-300 function-desc">.setI18n(i18n)
+
+    <i>method</i></h1><p class="text">Sets the I18n object for validation error messages</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -216,13 +917,10 @@ site_root:  ../
 
 </section>
 
-    <section id="Ink_UI_FormValidator_2-Ink_UI_FormValidator_2-setLanguage" class="box box-function">
-    <h1 class="fw-300">.setLanguage(language)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         language</li>
-    </ul><p class="text">Sets the language of the error messages.<br>pt_PT and en_US are available, but you can add new languages by using append()<br><p>See the <code>Ink.Util.I18n.lang()</code> setter</p></p>
+    <section id="Ink_UI_FormValidator_2-FormValidator_2-setLanguage" class="box box-function">
+    <h1 class="fw-300 function-desc">.setLanguage(language)
+
+    <i>method</i></h1><p class="text">Sets the language of the error messages.<br>pt_PT and en_US are available, but you can add new languages by using append()<br><p>See the <code>Ink.Util.I18n.lang()</code> setter</p></p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -234,15 +932,10 @@ site_root:  ../
 
 </section>
 
-    <section id="Ink_UI_FormValidator_2-Ink_UI_FormValidator_2-setRule" class="box box-function">
-    <h1 class="fw-300">.setRule(name, errorMessage, cb)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         name</li><li class="prop mandatory">
-         errorMessage</li><li class="prop mandatory">
-         cb</li>
-    </ul><p class="text">Sets or modifies validation functions</p>
+    <section id="Ink_UI_FormValidator_2-FormValidator_2-setRule" class="box box-function">
+    <h1 class="fw-300 function-desc">.setRule(name, errorMessage, cb)
+
+    <i>method</i></h1><p class="text">Sets or modifies validation functions</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -262,13 +955,10 @@ site_root:  ../
 
 </section>
 
-    <section id="Ink_UI_FormValidator_2-Ink_UI_FormValidator_2-validate" class="box box-function">
-    <h1 class="fw-300">.validate(event)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         event</li>
-    </ul><p class="text">Validates every registered FormElement <br>This method looks inside the this._formElements object for validation targets.<br>Also, based on the this._options.beforeValidation, this._options.onError, and this._options.onSuccess, this callbacks are executed when defined.</p>
+    <section id="Ink_UI_FormValidator_2-FormValidator_2-validate" class="box box-function">
+    <h1 class="fw-300 function-desc">.validate(event)
+
+    <i>method</i></h1><p class="text">Validates every registered FormElement <br>This method looks inside the this._formElements object for validation targets.<br>Also, based on the this._options.beforeValidation, this._options.onError, and this._options.onSuccess, this callbacks are executed when defined.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -280,7 +970,7 @@ site_root:  ../
     <h3>Returns</h3>
     <ul class="params">
         <li class="return">
-            <p><span class="label boolean"></span> </p>
+            <p><span class="label boolean"></span> </p>Whether the form is considered valid
         </li>
     </ul>
     
@@ -289,615 +979,4 @@ site_root:  ../
 
 
 
-    <section id="Ink_UI_FormValidator_2-alpha" class="box box-function">
-    <h1 class="fw-300">.alpha(value, supportSpaces)
-    <i>function</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         value</li><li class="prop mandatory">
-         supportSpaces</li>
-    </ul><p class="text">Checks if a value only contains alphabetical values.</p>
-        <h3>Accepts</h3>
-        
-        <ul class="params">
-            <li class="level1">
-                <p>value
-                    <span class="label mandatory"></span><span class="label string"></span></p>
-                Value to be checked</li>
-            <li class="level1">
-                <p>supportSpaces
-                    <span class="label mandatory"></span><span class="label boolean"></span></p>
-                Allow whitespace</li>
-        </ul>
-    <h3>Returns</h3>
-    <ul class="params">
-        <li class="return">
-            <p><span class="label boolean"></span> </p>True if the value is alphabetical-only. False if not.
-        </li>
-    </ul>
-    
-
-</section>
-    <section id="Ink_UI_FormValidator_2-alpha_dashes" class="box box-function">
-    <h1 class="fw-300">.alpha_dashes(value)
-    <i>function</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         value</li>
-    </ul><p class="text">Checks if a value contains only alphabetical, dash or underscore characteres.</p>
-        <h3>Accepts</h3>
-        
-        <ul class="params">
-            <li class="level1">
-                <p>value
-                    <span class="label mandatory"></span><span class="label string"></span></p>
-                Value to be checked</li>
-        </ul>
-    <h3>Returns</h3>
-    <ul class="params">
-        <li class="return">
-            <p><span class="label boolean"></span> </p>True if the value is a valid. False if not.
-        </li>
-    </ul>
-    
-
-</section>
-    <section id="Ink_UI_FormValidator_2-alpha_numeric" class="box box-function">
-    <h1 class="fw-300">.alpha_numeric(value)
-    <i>function</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         value</li>
-    </ul><p class="text">Checks if a value contains only alphabetical or numerical characters.</p>
-        <h3>Accepts</h3>
-        
-        <ul class="params">
-            <li class="level1">
-                <p>value
-                    <span class="label mandatory"></span><span class="label string"></span></p>
-                Value to be checked</li>
-        </ul>
-    <h3>Returns</h3>
-    <ul class="params">
-        <li class="return">
-            <p><span class="label boolean"></span> </p>True if the value is a valid alphanumerical. False if not.
-        </li>
-    </ul>
-    
-
-</section>
-    <section id="Ink_UI_FormValidator_2-color" class="box box-function">
-    <h1 class="fw-300">.color(value)
-    <i>function</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         value</li>
-    </ul><p class="text">Checks if a value is a valid color.</p>
-        <h3>Accepts</h3>
-        
-        <ul class="params">
-            <li class="level1">
-                <p>value
-                    <span class="label mandatory"></span><span class="label string"></span></p>
-                Value to be checked</li>
-        </ul>
-    <h3>Returns</h3>
-    <ul class="params">
-        <li class="return">
-            <p><span class="label boolean"></span> </p>True if the value is a valid color. False if not.
-        </li>
-    </ul>
-    
-
-</section>
-    <section id="Ink_UI_FormValidator_2-credit_card" class="box box-function">
-    <h1 class="fw-300">.credit_card(value, cardType)
-    <i>function</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         value</li><li class="prop mandatory">
-         cardType</li>
-    </ul><p class="text">Checks if a value is a valid credit card.</p>
-        <h3>Accepts</h3>
-        
-        <ul class="params">
-            <li class="level1">
-                <p>value
-                    <span class="label mandatory"></span><span class="label string"></span></p>
-                Value to be checked</li>
-            <li class="level1">
-                <p>cardType
-                    <span class="label mandatory"></span><span class="label string"></span></p>
-                Type of credit card to be validated. The card types available are in the Ink.Util.Validator class.</li>
-        </ul>
-    <h3>Returns</h3>
-    <ul class="params">
-        <li class="return">
-            <p><span class="label boolean"></span> </p>True if the value is a valid credit card number. False if not.
-        </li>
-    </ul>
-    
-
-</section>
-    <section id="Ink_UI_FormValidator_2-date" class="box box-function">
-    <h1 class="fw-300">.date(value, format)
-    <i>function</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         value</li><li class="prop mandatory">
-         format</li>
-    </ul><p class="text">Checks if a value is a valid date.</p>
-        <h3>Accepts</h3>
-        
-        <ul class="params">
-            <li class="level1">
-                <p>value
-                    <span class="label mandatory"></span><span class="label string"></span></p>
-                Value to be checked</li>
-            <li class="level1">
-                <p>format
-                    <span class="label mandatory"></span><span class="label string"></span></p>
-                Specific format of the date.</li>
-        </ul>
-    <h3>Returns</h3>
-    <ul class="params">
-        <li class="return">
-            <p><span class="label boolean"></span> </p>True if the value is a valid date. False if not.
-        </li>
-    </ul>
-    
-
-</section>
-    <section id="Ink_UI_FormValidator_2-decimal" class="box box-function">
-    <h1 class="fw-300">.decimal(value, decimalSeparator, decimalPlaces, leftDigits)
-    <i>function</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         value</li><li class="prop mandatory">
-         decimalSeparator</li><li class="prop">
-         decimalPlaces</li><li class="prop">
-         leftDigits</li>
-    </ul><p class="text">Checks if a value is a valid decimal number.</p>
-        <h3>Accepts</h3>
-        
-        <ul class="params">
-            <li class="level1">
-                <p>value
-                    <span class="label mandatory"></span><span class="label string"></span></p>
-                Value to be checked</li>
-            <li class="level1">
-                <p>decimalSeparator
-                    <span class="label mandatory"></span><span class="label string"></span></p>
-                Character that splits the integer part from the decimal one. By default is '.'.</li>
-            <li class="level1">
-                <p>decimalPlaces
-                    <span class="label string"></span></p>
-                Maximum number of digits that the decimal part must have.</li>
-            <li class="level1">
-                <p>leftDigits
-                    <span class="label string"></span></p>
-                Maximum number of digits that the integer part must have, when provided.</li>
-        </ul>
-    <h3>Returns</h3>
-    <ul class="params">
-        <li class="return">
-            <p><span class="label boolean"></span> </p>True if the value is a valid decimal number. False if not.
-        </li>
-    </ul>
-    
-
-</section>
-    <section id="Ink_UI_FormValidator_2-digit" class="box box-function">
-    <h1 class="fw-300">.digit(value)
-    <i>function</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         value</li>
-    </ul><p class="text">Checks if a value is a single digit.</p>
-        <h3>Accepts</h3>
-        
-        <ul class="params">
-            <li class="level1">
-                <p>value
-                    <span class="label mandatory"></span><span class="label string"></span></p>
-                Value to be checked</li>
-        </ul>
-    <h3>Returns</h3>
-    <ul class="params">
-        <li class="return">
-            <p><span class="label boolean"></span> </p>True if the value is a valid digit. False if not.
-        </li>
-    </ul>
-    
-
-</section>
-    <section id="Ink_UI_FormValidator_2-email" class="box box-function">
-    <h1 class="fw-300">.email(value)
-    <i>function</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         value</li>
-    </ul><p class="text">Checks if a value is a valid email address</p>
-        <h3>Accepts</h3>
-        
-        <ul class="params">
-            <li class="level1">
-                <p>value
-                    <span class="label mandatory"></span><span class="label string"></span></p>
-                Value to be checked</li>
-        </ul>
-    <h3>Returns</h3>
-    <ul class="params">
-        <li class="return">
-            <p><span class="label boolean"></span> </p>True if the value is a valid email address. False if not.
-        </li>
-    </ul>
-    
-
-</section>
-    <section id="Ink_UI_FormValidator_2-exact_length" class="box box-function">
-    <h1 class="fw-300">.exact_length(value, exactSize)
-    <i>function</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         value</li><li class="prop mandatory">
-         exactSize</li>
-    </ul><p class="text">Checks if a value has an exact length</p>
-        <h3>Accepts</h3>
-        
-        <ul class="params">
-            <li class="level1">
-                <p>value
-                    <span class="label mandatory"></span><span class="label string"></span></p>
-                Value to be checked</li>
-            <li class="level1">
-                <p>exactSize
-                    <span class="label mandatory"></span><span class="label string"></span><span class="label number"></span></p>
-                Exact number of characters.</li>
-        </ul>
-    <h3>Returns</h3>
-    <ul class="params">
-        <li class="return">
-            <p><span class="label boolean"></span> </p>True if the length of value is equal to the size defined. False if not.
-        </li>
-    </ul>
-    
-
-</section>
-    <section id="Ink_UI_FormValidator_2-getElement" class="box box-function">
-    <h1 class="fw-300">.getElement()
-    <i>function</i></h1><p class="text">Gets the DOM element related to the instance.</p>
-    <h3>Returns</h3>
-    <ul class="params">
-        <li class="return">
-            <p><span class="label object"></span> </p>DOM Element
-        </li>
-    </ul>
-    
-
-</section>
-    <section id="Ink_UI_FormValidator_2-getErrors" class="box box-function">
-    <h1 class="fw-300">.getErrors()
-    <i>function</i></h1><p class="text">Gets the constructed errors&#39; object.</p>
-    <h3>Returns</h3>
-    <ul class="params">
-        <li class="return">
-            <p><span class="label object"></span> </p>Errors' object
-        </li>
-    </ul>
-    
-
-</section>
-    <section id="Ink_UI_FormValidator_2-getFormElements" class="box box-function">
-    <h1 class="fw-300">.getFormElements()
-    <i>function</i></h1><p class="text">Gets other elements in the same form.</p>
-    <h3>Returns</h3>
-    <ul class="params">
-        <li class="return">
-            <p><span class="label object"></span> </p>A mapping of keys to other elements in this form.
-        </li>
-    </ul>
-    
-
-</section>
-    <section id="Ink_UI_FormValidator_2-getValue" class="box box-function">
-    <h1 class="fw-300">.getValue()
-    <i>function</i></h1><p class="text">Gets an element&#39;s value</p>
-    <h3>Returns</h3>
-    <ul class="params">
-        <li class="return">
-            <p><span class="label mixed"></span> </p>The DOM Element's value
-        </li>
-    </ul>
-    
-
-</section>
-    <section id="Ink_UI_FormValidator_2-integer" class="box box-function">
-    <h1 class="fw-300">.integer(value, positive)
-    <i>function</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         value</li><li class="prop mandatory">
-         positive</li>
-    </ul><p class="text">Checks if a value is a valid integer.</p>
-        <h3>Accepts</h3>
-        
-        <ul class="params">
-            <li class="level1">
-                <p>value
-                    <span class="label mandatory"></span><span class="label string"></span></p>
-                Value to be checked</li>
-            <li class="level1">
-                <p>positive
-                    <span class="label mandatory"></span><span class="label string"></span></p>
-                Flag that specifies if the integer is must be positive (unsigned).</li>
-        </ul>
-    <h3>Returns</h3>
-    <ul class="params">
-        <li class="return">
-            <p><span class="label boolean"></span> </p>True if the value is a valid integer. False if not.
-        </li>
-    </ul>
-    
-
-</section>
-    <section id="Ink_UI_FormValidator_2-ip" class="box box-function">
-    <h1 class="fw-300">.ip(value, ipType)
-    <i>function</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         value</li><li class="prop mandatory">
-         ipType</li>
-    </ul><p class="text">Checks if a value is a valid IP. Supports ipv4 and ipv6</p>
-        <h3>Accepts</h3>
-        
-        <ul class="params">
-            <li class="level1">
-                <p>value
-                    <span class="label mandatory"></span><span class="label string"></span></p>
-                Value to be checked</li>
-            <li class="level1">
-                <p>ipType
-                    <span class="label mandatory"></span><span class="label string"></span></p>
-                Type of IP to be validated. The values are: ipv4, ipv6. By default is ipv4.</li>
-        </ul>
-    <h3>Returns</h3>
-    <ul class="params">
-        <li class="return">
-            <p><span class="label boolean"></span> </p>True if the value is a valid IP address. False if not.
-        </li>
-    </ul>
-    
-
-</section>
-    <section id="Ink_UI_FormValidator_2-max_length" class="box box-function">
-    <h1 class="fw-300">.max_length(value, maxSize)
-    <i>function</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         value</li><li class="prop mandatory">
-         maxSize</li>
-    </ul><p class="text">Checks if a value has a maximum length</p>
-        <h3>Accepts</h3>
-        
-        <ul class="params">
-            <li class="level1">
-                <p>value
-                    <span class="label mandatory"></span><span class="label string"></span></p>
-                Value to be checked.</li>
-            <li class="level1">
-                <p>maxSize
-                    <span class="label mandatory"></span><span class="label string"></span><span class="label number"></span></p>
-                Maximum number of characters.</li>
-        </ul>
-    <h3>Returns</h3>
-    <ul class="params">
-        <li class="return">
-            <p><span class="label boolean"></span> </p>True if the length of value is equal or smaller than the maximum chars defined. False if not.
-        </li>
-    </ul>
-    
-
-</section>
-    <section id="Ink_UI_FormValidator_2-min_length" class="box box-function">
-    <h1 class="fw-300">.min_length(value, minSize)
-    <i>function</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         value</li><li class="prop mandatory">
-         minSize</li>
-    </ul><p class="text">Checks if a value has a minimum length</p>
-        <h3>Accepts</h3>
-        
-        <ul class="params">
-            <li class="level1">
-                <p>value
-                    <span class="label mandatory"></span><span class="label string"></span></p>
-                Value to be checked.</li>
-            <li class="level1">
-                <p>minSize
-                    <span class="label mandatory"></span><span class="label string"></span><span class="label number"></span></p>
-                Minimum number of characters.</li>
-        </ul>
-    <h3>Returns</h3>
-    <ul class="params">
-        <li class="return">
-            <p><span class="label boolean"></span> </p>True if the length of value is equal or bigger than the minimum chars defined. False if not.
-        </li>
-    </ul>
-    
-
-</section>
-    <section id="Ink_UI_FormValidator_2-numeric" class="box box-function">
-    <h1 class="fw-300">.numeric(value, decimalSeparator, decimalPlaces, leftDigits)
-    <i>function</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         value</li><li class="prop mandatory">
-         decimalSeparator</li><li class="prop">
-         decimalPlaces</li><li class="prop">
-         leftDigits</li>
-    </ul><p class="text">Checks if a value is a numeric value.</p>
-        <h3>Accepts</h3>
-        
-        <ul class="params">
-            <li class="level1">
-                <p>value
-                    <span class="label mandatory"></span><span class="label string"></span></p>
-                Value to be checked</li>
-            <li class="level1">
-                <p>decimalSeparator
-                    <span class="label mandatory"></span><span class="label string"></span></p>
-                Checks if it's a valid decimal. Otherwise checks if it's a valid integer.</li>
-            <li class="level1">
-                <p>decimalPlaces
-                    <span class="label string"></span></p>
-                Maximum number of digits the decimal part must have.</li>
-            <li class="level1">
-                <p>leftDigits
-                    <span class="label string"></span></p>
-                Maximum number of digits the integer part must have, when provided.</li>
-        </ul>
-    <h3>Returns</h3>
-    <ul class="params">
-        <li class="return">
-            <p><span class="label boolean"></span> </p>True if the value is numeric. False if not.
-        </li>
-    </ul>
-    
-
-</section>
-    <section id="Ink_UI_FormValidator_2-phone" class="box box-function">
-    <h1 class="fw-300">.phone(value, phoneType)
-    <i>function</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         value</li><li class="prop mandatory">
-         phoneType</li>
-    </ul><p class="text">Checks if a value is a valid phone number.<br>Supports several countries, based in the Ink.Util.Validator class.</p>
-        <h3>Accepts</h3>
-        
-        <ul class="params">
-            <li class="level1">
-                <p>value
-                    <span class="label mandatory"></span><span class="label string"></span></p>
-                Value to be checked</li>
-            <li class="level1">
-                <p>phoneType
-                    <span class="label mandatory"></span><span class="label string"></span></p>
-                Country's initials to specify the type of phone number to be validated. Ex: 'AO'.</li>
-        </ul>
-    <h3>Returns</h3>
-    <ul class="params">
-        <li class="return">
-            <p><span class="label boolean"></span> </p>True if it's a valid phone number. False if not.
-        </li>
-    </ul>
-    
-
-</section>
-    <section id="Ink_UI_FormValidator_2-range" class="box box-function">
-    <h1 class="fw-300">.range(value, minValue, maxValue, multipleOf)
-    <i>function</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         value</li><li class="prop mandatory">
-         minValue</li><li class="prop mandatory">
-         maxValue</li><li class="prop">
-         multipleOf</li>
-    </ul><p class="text">Checks if a value is in a specific range of values.<br>The parameters after the first one are used to specify the range, and are similar in function to python&#39;s range() function.</p>
-        <h3>Accepts</h3>
-        
-        <ul class="params">
-            <li class="level1">
-                <p>value
-                    <span class="label mandatory"></span><span class="label string"></span></p>
-                Value to be checked</li>
-            <li class="level1">
-                <p>minValue
-                    <span class="label mandatory"></span><span class="label string"></span></p>
-                Left limit of the range.</li>
-            <li class="level1">
-                <p>maxValue
-                    <span class="label mandatory"></span><span class="label string"></span></p>
-                Right limit of the range.</li>
-            <li class="level1">
-                <p>multipleOf
-                    <span class="label string"></span></p>
-                In case you want numbers that are only multiples of another number.</li>
-        </ul>
-    <h3>Returns</h3>
-    <ul class="params">
-        <li class="return">
-            <p><span class="label boolean"></span> </p>True if the value is within the range. False if not.
-        </li>
-    </ul>
-    
-
-</section>
-    <section id="Ink_UI_FormValidator_2-required" class="box box-function">
-    <h1 class="fw-300">.required(value)
-    <i>function</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         value</li>
-    </ul><p class="text">Checks if a value is defined and not empty</p>
-        <h3>Accepts</h3>
-        
-        <ul class="params">
-            <li class="level1">
-                <p>value
-                    <span class="label mandatory"></span><span class="label string"></span></p>
-                Value to be checked</li>
-        </ul>
-    <h3>Returns</h3>
-    <ul class="params">
-        <li class="return">
-            <p><span class="label boolean"></span> </p>True case is defined, false if it's empty or not defined.
-        </li>
-    </ul>
-    
-
-</section>
-    <section id="Ink_UI_FormValidator_2-url" class="box box-function">
-    <h1 class="fw-300">.url(value, fullCheck)
-    <i>function</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         value</li><li class="prop mandatory">
-         fullCheck</li>
-    </ul><p class="text">Checks if a value has a valid URL</p>
-        <h3>Accepts</h3>
-        
-        <ul class="params">
-            <li class="level1">
-                <p>value
-                    <span class="label mandatory"></span><span class="label string"></span></p>
-                Value to be checked</li>
-            <li class="level1">
-                <p>fullCheck
-                    <span class="label mandatory"></span><span class="label boolean"></span></p>
-                Flag to validate a full url (with the protocol).</li>
-        </ul>
-    <h3>Returns</h3>
-    <ul class="params">
-        <li class="return">
-            <p><span class="label boolean"></span> </p>True if the URL is considered valid. False if not.
-        </li>
-    </ul>
-    
-
-</section>
-    <section id="Ink_UI_FormValidator_2-validate" class="box box-function">
-    <h1 class="fw-300">.validate()
-    <i>function</i></h1><p class="text">Validates the element based on the rules defined.<br>It parses the rules defined in the _options.rules property.</p>
-    <h3>Returns</h3>
-    <ul class="params">
-        <li class="return">
-            <p><span class="label boolean"></span> </p>True if every rule was valid. False if one fails.
-        </li>
-    </ul>
-    
-
-</section>
     

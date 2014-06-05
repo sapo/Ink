@@ -4,12 +4,13 @@ title: Ink.Util.I18n_1
 description: Internationalization Utilities
 site_root:  ../
 ---
-    <section>
-        <h1 class="fw-300">Ink.Util.I18n_1</h1>
+    <section><p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p>
 
-<p>You can use this module to internationalize your applications. It roughly emulates GNU gettext&#39;s API.</p>
-
-    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space">
+    <h2 class="fw-300 class-name">
+        Ink.Util.I18n <i>class</i>
+        
+    </h2><p>You can use this module to internationalize your applications. It roughly emulates GNU gettext&#39;s API.</p>
+<table class="props bottom-space">
         <caption>Methods</caption>
         <thead>
             <tr>
@@ -21,73 +22,85 @@ site_root:  ../
         <tbody>
             <tr>
                 <td>
-                    <a href="#Ink_Util_I18n_1-Ink_Util_I18n-I18n"><em>(constructor)</em></a>
+                    <a href="#Ink_Util_I18n_1-Ink_Util_I18n-I18n">new I18n(dict, [lang])
+</a>
                 </td>
                 <td><span class="ink-label green">Constructor</span></td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Util_I18n_1-Ink_Util_I18n-alias">.alias</a>
+                    <a href="#Ink_Util_I18n_1-Ink_Util_I18n-alias">.alias()
+</a>
                 </td>
                 <td> Create an alias.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Util_I18n_1-Ink_Util_I18n-append">.append</a>
+                    <a href="#Ink_Util_I18n_1-Ink_Util_I18n-append">.append(dict)
+</a>
                 </td>
                 <td> Adds translation strings for the helper to use.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Util_I18n_1-Ink_Util_I18n-appendGlobal">.appendGlobal</a>
+                    <a href="#Ink_Util_I18n_1-Ink_Util_I18n-appendGlobal">.appendGlobal(dict, lang)
+</a>
                 </td>
                 <td> Adds a dictionary to be used in all I18n instances for the corresponding language.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Util_I18n_1-Ink_Util_I18n-getKey">.getKey</a>
+                    <a href="#Ink_Util_I18n_1-Ink_Util_I18n-getKey">.getKey(key)
+</a>
                 </td>
                 <td> Gest a key from the current dictionary</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Util_I18n_1-Ink_Util_I18n-lang">.lang</a>
+                    <a href="#Ink_Util_I18n_1-Ink_Util_I18n-lang">.lang(lang)
+</a>
                 </td>
                 <td> Gets or sets the language.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Util_I18n_1-Ink_Util_I18n-langGlobal">.langGlobal</a>
+                    <a href="#Ink_Util_I18n_1-Ink_Util_I18n-langGlobal">.langGlobal(lang)
+</a>
                 </td>
                 <td> Gets or sets the current default language of I18n instances.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Util_I18n_1-Ink_Util_I18n-ntext">.ntext</a>
+                    <a href="#Ink_Util_I18n_1-Ink_Util_I18n-ntext">.ntext(strSin, strPlur, count, [args*])
+</a>
                 </td>
                 <td> Translates and pluralizes text.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Util_I18n_1-Ink_Util_I18n-ordinal">.ordinal</a>
+                    <a href="#Ink_Util_I18n_1-Ink_Util_I18n-ordinal">.ordinal(num, [options])
+</a>
                 </td>
                 <td> Gets the ordinal suffix of a number.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Util_I18n_1-Ink_Util_I18n-reset">.reset</a>
+                    <a href="#Ink_Util_I18n_1-Ink_Util_I18n-reset">.reset()
+</a>
                 </td>
                 <td> Resets I18n global state (global dictionaries, and default language for instances)</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Util_I18n_1-Ink_Util_I18n-testMode">.testMode</a>
+                    <a href="#Ink_Util_I18n_1-Ink_Util_I18n-testMode">.testMode(bool)
+</a>
                 </td>
                 <td> Sets or unsets test mode.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Util_I18n_1-Ink_Util_I18n-text">.text</a>
+                    <a href="#Ink_Util_I18n_1-Ink_Util_I18n-text">.text(str, [namedParms], [args], [arg2], [argn*])
+</a>
                 </td>
                 <td> Translates a string.</td>
             </tr></tbody>
@@ -98,13 +111,9 @@ site_root:  ../
 
 
     <section id="Ink_Util_I18n_1-Ink_Util_I18n-I18n" class="box box-function">
-    <h1 class="fw-300">Ink.Util.I18n(dict, lang)
-    <i>constructor</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         dict</li><li class="prop">
-         lang</li>
-    </ul>
+    <h1 class="fw-300 function-desc">new Ink.Util.I18n(dict, [lang])
+
+    </h1>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -123,7 +132,8 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_I18n_1-Ink_Util_I18n-alias" class="box box-function">
-    <h1 class="fw-300">.alias()
+    <h1 class="fw-300 function-desc">.alias()
+
     <i>method</i></h1><p class="text">Create an alias.<br><p>Returns an alias to this I18n instance. It contains the I18n methods documented here, but is also a function. If you call it, it just calls <code>text()</code>. This is commonly assigned to &quot;_&quot;.</p></p>
     <h3>Returns</h3>
     <ul class="params">
@@ -138,12 +148,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_I18n_1-Ink_Util_I18n-append" class="box box-function">
-    <h1 class="fw-300">.append(dict)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         dict</li>
-    </ul><p class="text">Adds translation strings for the helper to use.</p>
+    <h1 class="fw-300 function-desc">.append(dict)
+
+    <i>method</i></h1><p class="text">Adds translation strings for the helper to use.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -158,13 +165,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_I18n_1-Ink_Util_I18n-appendGlobal" class="box box-function">
-    <h1 class="fw-300">.appendGlobal(dict, lang)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         dict</li><li class="prop mandatory">
-         lang</li>
-    </ul><p class="text">Adds a dictionary to be used in all I18n instances for the corresponding language.</p>
+    <h1 class="fw-300 function-desc">.appendGlobal(dict, lang)
+
+    <i>method</i></h1><p class="text">Adds a dictionary to be used in all I18n instances for the corresponding language.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -181,12 +184,9 @@ site_root:  ../
 </section>
 
     <section id="Ink_Util_I18n_1-Ink_Util_I18n-getKey" class="box box-function">
-    <h1 class="fw-300">.getKey(key)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         key</li>
-    </ul><p class="text">Gest a key from the current dictionary</p>
+    <h1 class="fw-300 function-desc">.getKey(key)
+
+    <i>method</i></h1><p class="text">Gest a key from the current dictionary</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -208,12 +208,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_I18n_1-Ink_Util_I18n-lang" class="box box-function">
-    <h1 class="fw-300">.lang(lang)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         lang</li>
-    </ul><p class="text">Gets or sets the language.<br>If there are more dictionaries available in cache, they will be loaded.</p>
+    <h1 class="fw-300 function-desc">.lang(lang)
+
+    <i>method</i></h1><p class="text">Gets or sets the language.<br>If there are more dictionaries available in cache, they will be loaded.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -226,12 +223,9 @@ site_root:  ../
 </section>
 
     <section id="Ink_Util_I18n_1-Ink_Util_I18n-langGlobal" class="box box-function">
-    <h1 class="fw-300">.langGlobal(lang)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         lang</li>
-    </ul><p class="text">Gets or sets the current default language of I18n instances.</p>
+    <h1 class="fw-300 function-desc">.langGlobal(lang)
+
+    <i>method</i></h1><p class="text">Gets or sets the current default language of I18n instances.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -251,15 +245,9 @@ site_root:  ../
 </section>
 
     <section id="Ink_Util_I18n_1-Ink_Util_I18n-ntext" class="box box-function">
-    <h1 class="fw-300">.ntext(strSin, strPlur, count, args*)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         strSin</li><li class="prop mandatory">
-         strPlur</li><li class="prop mandatory">
-         count</li><li class="prop">
-         args*</li>
-    </ul><p class="text">Translates and pluralizes text.<br>Given a singular string, a plural string and a number, translates either the singular or plural string.</p>
+    <h1 class="fw-300 function-desc">.ntext(strSin, strPlur, count, [args*])
+
+    <i>method</i></h1><p class="text">Translates and pluralizes text.<br>Given a singular string, a plural string and a number, translates either the singular or plural string.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -293,13 +281,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_I18n_1-Ink_Util_I18n-ordinal" class="box box-function">
-    <h1 class="fw-300">.ordinal(num, options)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         num</li><li class="prop">
-         options</li>
-    </ul><p class="text">Gets the ordinal suffix of a number.<br><p>This works by using transforms (in the form of Objects or Functions) passed into the function or found in the special key <code>_ordinals</code> in the active language dictionary.</p></p>
+    <h1 class="fw-300 function-desc">.ordinal(num, [options])
+
+    <i>method</i></h1><p class="text">Gets the ordinal suffix of a number.<br><p>This works by using transforms (in the form of Objects or Functions) passed into the function or found in the special key <code>_ordinals</code> in the active language dictionary.</p></p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -333,18 +317,16 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_I18n_1-Ink_Util_I18n-reset" class="box box-function">
-    <h1 class="fw-300">.reset()
+    <h1 class="fw-300 function-desc">.reset()
+
     <i>method</i></h1><p class="text">Resets I18n global state (global dictionaries, and default language for instances)</p>
 
 </section>
 
     <section id="Ink_Util_I18n_1-Ink_Util_I18n-testMode" class="box box-function">
-    <h1 class="fw-300">.testMode(bool)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         bool</li>
-    </ul><p class="text">Sets or unsets test mode.<br>In test mode, unknown strings are wrapped in <code>[ ... ]</code>. This is useful for debugging your application and to make sure all your translation keys are in place.</p>
+    <h1 class="fw-300 function-desc">.testMode(bool)
+
+    <i>method</i></h1><p class="text">Sets or unsets test mode.<br>In test mode, unknown strings are wrapped in <code>[ ... ]</code>. This is useful for debugging your application and to make sure all your translation keys are in place.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -357,16 +339,9 @@ site_root:  ../
 </section>
 
     <section id="Ink_Util_I18n_1-Ink_Util_I18n-text" class="box box-function">
-    <h1 class="fw-300">.text(str, namedParms, args, arg2, argn*)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         str</li><li class="prop">
-         namedParms</li><li class="prop">
-         args</li><li class="prop">
-         arg2</li><li class="prop">
-         argn*</li>
-    </ul><p class="text">Translates a string.<br>Given a translation key, return a translated string, with replaced parameters.<br>When a translated string is not available, the original string is returned unchanged.</p>
+    <h1 class="fw-300 function-desc">.text(str, [namedParms], [args], [arg2], [argn*])
+
+    <i>method</i></h1><p class="text">Translates a string.<br>Given a translation key, return a translated string, with replaced parameters.<br>When a translated string is not available, the original string is returned unchanged.</p>
         <h3>Accepts</h3>
         
         <ul class="params">

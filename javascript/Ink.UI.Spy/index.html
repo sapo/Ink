@@ -4,17 +4,18 @@ title: Ink.UI.Spy_1
 description: Highlight elements as you scroll
 site_root:  ../
 ---
-    <section>
-        <h1 class="fw-300">Ink.UI.Spy_1</h1>
+    <section><p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p>
 
-<p>Spy is an UI component which tells the user which section is currently visible.
+    <h2 class="fw-300 class-name">
+        Ink.UI.Spy <i>class</i>
+        
+    </h2><p>Spy is an UI component which tells the user which section is currently visible.
 Spy can be used to highlight a menu item for the section which is visible to the user.
 You need two things: A menu element (which contains your links inside <code>li</code> tags), and an element containing your section&#39;s content.
 The links must be inside <code>li</code> tags. These will get the &#39;active&#39; class, to signal which item is currently visible. In your CSS you need to add styling for this class.
 To use Ink.UI.Spy for more than one section, loop through your sections (as you see in the sample below), or just load <code>autoload.js</code> and set add the <code>data-spy=&quot;true&quot;</code> attribute to your sections.
 The currently visible element&#39;s corresponding link in the menu gets the &#39;visible&#39; class added to it.</p>
-
-    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space">
+<table class="props bottom-space">
         <caption>Methods</caption>
         <thead>
             <tr>
@@ -26,7 +27,8 @@ The currently visible element&#39;s corresponding link in the menu gets the &#39
         <tbody>
             <tr>
                 <td>
-                    <a href="#Ink_UI_Spy_1-Ink_UI_Spy-Spy"><em>(constructor)</em></a>
+                    <a href="#Ink_UI_Spy_1-Ink_UI_Spy-Spy">new Spy(selector, [options])
+</a>
                 </td>
                 <td><span class="ink-label green">Constructor</span></td>
             </tr></tbody>
@@ -37,13 +39,9 @@ The currently visible element&#39;s corresponding link in the menu gets the &#39
 
 
     <section id="Ink_UI_Spy_1-Ink_UI_Spy-Spy" class="box box-function">
-    <h1 class="fw-300">Ink.UI.Spy(selector, options)
-    <i>constructor</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         selector</li><li class="prop">
-         options</li>
-    </ul>
+    <h1 class="fw-300 function-desc">new Ink.UI.Spy(selector, [options])
+
+    </h1>
         <h3>Accepts</h3>
         
         <ul class="params">

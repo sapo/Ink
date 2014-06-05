@@ -4,11 +4,12 @@ title: Ink.UI.Pagination_1
 description: Pagination elements
 site_root:  ../
 ---
-    <section>
-        <h1 class="fw-300">Ink.UI.Pagination_1</h1>
+    <section><p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p>
 
-
-    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space">
+    <h2 class="fw-300 class-name">
+        Ink.UI.Pagination <i>class</i>
+        
+    </h2><table class="props bottom-space">
         <caption>Methods</caption>
         <thead>
             <tr>
@@ -20,79 +21,92 @@ site_root:  ../
         <tbody>
             <tr>
                 <td>
-                    <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-Pagination"><em>(constructor)</em></a>
+                    <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-Pagination">new Pagination(selector, options)
+</a>
                 </td>
                 <td><span class="ink-label green">Constructor</span></td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-destroy">.destroy</a>
+                    <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-destroy">.destroy()
+</a>
                 </td>
                 <td> Unregisters the component and removes its markup</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-getCurrent">.getCurrent</a>
+                    <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-getCurrent">.getCurrent()
+</a>
                 </td>
                 <td> Gets the current page index</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-getSize">.getSize</a>
+                    <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-getSize">.getSize()
+</a>
                 </td>
                 <td> Gets the number of pages</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-hasNext">.hasNext</a>
+                    <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-hasNext">.hasNext()
+</a>
                 </td>
                 <td> Checks if it has next pages</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-hasNextPage">.hasNextPage</a>
+                    <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-hasNextPage">.hasNextPage()
+</a>
                 </td>
                 <td> Checks if it has a next set of pages</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-hasPrevious">.hasPrevious</a>
+                    <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-hasPrevious">.hasPrevious()
+</a>
                 </td>
                 <td> Checks if it has previous pages</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-hasPreviousPage">.hasPreviousPage</a>
+                    <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-hasPreviousPage">.hasPreviousPage()
+</a>
                 </td>
                 <td> Checks if it has a previous set of pages</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-isFirst">.isFirst</a>
+                    <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-isFirst">.isFirst()
+</a>
                 </td>
                 <td> Checks if it&#39;s at the first page</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-isLast">.isLast</a>
+                    <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-isLast">.isLast()
+</a>
                 </td>
                 <td> Checks if it&#39;s on the last page</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-setCurrent">.setCurrent</a>
+                    <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-setCurrent">.setCurrent(nr, isRelative)
+</a>
                 </td>
                 <td> Sets the current page.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-setOnChange">.setOnChange</a>
+                    <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-setOnChange">.setOnChange(cb)
+</a>
                 </td>
                 <td> Allows you to subscribe to the onChange event</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-setSize">.setSize</a>
+                    <a href="#Ink_UI_Pagination_1-Ink_UI_Pagination-setSize">.setSize(sz, setSizeInItems, totalItems, itemsPerPage)
+</a>
                 </td>
                 <td> Sets the number of pages</td>
             </tr></tbody>
@@ -103,13 +117,9 @@ site_root:  ../
 
 
     <section id="Ink_UI_Pagination_1-Ink_UI_Pagination-Pagination" class="box box-function">
-    <h1 class="fw-300">Ink.UI.Pagination(selector, options)
-    <i>constructor</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         selector</li><li class="prop mandatory">
-         options</li>
-    </ul>
+    <h1 class="fw-300 function-desc">new Ink.UI.Pagination(selector, options)
+
+    </h1>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -232,13 +242,15 @@ site_root:  ../
 	</section>
 
     <section id="Ink_UI_Pagination_1-Ink_UI_Pagination-destroy" class="box box-function">
-    <h1 class="fw-300">.destroy()
+    <h1 class="fw-300 function-desc">.destroy()
+
     <i>method</i></h1><p class="text">Unregisters the component and removes its markup</p>
 
 </section>
 
     <section id="Ink_UI_Pagination_1-Ink_UI_Pagination-getCurrent" class="box box-function">
-    <h1 class="fw-300">.getCurrent()
+    <h1 class="fw-300 function-desc">.getCurrent()
+
     <i>method</i></h1><p class="text">Gets the current page index</p>
     <h3>Returns</h3>
     <ul class="params">
@@ -251,7 +263,8 @@ site_root:  ../
 </section>
 
     <section id="Ink_UI_Pagination_1-Ink_UI_Pagination-getSize" class="box box-function">
-    <h1 class="fw-300">.getSize()
+    <h1 class="fw-300 function-desc">.getSize()
+
     <i>method</i></h1><p class="text">Gets the number of pages</p>
     <h3>Returns</h3>
     <ul class="params">
@@ -264,7 +277,8 @@ site_root:  ../
 </section>
 
     <section id="Ink_UI_Pagination_1-Ink_UI_Pagination-hasNext" class="box box-function">
-    <h1 class="fw-300">.hasNext()
+    <h1 class="fw-300 function-desc">.hasNext()
+
     <i>method</i></h1><p class="text">Checks if it has next pages</p>
     <h3>Returns</h3>
     <ul class="params">
@@ -277,7 +291,8 @@ site_root:  ../
 </section>
 
     <section id="Ink_UI_Pagination_1-Ink_UI_Pagination-hasNextPage" class="box box-function">
-    <h1 class="fw-300">.hasNextPage()
+    <h1 class="fw-300 function-desc">.hasNextPage()
+
     <i>method</i></h1><p class="text">Checks if it has a next set of pages</p>
     <h3>Returns</h3>
     <ul class="params">
@@ -290,7 +305,8 @@ site_root:  ../
 </section>
 
     <section id="Ink_UI_Pagination_1-Ink_UI_Pagination-hasPrevious" class="box box-function">
-    <h1 class="fw-300">.hasPrevious()
+    <h1 class="fw-300 function-desc">.hasPrevious()
+
     <i>method</i></h1><p class="text">Checks if it has previous pages</p>
     <h3>Returns</h3>
     <ul class="params">
@@ -303,7 +319,8 @@ site_root:  ../
 </section>
 
     <section id="Ink_UI_Pagination_1-Ink_UI_Pagination-hasPreviousPage" class="box box-function">
-    <h1 class="fw-300">.hasPreviousPage()
+    <h1 class="fw-300 function-desc">.hasPreviousPage()
+
     <i>method</i></h1><p class="text">Checks if it has a previous set of pages</p>
     <h3>Returns</h3>
     <ul class="params">
@@ -316,7 +333,8 @@ site_root:  ../
 </section>
 
     <section id="Ink_UI_Pagination_1-Ink_UI_Pagination-isFirst" class="box box-function">
-    <h1 class="fw-300">.isFirst()
+    <h1 class="fw-300 function-desc">.isFirst()
+
     <i>method</i></h1><p class="text">Checks if it&#39;s at the first page</p>
     <h3>Returns</h3>
     <ul class="params">
@@ -329,7 +347,8 @@ site_root:  ../
 </section>
 
     <section id="Ink_UI_Pagination_1-Ink_UI_Pagination-isLast" class="box box-function">
-    <h1 class="fw-300">.isLast()
+    <h1 class="fw-300 function-desc">.isLast()
+
     <i>method</i></h1><p class="text">Checks if it&#39;s on the last page</p>
     <h3>Returns</h3>
     <ul class="params">
@@ -342,13 +361,9 @@ site_root:  ../
 </section>
 
     <section id="Ink_UI_Pagination_1-Ink_UI_Pagination-setCurrent" class="box box-function">
-    <h1 class="fw-300">.setCurrent(nr, isRelative)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         nr</li><li class="prop mandatory">
-         isRelative</li>
-    </ul><p class="text">Sets the current page.</p>
+    <h1 class="fw-300 function-desc">.setCurrent(nr, isRelative)
+
+    <i>method</i></h1><p class="text">Sets the current page.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -365,12 +380,9 @@ site_root:  ../
 </section>
 
     <section id="Ink_UI_Pagination_1-Ink_UI_Pagination-setOnChange" class="box box-function">
-    <h1 class="fw-300">.setOnChange(cb)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         cb</li>
-    </ul><p class="text">Allows you to subscribe to the onChange event</p>
+    <h1 class="fw-300 function-desc">.setOnChange(cb)
+
+    <i>method</i></h1><p class="text">Allows you to subscribe to the onChange event</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -383,15 +395,9 @@ site_root:  ../
 </section>
 
     <section id="Ink_UI_Pagination_1-Ink_UI_Pagination-setSize" class="box box-function">
-    <h1 class="fw-300">.setSize(sz, setSizeInItems, totalItems, itemsPerPage)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         sz</li><li class="prop mandatory">
-         setSizeInItems</li><li class="prop mandatory">
-         totalItems</li><li class="prop mandatory">
-         itemsPerPage</li>
-    </ul><p class="text">Sets the number of pages</p>
+    <h1 class="fw-300 function-desc">.setSize(sz, setSizeInItems, totalItems, itemsPerPage)
+
+    <i>method</i></h1><p class="text">Sets the number of pages</p>
         <h3>Accepts</h3>
         
         <ul class="params">

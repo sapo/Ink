@@ -4,16 +4,17 @@ title: Ink.UI.LazyLoad_1
 description: Delays content loading
 site_root:  ../
 ---
-    <section>
-        <h1 class="fw-300">Ink.UI.LazyLoad_1</h1>
+    <section><p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p>
 
-<p>Stops the browser from loading a barrage of content at once.</p>
+    <h2 class="fw-300 class-name">
+        Ink.UI.LazyLoad_1 <i>class</i>
+        
+    </h2><p>Stops the browser from loading a barrage of content at once.</p>
 <p>This delays the loading of images and other content until the corresponding elements are visible in the browser viewport.
 This was created to load images later, but can be also used for widgets which are slow to load and are only useful when on screen.</p>
 <p>This works through copying the <code>src</code> attribute into <code>data-src</code>, and placing a <code>placeholder</code> string in the <code>src</code> attribute. Then, when the element is on screen, the <code>data-src</code> attribute is copied back to <code>src</code> and the content starts loading. You can use the options below to change what attributes are involved in the exchange.</p>
 <p>You can also provide your <code>onInsideViewport</code> callback and use it to start widgets which need javascript, such as an interactive map or an animation.</p>
-
-    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space">
+<table class="props bottom-space">
         <caption>Methods</caption>
         <thead>
             <tr>
@@ -25,19 +26,22 @@ This was created to load images later, but can be also used for widgets which ar
         <tbody>
             <tr>
                 <td>
-                    <a href="#Ink_UI_LazyLoad_1-Ink_UI_LazyLoad_1-LazyLoad_1"><em>(constructor)</em></a>
+                    <a href="#Ink_UI_LazyLoad_1-Ink_UI_LazyLoad_1-LazyLoad_1">new LazyLoad_1(rootElement, [options])
+</a>
                 </td>
                 <td><span class="ink-label green">Constructor</span></td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_UI_LazyLoad_1-Ink_UI_LazyLoad_1-destroy">.destroy</a>
+                    <a href="#Ink_UI_LazyLoad_1-Ink_UI_LazyLoad_1-destroy">.destroy()
+</a>
                 </td>
                 <td> Destroy this component</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_UI_LazyLoad_1-Ink_UI_LazyLoad_1-reload">.reload</a>
+                    <a href="#Ink_UI_LazyLoad_1-Ink_UI_LazyLoad_1-reload">.reload()
+</a>
                 </td>
                 <td> Load or reload the component.</td>
             </tr></tbody>
@@ -48,13 +52,9 @@ This was created to load images later, but can be also used for widgets which ar
 
 
     <section id="Ink_UI_LazyLoad_1-Ink_UI_LazyLoad_1-LazyLoad_1" class="box box-function">
-    <h1 class="fw-300">Ink.UI.LazyLoad_1(rootElement, options)
-    <i>constructor</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         rootElement</li><li class="prop">
-         options</li>
-    </ul>
+    <h1 class="fw-300 function-desc">new Ink.UI.LazyLoad_1(rootElement, [options])
+
+    </h1>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -121,13 +121,15 @@ This was created to load images later, but can be also used for widgets which ar
 	</section>
 
     <section id="Ink_UI_LazyLoad_1-Ink_UI_LazyLoad_1-destroy" class="box box-function">
-    <h1 class="fw-300">.destroy()
+    <h1 class="fw-300 function-desc">.destroy()
+
     <i>method</i></h1><p class="text">Destroy this component</p>
 
 </section>
 
     <section id="Ink_UI_LazyLoad_1-Ink_UI_LazyLoad_1-reload" class="box box-function">
-    <h1 class="fw-300">.reload()
+    <h1 class="fw-300 function-desc">.reload()
+
     <i>method</i></h1><p class="text">Load or reload the component.<br>Adding the &#39;scroll&#39; event listener if necessary and checks if anything needs to be loaded now.<br><p>You can use this to manually invoke the loading logic without user action.</p></p>
 
 </section>

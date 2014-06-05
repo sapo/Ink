@@ -4,12 +4,13 @@ title: Ink.Net.Ajax_1
 description: Cross Browser Ajax requests
 site_root:  ../
 ---
-    <section>
-        <h1 class="fw-300">Ink.Net.Ajax_1</h1>
+    <section><p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p>
 
-<p>Creates a new XMLHttpRequest object</p>
-
-    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space">
+    <h2 class="fw-300 class-name">
+        Ink.Net.Ajax <i>class</i>
+        
+    </h2><p>Creates a new XMLHttpRequest object</p>
+<table class="props bottom-space">
         <caption>Methods</caption>
         <thead>
             <tr>
@@ -21,115 +22,134 @@ site_root:  ../
         <tbody>
             <tr>
                 <td>
-                    <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-Ajax"><em>(constructor)</em></a>
+                    <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-Ajax">new Ajax(url, options)
+</a>
                 </td>
                 <td><span class="ink-label green">Constructor</span></td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-abort">.abort</a>
+                    <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-abort">.abort()
+</a>
                 </td>
                 <td> Aborts the request if still running. No callbacks are called</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-evalJSON">.evalJSON</a>
+                    <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-evalJSON">.evalJSON(str, sanitize)
+</a>
                 </td>
                 <td> Evaluates a given string as JSON</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-finish">.finish</a>
+                    <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-finish">.finish(response, responseContent)
+</a>
                 </td>
                 <td> Last step after XHR is complete. Call onComplete and cleanup object</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-getAllHeaders">.getAllHeaders</a>
+                    <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-getAllHeaders">.getAllHeaders()
+</a>
                 </td>
                 <td> Gets all the HTTP headers from the response</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-getHeader">.getHeader</a>
+                    <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-getHeader">.getHeader(name)
+</a>
                 </td>
                 <td> Gets an HTTP header from the response</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-getResponse">.getResponse</a>
+                    <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-getResponse">.getResponse()
+</a>
                 </td>
                 <td> Sets the response object</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-getTransport">.getTransport</a>
+                    <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-getTransport">.getTransport()
+</a>
                 </td>
                 <td> Creates the appropriate XMLHttpRequest object</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-isJSON">.isJSON</a>
+                    <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-isJSON">.isJSON(str)
+</a>
                 </td>
                 <td> Checks if a given string is valid JSON</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-load">.load</a>
+                    <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-load">.load(url, callback)
+</a>
                 </td>
                 <td> Loads content from a given url through an XMLHttpRequest.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-makeError">.makeError</a>
+                    <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-makeError">.makeError(code, message)
+</a>
                 </td>
                 <td> Returns a new exception object that can be thrown</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-paramsObjToStr">.paramsObjToStr</a>
+                    <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-paramsObjToStr">.paramsObjToStr(optParams)
+</a>
                 </td>
                 <td> Converts an object with parameters to a querystring</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-ping">.ping</a>
+                    <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-ping">.ping(url, callback)
+</a>
                 </td>
                 <td> Loads content from a given url through an XMLHttpRequest.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-request">.request</a>
+                    <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-request">.request()
+</a>
                 </td>
                 <td> Executes the request</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-runStateChange">.runStateChange</a>
+                    <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-runStateChange">.runStateChange()
+</a>
                 </td>
                 <td> Executes the state changing phase of an ajax request</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-safeCall">.safeCall</a>
+                    <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-safeCall">.safeCall(listener)
+</a>
                 </td>
                 <td> Safely calls a callback function.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-setHeaders">.setHeaders</a>
+                    <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-setHeaders">.setHeaders(url)
+</a>
                 </td>
                 <td> Set the necessary headers for an ajax request</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-setParams">.setParams</a>
+                    <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-setParams">.setParams()
+</a>
                 </td>
                 <td> Set the url parameters for a GET request</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-setRequestHeader">.setRequestHeader</a>
+                    <a href="#Ink_Net_Ajax_1-Ink_Net_Ajax-setRequestHeader">.setRequestHeader(name, value)
+</a>
                 </td>
                 <td> Sets a new request header for the next http request</td>
             </tr></tbody>
@@ -140,13 +160,9 @@ site_root:  ../
 
 
     <section id="Ink_Net_Ajax_1-Ink_Net_Ajax-Ajax" class="box box-function">
-    <h1 class="fw-300">Ink.Net.Ajax(url, options)
-    <i>constructor</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         url</li><li class="prop mandatory">
-         options</li>
-    </ul>
+    <h1 class="fw-300 function-desc">new Ink.Net.Ajax(url, options)
+
+    </h1>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -241,19 +257,16 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Net_Ajax_1-Ink_Net_Ajax-abort" class="box box-function">
-    <h1 class="fw-300">.abort()
+    <h1 class="fw-300 function-desc">.abort()
+
     <i>method</i></h1><p class="text">Aborts the request if still running. No callbacks are called</p>
 
 </section>
 
     <section id="Ink_Net_Ajax_1-Ink_Net_Ajax-evalJSON" class="box box-function">
-    <h1 class="fw-300">.evalJSON(str, sanitize)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         str</li><li class="prop mandatory">
-         sanitize</li>
-    </ul><p class="text">Evaluates a given string as JSON</p>
+    <h1 class="fw-300 function-desc">.evalJSON(str, sanitize)
+
+    <i>method</i></h1><p class="text">Evaluates a given string as JSON</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -277,13 +290,9 @@ site_root:  ../
 </section>
 
     <section id="Ink_Net_Ajax_1-Ink_Net_Ajax-finish" class="box box-function">
-    <h1 class="fw-300">.finish(response, responseContent)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         response</li><li class="prop mandatory">
-         responseContent</li>
-    </ul><p class="text">Last step after XHR is complete. Call onComplete and cleanup object</p>
+    <h1 class="fw-300 function-desc">.finish(response, responseContent)
+
+    <i>method</i></h1><p class="text">Last step after XHR is complete. Call onComplete and cleanup object</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -300,7 +309,8 @@ site_root:  ../
 </section>
 
     <section id="Ink_Net_Ajax_1-Ink_Net_Ajax-getAllHeaders" class="box box-function">
-    <h1 class="fw-300">.getAllHeaders()
+    <h1 class="fw-300 function-desc">.getAllHeaders()
+
     <i>method</i></h1><p class="text">Gets all the HTTP headers from the response</p>
     <h3>Returns</h3>
     <ul class="params">
@@ -313,12 +323,9 @@ site_root:  ../
 </section>
 
     <section id="Ink_Net_Ajax_1-Ink_Net_Ajax-getHeader" class="box box-function">
-    <h1 class="fw-300">.getHeader(name)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         name</li>
-    </ul><p class="text">Gets an HTTP header from the response</p>
+    <h1 class="fw-300 function-desc">.getHeader(name)
+
+    <i>method</i></h1><p class="text">Gets an HTTP header from the response</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -338,7 +345,8 @@ site_root:  ../
 </section>
 
     <section id="Ink_Net_Ajax_1-Ink_Net_Ajax-getResponse" class="box box-function">
-    <h1 class="fw-300">.getResponse()
+    <h1 class="fw-300 function-desc">.getResponse()
+
     <i>method</i></h1><p class="text">Sets the response object</p>
     <h3>Returns</h3>
     <ul class="params">
@@ -351,7 +359,8 @@ site_root:  ../
 </section>
 
     <section id="Ink_Net_Ajax_1-Ink_Net_Ajax-getTransport" class="box box-function">
-    <h1 class="fw-300">.getTransport()
+    <h1 class="fw-300 function-desc">.getTransport()
+
     <i>method</i></h1><p class="text">Creates the appropriate XMLHttpRequest object</p>
     <h3>Returns</h3>
     <ul class="params">
@@ -364,12 +373,9 @@ site_root:  ../
 </section>
 
     <section id="Ink_Net_Ajax_1-Ink_Net_Ajax-isJSON" class="box box-function">
-    <h1 class="fw-300">.isJSON(str)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         str</li>
-    </ul><p class="text">Checks if a given string is valid JSON</p>
+    <h1 class="fw-300 function-desc">.isJSON(str)
+
+    <i>method</i></h1><p class="text">Checks if a given string is valid JSON</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -389,13 +395,9 @@ site_root:  ../
 </section>
 
     <section id="Ink_Net_Ajax_1-Ink_Net_Ajax-load" class="box box-function">
-    <h1 class="fw-300">.load(url, callback)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         url</li><li class="prop mandatory">
-         callback</li>
-    </ul><p class="text">Loads content from a given url through an XMLHttpRequest.<br><p>Shortcut function for simple AJAX use cases. Works with JSON, XML and plain text.</p></p>
+    <h1 class="fw-300 function-desc">.load(url, callback)
+
+    <i>method</i></h1><p class="text">Loads content from a given url through an XMLHttpRequest.<br><p>Shortcut function for simple AJAX use cases. Works with JSON, XML and plain text.</p></p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -421,13 +423,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Net_Ajax_1-Ink_Net_Ajax-makeError" class="box box-function">
-    <h1 class="fw-300">.makeError(code, message)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         code</li><li class="prop mandatory">
-         message</li>
-    </ul><p class="text">Returns a new exception object that can be thrown</p>
+    <h1 class="fw-300 function-desc">.makeError(code, message)
+
+    <i>method</i></h1><p class="text">Returns a new exception object that can be thrown</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -451,12 +449,9 @@ site_root:  ../
 </section>
 
     <section id="Ink_Net_Ajax_1-Ink_Net_Ajax-paramsObjToStr" class="box box-function">
-    <h1 class="fw-300">.paramsObjToStr(optParams)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         optParams</li>
-    </ul><p class="text">Converts an object with parameters to a querystring</p>
+    <h1 class="fw-300 function-desc">.paramsObjToStr(optParams)
+
+    <i>method</i></h1><p class="text">Converts an object with parameters to a querystring</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -476,13 +471,9 @@ site_root:  ../
 </section>
 
     <section id="Ink_Net_Ajax_1-Ink_Net_Ajax-ping" class="box box-function">
-    <h1 class="fw-300">.ping(url, callback)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         url</li><li class="prop mandatory">
-         callback</li>
-    </ul><p class="text">Loads content from a given url through an XMLHttpRequest.<br>Shortcut function for simple AJAX use cases.</p>
+    <h1 class="fw-300 function-desc">.ping(url, callback)
+
+    <i>method</i></h1><p class="text">Loads content from a given url through an XMLHttpRequest.<br>Shortcut function for simple AJAX use cases.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -506,24 +497,23 @@ site_root:  ../
 </section>
 
     <section id="Ink_Net_Ajax_1-Ink_Net_Ajax-request" class="box box-function">
-    <h1 class="fw-300">.request()
+    <h1 class="fw-300 function-desc">.request()
+
     <i>method</i></h1><p class="text">Executes the request</p>
 
 </section>
 
     <section id="Ink_Net_Ajax_1-Ink_Net_Ajax-runStateChange" class="box box-function">
-    <h1 class="fw-300">.runStateChange()
+    <h1 class="fw-300 function-desc">.runStateChange()
+
     <i>method</i></h1><p class="text">Executes the state changing phase of an ajax request</p>
 
 </section>
 
     <section id="Ink_Net_Ajax_1-Ink_Net_Ajax-safeCall" class="box box-function">
-    <h1 class="fw-300">.safeCall(listener)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         listener</li>
-    </ul><p class="text">Safely calls a callback function.<br>Verifies that the callback is well defined and traps errors</p>
+    <h1 class="fw-300 function-desc">.safeCall(listener)
+
+    <i>method</i></h1><p class="text">Safely calls a callback function.<br>Verifies that the callback is well defined and traps errors</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -536,12 +526,9 @@ site_root:  ../
 </section>
 
     <section id="Ink_Net_Ajax_1-Ink_Net_Ajax-setHeaders" class="box box-function">
-    <h1 class="fw-300">.setHeaders(url)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         url</li>
-    </ul><p class="text">Set the necessary headers for an ajax request</p>
+    <h1 class="fw-300 function-desc">.setHeaders(url)
+
+    <i>method</i></h1><p class="text">Set the necessary headers for an ajax request</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -554,19 +541,16 @@ site_root:  ../
 </section>
 
     <section id="Ink_Net_Ajax_1-Ink_Net_Ajax-setParams" class="box box-function">
-    <h1 class="fw-300">.setParams()
+    <h1 class="fw-300 function-desc">.setParams()
+
     <i>method</i></h1><p class="text">Set the url parameters for a GET request</p>
 
 </section>
 
     <section id="Ink_Net_Ajax_1-Ink_Net_Ajax-setRequestHeader" class="box box-function">
-    <h1 class="fw-300">.setRequestHeader(name, value)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         name</li><li class="prop mandatory">
-         value</li>
-    </ul><p class="text">Sets a new request header for the next http request</p>
+    <h1 class="fw-300 function-desc">.setRequestHeader(name, value)
+
+    <i>method</i></h1><p class="text">Sets a new request header for the next http request</p>
         <h3>Accepts</h3>
         
         <ul class="params">

@@ -4,14 +4,15 @@ title: Ink.UI.Table_1
 description: Sort and paginate tabular data
 site_root:  ../
 ---
-    <section>
-        <h1 class="fw-300">Ink.UI.Table_1</h1>
+    <section><p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p>
 
-<p>The Table component transforms the native/DOM table element into a sortable, paginated component.
+    <h2 class="fw-300 class-name">
+        Ink.UI.Table <i>class</i>
+        
+    </h2><p>The Table component transforms the native/DOM table element into a sortable, paginated component.
 You can use this component to display data from a JSON endpoint, or from table rows in the DOM. Displaying from the DOM is more practical, but sometimes you don&#39;t want to load everything at once (if you have a HUGE table). In those cases, you should configure Ink.UI.Table to get data from JSON endpoint.
 To enable sorting, just set the <code>data-sortable</code> attribute of your table headers (they must be in the <code>thead</code> of the table) to &quot;true&quot;. To enable pagination, you should pass either an <code>Ink.UI.Pagination</code> instance or a selector to create the Ink.UI.Pagination element on.</p>
-
-    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space">
+<table class="props bottom-space">
         <caption>Methods</caption>
         <thead>
             <tr>
@@ -23,13 +24,15 @@ To enable sorting, just set the <code>data-sortable</code> attribute of your tab
         <tbody>
             <tr>
                 <td>
-                    <a href="#Ink_UI_Table_1-Ink_UI_Table-Table"><em>(constructor)</em></a>
+                    <a href="#Ink_UI_Table_1-Ink_UI_Table-Table">new Table(selector, [options])
+</a>
                 </td>
                 <td><span class="ink-label green">Constructor</span></td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_UI_Table_1-Ink_UI_Table-setEndpoint">.setEndpoint</a>
+                    <a href="#Ink_UI_Table_1-Ink_UI_Table-setEndpoint">.setEndpoint(endpoint)
+</a>
                 </td>
                 <td> Sets the AJAX endpoint.</td>
             </tr></tbody>
@@ -40,13 +43,9 @@ To enable sorting, just set the <code>data-sortable</code> attribute of your tab
 
 
     <section id="Ink_UI_Table_1-Ink_UI_Table-Table" class="box box-function">
-    <h1 class="fw-300">Ink.UI.Table(selector, options)
-    <i>constructor</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         selector</li><li class="prop">
-         options</li>
-    </ul>
+    <h1 class="fw-300 function-desc">new Ink.UI.Table(selector, [options])
+
+    </h1>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -133,12 +132,9 @@ To enable sorting, just set the <code>data-sortable</code> attribute of your tab
 	</section>
 
     <section id="Ink_UI_Table_1-Ink_UI_Table-setEndpoint" class="box box-function">
-    <h1 class="fw-300">.setEndpoint(endpoint)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         endpoint</li>
-    </ul><p class="text">Sets the AJAX endpoint.<br>Useful to change the endpoint in runtime.</p>
+    <h1 class="fw-300 function-desc">.setEndpoint(endpoint)
+
+    <i>method</i></h1><p class="text">Sets the AJAX endpoint.<br>Useful to change the endpoint in runtime.</p>
         <h3>Accepts</h3>
         
         <ul class="params">

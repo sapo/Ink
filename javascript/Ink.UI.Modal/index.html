@@ -4,11 +4,12 @@ title: Ink.UI.Modal_1
 description: Modal dialog prompts
 site_root:  ../
 ---
-    <section>
-        <h1 class="fw-300">Ink.UI.Modal_1</h1>
+    <section><p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p>
 
-
-    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space">
+    <h2 class="fw-300 class-name">
+        Ink.UI.Modal <i>class</i>
+        
+    </h2><table class="props bottom-space">
         <caption>Methods</caption>
         <thead>
             <tr>
@@ -20,37 +21,43 @@ site_root:  ../
         <tbody>
             <tr>
                 <td>
-                    <a href="#Ink_UI_Modal_1-Ink_UI_Modal-Modal"><em>(constructor)</em></a>
+                    <a href="#Ink_UI_Modal_1-Ink_UI_Modal-Modal">new Modal(selector, [options])
+</a>
                 </td>
                 <td><span class="ink-label green">Constructor</span></td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_UI_Modal_1-Ink_UI_Modal-destroy">.destroy</a>
+                    <a href="#Ink_UI_Modal_1-Ink_UI_Modal-destroy">.destroy()
+</a>
                 </td>
                 <td> Removes the modal from the DOM</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_UI_Modal_1-Ink_UI_Modal-dismiss">.dismiss</a>
+                    <a href="#Ink_UI_Modal_1-Ink_UI_Modal-dismiss">.dismiss()
+</a>
                 </td>
                 <td> Closes the modal</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_UI_Modal_1-Ink_UI_Modal-getContentElement">.getContentElement</a>
+                    <a href="#Ink_UI_Modal_1-Ink_UI_Modal-getContentElement">.getContentElement()
+</a>
                 </td>
                 <td> Returns the content DOM element</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_UI_Modal_1-Ink_UI_Modal-open">.open</a>
+                    <a href="#Ink_UI_Modal_1-Ink_UI_Modal-open">.open([event])
+</a>
                 </td>
                 <td> Opens this Modal. </td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_UI_Modal_1-Ink_UI_Modal-setContentMarkup">.setContentMarkup</a>
+                    <a href="#Ink_UI_Modal_1-Ink_UI_Modal-setContentMarkup">.setContentMarkup(contentMarkup)
+</a>
                 </td>
                 <td> Replaces the content markup</td>
             </tr></tbody>
@@ -61,13 +68,9 @@ site_root:  ../
 
 
     <section id="Ink_UI_Modal_1-Ink_UI_Modal-Modal" class="box box-function">
-    <h1 class="fw-300">Ink.UI.Modal(selector, options)
-    <i>constructor</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         selector</li><li class="prop">
-         options</li>
-    </ul>
+    <h1 class="fw-300 function-desc">new Ink.UI.Modal(selector, [options])
+
+    </h1>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -128,10 +131,6 @@ site_root:  ../
                     <span class="label boolean"></span></p>
                 Determines if the Modal should behave responsively (adapt to smaller viewports).</li>
             <li class="level2">
-                <p>options.disableScroll
-                    <span class="label boolean"></span></p>
-                Determines if the Modal should 'disable' the page's scroll (not the Modal's body).</li>
-            <li class="level2">
                 <p>options.triggerEvent
                     <span class="label string"></span></p>
                 (advanced) Trigger's event to be listened. Defaults to 'click'.</li>
@@ -142,19 +141,22 @@ site_root:  ../
 	</section>
 
     <section id="Ink_UI_Modal_1-Ink_UI_Modal-destroy" class="box box-function">
-    <h1 class="fw-300">.destroy()
+    <h1 class="fw-300 function-desc">.destroy()
+
     <i>method</i></h1><p class="text">Removes the modal from the DOM</p>
 
 </section>
 
     <section id="Ink_UI_Modal_1-Ink_UI_Modal-dismiss" class="box box-function">
-    <h1 class="fw-300">.dismiss()
+    <h1 class="fw-300 function-desc">.dismiss()
+
     <i>method</i></h1><p class="text">Closes the modal</p>
 
 </section>
 
     <section id="Ink_UI_Modal_1-Ink_UI_Modal-getContentElement" class="box box-function">
-    <h1 class="fw-300">.getContentElement()
+    <h1 class="fw-300 function-desc">.getContentElement()
+
     <i>method</i></h1><p class="text">Returns the content DOM element</p>
     <h3>Returns</h3>
     <ul class="params">
@@ -167,12 +169,9 @@ site_root:  ../
 </section>
 
     <section id="Ink_UI_Modal_1-Ink_UI_Modal-open" class="box box-function">
-    <h1 class="fw-300">.open(event)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">
-         event</li>
-    </ul><p class="text">Opens this Modal. <br>Use this if you created the modal with <code>autoOpen: false</code><br>to open the modal when you want to.</p>
+    <h1 class="fw-300 function-desc">.open([event])
+
+    <i>method</i></h1><p class="text">Opens this Modal. <br>Use this if you created the modal with <code>autoOpen: false</code><br>to open the modal when you want to.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -185,12 +184,9 @@ site_root:  ../
 </section>
 
     <section id="Ink_UI_Modal_1-Ink_UI_Modal-setContentMarkup" class="box box-function">
-    <h1 class="fw-300">.setContentMarkup(contentMarkup)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         contentMarkup</li>
-    </ul><p class="text">Replaces the content markup</p>
+    <h1 class="fw-300 function-desc">.setContentMarkup(contentMarkup)
+
+    <i>method</i></h1><p class="text">Replaces the content markup</p>
         <h3>Accepts</h3>
         
         <ul class="params">

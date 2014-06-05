@@ -4,12 +4,13 @@ title: Ink.Net.JsonP_1
 description: Cross Browser JsonP requests
 site_root:  ../
 ---
-    <section>
-        <h1 class="fw-300">Ink.Net.JsonP_1</h1>
+    <section><p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p>
 
-<p>Executes a JSONP request</p>
-
-    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space">
+    <h2 class="fw-300 class-name">
+        Ink.Net.JsonP <i>class</i>
+        
+    </h2><p>Executes a JSONP request</p>
+<table class="props bottom-space">
         <caption>Methods</caption>
         <thead>
             <tr>
@@ -21,7 +22,8 @@ site_root:  ../
         <tbody>
             <tr>
                 <td>
-                    <a href="#Ink_Net_JsonP_1-Ink_Net_JsonP-JsonP"><em>(constructor)</em></a>
+                    <a href="#Ink_Net_JsonP_1-Ink_Net_JsonP-JsonP">new JsonP(uri, options)
+</a>
                 </td>
                 <td><span class="ink-label green">Constructor</span></td>
             </tr></tbody>
@@ -32,13 +34,9 @@ site_root:  ../
 
 
     <section id="Ink_Net_JsonP_1-Ink_Net_JsonP-JsonP" class="box box-function">
-    <h1 class="fw-300">Ink.Net.JsonP(uri, options)
-    <i>constructor</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         uri</li><li class="prop mandatory">
-         options</li>
-    </ul>
+    <h1 class="fw-300 function-desc">new Ink.Net.JsonP(uri, options)
+
+    </h1>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -78,6 +76,10 @@ site_root:  ../
                 <p>options.internalCallback
                     <span class="label string"></span></p>
                 Name of the callback function stored in the Ink.Net.JsonP object.</li>
+            <li class="level2">
+                <p>options.randVar
+                    <span class="label string"></span></p>
+                (Advanced, not recommended unless you know what you're doing) A string to append to the callback name. By default, generate a random number. Use an empty string if you already passed the correct name in the internalCallback option.</li>
         </ul>
 
 <!--<h3>Samples</h3>-->

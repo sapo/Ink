@@ -4,11 +4,12 @@ title: Ink.Util.Validator_1
 description: Validation Utilities
 site_root:  ../
 ---
-    <section>
-        <h1 class="fw-300">Ink.Util.Validator_1</h1>
+    <section><p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p>
 
-
-    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space"><caption>Functions</caption>
+    <h2 class="fw-300 class-name">
+        Ink.Util.Validator_1 <i>class</i>
+        
+    </h2><table class="props bottom-space"><caption>Functions</caption>
         <thead>
             <tr>
                 <th>Function name</th>
@@ -19,121 +20,141 @@ site_root:  ../
         <tbody>
             <tr>
                 <td>
-                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-ascii">.ascii</a>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-ascii">.ascii(s, [options])
+</a>
                 </td>
                 <td> Checks if a field only contains only ASCII alphanumeric characters. </td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-checkCharacterGroups">.checkCharacterGroups</a>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-checkCharacterGroups">.checkCharacterGroups(s, [groups])
+</a>
                 </td>
                 <td> Checks if a field has the required groups.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-codPostal">.codPostal</a>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-codPostal">.codPostal(cp1, cp2, returnBothResults)
+</a>
                 </td>
                 <td> Validates if a zip code is valid in Portugal</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-createRegExp">.createRegExp</a>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-createRegExp">.createRegExp(Groups*)
+</a>
                 </td>
                 <td> Creates a regular expression for several character groups.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-isAOPhone">.isAOPhone</a>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-isAOPhone">.isAOPhone(phone)
+</a>
                 </td>
                 <td> Checks if a phone is valid in Angola</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-isCVPhone">.isCVPhone</a>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-isCVPhone">.isCVPhone(phone)
+</a>
                 </td>
                 <td> Checks if a phone is valid in Cabo Verde</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-isColor">.isColor</a>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-isColor">.isColor(str)
+</a>
                 </td>
                 <td> Checks if a string is a valid color</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-isCreditCard">.isCreditCard</a>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-isCreditCard">.isCreditCard(num, creditCardType)
+</a>
                 </td>
                 <td> Checks if a number is of a specific credit card type</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-isDate">.isDate</a>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-isDate">.isDate(format, dateStr)
+</a>
                 </td>
                 <td> Checks if a date is valid in a given format</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-isIP">.isIP</a>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-isIP">.isIP(value, ipType)
+</a>
                 </td>
                 <td> Checks if the value is a valid IP.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-isMZPhone">.isMZPhone</a>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-isMZPhone">.isMZPhone(phone)
+</a>
                 </td>
                 <td> Checks if a phone is valid in Mozambique</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-isPTPhone">.isPTPhone</a>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-isPTPhone">.isPTPhone(phone)
+</a>
                 </td>
                 <td> Checks if a phone is valid in Portugal</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-isPhone">.isPhone</a>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-isPhone">.isPhone(phone, [countryCode])
+</a>
                 </td>
                 <td> Checks if a number is a phone number.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-isPortuguesePhone">.isPortuguesePhone</a>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-isPortuguesePhone">.isPortuguesePhone(phone)
+</a>
                 </td>
                 <td> Alias function for isPTPhone</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-isTLPhone">.isTLPhone</a>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-isTLPhone">.isTLPhone(phone)
+</a>
                 </td>
                 <td> Checks if a phone is valid in Timor</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-latin1">.latin1</a>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-latin1">.latin1(s, [options])
+</a>
                 </td>
                 <td> Checks if a field only contains latin-1 alphanumeric characters. </td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-mail">.mail</a>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-mail">.mail(email)
+</a>
                 </td>
                 <td> Checks if an email is valid</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-number">.number</a>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-number">.number(numb, [options])
+</a>
                 </td>
                 <td> Checks if a number is a valid</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-unicode">.unicode</a>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-unicode">.unicode(s, [options])
+</a>
                 </td>
                 <td> Checks if a field contains unicode printable characters.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-url">.url</a>
+                    <a href="#Ink_Util_Validator_1-Ink_Util_Validator_1-url">.url(url, [full])
+</a>
                 </td>
                 <td> Checks if an url is valid</td>
             </tr></tbody>
@@ -144,13 +165,9 @@ site_root:  ../
 
 
     <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-ascii" class="box box-function">
-    <h1 class="fw-300">.ascii(s, options)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         s</li><li class="prop">
-         options</li>
-    </ul><p class="text">Checks if a field only contains only ASCII alphanumeric characters. <br>Takes options for allowing singleline whitespace, cross-line whitespace and punctuation.</p>
+    <h1 class="fw-300 function-desc">.ascii(s, [options])
+
+    <i>method</i></h1><p class="text">Checks if a field only contains only ASCII alphanumeric characters. <br>Takes options for allowing singleline whitespace, cross-line whitespace and punctuation.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -169,13 +186,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-checkCharacterGroups" class="box box-function">
-    <h1 class="fw-300">.checkCharacterGroups(s, groups)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         s</li><li class="prop">
-         groups</li>
-    </ul><p class="text">Checks if a field has the required groups.</p>
+    <h1 class="fw-300 function-desc">.checkCharacterGroups(s, [groups])
+
+    <i>method</i></h1><p class="text">Checks if a field has the required groups.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -194,14 +207,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-codPostal" class="box box-function">
-    <h1 class="fw-300">.codPostal(cp1, cp2, returnBothResults)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         cp1</li><li class="prop mandatory">
-         cp2</li><li class="prop mandatory">
-         returnBothResults</li>
-    </ul><p class="text">Validates if a zip code is valid in Portugal</p>
+    <h1 class="fw-300 function-desc">.codPostal(cp1, cp2, returnBothResults)
+
+    <i>method</i></h1><p class="text">Validates if a zip code is valid in Portugal</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -231,12 +239,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-createRegExp" class="box box-function">
-    <h1 class="fw-300">.createRegExp(Groups*)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         Groups*</li>
-    </ul><p class="text">Creates a regular expression for several character groups.</p>
+    <h1 class="fw-300 function-desc">.createRegExp(Groups*)
+
+    <i>method</i></h1><p class="text">Creates a regular expression for several character groups.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -249,12 +254,9 @@ site_root:  ../
 </section>
 
     <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-isAOPhone" class="box box-function">
-    <h1 class="fw-300">.isAOPhone(phone)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         phone</li>
-    </ul><p class="text">Checks if a phone is valid in Angola</p>
+    <h1 class="fw-300 function-desc">.isAOPhone(phone)
+
+    <i>method</i></h1><p class="text">Checks if a phone is valid in Angola</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -276,12 +278,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-isCVPhone" class="box box-function">
-    <h1 class="fw-300">.isCVPhone(phone)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         phone</li>
-    </ul><p class="text">Checks if a phone is valid in Cabo Verde</p>
+    <h1 class="fw-300 function-desc">.isCVPhone(phone)
+
+    <i>method</i></h1><p class="text">Checks if a phone is valid in Cabo Verde</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -303,12 +302,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-isColor" class="box box-function">
-    <h1 class="fw-300">.isColor(str)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         str</li>
-    </ul><p class="text">Checks if a string is a valid color</p>
+    <h1 class="fw-300 function-desc">.isColor(str)
+
+    <i>method</i></h1><p class="text">Checks if a string is a valid color</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -330,13 +326,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-isCreditCard" class="box box-function">
-    <h1 class="fw-300">.isCreditCard(num, creditCardType)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         num</li><li class="prop mandatory">
-         creditCardType</li>
-    </ul><p class="text">Checks if a number is of a specific credit card type</p>
+    <h1 class="fw-300 function-desc">.isCreditCard(num, creditCardType)
+
+    <i>method</i></h1><p class="text">Checks if a number is of a specific credit card type</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -362,13 +354,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-isDate" class="box box-function">
-    <h1 class="fw-300">.isDate(format, dateStr)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         format</li><li class="prop mandatory">
-         dateStr</li>
-    </ul><p class="text">Checks if a date is valid in a given format</p>
+    <h1 class="fw-300 function-desc">.isDate(format, dateStr)
+
+    <i>method</i></h1><p class="text">Checks if a date is valid in a given format</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -394,13 +382,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-isIP" class="box box-function">
-    <h1 class="fw-300">.isIP(value, ipType)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         value</li><li class="prop mandatory">
-         ipType</li>
-    </ul><p class="text">Checks if the value is a valid IP.</p>
+    <h1 class="fw-300 function-desc">.isIP(value, ipType)
+
+    <i>method</i></h1><p class="text">Checks if the value is a valid IP.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -426,12 +410,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-isMZPhone" class="box box-function">
-    <h1 class="fw-300">.isMZPhone(phone)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         phone</li>
-    </ul><p class="text">Checks if a phone is valid in Mozambique</p>
+    <h1 class="fw-300 function-desc">.isMZPhone(phone)
+
+    <i>method</i></h1><p class="text">Checks if a phone is valid in Mozambique</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -453,12 +434,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-isPTPhone" class="box box-function">
-    <h1 class="fw-300">.isPTPhone(phone)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         phone</li>
-    </ul><p class="text">Checks if a phone is valid in Portugal</p>
+    <h1 class="fw-300 function-desc">.isPTPhone(phone)
+
+    <i>method</i></h1><p class="text">Checks if a phone is valid in Portugal</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -480,13 +458,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-isPhone" class="box box-function">
-    <h1 class="fw-300">.isPhone(phone, countryCode)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         phone</li><li class="prop">
-         countryCode</li>
-    </ul><p class="text">Checks if a number is a phone number.<br>This method validates the number in all country codes available the ones set in the second param</p>
+    <h1 class="fw-300 function-desc">.isPhone(phone, [countryCode])
+
+    <i>method</i></h1><p class="text">Checks if a number is a phone number.<br>This method validates the number in all country codes available the ones set in the second param</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -512,12 +486,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-isPortuguesePhone" class="box box-function">
-    <h1 class="fw-300">.isPortuguesePhone(phone)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         phone</li>
-    </ul><p class="text">Alias function for isPTPhone</p>
+    <h1 class="fw-300 function-desc">.isPortuguesePhone(phone)
+
+    <i>method</i></h1><p class="text">Alias function for isPTPhone</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -537,12 +508,9 @@ site_root:  ../
 </section>
 
     <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-isTLPhone" class="box box-function">
-    <h1 class="fw-300">.isTLPhone(phone)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         phone</li>
-    </ul><p class="text">Checks if a phone is valid in Timor</p>
+    <h1 class="fw-300 function-desc">.isTLPhone(phone)
+
+    <i>method</i></h1><p class="text">Checks if a phone is valid in Timor</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -564,13 +532,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-latin1" class="box box-function">
-    <h1 class="fw-300">.latin1(s, options)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         s</li><li class="prop">
-         options</li>
-    </ul><p class="text">Checks if a field only contains latin-1 alphanumeric characters. <br>Takes options for allowing singleline whitespace, cross-line whitespace and punctuation.</p>
+    <h1 class="fw-300 function-desc">.latin1(s, [options])
+
+    <i>method</i></h1><p class="text">Checks if a field only contains latin-1 alphanumeric characters. <br>Takes options for allowing singleline whitespace, cross-line whitespace and punctuation.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -589,12 +553,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-mail" class="box box-function">
-    <h1 class="fw-300">.mail(email)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         email</li>
-    </ul><p class="text">Checks if an email is valid</p>
+    <h1 class="fw-300 function-desc">.mail(email)
+
+    <i>method</i></h1><p class="text">Checks if an email is valid</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -616,13 +577,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-number" class="box box-function">
-    <h1 class="fw-300">.number(numb, options)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         numb</li><li class="prop">
-         options</li>
-    </ul><p class="text">Checks if a number is a valid</p>
+    <h1 class="fw-300 function-desc">.number(numb, [options])
+
+    <i>method</i></h1><p class="text">Checks if a number is a valid</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -669,13 +626,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-unicode" class="box box-function">
-    <h1 class="fw-300">.unicode(s, options)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         s</li><li class="prop">
-         options</li>
-    </ul><p class="text">Checks if a field contains unicode printable characters.</p>
+    <h1 class="fw-300 function-desc">.unicode(s, [options])
+
+    <i>method</i></h1><p class="text">Checks if a field contains unicode printable characters.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -692,13 +645,9 @@ site_root:  ../
 </section>
 
     <section id="Ink_Util_Validator_1-Ink_Util_Validator_1-url" class="box box-function">
-    <h1 class="fw-300">.url(url, full)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         url</li><li class="prop">
-         full</li>
-    </ul><p class="text">Checks if an url is valid</p>
+    <h1 class="fw-300 function-desc">.url(url, [full])
+
+    <i>method</i></h1><p class="text">Checks if an url is valid</p>
         <h3>Accepts</h3>
         
         <ul class="params">

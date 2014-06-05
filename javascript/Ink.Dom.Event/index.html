@@ -4,11 +4,12 @@ title: Ink.Dom.Event_1
 description: Event management
 site_root:  ../
 ---
-    <section>
-        <h1 class="fw-300">Ink.Dom.Event_1</h1>
+    <section><p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p>
 
-
-    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space"><caption>Functions</caption>
+    <h2 class="fw-300 class-name">
+        Ink.Dom.Event_1 <i>namespace</i>
+        
+    </h2><table class="props bottom-space"><caption>Functions</caption>
         <thead>
             <tr>
                 <th>Function name</th>
@@ -19,145 +20,169 @@ site_root:  ../
         <tbody>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-clone">.clone</a>
+                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-clone">.clone(destElement, srcElement, [eventType])
+</a>
                 </td>
                 <td> Clones events from one object to another</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-element">.element</a>
+                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-element">.element(ev)
+</a>
                 </td>
                 <td> Gets the event&#39;s target element.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-findElement">.findElement</a>
+                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-findElement">.findElement(ev, elmTagName, [force])
+</a>
                 </td>
                 <td> Find closest ancestor element by tag name related to the event target.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-fire">.fire</a>
+                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-fire">.fire(destElement, eventType)
+</a>
                 </td>
                 <td> Triggers events.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-getCharFromKeyboardEvent">.getCharFromKeyboardEvent</a>
+                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-getCharFromKeyboardEvent">.getCharFromKeyboardEvent(event, [changeCasing])
+</a>
                 </td>
                 <td> Gets character from an event.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-isLeftClick">.isLeftClick</a>
+                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-isLeftClick">.isLeftClick(ev)
+</a>
                 </td>
                 <td> Checks if an event is a left click.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-isMiddleClick">.isMiddleClick</a>
+                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-isMiddleClick">.isMiddleClick(ev)
+</a>
                 </td>
                 <td> Checks if an event is a middle click.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-isRightClick">.isRightClick</a>
+                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-isRightClick">.isRightClick(ev)
+</a>
                 </td>
                 <td> Checks if an event is a right click.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-observe">.observe</a>
+                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-observe">.observe(element, eventName, callBack, [useCapture])
+</a>
                 </td>
                 <td> Attaches an event to element</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-observeDelegated">.observeDelegated</a>
+                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-observeDelegated">.observeDelegated(element, eventName, selector, callback)
+</a>
                 </td>
                 <td> Observes an event on an element and its descendants matching the selector.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-observeMulti">.observeMulti</a>
+                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-observeMulti">.observeMulti(elements, eventName, callBack, [useCapture])
+</a>
                 </td>
                 <td> Attaches an event to a selector or array of elements.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-observeOnce">.observeOnce</a>
+                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-observeOnce">.observeOnce(element, eventName, callBack, [useCapture])
+</a>
                 </td>
                 <td> Like observe, but listen to the event only once.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-off">.off</a>
+                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-off">.off(element, eventType, [handler])
+</a>
                 </td>
                 <td> Removes event handlers.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-on">.on</a>
+                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-on">.on(element, eventType, [selector], [handler])
+</a>
                 </td>
                 <td> Lets you attach event listeners to both elements and objects.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-one">.one</a>
+                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-one">.one(element, eventType, [selector], [handler])
+</a>
                 </td>
                 <td> Alias for <code>on</code> but will only be executed once.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-pointer">.pointer</a>
+                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-pointer">.pointer(ev)
+</a>
                 </td>
                 <td> Gets the pointer&#39;s coordinates from the event object.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-pointerX">.pointerX</a>
+                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-pointerX">.pointerX(ev)
+</a>
                 </td>
                 <td> Gets the pointer&#39;s X coordinate.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-pointerY">.pointerY</a>
+                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-pointerY">.pointerY(ev)
+</a>
                 </td>
                 <td> Gets the pointer&#39;s Y coordinate.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-relatedTarget">.relatedTarget</a>
+                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-relatedTarget">.relatedTarget(ev)
+</a>
                 </td>
                 <td> Gets the event&#39;s related target element.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-stop">.stop</a>
+                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-stop">.stop(event)
+</a>
                 </td>
                 <td> Stops event propagation and bubbling.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-stopDefault">.stopDefault</a>
+                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-stopDefault">.stopDefault(event)
+</a>
                 </td>
                 <td> Stops event default behaviour.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-stopObserving">.stopObserving</a>
+                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-stopObserving">.stopObserving(element, eventName, callBack, [useCapture])
+</a>
                 </td>
                 <td> Removes an event attached to an element.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-stopPropagation">.stopPropagation</a>
+                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-stopPropagation">.stopPropagation(event)
+</a>
                 </td>
                 <td> Stops event propagation.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-throttle">.throttle</a>
+                    <a href="#Ink_Dom_Event_1-Ink_Dom_Event_1-throttle">.throttle(func, [wait])
+</a>
                 </td>
                 <td> Creates a debounced version of a function.</td>
             </tr></tbody>
@@ -168,14 +193,9 @@ site_root:  ../
 
 
     <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-clone" class="box box-function">
-    <h1 class="fw-300">.clone(destElement, srcElement, eventType)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         destElement</li><li class="prop mandatory">
-         srcElement</li><li class="prop">
-         eventType</li>
-    </ul><p class="text">Clones events from one object to another<br>bean.clone() is a method for cloning events from one DOM element or object to another.<br><a href="http://github.com/fat/bean#clone">http://github.com/fat/bean#clone</a></p>
+    <h1 class="fw-300 function-desc">.clone(destElement, srcElement, [eventType])
+
+    <i>method</i></h1><p class="text">Clones events from one object to another<br>bean.clone() is a method for cloning events from one DOM element or object to another.<br><a href="http://github.com/fat/bean#clone">http://github.com/fat/bean#clone</a></p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -205,12 +225,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-element" class="box box-function">
-    <h1 class="fw-300">.element(ev)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         ev</li>
-    </ul><p class="text">Gets the event&#39;s target element.</p>
+    <h1 class="fw-300 function-desc">.element(ev)
+
+    <i>method</i></h1><p class="text">Gets the event&#39;s target element.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -232,14 +249,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-findElement" class="box box-function">
-    <h1 class="fw-300">.findElement(ev, elmTagName, force)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         ev</li><li class="prop mandatory">
-         elmTagName</li><li class="prop">
-         force</li>
-    </ul><p class="text">Find closest ancestor element by tag name related to the event target.<br>Navigate up the DOM tree, looking for a tag with the name <code>elmTagName</code>.<br><p>If such tag is not found, <code>document</code> is returned.</p></p>
+    <h1 class="fw-300 function-desc">.findElement(ev, elmTagName, [force])
+
+    <i>method</i></h1><p class="text">Find closest ancestor element by tag name related to the event target.<br>Navigate up the DOM tree, looking for a tag with the name <code>elmTagName</code>.<br><p>If such tag is not found, <code>document</code> is returned.</p></p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -269,13 +281,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-fire" class="box box-function">
-    <h1 class="fw-300">.fire(destElement, eventType)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         destElement</li><li class="prop mandatory">
-         eventType</li>
-    </ul><p class="text">Triggers events.<br><a href="http://github.com/fat/bean#fire">http://github.com/fat/bean#fire</a></p>
+    <h1 class="fw-300 function-desc">.fire(destElement, eventType)
+
+    <i>method</i></h1><p class="text">Triggers events.<br><a href="http://github.com/fat/bean#fire">http://github.com/fat/bean#fire</a></p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -305,13 +313,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-getCharFromKeyboardEvent" class="box box-function">
-    <h1 class="fw-300">.getCharFromKeyboardEvent(event, changeCasing)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         event</li><li class="prop">
-         changeCasing</li>
-    </ul><p class="text">Gets character from an event.</p>
+    <h1 class="fw-300 function-desc">.getCharFromKeyboardEvent(event, [changeCasing])
+
+    <i>method</i></h1><p class="text">Gets character from an event.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -337,12 +341,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-isLeftClick" class="box box-function">
-    <h1 class="fw-300">.isLeftClick(ev)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         ev</li>
-    </ul><p class="text">Checks if an event is a left click.</p>
+    <h1 class="fw-300 function-desc">.isLeftClick(ev)
+
+    <i>method</i></h1><p class="text">Checks if an event is a left click.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -364,12 +365,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-isMiddleClick" class="box box-function">
-    <h1 class="fw-300">.isMiddleClick(ev)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         ev</li>
-    </ul><p class="text">Checks if an event is a middle click.</p>
+    <h1 class="fw-300 function-desc">.isMiddleClick(ev)
+
+    <i>method</i></h1><p class="text">Checks if an event is a middle click.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -391,12 +389,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-isRightClick" class="box box-function">
-    <h1 class="fw-300">.isRightClick(ev)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         ev</li>
-    </ul><p class="text">Checks if an event is a right click.</p>
+    <h1 class="fw-300 function-desc">.isRightClick(ev)
+
+    <i>method</i></h1><p class="text">Checks if an event is a right click.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -418,15 +413,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-observe" class="box box-function">
-    <h1 class="fw-300">.observe(element, eventName, callBack, useCapture)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         element</li><li class="prop mandatory">
-         eventName</li><li class="prop mandatory">
-         callBack</li><li class="prop">
-         useCapture</li>
-    </ul><p class="text">Attaches an event to element</p>
+    <h1 class="fw-300 function-desc">.observe(element, eventName, callBack, [useCapture])
+
+    <i>method</i></h1><p class="text">Attaches an event to element</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -460,15 +449,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-observeDelegated" class="box box-function">
-    <h1 class="fw-300">.observeDelegated(element, eventName, selector, callback)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         element</li><li class="prop mandatory">
-         eventName</li><li class="prop mandatory">
-         selector</li><li class="prop mandatory">
-         callback</li>
-    </ul><p class="text">Observes an event on an element and its descendants matching the selector.<br><p>Requires Ink.Dom.Selector if you need to use a selector.</p></p>
+    <h1 class="fw-300 function-desc">.observeDelegated(element, eventName, selector, callback)
+
+    <i>method</i></h1><p class="text">Observes an event on an element and its descendants matching the selector.<br><p>Requires Ink.Dom.Selector if you need to use a selector.</p></p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -502,15 +485,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-observeMulti" class="box box-function">
-    <h1 class="fw-300">.observeMulti(elements, eventName, callBack, useCapture)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         elements</li><li class="prop mandatory">
-         eventName</li><li class="prop mandatory">
-         callBack</li><li class="prop">
-         useCapture</li>
-    </ul><p class="text">Attaches an event to a selector or array of elements.</p>
+    <h1 class="fw-300 function-desc">.observeMulti(elements, eventName, callBack, [useCapture])
+
+    <i>method</i></h1><p class="text">Attaches an event to a selector or array of elements.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -544,15 +521,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-observeOnce" class="box box-function">
-    <h1 class="fw-300">.observeOnce(element, eventName, callBack, useCapture)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         element</li><li class="prop mandatory">
-         eventName</li><li class="prop mandatory">
-         callBack</li><li class="prop">
-         useCapture</li>
-    </ul><p class="text">Like observe, but listen to the event only once.</p>
+    <h1 class="fw-300 function-desc">.observeOnce(element, eventName, callBack, [useCapture])
+
+    <i>method</i></h1><p class="text">Like observe, but listen to the event only once.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -586,14 +557,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-off" class="box box-function">
-    <h1 class="fw-300">.off(element, eventType, handler)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         element</li><li class="prop mandatory">
-         eventType</li><li class="prop">
-         handler</li>
-    </ul><p class="text">Removes event handlers.<br>bean.off() is how you get rid of handlers once you no longer want them active. It&#39;s also a good idea to call off on elements before you remove them from your DOM; this gives Bean a chance to clean up some things and prevents memory leaks.<br><a href="http://github.com/fat/bean#off">http://github.com/fat/bean#off</a></p>
+    <h1 class="fw-300 function-desc">.off(element, eventType, [handler])
+
+    <i>method</i></h1><p class="text">Removes event handlers.<br>bean.off() is how you get rid of handlers once you no longer want them active. It&#39;s also a good idea to call off on elements before you remove them from your DOM; this gives Bean a chance to clean up some things and prevents memory leaks.<br><a href="http://github.com/fat/bean#off">http://github.com/fat/bean#off</a></p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -623,15 +589,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-on" class="box box-function">
-    <h1 class="fw-300">.on(element, eventType, selector, handler)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         element</li><li class="prop mandatory">
-         eventType</li><li class="prop">
-         selector</li><li class="prop">
-         handler</li>
-    </ul><p class="text">Lets you attach event listeners to both elements and objects.<br><a href="http://github.com/fat/bean#on">http://github.com/fat/bean#on</a></p>
+    <h1 class="fw-300 function-desc">.on(element, eventType, [selector], [handler])
+
+    <i>method</i></h1><p class="text">Lets you attach event listeners to both elements and objects.<br><a href="http://github.com/fat/bean#on">http://github.com/fat/bean#on</a></p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -669,15 +629,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-one" class="box box-function">
-    <h1 class="fw-300">.one(element, eventType, selector, handler)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         element</li><li class="prop mandatory">
-         eventType</li><li class="prop">
-         selector</li><li class="prop">
-         handler</li>
-    </ul><p class="text">Alias for <code>on</code> but will only be executed once.<br>bean.one() is an alias for bean.on() except that the handler will only be executed once and then removed for the event type(s).<br><a href="http://github.com/fat/bean#one">http://github.com/fat/bean#one</a></p>
+    <h1 class="fw-300 function-desc">.one(element, eventType, [selector], [handler])
+
+    <i>method</i></h1><p class="text">Alias for <code>on</code> but will only be executed once.<br>bean.one() is an alias for bean.on() except that the handler will only be executed once and then removed for the event type(s).<br><a href="http://github.com/fat/bean#one">http://github.com/fat/bean#one</a></p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -715,12 +669,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-pointer" class="box box-function">
-    <h1 class="fw-300">.pointer(ev)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         ev</li>
-    </ul><p class="text">Gets the pointer&#39;s coordinates from the event object.</p>
+    <h1 class="fw-300 function-desc">.pointer(ev)
+
+    <i>method</i></h1><p class="text">Gets the pointer&#39;s coordinates from the event object.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -742,12 +693,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-pointerX" class="box box-function">
-    <h1 class="fw-300">.pointerX(ev)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         ev</li>
-    </ul><p class="text">Gets the pointer&#39;s X coordinate.</p>
+    <h1 class="fw-300 function-desc">.pointerX(ev)
+
+    <i>method</i></h1><p class="text">Gets the pointer&#39;s X coordinate.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -767,12 +715,9 @@ site_root:  ../
 </section>
 
     <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-pointerY" class="box box-function">
-    <h1 class="fw-300">.pointerY(ev)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         ev</li>
-    </ul><p class="text">Gets the pointer&#39;s Y coordinate.</p>
+    <h1 class="fw-300 function-desc">.pointerY(ev)
+
+    <i>method</i></h1><p class="text">Gets the pointer&#39;s Y coordinate.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -792,12 +737,9 @@ site_root:  ../
 </section>
 
     <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-relatedTarget" class="box box-function">
-    <h1 class="fw-300">.relatedTarget(ev)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         ev</li>
-    </ul><p class="text">Gets the event&#39;s related target element.</p>
+    <h1 class="fw-300 function-desc">.relatedTarget(ev)
+
+    <i>method</i></h1><p class="text">Gets the event&#39;s related target element.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -819,12 +761,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-stop" class="box box-function">
-    <h1 class="fw-300">.stop(event)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         event</li>
-    </ul><p class="text">Stops event propagation and bubbling.</p>
+    <h1 class="fw-300 function-desc">.stop(event)
+
+    <i>method</i></h1><p class="text">Stops event propagation and bubbling.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -839,12 +778,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-stopDefault" class="box box-function">
-    <h1 class="fw-300">.stopDefault(event)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         event</li>
-    </ul><p class="text">Stops event default behaviour.</p>
+    <h1 class="fw-300 function-desc">.stopDefault(event)
+
+    <i>method</i></h1><p class="text">Stops event default behaviour.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -859,15 +795,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-stopObserving" class="box box-function">
-    <h1 class="fw-300">.stopObserving(element, eventName, callBack, useCapture)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         element</li><li class="prop mandatory">
-         eventName</li><li class="prop mandatory">
-         callBack</li><li class="prop">
-         useCapture</li>
-    </ul><p class="text">Removes an event attached to an element.</p>
+    <h1 class="fw-300 function-desc">.stopObserving(element, eventName, callBack, [useCapture])
+
+    <i>method</i></h1><p class="text">Removes an event attached to an element.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -894,12 +824,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-stopPropagation" class="box box-function">
-    <h1 class="fw-300">.stopPropagation(event)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         event</li>
-    </ul><p class="text">Stops event propagation.</p>
+    <h1 class="fw-300 function-desc">.stopPropagation(event)
+
+    <i>method</i></h1><p class="text">Stops event propagation.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -914,13 +841,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Event_1-Ink_Dom_Event_1-throttle" class="box box-function">
-    <h1 class="fw-300">.throttle(func, wait)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         func</li><li class="prop">
-         wait</li>
-    </ul><p class="text">Creates a debounced version of a function.<br>Returns a function which calls <code>func</code>, waiting at least <code>wait</code> milliseconds between calls. This is useful for events such as <code>scroll</code> or <code>resize</code>, which can be triggered too many times per second, slowing down the browser with needless function calls.<br><p><em>note:</em> This does not delay the first function call to the function.</p></p>
+    <h1 class="fw-300 function-desc">.throttle(func, [wait])
+
+    <i>method</i></h1><p class="text">Creates a debounced version of a function.<br>Returns a function which calls <code>func</code>, waiting at least <code>wait</code> milliseconds between calls. This is useful for events such as <code>scroll</code> or <code>resize</code>, which can be triggered too many times per second, slowing down the browser with needless function calls.<br><p><em>note:</em> This does not delay the first function call to the function.</p></p>
         <h3>Accepts</h3>
         
         <ul class="params">

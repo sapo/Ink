@@ -4,11 +4,12 @@ title: Ink.Autoload
 description: 
 site_root:  ../
 ---
-    <section>
-        <h1 class="fw-300">Ink.Autoload</h1>
+    <section><p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p>
 
-
-    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space"><caption>Functions</caption>
+    <h2 class="fw-300 class-name">
+        Ink.Autoload <i>namespace</i>
+        
+    </h2><table class="props bottom-space"><caption>Functions</caption>
         <thead>
             <tr>
                 <th>Function name</th>
@@ -19,19 +20,22 @@ site_root:  ../
         <tbody>
             <tr>
                 <td>
-                    <a href="#Ink_Autoload-Ink_Autoload-add">.add</a>
+                    <a href="#Ink_Autoload-Ink_Autoload-add">.add(moduleName, selector)
+</a>
                 </td>
                 <td> Add a new entry to be autoloaded.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Autoload-Ink_Autoload-remove">.remove</a>
+                    <a href="#Ink_Autoload-Ink_Autoload-remove">.remove(moduleName)
+</a>
                 </td>
                 <td> Removes a module from autoload, making it not be automatically loaded.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Autoload-Ink_Autoload-run">.run</a>
+                    <a href="#Ink_Autoload-Ink_Autoload-run">.run(parentEl, [options])
+</a>
                 </td>
                 <td> Run Autoload on a specific element.</td>
             </tr></tbody>
@@ -63,13 +67,9 @@ site_root:  ../
 
 
     <section id="Ink_Autoload-Ink_Autoload-add" class="box box-function">
-    <h1 class="fw-300">.add(moduleName, selector)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         moduleName</li><li class="prop mandatory">
-         selector</li>
-    </ul><p class="text">Add a new entry to be autoloaded.</p>
+    <h1 class="fw-300 function-desc">.add(moduleName, selector)
+
+    <i>method</i></h1><p class="text">Add a new entry to be autoloaded.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -86,12 +86,9 @@ site_root:  ../
 </section>
 
     <section id="Ink_Autoload-Ink_Autoload-remove" class="box box-function">
-    <h1 class="fw-300">.remove(moduleName)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         moduleName</li>
-    </ul><p class="text">Removes a module from autoload, making it not be automatically loaded.</p>
+    <h1 class="fw-300 function-desc">.remove(moduleName)
+
+    <i>method</i></h1><p class="text">Removes a module from autoload, making it not be automatically loaded.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -104,13 +101,9 @@ site_root:  ../
 </section>
 
     <section id="Ink_Autoload-Ink_Autoload-run" class="box box-function">
-    <h1 class="fw-300">.run(parentEl, options)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         parentEl</li><li class="prop">
-         options</li>
-    </ul><p class="text">Run Autoload on a specific element.<br><p>Useful when you load something from AJAX and want it to have automatically loaded Ink modules.</p></p>
+    <h1 class="fw-300 function-desc">.run(parentEl, [options])
+
+    <i>method</i></h1><p class="text">Run Autoload on a specific element.<br><p>Useful when you load something from AJAX and want it to have automatically loaded Ink modules.</p></p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -151,14 +144,17 @@ site_root:  ../
 
     <section id="Ink_Autoload-Ink_Autoload-selectors" class="box box-attribute">
     <h1 class="fw-300">
+        
+            .selectors
+        
+        
+            <i>attribute</i>
+        
+    </h1>
     
-       Ink.Autoload.selectors
-    
-    <i>attribute</i></h1>
     
     
         <p class="text">Matches module names to default selectors.</p>
-    
     
     
         <span class="description"><p>{Object}</p>

@@ -4,13 +4,14 @@ title: Ink.Dom.FormSerialize_1
 description: 
 site_root:  ../
 ---
-    <section>
-        <h1 class="fw-300">Ink.Dom.FormSerialize_1</h1>
+    <section><p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p>
 
-<p>Two way serialization of form data and javascript objects.
+    <h2 class="fw-300 class-name">
+        Ink.Dom.FormSerialize <i>namespace</i>
+        
+    </h2><p>Two way serialization of form data and javascript objects.
 Valid applications are ad hoc AJAX/syndicated submission of forms, restoring form values from server side state, etc.</p>
-
-    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space"><caption>Functions</caption>
+<table class="props bottom-space"><caption>Functions</caption>
         <thead>
             <tr>
                 <th>Function name</th>
@@ -21,19 +22,22 @@ Valid applications are ad hoc AJAX/syndicated submission of forms, restoring for
         <tbody>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_FormSerialize_1-Ink_Dom_FormSerialize-asPairs">.asPairs</a>
+                    <a href="#Ink_Dom_FormSerialize_1-Ink_Dom_FormSerialize-asPairs">.asPairs(form, [options])
+</a>
                 </td>
                 <td> Like <code>serialize</code>, but returns an array of [fieldName, value] pairs.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_FormSerialize_1-Ink_Dom_FormSerialize-fillIn">.fillIn</a>
+                    <a href="#Ink_Dom_FormSerialize_1-Ink_Dom_FormSerialize-fillIn">.fillIn(form, map2)
+</a>
                 </td>
                 <td> Sets form elements&#39; values with values from an object</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_FormSerialize_1-Ink_Dom_FormSerialize-serialize">.serialize</a>
+                    <a href="#Ink_Dom_FormSerialize_1-Ink_Dom_FormSerialize-serialize">.serialize(form)
+</a>
                 </td>
                 <td> Serializes a form element into a JS object</td>
             </tr></tbody>
@@ -44,13 +48,9 @@ Valid applications are ad hoc AJAX/syndicated submission of forms, restoring for
 
 
     <section id="Ink_Dom_FormSerialize_1-Ink_Dom_FormSerialize-asPairs" class="box box-function">
-    <h1 class="fw-300">.asPairs(form, options)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         form</li><li class="prop">
-         options</li>
-    </ul><p class="text">Like <code>serialize</code>, but returns an array of [fieldName, value] pairs.</p>
+    <h1 class="fw-300 function-desc">.asPairs(form, [options])
+
+    <i>method</i></h1><p class="text">Like <code>serialize</code>, but returns an array of [fieldName, value] pairs.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -82,13 +82,9 @@ Valid applications are ad hoc AJAX/syndicated submission of forms, restoring for
 </section>
 
     <section id="Ink_Dom_FormSerialize_1-Ink_Dom_FormSerialize-fillIn" class="box box-function">
-    <h1 class="fw-300">.fillIn(form, map2)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         form</li><li class="prop mandatory">
-         map2</li>
-    </ul><p class="text">Sets form elements&#39; values with values from an object<br><p>Note: You can&#39;t set the values of an input with <code>type=&quot;file&quot;</code> (browser prohibits it)</p></p>
+    <h1 class="fw-300 function-desc">.fillIn(form, map2)
+
+    <i>method</i></h1><p class="text">Sets form elements&#39; values with values from an object<br><p>Note: You can&#39;t set the values of an input with <code>type=&quot;file&quot;</code> (browser prohibits it)</p></p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -107,12 +103,9 @@ Valid applications are ad hoc AJAX/syndicated submission of forms, restoring for
 	</section>
 
     <section id="Ink_Dom_FormSerialize_1-Ink_Dom_FormSerialize-serialize" class="box box-function">
-    <h1 class="fw-300">.serialize(form)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         form</li>
-    </ul><p class="text">Serializes a form element into a JS object<br>It turns field names into keys and field values into values.<br><p>note: Multi-select and checkboxes with multiple values will result in arrays</p></p>
+    <h1 class="fw-300 function-desc">.serialize(form)
+
+    <i>method</i></h1><p class="text">Serializes a form element into a JS object<br>It turns field names into keys and field values into values.<br><p>note: Multi-select and checkboxes with multiple values will result in arrays</p></p>
         <h3>Accepts</h3>
         
         <ul class="params">

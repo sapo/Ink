@@ -4,11 +4,12 @@ title: Ink.UI.Common_1
 description: Auxiliar utilities for UI Modules
 site_root:  ../
 ---
-    <section>
-        <h1 class="fw-300">Ink.UI.Common_1</h1>
+    <section><p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p>
 
-
-    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space"><caption>Functions</caption>
+    <h2 class="fw-300 class-name">
+        Ink.UI.Common_1 <i>class</i>
+        
+    </h2><table class="props bottom-space"><caption>Functions</caption>
         <thead>
             <tr>
                 <th>Function name</th>
@@ -19,121 +20,148 @@ site_root:  ../
         <tbody>
             <tr>
                 <td>
-                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-ajaxJSON">.ajaxJSON</a>
+                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-ajaxJSON">.ajaxJSON(endpoint, params, cb)
+</a>
                 </td>
                 <td> AJAX JSON request shortcut method</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-childIndex">.childIndex</a>
+                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-childIndex">.childIndex(childEl)
+</a>
                 </td>
                 <td> Gets an element&#39;s one-base index relative to its parent.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-cleanChildren">.cleanChildren</a>
+                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-cleanChildren">.cleanChildren(parentEl)
+</a>
                 </td>
                 <td> Removes children nodes from a given object.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-clone">.clone</a>
+                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-clone">.clone(o)
+</a>
                 </td>
                 <td> Deep copy (clone) an object.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-currentLayout">.currentLayout</a>
+                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-createUIComponent">.createUIComponent(theConstructor, options)
+</a>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-currentLayout">.currentLayout()
+</a>
                 </td>
                 <td> Gets the current Ink layout.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-destroyComponent">.destroyComponent</a>
+                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-destroyComponent">.destroyComponent()
+</a>
                 </td>
                 <td> Boilerplate method to destroy a component.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-elOrSelector">.elOrSelector</a>
+                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-elOrSelector">.elOrSelector(elOrSelector, fieldName)
+</a>
                 </td>
                 <td> Gets a DOM Element.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-elsOrSelector">.elsOrSelector</a>
+                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-elsOrSelector">.elsOrSelector(elOrSelector, fieldName, required)
+</a>
                 </td>
                 <td> Alias for <code>elOrSelector</code> but returns an array of elements.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-getInstance">.getInstance</a>
+                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-getInstance">.getInstance(instanceIdOrElement)
+</a>
                 </td>
                 <td> Gets an UI instance from an element or instance id.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-getInstanceFromSelector">.getInstanceFromSelector</a>
+                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-getInstanceFromSelector">.getInstanceFromSelector(selector)
+</a>
                 </td>
                 <td> Gets an instance based on a selector.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-getInstanceIds">.getInstanceIds</a>
+                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-getInstanceIds">.getInstanceIds()
+</a>
                 </td>
                 <td> Gets all the instance ids</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-getInstances">.getInstances</a>
+                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-getInstances">.getInstances()
+</a>
                 </td>
                 <td> Gets all the instances</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-hashSet">.hashSet</a>
+                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-hashSet">.hashSet(o)
+</a>
                 </td>
                 <td> Sets the location&#39;s hash (window.location.hash).</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-isDOMElement">.isDOMElement</a>
+                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-isDOMElement">.isDOMElement(o)
+</a>
                 </td>
                 <td> Checks if an item is a valid DOM Element.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-isInteger">.isInteger</a>
+                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-isInteger">.isInteger(n)
+</a>
                 </td>
                 <td> Checks if an item is a valid integer.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-options">.options</a>
+                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-options">.options([fieldId], defaults, overrides, [element])
+</a>
                 </td>
                 <td> Gets options an object and element&#39;s metadata.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-registerInstance">.registerInstance</a>
+                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-registerInstance">.registerInstance(inst, el)
+</a>
                 </td>
                 <td> Saves a component&#39;s instance reference for later retrieval.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-restoreIdAndClasses">.restoreIdAndClasses</a>
+                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-restoreIdAndClasses">.restoreIdAndClasses(toEl, inObj)
+</a>
                 </td>
                 <td> Sets the id and className properties of an element based</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-storeIdAndClasses">.storeIdAndClasses</a>
+                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-storeIdAndClasses">.storeIdAndClasses(fromEl, inObj)
+</a>
                 </td>
                 <td> Stores the id and/or classes of an element in an object.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-unregisterInstance">.unregisterInstance</a>
+                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-unregisterInstance">.unregisterInstance(id)
+</a>
                 </td>
                 <td> Deletes an instance with a given id.</td>
             </tr></tbody>
@@ -163,14 +191,9 @@ site_root:  ../
 
 
     <section id="Ink_UI_Common_1-Ink_UI_Common_1-ajaxJSON" class="box box-function">
-    <h1 class="fw-300">.ajaxJSON(endpoint, params, cb)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         endpoint</li><li class="prop mandatory">
-         params</li><li class="prop mandatory">
-         cb</li>
-    </ul><p class="text">AJAX JSON request shortcut method<br>It provides a more convenient way to do an AJAX request and expect a JSON response.It also offers a callback option, as third parameter, for better async handling.</p>
+    <h1 class="fw-300 function-desc">.ajaxJSON(endpoint, params, cb)
+
+    <i>method</i></h1><p class="text">AJAX JSON request shortcut method<br>It provides a more convenient way to do an AJAX request and expect a JSON response.It also offers a callback option, as third parameter, for better async handling.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -199,12 +222,9 @@ site_root:  ../
 </section>
 
     <section id="Ink_UI_Common_1-Ink_UI_Common_1-childIndex" class="box box-function">
-    <h1 class="fw-300">.childIndex(childEl)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         childEl</li>
-    </ul><p class="text">Gets an element&#39;s one-base index relative to its parent.</p>
+    <h1 class="fw-300 function-desc">.childIndex(childEl)
+
+    <i>method</i></h1><p class="text">Gets an element&#39;s one-base index relative to its parent.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -242,12 +262,9 @@ site_root:  ../
 </section>
 
     <section id="Ink_UI_Common_1-Ink_UI_Common_1-cleanChildren" class="box box-function">
-    <h1 class="fw-300">.cleanChildren(parentEl)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         parentEl</li>
-    </ul><p class="text">Removes children nodes from a given object.<br>This method was initially created to help solve a problem in Internet Explorer(s) that occurred when trying to set the innerHTML of some specific elements like &#39;table&#39;.</p>
+    <h1 class="fw-300 function-desc">.cleanChildren(parentEl)
+
+    <i>method</i></h1><p class="text">Removes children nodes from a given object.<br>This method was initially created to help solve a problem in Internet Explorer(s) that occurred when trying to set the innerHTML of some specific elements like &#39;table&#39;.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -280,12 +297,9 @@ site_root:  ../
 </section>
 
     <section id="Ink_UI_Common_1-Ink_UI_Common_1-clone" class="box box-function">
-    <h1 class="fw-300">.clone(o)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         o</li>
-    </ul><p class="text">Deep copy (clone) an object.<br>Note: The object cannot have referece loops.</p>
+    <h1 class="fw-300 function-desc">.clone(o)
+
+    <i>method</i></h1><p class="text">Deep copy (clone) an object.<br>Note: The object cannot have referece loops.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -316,8 +330,32 @@ site_root:  ../
 
 </section>
 
+    <section id="Ink_UI_Common_1-Ink_UI_Common_1-createUIComponent" class="box box-function">
+    <h1 class="fw-300 function-desc">.createUIComponent(theConstructor, options)
+
+    <i>method</i></h1>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>theConstructor
+                    <span class="label mandatory"></span></p>
+                UI component constructor. It should have an _init function in its prototype, an _optionDefinition object, and a _name property indicating its name.</li>
+            <li class="level1">
+                <p>options
+                    <span class="label mandatory"></span></p>
+                </li>
+            <li class="level2">
+                <p>options.elementIsOptional
+                    </p>
+                falseWhether the element argument is optional (For example, when the component might work on existing markup or create its own).</li>
+        </ul>
+
+</section>
+
     <section id="Ink_UI_Common_1-Ink_UI_Common_1-currentLayout" class="box box-function">
-    <h1 class="fw-300">.currentLayout()
+    <h1 class="fw-300 function-desc">.currentLayout()
+
     <i>method</i></h1><p class="text">Gets the current Ink layout.</p>
     <h3>Returns</h3>
     <ul class="params">
@@ -340,19 +378,16 @@ site_root:  ../
 </section>
 
     <section id="Ink_UI_Common_1-Ink_UI_Common_1-destroyComponent" class="box box-function">
-    <h1 class="fw-300">.destroyComponent()
+    <h1 class="fw-300 function-desc">.destroyComponent()
+
     <i>method</i></h1><p class="text">Boilerplate method to destroy a component.<br>Components should copy this method as its destroy method and modify it.</p>
 
 </section>
 
     <section id="Ink_UI_Common_1-Ink_UI_Common_1-elOrSelector" class="box box-function">
-    <h1 class="fw-300">.elOrSelector(elOrSelector, fieldName)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         elOrSelector</li><li class="prop mandatory">
-         fieldName</li>
-    </ul><p class="text">Gets a DOM Element.</p>
+    <h1 class="fw-300 function-desc">.elOrSelector(elOrSelector, fieldName)
+
+    <i>method</i></h1><p class="text">Gets a DOM Element.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -384,14 +419,9 @@ site_root:  ../
 </section>
 
     <section id="Ink_UI_Common_1-Ink_UI_Common_1-elsOrSelector" class="box box-function">
-    <h1 class="fw-300">.elsOrSelector(elOrSelector, fieldName, required)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         elOrSelector</li><li class="prop mandatory">
-         fieldName</li><li class="prop mandatory">
-         required</li>
-    </ul><p class="text">Alias for <code>elOrSelector</code> but returns an array of elements.</p>
+    <h1 class="fw-300 function-desc">.elsOrSelector(elOrSelector, fieldName, required)
+
+    <i>method</i></h1><p class="text">Alias for <code>elOrSelector</code> but returns an array of elements.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -426,12 +456,9 @@ site_root:  ../
 </section>
 
     <section id="Ink_UI_Common_1-Ink_UI_Common_1-getInstance" class="box box-function">
-    <h1 class="fw-300">.getInstance(instanceIdOrElement)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         instanceIdOrElement</li>
-    </ul><p class="text">Gets an UI instance from an element or instance id.</p>
+    <h1 class="fw-300 function-desc">.getInstance(instanceIdOrElement)
+
+    <i>method</i></h1><p class="text">Gets an UI instance from an element or instance id.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -451,12 +478,9 @@ site_root:  ../
 </section>
 
     <section id="Ink_UI_Common_1-Ink_UI_Common_1-getInstanceFromSelector" class="box box-function">
-    <h1 class="fw-300">.getInstanceFromSelector(selector)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         selector</li>
-    </ul><p class="text">Gets an instance based on a selector.</p>
+    <h1 class="fw-300 function-desc">.getInstanceFromSelector(selector)
+
+    <i>method</i></h1><p class="text">Gets an instance based on a selector.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -476,7 +500,8 @@ site_root:  ../
 </section>
 
     <section id="Ink_UI_Common_1-Ink_UI_Common_1-getInstanceIds" class="box box-function">
-    <h1 class="fw-300">.getInstanceIds()
+    <h1 class="fw-300 function-desc">.getInstanceIds()
+
     <i>method</i></h1><p class="text">Gets all the instance ids</p>
     <h3>Returns</h3>
     <ul class="params">
@@ -489,7 +514,8 @@ site_root:  ../
 </section>
 
     <section id="Ink_UI_Common_1-Ink_UI_Common_1-getInstances" class="box box-function">
-    <h1 class="fw-300">.getInstances()
+    <h1 class="fw-300 function-desc">.getInstances()
+
     <i>method</i></h1><p class="text">Gets all the instances</p>
     <h3>Returns</h3>
     <ul class="params">
@@ -502,12 +528,9 @@ site_root:  ../
 </section>
 
     <section id="Ink_UI_Common_1-Ink_UI_Common_1-hashSet" class="box box-function">
-    <h1 class="fw-300">.hashSet(o)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         o</li>
-    </ul><p class="text">Sets the location&#39;s hash (window.location.hash).</p>
+    <h1 class="fw-300 function-desc">.hashSet(o)
+
+    <i>method</i></h1><p class="text">Sets the location&#39;s hash (window.location.hash).</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -532,12 +555,9 @@ site_root:  ../
 </section>
 
     <section id="Ink_UI_Common_1-Ink_UI_Common_1-isDOMElement" class="box box-function">
-    <h1 class="fw-300">.isDOMElement(o)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         o</li>
-    </ul><p class="text">Checks if an item is a valid DOM Element.</p>
+    <h1 class="fw-300 function-desc">.isDOMElement(o)
+
+    <i>method</i></h1><p class="text">Checks if an item is a valid DOM Element.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -569,12 +589,9 @@ site_root:  ../
 </section>
 
     <section id="Ink_UI_Common_1-Ink_UI_Common_1-isInteger" class="box box-function">
-    <h1 class="fw-300">.isInteger(n)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         n</li>
-    </ul><p class="text">Checks if an item is a valid integer.</p>
+    <h1 class="fw-300 function-desc">.isInteger(n)
+
+    <i>method</i></h1><p class="text">Checks if an item is a valid integer.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -606,15 +623,9 @@ site_root:  ../
 </section>
 
     <section id="Ink_UI_Common_1-Ink_UI_Common_1-options" class="box box-function">
-    <h1 class="fw-300">.options(fieldId, defaults, overrides, element)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">
-         fieldId</li><li class="prop mandatory">
-         defaults</li><li class="prop mandatory">
-         overrides</li><li class="prop">
-         element</li>
-    </ul><p class="text">Gets options an object and element&#39;s metadata.<br><p>The element&#39;s data attributes take precedence. Values from the element&#39;s data-atrributes are coerced into the required type.</p></p>
+    <h1 class="fw-300 function-desc">.options([fieldId], defaults, overrides, [element])
+
+    <i>method</i></h1><p class="text">Gets options an object and element&#39;s metadata.<br><p>The element&#39;s data attributes take precedence. Values from the element&#39;s data-atrributes are coerced into the required type.</p></p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -682,13 +693,9 @@ Options which go to default:
 </section>
 
     <section id="Ink_UI_Common_1-Ink_UI_Common_1-registerInstance" class="box box-function">
-    <h1 class="fw-300">.registerInstance(inst, el)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         inst</li><li class="prop mandatory">
-         el</li>
-    </ul><p class="text">Saves a component&#39;s instance reference for later retrieval.</p>
+    <h1 class="fw-300 function-desc">.registerInstance(inst, el)
+
+    <i>method</i></h1><p class="text">Saves a component&#39;s instance reference for later retrieval.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -705,13 +712,9 @@ Options which go to default:
 </section>
 
     <section id="Ink_UI_Common_1-Ink_UI_Common_1-restoreIdAndClasses" class="box box-function">
-    <h1 class="fw-300">.restoreIdAndClasses(toEl, inObj)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         toEl</li><li class="prop mandatory">
-         inObj</li>
-    </ul><p class="text">Sets the id and className properties of an element based</p>
+    <h1 class="fw-300 function-desc">.restoreIdAndClasses(toEl, inObj)
+
+    <i>method</i></h1><p class="text">Sets the id and className properties of an element based</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -747,13 +750,9 @@ Options which go to default:
 </section>
 
     <section id="Ink_UI_Common_1-Ink_UI_Common_1-storeIdAndClasses" class="box box-function">
-    <h1 class="fw-300">.storeIdAndClasses(fromEl, inObj)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         fromEl</li><li class="prop mandatory">
-         inObj</li>
-    </ul><p class="text">Stores the id and/or classes of an element in an object.</p>
+    <h1 class="fw-300 function-desc">.storeIdAndClasses(fromEl, inObj)
+
+    <i>method</i></h1><p class="text">Stores the id and/or classes of an element in an object.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -787,12 +786,9 @@ Options which go to default:
 </section>
 
     <section id="Ink_UI_Common_1-Ink_UI_Common_1-unregisterInstance" class="box box-function">
-    <h1 class="fw-300">.unregisterInstance(id)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         id</li>
-    </ul><p class="text">Deletes an instance with a given id.</p>
+    <h1 class="fw-300 function-desc">.unregisterInstance(id)
+
+    <i>method</i></h1><p class="text">Deletes an instance with a given id.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -807,16 +803,19 @@ Options which go to default:
 
     <section id="Ink_UI_Common_1-Ink_UI_Common_1-Layouts" class="box box-attribute">
     <h1 class="fw-300">
-    
-       Ink.UI.Common_1.Layouts
-    
-    <i>attribute</i></h1>
-    
-    
-        <p class="text">Supported Ink Layouts</p>
+        
+            .Layouts
+        
+        
+            <i>attribute</i>
+        
+    </h1>
     
     
         <pre>Object</pre>
+    
+    
+        <p class="text">Supported Ink Layouts</p>
     
     
 </section>

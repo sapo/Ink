@@ -4,12 +4,13 @@ title: Ink_1
 description: Ink Core.
 site_root:  ../
 ---
-    <section>
-        <h1 class="fw-300">Ink_1</h1>
+    <section><p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p>
 
-<p>This module provides the necessary methods to create and load the modules using Ink.</p>
-
-    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space"><caption>Functions</caption>
+    <h2 class="fw-300 class-name">
+        Ink_1 <i>class</i>
+        
+    </h2><p>This module provides the necessary methods to create and load the modules using Ink.</p>
+<table class="props bottom-space"><caption>Functions</caption>
         <thead>
             <tr>
                 <th>Function name</th>
@@ -20,121 +21,141 @@ site_root:  ../
         <tbody>
             <tr>
                 <td>
-                    <a href="#Ink_1-Ink_1-bind">.bind</a>
+                    <a href="#Ink_1-Ink_1-bind">.bind(fn, context, [args*])
+</a>
                 </td>
                 <td> Function.prototype.bind alternative.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_1-Ink_1-bindEvent">.bindEvent</a>
+                    <a href="#Ink_1-Ink_1-bindEvent">.bindEvent(fn, context, [args*])
+</a>
                 </td>
                 <td> Function.prototype.bind alternative for event handlers.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_1-Ink_1-bindMethod">.bindMethod</a>
+                    <a href="#Ink_1-Ink_1-bindMethod">.bindMethod(object, methodName, [args*])
+</a>
                 </td>
                 <td> Function.prototype.bind alternative for class methods</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_1-Ink_1-createExt">.createExt</a>
+                    <a href="#Ink_1-Ink_1-createExt">.createExt(moduleName, version, dependencies, modFn)
+</a>
                 </td>
                 <td> Creates an Ink.Ext module</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_1-Ink_1-createModule">.createModule</a>
+                    <a href="#Ink_1-Ink_1-createModule">.createModule(mod, version, deps, modFn)
+</a>
                 </td>
                 <td> Creates a new module. </td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_1-Ink_1-error">.error</a>
+                    <a href="#Ink_1-Ink_1-error">.error([args*])
+</a>
                 </td>
                 <td> Calls native console.error if available.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_1-Ink_1-extendObj">.extendObj</a>
+                    <a href="#Ink_1-Ink_1-extendObj">.extendObj(destination, source, [args*])
+</a>
                 </td>
                 <td> Extends an object with another</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_1-Ink_1-getModule">.getModule</a>
+                    <a href="#Ink_1-Ink_1-getModule">.getModule(mod, [version])
+</a>
                 </td>
                 <td> Loads a module.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_1-Ink_1-getModuleScripts">.getModuleScripts</a>
+                    <a href="#Ink_1-Ink_1-getModuleScripts">.getModuleScripts()
+</a>
                 </td>
                 <td> Builds the markup needed to load the modules.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_1-Ink_1-getModulesLoadOrder">.getModulesLoadOrder</a>
+                    <a href="#Ink_1-Ink_1-getModulesLoadOrder">.getModulesLoadOrder()
+</a>
                 </td>
                 <td> Lists loaded module names.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_1-Ink_1-getPath">.getPath</a>
+                    <a href="#Ink_1-Ink_1-getPath">.getPath(key, [noLib])
+</a>
                 </td>
                 <td> Get the full path of a module.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_1-Ink_1-i">.i</a>
+                    <a href="#Ink_1-Ink_1-i">.i(id)
+</a>
                 </td>
                 <td> Alias to document.getElementById</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_1-Ink_1-loadScript">.loadScript</a>
+                    <a href="#Ink_1-Ink_1-loadScript">.loadScript(uri, [contentType])
+</a>
                 </td>
                 <td> Loads a script URL.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_1-Ink_1-log">.log</a>
+                    <a href="#Ink_1-Ink_1-log">.log([args*])
+</a>
                 </td>
                 <td> Calls native console.log if available.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_1-Ink_1-namespace">.namespace</a>
+                    <a href="#Ink_1-Ink_1-namespace">.namespace(ns, [returnParentAndKey])
+</a>
                 </td>
                 <td> Defines a module namespace.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_1-Ink_1-requireModules">.requireModules</a>
+                    <a href="#Ink_1-Ink_1-requireModules">.requireModules(deps, cbFn)
+</a>
                 </td>
                 <td> Requires modules asynchronously </td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_1-Ink_1-s">.s</a>
+                    <a href="#Ink_1-Ink_1-s">.s(rule, [from])
+</a>
                 </td>
                 <td> Alias for Ink.Dom.Selector first result</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_1-Ink_1-setPath">.setPath</a>
+                    <a href="#Ink_1-Ink_1-setPath">.setPath(key, rootURI)
+</a>
                 </td>
                 <td> Sets the URL path for a namespace.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_1-Ink_1-ss">.ss</a>
+                    <a href="#Ink_1-Ink_1-ss">.ss(rule, [from])
+</a>
                 </td>
                 <td> Alias for Ink.Dom.Selector</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_1-Ink_1-warn">.warn</a>
+                    <a href="#Ink_1-Ink_1-warn">.warn([args*])
+</a>
                 </td>
                 <td> Calls native console.warn if available.</td>
             </tr></tbody>
@@ -145,14 +166,9 @@ site_root:  ../
 
 
     <section id="Ink_1-Ink_1-bind" class="box box-function">
-    <h1 class="fw-300">.bind(fn, context, args*)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         fn</li><li class="prop mandatory">
-         context</li><li class="prop">
-         args*</li>
-    </ul><p class="text">Function.prototype.bind alternative.<br>Creates a new function that, when called, has its this keyword set to the provided value, with a given sequence of arguments preceding any provided when the new function is called.</p>
+    <h1 class="fw-300 function-desc">.bind(fn, context, [args*])
+
+    <i>method</i></h1><p class="text">Function.prototype.bind alternative.<br>Creates a new function that, when called, has its this keyword set to the provided value, with a given sequence of arguments preceding any provided when the new function is called.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -182,14 +198,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_1-Ink_1-bindEvent" class="box box-function">
-    <h1 class="fw-300">.bindEvent(fn, context, args*)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         fn</li><li class="prop mandatory">
-         context</li><li class="prop">
-         args*</li>
-    </ul><p class="text">Function.prototype.bind alternative for event handlers.<br>Same as bind but keeps first argument of the call the original event.<br>Set &quot;context&quot; to <code>false</code> to preserve the original context of the function and just bind the arguments.</p>
+    <h1 class="fw-300 function-desc">.bindEvent(fn, context, [args*])
+
+    <i>method</i></h1><p class="text">Function.prototype.bind alternative for event handlers.<br>Same as bind but keeps first argument of the call the original event.<br>Set &quot;context&quot; to <code>false</code> to preserve the original context of the function and just bind the arguments.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -219,14 +230,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_1-Ink_1-bindMethod" class="box box-function">
-    <h1 class="fw-300">.bindMethod(object, methodName, args*)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         object</li><li class="prop mandatory">
-         methodName</li><li class="prop">
-         args*</li>
-    </ul><p class="text">Function.prototype.bind alternative for class methods<br>Creates a new function that, when called, has this k</p>
+    <h1 class="fw-300 function-desc">.bindMethod(object, methodName, [args*])
+
+    <i>method</i></h1><p class="text">Function.prototype.bind alternative for class methods<br>Creates a new function that, when called, has this k</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -256,15 +262,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_1-Ink_1-createExt" class="box box-function">
-    <h1 class="fw-300">.createExt(moduleName, version, dependencies, modFn)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         moduleName</li><li class="prop mandatory">
-         version</li><li class="prop mandatory">
-         dependencies</li><li class="prop mandatory">
-         modFn</li>
-    </ul><p class="text">Creates an Ink.Ext module<br><p>Does exactly the same as createModule but creates the module in the Ink.Ext namespace</p></p>
+    <h1 class="fw-300 function-desc">.createExt(moduleName, version, dependencies, modFn)
+
+    <i>method</i></h1><p class="text">Creates an Ink.Ext module<br><p>Does exactly the same as createModule but creates the module in the Ink.Ext namespace</p></p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -291,15 +291,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_1-Ink_1-createModule" class="box box-function">
-    <h1 class="fw-300">.createModule(mod, version, deps, modFn)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         mod</li><li class="prop mandatory">
-         version</li><li class="prop mandatory">
-         deps</li><li class="prop mandatory">
-         modFn</li>
-    </ul><p class="text">Creates a new module. <br>Use this to wrap your code and benefit from the module loading used throughout the Ink library</p>
+    <h1 class="fw-300 function-desc">.createModule(mod, version, deps, modFn)
+
+    <i>method</i></h1><p class="text">Creates a new module. <br>Use this to wrap your code and benefit from the module loading used throughout the Ink library</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -326,12 +320,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_1-Ink_1-error" class="box box-function">
-    <h1 class="fw-300">.error(args*)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">
-         args*</li>
-    </ul><p class="text">Calls native console.error if available.</p>
+    <h1 class="fw-300 function-desc">.error([args*])
+
+    <i>method</i></h1><p class="text">Calls native console.error if available.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -346,14 +337,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_1-Ink_1-extendObj" class="box box-function">
-    <h1 class="fw-300">.extendObj(destination, source, args*)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         destination</li><li class="prop mandatory">
-         source</li><li class="prop">
-         args*</li>
-    </ul><p class="text">Extends an object with another<br>Copy all of the properties in one or more source objects over to the destination object, and return the destination object. It&#39;s in-order, so the last source will override properties of the same name in previous arguments.</p>
+    <h1 class="fw-300 function-desc">.extendObj(destination, source, [args*])
+
+    <i>method</i></h1><p class="text">Extends an object with another<br>Copy all of the properties in one or more source objects over to the destination object, and return the destination object. It&#39;s in-order, so the last source will override properties of the same name in previous arguments.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -383,13 +369,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_1-Ink_1-getModule" class="box box-function">
-    <h1 class="fw-300">.getModule(mod, version)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         mod</li><li class="prop">
-         version</li>
-    </ul><p class="text">Loads a module.<br>A synchronous method to get the module from the registry. It assumes the module is defined and loaded already!</p>
+    <h1 class="fw-300 function-desc">.getModule(mod, [version])
+
+    <i>method</i></h1><p class="text">Loads a module.<br>A synchronous method to get the module from the internal registry.<br>It assumes the module is defined and loaded already!</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -413,7 +395,8 @@ site_root:  ../
 </section>
 
     <section id="Ink_1-Ink_1-getModuleScripts" class="box box-function">
-    <h1 class="fw-300">.getModuleScripts()
+    <h1 class="fw-300 function-desc">.getModuleScripts()
+
     <i>method</i></h1><p class="text">Builds the markup needed to load the modules.<br>This method builds the script tags needed to load the currently used modules</p>
     <h3>Returns</h3>
     <ul class="params">
@@ -426,7 +409,8 @@ site_root:  ../
 </section>
 
     <section id="Ink_1-Ink_1-getModulesLoadOrder" class="box box-function">
-    <h1 class="fw-300">.getModulesLoadOrder()
+    <h1 class="fw-300 function-desc">.getModulesLoadOrder()
+
     <i>method</i></h1><p class="text">Lists loaded module names.<br>The list is ordered by loaded time (oldest module comes first)</p>
     <h3>Returns</h3>
     <ul class="params">
@@ -439,13 +423,9 @@ site_root:  ../
 </section>
 
     <section id="Ink_1-Ink_1-getPath" class="box box-function">
-    <h1 class="fw-300">.getPath(key, noLib)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         key</li><li class="prop">
-         noLib</li>
-    </ul><p class="text">Get the full path of a module.<br>This method looks up the paths given in setPath (and ultimately the default Ink&#39;s path).</p>
+    <h1 class="fw-300 function-desc">.getPath(key, [noLib])
+
+    <i>method</i></h1><p class="text">Get the full path of a module.<br>This method looks up the paths given in setPath (and ultimately the default Ink&#39;s path).</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -462,12 +442,9 @@ site_root:  ../
 </section>
 
     <section id="Ink_1-Ink_1-i" class="box box-function">
-    <h1 class="fw-300">.i(id)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         id</li>
-    </ul><p class="text">Alias to document.getElementById</p>
+    <h1 class="fw-300 function-desc">.i(id)
+
+    <i>method</i></h1><p class="text">Alias to document.getElementById</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -489,13 +466,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_1-Ink_1-loadScript" class="box box-function">
-    <h1 class="fw-300">.loadScript(uri, contentType)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         uri</li><li class="prop">
-         contentType</li>
-    </ul><p class="text">Loads a script URL.<br>This creates a <code>script</code> tag in the <code>head</code> of the document.<br>Reports errors by listening to &#39;error&#39; and &#39;readystatechange&#39; events.</p>
+    <h1 class="fw-300 function-desc">.loadScript(uri, [contentType])
+
+    <i>method</i></h1><p class="text">Loads a script URL.<br>This creates a <code>script</code> tag in the <code>head</code> of the document.<br>Reports errors by listening to &#39;error&#39; and &#39;readystatechange&#39; events.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -512,12 +485,9 @@ site_root:  ../
 </section>
 
     <section id="Ink_1-Ink_1-log" class="box box-function">
-    <h1 class="fw-300">.log(args*)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">
-         args*</li>
-    </ul><p class="text">Calls native console.log if available.</p>
+    <h1 class="fw-300 function-desc">.log([args*])
+
+    <i>method</i></h1><p class="text">Calls native console.log if available.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -532,13 +502,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_1-Ink_1-namespace" class="box box-function">
-    <h1 class="fw-300">.namespace(ns, returnParentAndKey)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         ns</li><li class="prop">
-         returnParentAndKey</li>
-    </ul><p class="text">Defines a module namespace.</p>
+    <h1 class="fw-300 function-desc">.namespace(ns, [returnParentAndKey])
+
+    <i>method</i></h1><p class="text">Defines a module namespace.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -562,13 +528,9 @@ site_root:  ../
 </section>
 
     <section id="Ink_1-Ink_1-requireModules" class="box box-function">
-    <h1 class="fw-300">.requireModules(deps, cbFn)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         deps</li><li class="prop mandatory">
-         cbFn</li>
-    </ul><p class="text">Requires modules asynchronously <br>Use this to get modules, even if they&#39;re not loaded yet</p>
+    <h1 class="fw-300 function-desc">.requireModules(deps, cbFn)
+
+    <i>method</i></h1><p class="text">Requires modules asynchronously <br>Use this to get modules, even if they&#39;re not loaded yet</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -587,13 +549,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_1-Ink_1-s" class="box box-function">
-    <h1 class="fw-300">.s(rule, from)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         rule</li><li class="prop">
-         from</li>
-    </ul><p class="text">Alias for Ink.Dom.Selector first result</p>
+    <h1 class="fw-300 function-desc">.s(rule, [from])
+
+    <i>method</i></h1><p class="text">Alias for Ink.Dom.Selector first result</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -619,13 +577,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_1-Ink_1-setPath" class="box box-function">
-    <h1 class="fw-300">.setPath(key, rootURI)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         key</li><li class="prop mandatory">
-         rootURI</li>
-    </ul><p class="text">Sets the URL path for a namespace.<br>Use this to customize where requireModules and createModule will load dependencies from.<br>This can be useful to set your own CDN for dynamic module loading or simply to change your module folder structure</p>
+    <h1 class="fw-300 function-desc">.setPath(key, rootURI)
+
+    <i>method</i></h1><p class="text">Sets the URL path for a namespace.<br>Use this to customize where requireModules and createModule will load dependencies from.<br>This can be useful to set your own CDN for dynamic module loading or simply to change your module folder structure</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -655,13 +609,9 @@ site_root:  ../
 </section>
 
     <section id="Ink_1-Ink_1-ss" class="box box-function">
-    <h1 class="fw-300">.ss(rule, from)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         rule</li><li class="prop">
-         from</li>
-    </ul><p class="text">Alias for Ink.Dom.Selector</p>
+    <h1 class="fw-300 function-desc">.ss(rule, [from])
+
+    <i>method</i></h1><p class="text">Alias for Ink.Dom.Selector</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -687,12 +637,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_1-Ink_1-warn" class="box box-function">
-    <h1 class="fw-300">.warn(args*)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">
-         args*</li>
-    </ul><p class="text">Calls native console.warn if available.</p>
+    <h1 class="fw-300 function-desc">.warn([args*])
+
+    <i>method</i></h1><p class="text">Calls native console.warn if available.</p>
         <h3>Accepts</h3>
         
         <ul class="params">

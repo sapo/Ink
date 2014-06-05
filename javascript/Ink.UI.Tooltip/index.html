@@ -4,15 +4,16 @@ title: Ink.UI.Tooltip_1
 description: Content Tooltips
 site_root:  ../
 ---
-    <section>
-        <h1 class="fw-300">Ink.UI.Tooltip_1</h1>
+    <section><p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p>
 
-<p>Tooltips are useful as a means to display information about functionality while avoiding clutter.</p>
+    <h2 class="fw-300 class-name">
+        Ink.UI.Tooltip <i>class</i>
+        
+    </h2><p>Tooltips are useful as a means to display information about functionality while avoiding clutter.</p>
 <p>Tooltips show up when you hover elements which &quot;have&quot; tooltips.</p>
 <p>This class will &quot;give&quot; a tooltip to many elements, selected by its first argument (<code>target</code>). This is contrary to the other UI modules in Ink, which are created once per element.</p>
 <p>You can define options either through the second argument of the Tooltip constructor, or as data-attributes in each <code>target</code> element. Options set through data-attributes all start with &quot;data-tip&quot;, and override options passed into the Tooltip constructor.</p>
-
-    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space">
+<table class="props bottom-space">
         <caption>Methods</caption>
         <thead>
             <tr>
@@ -24,13 +25,15 @@ site_root:  ../
         <tbody>
             <tr>
                 <td>
-                    <a href="#Ink_UI_Tooltip_1-Ink_UI_Tooltip-Tooltip"><em>(constructor)</em></a>
+                    <a href="#Ink_UI_Tooltip_1-Ink_UI_Tooltip-Tooltip">new Tooltip(target, [options])
+</a>
                 </td>
                 <td><span class="ink-label green">Constructor</span></td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_UI_Tooltip_1-Ink_UI_Tooltip-destroy">.destroy</a>
+                    <a href="#Ink_UI_Tooltip_1-Ink_UI_Tooltip-destroy">.destroy()
+</a>
                 </td>
                 <td> Destroys the tooltips created by this instance</td>
             </tr></tbody>
@@ -41,13 +44,9 @@ site_root:  ../
 
 
     <section id="Ink_UI_Tooltip_1-Ink_UI_Tooltip-Tooltip" class="box box-function">
-    <h1 class="fw-300">Ink.UI.Tooltip(target, options)
-    <i>constructor</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         target</li><li class="prop">
-         options</li>
-    </ul>
+    <h1 class="fw-300 function-desc">new Ink.UI.Tooltip(target, [options])
+
+    </h1>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -118,7 +117,8 @@ site_root:  ../
 	</section>
 
     <section id="Ink_UI_Tooltip_1-Ink_UI_Tooltip-destroy" class="box box-function">
-    <h1 class="fw-300">.destroy()
+    <h1 class="fw-300 function-desc">.destroy()
+
     <i>method</i></h1><p class="text">Destroys the tooltips created by this instance</p>
 
 </section>

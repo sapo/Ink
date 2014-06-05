@@ -4,11 +4,12 @@ title: Ink.Dom.Element_1
 description: DOM Traversal and manipulation
 site_root:  ../
 ---
-    <section>
-        <h1 class="fw-300">Ink.Dom.Element_1</h1>
+    <section><p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p>
 
-
-    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space"><caption>Functions</caption>
+    <h2 class="fw-300 class-name">
+        Ink.Dom.Element_1 <i>class</i>
+        
+    </h2><table class="props bottom-space"><caption>Functions</caption>
         <thead>
             <tr>
                 <th>Function name</th>
@@ -19,403 +20,470 @@ site_root:  ../
         <tbody>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-appendHTML">.appendHTML</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-appendHTML">.appendHTML(elm, html)
+</a>
                 </td>
                 <td> Appends HTML to an element.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-childElementCount">.childElementCount</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-childElementCount">.childElementCount(elm)
+</a>
                 </td>
                 <td> Counts the number of children of an element</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-clonePosition">.clonePosition</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-clonePosition">.clonePosition(cloneTo, cloneFrom)
+</a>
                 </td>
                 <td> Clones an element&#39;s position to another</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-create">.create</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-create">.create(tag, properties)
+</a>
                 </td>
                 <td> Creates a DOM element</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-data">.data</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-data">.data(selector)
+</a>
                 </td>
                 <td> Gets data attributes from an element</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-descendantOf">.descendantOf</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-descendantOf">.descendantOf(node, descendant)
+</a>
                 </td>
                 <td> Checks if a node is descendant of another</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-elementDimensions">.elementDimensions</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-elementDimensions">.elementDimensions(element)
+</a>
                 </td>
                 <td> Get an element&#39;s dimensions in pixels.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-elementHeight">.elementHeight</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-elementHeight">.elementHeight(element)
+</a>
                 </td>
                 <td> Get an element&#39;s height in pixels.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-elementLeft">.elementLeft</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-elementLeft">.elementLeft(element)
+</a>
                 </td>
                 <td> Deprecated. Alias for offsetLeft()</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-elementTop">.elementTop</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-elementTop">.elementTop(element)
+</a>
                 </td>
                 <td> Deprecated. Alias for offsetTop()</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-elementWidth">.elementWidth</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-elementWidth">.elementWidth(element)
+</a>
                 </td>
                 <td> Get an element&#39;s width in pixels.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-ellipsizeText">.ellipsizeText</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-ellipsizeText">.ellipsizeText(element, [ellipsis])
+</a>
                 </td>
                 <td> Text-overflow: ellipsis emulation</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-fillChecks">.fillChecks</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-fillChecks">.fillChecks(insertAfterEl, name, data, [skipEmpty], [defaultValue], [splitEl])
+</a>
                 </td>
                 <td> Creates set of checkbox buttons</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-fillRadios">.fillRadios</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-fillRadios">.fillRadios(insertAfterEl, name, data, [skipEmpty], [defaultValue], [splitEl])
+</a>
                 </td>
                 <td> Creates a set of radio buttons from an array of data</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-fillSelect">.fillSelect</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-fillSelect">.fillSelect(container, data, [skipEmpty], [defaultValue])
+</a>
                 </td>
                 <td> Fills a select element with options</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-findUpwardsByClass">.findUpwardsByClass</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-findUpwardsByClass">.findUpwardsByClass(element, className)
+</a>
                 </td>
                 <td> Finds the closest ancestor by class name</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-findUpwardsById">.findUpwardsById</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-findUpwardsById">.findUpwardsById(element, id)
+</a>
                 </td>
                 <td> Finds the closest ancestor by id</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-findUpwardsBySelector">.findUpwardsBySelector</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-findUpwardsBySelector">.findUpwardsBySelector(element, sel)
+</a>
                 </td>
                 <td> Finds the closest ancestor by CSS selector</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-findUpwardsByTag">.findUpwardsByTag</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-findUpwardsByTag">.findUpwardsByTag(element, tag)
+</a>
                 </td>
                 <td> Finds the closest ancestor by tag name</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-findUpwardsHaving">.findUpwardsHaving</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-findUpwardsHaving">.findUpwardsHaving(element, boolTest)
+</a>
                 </td>
                 <td> Finds the closest ancestor element matching your test function</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-firstElementChild">.firstElementChild</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-firstElementChild">.firstElementChild(elm)
+</a>
                 </td>
                 <td> Get first child element of another</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-get">.get</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-get">.get(elm)
+</a>
                 </td>
                 <td> Shortcut for <code>document.getElementById</code></td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-getChildrenText">.getChildrenText</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-getChildrenText">.getChildrenText(el, [removeIt])
+</a>
                 </td>
                 <td> Gets the trimmed text of an element</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-getSelectValues">.getSelectValues</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-getSelectValues">.getSelectValues(select)
+</a>
                 </td>
                 <td> Gets value of a select element</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-hasAttribute">.hasAttribute</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-hasAttribute">.hasAttribute(elm, attr)
+</a>
                 </td>
                 <td> Checks if an element has an attribute</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-htmlToFragment">.htmlToFragment</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-htmlToFragment">.htmlToFragment(html)
+</a>
                 </td>
                 <td> Creates a documentFragment from an HTML string.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-inViewport">.inViewport</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-inViewport">.inViewport(element, [options])
+</a>
                 </td>
                 <td> Check if an element is inside the viewport</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-insertAfter">.insertAfter</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-insertAfter">.insertAfter(newElm, targetElm)
+</a>
                 </td>
                 <td> Inserts an element right after another</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-insertBefore">.insertBefore</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-insertBefore">.insertBefore(newElm, targetElm)
+</a>
                 </td>
                 <td> Inserts an element before another</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-insertBottom">.insertBottom</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-insertBottom">.insertBottom(newElm, targetElm)
+</a>
                 </td>
                 <td> Inserts an element as the last child of another</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-insertTop">.insertTop</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-insertTop">.insertTop(newElm, targetElm)
+</a>
                 </td>
                 <td> Inserts an element as the first child of another</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-isAncestorOf">.isAncestorOf</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-isAncestorOf">.isAncestorOf(ancestor, node)
+</a>
                 </td>
                 <td> Checks if a node is an ancestor of another</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-isHidden">.isHidden</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-isHidden">.isHidden(element)
+</a>
                 </td>
                 <td> Check if an element is hidden.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-isLink">.isLink</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-isLink">.isLink(node)
+</a>
                 </td>
                 <td> Checks if an element is a link</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-isVisible">.isVisible</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-isVisible">.isVisible(element)
+</a>
                 </td>
                 <td> Check if an element is visible</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-lastElementChild">.lastElementChild</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-lastElementChild">.lastElementChild(elm)
+</a>
                 </td>
                 <td> Get the last child element of another</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-moveCursorTo">.moveCursorTo</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-moveCursorTo">.moveCursorTo(el, t)
+</a>
                 </td>
                 <td> Move the cursor on an input or textarea element.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-nextElementSibling">.nextElementSibling</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-nextElementSibling">.nextElementSibling(node)
+</a>
                 </td>
                 <td> Get the first sibling element after the node</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-nextSiblings">.nextSiblings</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-nextSiblings">.nextSiblings(elm)
+</a>
                 </td>
                 <td> Gets the next siblings of an element</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-offset">.offset</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-offset">.offset(elm)
+</a>
                 </td>
                 <td></td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-offset">.offset</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-offset">.offset()
+</a>
                 </td>
                 <td> Gets the cumulative offset for an element</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-offset2">.offset2</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-offset2">.offset2()
+</a>
                 </td>
                 <td><span class="ink-label red">deprecated</span> Alias for offset()</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-offsetLeft">.offsetLeft</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-offsetLeft">.offsetLeft(elm)
+</a>
                 </td>
                 <td> Gets the left offset of an element</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-offsetTop">.offsetTop</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-offsetTop">.offsetTop(elm)
+</a>
                 </td>
                 <td> Gets the top offset of an element</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-outerDimensions">.outerDimensions</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-outerDimensions">.outerDimensions(element)
+</a>
                 </td>
                 <td> Get the outer dimensions of an element in pixels.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-pageHeight">.pageHeight</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-pageHeight">.pageHeight()
+</a>
                 </td>
                 <td> Get the page&#39;s height.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-pageWidth">.pageWidth</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-pageWidth">.pageWidth()
+</a>
                 </td>
                 <td> Get the page&#39;s width.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-parentIndexOf">.parentIndexOf</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-parentIndexOf">.parentIndexOf(parentEl, childEl)
+</a>
                 </td>
                 <td> Gets the index of an element relative to a parent</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-positionedOffset">.positionedOffset</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-positionedOffset">.positionedOffset(elm)
+</a>
                 </td>
                 <td> Gets the relative offset of an element</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-prependHTML">.prependHTML</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-prependHTML">.prependHTML(elm, html)
+</a>
                 </td>
                 <td> Prepends HTML to an element.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-previousElementSibling">.previousElementSibling</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-previousElementSibling">.previousElementSibling(node)
+</a>
                 </td>
                 <td> Get the first sibling element before the node</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-previousSiblings">.previousSiblings</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-previousSiblings">.previousSiblings(elm)
+</a>
                 </td>
                 <td> Gets the previous siblings of an element</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-remove">.remove</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-remove">.remove(elm)
+</a>
                 </td>
                 <td> Removes a DOM Element</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-removeTextNodeChildren">.removeTextNodeChildren</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-removeTextNodeChildren">.removeTextNodeChildren(el)
+</a>
                 </td>
                 <td> Removes direct text children.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-replace">.replace</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-replace">.replace(element, replacement)
+</a>
                 </td>
                 <td> Replaces an element with another.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-scroll">.scroll</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-scroll">.scroll([elm])
+</a>
                 </td>
                 <td> Gets the scroll of the element</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-scrollHeight">.scrollHeight</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-scrollHeight">.scrollHeight()
+</a>
                 </td>
                 <td> Get the scroll&#39;s height.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-scrollTo">.scrollTo</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-scrollTo">.scrollTo(elm)
+</a>
                 </td>
                 <td> Scrolls the window to an element</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-scrollWidth">.scrollWidth</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-scrollWidth">.scrollWidth()
+</a>
                 </td>
                 <td> Get the scroll&#39;s width.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-setHTML">.setHTML</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-setHTML">.setHTML(elm, html)
+</a>
                 </td>
                 <td> Sets the inner HTML of an element.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-setTextContent">.setTextContent</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-setTextContent">.setTextContent(node, text)
+</a>
                 </td>
                 <td> Replaces text content of a DOM Node</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-siblings">.siblings</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-siblings">.siblings(elm)
+</a>
                 </td>
                 <td> Gets the all siblings of an element</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-textContent">.textContent</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-textContent">.textContent(node)
+</a>
                 </td>
                 <td> Retrieves textContent from node</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-unwrap">.unwrap</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-unwrap">.unwrap(elem, [wrapperSelector])
+</a>
                 </td>
                 <td> Places an element outside a wrapper.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-viewportHeight">.viewportHeight</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-viewportHeight">.viewportHeight()
+</a>
                 </td>
                 <td> Get the viewport&#39;s height.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-viewportWidth">.viewportWidth</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-viewportWidth">.viewportWidth()
+</a>
                 </td>
                 <td> Get the viewport&#39;s width.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-wrap">.wrap</a>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-wrap">.wrap(target, container)
+</a>
                 </td>
                 <td> Wraps an element inside a container.</td>
             </tr></tbody>
@@ -426,13 +494,9 @@ site_root:  ../
 
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-appendHTML" class="box box-function">
-    <h1 class="fw-300">.appendHTML(elm, html)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         elm</li><li class="prop mandatory">
-         html</li>
-    </ul><p class="text">Appends HTML to an element.<br>This method parses the html string and doesn&#39;t modify its contents</p>
+    <h1 class="fw-300 function-desc">.appendHTML(elm, html)
+
+    <i>method</i></h1><p class="text">Appends HTML to an element.<br>This method parses the html string and doesn&#39;t modify its contents</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -451,12 +515,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-childElementCount" class="box box-function">
-    <h1 class="fw-300">.childElementCount(elm)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         elm</li>
-    </ul><p class="text">Counts the number of children of an element</p>
+    <h1 class="fw-300 function-desc">.childElementCount(elm)
+
+    <i>method</i></h1><p class="text">Counts the number of children of an element</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -478,13 +539,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-clonePosition" class="box box-function">
-    <h1 class="fw-300">.clonePosition(cloneTo, cloneFrom)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         cloneTo</li><li class="prop mandatory">
-         cloneFrom</li>
-    </ul><p class="text">Clones an element&#39;s position to another</p>
+    <h1 class="fw-300 function-desc">.clonePosition(cloneTo, cloneFrom)
+
+    <i>method</i></h1><p class="text">Clones an element&#39;s position to another</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -510,13 +567,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-create" class="box box-function">
-    <h1 class="fw-300">.create(tag, properties)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         tag</li><li class="prop mandatory">
-         properties</li>
-    </ul><p class="text">Creates a DOM element</p>
+    <h1 class="fw-300 function-desc">.create(tag, properties)
+
+    <i>method</i></h1><p class="text">Creates a DOM element</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -535,12 +588,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-data" class="box box-function">
-    <h1 class="fw-300">.data(selector)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         selector</li>
-    </ul><p class="text">Gets data attributes from an element</p>
+    <h1 class="fw-300 function-desc">.data(selector)
+
+    <i>method</i></h1><p class="text">Gets data attributes from an element</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -562,13 +612,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-descendantOf" class="box box-function">
-    <h1 class="fw-300">.descendantOf(node, descendant)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         node</li><li class="prop mandatory">
-         descendant</li>
-    </ul><p class="text">Checks if a node is descendant of another</p>
+    <h1 class="fw-300 function-desc">.descendantOf(node, descendant)
+
+    <i>method</i></h1><p class="text">Checks if a node is descendant of another</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -594,12 +640,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-elementDimensions" class="box box-function">
-    <h1 class="fw-300">.elementDimensions(element)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         element</li>
-    </ul><p class="text">Get an element&#39;s dimensions in pixels.</p>
+    <h1 class="fw-300 function-desc">.elementDimensions(element)
+
+    <i>method</i></h1><p class="text">Get an element&#39;s dimensions in pixels.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -621,12 +664,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-elementHeight" class="box box-function">
-    <h1 class="fw-300">.elementHeight(element)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         element</li>
-    </ul><p class="text">Get an element&#39;s height in pixels.</p>
+    <h1 class="fw-300 function-desc">.elementHeight(element)
+
+    <i>method</i></h1><p class="text">Get an element&#39;s height in pixels.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -648,12 +688,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-elementLeft" class="box box-function">
-    <h1 class="fw-300">.elementLeft(element)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         element</li>
-    </ul><p class="text">Deprecated. Alias for offsetLeft()</p>
+    <h1 class="fw-300 function-desc">.elementLeft(element)
+
+    <i>method</i></h1><p class="text">Deprecated. Alias for offsetLeft()</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -673,12 +710,9 @@ site_root:  ../
 </section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-elementTop" class="box box-function">
-    <h1 class="fw-300">.elementTop(element)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         element</li>
-    </ul><p class="text">Deprecated. Alias for offsetTop()</p>
+    <h1 class="fw-300 function-desc">.elementTop(element)
+
+    <i>method</i></h1><p class="text">Deprecated. Alias for offsetTop()</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -698,12 +732,9 @@ site_root:  ../
 </section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-elementWidth" class="box box-function">
-    <h1 class="fw-300">.elementWidth(element)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         element</li>
-    </ul><p class="text">Get an element&#39;s width in pixels.</p>
+    <h1 class="fw-300 function-desc">.elementWidth(element)
+
+    <i>method</i></h1><p class="text">Get an element&#39;s width in pixels.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -725,13 +756,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-ellipsizeText" class="box box-function">
-    <h1 class="fw-300">.ellipsizeText(element, ellipsis)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         element</li><li class="prop">
-         ellipsis</li>
-    </ul><p class="text">Text-overflow: ellipsis emulation<br>Slices off a piece of text at the end of the element and adds the ellipsis so all text fits inside.</p>
+    <h1 class="fw-300 function-desc">.ellipsizeText(element, [ellipsis])
+
+    <i>method</i></h1><p class="text">Text-overflow: ellipsis emulation<br>Slices off a piece of text at the end of the element and adds the ellipsis so all text fits inside.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -748,17 +775,9 @@ site_root:  ../
 </section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-fillChecks" class="box box-function">
-    <h1 class="fw-300">.fillChecks(insertAfterEl, name, data, skipEmpty, defaultValue, splitEl)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         insertAfterEl</li><li class="prop mandatory">
-         name</li><li class="prop mandatory">
-         data</li><li class="prop">
-         skipEmpty</li><li class="prop">
-         defaultValue</li><li class="prop">
-         splitEl</li>
-    </ul><p class="text">Creates set of checkbox buttons</p>
+    <h1 class="fw-300 function-desc">.fillChecks(insertAfterEl, name, data, [skipEmpty], [defaultValue], [splitEl])
+
+    <i>method</i></h1><p class="text">Creates set of checkbox buttons</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -798,17 +817,9 @@ site_root:  ../
 </section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-fillRadios" class="box box-function">
-    <h1 class="fw-300">.fillRadios(insertAfterEl, name, data, skipEmpty, defaultValue, splitEl)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         insertAfterEl</li><li class="prop mandatory">
-         name</li><li class="prop mandatory">
-         data</li><li class="prop">
-         skipEmpty</li><li class="prop">
-         defaultValue</li><li class="prop">
-         splitEl</li>
-    </ul><p class="text">Creates a set of radio buttons from an array of data</p>
+    <h1 class="fw-300 function-desc">.fillRadios(insertAfterEl, name, data, [skipEmpty], [defaultValue], [splitEl])
+
+    <i>method</i></h1><p class="text">Creates a set of radio buttons from an array of data</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -848,15 +859,9 @@ site_root:  ../
 </section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-fillSelect" class="box box-function">
-    <h1 class="fw-300">.fillSelect(container, data, skipEmpty, defaultValue)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         container</li><li class="prop mandatory">
-         data</li><li class="prop">
-         skipEmpty</li><li class="prop">
-         defaultValue</li>
-    </ul><p class="text">Fills a select element with options</p>
+    <h1 class="fw-300 function-desc">.fillSelect(container, data, [skipEmpty], [defaultValue])
+
+    <i>method</i></h1><p class="text">Fills a select element with options</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -883,13 +888,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-findUpwardsByClass" class="box box-function">
-    <h1 class="fw-300">.findUpwardsByClass(element, className)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         element</li><li class="prop mandatory">
-         className</li>
-    </ul><p class="text">Finds the closest ancestor by class name</p>
+    <h1 class="fw-300 function-desc">.findUpwardsByClass(element, className)
+
+    <i>method</i></h1><p class="text">Finds the closest ancestor by class name</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -915,13 +916,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-findUpwardsById" class="box box-function">
-    <h1 class="fw-300">.findUpwardsById(element, id)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         element</li><li class="prop mandatory">
-         id</li>
-    </ul><p class="text">Finds the closest ancestor by id</p>
+    <h1 class="fw-300 function-desc">.findUpwardsById(element, id)
+
+    <i>method</i></h1><p class="text">Finds the closest ancestor by id</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -947,13 +944,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-findUpwardsBySelector" class="box box-function">
-    <h1 class="fw-300">.findUpwardsBySelector(element, sel)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         element</li><li class="prop mandatory">
-         sel</li>
-    </ul><p class="text">Finds the closest ancestor by CSS selector</p>
+    <h1 class="fw-300 function-desc">.findUpwardsBySelector(element, sel)
+
+    <i>method</i></h1><p class="text">Finds the closest ancestor by CSS selector</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -979,13 +972,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-findUpwardsByTag" class="box box-function">
-    <h1 class="fw-300">.findUpwardsByTag(element, tag)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         element</li><li class="prop mandatory">
-         tag</li>
-    </ul><p class="text">Finds the closest ancestor by tag name</p>
+    <h1 class="fw-300 function-desc">.findUpwardsByTag(element, tag)
+
+    <i>method</i></h1><p class="text">Finds the closest ancestor by tag name</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -1011,13 +1000,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-findUpwardsHaving" class="box box-function">
-    <h1 class="fw-300">.findUpwardsHaving(element, boolTest)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         element</li><li class="prop mandatory">
-         boolTest</li>
-    </ul><p class="text">Finds the closest ancestor element matching your test function</p>
+    <h1 class="fw-300 function-desc">.findUpwardsHaving(element, boolTest)
+
+    <i>method</i></h1><p class="text">Finds the closest ancestor element matching your test function</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -1043,12 +1028,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-firstElementChild" class="box box-function">
-    <h1 class="fw-300">.firstElementChild(elm)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         elm</li>
-    </ul><p class="text">Get first child element of another</p>
+    <h1 class="fw-300 function-desc">.firstElementChild(elm)
+
+    <i>method</i></h1><p class="text">Get first child element of another</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -1070,12 +1052,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-get" class="box box-function">
-    <h1 class="fw-300">.get(elm)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         elm</li>
-    </ul><p class="text">Shortcut for <code>document.getElementById</code></p>
+    <h1 class="fw-300 function-desc">.get(elm)
+
+    <i>method</i></h1><p class="text">Shortcut for <code>document.getElementById</code></p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -1097,13 +1076,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-getChildrenText" class="box box-function">
-    <h1 class="fw-300">.getChildrenText(el, removeIt)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         el</li><li class="prop">
-         removeIt</li>
-    </ul><p class="text">Gets the trimmed text of an element</p>
+    <h1 class="fw-300 function-desc">.getChildrenText(el, [removeIt])
+
+    <i>method</i></h1><p class="text">Gets the trimmed text of an element</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -1129,12 +1104,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-getSelectValues" class="box box-function">
-    <h1 class="fw-300">.getSelectValues(select)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         select</li>
-    </ul><p class="text">Gets value of a select element</p>
+    <h1 class="fw-300 function-desc">.getSelectValues(select)
+
+    <i>method</i></h1><p class="text">Gets value of a select element</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -1156,13 +1128,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-hasAttribute" class="box box-function">
-    <h1 class="fw-300">.hasAttribute(elm, attr)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         elm</li><li class="prop mandatory">
-         attr</li>
-    </ul><p class="text">Checks if an element has an attribute</p>
+    <h1 class="fw-300 function-desc">.hasAttribute(elm, attr)
+
+    <i>method</i></h1><p class="text">Checks if an element has an attribute</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -1188,12 +1156,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-htmlToFragment" class="box box-function">
-    <h1 class="fw-300">.htmlToFragment(html)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         html</li>
-    </ul><p class="text">Creates a documentFragment from an HTML string.</p>
+    <h1 class="fw-300 function-desc">.htmlToFragment(html)
+
+    <i>method</i></h1><p class="text">Creates a documentFragment from an HTML string.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -1215,13 +1180,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-inViewport" class="box box-function">
-    <h1 class="fw-300">.inViewport(element, options)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         element</li><li class="prop">
-         options</li>
-    </ul><p class="text">Check if an element is inside the viewport</p>
+    <h1 class="fw-300 function-desc">.inViewport(element, [options])
+
+    <i>method</i></h1><p class="text">Check if an element is inside the viewport</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -1255,13 +1216,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-insertAfter" class="box box-function">
-    <h1 class="fw-300">.insertAfter(newElm, targetElm)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         newElm</li><li class="prop mandatory">
-         targetElm</li>
-    </ul><p class="text">Inserts an element right after another</p>
+    <h1 class="fw-300 function-desc">.insertAfter(newElm, targetElm)
+
+    <i>method</i></h1><p class="text">Inserts an element right after another</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -1280,13 +1237,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-insertBefore" class="box box-function">
-    <h1 class="fw-300">.insertBefore(newElm, targetElm)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         newElm</li><li class="prop mandatory">
-         targetElm</li>
-    </ul><p class="text">Inserts an element before another</p>
+    <h1 class="fw-300 function-desc">.insertBefore(newElm, targetElm)
+
+    <i>method</i></h1><p class="text">Inserts an element before another</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -1305,13 +1258,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-insertBottom" class="box box-function">
-    <h1 class="fw-300">.insertBottom(newElm, targetElm)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         newElm</li><li class="prop mandatory">
-         targetElm</li>
-    </ul><p class="text">Inserts an element as the last child of another</p>
+    <h1 class="fw-300 function-desc">.insertBottom(newElm, targetElm)
+
+    <i>method</i></h1><p class="text">Inserts an element as the last child of another</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -1330,13 +1279,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-insertTop" class="box box-function">
-    <h1 class="fw-300">.insertTop(newElm, targetElm)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         newElm</li><li class="prop mandatory">
-         targetElm</li>
-    </ul><p class="text">Inserts an element as the first child of another</p>
+    <h1 class="fw-300 function-desc">.insertTop(newElm, targetElm)
+
+    <i>method</i></h1><p class="text">Inserts an element as the first child of another</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -1355,13 +1300,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-isAncestorOf" class="box box-function">
-    <h1 class="fw-300">.isAncestorOf(ancestor, node)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         ancestor</li><li class="prop mandatory">
-         node</li>
-    </ul><p class="text">Checks if a node is an ancestor of another</p>
+    <h1 class="fw-300 function-desc">.isAncestorOf(ancestor, node)
+
+    <i>method</i></h1><p class="text">Checks if a node is an ancestor of another</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -1387,12 +1328,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-isHidden" class="box box-function">
-    <h1 class="fw-300">.isHidden(element)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         element</li>
-    </ul><p class="text">Check if an element is hidden.<br>Taken from Mootools Element extras ( <a href="https://gist.github.com/cheeaun/73342">https://gist.github.com/cheeaun/73342</a> )<br>Does not take into account visibility:hidden</p>
+    <h1 class="fw-300 function-desc">.isHidden(element)
+
+    <i>method</i></h1><p class="text">Check if an element is hidden.<br>Taken from Mootools Element extras ( <a href="https://gist.github.com/cheeaun/73342">https://gist.github.com/cheeaun/73342</a> )<br>Does not take into account visibility:hidden</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -1414,12 +1352,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-isLink" class="box box-function">
-    <h1 class="fw-300">.isLink(node)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         node</li>
-    </ul><p class="text">Checks if an element is a link</p>
+    <h1 class="fw-300 function-desc">.isLink(node)
+
+    <i>method</i></h1><p class="text">Checks if an element is a link</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -1441,12 +1376,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-isVisible" class="box box-function">
-    <h1 class="fw-300">.isVisible(element)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         element</li>
-    </ul><p class="text">Check if an element is visible</p>
+    <h1 class="fw-300 function-desc">.isVisible(element)
+
+    <i>method</i></h1><p class="text">Check if an element is visible</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -1468,12 +1400,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-lastElementChild" class="box box-function">
-    <h1 class="fw-300">.lastElementChild(elm)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         elm</li>
-    </ul><p class="text">Get the last child element of another</p>
+    <h1 class="fw-300 function-desc">.lastElementChild(elm)
+
+    <i>method</i></h1><p class="text">Get the last child element of another</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -1495,13 +1424,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-moveCursorTo" class="box box-function">
-    <h1 class="fw-300">.moveCursorTo(el, t)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         el</li><li class="prop mandatory">
-         t</li>
-    </ul><p class="text">Move the cursor on an input or textarea element.</p>
+    <h1 class="fw-300 function-desc">.moveCursorTo(el, t)
+
+    <i>method</i></h1><p class="text">Move the cursor on an input or textarea element.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -1520,12 +1445,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-nextElementSibling" class="box box-function">
-    <h1 class="fw-300">.nextElementSibling(node)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         node</li>
-    </ul><p class="text">Get the first sibling element after the node</p>
+    <h1 class="fw-300 function-desc">.nextElementSibling(node)
+
+    <i>method</i></h1><p class="text">Get the first sibling element after the node</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -1547,12 +1469,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-nextSiblings" class="box box-function">
-    <h1 class="fw-300">.nextSiblings(elm)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         elm</li>
-    </ul><p class="text">Gets the next siblings of an element</p>
+    <h1 class="fw-300 function-desc">.nextSiblings(elm)
+
+    <i>method</i></h1><p class="text">Gets the next siblings of an element</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -1574,12 +1493,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-offset" class="box box-function">
-    <h1 class="fw-300">.offset(elm)
+    <h1 class="fw-300 function-desc">.offset(elm)
+
     <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         elm</li>
-    </ul>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -1601,24 +1517,23 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-offset" class="box box-function">
-    <h1 class="fw-300">.offset()
+    <h1 class="fw-300 function-desc">.offset()
+
     <i>method</i></h1><p class="text">Gets the cumulative offset for an element<br><p>Returns the top left position of the element on the page</p></p>
 
 </section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-offset2" class="box box-function">
-    <h1 class="fw-300">.offset2()
+    <h1 class="fw-300 function-desc">.offset2()
+
     <i>method</i></h1><p class="text">Alias for offset()</p>
 
 </section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-offsetLeft" class="box box-function">
-    <h1 class="fw-300">.offsetLeft(elm)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         elm</li>
-    </ul><p class="text">Gets the left offset of an element</p>
+    <h1 class="fw-300 function-desc">.offsetLeft(elm)
+
+    <i>method</i></h1><p class="text">Gets the left offset of an element</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -1640,12 +1555,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-offsetTop" class="box box-function">
-    <h1 class="fw-300">.offsetTop(elm)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         elm</li>
-    </ul><p class="text">Gets the top offset of an element</p>
+    <h1 class="fw-300 function-desc">.offsetTop(elm)
+
+    <i>method</i></h1><p class="text">Gets the top offset of an element</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -1667,12 +1579,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-outerDimensions" class="box box-function">
-    <h1 class="fw-300">.outerDimensions(element)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         element</li>
-    </ul><p class="text">Get the outer dimensions of an element in pixels.</p>
+    <h1 class="fw-300 function-desc">.outerDimensions(element)
+
+    <i>method</i></h1><p class="text">Get the outer dimensions of an element in pixels.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -1694,7 +1603,8 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-pageHeight" class="box box-function">
-    <h1 class="fw-300">.pageHeight()
+    <h1 class="fw-300 function-desc">.pageHeight()
+
     <i>method</i></h1><p class="text">Get the page&#39;s height.</p>
     <h3>Returns</h3>
     <ul class="params">
@@ -1709,7 +1619,8 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-pageWidth" class="box box-function">
-    <h1 class="fw-300">.pageWidth()
+    <h1 class="fw-300 function-desc">.pageWidth()
+
     <i>method</i></h1><p class="text">Get the page&#39;s width.</p>
     <h3>Returns</h3>
     <ul class="params">
@@ -1724,13 +1635,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-parentIndexOf" class="box box-function">
-    <h1 class="fw-300">.parentIndexOf(parentEl, childEl)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         parentEl</li><li class="prop mandatory">
-         childEl</li>
-    </ul><p class="text">Gets the index of an element relative to a parent</p>
+    <h1 class="fw-300 function-desc">.parentIndexOf(parentEl, childEl)
+
+    <i>method</i></h1><p class="text">Gets the index of an element relative to a parent</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -1756,12 +1663,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-positionedOffset" class="box box-function">
-    <h1 class="fw-300">.positionedOffset(elm)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         elm</li>
-    </ul><p class="text">Gets the relative offset of an element</p>
+    <h1 class="fw-300 function-desc">.positionedOffset(elm)
+
+    <i>method</i></h1><p class="text">Gets the relative offset of an element</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -1783,13 +1687,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-prependHTML" class="box box-function">
-    <h1 class="fw-300">.prependHTML(elm, html)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         elm</li><li class="prop mandatory">
-         html</li>
-    </ul><p class="text">Prepends HTML to an element.<br>This method parses the html string and doesn&#39;t modify its contents</p>
+    <h1 class="fw-300 function-desc">.prependHTML(elm, html)
+
+    <i>method</i></h1><p class="text">Prepends HTML to an element.<br>This method parses the html string and doesn&#39;t modify its contents</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -1808,12 +1708,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-previousElementSibling" class="box box-function">
-    <h1 class="fw-300">.previousElementSibling(node)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         node</li>
-    </ul><p class="text">Get the first sibling element before the node</p>
+    <h1 class="fw-300 function-desc">.previousElementSibling(node)
+
+    <i>method</i></h1><p class="text">Get the first sibling element before the node</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -1835,12 +1732,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-previousSiblings" class="box box-function">
-    <h1 class="fw-300">.previousSiblings(elm)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         elm</li>
-    </ul><p class="text">Gets the previous siblings of an element</p>
+    <h1 class="fw-300 function-desc">.previousSiblings(elm)
+
+    <i>method</i></h1><p class="text">Gets the previous siblings of an element</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -1862,12 +1756,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-remove" class="box box-function">
-    <h1 class="fw-300">.remove(elm)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         elm</li>
-    </ul><p class="text">Removes a DOM Element</p>
+    <h1 class="fw-300 function-desc">.remove(elm)
+
+    <i>method</i></h1><p class="text">Removes a DOM Element</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -1882,12 +1773,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-removeTextNodeChildren" class="box box-function">
-    <h1 class="fw-300">.removeTextNodeChildren(el)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         el</li>
-    </ul><p class="text">Removes direct text children.<br>Useful to remove nasty layout gaps generated by whitespace on the markup.</p>
+    <h1 class="fw-300 function-desc">.removeTextNodeChildren(el)
+
+    <i>method</i></h1><p class="text">Removes direct text children.<br>Useful to remove nasty layout gaps generated by whitespace on the markup.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -1902,13 +1790,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-replace" class="box box-function">
-    <h1 class="fw-300">.replace(element, replacement)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         element</li><li class="prop mandatory">
-         replacement</li>
-    </ul><p class="text">Replaces an element with another.</p>
+    <h1 class="fw-300 function-desc">.replace(element, replacement)
+
+    <i>method</i></h1><p class="text">Replaces an element with another.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -1936,12 +1820,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-scroll" class="box box-function">
-    <h1 class="fw-300">.scroll(elm)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop">
-         elm</li>
-    </ul><p class="text">Gets the scroll of the element</p>
+    <h1 class="fw-300 function-desc">.scroll([elm])
+
+    <i>method</i></h1><p class="text">Gets the scroll of the element</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -1963,7 +1844,8 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-scrollHeight" class="box box-function">
-    <h1 class="fw-300">.scrollHeight()
+    <h1 class="fw-300 function-desc">.scrollHeight()
+
     <i>method</i></h1><p class="text">Get the scroll&#39;s height.</p>
     <h3>Returns</h3>
     <ul class="params">
@@ -1976,12 +1858,9 @@ site_root:  ../
 </section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-scrollTo" class="box box-function">
-    <h1 class="fw-300">.scrollTo(elm)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         elm</li>
-    </ul><p class="text">Scrolls the window to an element</p>
+    <h1 class="fw-300 function-desc">.scrollTo(elm)
+
+    <i>method</i></h1><p class="text">Scrolls the window to an element</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -1996,7 +1875,8 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-scrollWidth" class="box box-function">
-    <h1 class="fw-300">.scrollWidth()
+    <h1 class="fw-300 function-desc">.scrollWidth()
+
     <i>method</i></h1><p class="text">Get the scroll&#39;s width.</p>
     <h3>Returns</h3>
     <ul class="params">
@@ -2009,13 +1889,9 @@ site_root:  ../
 </section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-setHTML" class="box box-function">
-    <h1 class="fw-300">.setHTML(elm, html)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         elm</li><li class="prop mandatory">
-         html</li>
-    </ul><p class="text">Sets the inner HTML of an element.</p>
+    <h1 class="fw-300 function-desc">.setHTML(elm, html)
+
+    <i>method</i></h1><p class="text">Sets the inner HTML of an element.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -2034,13 +1910,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-setTextContent" class="box box-function">
-    <h1 class="fw-300">.setTextContent(node, text)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         node</li><li class="prop mandatory">
-         text</li>
-    </ul><p class="text">Replaces text content of a DOM Node<br>This method removes any child node previously present</p>
+    <h1 class="fw-300 function-desc">.setTextContent(node, text)
+
+    <i>method</i></h1><p class="text">Replaces text content of a DOM Node<br>This method removes any child node previously present</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -2059,12 +1931,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-siblings" class="box box-function">
-    <h1 class="fw-300">.siblings(elm)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         elm</li>
-    </ul><p class="text">Gets the all siblings of an element</p>
+    <h1 class="fw-300 function-desc">.siblings(elm)
+
+    <i>method</i></h1><p class="text">Gets the all siblings of an element</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -2086,12 +1955,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-textContent" class="box box-function">
-    <h1 class="fw-300">.textContent(node)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         node</li>
-    </ul><p class="text">Retrieves textContent from node</p>
+    <h1 class="fw-300 function-desc">.textContent(node)
+
+    <i>method</i></h1><p class="text">Retrieves textContent from node</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -2113,13 +1979,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-unwrap" class="box box-function">
-    <h1 class="fw-300">.unwrap(elem, wrapperSelector)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         elem</li><li class="prop">
-         wrapperSelector</li>
-    </ul><p class="text">Places an element outside a wrapper.</p>
+    <h1 class="fw-300 function-desc">.unwrap(elem, [wrapperSelector])
+
+    <i>method</i></h1><p class="text">Places an element outside a wrapper.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -2160,7 +2022,8 @@ You get this:
 	</section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-viewportHeight" class="box box-function">
-    <h1 class="fw-300">.viewportHeight()
+    <h1 class="fw-300 function-desc">.viewportHeight()
+
     <i>method</i></h1><p class="text">Get the viewport&#39;s height.</p>
     <h3>Returns</h3>
     <ul class="params">
@@ -2175,7 +2038,8 @@ You get this:
 	</section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-viewportWidth" class="box box-function">
-    <h1 class="fw-300">.viewportWidth()
+    <h1 class="fw-300 function-desc">.viewportWidth()
+
     <i>method</i></h1><p class="text">Get the viewport&#39;s width.</p>
     <h3>Returns</h3>
     <ul class="params">
@@ -2190,13 +2054,9 @@ You get this:
 	</section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-wrap" class="box box-function">
-    <h1 class="fw-300">.wrap(target, container)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         target</li><li class="prop mandatory">
-         container</li>
-    </ul><p class="text">Wraps an element inside a container.<br><p>The container may or may not be in the document yet.</p></p>
+    <h1 class="fw-300 function-desc">.wrap(target, container)
+
+    <i>method</i></h1><p class="text">Wraps an element inside a container.<br><p>The container may or may not be in the document yet.</p></p>
         <h3>Accepts</h3>
         
         <ul class="params">

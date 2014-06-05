@@ -4,11 +4,12 @@ title: Ink.Util.String_1
 description: String Utilities
 site_root:  ../
 ---
-    <section>
-        <h1 class="fw-300">Ink.Util.String_1</h1>
+    <section><p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p>
 
-
-    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space"><caption>Functions</caption>
+    <h2 class="fw-300 class-name">
+        Ink.Util.String_1 <i>class</i>
+        
+    </h2><table class="props bottom-space"><caption>Functions</caption>
         <thead>
             <tr>
                 <th>Function name</th>
@@ -19,133 +20,155 @@ site_root:  ../
         <tbody>
             <tr>
                 <td>
-                    <a href="#Ink_Util_String_1-Ink_Util_String_1-escape">.escape</a>
+                    <a href="#Ink_Util_String_1-Ink_Util_String_1-escape">.escape(c)
+</a>
                 </td>
                 <td> Escapes a unicode character.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Util_String_1-Ink_Util_String_1-escapeText">.escapeText</a>
+                    <a href="#Ink_Util_String_1-Ink_Util_String_1-escapeText">.escapeText(txt, [whiteList])
+</a>
                 </td>
                 <td> Escapes a string to unicode characters</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Util_String_1-Ink_Util_String_1-evalJSON">.evalJSON</a>
+                    <a href="#Ink_Util_String_1-Ink_Util_String_1-evalJSON">.evalJSON(strJSON, sanitize)
+</a>
                 </td>
                 <td> Eval a JSON - We recommend you Ink.Util.Json</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Util_String_1-Ink_Util_String_1-htmlEntitiesDecode">.htmlEntitiesDecode</a>
+                    <a href="#Ink_Util_String_1-Ink_Util_String_1-htmlEntitiesDecode">.htmlEntitiesDecode(string)
+</a>
                 </td>
                 <td> Decodes string from HTML entities.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Util_String_1-Ink_Util_String_1-htmlEntitiesEncode">.htmlEntitiesEncode</a>
+                    <a href="#Ink_Util_String_1-Ink_Util_String_1-htmlEntitiesEncode">.htmlEntitiesEncode(string)
+</a>
                 </td>
                 <td> Encodes string into HTML entities.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Util_String_1-Ink_Util_String_1-htmlEscapeUnsafe">.htmlEscapeUnsafe</a>
+                    <a href="#Ink_Util_String_1-Ink_Util_String_1-htmlEscapeUnsafe">.htmlEscapeUnsafe(str)
+</a>
                 </td>
                 <td> Escapes unsafe html chars as HTML entities</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Util_String_1-Ink_Util_String_1-isJSON">.isJSON</a>
+                    <a href="#Ink_Util_String_1-Ink_Util_String_1-isJSON">.isJSON(str)
+</a>
                 </td>
                 <td> Checks if a string is a valid JSON object (string encoded)</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Util_String_1-Ink_Util_String_1-normalizeWhitespace">.normalizeWhitespace</a>
+                    <a href="#Ink_Util_String_1-Ink_Util_String_1-normalizeWhitespace">.normalizeWhitespace(str)
+</a>
                 </td>
                 <td> Normalizes whitespace in string.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Util_String_1-Ink_Util_String_1-packetize">.packetize</a>
+                    <a href="#Ink_Util_String_1-Ink_Util_String_1-packetize">.packetize(str, maxLen)
+</a>
                 </td>
                 <td> Splits a string into smaller chunks</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Util_String_1-Ink_Util_String_1-removeAccentedChars">.removeAccentedChars</a>
+                    <a href="#Ink_Util_String_1-Ink_Util_String_1-removeAccentedChars">.removeAccentedChars(string)
+</a>
                 </td>
                 <td> Removes all accented characters from a string.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Util_String_1-Ink_Util_String_1-shortString">.shortString</a>
+                    <a href="#Ink_Util_String_1-Ink_Util_String_1-shortString">.shortString(str, n)
+</a>
                 </td>
                 <td> Truncates a string without breaking words.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Util_String_1-Ink_Util_String_1-strcmp">.strcmp</a>
+                    <a href="#Ink_Util_String_1-Ink_Util_String_1-strcmp">.strcmp(str1, str2)
+</a>
                 </td>
                 <td> Compares two strings.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Util_String_1-Ink_Util_String_1-stripTags">.stripTags</a>
+                    <a href="#Ink_Util_String_1-Ink_Util_String_1-stripTags">.stripTags(string, allowed)
+</a>
                 </td>
                 <td> Strips HTML tags from strings</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Util_String_1-Ink_Util_String_1-substrCount">.substrCount</a>
+                    <a href="#Ink_Util_String_1-Ink_Util_String_1-substrCount">.substrCount(haystack, needle)
+</a>
                 </td>
                 <td> Count the number of occurrences of a specific needle in a haystack</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Util_String_1-Ink_Util_String_1-toUnicode">.toUnicode</a>
+                    <a href="#Ink_Util_String_1-Ink_Util_String_1-toUnicode">.toUnicode(str)
+</a>
                 </td>
                 <td> Converts string to unicode.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Util_String_1-Ink_Util_String_1-trim">.trim</a>
+                    <a href="#Ink_Util_String_1-Ink_Util_String_1-trim">.trim(string)
+</a>
                 </td>
                 <td> Trims whitespace from strings</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Util_String_1-Ink_Util_String_1-truncateString">.truncateString</a>
+                    <a href="#Ink_Util_String_1-Ink_Util_String_1-truncateString">.truncateString(str, length)
+</a>
                 </td>
                 <td> Truncates a string, breaking words and adding ... at the end.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Util_String_1-Ink_Util_String_1-ucFirst">.ucFirst</a>
+                    <a href="#Ink_Util_String_1-Ink_Util_String_1-ucFirst">.ucFirst(string, [firstWordOnly])
+</a>
                 </td>
                 <td> Capitalizes a word.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Util_String_1-Ink_Util_String_1-unescape">.unescape</a>
+                    <a href="#Ink_Util_String_1-Ink_Util_String_1-unescape">.unescape(es)
+</a>
                 </td>
                 <td> Unescapes a unicode character escape sequence</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Util_String_1-Ink_Util_String_1-unescapeText">.unescapeText</a>
+                    <a href="#Ink_Util_String_1-Ink_Util_String_1-unescapeText">.unescapeText(txt)
+</a>
                 </td>
                 <td> Unescapes a string</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Util_String_1-Ink_Util_String_1-utf8Decode">.utf8Decode</a>
+                    <a href="#Ink_Util_String_1-Ink_Util_String_1-utf8Decode">.utf8Decode(string)
+</a>
                 </td>
                 <td> Decodes a string from UTF-8.</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Util_String_1-Ink_Util_String_1-utf8Encode">.utf8Encode</a>
+                    <a href="#Ink_Util_String_1-Ink_Util_String_1-utf8Encode">.utf8Encode(string)
+</a>
                 </td>
                 <td> Encode a string to UTF-8.</td>
             </tr></tbody>
@@ -175,12 +198,9 @@ site_root:  ../
 
 
     <section id="Ink_Util_String_1-Ink_Util_String_1-escape" class="box box-function">
-    <h1 class="fw-300">.escape(c)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         c</li>
-    </ul><p class="text">Escapes a unicode character.</p>
+    <h1 class="fw-300 function-desc">.escape(c)
+
+    <i>method</i></h1><p class="text">Escapes a unicode character.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -202,13 +222,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_String_1-Ink_Util_String_1-escapeText" class="box box-function">
-    <h1 class="fw-300">.escapeText(txt, whiteList)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         txt</li><li class="prop">
-         whiteList</li>
-    </ul><p class="text">Escapes a string to unicode characters</p>
+    <h1 class="fw-300 function-desc">.escapeText(txt, [whiteList])
+
+    <i>method</i></h1><p class="text">Escapes a string to unicode characters</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -234,13 +250,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_String_1-Ink_Util_String_1-evalJSON" class="box box-function">
-    <h1 class="fw-300">.evalJSON(strJSON, sanitize)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         strJSON</li><li class="prop mandatory">
-         sanitize</li>
-    </ul><p class="text">Eval a JSON - We recommend you Ink.Util.Json</p>
+    <h1 class="fw-300 function-desc">.evalJSON(strJSON, sanitize)
+
+    <i>method</i></h1><p class="text">Eval a JSON - We recommend you Ink.Util.Json</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -264,12 +276,9 @@ site_root:  ../
 </section>
 
     <section id="Ink_Util_String_1-Ink_Util_String_1-htmlEntitiesDecode" class="box box-function">
-    <h1 class="fw-300">.htmlEntitiesDecode(string)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         string</li>
-    </ul><p class="text">Decodes string from HTML entities.</p>
+    <h1 class="fw-300 function-desc">.htmlEntitiesDecode(string)
+
+    <i>method</i></h1><p class="text">Decodes string from HTML entities.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -291,12 +300,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_String_1-Ink_Util_String_1-htmlEntitiesEncode" class="box box-function">
-    <h1 class="fw-300">.htmlEntitiesEncode(string)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         string</li>
-    </ul><p class="text">Encodes string into HTML entities.</p>
+    <h1 class="fw-300 function-desc">.htmlEntitiesEncode(string)
+
+    <i>method</i></h1><p class="text">Encodes string into HTML entities.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -318,12 +324,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_String_1-Ink_Util_String_1-htmlEscapeUnsafe" class="box box-function">
-    <h1 class="fw-300">.htmlEscapeUnsafe(str)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         str</li>
-    </ul><p class="text">Escapes unsafe html chars as HTML entities</p>
+    <h1 class="fw-300 function-desc">.htmlEscapeUnsafe(str)
+
+    <i>method</i></h1><p class="text">Escapes unsafe html chars as HTML entities</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -345,12 +348,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_String_1-Ink_Util_String_1-isJSON" class="box box-function">
-    <h1 class="fw-300">.isJSON(str)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         str</li>
-    </ul><p class="text">Checks if a string is a valid JSON object (string encoded)</p>
+    <h1 class="fw-300 function-desc">.isJSON(str)
+
+    <i>method</i></h1><p class="text">Checks if a string is a valid JSON object (string encoded)</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -370,12 +370,9 @@ site_root:  ../
 </section>
 
     <section id="Ink_Util_String_1-Ink_Util_String_1-normalizeWhitespace" class="box box-function">
-    <h1 class="fw-300">.normalizeWhitespace(str)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         str</li>
-    </ul><p class="text">Normalizes whitespace in string.<br>String is trimmed and sequences of whitespaces are collapsed.</p>
+    <h1 class="fw-300 function-desc">.normalizeWhitespace(str)
+
+    <i>method</i></h1><p class="text">Normalizes whitespace in string.<br>String is trimmed and sequences of whitespaces are collapsed.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -397,13 +394,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_String_1-Ink_Util_String_1-packetize" class="box box-function">
-    <h1 class="fw-300">.packetize(str, maxLen)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         str</li><li class="prop mandatory">
-         maxLen</li>
-    </ul><p class="text">Splits a string into smaller chunks</p>
+    <h1 class="fw-300 function-desc">.packetize(str, maxLen)
+
+    <i>method</i></h1><p class="text">Splits a string into smaller chunks</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -429,12 +422,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_String_1-Ink_Util_String_1-removeAccentedChars" class="box box-function">
-    <h1 class="fw-300">.removeAccentedChars(string)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         string</li>
-    </ul><p class="text">Removes all accented characters from a string.</p>
+    <h1 class="fw-300 function-desc">.removeAccentedChars(string)
+
+    <i>method</i></h1><p class="text">Removes all accented characters from a string.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -456,13 +446,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_String_1-Ink_Util_String_1-shortString" class="box box-function">
-    <h1 class="fw-300">.shortString(str, n)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         str</li><li class="prop mandatory">
-         n</li>
-    </ul><p class="text">Truncates a string without breaking words.</p>
+    <h1 class="fw-300 function-desc">.shortString(str, n)
+
+    <i>method</i></h1><p class="text">Truncates a string without breaking words.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -488,13 +474,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_String_1-Ink_Util_String_1-strcmp" class="box box-function">
-    <h1 class="fw-300">.strcmp(str1, str2)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         str1</li><li class="prop mandatory">
-         str2</li>
-    </ul><p class="text">Compares two strings.</p>
+    <h1 class="fw-300 function-desc">.strcmp(str1, str2)
+
+    <i>method</i></h1><p class="text">Compares two strings.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -520,13 +502,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_String_1-Ink_Util_String_1-stripTags" class="box box-function">
-    <h1 class="fw-300">.stripTags(string, allowed)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         string</li><li class="prop mandatory">
-         allowed</li>
-    </ul><p class="text">Strips HTML tags from strings</p>
+    <h1 class="fw-300 function-desc">.stripTags(string, allowed)
+
+    <i>method</i></h1><p class="text">Strips HTML tags from strings</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -552,13 +530,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_String_1-Ink_Util_String_1-substrCount" class="box box-function">
-    <h1 class="fw-300">.substrCount(haystack, needle)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         haystack</li><li class="prop mandatory">
-         needle</li>
-    </ul><p class="text">Count the number of occurrences of a specific needle in a haystack</p>
+    <h1 class="fw-300 function-desc">.substrCount(haystack, needle)
+
+    <i>method</i></h1><p class="text">Count the number of occurrences of a specific needle in a haystack</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -584,12 +558,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_String_1-Ink_Util_String_1-toUnicode" class="box box-function">
-    <h1 class="fw-300">.toUnicode(str)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         str</li>
-    </ul><p class="text">Converts string to unicode.</p>
+    <h1 class="fw-300 function-desc">.toUnicode(str)
+
+    <i>method</i></h1><p class="text">Converts string to unicode.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -611,12 +582,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_String_1-Ink_Util_String_1-trim" class="box box-function">
-    <h1 class="fw-300">.trim(string)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         string</li>
-    </ul><p class="text">Trims whitespace from strings</p>
+    <h1 class="fw-300 function-desc">.trim(string)
+
+    <i>method</i></h1><p class="text">Trims whitespace from strings</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -638,13 +606,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_String_1-Ink_Util_String_1-truncateString" class="box box-function">
-    <h1 class="fw-300">.truncateString(str, length)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         str</li><li class="prop mandatory">
-         length</li>
-    </ul><p class="text">Truncates a string, breaking words and adding ... at the end.</p>
+    <h1 class="fw-300 function-desc">.truncateString(str, length)
+
+    <i>method</i></h1><p class="text">Truncates a string, breaking words and adding ... at the end.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -670,13 +634,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_String_1-Ink_Util_String_1-ucFirst" class="box box-function">
-    <h1 class="fw-300">.ucFirst(string, firstWordOnly)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         string</li><li class="prop">
-         firstWordOnly</li>
-    </ul><p class="text">Capitalizes a word.<br>If param as more than one word, it converts first letter of all words that have more than 2 letters</p>
+    <h1 class="fw-300 function-desc">.ucFirst(string, [firstWordOnly])
+
+    <i>method</i></h1><p class="text">Capitalizes a word.<br>If param as more than one word, it converts first letter of all words that have more than 2 letters</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -702,12 +662,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_String_1-Ink_Util_String_1-unescape" class="box box-function">
-    <h1 class="fw-300">.unescape(es)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         es</li>
-    </ul><p class="text">Unescapes a unicode character escape sequence</p>
+    <h1 class="fw-300 function-desc">.unescape(es)
+
+    <i>method</i></h1><p class="text">Unescapes a unicode character escape sequence</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -729,12 +686,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_String_1-Ink_Util_String_1-unescapeText" class="box box-function">
-    <h1 class="fw-300">.unescapeText(txt)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         txt</li>
-    </ul><p class="text">Unescapes a string</p>
+    <h1 class="fw-300 function-desc">.unescapeText(txt)
+
+    <i>method</i></h1><p class="text">Unescapes a string</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -756,12 +710,9 @@ site_root:  ../
 	</section>
 
     <section id="Ink_Util_String_1-Ink_Util_String_1-utf8Decode" class="box box-function">
-    <h1 class="fw-300">.utf8Decode(string)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         string</li>
-    </ul><p class="text">Decodes a string from UTF-8.</p>
+    <h1 class="fw-300 function-desc">.utf8Decode(string)
+
+    <i>method</i></h1><p class="text">Decodes a string from UTF-8.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -781,12 +732,9 @@ site_root:  ../
 </section>
 
     <section id="Ink_Util_String_1-Ink_Util_String_1-utf8Encode" class="box box-function">
-    <h1 class="fw-300">.utf8Encode(string)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         string</li>
-    </ul><p class="text">Encode a string to UTF-8.</p>
+    <h1 class="fw-300 function-desc">.utf8Encode(string)
+
+    <i>method</i></h1><p class="text">Encode a string to UTF-8.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -808,16 +756,19 @@ site_root:  ../
 
     <section id="Ink_Util_String_1-Ink_Util_String_1-escapedCharRegex" class="box box-attribute">
     <h1 class="fw-300">
-    
-       Ink.Util.String_1.escapedCharRegex
-    
-    <i>attribute</i></h1>
-    
-    
-        <p class="text">Regex to check escaped strings</p>
+        
+            Ink.Util.String_1.escapedCharRegex
+        
+        
+            <i>attribute</i>
+        
+    </h1>
     
     
         <pre>Regex</pre>
+    
+    
+        <p class="text">Regex to check escaped strings</p>
     
     
 </section>

@@ -4,10 +4,12 @@ title: Ink.Util.Json_1
 description: JSON Utilities
 site_root:  ../
 ---
-    <section>
-        <h1 class="fw-300">Ink.Util.Json_1</h1>
+    <section><p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p>
 
-<p>Use this class to convert JSON strings to JavaScript objects
+    <h2 class="fw-300 class-name">
+        Ink.Util.Json_1 <i>namespace</i>
+        
+    </h2><p>Use this class to convert JSON strings to JavaScript objects
 <code>.parse()</code> and also to do the opposite operation <code>.stringify()</code>.
 Internally, the standard JSON implementation is used if available
 Otherwise, the functions mimic the standard implementation.</p>
@@ -25,8 +27,7 @@ Otherwise, the functions mimic the standard implementation.</p>
      var source = &#39;{&quot;key&quot;: &quot;value&quot;, &quot;array&quot;: [true, null, false]}&#39;;
      Json.parse(source);  // The above JSON string as an object
  });
-</code></pre>
-    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space"><caption>Functions</caption>
+</code></pre><table class="props bottom-space"><caption>Functions</caption>
         <thead>
             <tr>
                 <th>Function name</th>
@@ -37,13 +38,15 @@ Otherwise, the functions mimic the standard implementation.</p>
         <tbody>
             <tr>
                 <td>
-                    <a href="#Ink_Util_Json_1-Ink_Util_Json_1-parse">.parse</a>
+                    <a href="#Ink_Util_Json_1-Ink_Util_Json_1-parse">.parse(text, reviver)
+</a>
                 </td>
                 <td> Parses a JSON text through a function</td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_Util_Json_1-Ink_Util_Json_1-stringify">.stringify</a>
+                    <a href="#Ink_Util_Json_1-Ink_Util_Json_1-stringify">.stringify(input, convertToUnicode)
+</a>
                 </td>
                 <td> Serializes a JSON object into a string.</td>
             </tr></tbody>
@@ -54,13 +57,9 @@ Otherwise, the functions mimic the standard implementation.</p>
 
 
     <section id="Ink_Util_Json_1-Ink_Util_Json_1-parse" class="box box-function">
-    <h1 class="fw-300">.parse(text, reviver)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         text</li><li class="prop mandatory">
-         reviver</li>
-    </ul><p class="text">Parses a JSON text through a function</p>
+    <h1 class="fw-300 function-desc">.parse(text, reviver)
+
+    <i>method</i></h1><p class="text">Parses a JSON text through a function</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -86,13 +85,9 @@ Otherwise, the functions mimic the standard implementation.</p>
 	</section>
 
     <section id="Ink_Util_Json_1-Ink_Util_Json_1-stringify" class="box box-function">
-    <h1 class="fw-300">.stringify(input, convertToUnicode)
-    <i>method</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         input</li><li class="prop mandatory">
-         convertToUnicode</li>
-    </ul><p class="text">Serializes a JSON object into a string.</p>
+    <h1 class="fw-300 function-desc">.stringify(input, convertToUnicode)
+
+    <i>method</i></h1><p class="text">Serializes a JSON object into a string.</p>
         <h3>Accepts</h3>
         
         <ul class="params">

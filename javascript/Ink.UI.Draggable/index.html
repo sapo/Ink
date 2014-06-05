@@ -4,11 +4,12 @@ title: Ink.UI.Draggable_1
 description: Dragging elements around
 site_root:  ../
 ---
-    <section>
-        <h1 class="fw-300">Ink.UI.Draggable_1</h1>
+    <section><p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p>
 
-
-    <p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p><table class="props bottom-space">
+    <h2 class="fw-300 class-name">
+        Ink.UI.Draggable <i>class</i>
+        
+    </h2><table class="props bottom-space">
         <caption>Methods</caption>
         <thead>
             <tr>
@@ -20,13 +21,15 @@ site_root:  ../
         <tbody>
             <tr>
                 <td>
-                    <a href="#Ink_UI_Draggable_1-Ink_UI_Draggable-Draggable"><em>(constructor)</em></a>
+                    <a href="#Ink_UI_Draggable_1-Ink_UI_Draggable-Draggable">new Draggable(target, [options])
+</a>
                 </td>
                 <td><span class="ink-label green">Constructor</span></td>
             </tr>
             <tr>
                 <td>
-                    <a href="#Ink_UI_Draggable_1-Ink_UI_Draggable-destroy">.destroy</a>
+                    <a href="#Ink_UI_Draggable_1-Ink_UI_Draggable-destroy">.destroy()
+</a>
                 </td>
                 <td> Removes the ability of the element of being dragged</td>
             </tr></tbody>
@@ -37,13 +40,9 @@ site_root:  ../
 
 
     <section id="Ink_UI_Draggable_1-Ink_UI_Draggable-Draggable" class="box box-function">
-    <h1 class="fw-300">Ink.UI.Draggable(target, options)
-    <i>constructor</i></h1>
-    <ul class="props inline">
-        <li class="heading">Arguments:</li><li class="prop mandatory">
-         target</li><li class="prop">
-         options</li>
-    </ul>
+    <h1 class="fw-300 function-desc">new Ink.UI.Draggable(target, [options])
+
+    </h1>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -112,6 +111,10 @@ site_root:  ../
                     <span class="label string"></span></p>
                 Class to add when the draggable is being dragged. Defaults to drag.</li>
             <li class="level2">
+                <p>options.skipChildren
+                    <span class="label boolean"></span></p>
+                trueWhether you have to drag the actual element, or dragging one of the children is okay too.</li>
+            <li class="level2">
                 <p>options.onStart
                     <span class="label function"></span></p>
                 Callback called when dragging starts.</li>
@@ -134,7 +137,8 @@ site_root:  ../
 	</section>
 
     <section id="Ink_UI_Draggable_1-Ink_UI_Draggable-destroy" class="box box-function">
-    <h1 class="fw-300">.destroy()
+    <h1 class="fw-300 function-desc">.destroy()
+
     <i>method</i></h1><p class="text">Removes the ability of the element of being dragged</p>
 
 </section>
