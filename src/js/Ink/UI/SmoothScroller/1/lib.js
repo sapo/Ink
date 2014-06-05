@@ -123,6 +123,13 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.UI.Common_1', 'Ink.Dom.Even
         onClick: function(event) {
             var link = event.currentTarget;
 
+            var thisDocument =    (location + '').replace(/#.*?$/, '');
+            var linkedDocument = (link.href + '').replace(/#.*?$/, '');
+
+            if (linkedDocument !== thisDocument) {
+                return; // It's an external link.
+            }
+
             var hash = link.getAttribute('data-hash') || (link.getAttribute('href') || '')
                 .replace(/^.*?#/, '');
 
