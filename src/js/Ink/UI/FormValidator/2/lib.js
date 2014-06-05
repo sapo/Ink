@@ -13,6 +13,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
      * Some functions are a port from PHP, others are the 'best' solutions available
      *
      * @class FormValidator.validationFunctions
+     * @static
      */
     var validationFunctions = {
 
@@ -613,8 +614,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
 
 
     /**
-     * @class Ink.UI.FormValidator_2
-     * @version 2
+     * @class FormValidator_2
      * @constructor
      * @param {String|DOMElement}   selector                        Either a CSS Selector string, or the form's DOMElement
      * @param {Object}              [options]                       Options object, containing the following options:
@@ -665,6 +665,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
      * Gets the i18n object in charge of the error messages
      *
      * @method getI18n
+     * @static
      * @return {Ink.Util.I18n} The i18n object the FormValidator is using.
      */
     FormValidator.getI18n = function () {
@@ -675,6 +676,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
      * Sets the I18n object for validation error messages
      *
      * @method setI18n
+     * @static
      * @param {Ink.Util.I18n} i18n  The I18n object.
      */
     FormValidator.setI18n = function (i18n) {
@@ -685,7 +687,8 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
      * Add to the I18n dictionary.
      * See `Ink.Util.I18n.append()` documentation.
      *
-     * @method AppendI18n
+     * @method appendI18n
+     * @static
      */
     FormValidator.appendI18n = function () {
         validationMessages.append.apply(validationMessages, [].slice.call(arguments));
@@ -698,6 +701,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
      * See the `Ink.Util.I18n.lang()` setter
      *
      * @method setLanguage
+     * @static
      * @param language  The language to set i18n to.
      */
     FormValidator.setLanguage = function (language) {
@@ -813,7 +817,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
          *
          * @method validate
          * @param  {Event} event    Window.event object
-         * @return {Boolean}
+         * @return {Boolean} Whether the form is considered valid
          * @public
          */
         validate: function( event ) {
