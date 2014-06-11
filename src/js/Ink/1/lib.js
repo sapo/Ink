@@ -385,6 +385,13 @@
                 } else {
                     dep = deps[i];
                 }
+
+                // Because trailing commas in oldIE bring us undefined values here
+                if (!dep) {
+                    --o.remaining;
+                    continue;
+                }
+
                 mod = modules[dep];
                 if (mod) {
                     o.args[i] = mod;

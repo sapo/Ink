@@ -267,6 +267,16 @@ asyncTest('(regression) createModule can work with a requireModule afterwards wh
     Ink.createModule( 'Ink.SomeUnresolvedDependency', 1, [], function () { return {}; });
 });
 
+test('(regression) requireModules will try to request things which are accidental undefined values', sinon.test(function () {
+    this.stub(Ink, '_loadLater');
+    var spy = this.spy();
+
+    Ink.requireModules([undefined], spy);
+
+    ok(Ink._loadLater.notCalled)
+    ok(spy.calledOnce)
+}));
+
 
 module('Debug mechanisms');
 
