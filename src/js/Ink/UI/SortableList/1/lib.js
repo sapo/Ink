@@ -103,7 +103,7 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Css_1',
          */
         _onDown: function(ev) {
             if (this._isMoving || this._placeholder) { return; }
-            if (this._options.handleSelector && !Selector.matchesSelector(ev.currentTarget, this._options.handleSelector)) { return; }
+            if(this._options.handleSelector && !Selector.matchesSelector(ev.target, this._options.handleSelector)) { return; }
             var tgtEl = ev.currentTarget;
             this._isMoving = tgtEl;
             this._placeholder = tgtEl.cloneNode(true);
