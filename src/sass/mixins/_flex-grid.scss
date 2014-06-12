@@ -822,8 +822,9 @@
             $media: nth($breakpoint,1);
             $class-name: nth($breakpoint,2);
             $minimum-width: nth($breakpoint,3);
-            $maximum-width: nth($breakpoint,5);
-            $gutter-width: nth($breakpoint,6);
+            $maximum-width: nth($breakpoint,4);
+            $gutter-width: nth($breakpoint,5);
+            $base-font-size: nth($breakpoint,6);
             $no-media-query: nth($breakpoint,7);
             $all-class-names: ".#{$class-name}, #{$all-class-names}";
 
