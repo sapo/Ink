@@ -263,7 +263,7 @@ html.no-flexboxlegacy [class~=all-100] {
   float: none;
   clear: both;
 }
-@media screen {
+@media screen and (min-width: 1261px) {
   html.no-flexbox .ink-grid,
   html.no-flexboxlegacy .ink-grid {
     padding: 0 2em;
@@ -4608,14 +4608,14 @@ html.no-flexboxlegacy [class~=all-100] {
     display: table-cell;
   }
 }
-@media screen {
+@media screen and (min-width: 1261px) {
   html.no-flexbox html,
   html.no-flexboxlegacy html {
     font-size: 1.08em;
   }
   html.no-flexbox html:after,
   html.no-flexboxlegacy html:after {
-    content: '{"name":"xlarge", "size":{"min":"","max":""}}';
+    content: '{"name":"xlarge", "size":{"min":"1261px","max":""}}';
     display: none;
   }
 }
