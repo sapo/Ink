@@ -1257,7 +1257,7 @@ th {
   clear: both;
 }
 
-@media screen {
+@media screen and (min-width: 1261px) {
   .ink-grid {
     padding: 0 2em;
   }
@@ -5352,12 +5352,12 @@ th {
     display: table-cell;
   }
 }
-@media screen {
+@media screen and (min-width: 1261px) {
   html {
     font-size: 1.08em;
   }
   html:after {
-    content: '{"name":"xlarge", "size":{"min":"","max":""}}';
+    content: '{"name":"xlarge", "size":{"min":"1261px","max":""}}';
     display: none;
   }
 }

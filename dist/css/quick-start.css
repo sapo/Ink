@@ -20,7 +20,7 @@
  *  
  */
 /* for screen screens */
-@media screen and (min-width: xlarge) {
+@media screen and (min-width: xlarge) and (max-width: 1261px) {
   /* your css for screen screens goes here ... */
 }
 /* for screen screens */
