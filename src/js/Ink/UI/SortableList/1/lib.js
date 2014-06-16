@@ -120,8 +120,18 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Css_1',
          * @private
          */
         _onMove: function(ev) {
-            this.validateMove(ev.currentTarget);
-            return false;
+            var target = ev.currentTarget;
+
+            // Touch events give you the element where the finger touched first,
+            // not the element under it like mouse events.
+            if (ev.type === 'touchmove') {
+                var touch = ev.touches[0];
+                target = document.elementFromPoint(touch.clientX, touch.clientY);
+                target = Element.findUpwardsBySelector(target, this._options.dragSelector);
+            }
+
+            this.validateMove(target);
+            ev.preventDefault();
         },
 
         /**
@@ -233,8 +243,8 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Css_1',
          * @public
          */
         validateMove: function(elem){
-            if (!this._isMoving || !this._placeholder) { return; }
-            if (elem === this._placeholder) {  return; }
+            if (!elem || !this._isMoving || !this._placeholder) { return; }
+            if (elem === this._placeholder) { return; }
             if (elem === this._isMoving) { return; }
             if(!this._options.moveSelector || Selector.matchesSelector(elem, this._options.moveSelector)){
                 this._movePlaceholder(elem);
