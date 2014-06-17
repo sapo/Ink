@@ -1,4 +1,6 @@
 
+<h2>What is Autoload?</h2>
+
 <p>Autoload makes creating Ink components easy. You just have to include a certain class in your elements (or otherwise make them match a certain selector) and Autoload will find them and create the components for you.</p>
 
 {% highlight html %}
@@ -22,7 +24,7 @@
 <script src="/path/to/autoload.js"></script>
 {% endhighlight %}
 
-<p>Autoload will automatically wait until the page loads and create the UI modules for you.</p>
+<p>Autoload will automatically wait until the page loads and create the UI modules for you. If you didn't load the module into the page using a script tag, it will use Ink's <a href="{{ site.url }}/javascript/Ink/#Ink_1-Ink_1-requireModules">requireModules</a> machinery to load it.</p>
 
 <p>The following modules are available to be loaded by Autoload</p>
 
@@ -51,4 +53,23 @@
 </tbody>
 </table>
 
+<p>You can modify your <code>dist/autoload.js</code> to change the selector list.</p>
+
+<h2>Is Autoload getting in the way?</h2>
+
+<p>If Autoload is loading things it shouldn't, you can do one of these things:</p>
+
+<ul>
+    <li>Just add the <code>data-autoload="false"</code> attribute to the element in question (new in Ink 3.0.3)</li>
+    <li>Modify your <code>dist/autoload.js</code> file to remove or modify the selector in question.</li>
+    <li>Add <code>&lt;script&gt;window.INK_NO_AUTO_LOAD = true&lt;/script&gt;</code> to your page to stop Autoload from executing when the DOMReady event fires. You can use <a href="#Ink_Autoload-Ink_Autoload-run">Autoload.run()</a> to run it selectively inside a specific container in your page.</li>
+</ul>
+
+<h2>How do I get an Ink UI Component from an element Autoload has loaded?</h2>
+
+<p>You may want to get a component instance in order to call methods on it or destroy it.</p>
+
+<p>You can (it works better in ink&gt;=3.0.3) use <a href="{{ site.url }}/javascript/Ink.UI.Common/#Ink_UI_Common_1-Ink_UI_Common_1-getInstance">Ink.UI.Common.getInstance()</a> to get an instance from a DOM element at any time.</p>
+
+<p>An alternative would be to stop autoload from loading the module and load it yourself using raw javascript.</p>
 
