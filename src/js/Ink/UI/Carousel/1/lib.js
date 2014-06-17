@@ -253,9 +253,6 @@ Ink.createModule('Ink.UI.Carousel', '1',
             setTransitionProperty(this._ulEl, 'none');
 
             this._touchMoveIsFirstTouchMove = true;
-
-            // InkEvent.stopDefault(event);
-            InkEvent.stopPropagation(event);
         },
 
         _onTouchMove: function (event) {
@@ -283,8 +280,6 @@ Ink.createModule('Ink.UI.Carousel', '1',
 
                 this._swipeData.pointerPos = this._isY ? pointerY : pointerX;
             }
-
-            InkEvent.stopPropagation(event);
         },
 
         _onAnimationFrame: function () {
@@ -329,7 +324,6 @@ Ink.createModule('Ink.UI.Carousel', '1',
 
                 this.setPage(curPage);
 
-                InkEvent.stopPropagation(event);
                 InkEvent.stopDefault(event);
             }
 
