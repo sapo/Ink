@@ -5,17 +5,64 @@ description: Ink comes with a highly powerful and completely modular JavaScript 
 site_root:  ../
 ---
 <section id="Introduction">
+
+
 <h1>Introduction</h1>
 <p>Our JavaScript library has a modular architecture and is organized into namespaces:</p>
 
 <ul>
-<li>Ink - The base module. Provides common methods used by all other modules.</li>
+<li>Ink - The core module. Provides common methods used by all other modules.</li>
 <li>Ink.Dom - Provides DOM manipulation methods, event management, form serialization, etc </li>
 <li>Ink.Net - Ajax and JsonP request handling </li>
 <li>Ink.UI - User interface components. </li>
 <li>Ink.Util - Utility methods. </li>
 <li>Ink.Ext - Reserved for community contributions.</li>
 </ul>
+
+
+
+<h1>Ink UI Components</h2>
+<p>The UI namespace (<code>Ink.UI.*</code>) contains visual components that allow you to enhance your pages with interactivity, like <a href="{{ site.url }}/javascript/Ink.UI.Carousel">carousels</a>, <a href="{{ site.url }}/javascript/Ink.UI.Modal">modal windows</a>, <a href="{{ site.url }}/javascript/Ink.UI.Tooltip">tooltips</a>, etc. UI components can be used in two ways:</p>
+
+<h3>Using <a href="{{ site.url }}/javascript/Ink.Autoload">Autoload</a></h3>
+
+<p>Recommended for people less comfortable with javascript. This method is the easiest, but gives you a bit less flexibility. You can use  <a href="{{ site.url }}/javascript/Ink.Autoload">Ink.Autoload</a> to create the UI components by adding classes to the DOM, and data-attributes to pass options.</p>
+
+<p><span class="fa fa-leaf"></span> All configuration options, except callback functions, are available as data-attributes but are prefixed with <code>data-</code> and are written in lowercase and hyphen separated: <code>someOption</code> = <code>data-some-option</code>.</p>
+
+<p class="example-title">Code</p>
+{% highlight html %}
+<!-- Load the js files -->
+<script type="text/javascript" src="http://cdn.ink.sapo.pt/3.0.0/js/ink-all.js"></script>
+<script type="text/javascript" src="http://cdn.ink.sapo.pt/3.0.0/js/autoload.js"></script><!-- required -->
+...
+<!-- Set the init options on the component markup with data-attributes -->
+<div id="carousel" class="ink-carousel" data-pagination="#carousel-pagination">
+  <ul class="stage column-group">
+    <li class="slide">...</li>
+    <li class="slide">...</li>
+    <li class="slide">...</li>
+  </ul>
+</div>
+<nav id="carousel-pagination" class="ink-navigation">
+  <ul class="pagination black">
+  </ul>
+</nav>
+{% endhighlight %}
+
+<h3>Using raw JavaScript</h3>
+
+<p class="example-title">Code</p>
+{% highlight html %}
+<script>
+Ink.requireModules(['Ink.UI.Carousel_1'], function(Carousel) {
+    new Carousel('#carousel', {pagination: '#carousel-pagination'});
+});
+</script>
+{% endhighlight %}
+
+
+
 
 <h2 class="fw-300">CDN</h2>
   <p>If you don't want or need to host Inks code you can use our CDN. All of our releases are available:</p>
@@ -38,14 +85,14 @@ site_root:  ../
 <li>ink-ui.js - Contains the Ink.UI module. Minified version available: ink-ui.min.js</li>
 <li>ink-all.js - ink.js and ink-ui.js bundled together. Minified version available: ink-all.min.js</li>
 <li>autoload.js - UI component automatic initialization. Use with ink-all.js.</li>
-<li>modernizr.js - Used for browser feature detection, mainly useful if you intend to use our <a href="{{ site.url }}ui-elements/flexbox/">flex grid</a>.</li>
+<li>modernizr.js - Used for browser feature detection, mainly useful if you intend to use our <a href="{{ site.url }}/ui-elements/flexbox/">flex grid</a>.</li>
 </ul>
 
 <h2 class="fw-thin">Ink.requireModules</h2>
 
 <p>The <a href="{{ site.url }}/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules()</a> method is our implementation of <acronym title="Asynchronous Module Definition">AMDs</acronym> <a target="_blank" href="https://github.com/amdjs/amdjs-api/blob/master/require.md">require</a> pattern. It handles dependency loading, provides aliases for modules and a callback function that gets executed. <strong>We recommend that you use it.</strong></p>
 
-<p>As you'll see throughout our documentation, the provided examples use <a href="{{ site.url }}javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules()</a>. Don't worry you don't have to use with every method invocation, but wrapping you code in its callback function will keep your code isolated and the DOMs global scope clean of clutter.</p>
+<p>As you'll see throughout our documentation, the provided examples use <a href="{{ site.url }}/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules()</a>. Don't worry you don't have to use with every method invocation, but wrapping you code in its callback function will keep your code isolated and the DOMs global scope clean of clutter.</p>
 
 <p class="example-title">Example</p>
 {% highlight js %}
@@ -92,44 +139,6 @@ Ink.requireModules([
 
 });
 /* End of my_project.js file */
-{% endhighlight %}
-
-<h2 class="fw-thin">UI</h2>
-
-<p>The UI module contains visual components that allow you to enhance your pages with interactivity, like <a href="{{ site.url }}/javascript/Ink.UI.Carousel">carousels</a>, <a href="{{ site.url }}javascript/Ink.UI.Modal">modal windows</a>, <a href="{{ site.url }}javascript/Ink.UI.Tooltip">tooltips</a>, etc. UI components can be used in two ways:</p>
-
-<h3>Using JavaScript</h3>
-
-<p class="example-title">Code</p>
-{% highlight html %}
-<script>
-Ink.requireModules(['Ink.UI.Carousel_1'], function(Carousel) {
-    new Carousel('#carousel', {pagination: '#carousel-pagination'});
-});
-</script>
-{% endhighlight %}
-<h3>Using data-attributes</h3>
-
-<p><span class="fa fa-leaf"></span> All configuration options, except callback functions, are available as data-attributes but are prefixed with <code>data-</code> and are written in lowercase and hyphen separated: <code>someOption</code> = <code>data-some-option</code>.</p>
-
-<p class="example-title">Code</p>
-{% highlight html %}
-<!-- Load the js files -->
-<script type="text/javascript" src="http://cdn.ink.sapo.pt/3.0.0/js/ink-all.js"></script>
-<script type="text/javascript" src="http://cdn.ink.sapo.pt/3.0.0/js/autoload.js"></script><!-- required -->
-...
-<!-- Set the init options on the component markup with data-attributes -->
-<div id="carousel" class="ink-carousel" data-pagination="#carousel-pagination">
-  <ul class="stage column-group">
-    <li class="slide">...</li>
-    <li class="slide">...</li>
-    <li class="slide">...</li>
-  </ul>
-</div>
-<nav id="carousel-pagination" class="ink-navigation">
-  <ul class="pagination black">
-  </ul>
-</nav>
 {% endhighlight %}
 
 
