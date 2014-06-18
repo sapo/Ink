@@ -360,6 +360,21 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
         convert: function(arr) {
             return arrayProto.slice.call(arr || [], 0);
         },
+        
+        /**
+ 		 * Removes duplicated values in an array.
+ 		 *
+ 		 * @method unique
+ 		 * @param {Array}   arr   Array to filter
+ 		 * @return {Array} 	      Array with only unique values
+ 		 * @public
+ 		 * @static
+ 		 */
+ 		unique: function(arr){
+ 			return this.filter(this.convert(arr), function (e, i, arr) {
+                            return arr.lastIndexOf(e) === i;
+                        });
+ 		},
 
         /**
          * Simulates python's range(start, stop, step) function.
