@@ -887,7 +887,7 @@ footer {
     .SAPOlogo {
         background: url("#{$img-path}SAPOlogo.png") no-repeat;
         text-indent: -9999px;
-        color: transparent !important;
+        text-align: left;
         display: inline-block;
         width: 101px;
         min-height: 43px;
