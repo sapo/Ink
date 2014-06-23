@@ -68,13 +68,13 @@
         <div class="ink-grid">
 
             <!--[if lte IE 9 ]>
-            <div class="ink-alert basic">
+            <div class="ink-alert basic" role="alert">
                 <button class="ink-dismiss">&times;</button>
                 <p><strong>You are using an outdated Internet Explorer version.</strong>
-                    Please <a href="http://browsehappy.com/">upgrade to a browser</a> to improve your web experience.
+                    Please <a href="http://browsehappy.com/">upgrade to a modern browser</a> to improve your web experience.
                 </p>
             </div>
-            -->
+            <![endif]-->
 
             <!-- Add your site or application content here -->
 
@@ -88,39 +88,81 @@
                     </ul>
                 </nav>
             </header>
-            <div class="column-group gutters">
-                <div class="all-100">
-                    <h2>heading</h2>
-                    <img src="holder.js/1650x928/auto/ink" alt="">
+            <div class="button-toolbar">
+                <div class="button-group">
+                    <button class="ink-button" disabled="">left</button>
+                    <button class="ink-button">middle</button>
+                    <button class="ink-button">right</button>
+                </div>
+                <div class="button-group">
+                    <button class="ink-button">left</button>
+                    <button class="ink-button" disabled="">middle</button>
+                    <button class="ink-button">right</button>
+                </div>
+                <div class="button-group">
+                    <button class="ink-button">left</button>
+                    <button class="ink-button">middle</button>
+                    <button class="ink-button" disabled="">right</button>
+                </div>
+                <div class="button-group">
+                    <button class="ink-button green" disabled="">left</button>
+                    <button class="ink-button green">middle</button>
+                    <button class="ink-button green">right</button>
+                </div>
+                <div class="button-group">
+                    <button class="ink-button green">left</button>
+                    <button class="ink-button green" disabled="">middle</button>
+                    <button class="ink-button green">right</button>
+                </div>
+                <div class="button-group">
+                    <button class="ink-button black">left</button>
+                    <button class="ink-button black">middle</button>
+                    <button class="ink-button black" disabled="">right</button>
                 </div>
             </div>
-            <div class="column-group gutters">
-                <div class="all-33 small-100 tiny-100">
-                    <h3>heading</h3>
-                    <img src="holder.js/1200x600/auto/ink" alt="">
-                    <p class="quarter-top-space">"Red is not the right word," was the reply. "The plague was scarlet.  The whole face and body turned scarlet in an hour's time. Don't I  know? Didn't I see enough of it? And I am telling you it was scarlet  because&mdash;well, because it was scarlet. There is no other word for it."</p>
+
+
+            <div class="column-group half-top-space">
+                <div class="all-33">
+                    <div class="column-group">
+                        <div class="all-50 align-center"><a href="#" class="ink-button">Button</a></div>
+                        <div class="all-50 align-center"><button class="ink-button green">Button</button></div>
+                    </div>
                 </div>
-                <div class="all-33 small-100 tiny-100">
-                    <h3>heading</h3>
-                    <img src="holder.js/1200x600/auto/ink" alt="">
-                    <p class="quarter-top-space">"Red is not the right word," was the reply. "The plague was scarlet.  The whole face and body turned scarlet in an hour's time. Don't I  know? Didn't I see enough of it? And I am telling you it was scarlet  because&mdash;well, because it was scarlet. There is no other word for it."</p>
+                <div class="all-33">    
+                    <div class="column-group">
+                        <div class="all-50 align-center"><button class="ink-button orange">Button</button></div>
+                        <div class="all-50 align-center"><button class="ink-button red">Button</button></div>
+                    </div>
                 </div>
-                <div class="all-33 small-100 tiny-100">
-                    <h3>heading</h3>
-                    <img src="holder.js/1200x600/auto/ink" alt="">
-                    <p class="quarter-top-space">"Red is not the right word," was the reply. "The plague was scarlet.  The whole face and body turned scarlet in an hour's time. Don't I  know? Didn't I see enough of it? And I am telling you it was scarlet  because&mdash;well, because it was scarlet. There is no other word for it."</p>
+                <div class="all-33">    
+                    <div class="column-group">
+                        <div class="all-50 align-center"><button class="ink-button blue">Button</button></div>
+                        <div class="all-50 align-center"><button class="ink-button black">Button</button></div>
+                    </div>
+                </div>
+            </div>    
+            <div class="column-group half-vertical-space">
+                <div class="all-33">
+                    <div class="column-group">
+                        <div class="all-50 align-center"><button class="ink-button" disabled="">Button</button></div>
+                        <div class="all-50 align-center"><button class="ink-button green" disabled="">Button</button></div>
+                    </div>
+                </div>
+                <div class="all-33">
+                    <div class="column-group">
+                        <div class="all-50 align-center"><button class="ink-button orange" disabled="">Button</button></div>
+                        <div class="all-50 align-center"><button class="ink-button red" disabled="">Button</button></div>
+                    </div>
+                </div>
+                <div class="all-33">
+                    <div class="column-group">
+                        <div class="all-50 align-center"><button class="ink-button blue" disabled="">Button</button></div>
+                        <div class="all-50 align-center"><button class="ink-button black" disabled="">Button</button></div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <footer class="clearfix">
-            <div class="ink-grid">
-                <ul class="unstyled inline half-vertical-space">
-                    <li class="active"><a href="#">About</a></li>
-                    <li><a href="#">Sitemap</a></li>
-                    <li><a href="#">Contacts</a></li>
-                </ul>
-                <p class="note">Identification of the owner of the copyright, either by name, abbreviation, or other designation by which it is generally known.</p>
-            </div>
-        </footer>
+
+        </div>    
     </body>
 </html>

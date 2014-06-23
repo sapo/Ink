@@ -13,8 +13,23 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
     }
 
     function Drawer(options) {
-        this._init(options);
+        Common.BaseUIComponent.apply(this, [document.body, options]);
     }
+
+    Drawer._name = 'Drawer_1';
+
+    Drawer._optionDefinition = {
+        parentSelector:     ['String', '.ink-drawer'],
+        leftDrawer:         ['String', '.left-drawer'],
+        leftTrigger:        ['String', '.left-drawer-trigger'],
+        rightDrawer:        ['String', '.right-drawer'],
+        rightTrigger:       ['String', '.right-drawer-trigger'],
+        contentDrawer:      ['String', '.content-drawer'],
+        closeOnContentClick: ['Boolean', true],
+        closeOnLinkClick:    ['Boolean', true],
+        mode:               ['String', 'push'],
+        sides:              ['String', 'both']
+    };
 
     Drawer.prototype = {
         /**
@@ -24,7 +39,7 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
          * @constructor
          *
          * @param {Object}      [options]                       Configuration options.
-         * @xparam {String}     [options.parentSelector]        The class you are using in your wrapper (in the example below, it's the `body` tag.
+         * @xparam {String}     [options.parentSelector]        The class you are using in your wrapper (in the example below, it's the `body` tag.)
          * @xparam {String}     [options.leftDrawer]            Selector for the left drawer element. This element is placed outside the screen and shown when you click the `leftTrigger` element.
          * @xparam {String}     [options.leftTrigger]           Selector for the left drawer trigger(s). When you click this trigger, the `leftDrawer` is shown.
          * @xparam {String}     [options.rightDrawer]           Right drawer selector. (see `options.leftDrawer`)
@@ -55,20 +70,7 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
          *     });
          * </script>
          */
-        _init: function (options) {
-            this._options = Common.options({
-                parentSelector:     ['String', '.ink-drawer'],
-                leftDrawer:         ['String', '.left-drawer'],
-                leftTrigger:        ['String', '.left-drawer-trigger'],
-                rightDrawer:        ['String', '.right-drawer'],
-                rightTrigger:       ['String', '.right-drawer-trigger'],
-                contentDrawer:      ['String', '.content-drawer'],
-                closeOnContentClick: ['Boolean', true],
-                closeOnLinkClick:    ['Boolean', true],
-                mode:               ['String', 'push'],
-                sides:              ['String', 'both']
-            }, options || {});
-
+        _init: function () {
             // make sure we have the required elements acording to the config options
 
             this._contentDrawers = Ink.ss(this._options.contentDrawer);
@@ -83,32 +85,33 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
             Css.addClassName(document.body, 'ink-drawer');
 
             if(this._contentDrawers.length === 0) {
-                Ink.warn( 'Ink.UI.Drawer_1: Could not find any "' +
+                throw new Error('Ink.UI.Drawer_1: Could not find any "' +
                     this._options.contentDrawer + '" elements on this page. ' +
                     'Please make sure you have at least one.' );
             }
 
             switch (this._options.sides) {
                 case 'both':
-                if( !this._leftDrawer ){
-                    elNotFound(this._options.leftDrawer);
-                }
-
-                if(this._leftTriggers.length === 0){
-                    elNotFound(this._options.leftTrigger);
-                }
-
-                if( !this._rightDrawer ){
-                    elNotFound(this._options.rightDrawer);
-                }
-
-                if( this._rightTriggers.length === 0 ){
-                    elNotFound(this._options.rightTrigger);
-                }
-                this._triggers = this._options.leftTrigger + ', ' + this._options.rightTrigger + ', ' + this._options.contentDrawer;
+                    this._triggers =
+                        this._options.leftTrigger + ', ' +
+                        this._options.rightTrigger + ', ' +
+                        this._options.contentDrawer;
                 break;
 
                 case 'left':
+                    this._triggers =
+                        this._options.leftTrigger + ', ' +
+                        this._options.contentDrawer;
+                break;
+
+                case 'right':
+                    this._triggers =
+                        this._options.rightTrigger + ', ' +
+                        this._options.contentDrawer;
+                break;
+            }
+
+            if (this._options.sides === 'left' || this._options.sides === 'both') {
                 if( !this._leftDrawer ){
                     elNotFound(this._options.leftDrawer);
                 }
@@ -116,10 +119,7 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
                 if(this._leftTriggers.length === 0){
                     elNotFound(this._options.leftTrigger);
                 }
-                this._triggers = this._options.leftTrigger + ', ' + this._options.contentDrawer;
-                break;
-
-                case 'right':
+            } else {
                 if( !this._rightDrawer ){
                     elNotFound(this._options.rightDrawer);
                 }
@@ -127,10 +127,7 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
                 if( this._rightTriggers.length === 0 ){
                     elNotFound(this._options.rightTrigger);
                 }
-                this._triggers = this._options.rightTrigger + ', ' + this._options.contentDrawer;
-                break;
             }
-
 
             this._isOpen = false;
             this._direction = undefined;
@@ -209,11 +206,13 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
             if (this._isOpen === false) { return; }
             this._isOpen = false;
             // TODO detect transitionEnd exists, otherwise don't rely on it
-            Event.one(document.body, 'transitionend oTransitionEnd transitionend webkitTransitionEnd', this._handlers.afterTransition);
+            Event.one(document.body, 'transitionend oTransitionEnd webkitTransitionEnd', this._handlers.afterTransition);
             Css.removeClassName(document.body, [this._options.mode, this._direction]);
         }
 
     };
+
+    Common.createUIComponent(Drawer);
 
     return Drawer;
 });

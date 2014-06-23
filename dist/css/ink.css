@@ -1,4 +1,3 @@
-@charset "UTF-8";
 /**
  * Ink
  *
@@ -55,6 +54,7 @@
  * 
  * Here's an example: ( class-name-prefix, minimum-width, maximum-width, gutter-width, no-media-query).
  * 
+ * media: media type.
  * class-name-prefix: this is the prefix used in tons of inks classes i.e.: large-100, small-40, etc.
  * minimum-width: (pixels|null) the minimum width for the breakpoint 
  * maximum-width: (pixels|null) the maximum width for the breakpoint 
@@ -6346,6 +6346,7 @@ img {
   -ms-border-radius: 2px;
   -o-border-radius: 2px;
   border-radius: 2px;
+  font-weight: 300;
 }
 .ink-button:hover, .ink-button:active {
   text-decoration: none;
@@ -6365,10 +6366,10 @@ img {
 }
 .ink-button[disabled] {
   background: #e6e6e6;
-  border: none;
+  border: 1px solid #e6e6e6;
+  color: #999999;
 }
 .ink-button[disabled]:hover {
-  border: none;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
@@ -6376,11 +6377,11 @@ img {
 .ink-button.blue {
   color: white;
   background: #0f75da;
-  border-color: #0c63b9;
+  border: 1px solid #0c63b9;
 }
 .ink-button.blue:hover, .ink-button.blue:active {
   background: #0d68c2;
-  border-color: #0a56a1;
+  border: 1px solid #0a56a1;
   color: white;
   text-decoration: none;
 }
@@ -6389,10 +6390,10 @@ img {
 }
 .ink-button.blue[disabled] {
   background: rgba(15, 117, 218, 0.6);
-  border: none;
+  border: 1px solid rgba(15, 117, 218, 0);
+  color: #0c5baa;
 }
 .ink-button.blue[disabled]:hover {
-  border: none;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
@@ -6400,11 +6401,11 @@ img {
 .ink-button.green {
   color: white;
   background: #4a9b17;
-  border-color: #3e8313;
+  border: 1px solid #3e8313;
 }
 .ink-button.green:hover, .ink-button.green:active {
   background: #3f8514;
-  border-color: #336d10;
+  border: 1px solid #336d10;
   color: white;
   text-decoration: none;
 }
@@ -6413,10 +6414,10 @@ img {
 }
 .ink-button.green[disabled] {
   background: rgba(74, 155, 23, 0.6);
-  border: none;
+  border: 1px solid rgba(74, 155, 23, 0);
+  color: #356f10;
 }
 .ink-button.green[disabled]:hover {
-  border: none;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
@@ -6424,11 +6425,11 @@ img {
 .ink-button.orange {
   color: white;
   background: #ff9c00;
-  border-color: #d88400;
+  border: 1px solid #d88400;
 }
 .ink-button.orange:hover, .ink-button.orange:active {
   background: #e68c00;
-  border-color: #bf7400;
+  border: 1px solid #bf7400;
   color: white;
   text-decoration: none;
 }
@@ -6437,10 +6438,10 @@ img {
 }
 .ink-button.orange[disabled] {
   background: rgba(255, 156, 0, 0.6);
-  border: none;
+  border: 1px solid rgba(255, 156, 0, 0);
+  color: #cc7d00;
 }
 .ink-button.orange[disabled]:hover {
-  border: none;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
@@ -6448,11 +6449,11 @@ img {
 .ink-button.red {
   color: white;
   background: #c91111;
-  border-color: #aa0e0e;
+  border: 1px solid #aa0e0e;
 }
 .ink-button.red:hover, .ink-button.red:active {
   background: #b10f0f;
-  border-color: #920c0c;
+  border: 1px solid #920c0c;
   color: white;
   text-decoration: none;
 }
@@ -6461,10 +6462,10 @@ img {
 }
 .ink-button.red[disabled] {
   background: rgba(201, 17, 17, 0.6);
-  border: none;
+  border: 1px solid rgba(201, 17, 17, 0);
+  color: #9a0d0d;
 }
 .ink-button.red[disabled]:hover {
-  border: none;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
@@ -6472,11 +6473,11 @@ img {
 .ink-button.black {
   color: white;
   background: #1a1a1a;
-  border-color: #161616;
+  border: 1px solid #161616;
 }
 .ink-button.black:hover, .ink-button.black:active {
   background: #0d0d0d;
-  border-color: #090909;
+  border: 1px solid #090909;
   color: white;
   text-decoration: none;
 }
@@ -6485,10 +6486,10 @@ img {
 }
 .ink-button.black[disabled] {
   background: rgba(26, 26, 26, 0.6);
-  border: none;
+  border: 1px solid rgba(26, 26, 26, 0);
+  color: black;
 }
 .ink-button.black[disabled]:hover {
-  border: none;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
@@ -6496,11 +6497,11 @@ img {
 .ink-button.white {
   color: #555555;
   background: white;
-  border-color: #d8d8d8;
+  border: 1px solid #d8d8d8;
 }
 .ink-button.white:hover, .ink-button.white:active {
   background: #f2f2f2;
-  border-color: #cbcbcb;
+  border: 1px solid #cbcbcb;
   color: #555555;
   text-decoration: none;
 }
@@ -6509,32 +6510,65 @@ img {
 }
 .ink-button.white[disabled] {
   background: rgba(255, 255, 255, 0.6);
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0);
+  color: #e6e6e6;
 }
 .ink-button.white[disabled]:hover {
-  border: none;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
 }
 
+.button-group > .ink-button[disabled] {
+  background: #e6e6e6;
+  border: 1px solid rgba(217, 217, 217, 0.6);
+}
+.button-group > .ink-button[disabled]:hover {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
 .button-group > .ink-button.blue:first-child {
   border-left: #0c63b9;
+}
+.button-group > .ink-button.blue[disabled] {
+  background: rgba(15, 117, 218, 0.6);
+  border: 1px solid rgba(15, 117, 218, 0.3);
 }
 .button-group > .ink-button.green:first-child {
   border-left: #3e8313;
 }
+.button-group > .ink-button.green[disabled] {
+  background: rgba(74, 155, 23, 0.6);
+  border: 1px solid rgba(74, 155, 23, 0.3);
+}
 .button-group > .ink-button.orange:first-child {
   border-left: #d88400;
+}
+.button-group > .ink-button.orange[disabled] {
+  background: rgba(255, 156, 0, 0.6);
+  border: 1px solid rgba(255, 156, 0, 0.3);
 }
 .button-group > .ink-button.red:first-child {
   border-left: #aa0e0e;
 }
+.button-group > .ink-button.red[disabled] {
+  background: rgba(201, 17, 17, 0.6);
+  border: 1px solid rgba(201, 17, 17, 0.3);
+}
 .button-group > .ink-button.black:first-child {
   border-left: #161616;
 }
+.button-group > .ink-button.black[disabled] {
+  background: rgba(26, 26, 26, 0.6);
+  border: 1px solid rgba(26, 26, 26, 0.3);
+}
 .button-group > .ink-button.white:first-child {
   border-left: #d8d8d8;
+}
+.button-group > .ink-button.white[disabled] {
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .ink-label {

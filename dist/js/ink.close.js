@@ -44,5 +44,7 @@ Ink.createModule('Ink.UI.Close', '1', ['Ink.Dom.Event_1','Ink.Dom.Element_1'], f
         });
     };
 
+    Close._name = 'Close_1';
+
     return Close;
 });

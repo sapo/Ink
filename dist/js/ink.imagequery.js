@@ -48,46 +48,18 @@ Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
      *      } );
      *      </script>
      */
-    var ImageQuery = function(selector, options){
+    function ImageQuery() {
+        Common.BaseUIComponent.apply(this, arguments);
+    }
 
-        /**
-         * Get elements, create more ImageQueries if selector finds more than one
-         *
-         * [improvement] This is a useful pattern. More UI modules could use it.
-         */
-        this._element = Common.elsOrSelector(selector, 'Ink.UI.ImageQuery', /*required=*/true);
+    ImageQuery._name = 'ImageQuery_1';
 
-        // In case we have several elements
-        for (var i = 1 /* start from second element*/; i < this._element.length; i++) {
-            new ImageQuery(this._element[i], options);
-        }
-
-        this._element = this._element[0];
-
-        /**
-         * Default options, overriden by data-attributes if any.
-         * The parameters are:
-         * @xparam {array} queries Array of objects that determine the label/name and its min-width to be applied.
-         * @xparam {boolean} allowFirstLoad Boolean flag to allow the loading of the first element.
-         */
-        this._options = Ink.extendObj({
-            queries:[],
-            onLoad: null
-        }, options || {}, Element.data(this._element));
-
-        /**
-         * Determining the original basename (with the querystring) of the file.
-         */
-        var pos;
-        if( (pos=this._element.src.lastIndexOf('?')) !== -1 ){
-            var search = this._element.src.substr(pos);
-            this._filename = this._element.src.replace(search,'').split('/').pop()+search;
-        } else {
-            this._filename = this._element.src.split('/').pop();
-        }
-
-        this._init();
-    };
+	ImageQuery._optionDefinition = {
+		src: ['String'],
+		retina: ['String', undefined],
+		queries: ['Object'],
+		onLoad: ['Function', null]
+	};
 
     ImageQuery.prototype = {
 
@@ -98,6 +70,32 @@ Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * @private
          */
         _init: function(){
+            // /**
+            //  * Get elements, create more ImageQueries if selector finds more than one
+            //  *
+            //  * [improvement] This is a useful pattern. More UI modules could use it.
+            //  */
+            // this._element = Common.elsOrSelector(selector, 'Ink.UI.ImageQuery', /*required=*/true);
+
+            // // In case we have several elements
+            // for (var i = 1 /* start from second element*/; i < this._element.length; i++) {
+            //     new ImageQuery(this._element[i], options);
+            // }
+
+            // this._element = this._element[0];
+            /**
+             * Determining the original basename (with the querystring) of the file.
+             */
+            var pos;
+            if( (pos=this._element.src.lastIndexOf('?')) !== -1 ){
+                var search = this._element.src.substr(pos);
+                this._filename = this._element.src.replace(search,'').split('/').pop()+search;
+            } else {
+                this._filename = this._element.src.split('/').pop();
+            }
+
+            if (!this._options.queries) { this._options.queries = []; }
+
             // Sort queries by width, in descendant order.
             this._options.queries = InkArray.sortMulti(this._options.queries, 'width').reverse();
 
@@ -105,12 +103,10 @@ Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 Event.observe(this._element, 'onload', Ink.bindEvent(this._onLoad, this));
             }
 
-            Event.observe(window, 'resize', Event.throttle(Ink.bindMethod(this, '_onResize'), 400));
-
             // Imediate call to apply the right images based on the current viewport
             this._onResize();
 
-            Common.registerInstance(this, this._element);
+            Event.observe(window, 'resize', Event.throttle(Ink.bindMethod(this, '_onResize'), 400));
         },
 
         /**
@@ -134,7 +130,8 @@ Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
              * The above rule applies to a retina src.
              */
             var src = current.src || this._options.src;
-            if ( window.devicePixelRatio > 1 && ('retina' in this._options ) ) {
+
+            if ( window.devicePixelRatio > 1 && (this._options.retina !== undefined) ) {
                 src = current.retina || this._options.retina;
             }
 
@@ -206,6 +203,8 @@ Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         }
 
     };
+
+	Common.createUIComponent(ImageQuery);
 
     return ImageQuery;
 

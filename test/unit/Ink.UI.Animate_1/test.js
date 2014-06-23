@@ -7,29 +7,6 @@ Ink.requireModules(['Ink.Dom.Element_1', 'Ink.Dom.Css_1', 'Ink.UI.Animate_1', 'I
     module('Ink.UI.Animate_1 basic usage as class');
 
     if (Animate.animationSupported) {
-        test('Animate constructor', function () {
-            var animatedEl = InkElement.create('div');
-            var options = { animation: 'fadeOut' };
-            var common_elOrSelector = sinon.spy(Common, 'elOrSelector');
-            var common_options = sinon.spy(Common, 'options');
-
-            var animateInstance = new Animate(animatedEl, options);
-
-            ok(common_elOrSelector.called, 'Common.elOrSelector called');
-            // This is actually called twice because Common.options calls it too.
-            strictEqual(common_elOrSelector.firstCall.args[0], animatedEl,
-                'elOrSelector called with elm');
-            ok(common_options.called, 'Common.options called');
-            strictEqual(common_options.firstCall.args[1], options, ' --> "options" argument');
-            strictEqual(common_options.firstCall.args[2], animatedEl, ' --> "element" argument');
-
-            ok(animateInstance instanceof Animate, 'calling Animate as a constructor works, returning a valid Animate instance');
-
-            // cleanup
-            common_elOrSelector.restore();
-            common_options.restore();
-        });
-
         test('Animation happens when click event is fired on trigger element', function () {
             var animatedEl = InkElement.create('div');
             var triggerEl = InkElement.create('div');
@@ -93,6 +70,13 @@ Ink.requireModules(['Ink.Dom.Element_1', 'Ink.Dom.Css_1', 'Ink.UI.Animate_1', 'I
         test('Animation not supported in this browser. Skipping lots of tests!', 0, function () {});
         return;
     }
+
+    test('(regression) Can take only two arguments, the element and animation name.', function () {
+        var el = InkElement.create('div');
+        Animate.animate(el, 'fadeIn');
+        ok(Css.hasClassName(el, 'fadeIn'));
+        ok(Css.hasClassName(el, 'animated'));
+    });
 
     test('adds the "animated" class together with the animation name', function () {
         var el = InkElement.create('div');

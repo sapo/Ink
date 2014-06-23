@@ -68,72 +68,44 @@ Ink.createModule('Ink.UI.Pagination', '1',
      *
      * @sample Ink_UI_Pagination_1.html
      */
-    var Pagination = function(selector, options) {
+    function Pagination() {
+        Common.BaseUIComponent.apply(this, arguments);
+    }
 
-        this._element = Common.elOrSelector(selector, 'Ink.UI.Pagination element');
+    Pagination._name = 'Pagination_1';
 
-        this._options = Common.options('Ink.UI.Pagination_1', {
-            size:              ['Integer', null],
-            totalItemCount:    ['Integer', null],
-            itemsPerPage:      ['Integer', null],
-            maxSize:           ['Integer', null],
-            start:             ['Integer', 1],
-            sideButtons:       ['Boolean', 1 /* actually `true` but we want to see if user is using the default or not. */],
-            // TODO add pagination-type which accepts color strings, "chevron" and "dotted". Basically classes to add to the UL.
-            firstLabel:        ['String', 'First'],
-            lastLabel:         ['String', 'Last'],
-            previousLabel:     ['String', 'Previous'],
-            nextLabel:         ['String', 'Next'],
-            previousPageLabel: ['String', null],
-            nextPageLabel:     ['String', null],
-            onChange:          ['Function', undefined],
-            hashParameter:     ['String', 'page'],
-            parentTag:         ['String', 'ul'],
-            childTag:          ['String', 'li'],
-            wrapperClass:      ['String', 'ink-navigation'],
-            paginationClass:   ['String', 'pagination'],
-            activeClass:       ['String', 'active'],
-            disabledClass:     ['String', 'disabled'],
-            hideClass:         ['String', 'hide-all'],
-            previousClass:     ['String', 'previous'],
-            previousPageClass: ['String', 'previousPage'],
-            nextClass:         ['String', 'next'],
-            nextPageClass:     ['String', 'nextPage'],
+    Pagination._optionDefinition = {
+        size:              ['Integer', null],
+        totalItemCount:    ['Integer', null],
+        itemsPerPage:      ['Integer', null],
+        maxSize:           ['Integer', null],
+        start:             ['Integer', 1],
+        sideButtons:       ['Boolean', 1 /* actually `true` but we want to see if user is using the default or not. */],
+        // TODO add pagination-type which accepts color strings, "chevron" and "dotted". Basically classes to add to the UL.
+        firstLabel:        ['String', 'First'],
+        lastLabel:         ['String', 'Last'],
+        previousLabel:     ['String', 'Previous'],
+        nextLabel:         ['String', 'Next'],
+        previousPageLabel: ['String', null],
+        nextPageLabel:     ['String', null],
+        onChange:          ['Function', undefined],
+        hashParameter:     ['String', 'page'],
+        parentTag:         ['String', 'ul'],
+        childTag:          ['String', 'li'],
+        wrapperClass:      ['String', 'ink-navigation'],
+        paginationClass:   ['String', 'pagination'],
+        activeClass:       ['String', 'active'],
+        disabledClass:     ['String', 'disabled'],
+        hideClass:         ['String', 'hide-all'],
+        previousClass:     ['String', 'previous'],
+        previousPageClass: ['String', 'previousPage'],
+        nextClass:         ['String', 'next'],
+        nextPageClass:     ['String', 'nextPage'],
 
-            numberFormatter: ['Function', function(i) { return i + 1; }]
-        }, options || {}, this._element);
-
-        if (!this._options.previousPageLabel) {
-            this._options.previousPageLabel = this._options.previousLabel + ' ' + this._options.maxSize;
-        }
-
-        if (!this._options.nextPageLabel) {
-            this._options.nextPageLabel = this._options.nextLabel + ' ' + this._options.maxSize;
-        }
-
-        this._handlers = {
-            click: Ink.bindEvent(this._onClick,this)
-        };
-
-        if (Common.isInteger(this._options.totalItemCount) && Common.isInteger(this._options.itemsPerPage)) {
-            this._size = this._calculateSize(this._options.totalItemCount, this._options.itemsPerPage);
-        } else if (Common.isInteger(this._options.size)) {
-            this._size = this._options.size;
-        } else {
-            Ink.error('Ink.UI.Pagination: Please supply a size option or totalItemCount and itemsPerPage options.');
-            this._size = 0;
-        }
-
-        this.setOnChange(this._options.onChange);
-
-        this._current = this._options.start - 1;
-        this._itemLiEls = [];
-
-        this._init();
+        numberFormatter: ['Function', function(i) { return i + 1; }]
     };
 
     Pagination.prototype = {
-
         /**
          * Init function called by the constructor
          *
@@ -141,6 +113,32 @@ Ink.createModule('Ink.UI.Pagination', '1',
          * @private
          */
         _init: function() {
+            if (!this._options.previousPageLabel) {
+                this._options.previousPageLabel = this._options.previousLabel + ' ' + this._options.maxSize;
+            }
+
+            if (!this._options.nextPageLabel) {
+                this._options.nextPageLabel = this._options.nextLabel + ' ' + this._options.maxSize;
+            }
+
+            this._handlers = {
+                click: Ink.bindEvent(this._onClick,this)
+            };
+
+            if (Common.isInteger(this._options.totalItemCount) && Common.isInteger(this._options.itemsPerPage)) {
+                this._size = this._calculateSize(this._options.totalItemCount, this._options.itemsPerPage);
+            } else if (Common.isInteger(this._options.size)) {
+                this._size = this._options.size;
+            } else {
+                Ink.error('Ink.UI.Pagination: Please supply a size option or totalItemCount and itemsPerPage options.');
+                this._size = 0;
+            }
+
+            this.setOnChange(this._options.onChange);
+
+            this._current = this._options.start - 1;
+            this._itemLiEls = [];
+
             // generate and apply DOM
             this._generateMarkup(this._element);
 
@@ -148,8 +146,6 @@ Ink.createModule('Ink.UI.Pagination', '1',
 
             // subscribe events
             this._observe();
-
-            Common.registerInstance(this, this._element, 'pagination');
         },
 
         /**
@@ -526,6 +522,8 @@ Ink.createModule('Ink.UI.Pagination', '1',
          */
         destroy: Common.destroyComponent
     };
+
+    Common.createUIComponent(Pagination);
 
     return Pagination;
 

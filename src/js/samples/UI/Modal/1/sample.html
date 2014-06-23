@@ -43,10 +43,10 @@
                 <p>
                     <pre class="prettyprint linenums">
 &lt;div class="ink-shade fade"&gt;
-    &lt;div id="displayOnStart" class="ink-modal fade" data-width="80%" data-height="60%"&gt;
+    &lt;div id="displayOnStart" class="ink-modal fade" data-width="80%" data-height="60%" role="dialog" aria-hidden="true" aria-labelled-by="modal-title"&gt;
         &lt;div class="modal-header"&gt;
             &lt;button class="modal-close ink-dismiss"&gt;&lt;/button&gt;
-            &lt;h5&gt;This Modal is dislayed as soon as the page is fully available&lt;/h5&gt;
+            &lt;h5 id="modal-title"&gt;This Modal is dislayed as soon as the page is fully available&lt;/h5&gt;
         &lt;/div&gt;
         &lt;div class="modal-body"&gt;
             &lt;h3&gt;Please confirm your previous choice&lt;/h3&gt;
@@ -76,10 +76,10 @@
                 </p>
 
                 <div class="ink-shade fade">
-                    <div id="displayOnStart" class="ink-modal fade" data-width="80%" data-height="60%">
+                    <div id="displayOnStart" class="ink-modal fade" data-width="80%" data-height="60%" role="dialog" aria-hidden="true" aria-labelled-by="modal-title">
                         <div class="modal-header">
                             <button class="modal-close ink-dismiss"></button>
-                            <h5>This Modal is dislayed as soon as the page is fully available</h5>
+                            <h5 id="modal-title">This Modal is dislayed as soon as the page is fully available</h5>
                         </div>
                         <div class="modal-body">
                             <h3>Please confirm your previous choice</h3>
@@ -116,10 +116,10 @@
                     <button id="myTrigger">Open Modal</button>
                     <pre class="prettyprint linenums">
 &lt;div class="ink-shade fade"&gt;
-    &lt;div id="displayOnBtnClick" class="ink-modal fade" data-trigger="#myTrigger" data-width="800px" data-height="400px"&gt;
+    &lt;div id="displayOnBtnClick" class="ink-modal fade" data-trigger="#myTrigger" data-width="800px" data-height="400px" role="dialog" aria-hidden="true" aria-labelled-by="modal-title"&gt;
         &lt;div class="modal-header"&gt;
             &lt;button class="modal-close ink-dismiss"&gt;&lt;/button&gt;
-            &lt;h5&gt;This is a different modal&lt;/h5&gt;
+            &lt;h5 id="modal-title"&gt;This is a different modal&lt;/h5&gt;
         &lt;/div&gt;
         &lt;div class="modal-body"&gt;
             Different!!! Opened by a button and filled dynamically!
@@ -134,10 +134,10 @@
 </pre>
                 </p>
                 <div class="ink-shade fade">
-                    <div id="displayOnBtnClick" class="ink-modal fade" data-trigger="#myTrigger" data-width="800px" data-height="400px">
+                    <div id="displayOnBtnClick" class="ink-modal fade" data-trigger="#myTrigger" data-width="800px" data-height="400px" role="dialog" aria-hidden="true" aria-labelled-by="modal-title">
                         <div class="modal-header">
                             <button class="modal-close ink-dismiss"></button>
-                            <h5>This is a different modal</h5>
+                            <h5 id="modal-title">This is a different modal</h5>
                         </div>
                         <div class="modal-body">
                             Different!!! Opened by a button and filled dynamically!
@@ -204,10 +204,10 @@
                     <button id="openDisplayLaterModal">Open Modal</button>
                     <pre class="prettyprint linenums">
 &lt;div class="ink-shade fade"&gt;
-    &lt;div id="displayLater" class="ink-modal fade" data-width="800px" data-height="400px"&gt;
+    &lt;div id="displayLater" class="ink-modal fade" data-width="800px" data-height="400px" role="dialog" aria-hidden="true" aria-labelled-by="modal-title"&gt;
         &lt;div class="modal-header"&gt;
             &lt;button class="modal-close ink-dismiss"&gt;&lt;/button&gt;
-            &lt;h5&gt;Created after constructing the &lt;code&gt;Modal&lt;/code&gt; object&lt;/h5&gt;
+            &lt;h5 id="modal-title"&gt;Created after constructing the &lt;code&gt;Modal&lt;/code&gt; object&lt;/h5&gt;
         &lt;/div&gt;
         &lt;div class="modal-body"&gt;
             &lt;p&gt;Opened using the &lt;code&gt;open()&lt;/code&gt; method. Add the &lt;code&gt;autoDisplay:false&lt;/code&gt; option to avoid opening when the page loads.&lt;/p&gt;
@@ -229,10 +229,10 @@
 </pre>
                 </p>
                 <div class="ink-shade fade">
-                    <div id="displayLater" class="ink-modal fade" data-width="800px" data-height="400px">
+                    <div id="displayLater" class="ink-modal fade" data-width="800px" data-height="400px" role="dialog" aria-hidden="true" aria-labelled-by="modal-title">
                         <div class="modal-header">
                             <button class="modal-close ink-dismiss"></button>
-                            <h5>Created after constructing the <code>Modal</code> object</h5>
+                            <h5 id="modal-title">Created after constructing the <code>Modal</code> object</h5>
                         </div>
                         <div class="modal-body">
                             <p>Opened using the <code>open()</code> method. Add the <code>autoDisplay:false</code> option to avoid opening when the page loads.</p>
@@ -259,10 +259,10 @@
             	<p>
                     <pre class="prettyprint linenums">
 &lt;div class="ink-shade fade"&gt;
-    &lt;div id="modalWithStuff" class="ink-modal fade" data-width="80%" data-height="80%" data-trigger="#openModalWithStuffs"&gt;
+    &lt;div id="modalWithStuff" class="ink-modal fade" data-width="80%" data-height="80%" data-trigger="#openModalWithStuffs" role="dialog" aria-hidden="true" aria-labelled-by="modal-title"&gt;
         &lt;div class="modal-header"&gt;
             &lt;button class="modal-close ink-dismiss"&gt;&lt;/button&gt;
-            &lt;h5&gt;This Modal is dislayed as soon as the page is fully available&lt;/h5&gt;
+            &lt;h5 id="modal-title&gt;This Modal is dislayed as soon as the page is fully available&lt;/h5&gt;
         &lt;/div&gt;
         &lt;div class="modal-body"&gt;
             &lt;h1&gt;A tooltip&lt;/h1&gt;
@@ -301,10 +301,10 @@
                 </p>
 
                 <div class="ink-shade fade">
-                    <div id="modalWithStuff" class="ink-modal fade" data-width="80%" data-height="80%" data-trigger="#openModalWithStuffs">
+                    <div id="modalWithStuff" class="ink-modal fade" data-width="80%" data-height="80%" data-trigger="#openModalWithStuffs" role="dialog" aria-hidden="true" aria-labelled-by="modal-title">
                         <div class="modal-header">
                             <button class="modal-close ink-dismiss"></button>
-                            <h5>This Modal is dislayed as soon as the page is fully available</h5>
+                            <h5 id="modal-title">This Modal is dislayed as soon as the page is fully available</h5>
                         </div>
                         <div class="modal-body">
                             <h1>A tooltip</h1>

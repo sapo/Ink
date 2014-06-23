@@ -4,12 +4,12 @@
 
     color: $button-text-color; 
     background: $button-background-color;
-    border-color: shade($button-background-color, 15%);
+    border: 1px solid shade($button-background-color, 15%);
 
     &:hover,
     &:active {
         background: darken($button-background-color, 5%);
-        border-color: darken(shade($button-background-color, 15%),5%);
+        border: 1px solid darken(shade($button-background-color, 15%),5%);
         color: $button-text-color;  // force text color for anchor tags
         text-decoration: none;      // remove underline on anchor tags
     }
@@ -20,11 +20,9 @@
 
     &[disabled]{
         background: transparentize($button-background-color,0.4);
-        border: none;
-        &:hover {
-            border: none;
-            @include box-shadow(none);
-        }
+        border: 1px solid transparentize($button-background-color,1);
+        color: darken($button-background-color, 10%);
+        &:hover { @include box-shadow(none); }
     }
 }
 
@@ -32,6 +30,11 @@
 
     &:first-child {
         border-left: shade($button-background-color, 15%);
+    }
+
+    &[disabled]{
+        background: transparentize($button-background-color,0.4);
+        border: 1px solid transparentize($button-background-color,.7);
     }
 
 }

@@ -44,6 +44,7 @@
      */
 
     window.Ink = {
+        VERSION: '3.0.3',
         _checkPendingRequireModules: function() {
             var I, F, o, dep, mod, cb, pRMs = [];
             for (I = 0, F = pendingRMs.length; I < F; ++I) {
@@ -384,6 +385,13 @@
                 } else {
                     dep = deps[i];
                 }
+
+                // Because trailing commas in oldIE bring us undefined values here
+                if (!dep) {
+                    --o.remaining;
+                    continue;
+                }
+
                 mod = modules[dep];
                 if (mod) {
                     o.args[i] = mod;
@@ -577,16 +585,17 @@
          * @sample Ink_1_extendObj.html 
          */
         extendObj: function(destination, source) {
-            if (arguments.length > 2) {
-                source = Ink.extendObj.apply(this, [].slice.call(arguments, 1));
-            }
-            if (source) {
-                for (var property in source) {
-                    if(Object.prototype.hasOwnProperty.call(source, property)) {
-                        destination[property] = source[property];
+            var sources = [].slice.call(arguments, 1);
+
+            for (var i = 0, len = sources.length; i < len; i++) {
+                if (!sources[i]) { continue; }
+                for (var property in sources[i]) {
+                    if(Object.prototype.hasOwnProperty.call(sources[i], property)) {
+                        destination[property] = sources[i][property];
                     }
                 }
             }
+
             return destination;
         },
 

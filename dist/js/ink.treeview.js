@@ -55,33 +55,27 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
      * 
      * @sample Ink_UI_TreeView_1.html
      */
-    var TreeView = function(selector, options){
-        this._element = Common.elOrSelector(selector, '[Ink.UI.TreeView_1]');
+    function TreeView() {
+        Common.BaseUIComponent.apply(this, arguments);
+    }
 
-        this._options = Common.options('Treeview', {
-            'node':   ['String', 'li'],
-            // [3.0.1] Deprecate this terrible, terrible name
-            'child':  ['String',null],
-            'children':  ['String','ul'],
-            'parentClass': ['String','parent'],
-            'openNodeClass': ['String', 'open'],
-            'openClass': ['String','fa fa-minus-circle'],
-            'closedClass': ['String','fa fa-plus-circle'],
-            'hideClass': ['String','hide-all'],
-            'iconTag': ['String', 'i'],
-            'stopDefault' : ['Boolean', true]
-        }, options || {}, this._element);
+    TreeView._name = 'TreeView_1';
 
-        if (this._options.child) {
-            Ink.warn('Ink.UI.TreeView: options.child is being renamed to options.children.');
-            this._options.children = this._options.child;
-        }
-
-        this._init();
+    TreeView._optionDefinition = {
+        'node':   ['String', 'li'],
+        // [3.0.1] Deprecate this terrible, terrible name
+        'child':  ['String',null],
+        'children':  ['String','ul'],
+        'parentClass': ['String','parent'],
+        'openNodeClass': ['String', 'open'],
+        'openClass': ['String','fa fa-minus-circle'],
+        'closedClass': ['String','fa fa-plus-circle'],
+        'hideClass': ['String','hide-all'],
+        'iconTag': ['String', 'i'],
+        'stopDefault' : ['Boolean', true]
     };
 
     TreeView.prototype = {
-
         /**
          * Init function called by the constructor. Sets the necessary event handlers.
          * 
@@ -89,6 +83,11 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
          * @private
          */
         _init: function(){
+            if (this._options.child) {
+                Ink.warn('Ink.UI.TreeView: options.child is being renamed to options.children.');
+                this._options.children = this._options.child;
+            }
+
             this._handlers = {
                 click: Ink.bindEvent(this._onClick,this)
             };
@@ -107,8 +106,6 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
                     this._setNodeOpen(item, isOpen);
                 }
             },this));
-
-            Common.registerInstance(this, this._element);
         },
 
         _getIcon: function (node) {
@@ -240,6 +237,8 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
             this.toggle(ev.currentTarget);
         }
     };
+
+    Common.createUIComponent(TreeView);
 
     return TreeView;
 });
