@@ -7,11 +7,33 @@ site_root:  ../
 
 
 <section class="no-padding half-top-space">
-    <h1 class="fw-300">3.0.2</h3>
-    <p><time>May 16, 2014</time></p>
+    <h1 class="fw-300">3.0.3</h3>
+    <p><time>June 23, 2014</time></p>
     <p class="clearfix">
         <a href="{{site.download_url}}{{site.version}}/ink-{{site.version}}.zip" class="ink-button black">Download</a>
         <a href="{{site.download_src_url}}{{site.version}}.zip" class="ink-button black">Download with source</a>
+    </p>
+
+    <h2 class="fw-300">CSS</h2>
+    <ul>
+        <li>Adds disabled state styling for buttons inside a <code>button-group</code> <a href="https://github.com/sapo/Ink/issues/353">(#353)</a></li>
+        <li>Adds media types support for media queries. <a href="https://github.com/sapo/Ink/commit/0bf08b641fbfc0951e4b857214fc19b0cb684a30" class="commit-link"><tt>0bf08b6</tt></a></li>
+        
+    </ul>
+
+    <h2 class="fw-300">JS</h2>
+    <ul>
+        <li>Witch hunt for <code>event.stopPropagation()</code> calls.</li>
+        <li><code>Ink.UI.Common</code> now warns and stops UI components from being instantiated several times in the same element.</li>
+    </ul>
+</section>
+
+<section>
+    <h1 class="fw-300">3.0.2</h3>
+    <p><time>May 16, 2014</time></p>
+    <p class="clearfix">
+        <a href="{{site.download_url}}3.0.2/ink-3.0.2.zip" class="ink-button black">Download</a>
+        <a href="{{site.download_src_url}}3.0.2.zip" class="ink-button black">Download with source</a>
     </p>
 
     <p><strong>Breaking changes</strong>:</p>
