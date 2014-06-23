@@ -44,6 +44,7 @@
      */
 
     window.Ink = {
+        VERSION: '3.0.3',
         _checkPendingRequireModules: function() {
             var I, F, o, dep, mod, cb, pRMs = [];
             for (I = 0, F = pendingRMs.length; I < F; ++I) {
@@ -384,6 +385,13 @@
                 } else {
                     dep = deps[i];
                 }
+
+                // Because trailing commas in oldIE bring us undefined values here
+                if (!dep) {
+                    --o.remaining;
+                    continue;
+                }
+
                 mod = modules[dep];
                 if (mod) {
                     o.args[i] = mod;
@@ -577,16 +585,17 @@
          * @sample Ink_1_extendObj.html 
          */
         extendObj: function(destination, source) {
-            if (arguments.length > 2) {
-                source = Ink.extendObj.apply(this, [].slice.call(arguments, 1));
-            }
-            if (source) {
-                for (var property in source) {
-                    if(Object.prototype.hasOwnProperty.call(source, property)) {
-                        destination[property] = source[property];
+            var sources = [].slice.call(arguments, 1);
+
+            for (var i = 0, len = sources.length; i < len; i++) {
+                if (!sources[i]) { continue; }
+                for (var property in sources[i]) {
+                    if(Object.prototype.hasOwnProperty.call(sources[i], property)) {
+                        destination[property] = sources[i][property];
                     }
                 }
             }
+
             return destination;
         },
 
@@ -5536,7 +5545,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      */
     pointerX: function(ev)
     {
-        return (ev.touches && ev.touches[0] && ev.touches[0].pageX) ||
+        return (ev.touches && ev.touches[0] && ev.touches[0].clientX) ||
             (ev.pageX) ||
             (ev.clientX + (document.documentElement.scrollLeft || document.body.scrollLeft));
     },
@@ -5550,7 +5559,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      */
     pointerY: function(ev)
     {
-        return (ev.touches && ev.touches[0] && ev.touches[0].pageY) ||
+        return (ev.touches && ev.touches[0] && ev.touches[0].clientY) ||
             (ev.pageY) ||
             (ev.clientY + (document.documentElement.scrollTop || document.body.scrollTop));
     },
@@ -8192,7 +8201,7 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
             if ( arguments.length >= 3 ) {
                 value = initial;
             } else {
-                while ( k < len && !(k in t) ) k++; 
+                while ( k < len && !(k in t) ) k++;
                 if ( k >= len )
                     throw new TypeError('Reduce of empty array with no initial value');
                 value = t[ k++ ];
@@ -8214,7 +8223,7 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          * @param {Mixed} value     Value to check
          * @param {Array} arr       Array to search in
          * @return {Boolean}        True if value exists in the array
-         * @sample Ink_Util_Array_inArray.html 
+         * @sample Ink_Util_Array_inArray.html
          */
         inArray: function(value, arr) {
             if (typeof arr === 'object') {
@@ -8236,7 +8245,7 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          * @return {Array|Boolean}      False if it's not an array, returns a sorted array if it's an array.
          * @public
          * @static
-         * @sample Ink_Util_Array_sortMulti.html 
+         * @sample Ink_Util_Array_sortMulti.html
          */
         sortMulti: function(arr, key) {
             if (typeof arr === 'undefined' || arr.constructor !== Array) { return false; }
@@ -8262,7 +8271,7 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          * @return  {Boolean|Number|Array}  False for no matches. Array of matches or first match index.
          * @public
          * @static
-         * @sample Ink_Util_Array_keyValue.html 
+         * @sample Ink_Util_Array_keyValue.html
          */
         keyValue: function(value, arr, first) {
             if (typeof value !== 'undefined' && typeof arr === 'object' && this.inArray(value, arr)) {
@@ -8289,7 +8298,7 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          * @return  {Array|Boolean}      Shuffled Array or false if not an array.
          * @public
          * @static
-         * @sample Ink_Util_Array_shuffle.html 
+         * @sample Ink_Util_Array_shuffle.html
          */
         shuffle: function(arr) {
             if (typeof(arr) !== 'undefined' && arr.constructor !== Array) { return false; }
@@ -8315,7 +8324,7 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          * @return  {Array}             Iterated array.
          * @public
          * @static
-         * @sample Ink_Util_Array_forEach.html 
+         * @sample Ink_Util_Array_forEach.html
          */
         forEach: function(array, callback, context) {
             if (arrayProto.forEach) {
@@ -8336,14 +8345,14 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
         },
 
         /**
-         * Runs a function for each item in the array. 
+         * Runs a function for each item in the array.
          * That function will receive each item as an argument and its return value will change the corresponding array item.
          * @method map
          * @param {Array}       array       The array to map over
          * @param {Function}    map         The map function. Will take `(item, index, array)` as arguments and `this` will be the `context` argument.
-         * @param {Object}      [context]   Object to be `this` in the map function. 
+         * @param {Object}      [context]   Object to be `this` in the map function.
          *
-         * @sample Ink_Util_Array_map.html 
+         * @sample Ink_Util_Array_map.html
          */
         map: function (array, callback, context) {
             if (arrayProto.map) {
@@ -8365,7 +8374,7 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          * @param {Object}      [context]   Object to be `this` in the test function.
          * @return {Array}                  Returns the filtered array
          *
-         * @sample Ink_Util_Array_filter.html 
+         * @sample Ink_Util_Array_filter.html
          */
         filter: function (array, test, context) {
             if (arrayProto.filter) {
@@ -8392,7 +8401,7 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          * @return  {Boolean}               True if the callback returns true at any point, false otherwise
          * @public
          * @static
-         * @sample Ink_Util_Array_some.html 
+         * @sample Ink_Util_Array_some.html
          */
         some: function(arr, cb, context){
 
@@ -8420,7 +8429,7 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          * @return  {Array}             Empty array if one of the arrays is false (or do not intersect) | Array with the intersected values
          * @public
          * @static
-         * @sample Ink_Util_Array_intersect.html 
+         * @sample Ink_Util_Array_intersect.html
          */
         intersect: function(arr1, arr2) {
             if (!arr1 || !arr2 || arr1 instanceof Array === false || arr2 instanceof Array === false) {
@@ -8447,10 +8456,34 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          * @return  {Array}         Array resulting of the conversion
          * @public
          * @static
-         * @sample Ink_Util_Array_convert.html 
+         * @sample Ink_Util_Array_convert.html
          */
         convert: function(arr) {
             return arrayProto.slice.call(arr || [], 0);
+        },
+
+        /**
+         * Removes duplicated values in an array.
+         *
+         * @method unique
+         * @param {Array}   arr   Array to filter
+         * @return {Array}        Array with only unique values
+         * @public
+         * @static
+         */
+        unique: function(arr){
+            if(!Array.prototype.indexOf){ //IE8 slower alternative
+                var newArr = []
+                this.forEach(this.convert(arr),function(i){
+                    if(!this.inArray(i,newArr)){
+                        newArr.push(i);
+                    }
+                },this);
+                return newArr;
+            }//else
+            return this.filter(this.convert(arr), function (e, i, arr) {
+                            return arr.lastIndexOf(e) === i;
+                        });
         },
 
         /**
@@ -8498,7 +8531,7 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          * @param {Mixed}   value   Value to be inserted
          * @public
          * @static
-         * @sample Ink_Util_Array_insert.html 
+         * @sample Ink_Util_Array_insert.html
          */
         insert: function(arr, idx, value) {
             arr.splice(idx, 0, value);
@@ -8514,7 +8547,7 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          * @return  {Array}             An array with the remaining values
          * @public
          * @static
-         * @sample Ink_Util_Array_remove.html 
+         * @sample Ink_Util_Array_remove.html
          */
         remove: function(arr, from, rLen){
             var output = [];

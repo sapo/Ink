@@ -27,40 +27,22 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
      *
      * @sample Ink_UI_Sticky_1.html
      */
-    var Sticky = function( selector, options ){
-        this._rootElement = Common.elOrSelector(selector, 'Ink.UI.Sticky_1');
+    function Sticky(){
+        Common.BaseUIComponent.apply(this, arguments);
+    }
 
-        this._options = Common.options({
-            offsetBottom: ['Integer', 0],
-            offsetTop: ['Integer', 0],
-            topElement: ['Element', null],
-            wrapperClass: ['String', 'ink-sticky-wrapper'],
-            stickyClass: ['String', 'ink-sticky-stuck'],
-            inlineDimensions: ['Boolean', true],
-            inlinePosition: ['Boolean', true],
-            bottomElement: ['Element', null],
-            activateInLayouts: ['String', 'tiny,small,medium,large,xlarge']
-        }, options || {}, this._rootElement );
+    Sticky._name = 'Sticky_1';
 
-        // Because String#indexOf is compatible with lt IE8 but not Array#indexOf
-        this._options.activateInLayouts = this._options.activateInLayouts.toString();
-
-        this._dims = null;  // force a recalculation of the dimensions later
-
-        this._options.offsetTop = parseInt(this._options.offsetTop, 10) || 0;
-        this._options.offsetBottom = parseInt(this._options.offsetBottom, 10) || 0;
-
-        if (this._options.topElement) {
-            this._options.topElement = Common.elOrSelector(this._options.topElement, 'Top Element');
-        }
-        if (this._options.bottomElement) {
-            this._options.bottomElement = Common.elOrSelector(this._options.bottomElement, 'Sticky bottom Element');
-        }
-
-        this._wrapper = Element.create('div', { className: this._options.wrapperClass });
-        Element.wrap(this._rootElement, this._wrapper);
-
-        this._init();
+    Sticky._optionDefinition = {
+        offsetBottom: ['Integer', 0],
+        offsetTop: ['Integer', 0],
+        topElement: ['Element', null],
+        wrapperClass: ['String', 'ink-sticky-wrapper'],
+        stickyClass: ['String', 'ink-sticky-stuck'],
+        inlineDimensions: ['Boolean', true],
+        inlinePosition: ['Boolean', true],
+        bottomElement: ['Element', null],
+        activateInLayouts: ['String', 'tiny,small,medium,large,xlarge']
     };
 
     Sticky.prototype = {
@@ -72,12 +54,29 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
          * @private
          */
         _init: function() {
+            // Because String#indexOf is compatible with lt IE8 but not Array#indexOf
+            this._options.activateInLayouts = this._options.activateInLayouts.toString();
+
+            this._dims = null;  // force a recalculation of the dimensions later
+
+            this._options.offsetTop = parseInt(this._options.offsetTop, 10) || 0;
+            this._options.offsetBottom = parseInt(this._options.offsetBottom, 10) || 0;
+
+            if (this._options.topElement) {
+                this._options.topElement = Common.elOrSelector(this._options.topElement, 'Top Element');
+            }
+            if (this._options.bottomElement) {
+                this._options.bottomElement = Common.elOrSelector(this._options.bottomElement, 'Sticky bottom Element');
+            }
+
+            this._wrapper = Element.create('div', { className: this._options.wrapperClass });
+            Element.wrap(this._element, this._wrapper);
+
             var scrollTarget = document.addEventListener ? document : window;
             this._onScroll = Ink.bind(Event.throttle(this._onScroll, 33), this);  // Because this is called directly.
             Event.observe( scrollTarget, 'scroll', this._onScroll );
             Event.observe( window, 'resize', Ink.bindEvent(Event.throttle(this._onResize, 100), this) );
             this._onScroll();
-            Common.registerInstance(this, this._rootElement);
         },
 
         /**
@@ -140,10 +139,10 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
          * @private
          */
         _stickTo: function (where) {
-            var style = this._rootElement.style;
+            var style = this._element.style;
             var dims = this._getDims();
 
-            Css.addClassName(this._rootElement, this._options.stickyClass);
+            Css.addClassName(this._element, this._options.stickyClass);
             this._wrapper.style.height = dims.height + 'px';
 
             this._inlineDimensions(dims.height + 'px', dims.width + 'px');
@@ -176,15 +175,15 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
          * @private
          */
         _unstick: function () {
-            Css.removeClassName(this._rootElement, this._options.stickyClass);
+            Css.removeClassName(this._element, this._options.stickyClass);
             // deinline dimensions of our root element
             this._inlineDimensions(null, null);
 
             // deinline the position of our root element
             if (this._options.inlinePosition) {
-                this._rootElement.style.left = null;
-                this._rootElement.style.top = null;
-                this._rootElement.style.bottom = null;
+                this._element.style.left = null;
+                this._element.style.top = null;
+                this._element.style.bottom = null;
             }
 
             // deinline dimensions of wrapper
@@ -217,7 +216,7 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
         _getDims: function () {
             if (this._dims !== null) { return this._dims; }
 
-            var style = this._rootElement.style;
+            var style = this._element.style;
 
             // We unstick the sticky so we can measure.
             var oldPosition = style.position;
@@ -226,7 +225,7 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
             style.position = 'static'; // [todo] this should be a class toggle
             style.width = null;
 
-            var dimensionsInStatic = Element.outerDimensions(this._rootElement);
+            var dimensionsInStatic = Element.outerDimensions(this._element);
             var rect = this._wrapper.getBoundingClientRect();
             this._dims = {
                 height: dimensionsInStatic[1],
@@ -249,8 +248,8 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
          */
         _inlineDimensions: function (height, width) {
             if (this._options.inlineDimensions) {
-                this._rootElement.style.height = height;
-                this._rootElement.style.width = width;
+                this._element.style.height = height;
+                this._element.style.width = width;
             }
         },
 
@@ -269,6 +268,8 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
             return bottom;
         }
     };
+
+    Common.createUIComponent(Sticky);
 
     return Sticky;
 
