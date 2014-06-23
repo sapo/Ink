@@ -5,7 +5,7 @@
     <script type="text/javascript">
         Modernizr.load({
           test: Modernizr.flexbox,
-          nope : '{{ site.css_path }}ink-legacy.min.css'
+          nope : '{{ site.cdn_url }}{{ site.version }}/css/ink-legacy.min.css'
         });
     </script>
     <link rel="stylesheet" type="text/css" href="{{ site.cdn_url }}{{ site.version }}/css/ink-flex.min.css">

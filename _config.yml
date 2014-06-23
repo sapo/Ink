@@ -12,7 +12,7 @@ timezone: Europe/Lisbon
 title: Ink Interface Kit
 
 # INK LATEST VERSION
-version: 3.0.2
+version: 3.0.3
 
 # URLS
 download_url: https://github.com/sapo/Ink/releases/download/
