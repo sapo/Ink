@@ -12,6 +12,7 @@ $grid-max-width: 1440px !default;
  * 
  * Here's an example: ( class-name-prefix, minimum-width, maximum-width, gutter-width, no-media-query).
  * 
+ * media: media type.
  * class-name-prefix: this is the prefix used in tons of inks classes i.e.: large-100, small-40, etc.
  * minimum-width: (pixels|null) the minimum width for the breakpoint 
  * maximum-width: (pixels|null) the maximum width for the breakpoint 
@@ -23,9 +24,9 @@ $grid-max-width: 1440px !default;
  */
 
 $grid-breakpoints: (
-    ('xlarge', 1261px, null, 2em, 1.08em, false),
-    ('large', 961px, 1260px, 1.75em, 1.05em, true),
-    ('medium', 641px, 960px, 1.5em, 1em, false),
-    ('small', 321px, 640px, 1.25em, .98em, false),
-    ('tiny', null, 320px, 1em, .97em, false)
+    ('screen', 'xlarge', 1261px, null, 2em, 1.08em, false),
+    ('screen', 'large', 961px, 1260px, 1.75em, 1.05em, true),
+    ('screen', 'medium', 641px, 960px, 1.5em, 1em, false),
+    ('screen', 'small', 321px, 640px, 1.25em, .98em, false),
+    ('screen', 'tiny', null, 320px, 1em, .97em, false)
 );

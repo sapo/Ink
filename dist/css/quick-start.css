@@ -9,6 +9,7 @@
  * 
  * Here's an example: ( class-name-prefix, minimum-width, maximum-width, gutter-width, no-media-query).
  * 
+ * media: media type.
  * class-name-prefix: this is the prefix used in tons of inks classes i.e.: large-100, small-40, etc.
  * minimum-width: (pixels|null) the minimum width for the breakpoint 
  * maximum-width: (pixels|null) the maximum width for the breakpoint 
@@ -18,23 +19,23 @@
  *                 outside a @media query let's you use the grid in IE8.
  *  
  */
-/* for xlarge screens */
-@media screen and (min-width: 1261px) {
-  /* your css for xlarge screens goes here ... */
+/* for screen screens */
+@media screen and (min-width: xlarge) and (max-width: 1261px) {
+  /* your css for screen screens goes here ... */
 }
-/* for large screens */
-@media screen and (min-width: 961px) and (max-width: 1260px) {
-  /* your css for large screens goes here ... */
+/* for screen screens */
+@media screen and (min-width: large) and (max-width: 961px) {
+  /* your css for screen screens goes here ... */
 }
-/* for medium screens */
-@media screen and (min-width: 641px) and (max-width: 960px) {
-  /* your css for medium screens goes here ... */
+/* for screen screens */
+@media screen and (min-width: medium) and (max-width: 641px) {
+  /* your css for screen screens goes here ... */
 }
-/* for small screens */
-@media screen and (min-width: 321px) and (max-width: 640px) {
-  /* your css for small screens goes here ... */
+/* for screen screens */
+@media screen and (min-width: small) and (max-width: 321px) {
+  /* your css for screen screens goes here ... */
 }
-/* for tiny screens */
-@media screen and (max-width: 320px) {
-  /* your css for tiny screens goes here ... */
+/* for screen screens */
+@media screen and (min-width: tiny) {
+  /* your css for screen screens goes here ... */
 }

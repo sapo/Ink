@@ -29,7 +29,6 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
      * @param {Boolean}             [options.closeOnClick]          Flag to close the modal when clicking outside of it.
      * @param {Boolean}             [options.closeOnEscape]         Determines if the Modal should close when "Esc" key is pressed. Defaults to true.
      * @param {Boolean}             [options.responsive]            Determines if the Modal should behave responsively (adapt to smaller viewports).
-     * @param {Boolean}             [options.disableScroll]         Determines if the Modal should 'disable' the page's scroll (not the Modal's body).
      * @param {String}              [options.triggerEvent]          (advanced) Trigger's event to be listened. Defaults to 'click'.
      *
      * @sample Ink_UI_Modal_1.html
@@ -46,132 +45,118 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
 
     var openModals = [];
 
-    var Modal = function(selector, options) {
-        if (!selector) {
-            this._element = null;
-        } else {
-            this._element = Common.elOrSelector(selector, 'Ink.UI.Modal markup');
-        }
+    function Modal() {
+        Common.BaseUIComponent.apply(this, arguments);
+    }
 
-        this._options = {
-            /**
-             * Width, height and markup really optional, as they can be obtained by the element
-             */
-            width:        undefined,
-            height:       undefined,
+    Modal._name = 'Modal_1';
 
-            /**
-             * To add extra classes
-             */
-            shadeClass: undefined,
-            modalClass: undefined,
-
-            /**
-             * Optional trigger properties
-             */
-            trigger:      undefined,
-            triggerEvent: 'click',
-            autoDisplay:  true,
-
-            /**
-             * Remaining options
-             */
-            markup:       undefined,
-            onShow:       undefined,
-            onDismiss:    undefined,
-            closeOnClick: false,
-            closeOnEscape: true,
-            responsive:    true,
-            disableScroll: true
-        };
-
-
-        this._handlers = {
-            click:   Ink.bindEvent(this._onShadeClick, this),
-            keyDown: Ink.bindEvent(this._onKeyDown, this),
-            resize:  Ink.bindEvent(this._onResize, this)
-        };
-
-        this._wasDismissed = false;
+    Modal._optionDefinition = {
+        /**
+         * Width, height and markup really optional, as they can be obtained by the element
+         */
+        width:        ['Number', undefined],
+        height:       ['Number', undefined],
 
         /**
-         * Modal Markup
+         * To add extra classes
          */
-        if( this._element ){
-            this._markupMode = Css.hasClassName(this._element,'ink-modal'); // Check if the full modal comes from the markup
-        } else {
-            this._markupMode = false;
-        }
-
-        if( !this._markupMode ){
-            this._modalShadow      = document.createElement('div');
-            this._modalShadowStyle = this._modalShadow.style;
-
-            this._modalDiv         = document.createElement('div');
-            this._modalDivStyle    = this._modalDiv.style;
-
-            if( !!this._element ){
-                this._options.markup = this._element.innerHTML;
-            }
-
-            /**
-             * Not in full markup mode, let's set the classes and css configurations
-             */
-            Css.addClassName( this._modalShadow,'ink-shade' );
-            Css.addClassName( this._modalDiv,'ink-modal ink-space' );
-
-            /**
-             * Applying the main css styles
-             */
-            // this._modalDivStyle.position = 'absolute';
-            this._modalShadow.appendChild( this._modalDiv);
-            document.body.appendChild( this._modalShadow );
-        } else {
-            this._modalDiv         = this._element;
-            this._modalDivStyle    = this._modalDiv.style;
-            this._modalShadow      = this._modalDiv.parentNode;
-            this._modalShadowStyle = this._modalShadow.style;
-
-            this._contentContainer = Selector.select(".modal-body", this._modalDiv)[0];
-            if( !this._contentContainer){
-                throw new Error('Ink.UI.Modal: Missing div with class "modal-body"');
-            }
-
-            this._options.markup = this._contentContainer.innerHTML;
-
-            /**
-             * First, will handle the least important: The dataset
-             */
-            this._options = Ink.extendObj(this._options,InkElement.data(this._element));
-
-        }
+        shadeClass:   ['String', undefined],
+        modalClass:   ['String', undefined],
 
         /**
-         * Now, the most important, the initialization options
+         * Optional trigger properties
          */
-        this._options = Ink.extendObj(this._options,options || {});
+        trigger:      ['String', undefined],
+        triggerEvent: ['String', 'click'],
+        autoDisplay:  ['Boolean', true],
 
-        if( !this._markupMode ){
-            this.setContentMarkup(this._options.markup);
-        }
-
-        if( typeof this._options.shadeClass === 'string' ){
-            Css.addClassName(this._modalShadow, this._options.shadeClass);
-        }
-
-        if( typeof this._options.modalClass === 'string' ){
-            Css.addClassName(this._modalDiv, this._options.modalClass);
-        }
-
-        if( this._options.trigger ) {
-            var triggerElements = Common.elsOrSelector(this._options.trigger, '');
-            Event.observeMulti(triggerElements, this._options.triggerEvent, Ink.bindEvent(this.open, this));
-        } else if ( this._options.autoDisplay.toString() === "true" ) {
-            this.open();
-        }
+        /**
+         * Remaining options
+         */
+        markup:       ['String', undefined],
+        onShow:       ['Function', undefined],
+        onDismiss:    ['Function', undefined],
+        closeOnClick: ['Boolean', false],
+        closeOnEscape: ['Boolean', true],
+        responsive:    ['Boolean', true]
     };
 
     Modal.prototype = {
+        _init: function () {
+            this._handlers = {
+                click:   Ink.bindEvent(this._onShadeClick, this),
+                keyDown: Ink.bindEvent(this._onKeyDown, this),
+                resize:  Ink.bindEvent(this._onResize, this)
+            };
+
+            this._wasDismissed = false;
+
+            /**
+             * Modal Markup
+             */
+            if( this._element ){
+                this._markupMode = Css.hasClassName(this._element,'ink-modal'); // Check if the full modal comes from the markup
+            } else {
+                this._markupMode = false;
+            }
+
+            if( !this._markupMode ){
+                this._modalShadow      = document.createElement('div');
+                this._modalShadowStyle = this._modalShadow.style;
+
+                this._modalDiv         = document.createElement('div');
+                this._modalDivStyle    = this._modalDiv.style;
+
+                if( !!this._element ){
+                    this._options.markup = this._element.innerHTML;
+                }
+
+                /**
+                 * Not in full markup mode, let's set the classes and css configurations
+                 */
+                Css.addClassName( this._modalShadow,'ink-shade' );
+                Css.addClassName( this._modalDiv,'ink-modal ink-space' );
+
+                /**
+                 * Applying the main css styles
+                 */
+                // this._modalDivStyle.position = 'absolute';
+                this._modalShadow.appendChild( this._modalDiv);
+                document.body.appendChild( this._modalShadow );
+            } else {
+                this._modalDiv         = this._element;
+                this._modalDivStyle    = this._modalDiv.style;
+                this._modalShadow      = this._modalDiv.parentNode;
+                this._modalShadowStyle = this._modalShadow.style;
+
+                this._contentContainer = Selector.select(".modal-body", this._modalDiv)[0];
+                if( !this._contentContainer){
+                    throw new Error('Ink.UI.Modal: Missing div with class "modal-body"');
+                }
+
+                this._options.markup = this._contentContainer.innerHTML;
+            }
+
+            if( !this._markupMode ){
+                this.setContentMarkup(this._options.markup);
+            }
+
+            if( typeof this._options.shadeClass === 'string' ){
+                Css.addClassName(this._modalShadow, this._options.shadeClass);
+            }
+
+            if( typeof this._options.modalClass === 'string' ){
+                Css.addClassName(this._modalDiv, this._options.modalClass);
+            }
+
+            if( this._options.trigger ) {
+                var triggerElements = Common.elsOrSelector(this._options.trigger, '');
+                Event.observeMulti(triggerElements, this._options.triggerEvent, Ink.bindEvent(this.open, this));
+            } else if ( this._options.autoDisplay.toString() === "true" ) {
+                this.open();
+            }
+        },
 
         /**
          * Responsible for repositioning the modal
@@ -293,8 +278,6 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
          * @private
          */
         _resizeContainer: function() {
-            // [3.0.0] drop this because everyone should have the new CSS now, which has this rule already with .ink-modal-is-open.
-            this._contentElement.style.overflow = this._contentElement.style.overflowX = this._contentElement.style.overflowY = 'hidden';
             var containerHeight = InkElement.elementHeight(this._modalDiv);
 
             this._modalHeader = Selector.select('.modal-header',this._modalDiv)[0];
@@ -313,23 +296,6 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             }
 
             if( this._markupMode ){ return; }
-
-            this._contentContainer.style.overflow = this._contentContainer.style.overflowX = 'hidden';
-            this._contentContainer.style.overflowY = 'auto';
-            this._contentElement.style.overflow = this._contentElement.style.overflowX = this._contentElement.style.overflowY = 'visible';
-        },
-
-        /**
-         * Responsible for 'disabling' the page scroll
-         * 
-         * @method _disableScroll
-         * @private
-         */
-        _disableScroll: function() {
-            var htmlEl = document.documentElement;
-            this._oldHtmlOverflows = [ htmlEl.style.overflowX,
-                htmlEl.style.overflowY ];
-            htmlEl.style.overflowX = htmlEl.style.overflowY = 'hidden';
         },
 
         /**************
@@ -418,22 +384,16 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                 this._options.onShow(this);
             }
 
-            if(this._options.disableScroll.toString() === 'true') {
-                this._disableScroll();
-            }
-
             // subscribe events
             Event.observe(this._shadeElement, 'click', this._handlers.click);
             if (this._options.closeOnEscape.toString() === 'true') {
                 Event.observe(document, 'keydown', this._handlers.keyDown);
             }
 
-            Common.registerInstance(this, this._shadeElement, 'modal');
-
             this._wasDismissed = false;
             openModals.push(this);
 
-            Css.addClassName(document.documentElement, 'ink-modal-is-open');
+            Css.addClassName(document.documentElement, 'ink-modal-open');
         },
 
         /**
@@ -475,14 +435,8 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             if (openModals.length === 0) {  // Document level stuff now there are no modals in play.
                 var htmlEl = document.documentElement;
 
-                // Reenable scroll
-                if(this._options.disableScroll) {
-                    htmlEl.style.overflowX = this._oldHtmlOverflows[0];
-                    htmlEl.style.overflowY = this._oldHtmlOverflows[1];
-                }
-
                 // Remove the class from the HTML element.
-                Css.removeClassName(htmlEl, 'ink-modal-is-open');
+                Css.removeClassName(htmlEl, 'ink-modal-open');
             }
         },
 
@@ -575,6 +529,8 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
         }
 
     };
+
+    Common.createUIComponent(Modal, { elementIsOptional: true });
 
     return Modal;
 

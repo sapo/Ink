@@ -80,107 +80,75 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
      *
      * @sample Ink_UI_DatePicker_1.html
      */
-    var DatePicker = function(selector, options) {
-        this._element = selector &&
-            Common.elOrSelector(selector, '[Ink.UI.DatePicker_1]: selector argument');
+    var DatePicker = function() {
+        Common.BaseUIComponent.apply(this, arguments);
+    };
 
-        this._options = Common.options('Ink.UI.DatePicker_1', {
-            autoOpen:        ['Boolean', false],
-            cleanText:       ['String', 'Clear'],
-            closeText:       ['String', 'Close'],
-            pickerField:     ['Element', null],
-            containerElement:['Element', null],
-            cssClass:        ['String', 'ink-calendar bottom'],
-            dateRange:       ['String', null],
-            
-            // use this in a <select>
-            displayInSelect: ['Boolean', false],
-            dayField:        ['Element', null],
-            monthField:      ['Element', null],
-            yearField:       ['Element', null],
+    DatePicker._name = 'DatePicker_1';
 
-            format:          ['String', 'yyyy-mm-dd'],
-            instance:        ['String', 'scdp_' + Math.round(99999 * Math.random())],
-            nextLinkText:    ['String', '»'],
-            ofText:          ['String', ' of '],
-            onFocus:         ['Boolean', true],
-            onMonthSelected: ['Function', null],
-            onSetDate:       ['Function', null],
-            onYearSelected:  ['Function', null],
-            position:        ['String', 'right'],
-            prevLinkText:    ['String', '«'],
-            showClean:       ['Boolean', true],
-            showClose:       ['Boolean', true],
-            shy:             ['Boolean', true],
-            startDate:       ['String', null], // format yyyy-mm-dd,
-            startWeekDay:    ['Number', 1],
+    DatePicker._optionDefinition = {
+        autoOpen:        ['Boolean', false],
+        cleanText:       ['String', 'Clear'],
+        closeText:       ['String', 'Close'],
+        pickerField:     ['Element', null],
+        containerElement:['Element', null],
+        cssClass:        ['String', 'ink-calendar bottom'],
+        dateRange:       ['String', null],
+        
+        // use this in a <select>
+        displayInSelect: ['Boolean', false],
+        dayField:        ['Element', null],
+        monthField:      ['Element', null],
+        yearField:       ['Element', null],
 
-            // Validation
-            validDayFn:      ['Function', null],
-            validMonthFn:    ['Function', null],
-            validYearFn:     ['Function', null],
-            nextValidDateFn: ['Function', null],
-            prevValidDateFn: ['Function', null],
-            yearRange:       ['String', null],
+        format:          ['String', 'yyyy-mm-dd'],
+        instance:        ['String', 'scdp_' + Math.round(99999 * Math.random())],
+        nextLinkText:    ['String', '»'],
+        ofText:          ['String', ' of '],
+        onFocus:         ['Boolean', true],
+        onMonthSelected: ['Function', null],
+        onSetDate:       ['Function', null],
+        onYearSelected:  ['Function', null],
+        position:        ['String', 'right'],
+        prevLinkText:    ['String', '«'],
+        showClean:       ['Boolean', true],
+        showClose:       ['Boolean', true],
+        shy:             ['Boolean', true],
+        startDate:       ['String', null], // format yyyy-mm-dd,
+        startWeekDay:    ['Number', 1],
 
-            // Text
-            month: ['Object', {
-                 1:'January',
-                 2:'February',
-                 3:'March',
-                 4:'April',
-                 5:'May',
-                 6:'June',
-                 7:'July',
-                 8:'August',
-                 9:'September',
-                10:'October',
-                11:'November',
-                12:'December'
-            }],
-            wDay: ['Object', {
-                0:'Sunday',
-                1:'Monday',
-                2:'Tuesday',
-                3:'Wednesday',
-                4:'Thursday',
-                5:'Friday',
-                6:'Saturday'
-            }]
-        }, options || {}, this._element);
+        // Validation
+        validDayFn:      ['Function', null],
+        validMonthFn:    ['Function', null],
+        validYearFn:     ['Function', null],
+        nextValidDateFn: ['Function', null],
+        prevValidDateFn: ['Function', null],
+        yearRange:       ['String', null],
 
-        this._options.format = this._dateParsers[ this._options.format ] || this._options.format;
-
-        this._hoverPicker = false;
-
-        this._picker = this._options.pickerField || null;
-
-        this._setMinMax( this._options.dateRange || this._options.yearRange );
-
-        if(this._options.startDate) {
-            this.setDate( this._options.startDate );
-        } else if (this._element && this._element.value) {
-            this.setDate( this._element.value );
-        } else {
-            var today = new Date();
-            this._day   = today.getDate( );
-            this._month = today.getMonth( );
-            this._year  = today.getFullYear( );
-        }
-
-        if (this._options.startWeekDay < 0 || this._options.startWeekDay > 6) {
-            Ink.warn('Ink.UI.DatePicker_1: option "startWeekDay" must be between 0 (sunday) and 6 (saturday)');
-            this._options.startWeekDay = clamp(this._options.startWeekDay, 0, 6);
-        }
-
-        if(this._options.displayInSelect &&
-                !(this._options.dayField && this._options.monthField && this._options.yearField)){
-            throw new Error(
-                'Ink.UI.DatePicker: displayInSelect option enabled.'+
-                'Please specify dayField, monthField and yearField selectors.');
-        }
-
-        this._init();
+        // Text
+        month: ['Object', {
+             1:'January',
+             2:'February',
+             3:'March',
+             4:'April',
+             5:'May',
+             6:'June',
+             7:'July',
+             8:'August',
+             9:'September',
+            10:'October',
+            11:'November',
+            12:'December'
+        }],
+        wDay: ['Object', {
+            0:'Sunday',
+            1:'Monday',
+            2:'Tuesday',
+            3:'Wednesday',
+            4:'Thursday',
+            5:'Friday',
+            6:'Saturday'
+        }]
     };
 
     DatePicker.prototype = {
@@ -193,12 +161,43 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * @private
          */
         _init: function(){
+            this._options.format = this._dateParsers[ this._options.format ] || this._options.format;
+
+            this._hoverPicker = false;
+
+            this._picker = this._options.pickerField || null;
+
+            this._setMinMax( this._options.dateRange || this._options.yearRange );
+
+            if(this._options.startDate) {
+                this.setDate( this._options.startDate );
+            } else if (this._element && this._element.value) {
+                this.setDate( this._element.value );
+            } else {
+                var today = new Date();
+                this._day   = today.getDate( );
+                this._month = today.getMonth( );
+                this._year  = today.getFullYear( );
+            }
+
+            if (this._options.startWeekDay < 0 || this._options.startWeekDay > 6) {
+                Ink.warn('Ink.UI.DatePicker_1: option "startWeekDay" must be between 0 (sunday) and 6 (saturday)');
+                this._options.startWeekDay = clamp(this._options.startWeekDay, 0, 6);
+            }
+
             Ink.extendObj(this._options,this._lang || {});
 
             this._render();
             this._listenToContainerObjectEvents();
+        },
 
-            Common.registerInstance(this, this._containerObject, 'datePicker');
+        _validate: function () {
+            if(this._options.displayInSelect &&
+                    !(this._options.dayField && this._options.monthField && this._options.yearField)){
+                throw new Error(
+                    'Ink.UI.DatePicker: displayInSelect option enabled.'+
+                    'Please specify dayField, monthField and yearField selectors.');
+            }
         },
 
         /**
@@ -1413,6 +1412,8 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             Common.unregisterInstance.call(this);
         }
     };
+
+    Common.createUIComponent(DatePicker);
 
     return DatePicker;
 });

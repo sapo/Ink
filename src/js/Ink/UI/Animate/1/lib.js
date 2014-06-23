@@ -39,16 +39,21 @@ Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'In
      * @sample Ink_UI_Animate_1.html
      *
      **/
-    function Animate(elOrSelector, options) {
-        this._element = Common.elOrSelector(elOrSelector);
-        this._options = Common.options({
-            trigger: ['Element', null],
-            duration: ['String', 'slow'],  // Actually a string with a duration name, or a number of ms
-            animation: ['String'],
-            removeClass: ['Boolean', true],
-            onEnd: ['Function', function () {}]
-        }, options || {}, this._element);
+    function Animate() {
+        Common.BaseUIComponent.apply(this, arguments);
+    }
 
+    Animate._name = 'Animate_1';
+
+    Animate._optionDefinition = {
+        trigger: ['Element', null],
+        duration: ['String', 'slow'],  // Actually a string with a duration name, or a number of ms
+        animation: ['String'],
+        removeClass: ['Boolean', true],
+        onEnd: ['Function', function () {}]
+    };
+
+    Animate.prototype._init = function () {
         if (!isNaN(parseInt(this._options.duration, 10))) {
             this._options.duration = parseInt(this._options.duration, 10);
         }
@@ -60,8 +65,7 @@ Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'In
         } else {
             this.animate();
         }
-        Common.registerInstance(this, this._element);
-    }
+    };
 
     Animate.prototype.animate = function () {
         Animate.animate(this._element, this._options.animation, this._options);
@@ -111,6 +115,8 @@ Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'In
 
             if (typeof options === 'number' || typeof options === 'string') {
                 options = { duration: options };
+            } else if (!options) {
+                options = {};
             }
 
             if (typeof arguments[3] === 'function') {
@@ -154,6 +160,8 @@ Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'In
             element.addEventListener(animationEndEventName, onAnimationEnd, false);
         }
     });
+
+    Common.createUIComponent(Animate);
 
     return Animate;
 });

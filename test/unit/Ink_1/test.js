@@ -23,6 +23,40 @@ test('bindMethod', function () {
     deepEqual(test2(), obj, 'returns the object owning the method');
 });
 
+test('extendObj', function () {
+    deepEqual(
+        Ink.extendObj({ foo: 'not-bar' }, { foo: 'bar' }),
+        { foo: 'bar' },
+        'Extends objects right to left, overriding properties on the left');
+
+    deepEqual(
+        Ink.extendObj({ foo: '0' }, { foo: '1', baz: '-1' }, { bar: '2', baz: '3' }),
+        { foo: '1', bar: '2', baz: '3' },
+        'Works on many objects');
+
+    var a = {};
+    strictEqual(
+        Ink.extendObj(a, { wow: 'amaze' }),
+        a,
+        'returns a reference to the leftmost object')
+
+    a = {}
+    var b = { original: 'object' }
+    Ink.extendObj(a, b)
+    deepEqual(
+        b,
+        { original: 'object' },
+        'does not touch the source objects')
+
+    a = {}
+    b = { original: 'object' }
+    Ink.extendObj(a, b, {bar: 'baz'})
+    deepEqual(
+        b,
+        { original: 'object' },
+        '(regression) even if there\'s more than one of them')
+});
+
 test('createExt', function () {
     stop();  // async
     expect(1);  // only one assertion
@@ -266,6 +300,16 @@ asyncTest('(regression) createModule can work with a requireModule afterwards wh
 
     Ink.createModule( 'Ink.SomeUnresolvedDependency', 1, [], function () { return {}; });
 });
+
+test('(regression) requireModules will try to request things which are accidental undefined values', sinon.test(function () {
+    this.stub(Ink, '_loadLater');
+    var spy = this.spy();
+
+    Ink.requireModules([undefined], spy);
+
+    ok(Ink._loadLater.notCalled)
+    ok(spy.calledOnce)
+}));
 
 
 module('Debug mechanisms');

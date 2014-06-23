@@ -7,8 +7,25 @@
 Ink.createModule('Ink.UI.LazyLoad', '1', ['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1'], function(Common, InkEvent, InkElement) {
 'use strict';
 
-var LazyLoad = function(selector, options) {
-    this._init(selector, options);
+function LazyLoad() {
+    Common.BaseUIComponent.apply(this, arguments);
+}
+
+LazyLoad._name = 'LazyLoad_1';
+
+LazyLoad._optionDefinition = {
+    item: ['String', '.lazyload-item'],
+    placeholder: ['String', null],
+    source: ['String', 'data-src'],
+    destination: ['String', 'src'],
+    delay: ['Number', 100],
+    delta: ['Number', 0],
+    image: ['Boolean', true],
+    scrollElement: ['Element', window],
+    touchEvents: ['Boolean', true],
+    onInsideViewport: ['Function', false],
+    onAfterAttributeChange: ['Function', false],
+    autoInit: ['Boolean', true]
 };
 
 LazyLoad.prototype = {
@@ -42,23 +59,8 @@ LazyLoad.prototype = {
      *
      * @sample Ink_UI_LazyLoad_1.html
      */
-    _init: function(selector) {
-        this._rootElm = Common.elsOrSelector(selector, 'Ink.UI.LazyLoad root element')[0] || null;
-
-        this._options = Common.options({
-            item: ['String', '.lazyload-item'],
-            placeholder: ['String', null],
-            source: ['String', 'data-src'],
-            destination: ['String', 'src'],
-            delay: ['Number', 100],
-            delta: ['Number', 0],
-            image: ['Boolean', true],
-            scrollElement: ['Element', window],
-            touchEvents: ['Boolean', true],
-            onInsideViewport: ['Function', false],
-            onAfterAttributeChange: ['Function', false],
-            autoInit: ['Boolean', true]
-        }, arguments[1] || {}, this._rootElm);
+    _init: function() {
+        this._rootElm = this._element;
 
         this._aData = [];
         this._hasEvents = false;
@@ -66,8 +68,6 @@ LazyLoad.prototype = {
         if(this._options.autoInit) {
             this._activate();
         }
-
-        Common.registerInstance(this, this._rootElm);
     },
 
     _activate: function() 
@@ -188,6 +188,8 @@ LazyLoad.prototype = {
         Common.destroyComponent.call(this);
     }
 };
+
+Common.createUIComponent(LazyLoad);
 
 return LazyLoad;
 

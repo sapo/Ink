@@ -3,7 +3,7 @@
  * @module Ink.UI.SmoothScroller_1
  * @version 1
  */
-Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1','Ink.Dom.Loaded_1'], function(Event, InkElement, Selector, Loaded) {
+Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1','Ink.Dom.Css_1'], function(Common, Event, InkElement, Selector, Css) {
     'use strict';
 
     var requestAnimationFrame =
@@ -15,7 +15,7 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.Dom.Event_1', 'Ink.Dom.Elem
         function (id) { clearTimeout(id); };
 
     /**
-     * @namespace Ink.UI.SmoothScroller
+     * @namespace SmoothScroller
      * @version 1
      * @static
      *
@@ -52,80 +52,35 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.Dom.Event_1', 'Ink.Dom.Elem
     var SmoothScroller = {
 
         /**
-         * Sets the speed of the scrolling
+         * The default scrolling speed. Higher is slower. Defaults to 10.
          *
          * @property speed
          * @type {Number}
-         * @readOnly
+         * @default 10
          * @static
          */
         speed: 10,
 
         /**
-         * Returns the Y position of an element, relative to the document
+         * Change the URL hash (location.hash) when done scrolling? Defaults to true.
          *
-         * @method getTop
-         * @param  {DOMElement} d DOMElement to get the Y position from
-         * @return {Number}   Y position of div 'd'
-         * @public
+         * @property changeHash
+         * @default true
+         * @type {Boolean}
          * @static
          */
-        getTop: function(d) {
-            return Math.round(
-                SmoothScroller.scrollTop() + d.getBoundingClientRect().top);
-        },
-
+        changeHash: true,
 
         /**
-         * Returns the current scroll position
+         * The default top margin.
+         * Use this when you want the scroll motion to stop before it reaches its destination, for example when you want to add some breathing space or have a position:fixed top bar in front of your content.
          *
-         * @method scrollTop
-         * @return {Number}  Current scroll position
-         * @public
+         * @property margin
+         * @default 0
+         * @type {Number}
          * @static
          */
-        scrollTop: function() {
-            var body = document.body,
-                d = document.documentElement;
-            if (body && body.scrollTop){
-                return body.scrollTop;
-            }
-            if (d && d.scrollTop){
-                return d.scrollTop;
-            }
-            if (window.pageYOffset){
-                return window.pageYOffset;
-            }
-            return 0;
-        },
-
-        /**
-         * Attaches an event for an element
-         *
-         * @method add
-         * @param  {DOMElement} el DOMElement to make the listening of the event
-         * @param  {String} event Event name to be listened
-         * @param  {DOMElement} fn Callback function to run when the event is triggered.
-         * @public
-         * @static
-         */
-        add: function(el, event, fn) {
-            Event.observe(el,event,fn);
-        },
-
-
-        /**
-         * Kill an event of an element
-         *
-         * @method end
-         * @param  {String} e Event to be killed/stopped
-         * @public
-         * @static
-         */
-        // kill an event of an element
-        end: function(e) {
-            Event.stopDefault(e);
-        },
+        margin: 0,
 
 
         /**
@@ -135,19 +90,18 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.Dom.Event_1', 'Ink.Dom.Elem
          *
          * @method scroll
          * @param  {Number} d Y coordinate value to stop
-         * @public
+         * @private
          * @static
          */
         scroll: function(d, options) {
-            var a = SmoothScroller.scrollTop();
-            var margin = options.margin || 0;
+            var a = Math.round(InkElement.scrollHeight());
 
-            var endPos = d - margin;
+            var endPos = Math.round(d - options.margin);
 
             if (endPos > a) {
-                a += Math.ceil((endPos - a) / SmoothScroller.speed);
+                a += Math.ceil((endPos - a) / options.speed);
             } else {
-                a = a + (endPos - a) / SmoothScroller.speed;
+                a = a + (endPos - a) / options.speed;
             }
 
             cancelAnimationFrame(SmoothScroller.interval);
@@ -156,7 +110,7 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.Dom.Event_1', 'Ink.Dom.Elem
                 SmoothScroller.interval = requestAnimationFrame(
                     Ink.bindMethod(SmoothScroller, 'scroll', d, options), document.body);
             } else {
-                SmoothScroller.onDone();
+                SmoothScroller.onDone(options);
             }
 
             window.scrollTo(0, a);
@@ -167,80 +121,90 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.Dom.Event_1', 'Ink.Dom.Elem
         /**
          * Has smooth scrolling applied to relevant elements upon page load.
          *
+         * Listens to the click event on the document.
+         *
+         * Anything which matches the selector will be considered a "link" by SmoothScroller and handled as such.
+         *
+         * When a link is clicked, it is checked for several options:
+         *
+         * - `data-margin="0"` - A margin in pixels -- useful when you have a position:fixed top bar.
+         * - `data-speed="10"` - Inverse speed of the scrolling motion. Smaller is faster.
+         * - `data-change-hash="true"` - Change the URL hash (location.hash) when done scrolling.
+         *
          * @method init
-         * @param [selector='a.scrollableLink,a.ink-smooth-scroll'] Selector string for finding links with smooth scrolling enabled.
-         * @public
+         * @param [selector='a.scrollableLink,a.ink-smooth-scroll'] {String} Selector string for finding links with smooth scrolling enabled.
          * @static
          */
         init: function(selector) {
-            Loaded.run(Ink.bindMethod(SmoothScroller, 'render', selector));
+            Event.on(document, 'click', selector, SmoothScroller.onClick);
         },
 
-        /**
-         * This method extracts all the anchors and validates them as # and attaches the events
-         *
-         * @method render
-         * @public
-         * @static
-         */
-        render: function(selector) {
-            var a = Selector.select(selector || 'a.scrollableLink,a.ink-smooth-scroll');
-
-            for (var i = 0; i < a.length; i++) {
-                var _elm = a[i];
-                if (_elm.href && _elm.href.indexOf('#') !== -1 && ((_elm.pathname === location.pathname) || ('/' + _elm.pathname === location.pathname))) {
-                    Event.observe(_elm,'click', Ink.bindEvent(SmoothScroller.onClick, this, _elm));
-                }
-            }
-        },
-
+        // Deprecated. Kept around just in case someone is still calling this.
+        render: function() {},
 
         /**
-         * Click handler
+         * Handles clicks on link elements
          *
          * @method onClick
-         * @public
+         * @private
          * @static
          */
-        onClick: function(event, _elm) {
-            SmoothScroller.end(event);
-            if(_elm != null && _elm.getAttribute('href') !== null) {
-                var hashIndex = _elm.href.indexOf('#');
-                if (hashIndex === -1) {
-                    return;
-                }
+        onClick: function(event) {
+            var link = event.currentTarget;
 
-                var data = InkElement.data(_elm);
-                var hash = _elm.href.substr((hashIndex + 1));
+            var thisDocument =    (location + '').replace(/#.*?$/, '');
+            var linkedDocument = (link.href + '').replace(/#.*?$/, '');
+
+            if (linkedDocument !== thisDocument) {
+                return; // It's an external link.
+            }
+
+            var hash = link.getAttribute('data-hash') || (link.getAttribute('href') || '')
+                .replace(/^.*?#/, '');
+
+            if(hash) {
+                event.preventDefault();
                 var activeLiSelector = 'ul > li.active > ' + selector;
 
                 var selector = 'a[name="' + hash + '"],#' + hash;
-                var elm = Selector.select(selector)[0];
-                var activeLi = Selector.select(activeLiSelector)[0];
+                var elm = Ink.s(selector);
+                var activeLi = Ink.s(activeLiSelector);
                 activeLi = activeLi && activeLi.parentNode;
 
-                if (typeof(elm) !== 'undefined') {
-                    if (_elm.parentNode.className.indexOf('active') === -1) {
+                if (elm) {
+                    if (!Css.hasClassName(link.parentNode, 'active')) {
                         if (activeLi) {
-                            activeLi.className = activeLi.className.replace(/(^|\s+)active($|\s+)/g, '');
+                            Css.removeClassName(activeLi, 'active');
                         }
-                        _elm.parentNode.className += " active";
+                        Css.addClassName(link.parentNode, 'active');
                     }
+
+                    var options = Common.options('SmoothScroller link options', {
+                        margin: ['Number', SmoothScroller.margin],
+                        speed: ['Number', SmoothScroller.speed],
+                        changeHash: ['Boolean', SmoothScroller.changeHash]
+                    }, {}, link);
+
                     SmoothScroller.hash = hash;
-                    var options = {};
-                    if (parseFloat(data.margin)) {
-                        options.margin = parseFloat(data.margin);
-                    }
-                    SmoothScroller.scroll(SmoothScroller.getTop(elm), options);
+                    
+                    SmoothScroller.scroll(InkElement.offsetTop(elm), options);
                 }
             }
         },
 
         /**
          * Called when the scroll movement is done. Updates browser address.
+         *
+         * @method onDone
+         * @param {Object} options Options object from the element.
+         * @private
          */
-        onDone: function () {
-            window.location.hash = SmoothScroller.hash;
+        onDone: function (options) {
+            if (options.changeHash === true) {
+                window.location.hash = SmoothScroller.hash;
+            }
+
+            SmoothScroller.hash = SmoothScroller.offsetTop = null;
         }
     };
 

@@ -4,7 +4,7 @@
  * @version 1
  */
 
-Ink.createModule('Ink.UI.ProgressBar', '1', ['Ink.UI.Common_1', 'Ink.Dom.Selector_1','Ink.Dom.Element_1'], function( Common, Selector, Element ) {
+Ink.createModule('Ink.UI.ProgressBar', '1', ['Ink.UI.Common_1', 'Ink.Dom.Selector_1'], function( Common, Selector ) {
     'use strict';
 
     /**
@@ -21,23 +21,19 @@ Ink.createModule('Ink.UI.ProgressBar', '1', ['Ink.UI.Common_1', 'Ink.Dom.Selecto
      *
      * @sample Ink_UI_ProgressBar_1.html
      */
-    var ProgressBar = function( selector, options ){
-        this._element = Common.elOrSelector(selector);
+    function ProgressBar(){
+        Common.BaseUIComponent.apply(this, arguments);
+    }
 
-        this._options = Ink.extendObj({
-            'startValue': 0,
-            'onStart': function(){},
-            'onEnd': function(){}
-        },Element.data(this._element));
+    ProgressBar._name = 'ProgressBar_1';
 
-        this._options = Ink.extendObj( this._options, options || {});
-        this._value = this._options.startValue;
-
-        this._init();
+    ProgressBar._optionDefinition = {
+        startValue: ['Number', 0],
+        onStart: ['Function', function () {}],
+        onEnd: ['Function', function () {}]
     };
 
     ProgressBar.prototype = {
-
         /**
          * Init function called by the constructor
          * 
@@ -45,17 +41,14 @@ Ink.createModule('Ink.UI.ProgressBar', '1', ['Ink.UI.Common_1', 'Ink.Dom.Selecto
          * @private
          */
         _init: function(){
+            this._value = this._options.startValue;
             this._elementBar = Selector.select('.bar',this._element);
             if( this._elementBar.length < 1 ){
-                throw '[Ink.UI.ProgressBar] :: Bar element not found';
+                throw new Error('[Ink.UI.ProgressBar] :: Bar element not found');
             }
             this._elementBar = this._elementBar[0];
 
-            this._options.onStart = Ink.bind(this._options.onStart,this);
-            this._options.onEnd = Ink.bind(this._options.onEnd,this);
             this.setValue( this._options.startValue );
-
-            Common.registerInstance(this, this._elementBar);
         },
 
         /**
@@ -66,7 +59,7 @@ Ink.createModule('Ink.UI.ProgressBar', '1', ['Ink.UI.Common_1', 'Ink.Dom.Selecto
          * @public
          */
         setValue: function( newValue ){
-            this._options.onStart( this._value);
+            this._options.onStart.call(this, this._value);
 
             newValue = parseInt(newValue,10);
             if( isNaN(newValue) || (newValue < 0) ){
@@ -75,11 +68,13 @@ Ink.createModule('Ink.UI.ProgressBar', '1', ['Ink.UI.Common_1', 'Ink.Dom.Selecto
                 newValue = 100;
             }
             this._value = newValue;
-            this._elementBar.style.width =  this._value + '%';
+            this._elementBar.style.width = this._value + '%';
 
-            this._options.onEnd( this._value );
+            this._options.onEnd.call(this, this._value);
         }
     };
+
+    Common.createUIComponent(ProgressBar);
 
     return ProgressBar;
 
