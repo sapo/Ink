@@ -16,7 +16,7 @@
     "node_modules"
   ],
   "dependencies": {
-    "font-awesome": "~4.0.3",
+    "font-awesome": "~4.1.0",
     "animate.css": "~3.1.0",
     "bower-compass-core": ">=0.0.1"
   },
