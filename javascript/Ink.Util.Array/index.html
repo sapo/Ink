@@ -93,7 +93,7 @@ site_root:  ../
                     <a href="#Ink_Util_Array_1-Ink_Util_Array_1-map">.map(array, map, [context])
 </a>
                 </td>
-                <td> Runs a function for each item in the array. </td>
+                <td> Runs a function for each item in the array.</td>
             </tr>
             <tr>
                 <td>
@@ -136,6 +136,13 @@ site_root:  ../
 </a>
                 </td>
                 <td> Sorts an array of objects by an object property</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_Util_Array_1-Ink_Util_Array_1-unique">.unique(arr)
+</a>
+                </td>
+                <td> Removes duplicated values in an array.</td>
             </tr></tbody>
     </table>
     
@@ -410,7 +417,7 @@ site_root:  ../
     <section id="Ink_Util_Array_1-Ink_Util_Array_1-map" class="box box-function">
     <h1 class="fw-300 function-desc">.map(array, map, [context])
 
-    <i>method</i></h1><p class="text">Runs a function for each item in the array. <br>That function will receive each item as an argument and its return value will change the corresponding array item.</p>
+    <i>method</i></h1><p class="text">Runs a function for each item in the array.<br>That function will receive each item as an argument and its return value will change the corresponding array item.</p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -602,6 +609,28 @@ site_root:  ../
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_Util_Array_sortMulti.html %}
 	</section>
+
+    <section id="Ink_Util_Array_1-Ink_Util_Array_1-unique" class="box box-function">
+    <h1 class="fw-300 function-desc">.unique(arr)
+
+    <i>method</i></h1><p class="text">Removes duplicated values in an array.</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>arr
+                    <span class="label mandatory"></span><span class="label array"></span></p>
+                Array to filter</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label array"></span> </p>Array with only unique values
+        </li>
+    </ul>
+    
+
+</section>
 
 
 
