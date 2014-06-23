@@ -37,6 +37,7 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
      * @param {DOMElement}          [options.droppableProxy]    If set, a shallow copy of this element will be moved around with transparent background.
      * @param {String}              [options.mouseAnchor]       Anchor for the drag. Can be one of: 'left','center','right','top','center','bottom'.
      * @param {String}              [options.dragClass]         Class to add when the draggable is being dragged. Defaults to drag.
+     * @param {Boolean}             [options.skipChildren=true] Whether you have to drag the actual element, or dragging one of the children is okay too.
      * @param {Function}            [options.onStart]           Callback called when dragging starts.
      * @param {Function}            [options.onEnd]             Callback called when dragging stops.
      * @param {Function}            [options.onDrag]            Callback called while dragging, prior to position updates.
@@ -44,12 +45,35 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
      *
      * @sample Ink_UI_Draggable_1.html
      */
-    var Draggable = function(element, options) {
-        this.init(element, options);
+    function Draggable() {
+        Common.BaseUIComponent.apply(this, arguments);
+    }
+
+    Draggable._name = 'Draggable_1';
+
+    Draggable._optionDefinition = {
+        constraint:         ['String', false],
+        constraintElm:      ['Element', false],
+        top:                ['Number', false],
+        right:              ['Number', false],
+        bottom:             ['Number', false],
+        left:               ['Number', false],
+        handle:             ['Element', false],
+        revert:             ['Boolean', false],
+        cursor:             ['String', 'move'],
+        zIndex:             ['Number', 9999],
+        fps:                ['Number', 100],
+        droppableProxy:     ['Element', false],
+        mouseAnchor:        ['String', undefined],
+        dragClass:          ['String', 'drag'],
+        skipChildren:       ['Boolean', true],  // Magic/More Magic
+        onStart:            ['Function', false],
+        onEnd:              ['Function', false],
+        onDrag:             ['Function', false],
+        onChange:           ['Function', false]
     };
 
     Draggable.prototype = {
-
         /**
          * Init function called by the constructor
          * 
@@ -58,32 +82,9 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
          * @param {Object}              [options]   Options object for configuration of the module.
          * @private
          */
-        init: function(element, options) {
-            var o = Ink.extendObj( {
-                constraint:         false,
-                constraintElm:      false,
-                top:                false,
-                right:              false,
-                bottom:             false,
-                left:               false,
-                handle:             options.handler /* old option name */ || false,
-                revert:             false,
-                cursor:             'move',
-                zindex:             options.zindex /* old option name */ || 9999,
-                dragClass:          'drag',
-                onStart:            false,
-                onEnd:              false,
-                onDrag:             false,
-                onChange:           false,
-                droppableProxy:     false,
-                mouseAnchor:        undefined,
-                skipChildren:       true,
-                fps:                100,
-                debug:              false
-            }, options || {}, InkElement.data(element));
-
-            this.options = o;
-            this.element = Common.elOrSelector(element);
+        _init: function() {
+            var o = this.options = this._options;
+            this.element = this._element;
             this.constraintElm = o.constraintElm && Common.elOrSelector(o.constraintElm);
 
             this.handle             = false;
@@ -111,7 +112,9 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
 
             // set handle
             this.handle = (this.options.handle) ?
-                Common.elOrSelector(this.options.handle) : this.element;
+                Common.elOrSelector(this.options.handle) :
+                this.element;
+
             this.handle.style.cursor = o.cursor;
 
             InkEvent.observe(this.handle, 'touchstart', this.handlers.start);
@@ -120,8 +123,6 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
             if (Browser.IE) {
                 InkEvent.observe(this.element, 'selectstart', this.handlers.selectStart);
             }
-
-            Common.registerInstance(this, this.element);
         },
 
         /**
@@ -439,6 +440,8 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
             this.dragged        = false;
         }
     };
+
+    Common.createUIComponent(Draggable);
 
     return Draggable;
 

@@ -34,9 +34,22 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
      * @param {Integer}             [options.maxTags]               Maximum number of tags allowed. Set to -1 for no limit. Defaults to -1.
      * @example
      */
-    function TagField(element, options) {
-        this.init(element, options);
+    function TagField() {
+        Common.BaseUIComponent.apply(this, arguments);
     }
+
+    TagField._name = 'TagField_1';
+
+    TagField._optionDefinition = {
+        tags: ['String', []],
+        tagQuery: ['Object', null],
+        tagQueryAsync: ['Object', null],
+        allowRepeated: ['Boolean', false],
+        maxTags: ['Integer', -1],
+        outSeparator: ['String', ','],
+        separator: ['String', /[,; ]+/g],
+        autoSplit: ['Boolean', true]
+    };
 
     TagField.prototype = {
         /**
@@ -45,19 +58,8 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
          * @method _init
          * @private
          */
-        init: function(element, options) {
-            element = this._element = Common.elOrSelector(element, 'Ink.UI.TagField');
-            var o = this._options = Common.options('Ink.UI.TagField', {
-                tags: ['String', []],
-                tagQuery: ['Object', null],
-                tagQueryAsync: ['Object', null],
-                allowRepeated: ['Boolean', false],
-                maxTags: ['Integer', -1],
-                outSeparator: ['String', ','],
-                separator: ['String', /[,; ]+/g],
-                autoSplit: ['Boolean', true]
-            }, options || {}, this._element);
-
+        _init: function(element, options) {
+            var o = options;
             if (typeof o.separator === 'string') {
                 o.separator = new RegExp(o.separator, 'g');
             }
@@ -91,8 +93,6 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
             InkEvent.observe(this._input, 'keydown', Ink.bindEvent(this._onKeyDown, this));
             InkEvent.observe(this._input, 'blur', Ink.bindEvent(this._onBlur, this));
             InkEvent.observe(this._viewElm, 'click', Ink.bindEvent(this._refocus, this));
-
-            Common.registerInstance(this, this._element);
         },
 
         destroy: function () {
@@ -230,6 +230,8 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
          * if they press backspace again. */
         _setRemovingVisual: function (tagIndex) {
             var elm = this._viewElm.children[tagIndex];
+            if (!elm) { return; }
+
             Css.addClassName(elm, 'tag-deleting');
 
             this._removeRemovingVisualTimeout = setTimeout(Ink.bindMethod(this, '_unsetRemovingVisual', tagIndex), 4000);
@@ -264,5 +266,8 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
             return false;
         }
     };
+
+    Common.createUIComponent(TagField);
+
     return TagField;
 });

@@ -41,8 +41,6 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
         return ret;
     }
 
-    // Most processJSON* functions can just default to this.
-    function sameSame(obj) { return obj; }
     /**
      * The Table component transforms the native/DOM table element into a sortable, paginated component.
      * You can use this component to display data from a JSON endpoint, or from table rows in the DOM. Displaying from the DOM is more practical, but sometimes you don't want to load everything at once (if you have a HUGE table). In those cases, you should configure Ink.UI.Table to get data from JSON endpoint.
@@ -73,75 +71,41 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
      *
      * @sample Ink_UI_Table_1.html
      */
-    var Table = function( selector, options ){
+    function Table(){
+        Common.BaseUIComponent.apply(this, arguments);
+    }
 
-        /**
-         * Get the root element
-         */
-        this._rootElement = Common.elOrSelector(selector, 'Ink.UI.Table :');
+    Table._name = 'Table_1';
 
-        if( this._rootElement.nodeName.toLowerCase() !== 'table' ){
-            throw new Error('[Ink.UI.Table] :: The element is not a table');
-        }
+    // Most processJSON* functions can just default to this.
+    function sameSame(obj) { return obj; }
 
-        this._options = Common.options({
-            pageSize: ['Integer', null],
-            caretUpClass: ['String', 'fa fa-caret-up'],
-            caretDownClass: ['String', 'fa fa-caret-down'],
-            endpoint: ['String', null],
-            createEndpointUrl: ['Function', null /* default func uses above option */],
-            getDataFromEndPoint: ['Function', null /* by default use plain ajax for JSON */],
-            processJSONRows: ['Function', sameSame],
-            processJSONRow: ['Function', sameSame],
-            processJSONField: ['Function', sameSame],
-            processJSONHeaders: ['Function', function (dt) { return dt.fields; }],
-            processJSONTotalRows: ['Function', function (dt) { return dt.length || dt.totalRows; }],
-            getSortKey: ['Function', null],
-            pagination: ['Element', null],
-            allowResetSorting: ['Boolean', false],
-            visibleFields: ['String', null],
-            tdClassNames: ['Object', {}],
-            paginationOptions: ['Object', null]
-        }, options || {}, this._rootElement);
-
-        /**
-         * Checking if it's in markup mode or endpoint mode
-         */
-        this._markupMode = !this._options.endpoint;
-
-        if( this._options.visibleFields ){
-            this._options.visibleFields = this._options.visibleFields.toString().split(/[, ]+/g);
-        }
-
-        this._thead = this._rootElement.tHead || this._rootElement.createTHead();
-        this._headers = Selector.select('th', this._thead);
-
-        /**
-         * Initializing variables
-         */
-        this._handlers = {
-            thClick: null
-        };
-        this._originalFields = [
-            // field headers from the DOM
-        ];
-        this._sortableFields = {
-            // Identifies which columns are sorted and how.
-            // columnIndex: 'none'|'asc'|'desc'
-        };
-        this._originalData = this._data = [];
-        this._pagination = null;
-        this._totalRows = 0;
-
-        this._handlers.thClick = Event.observeDelegated(this._rootElement, 'click',
-                'thead th[data-sortable="true"]',
-                Ink.bindMethod(this, '_onThClick'));
-
-        this._init();
+    Table._optionDefinition = {
+        pageSize: ['Integer', null],
+        caretUpClass: ['String', 'fa fa-caret-up'],
+        caretDownClass: ['String', 'fa fa-caret-down'],
+        endpoint: ['String', null],
+        createEndpointUrl: ['Function', null /* default func uses above option */],
+        getDataFromEndPoint: ['Function', null /* by default use plain ajax for JSON */],
+        processJSONRows: ['Function', sameSame],
+        processJSONRow: ['Function', sameSame],
+        processJSONField: ['Function', sameSame],
+        processJSONHeaders: ['Function', function (dt) { return dt.fields; }],
+        processJSONTotalRows: ['Function', function (dt) { return dt.length || dt.totalRows; }],
+        getSortKey: ['Function', null],
+        pagination: ['Element', null],
+        allowResetSorting: ['Boolean', false],
+        visibleFields: ['String', null],
+        tdClassNames: ['Object', {}],
+        paginationOptions: ['Object', null]
     };
 
     Table.prototype = {
-
+        _validate: function () {
+            if( this._element.nodeName.toLowerCase() !== 'table' ){
+                throw new Error('[Ink.UI.Table] :: The element is not a table');
+            }
+        },
         /**
          * Init function called by the constructor
          * 
@@ -149,6 +113,39 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
          * @private
          */
         _init: function(){
+            /**
+             * Checking if it's in markup mode or endpoint mode
+             */
+            this._markupMode = !this._options.endpoint;
+
+            if( this._options.visibleFields ){
+                this._options.visibleFields = this._options.visibleFields.toString().split(/[, ]+/g);
+            }
+
+            this._thead = this._element.tHead || this._element.createTHead();
+            this._headers = Selector.select('th', this._thead);
+
+            /**
+             * Initializing variables
+             */
+            this._handlers = {
+                thClick: null
+            };
+            this._originalFields = [
+                // field headers from the DOM
+            ];
+            this._sortableFields = {
+                // Identifies which columns are sorted and how.
+                // columnIndex: 'none'|'asc'|'desc'
+            };
+            this._originalData = this._data = [];
+            this._pagination = null;
+            this._totalRows = 0;
+
+            this._handlers.thClick = Event.observeDelegated(this._element, 'click',
+                    'thead th[data-sortable="true"]',
+                    Ink.bindMethod(this, '_onThClick'));
+
             /**
              * If not is in markup mode, we have to do the initial request
              * to get the first data and the headers
@@ -163,7 +160,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
                 /**
                  * Getting the table's data
                  */
-                this._data = Selector.select('tbody tr', this._rootElement);
+                this._data = Selector.select('tbody tr', this._element);
                 this._originalData = this._data.slice(0);
 
                 this._totalRows = this._data.length;
@@ -223,7 +220,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
                     this._invertSortOrder(index, true);
                 }
 
-                var tbody = Selector.select('tbody',this._rootElement)[0];
+                var tbody = Selector.select('tbody',this._element)[0];
                 Common.cleanChildren(tbody);
                 InkArray.each(this._data, Ink.bindMethod(tbody, 'appendChild'));
 
@@ -421,11 +418,11 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
          * @private
          */
         _createRowsFromJSON: function( rows ){
-            var tbody = Selector.select('tbody',this._rootElement)[0];
+            var tbody = Selector.select('tbody',this._element)[0];
 
             if( !tbody ){
                 tbody = document.createElement('tbody');
-                this._rootElement.appendChild( tbody );
+                this._element.appendChild( tbody );
             } else {
                 Element.setHTML(tbody, '');
             }
@@ -539,7 +536,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
             if (!paginationEl) {
                 paginationEl = Element.create('nav', {
                     className: 'ink-navigation',
-                    insertAfter: this._rootElement
+                    insertAfter: this._element
                 });
                 Element.create('ul', {
                     className: 'pagination',
@@ -690,6 +687,8 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
             }
         }
     };
+
+    Common.createUIComponent(Table);
 
     return Table;
 
