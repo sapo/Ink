@@ -6287,8 +6287,8 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
         /**
          * Width, height and markup really optional, as they can be obtained by the element
          */
-        width:        ['Number', undefined],
-        height:       ['Number', undefined],
+        width:        ['String', undefined],
+        height:       ['String', undefined],
 
         /**
          * To add extra classes
@@ -7518,7 +7518,7 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.UI.Common_1', 'Ink.Dom.Even
          * @static
          */
         init: function(selector) {
-            Event.on(document, 'click', selector, SmoothScroller.onClick);
+            Event.on(document, 'click', selector || 'a.scrollableLink, a.ink-smooth-scroll', SmoothScroller.onClick);
         },
 
         // Deprecated. Kept around just in case someone is still calling this.
