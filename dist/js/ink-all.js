@@ -44,7 +44,7 @@
      */
 
     window.Ink = {
-        VERSION: '3.0.3',
+        VERSION: '3.0.4',
         _checkPendingRequireModules: function() {
             var I, F, o, dep, mod, cb, pRMs = [];
             for (I = 0, F = pendingRMs.length; I < F; ++I) {
