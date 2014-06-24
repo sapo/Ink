@@ -55,8 +55,8 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
         /**
          * Width, height and markup really optional, as they can be obtained by the element
          */
-        width:        ['Number', undefined],
-        height:       ['Number', undefined],
+        width:        ['String', undefined],
+        height:       ['String', undefined],
 
         /**
          * To add extra classes
