@@ -136,7 +136,7 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.UI.Common_1', 'Ink.Dom.Even
          * @static
          */
         init: function(selector) {
-            Event.on(document, 'click', selector, SmoothScroller.onClick);
+            Event.on(document, 'click', selector || 'a.scrollableLink, a.ink-smooth-scroll', SmoothScroller.onClick);
         },
 
         // Deprecated. Kept around just in case someone is still calling this.
