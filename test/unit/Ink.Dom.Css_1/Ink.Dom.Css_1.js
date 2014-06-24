@@ -56,6 +56,15 @@ Ink.requireModules(['Ink.Dom.Css_1', 'Ink.Dom.Element_1'], function (Css) {
             ok(/coisas/.test(d.className));
         });
 
+        test('adding empty classes is ignored', function () {
+            Css.addClassName(d, ['foo', '']);
+            Css.addClassName(d, []);
+            Css.addClassName(d, ['']);
+            Css.addClassName(d, '');
+            ok(true);
+            equal(d.className, 'cenas coisas foo');
+        });
+
         test('toggleClassName', function () {
             Css.toggleClassName(d, 'cenas');
             equal(d.className, 'coisas');
