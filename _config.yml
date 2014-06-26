@@ -110,6 +110,7 @@ sections:
           - title: Ink.UI.DatePicker
           - title: Ink.UI.Drawer
           - title: Ink.UI.Dropdown
+          - title: Ink.UI.Draggable
           - title: Ink.UI.FormValidator
           - title: Ink.UI.FormValidator.2
           - title: Ink.UI.ImageQuery

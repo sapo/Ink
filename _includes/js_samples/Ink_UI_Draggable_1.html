@@ -1,15 +1,24 @@
 <p></p>
 
 {% capture example_code %}
-<div id="myDraggable1" class="ink-alert basic" role="alert">
-    <button class="ink-dismiss">&times;</button>
-    <p><b>Warning:</b> There's a warning for you</p>
+<div id="myDraggable1" class="ink-alert basic">
+    <p>Draggable with <code>{ revert: true }</code></p>
+</div>
+
+<div id="myDraggable2" class="ink-alert basic">
+    <p>Draggable with <code>{ revert: false }</code></p>
 </div>
 
 <script>
     Ink.requireModules(['Ink.UI.Draggable_1'], function (Draggable) {
         new Draggable('#myDraggable1', {
             revert: true,
+            skipChildren: false
+        });
+
+        new Draggable('#myDraggable2', {
+            revert: false,
+            skipChildren: false
         });
     });
 </script>
