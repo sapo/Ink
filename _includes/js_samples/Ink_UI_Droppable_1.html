@@ -1,38 +1,31 @@
-<p></p>
-
 {% capture example_code %}
-<style type="text/css">
-    .droppable-1, .droppable-2 {
-        outline: 1px solid gray;
-        min-height: 2em;  /* When the list is empty, we want to still be able to drag into it. */
-    }
-</style>
-    <h2 class="vertical-top-space fw-300">Two droppables:</h2>
-    <p>Droppable 1:</p>
-    <ul class="droppable-1">
-        <li>Draggable 1</li>
-        <li>Draggable 2</li>
-        <li>Draggable 3</li>
-    </ul>
+<p>Droppable box</p>
+<ul class="droppable-1">
+    <li class="ink-label blue">Draggable 1</li>
+    <li class="ink-label green">Draggable 2</li>
+    <li class="ink-label orange">Draggable 3</li>
+</ul>
 
-    <p>Droppable 2:</p>
-    <ul class="droppable-2">
-    </ul>
+<p>Droppable box</p>
+<ul class="droppable-2">
+</ul>
 
-    <script type="text/javascript">
-        Ink.requireModules(['Ink.UI.Draggable_1', 'Ink.UI.Droppable_1'], function (Draggable, Droppable) {
-            new Draggable('.droppable-1 li:eq(0)', {});
-            new Draggable('.droppable-1 li:eq(1)', {});
-            new Draggable('.droppable-1 li:eq(2)', {});
-            Droppable.add('.droppable-1', {onDrop: 'move', onDropOut: 'revert'});
-            Droppable.add('.droppable-2', {onDrop: 'move', onDropOut: 'revert'});
-        })
-    </script>
-</div>
+<script type="text/javascript">
+    Ink.requireModules(['Ink.UI.Draggable_1', 'Ink.UI.Droppable_1'], function (Draggable, Droppable) {
+        new Draggable('.droppable-1 li:eq(0)', {});
+        new Draggable('.droppable-1 li:eq(1)', {});
+        new Draggable('.droppable-1 li:eq(2)', {});
+        Droppable.add('.droppable-1', {onDrop: 'move', onDropOut: 'revert'});
+        Droppable.add('.droppable-2', {onDrop: 'move', onDropOut: 'revert'});
+    })
+</script>
 {% endcapture %}
 
 <p class="example-title">Demo</p>
+<div class="example">
+<p class="large">Drag the elements between the dropabble boxes</p>
 {{ example_code }}
+</div>
 
 <p class="example-title">Code</p>
 {% highlight html %}
