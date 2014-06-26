@@ -10,7 +10,7 @@
 $base-font-size: 1em !default; // Override default set in Compass' Vertical Rhythm partial.
 
 // The base line height determines the basic unit of vertical rhythm.
-$base-line-height: 1.45 !default; // Override default set in Compass' Vertical Rhythm partial.
+$base-line-height: 1.45 !default; // Override default set in Compass' Vertical Rhythm partial (No unit should be used here).
 
 $vertical-rhythm-unit: ($base-line-height * 90) !default; // Defaults to $base-line-height * 90 (135%) of the $base-font-size
 
@@ -27,16 +27,16 @@ $p-font-size: 1em !default;
 $indent-amount: 25px !default;
 
 // sans-serif font stack
-$sans-serif-font-stack		: "Roboto", Arial, Helvetica, sans-serif !default;
+$sans-serif-font-stack  : "Roboto", Arial, Helvetica, sans-serif !default;
 
 // serif font stack
-$serif-font-stack			: Times, "Times New Roman", serif !default;
+$serif-font-stack       : Times, "Times New Roman", serif !default;
 
 // mono font stack
-$mono-font-stack			: Monaco, 'Andale Mono', 'Courier New', monospace !default;
+$mono-font-stack        : Monaco, 'Andale Mono', 'Courier New', monospace !default;
 
 // condensed font stack
-$condensed-font-stack		: Roboto_condensed, Arial, Helvetica, sans-serif !default;
+$condensed-font-stack   : Roboto_condensed, Arial, Helvetica, sans-serif !default;
 
 // condensed font stack
-$slab-font-stack			: Roboto_slab, Arial, Helvetica, sans-serif !default;
+$slab-font-stack        : Roboto_slab, Arial, Helvetica, sans-serif !default;
