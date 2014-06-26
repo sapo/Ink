@@ -1,0 +1,25 @@
+{% capture example_code %}
+<a href="#part1" class="ink-smooth-scroll" data-margin="40">Scroll to "Part 1"</a>
+
+<p>[lots and lots of content...]</p>
+<p>...</p>
+
+<h1 id="part1">Part 1</h1>
+
+<script>
+   // You don't need to do this if you have autoload.js
+   Ink.requireModules(['Ink.UI.SmoothScroller_1'], function (SmoothScroller) {
+       SmoothScroller.init(/* defaults to a.ink-smooth-scroll, which selects our link above */);
+   });
+</script>
+{% endcapture %}
+
+<p class="example-title">Demo</p>
+<div class="example">
+{{ example_code }}
+</div>
+
+<p class="example-title">Code</p>
+{% highlight html %}
+{{ example_code }}
+{% endhighlight %}
