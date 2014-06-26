@@ -108,9 +108,10 @@ sections:
           - title: Ink.UI.Close
           - title: Ink.UI.Common
           - title: Ink.UI.DatePicker
+          - title: Ink.UI.Draggable
           - title: Ink.UI.Drawer
           - title: Ink.UI.Dropdown
-          - title: Ink.UI.Draggable
+          - title: Ink.UI.Droppable
           - title: Ink.UI.FormValidator
           - title: Ink.UI.FormValidator.2
           - title: Ink.UI.ImageQuery
@@ -118,8 +119,8 @@ sections:
           - title: Ink.UI.Modal
           - title: Ink.UI.Pagination
           - title: Ink.UI.ProgressBar
-          - title: Ink.UI.SortableList
           - title: Ink.UI.SmoothScroller
+          - title: Ink.UI.SortableList
           - title: Ink.UI.Spy
           - title: Ink.UI.Sticky
           - title: Ink.UI.Table
