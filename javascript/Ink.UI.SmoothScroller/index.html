@@ -65,7 +65,7 @@ site_root:  ../
     <section id="Ink_UI_SmoothScroller_1-SmoothScroller-init" class="box box-function">
     <h1 class="fw-300 function-desc">.init([selector])
 
-    <i>method</i></h1><p class="text">Has smooth scrolling applied to relevant elements upon page load.<br><p>Listens to the click event on the document.</p><br><p>Anything which matches the selector will be considered a &quot;link&quot; by SmoothScroller and handled as such.</p><br><p>When a link is clicked, it is checked for several options:</p><br><ul><br><li><code>data-margin=&quot;0&quot;</code> - A margin in pixels -- useful when you have a position:fixed top bar.</li><br><li><code>data-speed=&quot;10&quot;</code> - Inverse speed of the scrolling motion. Smaller is faster.</li><br><li><code>data-change-hash=&quot;true&quot;</code> - Change the URL hash (location.hash) when done scrolling.</li><br></ul></p>
+    <i>method</i></h1><p class="text">Has smooth scrolling applied to relevant elements upon page load.<br>Listens to the click event on the document.<br>Anything which matches the selector will be considered a &quot;link&quot; by SmoothScroller and handled as such.<br><p>When a link is clicked, it is checked for several options:</p><br><ul><br><li><code>data-margin=&quot;0&quot;</code> - A margin in pixels -- useful when you have a position:fixed top bar.</li><br><li><code>data-speed=&quot;10&quot;</code> - Inverse speed of the scrolling motion. Smaller is faster.</li><br><li><code>data-change-hash=&quot;true&quot;</code> - Change the URL hash (location.hash) when done scrolling.</li><br></ul></p>
         <h3>Accepts</h3>
         
         <ul class="params">
@@ -75,7 +75,9 @@ site_root:  ../
                 &#x27;a.scrollableLink,a.ink-smooth-scroll&#x27;{String} Selector string for finding links with smooth scrolling enabled.</li>
         </ul>
 
-</section>
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_UI_SmoothScroller_1.html %}
+	</section>
 
 
     <section id="Ink_UI_SmoothScroller_1-SmoothScroller-changeHash" class="box box-attribute">

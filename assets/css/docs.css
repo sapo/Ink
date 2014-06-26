@@ -1000,7 +1000,7 @@ footer .socialplugins .fb-like span {
 .copyright .SAPOlogo {
   background: url("../img/SAPOlogo.png") no-repeat;
   text-indent: -9999px;
-  color: transparent !important;
+  text-align: left;
   display: inline-block;
   width: 101px;
   min-height: 43px;
