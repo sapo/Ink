@@ -325,7 +325,8 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
                 },
                 'boolean': function (val) {
                     return typeof val === 'boolean';
-                }
+                },
+                object: function () { return true; }
             };
             types['float'] = types.number;
             return types;
