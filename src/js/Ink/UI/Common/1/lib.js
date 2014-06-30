@@ -807,6 +807,19 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
         }
     }
 
+    /**
+     * Ink UI Base Class
+     *
+     * You don't use this class directly, or inherit from it directly.
+     *
+     * See createUIComponent() (in this module) for how to create a UI component and inherit from this. It's not plain old JS inheritance, for several reasons.
+     *
+     * @class Ink.UI.Common.BaseUIComponent
+     * @constructor
+     *
+     * @param element
+     * @param options
+     **/
     function BaseUIComponent(element, options) {
         var constructor = this.constructor;
         var _name = constructor._name;
@@ -909,6 +922,20 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
     // TODO BaseUIComponent.createMany = function (selector) {}
 
     Ink.extendObj(BaseUIComponent.prototype, {
+        /**
+         * Get an UI component's option's value.
+         *
+         * @method getOption
+         * @param name
+         *
+         * @return The option value, or undefined if nothing is found.
+         *
+         * @example
+         *
+         * var myUIComponent = new Modal('#element', { trigger: '#trigger' }); // or anything else inheriting BaseUIComponent
+         * myUIComponent.getOption('trigger');  // -> The trigger element (not the selector string, mind you)
+         *
+         **/
         getOption: function (name) {
             if (this.constructor && !(name in this.constructor._optionDefinition)) {
                 Ink.error('"' + name + '" is not an option for ' + this.constructor._name);
@@ -918,6 +945,17 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
             return this._options[name];
         },
 
+        /**
+         * Get the element associated with an UI component (IE the one you used in the constructor)
+         *
+         * @method getElement
+         * @return {Element} The component's element.
+         *
+         * @example
+         * var myUIComponent = new Modal('#element'); // or anything else inheriting BaseUIComponent
+         * myUIComponent.getElement();  // -> The '#element' (not the selector string, mind you).
+         *
+         **/
         getElement: function () {
             return this._element;
         }
