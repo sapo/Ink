@@ -175,6 +175,35 @@ Ink.requireModules(['Ink.Ext.myExtension_1'], function(myExtension) {
 {% endhighlight %}
 
 
+<h2>Creating your own Ink UI components</h2>
+
+<p>You can create your own components using <a href="/javascript/Ink/#Ink_1-Ink_1-createExt">Ink.createExt</a> and <a href="/javascript/Ink.UI.Common/">Ink.UI.Common.createUIComponent</a>. See the code below, replacing "Donut" with your own component name.</p>
+
+<p>Note: this only applies to <strong>UI-related javascript components</strong>, such as the ones you find in the Ink.UI namespace. The remaining components are created just with Ink.createExt, as seen above.</p>
+
+<p class="example-title">Code</p>
+{% highlight javascript %}
+Ink.createExt('Donut', 1, ['Ink.UI.Common_1'], function(Common) {
+    'use strict';
+
+    var Donut = function( ) {
+        Common.BaseUIComponent.apply( this , arguments );
+    };
+
+    Donut._name = 'SAPOLabs_Donut';
+
+    Donut._optionDefinition = { };
+
+    Donut.prototype = {
+        _init: function( ) { }
+    };
+
+    Common.createUIComponent( Donut );
+
+    return Donut;
+});
+{% endhighlight %}
+
 </section>
 {{~> module~}}
 {{~#each modules~}}
