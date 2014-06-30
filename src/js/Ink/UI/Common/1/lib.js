@@ -56,9 +56,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          *         // It is NOT a DOM Element.
          *     }
          */
-        isDOMElement: function(o) {
-            return o && typeof o === 'object' && 'nodeType' in o && o.nodeType === 1;
-        },
+        isDOMElement: InkElement.isDOMElement,
 
         /**
          * Checks if an item is a valid integer.

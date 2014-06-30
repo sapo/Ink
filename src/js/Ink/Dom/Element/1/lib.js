@@ -36,6 +36,25 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
     var InkElement = {
 
         /**
+         * Checks if something is a DOM Element.
+         *
+         * @method isDOMElement
+         * @static
+         * @param   {Mixed}     o   The object to be checked.
+         * @return  {Boolean}       True if it's a valid DOM Element.
+         * @example
+         *     var el = Ink.s('#element');
+         *     if( InkElement.isDOMElement( el ) === true ){
+         *         // It is a DOM Element.
+         *     } else {
+         *         // It is NOT a DOM Element.
+         *     }
+         */
+        isDOMElement: function(o) {
+            return o !== null && typeof o === 'object' && 'nodeType' in o && o.nodeType === 1;
+        },
+
+        /**
          * Shortcut for `document.getElementById`
          *
          * @method get
