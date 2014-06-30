@@ -811,12 +811,6 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
         var constructor = this.constructor;
         var _name = constructor._name;
 
-        if (this.constructor === BaseUIComponent) {
-            // The caller was "someModule.prototype = new BaseUIComponent" (below, on this module)
-            // so it doesn't make sense to construct anything.
-            return;
-        }
-
         if (!this || this === window) {
             throw new Error('Use "new InkComponent()" instead of "InkComponent()"');
         }
@@ -966,7 +960,17 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
 
         // Extend the instance methods and props
         var _oldProto = theConstructor.prototype;
-        theConstructor.prototype = new BaseUIComponent();
+
+        if (typeof Object.create === 'function') {
+            theConstructor.prototype = Object.create(BaseUIComponent.prototype);
+        } else {
+            theConstructor.prototype = (function hideF() {
+                function F() {}
+                F.prototype = BaseUIComponent.prototype;
+                return new F();
+            }());
+        }
+
         Ink.extendObj(theConstructor.prototype, _oldProto);
         theConstructor.prototype.constructor = theConstructor;
         // Extend static methods
