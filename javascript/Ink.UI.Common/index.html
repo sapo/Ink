@@ -7,6 +7,155 @@ site_root:  ../
     <section><p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p>
 
     <h2 class="fw-300 class-name">
+        Ink.UI.Common.BaseUIComponent <i>class</i>
+        
+    </h2><p>Ink UI Base Class</p>
+<p>You don&#39;t use this class directly, or inherit from it directly.</p>
+<p>See createUIComponent() (in this module) for how to create a UI component and inherit from this. It&#39;s not plain old JS inheritance, for several reasons.</p>
+<table class="props bottom-space">
+        <caption>Methods</caption>
+        <thead>
+            <tr>
+                <th>Method name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Common_1-Ink_UI_Common_BaseUIComponent-BaseUIComponent">new BaseUIComponent(element, options)
+</a>
+                </td>
+                <td><span class="ink-label green">Constructor</span></td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Common_1-Ink_UI_Common_BaseUIComponent-createUIComponent">.createUIComponent(theConstructor, options)
+</a>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Common_1-Ink_UI_Common_BaseUIComponent-getElement">.getElement()
+</a>
+                </td>
+                <td> Get the element associated with an UI component (IE the one you used in the constructor)</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Common_1-Ink_UI_Common_BaseUIComponent-getOption">.getOption(name)
+</a>
+                </td>
+                <td> Get an UI component&#39;s option&#39;s value.</td>
+            </tr></tbody>
+    </table>
+    
+</section>
+
+
+
+    <section id="Ink_UI_Common_1-Ink_UI_Common_BaseUIComponent-BaseUIComponent" class="box box-function">
+    <h1 class="fw-300 function-desc">new Ink.UI.Common.BaseUIComponent(element, options)
+
+    </h1>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>element
+                    <span class="label mandatory"></span></p>
+                </li>
+            <li class="level1">
+                <p>options
+                    <span class="label mandatory"></span></p>
+                </li>
+        </ul>
+
+</section>
+
+    <section id="Ink_UI_Common_1-Ink_UI_Common_BaseUIComponent-createUIComponent" class="box box-function">
+    <h1 class="fw-300 function-desc">.createUIComponent(theConstructor, options)
+
+    <i>method</i></h1>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>theConstructor
+                    <span class="label mandatory"></span></p>
+                UI component constructor. It should have an _init function in its prototype, an _optionDefinition object, and a _name property indicating its name.</li>
+            <li class="level1">
+                <p>options
+                    <span class="label mandatory"></span></p>
+                </li>
+            <li class="level2">
+                <p>options.elementIsOptional
+                    </p>
+                falseWhether the element argument is optional (For example, when the component might work on existing markup or create its own).</li>
+        </ul>
+
+</section>
+
+    <section id="Ink_UI_Common_1-Ink_UI_Common_BaseUIComponent-getElement" class="box box-function">
+    <h1 class="fw-300 function-desc">.getElement()
+
+    <i>method</i></h1><p class="text">Get the element associated with an UI component (IE the one you used in the constructor)</p>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label element"></span> </p>The component's element.
+        </li>
+    </ul>
+    
+<p class="example-title">Example</p>
+  
+{% highlight html %}{% raw %}
+var myUIComponent = new Modal('#element'); // or anything else inheriting BaseUIComponent
+myUIComponent.getElement();  // -> The '#element' (not the selector string, mind you).
+
+{% endraw %}{% endhighlight %}
+
+
+
+</section>
+
+    <section id="Ink_UI_Common_1-Ink_UI_Common_BaseUIComponent-getOption" class="box box-function">
+    <h1 class="fw-300 function-desc">.getOption(name)
+
+    <i>method</i></h1><p class="text">Get an UI component&#39;s option&#39;s value.</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>name
+                    <span class="label mandatory"></span></p>
+                </li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p></p>The option value, or undefined if nothing is found.
+        </li>
+    </ul>
+    
+<p class="example-title">Example</p>
+  
+{% highlight html %}{% raw %}
+
+var myUIComponent = new Modal('#element', { trigger: '#trigger' }); // or anything else inheriting BaseUIComponent
+myUIComponent.getOption('trigger');  // -> The trigger element (not the selector string, mind you)
+
+{% endraw %}{% endhighlight %}
+
+
+
+</section>
+
+
+
+        <h2 class="fw-300 class-name">
         Ink.UI.Common_1 <i>class</i>
         
     </h2><table class="props bottom-space"><caption>Functions</caption>
@@ -45,13 +194,6 @@ site_root:  ../
 </a>
                 </td>
                 <td> Deep copy (clone) an object.</td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="#Ink_UI_Common_1-Ink_UI_Common_1-createUIComponent">.createUIComponent(theConstructor, options)
-</a>
-                </td>
-                <td></td>
             </tr>
             <tr>
                 <td>
@@ -327,29 +469,6 @@ site_root:  ../
 {% endraw %}{% endhighlight %}
 
 
-
-</section>
-
-    <section id="Ink_UI_Common_1-Ink_UI_Common_1-createUIComponent" class="box box-function">
-    <h1 class="fw-300 function-desc">.createUIComponent(theConstructor, options)
-
-    <i>method</i></h1>
-        <h3>Accepts</h3>
-        
-        <ul class="params">
-            <li class="level1">
-                <p>theConstructor
-                    <span class="label mandatory"></span></p>
-                UI component constructor. It should have an _init function in its prototype, an _optionDefinition object, and a _name property indicating its name.</li>
-            <li class="level1">
-                <p>options
-                    <span class="label mandatory"></span></p>
-                </li>
-            <li class="level2">
-                <p>options.elementIsOptional
-                    </p>
-                falseWhether the element argument is optional (For example, when the component might work on existing markup or create its own).</li>
-        </ul>
 
 </section>
 

@@ -244,6 +244,13 @@ site_root:  ../
             </tr>
             <tr>
                 <td>
+                    <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-isDOMElement">.isDOMElement(o)
+</a>
+                </td>
+                <td> Checks if something is a DOM Element.</td>
+            </tr>
+            <tr>
+                <td>
                     <a href="#Ink_Dom_Element_1-Ink_Dom_Element_1-isHidden">.isHidden(element)
 </a>
                 </td>
@@ -1326,6 +1333,40 @@ site_root:  ../
 <!--<h3>Samples</h3>-->
 		{% include js_samples/Ink_Dom_Element_1_isAncestorOf.html %}
 	</section>
+
+    <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-isDOMElement" class="box box-function">
+    <h1 class="fw-300 function-desc">.isDOMElement(o)
+
+    <i>method</i></h1><p class="text">Checks if something is a DOM Element.</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>o
+                    <span class="label mandatory"></span><span class="label mixed"></span></p>
+                The object to be checked.</li>
+        </ul>
+    <h3>Returns</h3>
+    <ul class="params">
+        <li class="return">
+            <p><span class="label boolean"></span> </p>True if it's a valid DOM Element.
+        </li>
+    </ul>
+    
+<p class="example-title">Example</p>
+  
+{% highlight html %}{% raw %}
+    var el = Ink.s('#element');
+    if( InkElement.isDOMElement( el ) === true ){
+        // It is a DOM Element.
+    } else {
+        // It is NOT a DOM Element.
+    }
+{% endraw %}{% endhighlight %}
+
+
+
+</section>
 
     <section id="Ink_Dom_Element_1-Ink_Dom_Element_1-isHidden" class="box box-function">
     <h1 class="fw-300 function-desc">.isHidden(element)
