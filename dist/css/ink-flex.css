@@ -6299,7 +6299,7 @@ th {
 }
 @media screen and (min-width: 1261px) {
   html {
-    font-size: 0.97em;
+    font-size: 1.08em;
   }
   html:after {
     content: '[{"name":"xlarge", "size":{"min":"1261px","max":""}},{"name":"large", "size":{"min":"961px","max":"1260px"}},{"name":"medium", "size":{"min":"641px","max":"960px"}},{"name":"small", "size":{"min":"321px","max":"640px"}},{"name":"tiny", "size":{"min":"","max":"320px"}}]';
@@ -6308,7 +6308,7 @@ th {
 }
 @media screen and (min-width: 961px) and (max-width: 1260px) {
   html {
-    font-size: 0.97em;
+    font-size: 1.05em;
   }
   html:after {
     content: '[{"name":"xlarge", "size":{"min":"1261px","max":""}},{"name":"large", "size":{"min":"961px","max":"1260px"}},{"name":"medium", "size":{"min":"641px","max":"960px"}},{"name":"small", "size":{"min":"321px","max":"640px"}},{"name":"tiny", "size":{"min":"","max":"320px"}}]';
@@ -6317,7 +6317,7 @@ th {
 }
 @media screen and (min-width: 641px) and (max-width: 960px) {
   html {
-    font-size: 0.97em;
+    font-size: 1em;
   }
   html:after {
     content: '[{"name":"xlarge", "size":{"min":"1261px","max":""}},{"name":"large", "size":{"min":"961px","max":"1260px"}},{"name":"medium", "size":{"min":"641px","max":"960px"}},{"name":"small", "size":{"min":"321px","max":"640px"}},{"name":"tiny", "size":{"min":"","max":"320px"}}]';
@@ -6326,7 +6326,7 @@ th {
 }
 @media screen and (min-width: 321px) and (max-width: 640px) {
   html {
-    font-size: 0.97em;
+    font-size: 0.98em;
   }
   html:after {
     content: '[{"name":"xlarge", "size":{"min":"1261px","max":""}},{"name":"large", "size":{"min":"961px","max":"1260px"}},{"name":"medium", "size":{"min":"641px","max":"960px"}},{"name":"small", "size":{"min":"321px","max":"640px"}},{"name":"tiny", "size":{"min":"","max":"320px"}}]';

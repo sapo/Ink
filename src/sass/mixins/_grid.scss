@@ -639,13 +639,7 @@
 
 @mixin css-js-bridge($breakpoints) {
 
-    // html {
-    //     &:after {
-    //         content: js-bridge($breakpoints);
-    //         display: none;
-    //     }
-    //     font-size: $base-font-size;
-    // }
+    $bps: $breakpoints;
 
     @each $breakpoint in $breakpoints {
 
@@ -662,7 +656,7 @@
             @media screen and (min-width: $minimum-width) {
                 html {
                     &:after {
-                        content: js-bridge($breakpoints);
+                        content: js-bridge($grid-breakpoints);
                         display: none;
                     }
                     font-size: $base-font-size;
@@ -674,7 +668,7 @@
             @media screen and (min-width: $minimum-width) and (max-width: $maximum-width) {
                 html {
                     &:after {
-                        content: js-bridge($breakpoints);
+                        content: js-bridge($grid-breakpoints);
                         display: none;
                     }
                     font-size: $base-font-size;
@@ -686,7 +680,7 @@
             @media screen and (max-width: $maximum-width) {
                 html {
                     &:after {
-                        content: js-bridge($breakpoints);
+                        content: js-bridge($grid-breakpoints);
                         display: none;
                     }
                     font-size: $base-font-size;

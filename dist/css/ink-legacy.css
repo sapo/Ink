@@ -4637,7 +4637,7 @@ html.no-flexboxlegacy [class~=all-100] {
 @media screen and (min-width: 1261px) {
   html.no-flexbox html,
   html.no-flexboxlegacy html {
-    font-size: 0.97em;
+    font-size: 1.08em;
   }
   html.no-flexbox html:after,
   html.no-flexboxlegacy html:after {
@@ -4648,7 +4648,7 @@ html.no-flexboxlegacy [class~=all-100] {
 @media screen and (min-width: 961px) and (max-width: 1260px) {
   html.no-flexbox html,
   html.no-flexboxlegacy html {
-    font-size: 0.97em;
+    font-size: 1.05em;
   }
   html.no-flexbox html:after,
   html.no-flexboxlegacy html:after {
@@ -4659,7 +4659,7 @@ html.no-flexboxlegacy [class~=all-100] {
 @media screen and (min-width: 641px) and (max-width: 960px) {
   html.no-flexbox html,
   html.no-flexboxlegacy html {
-    font-size: 0.97em;
+    font-size: 1em;
   }
   html.no-flexbox html:after,
   html.no-flexboxlegacy html:after {
@@ -4670,7 +4670,7 @@ html.no-flexboxlegacy [class~=all-100] {
 @media screen and (min-width: 321px) and (max-width: 640px) {
   html.no-flexbox html,
   html.no-flexboxlegacy html {
-    font-size: 0.97em;
+    font-size: 0.98em;
   }
   html.no-flexbox html:after,
   html.no-flexboxlegacy html:after {
