@@ -639,6 +639,14 @@
 
 @mixin css-js-bridge($breakpoints) {
 
+    // html {
+    //     &:after {
+    //         content: js-bridge($breakpoints);
+    //         display: none;
+    //     }
+    //     font-size: $base-font-size;
+    // }
+
     @each $breakpoint in $breakpoints {
 
         $media:             nth($breakpoint,1);
@@ -649,11 +657,12 @@
         $base-font-size:    nth($breakpoint,6);
         $no-media-query:    nth($breakpoint,7);
 
+
         @if $minimum-width and not $maximum-width {
-            @media #{$media} and (min-width: $minimum-width) {
+            @media screen and (min-width: $minimum-width) {
                 html {
                     &:after {
-                        content: '{"name":"#{$class-name}", "size":{"min":"#{$minimum-width}","max":"#{$maximum-width}"}}';
+                        content: js-bridge($breakpoints);
                         display: none;
                     }
                     font-size: $base-font-size;
@@ -662,10 +671,10 @@
         }
 
         @if $minimum-width and $maximum-width {
-            @media #{$media} and (min-width: $minimum-width) and (max-width: $maximum-width) {
+            @media screen and (min-width: $minimum-width) and (max-width: $maximum-width) {
                 html {
                     &:after {
-                        content: '{"name":"#{$class-name}", "size":{"min":"#{$minimum-width}","max":"#{$maximum-width}"}}';
+                        content: js-bridge($breakpoints);
                         display: none;
                     }
                     font-size: $base-font-size;
@@ -674,22 +683,10 @@
         }
 
         @if not $minimum-width and $maximum-width {
-            @media #{$media} and (max-width: $maximum-width) {
+            @media screen and (max-width: $maximum-width) {
                 html {
                     &:after {
-                        content: '{"name":"#{$class-name}", "size":{"min":"#{$minimum-width}","max":"#{$maximum-width}"}}';
-                        display: none;
-                    }
-                    font-size: $base-font-size;
-                }
-            }
-        }
-
-        @if not $minimum-width and not $maximum-width {
-            @media #{$media} {
-                html {
-                    &:after {
-                        content: '{"name":"#{$class-name}", "size":{"min":"#{$minimum-width}","max":"#{$maximum-width}"}}';
+                        content: js-bridge($breakpoints);
                         display: none;
                     }
                     font-size: $base-font-size;

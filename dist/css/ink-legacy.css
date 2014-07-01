@@ -144,6 +144,12 @@ html.no-flexboxlegacy .all-15 {
   float: left;
   clear: none;
 }
+html.no-flexbox .all-16,
+html.no-flexboxlegacy .all-16 {
+  width: 16.66%;
+  float: left;
+  clear: none;
+}
 html.no-flexbox .all-20,
 html.no-flexboxlegacy .all-20 {
   width: 20%;
@@ -284,6 +290,10 @@ html.no-flexboxlegacy [class~=all-100] {
   html.no-flexbox .xlarge-15,
   html.no-flexboxlegacy .xlarge-15 {
     width: 15%;
+  }
+  html.no-flexbox .xlarge-16,
+  html.no-flexboxlegacy .xlarge-16 {
+    width: 16.66%;
   }
   html.no-flexbox .xlarge-20,
   html.no-flexboxlegacy .xlarge-20 {
@@ -1154,6 +1164,10 @@ html.no-flexboxlegacy [class~=all-100] {
   html.no-flexboxlegacy .large-15 {
     width: 15%;
   }
+  html.no-flexbox .large-16,
+  html.no-flexboxlegacy .large-16 {
+    width: 16.66%;
+  }
   html.no-flexbox .large-20,
   html.no-flexboxlegacy .large-20 {
     width: 20%;
@@ -2022,6 +2036,10 @@ html.no-flexboxlegacy [class~=all-100] {
   html.no-flexbox .medium-15,
   html.no-flexboxlegacy .medium-15 {
     width: 15%;
+  }
+  html.no-flexbox .medium-16,
+  html.no-flexboxlegacy .medium-16 {
+    width: 16.66%;
   }
   html.no-flexbox .medium-20,
   html.no-flexboxlegacy .medium-20 {
@@ -2892,6 +2910,10 @@ html.no-flexboxlegacy [class~=all-100] {
   html.no-flexboxlegacy .small-15 {
     width: 15%;
   }
+  html.no-flexbox .small-16,
+  html.no-flexboxlegacy .small-16 {
+    width: 16.66%;
+  }
   html.no-flexbox .small-20,
   html.no-flexboxlegacy .small-20 {
     width: 20%;
@@ -3761,6 +3783,10 @@ html.no-flexboxlegacy [class~=all-100] {
   html.no-flexboxlegacy .tiny-15 {
     width: 15%;
   }
+  html.no-flexbox .tiny-16,
+  html.no-flexboxlegacy .tiny-16 {
+    width: 16.66%;
+  }
   html.no-flexbox .tiny-20,
   html.no-flexboxlegacy .tiny-20 {
     width: 20%;
@@ -4611,44 +4637,44 @@ html.no-flexboxlegacy [class~=all-100] {
 @media screen and (min-width: 1261px) {
   html.no-flexbox html,
   html.no-flexboxlegacy html {
-    font-size: 1.08em;
+    font-size: 0.97em;
   }
   html.no-flexbox html:after,
   html.no-flexboxlegacy html:after {
-    content: '{"name":"xlarge", "size":{"min":"1261px","max":""}}';
+    content: '[{"name":"xlarge", "size":{"min":"1261px","max":""}},{"name":"large", "size":{"min":"961px","max":"1260px"}},{"name":"medium", "size":{"min":"641px","max":"960px"}},{"name":"small", "size":{"min":"321px","max":"640px"}},{"name":"tiny", "size":{"min":"","max":"320px"}}]';
     display: none;
   }
 }
 @media screen and (min-width: 961px) and (max-width: 1260px) {
   html.no-flexbox html,
   html.no-flexboxlegacy html {
-    font-size: 1.05em;
+    font-size: 0.97em;
   }
   html.no-flexbox html:after,
   html.no-flexboxlegacy html:after {
-    content: '{"name":"large", "size":{"min":"961px","max":"1260px"}}';
+    content: '[{"name":"xlarge", "size":{"min":"1261px","max":""}},{"name":"large", "size":{"min":"961px","max":"1260px"}},{"name":"medium", "size":{"min":"641px","max":"960px"}},{"name":"small", "size":{"min":"321px","max":"640px"}},{"name":"tiny", "size":{"min":"","max":"320px"}}]';
     display: none;
   }
 }
 @media screen and (min-width: 641px) and (max-width: 960px) {
   html.no-flexbox html,
   html.no-flexboxlegacy html {
-    font-size: 1em;
+    font-size: 0.97em;
   }
   html.no-flexbox html:after,
   html.no-flexboxlegacy html:after {
-    content: '{"name":"medium", "size":{"min":"641px","max":"960px"}}';
+    content: '[{"name":"xlarge", "size":{"min":"1261px","max":""}},{"name":"large", "size":{"min":"961px","max":"1260px"}},{"name":"medium", "size":{"min":"641px","max":"960px"}},{"name":"small", "size":{"min":"321px","max":"640px"}},{"name":"tiny", "size":{"min":"","max":"320px"}}]';
     display: none;
   }
 }
 @media screen and (min-width: 321px) and (max-width: 640px) {
   html.no-flexbox html,
   html.no-flexboxlegacy html {
-    font-size: 0.98em;
+    font-size: 0.97em;
   }
   html.no-flexbox html:after,
   html.no-flexboxlegacy html:after {
-    content: '{"name":"small", "size":{"min":"321px","max":"640px"}}';
+    content: '[{"name":"xlarge", "size":{"min":"1261px","max":""}},{"name":"large", "size":{"min":"961px","max":"1260px"}},{"name":"medium", "size":{"min":"641px","max":"960px"}},{"name":"small", "size":{"min":"321px","max":"640px"}},{"name":"tiny", "size":{"min":"","max":"320px"}}]';
     display: none;
   }
 }
@@ -4659,7 +4685,7 @@ html.no-flexboxlegacy [class~=all-100] {
   }
   html.no-flexbox html:after,
   html.no-flexboxlegacy html:after {
-    content: '{"name":"tiny", "size":{"min":"","max":"320px"}}';
+    content: '[{"name":"xlarge", "size":{"min":"1261px","max":""}},{"name":"large", "size":{"min":"961px","max":"1260px"}},{"name":"medium", "size":{"min":"641px","max":"960px"}},{"name":"small", "size":{"min":"321px","max":"640px"}},{"name":"tiny", "size":{"min":"","max":"320px"}}]';
     display: none;
   }
 }

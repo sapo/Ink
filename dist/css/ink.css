@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /**
  * Ink
  *
@@ -43,26 +44,26 @@
 /**
  * Images class names
  */
-/** 
+/**
  * Sets the grids maximum width
  * @var $grid-max-width (pixels|ems|percentage)
  */
 /*!
  * Sets the grids breakpoint
- * 
+ *
  * To add a new break point you'll need to add an element to the list.
- * 
+ *
  * Here's an example: ( class-name-prefix, minimum-width, maximum-width, gutter-width, no-media-query).
- * 
+ *
  * media: media type.
  * class-name-prefix: this is the prefix used in tons of inks classes i.e.: large-100, small-40, etc.
- * minimum-width: (pixels|null) the minimum width for the breakpoint 
- * maximum-width: (pixels|null) the maximum width for the breakpoint 
- * gutter-width: (ems) the width for the gutters (space between grid columns) for the breakpoint 
+ * minimum-width: (pixels|null) the minimum width for the breakpoint
+ * maximum-width: (pixels|null) the maximum width for the breakpoint
+ * gutter-width: (ems) the width for the gutters (space between grid columns) for the breakpoint
  * no-media-query: (true|false) if you need to support IE8 set this to true on a single breakpoint.
  *                 Since IE8 does not support the @media statement leaving one of the breakpoints
  *                 outside a @media query let's you use the grid in IE8.
- *  
+ *
  */
 .show-all {
   display: inherit;
@@ -1137,6 +1138,12 @@ th {
   clear: none;
 }
 
+.all-16 {
+  width: 16.66%;
+  float: left;
+  clear: none;
+}
+
 .all-20 {
   width: 20%;
   float: left;
@@ -1276,6 +1283,10 @@ th {
 
   .xlarge-15 {
     width: 15%;
+  }
+
+  .xlarge-16 {
+    width: 16.66%;
   }
 
   .xlarge-20 {
@@ -2097,6 +2108,10 @@ th {
     width: 15%;
   }
 
+  .large-16 {
+    width: 16.66%;
+  }
+
   .large-20 {
     width: 20%;
   }
@@ -2914,6 +2929,10 @@ th {
 
   .medium-15 {
     width: 15%;
+  }
+
+  .medium-16 {
+    width: 16.66%;
   }
 
   .medium-20 {
@@ -3735,6 +3754,10 @@ th {
     width: 15%;
   }
 
+  .small-16 {
+    width: 16.66%;
+  }
+
   .small-20 {
     width: 20%;
   }
@@ -4554,6 +4577,10 @@ th {
     width: 15%;
   }
 
+  .tiny-16 {
+    width: 16.66%;
+  }
+
   .tiny-20 {
     width: 20%;
   }
@@ -5353,37 +5380,37 @@ th {
 }
 @media screen and (min-width: 1261px) {
   html {
-    font-size: 1.08em;
+    font-size: 0.97em;
   }
   html:after {
-    content: '{"name":"xlarge", "size":{"min":"1261px","max":""}}';
+    content: '[{"name":"xlarge", "size":{"min":"1261px","max":""}},{"name":"large", "size":{"min":"961px","max":"1260px"}},{"name":"medium", "size":{"min":"641px","max":"960px"}},{"name":"small", "size":{"min":"321px","max":"640px"}},{"name":"tiny", "size":{"min":"","max":"320px"}}]';
     display: none;
   }
 }
 @media screen and (min-width: 961px) and (max-width: 1260px) {
   html {
-    font-size: 1.05em;
+    font-size: 0.97em;
   }
   html:after {
-    content: '{"name":"large", "size":{"min":"961px","max":"1260px"}}';
+    content: '[{"name":"xlarge", "size":{"min":"1261px","max":""}},{"name":"large", "size":{"min":"961px","max":"1260px"}},{"name":"medium", "size":{"min":"641px","max":"960px"}},{"name":"small", "size":{"min":"321px","max":"640px"}},{"name":"tiny", "size":{"min":"","max":"320px"}}]';
     display: none;
   }
 }
 @media screen and (min-width: 641px) and (max-width: 960px) {
   html {
-    font-size: 1em;
+    font-size: 0.97em;
   }
   html:after {
-    content: '{"name":"medium", "size":{"min":"641px","max":"960px"}}';
+    content: '[{"name":"xlarge", "size":{"min":"1261px","max":""}},{"name":"large", "size":{"min":"961px","max":"1260px"}},{"name":"medium", "size":{"min":"641px","max":"960px"}},{"name":"small", "size":{"min":"321px","max":"640px"}},{"name":"tiny", "size":{"min":"","max":"320px"}}]';
     display: none;
   }
 }
 @media screen and (min-width: 321px) and (max-width: 640px) {
   html {
-    font-size: 0.98em;
+    font-size: 0.97em;
   }
   html:after {
-    content: '{"name":"small", "size":{"min":"321px","max":"640px"}}';
+    content: '[{"name":"xlarge", "size":{"min":"1261px","max":""}},{"name":"large", "size":{"min":"961px","max":"1260px"}},{"name":"medium", "size":{"min":"641px","max":"960px"}},{"name":"small", "size":{"min":"321px","max":"640px"}},{"name":"tiny", "size":{"min":"","max":"320px"}}]';
     display: none;
   }
 }
@@ -5392,7 +5419,7 @@ th {
     font-size: 0.97em;
   }
   html:after {
-    content: '{"name":"tiny", "size":{"min":"","max":"320px"}}';
+    content: '[{"name":"xlarge", "size":{"min":"1261px","max":""}},{"name":"large", "size":{"min":"961px","max":"1260px"}},{"name":"medium", "size":{"min":"641px","max":"960px"}},{"name":"small", "size":{"min":"321px","max":"640px"}},{"name":"tiny", "size":{"min":"","max":"320px"}}]';
     display: none;
   }
 }
