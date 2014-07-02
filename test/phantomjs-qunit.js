@@ -51,24 +51,26 @@ page.open(phantom.args[0], function(status){
         console.log("Unable to access network");
         phantom.exit(1);
     } else {
-        waitFor(function(){
-            return page.evaluate(function(){
-                var el = document.getElementById('qunit-testresult');
-                if (el && el.innerText.match('completed')) {
-                    return true;
-                }
-                return false;
+        setTimeout(function () {
+            waitFor(function(){
+                return page.evaluate(function(){
+                    var el = document.getElementById('qunit-testresult');
+                    if (el.getElementsByClassName('failed').length) {
+                        return true;
+                    }
+                    return false;
+                });
+            }, function(){
+                var failedNum = page.evaluate(function(){
+                    var el = document.getElementById('qunit-testresult');
+                    console.log('# ' + el.innerText.replace(/(\r|\n)/g, '\n# '));
+                    try {
+                        return el.getElementsByClassName('failed')[0].innerHTML;
+                    } catch (e) { }
+                    return 10000;
+                });
+                phantom.exit((parseInt(failedNum, 10) > 0) ? 1 : 0);
             });
-        }, function(){
-            var failedNum = page.evaluate(function(){
-                var el = document.getElementById('qunit-testresult');
-                console.log('# ' + el.innerText.replace(/(\r|\n)/g, '\n# '));
-                try {
-                    return el.getElementsByClassName('failed')[0].innerHTML;
-                } catch (e) { }
-                return 10000;
-            });
-            phantom.exit((parseInt(failedNum, 10) > 0) ? 1 : 0);
-        });
+        }, 300);
     }
 });
