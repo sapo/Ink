@@ -584,7 +584,7 @@
          * @return destination object, enriched with defaults from the sources
          * @sample Ink_1_extendObj.html 
          */
-        extendObj: function(destination, source) {
+        extendObj: function(destination/*, source... */) {
             var sources = [].slice.call(arguments, 1);
 
             for (var i = 0, len = sources.length; i < len; i++) {

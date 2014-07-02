@@ -371,16 +371,17 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          * @static
          */
         unique: function(arr){
-            if(!Array.prototype.indexOf){ //IE8 slower alternative
-                var newArr = []
-                this.forEach(this.convert(arr),function(i){
-                    if(!this.inArray(i,newArr)){
+            if(!Array.prototype.lastIndexOf){ //IE8 slower alternative
+                var newArr = [];
+
+                InkArray.forEach(InkArray.convert(arr), function(i){
+                    if(!InkArray.inArray(i,newArr)){
                         newArr.push(i);
                     }
-                },this);
+                });
                 return newArr;
             }//else
-            return this.filter(this.convert(arr), function (e, i, arr) {
+            return InkArray.filter(InkArray.convert(arr), function (e, i, arr) {
                             return arr.lastIndexOf(e) === i;
                         });
         },
