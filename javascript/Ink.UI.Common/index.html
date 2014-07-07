@@ -49,6 +49,13 @@ site_root:  ../
 </a>
                 </td>
                 <td> Get an UI component&#39;s option&#39;s value.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#Ink_UI_Common_1-Ink_UI_Common_BaseUIComponent-getOption">.getOption(name, value)
+</a>
+                </td>
+                <td> Sets an option&#39;s value</td>
             </tr></tbody>
     </table>
     
@@ -147,6 +154,34 @@ myUIComponent.getElement();  // -> The '#element' (not the selector string, mind
 var myUIComponent = new Modal('#element', { trigger: '#trigger' }); // or anything else inheriting BaseUIComponent
 myUIComponent.getOption('trigger');  // -> The trigger element (not the selector string, mind you)
 
+{% endraw %}{% endhighlight %}
+
+
+
+</section>
+
+    <section id="Ink_UI_Common_1-Ink_UI_Common_BaseUIComponent-getOption" class="box box-function">
+    <h1 class="fw-300 function-desc">.getOption(name, value)
+
+    <i>method</i></h1><p class="text">Sets an option&#39;s value</p>
+        <h3>Accepts</h3>
+        
+        <ul class="params">
+            <li class="level1">
+                <p>name
+                    <span class="label mandatory"></span></p>
+                </li>
+            <li class="level1">
+                <p>value
+                    <span class="label mandatory"></span></p>
+                </li>
+        </ul>
+<p class="example-title">Example</p>
+  
+{% highlight html %}{% raw %}
+
+var myUIComponent = new Modal(...);
+myUIComponent.setOption('trigger', '#some-element');
 {% endraw %}{% endhighlight %}
 
 
