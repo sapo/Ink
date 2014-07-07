@@ -665,6 +665,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
 
             if (!this.isDOMElement(el)) { throw new TypeError('Ink.UI.Common.registerInstance: The element passed in is not a DOM element!'); }
 
+            // [todo] this belongs in the BaseUIComponent's initialization
             if (Common._warnDoubleInstantiation(el, inst) === false) {
                 return false;
             }
@@ -944,6 +945,27 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
             }
 
             return this._options[name];
+        },
+
+        /**
+         * Sets an option's value
+         *
+         * @method getOption
+         * @param name
+         * @param value
+         *
+         * @example
+         *
+         * var myUIComponent = new Modal(...);
+         * myUIComponent.setOption('trigger', '#some-element');
+         **/
+        setOption: function (name, value) {
+            if (this.constructor && !(name in this.constructor._optionDefinition)) {
+                Ink.error('"' + name + ' is not an option for ' + this.constructor._name);
+                return
+            }
+
+            this._options[name] = value;
         },
 
         /**

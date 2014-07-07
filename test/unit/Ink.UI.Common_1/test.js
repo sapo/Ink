@@ -434,5 +434,12 @@ Ink.requireModules(['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1', '
         strictEqual(inst.getElement(), testEl);
     });
 
+    test('setOption', function () {
+        var inst = new testFunc(testEl);
+
+        strictEqual(inst.getOption('foo'), null);
+        inst.setOption('foo', 'baz');
+        strictEqual(inst.getOption('foo'), 'baz');
+    })
 });
 
