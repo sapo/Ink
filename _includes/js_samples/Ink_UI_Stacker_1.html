@@ -1,0 +1,43 @@
+<h2 class="fw-300">Basic usage</h2>
+<p>To view a basic modal window, click the the example modal button. Then check the example code below to know how it's generated.</p>
+{% capture example_code %}
+<div id="stacker-container" class="column-group">  <!-- Stacker element -->
+    <div class="xlarge-33 large-33 medium-50 tiny-100 stacker-column"> <!-- Column element ('.stacker-column' is the default selector) -->
+        <div id="a" class="stacker-item">a</div> <!-- Item ('.stacker-item' is the default selector) -->
+        <div id="d" class="stacker-item">d</div>
+        <div id="g" class="stacker-item">g</div>
+    </div>
+    <div class="xlarge-33 large-33 medium-50 tiny-100 hide-small stacker-column">
+        <div id="b" class="stacker-item">b</div>
+        <div id="e" class="stacker-item">e</div>
+        <div id="h" class="stacker-item">h</div>
+    </div>
+    <div class="xlarge-33 large-33 medium-50 tiny-100 hide-medium hide-small stacker-column">
+        <div id="c" class="stacker-item">c</div>
+        <div id="f" class="stacker-item">f</div>
+        <div id="i" class="stacker-item">i</div>
+    </div>
+</div>
+
+<script>
+Ink.requireModules(['Ink.UI.Stacker_1'], function (Stacker) {
+    var stacker = new Stacker('#stacker-container');
+
+    var newItem = document.createElement('div');
+    newItem.id = 'j';
+    newItem.className = 'stacker-item';
+    newItem.textContent = 'j';
+    stacker.addItem(newItem);
+    stacker.reloadItems();
+    // Keep the "stacker" variable around if you want to call addItem and reloadItems
+});
+</script>
+{% endcapture %}
+
+{{ example_code }}
+
+<p class="example-title">Code</p>
+{% highlight html %}
+{{ example_code }}
+{% endhighlight %}
+

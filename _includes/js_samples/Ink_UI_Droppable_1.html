@@ -12,9 +12,10 @@
 
 <script type="text/javascript">
     Ink.requireModules(['Ink.UI.Draggable_1', 'Ink.UI.Droppable_1'], function (Draggable, Droppable) {
-        new Draggable('.droppable-1 li:eq(0)', {});
-        new Draggable('.droppable-1 li:eq(1)', {});
-        new Draggable('.droppable-1 li:eq(2)', {});
+        draggableLiElements = Ink.ss('.droppable-1 li');
+        new Draggable(draggableLiElements[0], {})
+        new Draggable(draggableLiElements[1], {})
+        new Draggable(draggableLiElements[2], {})
         Droppable.add('.droppable-1', {onDrop: 'move', onDropOut: 'revert'});
         Droppable.add('.droppable-2', {onDrop: 'move', onDropOut: 'revert'});
     })

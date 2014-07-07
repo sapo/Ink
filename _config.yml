@@ -122,6 +122,7 @@ sections:
           - title: Ink.UI.SmoothScroller
           - title: Ink.UI.SortableList
           - title: Ink.UI.Spy
+          - title: Ink.UI.Stacker
           - title: Ink.UI.Sticky
           - title: Ink.UI.Table
           - title: Ink.UI.Tabs
