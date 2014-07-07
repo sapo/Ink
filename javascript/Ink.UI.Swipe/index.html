@@ -7,10 +7,24 @@ site_root:  ../
     <section><p><i class="fa fa-leaf"></i> All samples are using <code>Ink.requireModules</code>, please read how to use it at <a href="/javascript/Ink/#Ink_1-Ink_1-requireModules">Ink.requireModules section</a></p>
 
     <h2 class="fw-300 class-name">
-        Ink.UI.Swipe_1 <i>class</i>
+        Ink.UI.Swipe <i>class</i>
         
     </h2><p>Subscribe swipe gestures.</p>
 <p>Supports filtering swipes be any combination of the criteria supported in the options.</p>
+<hr>
+<h2 id="arguments-received-by-the-callbacks">Arguments received by the callbacks</h2>
+<p>The <code>onStart</code>, <code>onMove</code>, and <code>onEnd</code> options receive as argument an object containing:</p>
+<ul>
+<li><code>event</code>: the DOMEvent object</li>
+<li><code>element</code>: the target element</li>
+<li><code>Instance</code>: the <code>Ink.UI.Swipe_1</code> instance</li>
+<li><code>position</code>: <code>Array</code> with <code>[x, y]</code> coordinates of current position</li>
+<li><code>dt</code>: Time passed between now and the first event (onMove only)</li>
+<li><code>gesture</code>: an Array containing [x,y] coordinates of every touchmove event received (only if options.storeGesture is enabled) (onEnd only)</li>
+<li><code>time</code>: an Array containing all the <code>dt</code> values for every touchmove event (onEnd only)</li>
+<li><code>overallMovement</code>: X and Y distance traveled by the touch movement (<code>[x, y]</code>) (onEnd only)</li>
+<li><code>overallTime</code>: total time passed (onEnd only)</li>
+</ul>
 <table class="props bottom-space">
         <caption>Methods</caption>
         <thead>
@@ -23,7 +37,7 @@ site_root:  ../
         <tbody>
             <tr>
                 <td>
-                    <a href="#Ink_UI_Swipe_1-Ink_UI_Swipe_1-Swipe_1">new Swipe_1(el, options)
+                    <a href="#Ink_UI_Swipe_1-Ink_UI_Swipe-Swipe">new Swipe(el, options)
 </a>
                 </td>
                 <td><span class="ink-label green">Constructor</span></td>
@@ -34,8 +48,8 @@ site_root:  ../
 
 
 
-    <section id="Ink_UI_Swipe_1-Ink_UI_Swipe_1-Swipe_1" class="box box-function">
-    <h1 class="fw-300 function-desc">new Ink.UI.Swipe_1(el, options)
+    <section id="Ink_UI_Swipe_1-Ink_UI_Swipe-Swipe" class="box box-function">
+    <h1 class="fw-300 function-desc">new Ink.UI.Swipe(el, options)
 
     </h1>
         <h3>Accepts</h3>
