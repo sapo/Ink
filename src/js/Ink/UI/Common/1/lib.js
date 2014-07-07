@@ -962,7 +962,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
         setOption: function (name, value) {
             if (this.constructor && !(name in this.constructor._optionDefinition)) {
                 Ink.error('"' + name + ' is not an option for ' + this.constructor._name);
-                return
+                return;
             }
 
             this._options[name] = value;
