@@ -1,5 +1,5 @@
 <h2 class="fw-300">Basic usage</h2>
-<p>To view a basic modal window, click the the example modal button. Then check the example code below to know how it's generated.</p>
+<p>The below stacks are reorganized into a smaller number of stacks as the viewport gets smaller. The example also shows how you can add more elements to the stack.</p>
 {% capture example_code %}
 <div id="stacker-container" class="column-group">  <!-- Stacker element -->
     <div class="xlarge-33 large-33 medium-50 tiny-100 stacker-column"> <!-- Column element ('.stacker-column' is the default selector) -->
@@ -21,15 +21,16 @@
 
 <script>
 Ink.requireModules(['Ink.UI.Stacker_1'], function (Stacker) {
+    // Keep the "stacker" variable around if you want to call addItem and reloadItems
     var stacker = new Stacker('#stacker-container');
 
+    // Let's add a new item to the stacks
     var newItem = document.createElement('div');
     newItem.id = 'j';
     newItem.className = 'stacker-item';
     newItem.textContent = 'j';
     stacker.addItem(newItem);
     stacker.reloadItems();
-    // Keep the "stacker" variable around if you want to call addItem and reloadItems
 });
 </script>
 {% endcapture %}
