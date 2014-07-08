@@ -1,15 +1,38 @@
-<p></p>
+<h2 class="fw-300">Basic usage</h2>
+<p>To view a basic modal window, click the the example modal button. Then check the example code below to know how it's generated.</p>
+{% capture example_code %}
+<div class="imageQueryExample column-group vspace">
+    <img src="/assets/imgs/imagequery/small/image.jpg" class="all-50 push-center" />
+</div>
+<script type="text/javascript">
+Ink.requireModules( ['Ink.Dom.Selector_1', 'Ink.UI.ImageQuery_1'], function( Selector, ImageQuery ){
+    var imageQueryElement = Ink.s('.imageQueryExample img');
+    var imageQueryObj = new ImageQuery('.imageQueryExample img',{
+        src: '/assets/img/examples/{:label}/park.jpg',
+        queries: [
+            {
+                label: 'small',
+                width: 480
+            },
+            {
+                label: 'medium',
+                width: 640
+            },
+            {
+                label: 'large',
+                width: 1024
+            }   
+        ]
+    });
+} );
+</script>
+
+{% endcapture %}
+
+{{ example_code }}
 
 <p class="example-title">Code</p>
 {% highlight html %}
-
-<style>
-</style>
-
-<script>
-    Ink.requireModules( ['Ink.UI.ImageQuery_1'], function( ImageQuery ){
-        new ImageQuery(sections[i], { target: myMenu });
-    });
-</script>
+{{ example_code }}
 {% endhighlight %}
 
