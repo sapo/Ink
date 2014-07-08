@@ -31,7 +31,6 @@ Ink.createModule('Ink.UI.Carousel', '1',
      * @param {Object}              [options]                   Carousel Options
      * @param {Integer}             [options.autoAdvance]       Milliseconds to wait before auto-advancing pages. Set to 0 to disable auto-advance. Defaults to 0.
      * @param {String}              [options.axis]              Axis of the carousel. Set to 'y' for a vertical carousel. Defaults to 'x'.
-     * @param {Boolean}             [options.center]            Flag to center the carousel horizontally.
      * @param {Number}              [options.initialPage]       Initial index page of the carousel. Defaults to 0.
      * @param {Boolean}             [options.spaceAfterLastSlide=true] If there are not enough slides to fill the full width of the last page, leave white space. Defaults to `true`.
      * @param {Boolean}             [options.swipe]             Enable swipe support if available. Defaults to true.
@@ -52,6 +51,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
         initialPage:    ['Integer', 0],
         spaceAfterLastSlide: ['Boolean', true],
         hideLast:       ['Boolean', false],
+        // [3.1.0] Deprecate "center". It is only needed when things are of unknown widths.
         center:         ['Boolean', false],
         keyboardSupport:['Boolean', false],
         pagination:     ['String', null],
