@@ -72,39 +72,10 @@ site_root:  ../
                     <span class="label function"></span></p>
                 Date format string</li>
         </ul>
-<p class="example-title">Example</p>
-  
-{% highlight html %}{% raw %}
-     <div class="imageQueryExample all-100 content-center clearfix vspace">
-         <img src="/assets/imgs/imagequery/small/image.jpg" />
-     </div>
-     <script type="text/javascript">
-     Ink.requireModules( ['Ink.Dom.Selector_1', 'Ink.UI.ImageQuery_1'], function( Selector, ImageQuery ){
-         var imageQueryElement = Ink.s('.imageQueryExample img');
-         var imageQueryObj = new ImageQuery('.imageQueryExample img',{
-             src: '/assets/imgs/imagequery/{:label}/{:file}',
-             queries: [
-                 {
-                     label: 'small',
-                     width: 480
-                 },
-                 {
-                     label: 'medium',
-                     width: 640
-                 },
-                 {
-                     label: 'large',
-                     width: 1024
-                 }   
-             ]
-         });
-     } );
-     </script>
-{% endraw %}{% endhighlight %}
 
-
-
-</section>
+<!--<h3>Samples</h3>-->
+		{% include js_samples/Ink_UI_ImageQuery_1.html %}
+	</section>
 
 
 
