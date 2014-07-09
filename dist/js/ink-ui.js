@@ -199,7 +199,6 @@ Ink.createModule('Ink.UI.Carousel', '1',
      * @param {Object}              [options]                   Carousel Options
      * @param {Integer}             [options.autoAdvance]       Milliseconds to wait before auto-advancing pages. Set to 0 to disable auto-advance. Defaults to 0.
      * @param {String}              [options.axis]              Axis of the carousel. Set to 'y' for a vertical carousel. Defaults to 'x'.
-     * @param {Boolean}             [options.center]            Flag to center the carousel horizontally.
      * @param {Number}              [options.initialPage]       Initial index page of the carousel. Defaults to 0.
      * @param {Boolean}             [options.spaceAfterLastSlide=true] If there are not enough slides to fill the full width of the last page, leave white space. Defaults to `true`.
      * @param {Boolean}             [options.swipe]             Enable swipe support if available. Defaults to true.
@@ -220,6 +219,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
         initialPage:    ['Integer', 0],
         spaceAfterLastSlide: ['Boolean', true],
         hideLast:       ['Boolean', false],
+        // [3.1.0] Deprecate "center". It is only needed when things are of unknown widths.
         center:         ['Boolean', false],
         keyboardSupport:['Boolean', false],
         pagination:     ['String', null],
@@ -415,6 +415,8 @@ Ink.createModule('Ink.UI.Carousel', '1',
 
             var ulRect = this._ulEl.getBoundingClientRect();
 
+            this._swipeData.firstUlPos = ulRect[this._isY ? 'top' : 'left'];
+
             this._swipeData.inUlX =  this._swipeData.x - ulRect.left;
             this._swipeData.inUlY =  this._swipeData.y - ulRect.top;
 
@@ -475,22 +477,24 @@ Ink.createModule('Ink.UI.Carousel', '1',
         _onTouchEnd: function (event) {
             if (this._swipeData && this._swipeData.pointerPos && !this._scrolling && !this._touchMoveIsFirstTouchMove) {
                 var snapToNext = 0.1;  // swipe 10% of the way to change page
-                var progress = - this._swipeData.lastUlPos;
+
+                var relProgress = this._swipeData.firstUlPos -
+                    this._ulEl.getBoundingClientRect()[this._isY ? 'top' : 'left'];
 
                 var curPage = this.getPage();
-                var estimatedPage = progress / this._elLength / this._slidesPerPage;
 
-                if (Math.round(estimatedPage) === curPage) {
-                    var diff = estimatedPage - curPage;
-                    if (Math.abs(diff) > snapToNext) {
-                        diff = diff > 0 ? 1 : -1;
-                        curPage += diff;
-                    }
-                } else {
-                    curPage = Math.round(estimatedPage);
+                // How many pages were advanced? May be fractional.
+                var progressInPages = relProgress / this._elLength / this._slidesPerPage;
+
+                // Have we advanced enough to change page?
+                if (Math.abs(progressInPages) > snapToNext) {
+                    curPage += Math[ relProgress < 0 ? 'floor' : 'ceil' ](progressInPages);
                 }
 
-                this.setPage(curPage);
+                // If something used to calculate progressInPages was zero, we get NaN here.
+                if (!isNaN(curPage)) {
+                    this.setPage(curPage);
+                }
 
                 InkEvent.stopDefault(event);
             }
@@ -752,9 +756,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          *         // It is NOT a DOM Element.
          *     }
          */
-        isDOMElement: function(o) {
-            return o && typeof o === 'object' && 'nodeType' in o && o.nodeType === 1;
-        },
+        isDOMElement: InkElement.isDOMElement,
 
         /**
          * Checks if an item is a valid integer.
@@ -1023,7 +1025,8 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
                 },
                 'boolean': function (val) {
                     return typeof val === 'boolean';
-                }
+                },
+                object: function () { return true; }
             };
             types['float'] = types.number;
             return types;
@@ -1362,6 +1365,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
 
             if (!this.isDOMElement(el)) { throw new TypeError('Ink.UI.Common.registerInstance: The element passed in is not a DOM element!'); }
 
+            // [todo] this belongs in the BaseUIComponent's initialization
             if (Common._warnDoubleInstantiation(el, inst) === false) {
                 return false;
             }
@@ -1395,7 +1399,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          * @param  {String|DOMElement}      instanceIdOrElement      Instance's id or DOM Element from which we want the instances.
          * @return  {Object|Array}       Returns an instance or a collection of instances.
          */
-        getInstance: function(instanceIdOrElement) {
+        getInstance: function(instanceIdOrElement, UIComponent) {
             var ids;
             instanceIdOrElement = Common.elOrSelector(instanceIdOrElement);
             if (instanceIdOrElement) {
@@ -1415,7 +1419,16 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
                 if (!id) { throw new Error('Element is not a JS instance!'); }
                 inst = instances[id];
                 if (!inst) { throw new Error('Instance "' + id + '" not found!'); }
-                res.push(inst);
+
+                if (typeof UIComponent === 'function') {
+                    if (inst instanceof UIComponent) { return inst; }
+                } else {
+                    res.push(inst);
+                }
+            }
+
+            if (typeof UIComponent === 'function') {
+                return null;
             }
 
             return res;
@@ -1505,15 +1518,22 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
         }
     }
 
+    /**
+     * Ink UI Base Class
+     *
+     * You don't use this class directly, or inherit from it directly.
+     *
+     * See createUIComponent() (in this module) for how to create a UI component and inherit from this. It's not plain old JS inheritance, for several reasons.
+     *
+     * @class Ink.UI.Common.BaseUIComponent
+     * @constructor
+     *
+     * @param element
+     * @param options
+     **/
     function BaseUIComponent(element, options) {
         var constructor = this.constructor;
         var _name = constructor._name;
-
-        if (this.constructor === BaseUIComponent) {
-            // The caller was "someModule.prototype = new BaseUIComponent" (below, on this module)
-            // so it doesn't make sense to construct anything.
-            return;
-        }
 
         if (!this || this === window) {
             throw new Error('Use "new InkComponent()" instead of "InkComponent()"');
@@ -1611,8 +1631,26 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
 
     // TODO BaseUIComponent.setGlobalOptions = function () {}
     // TODO BaseUIComponent.createMany = function (selector) {}
+    BaseUIComponent.getInstance = function (elOrSelector) {
+        elOrSelector = Common.elOrSelector(elOrSelector);
+        return Common.getInstance(elOrSelector, this /* get instance by constructor */);
+    };
 
     Ink.extendObj(BaseUIComponent.prototype, {
+        /**
+         * Get an UI component's option's value.
+         *
+         * @method getOption
+         * @param name
+         *
+         * @return The option value, or undefined if nothing is found.
+         *
+         * @example
+         *
+         * var myUIComponent = new Modal('#element', { trigger: '#trigger' }); // or anything else inheriting BaseUIComponent
+         * myUIComponent.getOption('trigger');  // -> The trigger element (not the selector string, mind you)
+         *
+         **/
         getOption: function (name) {
             if (this.constructor && !(name in this.constructor._optionDefinition)) {
                 Ink.error('"' + name + '" is not an option for ' + this.constructor._name);
@@ -1622,6 +1660,38 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
             return this._options[name];
         },
 
+        /**
+         * Sets an option's value
+         *
+         * @method getOption
+         * @param name
+         * @param value
+         *
+         * @example
+         *
+         * var myUIComponent = new Modal(...);
+         * myUIComponent.setOption('trigger', '#some-element');
+         **/
+        setOption: function (name, value) {
+            if (this.constructor && !(name in this.constructor._optionDefinition)) {
+                Ink.error('"' + name + ' is not an option for ' + this.constructor._name);
+                return;
+            }
+
+            this._options[name] = value;
+        },
+
+        /**
+         * Get the element associated with an UI component (IE the one you used in the constructor)
+         *
+         * @method getElement
+         * @return {Element} The component's element.
+         *
+         * @example
+         * var myUIComponent = new Modal('#element'); // or anything else inheriting BaseUIComponent
+         * myUIComponent.getElement();  // -> The '#element' (not the selector string, mind you).
+         *
+         **/
         getElement: function () {
             return this._element;
         }
@@ -1664,7 +1734,17 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
 
         // Extend the instance methods and props
         var _oldProto = theConstructor.prototype;
-        theConstructor.prototype = new BaseUIComponent();
+
+        if (typeof Object.create === 'function') {
+            theConstructor.prototype = Object.create(BaseUIComponent.prototype);
+        } else {
+            theConstructor.prototype = (function hideF() {
+                function F() {}
+                F.prototype = BaseUIComponent.prototype;
+                return new F();
+            }());
+        }
+
         Ink.extendObj(theConstructor.prototype, _oldProto);
         theConstructor.prototype.constructor = theConstructor;
         // Extend static methods
@@ -3158,7 +3238,7 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
         revert:             ['Boolean', false],
         cursor:             ['String', 'move'],
         zIndex:             ['Number', 9999],
-        fps:                ['Number', 100],
+        fps:                ['Number', 0],
         droppableProxy:     ['Element', false],
         mouseAnchor:        ['String', undefined],
         dragClass:          ['String', 'drag'],
@@ -3179,8 +3259,7 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
          * @private
          */
         _init: function() {
-            var o = this.options = this._options;
-            this.element = this._element;
+            var o = this._options;
             this.constraintElm = o.constraintElm && Common.elOrSelector(o.constraintElm);
 
             this.handle             = false;
@@ -3207,9 +3286,9 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
             this.handlers.selectStart   = function(event) {    InkEvent.stop(event);    return false;    };
 
             // set handle
-            this.handle = (this.options.handle) ?
-                Common.elOrSelector(this.options.handle) :
-                this.element;
+            this.handle = (this._options.handle) ?
+                Common.elOrSelector(this._options.handle) :
+                this._element;
 
             this.handle.style.cursor = o.cursor;
 
@@ -3217,7 +3296,7 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
             InkEvent.observe(this.handle, 'mousedown', this.handlers.start);
 
             if (Browser.IE) {
-                InkEvent.observe(this.element, 'selectstart', this.handlers.selectStart);
+                InkEvent.observe(this._element, 'selectstart', this.handlers.selectStart);
             }
         },
 
@@ -3232,7 +3311,7 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
             InkEvent.stopObserving(this.handle, 'mousedown', this.handlers.start);
 
             if (Browser.IE) {
-                InkEvent.stopObserving(this.element, 'selectstart', this.handlers.selectStart);
+                InkEvent.stopObserving(this._element, 'selectstart', this.handlers.selectStart);
             }
         },
 
@@ -3285,61 +3364,61 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
             if (!this.active && InkEvent.isLeftClick(e) || typeof e.button === 'undefined') {
 
                 var tgtEl = InkEvent.element(e);
-                if (this.options.skipChildren && tgtEl !== this.handle) {    return;    }
+                if (this._options.skipChildren && tgtEl !== this.handle) {    return;    }
 
                 InkEvent.stop(e);
 
-                Css.addClassName(this.element, this.options.dragClass);
+                Css.addClassName(this._element, this._options.dragClass);
 
                 this.elmStartPosition = [
-                    InkElement.elementLeft(this.element),
-                    InkElement.elementTop( this.element)
+                    InkElement.elementLeft(this._element),
+                    InkElement.elementTop( this._element)
                 ];
 
                 var pos = [
-                    parseInt(Css.getStyle(this.element, 'left'), 10),
-                    parseInt(Css.getStyle(this.element, 'top'),  10)
+                    parseInt(Css.getStyle(this._element, 'left'), 10),
+                    parseInt(Css.getStyle(this._element, 'top'),  10)
                 ];
 
-                var dims = InkElement.elementDimensions(this.element);
+                var dims = InkElement.elementDimensions(this._element);
 
                 this.originalPosition = [ pos[x] ? pos[x]: null, pos[y] ? pos[y] : null ];
                 this.delta = this._getCoords(e); // mouse coords at beginning of drag
 
                 this.active = true;
-                this.position = Css.getStyle(this.element, 'position');
-                this.zindex = Css.getStyle(this.element, 'zIndex');
+                this.position = Css.getStyle(this._element, 'position');
+                this.zindex = Css.getStyle(this._element, 'zIndex');
 
                 var div = document.createElement('div');
                 div.style.position      = this.position;
                 div.style.width         = dims[x] + 'px';
                 div.style.height        = dims[y] + 'px';
-                div.style.marginTop     = Css.getStyle(this.element, 'margin-top');
-                div.style.marginBottom  = Css.getStyle(this.element, 'margin-bottom');
-                div.style.marginLeft    = Css.getStyle(this.element, 'margin-left');
-                div.style.marginRight   = Css.getStyle(this.element, 'margin-right');
+                div.style.marginTop     = Css.getStyle(this._element, 'margin-top');
+                div.style.marginBottom  = Css.getStyle(this._element, 'margin-bottom');
+                div.style.marginLeft    = Css.getStyle(this._element, 'margin-left');
+                div.style.marginRight   = Css.getStyle(this._element, 'margin-right');
                 div.style.borderWidth   = '0';
                 div.style.padding       = '0';
-                div.style.cssFloat      = Css.getStyle(this.element, 'float');
-                div.style.display       = Css.getStyle(this.element, 'display');
+                div.style.cssFloat      = Css.getStyle(this._element, 'float');
+                div.style.display       = Css.getStyle(this._element, 'display');
                 div.style.visibility    = 'hidden';
 
                 this.delta2 = [ this.delta.x - this.elmStartPosition[x], this.delta.y - this.elmStartPosition[y] ]; // diff between top-left corner of obj and mouse
-                if (this.options.mouseAnchor) {
-                    var parts = this.options.mouseAnchor.split(' ');
+                if (this._options.mouseAnchor) {
+                    var parts = this._options.mouseAnchor.split(' ');
                     var ad = [dims[x], dims[y]];    // starts with 'right bottom'
                     if (parts[0] === 'left') {    ad[x] = 0;    } else if(parts[0] === 'center') {    ad[x] = parseInt(ad[x]/2, 10);    }
                     if (parts[1] === 'top') {     ad[y] = 0;    } else if(parts[1] === 'center') {    ad[y] = parseInt(ad[y]/2, 10);    }
                     this.applyDelta = [this.delta2[x] - ad[x], this.delta2[y] - ad[y]];
                 }
 
-                var dragHandlerName = this.options.fps ? 'dragFacade' : 'drag';
+                var dragHandlerName = this._options.fps ? 'dragFacade' : 'drag';
 
                 this.placeholder = div;
 
-                if (this.options.onStart) {        this.options.onStart(this.element, e);        }
+                if (this._options.onStart) {        this._options.onStart(this._element, e);        }
 
-                if (this.options.droppableProxy) {    // create new transparent div to optimize DOM traversal during drag
+                if (this._options.droppableProxy) {    // create new transparent div to optimize DOM traversal during drag
                     this.proxy = document.createElement('div');
                     dims = [
                         window.innerWidth     || document.documentElement.clientWidth   || document.body.clientWidth,
@@ -3351,7 +3430,7 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
                     fs.position         = 'fixed';
                     fs.left             = '0';
                     fs.top              = '0';
-                    fs.zIndex           = this.options.zindex + 1;
+                    fs.zIndex           = this._options.zindex + 1;
                     fs.backgroundColor  = '#FF0000';
                     Css.setOpacity(this.proxy, 0);
 
@@ -3367,9 +3446,9 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
                     InkEvent.observe(document, 'mousemove', this.handlers[dragHandlerName]);
                 }
 
-                this.element.style.position = 'absolute';
-                this.element.style.zIndex = this.options.zindex;
-                this.element.parentNode.insertBefore(this.placeholder, this.element);
+                this._element.style.position = 'absolute';
+                this._element.style.zIndex = this._options.zindex;
+                this._element.parentNode.insertBefore(this.placeholder, this._element);
 
                 this._onDrag(e);
 
@@ -3409,18 +3488,18 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
                 var mouseCoords = this._getCoords(e),
                     mPosX       = mouseCoords.x,
                     mPosY       = mouseCoords.y,
-                    o           = this.options,
+                    o           = this._options,
                     newX        = false,
                     newY        = false;
 
                 if (this.prevCoords && mPosX !== this.prevCoords.x || mPosY !== this.prevCoords.y) {
-                    if (o.onDrag) {        o.onDrag(this.element, e);        }
+                    if (o.onDrag) {        o.onDrag(this._element, e);        }
                     this.prevCoords = mouseCoords;
 
                     newX = this.elmStartPosition[x] + mPosX - this.delta.x;
                     newY = this.elmStartPosition[y] + mPosY - this.delta.y;
 
-                    var draggableSize = InkElement.elementDimensions(this.element);
+                    var draggableSize = InkElement.elementDimensions(this._element);
 
                     if (this.constraintElm) {
                         var offset = InkElement.offset(this.constraintElm);
@@ -3448,21 +3527,21 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
                     var Droppable = Ink.getModule('Ink.UI.Droppable_1');
                     if (this.firstDrag) {
                         if (Droppable) {    Droppable.updateAll();    }
-                        /*this.element.style.position = 'absolute';
-                        this.element.style.zIndex = this.options.zindex;
-                        this.element.parentNode.insertBefore(this.placeholder, this.element);*/
+                        /*this._element.style.position = 'absolute';
+                        this._element.style.zIndex = this._options.zindex;
+                        this._element.parentNode.insertBefore(this.placeholder, this._element);*/
                         this.firstDrag = false;
                     }
 
-                    if (newX) {        this.element.style.left = newX + 'px';        }
-                    if (newY) {        this.element.style.top  = newY + 'px';        }
+                    if (newX) {        this._element.style.left = newX + 'px';        }
+                    if (newY) {        this._element.style.top  = newY + 'px';        }
 
                     if (Droppable) {
                         // apply applyDelta defined on drag init
-                        var mouseCoords2 = this.options.mouseAnchor ?
+                        var mouseCoords2 = this._options.mouseAnchor ?
                             {x: mPosX - this.applyDelta[x], y: mPosY - this.applyDelta[y]} :
                             mouseCoords;
-                        Droppable.action(mouseCoords2, 'drag', e, this.element);
+                        Droppable.action(mouseCoords2, 'drag', e, this._element);
                     }
                     if (o.onChange) {    o.onChange(this);    }
                 }
@@ -3480,15 +3559,15 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
             InkEvent.stopObserving(document, 'mousemove', this.handlers.drag);
             InkEvent.stopObserving(document, 'touchmove', this.handlers.drag);
 
-            if (this.options.fps) {
+            if (this._options.fps) {
                 this._onDrag(e);
             }
 
-            Css.removeClassName(this.element, this.options.dragClass);
+            Css.removeClassName(this._element, this._options.dragClass);
 
             if (this.active && this.dragged) {
 
-                if (this.options.droppableProxy) {    // remove transparent div...
+                if (this._options.droppableProxy) {    // remove transparent div...
                     document.body.removeChild(this.proxy);
                 }
 
@@ -3497,7 +3576,7 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
                     this.pt = undefined;
                 }
 
-                /*if (this.options.revert) {
+                /*if (this._options.revert) {
                     this.placeholder.parentNode.removeChild(this.placeholder);
                 }*/
 
@@ -3505,26 +3584,26 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
                     InkElement.remove(this.placeholder);
                 }
 
-                if (this.options.revert) {
-                    this.element.style.position = this.position;
+                if (this._options.revert) {
+                    this._element.style.position = this.position;
                     if (this.zindex !== null) {
-                        this.element.style.zIndex = this.zindex;
+                        this._element.style.zIndex = this.zindex;
                     }
                     else {
-                        this.element.style.zIndex = 'auto';
+                        this._element.style.zIndex = 'auto';
                     } // restore default zindex of it had none
 
-                    this.element.style.left = (this.originalPosition[x]) ? this.originalPosition[x] + 'px' : '';
-                    this.element.style.top  = (this.originalPosition[y]) ? this.originalPosition[y] + 'px' : '';
+                    this._element.style.left = (this.originalPosition[x]) ? this.originalPosition[x] + 'px' : '';
+                    this._element.style.top  = (this.originalPosition[y]) ? this.originalPosition[y] + 'px' : '';
                 }
 
-                if (this.options.onEnd) {
-                    this.options.onEnd(this.element, e);
+                if (this._options.onEnd) {
+                    this._options.onEnd(this._element, e);
                 }
                 
                 var Droppable = Ink.getModule('Ink.UI.Droppable_1');
                 if (Droppable) {
-                    Droppable.action(this._getCoords(e), 'drop', e, this.element);
+                    Droppable.action(this._getCoords(e), 'drop', e, this._element);
                 }
 
                 this.position   = false;
@@ -4016,18 +4095,21 @@ Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
          * Makes an element droppable.
          * This method adds it to the stack of droppable elements.
          * Can consider it a constructor of droppable elements, but where no Droppable object is returned.
-         * 
-         * In the following arguments, any events/callbacks you may pass, can be either functions or strings. If the 'move' or 'copy' strings are passed, the draggable gets moved into this droppable. If 'revert' is passed, an acceptable droppable is moved back to the element it came from.
-
+         *
+         * The onHover, onDrop, and onDropOut options below can be:
+         *
+         * - 'move', 'copy': Move or copy the draggable element into this droppable.
+         * - 'revert': Make the draggable go back to where it came from.
+         * - A function (draggableElement, droppableElement), defining what you want to do in this case.
          *
          * @method add
          * @param {String|DOMElement}   element                 Target element
          * @param {Object}              [options]               Options object
          * @param {String}              [options.hoverClass]    Classname(s) applied when an acceptable draggable element is hovering the element
          * @param {String}              [options.accept]        Selector for choosing draggables which can be dropped in this droppable.
-         * @param {Function}            [options.onHover]       Callback when an acceptable draggable element is hovering the droppable. Gets the draggable and the droppable element as parameters.
-         * @param {Function|String}     [options.onDrop]        Callback when an acceptable draggable element is dropped. Gets the draggable, the droppable and the event as parameters.
-         * @param {Function|String}     [options.onDropOut]     Callback when a droppable is dropped outside this droppable. Gets the draggable, the droppable and the event as parameters. (see above for string options).
+         * @param {Function}            [options.onHover]       Called when an acceptable element is hovering the droppable (see above for string options).
+         * @param {Function|String}     [options.onDrop]        Called when an acceptable element is dropped (see above for string options). 
+         * @param {Function|String}     [options.onDropOut]     Called when a droppable is dropped outside this droppable (see above for string options).
          * @public
          *
          * @sample Ink_UI_Droppable_1.html
@@ -4036,7 +4118,7 @@ Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
         add: function(element, options) {
             element = Common.elOrSelector(element, 'Droppable.add target element');
 
-            var opt = Ink.extendObj( {
+            var opt = Ink.extendObj({
                 hoverClass:     options.hoverclass /* old name */ || false,
                 accept:         false,
                 onHover:        false,
@@ -4059,7 +4141,7 @@ Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
                 },
                 copy: function (draggable, droppable/*, event*/) {
                     cleanStyle(draggable);
-                    droppable.appendChild(draggable.cloneNode);
+                    droppable.appendChild(draggable.cloneNode(true));
                 },
                 revert: function (draggable/*, droppable, event*/) {
                     that._findDraggable(draggable).originalParent.appendChild(draggable);
@@ -5844,32 +5926,7 @@ Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
      * @param {Number}              [options.queries.width]     Min-width to use this query
      * @param {Function}            [options.onLoad]            Date format string
      *
-     * @example
-     *      <div class="imageQueryExample all-100 content-center clearfix vspace">
-     *          <img src="/assets/imgs/imagequery/small/image.jpg" />
-     *      </div>
-     *      <script type="text/javascript">
-     *      Ink.requireModules( ['Ink.Dom.Selector_1', 'Ink.UI.ImageQuery_1'], function( Selector, ImageQuery ){
-     *          var imageQueryElement = Ink.s('.imageQueryExample img');
-     *          var imageQueryObj = new ImageQuery('.imageQueryExample img',{
-     *              src: '/assets/imgs/imagequery/{:label}/{:file}',
-     *              queries: [
-     *                  {
-     *                      label: 'small',
-     *                      width: 480
-     *                  },
-     *                  {
-     *                      label: 'medium',
-     *                      width: 640
-     *                  },
-     *                  {
-     *                      label: 'large',
-     *                      width: 1024
-     *                  }   
-     *              ]
-     *          });
-     *      } );
-     *      </script>
+     * @sample Ink_UI_ImageQuery_1.html
      */
     function ImageQuery() {
         Common.BaseUIComponent.apply(this, arguments);
@@ -7418,18 +7475,6 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.UI.Common_1', 'Ink.Dom.Even
      *
      * @example
      *
-     *      <a href="#part1" class="ink-smooth-scroll" data-margin="10">go to Part 1</a>
-     *
-     *      [lots and lots of content...]
-     *
-     *      <h1 id="part1">Part 1</h1>
-     *
-     *      <script>
-     *          // ...Although you don't need to do this if you have autoload.js
-     *          Ink.requireModules(['Ink.UI.SmoothScroller_1'], function (SmoothScroller) {
-     *              SmoothScroller.init('.ink-smooth-scroll');
-     *          })
-     *      </script>
      */
     var SmoothScroller = {
 
@@ -7502,13 +7547,10 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.UI.Common_1', 'Ink.Dom.Even
 
         /**
          * Has smooth scrolling applied to relevant elements upon page load.
-         *
          * Listens to the click event on the document.
-         *
          * Anything which matches the selector will be considered a "link" by SmoothScroller and handled as such.
          *
          * When a link is clicked, it is checked for several options:
-         *
          * - `data-margin="0"` - A margin in pixels -- useful when you have a position:fixed top bar.
          * - `data-speed="10"` - Inverse speed of the scrolling motion. Smaller is faster.
          * - `data-change-hash="true"` - Change the URL hash (location.hash) when done scrolling.
@@ -7516,6 +7558,7 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.UI.Common_1', 'Ink.Dom.Even
          * @method init
          * @param [selector='a.scrollableLink,a.ink-smooth-scroll'] {String} Selector string for finding links with smooth scrolling enabled.
          * @static
+         * @sample Ink_UI_SmoothScroller_1.html
          */
         init: function(selector) {
             Event.on(document, 'click', selector || 'a.scrollableLink, a.ink-smooth-scroll', SmoothScroller.onClick);
@@ -8092,34 +8135,7 @@ Stacker.prototype = {
      * @param {Function}            [options.onResizeCallback]                      Called when the window resizes.
      * @param {Function}            [options.onAPIReloadCallback]                   Called when the reload function executes.
      *
-     * @example
-     *
-     * Html:
-     *
-     *     <div id="stacker-container">  <!-- Stacker element -->
-     *         <div class="xlarge-33 large-33 medium-50 tiny-100 stacker-column"> <!-- Column element ('.stacker-column' is the default selector) -->
-     *             <div id="a" class="stacker-item">a</div> <!-- Item ('.stacker-item' is the default selector) -->
-     *             <div id="d" class="stacker-item">d</div>
-     *             <div id="g" class="stacker-item">g</div>
-     *         </div>
-     *         <div class="xlarge-33 large-33 medium-50 tiny-100 hide-small stacker-column">
-     *             <div id="b" class="stacker-item">b</div>
-     *             <div id="e" class="stacker-item">e</div>
-     *             <div id="h" class="stacker-item">h</div>
-     *         </div>
-     *         <div class="xlarge-33 large-33 medium-50 tiny-100 hide-medium hide-small stacker-column">
-     *             <div id="c" class="stacker-item">c</div>
-     *             <div id="f" class="stacker-item">f</div>
-     *             <div id="i" class="stacker-item">i</div>
-     *         </div>
-     *     </div>
-     *
-     * Javascript:
-     *
-     *     Ink.requireModules(['Ink.UI.Stacker_1'], function (Stacker) {
-     *         var stacker = new Stacker('#stacker-container');
-     *         // Keep the "stacker" variable around if you want to call addItem and reloadItems
-     *     });
+     * @sample Ink_UI_Stacker_1.html
      **/
     _init: function() {
         this._aList = []; 
@@ -8577,7 +8593,24 @@ Ink.createModule('Ink.UI.Swipe', '1', ['Ink.Dom.Event_1', 'Ink.Dom.Element_1', '
      *
      * Supports filtering swipes be any combination of the criteria supported in the options.
      *
-     * @class Ink.UI.Swipe_1
+     * -----
+     *
+     * Arguments received by the callbacks
+     * -----------------------------------
+     *
+     * The `onStart`, `onMove`, and `onEnd` options receive as argument an object containing:
+     *
+     *   - `event`: the DOMEvent object
+     *   - `element`: the target element
+     *   - `Instance`: the `Ink.UI.Swipe_1` instance
+     *   - `position`: `Array` with `[x, y]` coordinates of current position
+     *   - `dt`: Time passed between now and the first event (onMove only)
+     *   - `gesture`: an Array containing [x,y] coordinates of every touchmove event received (only if options.storeGesture is enabled) (onEnd only)
+     *   - `time`: an Array containing all the `dt` values for every touchmove event (onEnd only)
+     *   - `overallMovement`: X and Y distance traveled by the touch movement (`[x, y]`) (onEnd only)
+     *   - `overallTime`: total time passed (onEnd only)
+     *
+     * @class Ink.UI.Swipe
      * @constructor
      * @param {String|DOMElement}   el                      Element or Selector
      * @param {Object}              options                 Options Object
@@ -8591,23 +8624,7 @@ Ink.createModule('Ink.UI.Swipe', '1', ['Ink.Dom.Event_1', 'Ink.Dom.Element_1', '
      * @param {String}              [options.axis]          If either 'x' or 'y' is passed, only swipes where the dominant axis is the given one trigger the callback
      * @param {String}              [options.storeGesture]  If to store gesture information and provide it to the callback. Defaults to true.
      * @param {String}              [options.stopEvents]    Flag to stop (default and propagation) of the received events. Defaults to true.
-     * 
-     * -----
      *
-     * Arguments received by the callbacks
-     * -----------------------------------
-     *
-     * `onStart`, `onMove`, and `onEnd` receive as argument an object containing:
-     *
-     *   - `event`: the DOMEvent object
-     *   - `element`: the target element
-     *   - `Instance`: the `Ink.UI.Swipe_1` instance
-     *   - `position`: `Array` with `[x, y]` coordinates of current position
-     *   - `dt`: Time passed between now and the first event (onMove only)
-     *   - `gesture`: an Array containing [x,y] coordinates of every touchmove event received (storeGesture only) (onEnd only)
-     *   - `time`: an Array containing all the `dt` values for every touchmove event (onEnd only)
-     *   - `overallMovement`: X and Y distance traveled by the touch movement (`[x, y]`) (onEnd only)
-     *   - `overallTime`: total time passed (onEnd only)
      *
      * @sample Ink_UI_Swipe_1.html
      */
@@ -9782,7 +9799,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          * @public
          */
         disable: function(selector){
-            this._enableOrDisableDRY(selector, false);
+            this._enableOrDisableDRY(selector, false); // See above
         },
 
         /**
@@ -9793,7 +9810,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          * @public
          */
         enable: function(selector){
-            this._enableOrDisableDRY(selector, true);
+            this._enableOrDisableDRY(selector, true); // See above
         },
 
         /***********
@@ -9929,8 +9946,8 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
          * @method _init
          * @private
          */
-        _init: function(element, options) {
-            var o = options;
+        _init: function() {
+            var o = this._options;
             if (typeof o.separator === 'string') {
                 o.separator = new RegExp(o.separator, 'g');
             }

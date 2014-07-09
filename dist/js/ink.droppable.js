@@ -52,18 +52,21 @@ Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
          * Makes an element droppable.
          * This method adds it to the stack of droppable elements.
          * Can consider it a constructor of droppable elements, but where no Droppable object is returned.
-         * 
-         * In the following arguments, any events/callbacks you may pass, can be either functions or strings. If the 'move' or 'copy' strings are passed, the draggable gets moved into this droppable. If 'revert' is passed, an acceptable droppable is moved back to the element it came from.
-
+         *
+         * The onHover, onDrop, and onDropOut options below can be:
+         *
+         * - 'move', 'copy': Move or copy the draggable element into this droppable.
+         * - 'revert': Make the draggable go back to where it came from.
+         * - A function (draggableElement, droppableElement), defining what you want to do in this case.
          *
          * @method add
          * @param {String|DOMElement}   element                 Target element
          * @param {Object}              [options]               Options object
          * @param {String}              [options.hoverClass]    Classname(s) applied when an acceptable draggable element is hovering the element
          * @param {String}              [options.accept]        Selector for choosing draggables which can be dropped in this droppable.
-         * @param {Function}            [options.onHover]       Callback when an acceptable draggable element is hovering the droppable. Gets the draggable and the droppable element as parameters.
-         * @param {Function|String}     [options.onDrop]        Callback when an acceptable draggable element is dropped. Gets the draggable, the droppable and the event as parameters.
-         * @param {Function|String}     [options.onDropOut]     Callback when a droppable is dropped outside this droppable. Gets the draggable, the droppable and the event as parameters. (see above for string options).
+         * @param {Function}            [options.onHover]       Called when an acceptable element is hovering the droppable (see above for string options).
+         * @param {Function|String}     [options.onDrop]        Called when an acceptable element is dropped (see above for string options). 
+         * @param {Function|String}     [options.onDropOut]     Called when a droppable is dropped outside this droppable (see above for string options).
          * @public
          *
          * @sample Ink_UI_Droppable_1.html
@@ -72,7 +75,7 @@ Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
         add: function(element, options) {
             element = Common.elOrSelector(element, 'Droppable.add target element');
 
-            var opt = Ink.extendObj( {
+            var opt = Ink.extendObj({
                 hoverClass:     options.hoverclass /* old name */ || false,
                 accept:         false,
                 onHover:        false,
@@ -95,7 +98,7 @@ Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
                 },
                 copy: function (draggable, droppable/*, event*/) {
                     cleanStyle(draggable);
-                    droppable.appendChild(draggable.cloneNode);
+                    droppable.appendChild(draggable.cloneNode(true));
                 },
                 revert: function (draggable/*, droppable, event*/) {
                     that._findDraggable(draggable).originalParent.appendChild(draggable);

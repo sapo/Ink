@@ -312,7 +312,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          * @public
          */
         disable: function(selector){
-            this._enableOrDisableDRY(selector, false);
+            this._enableOrDisableDRY(selector, false); // See above
         },
 
         /**
@@ -323,7 +323,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          * @public
          */
         enable: function(selector){
-            this._enableOrDisableDRY(selector, true);
+            this._enableOrDisableDRY(selector, true); // See above
         },
 
         /***********
