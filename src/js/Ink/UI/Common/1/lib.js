@@ -699,7 +699,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          * @param  {String|DOMElement}      instanceIdOrElement      Instance's id or DOM Element from which we want the instances.
          * @return  {Object|Array}       Returns an instance or a collection of instances.
          */
-        getInstance: function(instanceIdOrElement) {
+        getInstance: function(instanceIdOrElement, UIComponent) {
             var ids;
             instanceIdOrElement = Common.elOrSelector(instanceIdOrElement);
             if (instanceIdOrElement) {
@@ -719,7 +719,16 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
                 if (!id) { throw new Error('Element is not a JS instance!'); }
                 inst = instances[id];
                 if (!inst) { throw new Error('Instance "' + id + '" not found!'); }
-                res.push(inst);
+
+                if (typeof UIComponent === 'function') {
+                    if (inst instanceof UIComponent) { return inst; }
+                } else {
+                    res.push(inst);
+                }
+            }
+
+            if (typeof UIComponent === 'function') {
+                return null;
             }
 
             return res;

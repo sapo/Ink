@@ -14,7 +14,11 @@ Ink.requireModules(['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1', '
 
     var elm, inst;
     module('UI module registry', {
-        setup: function () { elm = InkElement.create('div'); inst = {}; },
+        setup: function () {
+            elm = InkElement.create('div');
+            function UIComp() {};
+            inst = new UIComp();
+        },
     });
     test('registerInstance adds data-instance attributes to elements to find them later', function () {
         Common.registerInstance(inst, elm);
@@ -24,6 +28,12 @@ Ink.requireModules(['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1', '
     test('Holds instances, can retrieve them', function () {
         Common.registerInstance(inst, elm);
         strictEqual(Common.getInstance(elm)[0], inst);
+    });
+
+    test('getInstance retrieves an instance by instance type', function () {
+        Common.registerInstance(inst, elm);
+        strictEqual(Common.getInstance(elm, inst.constructor), inst);
+        strictEqual(Common.getInstance(elm, function SomeOtherConstructor() {}), null);
     });
 
     test('Adds a data-instance attribute', function () {
