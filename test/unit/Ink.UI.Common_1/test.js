@@ -451,5 +451,18 @@ Ink.requireModules(['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1', '
         inst.setOption('foo', 'baz');
         strictEqual(inst.getOption('foo'), 'baz');
     })
+
+    test('static methods: getInstance', sinon.test(function () {
+        this.spy(Common, 'elOrSelector');
+        this.stub(Common, 'getInstance').returns('the instance!');
+
+        strictEqual(
+            testFunc.getInstance(testEl),
+            'the instance!',
+            'Calling getInstance returns whatever Common.getInstance returned')
+
+        ok(Common.elOrSelector.calledWith(testEl), 'elOrSelector called with testEl');
+        ok(Common.getInstance.calledWith(testEl, testFunc), 'getInstance called with testEl, testFunc');
+    }))
 });
 

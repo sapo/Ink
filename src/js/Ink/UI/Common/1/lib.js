@@ -931,6 +931,10 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
 
     // TODO BaseUIComponent.setGlobalOptions = function () {}
     // TODO BaseUIComponent.createMany = function (selector) {}
+    BaseUIComponent.getInstance = function (elOrSelector) {
+        elOrSelector = Common.elOrSelector(elOrSelector);
+        return Common.getInstance(elOrSelector, this /* get instance by constructor */);
+    };
 
     Ink.extendObj(BaseUIComponent.prototype, {
         /**
