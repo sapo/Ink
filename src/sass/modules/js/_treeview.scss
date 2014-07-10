@@ -1,5 +1,5 @@
 // Mixin for the treeview
-.ink-tree-view {
+.#{$tree-view-classname} {
     li {
         list-style-type: none;
     }

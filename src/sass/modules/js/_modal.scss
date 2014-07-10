@@ -43,7 +43,7 @@
         overflow-x: hidden;
         height: auto;
 
-        .ink-grid {
+        .#{$grid-class-name} {
             padding-left: 0;
             padding-right: 0;
             width: 100%;

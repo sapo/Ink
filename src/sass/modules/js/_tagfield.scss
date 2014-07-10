@@ -1,5 +1,4 @@
-
-.ink-tagfield {
+.#{$tagfield-class-name} {
 
 	input[type="text"] {
 	    // Input for writing the next tag's content
@@ -20,7 +19,7 @@
 
 	span {
 
-		&.ink-tag { 
+		&.#{$tag-class-name} { 
 			background-color:#1b1b1b; 
 			color: #eaeaea;
 			text-shadow:none;
