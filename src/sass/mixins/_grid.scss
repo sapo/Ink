@@ -637,56 +637,22 @@
     }
 }
 
+@mixin css-js-bridge-legacy($breakpoints) {
+    
+    &:after {
+        content: js-bridge($grid-breakpoints);
+        display: none;
+    }
+    font-size: $base-font-size;
+}
+
 @mixin css-js-bridge($breakpoints) {
-
-    $bps: $breakpoints;
-
-    @each $breakpoint in $breakpoints {
-
-        $media:             nth($breakpoint,1);
-        $class-name:        nth($breakpoint,2);
-        $minimum-width:     nth($breakpoint,3);
-        $maximum-width:     nth($breakpoint,4);
-        $gutter-width:      nth($breakpoint,5);
-        $base-font-size:    nth($breakpoint,6);
-        $no-media-query:    nth($breakpoint,7);
-
-
-        @if $minimum-width and not $maximum-width {
-            @media screen and (min-width: $minimum-width) {
-                html {
-                    &:after {
-                        content: js-bridge($grid-breakpoints);
-                        display: none;
-                    }
-                    font-size: $base-font-size;
-                }
-            }
+    html {
+        &:after {
+            content: js-bridge($grid-breakpoints);
+            display: none;
         }
-
-        @if $minimum-width and $maximum-width {
-            @media screen and (min-width: $minimum-width) and (max-width: $maximum-width) {
-                html {
-                    &:after {
-                        content: js-bridge($grid-breakpoints);
-                        display: none;
-                    }
-                    font-size: $base-font-size;
-                }
-            }
-        }
-
-        @if not $minimum-width and $maximum-width {
-            @media screen and (max-width: $maximum-width) {
-                html {
-                    &:after {
-                        content: js-bridge($grid-breakpoints);
-                        display: none;
-                    }
-                    font-size: $base-font-size;
-                }
-            }
-        }
+        font-size: $base-font-size;
     }
 }
 
