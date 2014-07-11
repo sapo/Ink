@@ -151,4 +151,39 @@ Ink.requireModules(['Ink.UI.Tabs_1', 'Ink.UI.Common_1', 'Ink.Dom.Element_1', 'In
             start();
         });
     }, {preventUrlChange: true});
+
+    module('Private API');
+
+    testTabs('hashify/dehashify', function (tabs) {
+        equal(
+            tabs._hashify('wow'),
+            '#wow');
+
+        equal(
+            tabs._hashify('#wow'),
+            '#wow');
+
+        equal(
+            tabs._dehashify('#wow'),
+            'wow');
+
+        equal(
+            tabs._dehashify('wow'),
+            'wow');
+    });
+
+    testTabs('findLink', function (tabs, container) {
+        var homeLink = Ink.s('[href^="#home"]', container);
+        ok(homeLink, 'sanity check');
+        ok(homeLink.parentNode.nodeName.toLowerCase() === 'li', 'sanity check');
+        strictEqual(tabs._findLinkByHref('home'), homeLink, 'by name');
+        strictEqual(tabs._findLinkByHref('#home'), homeLink, 'by hash');
+        strictEqual(tabs._findLinkByHref(homeLink), homeLink, 'by itself');
+        strictEqual(tabs._findLinkByHref(homeLink.parentNode), homeLink, 'by li containing the link');
+        strictEqual(tabs._findLinkByHref(Ink.s('[id="home"]', container)), homeLink, 'by section');
+
+        strictEqual(tabs._findLinkByHref(document.body), null, 'Wrong element');
+        strictEqual(tabs._findLinkByHref('wrong-thing'), null, 'Wrong name');
+        strictEqual(tabs._findLinkByHref(null), null, 'null');
+    });
 });

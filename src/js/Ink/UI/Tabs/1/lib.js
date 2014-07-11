@@ -157,22 +157,22 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
 
             if (this._activeMenuTab) {
                 Css.removeClassName(this._activeMenuTab, 'active');
-                Css.removeClassName(this._activeContentTab, 'active');
-                Css.addClassName(this._activeContentTab, 'hide-all');
+                Css.removeClassName(this._activeSection, 'active');
+                Css.addClassName(this._activeSection, 'hide-all');
             }
 
             this._activeMenuLink = link;
             this._activeMenuTab = this._activeMenuLink.parentNode;
-            this._activeContentTab = Selector.select(selector.substr(selector.indexOf('#')), this._element)[0];
+            this._activeSection = Selector.select(selector.substr(selector.indexOf('#')), this._element)[0];
 
-            if (!this._activeContentTab) {
-                this._activeMenuLink = this._activeMenuTab = this._activeContentTab = null;
+            if (!this._activeSection) {
+                this._activeMenuLink = this._activeMenuTab = this._activeSection = null;
                 return;
             }
 
             Css.addClassName(this._activeMenuTab, 'active');
-            Css.addClassName(this._activeContentTab, 'active');
-            Css.removeClassName(this._activeContentTab, 'hide-all');
+            Css.addClassName(this._activeSection, 'active');
+            Css.removeClassName(this._activeSection, 'hide-all');
 
             if(runCallbacks && typeof(this._options.onChange) !== 'undefined'){
                 this._options.onChange(this);
@@ -203,7 +203,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
             var href = tabElm.getAttribute('href');
             href = href.substr(href.indexOf('#'));
 
-            if (!href || Ink.i(href.replace(/^#/, '')) === null) {
+            if (!href || Ink.i(this._dehashify(href)) === null) {
                 return;
             }
 
@@ -267,6 +267,14 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
         },
 
         /**
+         * Removes the cardinal sign from the beginning of a string
+         **/
+        _dehashify: function(hash) {
+            if (!hash) { return ''; }
+            return ('' + hash).replace(/^#/, '');
+        },
+
+        /**
          * Returns the anchor with the desired href
          * 
          * @method _findLinkBuHref
@@ -275,10 +283,31 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          * @private
          */
         _findLinkByHref: function(href){
-            href = this._hashify(href);
+            // If it's null or undefined, the following checks fail.
+            if (!href) { return null; }
 
+            // If it's a node, it could be a link or a section.
+            if (href.nodeType === 1) {
+                if (Element.isAncestorOf(href, this._element)) { return null; }  // Element is outside the tabs element.
+
+                var links = Selector.select('a', this._menu);
+                var id = href.getAttribute('id');
+
+                for (var i = 0, len = links.length; i < len; i++) {
+                    if (links[i] === href || Element.isAncestorOf(href, links[i])) {
+                        return links[i];  // We got a link
+                    } else if (id && id === this._dehashify(links[i].getAttribute('href'))) {
+                        return links[i];  // We got a section
+                    }
+                }
+
+                return null;
+            }
+
+            // Else, it's a string. It could start with "#" or without it.
+            href = this._hashify(href);
             // Find a link which has a href ending with...
-            return Selector.select('a[href$="' + href + '"]', this._menu)[0];
+            return Selector.select('a[href$="' + href + '"]', this._menu)[0] || null;
         },
 
         /**************
@@ -295,23 +324,13 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          * @public
          */
         changeTab: function(selector) {
-            var element = (selector.nodeType === 1)? selector : this._findLinkByHref(this._hashify(selector));
-            if(!element || Css.hasClassName(element, 'ink-disabled')){
-                return;
-            }
-            this._changeTab(element, true);
-        },
+            selector = this._findLinkByHref(this._hashify(selector));
 
-        /**
-         * The enable() and disable() functions do exactly the same thing.
-         * one adds the className and the other removes it.
-         **/
-        _enableOrDisableDRY: function (selector, isEnable) {
-            var element = (selector.nodeType === 1)? selector : this._findLinkByHref(this._hashify(selector));
-            if(!element){
+            if(!selector || Css.hasClassName(selector, 'ink-disabled')){
                 return;
             }
-            Css.setClassName(element, 'ink-disabled', !isEnable);
+
+            this._changeTab(selector, true);
         },
 
         /**
@@ -322,7 +341,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          * @public
          */
         disable: function(selector){
-            this._enableOrDisableDRY(selector, false); // See above
+            Css.addClassName(this._findLinkByHref(selector), 'ink-disabled');
         },
 
         /**
@@ -333,7 +352,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          * @public
          */
         enable: function(selector){
-            this._enableOrDisableDRY(selector, true); // See above
+            Css.removeClassName(this._findLinkByHref(selector), 'ink-disabled');
         },
 
         /***********
@@ -344,11 +363,11 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          * Returns the active tab id
          * 
          * @method activeTab
-         * @return {String} ID of the active tab.
+         * @return {String} ID of the active section (use activeSection() instead to get the element).
          * @public
          */
         activeTab: function(){
-            return this._activeContentTab.getAttribute('id');
+            return this._activeSection.getAttribute('id');
         },
 
         /**
@@ -390,8 +409,14 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          * @return {DOMElement|null} Active section, or `null` if there is none.
          * @public
          */
-        activeContentTab: function(){
-            return this._activeContentTab;
+        activeSection: function(){
+            return this._activeSection;
+        },
+
+        activeContentTab: function () {
+            // [3.1.0] remove this
+            Ink.warn('Ink.UI.Tabs.activeContentTab() is deprecated. Use activeSection instead.');
+            return this._activeSection();
         },
 
         /**
