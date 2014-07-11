@@ -124,6 +124,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
 
             var activeMenuLink = this._findLinkByHref(hash) ||
                                  (this._options.active && this._findLinkByHref(this._options.active)) ||
+								 Selector.select('.active a', this._menu)[0] ||
                                  Selector.select('a', this._menu)[0];
 
             if (activeMenuLink) {
@@ -145,6 +146,15 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
             }
 
             var selector = link.getAttribute('href');
+
+			var activeTabs = Selector.select('> li.active', this._menu);
+
+			for (var i = 0, len = activeTabs.length; i < len; i++) {
+				if (activeTabs[i] !== link) {
+					Css.removeClassName(activeTabs[i], 'active');
+				}
+			}
+
             if (this._activeMenuTab) {
                 Css.removeClassName(this._activeMenuTab, 'active');
                 Css.removeClassName(this._activeContentTab, 'active');
