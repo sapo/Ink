@@ -21,10 +21,6 @@ Ink.requireModules(['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1', '
             inst._element = elm;
         },
     });
-    test('registerInstance adds data-instance attributes to elements to find them later', function () {
-        Common.registerInstance(inst, elm);
-        ok(elm.getAttribute('data-instance'));
-    });
 
     test('Holds instances, can retrieve them', function () {
         Common.registerInstance(inst, elm);
