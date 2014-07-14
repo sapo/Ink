@@ -8,8 +8,6 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
 
     'use strict';
 
-    var instances = {};
-    var lastIdNum = 0;
     var nothing = {} /* a marker, for reference comparison. */;
 
     var keys = Object.keys || function (obj) {
@@ -18,6 +16,24 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
             ret.push(k);
         }
         return ret;
+    };
+
+    var es6WeakMapSupport = 'WeakMap' in window;
+    var instances = es6WeakMapSupport ? new WeakMap() : null;
+
+    var domRegistry = {
+        get: function get(el) {
+            return es6WeakMapSupport ?
+                instances.get(el) :
+                el.__InkInstances;
+        },
+        set: function set(el, thing) {
+            if (es6WeakMapSupport) {
+                instances.set(el, thing);
+            } else {
+                el.__InkInstances = thing;
+            }
+        }
     };
 
     /**
@@ -663,19 +679,21 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
         registerInstance: function(inst, el) {
             if (!inst) { return; }
 
-            if (!this.isDOMElement(el)) { throw new TypeError('Ink.UI.Common.registerInstance: The element passed in is not a DOM element!'); }
+            if (!Common.isDOMElement(el)) { throw new TypeError('Ink.UI.Common.registerInstance: The element passed in is not a DOM element!'); }
 
             // [todo] this belongs in the BaseUIComponent's initialization
             if (Common._warnDoubleInstantiation(el, inst) === false) {
                 return false;
             }
 
-            var id = 'instance' + (++lastIdNum);
-            instances[id] = inst;
-            inst._instanceId = id;
-            var dataInst = el.getAttribute('data-instance');
-            dataInst = (dataInst !== null) ? [dataInst, id].join(' ') : id;
-            el.setAttribute('data-instance', dataInst);
+            var instances = domRegistry.get(el);
+
+            if (!instances) {
+                instances = [];
+                domRegistry.set(el, instances);
+            }
+
+            instances.push(inst);
 
             return true;
         },
@@ -687,8 +705,14 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          * @static
          * @param  {String}     id       Id of the instance to be destroyed.
          */
-        unregisterInstance: function(id) {
-            delete instances[id];
+        unregisterInstance: function(inst) {
+            if (!inst || !inst._element) { return; }
+            var instances = domRegistry.get(inst._element);
+            for (var i = 0, len = instances.length; i < len; i++) {
+                if (instances[i] === inst) {
+                    instances.splice(i, 1);
+                }
+            }
         },
 
         /**
@@ -696,42 +720,28 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          *
          * @method getInstance
          * @static
-         * @param  {String|DOMElement}      instanceIdOrElement      Instance's id or DOM Element from which we want the instances.
-         * @return  {Object|Array}       Returns an instance or a collection of instances.
+         * @param  {String|DOMElement}      el      DOM Element from which we want the instances.
+         * @return  {Object|Array}                  Returns an instance or a collection of instances.
          */
-        getInstance: function(instanceIdOrElement, UIComponent) {
-            var ids;
-            instanceIdOrElement = Common.elOrSelector(instanceIdOrElement);
-            if (instanceIdOrElement) {
-                ids = instanceIdOrElement.getAttribute('data-instance');
-                if (ids === null) { return null; }
-            }
-            else {
-                ids = instanceIdOrElement;
+        getInstance: function(el, UIComponent) {
+            el = Common.elOrSelector(el);
+            var instances = domRegistry.get(el);
+
+            if (!instances) {
+                instances = [];
             }
 
-            ids = ids.split(/\s+/g);
-            var inst, id, i, l = ids.length;
+            if (typeof UIComponent !== 'function') {
+                return instances;
+            }
 
-            var res = [];
-            for (i = 0; i < l; ++i) {
-                id = ids[i];
-                if (!id) { throw new Error('Element is not a JS instance!'); }
-                inst = instances[id];
-                if (!inst) { throw new Error('Instance "' + id + '" not found!'); }
-
-                if (typeof UIComponent === 'function') {
-                    if (inst instanceof UIComponent) { return inst; }
-                } else {
-                    res.push(inst);
+            for (var i = 0, len = instances.length; i < len; i++) {
+                if (instances[i] instanceof UIComponent) {
+                    return instances[i];
                 }
             }
 
-            if (typeof UIComponent === 'function') {
-                return null;
-            }
-
-            return res;
+            return null;
         },
 
         /**
@@ -743,9 +753,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          * @return  {Object|Array}               Returns an instance or a collection of instances.
          */
         getInstanceFromSelector: function(selector) {
-            var el = Selector.select(selector)[0];
-            if (!el) { throw new Error('Element not found!'); }
-            return this.getInstance(el);
+            return Common.getInstance(Common.elOrSelector(el));
         },
 
         /**
@@ -790,7 +798,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          * @static
          */
         destroyComponent: function() {
-            Common.unregisterInstance(this._instanceId);
+            Common.unregisterInstance(this);
             this._element.parentNode.removeChild(this._element);
         }
 
