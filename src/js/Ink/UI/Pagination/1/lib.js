@@ -134,8 +134,6 @@ Ink.createModule('Ink.UI.Pagination', '1',
                 this._size = 0;
             }
 
-            this.setOnChange(this._options.onChange);
-
             this._current = this._options.start - 1;
             this._itemLiEls = [];
 
@@ -351,7 +349,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
             if (onChange !== undefined && typeof onChange !== 'function') {
                 throw new TypeError('onChange option must be a function!');
             }
-            this._onChange = onChange;
+            this._options.onChange = onChange;
         },
 
         /**************
@@ -415,8 +413,8 @@ Ink.createModule('Ink.UI.Pagination', '1',
             this._current = nr;
             this._updateItems();
 
-            if (this._onChange) {
-                this._onChange(this, nr);
+            if (this._options.onChange) {
+                this._options.onChange(this, nr);
             }
 
             /*if (this._options.setHash) {
