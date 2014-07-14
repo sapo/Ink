@@ -52,21 +52,21 @@ Ink.requireModules(['Ink.UI.Tabs_1', 'Ink.UI.Common_1', 'Ink.Dom.Element_1', 'In
     });
 
     testTabs('changeTab calls _changeTab with correct arguments', function (tabComponent, container) {
-        var spy = sinon.spy(tabComponent, '_changeTab');
+        var spy = sinon.stub(tabComponent, '_changeTab');
         tabComponent.changeTab('home');
         ok(spy.calledOnce);
         deepEqual(spy.lastCall.args, [Ink.s('a[href$="#home"]', container), true]);
     });
 
     testTabs('... but not when new tab is invalid', function (tabComponent) {
-        var spy = sinon.spy(tabComponent, '_changeTab');
+        var spy = sinon.stub(tabComponent, '_changeTab');
         tabComponent.changeTab('hoem');
-        ok(!spy.called);
+        ok(!spy.called, 'spy was called');
     });
 
     testTabs('when clicking a tab, _changeTab is called with the target link', function (tabComponent, container) {
         stop();
-        var spy = sinon.spy(tabComponent, '_changeTab');
+        var spy = sinon.stub(tabComponent, '_changeTab');
         var theTabLink = Ink.s('a[href$="#news"]', container);
         Syn.click(theTabLink, function () {
             ok(spy.calledOnce);

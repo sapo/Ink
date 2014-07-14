@@ -324,7 +324,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          * @public
          */
         changeTab: function(selector) {
-            selector = this._findLinkByHref(this._hashify(selector));
+            selector = this._findLinkByHref(selector);
 
             if(!selector || Css.hasClassName(selector, 'ink-disabled')){
                 return;
