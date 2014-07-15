@@ -178,13 +178,13 @@
             scriptEl.setAttribute('type', contentType || 'text/javascript');
             scriptEl.setAttribute('src', uri);
 
-            scriptEl.onerror = scriptEl.onreadystatechange = function (err) {
-                err = err || window.event;
-                if (err.type === 'readystatechange' && scriptEl.readyState !== 'loaded') {
+            scriptEl.onerror = scriptEl.onreadystatechange = function (ev) {
+                ev = ev || window.event;
+                if (ev.type === 'readystatechange' && scriptEl.readyState !== 'loaded') {
                     // if not readyState == 'loaded' it's not an error.
                     return;
                 }
-                Ink.error(['Failed to load script ', uri, '. (', err || 'unspecified error', ')'].join(''));
+                Ink.error(['Failed to load script from ', uri, '.'].join(''));
             };
             // CHECK ON ALL BROWSERS
             /*if (document.readyState !== 'complete' && !document.body) {
