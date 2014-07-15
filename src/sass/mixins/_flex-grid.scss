@@ -586,24 +586,24 @@
                 $sub-division-unit: nth($sub-division,2);
 
                 .#{$sub-division-class-name}-space {
-                    margin: $gutter-width / $sub-division-unit;
+                    margin: $gutter-width * $sub-division-unit;
                 }
 
                 .#{$class-name}-#{$sub-division-class-name}-space {
-                    margin: $gutter-width / $sub-division-unit;
+                    margin: $gutter-width * $sub-division-unit;
                 }
 
                 .#{$sub-division-class-name}-padding {
-                    padding: $gutter-width / $sub-division-unit;
+                    padding: $gutter-width * $sub-division-unit;
                 }
 
                 .#{$class-name}-#{$sub-division-class-name}-padding {
-                    padding: $gutter-width / $sub-division-unit;
+                    padding: $gutter-width * $sub-division-unit;
                 }
             }
         }
     }
-}
+} 
 
 @mixin generate-visibility-classes ($breakpoint) {
 
