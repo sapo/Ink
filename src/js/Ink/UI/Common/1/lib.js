@@ -753,7 +753,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          * @return  {Object|Array}               Returns an instance or a collection of instances.
          */
         getInstanceFromSelector: function(selector) {
-            return Common.getInstance(Common.elOrSelector(el));
+            return Common.getInstance(Common.elOrSelector(selector));
         },
 
         /**
