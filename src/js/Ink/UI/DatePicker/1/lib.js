@@ -55,7 +55,6 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
      * @param {String|DOMElement}   [options.monthField]        (if using options.displayInSelect) `select` field with months.
      * @param {String|DOMElement}   [options.yearField]         (if using options.displayInSelect) `select` field with years.
      * @param {String}              [options.format]            Date format string
-     * @param {String}              [options.instance]          Unique id for the datepicker
      * @param {Object}              [options.month]             Hash of month names. Defaults to portuguese month names. January is 1.
      * @param {String}              [options.nextLinkText]      Text for the previous button. Defaults to '«'.
      * @param {String}              [options.ofText]            Text to show between month and year. Defaults to ' of '.
@@ -102,7 +101,6 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         yearField:       ['Element', null],
 
         format:          ['String', 'yyyy-mm-dd'],
-        instance:        ['String', 'scdp_' + Math.round(99999 * Math.random())],
         nextLinkText:    ['String', '»'],
         ofText:          ['String', ' of '],
         onFocus:         ['Boolean', true],
@@ -205,8 +203,6 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          */
         _render: function() {
             this._containerObject = document.createElement('div');
-
-            this._containerObject.id = this._options.instance;
 
             this._containerObject.className = this._options.cssClass + ' ink-datepicker-calendar hide-all';
 
@@ -396,19 +392,22 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         _appendDatePickerToDom: function () {
             if(this._options.containerElement) {
                 var appendTarget =
-                    Ink.i(this._options.containerElement) ||  // [2.3.0] maybe id; small backwards compatibility thing
                     Common.elOrSelector(this._options.containerElement);
                 appendTarget.appendChild(this._containerObject);
             }
 
-            if (InkElement.findUpwardsBySelector(this._element, '.ink-form .control-group .control') === this._element.parentNode) {
-                // [3.0.0] Check if the <input> must be a direct child of .control, and if not, remove this block.
+            var parentIsControl = Selector.matchesSelector(
+                this._element.parentNode,
+                '.ink-form .control-group .control');
+
+            if (parentIsControl) {
                 this._wrapper = this._element.parentNode;
                 this._wrapperIsControl = true;
             } else {
                 this._wrapper = InkElement.create('div', { className: 'ink-datepicker-wrapper' });
                 InkElement.wrap(this._element, this._wrapper);
             }
+
             InkElement.insertAfter(this._containerObject, this._element);
         },
 
