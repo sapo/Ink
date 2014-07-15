@@ -7,6 +7,10 @@ table.#{$table-class-name} {
             border-bottom: $table-cell-borderColor 1px solid; 
             background:none
         }
+
+        &:last-child {
+            td { border-bottom: none; }    
+        }
     }
 
     tfoot {
