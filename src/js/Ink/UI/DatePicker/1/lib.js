@@ -174,10 +174,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             } else if (this._element && this._element.value) {
                 this.setDate( this._element.value );
             } else {
-                var today = new Date();
-                this._day   = today.getDate( );
-                this._month = today.getMonth( );
-                this._year  = today.getFullYear( );
+                this.setDate(new Date());
             }
 
             if (this._options.startWeekDay < 0 || this._options.startWeekDay > 6) {
@@ -514,7 +511,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             var elemData = InkElement.data(elem);
 
             if( Number(elemData.calDay) ){
-                this.setDate( [this._year, this._month + 1, elemData.calDay].join('-') );
+                this.setDate(new Date(this._year, this._month, elemData.calDay));
                 this._hide();
             } else if( Number(elemData.calMonth) ) {
                 this._month = Number(elemData.calMonth) - 1;
@@ -749,7 +746,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 this._month = dataParsed._month;
                 this._day = dataParsed._day;
             }
-            this.setDate();
+            this._setDate();
             this._updateDescription();
             this._renderMonth();
         },
@@ -949,10 +946,15 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * This method allows the user to set the DatePicker's date on run-time.
          *
          * @method setDate
-         * @param {String} dateString A date string in yyyy-mm-dd format.
+         * @param {Date|String} dateString A Date object, or date string in yyyy-mm-dd format.
          * @public
          */
         setDate: function( dateString ) {
+            if (dateString && typeof dateString.getDate === 'function') {
+                dateString = [ dateString.getFullYear(),
+                    dateString.getMonth() + 1, dateString.getDate() ].join('-');
+            }
+
             if ( /\d{4}-\d{1,2}-\d{1,2}/.test( dateString ) ) {
                 var auxDate = dateString.split( '-' );
                 this._year  = +auxDate[ 0 ];
