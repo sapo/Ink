@@ -1708,51 +1708,51 @@ th {
   }
 
   .double-space {
-    margin: 1em;
+    margin: 4em;
   }
 
   .xlarge-double-space {
-    margin: 1em;
+    margin: 4em;
   }
 
   .double-padding {
-    padding: 1em;
+    padding: 4em;
   }
 
   .xlarge-double-padding {
-    padding: 1em;
+    padding: 4em;
   }
 
   .half-space {
-    margin: 4em;
+    margin: 1em;
   }
 
   .xlarge-half-space {
-    margin: 4em;
+    margin: 1em;
   }
 
   .half-padding {
-    padding: 4em;
+    padding: 1em;
   }
 
   .xlarge-half-padding {
-    padding: 4em;
+    padding: 1em;
   }
 
   .quarter-space {
-    margin: 8em;
+    margin: 0.5em;
   }
 
   .xlarge-quarter-space {
-    margin: 8em;
+    margin: 0.5em;
   }
 
   .quarter-padding {
-    padding: 8em;
+    padding: 0.5em;
   }
 
   .xlarge-quarter-padding {
-    padding: 8em;
+    padding: 0.5em;
   }
 
   .vertical-space {
@@ -2732,51 +2732,51 @@ th {
   }
 
   .double-space {
-    margin: 0.875em;
+    margin: 3.5em;
   }
 
   .large-double-space {
-    margin: 0.875em;
+    margin: 3.5em;
   }
 
   .double-padding {
-    padding: 0.875em;
+    padding: 3.5em;
   }
 
   .large-double-padding {
-    padding: 0.875em;
+    padding: 3.5em;
   }
 
   .half-space {
-    margin: 3.5em;
+    margin: 0.875em;
   }
 
   .large-half-space {
-    margin: 3.5em;
+    margin: 0.875em;
   }
 
   .half-padding {
-    padding: 3.5em;
+    padding: 0.875em;
   }
 
   .large-half-padding {
-    padding: 3.5em;
+    padding: 0.875em;
   }
 
   .quarter-space {
-    margin: 7em;
+    margin: 0.4375em;
   }
 
   .large-quarter-space {
-    margin: 7em;
+    margin: 0.4375em;
   }
 
   .quarter-padding {
-    padding: 7em;
+    padding: 0.4375em;
   }
 
   .large-quarter-padding {
-    padding: 7em;
+    padding: 0.4375em;
   }
 
   .vertical-space {
@@ -3756,51 +3756,51 @@ th {
   }
 
   .double-space {
-    margin: 0.75em;
+    margin: 3em;
   }
 
   .medium-double-space {
-    margin: 0.75em;
+    margin: 3em;
   }
 
   .double-padding {
-    padding: 0.75em;
+    padding: 3em;
   }
 
   .medium-double-padding {
-    padding: 0.75em;
+    padding: 3em;
   }
 
   .half-space {
-    margin: 3em;
+    margin: 0.75em;
   }
 
   .medium-half-space {
-    margin: 3em;
+    margin: 0.75em;
   }
 
   .half-padding {
-    padding: 3em;
+    padding: 0.75em;
   }
 
   .medium-half-padding {
-    padding: 3em;
+    padding: 0.75em;
   }
 
   .quarter-space {
-    margin: 6em;
+    margin: 0.375em;
   }
 
   .medium-quarter-space {
-    margin: 6em;
+    margin: 0.375em;
   }
 
   .quarter-padding {
-    padding: 6em;
+    padding: 0.375em;
   }
 
   .medium-quarter-padding {
-    padding: 6em;
+    padding: 0.375em;
   }
 
   .vertical-space {
@@ -4780,51 +4780,51 @@ th {
   }
 
   .double-space {
-    margin: 0.625em;
+    margin: 2.5em;
   }
 
   .small-double-space {
-    margin: 0.625em;
+    margin: 2.5em;
   }
 
   .double-padding {
-    padding: 0.625em;
+    padding: 2.5em;
   }
 
   .small-double-padding {
-    padding: 0.625em;
+    padding: 2.5em;
   }
 
   .half-space {
-    margin: 2.5em;
+    margin: 0.625em;
   }
 
   .small-half-space {
-    margin: 2.5em;
+    margin: 0.625em;
   }
 
   .half-padding {
-    padding: 2.5em;
+    padding: 0.625em;
   }
 
   .small-half-padding {
-    padding: 2.5em;
+    padding: 0.625em;
   }
 
   .quarter-space {
-    margin: 5em;
+    margin: 0.3125em;
   }
 
   .small-quarter-space {
-    margin: 5em;
+    margin: 0.3125em;
   }
 
   .quarter-padding {
-    padding: 5em;
+    padding: 0.3125em;
   }
 
   .small-quarter-padding {
-    padding: 5em;
+    padding: 0.3125em;
   }
 
   .vertical-space {
@@ -5804,51 +5804,51 @@ th {
   }
 
   .double-space {
-    margin: 0.5em;
+    margin: 2em;
   }
 
   .tiny-double-space {
-    margin: 0.5em;
+    margin: 2em;
   }
 
   .double-padding {
-    padding: 0.5em;
+    padding: 2em;
   }
 
   .tiny-double-padding {
-    padding: 0.5em;
+    padding: 2em;
   }
 
   .half-space {
-    margin: 2em;
+    margin: 0.5em;
   }
 
   .tiny-half-space {
-    margin: 2em;
+    margin: 0.5em;
   }
 
   .half-padding {
-    padding: 2em;
+    padding: 0.5em;
   }
 
   .tiny-half-padding {
-    padding: 2em;
+    padding: 0.5em;
   }
 
   .quarter-space {
-    margin: 4em;
+    margin: 0.25em;
   }
 
   .tiny-quarter-space {
-    margin: 4em;
+    margin: 0.25em;
   }
 
   .quarter-padding {
-    padding: 4em;
+    padding: 0.25em;
   }
 
   .tiny-quarter-padding {
-    padding: 4em;
+    padding: 0.25em;
   }
 
   .vertical-space {
@@ -8735,6 +8735,9 @@ table.ink-table tr th, table.ink-table tr td {
   border-bottom: #bbbbbb 1px solid;
   background: none;
 }
+table.ink-table tr:last-child td {
+  border-bottom: none;
+}
 table.ink-table tfoot tr th, table.ink-table tfoot tr td {
   border-top: #bbbbbb 1px solid;
 }
@@ -9189,7 +9192,6 @@ body.ink-drawer.over.right .right-drawer {
   background: white;
   z-index: 100;
   position: absolute;
-  border: 1px #666666 solid;
   overflow: hidden;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
   opacity: 1;

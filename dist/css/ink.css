@@ -7603,6 +7603,9 @@ table.ink-table tr th, table.ink-table tr td {
   border-bottom: #bbbbbb 1px solid;
   background: none;
 }
+table.ink-table tr:last-child td {
+  border-bottom: none;
+}
 table.ink-table tfoot tr th, table.ink-table tfoot tr td {
   border-top: #bbbbbb 1px solid;
 }
@@ -8017,7 +8020,6 @@ body.ink-drawer.over.right .right-drawer {
   background: white;
   z-index: 100;
   position: absolute;
-  border: 1px #666666 solid;
   overflow: hidden;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
   opacity: 1;
