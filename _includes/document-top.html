@@ -14,7 +14,12 @@
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>{{ site.title }} - {{ page.title }}</title>
+    {% if page.title == nil %}
+    <title>{{ site.title }}</title>
+    {% endif %}
+    {% if page.title %}
+    <title>{{ page.title }} - {{ site.title }}</title>
+    {% endif %}
     <meta name="description" content="Ink is a set of tools for quick development of web interfaces. It offers a fluid and responsive grid, common interface elements, interactive components, a design-first approach with ease of use and simplicity at its core. Start integrating Ink in your projects and remove the hassle of building the basics, staying free to focus on what's important. ">
     <meta name="author" content="SAPO WEB & MEDIA DESIGN">
 
