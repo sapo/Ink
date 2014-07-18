@@ -14,8 +14,13 @@
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>{{ site.title }} - {{ page.title }}</title>
-    <meta name="description" content="Ink is a set of tools for quick development of web interfaces. It offers a fluid and responsive grid, common interface elements, interactive components, a design-first approach with ease of use and simplicity at its core. Start integrating Ink in your projects and remove the hassle of building the basics, staying free to focus on what's important. ">
+    {% if page.title == nil %}
+    <title>{{ site.title }}</title>
+    {% endif %}
+    {% if page.title %}
+    <title>{{ page.title }} - {{ site.title }}</title>
+    {% endif %}
+    <meta name="description" content="{{ page.description }}">
     <meta name="author" content="SAPO WEB & MEDIA DESIGN">
 
     <meta name="twitter:card" content="summary">
@@ -24,11 +29,11 @@
     <meta name="twitter:description" content="Create responsive web interfaces quick and efficiently.">
     <meta name="twitter:creator" content="@inksapo">
     <meta name="twitter:image:src" content="http://imgs.sapo.pt/ink/assets/imgs/ink_opengraph.png">
-    <meta name="twitter:domain" content="http://ink.sapo.pt">
+    <meta name="twitter:domain" content="{{ site.url }}">
 
     <meta property="og:title" content="Ink - Interface Kit"/>
     <meta property="og:type" content="website"/>
-    <meta property="og:url" content="http://ink.sapo.pt/"/>
+    <meta property="og:url" content="{{ site.url }}"/>
     <meta property="og:image" content="http://imgs.sapo.pt/ink/assets/imgs/ink_opengraph.png"/>
     <meta property="og:site_name" content="Ink"/>
     <meta property="og:description" content="Ink is a set of tools for quick development of web interfaces.  It offers a fluid and responsive grid, common interface elements, interactive components, a design-first approach with ease of use and simplicity at its core. Start integrating Ink in your projects and remove the hassle of building the basics, staying free to focus on what's important. "/>
