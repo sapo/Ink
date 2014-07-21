@@ -392,6 +392,55 @@ test('show', function () {
     notEqual(Css.getStyle(dt._containerObject, 'display'), 'none');
 });
 
+
+
+test('createSelectOptions fills in the required fields', function () {
+    dt.destroy();
+
+    var yearField = InkElement.create('select');
+    var monthField = InkElement.create('select');
+    var dayField = InkElement.create('select')
+
+    mkDatePicker({ createSelectOptions: true, displayInSelect: true, dayField: dayField, monthField: monthField, yearField: yearField });
+
+    monthField.value = 1;
+    InkEvent.fire(monthField, 'change')
+    equal(monthField.value, "1", 'sanity check -- must be january');
+    deepEqual(
+        InkArray.map(dayField.children, function (opt) { return +opt.value }),
+        InkArray.range(1, 32));
+    deepEqual(
+        InkArray.map(monthField.children, function (opt) { return +opt.value }),
+        InkArray.range(1, 13));
+    deepEqual(
+        InkArray.map(yearField.children, function (opt) { return +opt.value }),
+        InkArray.range(1900, 2000));
+})
+
+test('createSelectOptions -- changes what fields are visible when another is selected', function () {
+    dt.destroy();
+
+    var yearField = InkElement.create('select');
+    var monthField = InkElement.create('select');
+    var dayField = InkElement.create('select')
+
+    mkDatePicker({ createSelectOptions: true, displayInSelect: true, dayField: dayField, monthField: monthField, yearField: yearField });
+    monthField.value = 2;
+    InkEvent.fire(monthField, 'change')
+
+    deepEqual(
+        InkArray.map(dayField.children, function (opt) { return +opt.value }),
+        InkArray.range(1, 28 + 1));
+    
+    yearField.value = 1996;  // leap year
+    InkEvent.fire(yearField, 'change')
+    deepEqual(
+        InkArray.map(dayField.children, function (opt) { return +opt.value }),
+        InkArray.range(1, 29 + 1));
+})
+
+
+
 test('destroy', function () {
     ok(testWrapper.children.length > 1 || testWrapper.firstChild !== dtElm, 'sanity check. if this fails, review the test because you\'ve changed the DOM structure of this component');
     dt.destroy();

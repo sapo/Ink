@@ -126,6 +126,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
      * @param {String|Element}      [options.dayField]          (if using options.displayInSelect) `select` field with days.
      * @param {String|Element}      [options.monthField]        (if using options.displayInSelect) `select` field with months.
      * @param {String|Element}      [options.yearField]         (if using options.displayInSelect) `select` field with years.
+     * @param {Boolean}             [options.createSelectOptions] (if using options.displayInSelect) create the `option` elements with months, days, and years. Otherwise, datepicker trusts you to create them yourself.
      * @param {String}              [options.format]            Date format string
      * @param {Boolean}             [options.onFocus]           If the datepicker should open when the target element is focused. Defaults to true.
      * @param {Function}            [options.onMonthSelected]   Callback to execute when the month is selected.
@@ -171,6 +172,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         dayField:        ['Element', null],
         monthField:      ['Element', null],
         yearField:       ['Element', null],
+        createSelectOptions: ['Boolean', false],
 
         format:          ['String', 'yyyy-mm-dd'],
         onFocus:         ['Boolean', true],
@@ -262,6 +264,10 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             if (this._options.startWeekDay < 0 || this._options.startWeekDay > 6) {
                 Ink.warn('Ink.UI.DatePicker_1: option "startWeekDay" must be between 0 (sunday) and 6 (saturday)');
                 this._options.startWeekDay = clamp(this._options.startWeekDay, 0, 6);
+            }
+
+            if (this._options.displayInSelect && this._options.createSelectOptions) {
+                this._createSelectOptions();
             }
 
             Ink.extendObj(this._options,this._lang || {});
@@ -798,6 +804,38 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                     self[props[i + 1]] !== undefined && oth[props[i + 1]] !== undefined);
 
             return 0;
+        },
+
+        _createSelectOptions: function () {
+            var dayField = this._options.dayField;
+            var monthField = this._options.monthField;
+            var yearField = this._options.yearField;
+
+            InkElement.setHTML(monthField, '');
+            InkElement.setHTML(yearField, '');
+
+            InkElement.fillSelect(monthField, InkArray.map([
+                'Janeiro', 'Fevereiro', 'Março', 'Abril',
+                'Maio', 'Junho', 'Julho', 'Agosto',
+                'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+            ], function (monthName, i) { return [ i + 1, monthName ]; }), true);
+
+            InkElement.fillSelect(yearField, InkArray.range(1900, 2000), true);
+
+            function updateDays() {
+                var daysInMonth =
+                    new Date(+yearField.value,
+                        monthField.value - 1 /* because JS months are zero-based */ + 1 /* because we want the next month */,
+                        0 /* days are 1-based so if we choose 0 we get the last day of the previous month */
+                    ).getDate();
+                InkElement.setHTML(dayField, '');
+                InkElement.fillSelect(dayField, InkArray.range(1, daysInMonth + 1), true);
+            }
+
+            // create event on selects to add or remove options depending on selection
+            Event.observeMulti([monthField, yearField], 'change', updateDays);
+
+            updateDays();
         },
 
         /**
