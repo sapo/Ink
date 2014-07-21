@@ -191,6 +191,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
             }
         },
 
+        // [3.1.0] Deprecate this already
         _center: function() {
             if (!this._options.center) { return; }
             var gap = Math.floor( (this._ctnLength - (this._elLength * this._slidesPerPage) ) / 2 );
@@ -205,6 +206,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
             this._ulEl.style.padding = pad.join('');
         },
 
+        // [3.1.0] Deprecate this already
         _updateHider: function() {
             if (!this._hiderEl) { return; }
             if (this.getPage() === 0) {
@@ -241,8 +243,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
 
             this._swipeData = {
                 x: InkEvent.pointerX(event),
-                y: InkEvent.pointerY(event),
-                lastUlPos: null
+                y: InkEvent.pointerY(event)
             };
 
             var ulRect = this._ulEl.getBoundingClientRect();
@@ -300,8 +301,6 @@ Ink.createModule('Ink.UI.Carousel', '1',
             }
 
             this._ulEl.style[this._isY ? 'top' : 'left'] = newPos + 'px';
-
-            swipeData.lastUlPos = newPos;
 
             requestAnimationFrame(Ink.bindMethod(this, '_onAnimationFrame'));
         },
@@ -369,7 +368,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
             page = limitRange(page, 0, this._numPages - 1);
 
             if (this._pagination) {
-                this._pagination.setCurrent(page);
+                this._pagination.setCurrent(page);  // _setPage is called by pagination because it listens to its Change event.
             } else {
                 this._setPage(page);
             }
