@@ -44,7 +44,7 @@
      */
 
     window.Ink = {
-        VERSION: '3.0.4',
+        VERSION: '3.0.5',
         _checkPendingRequireModules: function() {
             var I, F, o, dep, mod, cb, pRMs = [];
             for (I = 0, F = pendingRMs.length; I < F; ++I) {
@@ -178,13 +178,13 @@
             scriptEl.setAttribute('type', contentType || 'text/javascript');
             scriptEl.setAttribute('src', uri);
 
-            scriptEl.onerror = scriptEl.onreadystatechange = function (err) {
-                err = err || window.event;
-                if (err.type === 'readystatechange' && scriptEl.readyState !== 'loaded') {
+            scriptEl.onerror = scriptEl.onreadystatechange = function (ev) {
+                ev = ev || window.event;
+                if (ev.type === 'readystatechange' && scriptEl.readyState !== 'loaded') {
                     // if not readyState == 'loaded' it's not an error.
                     return;
                 }
-                Ink.error(['Failed to load script ', uri, '. (', err || 'unspecified error', ')'].join(''));
+                Ink.error(['Failed to load script from ', uri, '.'].join(''));
             };
             // CHECK ON ALL BROWSERS
             /*if (document.readyState !== 'complete' && !document.body) {
@@ -584,7 +584,7 @@
          * @return destination object, enriched with defaults from the sources
          * @sample Ink_1_extendObj.html 
          */
-        extendObj: function(destination, source) {
+        extendObj: function(destination/*, source... */) {
             var sources = [].slice.call(arguments, 1);
 
             for (var i = 0, len = sources.length; i < len; i++) {

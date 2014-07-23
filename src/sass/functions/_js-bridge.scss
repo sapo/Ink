@@ -1,0 +1,26 @@
+@function js-bridge( $bps ) {
+
+    $counter: 1;
+    $length: length($bps);
+    $bridge: '[';
+
+    @each $bp in $bps {
+
+        $class-name:        nth($bp,2);
+        $minimum-width:     nth($bp,3);
+        $maximum-width:     nth($bp,4);
+
+        @if $counter == $length {
+            $bridge: $bridge + '{"name":"#{$class-name}", "size":{"min":"#{$minimum-width}","max":"#{$maximum-width}"}}';
+        } @else {
+            $bridge: $bridge + '{"name":"#{$class-name}", "size":{"min":"#{$minimum-width}","max":"#{$maximum-width}"}},';
+        }
+
+        $counter: $counter + 1;
+
+    }
+
+    $bridge: $bridge + ']';
+
+    @return $bridge;
+}

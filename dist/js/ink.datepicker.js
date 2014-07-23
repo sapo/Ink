@@ -7,15 +7,6 @@
 Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1','Ink.Util.Date_1', 'Ink.Dom.Browser_1'], function(Common, Event, Css, InkElement, Selector, InkArray, InkDate ) {
     'use strict';
 
-    // Repeat a string. Long version of (new Array(n)).join(str);
-    function strRepeat(n, str) {
-        var ret = '';
-        for (var i = 0; i < n; i++) {
-            ret += str;
-        }
-        return ret;
-    }
-
     // Clamp a number into a min/max limit
     function clamp(n, min, max) {
         if (n > max) { n = max; }
@@ -55,7 +46,6 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
      * @param {String|DOMElement}   [options.monthField]        (if using options.displayInSelect) `select` field with months.
      * @param {String|DOMElement}   [options.yearField]         (if using options.displayInSelect) `select` field with years.
      * @param {String}              [options.format]            Date format string
-     * @param {String}              [options.instance]          Unique id for the datepicker
      * @param {Object}              [options.month]             Hash of month names. Defaults to portuguese month names. January is 1.
      * @param {String}              [options.nextLinkText]      Text for the previous button. Defaults to '«'.
      * @param {String}              [options.ofText]            Text to show between month and year. Defaults to ' of '.
@@ -102,7 +92,6 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         yearField:       ['Element', null],
 
         format:          ['String', 'yyyy-mm-dd'],
-        instance:        ['String', 'scdp_' + Math.round(99999 * Math.random())],
         nextLinkText:    ['String', '»'],
         ofText:          ['String', ' of '],
         onFocus:         ['Boolean', true],
@@ -152,8 +141,6 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
     };
 
     DatePicker.prototype = {
-        version: '0.1',
-
         /**
          * Initialization function. Called by the constructor and receives the same parameters.
          *
@@ -174,10 +161,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             } else if (this._element && this._element.value) {
                 this.setDate( this._element.value );
             } else {
-                var today = new Date();
-                this._day   = today.getDate( );
-                this._month = today.getMonth( );
-                this._year  = today.getFullYear( );
+                this.setDate(new Date());
             }
 
             if (this._options.startWeekDay < 0 || this._options.startWeekDay > 6) {
@@ -209,8 +193,6 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         _render: function() {
             this._containerObject = document.createElement('div');
 
-            this._containerObject.id = this._options.instance;
-
             this._containerObject.className = this._options.cssClass + ' ink-datepicker-calendar hide-all';
 
             this._renderSuperTopBar();
@@ -223,11 +205,19 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
             this._monthPrev = document.createElement('div');
             this._monthPrev.className = 'ink-calendar-prev';
-            this._monthPrev.innerHTML ='<a href="#prev" class="change_month_prev">' + this._options.prevLinkText + '</a>';
+            this._monthPrev.appendChild(InkElement.create('a', {
+                href: '#prev',
+                className: 'change_month_prev',
+                setHTML: this._options.prevLinkText
+            }));
 
             this._monthNext = document.createElement('div');
             this._monthNext.className = 'ink-calendar-next';
-            this._monthNext.innerHTML ='<a href="#next" class="change_month_next">' + this._options.nextLinkText + '</a>';
+            this._monthNext.appendChild(InkElement.create('a', {
+                href: '#next',
+                className: 'change_month_next',
+                setHTML: this._options.nextLinkText
+            }));
 
             calendarTop.appendChild(this._monthPrev);
             calendarTop.appendChild(this._monthDescContainer);
@@ -249,11 +239,12 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
             if(!this._options.onFocus || this._options.displayInSelect){
                 if(!this._options.pickerField){
-                    this._picker = document.createElement('a');
-                    this._picker.href = '#open_cal';
-                    this._picker.innerHTML = 'open';
-                    this._element.parentNode.appendChild(this._picker);
-                    this._picker.className = 'ink-datepicker-picker-field';
+                    this._picker = InkElement.create('a', {
+                        href: '#open_cal',
+                        setHTML: 'open',
+                        insertBottom: this._element.parentNode,
+                        className: 'ink-datepicker-picker-field'
+                    });
                 } else {
                     this._picker = Common.elOrSelector(this._options.pickerField, 'pickerField');
                 }
@@ -263,19 +254,23 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
             this._renderMonth();
 
-            this._monthChanger = document.createElement('a');
-            this._monthChanger.href = '#monthchanger';
-            this._monthChanger.className = 'ink-calendar-link-month';
-            this._monthChanger.innerHTML = this._options.month[this._month + 1];
+            this._monthChanger = InkElement.create('a', {
+                href: '#monthchanger',
+                className: 'ink-calendar-link-month',
+                setTextContent: this._options.month[this._month + 1]
+            });
 
-            this._ofText = document.createElement('span');
-            this._ofText.innerHTML = this._options.ofText;
+            this._ofText = InkElement.create('span', {
+                className: 'ink-calendar-of-text',
+                setHTML: this._options.ofText
+            });
 
-            this._yearChanger = document.createElement('a');
-            this._yearChanger.href = '#yearchanger';
-            this._yearChanger.className = 'ink-calendar-link-year';
-            this._yearChanger.innerHTML = this._year;
-            this._monthDescContainer.innerHTML = '';
+            this._yearChanger = InkElement.create('a', {
+                href: '#yearchanger',
+                className: 'ink-calendar-link-year',
+                setTextContent: this._year
+            });
+
             this._monthDescContainer.appendChild(this._monthChanger);
             this._monthDescContainer.appendChild(this._ofText);
             this._monthDescContainer.appendChild(this._yearChanger);
@@ -389,29 +384,32 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          */
         _renderMonthButton: function (mon) {
             var liMonth = document.createElement('li');
-            var aMonth = document.createElement('a');
-            aMonth.setAttribute('data-cal-month', mon);
-            aMonth.innerHTML = this._options.month[mon].substring(0,3);
-            liMonth.appendChild(aMonth);
+            liMonth.appendChild(InkElement.create('a', {
+                'data-cal-month': mon,
+                setTextContent: this._options.month[mon].substring(0, 3)
+            }));
             return liMonth;
         },
 
         _appendDatePickerToDom: function () {
             if(this._options.containerElement) {
                 var appendTarget =
-                    Ink.i(this._options.containerElement) ||  // [2.3.0] maybe id; small backwards compatibility thing
                     Common.elOrSelector(this._options.containerElement);
                 appendTarget.appendChild(this._containerObject);
             }
 
-            if (InkElement.findUpwardsBySelector(this._element, '.ink-form .control-group .control') === this._element.parentNode) {
-                // [3.0.0] Check if the <input> must be a direct child of .control, and if not, remove this block.
+            var parentIsControl = Selector.matchesSelector(
+                this._element.parentNode,
+                '.ink-form .control-group .control');
+
+            if (parentIsControl) {
                 this._wrapper = this._element.parentNode;
                 this._wrapperIsControl = true;
             } else {
                 this._wrapper = InkElement.create('div', { className: 'ink-datepicker-wrapper' });
                 InkElement.wrap(this._element, this._wrapper);
             }
+
             InkElement.insertAfter(this._containerObject, this._element);
         },
 
@@ -514,7 +512,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             var elemData = InkElement.data(elem);
 
             if( Number(elemData.calDay) ){
-                this.setDate( [this._year, this._month + 1, elemData.calDay].join('-') );
+                this.setDate(new Date(this._year, this._month, elemData.calDay));
                 this._hide();
             } else if( Number(elemData.calMonth) ) {
                 this._month = Number(elemData.calMonth) - 1;
@@ -527,7 +525,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
         _changeYear: function (year) {
             year = +year;
-            if(year){
+            if(!isNaN(year)){
                 this._year = year;
                 if( typeof this._options.onYearSelected === 'function' ){
                     this._options.onYearSelected(this, {
@@ -749,7 +747,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 this._month = dataParsed._month;
                 this._day = dataParsed._day;
             }
-            this.setDate();
+            this._setDate();
             this._updateDescription();
             this._renderMonth();
         },
@@ -763,9 +761,9 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * @private
          */
         _updateDescription: function(){
-            this._monthChanger.innerHTML = this._options.month[ this._month + 1 ];
-            this._ofText.innerHTML = this._options.ofText;
-            this._yearChanger.innerHTML = this._year;
+            InkElement.setTextContent(this._monthChanger, this._options.month[this._month + 1]);
+            InkElement.setTextContent(this._ofText, this._options.ofText);
+            InkElement.setTextContent(this._yearChanger, this._year);
         },
 
         /**
@@ -779,33 +777,50 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
             var firstYear = this._year - (this._year % 10);
             var thisYear = firstYear - 1;
-            var str = "<li><ul>";
+
+            InkElement.setHTML(this._yearSelector, '');
+            var yearUl = InkElement.create('ul');
+            this._yearSelector.appendChild(yearUl);
 
             if (thisYear > this._min._year) {
-                str += '<li><a href="#year_prev" class="change_year_prev">' + this._options.prevLinkText + '</a></li>';
+                var prevYearLi = InkElement.create('li');
+
+                prevYearLi.appendChild(InkElement.create('a', {
+                    href: '#year_prev',
+                    className: 'change_year_prev',
+                    setHTML: this._options.prevLinkText
+                }));
+
+                yearUl.appendChild(prevYearLi);
             } else {
-                str += '<li>&nbsp;</li>';
+                yearUl.appendChild(InkElement.create('li', { setHTML: '&nbsp;' }));
             }
 
             for (var i=1; i < 11; i++){
                 if (i % 4 === 0){
-                    str+='</ul><ul>';
+                    yearUl = InkElement.create('ul');
+                    this._yearSelector.appendChild(yearUl);
                 }
 
                 thisYear = firstYear + i - 1;
 
-                str += this._getYearButtonHtml(thisYear);
+                yearUl.appendChild(this._getYearButton(thisYear));
             }
 
-            if( thisYear < this._max._year){
-                str += '<li><a href="#year_next" class="change_year_next">' + this._options.nextLinkText + '</a></li>';
+            if (thisYear < this._max._year) {
+                var nextYearLi = InkElement.create('li');
+
+                nextYearLi.appendChild(InkElement.create('a', {
+                    href: '#year_next',
+                    className: 'change_year_next',
+                    setHTML: this._options.nextLinkText
+                }));
+
+                yearUl.appendChild(nextYearLi);
             } else {
-                str += '<li>&nbsp;</li>';
+                yearUl.appendChild(InkElement.create('li', { setHTML: '&nbsp;' }));
             }
 
-            str += "</ul></li>";
-
-            this._yearSelector.innerHTML = str;
             this._monthPrev.childNodes[0].className = 'action_inactive';
             this._monthNext.childNodes[0].className = 'action_inactive';
             this._monthSelector.style.display = 'none';
@@ -829,14 +844,25 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             this._year = +this._year + inc*10;
         },
 
-        _getYearButtonHtml: function (thisYear) {
-            if ( this._acceptableYear({_year: thisYear}) ){
-                var className = (thisYear === this._year) ? ' class="ink-calendar-on"' : '';
-                return '<li><a href="#" data-cal-year="' + thisYear + '"' + className + '>' + thisYear +'</a></li>';
-            } else {
-                return '<li><a href="#" class="ink-calendar-off">' + thisYear +'</a></li>';
+        _getYearButton: function (thisYear) {
+            var className = '';
 
+            if (!this._acceptableYear({ _year: thisYear })) {
+                className = 'ink-calendar-off';
+            } else if (thisYear === this._year) {
+                className = 'ink-calendar-on';
             }
+
+            var li = InkElement.create('li');
+
+            li.appendChild(InkElement.create('a', {
+                href: '#',
+                'data-cal-year': thisYear,
+                className: className,
+                setTextContent: thisYear
+            }));
+
+            return li;
         },
 
         /**
@@ -949,10 +975,15 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * This method allows the user to set the DatePicker's date on run-time.
          *
          * @method setDate
-         * @param {String} dateString A date string in yyyy-mm-dd format.
+         * @param {Date|String} dateString A Date object, or date string in yyyy-mm-dd format.
          * @public
          */
         setDate: function( dateString ) {
+            if (dateString && typeof dateString.getDate === 'function') {
+                dateString = [ dateString.getFullYear(),
+                    dateString.getMonth() + 1, dateString.getDate() ].join('-');
+            }
+
             if ( /\d{4}-\d{1,2}-\d{1,2}/.test( dateString ) ) {
                 var auxDate = dateString.split( '-' );
                 this._year  = +auxDate[ 0 ];
@@ -1215,28 +1246,13 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
             this._showDefaultView();
 
-            var html = '';
+            InkElement.setHTML(this._monthContainer, '');
 
-            html += this._getMonthCalendarHeaderHtml(this._options.startWeekDay);
+            this._monthContainer.appendChild(
+                    this._getMonthCalendarHeader(this._options.startWeekDay));
 
-            var counter = 0;
-            html+='<ul>';
-
-            var emptyHtml = '<li class="ink-calendar-empty">&nbsp;</li>';
-
-            var firstDayIndex = this._getFirstDayIndex(year, month);
-
-            // Add padding if the first day of the month is not monday.
-            if(firstDayIndex > 0) {
-                counter += firstDayIndex;
-                html += strRepeat(firstDayIndex, emptyHtml);
-            }
-
-            html += this._getDayButtonsHtml(year, month);
-
-            html += '</ul>';
-
-            this._monthContainer.innerHTML = html;
+            this._monthContainer.appendChild(
+                    this._getDayButtons(year, month));
         },
 
         /**
@@ -1270,22 +1286,31 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             return result;
         },
 
-        _getDayButtonsHtml: function (year, month) {
-            var counter = this._getFirstDayIndex(year, month);
+        _getDayButtons: function (year, month) {
             var daysInMonth = this._daysInMonth(year, month + 1);
-            var ret = '';
+
+            var ret = document.createDocumentFragment();
+
+            var ul = InkElement.create('ul');
+            ret.appendChild(ul);
+
+            var firstDayIndex = this._getFirstDayIndex(year, month);
+
+            // Add padding if the first day of the month is not monday.
+            for (var i = 0; i < firstDayIndex; i ++) {
+                ul.appendChild(InkElement.create('li', {
+                    className: 'ink-calendar-empty',
+                    setHTML: '&nbsp;'
+                }));
+            }
+
             for (var day = 1; day <= daysInMonth; day++) {
-                if (counter === 7){ // new week
-                    counter=0;
-                    ret += '<ul>';
+                if ((day - 1 + firstDayIndex) % 7 === 0){ // new week, new UL
+                    ul = InkElement.create('ul');
+                    ret.appendChild(ul);
                 }
 
-                ret += this._getDayButtonHtml(year, month, day);
-
-                counter++;
-                if(counter === 7){
-                    ret += '</ul>';
-                }
+                ul.appendChild(this._getDayButton(year, month, day));
             }
             return ret;
         },
@@ -1296,33 +1321,42 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * @method _getDayButtonHtml
          * @private
          */
-        _getDayButtonHtml: function (year, month, day) {
-            var attrs = ' ';
+        _getDayButton: function (year, month, day) {
+            var attrs = {};
             var date = dateishFromYMD(year, month, day);
+
             if (!this._acceptableDay(date)) {
-                attrs += 'class="ink-calendar-off"';
+                attrs.className = 'ink-calendar-off';
             } else {
-                attrs += 'data-cal-day="' + day + '"';
+                attrs['data-cal-day'] = day;
+
+                if (this._day && this._dateCmp(date, this) === 0) {
+                    attrs.className = 'ink-calendar-on';
+                }
             }
 
-            if (this._day && this._dateCmp(date, this) === 0) {
-                attrs += 'class="ink-calendar-on" data-cal-day="' + day + '"';
-            }
+            attrs.setTextContent = day;
 
-            return '<li><a href="#" ' + attrs + '>' + day + '</a></li>';   
+            var dayButton = InkElement.create('li');
+            dayButton.appendChild(InkElement.create('a', attrs));
+            return dayButton;
         },
 
         /** Write the top bar of the calendar (M T W T F S S) */
-        _getMonthCalendarHeaderHtml: function (startWeekDay) {
-            var ret = '<ul class="ink-calendar-header">';
+        _getMonthCalendarHeader: function (startWeekDay) {
+            var header = InkElement.create('ul', {
+                className: 'ink-calendar-header'
+            });
+
             var wDay;
             for(var i=0; i<7; i++){
                 wDay = (startWeekDay + i) % 7;
-                ret += '<li>' +
-                    this._options.wDay[wDay].substring(0,1) +
-                    '</li>';
+                header.appendChild(InkElement.create('li', {
+                    setTextContent: this._options.wDay[wDay].substring(0, 1)
+                }));
             }
-            return ret + '</ul>';
+
+            return header;
         },
 
         /**

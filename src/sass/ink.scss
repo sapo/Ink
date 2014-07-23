@@ -7,7 +7,7 @@
  * @author    Sapo Ink Team
  * @license   http://opensource.org/licenses/MIT MIT
  * @link      http://ink.sapo.pt
- * @version   3.0.0
+ * @version   3.0.5
  */
 
 // Import Compass Core
@@ -34,6 +34,7 @@
 @import "config/js";
 
 // IMPORT MIXINS FILES (THESE CONTAIN HELPER FUNCTIONS)
+@import "functions/_js-bridge.scss";
 @import "mixins/alerts";
 @import "mixins/buttons";
 @import "mixins/grid";

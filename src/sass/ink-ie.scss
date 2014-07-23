@@ -7,7 +7,7 @@
  * @author    Sapo Ink Team
  * @license   http://opensource.org/licenses/MIT MIT
  * @link      http://ink.sapo.pt
- * @version   3.0.0
+ * @version   3.0.5
  */
 
 // Import Compass Core
@@ -16,6 +16,7 @@
 @import "contrib/compass/typography";
 
 // IMPORT CONFIG FILES (THESE CONTAIN VARIABLE DEFINITIONS)
+@import "functions/_js-bridge.scss";
 @import "config/classnames";
 @import "config/grid";
 

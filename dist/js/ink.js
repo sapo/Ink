@@ -44,7 +44,7 @@
      */
 
     window.Ink = {
-        VERSION: '3.0.4',
+        VERSION: '3.0.5',
         _checkPendingRequireModules: function() {
             var I, F, o, dep, mod, cb, pRMs = [];
             for (I = 0, F = pendingRMs.length; I < F; ++I) {
@@ -178,13 +178,13 @@
             scriptEl.setAttribute('type', contentType || 'text/javascript');
             scriptEl.setAttribute('src', uri);
 
-            scriptEl.onerror = scriptEl.onreadystatechange = function (err) {
-                err = err || window.event;
-                if (err.type === 'readystatechange' && scriptEl.readyState !== 'loaded') {
+            scriptEl.onerror = scriptEl.onreadystatechange = function (ev) {
+                ev = ev || window.event;
+                if (ev.type === 'readystatechange' && scriptEl.readyState !== 'loaded') {
                     // if not readyState == 'loaded' it's not an error.
                     return;
                 }
-                Ink.error(['Failed to load script ', uri, '. (', err || 'unspecified error', ')'].join(''));
+                Ink.error(['Failed to load script from ', uri, '.'].join(''));
             };
             // CHECK ON ALL BROWSERS
             /*if (document.readyState !== 'complete' && !document.body) {
@@ -584,7 +584,7 @@
          * @return destination object, enriched with defaults from the sources
          * @sample Ink_1_extendObj.html 
          */
-        extendObj: function(destination, source) {
+        extendObj: function(destination/*, source... */) {
             var sources = [].slice.call(arguments, 1);
 
             for (var i = 0, len = sources.length; i < len; i++) {
@@ -1932,10 +1932,13 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
             var len = className.length;
 
             for (; i < len; i++) {
-                if (typeof elm.classList !== "undefined") {
-                    elm.classList.add(className[i]);
-                } else if (!Css.hasClassName(elm, className[i])) {
-                    elm.className += (elm.className ? ' ' : '') + className[i];
+                // remove whitespace and ignore on empty string
+                if (className[i].replace(/^\s+|\s+$/g, '')) {
+                    if (typeof elm.classList !== "undefined") {
+                        elm.classList.add(className[i]);
+                    } else if (!Css.hasClassName(elm, className[i])) {
+                        elm.className += (elm.className ? ' ' : '') + className[i];
+                    }
                 }
             }
         },
@@ -2768,6 +2771,25 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
      */
 
     var InkElement = {
+
+        /**
+         * Checks if something is a DOM Element.
+         *
+         * @method isDOMElement
+         * @static
+         * @param   {Mixed}     o   The object to be checked.
+         * @return  {Boolean}       True if it's a valid DOM Element.
+         * @example
+         *     var el = Ink.s('#element');
+         *     if( InkElement.isDOMElement( el ) === true ){
+         *         // It is a DOM Element.
+         *     } else {
+         *         // It is NOT a DOM Element.
+         *     }
+         */
+        isDOMElement: function(o) {
+            return o !== null && typeof o === 'object' && 'nodeType' in o && o.nodeType === 1;
+        },
 
         /**
          * Shortcut for `document.getElementById`
@@ -5217,6 +5239,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     KEY_TAB:       9,
     KEY_RETURN:   13,
     KEY_ESC:      27,
+    KEY_SPACE:    32,
     KEY_LEFT:     37,
     KEY_UP:       38,
     KEY_RIGHT:    39,
@@ -5732,13 +5755,13 @@ return Ink.extendObj(InkEvent, bean);
  * Valid applications are ad hoc AJAX/syndicated submission of forms, restoring form values from server side state, etc.
  */
 
-Ink.createModule('Ink.Dom.FormSerialize', 1, ['Ink.UI.Common_1', 'Ink.Util.Array_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1'], function (Common, InkArray, InkElement, Selector) {
+Ink.createModule('Ink.Dom.FormSerialize', 1, ['Ink.Util.Array_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1'], function (InkArray, InkElement, Selector) {
     'use strict';
 
     // Check whether something is not a string or a DOM element, but still has length.
     function isArrayIsh(obj) {
         return obj != null &&
-            (!Common.isDOMElement(obj)) &&
+            (!InkElement.isDOMElement(obj)) &&
             (InkArray.isArray(obj) || (typeof obj !== 'string' && typeof obj.length === 'number'));
     }
 
@@ -5958,7 +5981,7 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, ['Ink.UI.Common_1', 'Ink.Util.Array
         },
 
         _isSerialized: function (element) {
-            if (!Common.isDOMElement(element)) { return false; }
+            if (!InkElement.isDOMElement(element)) { return false; }
             if (!InkElement.hasAttribute(element, 'name')) { return false; }
 
             var nodeName = element.nodeName.toLowerCase();
@@ -8472,16 +8495,17 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          * @static
          */
         unique: function(arr){
-            if(!Array.prototype.indexOf){ //IE8 slower alternative
-                var newArr = []
-                this.forEach(this.convert(arr),function(i){
-                    if(!this.inArray(i,newArr)){
+            if(!Array.prototype.lastIndexOf){ //IE8 slower alternative
+                var newArr = [];
+
+                InkArray.forEach(InkArray.convert(arr), function(i){
+                    if(!InkArray.inArray(i,newArr)){
                         newArr.push(i);
                     }
-                },this);
+                });
                 return newArr;
             }//else
-            return this.filter(this.convert(arr), function (e, i, arr) {
+            return InkArray.filter(InkArray.convert(arr), function (e, i, arr) {
                             return arr.lastIndexOf(e) === i;
                         });
         },

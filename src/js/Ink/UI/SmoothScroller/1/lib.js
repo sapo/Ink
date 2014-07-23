@@ -36,18 +36,6 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.UI.Common_1', 'Ink.Dom.Even
      *
      * @example
      *
-     *      <a href="#part1" class="ink-smooth-scroll" data-margin="10">go to Part 1</a>
-     *
-     *      [lots and lots of content...]
-     *
-     *      <h1 id="part1">Part 1</h1>
-     *
-     *      <script>
-     *          // ...Although you don't need to do this if you have autoload.js
-     *          Ink.requireModules(['Ink.UI.SmoothScroller_1'], function (SmoothScroller) {
-     *              SmoothScroller.init('.ink-smooth-scroll');
-     *          })
-     *      </script>
      */
     var SmoothScroller = {
 
@@ -120,13 +108,10 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.UI.Common_1', 'Ink.Dom.Even
 
         /**
          * Has smooth scrolling applied to relevant elements upon page load.
-         *
          * Listens to the click event on the document.
-         *
          * Anything which matches the selector will be considered a "link" by SmoothScroller and handled as such.
          *
          * When a link is clicked, it is checked for several options:
-         *
          * - `data-margin="0"` - A margin in pixels -- useful when you have a position:fixed top bar.
          * - `data-speed="10"` - Inverse speed of the scrolling motion. Smaller is faster.
          * - `data-change-hash="true"` - Change the URL hash (location.hash) when done scrolling.
@@ -134,6 +119,7 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.UI.Common_1', 'Ink.Dom.Even
          * @method init
          * @param [selector='a.scrollableLink,a.ink-smooth-scroll'] {String} Selector string for finding links with smooth scrolling enabled.
          * @static
+         * @sample Ink_UI_SmoothScroller_1.html
          */
         init: function(selector) {
             Event.on(document, 'click', selector || 'a.scrollableLink, a.ink-smooth-scroll', SmoothScroller.onClick);

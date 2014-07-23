@@ -199,7 +199,6 @@ Ink.createModule('Ink.UI.Carousel', '1',
      * @param {Object}              [options]                   Carousel Options
      * @param {Integer}             [options.autoAdvance]       Milliseconds to wait before auto-advancing pages. Set to 0 to disable auto-advance. Defaults to 0.
      * @param {String}              [options.axis]              Axis of the carousel. Set to 'y' for a vertical carousel. Defaults to 'x'.
-     * @param {Boolean}             [options.center]            Flag to center the carousel horizontally.
      * @param {Number}              [options.initialPage]       Initial index page of the carousel. Defaults to 0.
      * @param {Boolean}             [options.spaceAfterLastSlide=true] If there are not enough slides to fill the full width of the last page, leave white space. Defaults to `true`.
      * @param {Boolean}             [options.swipe]             Enable swipe support if available. Defaults to true.
@@ -220,6 +219,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
         initialPage:    ['Integer', 0],
         spaceAfterLastSlide: ['Boolean', true],
         hideLast:       ['Boolean', false],
+        // [3.1.0] Deprecate "center". It is only needed when things are of unknown widths.
         center:         ['Boolean', false],
         keyboardSupport:['Boolean', false],
         pagination:     ['String', null],
@@ -359,6 +359,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
             }
         },
 
+        // [3.1.0] Deprecate this already
         _center: function() {
             if (!this._options.center) { return; }
             var gap = Math.floor( (this._ctnLength - (this._elLength * this._slidesPerPage) ) / 2 );
@@ -373,6 +374,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
             this._ulEl.style.padding = pad.join('');
         },
 
+        // [3.1.0] Deprecate this already
         _updateHider: function() {
             if (!this._hiderEl) { return; }
             if (this.getPage() === 0) {
@@ -409,11 +411,12 @@ Ink.createModule('Ink.UI.Carousel', '1',
 
             this._swipeData = {
                 x: InkEvent.pointerX(event),
-                y: InkEvent.pointerY(event),
-                lastUlPos: null
+                y: InkEvent.pointerY(event)
             };
 
             var ulRect = this._ulEl.getBoundingClientRect();
+
+            this._swipeData.firstUlPos = ulRect[this._isY ? 'top' : 'left'];
 
             this._swipeData.inUlX =  this._swipeData.x - ulRect.left;
             this._swipeData.inUlY =  this._swipeData.y - ulRect.top;
@@ -467,30 +470,30 @@ Ink.createModule('Ink.UI.Carousel', '1',
 
             this._ulEl.style[this._isY ? 'top' : 'left'] = newPos + 'px';
 
-            swipeData.lastUlPos = newPos;
-
             requestAnimationFrame(Ink.bindMethod(this, '_onAnimationFrame'));
         },
 
         _onTouchEnd: function (event) {
             if (this._swipeData && this._swipeData.pointerPos && !this._scrolling && !this._touchMoveIsFirstTouchMove) {
                 var snapToNext = 0.1;  // swipe 10% of the way to change page
-                var progress = - this._swipeData.lastUlPos;
+
+                var relProgress = this._swipeData.firstUlPos -
+                    this._ulEl.getBoundingClientRect()[this._isY ? 'top' : 'left'];
 
                 var curPage = this.getPage();
-                var estimatedPage = progress / this._elLength / this._slidesPerPage;
 
-                if (Math.round(estimatedPage) === curPage) {
-                    var diff = estimatedPage - curPage;
-                    if (Math.abs(diff) > snapToNext) {
-                        diff = diff > 0 ? 1 : -1;
-                        curPage += diff;
-                    }
-                } else {
-                    curPage = Math.round(estimatedPage);
+                // How many pages were advanced? May be fractional.
+                var progressInPages = relProgress / this._elLength / this._slidesPerPage;
+
+                // Have we advanced enough to change page?
+                if (Math.abs(progressInPages) > snapToNext) {
+                    curPage += Math[ relProgress < 0 ? 'floor' : 'ceil' ](progressInPages);
                 }
 
-                this.setPage(curPage);
+                // If something used to calculate progressInPages was zero, we get NaN here.
+                if (!isNaN(curPage)) {
+                    this.setPage(curPage);
+                }
 
                 InkEvent.stopDefault(event);
             }
@@ -533,7 +536,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
             page = limitRange(page, 0, this._numPages - 1);
 
             if (this._pagination) {
-                this._pagination.setCurrent(page);
+                this._pagination.setCurrent(page);  // _setPage is called by pagination because it listens to its Change event.
             } else {
                 this._setPage(page);
             }
@@ -704,8 +707,6 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
 
     'use strict';
 
-    var instances = {};
-    var lastIdNum = 0;
     var nothing = {} /* a marker, for reference comparison. */;
 
     var keys = Object.keys || function (obj) {
@@ -714,6 +715,24 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
             ret.push(k);
         }
         return ret;
+    };
+
+    var es6WeakMapSupport = 'WeakMap' in window;
+    var instances = es6WeakMapSupport ? new WeakMap() : null;
+
+    var domRegistry = {
+        get: function get(el) {
+            return es6WeakMapSupport ?
+                instances.get(el) :
+                el.__InkInstances;
+        },
+        set: function set(el, thing) {
+            if (es6WeakMapSupport) {
+                instances.set(el, thing);
+            } else {
+                el.__InkInstances = thing;
+            }
+        }
     };
 
     /**
@@ -752,9 +771,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          *         // It is NOT a DOM Element.
          *     }
          */
-        isDOMElement: function(o) {
-            return o && typeof o === 'object' && 'nodeType' in o && o.nodeType === 1;
-        },
+        isDOMElement: InkElement.isDOMElement,
 
         /**
          * Checks if an item is a valid integer.
@@ -1023,7 +1040,8 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
                 },
                 'boolean': function (val) {
                     return typeof val === 'boolean';
-                }
+                },
+                object: function () { return true; }
             };
             types['float'] = types.number;
             return types;
@@ -1360,18 +1378,21 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
         registerInstance: function(inst, el) {
             if (!inst) { return; }
 
-            if (!this.isDOMElement(el)) { throw new TypeError('Ink.UI.Common.registerInstance: The element passed in is not a DOM element!'); }
+            if (!Common.isDOMElement(el)) { throw new TypeError('Ink.UI.Common.registerInstance: The element passed in is not a DOM element!'); }
 
+            // [todo] this belongs in the BaseUIComponent's initialization
             if (Common._warnDoubleInstantiation(el, inst) === false) {
                 return false;
             }
 
-            var id = 'instance' + (++lastIdNum);
-            instances[id] = inst;
-            inst._instanceId = id;
-            var dataInst = el.getAttribute('data-instance');
-            dataInst = (dataInst !== null) ? [dataInst, id].join(' ') : id;
-            el.setAttribute('data-instance', dataInst);
+            var instances = domRegistry.get(el);
+
+            if (!instances) {
+                instances = [];
+                domRegistry.set(el, instances);
+            }
+
+            instances.push(inst);
 
             return true;
         },
@@ -1383,8 +1404,14 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          * @static
          * @param  {String}     id       Id of the instance to be destroyed.
          */
-        unregisterInstance: function(id) {
-            delete instances[id];
+        unregisterInstance: function(inst) {
+            if (!inst || !inst._element) { return; }
+            var instances = domRegistry.get(inst._element);
+            for (var i = 0, len = instances.length; i < len; i++) {
+                if (instances[i] === inst) {
+                    instances.splice(i, 1);
+                }
+            }
         },
 
         /**
@@ -1392,33 +1419,28 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          *
          * @method getInstance
          * @static
-         * @param  {String|DOMElement}      instanceIdOrElement      Instance's id or DOM Element from which we want the instances.
-         * @return  {Object|Array}       Returns an instance or a collection of instances.
+         * @param  {String|DOMElement}      el      DOM Element from which we want the instances.
+         * @return  {Object|Array}                  Returns an instance or a collection of instances.
          */
-        getInstance: function(instanceIdOrElement) {
-            var ids;
-            instanceIdOrElement = Common.elOrSelector(instanceIdOrElement);
-            if (instanceIdOrElement) {
-                ids = instanceIdOrElement.getAttribute('data-instance');
-                if (ids === null) { return null; }
-            }
-            else {
-                ids = instanceIdOrElement;
+        getInstance: function(el, UIComponent) {
+            el = Common.elOrSelector(el);
+            var instances = domRegistry.get(el);
+
+            if (!instances) {
+                instances = [];
             }
 
-            ids = ids.split(/\s+/g);
-            var inst, id, i, l = ids.length;
-
-            var res = [];
-            for (i = 0; i < l; ++i) {
-                id = ids[i];
-                if (!id) { throw new Error('Element is not a JS instance!'); }
-                inst = instances[id];
-                if (!inst) { throw new Error('Instance "' + id + '" not found!'); }
-                res.push(inst);
+            if (typeof UIComponent !== 'function') {
+                return instances;
             }
 
-            return res;
+            for (var i = 0, len = instances.length; i < len; i++) {
+                if (instances[i] instanceof UIComponent) {
+                    return instances[i];
+                }
+            }
+
+            return null;
         },
 
         /**
@@ -1430,9 +1452,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          * @return  {Object|Array}               Returns an instance or a collection of instances.
          */
         getInstanceFromSelector: function(selector) {
-            var el = Selector.select(selector)[0];
-            if (!el) { throw new Error('Element not found!'); }
-            return this.getInstance(el);
+            return Common.getInstance(Common.elOrSelector(selector));
         },
 
         /**
@@ -1477,7 +1497,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          * @static
          */
         destroyComponent: function() {
-            Common.unregisterInstance(this._instanceId);
+            Common.unregisterInstance(this);
             this._element.parentNode.removeChild(this._element);
         }
 
@@ -1505,15 +1525,22 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
         }
     }
 
+    /**
+     * Ink UI Base Class
+     *
+     * You don't use this class directly, or inherit from it directly.
+     *
+     * See createUIComponent() (in this module) for how to create a UI component and inherit from this. It's not plain old JS inheritance, for several reasons.
+     *
+     * @class Ink.UI.Common.BaseUIComponent
+     * @constructor
+     *
+     * @param element
+     * @param options
+     **/
     function BaseUIComponent(element, options) {
         var constructor = this.constructor;
         var _name = constructor._name;
-
-        if (this.constructor === BaseUIComponent) {
-            // The caller was "someModule.prototype = new BaseUIComponent" (below, on this module)
-            // so it doesn't make sense to construct anything.
-            return;
-        }
 
         if (!this || this === window) {
             throw new Error('Use "new InkComponent()" instead of "InkComponent()"');
@@ -1611,8 +1638,26 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
 
     // TODO BaseUIComponent.setGlobalOptions = function () {}
     // TODO BaseUIComponent.createMany = function (selector) {}
+    BaseUIComponent.getInstance = function (elOrSelector) {
+        elOrSelector = Common.elOrSelector(elOrSelector);
+        return Common.getInstance(elOrSelector, this /* get instance by constructor */);
+    };
 
     Ink.extendObj(BaseUIComponent.prototype, {
+        /**
+         * Get an UI component's option's value.
+         *
+         * @method getOption
+         * @param name
+         *
+         * @return The option value, or undefined if nothing is found.
+         *
+         * @example
+         *
+         * var myUIComponent = new Modal('#element', { trigger: '#trigger' }); // or anything else inheriting BaseUIComponent
+         * myUIComponent.getOption('trigger');  // -> The trigger element (not the selector string, mind you)
+         *
+         **/
         getOption: function (name) {
             if (this.constructor && !(name in this.constructor._optionDefinition)) {
                 Ink.error('"' + name + '" is not an option for ' + this.constructor._name);
@@ -1622,6 +1667,38 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
             return this._options[name];
         },
 
+        /**
+         * Sets an option's value
+         *
+         * @method getOption
+         * @param name
+         * @param value
+         *
+         * @example
+         *
+         * var myUIComponent = new Modal(...);
+         * myUIComponent.setOption('trigger', '#some-element');
+         **/
+        setOption: function (name, value) {
+            if (this.constructor && !(name in this.constructor._optionDefinition)) {
+                Ink.error('"' + name + ' is not an option for ' + this.constructor._name);
+                return;
+            }
+
+            this._options[name] = value;
+        },
+
+        /**
+         * Get the element associated with an UI component (IE the one you used in the constructor)
+         *
+         * @method getElement
+         * @return {Element} The component's element.
+         *
+         * @example
+         * var myUIComponent = new Modal('#element'); // or anything else inheriting BaseUIComponent
+         * myUIComponent.getElement();  // -> The '#element' (not the selector string, mind you).
+         *
+         **/
         getElement: function () {
             return this._element;
         }
@@ -1664,7 +1741,17 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
 
         // Extend the instance methods and props
         var _oldProto = theConstructor.prototype;
-        theConstructor.prototype = new BaseUIComponent();
+
+        if (typeof Object.create === 'function') {
+            theConstructor.prototype = Object.create(BaseUIComponent.prototype);
+        } else {
+            theConstructor.prototype = (function hideF() {
+                function F() {}
+                F.prototype = BaseUIComponent.prototype;
+                return new F();
+            }());
+        }
+
         Ink.extendObj(theConstructor.prototype, _oldProto);
         theConstructor.prototype.constructor = theConstructor;
         // Extend static methods
@@ -1683,15 +1770,6 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
 
 Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1','Ink.Util.Date_1', 'Ink.Dom.Browser_1'], function(Common, Event, Css, InkElement, Selector, InkArray, InkDate ) {
     'use strict';
-
-    // Repeat a string. Long version of (new Array(n)).join(str);
-    function strRepeat(n, str) {
-        var ret = '';
-        for (var i = 0; i < n; i++) {
-            ret += str;
-        }
-        return ret;
-    }
 
     // Clamp a number into a min/max limit
     function clamp(n, min, max) {
@@ -1732,7 +1810,6 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
      * @param {String|DOMElement}   [options.monthField]        (if using options.displayInSelect) `select` field with months.
      * @param {String|DOMElement}   [options.yearField]         (if using options.displayInSelect) `select` field with years.
      * @param {String}              [options.format]            Date format string
-     * @param {String}              [options.instance]          Unique id for the datepicker
      * @param {Object}              [options.month]             Hash of month names. Defaults to portuguese month names. January is 1.
      * @param {String}              [options.nextLinkText]      Text for the previous button. Defaults to '«'.
      * @param {String}              [options.ofText]            Text to show between month and year. Defaults to ' of '.
@@ -1779,7 +1856,6 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         yearField:       ['Element', null],
 
         format:          ['String', 'yyyy-mm-dd'],
-        instance:        ['String', 'scdp_' + Math.round(99999 * Math.random())],
         nextLinkText:    ['String', '»'],
         ofText:          ['String', ' of '],
         onFocus:         ['Boolean', true],
@@ -1829,8 +1905,6 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
     };
 
     DatePicker.prototype = {
-        version: '0.1',
-
         /**
          * Initialization function. Called by the constructor and receives the same parameters.
          *
@@ -1851,10 +1925,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             } else if (this._element && this._element.value) {
                 this.setDate( this._element.value );
             } else {
-                var today = new Date();
-                this._day   = today.getDate( );
-                this._month = today.getMonth( );
-                this._year  = today.getFullYear( );
+                this.setDate(new Date());
             }
 
             if (this._options.startWeekDay < 0 || this._options.startWeekDay > 6) {
@@ -1886,8 +1957,6 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         _render: function() {
             this._containerObject = document.createElement('div');
 
-            this._containerObject.id = this._options.instance;
-
             this._containerObject.className = this._options.cssClass + ' ink-datepicker-calendar hide-all';
 
             this._renderSuperTopBar();
@@ -1900,11 +1969,19 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
             this._monthPrev = document.createElement('div');
             this._monthPrev.className = 'ink-calendar-prev';
-            this._monthPrev.innerHTML ='<a href="#prev" class="change_month_prev">' + this._options.prevLinkText + '</a>';
+            this._monthPrev.appendChild(InkElement.create('a', {
+                href: '#prev',
+                className: 'change_month_prev',
+                setHTML: this._options.prevLinkText
+            }));
 
             this._monthNext = document.createElement('div');
             this._monthNext.className = 'ink-calendar-next';
-            this._monthNext.innerHTML ='<a href="#next" class="change_month_next">' + this._options.nextLinkText + '</a>';
+            this._monthNext.appendChild(InkElement.create('a', {
+                href: '#next',
+                className: 'change_month_next',
+                setHTML: this._options.nextLinkText
+            }));
 
             calendarTop.appendChild(this._monthPrev);
             calendarTop.appendChild(this._monthDescContainer);
@@ -1926,11 +2003,12 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
             if(!this._options.onFocus || this._options.displayInSelect){
                 if(!this._options.pickerField){
-                    this._picker = document.createElement('a');
-                    this._picker.href = '#open_cal';
-                    this._picker.innerHTML = 'open';
-                    this._element.parentNode.appendChild(this._picker);
-                    this._picker.className = 'ink-datepicker-picker-field';
+                    this._picker = InkElement.create('a', {
+                        href: '#open_cal',
+                        setHTML: 'open',
+                        insertBottom: this._element.parentNode,
+                        className: 'ink-datepicker-picker-field'
+                    });
                 } else {
                     this._picker = Common.elOrSelector(this._options.pickerField, 'pickerField');
                 }
@@ -1940,19 +2018,23 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
             this._renderMonth();
 
-            this._monthChanger = document.createElement('a');
-            this._monthChanger.href = '#monthchanger';
-            this._monthChanger.className = 'ink-calendar-link-month';
-            this._monthChanger.innerHTML = this._options.month[this._month + 1];
+            this._monthChanger = InkElement.create('a', {
+                href: '#monthchanger',
+                className: 'ink-calendar-link-month',
+                setTextContent: this._options.month[this._month + 1]
+            });
 
-            this._ofText = document.createElement('span');
-            this._ofText.innerHTML = this._options.ofText;
+            this._ofText = InkElement.create('span', {
+                className: 'ink-calendar-of-text',
+                setHTML: this._options.ofText
+            });
 
-            this._yearChanger = document.createElement('a');
-            this._yearChanger.href = '#yearchanger';
-            this._yearChanger.className = 'ink-calendar-link-year';
-            this._yearChanger.innerHTML = this._year;
-            this._monthDescContainer.innerHTML = '';
+            this._yearChanger = InkElement.create('a', {
+                href: '#yearchanger',
+                className: 'ink-calendar-link-year',
+                setTextContent: this._year
+            });
+
             this._monthDescContainer.appendChild(this._monthChanger);
             this._monthDescContainer.appendChild(this._ofText);
             this._monthDescContainer.appendChild(this._yearChanger);
@@ -2066,29 +2148,32 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          */
         _renderMonthButton: function (mon) {
             var liMonth = document.createElement('li');
-            var aMonth = document.createElement('a');
-            aMonth.setAttribute('data-cal-month', mon);
-            aMonth.innerHTML = this._options.month[mon].substring(0,3);
-            liMonth.appendChild(aMonth);
+            liMonth.appendChild(InkElement.create('a', {
+                'data-cal-month': mon,
+                setTextContent: this._options.month[mon].substring(0, 3)
+            }));
             return liMonth;
         },
 
         _appendDatePickerToDom: function () {
             if(this._options.containerElement) {
                 var appendTarget =
-                    Ink.i(this._options.containerElement) ||  // [2.3.0] maybe id; small backwards compatibility thing
                     Common.elOrSelector(this._options.containerElement);
                 appendTarget.appendChild(this._containerObject);
             }
 
-            if (InkElement.findUpwardsBySelector(this._element, '.ink-form .control-group .control') === this._element.parentNode) {
-                // [3.0.0] Check if the <input> must be a direct child of .control, and if not, remove this block.
+            var parentIsControl = Selector.matchesSelector(
+                this._element.parentNode,
+                '.ink-form .control-group .control');
+
+            if (parentIsControl) {
                 this._wrapper = this._element.parentNode;
                 this._wrapperIsControl = true;
             } else {
                 this._wrapper = InkElement.create('div', { className: 'ink-datepicker-wrapper' });
                 InkElement.wrap(this._element, this._wrapper);
             }
+
             InkElement.insertAfter(this._containerObject, this._element);
         },
 
@@ -2191,7 +2276,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             var elemData = InkElement.data(elem);
 
             if( Number(elemData.calDay) ){
-                this.setDate( [this._year, this._month + 1, elemData.calDay].join('-') );
+                this.setDate(new Date(this._year, this._month, elemData.calDay));
                 this._hide();
             } else if( Number(elemData.calMonth) ) {
                 this._month = Number(elemData.calMonth) - 1;
@@ -2204,7 +2289,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
         _changeYear: function (year) {
             year = +year;
-            if(year){
+            if(!isNaN(year)){
                 this._year = year;
                 if( typeof this._options.onYearSelected === 'function' ){
                     this._options.onYearSelected(this, {
@@ -2426,7 +2511,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 this._month = dataParsed._month;
                 this._day = dataParsed._day;
             }
-            this.setDate();
+            this._setDate();
             this._updateDescription();
             this._renderMonth();
         },
@@ -2440,9 +2525,9 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * @private
          */
         _updateDescription: function(){
-            this._monthChanger.innerHTML = this._options.month[ this._month + 1 ];
-            this._ofText.innerHTML = this._options.ofText;
-            this._yearChanger.innerHTML = this._year;
+            InkElement.setTextContent(this._monthChanger, this._options.month[this._month + 1]);
+            InkElement.setTextContent(this._ofText, this._options.ofText);
+            InkElement.setTextContent(this._yearChanger, this._year);
         },
 
         /**
@@ -2456,33 +2541,50 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
             var firstYear = this._year - (this._year % 10);
             var thisYear = firstYear - 1;
-            var str = "<li><ul>";
+
+            InkElement.setHTML(this._yearSelector, '');
+            var yearUl = InkElement.create('ul');
+            this._yearSelector.appendChild(yearUl);
 
             if (thisYear > this._min._year) {
-                str += '<li><a href="#year_prev" class="change_year_prev">' + this._options.prevLinkText + '</a></li>';
+                var prevYearLi = InkElement.create('li');
+
+                prevYearLi.appendChild(InkElement.create('a', {
+                    href: '#year_prev',
+                    className: 'change_year_prev',
+                    setHTML: this._options.prevLinkText
+                }));
+
+                yearUl.appendChild(prevYearLi);
             } else {
-                str += '<li>&nbsp;</li>';
+                yearUl.appendChild(InkElement.create('li', { setHTML: '&nbsp;' }));
             }
 
             for (var i=1; i < 11; i++){
                 if (i % 4 === 0){
-                    str+='</ul><ul>';
+                    yearUl = InkElement.create('ul');
+                    this._yearSelector.appendChild(yearUl);
                 }
 
                 thisYear = firstYear + i - 1;
 
-                str += this._getYearButtonHtml(thisYear);
+                yearUl.appendChild(this._getYearButton(thisYear));
             }
 
-            if( thisYear < this._max._year){
-                str += '<li><a href="#year_next" class="change_year_next">' + this._options.nextLinkText + '</a></li>';
+            if (thisYear < this._max._year) {
+                var nextYearLi = InkElement.create('li');
+
+                nextYearLi.appendChild(InkElement.create('a', {
+                    href: '#year_next',
+                    className: 'change_year_next',
+                    setHTML: this._options.nextLinkText
+                }));
+
+                yearUl.appendChild(nextYearLi);
             } else {
-                str += '<li>&nbsp;</li>';
+                yearUl.appendChild(InkElement.create('li', { setHTML: '&nbsp;' }));
             }
 
-            str += "</ul></li>";
-
-            this._yearSelector.innerHTML = str;
             this._monthPrev.childNodes[0].className = 'action_inactive';
             this._monthNext.childNodes[0].className = 'action_inactive';
             this._monthSelector.style.display = 'none';
@@ -2506,14 +2608,25 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             this._year = +this._year + inc*10;
         },
 
-        _getYearButtonHtml: function (thisYear) {
-            if ( this._acceptableYear({_year: thisYear}) ){
-                var className = (thisYear === this._year) ? ' class="ink-calendar-on"' : '';
-                return '<li><a href="#" data-cal-year="' + thisYear + '"' + className + '>' + thisYear +'</a></li>';
-            } else {
-                return '<li><a href="#" class="ink-calendar-off">' + thisYear +'</a></li>';
+        _getYearButton: function (thisYear) {
+            var className = '';
 
+            if (!this._acceptableYear({ _year: thisYear })) {
+                className = 'ink-calendar-off';
+            } else if (thisYear === this._year) {
+                className = 'ink-calendar-on';
             }
+
+            var li = InkElement.create('li');
+
+            li.appendChild(InkElement.create('a', {
+                href: '#',
+                'data-cal-year': thisYear,
+                className: className,
+                setTextContent: thisYear
+            }));
+
+            return li;
         },
 
         /**
@@ -2626,10 +2739,15 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * This method allows the user to set the DatePicker's date on run-time.
          *
          * @method setDate
-         * @param {String} dateString A date string in yyyy-mm-dd format.
+         * @param {Date|String} dateString A Date object, or date string in yyyy-mm-dd format.
          * @public
          */
         setDate: function( dateString ) {
+            if (dateString && typeof dateString.getDate === 'function') {
+                dateString = [ dateString.getFullYear(),
+                    dateString.getMonth() + 1, dateString.getDate() ].join('-');
+            }
+
             if ( /\d{4}-\d{1,2}-\d{1,2}/.test( dateString ) ) {
                 var auxDate = dateString.split( '-' );
                 this._year  = +auxDate[ 0 ];
@@ -2892,28 +3010,13 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
             this._showDefaultView();
 
-            var html = '';
+            InkElement.setHTML(this._monthContainer, '');
 
-            html += this._getMonthCalendarHeaderHtml(this._options.startWeekDay);
+            this._monthContainer.appendChild(
+                    this._getMonthCalendarHeader(this._options.startWeekDay));
 
-            var counter = 0;
-            html+='<ul>';
-
-            var emptyHtml = '<li class="ink-calendar-empty">&nbsp;</li>';
-
-            var firstDayIndex = this._getFirstDayIndex(year, month);
-
-            // Add padding if the first day of the month is not monday.
-            if(firstDayIndex > 0) {
-                counter += firstDayIndex;
-                html += strRepeat(firstDayIndex, emptyHtml);
-            }
-
-            html += this._getDayButtonsHtml(year, month);
-
-            html += '</ul>';
-
-            this._monthContainer.innerHTML = html;
+            this._monthContainer.appendChild(
+                    this._getDayButtons(year, month));
         },
 
         /**
@@ -2947,22 +3050,31 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             return result;
         },
 
-        _getDayButtonsHtml: function (year, month) {
-            var counter = this._getFirstDayIndex(year, month);
+        _getDayButtons: function (year, month) {
             var daysInMonth = this._daysInMonth(year, month + 1);
-            var ret = '';
+
+            var ret = document.createDocumentFragment();
+
+            var ul = InkElement.create('ul');
+            ret.appendChild(ul);
+
+            var firstDayIndex = this._getFirstDayIndex(year, month);
+
+            // Add padding if the first day of the month is not monday.
+            for (var i = 0; i < firstDayIndex; i ++) {
+                ul.appendChild(InkElement.create('li', {
+                    className: 'ink-calendar-empty',
+                    setHTML: '&nbsp;'
+                }));
+            }
+
             for (var day = 1; day <= daysInMonth; day++) {
-                if (counter === 7){ // new week
-                    counter=0;
-                    ret += '<ul>';
+                if ((day - 1 + firstDayIndex) % 7 === 0){ // new week, new UL
+                    ul = InkElement.create('ul');
+                    ret.appendChild(ul);
                 }
 
-                ret += this._getDayButtonHtml(year, month, day);
-
-                counter++;
-                if(counter === 7){
-                    ret += '</ul>';
-                }
+                ul.appendChild(this._getDayButton(year, month, day));
             }
             return ret;
         },
@@ -2973,33 +3085,42 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * @method _getDayButtonHtml
          * @private
          */
-        _getDayButtonHtml: function (year, month, day) {
-            var attrs = ' ';
+        _getDayButton: function (year, month, day) {
+            var attrs = {};
             var date = dateishFromYMD(year, month, day);
+
             if (!this._acceptableDay(date)) {
-                attrs += 'class="ink-calendar-off"';
+                attrs.className = 'ink-calendar-off';
             } else {
-                attrs += 'data-cal-day="' + day + '"';
+                attrs['data-cal-day'] = day;
+
+                if (this._day && this._dateCmp(date, this) === 0) {
+                    attrs.className = 'ink-calendar-on';
+                }
             }
 
-            if (this._day && this._dateCmp(date, this) === 0) {
-                attrs += 'class="ink-calendar-on" data-cal-day="' + day + '"';
-            }
+            attrs.setTextContent = day;
 
-            return '<li><a href="#" ' + attrs + '>' + day + '</a></li>';   
+            var dayButton = InkElement.create('li');
+            dayButton.appendChild(InkElement.create('a', attrs));
+            return dayButton;
         },
 
         /** Write the top bar of the calendar (M T W T F S S) */
-        _getMonthCalendarHeaderHtml: function (startWeekDay) {
-            var ret = '<ul class="ink-calendar-header">';
+        _getMonthCalendarHeader: function (startWeekDay) {
+            var header = InkElement.create('ul', {
+                className: 'ink-calendar-header'
+            });
+
             var wDay;
             for(var i=0; i<7; i++){
                 wDay = (startWeekDay + i) % 7;
-                ret += '<li>' +
-                    this._options.wDay[wDay].substring(0,1) +
-                    '</li>';
+                header.appendChild(InkElement.create('li', {
+                    setTextContent: this._options.wDay[wDay].substring(0, 1)
+                }));
             }
-            return ret + '</ul>';
+
+            return header;
         },
 
         /**
@@ -3158,7 +3279,7 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
         revert:             ['Boolean', false],
         cursor:             ['String', 'move'],
         zIndex:             ['Number', 9999],
-        fps:                ['Number', 100],
+        fps:                ['Number', 0],
         droppableProxy:     ['Element', false],
         mouseAnchor:        ['String', undefined],
         dragClass:          ['String', 'drag'],
@@ -3179,8 +3300,7 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
          * @private
          */
         _init: function() {
-            var o = this.options = this._options;
-            this.element = this._element;
+            var o = this._options;
             this.constraintElm = o.constraintElm && Common.elOrSelector(o.constraintElm);
 
             this.handle             = false;
@@ -3207,9 +3327,9 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
             this.handlers.selectStart   = function(event) {    InkEvent.stop(event);    return false;    };
 
             // set handle
-            this.handle = (this.options.handle) ?
-                Common.elOrSelector(this.options.handle) :
-                this.element;
+            this.handle = (this._options.handle) ?
+                Common.elOrSelector(this._options.handle) :
+                this._element;
 
             this.handle.style.cursor = o.cursor;
 
@@ -3217,7 +3337,7 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
             InkEvent.observe(this.handle, 'mousedown', this.handlers.start);
 
             if (Browser.IE) {
-                InkEvent.observe(this.element, 'selectstart', this.handlers.selectStart);
+                InkEvent.observe(this._element, 'selectstart', this.handlers.selectStart);
             }
         },
 
@@ -3232,7 +3352,7 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
             InkEvent.stopObserving(this.handle, 'mousedown', this.handlers.start);
 
             if (Browser.IE) {
-                InkEvent.stopObserving(this.element, 'selectstart', this.handlers.selectStart);
+                InkEvent.stopObserving(this._element, 'selectstart', this.handlers.selectStart);
             }
         },
 
@@ -3285,61 +3405,61 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
             if (!this.active && InkEvent.isLeftClick(e) || typeof e.button === 'undefined') {
 
                 var tgtEl = InkEvent.element(e);
-                if (this.options.skipChildren && tgtEl !== this.handle) {    return;    }
+                if (this._options.skipChildren && tgtEl !== this.handle) {    return;    }
 
                 InkEvent.stop(e);
 
-                Css.addClassName(this.element, this.options.dragClass);
+                Css.addClassName(this._element, this._options.dragClass);
 
                 this.elmStartPosition = [
-                    InkElement.elementLeft(this.element),
-                    InkElement.elementTop( this.element)
+                    InkElement.elementLeft(this._element),
+                    InkElement.elementTop( this._element)
                 ];
 
                 var pos = [
-                    parseInt(Css.getStyle(this.element, 'left'), 10),
-                    parseInt(Css.getStyle(this.element, 'top'),  10)
+                    parseInt(Css.getStyle(this._element, 'left'), 10),
+                    parseInt(Css.getStyle(this._element, 'top'),  10)
                 ];
 
-                var dims = InkElement.elementDimensions(this.element);
+                var dims = InkElement.elementDimensions(this._element);
 
                 this.originalPosition = [ pos[x] ? pos[x]: null, pos[y] ? pos[y] : null ];
                 this.delta = this._getCoords(e); // mouse coords at beginning of drag
 
                 this.active = true;
-                this.position = Css.getStyle(this.element, 'position');
-                this.zindex = Css.getStyle(this.element, 'zIndex');
+                this.position = Css.getStyle(this._element, 'position');
+                this.zindex = Css.getStyle(this._element, 'zIndex');
 
                 var div = document.createElement('div');
                 div.style.position      = this.position;
                 div.style.width         = dims[x] + 'px';
                 div.style.height        = dims[y] + 'px';
-                div.style.marginTop     = Css.getStyle(this.element, 'margin-top');
-                div.style.marginBottom  = Css.getStyle(this.element, 'margin-bottom');
-                div.style.marginLeft    = Css.getStyle(this.element, 'margin-left');
-                div.style.marginRight   = Css.getStyle(this.element, 'margin-right');
+                div.style.marginTop     = Css.getStyle(this._element, 'margin-top');
+                div.style.marginBottom  = Css.getStyle(this._element, 'margin-bottom');
+                div.style.marginLeft    = Css.getStyle(this._element, 'margin-left');
+                div.style.marginRight   = Css.getStyle(this._element, 'margin-right');
                 div.style.borderWidth   = '0';
                 div.style.padding       = '0';
-                div.style.cssFloat      = Css.getStyle(this.element, 'float');
-                div.style.display       = Css.getStyle(this.element, 'display');
+                div.style.cssFloat      = Css.getStyle(this._element, 'float');
+                div.style.display       = Css.getStyle(this._element, 'display');
                 div.style.visibility    = 'hidden';
 
                 this.delta2 = [ this.delta.x - this.elmStartPosition[x], this.delta.y - this.elmStartPosition[y] ]; // diff between top-left corner of obj and mouse
-                if (this.options.mouseAnchor) {
-                    var parts = this.options.mouseAnchor.split(' ');
+                if (this._options.mouseAnchor) {
+                    var parts = this._options.mouseAnchor.split(' ');
                     var ad = [dims[x], dims[y]];    // starts with 'right bottom'
                     if (parts[0] === 'left') {    ad[x] = 0;    } else if(parts[0] === 'center') {    ad[x] = parseInt(ad[x]/2, 10);    }
                     if (parts[1] === 'top') {     ad[y] = 0;    } else if(parts[1] === 'center') {    ad[y] = parseInt(ad[y]/2, 10);    }
                     this.applyDelta = [this.delta2[x] - ad[x], this.delta2[y] - ad[y]];
                 }
 
-                var dragHandlerName = this.options.fps ? 'dragFacade' : 'drag';
+                var dragHandlerName = this._options.fps ? 'dragFacade' : 'drag';
 
                 this.placeholder = div;
 
-                if (this.options.onStart) {        this.options.onStart(this.element, e);        }
+                if (this._options.onStart) {        this._options.onStart(this._element, e);        }
 
-                if (this.options.droppableProxy) {    // create new transparent div to optimize DOM traversal during drag
+                if (this._options.droppableProxy) {    // create new transparent div to optimize DOM traversal during drag
                     this.proxy = document.createElement('div');
                     dims = [
                         window.innerWidth     || document.documentElement.clientWidth   || document.body.clientWidth,
@@ -3351,7 +3471,7 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
                     fs.position         = 'fixed';
                     fs.left             = '0';
                     fs.top              = '0';
-                    fs.zIndex           = this.options.zindex + 1;
+                    fs.zIndex           = this._options.zindex + 1;
                     fs.backgroundColor  = '#FF0000';
                     Css.setOpacity(this.proxy, 0);
 
@@ -3367,9 +3487,9 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
                     InkEvent.observe(document, 'mousemove', this.handlers[dragHandlerName]);
                 }
 
-                this.element.style.position = 'absolute';
-                this.element.style.zIndex = this.options.zindex;
-                this.element.parentNode.insertBefore(this.placeholder, this.element);
+                this._element.style.position = 'absolute';
+                this._element.style.zIndex = this._options.zindex;
+                this._element.parentNode.insertBefore(this.placeholder, this._element);
 
                 this._onDrag(e);
 
@@ -3409,18 +3529,18 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
                 var mouseCoords = this._getCoords(e),
                     mPosX       = mouseCoords.x,
                     mPosY       = mouseCoords.y,
-                    o           = this.options,
+                    o           = this._options,
                     newX        = false,
                     newY        = false;
 
                 if (this.prevCoords && mPosX !== this.prevCoords.x || mPosY !== this.prevCoords.y) {
-                    if (o.onDrag) {        o.onDrag(this.element, e);        }
+                    if (o.onDrag) {        o.onDrag(this._element, e);        }
                     this.prevCoords = mouseCoords;
 
                     newX = this.elmStartPosition[x] + mPosX - this.delta.x;
                     newY = this.elmStartPosition[y] + mPosY - this.delta.y;
 
-                    var draggableSize = InkElement.elementDimensions(this.element);
+                    var draggableSize = InkElement.elementDimensions(this._element);
 
                     if (this.constraintElm) {
                         var offset = InkElement.offset(this.constraintElm);
@@ -3448,21 +3568,21 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
                     var Droppable = Ink.getModule('Ink.UI.Droppable_1');
                     if (this.firstDrag) {
                         if (Droppable) {    Droppable.updateAll();    }
-                        /*this.element.style.position = 'absolute';
-                        this.element.style.zIndex = this.options.zindex;
-                        this.element.parentNode.insertBefore(this.placeholder, this.element);*/
+                        /*this._element.style.position = 'absolute';
+                        this._element.style.zIndex = this._options.zindex;
+                        this._element.parentNode.insertBefore(this.placeholder, this._element);*/
                         this.firstDrag = false;
                     }
 
-                    if (newX) {        this.element.style.left = newX + 'px';        }
-                    if (newY) {        this.element.style.top  = newY + 'px';        }
+                    if (newX) {        this._element.style.left = newX + 'px';        }
+                    if (newY) {        this._element.style.top  = newY + 'px';        }
 
                     if (Droppable) {
                         // apply applyDelta defined on drag init
-                        var mouseCoords2 = this.options.mouseAnchor ?
+                        var mouseCoords2 = this._options.mouseAnchor ?
                             {x: mPosX - this.applyDelta[x], y: mPosY - this.applyDelta[y]} :
                             mouseCoords;
-                        Droppable.action(mouseCoords2, 'drag', e, this.element);
+                        Droppable.action(mouseCoords2, 'drag', e, this._element);
                     }
                     if (o.onChange) {    o.onChange(this);    }
                 }
@@ -3480,15 +3600,15 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
             InkEvent.stopObserving(document, 'mousemove', this.handlers.drag);
             InkEvent.stopObserving(document, 'touchmove', this.handlers.drag);
 
-            if (this.options.fps) {
+            if (this._options.fps) {
                 this._onDrag(e);
             }
 
-            Css.removeClassName(this.element, this.options.dragClass);
+            Css.removeClassName(this._element, this._options.dragClass);
 
             if (this.active && this.dragged) {
 
-                if (this.options.droppableProxy) {    // remove transparent div...
+                if (this._options.droppableProxy) {    // remove transparent div...
                     document.body.removeChild(this.proxy);
                 }
 
@@ -3497,7 +3617,7 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
                     this.pt = undefined;
                 }
 
-                /*if (this.options.revert) {
+                /*if (this._options.revert) {
                     this.placeholder.parentNode.removeChild(this.placeholder);
                 }*/
 
@@ -3505,26 +3625,26 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
                     InkElement.remove(this.placeholder);
                 }
 
-                if (this.options.revert) {
-                    this.element.style.position = this.position;
+                if (this._options.revert) {
+                    this._element.style.position = this.position;
                     if (this.zindex !== null) {
-                        this.element.style.zIndex = this.zindex;
+                        this._element.style.zIndex = this.zindex;
                     }
                     else {
-                        this.element.style.zIndex = 'auto';
+                        this._element.style.zIndex = 'auto';
                     } // restore default zindex of it had none
 
-                    this.element.style.left = (this.originalPosition[x]) ? this.originalPosition[x] + 'px' : '';
-                    this.element.style.top  = (this.originalPosition[y]) ? this.originalPosition[y] + 'px' : '';
+                    this._element.style.left = (this.originalPosition[x]) ? this.originalPosition[x] + 'px' : '';
+                    this._element.style.top  = (this.originalPosition[y]) ? this.originalPosition[y] + 'px' : '';
                 }
 
-                if (this.options.onEnd) {
-                    this.options.onEnd(this.element, e);
+                if (this._options.onEnd) {
+                    this._options.onEnd(this._element, e);
                 }
                 
                 var Droppable = Ink.getModule('Ink.UI.Droppable_1');
                 if (Droppable) {
-                    Droppable.action(this._getCoords(e), 'drop', e, this.element);
+                    Droppable.action(this._getCoords(e), 'drop', e, this._element);
                 }
 
                 this.position   = false;
@@ -4016,18 +4136,21 @@ Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
          * Makes an element droppable.
          * This method adds it to the stack of droppable elements.
          * Can consider it a constructor of droppable elements, but where no Droppable object is returned.
-         * 
-         * In the following arguments, any events/callbacks you may pass, can be either functions or strings. If the 'move' or 'copy' strings are passed, the draggable gets moved into this droppable. If 'revert' is passed, an acceptable droppable is moved back to the element it came from.
-
+         *
+         * The onHover, onDrop, and onDropOut options below can be:
+         *
+         * - 'move', 'copy': Move or copy the draggable element into this droppable.
+         * - 'revert': Make the draggable go back to where it came from.
+         * - A function (draggableElement, droppableElement), defining what you want to do in this case.
          *
          * @method add
          * @param {String|DOMElement}   element                 Target element
          * @param {Object}              [options]               Options object
          * @param {String}              [options.hoverClass]    Classname(s) applied when an acceptable draggable element is hovering the element
          * @param {String}              [options.accept]        Selector for choosing draggables which can be dropped in this droppable.
-         * @param {Function}            [options.onHover]       Callback when an acceptable draggable element is hovering the droppable. Gets the draggable and the droppable element as parameters.
-         * @param {Function|String}     [options.onDrop]        Callback when an acceptable draggable element is dropped. Gets the draggable, the droppable and the event as parameters.
-         * @param {Function|String}     [options.onDropOut]     Callback when a droppable is dropped outside this droppable. Gets the draggable, the droppable and the event as parameters. (see above for string options).
+         * @param {Function}            [options.onHover]       Called when an acceptable element is hovering the droppable (see above for string options).
+         * @param {Function|String}     [options.onDrop]        Called when an acceptable element is dropped (see above for string options). 
+         * @param {Function|String}     [options.onDropOut]     Called when a droppable is dropped outside this droppable (see above for string options).
          * @public
          *
          * @sample Ink_UI_Droppable_1.html
@@ -4036,7 +4159,7 @@ Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
         add: function(element, options) {
             element = Common.elOrSelector(element, 'Droppable.add target element');
 
-            var opt = Ink.extendObj( {
+            var opt = Ink.extendObj({
                 hoverClass:     options.hoverclass /* old name */ || false,
                 accept:         false,
                 onHover:        false,
@@ -4059,7 +4182,7 @@ Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
                 },
                 copy: function (draggable, droppable/*, event*/) {
                     cleanStyle(draggable);
-                    droppable.appendChild(draggable.cloneNode);
+                    droppable.appendChild(draggable.cloneNode(true));
                 },
                 revert: function (draggable/*, droppable, event*/) {
                     that._findDraggable(draggable).originalParent.appendChild(draggable);
@@ -5844,32 +5967,7 @@ Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
      * @param {Number}              [options.queries.width]     Min-width to use this query
      * @param {Function}            [options.onLoad]            Date format string
      *
-     * @example
-     *      <div class="imageQueryExample all-100 content-center clearfix vspace">
-     *          <img src="/assets/imgs/imagequery/small/image.jpg" />
-     *      </div>
-     *      <script type="text/javascript">
-     *      Ink.requireModules( ['Ink.Dom.Selector_1', 'Ink.UI.ImageQuery_1'], function( Selector, ImageQuery ){
-     *          var imageQueryElement = Ink.s('.imageQueryExample img');
-     *          var imageQueryObj = new ImageQuery('.imageQueryExample img',{
-     *              src: '/assets/imgs/imagequery/{:label}/{:file}',
-     *              queries: [
-     *                  {
-     *                      label: 'small',
-     *                      width: 480
-     *                  },
-     *                  {
-     *                      label: 'medium',
-     *                      width: 640
-     *                  },
-     *                  {
-     *                      label: 'large',
-     *                      width: 1024
-     *                  }   
-     *              ]
-     *          });
-     *      } );
-     *      </script>
+     * @sample Ink_UI_ImageQuery_1.html
      */
     function ImageQuery() {
         Common.BaseUIComponent.apply(this, arguments);
@@ -6904,8 +7002,6 @@ Ink.createModule('Ink.UI.Pagination', '1',
                 this._size = 0;
             }
 
-            this.setOnChange(this._options.onChange);
-
             this._current = this._options.start - 1;
             this._itemLiEls = [];
 
@@ -7121,7 +7217,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
             if (onChange !== undefined && typeof onChange !== 'function') {
                 throw new TypeError('onChange option must be a function!');
             }
-            this._onChange = onChange;
+            this._options.onChange = onChange;
         },
 
         /**************
@@ -7185,8 +7281,8 @@ Ink.createModule('Ink.UI.Pagination', '1',
             this._current = nr;
             this._updateItems();
 
-            if (this._onChange) {
-                this._onChange(this, nr);
+            if (this._options.onChange) {
+                this._options.onChange(this, nr);
             }
 
             /*if (this._options.setHash) {
@@ -7418,18 +7514,6 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.UI.Common_1', 'Ink.Dom.Even
      *
      * @example
      *
-     *      <a href="#part1" class="ink-smooth-scroll" data-margin="10">go to Part 1</a>
-     *
-     *      [lots and lots of content...]
-     *
-     *      <h1 id="part1">Part 1</h1>
-     *
-     *      <script>
-     *          // ...Although you don't need to do this if you have autoload.js
-     *          Ink.requireModules(['Ink.UI.SmoothScroller_1'], function (SmoothScroller) {
-     *              SmoothScroller.init('.ink-smooth-scroll');
-     *          })
-     *      </script>
      */
     var SmoothScroller = {
 
@@ -7502,13 +7586,10 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.UI.Common_1', 'Ink.Dom.Even
 
         /**
          * Has smooth scrolling applied to relevant elements upon page load.
-         *
          * Listens to the click event on the document.
-         *
          * Anything which matches the selector will be considered a "link" by SmoothScroller and handled as such.
          *
          * When a link is clicked, it is checked for several options:
-         *
          * - `data-margin="0"` - A margin in pixels -- useful when you have a position:fixed top bar.
          * - `data-speed="10"` - Inverse speed of the scrolling motion. Smaller is faster.
          * - `data-change-hash="true"` - Change the URL hash (location.hash) when done scrolling.
@@ -7516,6 +7597,7 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.UI.Common_1', 'Ink.Dom.Even
          * @method init
          * @param [selector='a.scrollableLink,a.ink-smooth-scroll'] {String} Selector string for finding links with smooth scrolling enabled.
          * @static
+         * @sample Ink_UI_SmoothScroller_1.html
          */
         init: function(selector) {
             Event.on(document, 'click', selector || 'a.scrollableLink, a.ink-smooth-scroll', SmoothScroller.onClick);
@@ -8092,34 +8174,7 @@ Stacker.prototype = {
      * @param {Function}            [options.onResizeCallback]                      Called when the window resizes.
      * @param {Function}            [options.onAPIReloadCallback]                   Called when the reload function executes.
      *
-     * @example
-     *
-     * Html:
-     *
-     *     <div id="stacker-container">  <!-- Stacker element -->
-     *         <div class="xlarge-33 large-33 medium-50 tiny-100 stacker-column"> <!-- Column element ('.stacker-column' is the default selector) -->
-     *             <div id="a" class="stacker-item">a</div> <!-- Item ('.stacker-item' is the default selector) -->
-     *             <div id="d" class="stacker-item">d</div>
-     *             <div id="g" class="stacker-item">g</div>
-     *         </div>
-     *         <div class="xlarge-33 large-33 medium-50 tiny-100 hide-small stacker-column">
-     *             <div id="b" class="stacker-item">b</div>
-     *             <div id="e" class="stacker-item">e</div>
-     *             <div id="h" class="stacker-item">h</div>
-     *         </div>
-     *         <div class="xlarge-33 large-33 medium-50 tiny-100 hide-medium hide-small stacker-column">
-     *             <div id="c" class="stacker-item">c</div>
-     *             <div id="f" class="stacker-item">f</div>
-     *             <div id="i" class="stacker-item">i</div>
-     *         </div>
-     *     </div>
-     *
-     * Javascript:
-     *
-     *     Ink.requireModules(['Ink.UI.Stacker_1'], function (Stacker) {
-     *         var stacker = new Stacker('#stacker-container');
-     *         // Keep the "stacker" variable around if you want to call addItem and reloadItems
-     *     });
+     * @sample Ink_UI_Stacker_1.html
      **/
     _init: function() {
         this._aList = []; 
@@ -8577,7 +8632,24 @@ Ink.createModule('Ink.UI.Swipe', '1', ['Ink.Dom.Event_1', 'Ink.Dom.Element_1', '
      *
      * Supports filtering swipes be any combination of the criteria supported in the options.
      *
-     * @class Ink.UI.Swipe_1
+     * -----
+     *
+     * Arguments received by the callbacks
+     * -----------------------------------
+     *
+     * The `onStart`, `onMove`, and `onEnd` options receive as argument an object containing:
+     *
+     *   - `event`: the DOMEvent object
+     *   - `element`: the target element
+     *   - `Instance`: the `Ink.UI.Swipe_1` instance
+     *   - `position`: `Array` with `[x, y]` coordinates of current position
+     *   - `dt`: Time passed between now and the first event (onMove only)
+     *   - `gesture`: an Array containing [x,y] coordinates of every touchmove event received (only if options.storeGesture is enabled) (onEnd only)
+     *   - `time`: an Array containing all the `dt` values for every touchmove event (onEnd only)
+     *   - `overallMovement`: X and Y distance traveled by the touch movement (`[x, y]`) (onEnd only)
+     *   - `overallTime`: total time passed (onEnd only)
+     *
+     * @class Ink.UI.Swipe
      * @constructor
      * @param {String|DOMElement}   el                      Element or Selector
      * @param {Object}              options                 Options Object
@@ -8591,23 +8663,7 @@ Ink.createModule('Ink.UI.Swipe', '1', ['Ink.Dom.Event_1', 'Ink.Dom.Element_1', '
      * @param {String}              [options.axis]          If either 'x' or 'y' is passed, only swipes where the dominant axis is the given one trigger the callback
      * @param {String}              [options.storeGesture]  If to store gesture information and provide it to the callback. Defaults to true.
      * @param {String}              [options.stopEvents]    Flag to stop (default and propagation) of the received events. Defaults to true.
-     * 
-     * -----
      *
-     * Arguments received by the callbacks
-     * -----------------------------------
-     *
-     * `onStart`, `onMove`, and `onEnd` receive as argument an object containing:
-     *
-     *   - `event`: the DOMEvent object
-     *   - `element`: the target element
-     *   - `Instance`: the `Ink.UI.Swipe_1` instance
-     *   - `position`: `Array` with `[x, y]` coordinates of current position
-     *   - `dt`: Time passed between now and the first event (onMove only)
-     *   - `gesture`: an Array containing [x,y] coordinates of every touchmove event received (storeGesture only) (onEnd only)
-     *   - `time`: an Array containing all the `dt` values for every touchmove event (onEnd only)
-     *   - `overallMovement`: X and Y distance traveled by the touch movement (`[x, y]`) (onEnd only)
-     *   - `overallTime`: total time passed (onEnd only)
      *
      * @sample Ink_UI_Swipe_1.html
      */
@@ -9594,6 +9650,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
 
             var activeMenuLink = this._findLinkByHref(hash) ||
                                  (this._options.active && this._findLinkByHref(this._options.active)) ||
+                                 Selector.select('.active a', this._menu)[0] ||
                                  Selector.select('a', this._menu)[0];
 
             if (activeMenuLink) {
@@ -9615,24 +9672,33 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
             }
 
             var selector = link.getAttribute('href');
+
+            var activeTabs = Selector.select('> li.active', this._menu);
+
+            for (var i = 0, len = activeTabs.length; i < len; i++) {
+                if (activeTabs[i] !== link) {
+                    Css.removeClassName(activeTabs[i], 'active');
+                }
+            }
+
             if (this._activeMenuTab) {
                 Css.removeClassName(this._activeMenuTab, 'active');
-                Css.removeClassName(this._activeContentTab, 'active');
-                Css.addClassName(this._activeContentTab, 'hide-all');
+                Css.removeClassName(this._activeSection, 'active');
+                Css.addClassName(this._activeSection, 'hide-all');
             }
 
             this._activeMenuLink = link;
             this._activeMenuTab = this._activeMenuLink.parentNode;
-            this._activeContentTab = Selector.select(selector.substr(selector.indexOf('#')), this._element)[0];
+            this._activeSection = Selector.select(selector.substr(selector.indexOf('#')), this._element)[0];
 
-            if (!this._activeContentTab) {
-                this._activeMenuLink = this._activeMenuTab = this._activeContentTab = null;
+            if (!this._activeSection) {
+                this._activeMenuLink = this._activeMenuTab = this._activeSection = null;
                 return;
             }
 
             Css.addClassName(this._activeMenuTab, 'active');
-            Css.addClassName(this._activeContentTab, 'active');
-            Css.removeClassName(this._activeContentTab, 'hide-all');
+            Css.addClassName(this._activeSection, 'active');
+            Css.removeClassName(this._activeSection, 'hide-all');
 
             if(runCallbacks && typeof(this._options.onChange) !== 'undefined'){
                 this._options.onChange(this);
@@ -9663,7 +9729,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
             var href = tabElm.getAttribute('href');
             href = href.substr(href.indexOf('#'));
 
-            if (!href || Ink.i(href.replace(/^#/, '')) === null) {
+            if (!href || Ink.i(this._dehashify(href)) === null) {
                 return;
             }
 
@@ -9727,6 +9793,14 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
         },
 
         /**
+         * Removes the cardinal sign from the beginning of a string
+         **/
+        _dehashify: function(hash) {
+            if (!hash) { return ''; }
+            return ('' + hash).replace(/^#/, '');
+        },
+
+        /**
          * Returns the anchor with the desired href
          * 
          * @method _findLinkBuHref
@@ -9735,10 +9809,31 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          * @private
          */
         _findLinkByHref: function(href){
-            href = this._hashify(href);
+            // If it's null or undefined, the following checks fail.
+            if (!href) { return null; }
 
+            // If it's a node, it could be a link or a section.
+            if (href.nodeType === 1) {
+                if (Element.isAncestorOf(href, this._element)) { return null; }  // Element is outside the tabs element.
+
+                var links = Selector.select('a', this._menu);
+                var id = href.getAttribute('id');
+
+                for (var i = 0, len = links.length; i < len; i++) {
+                    if (links[i] === href || Element.isAncestorOf(href, links[i])) {
+                        return links[i];  // We got a link
+                    } else if (id && id === this._dehashify(links[i].getAttribute('href'))) {
+                        return links[i];  // We got a section
+                    }
+                }
+
+                return null;
+            }
+
+            // Else, it's a string. It could start with "#" or without it.
+            href = this._hashify(href);
             // Find a link which has a href ending with...
-            return Selector.select('a[href$="' + href + '"]', this._menu)[0];
+            return Selector.select('a[href$="' + href + '"]', this._menu)[0] || null;
         },
 
         /**************
@@ -9755,23 +9850,13 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          * @public
          */
         changeTab: function(selector) {
-            var element = (selector.nodeType === 1)? selector : this._findLinkByHref(this._hashify(selector));
-            if(!element || Css.hasClassName(element, 'ink-disabled')){
-                return;
-            }
-            this._changeTab(element, true);
-        },
+            selector = this._findLinkByHref(selector);
 
-        /**
-         * The enable() and disable() functions do exactly the same thing.
-         * one adds the className and the other removes it.
-         **/
-        _enableOrDisableDRY: function (selector, isEnable) {
-            var element = (selector.nodeType === 1)? selector : this._findLinkByHref(this._hashify(selector));
-            if(!element){
+            if(!selector || Css.hasClassName(selector, 'ink-disabled')){
                 return;
             }
-            Css.setClassName(element, 'ink-disabled', !isEnable);
+
+            this._changeTab(selector, true);
         },
 
         /**
@@ -9782,7 +9867,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          * @public
          */
         disable: function(selector){
-            this._enableOrDisableDRY(selector, false);
+            Css.addClassName(this._findLinkByHref(selector), 'ink-disabled');
         },
 
         /**
@@ -9793,7 +9878,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          * @public
          */
         enable: function(selector){
-            this._enableOrDisableDRY(selector, true);
+            Css.removeClassName(this._findLinkByHref(selector), 'ink-disabled');
         },
 
         /***********
@@ -9804,11 +9889,11 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          * Returns the active tab id
          * 
          * @method activeTab
-         * @return {String} ID of the active tab.
+         * @return {String} ID of the active section (use activeSection() instead to get the element).
          * @public
          */
         activeTab: function(){
-            return this._activeContentTab.getAttribute('id');
+            return this._activeSection.getAttribute('id');
         },
 
         /**
@@ -9850,8 +9935,14 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          * @return {DOMElement|null} Active section, or `null` if there is none.
          * @public
          */
-        activeContentTab: function(){
-            return this._activeContentTab;
+        activeSection: function(){
+            return this._activeSection;
+        },
+
+        activeContentTab: function () {
+            // [3.1.0] remove this
+            Ink.warn('Ink.UI.Tabs.activeContentTab() is deprecated. Use activeSection instead.');
+            return this._activeSection();
         },
 
         /**
@@ -9929,8 +10020,8 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
          * @method _init
          * @private
          */
-        _init: function(element, options) {
-            var o = options;
+        _init: function() {
+            var o = this._options;
             if (typeof o.separator === 'string') {
                 o.separator = new RegExp(o.separator, 'g');
             }

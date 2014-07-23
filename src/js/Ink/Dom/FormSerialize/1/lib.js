@@ -4,13 +4,13 @@
  * Valid applications are ad hoc AJAX/syndicated submission of forms, restoring form values from server side state, etc.
  */
 
-Ink.createModule('Ink.Dom.FormSerialize', 1, ['Ink.UI.Common_1', 'Ink.Util.Array_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1'], function (Common, InkArray, InkElement, Selector) {
+Ink.createModule('Ink.Dom.FormSerialize', 1, ['Ink.Util.Array_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1'], function (InkArray, InkElement, Selector) {
     'use strict';
 
     // Check whether something is not a string or a DOM element, but still has length.
     function isArrayIsh(obj) {
         return obj != null &&
-            (!Common.isDOMElement(obj)) &&
+            (!InkElement.isDOMElement(obj)) &&
             (InkArray.isArray(obj) || (typeof obj !== 'string' && typeof obj.length === 'number'));
     }
 
@@ -230,7 +230,7 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, ['Ink.UI.Common_1', 'Ink.Util.Array
         },
 
         _isSerialized: function (element) {
-            if (!Common.isDOMElement(element)) { return false; }
+            if (!InkElement.isDOMElement(element)) { return false; }
             if (!InkElement.hasAttribute(element, 'name')) { return false; }
 
             var nodeName = element.nodeName.toLowerCase();

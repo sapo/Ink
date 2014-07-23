@@ -7,7 +7,7 @@
  * @author    Sapo Ink Team
  * @license   http://opensource.org/licenses/MIT MIT
  * @link      http://ink.sapo.pt
- * @version   3.0.0
+ * @version   3.0.5
  */
 /**
  * Ink class names prefix
@@ -42,6 +42,9 @@
  */
 /**
  * Images class names
+ */
+/**
+ * JS UI components classe names
  */
 /** 
  * Sets the grids maximum width
@@ -89,6 +92,10 @@
 
 .large-15 {
   width: 15%;
+}
+
+.large-16 {
+  width: 16.66%;
 }
 
 .large-20 {
