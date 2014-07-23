@@ -50,10 +50,13 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
             var len = className.length;
 
             for (; i < len; i++) {
-                if (typeof elm.classList !== "undefined") {
-                    elm.classList.add(className[i]);
-                } else if (!Css.hasClassName(elm, className[i])) {
-                    elm.className += (elm.className ? ' ' : '') + className[i];
+                // remove whitespace and ignore on empty string
+                if (className[i].replace(/^\s+|\s+$/g, '')) {
+                    if (typeof elm.classList !== "undefined") {
+                        elm.classList.add(className[i]);
+                    } else if (!Css.hasClassName(elm, className[i])) {
+                        elm.className += (elm.className ? ' ' : '') + className[i];
+                    }
                 }
             }
         },

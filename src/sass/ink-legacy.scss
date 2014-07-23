@@ -7,89 +7,47 @@
  * @author    Sapo Ink Team
  * @license   http://opensource.org/licenses/MIT MIT
  * @link      http://ink.sapo.pt
- * @version   3.0.0
+ * @version   3.0.5
  */
 
 // Import Compass Core
 @import "contrib/compass/css3";
 @import "contrib/compass/utilities";
 
-// Import Font Awesome
-// @import "contrib/font-awesome/font-awesome";
+// IMPORT CONFIG FILES (THESE CONTAIN VARIABLE DEFINITIONS)
+@import "config/common";
+@import "config/typography";
+@import "config/colors";
+@import "config/alerts";
+@import "config/buttons";
+@import "config/classnames";
+@import "config/forms";
+@import "config/grid";
+@import "config/labels";
+@import "config/badges";
+@import "config/navigation";
+@import "config/tables";
+@import "config/images";
+@import "config/js";
 
-  // IMPORT CONFIG FILES (THESE CONTAIN VARIABLE DEFINITIONS)
-  @import "config/common";
-  @import "config/typography";
-  @import "config/colors";
-  @import "config/alerts";
-  @import "config/buttons";
-  @import "config/classnames";
-  @import "config/forms";
-  @import "config/grid";
-  @import "config/labels";
-  @import "config/badges";
-  @import "config/navigation";
-  @import "config/tables";
-  @import "config/images";
-  @import "config/js";
+// IMPORT MIXINS FILES (THESE CONTAIN HELPER FUNCTIONS)
+@import "functions/_js-bridge.scss";
+@import "mixins/alerts";
+@import "mixins/buttons";
+@import "mixins/grid";
+@import "mixins/forms";
+@import "mixins/nav.pills";
+@import "mixins/nav.breadcrumbs";
+@import "mixins/nav.pagination";
+@import "mixins/nav.menu";
+@import "mixins/nav.dropdown";
+@import "mixins/themeing";
+@import "mixins/typography";
+@import "mixins/utils";
 
-  // IMPORT MIXINS FILES (THESE CONTAIN HELPER FUNCTIONS)
-  @import "mixins/alerts";
-  @import "mixins/buttons";
-  @import "mixins/grid";
-  @import "mixins/forms";
-  @import "mixins/nav.pills";
-  @import "mixins/nav.breadcrumbs";
-  @import "mixins/nav.pagination";
-  @import "mixins/nav.menu";
-  @import "mixins/nav.dropdown";
-  @import "mixins/themeing";
-  @import "mixins/typography";
-  @import "mixins/utils";
-
-  // IMPORT MODULE DEFINITION FILES
-  // @import "modules/normalize";
-  // @import "modules/alerts";
-  // @import "modules/badges";
-  // @import "modules/buttons";
-  // @import "modules/fonts";
-  // @import "modules/forms";
-  html.no-flexbox,
-  html.no-flexboxlegacy {
-  @import "modules/grid";
+// IMPORT MODULE DEFINITION FILES
+html.no-flexbox,
+html.no-flexboxlegacy {
+  @import "modules/legacy-grid";
   @import "modules/js/carousel";
-  }
-  // @import "modules/labels";
-  // @import "modules/nav.core";
-  // @import "modules/nav.breadcrumbs";
-  // @import "modules/nav.dropdown";
-  // @import "modules/nav.pagination";
-  // @import "modules/nav.pills";
-  // @import "modules/nav.menu";
-  // @import "modules/tables";
-  // @import "modules/typography";
-  // @import "modules/images";
-
-  // IMPORT THEMING FILES
-  // @import "themes/alerts";
-  // @import "themes/badges";
-  // @import "themes/buttons";
-  // @import "themes/labels";
-  // @import "themes/nav.breadcrumbs";
-  // @import "themes/nav.dropdown";
-  // @import "themes/nav.menu";
-  // @import "themes/nav.pagination";
-  // @import "themes/nav.pills";
-  // @import "themes/tables";
-
-  // IMPORT JS COMPONENTS STYLING
-  // @import "modules/js/animate";
-  // @import "modules/js/datepicker";
-  // @import "modules/js/drawer";
-  // @import "modules/js/modal";
-  // @import "modules/js/progressbar";
-  // @import "modules/js/sortable.list";
-  // @import "modules/js/sticky";
-  // @import "modules/js/tabs";
-  // @import "modules/js/tagfield";
-  // @import "modules/js/treeview";
+}

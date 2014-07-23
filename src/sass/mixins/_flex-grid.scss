@@ -586,24 +586,24 @@
                 $sub-division-unit: nth($sub-division,2);
 
                 .#{$sub-division-class-name}-space {
-                    margin: $gutter-width / $sub-division-unit;
+                    margin: $gutter-width * $sub-division-unit;
                 }
 
                 .#{$class-name}-#{$sub-division-class-name}-space {
-                    margin: $gutter-width / $sub-division-unit;
+                    margin: $gutter-width * $sub-division-unit;
                 }
 
                 .#{$sub-division-class-name}-padding {
-                    padding: $gutter-width / $sub-division-unit;
+                    padding: $gutter-width * $sub-division-unit;
                 }
 
                 .#{$class-name}-#{$sub-division-class-name}-padding {
-                    padding: $gutter-width / $sub-division-unit;
+                    padding: $gutter-width * $sub-division-unit;
                 }
             }
         }
     }
-}
+} 
 
 @mixin generate-visibility-classes ($breakpoint) {
 
@@ -648,10 +648,10 @@
         $no-media-query: nth($breakpoint,7);
 
         @if $minimum-width and not $maximum-width {
-            @media #{$media} and (min-width: $minimum-width) {
+            @media screen and (min-width: $minimum-width) {
                 html {
                     &:after {
-                        content: '{"name":"#{$class-name}", "size":{"min":"#{$minimum-width}","max":"#{$maximum-width}"}}';
+                        content: js-bridge($breakpoints);
                         display: none;
                     }
                     font-size: $base-font-size;
@@ -660,10 +660,10 @@
         }
 
         @if $minimum-width and $maximum-width {
-            @media #{$media} and (min-width: $minimum-width) and (max-width: $maximum-width) {
+            @media screen and (min-width: $minimum-width) and (max-width: $maximum-width) {
                 html {
                     &:after {
-                        content: '{"name":"#{$class-name}", "size":{"min":"#{$minimum-width}","max":"#{$maximum-width}"}}';
+                        content: js-bridge($breakpoints);
                         display: none;
                     }
                     font-size: $base-font-size;
@@ -672,22 +672,10 @@
         }
 
         @if not $minimum-width and $maximum-width {
-            @media #{$media} and (max-width: $maximum-width) {
+            @media screen and (max-width: $maximum-width) {
                 html {
                     &:after {
-                        content: '{"name":"#{$class-name}", "size":{"min":"#{$minimum-width}","max":"#{$maximum-width}"}}';
-                        display: none;
-                    }
-                    font-size: $base-font-size;
-                }
-            }
-        }
-
-        @if not $minimum-width and not $maximum-width {
-            @media #{$media} {
-                html {
-                    &:after {
-                        content: '{"name":"#{$class-name}", "size":{"min":"#{$minimum-width}","max":"#{$maximum-width}"}}';
+                        content: js-bridge($breakpoints);
                         display: none;
                     }
                     font-size: $base-font-size;
@@ -721,6 +709,15 @@
         @if $i > 65 and $i <= 70 {
             .#{$class-name}-66 {
                 width: 66.66666%;
+                //@include experimental(flex-basis, 66.66666%, -moz, -webkit, not -o, -ms, not -khtml, official);
+                @include experimental(flex-grow, 0, not -moz, -webkit, not -o, -ms, not -khtml, official);
+            }
+        }
+
+        // generate the 16% width
+        @if $i > 15 and $i <= 20 {
+            .#{$class-name}-16 {
+                width: 16.66666%;
                 //@include experimental(flex-basis, 66.66666%, -moz, -webkit, not -o, -ms, not -khtml, official);
                 @include experimental(flex-grow, 0, not -moz, -webkit, not -o, -ms, not -khtml, official);
             }
@@ -774,6 +771,15 @@
         @if $i > 65 and $i <= 70 {
             .all-66 {
                 width: 66.66666%;
+                //@include experimental(flex-basis, 66.66666%, -moz, -webkit, not -o, -ms, not -khtml, official);
+                @include experimental(flex-grow, 0, not -moz, -webkit, not -o, -ms, not -khtml, official);
+            }
+        }
+
+        // generate the 16% width
+        @if $i > 15 and $i <= 20 {
+            .all-16 {
+                width: 16.66666%;
                 //@include experimental(flex-basis, 66.66666%, -moz, -webkit, not -o, -ms, not -khtml, official);
                 @include experimental(flex-grow, 0, not -moz, -webkit, not -o, -ms, not -khtml, official);
             }

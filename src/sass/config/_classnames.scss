@@ -7,7 +7,7 @@ $ink-class-prefix             : ink !default;
 /**
  * Grid class names
  */
-$horizontal: horizontal !default;
+$horizontal : horizontal !default;
 $vertical: vertical !default;
 $half: half !default;
 $quarter: quarter !default;
@@ -73,18 +73,24 @@ $dropdown-class-name: #{$ink-class-prefix}-dropdown !default;
 /**
  * Tables class names
  */
-$table-class-name: #{$ink-class-prefix}-table;
+$table-class-name: #{$ink-class-prefix}-table !default;
 
 /**
  * Images class names
  */
-$image-class-name: #{$ink-class-prefix}-image;
+$image-class-name: #{$ink-class-prefix}-image !default;
 
-$carousel-class-name: #{$ink-class-prefix}-carousel;
-$drawer-class-name: #{$ink-class-prefix}-drawer;
-$shade-class-name: #{$ink-class-prefix}-shade;
-$modal-class-name: #{$ink-class-prefix}-modal;
-$progress-bar-class-name: #{$ink-class-prefix}-progress-bar;
-$sortable-list-class-name: #{$ink-class-prefix}-sortable-list;
-$tabs-class-name: #{$ink-class-prefix}-tabs;
-$tooltip-class-name: #{$ink-class-prefix}-tooltip;
+/**
+ * JS UI components classe names
+ */
+$carousel-class-name        : #{$ink-class-prefix}-carousel !default;
+$drawer-class-name          : #{$ink-class-prefix}-drawer !default;
+$shade-class-name           : #{$ink-class-prefix}-shade !default;
+$modal-class-name           : #{$ink-class-prefix}-modal !default;
+$progress-bar-class-name    : #{$ink-class-prefix}-progress-bar !default;
+$sortable-list-class-name   : #{$ink-class-prefix}-sortable-list !default;
+$tabs-class-name            : #{$ink-class-prefix}-tabs !default;
+$tagfield-class-name        : #{$ink-class-prefix}-tagfield !default;
+$tag-class-name             : #{$ink-class-prefix}-tag !default;
+$tooltip-class-name         : #{$ink-class-prefix}-tooltip !default;
+$tree-view-classname        : #{$ink-class-prefix}-tree-view !default;

@@ -14,11 +14,12 @@ Ink.requireModules(['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1', '
 
     var elm, inst;
     module('UI module registry', {
-        setup: function () { elm = InkElement.create('div'); inst = {}; },
-    });
-    test('registerInstance adds data-instance attributes to elements to find them later', function () {
-        Common.registerInstance(inst, elm);
-        ok(elm.getAttribute('data-instance'));
+        setup: function () {
+            elm = InkElement.create('div');
+            function UIComp() {};
+            inst = new UIComp();
+            inst._element = elm;
+        },
     });
 
     test('Holds instances, can retrieve them', function () {
@@ -26,9 +27,20 @@ Ink.requireModules(['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1', '
         strictEqual(Common.getInstance(elm)[0], inst);
     });
 
-    test('Adds a data-instance attribute', function () {
+    test('Does not break when getting instances from an element without them', function () {
+        deepEqual(Common.getInstance(elm), []);
+    });
+
+    test('Can unregister instances', function () {
         Common.registerInstance(inst, elm);
-        ok(elm.getAttribute('data-instance'));
+        Common.unregisterInstance(inst);
+        deepEqual(Common.getInstance(elm), []);
+    });
+
+    test('getInstance retrieves an instance by instance type', function () {
+        Common.registerInstance(inst, elm);
+        strictEqual(Common.getInstance(elm, inst.constructor), inst);
+        strictEqual(Common.getInstance(elm, function SomeOtherConstructor() {}), null);
     });
 
     test('Can hold instances of different components, ordering them', function () {
@@ -434,5 +446,25 @@ Ink.requireModules(['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1', '
         strictEqual(inst.getElement(), testEl);
     });
 
+    test('setOption', function () {
+        var inst = new testFunc(testEl);
+
+        strictEqual(inst.getOption('foo'), null);
+        inst.setOption('foo', 'baz');
+        strictEqual(inst.getOption('foo'), 'baz');
+    })
+
+    test('static methods: getInstance', sinon.test(function () {
+        this.spy(Common, 'elOrSelector');
+        this.stub(Common, 'getInstance').returns('the instance!');
+
+        strictEqual(
+            testFunc.getInstance(testEl),
+            'the instance!',
+            'Calling getInstance returns whatever Common.getInstance returned')
+
+        ok(Common.elOrSelector.calledWith(testEl), 'elOrSelector called with testEl');
+        ok(Common.getInstance.calledWith(testEl, testFunc), 'getInstance called with testEl, testFunc');
+    }))
 });
 

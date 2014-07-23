@@ -30,7 +30,6 @@
     background: $white;
     z-index: $layer-100;
     position:absolute;
-    border: 1px $grey-60 solid;
     overflow: hidden;
     @include opacity(1);
     @include box-shadow(rgba(0,0,0,0.8) 0 0 15px 0);
@@ -43,7 +42,7 @@
         overflow-x: hidden;
         height: auto;
 
-        .ink-grid {
+        .#{$grid-class-name} {
             padding-left: 0;
             padding-right: 0;
             width: 100%;

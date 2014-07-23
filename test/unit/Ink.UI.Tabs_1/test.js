@@ -52,21 +52,21 @@ Ink.requireModules(['Ink.UI.Tabs_1', 'Ink.UI.Common_1', 'Ink.Dom.Element_1', 'In
     });
 
     testTabs('changeTab calls _changeTab with correct arguments', function (tabComponent, container) {
-        var spy = sinon.spy(tabComponent, '_changeTab');
+        var spy = sinon.stub(tabComponent, '_changeTab');
         tabComponent.changeTab('home');
         ok(spy.calledOnce);
         deepEqual(spy.lastCall.args, [Ink.s('a[href$="#home"]', container), true]);
     });
 
     testTabs('... but not when new tab is invalid', function (tabComponent) {
-        var spy = sinon.spy(tabComponent, '_changeTab');
+        var spy = sinon.stub(tabComponent, '_changeTab');
         tabComponent.changeTab('hoem');
-        ok(!spy.called);
+        ok(!spy.called, 'spy was called');
     });
 
     testTabs('when clicking a tab, _changeTab is called with the target link', function (tabComponent, container) {
         stop();
-        var spy = sinon.spy(tabComponent, '_changeTab');
+        var spy = sinon.stub(tabComponent, '_changeTab');
         var theTabLink = Ink.s('a[href$="#news"]', container);
         Syn.click(theTabLink, function () {
             ok(spy.calledOnce);
@@ -151,4 +151,39 @@ Ink.requireModules(['Ink.UI.Tabs_1', 'Ink.UI.Common_1', 'Ink.Dom.Element_1', 'In
             start();
         });
     }, {preventUrlChange: true});
+
+    module('Private API');
+
+    testTabs('hashify/dehashify', function (tabs) {
+        equal(
+            tabs._hashify('wow'),
+            '#wow');
+
+        equal(
+            tabs._hashify('#wow'),
+            '#wow');
+
+        equal(
+            tabs._dehashify('#wow'),
+            'wow');
+
+        equal(
+            tabs._dehashify('wow'),
+            'wow');
+    });
+
+    testTabs('findLink', function (tabs, container) {
+        var homeLink = Ink.s('[href^="#home"]', container);
+        ok(homeLink, 'sanity check');
+        ok(homeLink.parentNode.nodeName.toLowerCase() === 'li', 'sanity check');
+        strictEqual(tabs._findLinkByHref('home'), homeLink, 'by name');
+        strictEqual(tabs._findLinkByHref('#home'), homeLink, 'by hash');
+        strictEqual(tabs._findLinkByHref(homeLink), homeLink, 'by itself');
+        strictEqual(tabs._findLinkByHref(homeLink.parentNode), homeLink, 'by li containing the link');
+        strictEqual(tabs._findLinkByHref(Ink.s('[id="home"]', container)), homeLink, 'by section');
+
+        strictEqual(tabs._findLinkByHref(document.body), null, 'Wrong element');
+        strictEqual(tabs._findLinkByHref('wrong-thing'), null, 'Wrong name');
+        strictEqual(tabs._findLinkByHref(null), null, 'null');
+    });
 });

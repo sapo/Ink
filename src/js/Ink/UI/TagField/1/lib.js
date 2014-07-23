@@ -58,8 +58,8 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
          * @method _init
          * @private
          */
-        _init: function(element, options) {
-            var o = options;
+        _init: function() {
+            var o = this._options;
             if (typeof o.separator === 'string') {
                 o.separator = new RegExp(o.separator, 'g');
             }
