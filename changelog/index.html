@@ -7,6 +7,35 @@ site_root:  ../
 
 
 <section class="no-padding half-top-space">
+    <h1 class="fw-300">3.0.5</h3>
+    <p><time>July 23, 2014</time></p>
+    <p class="clearfix">
+        <a href="{{site.download_url}}3.0.5/ink-3.0.5.zip" class="ink-button black">Download</a>
+        <a href="{{site.download_src_url}}3.0.5.zip" class="ink-button black">Download with source</a>
+    </p>
+
+    <h2 class="fw-300">CSS</h2>
+    <ul>
+        <li>Adds 16.66 (1/6) grid division.</li>
+        <li>Style fixes in <code>ink-modal</code> and <code>ink-table</code>.</li>
+        <li>Fixes issue <a href="">#367</a> and <a href="">#373</a>.</li>
+    </ul>
+    
+    <h2 class="fw-300">JS</h2>
+    <ul>
+        <li><code>setOption()</code> function in UI component instances.
+        <li><code>getInstance()</code> function in UI component classes. Use it like this: <code>var myModal = Modal.getInstance('#element-with-a-modal')</code>. This deprecates the need of disabling <code>Ink.UI.Autoload</code> to interact with UI components.</li>
+        <li>Do not pollute elements with data-instance attributes. This also fixes a memory leak when UI components are removed from the DOM.</li>
+        <li>Issue <a href="">#364</a> and <a href="">#276</a>.</li>
+        <li><code>Ink.Dom.Event.KEY_SPACE</code> (<a href="">eb28b23</a>)</li>
+        <li><code>Ink.Dom.Element.isDOMElement(el)</code> function (moved from <code>Ink.UI.Common</code> to <code>Ink.Dom.Element</code>)</li>
+        <li>Fixed an <code>Ink.UI.TagField</code> crash when it is created.</li>
+        <li>DatePicker improved a bit.</li>
+        <li>Fixed cryptic error reported when <code>Ink.requireModules</code> fails to load a script.</li>
+    </ul>
+</section>
+
+<section>
     <h1 class="fw-300">3.0.4</h3>
     <p><time>June 24, 2014</time></p>
     <p class="clearfix">
