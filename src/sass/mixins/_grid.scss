@@ -330,7 +330,7 @@
 
 
         @if $i == 100 {
-            [class*=#{$class-name}-#{$i}] {
+            [class~=#{$class-name}-#{$i}] {
                 float: none;
                 clear: both;
             }

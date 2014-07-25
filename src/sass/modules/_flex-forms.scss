@@ -124,8 +124,7 @@
             & > textarea {
                 width: 100%;
                 
-                & + [class^="icon-"],
-                & + [class*=" icon-"] {
+                & + .fa {
                     display: none;
                 }
             }
@@ -211,8 +210,7 @@
                         padding-right: $form-append-width;
                     }
 
-                    & > [class^="fa-"],
-                    & > [class*=" fa-"] {
+                    & > .fa {
                         position: absolute;
                         right: 1em;
                         top: .86em;
@@ -233,8 +231,7 @@
                         padding-left: $form-append-width;
                     }
                     
-                    & > [class^="fa-"],
-                    & > [class*=" fa-"] {
+                    & > .fa {
                         position: absolute;
                         left: 1em;
                         top: .86em;
