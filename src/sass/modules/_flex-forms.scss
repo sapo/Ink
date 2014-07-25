@@ -124,8 +124,8 @@
             & > textarea {
                 width: 100%;
                 
-                & + [class^="icon-"],
-                & + [class*=" icon-"] {
+                & + [class^="fa-"],
+                & + [class*="fa-"] {
                     display: none;
                 }
             }
