@@ -1,0 +1,191 @@
+<h2>Basic calendar</h2>
+
+
+<p>This is just a calendar with the default markup. You can select any date you like, and there is no upper or lower limit to what dates you can select.</p>
+
+<p>JS: You can also see an example usage of the onSetDate callback, which we use here to console.log the dates as you select them.</p>
+
+{% capture example_code %}
+<table class="ink-calendar" id="calendar1"></table>
+
+<script>
+    // This is unonecessary if you are using autoload.js
+    Ink.requireModules(['Ink.Dom.Selector_1', 'Ink.UI.Calendar_1'],function(Selector,Calendar){
+        new Calendar('#calendar1', {
+            onSetDate: function (ev) {
+                console.log('onSetDate', ev.date);
+            }
+        });
+    });
+</script>
+{% endcapture %}
+
+<p class="example-title">Demo</p>
+<div class="example">
+{{ example_code }}
+</div>
+
+<p class="example-title">Code</p>
+{% highlight html %}
+{{ example_code }}
+{% endhighlight %}
+
+
+
+<h2>Start and end dates</h2>
+
+<p>Dates February 1st, 2000, and January 1st, 2002</p>
+
+<p>This illustrates how you can use the <code>dateRange</code> option.</p>
+
+{% capture example_code %}
+<div class="column-group gutters">
+    <div class="all-33 small-100 tiny-100">
+        <table class="ink-calendar all-100" id="calendar-startend" data-date-range="2000-02-01:2002-01-01"></table>
+        <p>Dates between February 1st, 2000, and January 1st, 2002</p>
+    </div>
+    <div class="all-33 small-100 tiny-100">
+        <table class="ink-calendar all-100" id="calendar-startend2" data-date-range="2000-02-01:NOW"></table>
+        <p>Dates between February 1st, 2000, and today</p>
+    </div>
+    <div class="all-33 small-100 tiny-100">
+        <table class="ink-calendar all-100" id="calendar-startend3" data-date-range="NOW:EVER"></table>
+        <p>Dates from today on</p>
+    </div>
+</div>
+
+<script>
+    // This is unonecessary if you are using autoload.js
+    Ink.requireModules(['Ink.Dom.Selector_1', 'Ink.UI.Calendar_1'],function(Selector,Calendar){
+        new Calendar('#calendar-startend');
+        new Calendar('#calendar-startend2');
+        new Calendar('#calendar-startend3');
+    });
+</script>
+{% endcapture %}
+
+<p class="example-title">Demo</p>
+<div class="example">
+{{ example_code }}
+</div>
+
+<p class="example-title">Code</p>
+{% highlight html %}
+{{ example_code }}
+{% endhighlight %}
+
+
+<h2>Customize using CSS</h2>
+
+<p>You can override font-size to control the size of the calendar.</p>
+
+{% capture example_code %}
+<div class="column-group gutters">
+    <div class="all-100">
+        <h1>Your calendar</h1>
+        <table class="ink-calendar my-huge-calendar" id="calendar-css"></table>
+    </div>
+</div>
+
+<style>
+    .my-huge-calendar {
+        width: 100%;
+        line-height: 1.2;
+        font-size: 2em;
+    }
+</style>
+
+<script>
+    // This is unonecessary if you are using autoload.js
+    Ink.requireModules(['Ink.Dom.Selector_1', 'Ink.UI.Calendar_1'],function(Selector,Calendar){
+        new Calendar('#calendar-css');
+    });
+</script>
+{% endcapture %}
+
+<p class="example-title">Demo</p>
+<div class="example">
+{{ example_code }}
+</div>
+
+<p class="example-title">Code</p>
+{% highlight html %}
+{{ example_code }}
+{% endhighlight %}
+
+
+<h1>JS API examples</h1>
+
+
+<h2>Valid and invalid dates</h2>
+
+<p>You can only select days which divide by 3, and months which are not February.</p>
+
+<p>When we navigate to February, we will see an empty month view. To fix this, you need to provide functions to tell Calendar how to skip months. Read the example below.</p>
+
+{% capture example_code %}
+<table class="ink-calendar" id="calendar3"></table>
+
+<script>
+    Ink.requireModules(['Ink.UI.Calendar_1'], function (Calendar) {
+        new Calendar('#calendar3', {
+            startDate: '2000-01-03',
+            validDayFn: function (year, month, day) {
+                return day % 3 === 0;
+            },
+            validMonthFn: function (year, month, day) {
+                return month !== 2;
+            }
+        });
+    });
+</script>
+{% endcapture %}
+
+<p class="example-title">Demo</p>
+<div class="example">
+{{ example_code }}
+</div>
+
+<p class="example-title">Code</p>
+{% highlight html %}
+{{ example_code }}
+{% endhighlight %}
+
+
+<h2>When invalid dates are many, and valid dates have many months or years between them</h2>
+
+<p>You can only select the January 3rd and January 6th of each year in the calendar below. When you click the "next" button, you are taken to January 3rd, next year. This is done by passing the nextValidDateFn and prevValidDateFn options</p>
+
+{% capture example_code %}
+<table class="ink-calendar" id="calendar2"></table>
+
+<script>
+    Ink.requireModules(['Ink.UI.Calendar_1'], function (Calendar) {
+        new Calendar('#calendar2', {
+            startDate: '2000-01-03',
+            validDayFn: function (year, month, day) {
+                return month === 1 && (day === 3 || day === 6);
+            },
+            validMonthFn: function (year, month, day) {
+                return month === 1;
+            },
+            nextValidDateFn: function (year, month, day) {
+                return new Date(year + 1, 0, 3);
+            },
+            prevValidDateFn: function (year, month, day) {
+                return new Date(year - 1, 0, 3);
+            }
+        });
+    });
+</script>
+{% endcapture %}
+
+<p class="example-title">Demo</p>
+<div class="example">
+{{ example_code }}
+</div>
+
+<p class="example-title">Code</p>
+{% highlight html %}
+{{ example_code }}
+{% endhighlight %}

@@ -104,6 +104,7 @@ sections:
         topics:
           - title: Ink.Autoload
           - title: Ink.UI.Animate
+          - title: Ink.UI.Calendar
           - title: Ink.UI.Carousel
           - title: Ink.UI.Close
           - title: Ink.UI.Common
