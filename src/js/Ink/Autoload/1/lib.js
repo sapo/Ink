@@ -97,6 +97,10 @@ Ink.createModule('Ink.Autoload', 1, ['Ink.Dom.Selector_1', 'Ink.Util.Array_1', '
                 if( elements.length ){
                     Ink.requireModules( [modName], function( Component ) {
                         InkArray.forEach(elements, function (el) {
+                            if (typeof Component.getInstance === 'function' &&
+                                    Component.getInstance(el) != null) {
+                                return; // Avoid multiple instantiation.
+                            }
                             new Component(el, Autoload.defaultOptions[modName]);
                         });
                     });

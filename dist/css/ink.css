@@ -979,7 +979,7 @@ th {
 .ink-form .control-group .control > input, .ink-form .control-group .control > select, .ink-form .control-group .control > textarea {
   width: 100%;
 }
-.ink-form .control-group .control > input + [class^="icon-"], .ink-form .control-group .control > input + [class*=" icon-"], .ink-form .control-group .control > select + [class^="icon-"], .ink-form .control-group .control > select + [class*=" icon-"], .ink-form .control-group .control > textarea + [class^="icon-"], .ink-form .control-group .control > textarea + [class*=" icon-"] {
+.ink-form .control-group .control > input + .fa, .ink-form .control-group .control > select + .fa, .ink-form .control-group .control > textarea + .fa {
   display: none;
 }
 .ink-form .control-group .control.append-button span, .ink-form .control-group .control.append-symbol span, .ink-form .control-group .control.prepend-button span, .ink-form .control-group .control.prepend-symbol span {

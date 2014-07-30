@@ -9,7 +9,7 @@
     "SASS"
   ],
   "main": [
-    "dist/*"
+    "dist/js/ink-all.js"
   ],
   "ignore": [
     "**/.*",

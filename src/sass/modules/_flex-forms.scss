@@ -124,8 +124,8 @@
             & > textarea {
                 width: 100%;
                 
-                & + [class^="icon-"],
-                & + [class*=" icon-"] {
+                & + [class^="fa-"],
+                & + [class*="fa-"] {
                     display: none;
                 }
             }
@@ -160,7 +160,7 @@
 
                 span {
                     
-                    display: table-cell;
+                    //display: table-cell;
 
                     & > input,
                     & > select,
@@ -183,7 +183,7 @@
 
                 span {
                     
-                    display: table-cell;
+                    //display: table-cell;
                 
                     & > input,
                     & > select,
