@@ -67,4 +67,18 @@ Inlined to avoid the additional HTTP request: h5bp.com/r
   h3 {
     page-break-after: avoid;
   }
+
+  // Ink specific rules
+
+  .ink-navigation {
+    display: none;
+  }
+
+  .ink-table {
+    border-collapse: collapse;
+  }
+
+  .ink-label {
+    border: 1px solid #000;
+  }
 }
