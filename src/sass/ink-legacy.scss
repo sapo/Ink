@@ -51,3 +51,6 @@ html.no-flexboxlegacy {
   @import "modules/legacy-grid";
   @import "modules/js/carousel";
 }
+
+// IMPORT PRINT STYLESHEET
+@import "print";
