@@ -63,6 +63,7 @@
 @import "modules/nav.pagination";
 @import "modules/nav.pills";
 @import "modules/nav.menu";
+@import "modules/print";
 @import "modules/tables";
 @import "modules/typography";
 @import "modules/images";
@@ -92,6 +93,3 @@
 @import "modules/js/tagfield";
 @import "modules/js/tooltips";
 @import "modules/js/treeview";
-
-// IMPORT PRINT STYLESHEET
-@import "print";

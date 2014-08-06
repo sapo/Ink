@@ -70,15 +70,15 @@ Inlined to avoid the additional HTTP request: h5bp.com/r
 
   // Ink specific rules
 
-  .ink-navigation {
+  .#{$navigation-class-name} {
     display: none;
   }
 
-  .ink-table {
+  .#{$table-class-name} {
     border-collapse: collapse;
   }
 
-  .ink-label {
+  .#{$label-class-name} {
     border: 1px solid #000;
   }
 }
