@@ -60,7 +60,7 @@ Ink.requireModules(['Ink.UI.Toggle_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1', 'In
     });
 
     bagTest('it also puts and removes an "active" class on the trigger', function (_, trigger, targets) {
-        var toggle = new Toggle(trigger, { target: targets, initialState: true, classNameOn: 'oh-it-is-on', classNameOff: 'oh-it-is-off' });
+        var toggle = new Toggle(trigger, { target: targets, initialState: true });
         ok(Css.hasClassName(trigger, 'active'));
         toggle.setState(false);
         ok(!Css.hasClassName(trigger, 'active'));
@@ -77,6 +77,43 @@ Ink.requireModules(['Ink.UI.Toggle_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1', 'In
             equal(Css.hasClassName(targets[i], 'oh-it-is-on'), false);
             equal(Css.hasClassName(targets[i], 'oh-it-is-off'), true);
         }
+    });
+
+    module('ancestors');
+
+    bagTest('A toggle can\'t toggle its ancestors', function (_, trigger, targets) {
+        targets[0].appendChild(trigger);
+
+        var toggle = new Toggle(trigger, {
+            target: targets[0],
+            initialState: true,
+            classNameOn: 'oh-it-is-on',
+            classNameOff: 'oh-it-is-off'
+        });
+
+        stop();
+        Syn.click(toggle._element, function () {
+            ok(Css.hasClassName(targets[0], 'oh-it-is-on'));
+            start();
+        })
+    });
+
+    bagTest('A toggle can\'t toggle its ancestors... unless you set canToggleAnAncestor', function (_, trigger, targets) {
+        targets[0].appendChild(trigger);
+
+        var toggle = new Toggle(trigger, {
+            target: targets[0],
+            initialState: true,
+            canToggleAnAncestor: true,
+            classNameOn: 'oh-it-is-on',
+            classNameOff: 'oh-it-is-off'
+        });
+
+        stop();
+        Syn.click(toggle._element, function () {
+            ok(Css.hasClassName(targets[0], 'oh-it-is-off'));
+            start();
+        })
     });
 
     module('show-all/hide-all (default usage)');

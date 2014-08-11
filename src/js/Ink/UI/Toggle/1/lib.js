@@ -30,6 +30,7 @@
      * @param {String}              [options.classNameOff]          CSS class to toggle when off. Defaults to 'hide-all'.
      * @param {String}              [options.triggerEvent]          Event that will trigger the toggling. Defaults to 'click'.
      * @param {Boolean}             [options.closeOnClick]          Flag to toggle the targe off when clicking outside the toggled content. Defaults to true.
+     * @param {Boolean}             [options.canToggleAnAncestor]   Set to true if you want the toggle to target ancestors of itself. Defaults to false.
      * @param {String}              [options.closeOnInsideClick]    Toggle off when a child element matching this selector is clicked. Set to null to deactivate the check. Defaults to 'a[href]'.
      * @param {Boolean}             [options.initialState]          Flag to define initial state. false: off, true: on, null: markup. Defaults to null.
      * @param {Function}            [options.onChangeState]         Callback when the toggle state changes. Return `false` to cancel the event.
@@ -46,6 +47,7 @@
         target:         ['Elements'],
         triggerEvent:   ['String', 'click'],
         closeOnClick:   ['Boolean', true],
+        canToggleAnAncestor: ['Boolean', false],
         isAccordion:    ['Boolean', false],
         initialState:   ['Boolean', null],  // May be true, false, or null to be what it is right now
         classNameOn:    ['String', 'show-all'],
@@ -150,7 +152,7 @@
                 return thisOne === target || InkElement.isAncestorOf(thisOne, target);
             });
 
-            if (isAncestorOfClickedElement) {
+            if (!this._options.canToggleAnAncestor && isAncestorOfClickedElement) {
                 return;
             }
 
