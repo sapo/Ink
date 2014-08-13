@@ -7932,12 +7932,18 @@ body.ink-drawer.push {
 body.ink-drawer.push .content-drawer {
   overflow: hidden;
 }
+body.ink-drawer.push.left .left-drawer {
+  position: fixed;
+}
 body.ink-drawer.push.left .left-drawer, body.ink-drawer.push.left .content-drawer {
   -webkit-transform: translate3d(220px, 0, 0);
   -moz-transform: translate3d(220px, 0, 0);
   -ms-transform: translate3d(220px, 0, 0);
   -o-transform: translate3d(220px, 0, 0);
   transform: translate3d(220px, 0, 0);
+}
+body.ink-drawer.push.right .right-drawer {
+  position: fixed;
 }
 body.ink-drawer.push.right .right-drawer, body.ink-drawer.push.right .content-drawer {
   -webkit-transform: translate3d(-220px, 0, 0);
@@ -7951,11 +7957,17 @@ body.ink-drawer.over {
   -webkit-user-drag: none;
 }
 body.ink-drawer.over.left .left-drawer {
+  position: fixed;
+}
+body.ink-drawer.over.left .left-drawer {
   -webkit-transform: translate3d(220px, 0, 0);
   -moz-transform: translate3d(220px, 0, 0);
   -ms-transform: translate3d(220px, 0, 0);
   -o-transform: translate3d(220px, 0, 0);
   transform: translate3d(220px, 0, 0);
+}
+body.ink-drawer.over.right .right-drawer {
+  position: fixed;
 }
 body.ink-drawer.over.right .right-drawer {
   -webkit-transform: translate3d(-220px, 0, 0);
