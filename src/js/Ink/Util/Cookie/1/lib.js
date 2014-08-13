@@ -5,7 +5,6 @@
  */
 
 Ink.createModule('Ink.Util.Cookie', '1', [], function() {
-
     'use strict';
 
     /**
@@ -14,10 +13,10 @@ Ink.createModule('Ink.Util.Cookie', '1', [], function() {
     var Cookie = {
 
         /**
-         * Gets an object with the current page cookies.
+         * Gets an object with the current page cookies, or a specific cookie if you specify the `name`.
          *
          * @method get
-         * @param   {String}          name      The cookie name.
+         * @param   {String}          [name]    The cookie name.
          * @return  {String|Object}             If the name is specified, it returns the value of that key. Otherwise it returns the full cookie object
          * @public
          * @static
@@ -28,8 +27,10 @@ Ink.createModule('Ink.Util.Cookie', '1', [], function() {
             var cookie = document.cookie || false;
 
             var _Cookie = {};
+
             if(cookie) {
                 cookie = cookie.replace(new RegExp("; ", "g"), ';');
+
                 var aCookie = cookie.split(';');
                 var aItem = [];
                 if(aCookie.length > 0) {
@@ -38,15 +39,14 @@ Ink.createModule('Ink.Util.Cookie', '1', [], function() {
                         if(aItem.length === 2) {
                             _Cookie[aItem[0]] = decodeURIComponent(aItem[1]);
                         }
-                        aItem = [];
                     }
                 }
-            }
-            if(name) {
-                if(typeof(_Cookie[name]) !== 'undefined') {
-                    return _Cookie[name];
-                } else {
-                    return null;
+                if(name) {
+                    if(typeof(_Cookie[name]) !== 'undefined') {
+                        return _Cookie[name];
+                    } else {
+                        return null;
+                    }
                 }
             }
             return _Cookie;
@@ -104,12 +104,13 @@ Ink.createModule('Ink.Util.Cookie', '1', [], function() {
                 sPath = 'path=/';
             }
 
-            if(domain && typeof(domain) !== 'undefined') {
+            if(domain) {
                 sDomain = 'domain='+domain;
-            } else {
-                var portClean = new RegExp(":(.*)");
-                sDomain = 'domain='+window.location.host;
-                sDomain = sDomain.replace(portClean,"");
+            } else if (/\./.test(window.location.hostname)) {
+                // When trying to set domain=localhost or any other domain
+                // without dots, setting the cookie fails.
+                // Anyways, the cookies are bound to the current domain by default so let it be.
+                sDomain = 'domain='+window.location.hostname;
             }
 
             if(secure && typeof(secure) !== 'undefined') {
@@ -118,7 +119,11 @@ Ink.createModule('Ink.Util.Cookie', '1', [], function() {
                 sSecure = false;
             }
 
-            document.cookie = sName+'; '+sExpires+'; '+sPath+'; '+sDomain+'; '+sSecure;
+            document.cookie = sName +
+                '; ' + sExpires +
+                '; ' + sPath +
+                (sDomain ? '; ' + sDomain : '') +
+                '; ' + sSecure;
         },
 
         /**
@@ -132,26 +137,10 @@ Ink.createModule('Ink.Util.Cookie', '1', [], function() {
          * @static
          * @sample Ink_Util_Cookie_remove.html
          */
-        remove: function(cookieName, path, domain)
-        {
-            //var expiresDate = 'Thu, 01-Jan-1970 00:00:01 GMT';
-            var sPath = false;
-            var sDomain = false;
-            var expiresDate = -999999999;
+        remove: function(cookieName, path, domain) {
+            var expiresDate = -1;
 
-            if(path && typeof(path) !== 'undefined') {
-                sPath = path;
-            } else {
-                sPath = '/';
-            }
-
-            if(domain && typeof(domain) !== 'undefined') {
-                sDomain = domain;
-            } else {
-                sDomain = window.location.host;
-            }
-
-            this.set(cookieName, 'deleted', expiresDate, sPath, sDomain);
+            this.set(cookieName, 'deleted', expiresDate, path, domain);
         }
     };
 

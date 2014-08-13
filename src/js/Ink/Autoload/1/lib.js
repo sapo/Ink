@@ -3,7 +3,7 @@
  * @version 1
  * Create Ink UI components easily
  */
-Ink.createModule('Ink.Autoload', 1, ['Ink.Dom.Selector_1', 'Ink.Util.Array_1', 'Ink.Dom.Loaded_1', 'Ink.UI.SmoothScroller_1', 'Ink.UI.Close_1'], function( Selector, InkArray, Loaded, Scroller, Close ){
+Ink.createModule('Ink.Autoload', 1, ['Ink.Dom.Selector_1', 'Ink.Util.Array_1', 'Ink.Dom.Loaded_1', 'Ink.UI.SmoothScroller_1', 'Ink.UI.Close_1', 'Ink.UI.Drawer_1'], function( Selector, InkArray, Loaded, Scroller, Close, Drawer ){
     'use strict';
 
     /**
@@ -86,6 +86,12 @@ Ink.createModule('Ink.Autoload', 1, ['Ink.Dom.Selector_1', 'Ink.Util.Array_1', '
             }
             if (options.createSmoothScroller !== false) {
                 Scroller.init();
+            }
+            if (options.createDrawer !== false) {
+                if (Selector.matchesSelector(document.body, '.ink-drawer') &&
+                        !(Drawer.getInstance && !Drawer.getInstance(document.body))) {
+                    new Drawer(document.body);
+                }
             }
 
             function findElements(mod) {
