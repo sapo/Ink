@@ -14,7 +14,7 @@
         list-style-type: none;
         white-space: nowrap;
         position: relative;
-        @include transition(compact(all 0.5s ease));
+        @include transition(compact(left 0.5s ease));
 
         // Each slide
         .slide {
