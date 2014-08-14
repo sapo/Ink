@@ -196,7 +196,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
                 liEls = [];
                 for (i = 0, f = this._size; i < f; ++i) {
                     liEl = document.createElement(this._options.childTag);
-                    liEl.appendChild( genAEl( this._options.numberFormatter(i), i) );
+                    liEl.appendChild( genAEl( this._options.numberFormatter(i,this._size), i) );
                     // add "active" class if this is the active element.
                     Css.setClassName(liEl, this._options.activeClass, i === this._current);
                     if (this._nextEl) {
