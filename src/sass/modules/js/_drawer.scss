@@ -40,6 +40,7 @@ body {
 
           &.show {
             display: block;
+            position: fixed;
           }
 
         }
@@ -56,14 +57,12 @@ body {
           }
 
           &.left {
-            .left-drawer { position: fixed; }
             .left-drawer, .content-drawer {
               @include translate3d($width,0,0);
             }
           }
 
           &.right {
-            .right-drawer { position: fixed; }
             .right-drawer, .content-drawer {
               @include translate3d(($width * -1),0,0);
             }
@@ -76,14 +75,12 @@ body {
           -webkit-user-drag: none;
 
           &.left {
-            .left-drawer { position: fixed; }
             .left-drawer {
               @include translate3d($width,0,0);
             }
           }
 
           &.right {
-            .right-drawer { position: fixed; }
             .right-drawer {
               @include translate3d(($width * -1),0,0);
             }
