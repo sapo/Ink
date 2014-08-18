@@ -101,6 +101,8 @@ Ink.createModule('Ink.UI.Pagination', '1',
         previousPageClass: ['String', 'previousPage'],
         nextClass:         ['String', 'next'],
         nextPageClass:     ['String', 'nextPage'],
+        firstClass:        ['String', 'first'],
+        lastClass:         ['String', 'last'],
 
         numberFormatter: ['Function', function(i) { return i + 1; }]
     };
@@ -386,7 +388,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
         },
 
         /**
-         * Sets the current page.
+         * Sets the current page. First page is 0.
          *
          * @method setCurrent
          * @param {Number} nr           Sets the current page to given number.
@@ -436,7 +438,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
         },
 
         /**
-         * Gets the current page index
+         * Gets the current page index. First page is 0.
          *
          * @method getCurrent
          * @return {Number} Current page

@@ -37,6 +37,15 @@ Ink.requireModules(['Ink.UI.Pagination_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1',
         equal(component._calculateSize(10, 5), 2);
     });
 
+    testPagination('(regression) fist, last buttons work', function(pag, cont) {
+        pag.setCurrent(2);
+        stop();
+        Syn.click(Ink.s('li:first-child a', cont), function () {
+            start()
+            equal(pag.getCurrent(), 0)
+        });
+    }, { maxSize: '5' });
+
     test('_calculateSize called to calculate page count when itemsPerPage and totalItemCount options passed', function () {
         var container = InkElement.create('div');
         var spy = sinon.spy(Pagination.prototype, '_calculateSize');
