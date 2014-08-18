@@ -75,7 +75,7 @@ Ink.createModule('Ink.Dom.Loaded', 1, [], function() {
 
             var csf = context.handlers.checkState;
             var alreadyLoaded = (
-                /complete|interactive|loaded/.test(context.doc.readyState) &&
+                /complete|loaded/.test(context.doc.readyState) &&
                 context.win.location.toString() !== 'about:blank');  // https://code.google.com/p/chromium/issues/detail?id=32357
 
             if (alreadyLoaded){
@@ -111,7 +111,7 @@ Ink.createModule('Ink.Dom.Loaded', 1, [], function() {
          * @private
          */
         _checkState: function(event, context) {
-            if ( !event || (event.type === 'readystatechange' && context.doc.readyState !== 'complete')) {
+            if ( !event || (event.type === 'readystatechange' && !/complete|loaded/.test(context.doc.readyState))) {
                 return;
             }
             var where = (event.type === 'load') ? context.win : context.doc;
@@ -127,8 +127,10 @@ Ink.createModule('Ink.Dom.Loaded', 1, [], function() {
          */
 
         /**
+         * (old IE only) wait until a doScroll() call does not throw an error
          *
-         * function _poll
+         * @method _poll
+         * @private
          */
         _poll: function(context) {
             try {
