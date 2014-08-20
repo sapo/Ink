@@ -5723,6 +5723,25 @@ html:after {
   display: block;
   float: none;
 }
+.ink-navigation ul.menu.horizontal.scrollable {
+  font-size: 0;
+  white-space: nowrap;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+.ink-navigation ul.menu.horizontal.scrollable li {
+  display: inline-block;
+  float: none;
+}
+.ink-navigation ul.menu.horizontal.scrollable li a {
+  border-right: rgba(10, 10, 10, 0.3) 1px solid;
+  font-size: initial;
+}
 .ink-navigation ul.menu.horizontal li {
   float: left;
   position: relative;
