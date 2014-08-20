@@ -473,7 +473,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
                     response.responseXML  = xmlDoc;
                 }
 
-                if (this.transport.responseXML !== null && response.responseJSON === null && this.transport.responseXML.xml !== ""){
+                if (this.transport.responseXML != null && response.responseJSON == null && this.transport.responseXML.xml !== ""){
                     responseContent = this.transport.responseXML;
                 }
 
