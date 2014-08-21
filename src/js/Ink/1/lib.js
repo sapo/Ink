@@ -47,6 +47,7 @@
         VERSION: '3.0.5',
         _checkPendingRequireModules: function() {
             var I, F, o, dep, mod, cb, pRMs = [];
+            var toApply = [];
             for (I = 0, F = pendingRMs.length; I < F; ++I) {
                 o = pendingRMs[I];
 
@@ -65,16 +66,19 @@
 
                 if (o.remaining > 0) {
                     pRMs.push(o);
-                }
-                else {
+                } else {
                     cb = o.cb;
                     if (!cb) { continue; }
                     delete o.cb; // to make sure I won't call this more than once!
-                    cb.apply(false, o.args);
+                    toApply.push([cb, o.args]);
                 }
             }
 
             pendingRMs = pRMs;
+
+            for (var i = 0; i < toApply.length; i++) {
+                toApply[i][0].apply(false, toApply[i][1]);
+            }
 
             if (pendingRMs.length > 0) {
                 setTimeout( function() { Ink._checkPendingRequireModules(); }, 0 );
