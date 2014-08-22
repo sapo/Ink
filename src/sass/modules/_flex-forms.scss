@@ -251,9 +251,9 @@
             cursor: pointer;
 
             & + label {
-                margin-top: -.3em;
+                margin-top: -.28em;
                 padding-left: 1.25em;
-                vertical-align: top;
+                vertical-align: super;
                 display: inline-block;
             }
         }
