@@ -802,7 +802,7 @@ th {
   clear: both;
 }
 .ink-form .control-group .control > li {
-  margin: 0;
+  position: relative;
   *zoom: 1;
 }
 .ink-form .control-group .control > li:after {
@@ -894,17 +894,16 @@ th {
 }
 .ink-form .control-group input[type="radio"],
 .ink-form .control-group input[type="checkbox"] {
-  padding: 0;
-  margin: .55em 0;
+  position: absolute;
   border: none;
-  clear: left;
-  float: left;
   cursor: pointer;
 }
 .ink-form .control-group input[type="radio"] + label,
 .ink-form .control-group input[type="checkbox"] + label {
-  float: left;
-  margin: .25em 0 .25em .4em;
+  margin-top: -.3em;
+  padding-left: 1.25em;
+  vertical-align: top;
+  display: inline-block;
 }
 .ink-form .control-group .inline li {
   padding: 0;
@@ -6868,6 +6867,9 @@ th {
   border-right: rgba(10, 10, 10, 0.3) 1px solid;
   font-size: initial;
 }
+.ink-navigation ul.menu.horizontal.scrollable li:last-child a {
+  border-right: none;
+}
 .ink-navigation ul.menu.horizontal li {
   float: left;
   position: relative;
@@ -8893,10 +8895,10 @@ table.ink-table tbody > tr.yellow td {
   list-style-type: none;
   white-space: nowrap;
   position: relative;
-  -webkit-transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-  transition: all 0.5s ease;
+  -webkit-transition: left 0.5s ease;
+  -moz-transition: left 0.5s ease;
+  -o-transition: left 0.5s ease;
+  transition: left 0.5s ease;
 }
 .ink-carousel .stage .slide {
   position: relative;
