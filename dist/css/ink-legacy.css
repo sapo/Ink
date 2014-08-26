@@ -4663,10 +4663,10 @@ html.no-flexboxlegacy .ink-carousel .stage {
   list-style-type: none;
   white-space: nowrap;
   position: relative;
-  -webkit-transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-  transition: all 0.5s ease;
+  -webkit-transition: left 0.5s ease;
+  -moz-transition: left 0.5s ease;
+  -o-transition: left 0.5s ease;
+  transition: left 0.5s ease;
 }
 html.no-flexbox .ink-carousel .stage .slide,
 html.no-flexboxlegacy .ink-carousel .stage .slide {
