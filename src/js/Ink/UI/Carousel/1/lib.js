@@ -74,6 +74,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
             this._isY = (this._options.axis === 'y');
 
             var ulEl = Ink.s('ul.stage', this._element);
+            ulEl.style.width = '100%';
             this._ulEl = ulEl;
 
             InkElement.removeTextNodeChildren(ulEl);
@@ -386,7 +387,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
             }
 
             this._ulEl.style[ this._isY ? 'top' : 'left'] =
-                ['-', _lengthToGo, 'px'].join('');
+                ['-', (_lengthToGo / this._deltaLength) * 100, '%'].join('');
 
             if (this._options.onChange) {
                 this._options.onChange.call(this, page);

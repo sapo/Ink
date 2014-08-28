@@ -46,10 +46,15 @@ Ink.requireModules(['Ink.UI.Carousel_1', 'Ink.UI.Pagination', 'Ink.Dom.Element_1
 
     module('_setPage()');
 
-    testCarousel('Sets the [left] of the stage so as to pull the slides into position.', function (carousel, _, stage) {
+    testCarousel('Percentages are used to pull the slides left.', function (carousel, _, stage) {
         carousel._setPage(1);
-        equal(stage.style.left, '-100px');
+        equal(stage.style.left, '-100%');
     });
+
+    testCarousel('... even when the slide amounts are uneven, function (carousel, _, stage) {
+        carousel._setPage(1);
+        equal(stage.style.left, '-100%');
+    }, { uneven: true });
 
     var pagElm;
     var pag;
