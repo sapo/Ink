@@ -6,6 +6,7 @@
 
     // This is what gets pulled left and right (or up and down)
     .stage {
+        width: 100%;
         left: 0;
         height: auto !important; // To be removed
         margin-top: 0;
