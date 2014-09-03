@@ -265,14 +265,17 @@ Ink.createModule('Ink.UI.Carousel', '1',
             var pointerX = InkEvent.pointerX(event);
             var pointerY = InkEvent.pointerY(event);
 
-            var deltaY = Math.abs(pointerY - this._swipeData.y);
-            var deltaX = Math.abs(pointerX - this._swipeData.x);
+            var deltaY = this._swipeData.y - pointerY;
+            var deltaX = this._swipeData.x - pointerX;
 
             if (this._touchMoveIsFirstTouchMove) {
+                var aDeltaY = Math.abs(deltaY);
+                var aDeltaX = Math.abs(deltaX);
+
                 this._touchMoveIsFirstTouchMove = undefined;
                 this._scrolling = this._isY ?
-                    deltaX > deltaY :
-                    deltaY > deltaX ;
+                    aDeltaX > aDeltaY :
+                    aDeltaY > aDeltaX ;
 
                 if (!this._scrolling) {
                     this._onAnimationFrame();
@@ -282,6 +285,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
             if (!this._scrolling && this._swipeData) {
                 InkEvent.stopDefault(event);
 
+                this._swipeData.pointerDelta = this._isY ? deltaY : deltaX;
                 this._swipeData.pointerPos = this._isY ? pointerY : pointerX;
             }
         },
@@ -310,17 +314,16 @@ Ink.createModule('Ink.UI.Carousel', '1',
             if (this._swipeData && this._swipeData.pointerPos && !this._scrolling && !this._touchMoveIsFirstTouchMove) {
                 var snapToNext = 0.1;  // swipe 10% of the way to change page
 
-                var relProgress = this._swipeData.firstUlPos -
-                    this._ulEl.getBoundingClientRect()[this._isY ? 'top' : 'left'];
+                var pointerDelta = this._swipeData.pointerDelta;
 
                 var curPage = this.getPage();
 
                 // How many pages were advanced? May be fractional.
-                var progressInPages = relProgress / this._elLength / this._slidesPerPage;
+                var progressInPages = pointerDelta / this._elLength / this._slidesPerPage;
 
                 // Have we advanced enough to change page?
                 if (Math.abs(progressInPages) > snapToNext) {
-                    curPage += Math[ relProgress < 0 ? 'floor' : 'ceil' ](progressInPages);
+                    curPage += Math[ pointerDelta < 0 ? 'floor' : 'ceil' ](progressInPages);
                 }
 
                 // If something used to calculate progressInPages was zero, we get NaN here.
