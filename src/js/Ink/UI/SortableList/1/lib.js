@@ -39,7 +39,7 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Css_1',
         'placeholderClass': ['String', 'placeholder'],
         'draggedClass': ['String', 'hide-all'],
         'draggingClass': ['String', 'dragging'],
-        'dragSelector': ['String', 'li'],
+        'dragSelector': ['String', '> li'],
         'dragObject': ['String', null], // Deprecated. Use handleSelector instead.
         'handleSelector': ['String', null],
         'moveSelector': ['String', false],
