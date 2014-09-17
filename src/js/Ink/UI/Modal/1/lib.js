@@ -372,7 +372,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             /**
              * Let's 'resize' it:
              */
-            if( this._options.responsive.toString() === 'true' ) {
+            if( this._options.responsive ) {
                 this._onResize(true);
                 Event.observe( window,'resize',this._handlers.resize );
             } else {
@@ -394,6 +394,15 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             openModals.push(this);
 
             Css.addClassName(document.documentElement, 'ink-modal-open');
+        },
+
+        /**
+         * Returns whether the modal is currently open
+         * @method isOpen
+         * @public
+         **/
+        isOpen: function () {
+            return !this._wasDismissed;
         },
 
         /**

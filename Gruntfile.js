@@ -277,6 +277,14 @@ module.exports = function (grunt) {
                     sourceMappingURL: 'ink-ui.js.map'
                 },
                 dest: '<%= ink.folders.js.dist %>ink-ui.min.js'
+            },
+            autoload: {
+                src: ['<%= ink.folders.js.src %>Autoload/1/lib.js'],
+                options: {
+                    sourceMap: '<%= ink.folders.js.dist %>autoload.js.map',
+                    sourceMappingURL: 'autoload.js.map'
+                },
+                dest: '<%= ink.folders.js.dist %>autoload.min.js'
             }
         },
 
