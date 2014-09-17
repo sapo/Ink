@@ -41,7 +41,7 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Css_1',
         'draggingClass': ['String', 'dragging'],
         'dragSelector': ['String', '> li'],
         'dragObject': ['String', null], // Deprecated. Use handleSelector instead.
-        'handleSelector': ['String', null],
+        'handleSelector': ['String', ':not(button, button *, a[href], a[href] *)'],
         'moveSelector': ['String', false],
         'swap': ['Boolean', false],
         'cancelMouseOut': ['Boolean', false],
