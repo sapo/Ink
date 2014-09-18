@@ -115,7 +115,7 @@ Ink.createModule('Ink.Autoload', 1, ['Ink.Dom.Selector_1', 'Ink.Util.Array_1', '
 
             function autoloadElement(element) {
                 if (options.forceAutoload === true) { return true; }
-                if (typeof element.getAttribute === 'function') {
+                if (typeof element.getAttribute === 'function' || typeof element.getAttribute === 'object') {
                     return element.getAttribute('data-autoload') !== 'false';
                 }
             }
