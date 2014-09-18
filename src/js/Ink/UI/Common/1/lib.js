@@ -20,18 +20,19 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
 
     var es6WeakMapSupport = 'WeakMap' in window;
     var instances = es6WeakMapSupport ? new WeakMap() : null;
-
+    // Old Registry
+    var _reg = [];
     var domRegistry = {
         get: function get(el) {
             return es6WeakMapSupport ?
                 instances.get(el) :
-                el.__InkInstances;
+                _reg[el.getAttribute('__InkInstance')];
         },
         set: function set(el, thing) {
             if (es6WeakMapSupport) {
                 instances.set(el, thing);
             } else {
-                el.__InkInstances = thing;
+                el.setAttribute('__InkInstance', _reg.push(thing) - 1);
             }
         }
     };
@@ -764,6 +765,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          * @return  {Array}     Collection of instance ids
          */
         getInstanceIds: function() {
+            if( _reg.length > 0 ) return _reg;
             var res = [];
             for (var id in instances) {
                 if (instances.hasOwnProperty(id)) {
@@ -781,6 +783,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          * @return  {Array}     Collection of existing instances.
          */
         getInstances: function() {
+            if( _reg.length > 0 ) return _reg;
             var res = [];
             for (var id in instances) {
                 if (instances.hasOwnProperty(id)) {
