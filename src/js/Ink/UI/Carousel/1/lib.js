@@ -392,7 +392,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
             this._ulEl.style[ this._isY ? 'top' : 'left'] =
                 ['-', (_lengthToGo / this._deltaLength) * 100, '%'].join('');
 
-            if (this._options.onChange) {
+            if (this._options.onChange && page !== this._currentPage) {
                 this._options.onChange.call(this, page);
             }
 
