@@ -113,4 +113,21 @@ Ink.requireModules(['Ink.UI.Carousel_1', 'Ink.UI.Pagination', 'Ink.Dom.Element_1
             ok(carousel.setPage.calledWith(1), 'Page changed');
         })
     }
+
+    function testCarouselRefit(name, cb) {
+        testCarousel(name, function (carousel, container, stage, slides) {
+            var wrapper = InkElement.create('div', { style: 'width: 100px' });
+            container.parentNode.appendChild(wrapper);
+            wrapper.appendChild(container);
+            cb(carousel, wrapper, container, stage, slides)
+        })
+    }
+    module('refit()');
+
+    testCarouselRefit('refit() won\'t call onChange unnecessarily', function (carousel, wrapper) {
+        var onChange = sinon.stub()
+        carousel.setOption('onChange', onChange);
+        carousel.refit();
+        ok(onChange.notCalled)
+    });
 });
