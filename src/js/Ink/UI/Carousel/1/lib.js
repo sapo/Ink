@@ -371,6 +371,8 @@ Ink.createModule('Ink.UI.Carousel', '1',
             }
             page = limitRange(page, 0, this._numPages - 1);
 
+            if (page === this._currentPage) { return; }
+
             if (this._pagination) {
                 this._pagination.setCurrent(page);  // _setPage is called by pagination because it listens to its Change event.
             } else {
@@ -389,10 +391,12 @@ Ink.createModule('Ink.UI.Carousel', '1',
                 }
             }
 
+            if (page === this._currentPage) { return; }
+
             this._ulEl.style[ this._isY ? 'top' : 'left'] =
                 ['-', (_lengthToGo / this._deltaLength) * 100, '%'].join('');
 
-            if (this._options.onChange && page !== this._currentPage) {
+            if (this._options.onChange) {
                 this._options.onChange.call(this, page);
             }
 
