@@ -70,11 +70,9 @@
             this._targets = Common.elsOrSelector(this._options.target);
 
             // Boolean option handling
-            this._options.closeOnClick = this._options.closeOnClick.toString() === 'true';
+            this._options.closeOnClick = this._options.closeOnClick;
             // Actually a throolean
-            if (this._options.initialState !== null){
-                this._options.initialState = this._options.initialState.toString() === 'true';
-            } else {
+            if (this._options.initialState === null){
                 this._options.initialState = Css.getStyle(this._targets[0], 'display') !== 'none';
             }
 
@@ -122,7 +120,7 @@
             if( this._options.closeOnClick ){
                 InkEvent.observe( document, 'click', Ink.bind(this._onOutsideClick, this));
             }
-            if( this._options.closeOnInsideClick && this._options.closeOnInsideClick !== 'false') {
+            if( this._options.closeOnInsideClick ) {
                 var sel = this._options.closeOnInsideClick;
                 if (sel.toString() === 'true') {
                     sel = '*';

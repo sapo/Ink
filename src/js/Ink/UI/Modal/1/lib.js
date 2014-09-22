@@ -153,7 +153,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             if( this._options.trigger ) {
                 var triggerElements = Common.elsOrSelector(this._options.trigger, '');
                 Event.observeMulti(triggerElements, this._options.triggerEvent, Ink.bindEvent(this.open, this));
-            } else if ( this._options.autoDisplay.toString() === "true" ) {
+            } else if ( this._options.autoDisplay ) {
                 this.open();
             }
         },
@@ -262,7 +262,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
          */
         _onKeyDown: function(ev) {
             if (ev.keyCode !== 27 || this._wasDismissed) { return; }
-            if (this._options.closeOnEscape.toString() === 'true' &&
+            if (this._options.closeOnEscape &&
                     openModals[openModals.length - 1] === this) {
                 this.dismiss();
                 if (this._wasDismissed) {
@@ -386,7 +386,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
 
             // subscribe events
             Event.observe(this._shadeElement, 'click', this._handlers.click);
-            if (this._options.closeOnEscape.toString() === 'true') {
+            if (this._options.closeOnEscape ) {
                 Event.observe(document, 'keydown', this._handlers.keyDown);
             }
 
