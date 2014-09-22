@@ -144,7 +144,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
             if (this._pagination && numPagesChanged) {
                 this._pagination.setSize(this._numPages);
             }
-            this.setPage(limitRange(this.getPage(), 0, this._numPages));
+            this.setPage(limitRange(this.getPage(), 0, this._numPages - 1));
         },
 
         _setUpPagination: function () {
