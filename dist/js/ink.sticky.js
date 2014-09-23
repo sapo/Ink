@@ -23,7 +23,7 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
      * @param {String}              [options.stickyClass]       CSS class to stick the element to the screen. Defaults to 'ink-sticky-stuck'.
      * @param {String}              [options.topElement]        CSS Selector that specifies a top element with which the component could collide.
      * @param {String}              [options.bottomElement]     CSS Selector that specifies a bottom element with which the component could collide.
-     * @param {Array|String}        [options.activateInLayouts] Layouts in which the sticky behaviour is present. Pass an array or comma-separated string. Defaults to 'tiny,small,medium,large,xlarge'.
+     * @param {Array|String}        [options.activateInLayouts] Layouts in which the sticky behaviour is present. Pass an array or comma-separated string. Defaults to null, meaning it's enabled in every layout.
      *
      * @sample Ink_UI_Sticky_1.html
      */
@@ -42,7 +42,7 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
         inlineDimensions: ['Boolean', true],
         inlinePosition: ['Boolean', true],
         bottomElement: ['Element', null],
-        activateInLayouts: ['String', 'tiny,small,medium,large,xlarge']
+        activateInLayouts: ['String', null]
     };
 
     Sticky.prototype = {
@@ -55,7 +55,9 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
          */
         _init: function() {
             // Because String#indexOf is compatible with lt IE8 but not Array#indexOf
-            this._options.activateInLayouts = this._options.activateInLayouts.toString();
+            if (this._options.activateInLayouts) {
+                this._options.activateInLayouts = this._options.activateInLayouts.toString();
+            }
 
             this._dims = null;  // force a recalculation of the dimensions later
 
@@ -86,6 +88,9 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
          * @private
          */
         _isDisabledInLayout: function () {
+            if (!this._options.activateInLayouts) {
+                return false;
+            }
             var currentLayout = Common.currentLayout();
             if (!currentLayout) { return false; }
             return this._options.activateInLayouts.indexOf(currentLayout) === -1;

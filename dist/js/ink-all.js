@@ -44,9 +44,10 @@
      */
 
     window.Ink = {
-        VERSION: '3.0.5',
+        VERSION: '3.1.0',
         _checkPendingRequireModules: function() {
             var I, F, o, dep, mod, cb, pRMs = [];
+            var toApply = [];
             for (I = 0, F = pendingRMs.length; I < F; ++I) {
                 o = pendingRMs[I];
 
@@ -65,16 +66,19 @@
 
                 if (o.remaining > 0) {
                     pRMs.push(o);
-                }
-                else {
+                } else {
                     cb = o.cb;
                     if (!cb) { continue; }
                     delete o.cb; // to make sure I won't call this more than once!
-                    cb.apply(false, o.args);
+                    toApply.push([cb, o.args]);
                 }
             }
 
             pendingRMs = pRMs;
+
+            for (var i = 0; i < toApply.length; i++) {
+                toApply[i][0].apply(false, toApply[i][1]);
+            }
 
             if (pendingRMs.length > 0) {
                 setTimeout( function() { Ink._checkPendingRequireModules(); }, 0 );
@@ -1153,7 +1157,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
                     response.responseXML  = xmlDoc;
                 }
 
-                if (this.transport.responseXML !== null && response.responseJSON === null && this.transport.responseXML.xml !== ""){
+                if (this.transport.responseXML != null && response.responseJSON == null && this.transport.responseXML.xml !== ""){
                     responseContent = this.transport.responseXML;
                 }
 
@@ -6076,7 +6080,7 @@ Ink.createModule('Ink.Dom.Loaded', 1, [], function() {
 
             var csf = context.handlers.checkState;
             var alreadyLoaded = (
-                /complete|interactive|loaded/.test(context.doc.readyState) &&
+                /complete|loaded/.test(context.doc.readyState) &&
                 context.win.location.toString() !== 'about:blank');  // https://code.google.com/p/chromium/issues/detail?id=32357
 
             if (alreadyLoaded){
@@ -6112,7 +6116,7 @@ Ink.createModule('Ink.Dom.Loaded', 1, [], function() {
          * @private
          */
         _checkState: function(event, context) {
-            if ( !event || (event.type === 'readystatechange' && context.doc.readyState !== 'complete')) {
+            if ( !event || (event.type === 'readystatechange' && !/complete|loaded/.test(context.doc.readyState))) {
                 return;
             }
             var where = (event.type === 'load') ? context.win : context.doc;
@@ -6128,8 +6132,10 @@ Ink.createModule('Ink.Dom.Loaded', 1, [], function() {
          */
 
         /**
+         * (old IE only) wait until a doScroll() call does not throw an error
          *
-         * function _poll
+         * @method _poll
+         * @private
          */
         _poll: function(context) {
             try {
@@ -8908,7 +8914,6 @@ Ink.createModule('Ink.Util.BinPack', '1', [], function() {
  */
 
 Ink.createModule('Ink.Util.Cookie', '1', [], function() {
-
     'use strict';
 
     /**
@@ -8917,10 +8922,10 @@ Ink.createModule('Ink.Util.Cookie', '1', [], function() {
     var Cookie = {
 
         /**
-         * Gets an object with the current page cookies.
+         * Gets an object with the current page cookies, or a specific cookie if you specify the `name`.
          *
          * @method get
-         * @param   {String}          name      The cookie name.
+         * @param   {String}          [name]    The cookie name.
          * @return  {String|Object}             If the name is specified, it returns the value of that key. Otherwise it returns the full cookie object
          * @public
          * @static
@@ -8931,8 +8936,10 @@ Ink.createModule('Ink.Util.Cookie', '1', [], function() {
             var cookie = document.cookie || false;
 
             var _Cookie = {};
+
             if(cookie) {
                 cookie = cookie.replace(new RegExp("; ", "g"), ';');
+
                 var aCookie = cookie.split(';');
                 var aItem = [];
                 if(aCookie.length > 0) {
@@ -8941,15 +8948,14 @@ Ink.createModule('Ink.Util.Cookie', '1', [], function() {
                         if(aItem.length === 2) {
                             _Cookie[aItem[0]] = decodeURIComponent(aItem[1]);
                         }
-                        aItem = [];
                     }
                 }
-            }
-            if(name) {
-                if(typeof(_Cookie[name]) !== 'undefined') {
-                    return _Cookie[name];
-                } else {
-                    return null;
+                if(name) {
+                    if(typeof(_Cookie[name]) !== 'undefined') {
+                        return _Cookie[name];
+                    } else {
+                        return null;
+                    }
                 }
             }
             return _Cookie;
@@ -9007,12 +9013,13 @@ Ink.createModule('Ink.Util.Cookie', '1', [], function() {
                 sPath = 'path=/';
             }
 
-            if(domain && typeof(domain) !== 'undefined') {
+            if(domain) {
                 sDomain = 'domain='+domain;
-            } else {
-                var portClean = new RegExp(":(.*)");
-                sDomain = 'domain='+window.location.host;
-                sDomain = sDomain.replace(portClean,"");
+            } else if (/\./.test(window.location.hostname)) {
+                // When trying to set domain=localhost or any other domain
+                // without dots, setting the cookie fails.
+                // Anyways, the cookies are bound to the current domain by default so let it be.
+                sDomain = 'domain='+window.location.hostname;
             }
 
             if(secure && typeof(secure) !== 'undefined') {
@@ -9021,7 +9028,11 @@ Ink.createModule('Ink.Util.Cookie', '1', [], function() {
                 sSecure = false;
             }
 
-            document.cookie = sName+'; '+sExpires+'; '+sPath+'; '+sDomain+'; '+sSecure;
+            document.cookie = sName +
+                '; ' + sExpires +
+                '; ' + sPath +
+                (sDomain ? '; ' + sDomain : '') +
+                '; ' + sSecure;
         },
 
         /**
@@ -9035,26 +9046,10 @@ Ink.createModule('Ink.Util.Cookie', '1', [], function() {
          * @static
          * @sample Ink_Util_Cookie_remove.html
          */
-        remove: function(cookieName, path, domain)
-        {
-            //var expiresDate = 'Thu, 01-Jan-1970 00:00:01 GMT';
-            var sPath = false;
-            var sDomain = false;
-            var expiresDate = -999999999;
+        remove: function(cookieName, path, domain) {
+            var expiresDate = -1;
 
-            if(path && typeof(path) !== 'undefined') {
-                sPath = path;
-            } else {
-                sPath = '/';
-            }
-
-            if(domain && typeof(domain) !== 'undefined') {
-                sDomain = domain;
-            } else {
-                sDomain = window.location.host;
-            }
-
-            this.set(cookieName, 'deleted', expiresDate, sPath, sDomain);
+            this.set(cookieName, 'deleted', expiresDate, path, domain);
         }
     };
 
@@ -13303,6 +13298,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
             this._isY = (this._options.axis === 'y');
 
             var ulEl = Ink.s('ul.stage', this._element);
+            ulEl.style.width = '100%';
             this._ulEl = ulEl;
 
             InkElement.removeTextNodeChildren(ulEl);
@@ -13372,7 +13368,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
             if (this._pagination && numPagesChanged) {
                 this._pagination.setSize(this._numPages);
             }
-            this.setPage(limitRange(this.getPage(), 0, this._numPages));
+            this.setPage(limitRange(this.getPage(), 0, this._numPages - 1));
         },
 
         _setUpPagination: function () {
@@ -13493,14 +13489,17 @@ Ink.createModule('Ink.UI.Carousel', '1',
             var pointerX = InkEvent.pointerX(event);
             var pointerY = InkEvent.pointerY(event);
 
-            var deltaY = Math.abs(pointerY - this._swipeData.y);
-            var deltaX = Math.abs(pointerX - this._swipeData.x);
+            var deltaY = this._swipeData.y - pointerY;
+            var deltaX = this._swipeData.x - pointerX;
 
             if (this._touchMoveIsFirstTouchMove) {
+                var aDeltaY = Math.abs(deltaY);
+                var aDeltaX = Math.abs(deltaX);
+
                 this._touchMoveIsFirstTouchMove = undefined;
                 this._scrolling = this._isY ?
-                    deltaX > deltaY :
-                    deltaY > deltaX ;
+                    aDeltaX > aDeltaY :
+                    aDeltaY > aDeltaX ;
 
                 if (!this._scrolling) {
                     this._onAnimationFrame();
@@ -13510,6 +13509,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
             if (!this._scrolling && this._swipeData) {
                 InkEvent.stopDefault(event);
 
+                this._swipeData.pointerDelta = this._isY ? deltaY : deltaX;
                 this._swipeData.pointerPos = this._isY ? pointerY : pointerX;
             }
         },
@@ -13538,17 +13538,16 @@ Ink.createModule('Ink.UI.Carousel', '1',
             if (this._swipeData && this._swipeData.pointerPos && !this._scrolling && !this._touchMoveIsFirstTouchMove) {
                 var snapToNext = 0.1;  // swipe 10% of the way to change page
 
-                var relProgress = this._swipeData.firstUlPos -
-                    this._ulEl.getBoundingClientRect()[this._isY ? 'top' : 'left'];
+                var pointerDelta = this._swipeData.pointerDelta;
 
                 var curPage = this.getPage();
 
                 // How many pages were advanced? May be fractional.
-                var progressInPages = relProgress / this._elLength / this._slidesPerPage;
+                var progressInPages = pointerDelta / this._elLength / this._slidesPerPage;
 
                 // Have we advanced enough to change page?
                 if (Math.abs(progressInPages) > snapToNext) {
-                    curPage += Math[ relProgress < 0 ? 'floor' : 'ceil' ](progressInPages);
+                    curPage += Math[ pointerDelta < 0 ? 'floor' : 'ceil' ](progressInPages);
                 }
 
                 // If something used to calculate progressInPages was zero, we get NaN here.
@@ -13596,6 +13595,8 @@ Ink.createModule('Ink.UI.Carousel', '1',
             }
             page = limitRange(page, 0, this._numPages - 1);
 
+            if (page === this._currentPage) { return; }
+
             if (this._pagination) {
                 this._pagination.setCurrent(page);  // _setPage is called by pagination because it listens to its Change event.
             } else {
@@ -13614,8 +13615,10 @@ Ink.createModule('Ink.UI.Carousel', '1',
                 }
             }
 
+            if (page === this._currentPage) { return; }
+
             this._ulEl.style[ this._isY ? 'top' : 'left'] =
-                ['-', _lengthToGo, 'px'].join('');
+                ['-', (_lengthToGo / this._ctnLength) * 100, '%'].join('');
 
             if (this._options.onChange) {
                 this._options.onChange.call(this, page);
@@ -13780,18 +13783,19 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
 
     var es6WeakMapSupport = 'WeakMap' in window;
     var instances = es6WeakMapSupport ? new WeakMap() : null;
-
+    // Old Registry
+    var _reg = [];
     var domRegistry = {
         get: function get(el) {
             return es6WeakMapSupport ?
                 instances.get(el) :
-                el.__InkInstances;
+                _reg[el.getAttribute('__InkInstance')];
         },
         set: function set(el, thing) {
             if (es6WeakMapSupport) {
                 instances.set(el, thing);
             } else {
-                el.__InkInstances = thing;
+                el.setAttribute('__InkInstance', _reg.push(thing) - 1);
             }
         }
     };
@@ -14413,7 +14417,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
                     // regular concatenation.
                     //
                     // But they won't. So don't change this.
-                    Ink.warn('Creating more than one ' + nameWithoutVersion + '.',
+                    Ink.warn('Creating more than one ' + nameWithoutVersion + 'for the same element.',
                             '(Was creating a ' + nameWithoutVersion + ' on:', elm, ').');
                     return false;
                 }
@@ -14524,6 +14528,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          * @return  {Array}     Collection of instance ids
          */
         getInstanceIds: function() {
+            if( _reg.length > 0 ) return _reg;
             var res = [];
             for (var id in instances) {
                 if (instances.hasOwnProperty(id)) {
@@ -14541,6 +14546,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          * @return  {Array}     Collection of existing instances.
          */
         getInstances: function() {
+            if( _reg.length > 0 ) return _reg;
             var res = [];
             for (var id in instances) {
                 if (instances.hasOwnProperty(id)) {
@@ -18907,7 +18913,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
          */
         validate: function( event ) {
 
-            if(this._options.neverSubmit+'' === 'true' && event) {
+            if(this._options.neverSubmit && event) {
                 Event.stopDefault(event);
             }
 
@@ -19254,8 +19260,6 @@ LazyLoad.prototype = {
      * @sample Ink_UI_LazyLoad_1.html
      */
     _init: function() {
-        this._rootElm = this._element;
-
         this._aData = [];
         this._hasEvents = false;
    
@@ -19275,7 +19279,7 @@ LazyLoad.prototype = {
 
     _getData: function()
     {
-        var aElms = Ink.ss(this._options.item);
+        var aElms = Ink.ss(this._options.item, this._element);
         var attr = null;
         for(var i=0, t=aElms.length; i < t; i++) {
             if (this._options.placeholder != null && !InkElement.hasAttribute(aElms[i], this._options.destination)) {
@@ -19544,7 +19548,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             if( this._options.trigger ) {
                 var triggerElements = Common.elsOrSelector(this._options.trigger, '');
                 Event.observeMulti(triggerElements, this._options.triggerEvent, Ink.bindEvent(this.open, this));
-            } else if ( this._options.autoDisplay.toString() === "true" ) {
+            } else if ( this._options.autoDisplay ) {
                 this.open();
             }
         },
@@ -19653,7 +19657,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
          */
         _onKeyDown: function(ev) {
             if (ev.keyCode !== 27 || this._wasDismissed) { return; }
-            if (this._options.closeOnEscape.toString() === 'true' &&
+            if (this._options.closeOnEscape &&
                     openModals[openModals.length - 1] === this) {
                 this.dismiss();
                 if (this._wasDismissed) {
@@ -19763,7 +19767,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             /**
              * Let's 'resize' it:
              */
-            if( this._options.responsive.toString() === 'true' ) {
+            if( this._options.responsive ) {
                 this._onResize(true);
                 Event.observe( window,'resize',this._handlers.resize );
             } else {
@@ -19777,7 +19781,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
 
             // subscribe events
             Event.observe(this._shadeElement, 'click', this._handlers.click);
-            if (this._options.closeOnEscape.toString() === 'true') {
+            if (this._options.closeOnEscape ) {
                 Event.observe(document, 'keydown', this._handlers.keyDown);
             }
 
@@ -19785,6 +19789,15 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             openModals.push(this);
 
             Css.addClassName(document.documentElement, 'ink-modal-open');
+        },
+
+        /**
+         * Returns whether the modal is currently open
+         * @method isOpen
+         * @public
+         **/
+        isOpen: function () {
+            return !this._wasDismissed;
         },
 
         /**
@@ -19993,7 +20006,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
      * @param {String}              [options.previousPageClass] CSS Class used in the previous page element
      * @param {String}              [options.nextClass]         CSS Class used in the next element
      * @param {String}              [options.nextPageClass]     CSS Class used in the next page element
-     * @param {Function}            [options.numberFormatter]   Number formatter function. Receives a 0-indexed number and returns the text for the numbered page button.
+     * @param {Function}            [options.numberFormatter]   Number formatter function. Receives a 0-indexed page number, and the page count. Returns the text for the numbered page button.
      *
      * @sample Ink_UI_Pagination_1.html
      */
@@ -20030,6 +20043,8 @@ Ink.createModule('Ink.UI.Pagination', '1',
         previousPageClass: ['String', 'previousPage'],
         nextClass:         ['String', 'next'],
         nextPageClass:     ['String', 'nextPage'],
+        firstClass:        ['String', 'first'],
+        lastClass:         ['String', 'last'],
 
         numberFormatter: ['Function', function(i) { return i + 1; }]
     };
@@ -20125,7 +20140,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
                 liEls = [];
                 for (i = 0, f = this._size; i < f; ++i) {
                     liEl = document.createElement(this._options.childTag);
-                    liEl.appendChild( genAEl( this._options.numberFormatter(i), i) );
+                    liEl.appendChild( genAEl( this._options.numberFormatter(i,this._size), i) );
                     // add "active" class if this is the active element.
                     Css.setClassName(liEl, this._options.activeClass, i === this._current);
                     if (this._nextEl) {
@@ -20315,7 +20330,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
         },
 
         /**
-         * Sets the current page.
+         * Sets the current page. First page is 0.
          *
          * @method setCurrent
          * @param {Number} nr           Sets the current page to given number.
@@ -20365,7 +20380,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
         },
 
         /**
-         * Gets the current page index
+         * Gets the current page index. First page is 0.
          *
          * @method getCurrent
          * @return {Number} Current page
@@ -20455,6 +20470,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
     return Pagination;
 
 });
+
 /**
  * Animated progress bars
  * @module Ink.UI.ProgressBar_1
@@ -20616,14 +20632,14 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.UI.Common_1', 'Ink.Dom.Even
          * the end through requestAnimationFrame
          *
          * @method scroll
-         * @param  {Number} d Y coordinate value to stop
+         * @param  {Number} scrollTop Y coordinate value to stop at
          * @private
          * @static
          */
-        scroll: function(d, options) {
+        scroll: function(scrollTop, options) {
             var a = Math.round(InkElement.scrollHeight());
 
-            var endPos = Math.round(d - options.margin);
+            var endPos = Math.round(scrollTop - options.margin);
 
             if (endPos > a) {
                 a += Math.ceil((endPos - a) / options.speed);
@@ -20635,7 +20651,7 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.UI.Common_1', 'Ink.Dom.Even
 
             if (!((a) === endPos || SmoothScroller.offsetTop === a)) {
                 SmoothScroller.interval = requestAnimationFrame(
-                    Ink.bindMethod(SmoothScroller, 'scroll', d, options), document.body);
+                    Ink.bindMethod(SmoothScroller, 'scroll', scrollTop, options), document.body);
             } else {
                 SmoothScroller.onDone(options);
             }
@@ -20778,9 +20794,9 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Css_1',
         'placeholderClass': ['String', 'placeholder'],
         'draggedClass': ['String', 'hide-all'],
         'draggingClass': ['String', 'dragging'],
-        'dragSelector': ['String', 'li'],
+        'dragSelector': ['String', '> li'],
         'dragObject': ['String', null], // Deprecated. Use handleSelector instead.
-        'handleSelector': ['String', null],
+        'handleSelector': ['String', ':not(button, button *, a[href], a[href] *)'],
         'moveSelector': ['String', false],
         'swap': ['Boolean', false],
         'cancelMouseOut': ['Boolean', false],
@@ -20998,6 +21014,7 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Css_1',
 
     return SortableList;
 });
+
 /**
  * Highlight elements as you scroll
  * @module Ink.UI.Spy_1
@@ -21428,7 +21445,7 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
      * @param {String}              [options.stickyClass]       CSS class to stick the element to the screen. Defaults to 'ink-sticky-stuck'.
      * @param {String}              [options.topElement]        CSS Selector that specifies a top element with which the component could collide.
      * @param {String}              [options.bottomElement]     CSS Selector that specifies a bottom element with which the component could collide.
-     * @param {Array|String}        [options.activateInLayouts] Layouts in which the sticky behaviour is present. Pass an array or comma-separated string. Defaults to 'tiny,small,medium,large,xlarge'.
+     * @param {Array|String}        [options.activateInLayouts] Layouts in which the sticky behaviour is present. Pass an array or comma-separated string. Defaults to null, meaning it's enabled in every layout.
      *
      * @sample Ink_UI_Sticky_1.html
      */
@@ -21447,7 +21464,7 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
         inlineDimensions: ['Boolean', true],
         inlinePosition: ['Boolean', true],
         bottomElement: ['Element', null],
-        activateInLayouts: ['String', 'tiny,small,medium,large,xlarge']
+        activateInLayouts: ['String', null]
     };
 
     Sticky.prototype = {
@@ -21460,7 +21477,9 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
          */
         _init: function() {
             // Because String#indexOf is compatible with lt IE8 but not Array#indexOf
-            this._options.activateInLayouts = this._options.activateInLayouts.toString();
+            if (this._options.activateInLayouts) {
+                this._options.activateInLayouts = this._options.activateInLayouts.toString();
+            }
 
             this._dims = null;  // force a recalculation of the dimensions later
 
@@ -21491,6 +21510,9 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
          * @private
          */
         _isDisabledInLayout: function () {
+            if (!this._options.activateInLayouts) {
+                return false;
+            }
             var currentLayout = Common.currentLayout();
             if (!currentLayout) { return false; }
             return this._options.activateInLayouts.indexOf(currentLayout) === -1;
@@ -21917,6 +21939,16 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
     function numberishEnabledCmp (a, b) {
         var aValue = maybeTurnIntoNumber(Element.textContent(a));
         var bValue = maybeTurnIntoNumber(Element.textContent(b));
+
+        if (typeof aValue === typeof bValue) {
+            return cmp(aValue, bValue);
+        } else {
+            if (typeof aValue === 'number') {  // Numbers always go first, then letters.
+                return 1;
+            } else {
+                return -1;
+            }
+        }
 
         return cmp(aValue, bValue);
     }
@@ -23327,6 +23359,7 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
      * @param {String}              [options.classNameOff]          CSS class to toggle when off. Defaults to 'hide-all'.
      * @param {String}              [options.triggerEvent]          Event that will trigger the toggling. Defaults to 'click'.
      * @param {Boolean}             [options.closeOnClick]          Flag to toggle the targe off when clicking outside the toggled content. Defaults to true.
+     * @param {Boolean}             [options.canToggleAnAncestor]   Set to true if you want the toggle to target ancestors of itself. Defaults to false.
      * @param {String}              [options.closeOnInsideClick]    Toggle off when a child element matching this selector is clicked. Set to null to deactivate the check. Defaults to 'a[href]'.
      * @param {Boolean}             [options.initialState]          Flag to define initial state. false: off, true: on, null: markup. Defaults to null.
      * @param {Function}            [options.onChangeState]         Callback when the toggle state changes. Return `false` to cancel the event.
@@ -23343,6 +23376,7 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
         target:         ['Elements'],
         triggerEvent:   ['String', 'click'],
         closeOnClick:   ['Boolean', true],
+        canToggleAnAncestor: ['Boolean', false],
         isAccordion:    ['Boolean', false],
         initialState:   ['Boolean', null],  // May be true, false, or null to be what it is right now
         classNameOn:    ['String', 'show-all'],
@@ -23365,11 +23399,9 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
             this._targets = Common.elsOrSelector(this._options.target);
 
             // Boolean option handling
-            this._options.closeOnClick = this._options.closeOnClick.toString() === 'true';
+            this._options.closeOnClick = this._options.closeOnClick;
             // Actually a throolean
-            if (this._options.initialState !== null){
-                this._options.initialState = this._options.initialState.toString() === 'true';
-            } else {
+            if (this._options.initialState === null){
                 this._options.initialState = Css.getStyle(this._targets[0], 'display') !== 'none';
             }
 
@@ -23417,7 +23449,7 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
             if( this._options.closeOnClick ){
                 InkEvent.observe( document, 'click', Ink.bind(this._onOutsideClick, this));
             }
-            if( this._options.closeOnInsideClick && this._options.closeOnInsideClick !== 'false') {
+            if( this._options.closeOnInsideClick ) {
                 var sel = this._options.closeOnInsideClick;
                 if (sel.toString() === 'true') {
                     sel = '*';
@@ -23447,7 +23479,7 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
                 return thisOne === target || InkElement.isAncestorOf(thisOne, target);
             });
 
-            if (isAncestorOfClickedElement) {
+            if (!this._options.canToggleAnAncestor && isAncestorOfClickedElement) {
                 return;
             }
 

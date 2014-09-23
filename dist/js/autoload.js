@@ -3,7 +3,7 @@
  * @version 1
  * Create Ink UI components easily
  */
-Ink.createModule('Ink.Autoload', 1, ['Ink.Dom.Selector_1', 'Ink.Util.Array_1', 'Ink.Dom.Loaded_1', 'Ink.UI.SmoothScroller_1', 'Ink.UI.Close_1'], function( Selector, InkArray, Loaded, Scroller, Close ){
+Ink.createModule('Ink.Autoload', 1, ['Ink.Dom.Selector_1', 'Ink.Util.Array_1', 'Ink.Dom.Loaded_1', 'Ink.UI.SmoothScroller_1', 'Ink.UI.Close_1', 'Ink.UI.Drawer_1'], function( Selector, InkArray, Loaded, Scroller, Close, Drawer ){
     'use strict';
 
     /**
@@ -87,6 +87,12 @@ Ink.createModule('Ink.Autoload', 1, ['Ink.Dom.Selector_1', 'Ink.Util.Array_1', '
             if (options.createSmoothScroller !== false) {
                 Scroller.init();
             }
+            if (options.createDrawer !== false) {
+                if (Selector.matchesSelector(document.body, '.ink-drawer') &&
+                        !(Drawer.getInstance && !Drawer.getInstance(document.body))) {
+                    new Drawer(document.body);
+                }
+            }
 
             function findElements(mod) {
                 var modName = 'Ink.UI.' + mod;
@@ -109,7 +115,7 @@ Ink.createModule('Ink.Autoload', 1, ['Ink.Dom.Selector_1', 'Ink.Util.Array_1', '
 
             function autoloadElement(element) {
                 if (options.forceAutoload === true) { return true; }
-                if (typeof element.getAttribute === 'function') {
+                if (typeof element.getAttribute === 'function' || typeof element.getAttribute === 'object') {
                     return element.getAttribute('data-autoload') !== 'false';
                 }
             }

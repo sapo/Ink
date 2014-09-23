@@ -27,6 +27,16 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
         var aValue = maybeTurnIntoNumber(Element.textContent(a));
         var bValue = maybeTurnIntoNumber(Element.textContent(b));
 
+        if (typeof aValue === typeof bValue) {
+            return cmp(aValue, bValue);
+        } else {
+            if (typeof aValue === 'number') {  // Numbers always go first, then letters.
+                return 1;
+            } else {
+                return -1;
+            }
+        }
+
         return cmp(aValue, bValue);
     }
     // Object.keys polyfill
