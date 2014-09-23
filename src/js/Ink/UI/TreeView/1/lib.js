@@ -63,8 +63,6 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
 
     TreeView._optionDefinition = {
         'node':   ['String', 'li'],
-        // [3.0.1] Deprecate this terrible, terrible name
-        'child':  ['String',null],
         'children':  ['String','ul'],
         'parentClass': ['String','parent'],
         'openNodeClass': ['String', 'open'],
@@ -83,11 +81,6 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
          * @private
          */
         _init: function(){
-            if (this._options.child) {
-                Ink.warn('Ink.UI.TreeView: options.child is being renamed to options.children.');
-                this._options.children = this._options.child;
-            }
-
             this._handlers = {
                 click: Ink.bindEvent(this._onClick,this)
             };
