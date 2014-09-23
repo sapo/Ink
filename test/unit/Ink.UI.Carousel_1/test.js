@@ -51,9 +51,9 @@ Ink.requireModules(['Ink.UI.Carousel_1', 'Ink.UI.Pagination', 'Ink.Dom.Element_1
         equal(stage.style.left, '-100%');
     });
 
-    testCarousel('... even when the slide amounts are uneven', function (carousel, _, stage) {
+    testCarousel('... even when the slide widths are uneven', function (carousel, _, stage) {
         carousel._setPage(1);
-        equal(stage.style.left, '-100%');
+        equal(stage.style.left, '-60%');
     }, { uneven: true });
 
     var pagElm;

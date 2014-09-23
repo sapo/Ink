@@ -394,7 +394,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
             if (page === this._currentPage) { return; }
 
             this._ulEl.style[ this._isY ? 'top' : 'left'] =
-                ['-', (_lengthToGo / this._deltaLength) * 100, '%'].join('');
+                ['-', (_lengthToGo / this._ctnLength) * 100, '%'].join('');
 
             if (this._options.onChange) {
                 this._options.onChange.call(this, page);
