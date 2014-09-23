@@ -368,8 +368,6 @@ Ink.createModule('Ink.UI.Carousel', '1',
             }
 
             this._currentPage = page;
-
-            this._updateHider();
         },
 
         /**
