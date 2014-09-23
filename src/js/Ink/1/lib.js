@@ -44,7 +44,7 @@
      */
 
     window.Ink = {
-        VERSION: '3.0.5',
+        VERSION: '3.1.0',
         _checkPendingRequireModules: function() {
             var I, F, o, dep, mod, cb, pRMs = [];
             var toApply = [];
