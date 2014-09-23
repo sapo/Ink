@@ -60,8 +60,6 @@ LazyLoad.prototype = {
      * @sample Ink_UI_LazyLoad_1.html
      */
     _init: function() {
-        this._rootElm = this._element;
-
         this._aData = [];
         this._hasEvents = false;
    
@@ -81,7 +79,7 @@ LazyLoad.prototype = {
 
     _getData: function()
     {
-        var aElms = Ink.ss(this._options.item);
+        var aElms = Ink.ss(this._options.item, this._element);
         var attr = null;
         for(var i=0, t=aElms.length; i < t; i++) {
             if (this._options.placeholder != null && !InkElement.hasAttribute(aElms[i], this._options.destination)) {

@@ -1,6 +1,6 @@
 {
   "name": "Ink",
-  "version": "3.0.5",
+  "version": "3.1.0",
   "description": "An HTML5/CSS3 framework used at SAPO for fast and efficient website design and prototyping.",
   "keywords": [
     "HTML",
@@ -9,7 +9,7 @@
     "SASS"
   ],
   "main": [
-    "dist/*"
+    "dist/js/ink-all.js"
   ],
   "ignore": [
     "**/.*",
@@ -25,6 +25,6 @@
     "sinonjs-built": "~1.8.2",
     "sinon-qunit": "~1.0.0",
     "syn": "~0.0.2",
-    "qunit-tap": "~1.4.1"
+    "qunit-tap": "~1.4.2"
   }
 }

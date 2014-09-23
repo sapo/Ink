@@ -10,4 +10,5 @@ branches:
 before_script:
   - gem install compass
   - npm install -g grunt-cli
+  - npm install -g bower
 script: "grunt --verbose"

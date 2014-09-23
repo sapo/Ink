@@ -237,7 +237,56 @@ asyncTest('Nested requireModules', function () {
             start();
         });
     });
+});
 
+test('ACBDCD test: more than one cross-dependency', function () {
+    expect(4);
+    stop(4);
+    Ink.createModule('CrossDepRegr_A', '1', ['CrossDepRegr_C_1'], function () {
+      ok(true);
+      start();
+      return {};
+    });
+    Ink.createModule('CrossDepRegr_B', '1', ['CrossDepRegr_D_1'], function() {
+      ok(true);
+      start();
+      return {};
+    });
+    Ink.createModule('CrossDepRegr_C', '1', [], function() {
+      ok(true);
+      start();
+      return {};
+    });
+    Ink.createModule('CrossDepRegr_D', '1', [], function() {
+      ok(true);
+      start();
+      return {};
+    });
+});
+
+test('ACBDCD test: more than one cross-dependency (and require it later)', function () {
+    Ink.createModule('CrossDepRegr2_A', '1', ['CrossDepRegr2_C_1'], function () {
+      return { name: 'A' };
+    });
+    Ink.createModule('CrossDepRegr2_B', '1', ['CrossDepRegr2_D_1'], function() {
+      return { name: 'B' };
+    });
+    Ink.createModule('CrossDepRegr2_C', '1', [], function() {
+      return { name: 'C' };
+    });
+    Ink.createModule('CrossDepRegr2_D', '1', [], function() {
+      return { name: 'D' };
+    });
+
+    expect(4);
+    stop();
+    Ink.requireModules(['CrossDepRegr2_A', 'CrossDepRegr2_B', 'CrossDepRegr2_C', 'CrossDepRegr2_D'], function (A, B, C, D) {
+        equal(A.name, 'A');
+        equal(B.name, 'B');
+        equal(C.name, 'C');
+        equal(D.name, 'D');
+        start();
+    });
 });
 
 asyncTest('requireModules can require a module which does not yet exist. The script tag is only made on the next tick.', function () {
@@ -310,7 +359,6 @@ test('(regression) requireModules will try to request things which are accidenta
     ok(Ink._loadLater.notCalled)
     ok(spy.calledOnce)
 }));
-
 
 module('Debug mechanisms');
 

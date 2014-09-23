@@ -16,6 +16,7 @@ We're a small team and have other projects in our hands so, we'll try to at leas
 We'd love to have your contribution so, here's a quick guide:
 
 1. Fork our repository
+2. Do your work on the ```develop``` branch
 
 ## JavaScript
 

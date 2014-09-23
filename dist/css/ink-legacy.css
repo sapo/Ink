@@ -7,7 +7,7 @@
  * @author    Sapo Ink Team
  * @license   http://opensource.org/licenses/MIT MIT
  * @link      http://ink.sapo.pt
- * @version   3.0.5
+ * @version   3.1.0
  */
 /**
  * Ink class names prefix
@@ -4655,6 +4655,7 @@ html.no-flexboxlegacy .ink-carousel {
 }
 html.no-flexbox .ink-carousel .stage,
 html.no-flexboxlegacy .ink-carousel .stage {
+  width: 100%;
   left: 0;
   height: auto !important;
   margin-top: 0;
@@ -4663,10 +4664,10 @@ html.no-flexboxlegacy .ink-carousel .stage {
   list-style-type: none;
   white-space: nowrap;
   position: relative;
-  -webkit-transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-  transition: all 0.5s ease;
+  -webkit-transition: left 0.5s ease;
+  -moz-transition: left 0.5s ease;
+  -o-transition: left 0.5s ease;
+  transition: left 0.5s ease;
 }
 html.no-flexbox .ink-carousel .stage .slide,
 html.no-flexboxlegacy .ink-carousel .stage .slide {
@@ -4682,4 +4683,85 @@ html.no-flexboxlegacy .ink-carousel .stage .slide {
 html.no-flexbox .ink-carousel .ink-navigation,
 html.no-flexboxlegacy .ink-carousel .ink-navigation {
   position: static;
+}
+
+/* ==========================================================================
+Print styles.
+
+Inlined to avoid the additional HTTP request: h5bp.com/r
+========================================================================== */
+@media print {
+  * {
+    background: transparent !important;
+    color: #000 !important;
+    /* Black prints faster: h5bp.com/s */
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+
+  a[href]:after {
+    content: " (" attr(href) ")";
+  }
+
+  abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+
+  /*
+  * Don't show links that are fragment identifiers,
+  * or use the `javascript:` pseudo protocol
+  */
+  a[href^="#"]:after,
+  a[href^="javascript:"]:after {
+    content: "";
+  }
+
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+
+  thead {
+    display: table-header-group;
+    /* h5bp.com/t */
+  }
+
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+
+  img {
+    max-width: 100% !important;
+  }
+
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+
+  .ink-navigation {
+    display: none;
+  }
+
+  .ink-table {
+    border-collapse: collapse;
+  }
+
+  .ink-label {
+    border: 1px solid #000;
+  }
 }

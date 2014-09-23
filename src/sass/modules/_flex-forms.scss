@@ -115,7 +115,7 @@
             @include pie-clearfix;
 
             & > li {
-                margin: 0;
+                position: relative;
                 @include pie-clearfix;    
             }
 
@@ -124,8 +124,8 @@
             & > textarea {
                 width: 100%;
                 
-                & + [class^="icon-"],
-                & + [class*=" icon-"] {
+                & + [class^="fa-"],
+                & + [class*="fa-"] {
                     display: none;
                 }
             }
@@ -160,7 +160,7 @@
 
                 span {
                     
-                    display: table-cell;
+                    //display: table-cell;
 
                     & > input,
                     & > select,
@@ -183,7 +183,7 @@
 
                 span {
                     
-                    display: table-cell;
+                    //display: table-cell;
                 
                     & > input,
                     & > select,
@@ -246,21 +246,15 @@
 
         input[type="radio"],
         input[type="checkbox"] {
-            //line-height: 2;
-            padding: 0;
-            margin: .55em 0;
+            position: absolute;
             border: none;
-            //margin-top: .55em;
-            clear: left;
-            float: left;
             cursor: pointer;
 
             & + label {
-                float: left;
-                //line-height: 2.5;
-                //margin-left: .55em;
-                //margin-top: -.4em;
-                margin: .25em 0 .25em .4em;
+                margin-top: -.28em;
+                padding-left: 1.25em;
+                vertical-align: super;
+                display: inline-block;
             }
         }
 
