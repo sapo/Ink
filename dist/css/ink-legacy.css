@@ -7,7 +7,7 @@
  * @author    Sapo Ink Team
  * @license   http://opensource.org/licenses/MIT MIT
  * @link      http://ink.sapo.pt
- * @version   3.0.5
+ * @version   3.1.0
  */
 /**
  * Ink class names prefix
@@ -4655,6 +4655,7 @@ html.no-flexboxlegacy .ink-carousel {
 }
 html.no-flexbox .ink-carousel .stage,
 html.no-flexboxlegacy .ink-carousel .stage {
+  width: 100%;
   left: 0;
   height: auto !important;
   margin-top: 0;

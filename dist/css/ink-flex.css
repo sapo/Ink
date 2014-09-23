@@ -8,7 +8,7 @@
  * @author    Sapo Ink Team
  * @license   http://opensource.org/licenses/MIT MIT
  * @link      http://ink.sapo.pt
- * @version   3.0.5
+ * @version   3.1.0
  */
 /**
  * Ink class names prefix
@@ -8887,6 +8887,7 @@ table.ink-table tbody > tr.yellow td {
   display: block;
 }
 .ink-carousel .stage {
+  width: 100%;
   left: 0;
   height: auto !important;
   margin-top: 0;
@@ -9480,6 +9481,7 @@ body.ink-drawer.over.right .right-drawer {
 .ink-tabs .tabs-nav li a {
   padding: 0.5em 1em;
   display: block;
+  border: 1px solid transparent;
 }
 .ink-tabs .tabs-nav li a:hover {
   background: #f0f0f0;
