@@ -282,12 +282,12 @@ Ink.requireModules( [ 'Ink.Util.I18n' ] , function ( I18n ) {
     });
 
     test('Global stuff', function () {
-        I18n.lang('en_US')
+        I18n.langGlobal('en_US')
         equal(new I18n({}).lang(), 'en_US');
 
         var inst = new I18n({}, 'pt_PT');
         
-        I18n.append({
+        I18n.appendGlobal({
             pt_PT: {
                 hello: 'olá'
             },

@@ -42,7 +42,7 @@ Ink.requireModules(['Ink.UI.Tabs_1', 'Ink.UI.Common_1', 'Ink.Dom.Element_1', 'In
         tabComponent._changeTab(Ink.s('a', changeTo));
 
         ok(changeTo.className.match(/active/), 'tab has .active class!');
-        strictEqual(tabComponent.activeMenuTab(), changeTo, 'tab is active!');
+        strictEqual(tabComponent._activeMenuTab, changeTo, 'tab is active!');
 
         var activeTabs = Ink.ss('.tabs-nav .active', container);
         equal(activeTabs.length, 1, 'only ever one active tab');
