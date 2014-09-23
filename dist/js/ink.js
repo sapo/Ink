@@ -10362,12 +10362,6 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
         Ink.extendObj( I18n.prototype._gDict , dict[ I18n.prototype._gLang ] );
     };
 
-    I18n.append = function () {
-        // [3.1.0] remove this alias
-        Ink.warn('Ink.Util.I18n.append() was renamed to appendGlobal().');
-        return I18n.appendGlobal.apply(I18n, [].slice.call(arguments));
-    };
-
     /**
      * Gets or sets the current default language of I18n instances.
      *
@@ -10392,12 +10386,6 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
         }
     };
 
-    I18n.lang = function () {
-        // [3.1.0] remove this alias
-        Ink.warn('Ink.Util.I18n.lang() was renamed to langGlobal().');
-        return I18n.langGlobal.apply(I18n, [].slice.call(arguments));
-    };
-    
     return I18n;
 });
 /**

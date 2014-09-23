@@ -51,8 +51,6 @@ Ink.createModule('Ink.UI.Carousel', '1',
         initialPage:    ['Integer', 0],
         spaceAfterLastSlide: ['Boolean', true],
         hideLast:       ['Boolean', false],
-        // [3.1.0] Deprecate "center". It is only needed when things are of unknown widths.
-        center:         ['Boolean', false],
         keyboardSupport:['Boolean', false],
         pagination:     ['String', null],
         onChange:       ['Function', null],
@@ -137,8 +135,6 @@ Ink.createModule('Ink.UI.Carousel', '1',
             this._numPages = numPages;
             this._deltaLength = this._slidesPerPage * this._elLength;
             
-            this._center();
-            this._updateHider();
             this._IE7();
 
             if (this._pagination && numPagesChanged) {
@@ -192,35 +188,6 @@ Ink.createModule('Ink.UI.Carousel', '1',
             }
         },
 
-        // [3.1.0] Deprecate this already
-        _center: function() {
-            if (!this._options.center) { return; }
-            var gap = Math.floor( (this._ctnLength - (this._elLength * this._slidesPerPage) ) / 2 );
-
-            var pad;
-            if (this._isY) {
-                pad = [gap, 'px 0'];
-            } else {
-                pad = ['0 ', gap, 'px'];
-            }
-
-            this._ulEl.style.padding = pad.join('');
-        },
-
-        // [3.1.0] Deprecate this already
-        _updateHider: function() {
-            if (!this._hiderEl) { return; }
-            if (this.getPage() === 0) {
-                var gap = Math.floor( this._ctnLength - (this._elLength * this._slidesPerPage) );
-                if (this._options.center) {
-                    gap /= 2;
-                }
-                this._hiderEl.style[ this._isY ? 'height' : 'width' ] = gap + 'px';
-            } else {
-                this._hiderEl.style[ this._isY ? 'height' : 'width' ] = '0px';
-            }
-        },
-        
         /**
          * Refits elements for IE7 because it doesn't support inline-block.
          *

@@ -10362,12 +10362,6 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
         Ink.extendObj( I18n.prototype._gDict , dict[ I18n.prototype._gLang ] );
     };
 
-    I18n.append = function () {
-        // [3.1.0] remove this alias
-        Ink.warn('Ink.Util.I18n.append() was renamed to appendGlobal().');
-        return I18n.appendGlobal.apply(I18n, [].slice.call(arguments));
-    };
-
     /**
      * Gets or sets the current default language of I18n instances.
      *
@@ -10392,12 +10386,6 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
         }
     };
 
-    I18n.lang = function () {
-        // [3.1.0] remove this alias
-        Ink.warn('Ink.Util.I18n.lang() was renamed to langGlobal().');
-        return I18n.langGlobal.apply(I18n, [].slice.call(arguments));
-    };
-    
     return I18n;
 });
 /**
@@ -13275,8 +13263,6 @@ Ink.createModule('Ink.UI.Carousel', '1',
         initialPage:    ['Integer', 0],
         spaceAfterLastSlide: ['Boolean', true],
         hideLast:       ['Boolean', false],
-        // [3.1.0] Deprecate "center". It is only needed when things are of unknown widths.
-        center:         ['Boolean', false],
         keyboardSupport:['Boolean', false],
         pagination:     ['String', null],
         onChange:       ['Function', null],
@@ -13361,8 +13347,6 @@ Ink.createModule('Ink.UI.Carousel', '1',
             this._numPages = numPages;
             this._deltaLength = this._slidesPerPage * this._elLength;
             
-            this._center();
-            this._updateHider();
             this._IE7();
 
             if (this._pagination && numPagesChanged) {
@@ -13416,35 +13400,6 @@ Ink.createModule('Ink.UI.Carousel', '1',
             }
         },
 
-        // [3.1.0] Deprecate this already
-        _center: function() {
-            if (!this._options.center) { return; }
-            var gap = Math.floor( (this._ctnLength - (this._elLength * this._slidesPerPage) ) / 2 );
-
-            var pad;
-            if (this._isY) {
-                pad = [gap, 'px 0'];
-            } else {
-                pad = ['0 ', gap, 'px'];
-            }
-
-            this._ulEl.style.padding = pad.join('');
-        },
-
-        // [3.1.0] Deprecate this already
-        _updateHider: function() {
-            if (!this._hiderEl) { return; }
-            if (this.getPage() === 0) {
-                var gap = Math.floor( this._ctnLength - (this._elLength * this._slidesPerPage) );
-                if (this._options.center) {
-                    gap /= 2;
-                }
-                this._hiderEl.style[ this._isY ? 'height' : 'width' ] = gap + 'px';
-            } else {
-                this._hiderEl.style[ this._isY ? 'height' : 'width' ] = '0px';
-            }
-        },
-        
         /**
          * Refits elements for IE7 because it doesn't support inline-block.
          *
@@ -18944,12 +18899,6 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
                     this._options.onSuccess();
                 }
 
-                // [3.0.0] remove this, it's a little backwards compat quirk
-                if(event && this._options.cancelEventOnSuccess + '' === 'true') {
-                    Event.stopDefault(event);
-                    return false;
-                }
-
                 return true;
             } else {
 
@@ -20795,7 +20744,6 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Css_1',
         'draggedClass': ['String', 'hide-all'],
         'draggingClass': ['String', 'dragging'],
         'dragSelector': ['String', '> li'],
-        'dragObject': ['String', null], // Deprecated. Use handleSelector instead.
         'handleSelector': ['String', ':not(button, button *, a[href], a[href] *)'],
         'moveSelector': ['String', false],
         'swap': ['Boolean', false],
@@ -20811,14 +20759,6 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Css_1',
          * @private
          */
         _init: function() {
-            if (this._options.dragObject != null) {
-                // [3.0.0] Remove this deprecation notice and stop providing backwards compatibility
-                Ink.warn('Ink.UI.SortableList: options.dragObject is now deprecated. ' +
-                        'Please use options.handleSelector instead.');
-                this._options.handleSelector =
-                    this._options.handleSelector || this._options.dragObject;
-            }
-
             this._handlers = {
                 down: Ink.bind(this._onDown, this),
                 move: Ink.bind(this._onMove, this),
@@ -21186,7 +21126,7 @@ Stacker._optionDefinition = {
     column: ['String', '.stacker-column'],
     item: ['String', '.stacker-item'],
 
-    // [3.0.0] review this when we have info about our breakpoints from the CSS
+    // [3.2.0] review this when we have info about our breakpoints from the CSS
     customBreakPoints: ['Object', null], // Must be: {xlarge: {max: 9999, min: 1281, cols: 5}, large:{max:1280, min:1001, cols:4} medium:{max:1000, min:801,cols:3}, ...etc..}
     largeMax: ['Number', Number.MAX_VALUE],
     largeMin: ['Number', 961],
@@ -22990,25 +22930,6 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
         },
 
         /**
-         *
-         * Returns the parent of the currently active menu link.
-         *
-         * This is useful if you want to have `li` elements wrapping your links
-         * and want to access the currently visible one.
-         *
-         * (This method is deprecated)
-         * @method activeMenuTab
-         * @deprecated
-         * @return {DOMElement|null} Active menu LI, or `null` if there is none.
-         * @public
-         */
-        activeMenuTab: function(){
-            // [3.1.0] remove this
-            Ink.warn('Ink.UI.Tabs.activeMenuTab() is deprecated');
-            return this._activeMenuTab;
-        },
-
-        /**
          * Gets the currently active Menu link (the links which the user clicks on to change tabs)
          * 
          * @method activeMenuLink
@@ -23030,12 +22951,6 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          */
         activeSection: function(){
             return this._activeSection;
-        },
-
-        activeContentTab: function () {
-            // [3.1.0] remove this
-            Ink.warn('Ink.UI.Tabs.activeContentTab() is deprecated. Use activeSection instead.');
-            return this._activeSection();
         },
 
         /**
@@ -24110,8 +24025,6 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
 
     TreeView._optionDefinition = {
         'node':   ['String', 'li'],
-        // [3.0.1] Deprecate this terrible, terrible name
-        'child':  ['String',null],
         'children':  ['String','ul'],
         'parentClass': ['String','parent'],
         'openNodeClass': ['String', 'open'],
@@ -24130,11 +24043,6 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
          * @private
          */
         _init: function(){
-            if (this._options.child) {
-                Ink.warn('Ink.UI.TreeView: options.child is being renamed to options.children.');
-                this._options.children = this._options.child;
-            }
-
             this._handlers = {
                 click: Ink.bindEvent(this._onClick,this)
             };
