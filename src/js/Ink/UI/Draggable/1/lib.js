@@ -254,7 +254,7 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
                     fs.position         = 'fixed';
                     fs.left             = '0';
                     fs.top              = '0';
-                    fs.zIndex           = this._options.zindex + 1;
+                    fs.zIndex           = this._options.zIndex + 1;
                     fs.backgroundColor  = '#FF0000';
                     Css.setOpacity(this.proxy, 0);
 
@@ -271,7 +271,7 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
                 }
 
                 this._element.style.position = 'absolute';
-                this._element.style.zIndex = this._options.zindex;
+                this._element.style.zIndex = this._options.zIndex;
                 this._element.parentNode.insertBefore(this.placeholder, this._element);
 
                 this._onDrag(e);
