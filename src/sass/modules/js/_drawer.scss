@@ -40,6 +40,7 @@ body {
 
           &.show {
             display: block;
+            position: fixed;
           }
 
         }
@@ -49,7 +50,6 @@ body {
           overflow: hidden;
           width: 100%;
           height: 100%;
-          position: fixed;
 
           .content-drawer {
             overflow: hidden;

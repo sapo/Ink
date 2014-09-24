@@ -44,9 +44,10 @@
      */
 
     window.Ink = {
-        VERSION: '3.0.5',
+        VERSION: '3.1.0',
         _checkPendingRequireModules: function() {
             var I, F, o, dep, mod, cb, pRMs = [];
+            var toApply = [];
             for (I = 0, F = pendingRMs.length; I < F; ++I) {
                 o = pendingRMs[I];
 
@@ -65,16 +66,19 @@
 
                 if (o.remaining > 0) {
                     pRMs.push(o);
-                }
-                else {
+                } else {
                     cb = o.cb;
                     if (!cb) { continue; }
                     delete o.cb; // to make sure I won't call this more than once!
-                    cb.apply(false, o.args);
+                    toApply.push([cb, o.args]);
                 }
             }
 
             pendingRMs = pRMs;
+
+            for (var i = 0; i < toApply.length; i++) {
+                toApply[i][0].apply(false, toApply[i][1]);
+            }
 
             if (pendingRMs.length > 0) {
                 setTimeout( function() { Ink._checkPendingRequireModules(); }, 0 );
@@ -1153,7 +1157,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
                     response.responseXML  = xmlDoc;
                 }
 
-                if (this.transport.responseXML !== null && response.responseJSON === null && this.transport.responseXML.xml !== ""){
+                if (this.transport.responseXML != null && response.responseJSON == null && this.transport.responseXML.xml !== ""){
                     responseContent = this.transport.responseXML;
                 }
 
@@ -6076,7 +6080,7 @@ Ink.createModule('Ink.Dom.Loaded', 1, [], function() {
 
             var csf = context.handlers.checkState;
             var alreadyLoaded = (
-                /complete|interactive|loaded/.test(context.doc.readyState) &&
+                /complete|loaded/.test(context.doc.readyState) &&
                 context.win.location.toString() !== 'about:blank');  // https://code.google.com/p/chromium/issues/detail?id=32357
 
             if (alreadyLoaded){
@@ -6112,7 +6116,7 @@ Ink.createModule('Ink.Dom.Loaded', 1, [], function() {
          * @private
          */
         _checkState: function(event, context) {
-            if ( !event || (event.type === 'readystatechange' && context.doc.readyState !== 'complete')) {
+            if ( !event || (event.type === 'readystatechange' && !/complete|loaded/.test(context.doc.readyState))) {
                 return;
             }
             var where = (event.type === 'load') ? context.win : context.doc;
@@ -6128,8 +6132,10 @@ Ink.createModule('Ink.Dom.Loaded', 1, [], function() {
          */
 
         /**
+         * (old IE only) wait until a doScroll() call does not throw an error
          *
-         * function _poll
+         * @method _poll
+         * @private
          */
         _poll: function(context) {
             try {
@@ -8908,7 +8914,6 @@ Ink.createModule('Ink.Util.BinPack', '1', [], function() {
  */
 
 Ink.createModule('Ink.Util.Cookie', '1', [], function() {
-
     'use strict';
 
     /**
@@ -8917,10 +8922,10 @@ Ink.createModule('Ink.Util.Cookie', '1', [], function() {
     var Cookie = {
 
         /**
-         * Gets an object with the current page cookies.
+         * Gets an object with the current page cookies, or a specific cookie if you specify the `name`.
          *
          * @method get
-         * @param   {String}          name      The cookie name.
+         * @param   {String}          [name]    The cookie name.
          * @return  {String|Object}             If the name is specified, it returns the value of that key. Otherwise it returns the full cookie object
          * @public
          * @static
@@ -8931,8 +8936,10 @@ Ink.createModule('Ink.Util.Cookie', '1', [], function() {
             var cookie = document.cookie || false;
 
             var _Cookie = {};
+
             if(cookie) {
                 cookie = cookie.replace(new RegExp("; ", "g"), ';');
+
                 var aCookie = cookie.split(';');
                 var aItem = [];
                 if(aCookie.length > 0) {
@@ -8941,15 +8948,14 @@ Ink.createModule('Ink.Util.Cookie', '1', [], function() {
                         if(aItem.length === 2) {
                             _Cookie[aItem[0]] = decodeURIComponent(aItem[1]);
                         }
-                        aItem = [];
                     }
                 }
-            }
-            if(name) {
-                if(typeof(_Cookie[name]) !== 'undefined') {
-                    return _Cookie[name];
-                } else {
-                    return null;
+                if(name) {
+                    if(typeof(_Cookie[name]) !== 'undefined') {
+                        return _Cookie[name];
+                    } else {
+                        return null;
+                    }
                 }
             }
             return _Cookie;
@@ -9007,12 +9013,13 @@ Ink.createModule('Ink.Util.Cookie', '1', [], function() {
                 sPath = 'path=/';
             }
 
-            if(domain && typeof(domain) !== 'undefined') {
+            if(domain) {
                 sDomain = 'domain='+domain;
-            } else {
-                var portClean = new RegExp(":(.*)");
-                sDomain = 'domain='+window.location.host;
-                sDomain = sDomain.replace(portClean,"");
+            } else if (/\./.test(window.location.hostname)) {
+                // When trying to set domain=localhost or any other domain
+                // without dots, setting the cookie fails.
+                // Anyways, the cookies are bound to the current domain by default so let it be.
+                sDomain = 'domain='+window.location.hostname;
             }
 
             if(secure && typeof(secure) !== 'undefined') {
@@ -9021,7 +9028,11 @@ Ink.createModule('Ink.Util.Cookie', '1', [], function() {
                 sSecure = false;
             }
 
-            document.cookie = sName+'; '+sExpires+'; '+sPath+'; '+sDomain+'; '+sSecure;
+            document.cookie = sName +
+                '; ' + sExpires +
+                '; ' + sPath +
+                (sDomain ? '; ' + sDomain : '') +
+                '; ' + sSecure;
         },
 
         /**
@@ -9035,26 +9046,10 @@ Ink.createModule('Ink.Util.Cookie', '1', [], function() {
          * @static
          * @sample Ink_Util_Cookie_remove.html
          */
-        remove: function(cookieName, path, domain)
-        {
-            //var expiresDate = 'Thu, 01-Jan-1970 00:00:01 GMT';
-            var sPath = false;
-            var sDomain = false;
-            var expiresDate = -999999999;
+        remove: function(cookieName, path, domain) {
+            var expiresDate = -1;
 
-            if(path && typeof(path) !== 'undefined') {
-                sPath = path;
-            } else {
-                sPath = '/';
-            }
-
-            if(domain && typeof(domain) !== 'undefined') {
-                sDomain = domain;
-            } else {
-                sDomain = window.location.host;
-            }
-
-            this.set(cookieName, 'deleted', expiresDate, sPath, sDomain);
+            this.set(cookieName, 'deleted', expiresDate, path, domain);
         }
     };
 
@@ -10367,12 +10362,6 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
         Ink.extendObj( I18n.prototype._gDict , dict[ I18n.prototype._gLang ] );
     };
 
-    I18n.append = function () {
-        // [3.1.0] remove this alias
-        Ink.warn('Ink.Util.I18n.append() was renamed to appendGlobal().');
-        return I18n.appendGlobal.apply(I18n, [].slice.call(arguments));
-    };
-
     /**
      * Gets or sets the current default language of I18n instances.
      *
@@ -10397,12 +10386,6 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
         }
     };
 
-    I18n.lang = function () {
-        // [3.1.0] remove this alias
-        Ink.warn('Ink.Util.I18n.lang() was renamed to langGlobal().');
-        return I18n.langGlobal.apply(I18n, [].slice.call(arguments));
-    };
-    
     return I18n;
 });
 /**

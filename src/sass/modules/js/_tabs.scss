@@ -6,17 +6,18 @@
 
         list-style: none;
         padding: 0em;
-        
+
         li {
 
             line-height: $navigation-line-height;
             position: relative;
             margin: 0;
-            
+
             a {
                 padding: $navigation-v-padding $navigation-h-padding;
                 display: block;
-                
+                border: 1px solid transparent;
+
                 &:hover {
                     background: darken($body-background, 6%);
                 }
@@ -38,10 +39,10 @@
         margin-top: 1.5em;
         overflow: auto;
     }
-            
+
     // top navigation
     &.top {
-        
+
         > .tabs-nav {
 
             border-bottom: 1px solid $grey-20;
@@ -68,10 +69,10 @@
 
     // bottom navigation
     &.bottom {
-        
+
         > .tabs-nav {
             border-top: 1px solid $grey-20;
-            
+
             li {
 
                 float: left;
@@ -91,17 +92,17 @@
             }
         }
     }
-    
-    // left navigation    
+
+    // left navigation
     &.left {
-        
+
         > .tabs-nav {
             border-right: 1px solid $grey-20;
             float: left;
             margin-right: 2em;
 
             li {
-                
+
                 float: none;
                 text-align: right;
 
@@ -121,16 +122,16 @@
         }
     }
 
-    // right navigation    
+    // right navigation
     &.right {
-        
+
         > .tabs-nav {
             border-left: 1px solid $grey-20;
             float: right;
             margin-left: 2em;
 
             li {
-                
+
                 float: none;
 
                 a {

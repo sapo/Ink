@@ -371,25 +371,6 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
         },
 
         /**
-         *
-         * Returns the parent of the currently active menu link.
-         *
-         * This is useful if you want to have `li` elements wrapping your links
-         * and want to access the currently visible one.
-         *
-         * (This method is deprecated)
-         * @method activeMenuTab
-         * @deprecated
-         * @return {DOMElement|null} Active menu LI, or `null` if there is none.
-         * @public
-         */
-        activeMenuTab: function(){
-            // [3.1.0] remove this
-            Ink.warn('Ink.UI.Tabs.activeMenuTab() is deprecated');
-            return this._activeMenuTab;
-        },
-
-        /**
          * Gets the currently active Menu link (the links which the user clicks on to change tabs)
          * 
          * @method activeMenuLink
@@ -411,12 +392,6 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          */
         activeSection: function(){
             return this._activeSection;
-        },
-
-        activeContentTab: function () {
-            // [3.1.0] remove this
-            Ink.warn('Ink.UI.Tabs.activeContentTab() is deprecated. Use activeSection instead.');
-            return this._activeSection();
         },
 
         /**

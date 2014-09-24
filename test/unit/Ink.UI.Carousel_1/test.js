@@ -46,10 +46,15 @@ Ink.requireModules(['Ink.UI.Carousel_1', 'Ink.UI.Pagination', 'Ink.Dom.Element_1
 
     module('_setPage()');
 
-    testCarousel('Sets the [left] of the stage so as to pull the slides into position.', function (carousel, _, stage) {
+    testCarousel('Percentages are used to pull the slides left.', function (carousel, _, stage) {
         carousel._setPage(1);
-        equal(stage.style.left, '-100px');
+        equal(stage.style.left, '-100%');
     });
+
+    testCarousel('... even when the slide widths are uneven', function (carousel, _, stage) {
+        carousel._setPage(1);
+        equal(stage.style.left, '-60%');
+    }, { uneven: true });
 
     var pagElm;
     var pag;
@@ -68,4 +73,61 @@ Ink.requireModules(['Ink.UI.Carousel_1', 'Ink.UI.Pagination', 'Ink.Dom.Element_1
         pag.setCurrent(2);
         equal(carousel._setPage.lastCall.args[0], 2);
     }));
+
+    if ('ontouchstart' in document) {
+        module('Touch');
+
+        testCarousel('You can swipe the carousel sideways to trigger a page change', function (carousel, _, stage) {
+            sinon.stub(carousel, 'setPage');
+            utils.dispatchTouchEvent(stage, 'start', 101, 10);
+            utils.dispatchTouchEvent(stage, 'move', 1, 10);
+            ok(carousel.setPage.notCalled, 'setPage() not called because finger is not up');
+            utils.dispatchTouchEvent(stage, 'end', 1, 10);
+            ok(carousel.setPage.calledOnce);
+            equal(carousel.setPage.lastCall.args[0], 1);
+        });
+
+        testCarousel('You can swipe the carousel sideways to trigger a page change (part 2: swipe left)', function (carousel, _, stage) {
+            carousel.setPage(1);
+            sinon.stub(carousel, 'setPage');
+            utils.dispatchTouchEvent(stage, 'start', 1, 10);
+            utils.dispatchTouchEvent(stage, 'move', 101, 10);
+            utils.dispatchTouchEvent(stage, 'end', 101, 10);
+            ok(carousel.setPage.calledOnce);
+            equal(carousel.setPage.lastCall.args[0], 0);
+        });
+
+        testCarousel('Smaller swipes don\'t count.', function (carousel, _, stage) {
+            sinon.stub(carousel, 'setPage');
+            utils.dispatchTouchEvent(stage, 'start', 100, 10);
+            utils.dispatchTouchEvent(stage, 'move', 98, 10);
+            utils.dispatchTouchEvent(stage, 'end', 98, 10);
+            ok(carousel.setPage.calledWith(0), 'Page hasn\'t changed');
+        })
+
+        testCarousel('But if you swipe about 1/3 of the way the page changes.', function (carousel, _, stage) {
+            sinon.stub(carousel, 'setPage');
+            utils.dispatchTouchEvent(stage, 'start', 100, 10);
+            utils.dispatchTouchEvent(stage, 'move', 66, 10);
+            utils.dispatchTouchEvent(stage, 'end', 66, 10);
+            ok(carousel.setPage.calledWith(1), 'Page changed');
+        })
+    }
+
+    function testCarouselRefit(name, cb) {
+        testCarousel(name, function (carousel, container, stage, slides) {
+            var wrapper = InkElement.create('div', { style: 'width: 100px' });
+            container.parentNode.appendChild(wrapper);
+            wrapper.appendChild(container);
+            cb(carousel, wrapper, container, stage, slides)
+        })
+    }
+    module('refit()');
+
+    testCarouselRefit('refit() won\'t call onChange unnecessarily', function (carousel, wrapper) {
+        var onChange = sinon.stub()
+        carousel.setOption('onChange', onChange);
+        carousel.refit();
+        ok(onChange.notCalled)
+    });
 });

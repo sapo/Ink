@@ -17,7 +17,7 @@ Stacker._optionDefinition = {
     column: ['String', '.stacker-column'],
     item: ['String', '.stacker-item'],
 
-    // [3.0.0] review this when we have info about our breakpoints from the CSS
+    // [3.2.0] review this when we have info about our breakpoints from the CSS
     customBreakPoints: ['Object', null], // Must be: {xlarge: {max: 9999, min: 1281, cols: 5}, large:{max:1280, min:1001, cols:4} medium:{max:1000, min:801,cols:3}, ...etc..}
     largeMax: ['Number', Number.MAX_VALUE],
     largeMin: ['Number', 961],

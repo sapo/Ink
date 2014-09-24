@@ -8,7 +8,7 @@
  * @author    Sapo Ink Team
  * @license   http://opensource.org/licenses/MIT MIT
  * @link      http://ink.sapo.pt
- * @version   3.0.5
+ * @version   3.1.0
  */
 /**
  * Ink class names prefix
@@ -802,7 +802,7 @@ th {
   clear: both;
 }
 .ink-form .control-group .control > li {
-  margin: 0;
+  position: relative;
   *zoom: 1;
 }
 .ink-form .control-group .control > li:after {
@@ -813,7 +813,7 @@ th {
 .ink-form .control-group .control > input, .ink-form .control-group .control > select, .ink-form .control-group .control > textarea {
   width: 100%;
 }
-.ink-form .control-group .control > input + [class^="icon-"], .ink-form .control-group .control > input + [class*=" icon-"], .ink-form .control-group .control > select + [class^="icon-"], .ink-form .control-group .control > select + [class*=" icon-"], .ink-form .control-group .control > textarea + [class^="icon-"], .ink-form .control-group .control > textarea + [class*=" icon-"] {
+.ink-form .control-group .control > input + [class^="fa-"], .ink-form .control-group .control > input + [class*="fa-"], .ink-form .control-group .control > select + [class^="fa-"], .ink-form .control-group .control > select + [class*="fa-"], .ink-form .control-group .control > textarea + [class^="fa-"], .ink-form .control-group .control > textarea + [class*="fa-"] {
   display: none;
 }
 .ink-form .control-group .control.append-button span, .ink-form .control-group .control.append-symbol span, .ink-form .control-group .control.prepend-button span, .ink-form .control-group .control.prepend-symbol span {
@@ -830,9 +830,6 @@ th {
   display: -webkit-flex;
   display: flex;
   display: -ms-flexbox;
-}
-.ink-form .control-group .control.append-button span {
-  display: table-cell;
 }
 .ink-form .control-group .control.append-button span > input, .ink-form .control-group .control.append-button span > select, .ink-form .control-group .control.append-button span > textarea {
   -webkit-border-radius: 2px 0 0 2px;
@@ -854,9 +851,6 @@ th {
   display: -webkit-flex;
   display: flex;
   display: -ms-flexbox;
-}
-.ink-form .control-group .control.prepend-button span {
-  display: table-cell;
 }
 .ink-form .control-group .control.prepend-button span > input, .ink-form .control-group .control.prepend-button span > select, .ink-form .control-group .control.prepend-button span > textarea {
   -webkit-border-radius: 0 2px 2px 0;
@@ -900,17 +894,16 @@ th {
 }
 .ink-form .control-group input[type="radio"],
 .ink-form .control-group input[type="checkbox"] {
-  padding: 0;
-  margin: .55em 0;
+  position: absolute;
   border: none;
-  clear: left;
-  float: left;
   cursor: pointer;
 }
 .ink-form .control-group input[type="radio"] + label,
 .ink-form .control-group input[type="checkbox"] + label {
-  float: left;
-  margin: .25em 0 .25em .4em;
+  margin-top: -.28em;
+  padding-left: 1.25em;
+  vertical-align: super;
+  display: inline-block;
 }
 .ink-form .control-group .inline li {
   padding: 0;
@@ -6855,6 +6848,28 @@ th {
   display: block;
   float: none;
 }
+.ink-navigation ul.menu.horizontal.scrollable {
+  font-size: 0;
+  white-space: nowrap;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+.ink-navigation ul.menu.horizontal.scrollable li {
+  display: inline-block;
+  float: none;
+}
+.ink-navigation ul.menu.horizontal.scrollable li a {
+  border-right: rgba(10, 10, 10, 0.3) 1px solid;
+  font-size: initial;
+}
+.ink-navigation ul.menu.horizontal.scrollable li:last-child a {
+  border-right: none;
+}
 .ink-navigation ul.menu.horizontal li {
   float: left;
   position: relative;
@@ -6922,6 +6937,86 @@ th {
   left: 100%;
 }
 
+/* ==========================================================================
+Print styles.
+
+Inlined to avoid the additional HTTP request: h5bp.com/r
+========================================================================== */
+@media print {
+  * {
+    background: transparent !important;
+    color: #000 !important;
+    /* Black prints faster: h5bp.com/s */
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+
+  a[href]:after {
+    content: " (" attr(href) ")";
+  }
+
+  abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+
+  /*
+  * Don't show links that are fragment identifiers,
+  * or use the `javascript:` pseudo protocol
+  */
+  a[href^="#"]:after,
+  a[href^="javascript:"]:after {
+    content: "";
+  }
+
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+
+  thead {
+    display: table-header-group;
+    /* h5bp.com/t */
+  }
+
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+
+  img {
+    max-width: 100% !important;
+  }
+
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+
+  .ink-navigation {
+    display: none;
+  }
+
+  .ink-table {
+    border-collapse: collapse;
+  }
+
+  .ink-label {
+    border: 1px solid #000;
+  }
+}
 table.ink-table {
   width: 100%;
   border-collapse: collapse;
@@ -8792,6 +8887,7 @@ table.ink-table tbody > tr.yellow td {
   display: block;
 }
 .ink-carousel .stage {
+  width: 100%;
   left: 0;
   height: auto !important;
   margin-top: 0;
@@ -8800,10 +8896,10 @@ table.ink-table tbody > tr.yellow td {
   list-style-type: none;
   white-space: nowrap;
   position: relative;
-  -webkit-transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-  transition: all 0.5s ease;
+  -webkit-transition: left 0.5s ease;
+  -moz-transition: left 0.5s ease;
+  -o-transition: left 0.5s ease;
+  transition: left 0.5s ease;
 }
 .ink-carousel .stage .slide {
   position: relative;
@@ -9094,12 +9190,12 @@ body.ink-drawer .right-drawer {
 body.ink-drawer .left-drawer.show,
 body.ink-drawer .right-drawer.show {
   display: block;
+  position: fixed;
 }
 body.ink-drawer.push {
   overflow: hidden;
   width: 100%;
   height: 100%;
-  position: fixed;
 }
 body.ink-drawer.push .content-drawer {
   overflow: hidden;
@@ -9385,6 +9481,7 @@ body.ink-drawer.over.right .right-drawer {
 .ink-tabs .tabs-nav li a {
   padding: 0.5em 1em;
   display: block;
+  border: 1px solid transparent;
 }
 .ink-tabs .tabs-nav li a:hover {
   background: #f0f0f0;

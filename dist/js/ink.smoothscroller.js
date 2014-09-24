@@ -77,14 +77,14 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.UI.Common_1', 'Ink.Dom.Even
          * the end through requestAnimationFrame
          *
          * @method scroll
-         * @param  {Number} d Y coordinate value to stop
+         * @param  {Number} scrollTop Y coordinate value to stop at
          * @private
          * @static
          */
-        scroll: function(d, options) {
+        scroll: function(scrollTop, options) {
             var a = Math.round(InkElement.scrollHeight());
 
-            var endPos = Math.round(d - options.margin);
+            var endPos = Math.round(scrollTop - options.margin);
 
             if (endPos > a) {
                 a += Math.ceil((endPos - a) / options.speed);
@@ -96,7 +96,7 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.UI.Common_1', 'Ink.Dom.Even
 
             if (!((a) === endPos || SmoothScroller.offsetTop === a)) {
                 SmoothScroller.interval = requestAnimationFrame(
-                    Ink.bindMethod(SmoothScroller, 'scroll', d, options), document.body);
+                    Ink.bindMethod(SmoothScroller, 'scroll', scrollTop, options), document.body);
             } else {
                 SmoothScroller.onDone(options);
             }
