@@ -70,4 +70,4 @@ We're not really strict with Sass code but adhering to these guidelines will hel
 
 Our documentation is built with [Jekyll](http://jekyllrb.com/). Get familiar with it.
 
-1. Changes to the documentation must me submitted to the ``gh-pages``branch.
+1. Changes to the documentation must me submitted to [this separate repository](https://github.com/sapo/Ink-doc/).
