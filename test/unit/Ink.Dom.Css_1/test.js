@@ -73,6 +73,12 @@ Ink.requireModules(['Ink.Dom.Css_1', 'Ink.Dom.Element_1'], function (Css) {
             ok(/coisas/.test(d.className));
         });
 
+        test('toggleClassName(, forceAdd=true)', function () {
+            Css.toggleClassName(d, 'cenas', true);
+            ok(/cenas/.test(d.className));
+            ok(/coisas/.test(d.className));
+        });
+
         test('toggling many classes', function () {
             Css.toggleClassName(d, 'cenas coisas');
             equal(d.className, '');
