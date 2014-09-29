@@ -344,4 +344,18 @@ test('regression: days start in the correct week day by filling with an appropri
     }
 });
 
+test('(regression): Changing march to february when cursor is in the 30th day', function () {
+    dt.setDate('2014-03-30');
+    deepEqual(dt._getPrevMonth(), { _year: 2014, _month: 1, _day: 28 });
+
+    dt.setDate('2014-05-31');
+    deepEqual(dt._getPrevMonth(), { _year: 2014, _month: 3, _day: 30 });
+
+    dt.setDate('2014-01-30');
+    deepEqual(dt._getNextMonth(), { _year: 2014, _month: 1, _day: 28 });
+
+    dt.setDate('2014-03-31');
+    deepEqual(dt._getNextMonth(), { _year: 2014, _month: 3, _day: 30 });
+})
+
 });
