@@ -811,12 +811,15 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
             } else {
                 var that = this;
                 var args = [].slice.call(arguments);
-                if (!timeout) {
-                    timeout = setTimeout(function () {
-                        timeout = null;
-                        return throttled.apply(that, args);
-                    }, wait - timeDiff);
+
+                if (timeout) {
+                    clearTimeout(timeout);
                 }
+
+                timeout = setTimeout(function () {
+                    timeout = null;
+                    return throttled.apply(that, args);
+                }, wait - timeDiff);
             }
         };
         return throttled;

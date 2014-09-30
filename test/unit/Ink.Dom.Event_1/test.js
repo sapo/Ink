@@ -10,40 +10,52 @@ Ink.requireModules(['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1'
         function testWithClock(name, testBack) {
             return test(name, function () {
                 var clock = sinon.useFakeTimers();
+                clock.tick(1000);
                 testBack(clock);
                 clock.restore();
             });
         }
 
-        testWithClock('Delay first call', function (clock) {
+        testWithClock('Delay second call', function (clock) {
             var spy = sinon.spy();
             var throttledFunc = InkEvent.throttle(spy, 100);
 
             throttledFunc();
-            ok(spy.notCalled);
+            throttledFunc();
+            ok(spy.calledOnce, 'first call comes immediately');
             clock.tick(101);
-            ok(spy.calledOnce);
+            ok(spy.calledTwice, 'second call comes eventually');
         });
         testWithClock('Limit amount of calls', function (clock) {
             var spy = sinon.spy();
             var throttledFunc = InkEvent.throttle(spy, 100);
 
-            // Call twice, wait
+            // Call a few times, wait
+            throttledFunc();
+            throttledFunc();
+            throttledFunc();
+            throttledFunc();
             throttledFunc();
             throttledFunc();
             clock.tick(101);
 
-            ok(spy.calledOnce);
+            ok(spy.calledTwice);
         });
         testWithClock('Order of calls', function (clock) {
             var spy = sinon.spy();
             var throttledFunc = InkEvent.throttle(spy, 100);
 
             throttledFunc(1);
-            throttledFunc(2);  // Ignored
-            clock.tick(101);
+            throttledFunc(1.2);  // Ignored
+            throttledFunc(1.5);  // Ignored
+            throttledFunc(2);
             ok(spy.lastCall.calledWith(1));
+            clock.tick(101);
+            ok(spy.lastCall.calledWith(2));
 
+            throttledFunc(2.7);  // Ignored
+            throttledFunc(2.8);  // Ignored
+            throttledFunc(2.9);  // Ignored
             throttledFunc(3);
             clock.tick(101);
             ok(spy.lastCall.calledWith(3));
@@ -74,26 +86,24 @@ Ink.requireModules(['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1'
 
 
         testWithClock('called with the correct timing between calls', function (clock) {
-            var firstCallTime;
+            var log = [];
             var spy;
-            var throttled = InkEvent.throttle(spy = sinon.spy(function () {
-                if (firstCallTime) {
-                    equal(+new Date() - firstCallTime, 200);
-                } else {
-                    firstCallTime = +new Date();
-                }
+
+            var testStart = +new Date();
+            var throttled = InkEvent.throttle(spy = sinon.spy(function (n) {
+                log.push(+new Date() - testStart);
             }), 200);
 
-            expect(2);
+            throttled(1);
+            throttled('ignore me');
+            throttled(2);
+            clock.tick(50);
 
-            throttled();
-            throttled();
-            clock.tick(201);
-
-            throttled();
             clock.tick(200);
 
             ok(spy.calledTwice);
+
+            deepEqual(log, [0, 200]);
         });
     }());
 
