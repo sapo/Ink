@@ -1,4 +1,4 @@
-#Welcome to [Ink](http://ink.sapo.pt) [![Build Status](https://travis-ci.org/sapo/Ink.svg?branch=develop)](https://travis-ci.org/sapo/Ink)
+#Welcome to [Ink](http://ink.sapo.pt) [![Build Status](https://travis-ci.org/sapo/Ink.svg?branch=develop)](https://travis-ci.org/sapo/Ink) [![devDependency Status](https://david-dm.org/sapo/Ink/dev-status.svg)](https://david-dm.org/sapo/Ink#info=devDependencies)
 
 Ink is an interface kit for quick development of web interfaces, simple to use and expand on. It uses a combination of HTML, CSS and JavaScript to offer modern solutions for building layouts, display common interface elements and implement interactive features that are content-centric and user friendly for both your audience and your designers & developers.
 
