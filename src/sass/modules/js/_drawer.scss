@@ -11,7 +11,7 @@ body {
         .left-drawer,
         .right-drawer,
         .content-drawer {
-          @include transition-property(translate3d);
+          @include transition-property(transform);
           @include transition-duration($speed);
           @include transition-timing-function($easing);
         }
