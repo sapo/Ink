@@ -4,7 +4,7 @@ Ink is an interface kit for quick development of web interfaces, simple to use a
 
 Ink is part of [SAPOs Open Source Software initiative](http://oss.sapo.pt).
 
-## Current Version: 3.1.0
+## Current Version: 3.1.1
 
 You can read our full documentation, examples and recipes in http://ink.sapo.pt
 
@@ -127,7 +127,7 @@ If you want to build from our source code, you'll need to install a few things:
 * #### Windows
 
 If you don't need to rebuild Javascript code you can just use [Scout](http://mhs.github.io/scout-app/) which is a nice, free and cross platform Sass/Compass compiler.
-  
+
 Building on Windows is a lot tricker so we won't get into details on how to install all the required tools. Instead here's a list of usefull pages you'll need to read while trying this endeavour:
 
   * [Getting started with Sass and Compass](http://thesassway.com/beginner/getting-started-with-sass-and-compass)
