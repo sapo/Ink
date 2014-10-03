@@ -12,6 +12,25 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
             el + '" element on this page. Please make sure it exists.' );
     }
 
+    // Detect the transitionEnd event name, and the style property name for "transition", because prefixes.
+    // Source: https://github.com/EvandroLG/transitionEnd/blob/master/src/transition-end.js
+    var transitionSupport = (function (div) {
+        var transitions = {
+            'WebkitTransition': 'webkitTransitionEnd',
+            'MozTransition': 'transitionend',
+            'OTransition': 'oTransitionEnd otransitionend',
+            'transition': 'transitionend'
+        };
+
+        for (var t in transitions) {
+            if (div.style[t] !== undefined) {
+                return { styleProp: t, eventName: transitions[t] };
+            }
+        }
+
+        return false;
+    }(document.createElement('div')));
+
     function Drawer(options) {
         Common.BaseUIComponent.apply(this, [document.body, options]);
     }
@@ -206,10 +225,22 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
             if (this._isOpen === false) { return; }
             this._isOpen = false;
             // TODO detect transitionEnd exists, otherwise don't rely on it
-            Event.one(document.body, 'transitionend oTransitionEnd webkitTransitionEnd', this._handlers.afterTransition);
-            Css.removeClassName(document.body, [this._options.mode, this._direction]);
-        }
 
+            // Detect whether there is transition going on
+            var transitioning = null;
+            if (transitionSupport) {
+                transitioning = !!Css.getStyle(document.body, transitionSupport.styleProp);
+            }
+
+            Css.removeClassName(document.body, [this._options.mode, this._direction]);
+
+            if (transitioning) {
+                Event.one(document.body, 'transitionend oTransitionEnd webkitTransitionEnd', this._handlers.afterTransition);
+            } else {
+                // End the transition now.
+                this._handlers.afterTransition();
+            }
+        }
     };
 
     Common.createUIComponent(Drawer);
