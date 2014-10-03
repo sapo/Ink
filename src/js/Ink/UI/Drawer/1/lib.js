@@ -235,7 +235,7 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
             Css.removeClassName(document.body, [this._options.mode, this._direction]);
 
             if (transitioning) {
-                Event.one(document.body, 'transitionend oTransitionEnd webkitTransitionEnd', this._handlers.afterTransition);
+                Event.one(document.body, transitionSupport.eventName, this._handlers.afterTransition);
             } else {
                 // End the transition now.
                 this._handlers.afterTransition();
