@@ -23,8 +23,10 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
         };
 
         for (var t in transitions) {
-            if (div.style[t] !== undefined) {
-                return { styleProp: t, eventName: transitions[t] };
+            if (transitions.hasOwnProperty(t)) {
+                if (div.style[t] !== undefined) {
+                    return { styleProp: t, eventName: transitions[t] };
+                }
             }
         }
 
