@@ -186,7 +186,6 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
                 click:     Ink.bindEvent(this._onClick, this),
                 afterTransition: Ink.bindEvent(this._afterTransition, this)
             };
-            this._delay = 10;
             this._addEvents();
         },
 
@@ -247,9 +246,13 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
             this._direction = direction;
 
             Css.addClassName(this._getRecentDrawer(),'show');
+
+            // Add a timeout because a reflow must trigger for the transition to take place.
+            // Setting the transform at the same time as the element has display:block won't do a transition.
+
             setTimeout(Ink.bind(function(){
                 Css.addClassName(document.body, [this._options.mode, direction]);
-            },this), this._delay);
+            },this), 0);
         },
 
         close: function() {

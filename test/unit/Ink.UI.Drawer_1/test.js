@@ -73,26 +73,28 @@ Ink.requireModules(['Ink.UI.Drawer_1', 'Ink.Dom.Css_1', 'Ink.Dom.Event_1', 'Ink.
     }))
 
     test('open() and close()', function () {
-        var clock = sinon.useFakeTimers()
 
         drawer.open('left')
-        clock.tick(drawer._delay + 1) // there's a setTimeout in there, not sure what it's for, but fire it.
 
-        clock.restore()
+        // the open() function is actually async because it needs
+        // to trigger a reflow.
+        stop();
+        setTimeout(function () {
+            start();
+            ok(Css.hasClassName(document.body, ['push', 'left']));
+            ok(Css.hasClassName(leftDrawer, 'show'));
 
-        ok(Css.hasClassName(document.body, ['push', 'left']));
-        ok(Css.hasClassName(leftDrawer, 'show'));
+            drawer.close()
+            ok(!Css.hasClassName(document.body, 'push'));
+            ok(!Css.hasClassName(document.body, 'left'));
 
-        drawer.close()
-        ok(!Css.hasClassName(document.body, 'push'));
-        ok(!Css.hasClassName(document.body, 'left'));
+            if (!Drawer.transitionSupport) {
+                return ok(!Css.hasClassName(leftDrawer, 'show'));
+            }
 
-        if (!Drawer.transitionSupport) {
-            return ok(!Css.hasClassName(leftDrawer, 'show'));
-        }
-
-        ok(Css.hasClassName(leftDrawer, 'show'));
-        InkEvent.fire(leftDrawer, 'transitionend');
-        ok(!Css.hasClassName(leftDrawer, 'show'));
+            ok(Css.hasClassName(leftDrawer, 'show'));
+            InkEvent.fire(leftDrawer, 'transitionend');
+            ok(!Css.hasClassName(leftDrawer, 'show'));
+        }, 0);
     })
 })
