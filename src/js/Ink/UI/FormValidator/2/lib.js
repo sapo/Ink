@@ -772,7 +772,9 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
          * @public
          */
         getElements: function(){
-            if (!this._formElements) this._formElements = {};
+            if (!this._formElements) {
+                this._formElements = {};
+            }
             var formElements = Selector.select( this._options.searchFor, this._rootElement );
             if( formElements.length ){
                 var i, element;
