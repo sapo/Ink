@@ -1,4 +1,4 @@
-Ink.requireModules(['Ink.UI.Drawer_1', 'Ink.Dom.Css_1', 'Ink.Dom.Element_1'], function (Drawer, Css, InkElement) {
+Ink.requireModules(['Ink.UI.Drawer_1', 'Ink.Dom.Css_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1'], function (Drawer, Css, InkEvent, InkElement) {
 
     var leftTrigger = document.body.appendChild(InkElement.create('div', {
         className: 'left-drawer-trigger'
@@ -76,7 +76,9 @@ Ink.requireModules(['Ink.UI.Drawer_1', 'Ink.Dom.Css_1', 'Ink.Dom.Element_1'], fu
         var clock = sinon.useFakeTimers()
 
         drawer.open('left')
-        clock.tick(drawer._delay) // there's a setTimeout in there, not sure what it's for, but fire it.
+        clock.tick(drawer._delay + 1) // there's a setTimeout in there, not sure what it's for, but fire it.
+
+        clock.restore()
 
         ok(Css.hasClassName(document.body, ['push', 'left']));
         ok(Css.hasClassName(leftDrawer, 'show'));
@@ -84,8 +86,13 @@ Ink.requireModules(['Ink.UI.Drawer_1', 'Ink.Dom.Css_1', 'Ink.Dom.Element_1'], fu
         drawer.close()
         ok(!Css.hasClassName(document.body, 'push'));
         ok(!Css.hasClassName(document.body, 'left'));
-        ok(!Css.hasClassName(leftDrawer, 'show'));
 
-        clock.restore()
+        if (!Drawer.transitionSupport) {
+            return ok(!Css.hasClassName(leftDrawer, 'show'));
+        }
+
+        ok(Css.hasClassName(leftDrawer, 'show'));
+        InkEvent.fire(leftDrawer, 'transitionend');
+        ok(!Css.hasClassName(leftDrawer, 'show'));
     })
 })

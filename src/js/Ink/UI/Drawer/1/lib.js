@@ -44,6 +44,9 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
         Common.BaseUIComponent.apply(this, [document.body, options]);
     }
 
+    // Expose for testing
+    Drawer.transitionSupport = transitionSupport;
+
     Drawer._name = 'Drawer_1';
 
     Drawer._optionDefinition = {
