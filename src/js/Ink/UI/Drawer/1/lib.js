@@ -17,8 +17,6 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
     var transitionSupport = (function (div) {
         var transitions = {
             'WebkitTransitionProperty': 'webkitTransitionEnd',
-            'MozTransitionProperty': 'transitionend',
-            'OTransitionProperty': 'oTransitionEnd otransitionend',
             'transitionProperty': 'transitionend'
         };
 
