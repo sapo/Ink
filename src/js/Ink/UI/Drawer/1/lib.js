@@ -195,21 +195,11 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
          * @private
          **/
         _onClick: function(ev){
-            var triggerClicked = Ink.bind(function (side) {
-                // When clicking on the trigger, the corresponding side is toggled.
-                if (this._isOpen) {
-                    this.close();
-                } else {
-                    this.open(side);
-                }
-                ev.preventDefault();
-            }, this);
-
             if(Element.findUpwardsBySelector(ev.currentTarget,this._options.leftTrigger)){
                 // Clicked on the left trigger
-                triggerClicked('left');
+                this._onTriggerClicked(ev, 'left');
             } else if(Element.findUpwardsBySelector(ev.currentTarget,this._options.rightTrigger)){
-                triggerClicked('right');
+                this._onTriggerClicked(ev, 'right');
             } else if(Element.findUpwardsBySelector(ev.currentTarget,this._options.contentDrawer)){
                 // Clicked on the rest of the body
                 if(this._options.closeOnContentClick) {
@@ -219,6 +209,16 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
                 this.close();
                 // No preventDefault() here
             }
+        },
+
+        _onTriggerClicked: function (ev, side) {
+            // When clicking on the trigger, the corresponding side is toggled.
+            if (this._isOpen) {
+                this.close();
+            } else {
+                this.open(side);
+            }
+            ev.preventDefault();
         },
 
         _afterTransition: function(){
