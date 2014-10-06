@@ -16,10 +16,10 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
     // Source: https://github.com/EvandroLG/transitionEnd/blob/master/src/transition-end.js
     var transitionSupport = (function (div) {
         var transitions = {
-            'WebkitTransition': 'webkitTransitionEnd',
-            'MozTransition': 'transitionend',
-            'OTransition': 'oTransitionEnd otransitionend',
-            'transition': 'transitionend'
+            'WebkitTransitionProperty': 'webkitTransitionEnd',
+            'MozTransitionProperty': 'transitionend',
+            'OTransitionProperty': 'oTransitionEnd otransitionend',
+            'transitionProperty': 'transitionend'
         };
 
         for (var t in transitions) {
@@ -223,11 +223,7 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
 
         _afterTransition: function(){
             if(!this._isOpen){
-                if(this._direction === 'left') {
-                    Css.removeClassName(this._leftDrawer, 'show');
-                } else {
-                    Css.removeClassName(this._rightDrawer, 'show');
-                }
+                Css.removeClassName(this._getRecentDrawer(), 'show');
             }
         },
 
@@ -235,15 +231,19 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
             Event.on(document.body, 'click', this._triggers + ', a[href*="#"]', this._handlers.click);
         },
 
+        /**
+         * Gets the drawer which was most recently opened.
+         **/
+        _getRecentDrawer: function () {
+            return  this._direction === 'left'  ? this._leftDrawer :
+                    this._direction === 'right' ? this._rightDrawer : null;
+        },
+
         open: function(direction) {
             this._isOpen = true;
             this._direction = direction;
 
-            var open = direction === 'left' ?
-                this._leftDrawer :
-                this._rightDrawer;
-
-            Css.addClassName(open,'show');
+            Css.addClassName(this._getRecentDrawer(),'show');
             setTimeout(Ink.bind(function(){
                 Css.addClassName(document.body, [this._options.mode, direction]);
             },this), this._delay);
@@ -251,13 +251,16 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
 
         close: function() {
             if (this._isOpen === false) { return; }
+            var drawerEl = this._getRecentDrawer();
+
+            if (!drawerEl) { return; }
+
             this._isOpen = false;
-            // TODO detect transitionEnd exists, otherwise don't rely on it
 
             // Detect whether there is transition going on
             var transitioning = null;
             if (transitionSupport) {
-                transitioning = !!Css.getStyle(document.body, transitionSupport.styleProp);
+                transitioning = !!Css.getStyle(this._getRecentDrawer(), transitionSupport.styleProp);
             }
 
             Css.removeClassName(document.body, [this._options.mode, this._direction]);
