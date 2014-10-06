@@ -8,8 +8,8 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
     'use strict';
 
     function elNotFound(el) {
-        Ink.warn( 'Ink.UI.Drawer_1: Could not find the "' +
-            el + '" element on this page. Please make sure it exists.' );
+        return 'Ink.UI.Drawer_1: Could not find the "' +
+            el + '" element on this page. Please make sure it exists.';
     }
 
     // Detect the transitionEnd event name, and the style property name for "transition", because prefixes.
@@ -33,7 +33,14 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
         return false;
     }(document.createElement('div')));
 
-    function Drawer(options) {
+    // Drawer takes two arguments for consistency with the rest of UI components, but only uses "options" for now.
+    // In the future it might use the "el" argument. Until that works, we're ignoring the argument but asking for
+    // people to kindly call new Drawer() with document.body which should then seamlessly be forward-compatible.
+    function Drawer(el, options) {
+        if (!Common.isDOMElement(el)) {
+            // One-argument form, for backwards compat.
+            options = el;
+        }
         Common.BaseUIComponent.apply(this, [document.body, options]);
     }
 
@@ -60,15 +67,16 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
          * @constructor
          *
          * @param {Object}      [options]                       Configuration options.
-         * @xparam {String}     [options.parentSelector]        The class you are using in your wrapper (in the example below, it's the `body` tag.)
-         * @xparam {String}     [options.leftDrawer]            Selector for the left drawer element. This element is placed outside the screen and shown when you click the `leftTrigger` element.
-         * @xparam {String}     [options.leftTrigger]           Selector for the left drawer trigger(s). When you click this trigger, the `leftDrawer` is shown.
-         * @xparam {String}     [options.rightDrawer]           Right drawer selector. (see `options.leftDrawer`)
-         * @xparam {String}     [options.rightTrigger]          Right trigger selector (see `options.leftTrigger`)
-         * @xparam {String}     [options.contentDrawer]         Selector for the content drawer.
-         * @param {Boolean}     [options.closeOnContentClick]   Flag to close the drawer when someone clicks on the `.contentDrawer`
-         * @param {String}      [options.mode]                  This can be 'push' or 'over'.
-         * @param {String}      [options.sides]                 Can be 'left', 'right', or 'both'. Controls what sides have a drawer.
+         * @xparam {String}     [options.parentSelector='.ink-drawer']       The class you are using in your wrapper (in the example below, it's the `body` tag.)
+         * @xparam {String}     [options.leftDrawer='.left-drawer']          Selector for the left drawer element. This element is placed outside the screen and shown when you click the `leftTrigger` element.
+         * @xparam {String}     [options.leftTrigger='.left-drawer-trigger'] Selector for the left drawer trigger(s). When you click this trigger, the `leftDrawer` is shown.
+         * @xparam {String}     [options.rightDrawer='.right-drawer']        Right drawer selector. (see `options.leftDrawer`)
+         * @xparam {String}     [options.rightTrigger='.right-drawer-trigger'] Right trigger selector (see `options.leftTrigger`)
+         * @xparam {String}     [options.contentDrawer='.content-drawer']    Selector for the content drawer.
+         * @param {Boolean}     [options.closeOnContentClick=true]           Flag to close the drawer when someone clicks on the `.contentDrawer`
+         * @param {Boolean}     [options.closeOnLinkClick=true]              Flag to close the drawer when someone clicks on a link in the (left or right) drawer.
+         * @param {String}      [options.mode='push']                        This can be 'push' or 'over'.
+         * @param {String}      [options.sides='both']                       Can be 'left', 'right', or 'both'. Controls what sides have a drawer.
          *
          * @example
          * <body class="ink-drawer">
@@ -93,7 +101,7 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
          */
         _init: function () {
             // make sure we have the required elements acording to the config options
-
+            // TODO consider this._has{Left,Right} because of extensive checks for this._options.sides
             this._contentDrawers = Ink.ss(this._options.contentDrawer);
 
             this._leftDrawer = Ink.s(this._options.leftDrawer);
@@ -132,22 +140,40 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
                 break;
             }
 
+            var atLeastOneSide = false;
+            var errorMsg = null;
+
+            function validateSide(side) {
+                if (side.drawer && side.triggers.length) {
+                    atLeastOneSide = true;
+                } else {
+                    errorMsg = side.drawer ? elNotFound(side.drawerOption) : elNotFound(side.triggerOption);
+                }
+            }
+
             if (this._options.sides === 'left' || this._options.sides === 'both') {
-                if( !this._leftDrawer ){
-                    elNotFound(this._options.leftDrawer);
-                }
+                validateSide({
+                    name: 'left',
+                    drawer: this._leftDrawer,
+                    drawerOption: this._options.leftDrawer,
+                    triggers: this._leftTriggers,
+                    triggerOption: this._options.leftTrigger
+                });
+            } else if (this._options.sides === 'right' || this._options.sides === 'both') {
+                validateSide({
+                    name: 'right',
+                    drawer: this._rightDrawer,
+                    drawerOption: this._options.rightDrawer,
+                    triggers: this._rightTriggers,
+                    triggerOption: this._options.rightTrigger
+                });
+            }
 
-                if(this._leftTriggers.length === 0){
-                    elNotFound(this._options.leftTrigger);
-                }
-            } else {
-                if( !this._rightDrawer ){
-                    elNotFound(this._options.rightDrawer);
-                }
-
-                if( this._rightTriggers.length === 0 ){
-                    elNotFound(this._options.rightTrigger);
-                }
+            // Only if all sides requested are missing, warn.
+            // Setting 'sides' to both and ommitting the left side (or elements for the left side)
+            // shouldn't trigger a warning. So we set the error message above, and here we decide whether to show it or not by counting.
+            if (!atLeastOneSide) {
+                Ink.warn(errorMsg);
             }
 
             this._isOpen = false;
