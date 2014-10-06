@@ -1,4 +1,4 @@
-Ink.requireModules(['Ink.UI.Drawer_1', 'Ink.Dom.Element_1'], function (Drawer, InkElement) {
+Ink.requireModules(['Ink.UI.Drawer_1', 'Ink.Dom.Css_1', 'Ink.Dom.Element_1'], function (Drawer, Css, InkElement) {
 
     var leftTrigger = document.body.appendChild(InkElement.create('div', {
         className: 'left-drawer-trigger'
@@ -44,7 +44,48 @@ Ink.requireModules(['Ink.UI.Drawer_1', 'Ink.Dom.Element_1'], function (Drawer, I
         stop()
         Syn.click(contentDrawer, function () {
             ok(drawer.close.calledOnce)
+            drawer.close.restore()
             start()
         })
+    })
+
+    test('_onTriggerClicked', sinon.test(function () {
+        this.stub(drawer, 'open')
+        this.stub(drawer, 'close')
+        var fakeEvent = {
+            preventDefault: this.spy()
+        }
+
+        drawer._onTriggerClicked(fakeEvent, 'the side')
+
+        ok(drawer.open.calledOnce, 'open() was called')
+        ok(drawer.open.calledWith('the side'))
+
+        drawer._isOpen = true;
+
+        drawer._onTriggerClicked(fakeEvent)
+
+        ok(drawer.close.calledOnce, 'close() was called')
+
+        ok(fakeEvent.preventDefault.calledTwice, 'preventDefault was called once each call')
+
+        drawer._isOpen = false;
+    }))
+
+    test('open() and close()', function () {
+        var clock = sinon.useFakeTimers()
+
+        drawer.open('left')
+        clock.tick(drawer._delay) // there's a setTimeout in there, not sure what it's for, but fire it.
+
+        ok(Css.hasClassName(document.body, ['push', 'left']));
+        ok(Css.hasClassName(leftDrawer, 'show'));
+
+        drawer.close()
+        ok(!Css.hasClassName(document.body, 'push'));
+        ok(!Css.hasClassName(document.body, 'left'));
+        ok(!Css.hasClassName(leftDrawer, 'show'));
+
+        clock.restore()
     })
 })
