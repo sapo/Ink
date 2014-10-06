@@ -93,7 +93,7 @@ Ink.requireModules(['Ink.UI.Drawer_1', 'Ink.Dom.Css_1', 'Ink.Dom.Event_1', 'Ink.
             }
 
             ok(Css.hasClassName(leftDrawer, 'show'));
-            InkEvent.fire(leftDrawer, 'transitionend');
+            InkEvent.fire(leftDrawer, Drawer.transitionSupport.eventName);
             ok(!Css.hasClassName(leftDrawer, 'show'));
         }, 0);
     })
