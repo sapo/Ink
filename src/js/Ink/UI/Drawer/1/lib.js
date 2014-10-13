@@ -251,6 +251,13 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
             setTimeout(Ink.bind(function(){
                 Css.addClassName(document.body, [this._options.mode, direction]);
             },this), 0);
+
+        /**
+         * Given an element, return whether it is going to perform a transition.
+         * This is not perfect, but since there is no transitionstart event, it will have to do.
+         */
+        _transitionWillOccur: function (elm) {
+            return !!(transitionSupport && Css.getStyle(elm, transitionSupport.styleProp));
         },
 
         close: function() {
@@ -264,7 +271,7 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
             // Detect whether there is transition going on
             var transitioning = null;
             if (transitionSupport) {
-                transitioning = !!Css.getStyle(this._getRecentDrawer(), transitionSupport.styleProp);
+                transitioning = this._transitionWillOccur(this._getRecentDrawer());
             }
 
             Css.removeClassName(document.body, [this._options.mode, this._direction]);
