@@ -243,7 +243,9 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
             this._isOpen = true;
             this._direction = direction;
 
-            Css.addClassName(this._getRecentDrawer(),'show');
+            var drawerEl = this._getRecentDrawer();
+
+            Css.addClassName(drawerEl ,'show');
 
             // Add a timeout because a reflow must trigger for the transition to take place.
             // Setting the transform at the same time as the element has display:block won't do a transition.
@@ -251,6 +253,21 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
             setTimeout(Ink.bind(function(){
                 Css.addClassName(document.body, [this._options.mode, direction]);
             },this), 0);
+
+            if (transitionSupport && this._transitionWillOccur(drawerEl)) {
+                // Fix a renderer problem on IE11 and firefox by causing a reflow on the drawer element when our transition is done.
+                // this problem was preventing the drawer from displaying at all when it was open.
+                Event.one(drawerEl,
+                    transitionSupport.eventName,
+                    function () {
+                        Css.removeClassName(drawerEl, 'show')
+
+                        setTimeout(function () {
+                            Css.addClassName(drawerEl, 'show')
+                        });
+                    });
+            }
+        },
 
         /**
          * Given an element, return whether it is going to perform a transition.
