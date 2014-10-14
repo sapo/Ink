@@ -260,10 +260,10 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
                 Event.one(drawerEl,
                     transitionSupport.eventName,
                     function () {
-                        Css.removeClassName(drawerEl, 'show')
+                        Css.removeClassName(drawerEl, 'show');
 
                         setTimeout(function () {
-                            Css.addClassName(drawerEl, 'show')
+                            Css.addClassName(drawerEl, 'show');
                         });
                     });
             }
