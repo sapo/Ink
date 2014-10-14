@@ -537,7 +537,7 @@
          *
          * @method i
          * @param {String} id Element ID
-         * @return {DOMElement|null} The element returned by `document.getElementById(id)` if `id` was a string, and `id` otherwise.
+         * @return {DOMElement} The element returned by `document.getElementById(id)` if `id` was a string, and `id` otherwise.
          * @sample Ink_1_i.html
          */
         i: function(id) {

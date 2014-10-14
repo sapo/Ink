@@ -33,6 +33,7 @@ Ink.createModule('Ink.UI.Dropdown', '1', ['Ink.UI.Common_1', 'Ink.UI.Toggle_1', 
          * @class Ink.UI.Dropdown
          *
          * @constructor
+         * @param {Element|String}   trigger                Trigger Element
          * @param {Object}           options                Options Object
          * @param {Element|String}  [options.target]        Target of the dropdown action. By default, dropdown will try to find an element with the `.dropdown-menu` class.
          * @param {Number}          [options.hoverOpen]     The number of seconds you need to hover with the mouse before the dropdown opens.
