@@ -1,8 +1,9 @@
 
-Ink.requireModules(['Ink.UI.Carousel_1', 'Ink.UI.Pagination', 'Ink.Dom.Element_1', 'Ink.Dom.Event_1', 'Ink.Dom.Selector_1'], function (Carousel, Pagination, InkElement, InkEvent, Selector) {
+Ink.requireModules(['Ink.UI.Carousel_1', 'Ink.UI.Pagination_1', 'Ink.Dom.Element_1', 'Ink.Dom.Event_1', 'Ink.Dom.Selector_1'], function (Carousel, Pagination, InkElement, InkEvent, Selector) {
     'use strict';
 
     function makeContainer(options) {
+        options = options || {}
         var cont = InkElement.create('div', {
             className: 'ink-carousel',
             insertBottom: document.body
@@ -43,6 +44,18 @@ Ink.requireModules(['Ink.UI.Carousel_1', 'Ink.UI.Pagination', 'Ink.Dom.Element_1
             testBack(carouselComponent, container, stage, slides);
         });
     }
+
+
+    test('(regression) creating a carousel doesn\'t call the onChange callback', function() {
+        var onChange = sinon.spy()
+        new Carousel(makeContainer(), { onChange: onChange });
+        ok(onChange.notCalled, 'onChange not called')
+
+
+        var onChange = sinon.spy()
+        new Carousel(makeContainer(), { initialPage: 2, onChange: onChange });
+        ok(onChange.notCalled, 'onChange not called even with an initialPage set')
+    })
 
     module('_setPage()');
 

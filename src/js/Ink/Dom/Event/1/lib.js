@@ -517,9 +517,11 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
             }
             // check each type/element for removed listeners and remove the rootListener where it's no longer needed
             for (i in removed) {
-              if (!registry.has(element, removed[i].t, null, false)) {
-                // last listener of this type, remove the rootListener
-                listener(element, removed[i].t, false, removed[i].c)
+              if (removed.hasOwnProperty(i)) {
+                if (!registry.has(element, removed[i].t, null, false)) {
+                  // last listener of this type, remove the rootListener
+                  listener(element, removed[i].t, false, removed[i].c)
+                }
               }
             }
           }
@@ -809,12 +811,15 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
             } else {
                 var that = this;
                 var args = [].slice.call(arguments);
-                if (!timeout) {
-                    timeout = setTimeout(function () {
-                        timeout = null;
-                        return throttled.apply(that, args);
-                    }, wait - timeDiff);
+
+                if (timeout) {
+                    clearTimeout(timeout);
                 }
+
+                timeout = setTimeout(function () {
+                    timeout = null;
+                    return throttled.apply(that, args);
+                }, wait - timeDiff);
             }
         };
         return throttled;
