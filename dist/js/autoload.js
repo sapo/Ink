@@ -89,7 +89,7 @@ Ink.createModule('Ink.Autoload', 1, ['Ink.Dom.Selector_1', 'Ink.Util.Array_1', '
             }
             if (options.createDrawer !== false) {
                 if (Selector.matchesSelector(document.body, '.ink-drawer') &&
-                        !(Drawer.getInstance && !Drawer.getInstance(document.body))) {
+                        !(Drawer.getInstance && Drawer.getInstance(document.body))) {
                     new Drawer(document.body);
                 }
             }
@@ -107,7 +107,7 @@ Ink.createModule('Ink.Autoload', 1, ['Ink.Dom.Selector_1', 'Ink.Util.Array_1', '
                                     Component.getInstance(el) != null) {
                                 return; // Avoid multiple instantiation.
                             }
-                            new Component(el, Autoload.defaultOptions[modName]);
+                            new Component(el, Autoload.defaultOptions[mod]);
                         });
                     });
                 }

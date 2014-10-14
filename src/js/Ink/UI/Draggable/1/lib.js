@@ -30,8 +30,8 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
      * @param {Number}              [options.bottom]            Limits to constrain draggable movement.
      * @param {Number}              [options.left]              Limits to constrain draggable movement.
      * @param {String|DOMElement}   [options.handle]            If specified, this element or CSS ID will be used as a handle for dragging.
-     * @param {Boolean}             [options.revert]            Flag to revert the draggable to the original position when dragging stops.
-     * @param {String}              [options.cursor]            Cursor type (CSS `cursor` value) used when the mouse is over the draggable object.
+     * @param {Boolean}             [options.revert=false]            Flag to revert the draggable to the original position when dragging stops.
+     * @param {String}              [options.cursor='move']            Cursor type (CSS `cursor` value) used when the mouse is over the draggable object.
      * @param {Number}              [options.zIndex]            Z-index applied to the draggable element while dragged.
      * @param {Number}              [options.fps]               If set, throttles the drag effect to this number of frames per second.
      * @param {DOMElement}          [options.droppableProxy]    If set, a shallow copy of this element will be moved around with transparent background.
@@ -254,7 +254,7 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
                     fs.position         = 'fixed';
                     fs.left             = '0';
                     fs.top              = '0';
-                    fs.zIndex           = this._options.zindex + 1;
+                    fs.zIndex           = this._options.zIndex + 1;
                     fs.backgroundColor  = '#FF0000';
                     Css.setOpacity(this.proxy, 0);
 
@@ -271,7 +271,7 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
                 }
 
                 this._element.style.position = 'absolute';
-                this._element.style.zIndex = this._options.zindex;
+                this._element.style.zIndex = this._options.zIndex;
                 this._element.parentNode.insertBefore(this.placeholder, this._element);
 
                 this._onDrag(e);

@@ -7,7 +7,7 @@
  * @author    Sapo Ink Team
  * @license   http://opensource.org/licenses/MIT MIT
  * @link      http://ink.sapo.pt
- * @version   3.1.0
+ * @version   3.1.1
  */
 /**
  * Ink class names prefix
@@ -125,7 +125,7 @@
 
 html.no-flexbox,
 html.no-flexboxlegacy {
-  font-size: 0.97em;
+  font-size: 1em;
 }
 html.no-flexbox .ink-grid,
 html.no-flexboxlegacy .ink-grid {

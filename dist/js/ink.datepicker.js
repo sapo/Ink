@@ -1177,6 +1177,11 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 date = advancer(date);
             }
 
+            var daysInThisMonth = this._daysInMonth(date._year, date._month + 1);
+            if (date._day > daysInThisMonth) {
+                date._day = daysInThisMonth;
+            }
+
             date = this._fitDateToRange(date);
 
             return this['_acceptable' + atomName](date) ? date : null;

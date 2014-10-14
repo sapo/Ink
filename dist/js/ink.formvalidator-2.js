@@ -772,42 +772,55 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
          * @public
          */
         getElements: function(){
-            this._formElements = {};
+            if (!this._formElements) {
+                this._formElements = {};
+            }
             var formElements = Selector.select( this._options.searchFor, this._rootElement );
-            if( formElements.length ){
-                var i, element;
-                for( i=0; i<formElements.length; i+=1 ){
-                    element = formElements[i];
 
-                    var dataAttrs = Element.data( element );
+            for(var i=0; i<formElements.length; i+=1 ){
+                var element = formElements[i];
 
-                    if( !("rules" in dataAttrs) ){
-                        continue;
-                    }
+                var dataAttrs = Element.data( element );
 
-                    var options = {
-                        form: this
-                    };
+                if( !("rules" in dataAttrs) ){
+                    continue;
+                }
 
-                    var key;
-                    if( ("name" in element) && element.name ){
-                        key = element.name;
-                    } else if( ("id" in element) && element.id ){
-                        key = element.id;
-                    } else {
-                        key = 'element_' + Math.floor(Math.random()*100);
-                        element.id = key;
-                    }
+                var options = {
+                    form: this
+                };
 
-                    if( !(key in this._formElements) ){
-                        this._formElements[key] = [];
-                    }
+                var key;
+                if( ("name" in element) && element.name ){
+                    key = element.name;
+                } else if( ("id" in element) && element.id ){
+                    key = element.id;
+                } else {
+                    key = 'element_' + Math.floor(Math.random()*100);
+                    element.id = key;
+                }
 
-                    this._formElements[key].push( new FormElement( element, options ) );
+                if( !(key in this._formElements) ){
+                    this._formElements[key] = [];
+                }
+
+                var formElement = this._getOrCreateFormElementInstance(key, element, options);
+
+                if (formElement) {
+                    this._formElements[key].push(formElement);
                 }
             }
 
             return this._formElements;
+        },
+
+        _getOrCreateFormElementInstance: function (key, element, options) {
+            for (var j = 0; j < this._formElements[key].length; j++) {
+                if (this._formElements[key][j].getElement() === element) {
+                    return null;
+                }
+            }
+            return new FormElement(element, options);
         },
 
         /**
@@ -907,6 +920,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
 
     Common.createUIComponent(FormValidator);
 
+    FormValidator.FormElement = FormElement;  // Export FormElement too, for testing.
     /**
      * Returns the FormValidator's Object
      */

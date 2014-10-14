@@ -184,22 +184,14 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          * @sample Ink_Dom_Css_toggleClassName.html 
          */
         toggleClassName: function(elm, className, forceAdd) {
-            if (elm && className){
-                if (typeof elm.classList !== "undefined" && !/[, ]/.test(className)){
-                    elm = Ink.i(elm);
-                    if (elm !== null){
-                        elm.classList.toggle(className);
-                    }
-                    return true;
-                }
-            }
+            if (!elm || !className) { return false; }
 
             if (typeof forceAdd !== 'undefined') {
-                if (forceAdd === true) {
-                    Css.addClassName(elm, className);
-                }
-                else if (forceAdd === false) {
-                    Css.removeClassName(elm, className);
+                return Css.addRemoveClassName(elm, className, forceAdd);
+            } else if (typeof elm.classList !== "undefined" && !/[, ]/.test(className)) {
+                elm = Ink.i(elm);
+                if (elm !== null){
+                    elm.classList.toggle(className);
                 }
             } else {
                 if (Css.hasClassName(elm, className)) {
