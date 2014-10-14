@@ -50,7 +50,6 @@ Ink.createModule('Ink.UI.Carousel', '1',
         axis:           ['String', 'x'],
         initialPage:    ['Integer', 0],
         spaceAfterLastSlide: ['Boolean', true],
-        hideLast:       ['Boolean', false],
         keyboardSupport:['Boolean', false],
         pagination:     ['String', null],
         onChange:       ['Function', null],
@@ -96,7 +95,6 @@ Ink.createModule('Ink.UI.Carousel', '1',
 
             this._setUpPagination();
             this._setUpAutoAdvance();
-            this._setUpHider();
 
             this._options.onInit.call(this, this);
         },
@@ -172,20 +170,6 @@ Ink.createModule('Ink.UI.Carousel', '1',
                 self.nextPage(true /* wrap */);
                 setTimeout(autoAdvance, self._options.autoAdvance);
             }, this._options.autoAdvance);
-        },
-
-        _setUpHider: function () {
-            if (this._options.hideLast) {
-                var hiderEl = InkElement.create('div', {
-                    className: 'hider',
-                    insertBottom: this._element
-                });
-                hiderEl.style.position = 'absolute';
-                hiderEl.style[ this._isY ? 'left' : 'top' ] = '0';  // fix to top..
-                hiderEl.style[ this._isY ? 'right' : 'bottom' ] = '0';  // and bottom...
-                hiderEl.style[ this._isY ? 'bottom' : 'right' ] = '0';  // and move to the end.
-                this._hiderEl = hiderEl;
-            }
         },
 
         /**
