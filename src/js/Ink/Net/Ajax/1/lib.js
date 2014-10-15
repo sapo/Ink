@@ -55,7 +55,6 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
     // IE10 does not need XDomainRequest
     var xMLHttpRequestWithCredentials = 'XMLHttpRequest' in window && 'withCredentials' in (new XMLHttpRequest());
 
-    var NO_RESPONSE = {};
 
 
     Ajax.prototype = {
@@ -433,7 +432,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
                     // Status 0 indicates network error for http requests.
                     // For http less requests, 0 is always returned.
                     if (this.isHTTP) {
-                        this.safeCall('onException', this.makeError(18, 'NETWORK_ERR'));
+                        this.safeCall('onException', new Error('Ink.Net.Ajax: network error! (HTTP status 0)'));
                     } else {
                         curStatus = responseContent ? 200 : 404;
                     }
@@ -530,29 +529,22 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
          * If you pass in an error as the second argument, it gets thrown if there is no default listener.
          *
          * @method safeCall
-         * @param {Function}  listener
+         * @param {Function}  handlerName
+         * @param {Error}     error     This error gets reported to the console using Ink.error if there's no listener to `handlerName`.
+         * @param {Mixed}     [args...] Arguments to get passed to the `handlerName` handler.
+         * @return {void}
+         * @private
          */
-        safeCall: function(listener, first/*, second*/) {
-            function rethrow(exception){
-                setTimeout(function() {
-                    // Rethrow exception so it'll land in
-                    // the error console, firebug, whatever.
-                    if (exception.message) {
-                        exception.message += '\n'+(exception.stacktrace || exception.stack || '');
-                    }
-                    throw exception;
-                }, 1);
-            }
-            if (typeof this.options[listener] === 'function') {
-                //SAPO.safeCall(this, this.options[listener], first, second);
-                //return object[listener].apply(object, [].slice.call(arguments, 2));
+        safeCall: function(handlerName /*[error or rest...]*/) {
+            var error = arguments[1] instanceof Error ? arguments[1] : null;
+            if (typeof this.options[handlerName] === 'function') {
                 try {
-                    this.options[listener].apply(this, [].slice.call(arguments, 1));
+                    this.options[handlerName].apply(this, [].slice.call(arguments, 1));
                 } catch(ex) {
-                    rethrow(ex);
+                    Ink.error('Ink.Net.Ajax: an error was raised while executing ' + handlerName + '.', ex);
                 }
-            } else if (first && window.Error && (first instanceof Error)) {
-                rethrow(first);
+            } else if (error) {
+                Ink.error('Ink.Net.Ajax: ' + error);
             }
         },
 
@@ -649,7 +641,8 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
                     if (crossDomain) {
                         // Need explicit handling because Mozila aborts
                         // the script and Chrome fails silently.per the spec
-                        throw this.makeError(18, 'NETWORK_ERR');
+                        Ink.error('Ink.Net.Ajax: You are attempting to request a URL which is cross-domain from this one. To do this, you *must* enable the `cors` option!');
+                        return;
                     } else {
                         this.startTime = new Date().getTime();
                         this.transport.send(params);
@@ -699,7 +692,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
                     /*jshint evil:true */
                     return eval('(' + strJSON + ')');
                 } catch(e) {
-                    throw new Error('ERROR: Bad JSON string...');
+                    throw new Error('Ink.Net.Ajax: Bad JSON string. ' + e);
                 }
             }
             return null;

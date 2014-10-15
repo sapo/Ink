@@ -97,6 +97,17 @@ Ink.requireModules(['Ink.Net.Ajax_1'], function (Ajax) {
         });
     });
 
+    test('Attempt to load something cross-domain from where we are results in a call to Ink.warn with a helpful message, and raises an error', function () {
+        sinon.stub(Ink, 'error');
+
+        new Ajax('http://cross-domain-from-here.com/lel.json');
+
+        equal(Ink.error.calledOnce, true, 'Ink.warn called once');
+        var isHelpful = ok;
+        isHelpful(Ink.error.lastCall.args[0]);
+    });
+
+
     test('isJSON', function () {
         var isJSON = Ajax.prototype.isJSON;
         ok(isJSON('{"hello": "world"}'));
