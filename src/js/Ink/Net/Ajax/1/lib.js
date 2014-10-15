@@ -720,8 +720,10 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
      * @sample Ink_Net_Ajax_load.html 
      */
     Ajax.load = function(url, callback){
+        var isCrossDomain = Ajax.prototype._locationIsCrossDomain(window.location, Ajax.prototype._locationFromURL(url));
         return new Ajax(url, {
             method: 'GET',
+            cors: isCrossDomain,
             onSuccess: function(response){
                 callback(response.responseJSON || response.responseText, response);
             }
@@ -739,8 +741,10 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
      * @return {Object}             XMLHttpRequest object
      */
     Ajax.ping = function(url, callback){
+        var isCrossDomain = Ajax.prototype._locationIsCrossDomain(window.location, Ajax.prototype._locationFromURL(url));
         return new Ajax(url, {
             method: 'HEAD',
+            cors: isCrossDomain,
             onSuccess: function(response){
                 if (typeof callback === 'function'){
                     callback(response);
