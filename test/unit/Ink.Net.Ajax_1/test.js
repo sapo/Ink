@@ -38,6 +38,15 @@ Ink.requireModules(['Ink.Net.Ajax_1'], function (Ajax) {
         equal(statics._locationIsCrossDomain(
             statics._locationFromURL('http://www.sapo.pt:80/'),
             statics._locationFromURL('http://www.sapo.pt:81/')), false);
+
+        equal(statics._locationIsCrossDomain(
+            statics._locationFromURL('foo.jpg'),
+            statics._locationFromURL('/my/page.html')), false);
+
+        /* Different site than the one we are, and a file somewhere */
+        equal(statics._locationIsCrossDomain(
+            statics._locationFromURL('http://localhost.com/foo'),
+            statics._locationFromURL('/my/page.html')), true);
     });
 
     test('Url parameters', function () {

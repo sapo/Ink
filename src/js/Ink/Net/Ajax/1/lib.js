@@ -152,25 +152,37 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
          * @private
          */
         _locationIsHTTP: function (urlLocation) {
-            return urlLocation.protocol.match(/^https?:/i) ? true : false;
+            return urlLocation.href.match(/^https?:/i) ? true : false;
         },
 
         /**
          * Checks whether a location is cross-domain from another
          *
          * @method _locationIsCrossDomain
-         * @param urlLocation {Location}
-         * @param otherLocation {Location}
+         * @param urlLocation {Location}     A Location object or an `<a>` elemnt.
+         * @param [otherLocation] {Location} Another Location object or `<a>` element.
          * @return {Boolean} `true` if the locations are in different domains (in which case we need to perform a cross-domain request)
          * @private
          */
         _locationIsCrossDomain: function (urlLocation, location) {
+            // TODO because of oldIE compatibility, we can only use <a>.href (the full URL), and none of the other useful properties one can find in Location elements. So we should just pass pure strings around. Not only here.
             location = location || window.location;
             if (!Ajax.prototype._locationIsHTTP(urlLocation) || location.protocol === 'widget:' || typeof window.widget === 'object') {
                 return false;
             } else {
-                return location.protocol           !== urlLocation.protocol ||
-                       location.host.split(':')[0] !== urlLocation.host.split(':')[0];
+                var split1 = urlLocation.href.split('://');
+                var split2 = location.href.split('://');
+
+                var protocol1 = split1[0];
+                var protocol2 = split2[0];
+
+                var colonOrSlash = /:|\//;  // Finds colons or slashes, which are the end of hostnames (without ports)
+
+                var host1 = split1[1].split(colonOrSlash)[0];
+                var host2 = split2[1].split(colonOrSlash)[0];
+
+                return protocol1 !== protocol2 ||
+                    host1 !== host2;
             }
         },
 
