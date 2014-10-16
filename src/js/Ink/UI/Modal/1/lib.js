@@ -170,7 +170,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
         },
 
         /**
-         * Responsible for resizing the modal
+         * Responsible for resizing the modal when the window's size changes.
          * 
          * @method _onResize
          * @param {Boolean|Event} runNow Its executed in the begining to resize/reposition accordingly to the viewport. But usually it's an event object.
@@ -516,11 +516,11 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
         setContentMarkup: function(contentMarkup) {
             if( !this._markupMode ){
                 this._modalDiv.innerHTML = [contentMarkup].join('');
-                this._contentContainer = Selector.select(".modal-body",this._modalDiv);
+                this._contentContainer = Selector.select(".modal-body", this._modalDiv);
                 if( !this._contentContainer.length ){
                     // throw 'Missing div with class "modal-body"';
-                    var tempHeader = Selector.select(".modal-header",this._modalDiv);
-                    var tempFooter = Selector.select(".modal-footer",this._modalDiv);
+                    var tempHeader = Selector.select(".modal-header", this._modalDiv);
+                    var tempFooter = Selector.select(".modal-footer", this._modalDiv);
 
                     InkArray.each(tempHeader, InkElement.remove);
                     InkArray.each(tempFooter, InkElement.remove);
@@ -542,7 +542,6 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             this._contentElement = this._modalDiv;
             this._resizeContainer();
         }
-
     };
 
     Common.createUIComponent(Modal, { elementIsOptional: true });
