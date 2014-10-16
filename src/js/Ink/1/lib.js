@@ -543,15 +543,12 @@
          *
          * @method i
          * @param {String} id Element ID
-         * @return {DOMElement} The element returned by `document.getElementById(id)` if `id` was a string, and `id` otherwise.
+         * @return {DOMElement|null} The element returned by `document.getElementById(id)` if `id` was a string, and `id` otherwise.
          * @sample Ink_1_i.html
          */
         i: function(id) {
-            if(!id) {
-                throw new Error('Ink.i => id or element must be passed');
-            }
             if(typeof(id) === 'string') {
-                return document.getElementById(id);
+                return document.getElementById(id) || null;
             }
             return id;
         },
