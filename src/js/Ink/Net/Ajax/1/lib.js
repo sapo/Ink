@@ -519,8 +519,8 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
          * Last step after XHR is complete. Call onComplete and cleanup object
          *
          * @method finish
-         * @param {Any} response
-         * @param {Any} responseContent
+         * @param {Mixed} response
+         * @param {Mixed} responseContent
          * @return {void}
          * @private
          */

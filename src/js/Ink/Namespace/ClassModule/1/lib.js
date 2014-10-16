@@ -56,6 +56,7 @@ Ink.createModule(
             /**
              * @method bake
              * @return {Number} a number between 0 and 1
+             * @public
              */
             bake: function() {
                 return Math.random();
@@ -63,8 +64,10 @@ Ink.createModule(
 
             /**
              * @method bake
-             * @param {String} ingredient
-             * @param {Number} time
+             * @param {String} ingredient What to bake
+             * @param {Number} time       How long to bake it
+             * @return {void}
+             * @public
              */
             cook: function(ingredient, time) {
                 return this._privMethod2();

@@ -99,9 +99,9 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          *
          * @method elOrSelector
          * @static
-         * @param  {DOMElement|String}      elOrSelector    DOM Element or CSS Selector
+         * @param  {Element|String}         elOrSelector    DOM Element or CSS Selector
          * @param  {String}                 fieldName       The name of the field. Commonly used for debugging.
-         * @return {DOMElement} Returns the DOMElement passed or the first result of the CSS Selector. Otherwise it throws an exception.
+         * @return {Element} Returns the Element passed or the first result of the CSS Selector. Otherwise it throws an exception.
          * @example
          *     // In case there are several .myInput, it will retrieve the first found
          *     var el = Ink.UI.Common.elOrSelector('.myInput','My Input');
@@ -119,16 +119,15 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
         },
 
         /**
-         * Alias for `elOrSelector` but returns an array of elements.
+         * Like `elOrSelector` but returns an array of elements.
          *
          * @method elsOrSelector
          *
          * @static
-         * @param  {DOMElement|String}      elOrSelector    DOM Element or CSS Selector
-         * @param  {String}                 fieldName       The name of the field. Commonly used for debugging.
-         * @return {DOMElement} Returns the DOMElement passed or the first result of the CSS Selector. Otherwise it throws an exception.
-         * @param {Boolean} required Flag to accept an empty array as output.
-         * @return {Array} The selected DOM Elements.
+         * @param  {Element|Array|String} elsOrSelector DOM Element , array of DOM Elements, or CSS Selector
+         * @param  {String}               [fieldName]     The name of the field. Used for the error shown when no elements are found.
+         * @param {Boolean} required If this is true, throw an error instead of returning an empty array.
+         * @return {Array} The selected Elements, or the given Elements
          * @example
          *     var elements = Ink.UI.Common.elsOrSelector('input.my-inputs', 'My Input');
          */
@@ -160,10 +159,11 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          *
          * @method options
          *
-         * @param {Object}      [fieldId]   Name to be used in debugging features.
-         * @param {Object}      defaults    Object with the options' types and defaults.
-         * @param {Object}      overrides   Options to override the defaults. Usually passed when instantiating an UI module.
-         * @param {DOMElement}  [element]   Element with data-attributes
+         * @param {Object}  [fieldId]   Name to be used in error reports.
+         * @param {Object}  defaults    Object with the options' types and defaults.
+         * @param {Object}  overrides   Options to override the defaults. Usually passed when instantiating an UI module.
+         * @param {Element} [element]   Element with data-attributes
+         * @return {Object} An object containing all the option values.
          *
          * @example
          *
@@ -203,6 +203,14 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          *
          **/
         options: function (fieldId, defaults, overrides, element) {
+            // TODO Change Common.options's signature? the below looks better, more manageable
+            // var options = Common.options({
+            //     element: this._element,
+            //     modName: constructor._name,
+            //     options: constructor._optionDefinition,
+            //     defaults: constructor._globalDefaults
+            // });
+
             if (typeof fieldId !== 'string') {
                 element = overrides;
                 overrides = defaults;
@@ -379,7 +387,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          *
          * @method childIndex
          * @static
-         * @param  {DOMElement}     childEl     Valid DOM Element.
+         * @param  {Element}     childEl     Valid DOM Element.
          * @return {Number}                     Numerical position of an element relatively to its parent.
          * @example
          *     <!-- Imagine the following HTML: -->
@@ -418,6 +426,8 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          * @param   {String}    endpoint    Valid URL to be used as target by the request.
          * @param   {Object}    params      This field is used in the thrown Exception to identify the parameter.
          * @param   {Function}  cb          Callback for the request.
+         * @return {void}
+         * @public
          * @example
          *     // In case there are several .myInput, it will retrieve the first found
          *     var el = Ink.UI.Common.elOrSelector('.myInput','My Input');
@@ -455,7 +465,8 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          *
          * @method currentLayout
          * @static
-         * @return {String}         A string representation of the current layout name.
+         * @return {String} A string representation of the current layout name.
+         * @public
          * @example
          *      var inkLayout = Ink.UI.Common.currentLayout();
          *      if (inkLayout === 'small') {
@@ -495,7 +506,8 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          *
          * @method hashSet
          * @static
-         * @param  {Object} o   Object with the info to be placed in the location's hash.
+         * @param  {Object} o Object with the info to be placed in the location's hash.
+         * @return {void}
          * @example
          *     // It will set the location's hash like: <url>#key1=value1&key2=value2&key3=value3
          *     Ink.UI.Common.hashSet({
@@ -517,7 +529,9 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          *
          * @method cleanChildren
          * @static
-         * @param  {DOMElement} parentEl Valid DOM Element
+         * @param  {Element} parentEl Valid DOM Element
+         * @return {void}
+         * @public
          * @example
          *     <!-- Imagine the following HTML: -->
          *     <ul id="myUl">
@@ -551,8 +565,10 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          *
          * @method storeIdAndClasses
          * @static
-         * @param  {DOMElement} fromEl    Valid DOM Element to get the id and classes from.
+         * @param  {Element}    fromEl    Valid DOM Element to get the id and classes from.
          * @param  {Object}     inObj     Object where the id and classes will be saved.
+         * @return {void}
+         * @public
          * @example
          *     <div id="myDiv" class="aClass"></div>
          *
@@ -568,7 +584,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          */
         storeIdAndClasses: function(fromEl, inObj) {
             if( !Common.isDOMElement(fromEl) ){
-                throw 'Please provide a valid DOMElement as first parameter';
+                throw 'Please provide a valid Element as first parameter';
             }
 
             var id = fromEl.id;
@@ -587,8 +603,10 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          *
          * @method restoreIdAndClasses
          * @static
-         * @param  {DOMElement} toEl    Valid DOM Element to set the id and classes on.
+         * @param  {Element}    toEl    Valid DOM Element to set the id and classes on.
          * @param  {Object}     inObj   Object where the id and classes to be set are. This method uses the same format as the one given in `storeIdAndClasses`
+         * @return {void}
+         * @public
          * @example
          *     <div></div>
          *
@@ -607,7 +625,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
         restoreIdAndClasses: function(toEl, inObj) {
 
             if( !Common.isDOMElement(toEl) ){
-                throw 'Please provide a valid DOMElement as first parameter';
+                throw 'Please provide a valid Element as first parameter';
             }
 
             if (inObj._id && toEl.id !== inObj._id) {
@@ -670,12 +688,15 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
         },
 
         /**
-         * Saves a component's instance reference for later retrieval.
+         * Saves an object (which should inherit BaseUIComponent) in the registry, associated with an element. You can retrieve it later by calling getInstance.
+         *
+         * This won't allow two instances of the same class to be created on a single element. It will fail and print a warning to the console if you try to do it. That is a common error when using Ink.
          *
          * @method registerInstance
          * @static
-         * @param  {Object}     inst                Object that holds the instance.
-         * @param  {DOMElement} el                  DOM Element to associate with the object.
+         * @param  {Object}  inst Object that holds the instance.
+         * @param  {Element} el   Element to associate with `inst`.
+         * @return {Boolean} `true` if we could create the instance, `false` otherwise.
          */
         registerInstance: function(inst, el) {
             if (!inst) { return; }
@@ -700,11 +721,13 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
         },
 
         /**
-         * Deletes an instance with a given id.
+         * Unregisters (removes from the registry) a UI component instance from whatever element it's on.
          *
          * @method unregisterInstance
          * @static
-         * @param  {String}     id       Id of the instance to be destroyed.
+         * @param  {String}     inst       Instance to be unregistered.
+         * @return {void}
+         * @public
          */
         unregisterInstance: function(inst) {
             if (!inst || !inst._element) { return; }
@@ -717,12 +740,16 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
         },
 
         /**
-         * Gets an UI instance from an element or instance id.
+         * Gets an UI component instance from an element.
+         *
+         * This function is already available in the UI components' classes themselves. You can call Modal.getInstance() and retrieve a modal.
          *
          * @method getInstance
          * @static
-         * @param  {String|DOMElement}      el      DOM Element from which we want the instances.
-         * @return  {Object|Array}                  Returns an instance or a collection of instances.
+         * @param  {String|Element} el Element from which we want the instances. A selector is okay.
+         * @param {BaseUIComponent} [UIComponent] If you pass an Ink UI component class (Like Ink.UI.Modal or Ink.UI.Carousel), this won't return an array of all instances associated with the element. Instead it will return only the object which is an instance of that class.
+         * @return  {Object|Array}               Returns an array containing all the instances in that element.
+         * @public
          */
         getInstance: function(el, UIComponent) {
             el = Common.elOrSelector(el);
@@ -750,11 +777,12 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          *
          * @method getInstanceFromSelector
          * @static
-         * @param  {String}             selector    CSS selector to get the instances from.
-         * @return  {Object|Array}               Returns an instance or a collection of instances.
+         * @param  {String}             selector    CSS selector to get the instances from. This function will only use the *first* element.
+         * @return  {Object|Array}               Returns an array of the instances in the selected element.
+         * @public
          */
         getInstanceFromSelector: function(selector) {
-            return Common.getInstance(Common.elOrSelector(selector));
+            return Common.getInstance(selector);
         },
 
         /**
@@ -762,7 +790,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          *
          * @method getInstanceIds
          * @static
-         * @return  {Array}     Collection of instance ids
+         * @return  {Array} Collection of instance ids
          */
         getInstanceIds: function() {
             if( _reg.length > 0 ) return _reg;
@@ -781,6 +809,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          * @method getInstances
          * @static
          * @return  {Array}     Collection of existing instances.
+         * @public
          */
         getInstances: function() {
             if( _reg.length > 0 ) return _reg;
@@ -798,6 +827,8 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          * Components should copy this method as its destroy method and modify it.
          *
          * @method destroyComponent
+         * @return {void}
+         * @public
          * @static
          */
         destroyComponent: function() {
@@ -839,8 +870,9 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
      * @class Ink.UI.Common.BaseUIComponent
      * @constructor
      *
-     * @param element
-     * @param options
+     * @param {Element|String} element Element to associate this UI component with. It's the element you can get later using `comp.getElement()`
+     * @param {Object} [options] Options to pass to the component. You should see your specific UI component for this information.
+     * @public
      **/
     function BaseUIComponent(element, options) {
         var constructor = this.constructor;
@@ -866,14 +898,6 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
             isValidInstance = false;
             Ink.error(new Error(element + ' does not match an element on the page. You need to pass a valid selector to "new ' + _name + '".'));
         }
-
-        // TODO Change Common.options's signature? the below looks better, more manageable
-        // var options = Common.options({
-        //     element: this._element,
-        //     modName: constructor._name,
-        //     options: constructor._optionDefinition,
-        //     defaults: constructor._globalDefaults
-        // });
 
         this._options = Common.options(_name, constructor._optionDefinition, options, this._element);
 
@@ -952,9 +976,8 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          * Get an UI component's option's value.
          *
          * @method getOption
-         * @param name
-         *
-         * @return The option value, or undefined if nothing is found.
+         * @param {String} name The option's name.
+         * @return {Mixed} The option value, or undefined if nothing is found.
          *
          * @example
          *
@@ -972,11 +995,13 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
         },
 
         /**
-         * Sets an option's value
+         * Sets an option's value.
          *
          * @method getOption
-         * @param name
-         * @param value
+         * @param {String} name Name of the option.
+         * @param {Mixed} value New option value.
+         * @return {void}
+         * @public
          *
          * @example
          *
@@ -1011,10 +1036,16 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
     Common.BaseUIComponent = BaseUIComponent;
 
     /**
+     * Take a constructor, and make it an Ink UI component.
+     *
+     * Makes it inherit BaseUIComponent, makes sure it has the basic properties Ink.UI.Common needs it to have, adds the necessary static methods, sets its options, etc.
+     *
      * @method createUIComponent
-     * @param theConstructor UI component constructor. It should have an _init function in its prototype, an _optionDefinition object, and a _name property indicating its name.
-     * @param options
-     * @param [options.elementIsOptional=false] Whether the element argument is optional (For example, when the component might work on existing markup or create its own).
+     * @param {Function} theConstructor UI component constructor. It should have an _init function in its prototype, an _optionDefinition object, and a _name property indicating its name.
+     * @param {Object}  [options] Options hash, containing:
+     * @param {Boolean} [options.elementIsOptional=false] Whether the element argument is optional (For example, when the component might work on existing markup or create its own).
+     * @return {void}
+     * @public
      **/
     Common.createUIComponent = function createUIComponent(theConstructor, options) {
         theConstructor._componentOptions = options || {};

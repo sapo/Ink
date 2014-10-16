@@ -10,14 +10,17 @@ Ink.createModule('Ink.UI.Pagination', '1',
     'use strict';
 
     /**
-     * Function to create the pagination anchors
+     * Function to create the pagination links
      *
      * @method genAel
      * @private
-     * @param  {String} inner HTML to be placed inside the anchor.
-     * @return {DOMElement}  Anchor created
+     * @param  {String} innerHTML HTML to be placed inside the anchor.
+     * @param  {String} index The page's index, for the data-index attribute. Omit this for the "next", "prev", etc. buttons.
+     * @param  {Object} [options] Options object, containing:
+     * @param  {Boolean} [options.wrapText] Whether to wrap text in a `<span>`
+     * @return {Element} The created link element.
      */
-    var genAEl = function(inner, index, options) {
+    var genAEl = function(innerHTML, index, options) {
         var aEl = document.createElement('a');
         aEl.setAttribute('href', '#');
         if (typeof index === 'number') {
@@ -26,9 +29,9 @@ Ink.createModule('Ink.UI.Pagination', '1',
         if(options && options.wrapText) {
             var spanEl = document.createElement('span');
             aEl.appendChild(spanEl);
-            spanEl.innerHTML = inner;
+            spanEl.innerHTML = innerHTML;
         } else {
-            aEl.innerHTML = inner;
+            aEl.innerHTML = innerHTML;
         }
         return aEl;
     };
@@ -37,7 +40,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
      * @class Ink.UI.Pagination
      * @constructor
      * @version 1
-     * @param {String|DOMElement}   selector                    Selector or element
+     * @param {String|Element}      selector                    Selector or element
      * @param {Object}              options                     Options
      * @param {Number}              [options.size]              Number of pages.
      * @param {Number}              [options.totalItemCount]    Total numeber of items to display
@@ -247,7 +250,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
          * Returns the top element for the gallery DOM representation
          *
          * @method _generateMarkup
-         * @param {DOMElement} el
+         * @param {Element} el
          * @private
          */
         _generateMarkup: function(el) {
@@ -345,10 +348,12 @@ Ink.createModule('Ink.UI.Pagination', '1',
          * Allows you to subscribe to the onChange event
          *
          * @method setOnChange
-         * @param cb {Function} Callback called with `(thisPaginator, newPageNumber)`.
+         * @param {Function} onChange Callback called with `(thisPaginator, newPageNumber)`.
+         * @return {void}
+         * @public
          */
         setOnChange: function (onChange) {
-            if (onChange !== undefined && typeof onChange !== 'function') {
+            if (onChange && typeof onChange !== 'function') {
                 throw new TypeError('onChange option must be a function!');
             }
             this._options.onChange = onChange;
@@ -359,10 +364,11 @@ Ink.createModule('Ink.UI.Pagination', '1',
          **************/
 
         /**
-         * Sets the number of pages
+         * Sets the number of pages to `sz`
          *
          * @method setSize
          * @param {Number} sz number of pages
+         * @return {void}
          * @public
          */
         setSize: function(sz) {
@@ -376,11 +382,15 @@ Ink.createModule('Ink.UI.Pagination', '1',
         },
 
         /**
-         * Sets the number of pages, then call setSize().
+         * An alternative to setSize, to define the number of pages in the Paginator.
          *
-         * @param setSizeInItems
+         * If you don't know how many pages you want, but know the amount of items you have and how many of them you want on each page, use this.
+         *
+         * @method setSizeInItems
          * @param {Number} totalItems       Total number of items
          * @param {Number} itemsPerPage     Items per page
+         * @return {void}
+         * @public
          */
         setSizeInItems: function (totalItems, itemsPerPage) {
             var pageNumber = Math.ceil(totalItems / itemsPerPage);
@@ -392,7 +402,8 @@ Ink.createModule('Ink.UI.Pagination', '1',
          *
          * @method setCurrent
          * @param {Number} nr           Sets the current page to given number.
-         * @param {Boolean} isRelative  Flag to change the position from absolute to relative.
+         * @param {Boolean} [isRelative=false] If you set this to `true`, the function will perform a relative change. (example: setCurrent(1) will move to the next page, while setCurrent(-1) will move to the previous page)
+         * @return {void}
          * @public
          */
         setCurrent: function(nr, isRelative) {

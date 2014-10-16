@@ -15,7 +15,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
      * @class Ink.UI.Modal
      * @constructor
      * @version 1
-     * @param {String|DOMElement}   selector                        Element or ID
+     * @param {String|Element}      selector                        Element or ID
      * @param {Object}              [options]                       Options object, containing:
      * @param {String}              [options.width]                 Default/Initial width. Ex: '600px'
      * @param {String}              [options.height]                Default/Initial height. Ex: '400px'
@@ -90,7 +90,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                 resize:  Ink.bindEvent(this._onResize, this)
             };
 
-            this._wasDismissed = false;
+            this._isOpen = true;
 
             /**
              * Modal Markup
@@ -223,7 +223,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
          * Handle clicks on the shade element.
          * 
          * @method _onShadeClick
-         * @param {Event} ev
+         * @param {Event} ev DOM click event
          * @private
          */
         _onShadeClick: function(ev) {
@@ -247,7 +247,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                 this.dismiss();
 
                 // Only stop the event if this dismisses this modal
-                if (this._wasDismissed) {
+                if (!this._isOpen) {
                     Event.stop(ev);
                 }
             }
@@ -261,11 +261,11 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
          * @private
          */
         _onKeyDown: function(ev) {
-            if (ev.keyCode !== 27 || this._wasDismissed) { return; }
+            if (ev.keyCode !== 27 || !this._isOpen) { return; }
             if (this._options.closeOnEscape &&
                     openModals[openModals.length - 1] === this) {
                 this.dismiss();
-                if (this._wasDismissed) {
+                if (!this._isOpen) {
                     Event.stop(ev);
                 }
             }
@@ -308,6 +308,8 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
          * to open the modal when you want to.
          * @method open 
          * @param {Event} [event] (internal) In case its fired by the internal trigger.
+         * @return {void}
+         * @public
          */
         open: function(event) {
 
@@ -397,29 +399,31 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
         },
 
         /**
-         * Returns whether the modal is currently open
+         * Returns whether the modal is currently open.
          * @method isOpen
+         * @return {Boolean} Whether the modal is open right now.
          * @public
          **/
         isOpen: function () {
-            return !this._wasDismissed;
+            return this._isOpen
         },
 
         /**
-         * Closes the modal
+         * Closes the modal.
          * 
          * @method dismiss
+         * @return {void}
          * @public
          */
         dismiss: function() {
-            if (this._wasDismissed) { /* Already dismissed. WTF IE. */ return; }
+            if (!this._isOpen) { /* Already dismissed. WTF IE. */ return; }
 
             if (this._options.onDismiss) {
                 var ret = this._options.onDismiss(this);
                 if (ret === false) { return; }
             }
 
-            this._wasDismissed = true;
+            this._isOpen = false;
 
             if( this._options.responsive ){
                 Event.stopObserving(window, 'resize', this._handlers.resize);
@@ -483,6 +487,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
          * Removes the modal from the DOM
          * 
          * @method destroy
+         * @return {void}
          * @public
          */
         destroy: function() {
@@ -493,7 +498,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
          * Returns the content DOM element
          * 
          * @method getContentElement
-         * @return {DOMElement} Modal main cointainer.
+         * @return {Element} Modal main cointainer.
          * @public
          */
         getContentElement: function() {
@@ -504,7 +509,8 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
          * Replaces the content markup
          * 
          * @method setContentMarkup
-         * @param {String} contentMarkup
+         * @param {String} contentMarkup Markup to be placed inside the modal.
+         * @return {void}
          * @public
          */
         setContentMarkup: function(contentMarkup) {

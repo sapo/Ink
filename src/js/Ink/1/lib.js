@@ -44,6 +44,9 @@
      */
 
     window.Ink = {
+        /**
+         * @property {String} VERSION
+         **/
         VERSION: '3.1.1',
         _checkPendingRequireModules: function() {
             var I, F, o, dep, mod, cb, pRMs = [];
@@ -92,6 +95,8 @@
          * @method getPath
          * @param {String}  key      Name of the module you want to get the path
          * @param {Boolean} [noLib] Flag to skip appending 'lib.js' to the returned path.
+         *
+         * @return {String} The URI to the module, according to what you added in setPath for the given `key`.
          */
         getPath: function(key, noLib) {
             var split = key.split(/[._]/g);
@@ -139,6 +144,7 @@
          *
          * @param {String} key       Module or namespace
          * @param {String} rootURI   Base URL path and schema to be appended to the module or namespace
+         * @return {void}
          *
          * @example
          *      Ink.setPath('Ink', 'http://my-cdn/Ink/');
@@ -164,6 +170,7 @@
          * @method loadScript
          * @param {String}  uri  Can be an external URL or a module name
          * @param {String}  [contentType]='text/javascript' The `type` attribute of the new script tag.
+         * @return {void}
          */
         loadScript: function(uri, contentType) {
             /*jshint evil:true */
@@ -268,25 +275,26 @@
          * @param  {Number}    version  Version number
          * @param  {Array}     deps     Array of module names which are dependencies of the module being created. The order in which they are passed here will define the order they will be passed to the callback function.
          * @param  {Function}  modFn    The callback function to be executed when all the dependencies are resolved. The dependencies are passed as arguments, in the same order they were declared. The function itself should return the module.
+         * @return {void}
          * @sample Ink_1_createModule.html
          *
          */
-        createModule: function(mod, ver, deps, modFn) { // define
+        createModule: function(mod, version, deps, modFn) { // define
             if (typeof mod !== 'string') {
                 throw new Error('module name must be a string!');
             }
 
             // validate version correctness
-            if (!(typeof ver === 'number' || (typeof ver === 'string' && ver.length > 0))) {
+            if (!(typeof version === 'number' || (typeof version === 'string' && version.length > 0))) {
                 throw new Error('version number missing!');
             }
 
-            var modAll = [mod, '_', ver].join('');
+            var modAll = [mod, '_', version].join('');
 
             modulesWaitingForDeps[modAll] = true;
 
             var cb = function() {
-                //console.log(['createModule(', mod, ', ', ver, ', [', deps.join(', '), '], ', !!modFn, ')'].join(''));
+                //console.log(['createModule(', mod, ', ', version, ', [', deps.join(', '), '], ', !!modFn, ')'].join(''));
 
                 // make sure module in not loaded twice
                 if (modules[modAll]) {
@@ -309,11 +317,11 @@
 
                 // set version
                 if (typeof moduleContent === 'object') { // Dom.Css Dom.Event
-                    moduleContent._version = ver;
+                    moduleContent._version = version;
                 }
                 else if (typeof moduleContent === 'function') {
-                    moduleContent.prototype._version = ver; // if constructor
-                    moduleContent._version = ver;           // if regular function
+                    moduleContent.prototype._version = version; // if constructor
+                    moduleContent._version = version;           // if regular function
                 }
 
 
@@ -330,7 +338,7 @@
                 delete modulesWaitingForDeps[ modAll ];
 
                 if (isInkModule) {
-                    t[0][ t[1] + '_' + ver ] = moduleContent; // in namespace
+                    t[0][ t[1] + '_' + version ] = moduleContent; // in namespace
                 }
 
 
@@ -362,6 +370,7 @@
          * @method requireModules
          * @param  {Array}     deps  Array of module names. The order in which they are passed here will define the order they will be passed to the callback function.
          * @param  {Function}  cbFn  The callback function to be executed when all the dependencies are resolved. The dependencies are passed as arguments, in the same order they were declared.
+         * @return {void}
          * @sample Ink_1_requireModules.html
          */
         requireModules: function(deps, cbFn) { // require
@@ -460,6 +469,7 @@
          * @param {String} version  Extension version
          * @param {Array}  dependencies Extension dependencies
          * @param {Function} modFn  Function returning the extension
+         * @return {void}
          * @sample Ink_1_createExt.html
          */
         createExt: function (moduleName, version, dependencies, modFn) {
@@ -467,14 +477,14 @@
         },
 
         /**
-         * Function.prototype.bind alternative.
+         * Function.prototype.bind alternative/fallback.
          * Creates a new function that, when called, has its this keyword set to the provided value, with a given sequence of arguments preceding any provided when the new function is called.
          *
          * @method bind
          * @param {Function}  fn        The function
          * @param {Object}    context   The value to be passed as the this parameter to the target function when the bound function is called. If used as false, it preserves the original context and just binds the arguments.
-         * @param {Any}   [args*]     Additional arguments will be sent to the original function as prefix arguments.
-         * @return {Function}
+         * @param {Mixed}       [more...] Additional arguments will be sent to the original function as prefix arguments.
+         * @return {Function} A copy of `fn` bound to the given `context`. Calling this function causes a call to `fn` with the new `context` and any `more` arguments.
          * @sample Ink_1_bind.html
          */
         bind: function(fn, context) {
@@ -488,13 +498,14 @@
 
         /**
          * Function.prototype.bind alternative for class methods
-         * Creates a new function that, when called, has this k
+         * See Ink.bind. The difference between `bindMethod` and `bind` is that `bindMethod` fetches a method from an object. It can be useful, for instance, to bind a function which is a property of an object returned by another function.
+         *
          * @method bindMethod
          * @uses bind
          * @param {Object}  object      The object that contains the method to bind
          * @param {String}  methodName  The name of the method that will be bound
-         * @param {Any}   [args*]     Additional arguments will be sent to the new method as prefix arguments.
-         * @return {Function}
+         * @param {Mixed}       [more...] Additional arguments will be sent to the new method as prefix arguments.
+         * @return {Function} See Ink.bind.
          * @sample Ink_1_bindMethod.html
          */
         bindMethod: function (object, methodName) {
@@ -505,13 +516,13 @@
         /**
          * Function.prototype.bind alternative for event handlers.
          * Same as bind but keeps first argument of the call the original event.
-         * Set "context" to `false` to preserve the original context of the function and just bind the arguments.
+         * Set `context` to `false` to preserve the original context of the function and just bind the arguments.
          *
          * @method bindEvent
          * @param {Function}  fn        The function
          * @param {Object}    context   The value to be passed as the this parameter to the target
-         * @param {Any}     [args*]   Additional arguments will be sent to the original function as prefix arguments
-         * @return {Function}
+         * @param {Mixed}       [more...] Additional arguments will be sent to the original function as prefix arguments
+         * @return {Function} A function which will always call `fn` with the given event (or window.event, in IE) as the first argument.
          * @sample Ink_1_bindEvent.html
          */
         bindEvent: function(fn, context) {
@@ -524,11 +535,15 @@
         },
 
         /**
-         * Alias to document.getElementById
+         * Shorter alias to document.getElementById.
+         * Just calls `document.getElementById(id)`, unless `id` happens to be an element.
+         * If `id` is an element, `Ink.i` just returns it.
+         *
+         * You can use this in situations where you want to accept an element id, but a raw element is also okay.
          *
          * @method i
          * @param {String} id Element ID
-         * @return {DOMElement}
+         * @return {DOMElement} The element returned by `document.getElementById(id)` if `id` was a string, and `id` otherwise.
          * @sample Ink_1_i.html
          */
         i: function(id) {
@@ -544,37 +559,41 @@
         /**
          * Alias for Ink.Dom.Selector
          *
+         * Using sizzle-specific selectors is NOT encouraged!
+         *
          * @method ss
          * @uses Ink.Dom.Selector.select
-         * @param {String}     rule
-         * @param {DOMElement} [from]
+         * @param {String}     selector          CSS3 selector string
+         * @param {DOMElement} [from=document]   Context element. If set to a DOM element, the `selector` will only look for descendants of this DOM Element.
          * @return {Array} array of DOMElements
          * @sample Ink_1_ss.html
          */
-        ss: function(rule, from)
+        ss: function(selector, from)
         {
             if(typeof(Ink.Dom) === 'undefined' || typeof(Ink.Dom.Selector) === 'undefined') {
                 throw new Error('This method requires Ink.Dom.Selector');
             }
-            return Ink.Dom.Selector.select(rule, (from || document));
+            return Ink.Dom.Selector.select(selector, (from || document));
         },
 
         /**
-         * Alias for Ink.Dom.Selector first result
+         * Selects elements like `Ink.ss`, but only returns the first element found.
+         *
+         * Using sizzle-specific selectors is NOT encouraged!
          *
          * @method s
          * @uses Ink.Dom.Selector.select
-         * @param {String}     rule     Selector string
-         * @param {DOMElement} [from]   Context element. If set to a DOM element, the rule will only look for descendants of this DOM Element.
-         * @return {DOMElement}
+         * @param {String}     selector        CSS3 selector string
+         * @param {DOMElement} [from=document] Context element. If set to a DOM element, the `selector` will only look for descendants of this DOM Element.
+         * @return {DOMElement} The first element found which matches the `selector`, or `null` if nothing is found.
          * @sample Ink_1_s.html
          */
-        s: function(rule, from)
+        s: function(selector, from)
         {
             if(typeof(Ink.Dom) === 'undefined' || typeof(Ink.Dom.Selector) === 'undefined') {
                 throw new Error('This method requires Ink.Dom.Selector');
             }
-            return Ink.Dom.Selector.select(rule, (from || document))[0] || null;
+            return Ink.Dom.Selector.select(selector, (from || document))[0] || null;
         },
 
         /**
@@ -584,8 +603,8 @@
          * @method extendObj
          * @param {Object} destination  The object that will receive the new/updated properties
          * @param {Object} source       The object whose properties will be copied over to the destination object
-         * @param {Object} [args*]      Additional source objects. The last source will override properties of the same name in the previous defined sources
-         * @return destination object, enriched with defaults from the sources
+         * @param {Object} [more...]    Additional source objects. The last source will override properties of the same name in the previous defined sources
+         * @return {Object} destination object, enriched with defaults from the sources
          * @sample Ink_1_extendObj.html
          */
         extendObj: function(destination/*, source... */) {
@@ -607,7 +626,8 @@
          * Calls native console.log if available.
          *
          * @method log
-         * @param {Any} [args*] Arguments to be evaluated
+         * @param {Mixed} [more...] Arguments to be evaluated
+         * @return {void}
          * @sample Ink_1_log.html
          **/
         log: function () {
@@ -622,7 +642,8 @@
          * Calls native console.warn if available.
          *
          * @method warn
-         * @param {Any} [args*] Arguments to be evaluated
+         * @param {Mixed} [more...] Arguments to be evaluated
+         * @return {void}
          * @sample Ink_1_warn.html
          **/
         warn: function () {
@@ -637,7 +658,8 @@
          * Calls native console.error if available.
          *
          * @method error
-         * @param {Any} [args*] Arguments to be evaluated
+         * @param {Mixed} [more...] Arguments to be evaluated
+         * @return {void}
          * @sample Ink_1_error.html
          **/
         error: function () {

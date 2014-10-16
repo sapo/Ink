@@ -30,6 +30,7 @@ Ink.createModule('Ink.Dom.Loaded', 1, [], function() {
          * @method run
          * @param {Object}   [win]=window   Window object to attach/add the event
          * @param {Function} fn             Callback function to be executed after the DOM is ready
+         * @return {void}
          * @public
          * @sample Ink_Dom_Loaded_run.html 
          */

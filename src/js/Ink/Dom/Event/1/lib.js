@@ -788,7 +788,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     KEY_INSERT:   45,
     
     /**
-     * Creates a debounced version of a function.
+     * Creates a throttled version of a function.
      * Returns a function which calls `func`, waiting at least `wait` milliseconds between calls. This is useful for events such as `scroll` or `resize`, which can be triggered too many times per second, slowing down the browser with needless function calls.
      *
      * *note:* This does not delay the first function call to the function.
@@ -796,13 +796,14 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * @method throttle
      * @param {Function} func   Function to call. Arguments and context are both passed.
      * @param {Number} [wait]=0 Milliseconds to wait between calls.
+     * @return {Function} A function throttled which will only be called at most every `wait` milliseconds.
      * @sample Ink_Dom_Event_1_throttle.html 
      **/
     throttle: function (func, wait) {
         wait = wait || 0;
         var lastCall = 0;  // Warning: This breaks on Jan 1st 1970 0:00
         var timeout;
-        var throttled = function () {
+        function throttled() {
             var now = +new Date();
             var timeDiff = now - lastCall;
             if (timeDiff >= wait) {
@@ -830,7 +831,8 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      *
      * @method element
      * @param {Object} ev  Event object
-     * @return {DOMNode} The target
+     * @return {Element} The target
+     * @public
      * @sample Ink_Dom_Event_1_element.html 
      */
     element: function(ev) {
@@ -946,7 +948,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * Attaches an event to a selector or array of elements.
      *
      * @method observeMulti
-     * @param {Array|String}        elements       
+     * @param {Array|String}        elements     Array of elements which are going to be observed. A selector is acceptable too.
      * @param {String}              eventName    Event name
      * @param {Function}            callBack     Receives the event object as a parameter. If you're manually firing custom events, check it's eventName property to make sure you're handling the right event.
      * @param {Boolean}            [useCapture]  Flag change event listening from bubbling to capture.
@@ -973,11 +975,12 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * Requires Ink.Dom.Selector if you need to use a selector.
      *
      * @method observeDelegated
-     * @param {DOMElement|String} element   Element to observe.
-     * @param {String}            eventName Event name to observe.
-     * @param {String}            selector  Child element selector. When null, finds any element.
-     * @param {Function}          callback  Callback to be called when the event is fired
+     * @param {Element|String} element   Element to observe.
+     * @param {String}         eventName Event name to observe.
+     * @param {String}         selector  Child element selector. When null, finds any element.
+     * @param {Function}       callback  Callback to be called when the event is fired
      * @return {Function} The used callback, for ceasing to listen to the event later.
+     * @public
      * @sample Ink_Dom_Event_1_observeDelegated.html 
      **/
     observeDelegated: function (element, eventName, selector, callback) {
@@ -1006,6 +1009,8 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * @param {String}             eventName     Event name
      * @param {Function}           callBack      Callback function
      * @param {Boolean}            [useCapture]  Set to true if the event was being observed with useCapture set to true as well.
+     * @return {void}
+     * @public
      * @sample Ink_Dom_Event_1_stopObserving.html 
      */
     stopObserving: function(element, eventName, callBack, useCapture) {
@@ -1025,6 +1030,8 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      *
      * @method stop
      * @param {Object} event  Event handle
+     * @return {void}
+     * @public
      * @sample Ink_Dom_Event_1_stop.html 
      */
     stop: function(event)
@@ -1051,6 +1058,8 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      *
      * @method stopPropagation
      * @param {Object} event  Event handle
+     * @return {void}
+     * @public
      * @sample Ink_Dom_Event_1_stopPropagation.html 
      */
     stopPropagation: function(event) {
@@ -1067,6 +1076,8 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      *
      * @method stopDefault
      * @param {Object} event  Event handle
+     * @return {void}
+     * @public
      * @sample Ink_Dom_Event_1_stopDefault.html 
      */
     stopDefault: function(event)
@@ -1088,6 +1099,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * @method pointer
      * @param {Object} ev Event object
      * @return {Object} An object with the mouse X and Y position
+     * @public
      * @sample Ink_Dom_Event_1_pointer.html 
      */
     pointer: function(ev)
@@ -1104,6 +1116,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * @method pointerX
      * @param {Object} ev Event object
      * @return {Number} Mouse X position
+     * @public
      */
     pointerX: function(ev)
     {
@@ -1118,6 +1131,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * @method pointerY
      * @param {Object} ev Event object
      * @return {Number} Mouse Y position
+     * @public
      */
     pointerY: function(ev)
     {
@@ -1132,6 +1146,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * @method isLeftClick
      * @param {Object} ev  Event object
      * @return {Boolean} True if the event is a left click
+     * @public
      * @sample Ink_Dom_Event_1_isLeftClick.html 
      */
     isLeftClick: function(ev) {
@@ -1155,6 +1170,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * @method isRightClick
      * @param {Object} ev  Event object
      * @return {Boolean} True if the event is a right click
+     * @public
      * @sample Ink_Dom_Event_1_isRightClick.html 
      */
     isRightClick: function(ev) {
@@ -1167,6 +1183,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * @method isMiddleClick
      * @param {Object} ev  Event object
      * @return {Boolean} True if the event is a middle click
+     * @public
      * @sample Ink_Dom_Event_1_isMiddleClick.html 
      */
     isMiddleClick: function(ev) {
@@ -1186,6 +1203,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * @param {Object}   event           Keyboard event
      * @param {Boolean}  [changeCasing]  If true uppercases, if false lowercases, otherwise keeps casing
      * @return {String} Character representation of pressed key combination
+     * @public
      * @sample Ink_Dom_Event_1_getCharFromKeyboardEvent.html 
      */
     getCharFromKeyboardEvent: function(event, changeCasing) {
@@ -1224,6 +1242,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
  * @param {Object}            [args...] Additional arguments to pass to the callback function when triggered
  * 
  * @return {DOMElement|Object} Returns the original DOM Element or Javascript Object
+ * @public
  * @sample Ink_Dom_Event_1_on.html 
  */
 
@@ -1240,6 +1259,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
  * @param                     [args...] Additional arguments to pass to the callback function when triggered
  * 
  * @return {DOMElement|Object} Returns the original DOM Element or Javascript Object
+ * @public
  * @sample Ink_Dom_Event_1_one.html 
  */
 
@@ -1254,6 +1274,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
  * @param {Function}          [handler] The specific callback function to remove
  * 
  * @return {DOMElement|Object} Returns the original DOM Element or Javascript Object
+ * @public
  * @sample Ink_Dom_Event_1_off.html 
  */
 
@@ -1268,6 +1289,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
  * @param {String}            [eventType] An Event (or multiple events, space separated) to clone
  * 
  * @return {DOMElement|Object} Returns the original DOM Element or Javascript Object
+ * @public
  * @sample Ink_Dom_Event_1_clone.html 
  */
 
@@ -1281,6 +1303,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
  * @param                     [args...] Additional arguments to pass to the callback function when triggered
  *
  * @return {DOMElement|Object} Returns the original DOM Element or Javascript Object
+ * @public
  * @sample Ink_Dom_Event_1_fire.html 
  */
 

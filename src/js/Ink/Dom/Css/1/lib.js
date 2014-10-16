@@ -25,6 +25,8 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          * @param {DOMElement|string}   elm          DOM element or element id
          * @param {string}              className    class name to add or remove.
          * @param {boolean}             addRemState  Whether to add or remove. `true` to add, `false` to remove.
+         * @return {void}
+         * @public
          * @sample Ink_Dom_Css_addRemoveClassName.html 
          */
         addRemoveClassName: function(elm, className, addRemState) {
@@ -38,8 +40,10 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          * Adds a class to a given element
          *
          * @method addClassName
-         * @param {DOMElement|String}   elm          DOM element or element id
-         * @param {String|Array}        className    Classes 
+         * @param {Element|String}      elm          Element or element id
+         * @param {String|Array}        className    Class or classes to add. Examples: 'my-class', ['my-class', 'other-class'], 'my-class other-class'
+         * @return {void}
+         * @public
          * @sample Ink_Dom_Css_addClassName.html
          */
         addClassName: function(elm, className) {
@@ -67,6 +71,8 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          * @method removeClassName
          * @param {DOMElement|String}   elm        DOM element or element id
          * @param {String|Array}        className  Class names to remove. You can either use a space separated string of classnames, comma-separated list or an array
+         * @return {void}
+         * @public
          * @sample Ink_Dom_Css_removeClassName.html 
          */
         removeClassName: function(elm, className) {
@@ -103,6 +109,8 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          * @param {DOMElement|String}  elm          DOM element or element id
          * @param {String|Array}       className    Class names to add\remove. Comma separated, space separated or simply an Array
          * @param {Boolean}            [add]=false  Flag to switch behavior from removal to addition. true to add, false to remove
+         * @return {void}
+         * @public
          */
         setClassName: function(elm, className, add) {
             this.addRemoveClassName(elm, className, add || false);
@@ -114,9 +122,10 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          * 
          * @method hasClassName
          * @param {DOMElement|String}  elm         DOM element or element id
-         * @param {String|Array}       className   Class names to test
-         * @param {Boolean}            [all]=false If flagged as true, it will check if the element contains ALL the CSS classes
-         * @return {Boolean} true if a given class is applied to a given element
+         * @param {String|Array}       className   Class name(s) to test
+         * @param {Boolean}            [all=false] Irrelevant if only one `className` is passed. If `true`, check if the element contains ALL the CSS classes. If `false`, check whether the element contains ANY of the given classes.
+         * @return {Boolean} `true` if a given class is applied to a given element, `false` if it isn't.
+         * @public
          * @sample Ink_Dom_Css_hasClassName.html 
          */
         hasClassName: function(elm, className, all) {
@@ -160,10 +169,12 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          *
          * @method blinkClass
          * @uses addRemoveClassName
-         * @param {DOMElement|String}  elm        DOM element or element id
+         * @param {Element|String}     element    DOM element or element id
          * @param {String|Array}       className  Class name(s) to blink
-         * @param {Number}            timeout    timeout in ms between adding and removing, default 100 ms
+         * @param {Number}             timeout    timeout in ms between adding and removing, default 100 ms
          * @param {Boolean}            negate     is true, class is removed then added
+         * @return {void}
+         * @public
          * @sample Ink_Dom_Css_blinkClass.html 
          */
         blinkClass: function(element, className, timeout, negate){
@@ -181,6 +192,8 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          * @param {DOMElement|String}  elm        DOM element or element id
          * @param {String}             className  Class name
          * @param {Boolean}            [forceAdd] Flag to force adding the the classe names if they don't exist yet.
+         * @return {void}
+         * @public
          * @sample Ink_Dom_Css_toggleClassName.html 
          */
         toggleClassName: function(elm, className, forceAdd) {
@@ -208,6 +221,8 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          * @method setOpacity
          * @param {DOMElement|String}  elm    DOM element or element id
          * @param {Number}             value  allows 0 to 1(default mode decimal) or percentage (warning using 0 or 1 will reset to default mode)
+         * @return {void}
+         * @public
          * @sample Ink_Dom_Css_setOpacity.html 
          */
         setOpacity: function(elm, value) {
@@ -251,7 +266,8 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          * @method getStyle
          * @param {DOMElement|String}  elm    DOM element or element id
          * @param {String}             style  Which css attribute to fetch
-         * @return Style value
+         * @return {Mixed} Style value
+         * @public
          * @sample Ink_Dom_Css_getStyle.html 
          */
          getStyle: function(elm, style) {
@@ -293,6 +309,8 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          * @method setStyle
          * @param {DOMElement|String}  elm    DOM element or element id
          * @param {String}             style  Which css attribute to set
+         * @return {void}
+         * @public
          * @sample Ink_Dom_Css_setStyle.html 
          */
         setStyle: function(elm, style) {
@@ -334,12 +352,14 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          * @method show
          * @param {DOMElement|String}  elm                      DOM element or element id
          * @param {String}             [forceDisplayProperty]   Css display property to apply on show
+         * @return {void}
+         * @public
          * @sample Ink_Dom_Css_show.html 
          */
         show: function(elm, forceDisplayProperty) {
             elm = Ink.i(elm);
             if (elm !== null) {
-                elm.style.display = (forceDisplayProperty) ? forceDisplayProperty : '';
+                elm.style.display = forceDisplayProperty || '';
             }
         },
 
@@ -348,6 +368,8 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          *
          * @method hide
          * @param {DOMElement|String}  elm  DOM element or element id
+         * @return {void}
+         * @public
          * @sample Ink_Dom_Css_hide.html 
          */
         hide: function(elm) {
@@ -364,6 +386,8 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          * @method showHide
          * @param {DOMElement|String}  elm          DOM element or element id
          * @param {boolean}            [show]=false Whether to show or hide `elm`.
+         * @return {void}
+         * @public
          * @sample Ink_Dom_Css_showHide.html 
          */
         showHide: function(elm, show) {
@@ -379,6 +403,8 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          * @method toggle
          * @param {DOMElement|String}  elm        DOM element or element id
          * @param {Boolean}            forceShow  Forces showing if element is hidden
+         * @return {void}
+         * @public
          * @sample Ink_Dom_Css_toggle.html 
          */
         toggle: function(elm, forceShow) {
@@ -423,6 +449,8 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          * @param {Object}  options   Options for the tag
          *    @param {String}  [options.type]='text/css'   File type
          *    @param {Boolean} [options.force]=false  If true, the style tag will be appended to end of head
+         * @return {void}
+         * @public
          * 
          * @sample Ink_Dom_Css_appendStyleTag.html 
          */
@@ -477,9 +505,11 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          * @method appendStylesheet
          * @param {String}  path     File path
          * @param {Object}  options  Options for the tag
-         *    @param {String}   [options.media]='screen'    Media type
-         *    @param {String}   [options.type]='text/css'   File type
-         *    @param {Boolean}  [options.force]=false       If true, tag will be appended to end of head
+         * @param {String}  [options.media='screen']    Media type
+         * @param {String}  [options.type='text/css']   File type
+         * @param {Boolean} [options.force=false]       If true, tag will be appended to end of head
+         * @return {void}
+         * @public
          * @sample Ink_Dom_Css_appendStylesheet.html 
          */
         appendStylesheet: function(path, options){
@@ -519,6 +549,8 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          * @method appendStylesheetCb
          * @param {String}            cssURI      URI of the CSS to load, if empty ignores and just calls back directly
          * @param {Function(cssURI)}  [callback]  optional callback which will be called once the CSS is loaded
+         * @return {void}
+         * @public
          * @sample Ink_Dom_Css_appendStylesheetCb.html 
          */
         _loadingCSSFiles: {},
@@ -813,6 +845,8 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          * @param {String}  [op]      Supported operations are '+' and '*'. defaults to '+'
          * @param {Number}  [minVal]  If result gets smaller than minVal, change does not occurr
          * @param {Number}  [maxVal]  If result gets bigger  than maxVal, change does not occurr
+         * @return {void}
+         * @public
          */
         changeFontSize: function(selector, delta, op, minVal, maxVal) {
             var that = this;
