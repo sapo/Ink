@@ -822,7 +822,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
                     return throttled.apply(that, args);
                 }, wait - timeDiff);
             }
-        };
+        }
         return throttled;
     },
 

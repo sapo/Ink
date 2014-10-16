@@ -392,7 +392,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                 Event.observe(document, 'keydown', this._handlers.keyDown);
             }
 
-            this._wasDismissed = false;
+            this._isOpen = true;
             openModals.push(this);
 
             Css.addClassName(document.documentElement, 'ink-modal-open');

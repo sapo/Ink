@@ -741,16 +741,16 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
                 options = {partial: options, margin: 0};
             }
             options = Ink.extendObj({ partial: false, margin: 0}, options || {});
-            if (opts.partial) {
-                return  dims.bottom + opts.margin > 0                           && // from the top
-                        dims.left   - opts.margin < InkElement.viewportWidth()  && // from the right
-                        dims.top    - opts.margin < InkElement.viewportHeight() && // from the bottom
-                        dims.right  + opts.margin > 0;                             // from the left
+            if (options.partial) {
+                return  dims.bottom + options.margin > 0                           && // from the top
+                        dims.left   - options.margin < InkElement.viewportWidth()  && // from the right
+                        dims.top    - options.margin < InkElement.viewportHeight() && // from the bottom
+                        dims.right  + options.margin > 0;                             // from the left
             } else {
-                return  dims.top    + opts.margin > 0                           && // from the top
-                        dims.right  - opts.margin < InkElement.viewportWidth()  && // from the right
-                        dims.bottom - opts.margin < InkElement.viewportHeight() && // from the bottom
-                        dims.left   + opts.margin > 0;                             // from the left
+                return  dims.top    + options.margin > 0                           && // from the top
+                        dims.right  - options.margin < InkElement.viewportWidth()  && // from the right
+                        dims.bottom - options.margin < InkElement.viewportHeight() && // from the bottom
+                        dims.left   + options.margin > 0;                             // from the left
             }
         },
 
