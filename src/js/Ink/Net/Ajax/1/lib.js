@@ -139,7 +139,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
             var urlLocation =  document.createElementNS ?
                 document.createElementNS('http://www.w3.org/1999/xhtml', 'a') :
                 document.createElement('a');
-            urlLocation.href = url;
+            urlLocation.setAttribute('href', url);
             return urlLocation;
         },
 
@@ -170,8 +170,18 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
             if (!Ajax.prototype._locationIsHTTP(urlLocation) || location.protocol === 'widget:' || typeof window.widget === 'object') {
                 return false;
             } else {
-                var split1 = urlLocation.href.split('://');
-                var split2 = location.href.split('://');
+                var split1 = urlLocation.href.split('//');
+                var split2 = location.href.split('//');
+
+                if (split1.length === 1 || split2.length === 1) {
+                    // This occurs when there's no protocol string in either URL
+                    // Only happens in IE7 because setting the "href" of a link doesn't make that link show you the full URL when the URI is relative to this host.
+                    // So we have our answer.
+                    // If there's no protocol string
+                    // We know for sure that our `urlLocation` is relative
+                    // In which case, they are in the same domain.
+                    return false;
+                }
 
                 var protocol1 = split1[0];
                 var protocol2 = split2[0];

@@ -43,10 +43,13 @@ Ink.requireModules(['Ink.Net.Ajax_1'], function (Ajax) {
             statics._locationFromURL('foo.jpg'),
             statics._locationFromURL('/my/page.html')), false);
 
-        /* Different site than the one we are, and a file somewhere */
+        /* A relative URL on this site */
         equal(statics._locationIsCrossDomain(
-            statics._locationFromURL('http://localhost.com/foo'),
-            statics._locationFromURL('/my/page.html')), true);
+            statics._locationFromURL('/my/page.html')), false);
+
+        /* A URL pointing to this site, starting with // */
+        equal(statics._locationIsCrossDomain(
+            statics._locationFromURL('//' + location.host + '/my/page.html')), false);
     });
 
     test('Url parameters', function () {
