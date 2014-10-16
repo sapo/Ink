@@ -87,7 +87,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             this._handlers = {
                 click:   Ink.bindEvent(this._onShadeClick, this),
                 keyDown: Ink.bindEvent(this._onKeyDown, this),
-                resize:  Ink.bindEvent(this._onResize, this)
+                resize:  Event.throttle(Ink.bindEvent(this._onResize, this), 250)
             };
 
             this._isOpen = true;
@@ -102,33 +102,22 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             }
 
             if( !this._markupMode ){
-                this._modalShadow      = document.createElement('div');
-                this._modalShadowStyle = this._modalShadow.style;
-
-                this._modalDiv         = document.createElement('div');
-                this._modalDivStyle    = this._modalDiv.style;
+                this._modalShadow = InkElement.create('div', { className: 'ink-shade' });
+                this._modalDiv    = InkElement.create('div', { className: 'ink-modal ink-space' });
 
                 if( !!this._element ){
                     this._options.markup = this._element.innerHTML;
                 }
 
                 /**
-                 * Not in full markup mode, let's set the classes and css configurations
-                 */
-                Css.addClassName( this._modalShadow,'ink-shade' );
-                Css.addClassName( this._modalDiv,'ink-modal ink-space' );
-
-                /**
                  * Applying the main css styles
                  */
-                // this._modalDivStyle.position = 'absolute';
+                // this._modalDiv.style.position = 'absolute';
                 this._modalShadow.appendChild( this._modalDiv);
                 document.body.appendChild( this._modalShadow );
             } else {
                 this._modalDiv         = this._element;
-                this._modalDivStyle    = this._modalDiv.style;
                 this._modalShadow      = this._modalDiv.parentNode;
-                this._modalShadowStyle = this._modalShadow.style;
 
                 this._contentContainer = Selector.select(".modal-body", this._modalDiv)[0];
                 if( !this._contentContainer){
@@ -165,35 +154,17 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
          * @private
          */
         _reposition: function(){
-            this._modalDivStyle.marginTop = (-InkElement.elementHeight(this._modalDiv)/2) + 'px';
-            this._modalDivStyle.marginLeft = (-InkElement.elementWidth(this._modalDiv)/2) + 'px';
+            this._modalDiv.style.marginTop = (-InkElement.elementHeight(this._modalDiv)/2) + 'px';
+            this._modalDiv.style.marginLeft = (-InkElement.elementWidth(this._modalDiv)/2) + 'px';
         },
 
         /**
          * Responsible for resizing the modal when the window's size changes.
          * 
          * @method _onResize
-         * @param {Boolean|Event} runNow Its executed in the begining to resize/reposition accordingly to the viewport. But usually it's an event object.
          * @private
          */
-        _onResize: function( runNow ){
-            if( typeof runNow === 'boolean' ){
-                this._timeoutResizeFunction.call(this);
-            } else if( !this._resizeTimeout && (runNow && typeof runNow === 'object') ){
-                this._resizeTimeout = setTimeout(Ink.bind(this._timeoutResizeFunction, this),250);
-            }
-        },
-
-        /**
-         * Timeout Resize Function
-         * 
-         * @method _timeoutResizeFunction
-         * @private
-         */
-        _timeoutResizeFunction: function(){
-            /**
-             * Getting the current viewport size
-             */
+        _onResize: function( ){
             var isPercentage = {
                 width: ('' + this._options.width).indexOf('%') !== -1,
                 height: ('' + this._options.height).indexOf('%') !== -1
@@ -208,15 +179,14 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                 if (isPercentage[dimension]) { return; }
 
                 if (currentViewport[dimension] > this.originalStatus[dimension]) {
-                    this._modalDivStyle[dimension] = this._modalDivStyle[maxName(dimension)];
+                    this._modalDiv.style[dimension] = this._modalDiv.style[maxName(dimension)];
                 } else {
-                    this._modalDivStyle[dimension] = Math.round(currentViewport[dimension] * 0.9) + 'px';
+                    this._modalDiv.style[dimension] = Math.round(currentViewport[dimension] * 0.9) + 'px';
                 }
             }, this));
 
             this._resizeContainer();
             this._reposition();
-            this._resizeTimeout = undefined;
         },
 
         /**
@@ -317,10 +287,8 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
 
             var elem = (document.compatMode === "CSS1Compat") ?  document.documentElement : document.body;
 
-            this._resizeTimeout    = null;
-
             Css.addClassName( this._modalShadow,'ink-shade' );
-            this._modalShadowStyle.display = this._modalDivStyle.display = 'block';
+            this._modalShadow.style.display = this._modalDiv.style.display = 'block';
             setTimeout(Ink.bind(function() {
                 Css.addClassName( this._modalShadow, 'visible' );
                 Css.addClassName( this._modalDiv, 'visible' );
@@ -350,17 +318,17 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
 
             InkArray.forEach(['width', 'height'], Ink.bind(function (dimension) {
                 if (this._options[dimension] !== undefined) {
-                    this._modalDivStyle[dimension] = this._options[dimension];
+                    this._modalDiv.style[dimension] = this._options[dimension];
                     if (!isPercentage[dimension]) {
-                        this._modalDivStyle[maxName(dimension)] =
+                        this._modalDiv.style[maxName(dimension)] =
                             InkElement['element' + upName(dimension)](this._modalDiv) + 'px';
                     }
                 } else {
-                    this._modalDivStyle[maxName(dimension)] = InkElement['element' + upName(dimension)](this._modalDiv) + 'px';
+                    this._modalDiv.style[maxName(dimension)] = InkElement['element' + upName(dimension)](this._modalDiv) + 'px';
                 }
 
-                if (isPercentage[dimension] && parseInt(elem['client' + maxName(dimension)], 10) <= parseInt(this._modalDivStyle[dimension], 10) ) {
-                    this._modalDivStyle[dimension] = Math.round(parseInt(elem['client' + maxName(dimension)], 10) * 0.9) + 'px';
+                if (isPercentage[dimension] && parseInt(elem['client' + maxName(dimension)], 10) <= parseInt(this._modalDiv.style[dimension], 10) ) {
+                    this._modalDiv.style[dimension] = Math.round(parseInt(elem['client' + maxName(dimension)], 10) * 0.9) + 'px';
                 }
             }, this));
 
@@ -439,7 +407,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                 Css.removeClassName( this._modalShadow, 'visible' );
 
                 this._waitForFade(this._modalShadow, Ink.bind(function () {
-                    this._modalShadowStyle.display = 'none';
+                    this._modalShadow.style.display = 'none';
                 }, this));
             }
 
