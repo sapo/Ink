@@ -405,7 +405,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
          * @public
          **/
         isOpen: function () {
-            return this._isOpen
+            return this._isOpen;
         },
 
         /**
