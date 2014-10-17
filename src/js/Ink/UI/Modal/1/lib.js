@@ -289,10 +289,11 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
 
             Css.addClassName( this._modalShadow,'ink-shade' );
             this._modalShadow.style.display = this._modalDiv.style.display = 'block';
-            setTimeout(Ink.bind(function() {
-                Css.addClassName( this._modalShadow, 'visible' );
-                Css.addClassName( this._modalDiv, 'visible' );
-            }, this), 100);
+
+            this._modalShadow.offsetHeight;  // Cause a reflow
+
+            Css.addClassName( this._modalShadow, 'visible' );
+            Css.addClassName( this._modalDiv, 'visible' );
 
             /**
              * Fallback to the old one
