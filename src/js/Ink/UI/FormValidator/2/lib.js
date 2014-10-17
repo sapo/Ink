@@ -21,6 +21,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
          * Checks if a value is defined and not empty
          * @method required
          * @return {Boolean}       True case is defined, false if it's empty or not defined.
+         * @public
          */
         'required': function( value ){
             return ( (typeof value !== 'undefined') && ( !(/^\s*$/).test(value) ) );
@@ -379,7 +380,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
      *
      * @class FormValidator.FormElement
      * @constructor
-     * @param  {DOMElement} element DOM Element
+     * @param  {Element} element DOM Element
      * @param  {Object} options Object with configuration options
      * @param  {String} [options.label] Label for this element. It is used in the error message. If not specified, the text in the `label` tag in the control-group is used.
      * @param  {String} [options.rules] Rules string to be parsed.
@@ -616,7 +617,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
     /**
      * @class FormValidator_2
      * @constructor
-     * @param {String|DOMElement}   selector                        Either a CSS Selector string, or the form's DOMElement
+     * @param {String|Element}      selector                        Either a CSS Selector string, or the form's Element
      * @param {Object}              [options]                       Options object, containing the following options:
      * @param {String}              [options.eventTrigger]          Event that will trigger the validation. Defaults to 'submit'.
      * @param {Boolean}             [options.neverSubmit]           Flag to cancel the submit event. Use this to avoid submitting the form.
@@ -649,6 +650,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
      * @param {String}   name         Name of the function. E.g. 'required'
      * @param {String}   errorMessage Error message to be displayed in case of returning false. E.g. 'Oops, you passed {param1} as parameter1, lorem ipsum dolor...'
      * @param {Function} cb           Function to be executed when calling this rule
+     * @return {void}
      * @public
      * @static
      */
@@ -667,6 +669,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
      * @method getI18n
      * @static
      * @return {Ink.Util.I18n} The i18n object the FormValidator is using.
+     * @public
      */
     FormValidator.getI18n = function () {
         return validationMessages;
@@ -678,6 +681,8 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
      * @method setI18n
      * @static
      * @param {Ink.Util.I18n} i18n  The I18n object.
+     * @return {void}
+     * @public
      */
     FormValidator.setI18n = function (i18n) {
         validationMessages = i18n;
@@ -688,7 +693,9 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
      * See `Ink.Util.I18n.append()` documentation.
      *
      * @method appendI18n
+     * @return {void}
      * @static
+     * @public
      */
     FormValidator.appendI18n = function () {
         validationMessages.append.apply(validationMessages, [].slice.call(arguments));
@@ -701,8 +708,10 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
      * See the `Ink.Util.I18n.lang()` setter
      *
      * @method setLanguage
+     * @param {Ink.Util.I18n} language The language to set i18n to.
+     * @return {void}
      * @static
-     * @param language  The language to set i18n to.
+     * @public
      */
     FormValidator.setLanguage = function (language) {
         validationMessages.lang(language);
@@ -723,10 +732,10 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
     FormValidator.prototype = {
         _init: function(){
             /**
-             * DOMElement of the form being validated
+             * Element of the form being validated
              *
              * @property _rootElement
-             * @type {DOMElement}
+             * @type {Element}
              */
             this._rootElement = this._element;
 
@@ -739,7 +748,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
             this._formElements = {};
 
             /**
-             * Error message DOMElements
+             * Error message Elements
              * 
              * @property _errorMessages
              */

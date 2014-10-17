@@ -32,7 +32,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
      * @param {Function}        [options.onCreate]              Callback executed after object initialization but before the request is made
      * @param {Function}        [options.onException]           Callback executed if an exception occurs. Receives the exception as a parameter.
      * @param {Function}        [options.onFailure]             Callback executed if the request fails (requests with status codes different from 2xx)
-     * @param {Function}        [options.onHeaders]
+     * @param {Function}        [options.onHeaders]             Callback executed when headers of the response arrive.
      * @param {Function}        [options.onInit]                Callback executed before any initialization
      * @param {Function}        [options.onSuccess]             Callback executed if the request is successful (requests with 2xx status codes)
      * @param {Function}        [options.onTimeout]             Callback executed if the request times out
@@ -147,7 +147,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
          * Checks whether a location is HTTP or HTTPS
          *
          * @method locationIsHttp
-         * @param urlLocation
+         * @param {Location} urlLocation Location object or `<a>` element representing the current location.
          * @return {Boolean} `true` if the location is HTTP or HTTPS, `false` otherwise.
          * @private
          */
@@ -156,11 +156,11 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
         },
 
         /**
-         * Checks whether a location is cross-domain from another
+         * Checks whether a location is cross-domain from ours.
          *
          * @method _locationIsCrossDomain
-         * @param urlLocation {Location}     A Location object or an `<a>` elemnt.
-         * @param [otherLocation] {Location} Another Location object or `<a>` element.
+         * @param {Location} urlLocation A Location object or an `<a>` elemnt.
+         * @param {Location} [location=window.location] A location representing this one. This argument only exists for testing. Don't use it.
          * @return {Boolean} `true` if the locations are in different domains (in which case we need to perform a cross-domain request)
          * @private
          */
@@ -519,8 +519,8 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
          * Last step after XHR is complete. Call onComplete and cleanup object
          *
          * @method finish
-         * @param {Any} response
-         * @param {Any} responseContent
+         * @param {Mixed} response Response object as returned from getResponse().
+         * @param {Mixed} responseContent Content of the response.
          * @return {void}
          * @private
          */
@@ -551,7 +551,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
          * If you pass in an error as the second argument, it gets thrown if there is no default listener.
          *
          * @method safeCall
-         * @param {Function}  handlerName
+         * @param {Function}  handlerName Name of the handler we wish to call
          * @param {Error}     error     This error gets reported to the console using Ink.error if there's no listener to `handlerName`.
          * @param {Mixed}     [args...] Arguments to get passed to the `handlerName` handler.
          * @return {void}
@@ -574,8 +574,8 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
          * Sets a new request header for the next http request
          *
          * @method setRequestHeader
-         * @param {String} name
-         * @param {String} value
+         * @param {String} name Header name.
+         * @param {String} value New header value.
          * @return {void}
          * @public
          */
@@ -699,8 +699,8 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
          * Evaluates a given string as JSON
          *
          * @method evalJSON
-         * @param {String}  str         String to be evaluated
-         * @param {Boolean} sanitize    Flag to sanitize the content
+         * @param {String}  strJSON  String to be evaluated
+         * @param {Boolean} sanitize Flag to sanitize the content
          * @return {Object} JSON content as an object
          * @public
          */

@@ -68,8 +68,7 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, ['Ink.Util.Array_1', 'Ink.Dom.Eleme
          * @param {Object} [options] Options object, containing:
          * @param {Boolean} [options.elements] Instead of returning an array of [fieldName, value] pairs, return an array of [fieldName, value, fieldElement] triples.
          * @param {Boolean} [options.emptyArray] What to emit as the value of an empty select[multiple]. If you don't pass this option, nothing comes out.
-         *
-         * @return Array of [fieldName, value] pairs.
+         * @return {Array} Array of [fieldName, value] pairs.
          **/
         asPairs: function (form, options) {
             var out = [];
@@ -115,8 +114,9 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, ['Ink.Util.Array_1', 'Ink.Dom.Eleme
          * Note: You can't set the values of an input with `type="file"` (browser prohibits it)
          *
          * @method fillIn 
-         * @param {DOMElement|String}   form    Form element to be populated
-         * @param {Object|Array}      map2    mapping of fields to values contained in fields. Can be a hash (keys as names, strings or arrays for values), or an array of [name, value] pairs.
+         * @param {Element|String} form Form element to be populated
+         * @param {Object|Array}   map2 Mapping of fields to values contained in fields. Can be a hash (keys as names, strings or arrays for values), or an array of [name, value] pairs.
+         * @return {void}
          * @sample Ink_Dom_FormSerialize_fillIn.html 
          */
         fillIn: function(form, map2) {

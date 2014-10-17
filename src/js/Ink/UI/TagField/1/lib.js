@@ -24,7 +24,7 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
      * @class Ink.UI.TagField
      * @version 1
      * @constructor
-     * @param {String|DOMElement}   element                         Selector or DOM Input Element.
+     * @param {String|Element}      element                         Selector or DOM Input Element.
      * @param {Object}              [options]                       Options object
      * @param {String|Array}        [options.tags]                  Initial tags in the input
      * @param {Boolean}             [options.allowRepeated]         Flag to allow user to input several tags. Defaults to true.
@@ -197,6 +197,7 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
         /**
          * When the user presses backspace twice on the empty input, we delete the last tag on the field.
          * @method onBackspaceKeyDown
+         * @return {void}
          * @private
          */
         _onBackspaceKeyDown: function () {

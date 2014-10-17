@@ -29,7 +29,7 @@ Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'In
      * @class Ink.UI.Animate_1
      * @constructor
      *
-     * @param {DOMElement}      element                     Animated element
+     * @param {Element}         element                     Animated element
      * @param {Object}          options                     Options object
      * @param {String}          options.animation           Animation name
      * @param {String|Number}   [options.duration]          Duration name (fast|medium|slow) or duration in milliseconds. Defaults to 'medium'.
@@ -101,12 +101,15 @@ Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'In
          *
          * @static
          * @method animate
-         * @param element {DOMElement} animated element
-         * @param animation {String} animation name
-         * @param [options] {Object}
-         *     @param [options.onEnd=null] {Function} callback for animation end
-         *     @param [options.removeClass=false] {Boolean} whether to remove the Css class when finished
-         *     @param [options.duration=medium] {String|Number} duration name (fast|medium|slow) or duration in ms
+         * @param {Element} element Animated element
+         * @param {String} animation Animation name
+         * @param {Object} [options] Options object, containing:
+         *     @param {Function}      [options.onEnd=null]        Callback for animation end.
+         *     @param {Boolean}       [options.removeClass=false] Whether to remove the Css class when finished.
+         *     @param {String|Number} [options.duration=medium]   Duration name (the fast|medium|slow strings) or, duration in milliseconds.
+         *
+         * @return {void}
+         * @public
          *
          * @sample Ink_UI_Animate_1_animate.html
          **/

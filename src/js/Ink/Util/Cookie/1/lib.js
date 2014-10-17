@@ -62,6 +62,7 @@ Ink.createModule('Ink.Util.Cookie', '1', [], function() {
          * @param {String}      [path]      Path for the cookie. Defaults to '/'.
          * @param {String}      [domain]    Domain for the cookie. Defaults to current hostname.
          * @param {Boolean}     [secure]    Flag for secure. Default 'false'.
+         * @return {void}
          * @public
          * @static
          * @sample Ink_Util_Cookie_set.html
@@ -133,6 +134,7 @@ Ink.createModule('Ink.Util.Cookie', '1', [], function() {
          * @param {String}  cookieName   Cookie name.
          * @param {String}  [path]       Path of the cookie. Defaults to '/'.
          * @param {String}  [domain]     Domain of the cookie. Defaults to current hostname.
+         * @return {void}
          * @public
          * @static
          * @sample Ink_Util_Cookie_remove.html

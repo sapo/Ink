@@ -27,7 +27,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
      * @class Ink.UI.Carousel_1
      * @constructor
      *
-     * @param {String|DOMElement}   selector                    DOM element or element id
+     * @param {String|Element}      selector                    DOM element or element id
      * @param {Object}              [options]                   Carousel Options
      * @param {Integer}             [options.autoAdvance]       Milliseconds to wait before auto-advancing pages. Set to 0 to disable auto-advance. Defaults to 0.
      * @param {String}              [options.axis]              Axis of the carousel. Set to 'y' for a vertical carousel. Defaults to 'x'.
@@ -104,6 +104,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
          * Measure the carousel once again, adjusting the involved elements' sizes. This is called automatically when the window resizes, in order to cater for changes from responsive media queries, for instance.
          *
          * @method refit
+         * @return {void}
          * @public
          */
         refit: function() {
@@ -298,7 +299,8 @@ Ink.createModule('Ink.UI.Carousel', '1',
         /**
          * Gets the current page index
          * @method getPage
-         * @return The current page number
+         * @return {Number} The current page number
+         * @public
          **/
         getPage: function () {
             if (this._pagination) {
@@ -311,8 +313,10 @@ Ink.createModule('Ink.UI.Carousel', '1',
         /**
          * Sets the current page index
          * @method setPage
-         * @param {Number}  page    Index of the destination page.
-         * @param {Boolean} [wrap]  Flag to activate circular counting.
+         * @param {Number}  page   Index of the destination page.
+         * @param {Boolean} [wrap] Flag to activate circular counting (for example, if you set the page to `5` and there are only 4 pages, you're actually going to the first page).
+         * @return {void}
+         * @public
          **/
         setPage: function (page, wrap) {
             if (wrap) {
@@ -358,6 +362,8 @@ Ink.createModule('Ink.UI.Carousel', '1',
          * Goes to the next page
          * @method nextPage
          * @param {Boolean} [wrap] Flag to loop from last page to first page.
+         * @return {void}
+         * @public
          **/
         nextPage: function (wrap) {
             this.setPage(this.getPage() + 1, wrap);
@@ -367,6 +373,8 @@ Ink.createModule('Ink.UI.Carousel', '1',
          * Goes to the previous page
          * @method previousPage
          * @param {Boolean} [wrap] Flag to loop from first page to last page.
+         * @return {void}
+         * @public
          **/
         previousPage: function (wrap) { this.setPage(this.getPage() - 1, wrap); },
 
@@ -394,7 +402,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
          * Get the stage element (your UL with the class ".stage").
          * @method getStageElm
          * @public
-         * @return {DOMElement} Stage element
+         * @return {Element} Stage element
          **/
         getStageElm: function() {
             return this._ulEl;
@@ -403,7 +411,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
         /**
          * Get a list of your slides (elements with the ".slide" class inside your stage)
          * @method getSlidesList
-         * @return {DOMElement[]} Array containing the slides.
+         * @return {Element[]} Array containing the slides.
          * @public
          */
         getSlidesList: function() {
