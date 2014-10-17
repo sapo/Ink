@@ -18,7 +18,7 @@ Ink.requireModules(['Ink.UI.Modal_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1'], fun
     function modalTest(name, testBack, options) {
         test(name, function () {
             var els = makeContainer();
-            var modal = new Modal(els.querySelector('.ink-modal'), options || {});
+            var modal = new Modal(Ink.s('.ink-modal', els), options || {});
             testBack(modal, els);
         })
     }
