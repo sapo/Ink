@@ -282,6 +282,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
          * @public
          */
         open: function(event) {
+            /* jshint -W030 */
 
             if( event ){ Event.stop(event); }
 
