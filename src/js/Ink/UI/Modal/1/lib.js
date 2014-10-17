@@ -90,7 +90,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                 resize:  Event.throttle(Ink.bindEvent(this._onResize, this), 250)
             };
 
-            this._isOpen = true;
+            this._isOpen = false;
 
             /**
              * Modal Markup
