@@ -27,7 +27,7 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, ['Ink.Util.Array_1', 'Ink.Dom.Eleme
 
         /**
          * Serializes a form element into a JS object
-         * It turns field names into keys and field values into values.
+         * It turns field *names* (not IDs!) into keys and field values into values.
          *
          * note: Multi-select and checkboxes with multiple values will result in arrays
          *
