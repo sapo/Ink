@@ -30,7 +30,7 @@ Ink.createModule('Ink.UI.Swipe', '1', ['Ink.Dom.Event_1', 'Ink.Dom.Element_1', '
      *
      * @class Ink.UI.Swipe
      * @constructor
-     * @param {String|DOMElement}   el                      Element or Selector
+     * @param {String|Element}      el                      Element or Selector
      * @param {Object}              options                 Options Object
      * @param {Function}            [options.onEnd]         Callback function for the `touchend` event. Gets all the gesture information, and is filtered by min/max Dist and Duration options (see below)
      * @param {Function}            [options.onStart]       Callback function for `touchstart` event.

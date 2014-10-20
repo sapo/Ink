@@ -21,20 +21,20 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
      * @class Ink.UI.Draggable
      * @version 1
      * @constructor
-     * @param {String|DOMElement}   target                      Target element.
+     * @param {String|Element}      target                      Target element.
      * @param {Object}              [options]                   Optional object to configure the component.
      * @param {String}              [options.constraint]        Movement constraint. None by default. Can be `vertical`, `horizontal`, or `both`.
-     * @param {String|DOMElement}   [options.constraintElm]     Constrain dragging to be within this element. None by default.
+     * @param {String|Element}      [options.constraintElm]     Constrain dragging to be within this element. None by default.
      * @param {Number}              [options.top]               Limits to constrain draggable movement.
      * @param {Number}              [options.right]             Limits to constrain draggable movement.
      * @param {Number}              [options.bottom]            Limits to constrain draggable movement.
      * @param {Number}              [options.left]              Limits to constrain draggable movement.
-     * @param {String|DOMElement}   [options.handle]            If specified, this element or CSS ID will be used as a handle for dragging.
+     * @param {String|Element}      [options.handle]            If specified, this element or CSS ID will be used as a handle for dragging.
      * @param {Boolean}             [options.revert=false]            Flag to revert the draggable to the original position when dragging stops.
      * @param {String}              [options.cursor='move']            Cursor type (CSS `cursor` value) used when the mouse is over the draggable object.
      * @param {Number}              [options.zIndex]            Z-index applied to the draggable element while dragged.
      * @param {Number}              [options.fps]               If set, throttles the drag effect to this number of frames per second.
-     * @param {DOMElement}          [options.droppableProxy]    If set, a shallow copy of this element will be moved around with transparent background.
+     * @param {Element}             [options.droppableProxy]    If set, a shallow copy of this element will be moved around with transparent background.
      * @param {String}              [options.mouseAnchor]       Anchor for the drag. Can be one of: 'left','center','right','top','center','bottom'.
      * @param {String}              [options.dragClass]         Class to add when the draggable is being dragged. Defaults to drag.
      * @param {Boolean}             [options.skipChildren=true] Whether you have to drag the actual element, or dragging one of the children is okay too.
@@ -78,7 +78,7 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
          * Init function called by the constructor
          * 
          * @method _init
-         * @param {String|DOMElement}   element     Element ID of the element or DOM Element.
+         * @param {String|Element}      element     Element ID of the element or DOM Element.
          * @param {Object}              [options]   Options object for configuration of the module.
          * @private
          */
@@ -128,6 +128,7 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
          * Removes the ability of the element of being dragged
          * 
          * @method destroy
+         * @return {void}
          * @public
          */
         destroy: function() {
@@ -159,8 +160,8 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
          * Clones src element's relevant properties to dst
          * 
          * @method _cloneStyle
-         * @param {DOMElement} src Element from where we're getting the styles
-         * @param {DOMElement} dst Element where we're placing the styles.
+         * @param {Element} src Element from where we're getting the styles
+         * @param {Element} dst Element where we're placing the styles.
          * @private
          */
         _cloneStyle: function(src, dst) {

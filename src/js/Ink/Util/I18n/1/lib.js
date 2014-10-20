@@ -27,6 +27,7 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
      *
      * @param {Object} dict         Object mapping language codes (in the form of `pt_PT`, `pt_BR`, `fr`, `en_US`, etc.) to their `dictionaries`
      * @param {String} [lang='pt_PT'] language code of the target language
+     * @param {Boolean} [testMode=false] Sets the test mode (see `testMode()`) on construction.
      *
      * @sample Ink_Util_I18n_1.html
      */
@@ -53,6 +54,7 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
          *
          * @method append
          * @param   {Object} dict Object containing language objects identified by their language code
+         * @return {I18n} (itself)
          *
          * @sample Ink_Util_I18n_1_append.html
          */
@@ -67,8 +69,9 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
          * Gets or sets the language.
          * If there are more dictionaries available in cache, they will be loaded.
          *
-         * @method  lang
-         * @param   {String}    lang    Language code to set this instance to.
+         * @method lang
+         * @param  {String}    [lang]    Language code to set this instance to. Omit this argument if you want to get the language code instead.
+         * @return {String|I18n} The language code, if called without arguments, or this I18n instance if called with an argument.
          */
         lang: function( lang ) {
             if ( !arguments.length ) { return this._lang; }
@@ -90,12 +93,14 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
          * In test mode, unknown strings are wrapped in `[ ... ]`. This is useful for debugging your application and to make sure all your translation keys are in place.
          *
          * @method  testMode
-         * @param   {Boolean} bool Flag to set the test mode state
+         * @param   {Boolean} [newTestMode] Flag to set the test mode state. Omit this argument to *get* the current testMode instead.
+         * @return {String|I18n} The current testMode, if called without arguments, or this I18n instance if called with an argument.
+         *
          */
-        testMode: function( bool ) {
+        testMode: function( newTestMode ) {
             if ( !arguments.length ) { return !!this._testMode; }
 
-            if ( bool !== undefined  ) { this._testMode = !!bool; }
+            if ( newTestMode !== undefined  ) { this._testMode = !!newTestMode; }
 
             return this;
         },
@@ -104,7 +109,7 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
          * Gest a key from the current dictionary
          *
          * @method getKey
-         * @param {String} key
+         * @param {String} key Key you wish to get from the dictionary.
          * @return {Mixed} The object which happened to be in the current language dictionary on the given key.
          *
          * @sample Ink_Util_I18n_1_getKey.html
@@ -137,7 +142,9 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
          * @param {Object} [namedParms] Named replacements. Replaces {named} with values in this object.
          * @param {String} [args]      Replacement #1 (replaces first {} and all {1})
          * @param {String} [arg2]       Replacement #2 (replaces second {} and all {2})
-         * @param {String} [argn*]      Replacement #n (replaces nth {} and all {n})
+         * @param {String} [argn...]      Replacement #n (replaces nth {} and all {n})
+         *
+         * @return {String} Translated string.
          *
          * @sample Ink_Util_I18n_1_text.html
          */
@@ -176,12 +183,13 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
          * Given a singular string, a plural string and a number, translates either the singular or plural string.
          *
          * @method ntext
-         * @return {String}
          *
          * @param {String} strSin   Word to use when count is 1
          * @param {String} strPlur  Word to use otherwise
          * @param {Number} count    Number which defines which word to use
-         * @param [args*]           Extra arguments, to be passed to `text()`
+         * @param {Mixed} [args...] Extra arguments, to be passed to `text()`
+         *
+         * @return {String} Pluralized text string.
          *
          * @sample Ink_Util_I18n_1_ntext.html
          */
@@ -287,6 +295,7 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
      * Resets I18n global state (global dictionaries, and default language for instances)
      *
      * @method reset
+     * @return {void}
      * @static
      *
      **/
@@ -303,8 +312,9 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
      * @method appendGlobal
      * @static
      *
-     * @param dict {Object}     Dictionary to be added
-     * @param lang {String}     Language fo the dictionary being added
+     * @param {Object} dict Dictionary to be added
+     * @param {String} lang Language fo the dictionary being added
+     * @return {void}
      *
      */
     I18n.appendGlobal = function( dict , lang ) {
@@ -329,11 +339,11 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
      * Gets or sets the current default language of I18n instances.
      *
      * @method langGlobal
-     * @param lang the new language for all I18n instances
+     * @param {String} [lang] the new language for all I18n instances. Omit this argument if you wish to *get* the current default language instead.
      *
      * @static
      *
-     * @return {String} language code
+     * @return {String} language code, or nothing if not used as a setter.
      */
     I18n.langGlobal = function( lang ) {
         if ( !arguments.length ) { return I18n.prototype._gLang; }

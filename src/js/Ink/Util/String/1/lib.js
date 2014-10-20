@@ -189,8 +189,8 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
          * Encodes string into HTML entities.
          *
          * @method htmlEntitiesEncode
-         * @param {String} string
-         * @return {String} string encoded
+         * @param {String} string Input string.
+         * @return {String} HTML encoded string.
          * @public
          * @static
          * @sample Ink_Util_String_htmlEntitiesEncode.html 
@@ -273,12 +273,12 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
         },
 
         /**
-         * Truncates a string without breaking words.
+         * Truncates a string without breaking words. Inserts an ellipsis HTML entity at the end of the string if it's too long.
          *
          * @method shortString
          * @param   {String}    str     String to truncate
          * @param   {Number}    n       Number of chars of the short string
-         * @return  {String}        
+         * @return  {String}            Truncated string, or the original `str` if it's shorter than `n`
          * @public
          * @static
          * @sample Ink_Util_String_shortString.html 
@@ -324,33 +324,33 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
          * @public
          * @static
          */
-        utf8Decode: function(utfstring) {
+        utf8Decode: function(string) {
             /*jshint bitwise:false*/
-            var string = "";
+            var ret = "";
             var i = 0, c = 0, c2 = 0, c3 = 0;
 
-            while ( i < utfstring.length ) {
+            while ( i < string.length ) {
 
-                c = utfstring.charCodeAt(i);
+                c = string.charCodeAt(i);
 
                 if (c < 128) {
-                    string += String.fromCharCode(c);
+                    ret += String.fromCharCode(c);
                     i++;
                 }
                 else if((c > 191) && (c < 224)) {
-                    c2 = utfstring.charCodeAt(i+1);
-                    string += String.fromCharCode(((c & 31) << 6) | (c2 & 63));
+                    c2 = string.charCodeAt(i+1);
+                    ret += String.fromCharCode(((c & 31) << 6) | (c2 & 63));
                     i += 2;
                 }
                 else {
-                    c2 = utfstring.charCodeAt(i+1);
-                    c3 = utfstring.charCodeAt(i+2);
-                    string += String.fromCharCode(((c & 15) << 12) | ((c2 & 63) << 6) | (c3 & 63));
+                    c2 = string.charCodeAt(i+1);
+                    c3 = string.charCodeAt(i+2);
+                    ret += String.fromCharCode(((c & 15) << 12) | ((c2 & 63) << 6) | (c3 & 63));
                     i += 3;
                 }
 
             }
-            return string;
+            return ret;
         },
 
         /**
@@ -417,9 +417,9 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
         /**
          * Checks if a string is a valid JSON object (string encoded)
          *
-         * @method isJSON       
+         * @method isJSON
          * @param   {String}    str      String to check
-         * @return  {Boolean}
+         * @return  {Boolean}   Return whether it's JSON.
          * @public
          * @static
          */
@@ -572,12 +572,12 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
         },
 
         /**
-         * Escapes a string to unicode characters
+         * Escapes unicode characters in a string as unicode character entities (`\x##`, where the `##` are hex digits).
          *
          * @method escapeText
-         * @param   {String}    txt             
-         * @param   {Array}     [whiteList]     Whitelist of characters
-         * @return  {String}                    String escaped to Unicode
+         * @param   {String}    txt             String with characters outside the ASCII printable range (32 < charCode < 127)
+         * @param   {Array}     [whiteList]     Whitelist of characters which should NOT be escaped
+         * @return  {String}                    String escaped with unicode character entities.
          * @public
          * @static
          * @sample Ink_Util_String_escapeText.html 
@@ -611,10 +611,10 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
         escapedCharRegex: /(\\x[0-9a-fA-F]{2})|(\\u[0-9a-fA-F]{4})/g,
 
         /**
-         * Unescapes a string
+         * Removes unicode entities (in the format "\x##" or "\u####", where "#" is a hexadecimal digit)
          *
          * @method unescapeText
-         * @param {String} txt
+         * @param {String} txt Text you intend to remove unicode character entities.
          * @return {String} Unescaped string
          * @public
          * @static
@@ -637,7 +637,7 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
          * @method strcmp
          * @param   {String}    str1     First String
          * @param   {String}    str2     Second String
-         * @return  {Number}
+         * @return  {Number} 0 if given strings are equal, 1 if str1 is greater than str2, and -1 if str2 is greater than str1.
          * @public
          * @static
          * @sample Ink_Util_String_strcmp.html 

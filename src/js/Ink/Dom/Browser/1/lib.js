@@ -140,6 +140,7 @@ Ink.createModule('Ink.Dom.Browser', '1', [], function() {
          * Is called automatically when this module is loaded, and calls setDimensions, setBrowser and setReferrer.
          *
          * @method init
+         * @return {void}
          * @public
          */
         init: function() {
@@ -152,6 +153,7 @@ Ink.createModule('Ink.Dom.Browser', '1', [], function() {
          * Retrieves and stores window dimensions in this object. Called automatically when this module is loaded.
          *
          * @method setDimensions
+         * @return {void}
          * @public
          */
         setDimensions: function() {
@@ -176,6 +178,7 @@ Ink.createModule('Ink.Dom.Browser', '1', [], function() {
          * Stores the referrer. Called automatically when this module is loaded.
          *
          * @method setReferrer
+         * @return {void}
          * @public
          */
         setReferrer: function() {
@@ -190,6 +193,7 @@ Ink.createModule('Ink.Dom.Browser', '1', [], function() {
          * Detects the browser and stores the found properties. Called automatically when this module is loaded.
          *
          * @method detectBrowser
+         * @return {void}
          * @public
          */
         detectBrowser: function() {
@@ -274,19 +278,20 @@ Ink.createModule('Ink.Dom.Browser', '1', [], function() {
          * Debug function which displays browser (and Ink.Dom.Browser) information as an alert message.
          *
          * @method debug
+         * @return {void}
          * @public
          * @sample Ink_Dom_Browser_1_debug.html
          */
         debug: function() {
             /*global alert:false */
             var str = "known browsers: (ie, gecko, opera, safari, konqueror) \n";
-                str += [this.IE, this.GECKO, this.OPERA, this.SAFARI, this.KONQUEROR] +"\n";
-                str += "cssPrefix -> "+this.cssPrefix+"\n";
-                str += "domPrefix -> "+this.domPrefix+"\n";
-                str += "model -> "+this.model+"\n";
-                str += "version -> "+this.version+"\n";
-                str += "\n";
-                str += "original UA -> "+this.userAgent;
+            str += [this.IE, this.GECKO, this.OPERA, this.SAFARI, this.KONQUEROR] +"\n";
+            str += "cssPrefix -> "+this.cssPrefix+"\n";
+            str += "domPrefix -> "+this.domPrefix+"\n";
+            str += "model -> "+this.model+"\n";
+            str += "version -> "+this.version+"\n";
+            str += "\n";
+            str += "original UA -> "+this.userAgent;
 
             alert(str);
         }

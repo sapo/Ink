@@ -13,7 +13,7 @@ Ink.createModule('Ink.UI.ProgressBar', '1', ['Ink.UI.Common_1', 'Ink.Dom.Selecto
      * @class Ink.UI.ProgressBar
      * @constructor
      * @version 1
-     * @param {String|DOMElement}   selector                Element or selector
+     * @param {String|Element}      selector                Element or selector
      * @param {Object}              [options]               Options object
      * @param {Number}              [options.startValue]    Percentage of the bar that is filled. Ranges between 0 and 100. Default: 0
      * @param {Function}            [options.onStart]       Callback called when a change of value is started
@@ -56,6 +56,7 @@ Ink.createModule('Ink.UI.ProgressBar', '1', ['Ink.UI.Common_1', 'Ink.Dom.Selecto
          * 
          * @method setValue
          * @param {Number} newValue Numeric value, between 0 and 100, that represents the percentage of the bar.
+         * @return {void}
          * @public
          */
         setValue: function( newValue ){

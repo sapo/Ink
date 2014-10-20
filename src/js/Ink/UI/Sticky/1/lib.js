@@ -13,7 +13,7 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
      * @class Ink.UI.Sticky
      * @constructor
      * @version 1
-     * @param {String|DOMElement}   selector                    Element or selector
+     * @param {String|Element}      selector                    Element or selector
      * @param {Object}              [options] Options           Options object.
      * @param {Number}              [options.offsetBottom]      Number of pixels of distance from the bottomElement. Defaults to 0.
      * @param {Number}              [options.offsetTop]         Number of pixels of distance from the topElement. Defaults to 0.
@@ -85,6 +85,7 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
          * Returns whether the sticky is disabled in the current view
          *
          * @method isDisabledInLayout
+         * @return {Boolean} Whether Sticky is disabled in this layout.
          * @private
          */
         _isDisabledInLayout: function () {

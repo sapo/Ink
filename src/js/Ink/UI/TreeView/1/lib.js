@@ -16,7 +16,7 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
      * @class Ink.UI.TreeView
      * @constructor
      * @version 1
-     * @param {String|DOMElement}   selector                    Element or selector.
+     * @param {String|Element}      selector                    Element or selector.
      * @param {String}              [options]                   Options object, containing:
      * @param {String}              [options.node]              Selector for the nodes. Defaults to 'li'.
      * @param {String}              [options.children]          Selector for the children. Defaults to 'ul'.
@@ -109,14 +109,15 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
          * Checks if a node is open.
          *
          * @method isOpen
-         * @param {DOMElement} node  The tree node to check
+         * @param {Element} node  The tree node to check
+         * @return {Boolean} Whether the node is open.
          **/
         isOpen: function (node) {
             if (!this._getChild(node)) {
                 throw new Error('not a node!');
             }
 
-            return Element.data(node).open === 'true' ||
+            return node.getAttribute('data-open') === 'true' ||
                 Css.hasClassName(node, this._options.openNodeClass);
         },
 
@@ -124,7 +125,8 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
          * Checks if a node is a parent.
          *
          * @method isParent
-         * @param {DOMElement} node     Node to check
+         * @param {Element} node     Node to check
+         * @return {Boolean} Whether `node` is a parent.
          **/
         isParent: function (node) {
             return Css.hasClassName(node, this._options.parentClass) ||
@@ -166,9 +168,10 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
         /**
          * Opens one of the tree nodes
          *
-         * Make sure you pass the node's DOMElement
+         * Make sure you pass the node's Element
          * @method open
-         * @param {DOMElement} node     The node you wish to open.
+         * @param {Element} node     The node you wish to open.
+         * @return {void}
          **/
         open: function (node) {
             this._setNodeOpen(node, true);
@@ -177,9 +180,10 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
         /**
          * Closes one of the tree nodes
          *
-         * Make sure you pass the node's DOMElement
+         * Make sure you pass the node's Element
          * @method close
-         * @param {DOMElement} node     The node you wish to close.
+         * @param {Element} node     The node you wish to close.
+         * @return {void}
          **/
         close: function (node) {
             this._setNodeOpen(node, false);
@@ -189,7 +193,8 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
          * Toggles a node state
          *
          * @method toggle
-         * @param {DOMElement} node     The node to toggle.
+         * @param {Element} node     The node to toggle.
+         * @return {void}
          **/
         toggle: function (node) {
             if (this.isOpen(node)) {
@@ -199,6 +204,9 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
             }
         },
 
+        /**
+         * @method _getChild
+         **/
         _getChild: function (node) {
             return Selector.select(this._options.children, node)[0] || null;
         },
@@ -207,7 +215,8 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
          * Handles the click event (as specified in the _init function).
          * 
          * @method _onClick
-         * @param {Event} event
+         * @param {Event} ev DOM click event.
+         * @return {void}
          * @private
          */
         _onClick: function(ev){

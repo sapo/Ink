@@ -59,7 +59,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
      * @class Ink.UI.Table
      * @constructor
      * @version 1
-     * @param {String|DOMElement}   selector
+     * @param {String|Element}      selector                                Your `<table>` element.
      * @param {Object}              [options] Options
      * @param {Number}              [options.pageSize]                      Number of rows per page. Omit to avoid paginating.
      * @param {String}              [options.endpoint]                      Endpoint to get the records via AJAX. Omit if you don't want to do AJAX
@@ -509,14 +509,16 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
          * Useful to change the endpoint in runtime.
          *
          * @method setEndpoint
-         * @public
          * @param {String} endpoint New endpoint
+         * @param {Number} currentPage If you pass this, setCurrent will also be called.
+         * @return {void}
+         * @public
          */
         setEndpoint: function( endpoint, currentPage ){
             if( !this._markupMode ){
                 this._options.endpoint = endpoint;
                 if (this._pagination) {
-                    this._pagination.setCurrent((!!currentPage) ? parseInt(currentPage,10) : 0 );
+                    this._pagination.setCurrent(currentPage ? parseInt(currentPage,10) : 0 );
                 }
             }
         },
@@ -647,7 +649,11 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
          * 
          * Will call options.getDataFromEndpoint( Uri, callback ) if available.
          *
-         * @param  endpointUri Endpoint to get data from, after processing.
+         * When done, calls _onAjaxSuccess
+         *
+         * @method _getDataViaAjax
+         * @param {String} endpointUri Endpoint to get data from, after processing.
+         * @private
          */
         _getDataViaAjax: function( endpointUri ){
             var success = Ink.bind(function( JSONData ){

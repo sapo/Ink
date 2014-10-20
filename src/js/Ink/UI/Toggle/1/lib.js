@@ -8,6 +8,7 @@
     'use strict';
 
     /**
+     * *Important note: Do NOT use this as a dropdown! Use Ink.UI.Dropdown for that.*
      *
      * You need two elements to use Toggle: the `trigger` element, and the `target` element (or elements). The default behaviour is to toggle the `target`(s) when you click the `trigger`.
      *
@@ -22,7 +23,7 @@
      * @class Ink.UI.Toggle
      * @constructor
      * @version 1
-     * @param {String|DOMElement} selector  Trigger element. By clicking this, the target (or targets) are triggered.
+     * @param {String|Element} selector  Trigger element. By clicking this, the target (or targets) are triggered.
      * @param {Object} [options] Options object, containing:
      *
      * @param {String}              options.target                  CSS Selector that specifies the elements that this component will toggle
@@ -226,7 +227,9 @@
          * Sets the state of the toggle. (on/off)
          *
          * @method setState
-         * @param newState {Boolean} New state (on/off)
+         * @param {Boolean} on New state (on/off)
+         * @param {Boolean} callHandler Whether to call the onChangeState handler.
+         * @return {void}
          */
         setState: function (on, callHandler) {
             if (on === this.getState()) { return; }
