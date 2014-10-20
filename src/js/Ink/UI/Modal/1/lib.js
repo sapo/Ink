@@ -433,17 +433,8 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
         _waitForFade: function (elem, callback) {
             if (!opacitySupported) { return callback(); }
 
-            var transitionEndEventNames = [
-                'transitionEnd', 'oTransitionEnd', 'webkitTransitionEnd'];
-            var classicName;
-            var evName;
-            for (var i = 0, len = transitionEndEventNames.length; i < len; i++) {
-                evName = transitionEndEventNames[i];
-                classicName = 'on' + evName.toLowerCase();
-                if (classicName in elem) {
-                    Event.observeOnce(elem, evName, callback);
-                    return;
-                }
+            if ('ontransitionend' in elem) {
+                return Event.observeOnce(elem, 'transitionEnd', callback);
             }
 
             var fadeChecks = 5;
@@ -455,6 +446,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                     callback();
                 }
             };
+
             setTimeout(fadeChecker, 500);
         },
 
