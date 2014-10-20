@@ -284,6 +284,8 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
         open: function(event) {
             /* jshint -W030 */
 
+            if (this.isOpen()) { return false; }
+
             if( event ){ Event.stop(event); }
 
             var elem = (document.compatMode === "CSS1Compat") ?  document.documentElement : document.body;
