@@ -30,6 +30,12 @@ Ink.requireModules(['Ink.Dom.Element_1', 'Ink.Dom.Selector_1', 'Ink.Dom.Css_1'],
         testArea.innerHTML = '';
     });
 
+    test('textContent', function () {
+        var a = document.createElement('a');
+        a.innerHTML = 't&amp;sting';
+        equal(InkElement.textContent(a), 't&sting');
+    });
+
     test('{append,prepend}HTML', function () {
         var rootElm = InkElement.create('div');
         rootElm.innerHTML = 'some-text';

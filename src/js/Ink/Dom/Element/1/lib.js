@@ -405,7 +405,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
                 return InkElement.textContent(node.documentElement || node.body && node.body.parentNode || node.body);
 
             case 1: /*ELEMENT_NODE*/
-                text = node.innerText;
+                text = ('textContent' in node) ? node.textContent : node.innerText;
                 if (typeof text !== 'undefined') {
                     return text;
                 }
