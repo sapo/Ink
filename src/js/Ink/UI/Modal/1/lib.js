@@ -445,8 +445,11 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                     return;
                 }
             }
+
+            var fadeChecks = 5;
             var fadeChecker = function () {
-                if( +Css.getStyle(elem, 'opacity') > 0 ){
+                if( +Css.getStyle(elem, 'opacity') > 0 && fadeChecks > 0) {
+                    fadeChecks--;
                     setTimeout(fadeChecker, 250);
                 } else {
                     callback();
