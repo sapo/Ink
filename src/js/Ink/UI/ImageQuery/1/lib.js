@@ -76,7 +76,7 @@ Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             this._options.queries = InkArray.sortMulti(this._options.queries, 'width').reverse();
 
             if( typeof this._options.onLoad === 'function' ){
-                Event.observe(this._element, 'onload', Ink.bindEvent(this._onLoad, this));
+                Event.observe(this._element, 'load', Ink.bindEvent(this._onLoad, this));
             }
 
             // Imediate call to apply the right images based on the current viewport
