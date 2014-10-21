@@ -16,11 +16,11 @@ Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
      * @param {Object}              [options]                   Options object
      * @param {String|Function}     [options.src]               String or Callback function (that returns a string) with the path to be used to get the images.
      * @param {String|Function}     [options.retina]            String or Callback function (that returns a string) with the path to be used to get RETINA specific images.
-     * @param {Array}               [options.queries]           Array of queries
-     * @param {String}              [options.queries.label]     Label of the query. Ex. 'small'
-     * @param {Number}              [options.queries.width]     Min-width to use this query
+     * @param {Array}               [options.queries]           Array of queries. Each query object contains the following properties:
+     * @param {String}              [options.queries.label]     Label of the query. Ex. 'small'.
+     * @param {Number}              [options.queries.width]     Min-width to use this query.
      * @param {String}              [options.queries.src]       If you don't want to specify a "string template" in options.src, you can also specify an image source in each query by setting this option.
-     * @param {Function}            [options.onLoad]            Date format string
+     * @param {Function}            [options.onLoad]            Called when an image is loaded into this img (occurs several times because the user may resize the page, causing the image's "load" event to be called several times).
      *
      * @sample Ink_UI_ImageQuery_1.html
      */
