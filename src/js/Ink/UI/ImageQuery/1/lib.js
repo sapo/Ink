@@ -19,6 +19,7 @@ Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
      * @param {Array}               [options.queries]           Array of queries
      * @param {String}              [options.queries.label]     Label of the query. Ex. 'small'
      * @param {Number}              [options.queries.width]     Min-width to use this query
+     * @param {String}              [options.queries.src]       If you don't want to specify a "string template" in options.src, you can also specify an image source in each query by setting this option.
      * @param {Function}            [options.onLoad]            Date format string
      *
      * @sample Ink_UI_ImageQuery_1.html
@@ -147,9 +148,7 @@ Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             /**
              * Gets viewport width
              */
-            var viewportWidth = window.innerWidth ||
-                document.documentElement.clientWidth ||
-                document.body.clientWidth;
+            var viewportWidth = Element.viewportWidth();
 
             var queries = this._options.queries;
             var last = queries.length - 1;
