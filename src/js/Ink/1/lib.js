@@ -170,7 +170,7 @@
          * @method loadScript
          * @param {String}  uri  Can be an external URL or a module name
          * @param {String}  [contentType]='text/javascript' The `type` attribute of the new script tag.
-         * @return {void}
+         * @return {Element} The newly created script element.
          */
         loadScript: function(uri, contentType) {
             /*jshint evil:true */
@@ -189,24 +189,19 @@
             scriptEl.setAttribute('type', contentType || 'text/javascript');
             scriptEl.setAttribute('src', uri);
 
-            scriptEl.onerror = scriptEl.onreadystatechange = function (ev) {
-                ev = ev || window.event;
-                if (ev.type === 'readystatechange' && scriptEl.readyState !== 'loaded') {
-                    // if not readyState == 'loaded' it's not an error.
-                    return;
-                }
-                Ink.error(['Failed to load script from ', uri, '.'].join(''));
-            };
-            // CHECK ON ALL BROWSERS
-            /*if (document.readyState !== 'complete' && !document.body) {
-                document.write( scriptEl.outerHTML );
+            if ('onerror' in scriptEl) {
+                scriptEl.onerror = function () {
+                    Ink.error(['Failed to load script from ', uri, '.'].join(''));
+                };
             }
-            else {*/
-                var aHead = document.getElementsByTagName('head');
-                if(aHead.length > 0) {
-                    aHead[0].appendChild(scriptEl);
-                }
-            //}
+
+            if (document.head) {
+                return document.head.appendChild(scriptEl);
+            }
+            var aHead = document.getElementsByTagName('head');
+            if(aHead.length > 0) {
+                return aHead[0].appendChild(scriptEl);
+            }
         },
 
         _loadLater: function (dep) {
