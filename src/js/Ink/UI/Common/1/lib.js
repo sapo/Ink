@@ -363,6 +363,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          *
          * @method clone
          * @static
+         * @deprecated
          * @param  {Object} o The object to be cloned/copied.
          * @return {Object} Returns the result of the clone/copy.
          * @example
