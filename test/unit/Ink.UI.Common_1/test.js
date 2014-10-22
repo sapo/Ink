@@ -19,12 +19,18 @@ Ink.requireModules(['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1', '
             function UIComp() {};
             inst = new UIComp();
             inst._element = elm;
-        },
+        }
     });
 
     test('Holds instances, can retrieve them', function () {
         Common.registerInstance(inst, elm);
         strictEqual(Common.getInstance(elm)[0], inst);
+    });
+
+    test('Can unregister an instance', function () {
+        Common.registerInstance(inst, elm);
+        Common.unregisterInstance(inst);
+        ok(!Common.getInstance(elm)[0]);
     });
 
     test('Does not break when getting instances from an element without them', function () {
@@ -301,7 +307,7 @@ Ink.requireModules(['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1', '
     var testFunc;
     module('createUIComponent', {
         setup: function () {
-            testFunc = function testFunc () {
+            testFunc = function () {
                 Common.BaseUIComponent.apply(this, arguments);
             }
 
