@@ -124,7 +124,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          * @method elsOrSelector
          *
          * @static
-         * @param  {Element|Array|String} elsOrSelector DOM Element , array of DOM Elements, or CSS Selector
+         * @param  {Element|Array|String} elsOrSelector DOM Element, array of DOM Elements, or CSS Selector
          * @param  {String}               [fieldName]     The name of the field. Used for the error shown when no elements are found.
          * @param {Boolean} required If this is true, throw an error instead of returning an empty array.
          * @return {Array} The selected Elements, or the given Elements
@@ -385,7 +385,10 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
         /**
          * Gets an element's one-base index relative to its parent.
          *
+         * Deprecated. Use Ink.Dom.Element.parentIndexOf instead.
+         *
          * @method childIndex
+         * @deprecated
          * @static
          * @param  {Element}     childEl     Valid DOM Element.
          * @return {Number}                     Numerical position of an element relatively to its parent.
@@ -403,18 +406,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          *         Ink.UI.Common.childIndex( testLi ); // Returned value: 3
          *     </script>
          */
-        childIndex: function(childEl) {
-            if( Common.isDOMElement(childEl) ){
-                var els = Selector.select('> *', childEl.parentNode);
-                for (var i = 0, f = els.length; i < f; ++i) {
-                    if (els[i] === childEl) {
-                        return i;
-                    }
-                }
-            }
-            throw 'not found!';
-        },
-
+        childIndex: InkElement.parentIndexOf,
 
         /**
          * AJAX JSON request shortcut method
@@ -550,14 +542,9 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          */
         cleanChildren: function(parentEl) {
             if( !Common.isDOMElement(parentEl) ){
-                throw 'Please provide a valid DOMElement';
+                throw new Error('Please provide a valid DOMElement');
             }
-            var prevEl, el = parentEl.lastChild;
-            while (el) {
-                prevEl = el.previousSibling;
-                parentEl.removeChild(el);
-                el = prevEl;
-            }
+            InkElement.setHTML(parentEl, '');
         },
 
         /**
@@ -758,7 +745,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
 
             if (!Common.isDOMElement(el)) {
                 Ink.warn('Ink.UI.Common: getInstance called on non-element (' + givenEl + ')');
-                return null;
+                return [];
             }
 
             var instances = domRegistry.get(el);
@@ -843,7 +830,6 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
             Common.unregisterInstance(this);
             this._element.parentNode.removeChild(this._element);
         }
-
     };
 
 

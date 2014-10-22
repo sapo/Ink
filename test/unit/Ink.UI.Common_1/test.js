@@ -37,7 +37,7 @@ Ink.requireModules(['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1', '
         deepEqual(Common.getInstance(elm), []);
     });
 
-    test('Calls Common.isDOMElement. If it returns false, warns and returns null.', sinon.test(function () {
+    test('Calls Common.isDOMElement. If it returns false, warns and returns [].', sinon.test(function () {
         this.stub(Ink, 'warn');
         this.stub(Common, 'isDOMElement').returns(false);
 
@@ -45,7 +45,7 @@ Ink.requireModules(['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1', '
 
         ok(Common.isDOMElement.calledWith('fakeelement'), 'isDOMElement called with the element');
 
-        strictEqual(ret, null, 'getInstance returned null');
+        deepEqual(ret, [], 'getInstance returned []');
 
         ok(Ink.warn.called, 'Ink.warn called');
         ok(/fakeelement/.test(Ink.warn.lastCall.args[0]), 'Warned the supposed "element"');
