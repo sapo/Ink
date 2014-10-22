@@ -256,6 +256,19 @@ Ink.requireModules(['Ink.Dom.Element_1', 'Ink.Dom.Selector_1', 'Ink.Dom.Css_1'],
         equal(parent.children[0].className, 'elm2');
     });
 
+    test('parentIndexOf()', function() {
+        var parent = document.createElement('div');
+        parent.innerHTML = '<span>' +
+            [0, 1, 2, 3, 4, 5, 6, 7].join('</span><span>') +
+            '</span>';
+
+        equal(InkElement.parentIndexOf(parent.getElementsByTagName('span')[3]), 3);
+        equal(InkElement.parentIndexOf(parent.getElementsByTagName('span')[0]), 0);
+        equal(InkElement.parentIndexOf(parent.getElementsByTagName('span')[7]), 7);
+
+        equal(InkElement.parentIndexOf(document.createElement('div')), false);
+    });
+
     test('outerDimensions', function () {
         var elm = InkElement.create('div');
         document.body.appendChild(elm);
