@@ -13,15 +13,11 @@ Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'In
 
     var animationPrefix = (function (el) {
         return ('animationName' in el.style) ? 'animation' :
-               ('oAnimationName' in el.style) ? 'oAnimation' :
-               ('msAnimationName' in el.style) ? 'msAnimation' :
                ('webkitAnimationName' in el.style) ? 'webkitAnimation' : null;
     }(document.createElement('div')));
 
     var animationEndEventName = {
         animation: 'animationend',
-        oAnimation: 'oanimationend',
-        msAnimation: 'MSAnimationEnd',
         webkitAnimation: 'webkitAnimationEnd'
     }[animationPrefix];
 

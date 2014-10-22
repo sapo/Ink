@@ -19,9 +19,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
     }
 
     var requestAnimationFrame = window.requestAnimationFrame ||
-        window.mozRequestAnimationFrame ||
-        window.webkitRequestAnimationFrame ||
-        function (cb) {return setTimeout(cb, 1000 / 30); };
+        function (cb) { return setTimeout(cb, 1000 / 30); };
 
     /**
      * @class Ink.UI.Carousel_1
