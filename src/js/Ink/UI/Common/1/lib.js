@@ -107,7 +107,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          *     var el = Ink.UI.Common.elOrSelector('.myInput','My Input');
          */
         elOrSelector: function(elOrSelector, fieldName) {
-            if (!this.isDOMElement(elOrSelector)) {
+            if (!Common.isDOMElement(elOrSelector)) {
                 var t = Selector.select(elOrSelector);
                 if (t.length === 0) {
                     Ink.warn(fieldName + ' must either be a DOM Element or a selector expression!\nThe script element must also be after the DOM Element itself.');
@@ -478,9 +478,9 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
             if (!detectorEl) {
                 detectorEl = document.createElement('div');
                 detectorEl.id = 'ink-layout-detector';
-                for (k in this.Layouts) {
-                    if (this.Layouts.hasOwnProperty(k)) {
-                        v = this.Layouts[k];
+                for (k in Common.Layouts) {
+                    if (Common.Layouts.hasOwnProperty(k)) {
+                        v = Common.Layouts[k];
                         el = document.createElement('div');
                         el.className = 'show-' + v + ' hide-all';
                         el.setAttribute('data-ink-layout', v);
@@ -752,7 +752,15 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          * @public
          */
         getInstance: function(el, UIComponent) {
+            var givenEl = el;  // So we can warn it later.
+
             el = Common.elOrSelector(el);
+
+            if (!Common.isDOMElement(el)) {
+                Ink.warn('Ink.UI.Common: getInstance called on non-element (' + givenEl + ')');
+                return null;
+            }
+
             var instances = domRegistry.get(el);
 
             if (!instances) {
