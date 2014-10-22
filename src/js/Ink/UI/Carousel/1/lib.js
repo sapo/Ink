@@ -311,6 +311,16 @@ Ink.createModule('Ink.UI.Carousel', '1',
         },
 
         /**
+         * Gets the Ink Pagination element this carousel is using.
+         * @method getPagination
+         * @return {Pagination} The pagination instance, if any. Otherwise, `null`.
+         * @public
+         **/
+        getPagination: function () {
+            return this._pagination || null;
+        },
+
+        /**
          * Sets the current page index
          * @method setPage
          * @param {Number}  page   Index of the destination page.
