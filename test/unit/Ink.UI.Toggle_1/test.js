@@ -11,8 +11,10 @@ Ink.requireModules(['Ink.UI.Toggle_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1', 'In
             insertBottom: parent
         });
         var targets = [
-            InkElement.create('div', {className: (options.targetClassName || 'targets') + ' target-1', insertBottom:parent}),
-            InkElement.create('div', {className: (options.targetClassName || 'targets') + ' target-2', insertBottom:parent})
+            InkElement.create('div', {
+                className: (options.targetClassName || 'targets') + ' target-1', insertBottom:parent}),
+            InkElement.create('div', {
+                className: (options.targetClassName || 'targets') + ' target-2', insertBottom:parent})
         ];
         return { parent: parent, trigger: trigger, targets: targets };
     }
@@ -97,12 +99,16 @@ Ink.requireModules(['Ink.UI.Toggle_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1', 'In
         });
         var otherToggle = new Toggle(bag2.trigger, {
             isAccordion: true,
-            target: bag2.targets
+            target: bag2.targets,
+            initialState: false
         });
 
-        InkEvent.fire(bag.trigger, 'click');
-
-        equal(bag2.targets[0].style.display, 'none');
+        InkEvent.fire(bag2.trigger, 'click');
+        ok(!thisToggle.getState(), 'Opening the second toggle closed the first toggle');
+        ok(otherToggle.getState(), 'The second toggle is indeed open (sanity check)');
+        InkEvent.fire(bag2.trigger, 'click');
+        ok(!thisToggle.getState(), 'Closing the second toggle closed both toggles');
+        ok(!otherToggle.getState(), 'Closing the second toggle closed both toggles');
     });
 
     module('ancestors');

@@ -84,7 +84,10 @@
                 }
             }
 
-            this._accordion = ( Css.hasClassName(this._element.parentNode,'accordion') || Css.hasClassName(this._targets[0].parentNode,'accordion') );
+            if (this._options.isAccordion) {
+                this._accordionContainer = InkElement.findUpwardsByClass(
+                    this._element, 'accordion');
+            }
 
             this._firstTime = true;
 
@@ -155,10 +158,6 @@
                 return;
             }
 
-            if (this._accordion) {
-                this._updateAccordion();
-            }
-
             var has = this.getState();
             this.setState(!has, true);
             if (!has && this._firstTime) {
@@ -174,19 +173,14 @@
          * @method _updateAccordion
          **/
         _updateAccordion: function () {
-            var elms, accordionElement;
-            if( Css.hasClassName(this._targets[0].parentNode,'accordion') ){
-                accordionElement = this._targets[0].parentNode;
-            } else {
-                accordionElement = this._targets[0].parentNode.parentNode;
-            }
-            elms = Selector.select('.toggle, .ink-toggle',accordionElement);
-            for(var i=0; i<elms.length; i+=1 ){
-                var dataset = InkElement.data( elms[i] ),
-                    targetElm = Selector.select( dataset.target,accordionElement );
+            if (!this._accordionContainer) { return; }
+            if (this.getState() === false) { return; }
 
-                if( (targetElm.length > 0) && (targetElm[0] !== this._targets[0]) ){
-                    targetElm[0].style.display = 'none';
+            var elms = Selector.select('[data-is-toggle-trigger]', this._accordionContainer);
+            for (var i = 0; i < elms.length; i++) {
+                var otherToggle = Toggle.getInstance(elms[i]);
+                if (otherToggle && (otherToggle !== this) && otherToggle.getState() === true) {
+                    otherToggle.setState(false, true);
                 }
             }
         },
@@ -233,6 +227,16 @@
          */
         setState: function (on, callHandler) {
             if (on === this.getState()) { return; }
+
+            var i, len;
+            if (this._group && on) {
+                for (i = 0, len = this._group.length; i < len; i++) {
+                    if (this._group[i].getState() === true) {
+                        this._group[i].setState(false, true);
+                    }
+                }
+            }
+
             if (callHandler && typeof this._options.onChangeState === 'function') {
                 var ret = this._options.onChangeState(on);
                 if (ret === false) { return false; } //  Canceled by the event handler
@@ -242,6 +246,10 @@
                 Css.addRemoveClassName(this._targets[i], this._options.classNameOff, !on);
             }
             Css.addRemoveClassName(this._element, 'active', on);
+
+            if (this._accordionContainer) {
+                this._updateAccordion();
+            }
         },
 
         /**
