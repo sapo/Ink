@@ -250,5 +250,35 @@ Ink.requireModules(['Ink.UI.Toggle_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1', 'In
         InkEvent.fire(target, 'click');
         ok(toggle.getState(), 'didnt close even though the event bubbled upwards from the target');
     });
+
+    test('Toggle groups', function () {
+        var bag1 = createBag();
+        var bag2 = createBag();
+        var bag3 = createBag();
+        var bag4 = createBag();
+
+        var toggle1 = new Toggle(bag1.trigger,   { group: 'group A', target: bag1.targets });
+        var toggle2 = new Toggle(bag2.trigger,   { group: 'group A', target: bag2.targets });
+        var toggle3 = new Toggle(bag3.trigger,   { group: 'group B', target: bag3.targets });
+        var groupless = new Toggle(bag4.trigger, { target: bag4.targets });
+
+        toggle1.setState(true)
+        toggle2.setState(false)
+        toggle3.setState(false)
+        groupless.setState(false)
+
+        toggle2.setState(true)
+        ok(toggle2.getState(), '(sanity check)');
+        ok(!toggle1.getState(), 'Because the second toggle in group A was opened, the first toggle in group A closes now');
+
+        toggle3.setState(true); // open third toggle, closes nothing because separate group
+        ok(toggle3.getState(), '(sanity check)');
+        ok(toggle2.getState(), 'Now we opened the third toggle, but that didn\'t close the second toggle in group A');
+
+        groupless.setState(true);
+        ok(toggle3.getState(), 'Opening the groupless toggle didn\'t close the toggle in group B');
+        ok(toggle2.getState(), 'Opening the groupless toggle didn\'t close the second toggle in group A');
+        ok(!toggle1.getState(), '(sanity check)');
+    });
 });
 

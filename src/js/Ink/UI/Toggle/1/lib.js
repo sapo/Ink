@@ -7,6 +7,8 @@
  Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Common, InkEvent, Css, InkElement, Selector, InkArray ) {
     'use strict';
 
+    var groups = {};
+
     /**
      * *Important note: Do NOT use this as a dropdown! Use Ink.UI.Dropdown for that.*
      *
@@ -27,6 +29,7 @@
      * @param {Object} [options] Options object, containing:
      *
      * @param {String}              options.target                  CSS Selector that specifies the elements that this component will toggle
+     * @param {String}              [options.group]                 Name of the current toggle group. Only one toggle of each group can be open at once. By default, a toggle is in no group at all, and opening it won't close any others.
      * @param {String}              [options.classNameOn]           CSS class to toggle when on. Defaults to 'show-all'.
      * @param {String}              [options.classNameOff]          CSS class to toggle when off. Defaults to 'hide-all'.
      * @param {String}              [options.triggerEvent]          Event that will trigger the toggling. Defaults to 'click'.
@@ -46,6 +49,7 @@
 
     Toggle._optionDefinition = {
         target:         ['Elements'],
+        group:          ['String', null],
         triggerEvent:   ['String', 'click'],
         closeOnClick:   ['Boolean', true],
         canToggleAnAncestor: ['Boolean', false],
@@ -70,8 +74,6 @@
 
             this._targets = Common.elsOrSelector(this._options.target);
 
-            // Boolean option handling
-            this._options.closeOnClick = this._options.closeOnClick;
             // Actually a throolean
             if (this._options.initialState === null){
                 this._options.initialState = Css.getStyle(this._targets[0], 'display') !== 'none';
@@ -105,6 +107,15 @@
             }
 
             this._element.setAttribute('data-is-toggle-trigger', 'true');
+
+            // Set the this._group property
+            if (this._options.group) {
+                if (!groups[this._options.group]) {
+                    groups[this._options.group] = [];
+                }
+                this._group = groups[this._options.group];
+                this._group.push(this);
+            }
         },
 
         /**
@@ -233,11 +244,20 @@
          */
         setState: function (on, callHandler) {
             if (on === this.getState()) { return; }
+
+            var i, len;
+            if (this._group && on) {
+                for (i = 0, len = this._group.length; i < len; i++) {
+                    if (this._group[i].getState() === true) {
+                        this._group[i].setState(false, true);
+                    }
+                }
+            }
             if (callHandler && typeof this._options.onChangeState === 'function') {
                 var ret = this._options.onChangeState(on);
                 if (ret === false) { return false; } //  Canceled by the event handler
             }
-            for (var i = 0, len = this._targets.length; i < len; i++) {
+            for (i = 0, len = this._targets.length; i < len; i++) {
                 Css.addRemoveClassName(this._targets[i], this._options.classNameOn, on);
                 Css.addRemoveClassName(this._targets[i], this._options.classNameOff, !on);
             }
