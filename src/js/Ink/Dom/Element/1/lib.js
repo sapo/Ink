@@ -20,7 +20,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
     }());
 
     function rect(elem){
-        var dimensions = {};
+        var dimensions = {}
         try {
             dimensions = elem.getBoundingClientRect();
         } catch(e){
