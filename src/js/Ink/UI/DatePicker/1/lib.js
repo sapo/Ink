@@ -70,9 +70,9 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
      *
      * @sample Ink_UI_DatePicker_1.html
      */
-    var DatePicker = function() {
+    function DatePicker() {
         Common.BaseUIComponent.apply(this, arguments);
-    };
+    }
 
     DatePicker._name = 'DatePicker_1';
 
