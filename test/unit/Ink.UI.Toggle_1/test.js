@@ -251,6 +251,7 @@ Ink.requireModules(['Ink.UI.Toggle_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1', 'In
         ok(toggle.getState(), 'didnt close even though the event bubbled upwards from the target');
     });
 
+    module('Groups');
     test('Toggle groups', function () {
         var bag1 = createBag();
         var bag2 = createBag();
