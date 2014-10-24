@@ -245,7 +245,7 @@
                 var ret = this._options.onChangeState(on);
                 if (ret === false) { return false; } //  Canceled by the event handler
             }
-            for (var i = 0, len = this._targets.length; i < len; i++) {
+            for (i = 0, len = this._targets.length; i < len; i++) {
                 Css.addRemoveClassName(this._targets[i], this._options.classNameOn, on);
                 Css.addRemoveClassName(this._targets[i], this._options.classNameOff, !on);
             }
