@@ -58,30 +58,40 @@ Ink.requireModules(['Ink.UI.ImageQuery_1', 'Ink.UI.Common_1', 'Ink.Dom.Element_1
             '300px viewport -> 300px image (last query)');
     }));
 
-    testImageQuery('_onResize sets the image src to things by calling _findCurrentQuery', sinon.test(function (iq, img) {
-        var findCurrentQuery = this.stub(iq, '_findCurrentQuery').returns({ label: 'lol', width: 100 });
+    testImageQuery('getQuerySrc', function (iq, img) {
+        iq.setOption('src', '/{:label}.jpg');
+        equal(
+            iq.getQuerySrc({
+                label: '200px',
+                width: 200
+            }),
+            '/200px.jpg',
+            'Simple template query');
+        equal(
+            iq.getQuerySrc({
+                label: '200px',
+                src: '/alt/{:label}.jpg',
+                width: 200
+            }),
+            '/alt/200px.jpg',
+            'Overriding the global src set in the options');
+        equal(
+            iq.getQuerySrc({ src: sinon.stub().returns('/returned/from/function.jpg')}),
+            '/returned/from/function.jpg',
+            'when src: is a function');
+    });
+
+    testImageQuery('_onResize chooses and then sets the image\'s src attribute by calling _findCurrentQuery and getQuerySrc', sinon.test(function (iq, img) {
+        var dummyQuery = dummyQuery;
+        var getQuerySrc = this.stub(iq, 'getQuerySrc').returns('/from/getquerysrc.jpg');
+        var findCurrentQuery = this.stub(iq, '_findCurrentQuery').returns(dummyQuery);
 
         iq._onResize();
 
-        equal(img.getAttribute('src'), '/images/lol.jpg', 'fetched /images/lol.jpg because it was given a query with label "lol"');
+        ok(findCurrentQuery.calledOnce);
+        ok(getQuerySrc.calledOnce);
+        ok(getQuerySrc.calledWith(dummyQuery));
 
-        findCurrentQuery.returns({ src: '/will-override.png', label: 'label', width: 100 });
-
-        iq._onResize();
-
-        equal(img.getAttribute('src'), '/will-override.png', 'query.src overrides query.label');
-    }));
-
-    testImageQuery('...and it calls "src" in options if it\'s a function', sinon.test(function (iq, img) {
-        var src = this.stub().returns('/returned/from/function.jpg');
-        var theQuery = { src: src };
-        var findCurrentQuery = this.stub(iq, '_findCurrentQuery')
-            .returns(theQuery);
-
-        iq._onResize();
-
-        ok(src.calledWith(img, theQuery));
-
-        equal(img.getAttribute('src'), '/returned/from/function.jpg');
+        equal(img.getAttribute('src'), '/from/getquerysrc.jpg', 'image gets src returned from getQuerySrc');
     }));
 });
