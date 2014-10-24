@@ -341,20 +341,6 @@ module.exports = function (grunt) {
             },
         },
 
-        // Creates a plato report
-        plato: {
-            inkjs: {
-                options: {
-                    jshint: grunt.file.readJSON(jshintFile, {
-                        encoding: 'utf-8'
-                    })
-                },
-                files: {
-                    '<%= ink.folders.js.srcBase %>report': '<%= ink.folders.js.src %>**/lib.js'
-                }
-            }
-        },
-
         watch: {
             css: {
                 files: [
