@@ -636,7 +636,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
 
     FormValidator._optionDefinition = {
         eventTrigger: ['String', 'submit'],
-        neverSubmit: ['Boolean', 'false'],
+        neverSubmit: ['Boolean', false],
         searchFor: ['String', 'input, select, textarea, .control-group'],
         beforeValidation: ['Function', undefined],
         onError: ['Function', undefined],
