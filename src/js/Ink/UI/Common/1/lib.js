@@ -682,12 +682,14 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          *
          * @method registerInstance
          * @static
-         * @param  {Object}  inst Object that holds the instance.
-         * @param  {Element} el   Element to associate with `inst`.
+         * @param  {Object}   inst Object to be registered
+         * @param  {Element}  [el=inst._element]   Element to associate with `inst`. Defaults to `_element` property of `inst`.
          * @return {Boolean} `true` if we could create the instance, `false` otherwise.
          */
         registerInstance: function(inst, el) {
             if (!inst) { return; }
+
+            if (!el) { el = inst._element; }
 
             if (!Common.isDOMElement(el)) { throw new TypeError('Ink.UI.Common.registerInstance: The element passed in is not a DOM element!'); }
 
@@ -910,7 +912,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
         if (!isValidInstance) {
             BaseUIComponent._stubInstance(this, constructor, _name);
         } else if (this._element) {
-            Common.registerInstance(this, this._element);
+            Common.registerInstance(this);
         }
     }
 
