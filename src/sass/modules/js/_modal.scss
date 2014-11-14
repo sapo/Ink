@@ -1,4 +1,6 @@
 .#{$shade-class-name} {
+    /* oldIE does not support rgba() and opacity is not an option here */
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgOAMAAM8AzbfAeUUAAAAASUVORK5CYII=);
     background: rgba(0, 0, 0, 0.8);
     width: 100%;
     height: 100%;
