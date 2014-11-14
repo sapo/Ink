@@ -50,4 +50,15 @@ Ink.requireModules(['Ink.UI.Modal_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1'], fun
             });
         }, { trigger: trigger })
     }(InkElement.create('a', { href: '#' })));
+
+    modalTest('Clicking the shade makes the modal close', function (modal, els) {
+        var shade = modal._modalShadow;
+
+        ok(modal.isOpen(), 'modal is initially open');
+        stop();
+        Syn.click({}, shade, function () {
+            ok(!modal.isOpen(), 'clicking the shade causes it to close');
+            start();
+        });
+    }, { autoDisplay: true })
 })
