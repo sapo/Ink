@@ -1290,7 +1290,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             result %= 7;
 
             if (result < 0) {
-                result += 6;
+                result += 7;
             }
 
             return result;
