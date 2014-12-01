@@ -19,9 +19,11 @@ body {
         .left-drawer {
             left: ($width * -1);
         }
+
         .right-drawer {
             right: ($width * -1);
         }
+
         .content-drawer {
             width: 100%;
         }
@@ -57,13 +59,13 @@ body {
 
           &.left {
             .left-drawer, .content-drawer {
-              @include translate3d($width,0,0);
+              @include translate($width,0);
             }
           }
 
           &.right {
             .right-drawer, .content-drawer {
-              @include translate3d(($width * -1),0,0);
+              @include translate(($width * -1),0);
             }
           }
 
@@ -75,13 +77,13 @@ body {
 
           &.left {
             .left-drawer {
-              @include translate3d($width,0,0);
+              @include translate($width,0);
             }
           }
 
           &.right {
             .right-drawer {
-              @include translate3d(($width * -1),0,0);
+              @include translate(($width * -1),0);
             }
           }
 

@@ -71,7 +71,7 @@ If you want to build from our source code, you'll need to install a few things:
 * #### OS X
   * **Install Homebrew:**
   ```
-  ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
+  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   ```
   * **Install Node.js:**
   ```
