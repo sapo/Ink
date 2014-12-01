@@ -19,9 +19,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
     }
 
     var requestAnimationFrame = window.requestAnimationFrame ||
-        window.mozRequestAnimationFrame ||
-        window.webkitRequestAnimationFrame ||
-        function (cb) {return setTimeout(cb, 1000 / 30); };
+        function (cb) { return setTimeout(cb, 1000 / 30); };
 
     /**
      * @class Ink.UI.Carousel_1
@@ -308,6 +306,16 @@ Ink.createModule('Ink.UI.Carousel', '1',
             } else {
                 return this._currentPage || 0;
             }
+        },
+
+        /**
+         * Gets the Ink Pagination element this carousel is using.
+         * @method getPagination
+         * @return {Pagination} The pagination instance, if any. Otherwise, `null`.
+         * @public
+         **/
+        getPagination: function () {
+            return this._pagination || null;
         },
 
         /**

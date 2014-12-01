@@ -814,6 +814,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
                 var args = [].slice.call(arguments);
 
                 if (timeout) {
+                    // Clear the old timeout because that one has old arguments
                     clearTimeout(timeout);
                 }
 

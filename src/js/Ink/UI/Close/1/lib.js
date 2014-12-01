@@ -22,7 +22,7 @@ Ink.createModule('Ink.UI.Close', '1', ['Ink.Dom.Event_1','Ink.Dom.Element_1'], f
      *
      * @sample Ink_UI_Close_1.html
      */
-    var Close = function() {
+    function Close() {
         InkEvent.observe(document.body, 'click', function(ev) {
             var el = InkEvent.element(ev);
 
@@ -42,7 +42,7 @@ Ink.createModule('Ink.UI.Close', '1', ['Ink.Dom.Event_1','Ink.Dom.Element_1'], f
                 InkElement.remove(toRemove);
             }
         });
-    };
+    }
 
     Close._name = 'Close_1';
 

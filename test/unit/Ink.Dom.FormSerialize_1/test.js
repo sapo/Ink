@@ -143,7 +143,67 @@ Ink.requireModules(['Ink.Dom.FormSerialize_1', 'Ink.Dom.Selector_1', 'Ink.Util.A
             ['foo', '2'],
             ['foo', '3']
         ])
-    })
+    });
+
+    test('serializing radio buttons', function () {
+        var form = document.createElement('form')
+        form.innerHTML = '<input type="radio" name="foo" value=1>' +
+            '<input type="radio" name="foo" value=2>' +
+            '<input type="radio" name="foo" value=3>';
+
+        form.children[0].checked = true;
+        form.children[1].checked = false;
+        form.children[2].checked = false;
+
+        deepEqual(FormSerialize.serialize(form), { foo: "1" })
+        deepEqual(FormSerialize.asPairs(form), [
+            ['foo', '1'],
+        ])
+    });
+
+    test('serializing unchecked checkboxes', function () {
+        var form = document.createElement('form')
+        form.innerHTML = '<input type="checkbox" name="foo" value=1>' +
+            '<input type="checkbox" name="foo" value=2>' +
+            '<input type="checkbox" name="foo" value=3>';
+        deepEqual(FormSerialize.serialize(form), {})
+        deepEqual(FormSerialize.asPairs(form), [ ])
+    });
+
+    test('serializing unchecked checkboxes with outputUnchecked', function () {
+        var form = document.createElement('form')
+        //form.innerHTML = '<input type="checkbox" name="foo" value=1>' +
+        //    '<input type="checkbox" name="foo" value=2>';
+        //deepEqual(FormSerialize.serialize(form, { outputUnchecked: true }), { foo: [null, null] })
+        //deepEqual(FormSerialize.asPairs(form, { outputUnchecked: true }), [
+        //    ['foo', null],
+        //    ['foo', null]
+        //])
+
+        form.innerHTML = '<input type="checkbox" name="foo" value=2>';
+        deepEqual(FormSerialize.serialize(form, { outputUnchecked: true }), { foo: [null] })
+    });
+
+    test('serializing unselected radiobuttons yields nothing by default', function () {
+        var form = document.createElement('form')
+        form.innerHTML = '<input type="radio" name="foo" value=1>';
+        deepEqual(FormSerialize.serialize(form), {})
+        deepEqual(FormSerialize.asPairs(form), [])
+    });
+
+    test('serializing unselected radios with outputUnchecked', function () {
+        var form = document.createElement('form')
+        form.innerHTML = '<input type="radio" name="foo" value=1>' +
+            '<input type="radio" name="foo" value=2>';
+        deepEqual(FormSerialize.serialize(form, { outputUnchecked: true }), { foo: null })
+        deepEqual(FormSerialize.asPairs(form, { outputUnchecked: true }), [
+            ['foo', null],
+            ['foo', null]
+        ])
+
+        form.innerHTML = '<input type="radio" name="foo" value=2>';
+        deepEqual(FormSerialize.serialize(form, { outputUnchecked: true }), { foo: null })
+    });
 
     test('serializing <textarea>s', function () {
         var form = document.createElement('form')

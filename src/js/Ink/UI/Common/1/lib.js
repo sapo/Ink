@@ -107,7 +107,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          *     var el = Ink.UI.Common.elOrSelector('.myInput','My Input');
          */
         elOrSelector: function(elOrSelector, fieldName) {
-            if (!this.isDOMElement(elOrSelector)) {
+            if (!Common.isDOMElement(elOrSelector)) {
                 var t = Selector.select(elOrSelector);
                 if (t.length === 0) {
                     Ink.warn(fieldName + ' must either be a DOM Element or a selector expression!\nThe script element must also be after the DOM Element itself.');
@@ -124,7 +124,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          * @method elsOrSelector
          *
          * @static
-         * @param  {Element|Array|String} elsOrSelector DOM Element , array of DOM Elements, or CSS Selector
+         * @param  {Element|Array|String} elsOrSelector DOM Element, array of DOM Elements, or CSS Selector
          * @param  {String}               [fieldName]     The name of the field. Used for the error shown when no elements are found.
          * @param {Boolean} required If this is true, throw an error instead of returning an empty array.
          * @return {Array} The selected Elements, or the given Elements
@@ -363,6 +363,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          *
          * @method clone
          * @static
+         * @deprecated
          * @param  {Object} o The object to be cloned/copied.
          * @return {Object} Returns the result of the clone/copy.
          * @example
@@ -385,7 +386,10 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
         /**
          * Gets an element's one-base index relative to its parent.
          *
+         * Deprecated. Use Ink.Dom.Element.parentIndexOf instead.
+         *
          * @method childIndex
+         * @deprecated
          * @static
          * @param  {Element}     childEl     Valid DOM Element.
          * @return {Number}                     Numerical position of an element relatively to its parent.
@@ -403,18 +407,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          *         Ink.UI.Common.childIndex( testLi ); // Returned value: 3
          *     </script>
          */
-        childIndex: function(childEl) {
-            if( Common.isDOMElement(childEl) ){
-                var els = Selector.select('> *', childEl.parentNode);
-                for (var i = 0, f = els.length; i < f; ++i) {
-                    if (els[i] === childEl) {
-                        return i;
-                    }
-                }
-            }
-            throw 'not found!';
-        },
-
+        childIndex: InkElement.parentIndexOf,
 
         /**
          * AJAX JSON request shortcut method
@@ -478,9 +471,9 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
             if (!detectorEl) {
                 detectorEl = document.createElement('div');
                 detectorEl.id = 'ink-layout-detector';
-                for (k in this.Layouts) {
-                    if (this.Layouts.hasOwnProperty(k)) {
-                        v = this.Layouts[k];
+                for (k in Common.Layouts) {
+                    if (Common.Layouts.hasOwnProperty(k)) {
+                        v = Common.Layouts[k];
                         el = document.createElement('div');
                         el.className = 'show-' + v + ' hide-all';
                         el.setAttribute('data-ink-layout', v);
@@ -550,14 +543,9 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          */
         cleanChildren: function(parentEl) {
             if( !Common.isDOMElement(parentEl) ){
-                throw 'Please provide a valid DOMElement';
+                throw new Error('Please provide a valid DOMElement');
             }
-            var prevEl, el = parentEl.lastChild;
-            while (el) {
-                prevEl = el.previousSibling;
-                parentEl.removeChild(el);
-                el = prevEl;
-            }
+            InkElement.setHTML(parentEl, '');
         },
 
         /**
@@ -694,12 +682,14 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          *
          * @method registerInstance
          * @static
-         * @param  {Object}  inst Object that holds the instance.
-         * @param  {Element} el   Element to associate with `inst`.
+         * @param  {Object}   inst Object to be registered
+         * @param  {Element}  [el=inst._element]   Element to associate with `inst`. Defaults to `_element` property of `inst`.
          * @return {Boolean} `true` if we could create the instance, `false` otherwise.
          */
         registerInstance: function(inst, el) {
             if (!inst) { return; }
+
+            if (!el) { el = inst._element; }
 
             if (!Common.isDOMElement(el)) { throw new TypeError('Ink.UI.Common.registerInstance: The element passed in is not a DOM element!'); }
 
@@ -752,7 +742,15 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          * @public
          */
         getInstance: function(el, UIComponent) {
+            var givenEl = el;  // So we can warn it later.
+
             el = Common.elOrSelector(el);
+
+            if (!Common.isDOMElement(el)) {
+                Ink.warn('Ink.UI.Common: getInstance called on non-element (' + givenEl + ')');
+                return [];
+            }
+
             var instances = domRegistry.get(el);
 
             if (!instances) {
@@ -835,7 +833,6 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
             Common.unregisterInstance(this);
             this._element.parentNode.removeChild(this._element);
         }
-
     };
 
 
@@ -915,7 +912,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
         if (!isValidInstance) {
             BaseUIComponent._stubInstance(this, constructor, _name);
         } else if (this._element) {
-            Common.registerInstance(this, this._element);
+            Common.registerInstance(this);
         }
     }
 

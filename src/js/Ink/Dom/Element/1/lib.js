@@ -405,7 +405,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
                 return InkElement.textContent(node.documentElement || node.body && node.body.parentNode || node.body);
 
             case 1: /*ELEMENT_NODE*/
-                text = node.innerText;
+                text = ('textContent' in node) ? node.textContent : node.innerText;
                 if (typeof text !== 'undefined') {
                     return text;
                 }
@@ -1156,22 +1156,25 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Gets the index of an element relative to a parent
          *
          * @method parentIndexOf
-         * @param {DOMElement}  parentEl  Element to parse
-         * @param {DOMElement}  childEl   Child Element to look for
+         * @param {Element} [parentEl] childEl's parent. Deprecated.
+         * @param {Element} childEl    Child Element to look for
          * @return {Number} The index of the childEl inside parentEl. Returns -1 if it's not a direct child
          * @public
          * @sample Ink_Dom_Element_1_parentIndexOf.html 
          */
         parentIndexOf: function(parentEl, childEl) {
-            var node, idx = 0;
-            for (var i = 0, f = parentEl.childNodes.length; i < f; ++i) {
-                node = parentEl.childNodes[i];
-                if (node.nodeType === 1) {  // ELEMENT
-                    if (node === childEl) { return idx; }
-                    ++idx;
+            if (!childEl) {
+                // one argument form
+                childEl = parentEl;
+                parentEl = parentEl.parentNode;
+            }
+            if (!parentEl) { return false; }
+            for (var i = 0, f = parentEl.children.length; i < f; ++i) {
+                if (parentEl.children[i] === childEl) {
+                    return i;
                 }
             }
-            return -1;
+            return false;
         },
 
 

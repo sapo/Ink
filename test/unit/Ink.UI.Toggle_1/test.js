@@ -1,6 +1,6 @@
 QUnit.config.testTimeout = 4000;
 
-Ink.requireModules(['Ink.UI.Toggle_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1', 'Ink.Dom.Event_1', 'Ink.Dom.Selector_1'], function (Toggle, InkElement, Css, InkEvent, Selector) {
+Ink.requireModules(['Ink.UI.Toggle_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1', 'Ink.Dom.Event_1', 'Ink.Dom.Selector_1', 'Ink.UI.Common_1'], function (Toggle, InkElement, Css, InkEvent, Selector, Common) {
     'use strict';
 
     function createBag(options) {
@@ -11,8 +11,10 @@ Ink.requireModules(['Ink.UI.Toggle_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1', 'In
             insertBottom: parent
         });
         var targets = [
-            InkElement.create('div', {className: (options.targetClassName || 'targets') + ' target-1', insertBottom:parent}),
-            InkElement.create('div', {className: (options.targetClassName || 'targets') + ' target-2', insertBottom:parent})
+            InkElement.create('div', {
+                className: (options.targetClassName || 'targets') + ' target-1', insertBottom:parent}),
+            InkElement.create('div', {
+                className: (options.targetClassName || 'targets') + ' target-2', insertBottom:parent})
         ];
         return { parent: parent, trigger: trigger, targets: targets };
     }
@@ -77,6 +79,36 @@ Ink.requireModules(['Ink.UI.Toggle_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1', 'In
             equal(Css.hasClassName(targets[i], 'oh-it-is-on'), false);
             equal(Css.hasClassName(targets[i], 'oh-it-is-off'), true);
         }
+    });
+
+    module('Accordions');
+
+    bagTest('When the toggle has isAccordion: true, it looks above the DOM tree for an element which has class "accordion", finds other toggles in that element and closes their targets (by selecting through the data-target attribute\'s value and then setting CSS display: none) when clicked', function () {
+        var bag = createBag();
+        var bag2 = createBag({ targetClassName: 'targetlol', triggerClassName: 'ink-toggle' });
+        bag.parent.className = 'accordion';
+        bag.parent.appendChild(bag2.trigger);
+        bag.parent.appendChild(bag2.targets[0]);
+
+        bag2.trigger.setAttribute('data-target', '.targetlol');
+
+        var thisToggle = new Toggle(bag.trigger, {
+            isAccordion: true,
+            target: bag.targets,
+            initialState: true
+        });
+        var otherToggle = new Toggle(bag2.trigger, {
+            isAccordion: true,
+            target: bag2.targets,
+            initialState: false
+        });
+
+        InkEvent.fire(bag2.trigger, 'click');
+        ok(!thisToggle.getState(), 'Opening the second toggle closed the first toggle');
+        ok(otherToggle.getState(), 'The second toggle is indeed open (sanity check)');
+        InkEvent.fire(bag2.trigger, 'click');
+        ok(!thisToggle.getState(), 'Closing the second toggle closed both toggles');
+        ok(!otherToggle.getState(), 'Closing the second toggle closed both toggles');
     });
 
     module('ancestors');

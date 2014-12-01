@@ -27,6 +27,7 @@
      * @param {Object} [options] Options object, containing:
      *
      * @param {String}              options.target                  CSS Selector that specifies the elements that this component will toggle
+     * @param {Boolean}             [options.isAccordion]           Set this to true to signal that this toggle is part of an accordion with other toggles. The toggles of an accordion must be common descendants of an element with the class "accordion". If they're not, Ink will warn you about this on the console.
      * @param {String}              [options.classNameOn]           CSS class to toggle when on. Defaults to 'show-all'.
      * @param {String}              [options.classNameOff]          CSS class to toggle when off. Defaults to 'hide-all'.
      * @param {String}              [options.triggerEvent]          Event that will trigger the toggling. Defaults to 'click'.
@@ -84,7 +85,13 @@
                 }
             }
 
-            this._accordion = ( Css.hasClassName(this._element.parentNode,'accordion') || Css.hasClassName(this._targets[0].parentNode,'accordion') );
+            if (this._options.isAccordion) {
+                this._accordionContainer = InkElement.findUpwardsByClass(
+                    this._element, 'accordion');
+                if (!this._accordionContainer) {
+                    Ink.warn('Ink.UI.Toggle_1: This toggle has the isToggle option set to `true`, but is not a descendant of an element with the class "accordion"! Because of this, it won\'t be able to find other toggles in the same accordion and cooperate with them.');
+                }
+            }
 
             this._firstTime = true;
 
@@ -155,10 +162,6 @@
                 return;
             }
 
-            if (this._accordion) {
-                this._updateAccordion();
-            }
-
             var has = this.getState();
             this.setState(!has, true);
             if (!has && this._firstTime) {
@@ -174,19 +177,14 @@
          * @method _updateAccordion
          **/
         _updateAccordion: function () {
-            var elms, accordionElement;
-            if( Css.hasClassName(this._targets[0].parentNode,'accordion') ){
-                accordionElement = this._targets[0].parentNode;
-            } else {
-                accordionElement = this._targets[0].parentNode.parentNode;
-            }
-            elms = Selector.select('.toggle, .ink-toggle',accordionElement);
-            for(var i=0; i<elms.length; i+=1 ){
-                var dataset = InkElement.data( elms[i] ),
-                    targetElm = Selector.select( dataset.target,accordionElement );
+            if (!this._accordionContainer) { return; }
+            if (this.getState() === false) { return; }
 
-                if( (targetElm.length > 0) && (targetElm[0] !== this._targets[0]) ){
-                    targetElm[0].style.display = 'none';
+            var elms = Selector.select('[data-is-toggle-trigger]', this._accordionContainer);
+            for (var i = 0; i < elms.length; i++) {
+                var otherToggle = Toggle.getInstance(elms[i]);
+                if (otherToggle && (otherToggle !== this) && otherToggle.getState() === true) {
+                    otherToggle.setState(false, true);
                 }
             }
         },
@@ -233,15 +231,29 @@
          */
         setState: function (on, callHandler) {
             if (on === this.getState()) { return; }
+
+            var i, len;
+            if (this._group && on) {
+                for (i = 0, len = this._group.length; i < len; i++) {
+                    if (this._group[i].getState() === true) {
+                        this._group[i].setState(false, true);
+                    }
+                }
+            }
+
             if (callHandler && typeof this._options.onChangeState === 'function') {
                 var ret = this._options.onChangeState(on);
                 if (ret === false) { return false; } //  Canceled by the event handler
             }
-            for (var i = 0, len = this._targets.length; i < len; i++) {
+            for (i = 0, len = this._targets.length; i < len; i++) {
                 Css.addRemoveClassName(this._targets[i], this._options.classNameOn, on);
                 Css.addRemoveClassName(this._targets[i], this._options.classNameOff, !on);
             }
             Css.addRemoveClassName(this._element, 'active', on);
+
+            if (this._accordionContainer) {
+                this._updateAccordion();
+            }
         },
 
         /**
