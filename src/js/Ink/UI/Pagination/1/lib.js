@@ -68,6 +68,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
      * @param {String}              [options.nextClass]         CSS Class used in the next element
      * @param {String}              [options.nextPageClass]     CSS Class used in the next page element
      * @param {Function}            [options.numberFormatter]   Number formatter function. Receives a 0-indexed page number, and the page count. Returns the text for the numbered page button.
+     * @param {Boolean}             [options.autoWrap=false]    Whether to navigate to first page when clicking next in last page or vice-versa.
      *
      * @sample Ink_UI_Pagination_1.html
      */
@@ -107,7 +108,8 @@ Ink.createModule('Ink.UI.Pagination', '1',
         firstClass:        ['String', 'first'],
         lastClass:         ['String', 'last'],
 
-        numberFormatter: ['Function', function(i) { return i + 1; }]
+        numberFormatter: ['Function', function(i) { return i + 1; }],
+        autoWrap:          ['Boolean', false]
     };
 
     Pagination.prototype = {
@@ -238,10 +240,10 @@ Ink.createModule('Ink.UI.Pagination', '1',
             }
 
             // update prev and next
-            if (this._prevEl) {
+            if (this._prevEl && !this._options.autoWrap) {
                 Css.setClassName(this._prevEl, this._options.disabledClass, !this.hasPrevious());
             }
-            if (this._nextEl) {
+            if (this._nextEl && !this._options.autoWrap) {
                 Css.setClassName(this._nextEl, this._options.disabledClass, !this.hasNext());
             }
         },
@@ -416,11 +418,11 @@ Ink.createModule('Ink.UI.Pagination', '1',
             }
 
             if (nr > this._size - 1) {
-                nr = this._size - 1;
+                nr = this._options.autoWrap ? 0 : this._size - 1;
             }
 
             if (nr < 0) {
-                nr = 0;
+                nr = this._options.autoWrap ? this._size - 1 : 0;
             }
 
             this._current = nr;
