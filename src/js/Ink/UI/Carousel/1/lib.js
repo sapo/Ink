@@ -152,7 +152,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
                 } else {
                     // assumes instantiated pagination
                     this._pagination = this._options.pagination;
-                    this._pagination._options.onChange = this._handlers.paginationChange;
+                    this._pagination.setOnChange(this._handlers.paginationChange);
                     this._pagination.setSize(this._numPages);
                 }
                 this._pagination.setCurrent(this._options.initialPage || 0);
