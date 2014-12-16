@@ -93,7 +93,7 @@
                 }
             }
 
-            this._firstTime = true;
+            this._constructing = true;
 
             this._bindEvents();
 
@@ -112,6 +112,8 @@
             }
 
             this._element.setAttribute('data-is-toggle-trigger', 'true');
+
+            this._constructing = false;
         },
 
         /**
@@ -230,7 +232,7 @@
          * @return {void}
          */
         setState: function (on, callHandler) {
-            if (on === this.getState()) { return; }
+            if (on === this.getState() && !this._constructing) { return; }
 
             var i, len;
             if (this._group && on) {

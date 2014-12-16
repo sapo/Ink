@@ -282,5 +282,12 @@ Ink.requireModules(['Ink.UI.Toggle_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1', 'In
         InkEvent.fire(target, 'click');
         ok(toggle.getState(), 'didnt close even though the event bubbled upwards from the target');
     });
+
+    bagTest('(regression): creating a toggle with initialState:false doesn\'t add classNameOff to it', function (bag, trigger, targets) {
+        equal(
+            new Toggle(trigger, { initialState: false, target: targets, classNameOff: 'offs' })
+            .getState(), false, '"getState()" = false');
+        ok(Css.hasClassName(targets[0], 'offs'))
+    });
 });
 
