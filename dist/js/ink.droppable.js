@@ -60,13 +60,14 @@ Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
          * - A function (draggableElement, droppableElement), defining what you want to do in this case.
          *
          * @method add
-         * @param {String|DOMElement}   element                 Target element
+         * @param {String|Element}      element                 Target element
          * @param {Object}              [options]               Options object
          * @param {String}              [options.hoverClass]    Classname(s) applied when an acceptable draggable element is hovering the element
          * @param {String}              [options.accept]        Selector for choosing draggables which can be dropped in this droppable.
          * @param {Function}            [options.onHover]       Called when an acceptable element is hovering the droppable (see above for string options).
          * @param {Function|String}     [options.onDrop]        Called when an acceptable element is dropped (see above for string options). 
          * @param {Function|String}     [options.onDropOut]     Called when a droppable is dropped outside this droppable (see above for string options).
+         * @return {void}
          * @public
          *
          * @sample Ink_UI_Droppable_1.html
@@ -142,7 +143,7 @@ Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
          * Finds droppable data about `element`. this data is added in `.add`
          *
          * @method _findData
-         * @param {DOMElement} element  Needle
+         * @param {Element} element  Needle
          * @return {object}             Droppable data of the element
          * @private
          */
@@ -158,7 +159,7 @@ Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
          * Finds draggable data about `element`
          *
          * @method _findDraggable
-         * @param {DOMElement} element  Needle
+         * @param {Element} element  Needle
          * @return {Object}             Draggable data queried
          * @private
          */
@@ -172,9 +173,10 @@ Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
         },
 
         /**
-         * Invoke every time a drag starts
+         * Invoke every time a drag starts. Calls Droppable._update on all Droppables.
          * 
          * @method updateAll
+         * @return {void}
          * @private
          */
         updateAll: function() {
@@ -185,7 +187,8 @@ Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
          * Updates location and size of droppable element
          * 
          * @method update
-         * @param {String|DOMElement} element Target element
+         * @param {String|Element} element Target element
+         * @return {void}
          * @public
          */
         update: function(element) {
@@ -205,7 +208,7 @@ Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
          * Removes an element from the droppable stack and removes the droppable behavior
          * 
          * @method remove
-         * @param {String|DOMElement} elOrSelector  Droppable element to disable.
+         * @param {String|Element} el Droppable element to disable.
          * @return {Boolean} Whether the object was found and deleted
          * @public
          */
@@ -229,6 +232,7 @@ Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
          * @param {String} type         Type of action. 'drag' or 'drop'.
          * @param {Object} ev           Event object
          * @param {Object} draggable    Draggable element
+         * @return {void}
          * @private
          */
         action: function(coords, type, ev, draggable) {

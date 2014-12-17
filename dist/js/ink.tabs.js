@@ -21,7 +21,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
      * @class Ink.UI.Tabs
      * @constructor
      * @version 1
-     * @param {String|DOMElement}   selector
+     * @param {String|Element}      selector                        Your container element. You can pass in a pure DOM element or a selector.
      * @param {Object}              [options]                       Options
      * @param {Boolean}             [options.preventUrlChange]      Flag that determines if follows the link on click or stops the event
      * @param {String}              [options.active]                ID of the tab to activate on creation
@@ -136,7 +136,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          * Changes to the desired tab
          * 
          * @method _changeTab
-         * @param {DOMElement} link             anchor linking to the content container
+         * @param {Element}    link             anchor linking to the content container
          * @param {boolean}    runCallbacks     defines if the callbacks should be run or not
          * @private
          */
@@ -320,7 +320,8 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          * Pass a selector/element identifying what tab you want
          * 
          * @method changeTab
-         * @param {String|DOMElement} selector      Selector of the desired tab or the link that links to it
+         * @param {String|Element} selector      Selector of the desired tab or the link that links to it
+         * @return {void}
          * @public
          */
         changeTab: function(selector) {
@@ -337,7 +338,8 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          * Disables the desired tag
          * 
          * @method disable
-         * @param {String|DOMElement} selector      the id of the desired tab or the link that links to it
+         * @param {String|Element} selector      the id of the desired tab or the link that links to it
+         * @return {void}
          * @public
          */
         disable: function(selector){
@@ -348,7 +350,8 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          * Enables the desired tag
          * 
          * @method enable
-         * @param {String|DOMElement} selector      The id of the desired tab or the link that links to it
+         * @param {String|Element} selector      The id of the desired tab or the link that links to it
+         * @return {void}
          * @public
          */
         enable: function(selector){
@@ -374,7 +377,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          * Gets the currently active Menu link (the links which the user clicks on to change tabs)
          * 
          * @method activeMenuLink
-         * @return {DOMElement|null} Active menu link, or `null` if there is none.
+         * @return {Element|null} Active menu link, or `null` if there is none.
          * @public
          */
         activeMenuLink: function(){
@@ -387,7 +390,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          * (Each section contains content for a tab, and must have an `id` attribute)
          * 
          * @method activeContentTab
-         * @return {DOMElement|null} Active section, or `null` if there is none.
+         * @return {Element|null} Active section, or `null` if there is none.
          * @public
          */
         activeSection: function(){

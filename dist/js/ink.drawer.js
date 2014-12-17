@@ -260,11 +260,13 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
                 Event.one(drawerEl,
                     transitionSupport.eventName,
                     function () {
+                        /* jshint unused:false */
                         Css.removeClassName(drawerEl, 'show');
 
-                        setTimeout(function () {
-                            Css.addClassName(drawerEl, 'show');
-                        });
+                        // Let's cause a reflow by reading a value!
+                        var uselessValue = +drawerEl.offsetWidth;
+
+                        Css.addClassName(drawerEl, 'show');
                     });
             }
         },

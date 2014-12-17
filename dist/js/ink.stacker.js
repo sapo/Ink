@@ -58,7 +58,7 @@ Stacker.prototype = {
      * @class Ink.UI.Stacker_1
      *
      * @constructor
-     * @param {DOMElement|String}   [container]                                     Element which contains the stacks (identified by the options.column selector)
+     * @param {Element|String}      [container]                                     Element which contains the stacks (identified by the options.column selector)
      * @param {Object}              [options]                                       Options object.
      * @param {String}              [options.column]                                Selector for the the columns inside the container element. Defaults to '.stacker-column'.
      * @param {String}              [options.item]                                  Selector for the items in your stack. Defaults to '.stacker-item'.
@@ -108,8 +108,11 @@ Stacker.prototype = {
     /**
      * Adds an item to the end of your stacks.
      * Call `reloadItems()` when you are done adding items.
+     *
      * @method addItem
-     * @param {DOMElement} item     Element
+     * @param {Element} item     Element
+     * @return {void}
+     * @public
      **/
     addItem: function(item) {
         this._aList.push(item);
@@ -120,6 +123,8 @@ Stacker.prototype = {
      * Call this method after adding items or changing their dimensions. This method is automatically called when the window resizes.
      *
      * @method reloadItems
+     * @return {void}
+     * @public
      **/
     reloadItems: function() {
         this._applyLayoutChange();
