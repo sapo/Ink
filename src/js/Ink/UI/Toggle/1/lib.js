@@ -17,7 +17,7 @@
      * When you initialize the Toggle, it will check if the targets are visible to figure out what the initial state is. You can force the toggle to consider itself turned "on" or "off" by setting the `initialState` option to `true` or `false`, respectively.
      *
      * You can get the current state of the Toggle by calling `getState`, or by checking if your `trigger` element has the "active" class.
-     * The state can be changed through JavaScript. Just call  `setState(true)` 
+     * The state can be changed through JavaScript. Just call  `setState(true)`
      * to turn the Toggle on (or `setState(false)` to turn it off).
      *
      * @class Ink.UI.Toggle
@@ -62,7 +62,7 @@
 
         /**
          * Init function called by the constructor
-         * 
+         *
          * @method _init
          * @private
          */
@@ -75,7 +75,7 @@
             this._options.closeOnClick = this._options.closeOnClick;
             // Actually a throolean
             if (this._options.initialState === null){
-                this._options.initialState = Css.getStyle(this._targets[0], 'display') !== 'none';
+                Css.hasClassName(this._targets[0], this._options.classNameOn) ? this._options.initialState = true : this._options.initialState = false;
             }
 
             if (this._options.classNameOn !== 'show-all' || this._options.classNameOff !== 'hide-all') {
@@ -147,7 +147,7 @@
          * Event handler. It's responsible for handling the `triggerEvent` as defined in the options.
          *
          * This will trigger the toggle.
-         * 
+         *
          * @method _onTriggerEvent
          * @param {Event} event
          * @private
@@ -193,7 +193,7 @@
 
         /**
          * Click handler. Will handle clicks outside the toggle component.
-         * 
+         *
          * @method _onOutsideClick
          * @param {Event} event
          * @private
