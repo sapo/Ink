@@ -49,7 +49,7 @@ Ink.requireModules(['Ink.UI.Modal_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1'], fun
                 start();
             });
         }, { trigger: trigger })
-    }(InkElement.create('a', { href: '#' })));
+    }(InkElement.create('a', { href: '#', setHTML: 'trigger' })));
 
     modalTest('Clicking the shade makes the modal close', function (modal, els) {
         var shade = modal._modalShadow;

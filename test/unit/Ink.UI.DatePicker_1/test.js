@@ -297,7 +297,7 @@ test('set', function () {
 test('show', function () {
     equal(Css.getStyle(dt._containerObject, 'display'), 'none');
     dt.show();
-    equal(Css.getStyle(dt._containerObject, 'display'), 'block');
+    notEqual(Css.getStyle(dt._containerObject, 'display'), 'none');
 });
 
 test('destroy', function () {
