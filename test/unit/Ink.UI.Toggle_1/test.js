@@ -150,16 +150,6 @@ Ink.requireModules(['Ink.UI.Toggle_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1', 'In
 
     module('show-all/hide-all (default usage)');
 
-    bagTest('computing initialState from visibility', function (_, trigger, targets) {
-        var toggle;
-        toggle = new Toggle(trigger, { target: targets });
-        equal(toggle.getState(), true);
-
-        targets[0].style.display = 'none';
-        toggle = new Toggle(trigger, { target: targets });
-        equal(toggle.getState(), false);
-    });
-
     bagTest('triggerEvent chooses the event that toggles the thing.', function (_, trigger, target) {
         var toggle = new Toggle(trigger, {
             target: target,

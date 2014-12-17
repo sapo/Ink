@@ -40,16 +40,18 @@ Ink.requireModules(['Ink.UI.Modal_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1'], fun
 
     (function (trigger) {
         modalTest('clicking on the trigger makes the modal open', function(modal, els) {
+            document.body.appendChild(trigger);  // IE needs the element to be in the DOM to fire events on it
             ok(!modal.isOpen(), 'Modal is closed');
 
             stop();
             Syn.click(trigger, function () {
                 ok(modal.isOpen());
+                document.body.removeChild(trigger);
                 modal.dismiss();  // Go away!
                 start();
             });
         }, { trigger: trigger })
-    }(InkElement.create('a', { href: '#' })));
+    }(InkElement.create('a', { href: '#', setHTML: 'trigger' })));
 
     modalTest('Clicking the shade makes the modal close', function (modal, els) {
         var shade = modal._modalShadow;
