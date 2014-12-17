@@ -74,8 +74,8 @@
             // Boolean option handling
             this._options.closeOnClick = this._options.closeOnClick;
             // Actually a throolean
-            if (this._options.initialState === null){
-                Css.hasClassName(this._targets[0], this._options.classNameOn) ? this._options.initialState = true : this._options.initialState = false;
+            if (this._options.initialState === null) {
+                this._options.initialState = Css.hasClassName(this._targets[0], this._options.classNameOn);
             }
 
             if (this._options.classNameOn !== 'show-all' || this._options.classNameOff !== 'hide-all') {
