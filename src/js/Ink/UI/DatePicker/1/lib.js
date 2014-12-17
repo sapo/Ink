@@ -439,17 +439,17 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         },
 
         _listenToContainerObjectEvents: function () {
-            Event.observe(this._containerObject,'mouseover',Ink.bindEvent(function(e){
+            Event.observe(this._containerObject, 'mouseover' ,Ink.bindEvent(function(e){
                 Event.stop( e );
                 this._hoverPicker = true;
             },this));
 
-            Event.observe(this._containerObject,'mouseout',Ink.bindEvent(function(e){
+            Event.observe(this._containerObject, 'mouseout', Ink.bindEvent(function(e){
                 Event.stop( e );
                 this._hoverPicker = false;
             },this));
 
-            Event.observe(this._containerObject,'click',Ink.bindEvent(this._onClick, this));
+            Event.observe(this._containerObject, 'click', Ink.bindEvent(this._onClick, this));
         },
 
         _onClick: function(e){
