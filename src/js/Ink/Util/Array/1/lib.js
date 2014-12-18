@@ -20,7 +20,8 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          * Checks if a value is an array
          *
          * @method isArray
-         * @param testedObject {Mixed} The object we want to check
+         * @param {Mixed} testedObject The object we want to check
+         * @return {Boolean} Whether the given value is a javascript Array.
          **/
         isArray: Array.isArray || function (testedObject) {
             return {}.toString.call(testedObject) === '[object Array]';
@@ -29,14 +30,13 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
         /**
          * Loops through an array, grouping similar items together.
          * @method groupBy
-         * @param arr {Array} The input array.
-         * @param [options] {Object} options object, containing:
-         * @param [options.key] {Function} A function which computes the group key by which the items are grouped.
-         * @param [options.pairs] {Boolean} Set to `true` if you want to output an array of `[key, [group...]]` pairs instead of an array of groups.
-         * @return {Array} An array of arrays of chunks.
+         * @param {Array}    arr             The input array.
+         * @param {Object}   [options]       Options object, containing:
+         * @param {Function} [options.key]   A function which computes the group key by which the items are grouped.
+         * @param {Boolean}  [options.pairs] Set to `true` if you want to output an array of `[key, [group...]]` pairs instead of an array of groups.
+         * @return {Array} An array containing arrays of chunks.
          *
          * @example
-         *
          *        InkArray.groupBy([1, 1, 2, 2, 3, 1])  // -> [ [1, 1], [2, 2], [3], [1] ]
          *        InkArray.groupBy([1.1, 1.2, 2.1], { key: Math.floor })  // -> [ [1.1, 1.2], [2.1] ]
          *        InkArray.groupBy([1.1, 1.2, 2.1], { key: Math.floor, pairs: true })  // -> [ [1, [1.1, 1.2]], [2, [2.1]] ]
@@ -78,21 +78,24 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
         /**
          * Replacement for Array.prototype.reduce.
          *
+         * Uses Array.prototype.reduce if available.
+         *
          * Produces a single result from a list of values by calling an "aggregator" function.
          *
          * Falls back to Array.prototype.reduce if available.
          *
          * @method reduce
-         * @param array {Array} Input array to be reduced.
-         * @param callback {Function} `function (previousValue, currentValue, index, all) { return {Mixed} }` to execute for each value.
-         * @param initial {Mixed} Object used as the first argument to the first call of `callback`
+         * @param {Array} array Input array to be reduced.
+         * @param {Function} callback `function (previousValue, currentValue, index, all) { return {Mixed} }` to execute for each value.
+         * @param {Mixed} initial Object used as the first argument to the first call of `callback`
+         * @return {Mixed} Reduced array.
          *
          * @example
          *          var sum = InkArray.reduce([1, 2, 3], function (a, b) { return a + b; });  // -> 6
          */
         reduce: function (array, callback, initial) {
             if (arrayProto.reduce) {
-                return arrayProto.reduce.apply(array, [].slice.call(arguments, 1));
+                return arrayProto.reduce.apply(array, arrayProto.slice.call(arguments, 1));
             }
 
             // From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce#Polyfill
@@ -215,12 +218,15 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
         },
 
         /**
-         * Runs a function through each of the elements of an array
+         * Runs a function through each of the elements of an array.
+         *
+         * Uses Array.prototype.forEach if available.
          *
          * @method forEach
-         * @param   {Array}     arr     The array to be cycled/iterated
-         * @param   {Function}  cb      The function receives as arguments the value, index and array.
-         * @return  {Array}             Iterated array.
+         * @param   {Array}     array    The array to be cycled/iterated
+         * @param   {Function}  callback The function receives as arguments the value, index and array.
+         * @param   {Mixed}     context  The value of `this` inside the `callback` you passed.
+         * @return  {void}
          * @public
          * @static
          * @sample Ink_Util_Array_forEach.html
@@ -238,28 +244,32 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          * Alias for backwards compatibility. See forEach
          *
          * @method each
+         * @param {Mixed} [forEachArguments] (see forEach)
+         * @return {void} (see forEach)
          */
         each: function () {
-            InkArray.forEach.apply(InkArray, [].slice.call(arguments));
+            InkArray.forEach.apply(InkArray, arrayProto.slice.call(arguments));
         },
 
         /**
          * Runs a function for each item in the array.
+         * Uses Array.prototype.map if available.
          * That function will receive each item as an argument and its return value will change the corresponding array item.
          * @method map
          * @param {Array}       array       The array to map over
-         * @param {Function}    map         The map function. Will take `(item, index, array)` as arguments and `this` will be the `context` argument.
+         * @param {Function}    mapFn       The map function. Will take `(item, index, array)` as arguments and the `this` value will be the `context` argument you pass to this function.
          * @param {Object}      [context]   Object to be `this` in the map function.
+         * @return {Array} A copy of the original array, with all of its items processed by the map function.
          *
          * @sample Ink_Util_Array_map.html
          */
-        map: function (array, callback, context) {
+        map: function (array, mapFn, context) {
             if (arrayProto.map) {
-                return arrayProto.map.call(array, callback, context);
+                return arrayProto.map.call(array, mapFn, context);
             }
             var mapped = new Array(len);
             for (var i = 0, len = array.length >>> 0; i < len; i++) {
-                mapped[i] = callback.call(context, array[i], i, array);
+                mapped[i] = mapFn.call(context, array[i], i, array);
             }
             return mapped;
         },
@@ -397,10 +407,11 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          * @param {Number} start    The array's first element.
          * @param {Number} stop     Stop counting before this number.
          * @param {Number} [step=1] Interval between numbers. You can use a negative number to count backwards.
+         * @return {Array} An Array representing the range.
          *
          * @sample Ink_Util_Array_1_range.html
          **/
-        range: function range(a, b, step) {
+        range: function range(start, stop, step) {
             // From: https://github.com/mcandre/node-range
             if (!step) {
                 step = 1;
@@ -410,11 +421,11 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
             var x;
 
             if (step > 0) {
-                for (x = a; x < b; x += step) {
+                for (x = start; x < stop; x += step) {
                     r.push(x);
                 }
             } else {
-                for (x = a; x > b; x += step) {
+                for (x = start; x > stop; x += step) {
                     r.push(x);
                 }
             }
@@ -429,6 +440,7 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          * @param {Array}   arr     Array where the value will be inserted
          * @param {Number}  idx     Index of the array where the value should be inserted
          * @param {Mixed}   value   Value to be inserted
+         * @return {void}
          * @public
          * @static
          * @sample Ink_Util_Array_insert.html

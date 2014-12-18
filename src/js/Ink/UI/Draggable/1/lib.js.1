@@ -1,0 +1,352 @@
+/**
+ * Dragging elements around
+ * @module Ink.UI.Draggable_1
+ * @version 1
+ */
+ 
+Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", "Ink.Dom.Css_1", "Ink.Dom.Browser_1", "Ink.Dom.Selector_1", "Ink.UI.Common_1"],function( InkElement, InkEvent, Css, Browser, Selector, Common) {
+    'use strict';
+
+    /* jshint maxcomplexity: 6 */
+
+    var x = 0,
+        y = 1;  // For accessing coords in [x, y] arrays
+    
+    // Get a value between two boundaries
+    function between (val, min, max) {
+        val = Math.min(val, max);
+        val = Math.max(val, min);
+        return val;
+    }
+
+    /**
+     * @class Ink.UI.Draggable
+     * @version 1
+     * @constructor
+     * @param {String|DOMElement}   target                      Target element.
+     * @param {Object}              [options]                   Optional object to configure the component.
+     * @param {String}              [options.constraint]        Movement constraint. None by default. Can be `vertical`, `horizontal`, or `both`.
+     * @param {String|DOMElement}   [options.constraintElm]     Constrain dragging to be within this element. None by default.
+     * @param {Number}              [options.top]               Limits to constrain draggable movement.
+     * @param {Number}              [options.right]             Limits to constrain draggable movement.
+     * @param {Number}              [options.bottom]            Limits to constrain draggable movement.
+     * @param {Number}              [options.left]              Limits to constrain draggable movement.
+     * @param {String|DOMElement}   [options.handle]            If specified, this element or CSS ID will be used as a handle for dragging.
+     * @param {Boolean}             [options.revert=false]            Flag to revert the draggable to the original position when dragging stops.
+     * @param {String}              [options.cursor='move']            Cursor type (CSS `cursor` value) used when the mouse is over the draggable object.
+     * @param {Number}              [options.zIndex]            Z-index applied to the draggable element while dragged.
+     * @param {Number}              [options.fps]               If set, throttles the drag effect to this number of frames per second.
+     * @param {String}              [options.mouseAnchor]       Anchor for the drag. Can be one of: 'left','center','right','top','center','bottom'.
+     * @param {String}              [options.dragClass]         Class to add when the draggable is being dragged. Defaults to drag.
+     * @param {Boolean}             [options.skipChildren=true] Whether you have to drag the actual element, or dragging one of the children is okay too.
+     * @param {Function}            [options.onStart]           Callback called when dragging starts.
+     * @param {Function}            [options.onEnd]             Callback called when dragging stops.
+     * @param {Function}            [options.onDrag]            Callback called while dragging, prior to position updates.
+     * @param {Function}            [options.onChange]          Callback called while dragging, after position updates.
+     *
+     * @sample Ink_UI_Draggable_1.html
+     */
+    function Draggable() {
+        Common.BaseUIComponent.apply(this, arguments);
+    }
+
+    Draggable._name = 'Draggable_1';
+
+    Draggable._optionDefinition = {
+        constraint:         ['String', false],
+        constraintElm:      ['Element', false],
+        top:                ['Number', false],
+        right:              ['Number', false],
+        bottom:             ['Number', false],
+        left:               ['Number', false],
+        handle:             ['Element', false],
+        revert:             ['Boolean', false],
+        cursor:             ['String', 'move'],
+        zIndex:             ['Number', 9999],
+        fps:                ['Number', 0],
+        mouseAnchor:        ['String', undefined],
+        dragClass:          ['String', 'drag'],
+        skipChildren:       ['Boolean', true],
+        onStart:            ['Function', false],
+        onEnd:              ['Function', false],
+        onDrag:             ['Function', false],
+        onChange:           ['Function', false]
+    };
+
+    Draggable.prototype = {
+        /**
+         * Init function called by the constructor
+         * 
+         * @method _init
+         * @param {String|DOMElement}   element     Element ID of the element or DOM Element.
+         * @param {Object}              [options]   Options object for configuration of the module.
+         * @private
+         */
+        _init: function() {
+            var o = this._options;
+
+            this.handle             = false;
+            this.elmStartPosition   = false;
+            this.active             = false;
+            this.dragged            = false;
+            this.prevCoords         = false;
+            this.initialStyle       = false;
+
+            this.handlers = {};
+            this.handlers.start         = Ink.bindEvent(this._onStart, this);
+            this.handlers.drag          = Ink.bindEvent(this._onDrag, this);
+            this.handlers.end           = Ink.bindEvent(this._onEnd, this);
+            this.handlers.selectStart   = function(event) {    InkEvent.stop(event);    return false;    };
+
+            if (o.fps) {
+                this.handlers.drag = InkEvent.throttle(this.handlers.drag, 1000 / o.fps);
+            }
+
+            // set handle
+            this.handle = this._options.handle || this._element;
+
+            this.handle.style.cursor = o.cursor;
+
+            InkEvent.observe(this.handle, 'touchstart', this.handlers.start);
+            InkEvent.observe(this.handle, 'mousedown', this.handlers.start);
+
+            if (Browser.IE) {
+                InkEvent.observe(this._element, 'selectstart', this.handlers.selectStart);
+            }
+        },
+
+        /**
+         * Removes the ability of the element of being dragged
+         * 
+         * @method destroy
+         * @public
+         */
+        destroy: function() {
+            InkEvent.stopObserving(this.handle, 'touchstart', this.handlers.start);
+            InkEvent.stopObserving(this.handle, 'mousedown', this.handlers.start);
+
+            if (Browser.IE) {
+                InkEvent.stopObserving(this._element, 'selectstart', this.handlers.selectStart);
+            }
+        },
+
+        /**
+         * onStart event handler
+         * 
+         * @method _onStart
+         * @param {Object} e window.event object
+         * @return {Boolean|void} In some cases return false. Otherwise is void
+         * @private
+         */
+        _onStart: function(e) {
+            if (!this.active && InkEvent.isLeftClick(e) || typeof e.button === 'undefined') {
+
+                var tgtEl = InkEvent.element(e);
+                if (this._options.skipChildren && tgtEl !== this.handle) {    return;    }
+
+                InkEvent.stop(e);
+
+                Css.addClassName(this._element, this._options.dragClass);
+
+                this.elmStartRect = this._element.getBoundingClientRect();
+                this.elmStartOffset = InkElement.offset(this._element);
+                this.constraintElmStartRect = this._options.constraintElm && this._options.constraintElm.getBoundingClientRect();
+
+                this.elmStartPosition = [
+                    parseFloat(this._element.style.left) || 0,
+                    parseFloat(this._element.style.top) || 0
+                ];
+
+                this.startMouseCoords = InkEvent.pointer(e);
+
+                this.active = true;
+
+                this._emit('onStart', this._element, e);
+
+                InkEvent.observe(document, 'mousemove', this.handlers.drag);
+                InkEvent.observe(this._element, 'touchmove', this.handlers.drag);
+
+                this.initialStyle = {
+                    position: this._element.style.position || null,
+                    zIndex: this._element.style.zIndex || null,
+                    left: this._element.style.left || null,
+                    top: this._element.style.top || null
+                };
+
+                this._element.style.position = 'relative';
+                this._element.style.zIndex = this._options.zIndex;
+
+                this._onDrag(e);
+
+                InkEvent.observe(document, 'mouseup',      this.handlers.end);
+                InkEvent.observe(document, 'touchend',     this.handlers.end);
+
+                return false;
+            }
+        },
+
+        /**
+         * Function that handles the dragging movement
+         * 
+         * @method _onDrag
+         * @param {Object} window.event object.
+         * @private
+         */
+        _onDrag: function(e) {
+            if (this.active) {
+                InkEvent.stop(e);
+
+                var mouseCoords = InkEvent.pointer(e);
+                var o           = this._options;
+                var newX        = false;
+                var newY        = false;
+
+                var positionChanged = this.prevCoords &&
+                        mouseCoords.x !== this.prevCoords.x ||
+                        mouseCoords.y !== this.prevCoords.y;
+
+                if (positionChanged) {
+                    this._emit('onDrag', this._element, e);
+                    this.prevCoords = mouseCoords;
+
+                    newX = mouseCoords.x - this.startMouseCoords.x + this.elmStartPosition[0];
+                    newY = mouseCoords.y - this.startMouseCoords.y + this.elmStartPosition[1];
+
+                    if (this._options.constraintElm) {
+                        // new X should be greater than the distance from the element's left to the constraint's left
+                        newX = between(newX,
+                            this.elmStartPosition[0] + this.constraintElmStartRect.left - this.elmStartRect.left,
+                            this.elmStartPosition[0] + this.constraintElmStartRect.right - this.elmStartRect.right);
+
+                        newY = between(newY,
+                            this.elmStartPosition[1] + this.constraintElmStartRect.top - this.elmStartRect.top,
+                            this.elmStartPosition[1] + this.constraintElmStartRect.bottom - this.elmStartRect.bottom);
+                    } else if (o.constraint) {
+                        // _options.constraint is a bit stuck in the past and is in screen coordinates, but we have to support it.
+                        var right = o.right === false ? Infinity : o.right;
+                        var left = o.left === false ? -Infinity : o.left;
+                        var top = o.top === false ? -Infinity : o.top;
+                        var bottom = o.bottom === false ? Infinity : o.bottom;
+
+                        var offsetXAtStart = this.elmStartPosition[x] - this.elmStartRect.left;
+                        var offsetYAtStart = this.elmStartPosition[y] - this.elmStartRect.top;
+
+                        offsetYAtStart -= InkElement.scrollHeight();
+                        offsetXAtStart -= InkElement.scrollWidth();
+
+                        right += offsetXAtStart;
+                        left += offsetXAtStart;
+                        top += offsetYAtStart;
+                        bottom += offsetYAtStart;
+
+                        if (o.constraint === 'horizontal' || o.constraint === 'both') {
+                            newX = between(newX, left, right);
+                        }
+                        if (o.constraint === 'vertical' || o.constraint === 'both') {
+                            newY = between(newY, top, bottom);
+                        }
+                    }
+
+                    this._element.style.left = newX + 'px';
+                    this._element.style.top  = newY + 'px';
+
+                    // Is there a Droppable on the page?
+                    var Droppable = Ink.getModule('Ink.UI.Droppable_1');
+                    if (Droppable) {
+                        // Is this being dragged the first px?
+                        if (!this.dragged) {
+                            Droppable.updateAll();
+                        }
+                        this.dragged = true;
+                        var coordsForDroppable = this._getDroppableDropCoordinates(mouseCoords);
+                        Droppable.action(coordsForDroppable, 'drag', e, this._element);
+                    }
+
+                    this._emit('onChange', this);
+                }
+            }
+        },
+
+        /**
+         * Get { x, y } screen coordinates from our element to pass to Droppable, unless mouseAnchor was not defined, in which case default to the user's mouse coordinates.
+         **/
+        _getDroppableDropCoordinates: function (mouseCoords) {
+            if (!this._options.mouseAnchor) {
+                return mouseCoords;
+            }
+
+            var anchor = this._options.mouseAnchor.split(' ');
+            var rect = this._element.getBoundingClientRect();
+            var ret = {};
+
+            if (anchor[0] === 'left') {
+                ret.x = rect.left;
+            } else if (anchor[0] === 'center') {
+                ret.x = (rect.right + rect.left) / 2;
+            } else if (anchor[0] === 'right') {
+                ret.x = rect.right;
+            }
+
+            if (anchor[1] === 'top') {
+                ret.y = rect.top;
+            } else if (anchor[1] === 'center') {
+                ret.y = (rect.bottom + rect.top) / 2;
+            } else if (anchor[1] === 'bottom') {
+                ret.y = rect.bottom;
+            }
+
+            return ret;
+        },
+
+        /**
+         * Function that handles the end of the dragging process
+         * 
+         * @method _onEnd
+         * @param {Object} window.event object.
+         * @private
+         */
+        _onEnd: function(e) {
+            InkEvent.stopObserving(document, 'mousemove', this.handlers.drag);
+            InkEvent.stopObserving(this._element, 'touchmove', this.handlers.drag);
+
+            if (this._options.fps) {
+                // Fix really short drags, which are faster than a "frame", by making sure _onDrag is called at least once.
+                this._onDrag(e);
+            }
+
+            Css.removeClassName(this._element, this._options.dragClass);
+
+            if (this.active && this.dragged) {
+                if (this._options.revert) {
+                    this._element.style.position = this.initialStyle.position;
+                    this._element.style.zIndex = this.initialStyle.zIndex;
+                    this._element.style.left = this.initialStyle.left;
+                    this._element.style.top = this.initialStyle.top;
+                }
+
+                this._emit('onEnd', this._element, e);
+
+                var Droppable = Ink.getModule('Ink.UI.Droppable_1');
+                if (Droppable) {
+                    Droppable.action(InkEvent.pointer(e), 'drop', e, this._element);
+                }
+            }
+
+            this.active         = false;
+            this.dragged        = false;
+        },
+
+        // Calls this._options.on* after checking whether it exists
+        _emit: function (evName/*, args...*/) {
+            // [3.2.0] make these event calls uniform by Ink's standard onEnd.call(this, { element: this._element, event: e })
+            if (typeof this._options[evName] === 'function') {
+                this._options[evName].apply(this, [].slice.call(arguments, 1));
+            }
+        }
+    };
+
+    Common.createUIComponent(Draggable);
+
+    return Draggable;
+
+});

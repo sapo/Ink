@@ -261,7 +261,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
          *
          * @method createRegExp
          *
-         * @param Groups* {Object}
+         * @param {Object} groups
          *  Groups to build regular expressions for. Possible keys are:
          *
          * - **numbers**: 0-9
@@ -279,6 +279,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
          * - **latin1Punctuation**: punctuation characters in latin-1.
          * - **unicodePunctuation**: punctuation characters in unicode.
          *
+         * @returns {RegExp} A regular expression with the given groups.
          */
         createRegExp: function (groups) {
             var re = '^[';
@@ -301,7 +302,8 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
          *
          * @method checkCharacterGroups
          * @param {String}  s               The validation string
-         * @param {Object}  [groups]={}     What groups are included. See createRegexp
+         * @param {Object}  [groups={}]     What groups are included. See `createRegExp`
+         * @return {Boolean} Whether this is a valid string (all groups pass).
          * @sample Ink_Util_Validator_checkCharacterGroups.html 
          */
         checkCharacterGroups: function (s, groups) {
@@ -313,7 +315,8 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
          *
          * @method unicode
          * @param {String}  s               The validation string
-         * @param {Object}  [options]={}    Optional configuration object. See createRegexp
+         * @param {Object}  [options={}]    Optional configuration object. See createRegexp
+         * @return {Boolean} Whether this is a valid unicode string.
          */
         unicode: function (s, options) {
             return Validator.checkCharacterGroups(s, Ink.extendObj({
@@ -327,7 +330,8 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
          * @method latin1
          *
          * @param {String}  s               The validation string
-         * @param {Object}  [options]={}    Optional configuration object. See createRegexp
+         * @param {Object}  [options={}]    Optional configuration object. See createRegexp
+         * @return {Boolean} Whether this is a valid latin1 string.
          * @sample Ink_Util_Validator_latin1.html  
          */
         latin1: function (s, options) {
@@ -342,7 +346,8 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
          * @method ascii
          *
          * @param {String}  s               The validation string
-         * @param {Object}  [options]={}    Optional configuration object. See createRegexp
+         * @param {Object}  [options={}]    Optional configuration object. See createRegexp
+         * @return {Boolean} Whether this is a valid ascii string.
          * @sample Ink_Util_Validator_ascii.html 
          */
         ascii: function (s, options) {
@@ -356,18 +361,19 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
          * @method number
          * @param {String} numb         The number
          * @param {Object} [options]    Further options
-         *  @param  [options.decimalSep]='.'    Allow decimal separator.
-         *  @param  [options.thousandSep]=","   Strip this character from the number.
-         *  @param  [options.negative]=false    Allow negative numbers.
-         *  @param  [options.decimalPlaces]=null   Maximum number of decimal places. Use `0` for an integer number.
-         *  @param  [options.max]=null          Maximum number
-         *  @param  [options.min]=null          Minimum number
-         *  @param  [options.returnNumber]=false When this option is true, return the number itself when the value is valid.
-         *  @sample Ink_Util_Validator_number.html 
+         *  @param {String} [options.decimalSep='.']     Allow decimal separator.
+         *  @param {String} [options.thousandSep=","]    Strip this character from the number.
+         *  @param {String} [options.negative=false]     Allow negative numbers.
+         *  @param {String} [options.decimalPlaces=null] Maximum number of decimal places. Use `0` for an integer number.
+         *  @param {Number} [options.max=null]           Maximum number
+         *  @param {Number} [options.min=null]           Minimum number
+         *  @param {Boolean}[options.returnNumber=false] When this option is `true`, return the number itself when the value is valid.
+         * @return {Boolean|Number} `false` when invalid, `true` when valid. If `options.returnNumber` is `true`, return the parsed, valid number or `false`.
+         * @sample Ink_Util_Validator_number.html 
          */
-        number: function (numb, inOptions) {
+        number: function (numb, options) {
             numb = numb + '';
-            var options = Ink.extendObj({
+            options = Ink.extendObj({
                 decimalSep: '.',
                 thousandSep: '',
                 negative: true,
@@ -376,7 +382,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
                 max: null,
                 min: null,
                 returnNumber: false
-            }, inOptions || {});
+            }, options || {});
             // smart recursion thing sets up aliases for options.
             if (options.thousandSep) {
                 numb = numb.replace(new RegExp('\\' + options.thousandSep, 'g'), '');
@@ -447,7 +453,6 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
          *     });
          */
         _isLeapYear: function(year){
-
             var yearRegExp = /^\d{4}$/;
 
             if(yearRegExp.test(year)){
@@ -519,9 +524,9 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
          * Checks if a date is valid
          *
          * @method _isValidDate
-         * @param {Number} year
-         * @param {Number} month
-         * @param {Number} day
+         * @param {Number} year Year fragment of your date.
+         * @param {Number} month Month fragment of your date.
+         * @param {Number} day Day fragment of your date.
          * @return {Boolean} True if valid
          * @private
          * @static
@@ -532,7 +537,6 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
          *     });
          */
         _isValidDate: function(year, month, day){
-
             var yearRegExp = /^\d{4}$/;
             var validOneOrTwo = /^\d{1,2}$/;
             if(yearRegExp.test(year) && validOneOrTwo.test(month) && validOneOrTwo.test(day)){
@@ -545,11 +549,11 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
         },
 
         /**
-         * Checks if an email is valid
+         * Checks if an email address is valid
          *
-         * @method mail
-         * @param {String} email
-         * @return {Boolean} True if it's valid
+         * @method email
+         * @param {String} email String containing the e-mail.
+         * @return {Boolean} `true` if it's a valid e-mail address.
          * @public
          * @static
          * @sample Ink_Util_Validator_mail.html 
@@ -557,11 +561,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
         email: function(email)
         {
             var emailValido = new RegExp("^[_a-z0-9-]+((\\.|\\+)[_a-z0-9-]+)*@([\\w]*-?[\\w]*\\.)+[a-z]{2,4}$", "i");
-            if(!emailValido.test(email)) {
-                return false;
-            } else {
-                return true;
-            }
+            return !!emailValido.test(email);
         },
 
         /**
@@ -569,6 +569,8 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
          *
          * @method mail
          * @public
+         * @param {String} mail See `email`
+         * @returns {Boolean} See `email`
          * @static
          * @private
          */
@@ -875,31 +877,27 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
          * Validates if a zip code is valid in Portugal
          *
          * @method codPostal
-         * @param {Number|String} cp1
-         * @param {optional Number|String} cp2
-         * @param {optional Boolean} returnBothResults
-         * @return {Boolean} True if it's a valid zip code
+         * @param {Number|String} cp1 If passed alone, it's the full postal code. If passed with `cp2`, it's the first fragment of the zip code, which should have 4 numeric digits.
+         * @param {Number|String} [cp2] Second fragment of the zip code, which should have 3 numeric digits.
+         * @param {Boolean} [returnBothResults] When given both `cp1` and `cp2`, return an array `[Boolean, Boolean]`, indicating which of these were valid. For example `[true, true]` means both were valid, while `[true, false]` means `cp1` was valid, and `cp2` was invalid.
+         * @return {Boolean|Array} `true` if it's a valid zip code. If `returnBothResults` is `true`, return an array as described above.
          * @public
          * @static
          * @sample Ink_Util_Validator_codPostal.html 
          */
-        codPostal: function(cp1,cp2,returnBothResults){
-
-
+        codPostal: function(cp1, cp2, returnBothResults){
             var cPostalSep = /^(\s*\-\s*|\s+)$/;
             var trim = /^\s+|\s+$/g;
             var cPostal4 = /^[1-9]\d{3}$/;
             var cPostal3 = /^\d{3}$/;
             var parserCPostal = /^(.{4})(.*)(.{3})$/;
 
-
-            returnBothResults = !!returnBothResults;
-
             cp1 = cp1.replace(trim,'');
+
             if(typeof(cp2)!=='undefined'){
                 cp2 = cp2.replace(trim,'');
                 if(cPostal4.test(cp1) && cPostal3.test(cp2)){
-                    if( returnBothResults === true ){
+                    if( returnBothResults ){
                         return [true, true];
                     } else {
                         return true;
@@ -907,7 +905,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
                 }
             } else {
                 if(cPostal4.test(cp1) ){
-                    if( returnBothResults === true ){
+                    if( returnBothResults ){
                         return [true,false];
                     } else {
                         return true;
@@ -917,7 +915,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
                 var cPostal = cp1.match(parserCPostal);
 
                 if(cPostal!==null && cPostal4.test(cPostal[1]) && cPostalSep.test(cPostal[2]) && cPostal3.test(cPostal[3])){
-                    if( returnBothResults === true ){
+                    if( returnBothResults ){
                         return [true,false];
                     } else {
                         return true;
@@ -925,7 +923,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
                 }
             }
 
-            if( returnBothResults === true ){
+            if( returnBothResults ){
                 return [false,false];
             } else {
                 return false;
@@ -1150,8 +1148,11 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
         },
 
         /**
-         * Luhn function, to be used when validating credit cards
-         *
+         * Luhn function, to be used when validating credit card numbers
+         * @method _luhn
+         * @private
+         * @param {Number} num Given credit card number
+         * @returns {Boolean} Whether the credit card number is valid.
          */
         _luhn: function (num){
 
@@ -1167,9 +1168,8 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
             var length = num.length;
 
             // Checksum of the card num
-            var
-                i, checksum = 0
-            ;
+            var i;
+            var checksum = 0;
 
             for (i = length - 1; i >= 0; i -= 2)
             {
@@ -1194,8 +1194,8 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
          * Checks if a number is of a specific credit card type
          * @method isCreditCard
          * @param  {String}  num            Number to be validates
-         * @param  {String|Array}  creditCardType Credit card type. See _creditCardSpecs for the list of supported values.
-         * @return {Boolean}
+         * @param  {String|Array}  creditCardType Credit card type or list of types. See _creditCardSpecs for the list of supported values.
+         * @return {Boolean} Whether the number is of that credit card type (or at least one of `creditCardType` if you pass in an array).
          * @sample Ink_Util_Validator_isCreditCard.html 
          */
         isCreditCard: function(num, creditCardType){

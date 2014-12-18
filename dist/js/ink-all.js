@@ -44,7 +44,10 @@
      */
 
     window.Ink = {
-        VERSION: '3.1.1',
+        /**
+         * @property {String} VERSION
+         **/
+        VERSION: '3.1.2',
         _checkPendingRequireModules: function() {
             var I, F, o, dep, mod, cb, pRMs = [];
             var toApply = [];
@@ -92,6 +95,8 @@
          * @method getPath
          * @param {String}  key      Name of the module you want to get the path
          * @param {Boolean} [noLib] Flag to skip appending 'lib.js' to the returned path.
+         *
+         * @return {String} The URI to the module, according to what you added in setPath for the given `key`.
          */
         getPath: function(key, noLib) {
             var split = key.split(/[._]/g);
@@ -139,6 +144,7 @@
          *
          * @param {String} key       Module or namespace
          * @param {String} rootURI   Base URL path and schema to be appended to the module or namespace
+         * @return {void}
          *
          * @example
          *      Ink.setPath('Ink', 'http://my-cdn/Ink/');
@@ -164,6 +170,7 @@
          * @method loadScript
          * @param {String}  uri  Can be an external URL or a module name
          * @param {String}  [contentType]='text/javascript' The `type` attribute of the new script tag.
+         * @return {Element} The newly created script element.
          */
         loadScript: function(uri, contentType) {
             /*jshint evil:true */
@@ -182,24 +189,19 @@
             scriptEl.setAttribute('type', contentType || 'text/javascript');
             scriptEl.setAttribute('src', uri);
 
-            scriptEl.onerror = scriptEl.onreadystatechange = function (ev) {
-                ev = ev || window.event;
-                if (ev.type === 'readystatechange' && scriptEl.readyState !== 'loaded') {
-                    // if not readyState == 'loaded' it's not an error.
-                    return;
-                }
-                Ink.error(['Failed to load script from ', uri, '.'].join(''));
-            };
-            // CHECK ON ALL BROWSERS
-            /*if (document.readyState !== 'complete' && !document.body) {
-                document.write( scriptEl.outerHTML );
+            if ('onerror' in scriptEl) {
+                scriptEl.onerror = function () {
+                    Ink.error(['Failed to load script from ', uri, '.'].join(''));
+                };
             }
-            else {*/
-                var aHead = document.getElementsByTagName('head');
-                if(aHead.length > 0) {
-                    aHead[0].appendChild(scriptEl);
-                }
-            //}
+
+            if (document.head) {
+                return document.head.appendChild(scriptEl);
+            }
+            var aHead = document.getElementsByTagName('head');
+            if(aHead.length > 0) {
+                return aHead[0].appendChild(scriptEl);
+            }
         },
 
         _loadLater: function (dep) {
@@ -268,25 +270,26 @@
          * @param  {Number}    version  Version number
          * @param  {Array}     deps     Array of module names which are dependencies of the module being created. The order in which they are passed here will define the order they will be passed to the callback function.
          * @param  {Function}  modFn    The callback function to be executed when all the dependencies are resolved. The dependencies are passed as arguments, in the same order they were declared. The function itself should return the module.
+         * @return {void}
          * @sample Ink_1_createModule.html
          *
          */
-        createModule: function(mod, ver, deps, modFn) { // define
+        createModule: function(mod, version, deps, modFn) { // define
             if (typeof mod !== 'string') {
                 throw new Error('module name must be a string!');
             }
 
             // validate version correctness
-            if (!(typeof ver === 'number' || (typeof ver === 'string' && ver.length > 0))) {
+            if (!(typeof version === 'number' || (typeof version === 'string' && version.length > 0))) {
                 throw new Error('version number missing!');
             }
 
-            var modAll = [mod, '_', ver].join('');
+            var modAll = [mod, '_', version].join('');
 
             modulesWaitingForDeps[modAll] = true;
 
             var cb = function() {
-                //console.log(['createModule(', mod, ', ', ver, ', [', deps.join(', '), '], ', !!modFn, ')'].join(''));
+                //console.log(['createModule(', mod, ', ', version, ', [', deps.join(', '), '], ', !!modFn, ')'].join(''));
 
                 // make sure module in not loaded twice
                 if (modules[modAll]) {
@@ -309,11 +312,11 @@
 
                 // set version
                 if (typeof moduleContent === 'object') { // Dom.Css Dom.Event
-                    moduleContent._version = ver;
+                    moduleContent._version = version;
                 }
                 else if (typeof moduleContent === 'function') {
-                    moduleContent.prototype._version = ver; // if constructor
-                    moduleContent._version = ver;           // if regular function
+                    moduleContent.prototype._version = version; // if constructor
+                    moduleContent._version = version;           // if regular function
                 }
 
 
@@ -330,7 +333,7 @@
                 delete modulesWaitingForDeps[ modAll ];
 
                 if (isInkModule) {
-                    t[0][ t[1] + '_' + ver ] = moduleContent; // in namespace
+                    t[0][ t[1] + '_' + version ] = moduleContent; // in namespace
                 }
 
 
@@ -362,6 +365,7 @@
          * @method requireModules
          * @param  {Array}     deps  Array of module names. The order in which they are passed here will define the order they will be passed to the callback function.
          * @param  {Function}  cbFn  The callback function to be executed when all the dependencies are resolved. The dependencies are passed as arguments, in the same order they were declared.
+         * @return {void}
          * @sample Ink_1_requireModules.html
          */
         requireModules: function(deps, cbFn) { // require
@@ -460,6 +464,7 @@
          * @param {String} version  Extension version
          * @param {Array}  dependencies Extension dependencies
          * @param {Function} modFn  Function returning the extension
+         * @return {void}
          * @sample Ink_1_createExt.html
          */
         createExt: function (moduleName, version, dependencies, modFn) {
@@ -467,14 +472,14 @@
         },
 
         /**
-         * Function.prototype.bind alternative.
+         * Function.prototype.bind alternative/fallback.
          * Creates a new function that, when called, has its this keyword set to the provided value, with a given sequence of arguments preceding any provided when the new function is called.
          *
          * @method bind
          * @param {Function}  fn        The function
          * @param {Object}    context   The value to be passed as the this parameter to the target function when the bound function is called. If used as false, it preserves the original context and just binds the arguments.
-         * @param {Any}   [args*]     Additional arguments will be sent to the original function as prefix arguments.
-         * @return {Function}
+         * @param {Mixed}       [more...] Additional arguments will be sent to the original function as prefix arguments.
+         * @return {Function} A copy of `fn` bound to the given `context`. Calling this function causes a call to `fn` with the new `context` and any `more` arguments.
          * @sample Ink_1_bind.html
          */
         bind: function(fn, context) {
@@ -488,13 +493,14 @@
 
         /**
          * Function.prototype.bind alternative for class methods
-         * Creates a new function that, when called, has this k
+         * See Ink.bind. The difference between `bindMethod` and `bind` is that `bindMethod` fetches a method from an object. It can be useful, for instance, to bind a function which is a property of an object returned by another function.
+         *
          * @method bindMethod
          * @uses bind
          * @param {Object}  object      The object that contains the method to bind
          * @param {String}  methodName  The name of the method that will be bound
-         * @param {Any}   [args*]     Additional arguments will be sent to the new method as prefix arguments.
-         * @return {Function}
+         * @param {Mixed}       [more...] Additional arguments will be sent to the new method as prefix arguments.
+         * @return {Function} See Ink.bind.
          * @sample Ink_1_bindMethod.html
          */
         bindMethod: function (object, methodName) {
@@ -505,13 +511,13 @@
         /**
          * Function.prototype.bind alternative for event handlers.
          * Same as bind but keeps first argument of the call the original event.
-         * Set "context" to `false` to preserve the original context of the function and just bind the arguments.
+         * Set `context` to `false` to preserve the original context of the function and just bind the arguments.
          *
          * @method bindEvent
          * @param {Function}  fn        The function
          * @param {Object}    context   The value to be passed as the this parameter to the target
-         * @param {Any}     [args*]   Additional arguments will be sent to the original function as prefix arguments
-         * @return {Function}
+         * @param {Mixed}       [more...] Additional arguments will be sent to the original function as prefix arguments
+         * @return {Function} A function which will always call `fn` with the given event (or window.event, in IE) as the first argument.
          * @sample Ink_1_bindEvent.html
          */
         bindEvent: function(fn, context) {
@@ -524,19 +530,20 @@
         },
 
         /**
-         * Alias to document.getElementById
+         * Shorter alias to document.getElementById.
+         * Just calls `document.getElementById(id)`, unless `id` happens to be an element.
+         * If `id` is an element, `Ink.i` just returns it.
+         *
+         * You can use this in situations where you want to accept an element id, but a raw element is also okay.
          *
          * @method i
          * @param {String} id Element ID
-         * @return {DOMElement}
+         * @return {DOMElement|null} The element returned by `document.getElementById(id)` if `id` was a string, and `id` otherwise.
          * @sample Ink_1_i.html
          */
         i: function(id) {
-            if(!id) {
-                throw new Error('Ink.i => id or element must be passed');
-            }
             if(typeof(id) === 'string') {
-                return document.getElementById(id);
+                return document.getElementById(id) || null;
             }
             return id;
         },
@@ -544,37 +551,41 @@
         /**
          * Alias for Ink.Dom.Selector
          *
+         * Using sizzle-specific selectors is NOT encouraged!
+         *
          * @method ss
          * @uses Ink.Dom.Selector.select
-         * @param {String}     rule
-         * @param {DOMElement} [from]
+         * @param {String}     selector          CSS3 selector string
+         * @param {DOMElement} [from=document]   Context element. If set to a DOM element, the `selector` will only look for descendants of this DOM Element.
          * @return {Array} array of DOMElements
          * @sample Ink_1_ss.html
          */
-        ss: function(rule, from)
+        ss: function(selector, from)
         {
             if(typeof(Ink.Dom) === 'undefined' || typeof(Ink.Dom.Selector) === 'undefined') {
                 throw new Error('This method requires Ink.Dom.Selector');
             }
-            return Ink.Dom.Selector.select(rule, (from || document));
+            return Ink.Dom.Selector.select(selector, (from || document));
         },
 
         /**
-         * Alias for Ink.Dom.Selector first result
+         * Selects elements like `Ink.ss`, but only returns the first element found.
+         *
+         * Using sizzle-specific selectors is NOT encouraged!
          *
          * @method s
          * @uses Ink.Dom.Selector.select
-         * @param {String}     rule     Selector string
-         * @param {DOMElement} [from]   Context element. If set to a DOM element, the rule will only look for descendants of this DOM Element.
-         * @return {DOMElement}
+         * @param {String}     selector        CSS3 selector string
+         * @param {DOMElement} [from=document] Context element. If set to a DOM element, the `selector` will only look for descendants of this DOM Element.
+         * @return {DOMElement} The first element found which matches the `selector`, or `null` if nothing is found.
          * @sample Ink_1_s.html
          */
-        s: function(rule, from)
+        s: function(selector, from)
         {
             if(typeof(Ink.Dom) === 'undefined' || typeof(Ink.Dom.Selector) === 'undefined') {
                 throw new Error('This method requires Ink.Dom.Selector');
             }
-            return Ink.Dom.Selector.select(rule, (from || document))[0] || null;
+            return Ink.Dom.Selector.select(selector, (from || document))[0] || null;
         },
 
         /**
@@ -584,8 +595,8 @@
          * @method extendObj
          * @param {Object} destination  The object that will receive the new/updated properties
          * @param {Object} source       The object whose properties will be copied over to the destination object
-         * @param {Object} [args*]      Additional source objects. The last source will override properties of the same name in the previous defined sources
-         * @return destination object, enriched with defaults from the sources
+         * @param {Object} [more...]    Additional source objects. The last source will override properties of the same name in the previous defined sources
+         * @return {Object} destination object, enriched with defaults from the sources
          * @sample Ink_1_extendObj.html
          */
         extendObj: function(destination/*, source... */) {
@@ -607,7 +618,8 @@
          * Calls native console.log if available.
          *
          * @method log
-         * @param {Any} [args*] Arguments to be evaluated
+         * @param {Mixed} [more...] Arguments to be evaluated
+         * @return {void}
          * @sample Ink_1_log.html
          **/
         log: function () {
@@ -622,7 +634,8 @@
          * Calls native console.warn if available.
          *
          * @method warn
-         * @param {Any} [args*] Arguments to be evaluated
+         * @param {Mixed} [more...] Arguments to be evaluated
+         * @return {void}
          * @sample Ink_1_warn.html
          **/
         warn: function () {
@@ -637,7 +650,8 @@
          * Calls native console.error if available.
          *
          * @method error
-         * @param {Any} [args*] Arguments to be evaluated
+         * @param {Mixed} [more...] Arguments to be evaluated
+         * @return {void}
          * @sample Ink_1_error.html
          **/
         error: function () {
@@ -689,7 +703,6 @@
  */
 
 Ink.createModule('Ink.Net.Ajax', '1', [], function() {
-
     'use strict';
 
     /**
@@ -699,43 +712,32 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
      * @constructor
      *
      * @param {String}          url                             Request URL
-     * @param {Object}          options                         Request options
-     * @param {Boolean}         [options.asynchronous]=true     If false, the request synchronous.
-     * @param {Boolean}         [options.cors]                  Flag to activate CORS. Set this to true if you're doing a cross-origin request
-     * @param {String}          [options.method]='POST'         HTTP request method. POST by default.
-     * @param {Object|String}   [options.parameters]            Request parameters to be sent with the request
-     * @param {Number}          [options.timeout]               Request timeout in seconds
-     * @param {Number}          [options.delay]                 Artificial delay. If the request is completed faster than this delay, wait the remaining time before executing the callbacks
-     * @param {String}          [options.postBody]              POST request body. If not specified, it's filled with the contents from parameters
+     * @param {Object}          [options]                       Request options, containing:
+     * @param {Boolean}         [options.asynchronous=true]     If false, the request synchronous.
      * @param {String}          [options.contentType]           Content-type header to be sent. Defaults to 'application/x-www-form-urlencoded'
+     * @param {Boolean}         [options.cors]                  Flag to activate CORS. Set this to true if you're doing a cross-origin request
+     * @param {Number}          [options.delay]                 Artificial delay. If the request is completed faster than this delay, wait the remaining time before executing the callbacks
+     * @param {Boolean|String}  [options.evalJS=true]           If the request Content-type header is application/json, evaluates the response and populates responseJSON. Use 'force' if you want to force the response evaluation, no matter what Content-type it's using.
+     * @param {String}          [options.method='POST']         HTTP request method. POST by default.
+     * @param {Object|String}   [options.parameters]            Request parameters to be sent with the request
+     * @param {String}          [options.postBody]              POST request body. If not specified, it's filled with the contents from parameters
      * @param {Object}          [options.requestHeaders]        Key-value pairs for additional request headers
-     * @param {Function}        [options.onComplete]            Callback executed after the request is completed, regardless of what happened during the request.
-     * @param {Function}        [options.onSuccess]             Callback executed if the request is successful (requests with 2xx status codes)
-     * @param {Function}        [options.onFailure]             Callback executed if the request fails (requests with status codes different from 2xx)
-     * @param {Function}        [options.onException]           Callback executed if an exception occurs. Receives the exception as a parameter.
-     * @param {Function}        [options.onCreate]              Callback executed after object initialization but before the request is made
-     * @param {Function}        [options.onInit]                Callback executed before any initialization
-     * @param {Function}        [options.onTimeout]             Callback executed if the request times out
-     * @param {Boolean|String}  [options.evalJS]=true           If the request Content-type header is application/json, evaluates the response and populates responseJSON. Use 'force' if you want to force the response evaluation, no matter what Content-type it's using.
      * @param {Boolean}         [options.sanitizeJSON]          Flag to sanitize the content of responseText before evaluation
+     * @xparam {Boolean}        [options.signRequest=false]     Send a "X-Requested-With: XMLHttpRequest" header in the request.
+     * @param {Number}          [options.timeout]               Request timeout in seconds
      * @param {String}          [options.xhrProxy]              URI for proxy service hosted on the same server as the web app, that can fetch documents from other domains. The service must pipe all input and output untouched (some input sanitization is allowed, like clearing cookies). e.g., requesting http://example.org/doc can become /proxy/http%3A%2F%2Fexample.org%2Fdoc The proxy service will be used for cross-domain requests, if set, else a network error is returned as exception.
+     * @param {Function}        [options.onComplete]            Callback executed after the request is completed, regardless of what happened during the request.
+     * @param {Function}        [options.onCreate]              Callback executed after object initialization but before the request is made
+     * @param {Function}        [options.onException]           Callback executed if an exception occurs. Receives the exception as a parameter.
+     * @param {Function}        [options.onFailure]             Callback executed if the request fails (requests with status codes different from 2xx)
+     * @param {Function}        [options.onHeaders]             Callback executed when headers of the response arrive.
+     * @param {Function}        [options.onInit]                Callback executed before any initialization
+     * @param {Function}        [options.onSuccess]             Callback executed if the request is successful (requests with 2xx status codes)
+     * @param {Function}        [options.onTimeout]             Callback executed if the request times out
      *
      * @sample Ink_Net_Ajax_1.html 
      */
     var Ajax = function(url, options){
-
-        // start of AjaxMock patch - uncomment to enable it
-        /*var AM = SAPO.Communication.AjaxMock;
-        if (AM && !options.inMock) {
-            if (AM.autoRecordThisUrl && AM.autoRecordThisUrl(url)) {
-                return new AM.Record(url, options);
-            }
-            if (AM.mockThisUrl && AM.mockThisUrl(url)) {
-                return new AM.Play(url, options, true);
-            }
-        }*/
-        // end of AjaxMock patch
-
         this.init(url, options);
     };
 
@@ -757,32 +759,32 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
 
         init: function(url, userOptions) {
             if (!url) {
-                throw new Error("WRONG_ARGUMENTS_ERR");
+                throw new Error("new Ink.Net.Ajax: Pass a url as the first argument!");
             }
             var options = Ink.extendObj({
                 asynchronous: true,
-                method: 'POST',
-                parameters: null,
-                timeout: 0,
-                delay: 0,
-                postBody: '',
                 contentType:  'application/x-www-form-urlencoded',
-                requestHeaders: null,
-                onComplete: null,
-                onSuccess: null,
-                onFailure: null,
-                onException: null,
-                onHeaders: null,
-                onCreate: null,
-                onInit: null,
-                onTimeout: null,
-                sanitizeJSON: false,
-                evalJS: true,
-                xhrProxy: '',
                 cors: false,
                 debug: false,
+                delay: 0,
+                evalJS: true,
+                method: 'POST',
+                parameters: null,
+                postBody: '',
+                requestHeaders: null,
+                sanitizeJSON: false,
+                signRequest: false,
+                timeout: 0,
                 useCredentials: false,
-                signRequest: false
+                xhrProxy: '',
+                onComplete: null,
+                onCreate: null,
+                onException: null,
+                onFailure: null,
+                onHeaders: null,
+                onInit: null,
+                onSuccess: null,
+                onTimeout: null
             }, Ajax.globalOptions);
 
             if (userOptions && typeof userOptions === 'object') {
@@ -827,14 +829,15 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
          * Returns a location object from an URL
          *
          * @method _locationFromUrl
-         * @param url
+         * @param {String} url Input url
+         * @return {Location} An `<a>` element with `href` set to the given URL.
          * @private
          **/
         _locationFromURL: function (url) {
             var urlLocation =  document.createElementNS ?
                 document.createElementNS('http://www.w3.org/1999/xhtml', 'a') :
                 document.createElement('a');
-            urlLocation.href = url;
+            urlLocation.setAttribute('href', url);
             return urlLocation;
         },
 
@@ -842,35 +845,61 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
          * Checks whether a location is HTTP or HTTPS
          *
          * @method locationIsHttp
-         * @param urlLocation
+         * @param {Location} urlLocation Location object or `<a>` element representing the current location.
+         * @return {Boolean} `true` if the location is HTTP or HTTPS, `false` otherwise.
          * @private
          */
         _locationIsHTTP: function (urlLocation) {
-            return urlLocation.protocol.match(/^https?:/i) ? true : false;
+            return urlLocation.href.match(/^https?:/i) ? true : false;
         },
 
         /**
-         * Checks whether a location is cross-domain from another
+         * Checks whether a location is cross-domain from ours.
          *
          * @method _locationIsCrossDomain
-         * @param urlLocation {Location}
-         * @param otherLocation {Location}
+         * @param {Location} urlLocation A Location object or an `<a>` elemnt.
+         * @param {Location} [location=window.location] A location representing this one. This argument only exists for testing. Don't use it.
+         * @return {Boolean} `true` if the locations are in different domains (in which case we need to perform a cross-domain request)
+         * @private
          */
         _locationIsCrossDomain: function (urlLocation, location) {
+            // TODO because of oldIE compatibility, we can only use <a>.href (the full URL), and none of the other useful properties one can find in Location elements. So we should just pass pure strings around. Not only here.
             location = location || window.location;
             if (!Ajax.prototype._locationIsHTTP(urlLocation) || location.protocol === 'widget:' || typeof window.widget === 'object') {
                 return false;
             } else {
-                return location.protocol           !== urlLocation.protocol ||
-                       location.host.split(':')[0] !== urlLocation.host.split(':')[0];
+                var split1 = urlLocation.href.split('//');
+                var split2 = location.href.split('//');
+
+                if (split1.length === 1 || split2.length === 1) {
+                    // This occurs when there's no protocol string in either URL
+                    // Only happens in IE7 because setting the "href" of a link doesn't make that link show you the full URL when the URI is relative to this host.
+                    // So we have our answer.
+                    // If there's no protocol string
+                    // We know for sure that our `urlLocation` is relative
+                    // In which case, they are in the same domain.
+                    return false;
+                }
+
+                var protocol1 = split1[0];
+                var protocol2 = split2[0];
+
+                var colonOrSlash = /:|\//;  // Finds colons or slashes, which are the end of hostnames (without ports)
+
+                var host1 = split1[1].split(colonOrSlash)[0];
+                var host2 = split2[1].split(colonOrSlash)[0];
+
+                return protocol1 !== protocol2 ||
+                    host1 !== host2;
             }
         },
 
         /**
-         * Creates the appropriate XMLHttpRequest object
+         * Creates the appropriate XMLHttpRequest object, depending on our browser and whether we're trying to perform a cross-domain request.
          *
          * @method getTransport
          * @return {Object} XMLHttpRequest object
+         * @private
          */
         getTransport: function()
         {
@@ -894,10 +923,10 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
         },
 
         /**
-         * Set the necessary headers for an ajax request
+         * Set the necessary headers for an ajax request.
          *
          * @method setHeaders
-         * @param {String} url The url for the request
+         * @return {void}
          */
         setHeaders: function()
         {
@@ -907,7 +936,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
                         "Accept": "text/javascript,text/xml,application/xml,application/xhtml+xml,text/html,application/json;q=0.9,text/plain;q=0.8,video/x-mng,image/png,image/jpeg,image/gif;q=0.2,*/*;q=0.1",
                         "Accept-Language": navigator.language,
                         "X-Requested-With": "XMLHttpRequest",
-                        "X-Ink-Version": "2"
+                        "X-Ink-Version": "3"
                     };
                     if (this.options.cors) {
                         if (!this.options.signRequest) {
@@ -941,8 +970,9 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
          * Converts an object with parameters to a querystring
          *
          * @method paramsObjToStr
-         * @param {Object|String}  optParams  parameters object
-         * @return {String} querystring
+         * @param {Object} optParams Parameters object, example: `{ a: 2, b: 3 }`
+         * @return {String} A query string. Example: `'a=2&b=3'`
+         * @private
          */
         paramsObjToStr: function(optParams) {
             var k, m, p, a, params = [];
@@ -981,6 +1011,8 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
          * Set the url parameters for a GET request
          *
          * @method setParams
+         * @return {void}
+         * @private
          */
         setParams: function()
         {
@@ -1005,8 +1037,9 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
          * Gets an HTTP header from the response
          *
          * @method getHeader
-         * @param {String}  name    Header name
-         * @return {String} header  Content
+         * @param {String} name Header name
+         * @return {String} Header content
+         * @public
          */
         getHeader: function(name)
         {
@@ -1025,6 +1058,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
          *
          * @method getAllHeaders
          * @return {String} The headers, each separated by a newline
+         * @public
          */
         getAllHeaders: function()
         {
@@ -1036,10 +1070,11 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
         },
 
         /**
-         * Sets the response object
+         * Gets the ajax response object
          *
          * @method getResponse
-         * @return {Object} the response object
+         * @return {Object} The response object
+         * @public
          */
         getResponse: function(){
             // setup our own stuff
@@ -1069,6 +1104,8 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
          * Aborts the request if still running. No callbacks are called
          *
          * @method abort
+         * @return {void}
+         * @public
          */
         abort: function(){
             if (this.transport) {
@@ -1083,6 +1120,8 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
          * Executes the state changing phase of an ajax request
          *
          * @method runStateChange
+         * @return {void}
+         * @public
          */
         runStateChange: function()
         {
@@ -1113,7 +1152,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
                     // Status 0 indicates network error for http requests.
                     // For http less requests, 0 is always returned.
                     if (this.isHTTP) {
-                        this.safeCall('onException', this.makeError(18, 'NETWORK_ERR'));
+                        this.safeCall('onException', new Error('Ink.Net.Ajax: network error! (HTTP status 0)'));
                     } else {
                         curStatus = responseContent ? 200 : 404;
                     }
@@ -1128,6 +1167,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
                     (headerContentType.indexOf("application/json") >= 0 || this.options.evalJS === 'force')){
                         try {
                             responseJSON = this.evalJSON(responseContent, this.sanitizeJSON);
+
                             if(responseJSON){
                                 responseContent = response.responseJSON = responseJSON;
                             }
@@ -1177,8 +1217,10 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
          * Last step after XHR is complete. Call onComplete and cleanup object
          *
          * @method finish
-         * @param {Any} response
-         * @param {Any} responseContent
+         * @param {Mixed} response Response object as returned from getResponse().
+         * @param {Mixed} responseContent Content of the response.
+         * @return {void}
+         * @private
          */
         finish: function(response, responseContent){
             if (response) {
@@ -1204,30 +1246,25 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
          * Safely calls a callback function.
          * Verifies that the callback is well defined and traps errors
          *
+         * If you pass in an error as the second argument, it gets thrown if there is no default listener.
+         *
          * @method safeCall
-         * @param {Function}  listener
+         * @param {Function}  handlerName Name of the handler we wish to call
+         * @param {Error}     error     This error gets reported to the console using Ink.error if there's no listener to `handlerName`.
+         * @param {Mixed}     [args...] Arguments to get passed to the `handlerName` handler.
+         * @return {void}
+         * @private
          */
-        safeCall: function(listener, first/*, second*/) {
-            function rethrow(exception){
-                setTimeout(function() {
-                    // Rethrow exception so it'll land in
-                    // the error console, firebug, whatever.
-                    if (exception.message) {
-                        exception.message += '\n'+(exception.stacktrace || exception.stack || '');
-                    }
-                    throw exception;
-                }, 1);
-            }
-            if (typeof this.options[listener] === 'function') {
-                //SAPO.safeCall(this, this.options[listener], first, second);
-                //return object[listener].apply(object, [].slice.call(arguments, 2));
+        safeCall: function(handlerName /*[error or rest...]*/) {
+            var error = arguments[1] instanceof Error ? arguments[1] : null;
+            if (typeof this.options[handlerName] === 'function') {
                 try {
-                    this.options[listener].apply(this, [].slice.call(arguments, 1));
+                    this.options[handlerName].apply(this, [].slice.call(arguments, 1));
                 } catch(ex) {
-                    rethrow(ex);
+                    Ink.error('Ink.Net.Ajax: an error was raised while executing ' + handlerName + '.', ex);
                 }
-            } else if (first && window.Error && (first instanceof Error)) {
-                rethrow(first);
+            } else if (error) {
+                Ink.error('Ink.Net.Ajax: ' + error);
             }
         },
 
@@ -1235,8 +1272,10 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
          * Sets a new request header for the next http request
          *
          * @method setRequestHeader
-         * @param {String} name
-         * @param {String} value
+         * @param {String} name Header name.
+         * @param {String} value New header value.
+         * @return {void}
+         * @public
          */
         setRequestHeader: function(name, value){
             if (!this.options.requestHeaders) {
@@ -1249,6 +1288,8 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
          * Executes the request
          *
          * @method request
+         * @return {void}
+         * @private
          */
         request: function()
         {
@@ -1320,7 +1361,8 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
                     if (crossDomain) {
                         // Need explicit handling because Mozila aborts
                         // the script and Chrome fails silently.per the spec
-                        throw this.makeError(18, 'NETWORK_ERR');
+                        Ink.error('Ink.Net.Ajax: You are attempting to request a URL which is cross-domain from this one. To do this, you *must* enable the `cors` option!');
+                        return;
                     } else {
                         this.startTime = new Date().getTime();
                         this.transport.send(params);
@@ -1337,28 +1379,12 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
         },
 
         /**
-         * Returns a new exception object that can be thrown
-         *
-         * @method makeError
-         * @param code      Error Code
-         * @param message   Message
-         * @returns {Object}
-         */
-        makeError: function(code, message){
-            if (typeof Error !== 'function') {
-                return {code: code, message: message};
-            }
-            var e = new Error(message);
-            e.code = code;
-            return e;
-        },
-
-        /**
          * Checks if a given string is valid JSON
          *
          * @method isJSON
          * @param {String} str  String to be evaluated
          * @return {Boolean}    True if the string is valid JSON
+         * @public
          */
         isJSON: function(str)
         {
@@ -1371,9 +1397,10 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
          * Evaluates a given string as JSON
          *
          * @method evalJSON
-         * @param {String}  str         String to be evaluated
-         * @param {Boolean} sanitize    Flag to sanitize the content
-         * @return {Object}             JSON content as an object
+         * @param {String}  strJSON  String to be evaluated
+         * @param {Boolean} sanitize Flag to sanitize the content
+         * @return {Object} JSON content as an object
+         * @public
          */
         evalJSON: function(strJSON, sanitize)
         {
@@ -1385,7 +1412,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
                     /*jshint evil:true */
                     return eval('(' + strJSON + ')');
                 } catch(e) {
-                    throw new Error('ERROR: Bad JSON string...');
+                    throw new Error('Ink.Net.Ajax: Bad JSON string. ' + e);
                 }
             }
             return null;
@@ -1401,12 +1428,15 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
      * @param {String}   url        Request URL
      * @param {Function} callback   Callback to be executed if the request is successful
      * @return {Object}             XMLHttpRequest object
+     * @public
      *
      * @sample Ink_Net_Ajax_load.html 
      */
     Ajax.load = function(url, callback){
+        var isCrossDomain = Ajax.prototype._locationIsCrossDomain(window.location, Ajax.prototype._locationFromURL(url));
         return new Ajax(url, {
             method: 'GET',
+            cors: isCrossDomain,
             onSuccess: function(response){
                 callback(response.responseJSON || response.responseText, response);
             }
@@ -1420,11 +1450,14 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
      * @method ping
      * @param {String}   url        Request url
      * @param {Function} callback   Callback to be executed if the request is successful
+     * @public
      * @return {Object}             XMLHttpRequest object
      */
     Ajax.ping = function(url, callback){
+        var isCrossDomain = Ajax.prototype._locationIsCrossDomain(window.location, Ajax.prototype._locationFromURL(url));
         return new Ajax(url, {
             method: 'HEAD',
+            cors: isCrossDomain,
             onSuccess: function(response){
                 if (typeof callback === 'function'){
                     callback(response);
@@ -1474,7 +1507,7 @@ Ink.createModule('Ink.Net.JsonP', '1', [], function() {
 
         init: function(uri, options) {
             this.options = Ink.extendObj( {
-                onSuccess:         undefined,
+                onSuccess:          undefined,
                 onFailure:          undefined,
                 failureObj:         {},
                 timeout:            10,
@@ -1727,6 +1760,7 @@ Ink.createModule('Ink.Dom.Browser', '1', [], function() {
          * Is called automatically when this module is loaded, and calls setDimensions, setBrowser and setReferrer.
          *
          * @method init
+         * @return {void}
          * @public
          */
         init: function() {
@@ -1739,6 +1773,7 @@ Ink.createModule('Ink.Dom.Browser', '1', [], function() {
          * Retrieves and stores window dimensions in this object. Called automatically when this module is loaded.
          *
          * @method setDimensions
+         * @return {void}
          * @public
          */
         setDimensions: function() {
@@ -1763,6 +1798,7 @@ Ink.createModule('Ink.Dom.Browser', '1', [], function() {
          * Stores the referrer. Called automatically when this module is loaded.
          *
          * @method setReferrer
+         * @return {void}
          * @public
          */
         setReferrer: function() {
@@ -1777,6 +1813,7 @@ Ink.createModule('Ink.Dom.Browser', '1', [], function() {
          * Detects the browser and stores the found properties. Called automatically when this module is loaded.
          *
          * @method detectBrowser
+         * @return {void}
          * @public
          */
         detectBrowser: function() {
@@ -1861,19 +1898,20 @@ Ink.createModule('Ink.Dom.Browser', '1', [], function() {
          * Debug function which displays browser (and Ink.Dom.Browser) information as an alert message.
          *
          * @method debug
+         * @return {void}
          * @public
          * @sample Ink_Dom_Browser_1_debug.html
          */
         debug: function() {
             /*global alert:false */
             var str = "known browsers: (ie, gecko, opera, safari, konqueror) \n";
-                str += [this.IE, this.GECKO, this.OPERA, this.SAFARI, this.KONQUEROR] +"\n";
-                str += "cssPrefix -> "+this.cssPrefix+"\n";
-                str += "domPrefix -> "+this.domPrefix+"\n";
-                str += "model -> "+this.model+"\n";
-                str += "version -> "+this.version+"\n";
-                str += "\n";
-                str += "original UA -> "+this.userAgent;
+            str += [this.IE, this.GECKO, this.OPERA, this.SAFARI, this.KONQUEROR] +"\n";
+            str += "cssPrefix -> "+this.cssPrefix+"\n";
+            str += "domPrefix -> "+this.domPrefix+"\n";
+            str += "model -> "+this.model+"\n";
+            str += "version -> "+this.version+"\n";
+            str += "\n";
+            str += "original UA -> "+this.userAgent;
 
             alert(str);
         }
@@ -1911,6 +1949,8 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          * @param {DOMElement|string}   elm          DOM element or element id
          * @param {string}              className    class name to add or remove.
          * @param {boolean}             addRemState  Whether to add or remove. `true` to add, `false` to remove.
+         * @return {void}
+         * @public
          * @sample Ink_Dom_Css_addRemoveClassName.html 
          */
         addRemoveClassName: function(elm, className, addRemState) {
@@ -1924,8 +1964,10 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          * Adds a class to a given element
          *
          * @method addClassName
-         * @param {DOMElement|String}   elm          DOM element or element id
-         * @param {String|Array}        className    Classes 
+         * @param {Element|String}      elm          Element or element id
+         * @param {String|Array}        className    Class or classes to add. Examples: 'my-class', ['my-class', 'other-class'], 'my-class other-class'
+         * @return {void}
+         * @public
          * @sample Ink_Dom_Css_addClassName.html
          */
         addClassName: function(elm, className) {
@@ -1953,6 +1995,8 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          * @method removeClassName
          * @param {DOMElement|String}   elm        DOM element or element id
          * @param {String|Array}        className  Class names to remove. You can either use a space separated string of classnames, comma-separated list or an array
+         * @return {void}
+         * @public
          * @sample Ink_Dom_Css_removeClassName.html 
          */
         removeClassName: function(elm, className) {
@@ -1989,6 +2033,8 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          * @param {DOMElement|String}  elm          DOM element or element id
          * @param {String|Array}       className    Class names to add\remove. Comma separated, space separated or simply an Array
          * @param {Boolean}            [add]=false  Flag to switch behavior from removal to addition. true to add, false to remove
+         * @return {void}
+         * @public
          */
         setClassName: function(elm, className, add) {
             this.addRemoveClassName(elm, className, add || false);
@@ -2000,9 +2046,10 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          * 
          * @method hasClassName
          * @param {DOMElement|String}  elm         DOM element or element id
-         * @param {String|Array}       className   Class names to test
-         * @param {Boolean}            [all]=false If flagged as true, it will check if the element contains ALL the CSS classes
-         * @return {Boolean} true if a given class is applied to a given element
+         * @param {String|Array}       className   Class name(s) to test
+         * @param {Boolean}            [all=false] Irrelevant if only one `className` is passed. If `true`, check if the element contains ALL the CSS classes. If `false`, check whether the element contains ANY of the given classes.
+         * @return {Boolean} `true` if a given class is applied to a given element, `false` if it isn't.
+         * @public
          * @sample Ink_Dom_Css_hasClassName.html 
          */
         hasClassName: function(elm, className, all) {
@@ -2046,10 +2093,12 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          *
          * @method blinkClass
          * @uses addRemoveClassName
-         * @param {DOMElement|String}  elm        DOM element or element id
+         * @param {Element|String}     element    DOM element or element id
          * @param {String|Array}       className  Class name(s) to blink
-         * @param {Number}            timeout    timeout in ms between adding and removing, default 100 ms
+         * @param {Number}             timeout    timeout in ms between adding and removing, default 100 ms
          * @param {Boolean}            negate     is true, class is removed then added
+         * @return {void}
+         * @public
          * @sample Ink_Dom_Css_blinkClass.html 
          */
         blinkClass: function(element, className, timeout, negate){
@@ -2067,6 +2116,8 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          * @param {DOMElement|String}  elm        DOM element or element id
          * @param {String}             className  Class name
          * @param {Boolean}            [forceAdd] Flag to force adding the the classe names if they don't exist yet.
+         * @return {void}
+         * @public
          * @sample Ink_Dom_Css_toggleClassName.html 
          */
         toggleClassName: function(elm, className, forceAdd) {
@@ -2094,6 +2145,8 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          * @method setOpacity
          * @param {DOMElement|String}  elm    DOM element or element id
          * @param {Number}             value  allows 0 to 1(default mode decimal) or percentage (warning using 0 or 1 will reset to default mode)
+         * @return {void}
+         * @public
          * @sample Ink_Dom_Css_setOpacity.html 
          */
         setOpacity: function(elm, value) {
@@ -2137,7 +2190,8 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          * @method getStyle
          * @param {DOMElement|String}  elm    DOM element or element id
          * @param {String}             style  Which css attribute to fetch
-         * @return Style value
+         * @return {Mixed} Style value
+         * @public
          * @sample Ink_Dom_Css_getStyle.html 
          */
          getStyle: function(elm, style) {
@@ -2179,6 +2233,8 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          * @method setStyle
          * @param {DOMElement|String}  elm    DOM element or element id
          * @param {String}             style  Which css attribute to set
+         * @return {void}
+         * @public
          * @sample Ink_Dom_Css_setStyle.html 
          */
         setStyle: function(elm, style) {
@@ -2220,12 +2276,14 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          * @method show
          * @param {DOMElement|String}  elm                      DOM element or element id
          * @param {String}             [forceDisplayProperty]   Css display property to apply on show
+         * @return {void}
+         * @public
          * @sample Ink_Dom_Css_show.html 
          */
         show: function(elm, forceDisplayProperty) {
             elm = Ink.i(elm);
             if (elm !== null) {
-                elm.style.display = (forceDisplayProperty) ? forceDisplayProperty : '';
+                elm.style.display = forceDisplayProperty || '';
             }
         },
 
@@ -2234,6 +2292,8 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          *
          * @method hide
          * @param {DOMElement|String}  elm  DOM element or element id
+         * @return {void}
+         * @public
          * @sample Ink_Dom_Css_hide.html 
          */
         hide: function(elm) {
@@ -2250,6 +2310,8 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          * @method showHide
          * @param {DOMElement|String}  elm          DOM element or element id
          * @param {boolean}            [show]=false Whether to show or hide `elm`.
+         * @return {void}
+         * @public
          * @sample Ink_Dom_Css_showHide.html 
          */
         showHide: function(elm, show) {
@@ -2265,6 +2327,8 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          * @method toggle
          * @param {DOMElement|String}  elm        DOM element or element id
          * @param {Boolean}            forceShow  Forces showing if element is hidden
+         * @return {void}
+         * @public
          * @sample Ink_Dom_Css_toggle.html 
          */
         toggle: function(elm, forceShow) {
@@ -2309,6 +2373,8 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          * @param {Object}  options   Options for the tag
          *    @param {String}  [options.type]='text/css'   File type
          *    @param {Boolean} [options.force]=false  If true, the style tag will be appended to end of head
+         * @return {void}
+         * @public
          * 
          * @sample Ink_Dom_Css_appendStyleTag.html 
          */
@@ -2363,9 +2429,11 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          * @method appendStylesheet
          * @param {String}  path     File path
          * @param {Object}  options  Options for the tag
-         *    @param {String}   [options.media]='screen'    Media type
-         *    @param {String}   [options.type]='text/css'   File type
-         *    @param {Boolean}  [options.force]=false       If true, tag will be appended to end of head
+         * @param {String}  [options.media='screen']    Media type
+         * @param {String}  [options.type='text/css']   File type
+         * @param {Boolean} [options.force=false]       If true, tag will be appended to end of head
+         * @return {void}
+         * @public
          * @sample Ink_Dom_Css_appendStylesheet.html 
          */
         appendStylesheet: function(path, options){
@@ -2405,6 +2473,8 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          * @method appendStylesheetCb
          * @param {String}            cssURI      URI of the CSS to load, if empty ignores and just calls back directly
          * @param {Function(cssURI)}  [callback]  optional callback which will be called once the CSS is loaded
+         * @return {void}
+         * @public
          * @sample Ink_Dom_Css_appendStylesheetCb.html 
          */
         _loadingCSSFiles: {},
@@ -2699,6 +2769,8 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          * @param {String}  [op]      Supported operations are '+' and '*'. defaults to '+'
          * @param {Number}  [minVal]  If result gets smaller than minVal, change does not occurr
          * @param {Number}  [maxVal]  If result gets bigger  than maxVal, change does not occurr
+         * @return {void}
+         * @public
          */
         changeFontSize: function(selector, delta, op, minVal, maxVal) {
             var that = this;
@@ -2775,6 +2847,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @static
          * @param   {Mixed}     o   The object to be checked.
          * @return  {Boolean}       True if it's a valid DOM Element.
+         * @public
          * @example
          *     var el = Ink.s('#element');
          *     if( InkElement.isDOMElement( el ) === true ){
@@ -2793,6 +2866,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method get
          * @param {String|DOMElement} elm   Either an ID of an element, or an element.
          * @return {DOMElement|null} The DOM element with the given id or null when it was not found
+         * @public
          * @sample Ink_Dom_Element_1_get.html
          */
         get: function(elm) {
@@ -2806,25 +2880,31 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * Creates a DOM element
+         * Creates a DOM element.
+         *
+         * Just a shortcut for `document.createElement(tag)`, but with the second argument you can call additional functions present in Ink.Dom.Element.
          *
          * @method create
-         * @param {String} tag        tag name
-         * @param {Object} properties  object with properties to be set on the element. You can also call other functions in Ink.Dom.Element like this
+         * @param {String} tag        Tag name
+         * @param {Object} properties Object with properties to be set on the element. You can also call other functions in Ink.Dom.Element like this
+         * @return {Element} The newly created element.
+         * @public
          * @sample Ink_Dom_Element_1_create.html
          */
         create: function(tag, properties) {
             var el = document.createElement(tag);
             //Ink.extendObj(el, properties);
-            for(var property in properties) {
-                if(properties.hasOwnProperty(property)) {
-                    if (property in InkElement) {
-                        InkElement[property](el, properties[property]);
-                    } else {
-                        if(property === 'className' || property === 'class') {
-                            el.className = properties.className || properties['class'];
+            if (properties) {
+                for(var property in properties) {
+                    if(properties.hasOwnProperty(property)) {
+                        if (property in InkElement) {
+                            InkElement[property](el, properties[property]);
                         } else {
-                            el.setAttribute(property, properties[property]);
+                            if(property === 'className' || property === 'class') {
+                                el.className = properties.className || properties['class'];
+                            } else {
+                                el.setAttribute(property, properties[property]);
+                            }
                         }
                     }
                 }
@@ -2836,14 +2916,16 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Removes a DOM Element
          *
          * @method remove
-         * @param {DOMElement} elm  The element to remove
+         * @param {Element} elm The element to remove
+         * @return {void}
+         * @public
          * @sample Ink_Dom_Element_1_remove.html
          */
-        remove: function(el) {
-            el = Ink.i(el);
+        remove: function(elm) {
+            elm = Ink.i(elm);
             var parEl;
-            if (el && (parEl = el.parentNode)) {
-                parEl.removeChild(el);
+            if (elm && (parEl = elm.parentNode)) {
+                parEl.removeChild(elm);
             }
         },
 
@@ -2852,6 +2934,8 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          *
          * @method scrollTo
          * @param {DOMElement|String} elm  Element where to scroll
+         * @return {void}
+         * @public
          * @sample Ink_Dom_Element_1_scrollTo.html
          */
         scrollTo: function(elm) {
@@ -2884,7 +2968,8 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @uses Ink.Dom.Browser
          *
          * @param {DOMElement|String} elm  Target element
-         * @return {Number} Offset from the target element to the top of the document
+         * @return {Number} Offset from the target element to the top of the document.
+         * @public
          * @sample Ink_Dom_Element_1_offsetTop.html
          */
         offsetTop: function(elm) {
@@ -2899,6 +2984,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          *
          * @param {DOMElement|String} elm  Target element
          * @return {Number} Offset from the target element to the left of the document
+         * @public
          * @sample Ink_Dom_Element_1_offsetLeft.html
          */
         offsetLeft: function(elm) {
@@ -2909,8 +2995,9 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         * Gets the relative offset of an element
         *
         * @method positionedOffset
-        * @param {DOMElement|String} elm  Target element
+        * @param {Element|String} element Target element
         * @return {Array} Array with the element offsetleft and offsettop relative to the closest positioned ancestor
+        * @public
         * @sample Ink_Dom_Element_1_positionedOffset.html
         */
         positionedOffset: function(element) {
@@ -2948,15 +3035,16 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method offset
          * @param {DOMElement|String}   elm     Target element
          * @return {[Number, Number]}   Array with pixel distance from the target element to the top left corner of the document
+         * @public
          * @sample Ink_Dom_Element_1_offset.html
          */
-        offset: function(el) {
+        offset: function(elm) {
             /*jshint boss:true */
-            el = Ink.i(el);
+            elm = Ink.i(elm);
             var res = [0, 0];
-            var doc = el.ownerDocument,
+            var doc = elm.ownerDocument,
                 docElem = doc.documentElement,
-                box = rect(el),
+                box = rect(elm),
                 body = doc.body,
                 clientTop  = docElem.clientTop  || body.clientTop  || 0,
                 clientLeft = docElem.clientLeft || body.clientLeft || 0,
@@ -2974,6 +3062,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method scroll
          * @param {DOMElement|String} [elm] Target element or document.body
          * @returns {Array} offset values for x and y scroll
+         * @public
          * @sample Ink_Dom_Element_1_scroll.html
          */
         scroll: function(elm) {
@@ -3005,6 +3094,9 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Alias for offset()
          *
          * @method offset2
+         * @param {Element} el Element to be passed to `offset()`
+         * @return {void}
+         * @public
          * @deprecated Kept for historic reasons. Use offset() instead.
          */
         offset2: function(el) {
@@ -3030,6 +3122,8 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method insertAfter
          * @param {DOMElement}         newElm     Element to be inserted
          * @param {DOMElement|String}  targetElm  Key element
+         * @return {void}
+         * @public
          * @sample Ink_Dom_Element_1_insertAfter.html
          */
         insertAfter: function(newElm, targetElm) {
@@ -3049,6 +3143,8 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method insertBefore
          * @param {DOMElement}         newElm     Element to be inserted
          * @param {DOMElement|String}  targetElm  Key element
+         * @return {void}
+         * @public
          * @sample Ink_Dom_Element_1_insertBefore.html
          */
         insertBefore: function (newElm, targetElm) {
@@ -3064,6 +3160,8 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method insertTop
          * @param {DOMElement}         newElm     Element to be inserted
          * @param {DOMElement|String}  targetElm  Key element
+         * @return {void}
+         * @public
          * @sample Ink_Dom_Element_1_insertTop.html
          */
         insertTop: function(newElm,targetElm) {
@@ -3083,6 +3181,8 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method insertBottom
          * @param {DOMElement}         newElm     Element to be inserted
          * @param {DOMElement|String}  targetElm  Key element
+         * @return {void}
+         * @public
          * @sample Ink_Dom_Element_1_insertBottom.html
          */
         insertBottom: function(newElm, targetElm) {
@@ -3096,7 +3196,8 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          *
          * @method textContent
          * @param {DOMNode} node Where to retreive text from. Can be any node type.
-         * @return {String} the text
+         * @return {String} The text
+         * @public
          * @sample Ink_Dom_Element_1_textContent.html
          */
         textContent: function(node){
@@ -3109,7 +3210,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
                 return InkElement.textContent(node.documentElement || node.body && node.body.parentNode || node.body);
 
             case 1: /*ELEMENT_NODE*/
-                text = node.innerText;
+                text = ('textContent' in node) ? node.textContent : node.innerText;
                 if (typeof text !== 'undefined') {
                     return text;
                 }
@@ -3144,8 +3245,10 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * This method removes any child node previously present
          *
          * @method setTextContent
-         * @param {DOMNode} node    node Target node where the text will be added.
-         * @param {String}  text    text Text to be added on the node.
+         * @param {Element} node Target node where the text will be added.
+         * @param {String}  text Text to be added on the node.
+         * @return {void}
+         * @public
          * @sample Ink_Dom_Element_1_setTextContent.html
          */
         setTextContent: function(node, text){
@@ -3185,8 +3288,9 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Checks if an element is a link
          *
          * @method isLink
-         * @param {DOMNode} node    Node to check if it's link
-         * @return {Boolean}
+         * @param {Element} element Element to check if it's a link.
+         * @return {Boolean} Whether the element is a link.
+         * @public
          * @sample Ink_Dom_Element_1_isLink.html
          */
         isLink: function(element){
@@ -3201,7 +3305,8 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method isAncestorOf
          * @param {DOMNode} ancestor  Ancestor node
          * @param {DOMNode} node      Descendant node
-         * @return {Boolean}
+         * @return {Boolean} Whether `ancestor` is an ancestor of `node`
+         * @public
          * @sample Ink_Dom_Element_1_isAncestorOf.html
          */
         isAncestorOf: function(ancestor, node){
@@ -3226,7 +3331,8 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method descendantOf
          * @param {DOMNode} node        The ancestor
          * @param {DOMNode} descendant  The descendant
-         * @return {Boolean} true if 'descendant' is descendant of 'node'
+         * @return {Boolean} `true` if 'descendant' is descendant of 'node'
+         * @public
          * @sample Ink_Dom_Element_1_descendantOf.html
          */
         descendantOf: function(node, descendant){
@@ -3238,6 +3344,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method firstElementChild
          * @param {DOMElement} elm Parent node
          * @return {DOMElement} the Element child
+         * @public
          * @sample Ink_Dom_Element_1_firstElementChild.html
          */
         firstElementChild: function(elm){
@@ -3259,6 +3366,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method lastElementChild
          * @param {DOMElement} elm Parent node
          * @return {DOMElement} the Element child
+         * @public
          * @sample Ink_Dom_Element_1_lastElementChild.html
          */
         lastElementChild: function(elm){
@@ -3281,6 +3389,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method nextElementSibling
          * @param {DOMNode} node  The current node
          * @return {DOMElement|Null} The first sibling element after node or null if none is found
+         * @public
          * @sample Ink_Dom_Element_1_nextElementSibling.html 
          */
         nextElementSibling: function(node){
@@ -3308,6 +3417,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method previousElementSibling
          * @param {DOMNode}        node The current node
          * @return {DOMElement|Null} The first element sibling before node or null if none is found
+         * @public
          * @sample Ink_Dom_Element_1_previousElementSibling.html 
          */
         previousElementSibling: function(node){
@@ -3335,6 +3445,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method elementWidth
          * @param {DOMElement|String} element Target DOM element or target ID
          * @return {Number} The element's width
+         * @public
          * @sample Ink_Dom_Element_1_elementWidth.html 
          */
         elementWidth: function(element) {
@@ -3350,6 +3461,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method elementHeight
          * @param {DOMElement|String} element DOM element or target ID
          * @return {Number} The element's height
+         * @public
          * @sample Ink_Dom_Element_1_elementHeight.html 
          */
         elementHeight: function(element) {
@@ -3424,25 +3536,26 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @param {Object}  [options]  Options object. If you pass a Boolean value here, it is interpreted as `options.partial`
          * @param {Boolean} [options.partial]=false    Return `true` even if it is only partially visible.
          * @param {Number}  [options.margin]=0         Consider a margin all around the viewport with `opts.margin` width a dead zone.
-         * @return {Boolean}
+         * @return {Boolean} Whether the element is inside the viewport.
+         * @public
          * @sample Ink_Dom_Element_1_inViewport.html 
          */
-        inViewport: function (element, opts) {
+        inViewport: function (element, options) {
             var dims = rect(Ink.i(element));
-            if (typeof opts === 'boolean') {
-                opts = {partial: opts, margin: 0};
+            if (typeof options === 'boolean') {
+                options = {partial: options, margin: 0};
             }
-            opts = Ink.extendObj({ partial: false, margin: 0}, opts || {});
-            if (opts.partial) {
-                return  dims.bottom + opts.margin > 0                           && // from the top
-                        dims.left   - opts.margin < InkElement.viewportWidth()  && // from the right
-                        dims.top    - opts.margin < InkElement.viewportHeight() && // from the bottom
-                        dims.right  + opts.margin > 0;                             // from the left
+            options = Ink.extendObj({ partial: false, margin: 0}, options || {});
+            if (options.partial) {
+                return  dims.bottom + options.margin > 0                           && // from the top
+                        dims.left   - options.margin < InkElement.viewportWidth()  && // from the right
+                        dims.top    - options.margin < InkElement.viewportHeight() && // from the bottom
+                        dims.right  + options.margin > 0;                             // from the left
             } else {
-                return  dims.top    + opts.margin > 0                           && // from the top
-                        dims.right  - opts.margin < InkElement.viewportWidth()  && // from the right
-                        dims.bottom - opts.margin < InkElement.viewportHeight() && // from the bottom
-                        dims.left   + opts.margin > 0;                             // from the left
+                return  dims.top    + options.margin > 0                           && // from the top
+                        dims.right  - options.margin < InkElement.viewportWidth()  && // from the right
+                        dims.bottom - options.margin < InkElement.viewportHeight() && // from the bottom
+                        dims.left   + options.margin > 0;                             // from the left
             }
         },
 
@@ -3452,10 +3565,9 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Does not take into account visibility:hidden
          * @method isHidden
          * @param {DOMElement} element Element to check
-         * @return {Boolean}
+         * @return {Boolean} Whether the element is hidden
          * @sample Ink_Dom_Element_1_isHidden.html 
          */
-
         isHidden: function (element) {
             var w = element.offsetWidth, 
                 h = element.offsetHeight,
@@ -3474,10 +3586,9 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method isVisible
          * @uses isHidden
          * @param {DOMElement} element Element to check
-         * @return {Boolean}
+         * @return {Boolean} Whether the element is visible
          * @sample Ink_Dom_Element_1_isVisible.html 
          */
-
         isVisible: function (element) {
             return !this.isHidden(element);
         },
@@ -3486,9 +3597,10 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Clones an element's position to another
          *
          * @method clonePosition
-         * @param {DOMElement} cloneTo    element to be position cloned
-         * @param {DOMElement} cloneFrom  element to get the cloned position
-         * @return {DOMElement} The element with positionClone
+         * @param {Element} cloneTo    element to be position cloned
+         * @param {Element} cloneFrom  element to get the cloned position
+         * @return {Element} The element with positionClone
+         * @public
          * @sample Ink_Dom_Element_1_clonePosition.html 
          */
         clonePosition: function(cloneTo, cloneFrom){
@@ -3504,8 +3616,10 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Slices off a piece of text at the end of the element and adds the ellipsis so all text fits inside.
          *
          * @method ellipsizeText
-         * @param {DOMElement} element              Element to modify text content
-         * @param {String}     [ellipsis]='\u2026'  String to append to the chopped text
+         * @param {Element} element             Element to modify text content
+         * @param {String}  [ellipsis='\u2026'] String to append to the chopped text
+         * @return {void}
+         * @public
          */
         ellipsizeText: function(element/*, ellipsis*/){
             if ((element = Ink.i(element))) {
@@ -3517,12 +3631,12 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
 
         /**
          * Finds the closest ancestor element matching your test function
-         * 
          *
          * @method findUpwardsHaving
-         * @param {DOMElement} element     Element to base the search from
-         * @param {Function}    boolTest   Testing function
-         * @return {DOMElement|false} The matched element or false if did not match
+         * @param {Element}     element  Element to base the search from
+         * @param {Function}    boolTest Testing function
+         * @return {Element|false}  The matched element or false if did not match
+         * @public
          * @sample Ink_Dom_Element_1_findUpwardsHaving.html 
          */
         findUpwardsHaving: function(element, boolTest) {
@@ -3540,9 +3654,10 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          *
          * @method findUpwardsByClass
          * @uses findUpwardsHaving
-         * @param {DOMElement} element      Element to base the search from
+         * @param {DOMElement}  element     Element to base the search from
          * @param {String}      className   Class name to search
          * @returns {DOMElement|false} The matched element or false if did not match
+         * @public
          * @sample Ink_Dom_Element_1_findUpwardsByClass.html 
          */
         findUpwardsByClass: function(element, className) {
@@ -3700,6 +3815,8 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @param {Array}              data            Data to populate the component
          * @param {Boolean}            [skipEmpty]     Flag to skip empty option
          * @param {String|Number}      [defaultValue]  Initial selected value
+         * @return {void}
+         * @public
          *
          * @sample Ink_Dom_Element_1_fillSelect.html 
          */
@@ -3742,12 +3859,12 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Creates a set of radio buttons from an array of data
          *
          * @method fillRadios
-         * @param {DOMElement|String}  insertAfterEl    Element after which the input elements will be created
-         * @param {String}             name             Name for the form field ([] is added if not present as a suffix)
-         * @param {Array}              data             Data to populate the component
-         * @param {Boolean}            [skipEmpty]      Flag to skip creation of empty options
-         * @param {String|Number}      [defaultValue]   Initial selected value
-         * @param {String}             [splitEl]        Name of element to add after each input element (example: 'br')
+         * @param {Element|String} insertAfterEl  Element after which the input elements will be created
+         * @param {String}         name           Name for the form field ([] is added if not present as a suffix)
+         * @param {Array}          data           Data to populate the component
+         * @param {Boolean}        [skipEmpty]    Flag to skip creation of empty options
+         * @param {String|Number}  [defaultValue] Initial selected value
+         * @param {String}         [splitEl]      Name of element to add after each input element (example: 'br')
          * @return {DOMElement} Wrapper element around the radio buttons
          */
         fillRadios: function(insertAfterEl, name, data, skipEmpty, defaultValue, splitEl) {
@@ -3799,13 +3916,13 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Creates set of checkbox buttons
          *
          * @method fillChecks
-         * @param {DOMElement|String}  insertAfterEl   Element after which the input elements will be created
-         * @param {String}             name            Name for the form field ([] is added if not present as a suffix)
-         * @param {Array}              data            Data to populate the component
-         * @param {Boolean}            [skipEmpty]     Flag to skip creation of empty options
-         * @param {String|Number}      [defaultValue]  Initial selected value
-         * @param {String}             [splitEl]       Name of element to add after each input element (example: 'br')
-         * @return {DOMElement} Wrapper element around the checkboxes
+         * @param {Element|String} insertAfterEl  Element after which the input elements will be created
+         * @param {String}         name           Name for the form field ([] is added if not present as a suffix)
+         * @param {Array}          data           Data to populate the component
+         * @param {String|Number}  [defaultValue] Initial selected value
+         * @param {String}         [splitEl]      Name of element to add after each input element (example: 'br')
+         * @return {Element} Wrapper element around the checkboxes
+         * @public
          */
         fillChecks: function(insertAfterEl, name, data, defaultValue, splitEl) {
             insertAfterEl = Ink.i(insertAfterEl);
@@ -3844,21 +3961,25 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Gets the index of an element relative to a parent
          *
          * @method parentIndexOf
-         * @param {DOMElement}  parentEl  Element to parse
-         * @param {DOMElement}  childEl   Child Element to look for
+         * @param {Element} [parentEl] childEl's parent. Deprecated.
+         * @param {Element} childEl    Child Element to look for
          * @return {Number} The index of the childEl inside parentEl. Returns -1 if it's not a direct child
+         * @public
          * @sample Ink_Dom_Element_1_parentIndexOf.html 
          */
         parentIndexOf: function(parentEl, childEl) {
-            var node, idx = 0;
-            for (var i = 0, f = parentEl.childNodes.length; i < f; ++i) {
-                node = parentEl.childNodes[i];
-                if (node.nodeType === 1) {  // ELEMENT
-                    if (node === childEl) { return idx; }
-                    ++idx;
+            if (!childEl) {
+                // one argument form
+                childEl = parentEl;
+                parentEl = parentEl.parentNode;
+            }
+            if (!parentEl) { return false; }
+            for (var i = 0, f = parentEl.children.length; i < f; ++i) {
+                if (parentEl.children[i] === childEl) {
+                    return i;
                 }
             }
-            return -1;
+            return false;
         },
 
 
@@ -4024,6 +4145,8 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method appendHTML
          * @param {String|DOMElement} elm   Element
          * @param {String}            html  Markup string
+         * @return {void}
+         * @public
          * @sample Ink_Dom_Element_1_appendHTML.html 
          */
         appendHTML: function(elm, html){
@@ -4041,8 +4164,10 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * This method parses the html string and doesn't modify its contents
          *
          * @method prependHTML
-         * @param {String|DOMElement} elm   Element
-         * @param {String}            html  Markup string
+         * @param {String|Element} elm   Element
+         * @param {String}         html  Markup string to prepend
+         * @return {void}
+         * @public
          * @sample Ink_Dom_Element_1_prependHTML.html 
          */
         prependHTML: function(elm, html){
@@ -4061,6 +4186,8 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method setHTML
          * @param {String|DOMElement} elm   Element
          * @param {String}            html  Markup string
+         * @return {void}
+         * @public
          * @sample Ink_Dom_Element_1_setHTML.html 
          */
         setHTML: function (elm, html) {
@@ -4084,9 +4211,10 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * The container may or may not be in the document yet.
          *
          * @method wrap
-         * @param {String|DOMElement}   target      Element to be wrapped
-         * @param {String|DOMElement}   container   Element to wrap the target
-         * @return Container element
+         * @param {String|Element} target    Element to be wrapped
+         * @param {String|Element} container Element to wrap the target
+         * @return {Element} Container element
+         * @public
          * @sample Ink_Dom_Element_1_wrap.html 
          *
          * @example
@@ -4126,6 +4254,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @method unwrap
          * @param {DOMElement}  elem                The element you're trying to unwrap. This should be an ancestor of the wrapper.
          * @param {String}      [wrapperSelector]   CSS Selector for the ancestor. Use this if your wrapper is not the direct parent of elem.
+         * @return {void}
          * @sample Ink_Dom_Element_1_unwrap.html 
          *
          * @example
@@ -4167,8 +4296,10 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Replaces an element with another.
          *
          * @method replace
-         * @param element       The element to be replaced.
-         * @param replacement   The new element.
+         * @param {Element} element       The element to be replaced.
+         * @param {Element} replacement   The new element.
+         * @return {void}
+         * @public
          * @sample Ink_Dom_Element_1_replace.html 
          *
          * @example
@@ -4188,7 +4319,9 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Useful to remove nasty layout gaps generated by whitespace on the markup.
          *
          * @method removeTextNodeChildren
-         * @param  {DOMElement} el          Element to remove text from
+         * @param  {Element} el          Element to remove text from
+         * @return {void}
+         * @public
          * @sample Ink_Dom_Element_1_removeTextNodeChildren.html 
          */
         removeTextNodeChildren: function(el) {
@@ -4302,8 +4435,10 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         /**
          * Move the cursor on an input or textarea element.
          * @method moveCursorTo
-         * @param  {DOMElement} el  Input or Textarea element
+         * @param  {Element}    el  Input or Textarea element
          * @param  {Number}     t   Index of the character to move the cursor to
+         * @return {void}
+         * @public
          * @sample Ink_Dom_Element_1_moveCursorTo.html 
          */
         moveCursorTo: function(el, t) {
@@ -5250,7 +5385,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     KEY_INSERT:   45,
     
     /**
-     * Creates a debounced version of a function.
+     * Creates a throttled version of a function.
      * Returns a function which calls `func`, waiting at least `wait` milliseconds between calls. This is useful for events such as `scroll` or `resize`, which can be triggered too many times per second, slowing down the browser with needless function calls.
      *
      * *note:* This does not delay the first function call to the function.
@@ -5258,13 +5393,14 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * @method throttle
      * @param {Function} func   Function to call. Arguments and context are both passed.
      * @param {Number} [wait]=0 Milliseconds to wait between calls.
+     * @return {Function} A function throttled which will only be called at most every `wait` milliseconds.
      * @sample Ink_Dom_Event_1_throttle.html 
      **/
     throttle: function (func, wait) {
         wait = wait || 0;
         var lastCall = 0;  // Warning: This breaks on Jan 1st 1970 0:00
         var timeout;
-        var throttled = function () {
+        function throttled() {
             var now = +new Date();
             var timeDiff = now - lastCall;
             if (timeDiff >= wait) {
@@ -5275,6 +5411,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
                 var args = [].slice.call(arguments);
 
                 if (timeout) {
+                    // Clear the old timeout because that one has old arguments
                     clearTimeout(timeout);
                 }
 
@@ -5283,7 +5420,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
                     return throttled.apply(that, args);
                 }, wait - timeDiff);
             }
-        };
+        }
         return throttled;
     },
 
@@ -5292,7 +5429,8 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      *
      * @method element
      * @param {Object} ev  Event object
-     * @return {DOMNode} The target
+     * @return {Element} The target
+     * @public
      * @sample Ink_Dom_Event_1_element.html 
      */
     element: function(ev) {
@@ -5408,7 +5546,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * Attaches an event to a selector or array of elements.
      *
      * @method observeMulti
-     * @param {Array|String}        elements       
+     * @param {Array|String}        elements     Array of elements which are going to be observed. A selector is acceptable too.
      * @param {String}              eventName    Event name
      * @param {Function}            callBack     Receives the event object as a parameter. If you're manually firing custom events, check it's eventName property to make sure you're handling the right event.
      * @param {Boolean}            [useCapture]  Flag change event listening from bubbling to capture.
@@ -5435,11 +5573,12 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * Requires Ink.Dom.Selector if you need to use a selector.
      *
      * @method observeDelegated
-     * @param {DOMElement|String} element   Element to observe.
-     * @param {String}            eventName Event name to observe.
-     * @param {String}            selector  Child element selector. When null, finds any element.
-     * @param {Function}          callback  Callback to be called when the event is fired
+     * @param {Element|String} element   Element to observe.
+     * @param {String}         eventName Event name to observe.
+     * @param {String}         selector  Child element selector. When null, finds any element.
+     * @param {Function}       callback  Callback to be called when the event is fired
      * @return {Function} The used callback, for ceasing to listen to the event later.
+     * @public
      * @sample Ink_Dom_Event_1_observeDelegated.html 
      **/
     observeDelegated: function (element, eventName, selector, callback) {
@@ -5468,6 +5607,8 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * @param {String}             eventName     Event name
      * @param {Function}           callBack      Callback function
      * @param {Boolean}            [useCapture]  Set to true if the event was being observed with useCapture set to true as well.
+     * @return {void}
+     * @public
      * @sample Ink_Dom_Event_1_stopObserving.html 
      */
     stopObserving: function(element, eventName, callBack, useCapture) {
@@ -5487,6 +5628,8 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      *
      * @method stop
      * @param {Object} event  Event handle
+     * @return {void}
+     * @public
      * @sample Ink_Dom_Event_1_stop.html 
      */
     stop: function(event)
@@ -5513,6 +5656,8 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      *
      * @method stopPropagation
      * @param {Object} event  Event handle
+     * @return {void}
+     * @public
      * @sample Ink_Dom_Event_1_stopPropagation.html 
      */
     stopPropagation: function(event) {
@@ -5529,6 +5674,8 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      *
      * @method stopDefault
      * @param {Object} event  Event handle
+     * @return {void}
+     * @public
      * @sample Ink_Dom_Event_1_stopDefault.html 
      */
     stopDefault: function(event)
@@ -5550,6 +5697,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * @method pointer
      * @param {Object} ev Event object
      * @return {Object} An object with the mouse X and Y position
+     * @public
      * @sample Ink_Dom_Event_1_pointer.html 
      */
     pointer: function(ev)
@@ -5566,6 +5714,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * @method pointerX
      * @param {Object} ev Event object
      * @return {Number} Mouse X position
+     * @public
      */
     pointerX: function(ev)
     {
@@ -5580,6 +5729,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * @method pointerY
      * @param {Object} ev Event object
      * @return {Number} Mouse Y position
+     * @public
      */
     pointerY: function(ev)
     {
@@ -5594,6 +5744,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * @method isLeftClick
      * @param {Object} ev  Event object
      * @return {Boolean} True if the event is a left click
+     * @public
      * @sample Ink_Dom_Event_1_isLeftClick.html 
      */
     isLeftClick: function(ev) {
@@ -5617,6 +5768,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * @method isRightClick
      * @param {Object} ev  Event object
      * @return {Boolean} True if the event is a right click
+     * @public
      * @sample Ink_Dom_Event_1_isRightClick.html 
      */
     isRightClick: function(ev) {
@@ -5629,6 +5781,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * @method isMiddleClick
      * @param {Object} ev  Event object
      * @return {Boolean} True if the event is a middle click
+     * @public
      * @sample Ink_Dom_Event_1_isMiddleClick.html 
      */
     isMiddleClick: function(ev) {
@@ -5648,6 +5801,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * @param {Object}   event           Keyboard event
      * @param {Boolean}  [changeCasing]  If true uppercases, if false lowercases, otherwise keeps casing
      * @return {String} Character representation of pressed key combination
+     * @public
      * @sample Ink_Dom_Event_1_getCharFromKeyboardEvent.html 
      */
     getCharFromKeyboardEvent: function(event, changeCasing) {
@@ -5686,6 +5840,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
  * @param {Object}            [args...] Additional arguments to pass to the callback function when triggered
  * 
  * @return {DOMElement|Object} Returns the original DOM Element or Javascript Object
+ * @public
  * @sample Ink_Dom_Event_1_on.html 
  */
 
@@ -5702,6 +5857,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
  * @param                     [args...] Additional arguments to pass to the callback function when triggered
  * 
  * @return {DOMElement|Object} Returns the original DOM Element or Javascript Object
+ * @public
  * @sample Ink_Dom_Event_1_one.html 
  */
 
@@ -5716,6 +5872,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
  * @param {Function}          [handler] The specific callback function to remove
  * 
  * @return {DOMElement|Object} Returns the original DOM Element or Javascript Object
+ * @public
  * @sample Ink_Dom_Event_1_off.html 
  */
 
@@ -5730,6 +5887,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
  * @param {String}            [eventType] An Event (or multiple events, space separated) to clone
  * 
  * @return {DOMElement|Object} Returns the original DOM Element or Javascript Object
+ * @public
  * @sample Ink_Dom_Event_1_clone.html 
  */
 
@@ -5743,6 +5901,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
  * @param                     [args...] Additional arguments to pass to the callback function when triggered
  *
  * @return {DOMElement|Object} Returns the original DOM Element or Javascript Object
+ * @public
  * @sample Ink_Dom_Event_1_fire.html 
  */
 
@@ -5779,20 +5938,23 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, ['Ink.Util.Array_1', 'Ink.Dom.Eleme
 
         /**
          * Serializes a form element into a JS object
-         * It turns field names into keys and field values into values.
+         * It turns field *names* (not IDs!) into keys and field values into values.
          *
          * note: Multi-select and checkboxes with multiple values will result in arrays
          *
          * @method serialize
          * @param {DOMElement|String}   form    Form element to extract data
+         * @param {Object} [options] Options object, containing:
+         * @param {Boolean} [options.outputUnchecked=false] Whether to emit unchecked checkboxes and unselected radio buttons.
          * @return {Object} Map of fieldName -> String|String[]|Boolean
          * @sample Ink_Dom_FormSerialize_serialize.html 
          */
-        serialize: function(form) {
+        serialize: function(form, options) {
+            options = options || {};
             var out = {};
             var emptyArrayToken = {};  // A hack so that empty select[multiple] elements appear although empty.
 
-            var pairs = this.asPairs(form, { elements: true, emptyArray: emptyArrayToken });
+            var pairs = this.asPairs(form, { elements: true, emptyArray: emptyArrayToken, outputUnchecked: options.outputUnchecked });
             if (pairs == null) { return pairs; }
             InkArray.forEach(pairs, function (pair) {
                 var name = pair[0].replace(/\[\]$/, '');
@@ -5820,8 +5982,8 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, ['Ink.Util.Array_1', 'Ink.Dom.Eleme
          * @param {Object} [options] Options object, containing:
          * @param {Boolean} [options.elements] Instead of returning an array of [fieldName, value] pairs, return an array of [fieldName, value, fieldElement] triples.
          * @param {Boolean} [options.emptyArray] What to emit as the value of an empty select[multiple]. If you don't pass this option, nothing comes out.
-         *
-         * @return Array of [fieldName, value] pairs.
+         * @param {Boolean} [options.outputUnchecked=false] Whether to emit unchecked checkboxes and unselected radio buttons.
+         * @return {Array} Array of [fieldName, value] pairs.
          **/
         asPairs: function (form, options) {
             var out = [];
@@ -5836,7 +5998,10 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, ['Ink.Util.Array_1', 'Ink.Dom.Eleme
             }
 
             function serializeEl(el) {
-                if (el.nodeName.toLowerCase() === 'select' && el.multiple) {
+                var elNodeName = el.nodeName.toLowerCase();
+                var elType = (el.type + '').toLowerCase();
+
+                if (elNodeName === 'select' && el.multiple) {
                     var didEmit = false;
                     InkArray.forEach(Selector.select('option:checked', el), function (thisOption) {
                         emit(el.name, thisOption.value, el);
@@ -5845,13 +6010,18 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, ['Ink.Util.Array_1', 'Ink.Dom.Eleme
                     if (!didEmit && 'emptyArray' in options) {
                         emit(el.name, options.emptyArray, el);
                     }
+                } else if (elNodeName === 'input' && (elType === 'checkbox' || elType === 'radio') && options.outputUnchecked) {
+                    // It's an empty checkbox and we wouldn't emit it otherwise but the user asked for it using outputUnchecked
+                    emit(el.name, null, el);
                 } else {
                     emit(el.name, el.value, el);
                 }
             }
 
             if ((form = Ink.i(form))) {
-                var inputs = InkArray.filter(form.elements, FormSerialize._isSerialized);
+                var inputs = InkArray.filter(form.elements, function (elm) {
+                    return FormSerialize._isSerialized(elm, options);
+                });
                 for (var i = 0, len = inputs.length; i < len; i++) {
                     serializeEl(inputs[i]);
                 }
@@ -5867,8 +6037,9 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, ['Ink.Util.Array_1', 'Ink.Dom.Eleme
          * Note: You can't set the values of an input with `type="file"` (browser prohibits it)
          *
          * @method fillIn 
-         * @param {DOMElement|String}   form    Form element to be populated
-         * @param {Object|Array}      map2    mapping of fields to values contained in fields. Can be a hash (keys as names, strings or arrays for values), or an array of [name, value] pairs.
+         * @param {Element|String} form Form element to be populated
+         * @param {Object|Array}   map2 Mapping of fields to values contained in fields. Can be a hash (keys as names, strings or arrays for values), or an array of [name, value] pairs.
+         * @return {void}
          * @sample Ink_Dom_FormSerialize_fillIn.html 
          */
         fillIn: function(form, map2) {
@@ -5981,7 +6152,8 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, ['Ink.Util.Array_1', 'Ink.Dom.Eleme
                 (nodeName === 'select' && InkElement.hasAttribute(element, 'multiple'));
         },
 
-        _isSerialized: function (element) {
+        _isSerialized: function (element, options) {
+            options = options || {};
             if (!InkElement.isDOMElement(element)) { return false; }
             if (!InkElement.hasAttribute(element, 'name')) { return false; }
 
@@ -5990,6 +6162,7 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, ['Ink.Util.Array_1', 'Ink.Dom.Eleme
             if (!nodeName || nodeName === 'fieldset') { return false; }
 
             if (element.type === 'checkbox' || element.type === 'radio') {
+                if (options.outputUnchecked) { return true; }
                 return !!element.checked;
             }
 
@@ -6032,6 +6205,7 @@ Ink.createModule('Ink.Dom.Loaded', 1, [], function() {
          * @method run
          * @param {Object}   [win]=window   Window object to attach/add the event
          * @param {Function} fn             Callback function to be executed after the DOM is ready
+         * @return {void}
          * @public
          * @sample Ink_Dom_Loaded_run.html 
          */
@@ -8147,7 +8321,8 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          * Checks if a value is an array
          *
          * @method isArray
-         * @param testedObject {Mixed} The object we want to check
+         * @param {Mixed} testedObject The object we want to check
+         * @return {Boolean} Whether the given value is a javascript Array.
          **/
         isArray: Array.isArray || function (testedObject) {
             return {}.toString.call(testedObject) === '[object Array]';
@@ -8156,14 +8331,13 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
         /**
          * Loops through an array, grouping similar items together.
          * @method groupBy
-         * @param arr {Array} The input array.
-         * @param [options] {Object} options object, containing:
-         * @param [options.key] {Function} A function which computes the group key by which the items are grouped.
-         * @param [options.pairs] {Boolean} Set to `true` if you want to output an array of `[key, [group...]]` pairs instead of an array of groups.
-         * @return {Array} An array of arrays of chunks.
+         * @param {Array}    arr             The input array.
+         * @param {Object}   [options]       Options object, containing:
+         * @param {Function} [options.key]   A function which computes the group key by which the items are grouped.
+         * @param {Boolean}  [options.pairs] Set to `true` if you want to output an array of `[key, [group...]]` pairs instead of an array of groups.
+         * @return {Array} An array containing arrays of chunks.
          *
          * @example
-         *
          *        InkArray.groupBy([1, 1, 2, 2, 3, 1])  // -> [ [1, 1], [2, 2], [3], [1] ]
          *        InkArray.groupBy([1.1, 1.2, 2.1], { key: Math.floor })  // -> [ [1.1, 1.2], [2.1] ]
          *        InkArray.groupBy([1.1, 1.2, 2.1], { key: Math.floor, pairs: true })  // -> [ [1, [1.1, 1.2]], [2, [2.1]] ]
@@ -8205,21 +8379,24 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
         /**
          * Replacement for Array.prototype.reduce.
          *
+         * Uses Array.prototype.reduce if available.
+         *
          * Produces a single result from a list of values by calling an "aggregator" function.
          *
          * Falls back to Array.prototype.reduce if available.
          *
          * @method reduce
-         * @param array {Array} Input array to be reduced.
-         * @param callback {Function} `function (previousValue, currentValue, index, all) { return {Mixed} }` to execute for each value.
-         * @param initial {Mixed} Object used as the first argument to the first call of `callback`
+         * @param {Array} array Input array to be reduced.
+         * @param {Function} callback `function (previousValue, currentValue, index, all) { return {Mixed} }` to execute for each value.
+         * @param {Mixed} initial Object used as the first argument to the first call of `callback`
+         * @return {Mixed} Reduced array.
          *
          * @example
          *          var sum = InkArray.reduce([1, 2, 3], function (a, b) { return a + b; });  // -> 6
          */
         reduce: function (array, callback, initial) {
             if (arrayProto.reduce) {
-                return arrayProto.reduce.apply(array, [].slice.call(arguments, 1));
+                return arrayProto.reduce.apply(array, arrayProto.slice.call(arguments, 1));
             }
 
             // From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce#Polyfill
@@ -8342,12 +8519,15 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
         },
 
         /**
-         * Runs a function through each of the elements of an array
+         * Runs a function through each of the elements of an array.
+         *
+         * Uses Array.prototype.forEach if available.
          *
          * @method forEach
-         * @param   {Array}     arr     The array to be cycled/iterated
-         * @param   {Function}  cb      The function receives as arguments the value, index and array.
-         * @return  {Array}             Iterated array.
+         * @param   {Array}     array    The array to be cycled/iterated
+         * @param   {Function}  callback The function receives as arguments the value, index and array.
+         * @param   {Mixed}     context  The value of `this` inside the `callback` you passed.
+         * @return  {void}
          * @public
          * @static
          * @sample Ink_Util_Array_forEach.html
@@ -8365,28 +8545,32 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          * Alias for backwards compatibility. See forEach
          *
          * @method each
+         * @param {Mixed} [forEachArguments] (see forEach)
+         * @return {void} (see forEach)
          */
         each: function () {
-            InkArray.forEach.apply(InkArray, [].slice.call(arguments));
+            InkArray.forEach.apply(InkArray, arrayProto.slice.call(arguments));
         },
 
         /**
          * Runs a function for each item in the array.
+         * Uses Array.prototype.map if available.
          * That function will receive each item as an argument and its return value will change the corresponding array item.
          * @method map
          * @param {Array}       array       The array to map over
-         * @param {Function}    map         The map function. Will take `(item, index, array)` as arguments and `this` will be the `context` argument.
+         * @param {Function}    mapFn       The map function. Will take `(item, index, array)` as arguments and the `this` value will be the `context` argument you pass to this function.
          * @param {Object}      [context]   Object to be `this` in the map function.
+         * @return {Array} A copy of the original array, with all of its items processed by the map function.
          *
          * @sample Ink_Util_Array_map.html
          */
-        map: function (array, callback, context) {
+        map: function (array, mapFn, context) {
             if (arrayProto.map) {
-                return arrayProto.map.call(array, callback, context);
+                return arrayProto.map.call(array, mapFn, context);
             }
             var mapped = new Array(len);
             for (var i = 0, len = array.length >>> 0; i < len; i++) {
-                mapped[i] = callback.call(context, array[i], i, array);
+                mapped[i] = mapFn.call(context, array[i], i, array);
             }
             return mapped;
         },
@@ -8524,10 +8708,11 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          * @param {Number} start    The array's first element.
          * @param {Number} stop     Stop counting before this number.
          * @param {Number} [step=1] Interval between numbers. You can use a negative number to count backwards.
+         * @return {Array} An Array representing the range.
          *
          * @sample Ink_Util_Array_1_range.html
          **/
-        range: function range(a, b, step) {
+        range: function range(start, stop, step) {
             // From: https://github.com/mcandre/node-range
             if (!step) {
                 step = 1;
@@ -8537,11 +8722,11 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
             var x;
 
             if (step > 0) {
-                for (x = a; x < b; x += step) {
+                for (x = start; x < stop; x += step) {
                     r.push(x);
                 }
             } else {
-                for (x = a; x > b; x += step) {
+                for (x = start; x > stop; x += step) {
                     r.push(x);
                 }
             }
@@ -8556,6 +8741,7 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          * @param {Array}   arr     Array where the value will be inserted
          * @param {Number}  idx     Index of the array where the value should be inserted
          * @param {Mixed}   value   Value to be inserted
+         * @return {void}
          * @public
          * @static
          * @sample Ink_Util_Array_insert.html
@@ -8968,6 +9154,7 @@ Ink.createModule('Ink.Util.Cookie', '1', [], function() {
          * @param {String}      [path]      Path for the cookie. Defaults to '/'.
          * @param {String}      [domain]    Domain for the cookie. Defaults to current hostname.
          * @param {Boolean}     [secure]    Flag for secure. Default 'false'.
+         * @return {void}
          * @public
          * @static
          * @sample Ink_Util_Cookie_set.html
@@ -9039,6 +9226,7 @@ Ink.createModule('Ink.Util.Cookie', '1', [], function() {
          * @param {String}  cookieName   Cookie name.
          * @param {String}  [path]       Path of the cookie. Defaults to '/'.
          * @param {String}  [domain]     Domain of the cookie. Defaults to current hostname.
+         * @return {void}
          * @public
          * @static
          * @sample Ink_Util_Cookie_remove.html
@@ -9856,7 +10044,7 @@ Ink.createModule('Ink.Util.Dumper', '1', [], function() {
          * Function that returns the argument passed formatted
          *
          * @method _formatParam
-         * @param {Mixed} param
+         * @param {Mixed} param The thing to format.
          * @return {String} The argument passed formatted
          * @private
          * @static
@@ -9915,13 +10103,13 @@ Ink.createModule('Ink.Util.Dumper', '1', [], function() {
          * Function that formats the parameter to display.
          *
          * @method _outputFormat
-         * @param {Any} param
-         * @param {Number} dim
+         * @param {Mixed} param The thing to format.
+         * @param {Number} indent Indentation level.
          * @return {String} The parameter passed formatted to displat
          * @private
          * @static
          */
-        _outputFormat: function(param, dim)
+        _outputFormat: function(param, indent)
         {
             var formated = '';
             //var _strVal = false;
@@ -9934,16 +10122,16 @@ Ink.createModule('Ink.Util.Dumper', '1', [], function() {
                         } else if(param[key].constructor === Object) {
                             _typeof = 'Object';
                         }
-                        formated += this._tab + this._getTabs(dim) + '[' + key + '] => <b>'+_typeof+'</b>\n';
-                        formated += this._tab + this._getTabs(dim) + '{\n';
-                        formated += this._outputFormat(param[key], dim + 1) + this._tab + this._getTabs(dim) + '}\n';
+                        formated += this._tab + this._getTabs(indent) + '[' + key + '] => <b>'+_typeof+'</b>\n';
+                        formated += this._tab + this._getTabs(indent) + '{\n';
+                        formated += this._outputFormat(param[key], indent + 1) + this._tab + this._getTabs(indent) + '}\n';
                     } else if(param[key].constructor === Function) {
                         continue;
                     } else {
-                        formated = formated + this._tab + this._getTabs(dim) + '[' + key + '] => ' + param[key] + '\n';
+                        formated = formated + this._tab + this._getTabs(indent) + '[' + key + '] => ' + param[key] + '\n';
                     }
                 } else {
-                    formated = formated + this._tab + this._getTabs(dim) + '[' + key + '] => null \n';
+                    formated = formated + this._tab + this._getTabs(indent) + '[' + key + '] => null \n';
                 }
             }
             return formated;
@@ -9953,8 +10141,9 @@ Ink.createModule('Ink.Util.Dumper', '1', [], function() {
          * Prints variable structure.
          *
          * @method printDump
-         * @param {Any}                 param       Variable to be dumped.
+         * @param {Mixed}                 param       Variable to be dumped.
          * @param {DOMElement|String}   [target]    Element to print the dump on.
+         * @return {void}
          * @public
          * @static
          * @sample Ink_Util_Dumper_printDump.html 
@@ -9979,8 +10168,8 @@ Ink.createModule('Ink.Util.Dumper', '1', [], function() {
          * Get a variable's structure.
          *
          * @method returnDump
-         * @param   {Any}       param   Variable to get the structure.
-         * @return  {String}            The variable's structure.
+         * @param   {Mixed}       param   Variable to get the structure.
+         * @return  {String}      The variable's structure.
          * @public
          * @static
          * @sample Ink_Util_Dumper_returnDump.html 
@@ -9994,7 +10183,8 @@ Ink.createModule('Ink.Util.Dumper', '1', [], function() {
          * Alert a variable's structure.
          *
          * @method alertDump
-         * @param {Any}     param     Variable to be dumped.
+         * @param {Mixed}     param     Variable to be dumped.
+         * @return {void}
          * @public
          * @static
          * @sample Ink_Util_Dumper_alertDump.html 
@@ -10008,7 +10198,8 @@ Ink.createModule('Ink.Util.Dumper', '1', [], function() {
          * Prints the variable structure to a new window.
          *
          * @method windowDump
-         * @param {Any}     param   Variable to be dumped.
+         * @param {Mixed}     param   Variable to be dumped.
+         * @return {void}
          * @public
          * @static
          * @sample Ink_Util_Dumper_windowDump.html 
@@ -10061,6 +10252,7 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
      *
      * @param {Object} dict         Object mapping language codes (in the form of `pt_PT`, `pt_BR`, `fr`, `en_US`, etc.) to their `dictionaries`
      * @param {String} [lang='pt_PT'] language code of the target language
+     * @param {Boolean} [testMode=false] Sets the test mode (see `testMode()`) on construction.
      *
      * @sample Ink_Util_I18n_1.html
      */
@@ -10087,6 +10279,7 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
          *
          * @method append
          * @param   {Object} dict Object containing language objects identified by their language code
+         * @return {I18n} (itself)
          *
          * @sample Ink_Util_I18n_1_append.html
          */
@@ -10101,8 +10294,9 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
          * Gets or sets the language.
          * If there are more dictionaries available in cache, they will be loaded.
          *
-         * @method  lang
-         * @param   {String}    lang    Language code to set this instance to.
+         * @method lang
+         * @param  {String}    [lang]    Language code to set this instance to. Omit this argument if you want to get the language code instead.
+         * @return {String|I18n} The language code, if called without arguments, or this I18n instance if called with an argument.
          */
         lang: function( lang ) {
             if ( !arguments.length ) { return this._lang; }
@@ -10124,12 +10318,14 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
          * In test mode, unknown strings are wrapped in `[ ... ]`. This is useful for debugging your application and to make sure all your translation keys are in place.
          *
          * @method  testMode
-         * @param   {Boolean} bool Flag to set the test mode state
+         * @param   {Boolean} [newTestMode] Flag to set the test mode state. Omit this argument to *get* the current testMode instead.
+         * @return {String|I18n} The current testMode, if called without arguments, or this I18n instance if called with an argument.
+         *
          */
-        testMode: function( bool ) {
+        testMode: function( newTestMode ) {
             if ( !arguments.length ) { return !!this._testMode; }
 
-            if ( bool !== undefined  ) { this._testMode = !!bool; }
+            if ( newTestMode !== undefined  ) { this._testMode = !!newTestMode; }
 
             return this;
         },
@@ -10138,7 +10334,7 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
          * Gest a key from the current dictionary
          *
          * @method getKey
-         * @param {String} key
+         * @param {String} key Key you wish to get from the dictionary.
          * @return {Mixed} The object which happened to be in the current language dictionary on the given key.
          *
          * @sample Ink_Util_I18n_1_getKey.html
@@ -10171,7 +10367,9 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
          * @param {Object} [namedParms] Named replacements. Replaces {named} with values in this object.
          * @param {String} [args]      Replacement #1 (replaces first {} and all {1})
          * @param {String} [arg2]       Replacement #2 (replaces second {} and all {2})
-         * @param {String} [argn*]      Replacement #n (replaces nth {} and all {n})
+         * @param {String} [argn...]      Replacement #n (replaces nth {} and all {n})
+         *
+         * @return {String} Translated string.
          *
          * @sample Ink_Util_I18n_1_text.html
          */
@@ -10210,12 +10408,13 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
          * Given a singular string, a plural string and a number, translates either the singular or plural string.
          *
          * @method ntext
-         * @return {String}
          *
          * @param {String} strSin   Word to use when count is 1
          * @param {String} strPlur  Word to use otherwise
          * @param {Number} count    Number which defines which word to use
-         * @param [args*]           Extra arguments, to be passed to `text()`
+         * @param {Mixed} [args...] Extra arguments, to be passed to `text()`
+         *
+         * @return {String} Pluralized text string.
          *
          * @sample Ink_Util_I18n_1_ntext.html
          */
@@ -10321,6 +10520,7 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
      * Resets I18n global state (global dictionaries, and default language for instances)
      *
      * @method reset
+     * @return {void}
      * @static
      *
      **/
@@ -10337,8 +10537,9 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
      * @method appendGlobal
      * @static
      *
-     * @param dict {Object}     Dictionary to be added
-     * @param lang {String}     Language fo the dictionary being added
+     * @param {Object} dict Dictionary to be added
+     * @param {String} lang Language fo the dictionary being added
+     * @return {void}
      *
      */
     I18n.appendGlobal = function( dict , lang ) {
@@ -10363,11 +10564,11 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
      * Gets or sets the current default language of I18n instances.
      *
      * @method langGlobal
-     * @param lang the new language for all I18n instances
+     * @param {String} [lang] the new language for all I18n instances. Omit this argument if you wish to *get* the current default language instead.
      *
      * @static
      *
-     * @return {String} language code
+     * @return {String} language code, or nothing if not used as a setter.
      */
     I18n.langGlobal = function( lang ) {
         if ( !arguments.length ) { return I18n.prototype._gLang; }
@@ -10884,8 +11085,8 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
          * Encodes string into HTML entities.
          *
          * @method htmlEntitiesEncode
-         * @param {String} string
-         * @return {String} string encoded
+         * @param {String} string Input string.
+         * @return {String} HTML encoded string.
          * @public
          * @static
          * @sample Ink_Util_String_htmlEntitiesEncode.html 
@@ -10968,12 +11169,12 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
         },
 
         /**
-         * Truncates a string without breaking words.
+         * Truncates a string without breaking words. Inserts an ellipsis HTML entity at the end of the string if it's too long.
          *
          * @method shortString
          * @param   {String}    str     String to truncate
          * @param   {Number}    n       Number of chars of the short string
-         * @return  {String}        
+         * @return  {String}            Truncated string, or the original `str` if it's shorter than `n`
          * @public
          * @static
          * @sample Ink_Util_String_shortString.html 
@@ -11019,33 +11220,33 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
          * @public
          * @static
          */
-        utf8Decode: function(utfstring) {
+        utf8Decode: function(string) {
             /*jshint bitwise:false*/
-            var string = "";
+            var ret = "";
             var i = 0, c = 0, c2 = 0, c3 = 0;
 
-            while ( i < utfstring.length ) {
+            while ( i < string.length ) {
 
-                c = utfstring.charCodeAt(i);
+                c = string.charCodeAt(i);
 
                 if (c < 128) {
-                    string += String.fromCharCode(c);
+                    ret += String.fromCharCode(c);
                     i++;
                 }
                 else if((c > 191) && (c < 224)) {
-                    c2 = utfstring.charCodeAt(i+1);
-                    string += String.fromCharCode(((c & 31) << 6) | (c2 & 63));
+                    c2 = string.charCodeAt(i+1);
+                    ret += String.fromCharCode(((c & 31) << 6) | (c2 & 63));
                     i += 2;
                 }
                 else {
-                    c2 = utfstring.charCodeAt(i+1);
-                    c3 = utfstring.charCodeAt(i+2);
-                    string += String.fromCharCode(((c & 15) << 12) | ((c2 & 63) << 6) | (c3 & 63));
+                    c2 = string.charCodeAt(i+1);
+                    c3 = string.charCodeAt(i+2);
+                    ret += String.fromCharCode(((c & 15) << 12) | ((c2 & 63) << 6) | (c3 & 63));
                     i += 3;
                 }
 
             }
-            return string;
+            return ret;
         },
 
         /**
@@ -11112,9 +11313,9 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
         /**
          * Checks if a string is a valid JSON object (string encoded)
          *
-         * @method isJSON       
+         * @method isJSON
          * @param   {String}    str      String to check
-         * @return  {Boolean}
+         * @return  {Boolean}   Return whether it's JSON.
          * @public
          * @static
          */
@@ -11267,12 +11468,12 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
         },
 
         /**
-         * Escapes a string to unicode characters
+         * Escapes unicode characters in a string as unicode character entities (`\x##`, where the `##` are hex digits).
          *
          * @method escapeText
-         * @param   {String}    txt             
-         * @param   {Array}     [whiteList]     Whitelist of characters
-         * @return  {String}                    String escaped to Unicode
+         * @param   {String}    txt             String with characters outside the ASCII printable range (32 < charCode < 127)
+         * @param   {Array}     [whiteList]     Whitelist of characters which should NOT be escaped
+         * @return  {String}                    String escaped with unicode character entities.
          * @public
          * @static
          * @sample Ink_Util_String_escapeText.html 
@@ -11306,10 +11507,10 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
         escapedCharRegex: /(\\x[0-9a-fA-F]{2})|(\\u[0-9a-fA-F]{4})/g,
 
         /**
-         * Unescapes a string
+         * Removes unicode entities (in the format "\x##" or "\u####", where "#" is a hexadecimal digit)
          *
          * @method unescapeText
-         * @param {String} txt
+         * @param {String} txt Text you intend to remove unicode character entities.
          * @return {String} Unescaped string
          * @public
          * @static
@@ -11332,7 +11533,7 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
          * @method strcmp
          * @param   {String}    str1     First String
          * @param   {String}    str2     Second String
-         * @return  {Number}
+         * @return  {Number} 0 if given strings are equal, 1 if str1 is greater than str2, and -1 if str2 is greater than str1.
          * @public
          * @static
          * @sample Ink_Util_String_strcmp.html 
@@ -11400,7 +11601,7 @@ Ink.createModule('Ink.Util.Url', '1', [], function() {
          * Gets URL of current page
          *
          * @method getUrl
-         * @return Current URL
+         * @return {String} Current URL
          * @public
          * @static
          * @sample Ink_Util_Url_getUrl.html 
@@ -11612,7 +11813,7 @@ Ink.createModule('Ink.Util.Url', '1', [], function() {
          * Formats an URL object into an URL string.
          *
          * @method format
-         * @param urlObj Window.location, a.href, or parseUrl object to format
+         * @param {String|Location|Object} urlObj Window.location, a.href, or parseUrl object to format
          * @return {String} Full URL.
          */
         format: function (urlObj) {
@@ -11681,104 +11882,7 @@ Ink.createModule('Ink.Util.Url', '1', [], function() {
                 }
                 return false;
             }
-        },
-
-        
-        /*
-        base64Encode: function(string)
-        {
-            /**
-         * --function {String} ?
-         * --Convert a string to BASE 64
-         * @param {String} string - string to convert
-         * @return base64 encoded string
-         *
-         * 
-            if(!SAPO.Utility.String || typeof(SAPO.Utility.String) === 'undefined') {
-                throw "SAPO.Utility.Url.base64Encode depends of SAPO.Utility.String, which has not been referred.";
-            }
-
-            var output = "";
-            var chr1, chr2, chr3, enc1, enc2, enc3, enc4;
-            var i = 0;
-
-            var input = SAPO.Utility.String.utf8Encode(string);
-
-            while (i < input.length) {
-
-                chr1 = input.charCodeAt(i++);
-                chr2 = input.charCodeAt(i++);
-                chr3 = input.charCodeAt(i++);
-
-                enc1 = chr1 >> 2;
-                enc2 = ((chr1 & 3) << 4) | (chr2 >> 4);
-                enc3 = ((chr2 & 15) << 2) | (chr3 >> 6);
-                enc4 = chr3 & 63;
-
-                if (isNaN(chr2)) {
-                    enc3 = enc4 = 64;
-                } else if (isNaN(chr3)) {
-                    enc4 = 64;
-                }
-
-                output = output +
-                this._keyStr.charAt(enc1) + this._keyStr.charAt(enc2) +
-                this._keyStr.charAt(enc3) + this._keyStr.charAt(enc4);
-            }
-            return output;
-        },
-        base64Decode: function(string)
-        {
-         * --function {String} ?
-         * Decode a BASE 64 encoded string
-         * --param {String} string base64 encoded string
-         * --return string decoded
-            if(!SAPO.Utility.String || typeof(SAPO.Utility.String) === 'undefined') {
-                throw "SAPO.Utility.Url.base64Decode depends of SAPO.Utility.String, which has not been referred.";
-            }
-
-            var output = "";
-            var chr1, chr2, chr3;
-            var enc1, enc2, enc3, enc4;
-            var i = 0;
-
-            var input = string.replace(/[^A-Za-z0-9\+\/\=]/g, "");
-
-            while (i < input.length) {
-
-                enc1 = this._keyStr.indexOf(input.charAt(i++));
-                enc2 = this._keyStr.indexOf(input.charAt(i++));
-                enc3 = this._keyStr.indexOf(input.charAt(i++));
-                enc4 = this._keyStr.indexOf(input.charAt(i++));
-
-                chr1 = (enc1 << 2) | (enc2 >> 4);
-                chr2 = ((enc2 & 15) << 4) | (enc3 >> 2);
-                chr3 = ((enc3 & 3) << 6) | enc4;
-
-                output = output + String.fromCharCode(chr1);
-
-                if (enc3 !== 64) {
-                    output = output + String.fromCharCode(chr2);
-                }
-                if (enc4 !== 64) {
-                    output = output + String.fromCharCode(chr3);
-                }
-            }
-            output = SAPO.Utility.String.utf8Decode(output);
-            return output;
-        },
-        */
-
-
-        /**
-         * Debug function ?
-         *
-         * @method _debug
-         * @private
-         * @static
-         */
-        _debug: function() {}
-
+        }
     };
 
     return Url;
@@ -12048,7 +12152,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
          *
          * @method createRegExp
          *
-         * @param Groups* {Object}
+         * @param {Object} groups
          *  Groups to build regular expressions for. Possible keys are:
          *
          * - **numbers**: 0-9
@@ -12066,6 +12170,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
          * - **latin1Punctuation**: punctuation characters in latin-1.
          * - **unicodePunctuation**: punctuation characters in unicode.
          *
+         * @returns {RegExp} A regular expression with the given groups.
          */
         createRegExp: function (groups) {
             var re = '^[';
@@ -12088,7 +12193,8 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
          *
          * @method checkCharacterGroups
          * @param {String}  s               The validation string
-         * @param {Object}  [groups]={}     What groups are included. See createRegexp
+         * @param {Object}  [groups={}]     What groups are included. See `createRegExp`
+         * @return {Boolean} Whether this is a valid string (all groups pass).
          * @sample Ink_Util_Validator_checkCharacterGroups.html 
          */
         checkCharacterGroups: function (s, groups) {
@@ -12100,7 +12206,8 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
          *
          * @method unicode
          * @param {String}  s               The validation string
-         * @param {Object}  [options]={}    Optional configuration object. See createRegexp
+         * @param {Object}  [options={}]    Optional configuration object. See createRegexp
+         * @return {Boolean} Whether this is a valid unicode string.
          */
         unicode: function (s, options) {
             return Validator.checkCharacterGroups(s, Ink.extendObj({
@@ -12114,7 +12221,8 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
          * @method latin1
          *
          * @param {String}  s               The validation string
-         * @param {Object}  [options]={}    Optional configuration object. See createRegexp
+         * @param {Object}  [options={}]    Optional configuration object. See createRegexp
+         * @return {Boolean} Whether this is a valid latin1 string.
          * @sample Ink_Util_Validator_latin1.html  
          */
         latin1: function (s, options) {
@@ -12129,7 +12237,8 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
          * @method ascii
          *
          * @param {String}  s               The validation string
-         * @param {Object}  [options]={}    Optional configuration object. See createRegexp
+         * @param {Object}  [options={}]    Optional configuration object. See createRegexp
+         * @return {Boolean} Whether this is a valid ascii string.
          * @sample Ink_Util_Validator_ascii.html 
          */
         ascii: function (s, options) {
@@ -12143,18 +12252,19 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
          * @method number
          * @param {String} numb         The number
          * @param {Object} [options]    Further options
-         *  @param  [options.decimalSep]='.'    Allow decimal separator.
-         *  @param  [options.thousandSep]=","   Strip this character from the number.
-         *  @param  [options.negative]=false    Allow negative numbers.
-         *  @param  [options.decimalPlaces]=null   Maximum number of decimal places. Use `0` for an integer number.
-         *  @param  [options.max]=null          Maximum number
-         *  @param  [options.min]=null          Minimum number
-         *  @param  [options.returnNumber]=false When this option is true, return the number itself when the value is valid.
-         *  @sample Ink_Util_Validator_number.html 
+         *  @param {String} [options.decimalSep='.']     Allow decimal separator.
+         *  @param {String} [options.thousandSep=","]    Strip this character from the number.
+         *  @param {String} [options.negative=false]     Allow negative numbers.
+         *  @param {String} [options.decimalPlaces=null] Maximum number of decimal places. Use `0` for an integer number.
+         *  @param {Number} [options.max=null]           Maximum number
+         *  @param {Number} [options.min=null]           Minimum number
+         *  @param {Boolean}[options.returnNumber=false] When this option is `true`, return the number itself when the value is valid.
+         * @return {Boolean|Number} `false` when invalid, `true` when valid. If `options.returnNumber` is `true`, return the parsed, valid number or `false`.
+         * @sample Ink_Util_Validator_number.html 
          */
-        number: function (numb, inOptions) {
+        number: function (numb, options) {
             numb = numb + '';
-            var options = Ink.extendObj({
+            options = Ink.extendObj({
                 decimalSep: '.',
                 thousandSep: '',
                 negative: true,
@@ -12163,7 +12273,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
                 max: null,
                 min: null,
                 returnNumber: false
-            }, inOptions || {});
+            }, options || {});
             // smart recursion thing sets up aliases for options.
             if (options.thousandSep) {
                 numb = numb.replace(new RegExp('\\' + options.thousandSep, 'g'), '');
@@ -12234,7 +12344,6 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
          *     });
          */
         _isLeapYear: function(year){
-
             var yearRegExp = /^\d{4}$/;
 
             if(yearRegExp.test(year)){
@@ -12306,9 +12415,9 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
          * Checks if a date is valid
          *
          * @method _isValidDate
-         * @param {Number} year
-         * @param {Number} month
-         * @param {Number} day
+         * @param {Number} year Year fragment of your date.
+         * @param {Number} month Month fragment of your date.
+         * @param {Number} day Day fragment of your date.
          * @return {Boolean} True if valid
          * @private
          * @static
@@ -12319,7 +12428,6 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
          *     });
          */
         _isValidDate: function(year, month, day){
-
             var yearRegExp = /^\d{4}$/;
             var validOneOrTwo = /^\d{1,2}$/;
             if(yearRegExp.test(year) && validOneOrTwo.test(month) && validOneOrTwo.test(day)){
@@ -12332,11 +12440,11 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
         },
 
         /**
-         * Checks if an email is valid
+         * Checks if an email address is valid
          *
-         * @method mail
-         * @param {String} email
-         * @return {Boolean} True if it's valid
+         * @method email
+         * @param {String} email String containing the e-mail.
+         * @return {Boolean} `true` if it's a valid e-mail address.
          * @public
          * @static
          * @sample Ink_Util_Validator_mail.html 
@@ -12344,11 +12452,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
         email: function(email)
         {
             var emailValido = new RegExp("^[_a-z0-9-]+((\\.|\\+)[_a-z0-9-]+)*@([\\w]*-?[\\w]*\\.)+[a-z]{2,4}$", "i");
-            if(!emailValido.test(email)) {
-                return false;
-            } else {
-                return true;
-            }
+            return !!emailValido.test(email);
         },
 
         /**
@@ -12356,6 +12460,8 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
          *
          * @method mail
          * @public
+         * @param {String} mail See `email`
+         * @returns {Boolean} See `email`
          * @static
          * @private
          */
@@ -12662,31 +12768,27 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
          * Validates if a zip code is valid in Portugal
          *
          * @method codPostal
-         * @param {Number|String} cp1
-         * @param {optional Number|String} cp2
-         * @param {optional Boolean} returnBothResults
-         * @return {Boolean} True if it's a valid zip code
+         * @param {Number|String} cp1 If passed alone, it's the full postal code. If passed with `cp2`, it's the first fragment of the zip code, which should have 4 numeric digits.
+         * @param {Number|String} [cp2] Second fragment of the zip code, which should have 3 numeric digits.
+         * @param {Boolean} [returnBothResults] When given both `cp1` and `cp2`, return an array `[Boolean, Boolean]`, indicating which of these were valid. For example `[true, true]` means both were valid, while `[true, false]` means `cp1` was valid, and `cp2` was invalid.
+         * @return {Boolean|Array} `true` if it's a valid zip code. If `returnBothResults` is `true`, return an array as described above.
          * @public
          * @static
          * @sample Ink_Util_Validator_codPostal.html 
          */
-        codPostal: function(cp1,cp2,returnBothResults){
-
-
+        codPostal: function(cp1, cp2, returnBothResults){
             var cPostalSep = /^(\s*\-\s*|\s+)$/;
             var trim = /^\s+|\s+$/g;
             var cPostal4 = /^[1-9]\d{3}$/;
             var cPostal3 = /^\d{3}$/;
             var parserCPostal = /^(.{4})(.*)(.{3})$/;
 
-
-            returnBothResults = !!returnBothResults;
-
             cp1 = cp1.replace(trim,'');
+
             if(typeof(cp2)!=='undefined'){
                 cp2 = cp2.replace(trim,'');
                 if(cPostal4.test(cp1) && cPostal3.test(cp2)){
-                    if( returnBothResults === true ){
+                    if( returnBothResults ){
                         return [true, true];
                     } else {
                         return true;
@@ -12694,7 +12796,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
                 }
             } else {
                 if(cPostal4.test(cp1) ){
-                    if( returnBothResults === true ){
+                    if( returnBothResults ){
                         return [true,false];
                     } else {
                         return true;
@@ -12704,7 +12806,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
                 var cPostal = cp1.match(parserCPostal);
 
                 if(cPostal!==null && cPostal4.test(cPostal[1]) && cPostalSep.test(cPostal[2]) && cPostal3.test(cPostal[3])){
-                    if( returnBothResults === true ){
+                    if( returnBothResults ){
                         return [true,false];
                     } else {
                         return true;
@@ -12712,7 +12814,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
                 }
             }
 
-            if( returnBothResults === true ){
+            if( returnBothResults ){
                 return [false,false];
             } else {
                 return false;
@@ -12937,8 +13039,11 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
         },
 
         /**
-         * Luhn function, to be used when validating credit cards
-         *
+         * Luhn function, to be used when validating credit card numbers
+         * @method _luhn
+         * @private
+         * @param {Number} num Given credit card number
+         * @returns {Boolean} Whether the credit card number is valid.
          */
         _luhn: function (num){
 
@@ -12954,9 +13059,8 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
             var length = num.length;
 
             // Checksum of the card num
-            var
-                i, checksum = 0
-            ;
+            var i;
+            var checksum = 0;
 
             for (i = length - 1; i >= 0; i -= 2)
             {
@@ -12981,8 +13085,8 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
          * Checks if a number is of a specific credit card type
          * @method isCreditCard
          * @param  {String}  num            Number to be validates
-         * @param  {String|Array}  creditCardType Credit card type. See _creditCardSpecs for the list of supported values.
-         * @return {Boolean}
+         * @param  {String|Array}  creditCardType Credit card type or list of types. See _creditCardSpecs for the list of supported values.
+         * @return {Boolean} Whether the number is of that credit card type (or at least one of `creditCardType` if you pass in an array).
          * @sample Ink_Util_Validator_isCreditCard.html 
          */
         isCreditCard: function(num, creditCardType){
@@ -13054,15 +13158,11 @@ Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'In
 
     var animationPrefix = (function (el) {
         return ('animationName' in el.style) ? 'animation' :
-               ('oAnimationName' in el.style) ? 'oAnimation' :
-               ('msAnimationName' in el.style) ? 'msAnimation' :
                ('webkitAnimationName' in el.style) ? 'webkitAnimation' : null;
     }(document.createElement('div')));
 
     var animationEndEventName = {
         animation: 'animationend',
-        oAnimation: 'oanimationend',
-        msAnimation: 'MSAnimationEnd',
         webkitAnimation: 'webkitAnimationEnd'
     }[animationPrefix];
 
@@ -13070,7 +13170,7 @@ Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'In
      * @class Ink.UI.Animate_1
      * @constructor
      *
-     * @param {DOMElement}      element                     Animated element
+     * @param {Element}         element                     Animated element
      * @param {Object}          options                     Options object
      * @param {String}          options.animation           Animation name
      * @param {String|Number}   [options.duration]          Duration name (fast|medium|slow) or duration in milliseconds. Defaults to 'medium'.
@@ -13142,12 +13242,15 @@ Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'In
          *
          * @static
          * @method animate
-         * @param element {DOMElement} animated element
-         * @param animation {String} animation name
-         * @param [options] {Object}
-         *     @param [options.onEnd=null] {Function} callback for animation end
-         *     @param [options.removeClass=false] {Boolean} whether to remove the Css class when finished
-         *     @param [options.duration=medium] {String|Number} duration name (fast|medium|slow) or duration in ms
+         * @param {Element} element Animated element
+         * @param {String} animation Animation name
+         * @param {Object} [options] Options object, containing:
+         *     @param {Function}      [options.onEnd=null]        Callback for animation end.
+         *     @param {Boolean}       [options.removeClass=false] Whether to remove the Css class when finished.
+         *     @param {String|Number} [options.duration=medium]   Duration name (the fast|medium|slow strings) or, duration in milliseconds.
+         *
+         * @return {void}
+         * @public
          *
          * @sample Ink_UI_Animate_1_animate.html
          **/
@@ -13228,15 +13331,13 @@ Ink.createModule('Ink.UI.Carousel', '1',
     }
 
     var requestAnimationFrame = window.requestAnimationFrame ||
-        window.mozRequestAnimationFrame ||
-        window.webkitRequestAnimationFrame ||
-        function (cb) {return setTimeout(cb, 1000 / 30); };
+        function (cb) { return setTimeout(cb, 1000 / 30); };
 
     /**
      * @class Ink.UI.Carousel_1
      * @constructor
      *
-     * @param {String|DOMElement}   selector                    DOM element or element id
+     * @param {String|Element}      selector                    DOM element or element id
      * @param {Object}              [options]                   Carousel Options
      * @param {Integer}             [options.autoAdvance]       Milliseconds to wait before auto-advancing pages. Set to 0 to disable auto-advance. Defaults to 0.
      * @param {String}              [options.axis]              Axis of the carousel. Set to 'y' for a vertical carousel. Defaults to 'x'.
@@ -13313,6 +13414,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
          * Measure the carousel once again, adjusting the involved elements' sizes. This is called automatically when the window resizes, in order to cater for changes from responsive media queries, for instance.
          *
          * @method refit
+         * @return {void}
          * @public
          */
         refit: function() {
@@ -13362,7 +13464,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
                 } else {
                     // assumes instantiated pagination
                     this._pagination = this._options.pagination;
-                    this._pagination._options.onChange = this._handlers.paginationChange;
+                    this._pagination.setOnChange(this._handlers.paginationChange);
                     this._pagination.setSize(this._numPages);
                 }
                 this._pagination.setCurrent(this._options.initialPage || 0);
@@ -13507,7 +13609,8 @@ Ink.createModule('Ink.UI.Carousel', '1',
         /**
          * Gets the current page index
          * @method getPage
-         * @return The current page number
+         * @return {Number} The current page number
+         * @public
          **/
         getPage: function () {
             if (this._pagination) {
@@ -13518,10 +13621,22 @@ Ink.createModule('Ink.UI.Carousel', '1',
         },
 
         /**
+         * Gets the Ink Pagination element this carousel is using.
+         * @method getPagination
+         * @return {Pagination} The pagination instance, if any. Otherwise, `null`.
+         * @public
+         **/
+        getPagination: function () {
+            return this._pagination || null;
+        },
+
+        /**
          * Sets the current page index
          * @method setPage
-         * @param {Number}  page    Index of the destination page.
-         * @param {Boolean} [wrap]  Flag to activate circular counting.
+         * @param {Number}  page   Index of the destination page.
+         * @param {Boolean} [wrap] Flag to activate circular counting (for example, if you set the page to `5` and there are only 4 pages, you're actually going to the first page).
+         * @return {void}
+         * @public
          **/
         setPage: function (page, wrap) {
             if (wrap) {
@@ -13567,6 +13682,8 @@ Ink.createModule('Ink.UI.Carousel', '1',
          * Goes to the next page
          * @method nextPage
          * @param {Boolean} [wrap] Flag to loop from last page to first page.
+         * @return {void}
+         * @public
          **/
         nextPage: function (wrap) {
             this.setPage(this.getPage() + 1, wrap);
@@ -13576,6 +13693,8 @@ Ink.createModule('Ink.UI.Carousel', '1',
          * Goes to the previous page
          * @method previousPage
          * @param {Boolean} [wrap] Flag to loop from first page to last page.
+         * @return {void}
+         * @public
          **/
         previousPage: function (wrap) { this.setPage(this.getPage() - 1, wrap); },
 
@@ -13603,7 +13722,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
          * Get the stage element (your UL with the class ".stage").
          * @method getStageElm
          * @public
-         * @return {DOMElement} Stage element
+         * @return {Element} Stage element
          **/
         getStageElm: function() {
             return this._ulEl;
@@ -13612,7 +13731,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
         /**
          * Get a list of your slides (elements with the ".slide" class inside your stage)
          * @method getSlidesList
-         * @return {DOMElement[]} Array containing the slides.
+         * @return {Element[]} Array containing the slides.
          * @public
          */
         getSlidesList: function() {
@@ -13668,7 +13787,7 @@ Ink.createModule('Ink.UI.Close', '1', ['Ink.Dom.Event_1','Ink.Dom.Element_1'], f
      *
      * @sample Ink_UI_Close_1.html
      */
-    var Close = function() {
+    function Close() {
         InkEvent.observe(document.body, 'click', function(ev) {
             var el = InkEvent.element(ev);
 
@@ -13688,7 +13807,7 @@ Ink.createModule('Ink.UI.Close', '1', ['Ink.Dom.Event_1','Ink.Dom.Element_1'], f
                 InkElement.remove(toRemove);
             }
         });
-    };
+    }
 
     Close._name = 'Close_1';
 
@@ -13796,15 +13915,15 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          *
          * @method elOrSelector
          * @static
-         * @param  {DOMElement|String}      elOrSelector    DOM Element or CSS Selector
+         * @param  {Element|String}         elOrSelector    DOM Element or CSS Selector
          * @param  {String}                 fieldName       The name of the field. Commonly used for debugging.
-         * @return {DOMElement} Returns the DOMElement passed or the first result of the CSS Selector. Otherwise it throws an exception.
+         * @return {Element} Returns the Element passed or the first result of the CSS Selector. Otherwise it throws an exception.
          * @example
          *     // In case there are several .myInput, it will retrieve the first found
          *     var el = Ink.UI.Common.elOrSelector('.myInput','My Input');
          */
         elOrSelector: function(elOrSelector, fieldName) {
-            if (!this.isDOMElement(elOrSelector)) {
+            if (!Common.isDOMElement(elOrSelector)) {
                 var t = Selector.select(elOrSelector);
                 if (t.length === 0) {
                     Ink.warn(fieldName + ' must either be a DOM Element or a selector expression!\nThe script element must also be after the DOM Element itself.');
@@ -13816,16 +13935,15 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
         },
 
         /**
-         * Alias for `elOrSelector` but returns an array of elements.
+         * Like `elOrSelector` but returns an array of elements.
          *
          * @method elsOrSelector
          *
          * @static
-         * @param  {DOMElement|String}      elOrSelector    DOM Element or CSS Selector
-         * @param  {String}                 fieldName       The name of the field. Commonly used for debugging.
-         * @return {DOMElement} Returns the DOMElement passed or the first result of the CSS Selector. Otherwise it throws an exception.
-         * @param {Boolean} required Flag to accept an empty array as output.
-         * @return {Array} The selected DOM Elements.
+         * @param  {Element|Array|String} elsOrSelector DOM Element, array of DOM Elements, or CSS Selector
+         * @param  {String}               [fieldName]     The name of the field. Used for the error shown when no elements are found.
+         * @param {Boolean} required If this is true, throw an error instead of returning an empty array.
+         * @return {Array} The selected Elements, or the given Elements
          * @example
          *     var elements = Ink.UI.Common.elsOrSelector('input.my-inputs', 'My Input');
          */
@@ -13857,10 +13975,11 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          *
          * @method options
          *
-         * @param {Object}      [fieldId]   Name to be used in debugging features.
-         * @param {Object}      defaults    Object with the options' types and defaults.
-         * @param {Object}      overrides   Options to override the defaults. Usually passed when instantiating an UI module.
-         * @param {DOMElement}  [element]   Element with data-attributes
+         * @param {Object}  [fieldId]   Name to be used in error reports.
+         * @param {Object}  defaults    Object with the options' types and defaults.
+         * @param {Object}  overrides   Options to override the defaults. Usually passed when instantiating an UI module.
+         * @param {Element} [element]   Element with data-attributes
+         * @return {Object} An object containing all the option values.
          *
          * @example
          *
@@ -13900,6 +14019,14 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          *
          **/
         options: function (fieldId, defaults, overrides, element) {
+            // TODO Change Common.options's signature? the below looks better, more manageable
+            // var options = Common.options({
+            //     element: this._element,
+            //     modName: constructor._name,
+            //     options: constructor._optionDefinition,
+            //     defaults: constructor._globalDefaults
+            // });
+
             if (typeof fieldId !== 'string') {
                 element = overrides;
                 overrides = defaults;
@@ -14052,6 +14179,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          *
          * @method clone
          * @static
+         * @deprecated
          * @param  {Object} o The object to be cloned/copied.
          * @return {Object} Returns the result of the clone/copy.
          * @example
@@ -14074,9 +14202,12 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
         /**
          * Gets an element's one-base index relative to its parent.
          *
+         * Deprecated. Use Ink.Dom.Element.parentIndexOf instead.
+         *
          * @method childIndex
+         * @deprecated
          * @static
-         * @param  {DOMElement}     childEl     Valid DOM Element.
+         * @param  {Element}     childEl     Valid DOM Element.
          * @return {Number}                     Numerical position of an element relatively to its parent.
          * @example
          *     <!-- Imagine the following HTML: -->
@@ -14092,18 +14223,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          *         Ink.UI.Common.childIndex( testLi ); // Returned value: 3
          *     </script>
          */
-        childIndex: function(childEl) {
-            if( Common.isDOMElement(childEl) ){
-                var els = Selector.select('> *', childEl.parentNode);
-                for (var i = 0, f = els.length; i < f; ++i) {
-                    if (els[i] === childEl) {
-                        return i;
-                    }
-                }
-            }
-            throw 'not found!';
-        },
-
+        childIndex: InkElement.parentIndexOf,
 
         /**
          * AJAX JSON request shortcut method
@@ -14115,6 +14235,8 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          * @param   {String}    endpoint    Valid URL to be used as target by the request.
          * @param   {Object}    params      This field is used in the thrown Exception to identify the parameter.
          * @param   {Function}  cb          Callback for the request.
+         * @return {void}
+         * @public
          * @example
          *     // In case there are several .myInput, it will retrieve the first found
          *     var el = Ink.UI.Common.elOrSelector('.myInput','My Input');
@@ -14152,7 +14274,8 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          *
          * @method currentLayout
          * @static
-         * @return {String}         A string representation of the current layout name.
+         * @return {String} A string representation of the current layout name.
+         * @public
          * @example
          *      var inkLayout = Ink.UI.Common.currentLayout();
          *      if (inkLayout === 'small') {
@@ -14164,9 +14287,9 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
             if (!detectorEl) {
                 detectorEl = document.createElement('div');
                 detectorEl.id = 'ink-layout-detector';
-                for (k in this.Layouts) {
-                    if (this.Layouts.hasOwnProperty(k)) {
-                        v = this.Layouts[k];
+                for (k in Common.Layouts) {
+                    if (Common.Layouts.hasOwnProperty(k)) {
+                        v = Common.Layouts[k];
                         el = document.createElement('div');
                         el.className = 'show-' + v + ' hide-all';
                         el.setAttribute('data-ink-layout', v);
@@ -14192,7 +14315,8 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          *
          * @method hashSet
          * @static
-         * @param  {Object} o   Object with the info to be placed in the location's hash.
+         * @param  {Object} o Object with the info to be placed in the location's hash.
+         * @return {void}
          * @example
          *     // It will set the location's hash like: <url>#key1=value1&key2=value2&key3=value3
          *     Ink.UI.Common.hashSet({
@@ -14214,7 +14338,9 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          *
          * @method cleanChildren
          * @static
-         * @param  {DOMElement} parentEl Valid DOM Element
+         * @param  {Element} parentEl Valid DOM Element
+         * @return {void}
+         * @public
          * @example
          *     <!-- Imagine the following HTML: -->
          *     <ul id="myUl">
@@ -14233,14 +14359,9 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          */
         cleanChildren: function(parentEl) {
             if( !Common.isDOMElement(parentEl) ){
-                throw 'Please provide a valid DOMElement';
+                throw new Error('Please provide a valid DOMElement');
             }
-            var prevEl, el = parentEl.lastChild;
-            while (el) {
-                prevEl = el.previousSibling;
-                parentEl.removeChild(el);
-                el = prevEl;
-            }
+            InkElement.setHTML(parentEl, '');
         },
 
         /**
@@ -14248,8 +14369,10 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          *
          * @method storeIdAndClasses
          * @static
-         * @param  {DOMElement} fromEl    Valid DOM Element to get the id and classes from.
+         * @param  {Element}    fromEl    Valid DOM Element to get the id and classes from.
          * @param  {Object}     inObj     Object where the id and classes will be saved.
+         * @return {void}
+         * @public
          * @example
          *     <div id="myDiv" class="aClass"></div>
          *
@@ -14265,7 +14388,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          */
         storeIdAndClasses: function(fromEl, inObj) {
             if( !Common.isDOMElement(fromEl) ){
-                throw 'Please provide a valid DOMElement as first parameter';
+                throw 'Please provide a valid Element as first parameter';
             }
 
             var id = fromEl.id;
@@ -14284,8 +14407,10 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          *
          * @method restoreIdAndClasses
          * @static
-         * @param  {DOMElement} toEl    Valid DOM Element to set the id and classes on.
+         * @param  {Element}    toEl    Valid DOM Element to set the id and classes on.
          * @param  {Object}     inObj   Object where the id and classes to be set are. This method uses the same format as the one given in `storeIdAndClasses`
+         * @return {void}
+         * @public
          * @example
          *     <div></div>
          *
@@ -14304,7 +14429,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
         restoreIdAndClasses: function(toEl, inObj) {
 
             if( !Common.isDOMElement(toEl) ){
-                throw 'Please provide a valid DOMElement as first parameter';
+                throw 'Please provide a valid Element as first parameter';
             }
 
             if (inObj._id && toEl.id !== inObj._id) {
@@ -14367,15 +14492,20 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
         },
 
         /**
-         * Saves a component's instance reference for later retrieval.
+         * Saves an object (which should inherit BaseUIComponent) in the registry, associated with an element. You can retrieve it later by calling getInstance.
+         *
+         * This won't allow two instances of the same class to be created on a single element. It will fail and print a warning to the console if you try to do it. That is a common error when using Ink.
          *
          * @method registerInstance
          * @static
-         * @param  {Object}     inst                Object that holds the instance.
-         * @param  {DOMElement} el                  DOM Element to associate with the object.
+         * @param  {Object}   inst Object to be registered
+         * @param  {Element}  [el=inst._element]   Element to associate with `inst`. Defaults to `_element` property of `inst`.
+         * @return {Boolean} `true` if we could create the instance, `false` otherwise.
          */
         registerInstance: function(inst, el) {
             if (!inst) { return; }
+
+            if (!el) { el = inst._element; }
 
             if (!Common.isDOMElement(el)) { throw new TypeError('Ink.UI.Common.registerInstance: The element passed in is not a DOM element!'); }
 
@@ -14397,11 +14527,13 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
         },
 
         /**
-         * Deletes an instance with a given id.
+         * Unregisters (removes from the registry) a UI component instance from whatever element it's on.
          *
          * @method unregisterInstance
          * @static
-         * @param  {String}     id       Id of the instance to be destroyed.
+         * @param  {String}     inst       Instance to be unregistered.
+         * @return {void}
+         * @public
          */
         unregisterInstance: function(inst) {
             if (!inst || !inst._element) { return; }
@@ -14414,15 +14546,27 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
         },
 
         /**
-         * Gets an UI instance from an element or instance id.
+         * Gets an UI component instance from an element.
+         *
+         * This function is already available in the UI components' classes themselves. You can call Modal.getInstance() and retrieve a modal.
          *
          * @method getInstance
          * @static
-         * @param  {String|DOMElement}      el      DOM Element from which we want the instances.
-         * @return  {Object|Array}                  Returns an instance or a collection of instances.
+         * @param  {String|Element} el Element from which we want the instances. A selector is okay.
+         * @param {BaseUIComponent} [UIComponent] If you pass an Ink UI component class (Like Ink.UI.Modal or Ink.UI.Carousel), this won't return an array of all instances associated with the element. Instead it will return only the object which is an instance of that class.
+         * @return  {Object|Array}               Returns an array containing all the instances in that element.
+         * @public
          */
         getInstance: function(el, UIComponent) {
+            var givenEl = el;  // So we can warn it later.
+
             el = Common.elOrSelector(el);
+
+            if (!Common.isDOMElement(el)) {
+                Ink.warn('Ink.UI.Common: getInstance called on non-element (' + givenEl + ')');
+                return [];
+            }
+
             var instances = domRegistry.get(el);
 
             if (!instances) {
@@ -14447,11 +14591,12 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          *
          * @method getInstanceFromSelector
          * @static
-         * @param  {String}             selector    CSS selector to get the instances from.
-         * @return  {Object|Array}               Returns an instance or a collection of instances.
+         * @param  {String}             selector    CSS selector to get the instances from. This function will only use the *first* element.
+         * @return  {Object|Array}               Returns an array of the instances in the selected element.
+         * @public
          */
         getInstanceFromSelector: function(selector) {
-            return Common.getInstance(Common.elOrSelector(selector));
+            return Common.getInstance(selector);
         },
 
         /**
@@ -14459,7 +14604,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          *
          * @method getInstanceIds
          * @static
-         * @return  {Array}     Collection of instance ids
+         * @return  {Array} Collection of instance ids
          */
         getInstanceIds: function() {
             if( _reg.length > 0 ) return _reg;
@@ -14478,6 +14623,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          * @method getInstances
          * @static
          * @return  {Array}     Collection of existing instances.
+         * @public
          */
         getInstances: function() {
             if( _reg.length > 0 ) return _reg;
@@ -14495,13 +14641,14 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          * Components should copy this method as its destroy method and modify it.
          *
          * @method destroyComponent
+         * @return {void}
+         * @public
          * @static
          */
         destroyComponent: function() {
             Common.unregisterInstance(this);
             this._element.parentNode.removeChild(this._element);
         }
-
     };
 
 
@@ -14536,8 +14683,9 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
      * @class Ink.UI.Common.BaseUIComponent
      * @constructor
      *
-     * @param element
-     * @param options
+     * @param {Element|String} element Element to associate this UI component with. It's the element you can get later using `comp.getElement()`
+     * @param {Object} [options] Options to pass to the component. You should see your specific UI component for this information.
+     * @public
      **/
     function BaseUIComponent(element, options) {
         var constructor = this.constructor;
@@ -14564,14 +14712,6 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
             Ink.error(new Error(element + ' does not match an element on the page. You need to pass a valid selector to "new ' + _name + '".'));
         }
 
-        // TODO Change Common.options's signature? the below looks better, more manageable
-        // var options = Common.options({
-        //     element: this._element,
-        //     modName: constructor._name,
-        //     options: constructor._optionDefinition,
-        //     defaults: constructor._globalDefaults
-        // });
-
         this._options = Common.options(_name, constructor._optionDefinition, options, this._element);
 
         var isValidInstance = BaseUIComponent._validateInstance(this) === true;
@@ -14588,7 +14728,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
         if (!isValidInstance) {
             BaseUIComponent._stubInstance(this, constructor, _name);
         } else if (this._element) {
-            Common.registerInstance(this, this._element);
+            Common.registerInstance(this);
         }
     }
 
@@ -14649,9 +14789,8 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          * Get an UI component's option's value.
          *
          * @method getOption
-         * @param name
-         *
-         * @return The option value, or undefined if nothing is found.
+         * @param {String} name The option's name.
+         * @return {Mixed} The option value, or undefined if nothing is found.
          *
          * @example
          *
@@ -14669,11 +14808,13 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
         },
 
         /**
-         * Sets an option's value
+         * Sets an option's value.
          *
          * @method getOption
-         * @param name
-         * @param value
+         * @param {String} name Name of the option.
+         * @param {Mixed} value New option value.
+         * @return {void}
+         * @public
          *
          * @example
          *
@@ -14708,10 +14849,16 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
     Common.BaseUIComponent = BaseUIComponent;
 
     /**
+     * Take a constructor, and make it an Ink UI component.
+     *
+     * Makes it inherit BaseUIComponent, makes sure it has the basic properties Ink.UI.Common needs it to have, adds the necessary static methods, sets its options, etc.
+     *
      * @method createUIComponent
-     * @param theConstructor UI component constructor. It should have an _init function in its prototype, an _optionDefinition object, and a _name property indicating its name.
-     * @param options
-     * @param [options.elementIsOptional=false] Whether the element argument is optional (For example, when the component might work on existing markup or create its own).
+     * @param {Function} theConstructor UI component constructor. It should have an _init function in its prototype, an _optionDefinition object, and a _name property indicating its name.
+     * @param {Object}  [options] Options hash, containing:
+     * @param {Boolean} [options.elementIsOptional=false] Whether the element argument is optional (For example, when the component might work on existing markup or create its own).
+     * @return {void}
+     * @public
      **/
     Common.createUIComponent = function createUIComponent(theConstructor, options) {
         theConstructor._componentOptions = options || {};
@@ -14798,18 +14945,18 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
      * @constructor
      * @version 1
      *
-     * @param {String|DOMElement}   selector
+     * @param {String|Element}      selector                    Datepicker element
      * @param {Object}              [options]                   Options
      * @param {Boolean}             [options.autoOpen]          Flag to automatically open the datepicker.
      * @param {String}              [options.cleanText]         Text for the clean button. Defaults to 'Clear'.
      * @param {String}              [options.closeText]         Text for the close button. Defaults to 'Close'.
      * @param {String}              [options.cssClass]          CSS class to be applied on the datepicker
-     * @param {String|DOMElement}   [options.pickerField]       (if not using in an input[type="text"]) Element which displays the DatePicker when clicked. Defaults to an "open" link.
+     * @param {String|Element}      [options.pickerField]       (if not using in an input[type="text"]) Element which displays the DatePicker when clicked. Defaults to an "open" link.
      * @param {String}              [options.dateRange]         Enforce limits to year, month and day for the Date, ex: '1990-08-25:2020-11'
      * @param {Boolean}             [options.displayInSelect]   Flag to display the component in a select element.
-     * @param {String|DOMElement}   [options.dayField]          (if using options.displayInSelect) `select` field with days.
-     * @param {String|DOMElement}   [options.monthField]        (if using options.displayInSelect) `select` field with months.
-     * @param {String|DOMElement}   [options.yearField]         (if using options.displayInSelect) `select` field with years.
+     * @param {String|Element}      [options.dayField]          (if using options.displayInSelect) `select` field with days.
+     * @param {String|Element}      [options.monthField]        (if using options.displayInSelect) `select` field with months.
+     * @param {String|Element}      [options.yearField]         (if using options.displayInSelect) `select` field with years.
      * @param {String}              [options.format]            Date format string
      * @param {Object}              [options.month]             Hash of month names. Defaults to portuguese month names. January is 1.
      * @param {String}              [options.nextLinkText]      Text for the previous button. Defaults to '«'.
@@ -14835,9 +14982,9 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
      *
      * @sample Ink_UI_DatePicker_1.html
      */
-    var DatePicker = function() {
+    function DatePicker() {
         Common.BaseUIComponent.apply(this, arguments);
-    };
+    }
 
     DatePicker._name = 'DatePicker_1';
 
@@ -15070,6 +15217,8 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * Shows the calendar.
          *
          * @method show
+         * @return {void}
+         * @public
          **/
         show: function () {
             this._updateDate();
@@ -15202,17 +15351,17 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         },
 
         _listenToContainerObjectEvents: function () {
-            Event.observe(this._containerObject,'mouseover',Ink.bindEvent(function(e){
+            Event.observe(this._containerObject, 'mouseover' ,Ink.bindEvent(function(e){
                 Event.stop( e );
                 this._hoverPicker = true;
             },this));
 
-            Event.observe(this._containerObject,'mouseout',Ink.bindEvent(function(e){
+            Event.observe(this._containerObject, 'mouseout', Ink.bindEvent(function(e){
                 Event.stop( e );
                 this._hoverPicker = false;
             },this));
 
-            Event.observe(this._containerObject,'click',Ink.bindEvent(this._onClick, this));
+            Event.observe(this._containerObject, 'click', Ink.bindEvent(this._onClick, this));
         },
 
         _onClick: function(e){
@@ -15741,6 +15890,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          *
          * @method setDate
          * @param {Date|String} dateString A Date object, or date string in yyyy-mm-dd format.
+         * @return {void}
          * @public
          */
         setDate: function( dateString ) {
@@ -15763,6 +15913,8 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * Gets the currently selected date as a JavaScript date.
          *
          * @method getDate
+         * @return {void}
+         * @public
          */
         getDate: function () {
             if (!this._day) {
@@ -15775,7 +15927,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * Sets the chosen date on the target input field
          *
          * @method _setDate
-         * @param {DOMElement} objClicked Clicked object inside the DatePicker's calendar.
+         * @param {Element} objClicked Clicked object inside the DatePicker's calendar.
          * @private
          */
         _setDate : function( objClicked ) {
@@ -16050,7 +16202,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             result %= 7;
 
             if (result < 0) {
-                result += 6;
+                result += 7;
             }
 
             return result;
@@ -16133,7 +16285,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * This method adds class names to month buttons, to visually distinguish.
          *
          * @method _addMonthClassNames
-         * @param {DOMElement} parent DOMElement where all the months are.
+         * @param {Element} parent Element where all the months are.
          * @private
          */
         _addMonthClassNames: function(parent){
@@ -16207,6 +16359,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * Destroys this datepicker, removing it from the page.
          *
          * @method destroy
+         * @return {void}
          * @public
          **/
         destroy: function () {
@@ -16221,6 +16374,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
     return DatePicker;
 });
+
 /**
  * Dragging elements around
  * @module Ink.UI.Draggable_1
@@ -16244,20 +16398,20 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
      * @class Ink.UI.Draggable
      * @version 1
      * @constructor
-     * @param {String|DOMElement}   target                      Target element.
+     * @param {String|Element}      target                      Target element.
      * @param {Object}              [options]                   Optional object to configure the component.
      * @param {String}              [options.constraint]        Movement constraint. None by default. Can be `vertical`, `horizontal`, or `both`.
-     * @param {String|DOMElement}   [options.constraintElm]     Constrain dragging to be within this element. None by default.
+     * @param {String|Element}      [options.constraintElm]     Constrain dragging to be within this element. None by default.
      * @param {Number}              [options.top]               Limits to constrain draggable movement.
      * @param {Number}              [options.right]             Limits to constrain draggable movement.
      * @param {Number}              [options.bottom]            Limits to constrain draggable movement.
      * @param {Number}              [options.left]              Limits to constrain draggable movement.
-     * @param {String|DOMElement}   [options.handle]            If specified, this element or CSS ID will be used as a handle for dragging.
+     * @param {String|Element}      [options.handle]            If specified, this element or CSS ID will be used as a handle for dragging.
      * @param {Boolean}             [options.revert=false]            Flag to revert the draggable to the original position when dragging stops.
      * @param {String}              [options.cursor='move']            Cursor type (CSS `cursor` value) used when the mouse is over the draggable object.
      * @param {Number}              [options.zIndex]            Z-index applied to the draggable element while dragged.
      * @param {Number}              [options.fps]               If set, throttles the drag effect to this number of frames per second.
-     * @param {DOMElement}          [options.droppableProxy]    If set, a shallow copy of this element will be moved around with transparent background.
+     * @param {Element}             [options.droppableProxy]    If set, a shallow copy of this element will be moved around with transparent background.
      * @param {String}              [options.mouseAnchor]       Anchor for the drag. Can be one of: 'left','center','right','top','center','bottom'.
      * @param {String}              [options.dragClass]         Class to add when the draggable is being dragged. Defaults to drag.
      * @param {Boolean}             [options.skipChildren=true] Whether you have to drag the actual element, or dragging one of the children is okay too.
@@ -16301,7 +16455,7 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
          * Init function called by the constructor
          * 
          * @method _init
-         * @param {String|DOMElement}   element     Element ID of the element or DOM Element.
+         * @param {String|Element}      element     Element ID of the element or DOM Element.
          * @param {Object}              [options]   Options object for configuration of the module.
          * @private
          */
@@ -16351,6 +16505,7 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
          * Removes the ability of the element of being dragged
          * 
          * @method destroy
+         * @return {void}
          * @public
          */
         destroy: function() {
@@ -16382,8 +16537,8 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
          * Clones src element's relevant properties to dst
          * 
          * @method _cloneStyle
-         * @param {DOMElement} src Element from where we're getting the styles
-         * @param {DOMElement} dst Element where we're placing the styles.
+         * @param {Element} src Element from where we're getting the styles
+         * @param {Element} dst Element where we're placing the styles.
          * @private
          */
         _cloneStyle: function(src, dst) {
@@ -16931,11 +17086,13 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
                 Event.one(drawerEl,
                     transitionSupport.eventName,
                     function () {
+                        /* jshint unused:false */
                         Css.removeClassName(drawerEl, 'show');
 
-                        setTimeout(function () {
-                            Css.addClassName(drawerEl, 'show');
-                        });
+                        // Let's cause a reflow by reading a value!
+                        var uselessValue = +drawerEl.offsetWidth;
+
+                        Css.addClassName(drawerEl, 'show');
                     });
             }
         },
@@ -17013,9 +17170,17 @@ Ink.createModule('Ink.UI.Dropdown', '1', ['Ink.UI.Common_1', 'Ink.UI.Toggle_1', 
          * @class Ink.UI.Dropdown
          *
          * @constructor
-         * @param {DOMElement|String}   trigger         Trigger Element
-         * @param {Object}              options         Options Object
-         * @param {DOMElement|String}   options.target Target of the dropdown action.
+         * @param {Element|String}   trigger                Trigger Element
+         * @param {Object}           options                Options Object
+         * @param {Element|String}   options.target         Target of the dropdown action.
+         * @param {Number}          [options.hoverOpen]     The number of milliseconds you need to hover with the mouse before the dropdown opens.
+         * @param {Boolean}         [options.dismissOnInsideClick=false] Whether to dismiss the dropdown when there's a click inside.
+         * @param {Boolean}         [options.dismissOnOutsideClick=true] Whether to dismiss the dropdown when there's a click outside.
+         * @param {Number}          [options.dismissAfter]  When the mouse moves away from the dropdown, wait for `dismissAfter` milliseconds and only then dismiss.
+         * @param {Function}        [options.onInsideClick] Called when there's a click inside the dropdown.
+         * @param {Function}        [options.onOutsideClick] Called when there's a click outside the dropdown.
+         * @param {Function}        [options.onOpen]        Called when the dropdown is opened.
+         * @param {Function}        [options.onDismiss]     Called when the dropdown is dismissed.
          *
          * @sample Ink_UI_Dropdown_1.html
          */
@@ -17084,6 +17249,8 @@ Ink.createModule('Ink.UI.Dropdown', '1', ['Ink.UI.Common_1', 'Ink.UI.Toggle_1', 
         /**
          * Handle clicks on the dropdown.
          * @method _onInsideClick
+         * @param {Event} event Dom click event.
+         * @return {void}
          * @private
          */
         _onInsideClick: function (event) {
@@ -17097,6 +17264,8 @@ Ink.createModule('Ink.UI.Dropdown', '1', ['Ink.UI.Common_1', 'Ink.UI.Toggle_1', 
         /**
          * Handle clicks outside the dropdown.
          * @method _onOutsideClick
+         * @param {Event} event Dom click event.
+         * @return {void}
          * @private
          */
         _onOutsideClick: function (event) {
@@ -17121,28 +17290,34 @@ Ink.createModule('Ink.UI.Dropdown', '1', ['Ink.UI.Common_1', 'Ink.UI.Toggle_1', 
          * Closes the dropdown.
          *
          * @method dismiss
-         * @param [callHandler=false] call onDismiss handler
+         * @param {Boolean} [callHandler=false] Whether to call the onDismiss handler
+         * @return {void}
+         * @public
          */
-        dismiss: function (callHandler, doNotInformToggle) {
-            this._openOrDismiss(false, callHandler, doNotInformToggle);
+        dismiss: function (callHandler/*, _doNotInformToggle*/) {
+            this._openOrDismiss(false, callHandler, arguments[1]);
         },
 
         /**
          * Opens the dropdown
          *
          * @method open
-         * @param [callHandler=false] call onOpen handler
+         * @param {Boolean} [callHandler=false] call onOpen handler
+         * @return {void}
+         * @public
          */
-        open: function (callHandler, _doNotInformToggle) {
-            this._openOrDismiss(true, callHandler, _doNotInformToggle);
+        open: function (callHandler/*, _doNotInformToggle*/) {
+            this._openOrDismiss(true, callHandler, arguments[1]);
         },
 
         /**
          * DRY'ing up open() and dismiss()
          *
          * @method _openOrDismiss
-         * @param [newState=false]
-         * @param [callHandler=false]
+         * @param {Boolean} [newState=false]    The new state of the Dropdown. `true` for open, `false` for dismiss.
+         * @param {Boolean} [callHandler=false] Whether to call the onOpen or onDismiss handler.
+         * @param {Boolean} [_doNotInformToggle=false] Whether to call our toggle's setState method.
+         * @return {void}
          * @private
          */
         _openOrDismiss: function (newState, callHandler, _doNotInformToggle) {
@@ -17163,8 +17338,8 @@ Ink.createModule('Ink.UI.Dropdown', '1', ['Ink.UI.Common_1', 'Ink.UI.Toggle_1', 
          * call a method given by the user through the options
          *
          * @method _handlerCall
-         * @param handler {String} The handler name in this._options
-         * @param [args*] Arguments to pass to function
+         * @param {String} handler  The handler name in this._options
+         * @param {Mixed} [args...] Arguments to pass to function
          */
         _handlerCall: function (handler/*, ... */) {
             if (this._options[handler]) {
@@ -17240,13 +17415,14 @@ Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
          * - A function (draggableElement, droppableElement), defining what you want to do in this case.
          *
          * @method add
-         * @param {String|DOMElement}   element                 Target element
+         * @param {String|Element}      element                 Target element
          * @param {Object}              [options]               Options object
          * @param {String}              [options.hoverClass]    Classname(s) applied when an acceptable draggable element is hovering the element
          * @param {String}              [options.accept]        Selector for choosing draggables which can be dropped in this droppable.
          * @param {Function}            [options.onHover]       Called when an acceptable element is hovering the droppable (see above for string options).
          * @param {Function|String}     [options.onDrop]        Called when an acceptable element is dropped (see above for string options). 
          * @param {Function|String}     [options.onDropOut]     Called when a droppable is dropped outside this droppable (see above for string options).
+         * @return {void}
          * @public
          *
          * @sample Ink_UI_Droppable_1.html
@@ -17322,7 +17498,7 @@ Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
          * Finds droppable data about `element`. this data is added in `.add`
          *
          * @method _findData
-         * @param {DOMElement} element  Needle
+         * @param {Element} element  Needle
          * @return {object}             Droppable data of the element
          * @private
          */
@@ -17338,7 +17514,7 @@ Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
          * Finds draggable data about `element`
          *
          * @method _findDraggable
-         * @param {DOMElement} element  Needle
+         * @param {Element} element  Needle
          * @return {Object}             Draggable data queried
          * @private
          */
@@ -17352,9 +17528,10 @@ Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
         },
 
         /**
-         * Invoke every time a drag starts
+         * Invoke every time a drag starts. Calls Droppable._update on all Droppables.
          * 
          * @method updateAll
+         * @return {void}
          * @private
          */
         updateAll: function() {
@@ -17365,7 +17542,8 @@ Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
          * Updates location and size of droppable element
          * 
          * @method update
-         * @param {String|DOMElement} element Target element
+         * @param {String|Element} element Target element
+         * @return {void}
          * @public
          */
         update: function(element) {
@@ -17385,7 +17563,7 @@ Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
          * Removes an element from the droppable stack and removes the droppable behavior
          * 
          * @method remove
-         * @param {String|DOMElement} elOrSelector  Droppable element to disable.
+         * @param {String|Element} el Droppable element to disable.
          * @return {Boolean} Whether the object was found and deleted
          * @public
          */
@@ -17409,6 +17587,7 @@ Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
          * @param {String} type         Type of action. 'drag' or 'drop'.
          * @param {Object} ev           Event object
          * @param {Object} draggable    Draggable element
+         * @return {void}
          * @private
          */
         action: function(coords, type, ev, draggable) {
@@ -17603,11 +17782,12 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
          * Checks if a form is valid
          * 
          * @method validate
-         * @param {DOMElement|String}   elm                     DOM form element or form id
-         * @param {Object}              options                 Configuration options
-         * @param {Function}            [options.onSuccess]     Callback to run when form is valid
-         * @param {Function}            [options.onError]       Callback to run when form is not valid
-         * @param {Array}               [options.customFlag]    Custom flags to use to validate form fields
+         * @param {Element|String} elm                     DOM form element or form id
+         * @param {Object}         [options]               Configuration options
+         * @param {Function}       [options.onSuccess]     Callback to run when form is valid
+         * @param {Function}       [options.onError]       Callback to run when form is not valid
+         * @param {Array}          [options.customFlag]    Custom flags to use to validate form fields
+         * @param {Array}          [options.confirmGroup]
          * @public
          * @return {Boolean} Whether the form is deemed valid or not.
          *
@@ -17667,6 +17847,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
          * Resets previously generated validation errors
          * 
          * @method reset
+         * @returns {void}
          * @public
          */
         reset: function()
@@ -17679,6 +17860,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
          * Cleans the object
          * 
          * @method _free
+         * @returns {void}
          * @private
          */
         _free: function()
@@ -17693,6 +17875,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
          * Cleans the properties responsible for caching
          * 
          * @method _clearCache
+         * @returns {void}
          * @private
          */
         _clearCache: function()
@@ -17707,6 +17890,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
          * Gets the form elements and stores them in the caching properties
          * 
          * @method _getElements
+         * @returns {void}
          * @private
          */
         _getElements: function()
@@ -17764,6 +17948,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
          * Runs the validation for each element
          * 
          * @method _validateElements
+         * @return {Object} Error description objects, in the format: { "elm": inputWithError, "errors": [ (from _flagMap): { "msg": "please input ...' }, ...] }
          * @private
          */
         _validateElements: function() {
@@ -17904,7 +18089,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
          * Runs the normal validation functions for a specific element
          * 
          * @method _isValid
-         * @param {DOMElement} elm DOMElement that will be validated
+         * @param {Element} elm Element that will be validated
          * @param {String} fieldType Rule to be validated. This must be one of the keys present in the _flagMap property.
          * @private
          * @return {Boolean} The result of the validation.
@@ -18004,8 +18189,9 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
          * Makes the necessary changes to the markup to show the errors of a given element
          * 
          * @method _showError
-         * @param {DOMElement} formElm The form element to be changed to show the errors
+         * @param {Element} formElm The form element to be changed to show the errors
          * @param {Array} aFail An array with the errors found.
+         * @return {void}
          * @private
          */
         _showError: function(formElm, aFail) {
@@ -18065,7 +18251,8 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
          * Clears the error of a given element. Normally executed before any validation, for all elements, as a reset.
          * 
          * @method _clearErrors
-         * @param {DOMElement} formElm Form element to be cleared.
+         * @param {Element} formElm Form element to be cleared.
+         * @return {void}
          * @private
          */
         _clearError: function(formElm) {
@@ -18102,7 +18289,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
          * Removes unnecessary spaces to the left or right of a string
          * 
          * @method _trim
-         * @param {String} stri String to be trimmed
+         * @param {String} str String to be trimmed
          * @private
          * @return {String|undefined} String trimmed.
          */
@@ -18141,6 +18328,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
          * Checks if a value is defined and not empty
          * @method required
          * @return {Boolean}       True case is defined, false if it's empty or not defined.
+         * @public
          */
         'required': function( value ){
             return ( (typeof value !== 'undefined') && ( !(/^\s*$/).test(value) ) );
@@ -18499,7 +18687,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
      *
      * @class FormValidator.FormElement
      * @constructor
-     * @param  {DOMElement} element DOM Element
+     * @param  {Element} element DOM Element
      * @param  {Object} options Object with configuration options
      * @param  {String} [options.label] Label for this element. It is used in the error message. If not specified, the text in the `label` tag in the control-group is used.
      * @param  {String} [options.rules] Rules string to be parsed.
@@ -18736,7 +18924,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
     /**
      * @class FormValidator_2
      * @constructor
-     * @param {String|DOMElement}   selector                        Either a CSS Selector string, or the form's DOMElement
+     * @param {String|Element}      selector                        Either a CSS Selector string, or the form's Element
      * @param {Object}              [options]                       Options object, containing the following options:
      * @param {String}              [options.eventTrigger]          Event that will trigger the validation. Defaults to 'submit'.
      * @param {Boolean}             [options.neverSubmit]           Flag to cancel the submit event. Use this to avoid submitting the form.
@@ -18755,7 +18943,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
 
     FormValidator._optionDefinition = {
         eventTrigger: ['String', 'submit'],
-        neverSubmit: ['Boolean', 'false'],
+        neverSubmit: ['Boolean', false],
         searchFor: ['String', 'input, select, textarea, .control-group'],
         beforeValidation: ['Function', undefined],
         onError: ['Function', undefined],
@@ -18769,6 +18957,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
      * @param {String}   name         Name of the function. E.g. 'required'
      * @param {String}   errorMessage Error message to be displayed in case of returning false. E.g. 'Oops, you passed {param1} as parameter1, lorem ipsum dolor...'
      * @param {Function} cb           Function to be executed when calling this rule
+     * @return {void}
      * @public
      * @static
      */
@@ -18787,6 +18976,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
      * @method getI18n
      * @static
      * @return {Ink.Util.I18n} The i18n object the FormValidator is using.
+     * @public
      */
     FormValidator.getI18n = function () {
         return validationMessages;
@@ -18798,6 +18988,8 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
      * @method setI18n
      * @static
      * @param {Ink.Util.I18n} i18n  The I18n object.
+     * @return {void}
+     * @public
      */
     FormValidator.setI18n = function (i18n) {
         validationMessages = i18n;
@@ -18808,7 +19000,9 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
      * See `Ink.Util.I18n.append()` documentation.
      *
      * @method appendI18n
+     * @return {void}
      * @static
+     * @public
      */
     FormValidator.appendI18n = function () {
         validationMessages.append.apply(validationMessages, [].slice.call(arguments));
@@ -18821,8 +19015,10 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
      * See the `Ink.Util.I18n.lang()` setter
      *
      * @method setLanguage
+     * @param {Ink.Util.I18n} language The language to set i18n to.
+     * @return {void}
      * @static
-     * @param language  The language to set i18n to.
+     * @public
      */
     FormValidator.setLanguage = function (language) {
         validationMessages.lang(language);
@@ -18843,10 +19039,10 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
     FormValidator.prototype = {
         _init: function(){
             /**
-             * DOMElement of the form being validated
+             * Element of the form being validated
              *
              * @property _rootElement
-             * @type {DOMElement}
+             * @type {Element}
              */
             this._rootElement = this._element;
 
@@ -18859,7 +19055,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
             this._formElements = {};
 
             /**
-             * Error message DOMElements
+             * Error message Elements
              * 
              * @property _errorMessages
              */
@@ -19062,14 +19258,15 @@ Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
      * @constructor
      * @version 1
      *
-     * @param {String|DOMElement}   selector                    Selector or element
+     * @param {String|Element}      selector                    Selector or element
      * @param {Object}              [options]                   Options object
-     * @param {String|Function}     [options.src]               String or Callback function (that returns a string) with the path to be used to get the images.
+     * @param {String|Function}     [options.src]               A template string in which '{:width}' or '{:label}' will be expanded into the corresponding properties of the `query` object, or a function which takes the query object and should return a src string, for more flexibility.
      * @param {String|Function}     [options.retina]            String or Callback function (that returns a string) with the path to be used to get RETINA specific images.
-     * @param {Array}               [options.queries]           Array of queries
-     * @param {String}              [options.queries.label]     Label of the query. Ex. 'small'
-     * @param {Number}              [options.queries.width]     Min-width to use this query
-     * @param {Function}            [options.onLoad]            Date format string
+     * @param {Array}               [options.queries]           Array of queries. Each query object contains the following properties:
+     * @param {String}              [options.queries.label]     Label of the query. Ex. 'small'.
+     * @param {Number}              [options.queries.width]     Min-width to use this query.
+     * @param {String}              [options.queries.src]       If you don't want to specify a "string template" in options.src, you can also specify an image source in each query by setting this option.
+     * @param {Function}            [options.onLoad]            A function to be attached to the image 'load' event. Called when an image is loaded into this img (occurs several times because the user may resize the page, causing the image's "load" event to be called several times).
      *
      * @sample Ink_UI_ImageQuery_1.html
      */
@@ -19125,7 +19322,7 @@ Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             this._options.queries = InkArray.sortMulti(this._options.queries, 'width').reverse();
 
             if( typeof this._options.onLoad === 'function' ){
-                Event.observe(this._element, 'onload', Ink.bindEvent(this._onLoad, this));
+                Event.observe(this._element, 'load', Ink.bindEvent(this._onLoad, this));
             }
 
             // Imediate call to apply the right images based on the current viewport
@@ -19147,47 +19344,7 @@ Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
             var current = this._findCurrentQuery();
 
-            /**
-             * Choosing the right src. The rule is:
-             *
-             *   "If there is specifically defined in the query object, use that. Otherwise uses the global src."
-             *
-             * The above rule applies to a retina src.
-             */
-            var src = current.src || this._options.src;
-
-            if ( window.devicePixelRatio > 1 && (this._options.retina !== undefined) ) {
-                src = current.retina || this._options.retina;
-            }
-
-            /**
-             * Injects the file variable for usage in the 'templating system' below
-             */
-            current.file = this._filename;
-
-            /**
-             * Since we allow the src to be a callback, let's run it and get the results.
-             * For the inside, we're passing the element (img) being processed and the object of the selected query.
-             */
-            if( typeof src === 'function' ){
-                src = src.apply(this,[this._element,current]);
-                if( typeof src !== 'string' ){
-                    throw '[ImageQuery] :: "src" callback does not return a string';
-                }
-            }
-
-            /**
-             * Replace the values of the existing properties on the query object (except src and retina) in the
-             * defined src and/or retina.
-             */
-            src = src.replace(/{:(.*?)}/g, function(_, prop) {
-                return current[prop];
-            });
-
-            this._element.src = src;
-
-            // Removes the injected file property
-            delete current.file;
+            this._element.src = this.getQuerySrc(current);
         },
 
         /**
@@ -19197,9 +19354,7 @@ Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             /**
              * Gets viewport width
              */
-            var viewportWidth = window.innerWidth ||
-                document.documentElement.clientWidth ||
-                document.body.clientWidth;
+            var viewportWidth = Element.viewportWidth();
 
             var queries = this._options.queries;
             var last = queries.length - 1;
@@ -19214,13 +19369,63 @@ Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         },
 
         /**
+         * @method getQuerySrc
+         * @param {Object} query A query object, comprised of:
+         * @param {Number} [query.width] The minimum viewport width in which this query is active.
+         * @param {String} [query.label] The label for this query. Used in the template strings.
+         * @param {String|Function} [query.src=this.getOption('src')] Exactly the same as `options-src`. If you pass this, `options.src` will be overridden. A template string in which '{:width}' or '{:label}' will be expanded into the corresponding properties of the `query` object, or a function which takes the query object and should return a src string, for more flexibility.
+         **/
+        getQuerySrc: function (query) {
+            /**
+             * Choosing the right src. The rule is:
+             *
+             *   "If there is specifically defined in the query object, use that. Otherwise uses the global src."
+             *
+             * The above rule applies to a retina src.
+             */
+            var src = query.src || this._options.src;
+
+            if ( window.devicePixelRatio > 1 && (this._options.retina !== undefined) ) {
+                src = query.retina || this._options.retina;
+            }
+
+            /**
+             * Injects the file variable for usage in the 'templating system' below
+             */
+            query.file = this._filename;
+
+            /**
+             * Since we allow the src to be a callback, let's run it and get the results.
+             * For the inside, we're passing the element (img) being processed and the object of the selected query.
+             */
+            if( typeof src === 'function' ){
+                src = src.apply(this,[this._element,query]);
+                if( typeof src !== 'string' ){
+                    throw '[ImageQuery] :: "src" callback does not return a string';
+                }
+            }
+
+            /**
+             * Replace the values of the existing properties on the query object (except src and retina) in the
+             * defined src and/or retina.
+             */
+            src = src.replace(/{:(.*?)}/g, function(_, prop) {
+                return query[prop];
+            });
+
+            // Removes the injected file property
+            delete query.file;
+
+            return src;
+        },
+
+        /**
          * Handles the element loading (img onload) event
          *
          * @method _onLoad
          * @private
          */
         _onLoad: function(){
-
             /**
              * Since we allow a callback for this let's run it.
              */
@@ -19279,7 +19484,7 @@ LazyLoad.prototype = {
      * @class Ink.UI.LazyLoad_1
      * @constructor
      *
-     * @param rootElement {String|DOMElement} The element which contains the lazily-loaded items.
+     * @param {String|Element} selector                   The element which contains the lazily-loaded items.
      * @param {Object}      [options]                           Options object, containing:
      * @param {String}      [options.item]                      Item selector. Defaults to '.lazyload-item'.
      * @param {String}      [options.placeholder]               Placeholder value for items which are not 'visible', in case they don't already have a value set.
@@ -19288,7 +19493,7 @@ LazyLoad.prototype = {
      * @param {Number}      [options.delay]                     Milliseconds to wait before trying to load items. Defaults to 100.
      * @param {Number}      [options.delta]                     Offset distance in pixels. Determines how far the top of an item must be from the viewport be considered 'visible'. Negative values shrink the considered 'visible' viewport while positive values enlarge it. Defaults to 0.
      * @param {Boolean}     [options.image]                     Set to false to make this component do nothing to any elements and just give you the onInsideViewport callback.
-     * @param {DOMElement}  [options.scrollElement]             (advanced) What element is to be listened for the scroll event. Defaults to document.window.
+     * @param {Element}     [options.scrollElement]             (advanced) What element is to be listened for the scroll event. Defaults to document.window.
      * @param {Boolean}     [options.touchEvents]               Subscribe to touch events in addition to scroll events. Useful in mobile safari because 'scroll' events aren't frequent enough. Defaults to true.
      * @param {Function}    [options.onInsideViewport]          Callback function for when an `item` is 'visible'. Receives an object containing the item's element as an argument.
      * @param {Function}    [options.onAfterAttributeChange]    (advanced) Callback function when an item's attribute changes. Receives an object containing the item's element as an argument.
@@ -19405,6 +19610,7 @@ LazyLoad.prototype = {
      * You can use this to manually invoke the loading logic without user action. 
      *
      * @method reload
+     * @return {void}
      * @public
      */
     reload: function() {
@@ -19414,6 +19620,7 @@ LazyLoad.prototype = {
     /**
      * Destroy this component
      * @method destroy
+     * @return {void}
      * @public
      **/
     destroy: function() {
@@ -19447,7 +19654,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
      * @class Ink.UI.Modal
      * @constructor
      * @version 1
-     * @param {String|DOMElement}   selector                        Element or ID
+     * @param {String|Element}      selector                        Element or ID
      * @param {Object}              [options]                       Options object, containing:
      * @param {String}              [options.width]                 Default/Initial width. Ex: '600px'
      * @param {String}              [options.height]                Default/Initial height. Ex: '400px'
@@ -19519,10 +19726,10 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             this._handlers = {
                 click:   Ink.bindEvent(this._onShadeClick, this),
                 keyDown: Ink.bindEvent(this._onKeyDown, this),
-                resize:  Ink.bindEvent(this._onResize, this)
+                resize:  Event.throttle(Ink.bindEvent(this._onResize, this), 250)
             };
 
-            this._wasDismissed = false;
+            this._isOpen = false;
 
             /**
              * Modal Markup
@@ -19534,33 +19741,22 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             }
 
             if( !this._markupMode ){
-                this._modalShadow      = document.createElement('div');
-                this._modalShadowStyle = this._modalShadow.style;
-
-                this._modalDiv         = document.createElement('div');
-                this._modalDivStyle    = this._modalDiv.style;
+                this._modalShadow = InkElement.create('div', { className: 'ink-shade' });
+                this._modalDiv    = InkElement.create('div', { className: 'ink-modal ink-space' });
 
                 if( !!this._element ){
                     this._options.markup = this._element.innerHTML;
                 }
 
                 /**
-                 * Not in full markup mode, let's set the classes and css configurations
-                 */
-                Css.addClassName( this._modalShadow,'ink-shade' );
-                Css.addClassName( this._modalDiv,'ink-modal ink-space' );
-
-                /**
                  * Applying the main css styles
                  */
-                // this._modalDivStyle.position = 'absolute';
+                // this._modalDiv.style.position = 'absolute';
                 this._modalShadow.appendChild( this._modalDiv);
                 document.body.appendChild( this._modalShadow );
             } else {
                 this._modalDiv         = this._element;
-                this._modalDivStyle    = this._modalDiv.style;
                 this._modalShadow      = this._modalDiv.parentNode;
-                this._modalShadowStyle = this._modalShadow.style;
 
                 this._contentContainer = Selector.select(".modal-body", this._modalDiv)[0];
                 if( !this._contentContainer){
@@ -19597,35 +19793,17 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
          * @private
          */
         _reposition: function(){
-            this._modalDivStyle.marginTop = (-InkElement.elementHeight(this._modalDiv)/2) + 'px';
-            this._modalDivStyle.marginLeft = (-InkElement.elementWidth(this._modalDiv)/2) + 'px';
+            this._modalDiv.style.marginTop = (-InkElement.elementHeight(this._modalDiv)/2) + 'px';
+            this._modalDiv.style.marginLeft = (-InkElement.elementWidth(this._modalDiv)/2) + 'px';
         },
 
         /**
-         * Responsible for resizing the modal
+         * Responsible for resizing the modal when the window's size changes.
          * 
          * @method _onResize
-         * @param {Boolean|Event} runNow Its executed in the begining to resize/reposition accordingly to the viewport. But usually it's an event object.
          * @private
          */
-        _onResize: function( runNow ){
-            if( typeof runNow === 'boolean' ){
-                this._timeoutResizeFunction.call(this);
-            } else if( !this._resizeTimeout && (runNow && typeof runNow === 'object') ){
-                this._resizeTimeout = setTimeout(Ink.bind(this._timeoutResizeFunction, this),250);
-            }
-        },
-
-        /**
-         * Timeout Resize Function
-         * 
-         * @method _timeoutResizeFunction
-         * @private
-         */
-        _timeoutResizeFunction: function(){
-            /**
-             * Getting the current viewport size
-             */
+        _onResize: function( ){
             var isPercentage = {
                 width: ('' + this._options.width).indexOf('%') !== -1,
                 height: ('' + this._options.height).indexOf('%') !== -1
@@ -19640,28 +19818,29 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                 if (isPercentage[dimension]) { return; }
 
                 if (currentViewport[dimension] > this.originalStatus[dimension]) {
-                    this._modalDivStyle[dimension] = this._modalDivStyle[maxName(dimension)];
+                    this._modalDiv.style[dimension] = this._modalDiv.style[maxName(dimension)];
                 } else {
-                    this._modalDivStyle[dimension] = Math.round(currentViewport[dimension] * 0.9) + 'px';
+                    this._modalDiv.style[dimension] = Math.round(currentViewport[dimension] * 0.9) + 'px';
                 }
             }, this));
 
             this._resizeContainer();
             this._reposition();
-            this._resizeTimeout = undefined;
         },
 
         /**
          * Handle clicks on the shade element.
          * 
          * @method _onShadeClick
-         * @param {Event} ev
+         * @param {Event} ev DOM click event
          * @private
          */
         _onShadeClick: function(ev) {
             var tgtEl = Event.element(ev);
 
-            if (Css.hasClassName(tgtEl, 'ink-close') || Css.hasClassName(tgtEl, 'ink-dismiss') || 
+            if (tgtEl === this._modalShadow /* TODO rename to this._modalShade */) {
+                this.dismiss();
+            } else if (Css.hasClassName(tgtEl, 'ink-close') || Css.hasClassName(tgtEl, 'ink-dismiss') || 
                 InkElement.findUpwardsBySelector(tgtEl, '.ink-close,.ink-dismiss') ||
                 (
                     this._options.closeOnClick &&
@@ -19679,7 +19858,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                 this.dismiss();
 
                 // Only stop the event if this dismisses this modal
-                if (this._wasDismissed) {
+                if (!this._isOpen) {
                     Event.stop(ev);
                 }
             }
@@ -19693,11 +19872,11 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
          * @private
          */
         _onKeyDown: function(ev) {
-            if (ev.keyCode !== 27 || this._wasDismissed) { return; }
+            if (ev.keyCode !== 27 || !this._isOpen) { return; }
             if (this._options.closeOnEscape &&
                     openModals[openModals.length - 1] === this) {
                 this.dismiss();
-                if (this._wasDismissed) {
+                if (!this._isOpen) {
                     Event.stop(ev);
                 }
             }
@@ -19740,21 +19919,25 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
          * to open the modal when you want to.
          * @method open 
          * @param {Event} [event] (internal) In case its fired by the internal trigger.
+         * @return {void}
+         * @public
          */
         open: function(event) {
+            /* jshint -W030 */
+
+            if (this.isOpen()) { return false; }
 
             if( event ){ Event.stop(event); }
 
             var elem = (document.compatMode === "CSS1Compat") ?  document.documentElement : document.body;
 
-            this._resizeTimeout    = null;
-
             Css.addClassName( this._modalShadow,'ink-shade' );
-            this._modalShadowStyle.display = this._modalDivStyle.display = 'block';
-            setTimeout(Ink.bind(function() {
-                Css.addClassName( this._modalShadow, 'visible' );
-                Css.addClassName( this._modalDiv, 'visible' );
-            }, this), 100);
+            this._modalShadow.style.display = this._modalDiv.style.display = 'block';
+
+            this._modalShadow.offsetHeight;  // Cause a reflow
+
+            Css.addClassName( this._modalShadow, 'visible' );
+            Css.addClassName( this._modalDiv, 'visible' );
 
             /**
              * Fallback to the old one
@@ -19780,17 +19963,17 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
 
             InkArray.forEach(['width', 'height'], Ink.bind(function (dimension) {
                 if (this._options[dimension] !== undefined) {
-                    this._modalDivStyle[dimension] = this._options[dimension];
+                    this._modalDiv.style[dimension] = this._options[dimension];
                     if (!isPercentage[dimension]) {
-                        this._modalDivStyle[maxName(dimension)] =
+                        this._modalDiv.style[maxName(dimension)] =
                             InkElement['element' + upName(dimension)](this._modalDiv) + 'px';
                     }
                 } else {
-                    this._modalDivStyle[maxName(dimension)] = InkElement['element' + upName(dimension)](this._modalDiv) + 'px';
+                    this._modalDiv.style[maxName(dimension)] = InkElement['element' + upName(dimension)](this._modalDiv) + 'px';
                 }
 
-                if (isPercentage[dimension] && parseInt(elem['client' + maxName(dimension)], 10) <= parseInt(this._modalDivStyle[dimension], 10) ) {
-                    this._modalDivStyle[dimension] = Math.round(parseInt(elem['client' + maxName(dimension)], 10) * 0.9) + 'px';
+                if (isPercentage[dimension] && parseInt(elem['client' + maxName(dimension)], 10) <= parseInt(this._modalDiv.style[dimension], 10) ) {
+                    this._modalDiv.style[dimension] = Math.round(parseInt(elem['client' + maxName(dimension)], 10) * 0.9) + 'px';
                 }
             }, this));
 
@@ -19822,36 +20005,38 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                 Event.observe(document, 'keydown', this._handlers.keyDown);
             }
 
-            this._wasDismissed = false;
+            this._isOpen = true;
             openModals.push(this);
 
             Css.addClassName(document.documentElement, 'ink-modal-open');
         },
 
         /**
-         * Returns whether the modal is currently open
+         * Returns whether the modal is currently open.
          * @method isOpen
+         * @return {Boolean} Whether the modal is open right now.
          * @public
          **/
         isOpen: function () {
-            return !this._wasDismissed;
+            return this._isOpen;
         },
 
         /**
-         * Closes the modal
+         * Closes the modal.
          * 
          * @method dismiss
+         * @return {void}
          * @public
          */
         dismiss: function() {
-            if (this._wasDismissed) { /* Already dismissed. WTF IE. */ return; }
+            if (!this._isOpen) { /* Already dismissed. WTF IE. */ return; }
 
             if (this._options.onDismiss) {
                 var ret = this._options.onDismiss(this);
                 if (ret === false) { return; }
             }
 
-            this._wasDismissed = true;
+            this._isOpen = false;
 
             if( this._options.responsive ){
                 Event.stopObserving(window, 'resize', this._handlers.resize);
@@ -19867,7 +20052,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                 Css.removeClassName( this._modalShadow, 'visible' );
 
                 this._waitForFade(this._modalShadow, Ink.bind(function () {
-                    this._modalShadowStyle.display = 'none';
+                    this._modalShadow.style.display = 'none';
                 }, this));
             }
 
@@ -19889,25 +20074,20 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
         _waitForFade: function (elem, callback) {
             if (!opacitySupported) { return callback(); }
 
-            var transitionEndEventNames = [
-                'transitionEnd', 'oTransitionEnd', 'webkitTransitionEnd'];
-            var classicName;
-            var evName;
-            for (var i = 0, len = transitionEndEventNames.length; i < len; i++) {
-                evName = transitionEndEventNames[i];
-                classicName = 'on' + evName.toLowerCase();
-                if (classicName in elem) {
-                    Event.observeOnce(elem, evName, callback);
-                    return;
-                }
+            if ('ontransitionend' in elem) {
+                return Event.observeOnce(elem, 'transitionEnd', callback);
             }
+
+            var fadeChecks = 5;
             var fadeChecker = function () {
-                if( +Css.getStyle(elem, 'opacity') > 0 ){
+                if( +Css.getStyle(elem, 'opacity') > 0 && fadeChecks > 0) {
+                    fadeChecks--;
                     setTimeout(fadeChecker, 250);
                 } else {
                     callback();
                 }
             };
+
             setTimeout(fadeChecker, 500);
         },
 
@@ -19915,6 +20095,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
          * Removes the modal from the DOM
          * 
          * @method destroy
+         * @return {void}
          * @public
          */
         destroy: function() {
@@ -19925,7 +20106,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
          * Returns the content DOM element
          * 
          * @method getContentElement
-         * @return {DOMElement} Modal main cointainer.
+         * @return {Element} Modal main cointainer.
          * @public
          */
         getContentElement: function() {
@@ -19936,17 +20117,18 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
          * Replaces the content markup
          * 
          * @method setContentMarkup
-         * @param {String} contentMarkup
+         * @param {String} contentMarkup Markup to be placed inside the modal.
+         * @return {void}
          * @public
          */
         setContentMarkup: function(contentMarkup) {
             if( !this._markupMode ){
                 this._modalDiv.innerHTML = [contentMarkup].join('');
-                this._contentContainer = Selector.select(".modal-body",this._modalDiv);
+                this._contentContainer = Selector.select(".modal-body", this._modalDiv);
                 if( !this._contentContainer.length ){
                     // throw 'Missing div with class "modal-body"';
-                    var tempHeader = Selector.select(".modal-header",this._modalDiv);
-                    var tempFooter = Selector.select(".modal-footer",this._modalDiv);
+                    var tempHeader = Selector.select(".modal-header", this._modalDiv);
+                    var tempFooter = Selector.select(".modal-footer", this._modalDiv);
 
                     InkArray.each(tempHeader, InkElement.remove);
                     InkArray.each(tempFooter, InkElement.remove);
@@ -19968,7 +20150,6 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             this._contentElement = this._modalDiv;
             this._resizeContainer();
         }
-
     };
 
     Common.createUIComponent(Modal, { elementIsOptional: true });
@@ -19989,14 +20170,17 @@ Ink.createModule('Ink.UI.Pagination', '1',
     'use strict';
 
     /**
-     * Function to create the pagination anchors
+     * Function to create the pagination links
      *
      * @method genAel
      * @private
-     * @param  {String} inner HTML to be placed inside the anchor.
-     * @return {DOMElement}  Anchor created
+     * @param  {String} innerHTML HTML to be placed inside the anchor.
+     * @param  {String} index The page's index, for the data-index attribute. Omit this for the "next", "prev", etc. buttons.
+     * @param  {Object} [options] Options object, containing:
+     * @param  {Boolean} [options.wrapText] Whether to wrap text in a `<span>`
+     * @return {Element} The created link element.
      */
-    var genAEl = function(inner, index, options) {
+    var genAEl = function(innerHTML, index, options) {
         var aEl = document.createElement('a');
         aEl.setAttribute('href', '#');
         if (typeof index === 'number') {
@@ -20005,9 +20189,9 @@ Ink.createModule('Ink.UI.Pagination', '1',
         if(options && options.wrapText) {
             var spanEl = document.createElement('span');
             aEl.appendChild(spanEl);
-            spanEl.innerHTML = inner;
+            spanEl.innerHTML = innerHTML;
         } else {
-            aEl.innerHTML = inner;
+            aEl.innerHTML = innerHTML;
         }
         return aEl;
     };
@@ -20016,7 +20200,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
      * @class Ink.UI.Pagination
      * @constructor
      * @version 1
-     * @param {String|DOMElement}   selector                    Selector or element
+     * @param {String|Element}      selector                    Selector or element
      * @param {Object}              options                     Options
      * @param {Number}              [options.size]              Number of pages.
      * @param {Number}              [options.totalItemCount]    Total numeber of items to display
@@ -20044,6 +20228,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
      * @param {String}              [options.nextClass]         CSS Class used in the next element
      * @param {String}              [options.nextPageClass]     CSS Class used in the next page element
      * @param {Function}            [options.numberFormatter]   Number formatter function. Receives a 0-indexed page number, and the page count. Returns the text for the numbered page button.
+     * @param {Boolean}             [options.autoWrap=false]    Whether to navigate to first page when clicking next in last page or vice-versa.
      *
      * @sample Ink_UI_Pagination_1.html
      */
@@ -20083,7 +20268,8 @@ Ink.createModule('Ink.UI.Pagination', '1',
         firstClass:        ['String', 'first'],
         lastClass:         ['String', 'last'],
 
-        numberFormatter: ['Function', function(i) { return i + 1; }]
+        numberFormatter: ['Function', function(i) { return i + 1; }],
+        autoWrap:          ['Boolean', false]
     };
 
     Pagination.prototype = {
@@ -20214,10 +20400,10 @@ Ink.createModule('Ink.UI.Pagination', '1',
             }
 
             // update prev and next
-            if (this._prevEl) {
+            if (this._prevEl && !this._options.autoWrap) {
                 Css.setClassName(this._prevEl, this._options.disabledClass, !this.hasPrevious());
             }
-            if (this._nextEl) {
+            if (this._nextEl && !this._options.autoWrap) {
                 Css.setClassName(this._nextEl, this._options.disabledClass, !this.hasNext());
             }
         },
@@ -20226,7 +20412,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
          * Returns the top element for the gallery DOM representation
          *
          * @method _generateMarkup
-         * @param {DOMElement} el
+         * @param {Element} el
          * @private
          */
         _generateMarkup: function(el) {
@@ -20324,10 +20510,12 @@ Ink.createModule('Ink.UI.Pagination', '1',
          * Allows you to subscribe to the onChange event
          *
          * @method setOnChange
-         * @param cb {Function} Callback called with `(thisPaginator, newPageNumber)`.
+         * @param {Function} onChange Callback called with `(thisPaginator, newPageNumber)`.
+         * @return {void}
+         * @public
          */
         setOnChange: function (onChange) {
-            if (onChange !== undefined && typeof onChange !== 'function') {
+            if (onChange && typeof onChange !== 'function') {
                 throw new TypeError('onChange option must be a function!');
             }
             this._options.onChange = onChange;
@@ -20338,10 +20526,11 @@ Ink.createModule('Ink.UI.Pagination', '1',
          **************/
 
         /**
-         * Sets the number of pages
+         * Sets the number of pages to `sz`
          *
          * @method setSize
          * @param {Number} sz number of pages
+         * @return {void}
          * @public
          */
         setSize: function(sz) {
@@ -20355,11 +20544,15 @@ Ink.createModule('Ink.UI.Pagination', '1',
         },
 
         /**
-         * Sets the number of pages, then call setSize().
+         * An alternative to setSize, to define the number of pages in the Paginator.
          *
-         * @param setSizeInItems
+         * If you don't know how many pages you want, but know the amount of items you have and how many of them you want on each page, use this.
+         *
+         * @method setSizeInItems
          * @param {Number} totalItems       Total number of items
          * @param {Number} itemsPerPage     Items per page
+         * @return {void}
+         * @public
          */
         setSizeInItems: function (totalItems, itemsPerPage) {
             var pageNumber = Math.ceil(totalItems / itemsPerPage);
@@ -20371,7 +20564,8 @@ Ink.createModule('Ink.UI.Pagination', '1',
          *
          * @method setCurrent
          * @param {Number} nr           Sets the current page to given number.
-         * @param {Boolean} isRelative  Flag to change the position from absolute to relative.
+         * @param {Boolean} [isRelative=false] If you set this to `true`, the function will perform a relative change. (example: setCurrent(1) will move to the next page, while setCurrent(-1) will move to the previous page)
+         * @return {void}
          * @public
          */
         setCurrent: function(nr, isRelative) {
@@ -20384,11 +20578,11 @@ Ink.createModule('Ink.UI.Pagination', '1',
             }
 
             if (nr > this._size - 1) {
-                nr = this._size - 1;
+                nr = this._options.autoWrap ? 0 : this._size - 1;
             }
 
             if (nr < 0) {
-                nr = 0;
+                nr = this._options.autoWrap ? this._size - 1 : 0;
             }
 
             this._current = nr;
@@ -20523,7 +20717,7 @@ Ink.createModule('Ink.UI.ProgressBar', '1', ['Ink.UI.Common_1', 'Ink.Dom.Selecto
      * @class Ink.UI.ProgressBar
      * @constructor
      * @version 1
-     * @param {String|DOMElement}   selector                Element or selector
+     * @param {String|Element}      selector                Element or selector
      * @param {Object}              [options]               Options object
      * @param {Number}              [options.startValue]    Percentage of the bar that is filled. Ranges between 0 and 100. Default: 0
      * @param {Function}            [options.onStart]       Callback called when a change of value is started
@@ -20566,6 +20760,7 @@ Ink.createModule('Ink.UI.ProgressBar', '1', ['Ink.UI.Common_1', 'Ink.Dom.Selecto
          * 
          * @method setValue
          * @param {Number} newValue Numeric value, between 0 and 100, that represents the percentage of the bar.
+         * @return {void}
          * @public
          */
         setValue: function( newValue ){
@@ -20670,13 +20865,17 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.UI.Common_1', 'Ink.Dom.Even
          *
          * @method scroll
          * @param  {Number} scrollTop Y coordinate value to stop at
-         * @private
+         * @param  {Object} options Option hash containing:
+         * @param  {Number} [options.margin] Set this to non-zero to leave a margin between the top of the page and your element. Useful if you have a top bar with `position: fixed`.
+         * @param  {Number} [options.speed] Inverse scrolling speed. Smaller is faster.
+         * @return {void}
+         * @public
          * @static
          */
         scroll: function(scrollTop, options) {
             var a = Math.round(InkElement.scrollHeight());
 
-            var endPos = Math.round(scrollTop - options.margin);
+            var endPos = Math.round(scrollTop - (options.margin || 0));
 
             if (endPos > a) {
                 a += Math.ceil((endPos - a) / options.speed);
@@ -20709,7 +20908,8 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.UI.Common_1', 'Ink.Dom.Even
          * - `data-change-hash="true"` - Change the URL hash (location.hash) when done scrolling.
          *
          * @method init
-         * @param [selector='a.scrollableLink,a.ink-smooth-scroll'] {String} Selector string for finding links with smooth scrolling enabled.
+         * @param {String} [selector='a.scrollableLink,a.ink-smooth-scroll'] Selector string for finding links with smooth scrolling enabled.
+         * @return {void}
          * @static
          * @sample Ink_UI_SmoothScroller_1.html
          */
@@ -20724,6 +20924,8 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.UI.Common_1', 'Ink.Dom.Even
          * Handles clicks on link elements
          *
          * @method onClick
+         * @param {Event} event DOM click event.
+         * @return {void}
          * @private
          * @static
          */
@@ -20775,6 +20977,7 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.UI.Common_1', 'Ink.Dom.Even
          *
          * @method onDone
          * @param {Object} options Options object from the element.
+         * @return {void}
          * @private
          */
         onDone: function (options) {
@@ -20808,7 +21011,7 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Css_1',
      * @class Ink.UI.SortableList
      * @constructor
      * @version 1
-     * @param {String|DOMElement}   selector
+     * @param {String|Element}      selector                            The list you wish to be sortable.
      * @param {String}              [options.placeholderClass]          CSS class added to the "ghost" element being dragged around. Defaults to 'placeholder'.
      * @param {String}              [options.draggedClass]              CSS class added to the original element being dragged around. Defaults to 'hide-all'.
      * @param {String}              [options.draggingClass]             CSS class added to the html element when the user is dragging. Defaults to 'dragging'.
@@ -20817,7 +21020,7 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Css_1',
      * @param {String}              [options.moveSelector]              CSS selector to validate a node move. If present, you can only move nodes inside this selector.
      * @param {Boolean}             [options.swap]                      Flag to swap dragged element and target element instead of reordering it.
      * @param {Boolean}             [options.cancelMouseOut]            Flag to cancel draggin if mouse leaves the container element.
-     * @param {Function}            [options.onDrop]                    Callback to be executed after dropping an element. Receives { droppedElement: DOMElement } as an argument.
+     * @param {Function}            [options.onDrop]                    Callback to be executed after dropping an element. Receives { droppedElement: Element } as an argument.
      *
      * @sample Ink_UI_SortableList_1.html
      */
@@ -21158,9 +21361,9 @@ Ink.createModule('Ink.UI.Spy', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Do
      * @class Ink.UI.Spy
      * @constructor
      * @version 1
-     * @param {String|DOMElement} selector
-     * @param {Object} [options] Options
-     * @param {DOMElement|String}     options.target          Target menu where the spy will highlight the right option.
+     * @param {String|Element}    selector              The spied element
+     * @param {Object}            [options] Options
+     * @param {Element|String}    options.target    Target menu where the spy will highlight the right option.
      *
      * @sample Ink_UI_Spy_1.html
      */
@@ -21255,7 +21458,7 @@ Stacker.prototype = {
      * @class Ink.UI.Stacker_1
      *
      * @constructor
-     * @param {DOMElement|String}   [container]                                     Element which contains the stacks (identified by the options.column selector)
+     * @param {Element|String}      [container]                                     Element which contains the stacks (identified by the options.column selector)
      * @param {Object}              [options]                                       Options object.
      * @param {String}              [options.column]                                Selector for the the columns inside the container element. Defaults to '.stacker-column'.
      * @param {String}              [options.item]                                  Selector for the items in your stack. Defaults to '.stacker-item'.
@@ -21305,8 +21508,11 @@ Stacker.prototype = {
     /**
      * Adds an item to the end of your stacks.
      * Call `reloadItems()` when you are done adding items.
+     *
      * @method addItem
-     * @param {DOMElement} item     Element
+     * @param {Element} item     Element
+     * @return {void}
+     * @public
      **/
     addItem: function(item) {
         this._aList.push(item);
@@ -21317,6 +21523,8 @@ Stacker.prototype = {
      * Call this method after adding items or changing their dimensions. This method is automatically called when the window resizes.
      *
      * @method reloadItems
+     * @return {void}
+     * @public
      **/
     reloadItems: function() {
         this._applyLayoutChange();
@@ -21463,7 +21671,7 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
      * @class Ink.UI.Sticky
      * @constructor
      * @version 1
-     * @param {String|DOMElement}   selector                    Element or selector
+     * @param {String|Element}      selector                    Element or selector
      * @param {Object}              [options] Options           Options object.
      * @param {Number}              [options.offsetBottom]      Number of pixels of distance from the bottomElement. Defaults to 0.
      * @param {Number}              [options.offsetTop]         Number of pixels of distance from the topElement. Defaults to 0.
@@ -21535,6 +21743,7 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
          * Returns whether the sticky is disabled in the current view
          *
          * @method isDisabledInLayout
+         * @return {Boolean} Whether Sticky is disabled in this layout.
          * @private
          */
         _isDisabledInLayout: function () {
@@ -21762,7 +21971,7 @@ Ink.createModule('Ink.UI.Swipe', '1', ['Ink.Dom.Event_1', 'Ink.Dom.Element_1', '
      *
      * @class Ink.UI.Swipe
      * @constructor
-     * @param {String|DOMElement}   el                      Element or Selector
+     * @param {String|Element}      el                      Element or Selector
      * @param {Object}              options                 Options Object
      * @param {Function}            [options.onEnd]         Callback function for the `touchend` event. Gets all the gesture information, and is filtered by min/max Dist and Duration options (see below)
      * @param {Function}            [options.onStart]       Callback function for `touchstart` event.
@@ -22000,7 +22209,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
      * @class Ink.UI.Table
      * @constructor
      * @version 1
-     * @param {String|DOMElement}   selector
+     * @param {String|Element}      selector                                Your `<table>` element.
      * @param {Object}              [options] Options
      * @param {Number}              [options.pageSize]                      Number of rows per page. Omit to avoid paginating.
      * @param {String}              [options.endpoint]                      Endpoint to get the records via AJAX. Omit if you don't want to do AJAX
@@ -22450,14 +22659,16 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
          * Useful to change the endpoint in runtime.
          *
          * @method setEndpoint
-         * @public
          * @param {String} endpoint New endpoint
+         * @param {Number} currentPage If you pass this, setCurrent will also be called.
+         * @return {void}
+         * @public
          */
         setEndpoint: function( endpoint, currentPage ){
             if( !this._markupMode ){
                 this._options.endpoint = endpoint;
                 if (this._pagination) {
-                    this._pagination.setCurrent((!!currentPage) ? parseInt(currentPage,10) : 0 );
+                    this._pagination.setCurrent(currentPage ? parseInt(currentPage,10) : 0 );
                 }
             }
         },
@@ -22588,7 +22799,11 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
          * 
          * Will call options.getDataFromEndpoint( Uri, callback ) if available.
          *
-         * @param  endpointUri Endpoint to get data from, after processing.
+         * When done, calls _onAjaxSuccess
+         *
+         * @method _getDataViaAjax
+         * @param {String} endpointUri Endpoint to get data from, after processing.
+         * @private
          */
         _getDataViaAjax: function( endpointUri ){
             var success = Ink.bind(function( JSONData ){
@@ -22668,7 +22883,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
      * @class Ink.UI.Tabs
      * @constructor
      * @version 1
-     * @param {String|DOMElement}   selector
+     * @param {String|Element}      selector                        Your container element. You can pass in a pure DOM element or a selector.
      * @param {Object}              [options]                       Options
      * @param {Boolean}             [options.preventUrlChange]      Flag that determines if follows the link on click or stops the event
      * @param {String}              [options.active]                ID of the tab to activate on creation
@@ -22783,7 +22998,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          * Changes to the desired tab
          * 
          * @method _changeTab
-         * @param {DOMElement} link             anchor linking to the content container
+         * @param {Element}    link             anchor linking to the content container
          * @param {boolean}    runCallbacks     defines if the callbacks should be run or not
          * @private
          */
@@ -22967,7 +23182,8 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          * Pass a selector/element identifying what tab you want
          * 
          * @method changeTab
-         * @param {String|DOMElement} selector      Selector of the desired tab or the link that links to it
+         * @param {String|Element} selector      Selector of the desired tab or the link that links to it
+         * @return {void}
          * @public
          */
         changeTab: function(selector) {
@@ -22984,7 +23200,8 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          * Disables the desired tag
          * 
          * @method disable
-         * @param {String|DOMElement} selector      the id of the desired tab or the link that links to it
+         * @param {String|Element} selector      the id of the desired tab or the link that links to it
+         * @return {void}
          * @public
          */
         disable: function(selector){
@@ -22995,7 +23212,8 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          * Enables the desired tag
          * 
          * @method enable
-         * @param {String|DOMElement} selector      The id of the desired tab or the link that links to it
+         * @param {String|Element} selector      The id of the desired tab or the link that links to it
+         * @return {void}
          * @public
          */
         enable: function(selector){
@@ -23021,7 +23239,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          * Gets the currently active Menu link (the links which the user clicks on to change tabs)
          * 
          * @method activeMenuLink
-         * @return {DOMElement|null} Active menu link, or `null` if there is none.
+         * @return {Element|null} Active menu link, or `null` if there is none.
          * @public
          */
         activeMenuLink: function(){
@@ -23034,7 +23252,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          * (Each section contains content for a tab, and must have an `id` attribute)
          * 
          * @method activeContentTab
-         * @return {DOMElement|null} Active section, or `null` if there is none.
+         * @return {Element|null} Active section, or `null` if there is none.
          * @public
          */
         activeSection: function(){
@@ -23082,7 +23300,7 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
      * @class Ink.UI.TagField
      * @version 1
      * @constructor
-     * @param {String|DOMElement}   element                         Selector or DOM Input Element.
+     * @param {String|Element}      element                         Selector or DOM Input Element.
      * @param {Object}              [options]                       Options object
      * @param {String|Array}        [options.tags]                  Initial tags in the input
      * @param {Boolean}             [options.allowRepeated]         Flag to allow user to input several tags. Defaults to true.
@@ -23255,6 +23473,7 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
         /**
          * When the user presses backspace twice on the empty input, we delete the last tag on the field.
          * @method onBackspaceKeyDown
+         * @return {void}
          * @private
          */
         _onBackspaceKeyDown: function () {
@@ -23340,6 +23559,7 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
     'use strict';
 
     /**
+     * *Important note: Do NOT use this as a dropdown! Use Ink.UI.Dropdown for that.*
      *
      * You need two elements to use Toggle: the `trigger` element, and the `target` element (or elements). The default behaviour is to toggle the `target`(s) when you click the `trigger`.
      *
@@ -23348,16 +23568,17 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
      * When you initialize the Toggle, it will check if the targets are visible to figure out what the initial state is. You can force the toggle to consider itself turned "on" or "off" by setting the `initialState` option to `true` or `false`, respectively.
      *
      * You can get the current state of the Toggle by calling `getState`, or by checking if your `trigger` element has the "active" class.
-     * The state can be changed through JavaScript. Just call  `setState(true)` 
+     * The state can be changed through JavaScript. Just call  `setState(true)`
      * to turn the Toggle on (or `setState(false)` to turn it off).
      *
      * @class Ink.UI.Toggle
      * @constructor
      * @version 1
-     * @param {String|DOMElement} selector  Trigger element. By clicking this, the target (or targets) are triggered.
+     * @param {String|Element} selector  Trigger element. By clicking this, the target (or targets) are triggered.
      * @param {Object} [options] Options object, containing:
      *
      * @param {String}              options.target                  CSS Selector that specifies the elements that this component will toggle
+     * @param {Boolean}             [options.isAccordion]           Set this to true to signal that this toggle is part of an accordion with other toggles. The toggles of an accordion must be common descendants of an element with the class "accordion". If they're not, Ink will warn you about this on the console.
      * @param {String}              [options.classNameOn]           CSS class to toggle when on. Defaults to 'show-all'.
      * @param {String}              [options.classNameOff]          CSS class to toggle when off. Defaults to 'hide-all'.
      * @param {String}              [options.triggerEvent]          Event that will trigger the toggling. Defaults to 'click'.
@@ -23392,7 +23613,7 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
 
         /**
          * Init function called by the constructor
-         * 
+         *
          * @method _init
          * @private
          */
@@ -23404,8 +23625,8 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
             // Boolean option handling
             this._options.closeOnClick = this._options.closeOnClick;
             // Actually a throolean
-            if (this._options.initialState === null){
-                this._options.initialState = Css.getStyle(this._targets[0], 'display') !== 'none';
+            if (this._options.initialState === null) {
+                this._options.initialState = Css.hasClassName(this._targets[0], this._options.classNameOn);
             }
 
             if (this._options.classNameOn !== 'show-all' || this._options.classNameOff !== 'hide-all') {
@@ -23415,9 +23636,15 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
                 }
             }
 
-            this._accordion = ( Css.hasClassName(this._element.parentNode,'accordion') || Css.hasClassName(this._targets[0].parentNode,'accordion') );
+            if (this._options.isAccordion) {
+                this._accordionContainer = InkElement.findUpwardsByClass(
+                    this._element, 'accordion');
+                if (!this._accordionContainer) {
+                    Ink.warn('Ink.UI.Toggle_1: This toggle has the isToggle option set to `true`, but is not a descendant of an element with the class "accordion"! Because of this, it won\'t be able to find other toggles in the same accordion and cooperate with them.');
+                }
+            }
 
-            this._firstTime = true;
+            this._constructing = true;
 
             this._bindEvents();
 
@@ -23436,6 +23663,8 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
             }
 
             this._element.setAttribute('data-is-toggle-trigger', 'true');
+
+            this._constructing = false;
         },
 
         /**
@@ -23469,7 +23698,7 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
          * Event handler. It's responsible for handling the `triggerEvent` as defined in the options.
          *
          * This will trigger the toggle.
-         * 
+         *
          * @method _onTriggerEvent
          * @param {Event} event
          * @private
@@ -23484,10 +23713,6 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
 
             if (!this._options.canToggleAnAncestor && isAncestorOfClickedElement) {
                 return;
-            }
-
-            if (this._accordion) {
-                this._updateAccordion();
             }
 
             var has = this.getState();
@@ -23505,26 +23730,21 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
          * @method _updateAccordion
          **/
         _updateAccordion: function () {
-            var elms, accordionElement;
-            if( Css.hasClassName(this._targets[0].parentNode,'accordion') ){
-                accordionElement = this._targets[0].parentNode;
-            } else {
-                accordionElement = this._targets[0].parentNode.parentNode;
-            }
-            elms = Selector.select('.toggle, .ink-toggle',accordionElement);
-            for(var i=0; i<elms.length; i+=1 ){
-                var dataset = InkElement.data( elms[i] ),
-                    targetElm = Selector.select( dataset.target,accordionElement );
+            if (!this._accordionContainer) { return; }
+            if (this.getState() === false) { return; }
 
-                if( (targetElm.length > 0) && (targetElm[0] !== this._targets[0]) ){
-                    targetElm[0].style.display = 'none';
+            var elms = Selector.select('[data-is-toggle-trigger]', this._accordionContainer);
+            for (var i = 0; i < elms.length; i++) {
+                var otherToggle = Toggle.getInstance(elms[i]);
+                if (otherToggle && (otherToggle !== this) && otherToggle.getState() === true) {
+                    otherToggle.setState(false, true);
                 }
             }
         },
 
         /**
          * Click handler. Will handle clicks outside the toggle component.
-         * 
+         *
          * @method _onOutsideClick
          * @param {Event} event
          * @private
@@ -23533,7 +23753,7 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
             var tgtEl = InkEvent.element(event),
                 shades;
 
-            if (InkElement.findUpwardsBySelector(tgtEl, '[data-is-toggle-trigger="true"]')) return;
+            if (InkElement.findUpwardsBySelector(tgtEl, '[data-is-toggle-trigger="true"]')) { return; }
 
             var ancestorOfTargets = InkArray.some(this._targets, function (target) {
                 return InkElement.isAncestorOf(target, tgtEl) || target === tgtEl;
@@ -23558,19 +23778,35 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
          * Sets the state of the toggle. (on/off)
          *
          * @method setState
-         * @param newState {Boolean} New state (on/off)
+         * @param {Boolean} on New state (on/off)
+         * @param {Boolean} callHandler Whether to call the onChangeState handler.
+         * @return {void}
          */
         setState: function (on, callHandler) {
-            if (on === this.getState()) { return; }
+            if (on === this.getState() && !this._constructing) { return; }
+
+            var i, len;
+            if (this._group && on) {
+                for (i = 0, len = this._group.length; i < len; i++) {
+                    if (this._group[i].getState() === true) {
+                        this._group[i].setState(false, true);
+                    }
+                }
+            }
+
             if (callHandler && typeof this._options.onChangeState === 'function') {
                 var ret = this._options.onChangeState(on);
                 if (ret === false) { return false; } //  Canceled by the event handler
             }
-            for (var i = 0, len = this._targets.length; i < len; i++) {
+            for (i = 0, len = this._targets.length; i < len; i++) {
                 Css.addRemoveClassName(this._targets[i], this._options.classNameOn, on);
                 Css.addRemoveClassName(this._targets[i], this._options.classNameOff, !on);
             }
             Css.addRemoveClassName(this._element, 'active', on);
+
+            if (this._accordionContainer) {
+                this._updateAccordion();
+            }
         },
 
         /**
@@ -23610,7 +23846,7 @@ Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Common_1', 'Ink.Dom.Event_1', '
      * @class Ink.UI.Tooltip
      * @constructor
      *
-     * @param {DOMElement|String}   target                  Target element or selector of elements, to display the tooltips on.
+     * @param {Element|String}      target                  Target element or selector of elements, to display the tooltips on.
      * @param {Object}              [options]               Options object
      * @param {String}              [options.text]          Text content for the tooltip.
      * @param {String}              [options.html]          HTML for the tooltip. Same as above, but won't escape HTML.
@@ -23621,7 +23857,7 @@ Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Common_1', 'Ink.Dom.Event_1', '
      * @param {Boolean}             [options.forever]       Flag to prevent the tooltip from being erased when the mouse hovers away from the target.
      * @param {Number}              [options.timeout]       Number of seconds the tooltip will stay open. Useful together with options.forever. Defaults to 0.
      * @param {Number}              [options.delay]         Time the tooltip waits until it is displayed. Useful to avoid getting the attention of the user unnecessarily
-     * @param {DOMElement|Selector} [options.template]      Element or selector containing HTML to be cloned into the tooltips. Can be a hidden element, because CSS `display` is set to `block`.
+     * @param {Element|Selector}    [options.template]      Element or selector containing HTML to be cloned into the tooltips. Can be a hidden element, because CSS `display` is set to `block`.
      * @param {String}              [options.templatefield] Selector within the template element to choose where the text is inserted into the tooltip. Useful when a wrapper DIV is required.
      * @param {Number}              [options.left]          Spacing from the target to the tooltip, when `where` is `mousemove` or `mousefix`. Defaults to 10.
      * @param {Number}              [options.top]           Spacing from the target to the tooltip, when `where` is `mousemove` or `mousefix`. Defaults to 10.
@@ -23696,6 +23932,8 @@ Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Common_1', 'Ink.Dom.Event_1', '
          * Destroys the tooltips created by this instance
          *
          * @method destroy
+         * @return {void}
+         * @public
          */
         destroy: function () {
             InkArray.each(this.tooltips, function (tooltip) {
@@ -24066,7 +24304,7 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
      * @class Ink.UI.TreeView
      * @constructor
      * @version 1
-     * @param {String|DOMElement}   selector                    Element or selector.
+     * @param {String|Element}      selector                    Element or selector.
      * @param {String}              [options]                   Options object, containing:
      * @param {String}              [options.node]              Selector for the nodes. Defaults to 'li'.
      * @param {String}              [options.children]          Selector for the children. Defaults to 'ul'.
@@ -24159,14 +24397,15 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
          * Checks if a node is open.
          *
          * @method isOpen
-         * @param {DOMElement} node  The tree node to check
+         * @param {Element} node  The tree node to check
+         * @return {Boolean} Whether the node is open.
          **/
         isOpen: function (node) {
             if (!this._getChild(node)) {
                 throw new Error('not a node!');
             }
 
-            return Element.data(node).open === 'true' ||
+            return node.getAttribute('data-open') === 'true' ||
                 Css.hasClassName(node, this._options.openNodeClass);
         },
 
@@ -24174,7 +24413,8 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
          * Checks if a node is a parent.
          *
          * @method isParent
-         * @param {DOMElement} node     Node to check
+         * @param {Element} node     Node to check
+         * @return {Boolean} Whether `node` is a parent.
          **/
         isParent: function (node) {
             return Css.hasClassName(node, this._options.parentClass) ||
@@ -24216,9 +24456,10 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
         /**
          * Opens one of the tree nodes
          *
-         * Make sure you pass the node's DOMElement
+         * Make sure you pass the node's Element
          * @method open
-         * @param {DOMElement} node     The node you wish to open.
+         * @param {Element} node     The node you wish to open.
+         * @return {void}
          **/
         open: function (node) {
             this._setNodeOpen(node, true);
@@ -24227,9 +24468,10 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
         /**
          * Closes one of the tree nodes
          *
-         * Make sure you pass the node's DOMElement
+         * Make sure you pass the node's Element
          * @method close
-         * @param {DOMElement} node     The node you wish to close.
+         * @param {Element} node     The node you wish to close.
+         * @return {void}
          **/
         close: function (node) {
             this._setNodeOpen(node, false);
@@ -24239,7 +24481,8 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
          * Toggles a node state
          *
          * @method toggle
-         * @param {DOMElement} node     The node to toggle.
+         * @param {Element} node     The node to toggle.
+         * @return {void}
          **/
         toggle: function (node) {
             if (this.isOpen(node)) {
@@ -24249,6 +24492,9 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
             }
         },
 
+        /**
+         * @method _getChild
+         **/
         _getChild: function (node) {
             return Selector.select(this._options.children, node)[0] || null;
         },
@@ -24257,7 +24503,8 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
          * Handles the click event (as specified in the _init function).
          * 
          * @method _onClick
-         * @param {Event} event
+         * @param {Event} ev DOM click event.
+         * @return {void}
          * @private
          */
         _onClick: function(ev){

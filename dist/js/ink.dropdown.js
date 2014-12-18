@@ -33,9 +33,17 @@ Ink.createModule('Ink.UI.Dropdown', '1', ['Ink.UI.Common_1', 'Ink.UI.Toggle_1', 
          * @class Ink.UI.Dropdown
          *
          * @constructor
-         * @param {DOMElement|String}   trigger         Trigger Element
-         * @param {Object}              options         Options Object
-         * @param {DOMElement|String}   options.target Target of the dropdown action.
+         * @param {Element|String}   trigger                Trigger Element
+         * @param {Object}           options                Options Object
+         * @param {Element|String}   options.target         Target of the dropdown action.
+         * @param {Number}          [options.hoverOpen]     The number of milliseconds you need to hover with the mouse before the dropdown opens.
+         * @param {Boolean}         [options.dismissOnInsideClick=false] Whether to dismiss the dropdown when there's a click inside.
+         * @param {Boolean}         [options.dismissOnOutsideClick=true] Whether to dismiss the dropdown when there's a click outside.
+         * @param {Number}          [options.dismissAfter]  When the mouse moves away from the dropdown, wait for `dismissAfter` milliseconds and only then dismiss.
+         * @param {Function}        [options.onInsideClick] Called when there's a click inside the dropdown.
+         * @param {Function}        [options.onOutsideClick] Called when there's a click outside the dropdown.
+         * @param {Function}        [options.onOpen]        Called when the dropdown is opened.
+         * @param {Function}        [options.onDismiss]     Called when the dropdown is dismissed.
          *
          * @sample Ink_UI_Dropdown_1.html
          */
@@ -104,6 +112,8 @@ Ink.createModule('Ink.UI.Dropdown', '1', ['Ink.UI.Common_1', 'Ink.UI.Toggle_1', 
         /**
          * Handle clicks on the dropdown.
          * @method _onInsideClick
+         * @param {Event} event Dom click event.
+         * @return {void}
          * @private
          */
         _onInsideClick: function (event) {
@@ -117,6 +127,8 @@ Ink.createModule('Ink.UI.Dropdown', '1', ['Ink.UI.Common_1', 'Ink.UI.Toggle_1', 
         /**
          * Handle clicks outside the dropdown.
          * @method _onOutsideClick
+         * @param {Event} event Dom click event.
+         * @return {void}
          * @private
          */
         _onOutsideClick: function (event) {
@@ -141,28 +153,34 @@ Ink.createModule('Ink.UI.Dropdown', '1', ['Ink.UI.Common_1', 'Ink.UI.Toggle_1', 
          * Closes the dropdown.
          *
          * @method dismiss
-         * @param [callHandler=false] call onDismiss handler
+         * @param {Boolean} [callHandler=false] Whether to call the onDismiss handler
+         * @return {void}
+         * @public
          */
-        dismiss: function (callHandler, doNotInformToggle) {
-            this._openOrDismiss(false, callHandler, doNotInformToggle);
+        dismiss: function (callHandler/*, _doNotInformToggle*/) {
+            this._openOrDismiss(false, callHandler, arguments[1]);
         },
 
         /**
          * Opens the dropdown
          *
          * @method open
-         * @param [callHandler=false] call onOpen handler
+         * @param {Boolean} [callHandler=false] call onOpen handler
+         * @return {void}
+         * @public
          */
-        open: function (callHandler, _doNotInformToggle) {
-            this._openOrDismiss(true, callHandler, _doNotInformToggle);
+        open: function (callHandler/*, _doNotInformToggle*/) {
+            this._openOrDismiss(true, callHandler, arguments[1]);
         },
 
         /**
          * DRY'ing up open() and dismiss()
          *
          * @method _openOrDismiss
-         * @param [newState=false]
-         * @param [callHandler=false]
+         * @param {Boolean} [newState=false]    The new state of the Dropdown. `true` for open, `false` for dismiss.
+         * @param {Boolean} [callHandler=false] Whether to call the onOpen or onDismiss handler.
+         * @param {Boolean} [_doNotInformToggle=false] Whether to call our toggle's setState method.
+         * @return {void}
          * @private
          */
         _openOrDismiss: function (newState, callHandler, _doNotInformToggle) {
@@ -183,8 +201,8 @@ Ink.createModule('Ink.UI.Dropdown', '1', ['Ink.UI.Common_1', 'Ink.UI.Toggle_1', 
          * call a method given by the user through the options
          *
          * @method _handlerCall
-         * @param handler {String} The handler name in this._options
-         * @param [args*] Arguments to pass to function
+         * @param {String} handler  The handler name in this._options
+         * @param {Mixed} [args...] Arguments to pass to function
          */
         _handlerCall: function (handler/*, ... */) {
             if (this._options[handler]) {

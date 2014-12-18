@@ -30,6 +30,12 @@ Ink.requireModules(['Ink.Dom.Element_1', 'Ink.Dom.Selector_1', 'Ink.Dom.Css_1'],
         testArea.innerHTML = '';
     });
 
+    test('textContent', function () {
+        var a = document.createElement('a');
+        a.innerHTML = 't&amp;sting';
+        equal(InkElement.textContent(a), 't&sting');
+    });
+
     test('{append,prepend}HTML', function () {
         var rootElm = InkElement.create('div');
         rootElm.innerHTML = 'some-text';
@@ -123,20 +129,34 @@ Ink.requireModules(['Ink.Dom.Element_1', 'Ink.Dom.Selector_1', 'Ink.Dom.Css_1'],
     });
 
     test('setHTML with tables', function () {
-        var elm = InkElement.create('table');
-        var tbody = InkElement.create('tbody', { insertBottom: elm });
+        var table = InkElement.create('table');
+        var tbody = InkElement.create('tbody', { insertBottom: table });
         var tr = InkElement.create('tr', { insertBottom: tbody });
         var td = InkElement.create('td', { insertBottom: tr});
 
         InkElement.setHTML(td, '<span>Hello!</span>');
-        ok(td.getElementsByTagName('span'))
+        equal(td.getElementsByTagName('span').length,
+            1,
+            'A span was created in the td');
         InkElement.setHTML(tr, '<td><span>Hello!</span></td>');
-        ok(tr.getElementsByTagName('td')[0].getElementsByTagName('span'))
-        InkElement.setHTML(elm, '<thead>Hello!</thead><tbody></tbody>');
-        ok(elm.getElementsByTagName('thead'))
+        equal(tr.getElementsByTagName('td').length, 1, 'Still one <td>');
+        equal(tr.getElementsByTagName('td')[0].getElementsByTagName('span').length,
+            1,
+            'A span was created')
 
+        InkElement.setHTML(table, '<thead><tr><th>Hello!</th></tr></thead><tbody></tbody>');
+        equal(table.getElementsByTagName('thead').length,
+            1,
+            'There\'s a new THEAD in town');
+
+        equalHTML(table.innerHTML,
+            '<thead><tr><th>Hello!</th></tr></thead><tbody></tbody>',
+            'Creating a tbody removed our existing tbody');
+
+        InkElement.setHTML(tbody, '<tr><td>1</td></tr><tr><td>2</td></tr>');
         equalHTML(tbody.innerHTML,
-            '<tr><td><span>Hello!</span></td></tr>');
+                '<tr><td>1</td></tr><tr><td>2</td></tr>',
+                'We can create several tds!');
     });
 
     test('setHTML and text nodes', function () {
@@ -234,6 +254,19 @@ Ink.requireModules(['Ink.Dom.Element_1', 'Ink.Dom.Selector_1', 'Ink.Dom.Css_1'],
 
         equal(parent.children.length, 1);
         equal(parent.children[0].className, 'elm2');
+    });
+
+    test('parentIndexOf()', function() {
+        var parent = document.createElement('div');
+        parent.innerHTML = '<span>' +
+            [0, 1, 2, 3, 4, 5, 6, 7].join('</span><span>') +
+            '</span>';
+
+        equal(InkElement.parentIndexOf(parent.getElementsByTagName('span')[3]), 3);
+        equal(InkElement.parentIndexOf(parent.getElementsByTagName('span')[0]), 0);
+        equal(InkElement.parentIndexOf(parent.getElementsByTagName('span')[7]), 7);
+
+        equal(InkElement.parentIndexOf(document.createElement('div')), false);
     });
 
     test('outerDimensions', function () {

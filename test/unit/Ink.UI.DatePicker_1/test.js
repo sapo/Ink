@@ -100,6 +100,13 @@ test('_getFirstDayIndex', function () {
     strictEqual(dt._getFirstDayIndex(2014, 2), 5);
 });
 
+test('regression: _getFirstDayIndex of february 2015 should actually be sunday', function () {
+    mkDatePicker({ startWeekDay: 0 });
+    strictEqual(dt._getFirstDayIndex(2015, 1 /* month - 1 */), 0);
+    mkDatePicker({ startWeekDay: 1 });
+    strictEqual(dt._getFirstDayIndex(2015, 1), 6);
+});
+
 test('_getPrevMonth', function () {
     dt.setDate('2000-10-10');
     deepEqual(dt._getPrevMonth(), { _year: 2000, _month: 8, _day: 10 });
@@ -290,7 +297,7 @@ test('set', function () {
 test('show', function () {
     equal(Css.getStyle(dt._containerObject, 'display'), 'none');
     dt.show();
-    equal(Css.getStyle(dt._containerObject, 'display'), 'block');
+    notEqual(Css.getStyle(dt._containerObject, 'display'), 'none');
 });
 
 test('destroy', function () {

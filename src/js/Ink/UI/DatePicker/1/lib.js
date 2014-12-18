@@ -33,18 +33,18 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
      * @constructor
      * @version 1
      *
-     * @param {String|DOMElement}   selector
+     * @param {String|Element}      selector                    Datepicker element
      * @param {Object}              [options]                   Options
      * @param {Boolean}             [options.autoOpen]          Flag to automatically open the datepicker.
      * @param {String}              [options.cleanText]         Text for the clean button. Defaults to 'Clear'.
      * @param {String}              [options.closeText]         Text for the close button. Defaults to 'Close'.
      * @param {String}              [options.cssClass]          CSS class to be applied on the datepicker
-     * @param {String|DOMElement}   [options.pickerField]       (if not using in an input[type="text"]) Element which displays the DatePicker when clicked. Defaults to an "open" link.
+     * @param {String|Element}      [options.pickerField]       (if not using in an input[type="text"]) Element which displays the DatePicker when clicked. Defaults to an "open" link.
      * @param {String}              [options.dateRange]         Enforce limits to year, month and day for the Date, ex: '1990-08-25:2020-11'
      * @param {Boolean}             [options.displayInSelect]   Flag to display the component in a select element.
-     * @param {String|DOMElement}   [options.dayField]          (if using options.displayInSelect) `select` field with days.
-     * @param {String|DOMElement}   [options.monthField]        (if using options.displayInSelect) `select` field with months.
-     * @param {String|DOMElement}   [options.yearField]         (if using options.displayInSelect) `select` field with years.
+     * @param {String|Element}      [options.dayField]          (if using options.displayInSelect) `select` field with days.
+     * @param {String|Element}      [options.monthField]        (if using options.displayInSelect) `select` field with months.
+     * @param {String|Element}      [options.yearField]         (if using options.displayInSelect) `select` field with years.
      * @param {String}              [options.format]            Date format string
      * @param {Object}              [options.month]             Hash of month names. Defaults to portuguese month names. January is 1.
      * @param {String}              [options.nextLinkText]      Text for the previous button. Defaults to '«'.
@@ -70,9 +70,9 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
      *
      * @sample Ink_UI_DatePicker_1.html
      */
-    var DatePicker = function() {
+    function DatePicker() {
         Common.BaseUIComponent.apply(this, arguments);
-    };
+    }
 
     DatePicker._name = 'DatePicker_1';
 
@@ -305,6 +305,8 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * Shows the calendar.
          *
          * @method show
+         * @return {void}
+         * @public
          **/
         show: function () {
             this._updateDate();
@@ -437,17 +439,17 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         },
 
         _listenToContainerObjectEvents: function () {
-            Event.observe(this._containerObject,'mouseover',Ink.bindEvent(function(e){
+            Event.observe(this._containerObject, 'mouseover' ,Ink.bindEvent(function(e){
                 Event.stop( e );
                 this._hoverPicker = true;
             },this));
 
-            Event.observe(this._containerObject,'mouseout',Ink.bindEvent(function(e){
+            Event.observe(this._containerObject, 'mouseout', Ink.bindEvent(function(e){
                 Event.stop( e );
                 this._hoverPicker = false;
             },this));
 
-            Event.observe(this._containerObject,'click',Ink.bindEvent(this._onClick, this));
+            Event.observe(this._containerObject, 'click', Ink.bindEvent(this._onClick, this));
         },
 
         _onClick: function(e){
@@ -976,6 +978,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          *
          * @method setDate
          * @param {Date|String} dateString A Date object, or date string in yyyy-mm-dd format.
+         * @return {void}
          * @public
          */
         setDate: function( dateString ) {
@@ -998,6 +1001,8 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * Gets the currently selected date as a JavaScript date.
          *
          * @method getDate
+         * @return {void}
+         * @public
          */
         getDate: function () {
             if (!this._day) {
@@ -1010,7 +1015,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * Sets the chosen date on the target input field
          *
          * @method _setDate
-         * @param {DOMElement} objClicked Clicked object inside the DatePicker's calendar.
+         * @param {Element} objClicked Clicked object inside the DatePicker's calendar.
          * @private
          */
         _setDate : function( objClicked ) {
@@ -1285,7 +1290,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             result %= 7;
 
             if (result < 0) {
-                result += 6;
+                result += 7;
             }
 
             return result;
@@ -1368,7 +1373,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * This method adds class names to month buttons, to visually distinguish.
          *
          * @method _addMonthClassNames
-         * @param {DOMElement} parent DOMElement where all the months are.
+         * @param {Element} parent Element where all the months are.
          * @private
          */
         _addMonthClassNames: function(parent){
@@ -1442,6 +1447,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * Destroys this datepicker, removing it from the page.
          *
          * @method destroy
+         * @return {void}
          * @public
          **/
         destroy: function () {

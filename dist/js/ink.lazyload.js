@@ -42,7 +42,7 @@ LazyLoad.prototype = {
      * @class Ink.UI.LazyLoad_1
      * @constructor
      *
-     * @param rootElement {String|DOMElement} The element which contains the lazily-loaded items.
+     * @param {String|Element} selector                   The element which contains the lazily-loaded items.
      * @param {Object}      [options]                           Options object, containing:
      * @param {String}      [options.item]                      Item selector. Defaults to '.lazyload-item'.
      * @param {String}      [options.placeholder]               Placeholder value for items which are not 'visible', in case they don't already have a value set.
@@ -51,7 +51,7 @@ LazyLoad.prototype = {
      * @param {Number}      [options.delay]                     Milliseconds to wait before trying to load items. Defaults to 100.
      * @param {Number}      [options.delta]                     Offset distance in pixels. Determines how far the top of an item must be from the viewport be considered 'visible'. Negative values shrink the considered 'visible' viewport while positive values enlarge it. Defaults to 0.
      * @param {Boolean}     [options.image]                     Set to false to make this component do nothing to any elements and just give you the onInsideViewport callback.
-     * @param {DOMElement}  [options.scrollElement]             (advanced) What element is to be listened for the scroll event. Defaults to document.window.
+     * @param {Element}     [options.scrollElement]             (advanced) What element is to be listened for the scroll event. Defaults to document.window.
      * @param {Boolean}     [options.touchEvents]               Subscribe to touch events in addition to scroll events. Useful in mobile safari because 'scroll' events aren't frequent enough. Defaults to true.
      * @param {Function}    [options.onInsideViewport]          Callback function for when an `item` is 'visible'. Receives an object containing the item's element as an argument.
      * @param {Function}    [options.onAfterAttributeChange]    (advanced) Callback function when an item's attribute changes. Receives an object containing the item's element as an argument.
@@ -168,6 +168,7 @@ LazyLoad.prototype = {
      * You can use this to manually invoke the loading logic without user action. 
      *
      * @method reload
+     * @return {void}
      * @public
      */
     reload: function() {
@@ -177,6 +178,7 @@ LazyLoad.prototype = {
     /**
      * Destroy this component
      * @method destroy
+     * @return {void}
      * @public
      **/
     destroy: function() {

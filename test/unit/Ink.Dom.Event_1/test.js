@@ -113,8 +113,10 @@ Ink.requireModules(['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1'
         var div = InkElement.create('div');
         InkEvent.observe(div, 'click', function () {
             ok(true);
+            document.body.removeChild(div);
             start();
         });
+        document.body.appendChild(div);  // IE can't fire events if the elements are not in the DOM
         InkEvent.fire(div, 'click');
     });
 
@@ -131,8 +133,10 @@ Ink.requireModules(['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1'
         var div = InkElement.create('div');
         InkEvent.observeOnce(div, 'click', function () {
             ok(true);
+            document.body.removeChild(div);
             start();
         });
+        document.body.appendChild(div);
         expect(1);  // The above ok(true) will break if called more than once.
         InkEvent.fire(div, 'click');
         InkEvent.fire(div, 'click');

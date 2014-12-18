@@ -78,13 +78,17 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.UI.Common_1', 'Ink.Dom.Even
          *
          * @method scroll
          * @param  {Number} scrollTop Y coordinate value to stop at
-         * @private
+         * @param  {Object} options Option hash containing:
+         * @param  {Number} [options.margin] Set this to non-zero to leave a margin between the top of the page and your element. Useful if you have a top bar with `position: fixed`.
+         * @param  {Number} [options.speed] Inverse scrolling speed. Smaller is faster.
+         * @return {void}
+         * @public
          * @static
          */
         scroll: function(scrollTop, options) {
             var a = Math.round(InkElement.scrollHeight());
 
-            var endPos = Math.round(scrollTop - options.margin);
+            var endPos = Math.round(scrollTop - (options.margin || 0));
 
             if (endPos > a) {
                 a += Math.ceil((endPos - a) / options.speed);
@@ -117,7 +121,8 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.UI.Common_1', 'Ink.Dom.Even
          * - `data-change-hash="true"` - Change the URL hash (location.hash) when done scrolling.
          *
          * @method init
-         * @param [selector='a.scrollableLink,a.ink-smooth-scroll'] {String} Selector string for finding links with smooth scrolling enabled.
+         * @param {String} [selector='a.scrollableLink,a.ink-smooth-scroll'] Selector string for finding links with smooth scrolling enabled.
+         * @return {void}
          * @static
          * @sample Ink_UI_SmoothScroller_1.html
          */
@@ -132,6 +137,8 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.UI.Common_1', 'Ink.Dom.Even
          * Handles clicks on link elements
          *
          * @method onClick
+         * @param {Event} event DOM click event.
+         * @return {void}
          * @private
          * @static
          */
@@ -183,6 +190,7 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.UI.Common_1', 'Ink.Dom.Even
          *
          * @method onDone
          * @param {Object} options Options object from the element.
+         * @return {void}
          * @private
          */
         onDone: function (options) {

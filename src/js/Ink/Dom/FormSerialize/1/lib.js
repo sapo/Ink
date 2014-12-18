@@ -27,20 +27,23 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, ['Ink.Util.Array_1', 'Ink.Dom.Eleme
 
         /**
          * Serializes a form element into a JS object
-         * It turns field names into keys and field values into values.
+         * It turns field *names* (not IDs!) into keys and field values into values.
          *
          * note: Multi-select and checkboxes with multiple values will result in arrays
          *
          * @method serialize
          * @param {DOMElement|String}   form    Form element to extract data
+         * @param {Object} [options] Options object, containing:
+         * @param {Boolean} [options.outputUnchecked=false] Whether to emit unchecked checkboxes and unselected radio buttons.
          * @return {Object} Map of fieldName -> String|String[]|Boolean
          * @sample Ink_Dom_FormSerialize_serialize.html 
          */
-        serialize: function(form) {
+        serialize: function(form, options) {
+            options = options || {};
             var out = {};
             var emptyArrayToken = {};  // A hack so that empty select[multiple] elements appear although empty.
 
-            var pairs = this.asPairs(form, { elements: true, emptyArray: emptyArrayToken });
+            var pairs = this.asPairs(form, { elements: true, emptyArray: emptyArrayToken, outputUnchecked: options.outputUnchecked });
             if (pairs == null) { return pairs; }
             InkArray.forEach(pairs, function (pair) {
                 var name = pair[0].replace(/\[\]$/, '');
@@ -68,8 +71,8 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, ['Ink.Util.Array_1', 'Ink.Dom.Eleme
          * @param {Object} [options] Options object, containing:
          * @param {Boolean} [options.elements] Instead of returning an array of [fieldName, value] pairs, return an array of [fieldName, value, fieldElement] triples.
          * @param {Boolean} [options.emptyArray] What to emit as the value of an empty select[multiple]. If you don't pass this option, nothing comes out.
-         *
-         * @return Array of [fieldName, value] pairs.
+         * @param {Boolean} [options.outputUnchecked=false] Whether to emit unchecked checkboxes and unselected radio buttons.
+         * @return {Array} Array of [fieldName, value] pairs.
          **/
         asPairs: function (form, options) {
             var out = [];
@@ -84,7 +87,10 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, ['Ink.Util.Array_1', 'Ink.Dom.Eleme
             }
 
             function serializeEl(el) {
-                if (el.nodeName.toLowerCase() === 'select' && el.multiple) {
+                var elNodeName = el.nodeName.toLowerCase();
+                var elType = (el.type + '').toLowerCase();
+
+                if (elNodeName === 'select' && el.multiple) {
                     var didEmit = false;
                     InkArray.forEach(Selector.select('option:checked', el), function (thisOption) {
                         emit(el.name, thisOption.value, el);
@@ -93,13 +99,18 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, ['Ink.Util.Array_1', 'Ink.Dom.Eleme
                     if (!didEmit && 'emptyArray' in options) {
                         emit(el.name, options.emptyArray, el);
                     }
+                } else if (elNodeName === 'input' && (elType === 'checkbox' || elType === 'radio') && options.outputUnchecked) {
+                    // It's an empty checkbox and we wouldn't emit it otherwise but the user asked for it using outputUnchecked
+                    emit(el.name, null, el);
                 } else {
                     emit(el.name, el.value, el);
                 }
             }
 
             if ((form = Ink.i(form))) {
-                var inputs = InkArray.filter(form.elements, FormSerialize._isSerialized);
+                var inputs = InkArray.filter(form.elements, function (elm) {
+                    return FormSerialize._isSerialized(elm, options);
+                });
                 for (var i = 0, len = inputs.length; i < len; i++) {
                     serializeEl(inputs[i]);
                 }
@@ -115,8 +126,9 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, ['Ink.Util.Array_1', 'Ink.Dom.Eleme
          * Note: You can't set the values of an input with `type="file"` (browser prohibits it)
          *
          * @method fillIn 
-         * @param {DOMElement|String}   form    Form element to be populated
-         * @param {Object|Array}      map2    mapping of fields to values contained in fields. Can be a hash (keys as names, strings or arrays for values), or an array of [name, value] pairs.
+         * @param {Element|String} form Form element to be populated
+         * @param {Object|Array}   map2 Mapping of fields to values contained in fields. Can be a hash (keys as names, strings or arrays for values), or an array of [name, value] pairs.
+         * @return {void}
          * @sample Ink_Dom_FormSerialize_fillIn.html 
          */
         fillIn: function(form, map2) {
@@ -229,7 +241,8 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, ['Ink.Util.Array_1', 'Ink.Dom.Eleme
                 (nodeName === 'select' && InkElement.hasAttribute(element, 'multiple'));
         },
 
-        _isSerialized: function (element) {
+        _isSerialized: function (element, options) {
+            options = options || {};
             if (!InkElement.isDOMElement(element)) { return false; }
             if (!InkElement.hasAttribute(element, 'name')) { return false; }
 
@@ -238,6 +251,7 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, ['Ink.Util.Array_1', 'Ink.Dom.Eleme
             if (!nodeName || nodeName === 'fieldset') { return false; }
 
             if (element.type === 'checkbox' || element.type === 'radio') {
+                if (options.outputUnchecked) { return true; }
                 return !!element.checked;
             }
 
