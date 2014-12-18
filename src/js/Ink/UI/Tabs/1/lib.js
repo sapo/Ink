@@ -187,7 +187,12 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          **/
         _onTabClickedGeneric: function (event) {
             event.preventDefault();
-            if (!Css.hasClassName(event.currentTarget, 'ink-disabled')) {
+
+            var doChangeTab =
+                !Css.hasClassName(event.currentTarget, 'ink-disabled') &&  // Not disabled
+                event.currentTarget !== this._activeMenuLink;  // Not the current tab
+
+            if (doChangeTab) {
                 this._onTabClicked(event.currentTarget);
             }
         },
@@ -335,7 +340,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
         },
 
         /**
-         * Disables the desired tag
+         * Disables the desired tab
          * 
          * @method disable
          * @param {String|Element} selector      the id of the desired tab or the link that links to it
@@ -347,7 +352,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
         },
 
         /**
-         * Enables the desired tag
+         * Enables the desired tab
          * 
          * @method enable
          * @param {String|Element} selector      The id of the desired tab or the link that links to it

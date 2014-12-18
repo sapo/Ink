@@ -138,8 +138,8 @@ Ink.requireModules(['Ink.UI.Tabs_1', 'Ink.UI.Common_1', 'Ink.Dom.Element_1', 'In
 
     testTabs('clicking a tab changes window.location.hash', function (tabComponent, container) {
         stop();
-        Syn.click(Ink.s('a[href$="#home"]', container), function () {
-            equal(window.location.hash, '#home');
+        Syn.click(Ink.s('a[href$="#description"]', container), function () {
+            equal(window.location.hash, '#description');
             start();
         });
     });
