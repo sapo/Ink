@@ -16,14 +16,14 @@ Ink.createModule('Ink.Net.JsonP', '1', [], function() {
      *
      * @param {String}      uri                         Request URL
      * @param {Object}      options                     Request options
-     * @param {Function}    options.onSuccess           Success callback
-     * @param {Function}    [options.onFailure]         Failure callback
+     * @param {Function}    options.onSuccess           Success callback. Called with the JSONP response.
+     * @param {Function}    [options.onFailure]         Failure callback. Called when there is a timeout.
      * @param {Object}      [options.failureObj]        Object to be passed as argument to failure callback
-     * @param {Number}      [options.timeout]           Timeout for request fail, in seconds. defaults to 10
-     * @param {Object}      [options.params]            Object with the parameters and respective values to unfold
-     * @param {String}      [options.callbackParam]     Parameter to use as callback. defaults to 'jsoncallback'
-     * @param {String}      [options.internalCallback]  Name of the callback function stored in the Ink.Net.JsonP object.
+     * @param {Number}      [options.timeout]           Timeout for the request, in seconds. defaults to 10.
+     * @param {Object}      [options.params]            Object with URL parameters.
+     * @param {String}      [options.callbackParam]     URL parameter which gets the name of the JSONP function to call. defaults to 'jsoncallback'.
      * @param {String}      [options.randVar]           (Advanced, not recommended unless you know what you're doing) A string to append to the callback name. By default, generate a random number. Use an empty string if you already passed the correct name in the internalCallback option.
+     * @param {String}      [options.internalCallback]  (Advanced) Name of the callback function stored in the Ink.Net.JsonP object (before it's prefixed).
      *
      * @sample Ink_Net_JsonP_1.html 
      */
