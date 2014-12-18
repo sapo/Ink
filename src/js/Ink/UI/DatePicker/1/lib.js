@@ -46,7 +46,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
      * @param {String|Element}      [options.monthField]        (if using options.displayInSelect) `select` field with months.
      * @param {String|Element}      [options.yearField]         (if using options.displayInSelect) `select` field with years.
      * @param {String}              [options.format]            Date format string
-     * @param {Object}              [options.month]             Hash of month names. Defaults to portuguese month names. January is 1.
+     * @param {Object}              [options.month]             Hash of month names. Defaults to english month names. January is 1.
      * @param {String}              [options.nextLinkText]      Text for the previous button. Defaults to '«'.
      * @param {String}              [options.ofText]            Text to show between month and year. Defaults to ' of '.
      * @param {Boolean}             [options.onFocus]           If the datepicker should open when the target element is focused. Defaults to true.
