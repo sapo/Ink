@@ -1507,7 +1507,7 @@ Ink.createModule('Ink.Net.JsonP', '1', [], function() {
 
         init: function(uri, options) {
             this.options = Ink.extendObj( {
-                onSuccess:         undefined,
+                onSuccess:          undefined,
                 onFailure:          undefined,
                 failureObj:         {},
                 timeout:            10,
@@ -23753,7 +23753,7 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
             var tgtEl = InkEvent.element(event),
                 shades;
 
-            if (InkElement.findUpwardsBySelector(tgtEl, '[data-is-toggle-trigger="true"]')) return;
+            if (InkElement.findUpwardsBySelector(tgtEl, '[data-is-toggle-trigger="true"]')) { return; }
 
             var ancestorOfTargets = InkArray.some(this._targets, function (target) {
                 return InkElement.isAncestorOf(target, tgtEl) || target === tgtEl;

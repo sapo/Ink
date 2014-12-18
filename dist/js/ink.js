@@ -1507,7 +1507,7 @@ Ink.createModule('Ink.Net.JsonP', '1', [], function() {
 
         init: function(uri, options) {
             this.options = Ink.extendObj( {
-                onSuccess:         undefined,
+                onSuccess:          undefined,
                 onFailure:          undefined,
                 failureObj:         {},
                 timeout:            10,
