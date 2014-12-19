@@ -260,7 +260,7 @@ Ink.requireModules(['Ink.UI.Toggle_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1', 'In
         ok(!toggle.getState());
     });
 
-    bagTest('triggering the event on the togglee when the togglee is a child of the toggler.', function (bag) {
+    bagTest('Toggling a descendant', function (bag) {
         var trigger = InkElement.create('div', { insertBottom: bag });
         var target = InkElement.create('div', { insertBottom: trigger});
         var toggle = new Toggle(trigger, {
@@ -273,11 +273,64 @@ Ink.requireModules(['Ink.UI.Toggle_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1', 'In
         ok(toggle.getState(), 'didnt close even though the event bubbled upwards from the target');
     });
 
+    bagTest('Toggling an ancestor', function (bag, trigger, targets) {
+        targets[0].appendChild(trigger);
+
+        var toggle = new Toggle(trigger, {
+            target: targets[0],
+            initialState: true,
+            canToggleAnAncestor: true
+        });
+
+        InkEvent.fire(trigger, 'click');
+        ok(!toggle.getState(), 'clicking the trigger closed the toggle');
+        InkEvent.fire(trigger, 'click');
+        ok(toggle.getState(), 'clicking the trigger opened the toggle');
+        InkEvent.fire(trigger, 'click');
+        ok(!toggle.getState(), 'clicking the trigger closed the toggle (just making sure you can do this multiple times)');
+    });
+
+    bagTest('Toggling itself', function (bag, trigger, targets) {
+        var toggle = new Toggle(trigger, {
+            target: trigger,
+            initialState: true,
+            closeOnInsideClick: null
+        });
+
+        InkEvent.fire(trigger, 'click');
+        ok(!toggle.getState(), 'clicking the trigger closed the toggle');
+        InkEvent.fire(trigger, 'click');
+        ok(toggle.getState(), 'clicking the trigger closed the toggle');
+        InkEvent.fire(trigger, 'click');
+        ok(!toggle.getState(), 'clicking the trigger closed the toggle');
+        ok(false, 'TODO');
+        targets[0].appendChild(trigger);
+    });
+
     bagTest('(regression): creating a toggle with initialState:false doesn\'t add classNameOff to it', function (bag, trigger, targets) {
         equal(
             new Toggle(trigger, { initialState: false, target: targets, classNameOff: 'offs' })
             .getState(), false, '"getState()" = false');
         ok(Css.hasClassName(targets[0], 'offs'))
+    });
+
+    bagTest('(regression) When the user clicks an element which is a descendant of the togglee and it is removed as a result of that click (but before the click event bubbles up to the togglee), the toggle should not consider this an "outside" click and thus should not close it.', function (bag) {
+        var trigger = InkElement.create('div', { insertBottom: bag });
+        var target = InkElement.create('div', { insertBottom: bag });
+        var elementOfSurprise = InkElement.create('div', { insertBottom: target });
+
+        var toggle = new Toggle(trigger, {
+            target: target
+        });
+        ok(toggle.getState(), 'Sanity check. Toggle is open right now.');
+
+        InkEvent.observe(elementOfSurprise, 'click', function () {
+            elementOfSurprise.parentNode.removeChild(elementOfSurprise);
+        });
+
+        InkEvent.fire(elementOfSurprise, 'click');
+
+        ok(toggle.getState(), 'Clicking the element shouldn\'t close the toggle, even though we removed it before Toggle._onOutsideClick caught it.');
     });
 });
 
