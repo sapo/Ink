@@ -46,7 +46,7 @@ Ink.requireModules(['Ink.Dom.Element_1', 'Ink.Dom.Css_1', 'Ink.UI.Animate_1', 'I
     } else {
         test('When there is no support, create an Animate instance and don\'t crash', function () {
             var animatedEl = InkElement.create('div');
-            var animateInstance = new Animate(animatedEl);
+            var animateInstance = new Animate(animatedEl, { animation: 'foo' });
             ok(animateInstance instanceof Animate, 'calling Animate as a constructor works, returning a valid Animate instance');
         });
     }
