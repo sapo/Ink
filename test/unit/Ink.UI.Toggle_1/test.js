@@ -315,16 +315,20 @@ Ink.requireModules(['Ink.UI.Toggle_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1', 'In
     });
 
     bagTest('(regression) When the user clicks an element which is a descendant of the togglee and it is removed as a result of that click (but before the click event bubbles up to the togglee), the toggle should not consider this an "outside" click and thus should not close it.', function (bag) {
+        expect(3);
         var trigger = InkElement.create('div', { insertBottom: bag });
         var target = InkElement.create('div', { insertBottom: bag });
         var elementOfSurprise = InkElement.create('div', { insertBottom: target });
 
         var toggle = new Toggle(trigger, {
-            target: target
+            target: target,
+            initialState: true
         });
+
         ok(toggle.getState(), 'Sanity check. Toggle is open right now.');
 
         InkEvent.observe(elementOfSurprise, 'click', function () {
+            ok(true, 'Sanity check: We have caught the click event');
             elementOfSurprise.parentNode.removeChild(elementOfSurprise);
         });
 
