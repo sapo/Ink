@@ -142,6 +142,7 @@ Ink.createModule('Ink.Net.JsonP', '1', [], function() {
         },
 
         _removeScriptTag: function() {
+            if (!this._scriptEl) { return; /* already removed */ }
             this._scriptEl.parentNode.removeChild(this._scriptEl);
             delete this._scriptEl;
         }
