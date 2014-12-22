@@ -294,17 +294,16 @@ Ink.requireModules(['Ink.UI.Toggle_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1', 'In
         var toggle = new Toggle(trigger, {
             target: trigger,
             initialState: true,
+            canToggleAnAncestor: true,
             closeOnInsideClick: null
         });
 
         InkEvent.fire(trigger, 'click');
         ok(!toggle.getState(), 'clicking the trigger closed the toggle');
         InkEvent.fire(trigger, 'click');
-        ok(toggle.getState(), 'clicking the trigger closed the toggle');
+        ok(toggle.getState(), 'clicking the trigger again opened the toggle');
         InkEvent.fire(trigger, 'click');
-        ok(!toggle.getState(), 'clicking the trigger closed the toggle');
-        ok(false, 'TODO');
-        targets[0].appendChild(trigger);
+        ok(!toggle.getState(), 'clicking the trigger once more closed the toggle');
     });
 
     bagTest('(regression): creating a toggle with initialState:false doesn\'t add classNameOff to it', function (bag, trigger, targets) {
