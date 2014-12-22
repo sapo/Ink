@@ -52,13 +52,13 @@ Ink.requireModules(['Ink.Net.JsonP_1', 'Ink.Dom.Selector_1'], function (JsonP, S
         stop();
     });
     test('abort() method aborts the request. It doesn\'t call anything.', function () {
-        expect(3);
+        expect(2);
         var onSuccess = sinon.spy();
         var onFailure = sinon.spy();
 
         var clock = sinon.useFakeTimers(+new Date());
 
-        var jsonp = new JsonP('test_jsonp.js', {
+        var jsonp = new JsonP('./somethign.js', {
             onSuccess: onSuccess,
             onFailure: onFailure,
             timeout: 1
@@ -73,12 +73,7 @@ Ink.requireModules(['Ink.Net.JsonP_1', 'Ink.Dom.Selector_1'], function (JsonP, S
 
         ok(onSuccess.notCalled, 'onSuccess not called');
         ok(onFailure.notCalled, 'onFailure not called');
-        clock.restore();
 
-        stop();  // Wait for the actual JsonP request to come, then continue tests
-        window.mockJsonPCallback = function () {
-            ok(true, 'sanity check -- server is working');
-            start();
-        }
+        clock.restore();
     });
 });
