@@ -173,14 +173,15 @@ Ink.requireModules(['Ink.UI.Tabs_1', 'Ink.UI.Common_1', 'Ink.Dom.Element_1', 'In
     });
 
     testTabs('findLink', function (tabs, container) {
-        var homeLink = Ink.s('[href^="#home"]', container);
+        var homeLink = Ink.s('[href$="#home"]', container);
         ok(homeLink, 'sanity check');
         ok(homeLink.parentNode.nodeName.toLowerCase() === 'li', 'sanity check');
         strictEqual(tabs._findLinkByHref('home'), homeLink, 'by name');
         strictEqual(tabs._findLinkByHref('#home'), homeLink, 'by hash');
         strictEqual(tabs._findLinkByHref(homeLink), homeLink, 'by itself');
         strictEqual(tabs._findLinkByHref(homeLink.parentNode), homeLink, 'by li containing the link');
-        strictEqual(tabs._findLinkByHref(Ink.s('[id="home"]', container)), homeLink, 'by section');
+        var homeSection = Ink.s('#home', container)
+        strictEqual(tabs._findLinkByHref(homeSection), homeLink, 'by section');
 
         strictEqual(tabs._findLinkByHref(document.body), null, 'Wrong element');
         strictEqual(tabs._findLinkByHref('wrong-thing'), null, 'Wrong name');

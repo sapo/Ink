@@ -301,7 +301,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
                 for (var i = 0, len = links.length; i < len; i++) {
                     if (links[i] === href || Element.isAncestorOf(href, links[i])) {
                         return links[i];  // We got a link
-                    } else if (id && id === this._dehashify(links[i].getAttribute('href'))) {
+                    } else if (id && id === this._dehashify(links[i].hash)) {
                         return links[i];  // We got a section
                     }
                 }
