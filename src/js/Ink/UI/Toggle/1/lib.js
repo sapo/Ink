@@ -122,7 +122,7 @@
          */
         _bindEvents: function () {
             if ( this._options.triggerEvent ) {
-                InkEvent.observe(
+                InkEvent.on(
                     this._element,
                     this._options.triggerEvent,
                     Ink.bind(this._onTriggerEvent, this));
