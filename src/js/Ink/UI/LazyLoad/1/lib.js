@@ -83,6 +83,7 @@ LazyLoad.prototype = {
         var attr = null;
         for(var i=0, t=aElms.length; i < t; i++) {
             if (this._options.placeholder != null && !InkElement.hasAttribute(aElms[i], this._options.destination)) {
+                // [todo]: this function's name implies that it doesn't touch anything, yet it's changing attributes.
                 aElms[i].setAttribute(this._options.destination, this._options.placeholder);
             }
             attr = aElms[i].getAttribute(this._options.source);
@@ -113,10 +114,10 @@ LazyLoad.prototype = {
     _onScroll: function() {
         var curElm;
 
-        for(var i=0; i < this._aData.length; i++) {
+        for (var i = 0; i < this._aData.length; i++) {
             curElm = this._aData[i];
 
-            if(InkElement.inViewport(curElm.elm, { partial: true, margin: this._options.delta })) {
+            if (InkElement.inViewport(curElm.elm, { partial: true, margin: this._options.delta })) {
                 this._elInViewport(curElm);
                 if (this._options.image) {
                     /* [todo] a seemingly unrelated option creates a branch? Some of this belongs in another module. */
