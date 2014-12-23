@@ -22,18 +22,15 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
      * @constructor
      * @version 1
      * @param {String|Element}      selector                        Your container element. You can pass in a pure DOM element or a selector.
-     * @param {Object}              [options]                       Options
+     * @param {Object}              [options]                       Options object, containing:
      * @param {Boolean}             [options.preventUrlChange]      Flag that determines if follows the link on click or stops the event
-     * @param {String}              [options.active]                ID of the tab to activate on creation
-     * @param {Array}               [options.disabled]              IDs of the tabs that will be disabled on creation
-     * @param {Function}            [options.onBeforeChange]        Callback to be executed before changing tabs
-     * @param {Function}            [options.onChange]              Callback to be executed after changing tabs
+     * @param {String}              [options.active]                ID of the tab to activate on creation if the window hash is not already a tab ID.
+     * @param {Array}               [options.disabled]              IDs of the tabs that will be disabled on creation.
+     * @param {Function}            [options.onBeforeChange]        Callback to be executed before changing tabs.
+     * @param {Function}            [options.onChange]              Callback to be executed after changing tabs.
+     * @param {Boolean}             [options.triggerEventsOnLoad=true] Call the above callbacks after this component is created.
      * 
      * @param {String}              [options.menuSelector='.tabs-nav'] Selector to find the menu element
-     * @param {String}              [options.contentSelector='.tabs-content'] Selector to find the menu element
-     * @param {String}              [options.tabSelector='.tabs-tab'] Selector to find the menu element
-     *
-     * @param {Boolean}             [options.triggerEventsOnLoad]   Trigger the above events when the page is loaded.
      *
      * @sample Ink_UI_Tabs_1.html
      */
@@ -50,8 +47,6 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
         onBeforeChange:     ['Function', undefined],
         onChange:           ['Function', undefined],
         menuSelector:       ['String', '.tabs-nav'],
-        contentSelector:    ['String', '.tabs-content'],
-        tabSelector:        ['String', '.tabs-tab'],
         triggerEventsOnLoad:['Boolean', true]
     };
 
@@ -64,27 +59,21 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          * @private
          */
         _init: function() {
-            this._handlers = {
-                resize: Ink.bindEvent(Event.throttle(this._onResize, 100),this)
-            };
-
             this._menu = Selector.select(this._options.menuSelector, this._element)[0];
 
             if (!this._menu) {
-                Ink.warn('Ink.UI.Tabs: An element selected by ".tabs-nav" needs to exist inside the element!');
+                Ink.warn('Ink.UI.Tabs: An element selected by "' + this._options.menuSelector + '" needs to exist inside the element!');
                 return;
             }
 
             //initialization of the tabs, hides all content before setting the active tab
             this._initializeDom();
 
-            // subscribe events
-            this._observe();
+            // subscribe click event
+            Event.on(this._menu, 'click', 'a', Ink.bindMethod(this, '_onTabClickedGeneric'));
 
             //sets the first active tab
             this._setFirstActive();
-
-            this._handlers.resize();
         },
 
         /**
@@ -99,17 +88,6 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
             for(var i = 0; i < contentTabs.length; i++){
                 Css.addClassName(contentTabs[i], 'hide-all');
             }
-        },
-
-        /**
-         * Subscribe events
-         * 
-         * @method _observe
-         * @private
-         */
-        _observe: function() {
-            Event.on(this._menu, 'click', 'a', Ink.bindMethod(this, '_onTabClickedGeneric'));
-            Event.observe(window, 'resize', this._handlers.resize);
         },
 
         /**
@@ -222,36 +200,6 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
             this.changeTab(tabElm);
         },
 
-        /**
-         * Resize handler
-         * 
-         * @method _onResize
-         * @private
-         */
-        _onResize: function(){
-            var currentLayout = Common.currentLayout();
-            if(currentLayout === this._lastLayout){
-                return;
-            }
-
-            // wtf
-            var smallLayout =
-                currentLayout === Common.Layouts.TINY ||
-                currentLayout === Common.Layouts.SMALL ||
-                currentLayout === Common.Layouts.MEDIUM;
-
-            if(smallLayout){
-                Css.removeClassName(this._menu, 'menu');
-                Css.removeClassName(this._menu, 'horizontal');
-                // Css.addClassName(this._menu, 'pills');
-            } else {
-                Css.addClassName(this._menu, 'menu');
-                Css.addClassName(this._menu, 'horizontal');
-                // Css.removeClassName(this._menu, 'pills');
-            }
-            this._lastLayout = currentLayout;
-        },
-
         /*****************
          * Aux Functions *
          *****************/
@@ -266,7 +214,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          */
         _hashify: function(hash){
             if(!hash){
-                return "";
+                return '';
             }
             return hash.indexOf('#') === 0? hash : '#' + hash;
         },
