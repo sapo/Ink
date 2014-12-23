@@ -124,7 +124,7 @@ Ink.requireModules(['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1'
         var handler = function () {};
         var cb = InkEvent.observe(InkElement.create('div'), 'keyup', handler);
         equal(typeof cb, 'function', 'returned a function');
-        ok(cb === handler, 'returned same function');
+        if (window.addEventListener) { ok(cb === handler, 'returned same function'); }
     });
 
     module('observeOnce');
