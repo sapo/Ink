@@ -939,10 +939,11 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      */
     observeOnce: function (element, eventName, callBack, useCapture) {
         var onceBack = function () {
-            InkEvent.stopObserving(element, eventName, onceBack);
-            return callBack();
+            InkEvent.stopObserving(element, eventName, handler);
+            return callBack.apply(this, arguments);
         };
-        return InkEvent.observe(element, eventName, onceBack, useCapture);
+        var handler = InkEvent.observe(element, eventName, onceBack, useCapture);
+        return handler;
     },
 
     /**
