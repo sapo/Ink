@@ -152,7 +152,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
             this._pagination = null;
             this._totalRows = 0;
 
-            this._handlers.thClick = Event.observeDelegated(this._element, 'click',
+            this._handlers.thClick = Event.on(this._element, 'click',
                     'thead th[data-sortable="true"]',
                     Ink.bindMethod(this, '_onThClick'));
 
@@ -231,7 +231,9 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
                 }
 
                 var tbody = Selector.select('tbody',this._element)[0];
-                InkArray.each(this._data, Ink.bindMethod(tbody, 'appendChild'));
+                InkArray.each(this._data, function (row) {
+                    tbody.appendChild(row);
+                });
 
                 if (this._pagination) {
                     this._pagination.setCurrent(0);
