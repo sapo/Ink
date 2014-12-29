@@ -23,6 +23,10 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
             self;
 
         self = function (str, separator, limit) {
+            /*jshint -W038 */
+            /*jshint -W004 */
+            /*jshint boss:true */
+            /*jshint loopfunc:true */
             // If `separator` is not a regex, use `nativeSplit`
             if (Object.prototype.toString.call(separator) !== "[object RegExp]") {
                 return nativeSplit.call(str, separator, limit);
@@ -264,10 +268,11 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
                 return;
             }
 
+            var split;
             if (!buggySplit) {
-                var split = this._input.value.split(this._options.separator);
+                split = this._input.value.split(this._options.separator);
             } else {
-                var split = splitFunction(this._input.value, this._options.separator)
+                split = splitFunction(this._input.value, this._options.separator);
             }
 
             if (split.length <= 1) {

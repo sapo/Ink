@@ -90,7 +90,6 @@ Ink.createModule('Ink.Net.JsonP', '1', [], function() {
          * @return {void}
          **/
         abort: function () {
-            var cbName = this.options.internalCallback;
             Ink.Net.JsonP[this.options.internalCallback] = Ink.bindMethod(this, '_cleanUp');
         },
 
