@@ -23,9 +23,9 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
      * @version 1
      * @param {String|Element}      selector                        Your container element. You can pass in a pure DOM element or a selector.
      * @param {Object}              [options]                       Options object, containing:
-     * @param {Boolean}             [options.preventUrlChange]      Flag that determines if follows the link on click or stops the event
+     * @param {Boolean}             [options.preventUrlChange=false] Flag that determines if follows the link on click or stops the event
      * @param {String}              [options.active]                ID of the tab to activate on creation if the window hash is not already a tab ID.
-     * @param {Array}               [options.disabled]              IDs of the tabs that will be disabled on creation.
+     * @param {Array}               [options.disabled=[]]           of the tabs that will be disabled on creation.
      * @param {Function}            [options.onBeforeChange]        Callback to be executed before changing tabs.
      * @param {Function}            [options.onChange]              Callback to be executed after changing tabs.
      * @param {Boolean}             [options.triggerEventsOnLoad=true] Call the above callbacks after this component is created.
