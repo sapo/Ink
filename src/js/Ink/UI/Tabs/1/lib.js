@@ -7,16 +7,17 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
     'use strict';
 
     /**
-     * The Tabs Component offers a simple way to build a tab-separated layout, allowing you to offer multiple content in the same space with intuitive navigation.
+     * The Tabs Component offers a simple way to build a tab-separated layout, allowing you to offer multiple content panes in the same space with intuitive navigation.
      * This component requires your markup to have:
-     * - A container element (this is what you call the Ink.UI.Tabs constructor on), containing everything.
+     * - A container element (this is what you call the Ink.UI.Tabs constructor on), containing everything below.
      * - An element with the `tabs-nav` class, to contain links.
      * - Your links with `href="#ID_OF_SECTION"`
      * - Your sections with the corresponding `id` attributes and the `tabs-content` class.
      * - The content for each section.
      *
      * When the user clicks in the links inside `tabs-nav`, the tab with the corresponding ID is then activated. The active tab when the tab component is initialized has its hash in the browser URL. If there is no hash, then the `active` option kicks in. Otherwise, Tabs will fall back to showing the tab corresponding to the first link.
-     * You can disable some (or all) tabs by passing an array for the `disabled` option.
+     *
+     * You can disable some (or all) tabs by passing an array for the `disabled` option, or by adding the `ink-disabled` class to tab links.
      *
      * @class Ink.UI.Tabs
      * @constructor
@@ -30,7 +31,8 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
      * @param {Function}            [options.onChange]              Callback to be executed after changing tabs.
      * @param {Boolean}             [options.triggerEventsOnLoad=true] Call the above callbacks after this component is created.
      * 
-     * @param {String}              [options.menuSelector='.tabs-nav'] Selector to find the menu element
+     * @param {String}              [options.menuSelector='.tabs-nav'] Selector to find your tab links.
+     * @param {String}              [options.contentSelector='.tabs-content'] Selector to find your tab content panes.
      *
      * @sample Ink_UI_Tabs_1.html
      */
@@ -47,6 +49,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
         onBeforeChange:     ['Function', undefined],
         onChange:           ['Function', undefined],
         menuSelector:       ['String', '.tabs-nav'],
+        contentSelector:    ['String', '.tabs-content'],
         triggerEventsOnLoad:['Boolean', true]
     };
 

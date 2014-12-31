@@ -116,7 +116,12 @@ Ink.requireModules(['Ink.UI.Tabs_1', 'Ink.UI.Common_1', 'Ink.Dom.Element_1', 'In
             ok(changeTab.notCalled);
             start();
         });
-    })
+    });
+
+    testTabs('regression test: When Tabs is created, it hides all tabs except the active one', function (_, container) {
+        ok(Ink.ss('.tabs-content.hide-all', container).length)
+        equal(Ink.ss('.tabs-content:not(.hide-all)', container).length, 1)
+    });
 
     test('creating a Tabs on an element without any .tabs-nav', sinon.test(function (container) {
         var cont = InkElement.create('div', {});
