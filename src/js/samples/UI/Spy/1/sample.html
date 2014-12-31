@@ -1,0 +1,113 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <title>InkJS - Spy samples</title>
+
+        <link rel="stylesheet" href="../../../../../../dist/css/ink.css">
+        
+        <!--[if IE 7 ]>
+            <link rel="stylesheet" href="../../../../../../dist/css/ink.css" type="text/css" media="screen" title="no title" charset="utf-8">
+        <![endif]-->
+
+        <script type="text/javascript" src="../../../../Ink/1/lib.js"></script>
+        <script>
+            Ink.setPath('Ink', '../../../../Ink/');
+        </script>
+
+        <script type="text/javascript" src="../../../../../../dist/js/prettify.js"></script>
+        <style>
+            pre.prettyprint{
+                font-size: 0.75em;
+            }
+        </style>
+    </head>
+
+    <body onload="prettyPrint()">
+        <nav class="ink-navigation ink-container">
+            <ul class="menu horizontal black flat">
+                <li><a href="#">Item</a></li>
+                <li><a href="#">Item</a></li>
+                <li><a href="#">Item</a></li>
+                <li><a href="#">Item</a></li>
+            </ul>
+        </nav>
+        <div class="ink-container ink-grid">
+            <h1>Spy Samples - InkJS</h1>
+
+            <section>
+                <header>
+                    <h2>Basic Usage</h2>
+                </header>
+                <p>
+                    <pre class="prettyprint linenums"></pre>
+                </p>
+
+<div class="ink-grid">
+    <div class="column-group gutters">
+        <div class="all-25">
+            <nav class="ink-navigation" id="my-menu">
+                <ul class="menu vertical black">
+                    <li><a href="#my-section-1">Water</a></li>
+                    <li><a href="#my-section-2">Bones</a></li>
+                    <li><a href="#my-section-3">Pilot</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="all-75 my-sections">
+            <section id="my-section-1">
+                <h2>Water</h2>
+                <p>
+                    You think water moves fast? You should see ice. It moves like it has a mind. Like it knows it killed the world once and got a taste for murder. After the avalanche, it took us a week to climb out. Now, I don't know exactly when we turned on each other, but I know that seven of us survived the slide... and only five made it out. 
+                </p>
+                <p>Now we took an oath, that I'm breaking now. We said we'd say it was the snow that killed the other two, but it wasn't. Nature is lethal but it doesn't hold a candle to man.</p>
+            </section>
+            <section id="my-section-2">
+                <h2>Bones</h2>
+                <p>
+                    Your bones don't break, mine do. That's clear. Your cells react to bacteria and viruses differently than mine. You don't get sick, I do. That's also clear. But for some reason, you and I react the exact same way to water. We swallow it too fast, we choke. We get some in our lungs, we drown. However unreal it may seem, we are connected, you and I. We're on the same curve, just on opposite ends.
+
+                </p>
+            </section>
+            <section id="my-section-3">
+                <h2>Pilot</h2>
+                <p>
+                    Well, the way they make shows is, they make one show. That show's called a pilot. Then they show that show to the people who make shows, and on the strength of that one show they decide if they're going to make more shows. Some pilots get picked and become television programs. Some don't, become nothing. She starred in one of the ones that became nothing.
+                </p>
+            </section>
+        </div>
+    </div>
+    <p id="below-demo"><span class="ink-label black">Menu won't go below this point</span></p>
+
+    <p>Space...</p>
+    <p>Space...</p>
+    <p>Space...</p>
+    <p>Space...</p>
+    <p>Space...</p>
+    <p>Space...</p>
+    <p>Space...</p>
+    <p>Space...</p>
+    <p>Space...</p>
+</div>
+
+<script>
+    // If you included `autoload.js` in your page, you can just
+    // follow the example below
+    Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.Spy_1','Ink.UI.Sticky_1'], function( Selector, Spy, Sticky ){
+        var myMenu = Ink.i('my-menu');
+        var sections = Ink.ss('.my-sections section');
+
+        for (var i = 0, len = sections.length; i < len; i++) {
+            new Spy(sections[i], { target: myMenu });
+        }
+
+        new Sticky('#my-menu', { offsetTop: 60, bottomElement: '#below-demo' })
+    });
+</script>
+
+
+            </section>
+
+    </body>
+</html>
