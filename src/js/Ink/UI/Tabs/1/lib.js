@@ -124,6 +124,11 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
             }
 
             var selector = link.getAttribute('href');
+            var href = selector.substr(selector.indexOf('#'));
+
+            if (window.location.hash !== href && !this._options.preventUrlChange) {
+                window.location.hash = href;
+            }
 
             var activeTabs = Selector.select('> li.active', this._menu);
 
@@ -141,7 +146,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
 
             this._activeMenuLink = link;
             this._activeMenuTab = this._activeMenuLink.parentNode;
-            this._activeSection = Selector.select(selector.substr(selector.indexOf('#')), this._element)[0];
+            this._activeSection = Selector.select(href, this._element)[0];
 
             if (!this._activeSection) {
                 this._activeMenuLink = this._activeMenuTab = this._activeSection = null;
@@ -183,20 +188,17 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          * @private
          */
         _onTabClicked: function(tabElm) {
-            var href = tabElm.getAttribute('href');
+            var href = tabElm.getAttribute('href') || '';
             href = href.substr(href.indexOf('#'));
 
             if (!href || Ink.i(this._dehashify(href)) === null) {
                 return;
             }
 
-            if (!this._options.preventUrlChange) {
-                window.location.hash = href;
-            }
-
             if (tabElm === this._activeMenuLink) {
                 return;
             }
+
             this.changeTab(tabElm);
         },
 

@@ -152,6 +152,16 @@ Ink.requireModules(['Ink.UI.Tabs_1', 'Ink.UI.Common_1', 'Ink.Dom.Element_1', 'In
         });
     }, {preventUrlChange: true});
 
+    testTabs('Changing the tab in the API changes window.location.hash', function (tabComponent) {
+        tabComponent.changeTab('description');
+        equal(window.location.hash, '#description')
+    });
+
+    testTabs('... except when options.preventUrlChange === true', function (tabComponent, container) {
+        tabComponent.changeTab('description');
+        equal(window.location.hash, '#no-hash', 'location.hash shouldnt change if preventUrlChange === true.');
+    }, {preventUrlChange: true});
+
     module('Private API');
 
     testTabs('hashify/dehashify', function (tabs) {
