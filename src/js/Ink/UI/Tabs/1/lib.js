@@ -129,6 +129,10 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
             var selector = link.getAttribute('href');
             var href = selector.substr(selector.indexOf('#'));
 
+            // Notice that this is done while the content pane is hidden (it's
+            // going to be shown below). That is intentional. If the content is
+            // shown and location.hash changes, scroll jumps to that pane, and
+            // we do not want that.
             if (window.location.hash !== href && !this._options.preventUrlChange) {
                 window.location.hash = href;
             }
