@@ -1,20 +1,16 @@
 // JS UI COMPONENTS
 
 // Date picker
-$datepicker-bgColor			: $white;
-$datepicker-cell-color		: #444;
-$datepicker-header-bg		: $grey-10;
-$datepicker-cellHover		: $grey-10;
-$datepicker-active-bg		: #0069d6;
-$datepicker-active-color	: $white;
-$datepicker-fontSize		: 13px;
-$datepicker-inactive-color	: #aaa;
-
-$calendar-cell-width        : 2.4em;
-$calendar-month-width       : $calendar-cell-width * 7;
-$calendar-padding           : .3em;
-$calendar-total-width       : $calendar-month-width + ($calendar-padding * 2);
-
+$calendar-bg-color          : $white;
+$calendar-cell-color        : #444;
+$calendar-header-bg         : $grey-5;
+$calendar-cellHover         : $grey-10;
+$calendar-active-bg         : #0069d6;
+$calendar-active-color      : $white;
+$calendar-font-size         : .875em; 
+$calendar-font-weight       : 300;
+$calendar-inactive-color    : $grey-20;
+$calendar-padding           : .2em;
 
 // Sortable list
 $sortable-list-height       : 40px;

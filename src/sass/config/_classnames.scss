@@ -14,26 +14,26 @@ $quarter: quarter !default;
 $double: double !default;
 $no: no !default;
 
-$grid-class-name                : #{$ink-class-prefix}-grid !default;
-$flex-class-name                : #{$ink-class-prefix}-flex !default;
-$grid-column-group-class-name   : column-group !default;
-$grid-gutters-class-name        : gutters !default;
-$grid-half-gutters-class-name   : #{$half}-#{$grid-gutters-class-name} !default;
-$grid-quarter-gutters-class-name: #{$quarter}-#{$grid-gutters-class-name} !default;
-$grid-double-gutters-class-name : #{$double}-#{$grid-gutters-class-name} !default;
-$grid-no-gutters-class-name     : #{$no}-#{$grid-gutters-class-name} !default;
+$grid-class-name                    : #{$ink-class-prefix}-grid !default;
+$flex-class-name                    : #{$ink-class-prefix}-flex !default;
+$grid-column-group-class-name       : column-group !default;
+$grid-gutters-class-name            : gutters !default;
+$grid-half-gutters-class-name       : #{$half}-#{$grid-gutters-class-name} !default;
+$grid-quarter-gutters-class-name    : #{$quarter}-#{$grid-gutters-class-name} !default;
+$grid-double-gutters-class-name     : #{$double}-#{$grid-gutters-class-name} !default;
+$grid-no-gutters-class-name         : #{$no}-#{$grid-gutters-class-name} !default;
 
 
-$grid-horizontal-gutters-class-name        : #{$horizontal}-#{$grid-gutters-class-name} !default;
-$grid-half-horizontal-gutters-class-name   : #{$half}-#{$horizontal}-#{$grid-gutters-class-name} !default;
-$grid-quarter-horizontal-gutters-class-name: #{$quarter}-#{$horizontal}-#{$grid-gutters-class-name} !default;
-$grid-double-horizontal-gutters-class-name : #{$double}-#{$horizontal}-#{$grid-gutters-class-name} !default;
+$grid-horizontal-gutters-class-name         : #{$horizontal}-#{$grid-gutters-class-name} !default;
+$grid-half-horizontal-gutters-class-name    : #{$half}-#{$horizontal}-#{$grid-gutters-class-name} !default;
+$grid-quarter-horizontal-gutters-class-name : #{$quarter}-#{$horizontal}-#{$grid-gutters-class-name} !default;
+$grid-double-horizontal-gutters-class-name  : #{$double}-#{$horizontal}-#{$grid-gutters-class-name} !default;
 
 
-$grid-vertical-gutters-class-name        : #{$vertical}-#{$grid-gutters-class-name} !default;
-$grid-half-vertical-gutters-class-name   : #{$half}-#{$vertical}-#{$grid-gutters-class-name} !default;
-$grid-quarter-vertical-gutters-class-name: #{$quarter}-#{$vertical}-#{$grid-gutters-class-name} !default;
-$grid-double-vertical-gutters-class-name : #{$double}-#{$vertical}-#{$grid-gutters-class-name} !default;
+$grid-vertical-gutters-class-name           : #{$vertical}-#{$grid-gutters-class-name} !default;
+$grid-half-vertical-gutters-class-name      : #{$half}-#{$vertical}-#{$grid-gutters-class-name} !default;
+$grid-quarter-vertical-gutters-class-name   : #{$quarter}-#{$vertical}-#{$grid-gutters-class-name} !default;
+$grid-double-vertical-gutters-class-name    : #{$double}-#{$vertical}-#{$grid-gutters-class-name} !default;
 
 /**
  * Alerts class names
@@ -84,6 +84,8 @@ $image-class-name: #{$ink-class-prefix}-image !default;
  * JS UI components classe names
  */
 $carousel-class-name        : #{$ink-class-prefix}-carousel !default;
+$calendar-class-name        : #{$ink-class-prefix}-calendar !default;
+$datepicker-class-name      : #{$ink-class-prefix}-datepicker !default;
 $drawer-class-name          : #{$ink-class-prefix}-drawer !default;
 $shade-class-name           : #{$ink-class-prefix}-shade !default;
 $modal-class-name           : #{$ink-class-prefix}-modal !default;
