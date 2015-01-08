@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+        <title>InkJS - Calendar samples</title>
+
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="320">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+        <link rel="stylesheet" href="../../../../../../dist/css/ink.css" />
+
+        <script type="text/javascript" src="../../../../Ink/1/lib.js"></script>
+        <script>
+            Ink.setPath('Ink', '../../../../Ink/');
+        </script>
+        <script type="text/javascript" src="../../../../../../dist/js/prettify.js"></script>
+        <style>
+            pre.prettyprint{
+                font-size: 0.75em;
+            }
+        </style>
+    </head>
+
+    <body onload="prettyPrint()">
+        <nav class="ink-navigation ink-container">
+            <ul class="menu horizontal black flat">
+                <li><a href="#">Item</a></li>
+                <li><a href="#">Item</a></li>
+                <li><a href="#">Item</a></li>
+                <li><a href="#">Item</a></li>
+            </ul>
+        </nav>
+        <div class="ink-container ink-grid">
+            <h1>Calendar Samples - InkJS</h1>
+
+            <section>
+                <header>
+                    <h2>Calendar #1 - Default Markup</h2>
+                </header>
+                <table
+                    id=calendar1
+                    class="ink-calendar"
+                    data-date-range="2013-10-10:NOW"
+                    data-format="dd/mm/yyyy"></table>
+
+                <script>
+                    Ink.requireModules(['Ink.UI.Calendar_1'], function (Calendar) {
+                        new Calendar(calendar1, {});
+                    });
+                </script>
+
+                </section>
+                <section>
+                    <header>
+                        <h2>Calendar #2 - Having only a valid date every now and then.</h2>
+                    </header>
+                        <table id="calendar2" class="ink-calendar" data-format="dd/mm/yyyy"></table>
+
+                        <script>
+                            Ink.requireModules(['Ink.UI.Calendar_1'], function (Calendar) {
+                                new Calendar(calendar2, {
+                                    startDate: '2000-01-01',
+                                    validDayFn: function (year, month, day) {
+                                        return month === 1 && day === 1;
+                                    },
+                                    validMonthFn: function (year, month, day) {
+                                        return month === 1;
+                                    },
+                                    nextValidDateFn: function (year, month, day) {
+                                        return new Date(year + 1, 0, 1);
+                                    },
+                                    prevValidDateFn: function (year, month, day) {
+                                        return new Date(year - 1, 0, 1)
+                                    }
+                                });
+                            });
+                        </script>
+                </section>
+    </body>
+</html>

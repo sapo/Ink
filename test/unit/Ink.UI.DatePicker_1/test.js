@@ -1,4 +1,4 @@
-Ink.requireModules(['Ink.UI.DatePicker_1', 'Ink.Dom.Css_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Util.Array_1'], function (DatePicker, Css, InkEvent, InkElement, InkArray) {
+Ink.requireModules(['Ink.UI.Common_1', 'Ink.UI.DatePicker_1', 'Ink.Dom.Css_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Util.Array_1', 'Ink.UI.Calendar_1'], function (Common, DatePicker, Css, InkEvent, InkElement, InkArray, Calendar) {
 
 var body = document.body;
 var dtElm;
@@ -22,268 +22,91 @@ module('main', {
     }
 });
 
-test('_dateCmp', function () {
-    equal(dt._dateCmp({_year: 2012}, {_year: 2012}), 0);
-    equal(dt._dateCmp({_year: 2012, _month: 10}, {_year: 2012}), 0);
-    equal(dt._dateCmp({_year: 2012, _month: 10}, {_year: 2012, _month: 11}), -1);
-    equal(dt._dateCmp({_year: 2012, _month: 10}, {_year: 2012, _month: 9}), 1);
-    equal(dt._dateCmp({_year: 2012, _month: 10, _day: 10}, {_year: 2012, _month: 10}), 0);
-    equal(dt._dateCmp({_year: 2012, _month: 10, _day: 10}, {_year: 2012, _month: 10, _day: 11}), -1);
-    equal(dt._dateCmp({_year: 2012, _month: 10, _day: 10}, {_year: 2012, _month: 10, _day: 9}), 1);
-    equal(dt._dateCmp({_year: 2012, _month: 10, _day: 10}, {_year: 2012, _month: 10, _day: 10}), 0);
+test('has a calendar', function () {
+    ok(dt._calendar instanceof Calendar);
+    strictEqual(dt._calendar, dt.getCalendar());
 });
 
-test('setDate', function () {
-    dt.setDate('2000-10-12');
-    equal(dt._year, 2000);
-    equal(dt._month + 1, 10);
-    equal(dt._day, 12);
+test('gives it a table.ink-calendar', sinon.test(function () {
+    this.spy(Common, 'BaseUIComponent')
+    mkDatePicker({})
+    var elm = dt._calendar._element
+    equal(elm.tagName.toLowerCase(), 'table', 'element is a table')
+    ok(Css.hasClassName(elm, 'ink-calendar'), 'table has class name ink-calendar')
+}));
 
-    dt.setDate('2000-01-01');
-    equal(dt._year, 2000);
-    equal(dt._month + 1, 1);
-    equal(dt._day, 1);
-});
+test('Passes Calendar-relevant options to Calendar', sinon.test(function () {
+    this.spy(Common, 'BaseUIComponent');
 
-test('setDate with Date objects', function () {
-    dt.setDate(new Date(2010, 11, 12));
-    equal(dt._year, 2010);
-    equal(dt._month + 1, 12);
-    equal(dt._day, 12);
-});
+    var optsToPass = {
+        dateRange:         'EVER:NOW',
+        nextLinkText:      'nextLinkText',
+        prevLinkText:      'prevLinkText',
+        ofText:            ' ofText ',
+        onSetDate:         sinon.spy(),
+        startDate:         '2015-04-05', // format yyyy-mm-dd,
+        startWeekDay:      3,
 
-test('_fitDateToRange', function () {
-    dt._setMinMax('2000-05-05:2001-05-05');
-    deepEqual(
-        dt._fitDateToRange({ _year: 2000, _month: 10, _day: 10}),
-        { _year: 2000, _month: 10, _day: 10});
-    deepEqual(
-        dt._fitDateToRange({ _year: 1999, _month: 10, _day: 10}),
-        { _year: 2000, _month: 4, _day: 5});
-});
+        // Validation
+        validDayFn:        sinon.spy(),
+        validMonthFn:      sinon.spy(),
+        validYearFn:       sinon.spy(),
+        nextValidDateFn:   sinon.spy(),
+        prevValidDateFn:   sinon.spy(),
+        yearRange:         '2010-2020',  /* [3.1.0] deprecate this */
 
-test('_getNextMonth', function () {
-    dt.setDate('2000-10-10');
-    deepEqual(dt._getNextMonth(), { _year: 2000, _month: 10, _day: 10 });
-    dt.setDate('2000-01-01');
-    deepEqual(dt._getNextMonth(), { _year: 2000, _month: 1, _day: 1 });
-    dt.setDate('2000-11-01');
-    deepEqual(dt._getNextMonth(), { _year: 2000, _month: 11, _day: 1 });
-    dt.setDate('2000-12-01');
-    deepEqual(dt._getNextMonth(), { _year: 2001, _month: 0, _day: 1 });
-});
-
-test('_getFirstDayIndex', function () {
-    /* Cal 2014-03
-     *
-     * Su Mo Tu We Th Fr Sa  
-     *                    1  <- The "1" is in the 7th day
-     *  2  3  4  5  6  7  8  
-     *  9 10 11 12 13 14 15  
-     * 16 17 18 19 20 21 22  
-     * 23 24 25 26 27 28 29  
-     * 30 31       
-     */
-    mkDatePicker({ startWeekDay: 0 /* sunday, like the cal above*/});
-    strictEqual(dt._getFirstDayIndex(2014, 2 /* month - 1 */), 6);
-    /* Cal 2014-03 (starting in monday)
-     *
-     * Mo Tu We Th Fr Sa Su  
-     *                 1  2  <- Now "1" is the sixth day
-     *  3  4  5  6  7  8  9  
-     * 10 11 12 13 14 15 16  
-     * 17 18 19 20 21 22 23  
-     * 24 25 26 27 28 29 30  
-     * 31                    
-     */
-    mkDatePicker({ startWeekDay: 1 /* monday */});
-    strictEqual(dt._getFirstDayIndex(2014, 2), 5);
-});
-
-test('regression: _getFirstDayIndex of february 2015 should actually be sunday', function () {
-    mkDatePicker({ startWeekDay: 0 });
-    strictEqual(dt._getFirstDayIndex(2015, 1 /* month - 1 */), 0);
-    mkDatePicker({ startWeekDay: 1 });
-    strictEqual(dt._getFirstDayIndex(2015, 1), 6);
-});
-
-test('_getPrevMonth', function () {
-    dt.setDate('2000-10-10');
-    deepEqual(dt._getPrevMonth(), { _year: 2000, _month: 8, _day: 10 });
-    dt.setDate('2000-01-01');
-    deepEqual(dt._getPrevMonth(), { _year: 1999, _month: 11, _day: 1 });
-});
-
-test('no start limit date', function () {
-    dt._setMinMax('EVER:2000-01-01');
-    deepEqual(dt._min, {
-        _year: -Number.MAX_VALUE,
-        _month: 0,
-        _day: 1
-    });
-
-    ok(dt._dateWithinRange({_year: -1000, _month: 1, _day: 1}));
-    ok(dt._dateWithinRange({_year: 2000, _month: 0, _day: 1}));
-    ok(!dt._dateWithinRange({_year: 2001, _month: 1, _day: 1}));
-});
-test('no end limit date', function () {
-    dt._setMinMax('2000-01-01:EVER');
-    deepEqual(dt._max, {
-        _year: Number.MAX_VALUE,
-        _month: 11,
-        _day: 31
-    });
-
-    ok(!dt._dateWithinRange({_year: -1000, _month: 1, _day: 1}));
-    ok(dt._dateWithinRange({_year: 2001, _month: 1, _day: 1}));
-});
-
-test('_get(Next|Prev)Month when hitting a limit', function () {
-    dt._setMinMax('2000-05-05:2001-05-05');
-
-    dt.setDate('2000-06-01');
-    deepEqual(dt._getPrevMonth(), { _year: 2000, _month: 4, _day: 5 });
-    dt.setDate('2001-04-09');
-    deepEqual(dt._getNextMonth(), { _year: 2001, _month: 4, _day: 5 });
-
-    dt.setDate('2000-05-01');
-    deepEqual(dt._getPrevMonth(), null);
-
-    dt.setDate('2001-05-06');
-    deepEqual(dt._getNextMonth(), null);
-});
-
-test('validDayFn', function () {
-    dt._options.validDayFn = sinon.stub().returns(false);
-    dt.setDate('2000-01-01');
-    dt.showMonth();
-
-    var findEnabled = function (button) {
-        return (/ink-calendar-off/.test(button.className));
+        // Text
+        month: {
+             1:'1 is the month of January',
+             2:'2 is the month of February',
+             3:'3 is the month of March',
+             4:'4 is the month of April',
+             5:'5 is the month of May',
+             6:'6 is the month of June',
+             7:'7 is the month of July',
+             8:'8 is the month of August',
+             9:'9 is the month of September',
+            10:'10 is the month of October',
+            11:'11 is the month of November',
+            12:'12 is the month of December'
+        },
+        wDay: {
+            0:'0 is the day of Sunday',
+            1:'1 is the day of Monday',
+            2:'2 is the day of Tuesday',
+            3:'3 is the day of Wednesday',
+            4:'4 is the day of Thursday',
+            5:'5 is the day of Friday',
+            6:'6 is the day of Saturday'
+        }
     };
-    var buttons = dt._monthContainer.getElementsByTagName('a');
-    ok(InkArray.some(buttons, findEnabled),
-        'No buttons are disabled');
 
-    var spy = dt._options.validDayFn = sinon.spy(sinon.stub().returns(true));
-    dt.showMonth();
-    buttons = dt._monthContainer.getElementsByTagName('a');
-    ok(!spy.notCalled);
-    ok(!InkArray.some(buttons, findEnabled),
-        'No buttons are disabled, I made all days valid with validDayFn');
+    var dt = new DatePicker('LOOOL', optsToPass);
 
-    var lastCall = spy.getCall(30);
-    ok(lastCall);
-    ok(!spy.getCall(31));
-    deepEqual(lastCall.args, [2000, 1, 31], 'called with last day of january');
-    strictEqual(lastCall.thisValue, dt, 'called with this=datepicker');
+    ok(Common.BaseUIComponent.calledTwice)
+    ok(Common.BaseUIComponent.calledWithNew())
+
+    var opts = Common.BaseUIComponent.lastCall.args[1];
+
+    for (var key in optsToPass) {
+        if (optsToPass.hasOwnProperty(key)) {
+            strictEqual(
+                optsToPass[key],
+                opts[key],
+                'option ' + key + ' passed to Calendar')
+        }
+    }
+}));
+
+test('puts the calendar next to the element', function () {
+    strictEqual(dt.getElement().nextSibling, dt.getCalendar().getElement());
 });
 
-test('nextValidDateFn', function () {
-    dt.setDate('2000-01-01');
-    var next = sinon.spy(sinon.stub().returns(new Date(2012, 1 - 1, 1)));
-    var prev = sinon.spy(sinon.stub().returns(new Date(1990, 1 - 1, 1)));
-
-    dt._options.nextValidDateFn = next;
-    dt._options.prevValidDateFn = prev;
-
-    var expectedNextValidDate = {_year: 2012, _month: 0, _day: 1};
-    var expectedPrevValidDate = {_year: 1990, _month: 0, _day: 1};
-
-    deepEqual(dt._getNextMonth(), expectedNextValidDate, 'next month is the result of nextValidDateFn');
-    ok(next.calledOnce, 'cb called once');
-    ok(next.calledWithExactly(2000, 1, 1), 'cb called with year, month, day');
-    ok(next.lastCall.thisValue === dt, 'cb called with this=datepicker');
-    deepEqual(dt._getPrevMonth(), expectedPrevValidDate, 'prev month is the result of prevValidDateFn');
-    ok(prev.calledOnce, 'cb called once');
-    ok(prev.calledWithExactly(2000, 1, 1), 'cb called with year, month, day');
-    ok(prev.lastCall.thisValue === dt, 'cb called with this=datepicker');
-
-    ok(true, '--- Checking if returning nulls as it should ---');
-    next = sinon.stub().returns(null);
-    prev = sinon.stub().returns(null);
-    dt._options.nextValidDateFn = next;
-    dt._options.prevValidDateFn = prev;
-
-    deepEqual(dt._getNextMonth(expectedNextValidDate), null);
-    deepEqual(dt._getPrevMonth(expectedPrevValidDate), null);
-
-    ok(next.calledOnce);
-    ok(prev.calledOnce);
-});
-
-test('getNextYear, getPrevYear', function () {
-    dt.setDate('2000-05-05');
-    deepEqual(dt._getNextYear(), {_year: 2001, _month: 4, _day: 5});
-    deepEqual(dt._getPrevYear(), {_year: 1999, _month: 4, _day: 5});
-
-    dt._setMinMax('1999-10-10:2001-01-01');
-    deepEqual(dt._getNextYear(), {_year: 2001, _month: 0, _day: 1});
-    deepEqual(dt._getPrevYear(), {_year: 1999, _month: 9, _day: 10});
-
-    dt.setDate('2001-01-01');
-    deepEqual(dt._getNextYear(), null);
-
-    dt.setDate('1999-10-10');
-    deepEqual(dt._getPrevYear(), null);
-});
-
-test('getCurrentDecade', function () {
-    dt.setDate('2000-05-05');
-    deepEqual(dt._getCurrentDecade(), 2000);
-    dt.setDate('2010-01-01');
-    deepEqual(dt._getCurrentDecade(), 2010);
-    dt.setDate('2005-01-01');
-    deepEqual(dt._getCurrentDecade(), 2000);
-    dt.setDate('2019-01-01');
-    deepEqual(dt._getCurrentDecade(), 2010);
-});
-
-test('getNextDecade, getPrevDecade', function () {
-    dt._getCurrentDecade = sinon.spy(dt._getCurrentDecade);
-    dt.setDate('2001-05-05');
-    deepEqual(dt._getNextDecade(), 2010);
-    deepEqual(dt._getPrevDecade(), 1990);
-    ok(dt._getCurrentDecade.calledTwice);
-
-    dt._setMinMax('2000-05-01:2020-05-05');
-    deepEqual(dt._getPrevDecade(), null);
-    dt.setDate('2020-01-01');
-    deepEqual(dt._getNextDecade(), null);
-});
-
-test('dateCmp', function () {
-    var y2k = { _year: 2000, _month: 0, _day: 1};
-    var y2kandaday = { _year: 2000, _month: 0, _day: 2};
-    deepEqual(dt._dateCmp(y2k, y2k), 0);
-    deepEqual(dt._dateCmp(y2k, y2kandaday), -1);
-    deepEqual(dt._dateCmp(y2kandaday, y2k), 1);
-});
-
-test('dateCmpUntil', function () {
-    var y2k = { _year: 2000, _month: 0, _day: 1};
-    var y2kandaday = { _year: 2000, _month: 0, _day: 2 };
-    var y2kandamonth = { _year: 2000, _month: 2, _day: 3 };
-    deepEqual(dt._dateCmpUntil(y2k, y2kandaday, '_month'), 0, 'too shallow');
-    deepEqual(dt._dateCmpUntil(y2k, y2kandaday, '_year'), 0, 'too shallow');
-    deepEqual(dt._dateCmpUntil(y2k, y2kandaday, '_day'), -1, 'deep enough, we see a difference');
-    deepEqual(dt._dateCmpUntil(y2k, y2kandamonth, '_year'), 0);
-    deepEqual(dt._dateCmpUntil(y2k, y2kandamonth, '_month'), -1);
-    deepEqual(dt._dateCmpUntil(y2kandamonth, y2k, '_month'), 1);
-});
-
-test('daysInMonth', function () {
-    equal(dt._daysInMonth(2000, 1), 31);
-    equal(dt._daysInMonth(2000, 2), 29);
-    equal(dt._daysInMonth(2001, 2), 28);
-});
-
-test('updateDate', function () {
-    dt._element.value = '11/11/2012';
-    dt._updateDate();
-    equal(dt._year, 2012);
-    equal(dt._month, 10);
-    equal(dt._day, 11);
+test('alias: setDate', function () {
+    var spy = sinon.stub(dt._calendar, 'setDate');
+    dt.setDate('2000-10-12');
+    ok(spy.calledOnce);
+    ok(spy.calledWith('2000-10-12'));
 });
 
 test('set', function () {
@@ -294,10 +117,31 @@ test('set', function () {
     equal(dt.getDate(), 10);
 });
 
-test('show', function () {
-    equal(Css.getStyle(dt._containerObject, 'display'), 'none');
+test('show, hide', function () {
+    equal(Css.getStyle(dt._calendarEl, 'display'), 'none');
     dt.show();
-    notEqual(Css.getStyle(dt._containerObject, 'display'), 'none');
+    notEqual(Css.getStyle(dt._calendarEl, 'display'), 'none');
+    dt.hide();
+    equal(Css.getStyle(dt._calendarEl, 'display'), 'none');
+    dt.hide();
+});
+
+test('shows the datepicker when the input is focused', function () {
+    stop()
+    sinon.spy(dt, 'show')
+    Syn.click(dt._element, function () {
+        ok(dt.show.calledOnce, 'element was shown!')
+        start()
+    });
+});
+
+test('Changes the datepicker\'s date when the input is changed', function () {
+    stop()
+    var setDate = sinon.spy(dt._calendar, 'setDate')
+    Syn.type(dt._element, '12/12/2012[enter]', function () {
+        ok(setDate.calledOnce, 'setDate was called when the user typed a date')
+        start()
+    });
 });
 
 test('destroy', function () {
@@ -307,62 +151,37 @@ test('destroy', function () {
     strictEqual(testWrapper.firstChild, dtElm, 'the only element there is our original input');
 });
 
-test('regression: months have correct amount of days', function () {
-    mkDatePicker({
-        startDate: '2014-02-01' });
-    dt.show();
-    equal(Ink.ss('.ink-calendar-month [data-cal-day]', testWrapper).length, 28);
+test('setDate', function () {
+    dt.setDate('2000-10-12');
+    equal(dt._calendar._year, 2000);
+    equal(dt._calendar._month + 1, 10);
+    equal(dt._calendar._day, 12);
 
-    mkDatePicker({
-        startDate: '2014-01-01' });
-    dt.show();
-    equal(Ink.ss('.ink-calendar-month [data-cal-day]', testWrapper).length, 31);
+    dt.setDate('2000-01-01');
+    equal(dt._calendar._year, 2000);
+    equal(dt._calendar._month + 1, 1);
+    equal(dt._calendar._day, 1);
 });
 
-test('regression: days start in the correct week day by filling with an appropriate amount of "empties"', function () {
-    /* March 2014  start=Su     March 2014  start=Mo
-     * Su Mo Tu We Th Fr Sa     Mo Tu We Th Fr Sa Su
-     *                    1                     1  2
-     *  2  3  4  5  6  7  8      3  4  5  6  7  8  9
-     *  9 10 11 12 13 14 15     10 11 12 13 14 15 16
-     * 16 17 18 19 20 21 22     17 18 19 20 21 22 23
-     * 23 24 25 26 27 28 29     24 25 26 27 28 29 30
-     * 30 31                    31                  
-     *
-     * 6 empties before "1"     5 empties before "1"
-     */
-
-    dt.destroy();
-
-    equal(Ink.ss('.ink-calendar-empty', getFirstLine(0)).length, 6);
-    dt.destroy();
-
-    equal(Ink.ss('.ink-calendar-empty', getFirstLine(1)).length, 5);
-    dt.destroy();
-
-    function getFirstLine(startWeekDay) {
-        mkDatePicker({
-            startDate: '2014-03-01',
-            startWeekDay: startWeekDay });
-        dt.show();
-        var firstLine = Ink.s('.ink-calendar-month .ink-calendar-header + ul', testWrapper);
-        ok(firstLine, 'sanity check');
-        return firstLine;
-    }
+test('setDate with Date objects', function () {
+    dt.setDate(new Date(2010, 11, 12));
+    equal(dt._calendar._year, 2010);
+    equal(dt._calendar._month + 1, 12);
+    equal(dt._calendar._day, 12);
 });
 
-test('(regression): Changing march to february when cursor is in the 30th day', function () {
-    dt.setDate('2014-03-30');
-    deepEqual(dt._getPrevMonth(), { _year: 2014, _month: 1, _day: 28 });
+test('updateDate', function () {
+    dt._element.value = '11/11/2012';
+    dt._updateDate();
+    equal(dt._calendar._year, 2012);
+    equal(dt._calendar._month, 10);
+    equal(dt._calendar._day, 11);
 
-    dt.setDate('2014-05-31');
-    deepEqual(dt._getPrevMonth(), { _year: 2014, _month: 3, _day: 30 });
-
-    dt.setDate('2014-01-30');
-    deepEqual(dt._getNextMonth(), { _year: 2014, _month: 1, _day: 28 });
-
-    dt.setDate('2014-03-31');
-    deepEqual(dt._getNextMonth(), { _year: 2014, _month: 3, _day: 30 });
-})
+    dt._element.value = '31/12/2032';
+    dt._updateDate();
+    equal(dt._calendar._year, 2032);
+    equal(dt._calendar._month, 11);
+    equal(dt._calendar._day, 31);
+});
 
 });
