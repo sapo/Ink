@@ -276,6 +276,8 @@ Ink.createModule('Ink.UI.Carousel', '1',
                     curPage += Math[ pointerDelta < 0 ? 'floor' : 'ceil' ](progressInPages);
                 }
 
+                curPage = limitRange(curPage, 0, this._numPages - 1);
+
                 // If something used to calculate progressInPages was zero, we get NaN here.
                 if (!isNaN(curPage)) {
                     this.setPage(curPage);
@@ -334,7 +336,12 @@ Ink.createModule('Ink.UI.Carousel', '1',
             }
             page = limitRange(page, 0, this._numPages - 1);
 
-            if (page === this._currentPage) { return; }
+            if (page === this._currentPage) {
+                if (this._swipeData) {
+                    this._setPage(page);  // Just advance the view.
+                }
+                return;
+            }
 
             if (this._pagination) {
                 this._pagination.setCurrent(page);  // _setPage is called by pagination because it listens to its Change event.
@@ -353,8 +360,6 @@ Ink.createModule('Ink.UI.Carousel', '1',
                     _lengthToGo = ((page - 1) * this._deltaLength) + (_itemsInLastPage * this._elLength);
                 }
             }
-
-            if (page === this._currentPage) { return; }
 
             this._ulEl.style[ this._isY ? 'top' : 'left'] =
                 ['-', (_lengthToGo / this._ctnLength) * 100, '%'].join('');
