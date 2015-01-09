@@ -117,6 +117,7 @@ Ink.requireModules(['Ink.Net.Ajax_1'], function (Ajax) {
         equal(Ink.error.calledOnce, true, 'Ink.warn called once');
         var isHelpful = ok;
         isHelpful(Ink.error.lastCall.args[0]);
+        Ink.error.restore();
     });
 
 
