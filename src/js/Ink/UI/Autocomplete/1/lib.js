@@ -111,7 +111,7 @@ Ink.createModule( 'Ink.UI.Autocomplete' , '1', [ 'Ink.UI.Common_1' , 'Ink.Dom.Se
 
             var o = this._options;
 
-            o.autocomplete( this._word , this._nWord , Ink.bind( this._setSuggestions , this ) );
+            o.autocomplete.call( this , this._word , this._nWord , Ink.bind( this._setSuggestions , this ) );
 
             return this;
         } ,
