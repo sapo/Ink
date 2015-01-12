@@ -99,7 +99,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
         createEndpointURL: ['Function', null /* default func uses above option */],
         getDataFromEndPoint: ['Function', null],  // Deprecated mis-cased option
         getDataFromEndpoint: ['Function', null /* by default use plain ajax for JSON */],
-        processJSONRows: ['Function', function (dt) { return typeof dt.length === 'number' ? dt : (dt.rows || null) }],
+        processJSONRows: ['Function', function (dt) { return typeof dt.length === 'number' ? dt : (dt.rows || null); }],
         processJSONRow: ['Function', sameSame],
         processJSONField: ['Function', sameSame],
         processJSONHeaders: ['Function', function (dt) { return dt.fields; }],
