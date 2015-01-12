@@ -316,6 +316,19 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
                 elements: function (val) {
                     return Common.elsOrSelector(val, '', false /*not required, so don't throw an exception now*/);
                 },
+                array: function (val) {
+                    if ( !val ) {
+                        return null;
+                    }
+
+                    val = val.match(/(\\.|[^|])+/g);
+
+                    for ( var i = 0, l = val.length; i < l; i++ ) {
+                        val[ i ] = val[ i ].replace( '\\|' , '|' );
+                    }
+
+                    return val;
+                },
                 object: function (val) { return val; },
                 number: function (val) { return parseFloat(val); },
                 'boolean': function (val) {
@@ -350,6 +363,9 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
                 },
                 'boolean': function (val) {
                     return typeof val === 'boolean';
+                },
+                array: function (val) {
+                    return Object.prototype.toString.call(val) === '[object Array]';
                 },
                 object: function () { return true; }
             };
