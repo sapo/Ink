@@ -1392,9 +1392,8 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
                     elm.innerHTML = html;
                 } catch (e) {
                     // Tables in IE7
-                    while (elm.firstChild) {
-                        elm.removeChild(elm.firstChild);
-                    }
+                    InkElement.clear( elm );
+
                     InkElement.appendHTML(elm, html);
                 }
             }
@@ -1626,6 +1625,12 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
 
             return dataset;
         },
+
+        clear : function( elem , child ) {
+            while ( ( child = elem.lastChild ) ) {
+                elem.removeChild( child );
+            }
+        } ,
 
         /**
          * Move the cursor on an input or textarea element.
