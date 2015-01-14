@@ -276,7 +276,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
 
         /**
          * Opens this Modal. 
-         * Use this if you created the modal with `autoOpen: false`
+         * Use this if you created the modal with `autoDisplay: false`
          * to open the modal when you want to.
          * @method open 
          * @param {Event} [event] (internal) In case its fired by the internal trigger.
