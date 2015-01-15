@@ -2,7 +2,6 @@ Ink.requireModules(['Ink.UI.Pagination_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1',
     function makeContainer(options) {
         var container = InkElement.create('div', {
             className: 'ink-navigation ink-pagination ' + (options.className || ''),
-            style: 'display: none',
             insertBottom: document.body
         });
 
@@ -36,6 +35,19 @@ Ink.requireModules(['Ink.UI.Pagination_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1',
         equal(component._calculateSize(5, 5), 1);
         equal(component._calculateSize(10, 5), 2);
     });
+
+    testPagination('autoWrap', function (pag, cont) {
+        pag.setCurrent(2);  // Last page
+        stop();
+        Syn.click(Ink.s('li.next', cont), function () {
+            equal(pag.getCurrent(), 0);
+            pag.setCurrent(0);
+            Syn.click(Ink.s('li.previous', cont), function () {
+                equal(pag.getCurrent(), 2);
+                start();
+            })
+        })
+    }, { autoWrap: true });
 
     testPagination('(regression) fist, last buttons work', function(pag, cont) {
         pag.setCurrent(2);
