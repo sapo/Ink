@@ -324,7 +324,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
          * Sets the current page index
          * @method setPage
          * @param {Number}  page   Index of the destination page.
-         * @param {Boolean} [wrap] Flag to activate circular counting (for example, if you set the page to `5` and there are only 4 pages, you're actually going to the first page).
+         * @param {Boolean} [wrap=false] Flag to activate circular counting (for example, if you set the page to `5` and there are only 4 pages, you're actually going to the first page).
          * @return {void}
          * @public
          **/
@@ -374,7 +374,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
         /**
          * Goes to the next page
          * @method nextPage
-         * @param {Boolean} [wrap] Flag to loop from last page to first page.
+         * @param {Boolean} [wrap=false] Flag to loop from last page to first page.
          * @return {void}
          * @public
          **/
@@ -385,7 +385,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
         /**
          * Goes to the previous page
          * @method previousPage
-         * @param {Boolean} [wrap] Flag to loop from first page to last page.
+         * @param {Boolean} [wrap=false] Flag to loop from first page to last page.
          * @return {void}
          * @public
          **/
