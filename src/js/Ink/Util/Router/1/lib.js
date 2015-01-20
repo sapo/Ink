@@ -37,7 +37,7 @@ Ink.createModule( 'Ink.Util.Router' , '1' , [ 'Ink.Dom.Event_1' ] , function( In
      * @constructor
      * @version 1
      * @param {Object} [opt] Options
-     *      @param {String}      [opt.baseURL='/']         base URL
+     *      @param {String}      [opt.baseURL='']          base URL
      *      @param {String}      [opt.mode='hash']         Routing mode, default is hash, use URL hash part to save the page state and the path mode uses path part (using pushState) (see note)
      *      @param {Boolean}     [opt.compatibility=false] if using path mode with compatibility true, will use hash on browser that not support pushState (see note)
      *      @param {Function}    [opt.onLoad]              callback function to run after Router initiation
@@ -47,6 +47,7 @@ Ink.createModule( 'Ink.Util.Router' , '1' , [ 'Ink.Dom.Event_1' ] , function( In
      *          @param {String}           opt.paths.path            path to be match with URL
      *          @param {Function}         [opt.paths.init]          callback function to run when enters for the first time in this path
      *          @param {Function}         [opt.paths.enter]         callback function to run when enters in this path
+     *          @param {Function}         [opt.paths.change]        callback function to run when change in this path
      *          @param {Function}         [opt.paths.exit]          callback function to run when leaves in this path
      *          @param {Function}         [opt.paths.fail]          callback function to run when fails to match paths inside this path
      *          @param {Number|String}    [opt.paths.repeat]        use string '+' or a integer, if it's a number (integer) will be like using regex {1,n}
@@ -113,7 +114,7 @@ Ink.createModule( 'Ink.Util.Router' , '1' , [ 'Ink.Dom.Event_1' ] , function( In
         if ( !( this instanceof Router ) ) { return new Router( opt ); }
 
         this._options = Ink.extendObj({
-            baseURL       : '/' ,
+            baseURL       : '' ,
             mode          : 'hash' ,
             compatibility : false ,
             paths         : [ ] ,
