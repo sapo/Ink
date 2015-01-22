@@ -30,7 +30,7 @@ Ink.createModule('Ink.Util.Dumper', '1', [], function() {
          * Function that returns the argument passed formatted
          *
          * @method _formatParam
-         * @param {Mixed} param
+         * @param {Mixed} param The thing to format.
          * @return {String} The argument passed formatted
          * @private
          * @static
@@ -89,13 +89,13 @@ Ink.createModule('Ink.Util.Dumper', '1', [], function() {
          * Function that formats the parameter to display.
          *
          * @method _outputFormat
-         * @param {Any} param
-         * @param {Number} dim
+         * @param {Mixed} param The thing to format.
+         * @param {Number} indent Indentation level.
          * @return {String} The parameter passed formatted to displat
          * @private
          * @static
          */
-        _outputFormat: function(param, dim)
+        _outputFormat: function(param, indent)
         {
             var formated = '';
             //var _strVal = false;
@@ -108,16 +108,16 @@ Ink.createModule('Ink.Util.Dumper', '1', [], function() {
                         } else if(param[key].constructor === Object) {
                             _typeof = 'Object';
                         }
-                        formated += this._tab + this._getTabs(dim) + '[' + key + '] => <b>'+_typeof+'</b>\n';
-                        formated += this._tab + this._getTabs(dim) + '{\n';
-                        formated += this._outputFormat(param[key], dim + 1) + this._tab + this._getTabs(dim) + '}\n';
+                        formated += this._tab + this._getTabs(indent) + '[' + key + '] => <b>'+_typeof+'</b>\n';
+                        formated += this._tab + this._getTabs(indent) + '{\n';
+                        formated += this._outputFormat(param[key], indent + 1) + this._tab + this._getTabs(indent) + '}\n';
                     } else if(param[key].constructor === Function) {
                         continue;
                     } else {
-                        formated = formated + this._tab + this._getTabs(dim) + '[' + key + '] => ' + param[key] + '\n';
+                        formated = formated + this._tab + this._getTabs(indent) + '[' + key + '] => ' + param[key] + '\n';
                     }
                 } else {
-                    formated = formated + this._tab + this._getTabs(dim) + '[' + key + '] => null \n';
+                    formated = formated + this._tab + this._getTabs(indent) + '[' + key + '] => null \n';
                 }
             }
             return formated;
@@ -127,8 +127,9 @@ Ink.createModule('Ink.Util.Dumper', '1', [], function() {
          * Prints variable structure.
          *
          * @method printDump
-         * @param {Any}                 param       Variable to be dumped.
+         * @param {Mixed}                 param       Variable to be dumped.
          * @param {DOMElement|String}   [target]    Element to print the dump on.
+         * @return {void}
          * @public
          * @static
          * @sample Ink_Util_Dumper_printDump.html 
@@ -153,8 +154,8 @@ Ink.createModule('Ink.Util.Dumper', '1', [], function() {
          * Get a variable's structure.
          *
          * @method returnDump
-         * @param   {Any}       param   Variable to get the structure.
-         * @return  {String}            The variable's structure.
+         * @param   {Mixed}       param   Variable to get the structure.
+         * @return  {String}      The variable's structure.
          * @public
          * @static
          * @sample Ink_Util_Dumper_returnDump.html 
@@ -168,7 +169,8 @@ Ink.createModule('Ink.Util.Dumper', '1', [], function() {
          * Alert a variable's structure.
          *
          * @method alertDump
-         * @param {Any}     param     Variable to be dumped.
+         * @param {Mixed}     param     Variable to be dumped.
+         * @return {void}
          * @public
          * @static
          * @sample Ink_Util_Dumper_alertDump.html 
@@ -182,7 +184,8 @@ Ink.createModule('Ink.Util.Dumper', '1', [], function() {
          * Prints the variable structure to a new window.
          *
          * @method windowDump
-         * @param {Any}     param   Variable to be dumped.
+         * @param {Mixed}     param   Variable to be dumped.
+         * @return {void}
          * @public
          * @static
          * @sample Ink_Util_Dumper_windowDump.html 

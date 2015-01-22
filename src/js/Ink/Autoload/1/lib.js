@@ -57,13 +57,14 @@ Ink.createModule('Ink.Autoload', 1, ['Ink.Dom.Selector_1', 'Ink.Util.Array_1', '
          *
          * Useful when you load something from AJAX and want it to have automatically loaded Ink modules.
          * @method run
-         * @param {DOMElement} parentEl  
+         * @param {Element} parentEl Root element. The children of this element will be processed by Autoload.
          * @param {Object}  [options] Options object, containing:
          * @param {Boolean} [options.forceAutoload] Autoload things on elements even if they have `data-autoload="false"`
          * @param {Boolean} [options.createClose] Whether to create the Ink.UI.Close component. Defaults to `true`.
          * @param {Boolean} [options.createSmoothScroller] Whether to create the Scroller component. Defaults to `true`.
          * @param {Object} [options.selectors=Ink.Autoload.selectors] A hash mapping module names to selectors that match elements to load these modules. For example, `{ 'Modal_1': '.my-specific-modal' }`.
          * @param {Boolean} [options.waitForDOMLoaded=false] Do nothing until the DOM is loaded. Uses Ink.Dom.Loaded.run();
+         * @return {void}
          * @public
          * @sample Autoload_1.html
          **/
@@ -123,8 +124,10 @@ Ink.createModule('Ink.Autoload', 1, ['Ink.Dom.Selector_1', 'Ink.Util.Array_1', '
         /**
          * Add a new entry to be autoloaded.
          * @method add
-         * @param moduleName {String}
-         * @param selector   {String}
+         * @param {String} moduleName The module name (Example: 'Modal_1', or 'Dropdown_1')
+         * @param {String} selector   A selector which finds elements where this module should be autoloaded (Example: '.my-modal' or '.my-dropdown')
+         * @return {void}
+         * @public
          */
         add: function (moduleName, selector) {
             if (!validSelector(selector)) { return false; }
@@ -138,7 +141,9 @@ Ink.createModule('Ink.Autoload', 1, ['Ink.Dom.Selector_1', 'Ink.Util.Array_1', '
         /**
          * Removes a module from autoload, making it not be automatically loaded.
          * @method remove
-         * @param moduleName {String}
+         * @param {String} moduleName The module's name and version ('Name_ver')
+         * @return {void}
+         * @public
          **/
         remove: function (moduleName) {
             delete Autoload.selectors[moduleName];

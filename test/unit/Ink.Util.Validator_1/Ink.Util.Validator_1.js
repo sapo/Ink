@@ -6,10 +6,10 @@ var ellipsis = '\u2026'; // ellipsis character (…)
 var ccedil = '\u00E7'; // C with a cedilla (ç)
 
 function invalid (a, msg) {
-    deepEqual(a, false, msg || 'should be invalid!');
+    strictEqual(a, false, msg || 'should be invalid!');
 }
 function valid (a, msg) {
-    deepEqual(a, true, msg || 'should be valid!');
+    strictEqual(a, true, msg || 'should be valid!');
 }
 
 module('checkCharacterGroups');
@@ -72,52 +72,52 @@ var numb = function (numb, options) {
 };
 
 test('integer numbers', function () {
-    deepEqual(numb('.'), false);
-    deepEqual(numb('123.123', {decimalPlaces: 0}), false);
-    deepEqual(numb('123'), 123);
-    deepEqual(numb(0), 0);
+    strictEqual(numb('.'), false);
+    strictEqual(numb('123.123', {decimalPlaces: 0}), false);
+    strictEqual(numb('123'), 123);
+    strictEqual(numb(0), 0);
 });
 
 test('decimal numbers', function () {
-    deepEqual(numb('0.123', {decimalPlaces: 3}), 0.123);
-    deepEqual(numb('.123', {decimalPlaces: 3}), 0.123);
+    strictEqual(numb('0.123', {decimalPlaces: 3}), 0.123);
+    strictEqual(numb('.123', {decimalPlaces: 3}), 0.123);
     
-    deepEqual(numb('.123', {decimalPlaces: 2}), false);
+    strictEqual(numb('.123', {decimalPlaces: 2}), false);
 });
 
 test('negative numbers', function () {
-    deepEqual(numb('-1.23', {decimalPlaces: 3}), -1.23);
-    deepEqual(numb('-1.23', {decimalPlaces: 3, negative: false}), false);
+    strictEqual(numb('-1.23', {decimalPlaces: 3}), -1.23);
+    strictEqual(numb('-1.23', {decimalPlaces: 3, negative: false}), false);
 });
 
 test('max/min', function () {
     var minMax = {min: -100, max: 100};
-    deepEqual(numb('123', minMax), false);
-    deepEqual(numb('50', minMax), 50);
-    deepEqual(numb('-50', minMax), -50);
-    deepEqual(numb('-150', minMax), false);
+    strictEqual(numb('123', minMax), false);
+    strictEqual(numb('50', minMax), 50);
+    strictEqual(numb('-50', minMax), -50);
+    strictEqual(numb('-150', minMax), false);
 });
 
 test('thousand separator', function () {
-    deepEqual(numb('1`344`123'), false);
-    deepEqual(numb('1`344`123', {thousandSep: '`'}), 1344123);
-    deepEqual(numb('1.344.123'), false);
-    deepEqual(numb('1.344.123', {thousandSep: '.'}), 1344123);
-    deepEqual(numb('1344123', {thousandSep: '.'}), 1344123);
-    deepEqual(numb('1Thousand344Thousand123', {thousandSep: '`'}), false);
-    deepEqual(numb('1Thousand344Thousand123', {thousandSep: 'Thousand'}), 1344123);
-    deepEqual(numb('Thousand'), false);
-    deepEqual(numb('Thousand', {thousandSep: 'Thousand'}), false);
+    strictEqual(numb('1`344`123'), false);
+    strictEqual(numb('1`344`123', {thousandSep: '`'}), 1344123);
+    strictEqual(numb('1.344.123'), false);
+    strictEqual(numb('1.344.123', {thousandSep: '.'}), 1344123);
+    strictEqual(numb('1344123', {thousandSep: '.'}), 1344123);
+    strictEqual(numb('1Thousand344Thousand123', {thousandSep: '`'}), false);
+    strictEqual(numb('1Thousand344Thousand123', {thousandSep: 'Thousand'}), 1344123);
+    strictEqual(numb('Thousand'), false);
+    strictEqual(numb('Thousand', {thousandSep: 'Thousand'}), false);
 });
 
 test('NaN, Inf', function () {
-    deepEqual(numb(Infinity), false);
-    deepEqual(numb(-Infinity), false);
-    deepEqual(numb(NaN), false);
+    strictEqual(numb(Infinity), false);
+    strictEqual(numb(-Infinity), false);
+    strictEqual(numb(NaN), false);
 
-    deepEqual(numb('Infinity'), false);
-    deepEqual(numb('-Infinity'), false);
-    deepEqual(numb('NaN'), false);
+    strictEqual(numb('Infinity'), false);
+    strictEqual(numb('-Infinity'), false);
+    strictEqual(numb('NaN'), false);
 });
 
 module('dates');

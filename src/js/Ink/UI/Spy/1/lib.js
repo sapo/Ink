@@ -113,9 +113,9 @@ Ink.createModule('Ink.UI.Spy', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Do
      * @class Ink.UI.Spy
      * @constructor
      * @version 1
-     * @param {String|DOMElement} selector
-     * @param {Object} [options] Options
-     * @param {DOMElement|String}     options.target          Target menu where the spy will highlight the right option.
+     * @param {String|Element}    selector              The spied element
+     * @param {Object}            [options] Options
+     * @param {Element|String}    options.target    Target menu where the spy will highlight the right option.
      *
      * @sample Ink_UI_Spy_1.html
      */

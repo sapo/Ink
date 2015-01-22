@@ -19,7 +19,7 @@ Ink.requireModules(['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1', '
             function UIComp() {};
             inst = new UIComp();
             inst._element = elm;
-        },
+        }
     });
 
     test('Holds instances, can retrieve them', function () {
@@ -27,9 +27,29 @@ Ink.requireModules(['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1', '
         strictEqual(Common.getInstance(elm)[0], inst);
     });
 
+    test('Can unregister an instance', function () {
+        Common.registerInstance(inst, elm);
+        Common.unregisterInstance(inst);
+        ok(!Common.getInstance(elm)[0]);
+    });
+
     test('Does not break when getting instances from an element without them', function () {
         deepEqual(Common.getInstance(elm), []);
     });
+
+    test('Calls Common.isDOMElement. If it returns false, warns and returns [].', sinon.test(function () {
+        this.stub(Ink, 'warn');
+        this.stub(Common, 'isDOMElement').returns(false);
+
+        var ret = Common.getInstance('fakeelement');
+
+        ok(Common.isDOMElement.calledWith('fakeelement'), 'isDOMElement called with the element');
+
+        deepEqual(ret, [], 'getInstance returned []');
+
+        ok(Ink.warn.called, 'Ink.warn called');
+        ok(/fakeelement/.test(Ink.warn.lastCall.args[0]), 'Warned the supposed "element"');
+    }));
 
     test('Can unregister instances', function () {
         Common.registerInstance(inst, elm);
@@ -287,7 +307,7 @@ Ink.requireModules(['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1', '
     var testFunc;
     module('createUIComponent', {
         setup: function () {
-            testFunc = function testFunc () {
+            testFunc = function () {
                 Common.BaseUIComponent.apply(this, arguments);
             }
 
@@ -377,7 +397,7 @@ Ink.requireModules(['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1', '
         var instance = new testFunc(testEl, testOpts);
 
         ok(Common.registerInstance.calledOnce);
-        ok(Common.registerInstance.calledWith(instance, testEl));
+        ok(Common.registerInstance.calledWith(instance));
     }));
 
     test('its constructor: if BaseUIComponent._validateInstance returns false, stubs the instance by calling BaseUIComponent._stubInstance', sinon.test(function () {

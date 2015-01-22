@@ -38,6 +38,18 @@ Ink.requireModules(['Ink.Net.Ajax_1'], function (Ajax) {
         equal(statics._locationIsCrossDomain(
             statics._locationFromURL('http://www.sapo.pt:80/'),
             statics._locationFromURL('http://www.sapo.pt:81/')), false);
+
+        equal(statics._locationIsCrossDomain(
+            statics._locationFromURL('foo.jpg'),
+            statics._locationFromURL('/my/page.html')), false);
+
+        /* A relative URL on this site */
+        equal(statics._locationIsCrossDomain(
+            statics._locationFromURL('/my/page.html')), false);
+
+        /* A URL pointing to this site, starting with // */
+        equal(statics._locationIsCrossDomain(
+            statics._locationFromURL('//' + location.host + '/my/page.html')), false);
     });
 
     test('Url parameters', function () {
@@ -96,6 +108,17 @@ Ink.requireModules(['Ink.Net.Ajax_1'], function (Ajax) {
             }
         });
     });
+
+    test('Attempt to load something cross-domain from where we are results in a call to Ink.warn with a helpful message, and raises an error', function () {
+        sinon.stub(Ink, 'error');
+
+        new Ajax('http://cross-domain-from-here.com/lel.json');
+
+        equal(Ink.error.calledOnce, true, 'Ink.warn called once');
+        var isHelpful = ok;
+        isHelpful(Ink.error.lastCall.args[0]);
+    });
+
 
     test('isJSON', function () {
         var isJSON = Ajax.prototype.isJSON;

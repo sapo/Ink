@@ -16,7 +16,7 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Css_1',
      * @class Ink.UI.SortableList
      * @constructor
      * @version 1
-     * @param {String|DOMElement}   selector
+     * @param {String|Element}      selector                            The list you wish to be sortable.
      * @param {String}              [options.placeholderClass]          CSS class added to the "ghost" element being dragged around. Defaults to 'placeholder'.
      * @param {String}              [options.draggedClass]              CSS class added to the original element being dragged around. Defaults to 'hide-all'.
      * @param {String}              [options.draggingClass]             CSS class added to the html element when the user is dragging. Defaults to 'dragging'.
@@ -25,7 +25,7 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Css_1',
      * @param {String}              [options.moveSelector]              CSS selector to validate a node move. If present, you can only move nodes inside this selector.
      * @param {Boolean}             [options.swap]                      Flag to swap dragged element and target element instead of reordering it.
      * @param {Boolean}             [options.cancelMouseOut]            Flag to cancel draggin if mouse leaves the container element.
-     * @param {Function}            [options.onDrop]                    Callback to be executed after dropping an element. Receives { droppedElement: DOMElement } as an argument.
+     * @param {Function}            [options.onDrop]                    Callback to be executed after dropping an element. Receives { droppedElement: Element } as an argument.
      *
      * @sample Ink_UI_SortableList_1.html
      */
