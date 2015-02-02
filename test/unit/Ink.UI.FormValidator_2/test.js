@@ -101,6 +101,42 @@ Ink.requireModules(['Ink.UI.FormValidator_2', 'Ink.Dom.Element_1', 'Ink.Dom.Sele
         equal(elms.passwordconfirmation[0].validate(), true, 'Empty password matching field is valid because the password is not required');
     }));
 
+    test('Skips validating fields when they\'re empty, but still validates them if required', sinon.test(function () {
+        var oldStuff = makeForm();
+
+        var myForm = oldStuff.form;
+        var validator = oldStuff.validator;
+
+        myForm.innerHTML = '';
+
+        myForm.appendChild(InkElement.create('input', {
+            type: 'text',
+            name: 'number',
+            'data-rules': 'integer'
+        }));
+
+        myForm.appendChild(InkElement.create('input', {
+            type: 'text',
+            name: 'requirednumber',
+            'data-rules': 'integer|required'
+        }));
+
+        var elms = validator.getElements();
+
+        reparse(validator);
+
+        equal(elms.number[0].validate(), true, 'Empty number field is valid');
+        equal(elms.requirednumber[0].validate(), false, 'Empty required number field is invalid');
+
+        elms.number[0]._element.value = 'a';
+        elms.requirednumber[0]._element.value = '1';
+
+        reparse(validator);
+
+        equal(elms.number[0].validate(), false, 'Sanity check');
+        equal(elms.requirednumber[0].validate(), true, 'Sanity check');
+    }));
+
     test('Create new FormElements for each control-group in the form', sinon.test(function () {
         var oldStuff = makeForm();
 
