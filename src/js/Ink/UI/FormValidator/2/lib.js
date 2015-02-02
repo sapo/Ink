@@ -316,7 +316,14 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
          * @return {Boolean}         True if the values match. False if not.
          */
         'matches': function( value, fieldToCompare ){
-            return ( value === this.getFormElements()[fieldToCompare][0].getValue() );
+            var otherField = this.getFormElements()[fieldToCompare][0];
+            var otherFieldValue = otherField.getValue();
+            if (otherField._rules.required) {
+                if (otherFieldValue == '') {
+                    return false;
+                }
+            }
+            return value === otherFieldValue;
         }
 
     };
@@ -594,19 +601,23 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         validate: function(){
             this._errors = {};
 
-            if( "rules" in this._options || 1){
-                this._parseRules( this._options.rules );
-            }
-            
-            if( ("required" in this._rules) || (this.getValue() !== '') ){
+            this._parseRules( this._options.rules );
+
+            // We want to validate this field only if it's not empty
+            // "" is not an invalid number.
+            var doValidate = this.getValue() !== '' ||
+                // If it's required it will be validated anyway.
+                ("required" in this._rules) ||
+                // If it has a "matches" rule it will also be validated because "" is not a valid password confirmation.
+                ("matches" in this._rules);
+
+            if (doValidate) {
                 for(var rule in this._rules) {
                     if (this._rules.hasOwnProperty(rule)) {
                         if( (typeof validationFunctions[rule] === 'function') ){
                             if( validationFunctions[rule].apply(this, this._rules[rule] ) === false ){
-
                                 this._addError( rule );
                                 return false;
-
                             }
 
                         } else {
