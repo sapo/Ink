@@ -376,7 +376,7 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
             var lastFocused = document.activeElement;
             var didFocus = focusFirstFocusableElementInside(drawerEl);
 
-            pageWideFocusListener(function (target) {
+            pageWideFocusListener(Ink.bind(function (target) {
                 var insideDrawer = Element.isAncestorOf(drawerEl, target);
 
                 if (insideDrawer) { return; }
@@ -387,7 +387,7 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
                 if (didFocus && lastFocused) {
                     lastFocused.focus()
                 }
-            }.bind(this));
+            }, this));
         },
 
         /**
