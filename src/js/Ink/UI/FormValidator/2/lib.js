@@ -319,7 +319,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
             var otherField = this.getFormElements()[fieldToCompare][0];
             var otherFieldValue = otherField.getValue();
             if (otherField._rules.required) {
-                if (otherFieldValue == '') {
+                if (otherFieldValue === '') {
                     return false;
                 }
             }

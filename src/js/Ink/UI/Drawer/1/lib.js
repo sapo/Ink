@@ -25,7 +25,7 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
      * @param {Function} callback Called when the focus is set on an element.
      * @private
      */
-    var onlyWrapper = null
+    var onlyWrapper = null;
     function pageWideFocusListener(callback) {
         // We *necessarily* need capture to make this happen
         if (!document.addEventListener) { return; }
@@ -80,7 +80,7 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
         var lowestTabIndex = null;
         var lowestTabIndexElm = null;
         for (var i = 0; i < withTabIndex.length; i++) {
-            var ind = +withTabIndex[i].tabIndex
+            var ind = +withTabIndex[i].tabIndex;
             if (!ind /* 0 or NaN */) {
                 withTabIndex.splice(i, 1);
             }
@@ -385,7 +385,7 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
                 _removePageWideFocusListener();
 
                 if (didFocus && lastFocused) {
-                    lastFocused.focus()
+                    lastFocused.focus();
                 }
             }, this));
         },
