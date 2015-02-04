@@ -1,4 +1,11 @@
-Ink.requireModules(['Ink.UI.Drawer_1', 'Ink.Dom.Css_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1'], function (Drawer, Css, InkEvent, InkElement) {
+Ink.requireModules(['Ink.UI.Drawer_1', 'Ink.Dom.Css_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Browser_1'], function (Drawer, Css, InkEvent, InkElement, Browser) {
+
+    if (Browser.IE && Browser.version <= 8) {
+        test('(skipping test because of incompatible IE version)', function () {
+            ok(true, 'Skippin\'');
+        })
+        return;
+    }
 
     var leftTrigger = document.body.appendChild(InkElement.create('div', {
         className: 'left-drawer-trigger'
