@@ -81,22 +81,6 @@ Ink.requireModules(['Ink.Util.Json'], function (Json) {
         JSONEqual(s(nested), nested);
     });
 
-    test('Stringify large objects', function () {
-        // hugeObject.js
-        serialize(s, hugeObject, 'our JSON stuffs');
-        serialize(nativeJSON.stringify, hugeObject, 'native JSON stuffs');
-        serialize(crockfordJSON.stringify, hugeObject, 'crockford\'s JSON stuffs');
-    });
-
-    function serialize(func, obj, name) {
-        var start = new Date();
-        var serialized = func(obj);
-        ok(true, (new Date() - start) + 'ms with ' + name);
-        
-        var chk = eval('('+serialized+')');
-        equal(nativeJSON.stringify(chk), nativeJSON.stringify(obj), name);
-    }
-
     test('using toJSON', function () {
         var i = 0;
         var tojson = function () {return (i++).toString();};

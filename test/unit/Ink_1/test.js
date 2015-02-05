@@ -1,5 +1,6 @@
 /*globals equal,test,asyncTest,stop,start,ok,expect*/
 (function () {
+'use strict';
 
 QUnit.config.testTimeout = 4000
 test('bindMethod', function () {
@@ -131,20 +132,31 @@ test('loadScript', function () {
 });
 
 if (window.console && window.console.error) {
-    if (typeof window.console.error === 'object') {
-        // TODO just mock Ink.warn
-        var _consoleError = window.console.error;
-        window.console.error = function (s) { _consoleError(s); };
-    }
     test('loadScript + 404', function () {
         expect(1);
         stop();
-        var consoleError = sinon.stub(console, 'error', function () {
-            ok(true, 'console.error called');
-            consoleError.restore();
+        var testDone
+        sinon.stub(Ink, 'error', function () {
+            if (testDone) { return; }
+            testDone = true;
+            ok(true, 'Ink.error called');
+            Ink.error.restore();
             start();
         });
-        Ink.loadScript('./not-exists-should-be-a-404.js');
+        var theScript = Ink.loadScript('./not-exists-should-be-a-404.js');
+
+        // For old IE. It doesn't fire an error event when scripts result in 404.
+        theScript.onreadystatechange = function() {
+            if (theScript.readyState === 'loaded') {
+                setTimeout(function () {
+                    if (testDone) { return; }
+                    testDone = true;
+                    ok(true, 'This is old IE, it doesn\'t consider a 404 response for a script to be an error.')
+                    Ink.error.restore();
+                    start();
+                }, 100);
+            }
+        };
     });
 }
 
@@ -362,17 +374,18 @@ test('(regression) requireModules will try to request things which are accidenta
 
 module('Debug mechanisms');
 
-if (window.console && window.console.log) {
-    // Fix ie7-9, where console.* functions have typeof 'object'
-    // Because of that we can't use a sinon stub, so we fake one.
-    function stubObject(obj, methodName) {
-        var old = obj[methodName];
-        obj[methodName] = function () {};
-        obj[methodName].restore = function () {
-            obj[methodName] = old;
-        };
-    }
 
+// Fix ie7-9, where console.* functions have typeof 'object'
+// Because of that we can't use a sinon stub, so we fake one.
+function stubObject(obj, methodName) {
+    var old = obj[methodName];
+    obj[methodName] = function () {};
+    obj[methodName].restore = function () {
+        obj[methodName] = old;
+    };
+}
+
+if (window.console && window.console.log) {
     test('console.* stubs/shortcuts', function () {
         var functions = ['log', 'warn', 'error'];
         var spy;

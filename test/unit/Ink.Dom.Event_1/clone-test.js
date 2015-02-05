@@ -30,6 +30,11 @@ Ink.requireModules(['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1'
         Syn.key('j', el1);
     });
     asyncTest('should be able to clone all events from one element to another', function(){
+        if (Browser.IE && parseFloat(Browser.version) < 9) {
+            ok(true, 'Skipping this test');
+            return start();
+        }
+
         var el1 = this.byId('input');
         var el2 = this.byId('input2');
         var trigger = this.trigger();
@@ -40,7 +45,7 @@ Ink.requireModules(['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1'
         trigger.after(function(){
             equal(spy1.callCount, 1, 'cloned first click handler');
             equal(spy2.callCount, 1, 'cloned second click handler');
-            equal(spy3.callCount, 1, 'should not clone non-click handler');
+            equal(spy3.callCount, 1, 'cloned keydown handler');
             start();
         });
 

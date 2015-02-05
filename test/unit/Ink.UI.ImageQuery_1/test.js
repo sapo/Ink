@@ -92,6 +92,7 @@ Ink.requireModules(['Ink.UI.ImageQuery_1', 'Ink.UI.Common_1', 'Ink.Dom.Element_1
         ok(getQuerySrc.calledOnce);
         ok(getQuerySrc.calledWith(dummyQuery));
 
-        equal(img.getAttribute('src'), '/from/getquerysrc.jpg', 'image gets src returned from getQuerySrc');
+        ok((new RegExp('/from/getquerysrc.jpg$')).test(img.getAttribute('src')),
+            'image gets src returned from getQuerySrc');
     }));
 });

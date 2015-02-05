@@ -119,9 +119,12 @@ Ink.requireModules(['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1'
     asyncTest('should preventDefault and stopPropagation', function(){
         this.runTest(true, start);
     });
-    asyncTest('should preventDefault and stopPropagation on delegatedEvents', function(){
-        this.runTest(true, start);
-    });
+    if (document.querySelectorAll) {
+        asyncTest('should preventDefault and stopPropagation on delegatedEvents', function(){
+            this.runTest(true, start);
+        });
+    }
+
 
     module('stopImmediatePropagation()', {
         setup: function(){
@@ -168,9 +171,12 @@ Ink.requireModules(['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1'
         this.runTest(false, start);
     });
 
-    asyncTest('should stop immediate propagation on delegated events', function(){
-        this.runTest(true, start);
-    });
+    if (document.querySelectorAll) {
+        asyncTest('should stop immediate propagation on delegated events', function(){
+            this.runTest(true, start);
+        });
+    }
+
     asyncTest('should have keyCode', function(){
         var el = this.byId('input');
         var trigger = this.trigger();
@@ -290,37 +296,39 @@ Ink.requireModules(['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1'
         teardown: globalTearDown
     });
 
-    asyncTest('click: has correct properties', function(){
-        this.testMouseEvent('click', null, start);
-    });
+    if (document.addEventListener /* If we can has standard events, then we think about this */) {
+        asyncTest('click: has correct properties', function(){
+            this.testMouseEvent('click', null, start);
+        });
 
-    asyncTest('dblclick: has correct properties', function(){
-        this.testMouseEvent('dblclick', null, start);
-    });
+        asyncTest('dblclick: has correct properties', function(){
+            this.testMouseEvent('dblclick', null, start);
+        });
 
-    asyncTest('mousedown: has correct properties', function(){
-        this.testMouseEvent('mousedown', 'click', start);
-    });
+        asyncTest('mousedown: has correct properties', function(){
+            this.testMouseEvent('mousedown', 'click', start);
+        });
 
-    asyncTest('mouseup: has correct properties', function(){
-        this.testMouseEvent('mouseup', 'click', start);
-    });
+        asyncTest('mouseup: has correct properties', function(){
+            this.testMouseEvent('mouseup', 'click', start);
+        });
 
-    asyncTest('popstate: has correct properties', function(){
-        this.testStateEvent('popstate', start);
-    });
+        asyncTest('popstate: has correct properties', function(){
+            this.testStateEvent('popstate', start);
+        });
 
-    asyncTest('keyup: has correct properties', function(){
-        this.testKeyEvent('keyup', start);
-    });
+        asyncTest('keyup: has correct properties', function(){
+            this.testKeyEvent('keyup', start);
+        });
 
-    asyncTest('keydown: has correct properties', function(){
-        this.testKeyEvent('keydown', start);
-    });
+        asyncTest('keydown: has correct properties', function(){
+            this.testKeyEvent('keydown', start);
+        });
 
-    asyncTest('keypress: has correct properties', function(){
-        this.testKeyEvent('keypress', start);
-    });
+        asyncTest('keypress: has correct properties', function(){
+            this.testKeyEvent('keypress', start);
+        });
+    }
 
     // see https://github.com/fat/bean/pull/61 & https://github.com/fat/bean/issues/76
 
@@ -328,7 +336,7 @@ Ink.requireModules(['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1'
         test('(skipped) key events prefer "keyCode" rather than "which"', function () {
             ok(true, 'Skipped in firefox. See https://github.com/fat/bean/issues/76');
         });
-    } else {
+    } else if (document.addEventListener) {
         asyncTest('key events prefer "keyCode" rather than "which"', function(){
             var verifyEventObject = this.verifyEventObject;
             var keyIgnorables = this.keyIgnorables;

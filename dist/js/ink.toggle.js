@@ -122,7 +122,7 @@
          */
         _bindEvents: function () {
             if ( this._options.triggerEvent ) {
-                InkEvent.observe(
+                InkEvent.on(
                     this._element,
                     this._options.triggerEvent,
                     Ink.bind(this._onTriggerEvent, this));
@@ -199,8 +199,14 @@
          * @private
          */
         _onOutsideClick: function( event ){
-            var tgtEl = InkEvent.element(event),
-                shades;
+            var tgtEl = InkEvent.element(event);
+            var shades;
+
+            if (!InkElement.isAncestorOf(document.documentElement, tgtEl)) {
+                // Because if the element was removed while the click event was
+                // bubbling, we can't tell where it came from
+                return;
+            }
 
             if (InkElement.findUpwardsBySelector(tgtEl, '[data-is-toggle-trigger="true"]')) { return; }
 

@@ -34,7 +34,7 @@ Ink.requireModules(['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1'
             InkEvent.on(el1, 'partytime', trigger.wrap(spy));
             InkEvent.fire(el2, 'partytime');
         } else {
-            asert(true, 'onpropertychange bubbling not supported by this browser, test bypassed');
+            ok(true, 'onpropertychange bubbling not supported by this browser, test bypassed');
             start();
         }
     });

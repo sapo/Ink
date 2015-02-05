@@ -116,7 +116,12 @@ Ink.requireModules(['Ink.UI.Tabs_1', 'Ink.UI.Common_1', 'Ink.Dom.Element_1', 'In
             ok(changeTab.notCalled);
             start();
         });
-    })
+    });
+
+    testTabs('regression test: When Tabs is created, it hides all tabs except the active one', function (_, container) {
+        ok(Ink.ss('.tabs-content.hide-all', container).length)
+        equal(Ink.ss('.tabs-content:not(.hide-all)', container).length, 1)
+    });
 
     test('creating a Tabs on an element without any .tabs-nav', sinon.test(function (container) {
         var cont = InkElement.create('div', {});
@@ -138,8 +143,8 @@ Ink.requireModules(['Ink.UI.Tabs_1', 'Ink.UI.Common_1', 'Ink.Dom.Element_1', 'In
 
     testTabs('clicking a tab changes window.location.hash', function (tabComponent, container) {
         stop();
-        Syn.click(Ink.s('a[href$="#home"]', container), function () {
-            equal(window.location.hash, '#home');
+        Syn.click(Ink.s('a[href$="#description"]', container), function () {
+            equal(window.location.hash, '#description');
             start();
         });
     });
@@ -150,6 +155,16 @@ Ink.requireModules(['Ink.UI.Tabs_1', 'Ink.UI.Common_1', 'Ink.Dom.Element_1', 'In
             equal(window.location.hash, '#no-hash', 'location.hash shouldnt change if preventUrlChange === true.');
             start();
         });
+    }, {preventUrlChange: true});
+
+    testTabs('Changing the tab in the API changes window.location.hash', function (tabComponent) {
+        tabComponent.changeTab('description');
+        equal(window.location.hash, '#description')
+    });
+
+    testTabs('... except when options.preventUrlChange === true', function (tabComponent, container) {
+        tabComponent.changeTab('description');
+        equal(window.location.hash, '#no-hash', 'location.hash shouldnt change if preventUrlChange === true.');
     }, {preventUrlChange: true});
 
     module('Private API');
@@ -173,14 +188,15 @@ Ink.requireModules(['Ink.UI.Tabs_1', 'Ink.UI.Common_1', 'Ink.Dom.Element_1', 'In
     });
 
     testTabs('findLink', function (tabs, container) {
-        var homeLink = Ink.s('[href^="#home"]', container);
+        var homeLink = Ink.s('[href$="#home"]', container);
         ok(homeLink, 'sanity check');
         ok(homeLink.parentNode.nodeName.toLowerCase() === 'li', 'sanity check');
         strictEqual(tabs._findLinkByHref('home'), homeLink, 'by name');
         strictEqual(tabs._findLinkByHref('#home'), homeLink, 'by hash');
         strictEqual(tabs._findLinkByHref(homeLink), homeLink, 'by itself');
         strictEqual(tabs._findLinkByHref(homeLink.parentNode), homeLink, 'by li containing the link');
-        strictEqual(tabs._findLinkByHref(Ink.s('[id="home"]', container)), homeLink, 'by section');
+        var homeSection = Ink.s('#home', container)
+        strictEqual(tabs._findLinkByHref(homeSection), homeLink, 'by section');
 
         strictEqual(tabs._findLinkByHref(document.body), null, 'Wrong element');
         strictEqual(tabs._findLinkByHref('wrong-thing'), null, 'Wrong name');
