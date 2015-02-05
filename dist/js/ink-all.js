@@ -17096,7 +17096,9 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
                     triggers: this._leftTriggers,
                     triggerOption: this._options.leftTrigger
                 });
-            } else if (this._options.sides === 'right' || this._options.sides === 'both') {
+            }
+
+            if (this._options.sides === 'right' || this._options.sides === 'both') {
                 validateSide({
                     name: 'right',
                     drawer: this._rightDrawer,
