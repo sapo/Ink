@@ -157,7 +157,7 @@ Ink.requireModules(['Ink.Dom.FormSerialize_1', 'Ink.Dom.Selector_1', 'Ink.Util.A
 
         deepEqual(FormSerialize.serialize(form), { foo: "1" })
         deepEqual(FormSerialize.asPairs(form), [
-            ['foo', '1'],
+            ['foo', '1']
         ])
     });
 

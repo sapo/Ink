@@ -8,15 +8,23 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
     'use strict';
 
     /**
-     * Validation Functions to be used
+     * Validation Functions used in the rules (data-rules) option to FormValidator_2.
      *
-     * Some functions are a port from PHP, others are the 'best' solutions available
+     * This option is a string with a special syntax: `function_name|function2_name|...`. Optionally you can pass parameters to these methods using square brackets (`[]`)
+     *
+     * For instance:
+     *
+     *     data-rules="required|numeric[.,2]|max_length[8]"
+     *
+     * Meaning:
+     * - Required field;
+     * - Number in which the decimal separator is a dot (.) and has at most 2 decimal places;
+     * - Field with at most 8 characters;
      *
      * @class FormValidator.validationFunctions
      * @static
      */
     var validationFunctions = {
-
         /**
          * Checks if a value is defined and not empty
          * @method required
@@ -157,6 +165,8 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
          * Optionally allow punctuation and whitespace
          *
          * @method text
+         * @param  {Boolean} [whitespace=false] Allow whitespace
+         * @param  {Boolean} [punctuation=false] Allow punctuation
          * @return {Boolean}        Whether the value only contains printable text characters
          **/
         'text': function (value, whitespace, punctuation) {
@@ -170,6 +180,8 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
          * Optionally allow punctuation and whitespace.
          *
          * @method text
+         * @param  {Boolean} [whitespace=false] Allow whitespace
+         * @param  {Boolean} [punctuation=false] Allow punctuation
          * @return {Boolean}        Whether the value only contains printable text characters
          **/
         'latin': function (value, punctuation, whitespace) {
@@ -304,7 +316,14 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
          * @return {Boolean}         True if the values match. False if not.
          */
         'matches': function( value, fieldToCompare ){
-            return ( value === this.getFormElements()[fieldToCompare][0].getValue() );
+            var otherField = this.getFormElements()[fieldToCompare][0];
+            var otherFieldValue = otherField.getValue();
+            if (otherField._rules.required) {
+                if (otherFieldValue === '') {
+                    return false;
+                }
+            }
+            return value === otherFieldValue;
         }
 
     };
@@ -582,19 +601,23 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         validate: function(){
             this._errors = {};
 
-            if( "rules" in this._options || 1){
-                this._parseRules( this._options.rules );
-            }
-            
-            if( ("required" in this._rules) || (this.getValue() !== '') ){
+            this._parseRules( this._options.rules );
+
+            // We want to validate this field only if it's not empty
+            // "" is not an invalid number.
+            var doValidate = this.getValue() !== '' ||
+                // If it's required it will be validated anyway.
+                ("required" in this._rules) ||
+                // If it has a "matches" rule it will also be validated because "" is not a valid password confirmation.
+                ("matches" in this._rules);
+
+            if (doValidate) {
                 for(var rule in this._rules) {
                     if (this._rules.hasOwnProperty(rule)) {
                         if( (typeof validationFunctions[rule] === 'function') ){
                             if( validationFunctions[rule].apply(this, this._rules[rule] ) === false ){
-
                                 this._addError( rule );
                                 return false;
-
                             }
 
                         } else {
@@ -877,7 +900,6 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
 
                 return true;
             } else {
-
                 if(event) {
                     Event.stopDefault(event);
                 }
@@ -930,9 +952,8 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
     Common.createUIComponent(FormValidator);
 
     FormValidator.FormElement = FormElement;  // Export FormElement too, for testing.
-    /**
-     * Returns the FormValidator's Object
-     */
+    FormValidator.validationFunctions = validationFunctions;  // Export the raw validation functions too, for fiddling.
+
     return FormValidator;
 
 });

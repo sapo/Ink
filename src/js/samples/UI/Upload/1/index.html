@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <title>InkJS - Tabs samples</title>
+
+        <link rel="stylesheet" href="assets/css/ink.css">
+        <link rel="stylesheet" href="assets/css/docs.css">
+
+        <script type="text/javascript" src="http://cdn.ink.sapo.pt/2.2.0/js/ink-all.min.js"></script>
+        <script type="text/javascript" src="../lib.js"></script>
+        <style>
+            pre.prettyprint{
+                font-size: 0.75em;
+            }
+        </style>
+    </head>
+
+    <body onload="prettyPrint()">
+        <nav class="ink-navigation ink-container">
+            <ul class="menu horizontal black flat">
+                <li><a href="#">Item</a></li>
+                <li><a href="#">Item</a></li>
+            </ul>
+        </nav>
+        <div class="ink-container ink-grid">
+            <h1>Upload sample</h1>
+
+            <form class="ink-form" method="POST", action="/upload/">
+                <fieldset>
+                    <div class="control-group ink-uploader" data-button=".upload_files" data-upload-dropzone="#dropzone" data-upload-endpoint="http://37.139.4.165:3001/" data-upload-size="1024,104857600000" data-upload-invalid-filename="/.*(?=(\.jpg))/ig">
+                        <label>File input 1</label>
+                        <div class="control">
+                            <div class="input-file"><input class="upload_files" name="ink-file-input" type="file" multiple></div>
+                        </div>
+                        <div class="control" id="dropzone" style="width:100%; height:200px; border:1px dashed black">
+                            <h2>Drag here</h2>
+                        </div>
+                        <div class="upload-list"></div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+
+        <script>
+            Ink.requireModules(['Ink.UI.Upload_1', 'Ink.Dom.Selector_1', 'Ink.Dom.Css_1'], function(Upload, Selector, Css) {
+                var createProgress = function(filename, id) {
+                    var div = document.createElement('div');
+                        div.className = "ink-progress-bar";
+                        div.id = "file_" + id;
+                    div.innerHTML = [
+                        '<span class="caption">'+filename+'</span>',
+                        '<div class="bar blue" style="width:0%"></div>'
+                    ].join('');
+                    return Ink.s('div.upload-list').appendChild(div);
+                };
+
+                var up = new Upload({
+                    container:          '.ink-uploader',
+                    dropzone:           '#dropzone',
+                    fileButton:         '.upload_files',
+                    endpoint:           "http://37.139.4.165:3001/",
+                    maxFilesize:        104857600 * 1000,
+                    fileFormName:       'file',
+                    INVALID_FILE_NAME:  /.*(?=(\.jpg))/ig,
+                    foldersEnabled:     false,
+                    useChunks:          false,
+                    directoryMaxDepth:  10
+                });
+                up.subscribe('FileAddedToQueue', function(queueItemObject) {
+                    createProgress(queueItemObject.data.name, queueItemObject.fileID);
+                });
+                up.subscribe('EndUpload', function(file, fileID, res) {
+                    var progress = Ink.s('#file_' + fileID + ' div');
+                    Css.removeClassName(progress, 'blue');
+                    Css.addClassName(progress, res.error ? 'red' : 'green');
+                });
+                up.subscribe('OnProgress', function(file, fileID, res) {
+                    var perc = (res.loaded / res.total) * 100;
+                    Ink.s('#file_' + fileID + ' div').style.width = perc + "%";
+                });
+                up.subscribe('ErrorUpload', function(file, fileID) {
+                    var progress = Ink.s('#file_' + fileID + ' div');
+                    Css.removeClassName(progress, 'blue');
+                    Css.addClassName(progress, 'red');
+                });
+                //cbDragEnter:        function(dropzone, ev) {},
+                //cbDragLeave:        function(dropzone, ev) {},
+                //cbDropComplete:     function(dropzone, dataTransfer) {},
+                //cbBeforeUpload:     function(dropzone, file, extraData, fileID, xhr) {},
+                //cbMaxSizeFailure:   function(file, maxFilesize) {},
+                //cbInvalidFile:      function(file, E_TYPE) {},
+                //cbQueueEnd:         function(queueID) {},
+                //cbCreateFolder:     function() {},
+                //cbDragEnd:          function(dropzone, ev) {},
+                //cbAbortUpload:      function(file, fileID, callbacks) {}, // call abort one or abort all
+                //cbErrorUpload:      function(file, fileID) {},
+            });
+        </script>
+    </body>
+</html>

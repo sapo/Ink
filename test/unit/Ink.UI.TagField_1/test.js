@@ -42,7 +42,7 @@ Ink.requireModules(['Ink.UI.TagField_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_
         var children = [
             InkElement.create('option'),
             InkElement.create('option'),
-            InkElement.create('p'),
+            InkElement.create('p')
         ];
         children[0].innerHTML = 'Option 1';
         children[1].innerHTML = 'Option &amp;';
@@ -64,7 +64,7 @@ Ink.requireModules(['Ink.UI.TagField_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_
         expect(3);  // Expect one ok(true) plus the function check, and that final check.
         var inpt = tagField._input;
         inpt.value = 'asd'
-        ok(tagField._addTag, 'going to mock this');
+        ok(tagField._addTag, 'sanity check');
         tagField._addTag = function () {ok(false, 'should not be called now!')}
         tagField._onKeyUp(); // Trigger the change
         tagField._addTag = function () {ok(true, 'should be called now!')}
