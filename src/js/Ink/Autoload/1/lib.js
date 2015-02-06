@@ -39,6 +39,7 @@ Ink.createModule('Ink.Autoload', 1, ['Ink.Dom.Selector_1', 'Ink.Util.Array_1', '
             'Dropdown_1'    : '.ink-dropdown',
             'FormValidator_2' : '.ink-formvalidator',
             'Gallery_1'     : 'ul.ink-gallery-source',
+            'LazyLoad_1'    : '.ink-lazyload',
             'Modal_1'       : '.ink-modal',
             'ProgressBar_1' : '.ink-progress-bar',
             'SortableList_1': '.ink-sortable-list',
