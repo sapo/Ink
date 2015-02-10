@@ -990,11 +990,11 @@ th {
 .ink-form .control-group .control > input + .fa, .ink-form .control-group .control > select + .fa, .ink-form .control-group .control > textarea + .fa {
   display: none;
 }
-.ink-form .control-group .control.append-button span, .ink-form .control-group .control.append-symbol span, .ink-form .control-group .control.prepend-button span, .ink-form .control-group .control.prepend-symbol span {
+.ink-form .control-group .control.append-button > span, .ink-form .control-group .control.append-symbol > span, .ink-form .control-group .control.prepend-button > span, .ink-form .control-group .control.prepend-symbol > span {
   width: 100%;
   position: relative;
 }
-.ink-form .control-group .control.append-button span > input, .ink-form .control-group .control.append-button span > select, .ink-form .control-group .control.append-button span > textarea, .ink-form .control-group .control.append-symbol span > input, .ink-form .control-group .control.append-symbol span > select, .ink-form .control-group .control.append-symbol span > textarea, .ink-form .control-group .control.prepend-button span > input, .ink-form .control-group .control.prepend-button span > select, .ink-form .control-group .control.prepend-button span > textarea, .ink-form .control-group .control.prepend-symbol span > input, .ink-form .control-group .control.prepend-symbol span > select, .ink-form .control-group .control.prepend-symbol span > textarea {
+.ink-form .control-group .control.append-button > span > input, .ink-form .control-group .control.append-button > span > select, .ink-form .control-group .control.append-button > span > textarea, .ink-form .control-group .control.append-symbol > span > input, .ink-form .control-group .control.append-symbol > span > select, .ink-form .control-group .control.append-symbol > span > textarea, .ink-form .control-group .control.prepend-button > span > input, .ink-form .control-group .control.prepend-button > span > select, .ink-form .control-group .control.prepend-button > span > textarea, .ink-form .control-group .control.prepend-symbol > span > input, .ink-form .control-group .control.prepend-symbol > span > select, .ink-form .control-group .control.prepend-symbol > span > textarea {
   width: 100%;
 }
 .ink-form .control-group .control.append-button > input[type="submit"], .ink-form .control-group .control.append-button > input[type="button"], .ink-form .control-group .control.append-button > input[type="reset"], .ink-form .control-group .control.append-symbol > input[type="submit"], .ink-form .control-group .control.append-symbol > input[type="button"], .ink-form .control-group .control.append-symbol > input[type="reset"], .ink-form .control-group .control.prepend-button > input[type="submit"], .ink-form .control-group .control.prepend-button > input[type="button"], .ink-form .control-group .control.prepend-button > input[type="reset"], .ink-form .control-group .control.prepend-symbol > input[type="submit"], .ink-form .control-group .control.prepend-symbol > input[type="button"], .ink-form .control-group .control.prepend-symbol > input[type="reset"] {
@@ -1003,10 +1003,10 @@ th {
 .ink-form .control-group .control.append-button {
   display: table;
 }
-.ink-form .control-group .control.append-button span {
+.ink-form .control-group .control.append-button > span {
   display: table-cell;
 }
-.ink-form .control-group .control.append-button span > input, .ink-form .control-group .control.append-button span > select, .ink-form .control-group .control.append-button span > textarea {
+.ink-form .control-group .control.append-button > span > input, .ink-form .control-group .control.append-button > span > select, .ink-form .control-group .control.append-button > span > textarea {
   -webkit-border-radius: 2px 0 0 2px;
   -moz-border-radius: 2px 0 0 2px;
   -ms-border-radius: 2px 0 0 2px;
@@ -1025,10 +1025,10 @@ th {
 .ink-form .control-group .control.prepend-button {
   display: table;
 }
-.ink-form .control-group .control.prepend-button span {
+.ink-form .control-group .control.prepend-button > span {
   display: table-cell;
 }
-.ink-form .control-group .control.prepend-button span > input, .ink-form .control-group .control.prepend-button span > select, .ink-form .control-group .control.prepend-button span > textarea {
+.ink-form .control-group .control.prepend-button > span > input, .ink-form .control-group .control.prepend-button > span > select, .ink-form .control-group .control.prepend-button > span > textarea {
   -webkit-border-radius: 0 2px 2px 0;
   -moz-border-radius: 0 2px 2px 0;
   -ms-border-radius: 0 2px 2px 0;
@@ -1044,25 +1044,25 @@ th {
   border-radius: 2px 0 0 2px;
   border-right: none;
 }
-.ink-form .control-group .control.append-symbol span {
+.ink-form .control-group .control.append-symbol > span {
   display: block;
 }
-.ink-form .control-group .control.append-symbol span > input, .ink-form .control-group .control.append-symbol span > select, .ink-form .control-group .control.append-symbol span > textarea {
+.ink-form .control-group .control.append-symbol > span > input, .ink-form .control-group .control.append-symbol > span > select, .ink-form .control-group .control.append-symbol > span > textarea {
   padding-right: 2.5em;
 }
-.ink-form .control-group .control.append-symbol span > [class^="fa-"], .ink-form .control-group .control.append-symbol span > [class*=" fa-"] {
+.ink-form .control-group .control.append-symbol > span > [class^="fa-"], .ink-form .control-group .control.append-symbol > span > [class*=" fa-"] {
   position: absolute;
   right: 1em;
   top: .86em;
   pointer-events: none;
 }
-.ink-form .control-group .control.prepend-symbol span {
+.ink-form .control-group .control.prepend-symbol > span {
   display: block;
 }
-.ink-form .control-group .control.prepend-symbol span > input, .ink-form .control-group .control.prepend-symbol span > select, .ink-form .control-group .control.prepend-symbol span > textarea {
+.ink-form .control-group .control.prepend-symbol > span > input, .ink-form .control-group .control.prepend-symbol > span > select, .ink-form .control-group .control.prepend-symbol > span > textarea {
   padding-left: 2.5em;
 }
-.ink-form .control-group .control.prepend-symbol span > [class^="fa-"], .ink-form .control-group .control.prepend-symbol span > [class*=" fa-"] {
+.ink-form .control-group .control.prepend-symbol > span > [class^="fa-"], .ink-form .control-group .control.prepend-symbol > span > [class*=" fa-"] {
   position: absolute;
   left: 1em;
   top: .86em;
