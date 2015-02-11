@@ -143,17 +143,16 @@ Ink.requireModules(['Ink.Dom.Element_1', 'Ink.Dom.Selector_1', 'Ink.Dom.Css_1'],
         equal(tr.getElementsByTagName('td')[0].getElementsByTagName('span').length,
             1,
             'A span was created')
-
         InkElement.setHTML(table, '<thead><tr><th>Hello!</th></tr></thead><tbody></tbody>');
-        equal(table.getElementsByTagName('thead').length,
-            1,
-            'There\'s a new THEAD in town');
 
         equalHTML(table.innerHTML,
             '<thead><tr><th>Hello!</th></tr></thead><tbody></tbody>',
             'Creating a tbody removed our existing tbody');
 
+        tbody = table.getElementsByTagName('tbody')[0];
+
         InkElement.setHTML(tbody, '<tr><td>1</td></tr><tr><td>2</td></tr>');
+
         equalHTML(tbody.innerHTML,
                 '<tr><td>1</td></tr><tr><td>2</td></tr>',
                 'We can create several tds!');

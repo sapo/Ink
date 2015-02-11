@@ -195,12 +195,11 @@
                 };
             }
 
-            if (document.head) {
-                return document.head.appendChild(scriptEl);
-            }
-            var aHead = document.getElementsByTagName('head');
-            if(aHead.length > 0) {
-                return aHead[0].appendChild(scriptEl);
+            var head = document.head ||
+                document.getElementsByTagName('head')[0];
+
+            if (head) {
+                return head.appendChild(scriptEl);
             }
         },
 

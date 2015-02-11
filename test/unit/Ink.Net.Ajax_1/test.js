@@ -117,6 +117,7 @@ Ink.requireModules(['Ink.Net.Ajax_1'], function (Ajax) {
         equal(Ink.error.calledOnce, true, 'Ink.warn called once');
         var isHelpful = ok;
         isHelpful(Ink.error.lastCall.args[0]);
+        Ink.error.restore();
     });
 
 
@@ -141,5 +142,22 @@ Ink.requireModules(['Ink.Net.Ajax_1'], function (Ajax) {
             start();
         });
     });
+
+    test('validateCors', sinon.test(function () {
+        var ajx = new Ajax('http://example.com/', {
+            validateCors: false
+        });
+        equal(ajx.options.cors, false, 'ajx.options.cors set to true because validateCors set to true');
+
+        var ajx = new Ajax('http://example.com/', {
+            validateCors: true
+        });
+        equal(ajx.options.cors, true, 'ajx.options.cors set to true because validateCors set to true');
+
+        var ajx = new Ajax(('' + window.location), {
+            validateCors: true
+        });
+        equal(ajx.options.cors, false, 'ajx.options.cors set to false because it\'s a same-domain request');
+    }))
 });
 

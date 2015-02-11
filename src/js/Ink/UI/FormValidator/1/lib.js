@@ -10,9 +10,19 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
     function elementsWithSameName(elm) {
         if (!elm.name) { return []; }
         if (!elm.form) {
-            return Selector.select('name="' + elm.name + '"');
+            return Selector.select('[name="' + elm.name + '"]');
         }
         var ret = elm.form[elm.name];
+        if (!ret) {  // We're in IE7
+            return (function () {
+                var ret = [];
+                var everything = Ink.ss('*', elm.form);
+                for (var i = 0; i < everything.length; i++) {
+                    if (everything[i].name === elm.name) { ret.push(everything[i]); }
+                }
+                return ret;
+            }());
+        }
         if(typeof(ret.length) === 'undefined') {
             ret = [ret];
         }
@@ -467,20 +477,18 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
                             return false;
                         }
                     }
-                    if(inputType !== 'checkbox' && inputType !== 'radio' &&
-                            value !== '') {
-                        return true;  // A input type=text,email,etc.
+                    if(inputType !== 'checkbox' && inputType !== 'radio') {
+                        // A input type=text,email,etc.
+                        return value !== '';
                     } else if(inputType === 'checkbox' || inputType === 'radio') {
                         var aFormRadios = elementsWithSameName(elm);
-                        var isChecked = false;
                         // check if any input of the radio is checked
                         for(var i=0, totalRadio = aFormRadios.length; i < totalRadio; i++) {
                             if(aFormRadios[i].checked === true) {
-                                isChecked = true;
-                                break;
+                                return true;
                             }
                         }
-                        return isChecked;
+                        return false;
                     }
                     return false;
 
@@ -527,7 +535,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
                             'The attribute data-valid-format must be one of ' +
                             'the following values: ' + validValues.join(', '));
                     }
-                    
+
                     return InkValidator.isDate( validFormat, elm.value );
                 case 'ink-fv-custom':
                     break;

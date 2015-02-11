@@ -37,6 +37,7 @@ Ink.createModule('Ink.Autoload', 1, ['Ink.Dom.Selector_1', 'Ink.Util.Array_1', '
             'Carousel_1'    : '.ink-carousel',
             'DatePicker_1'  : '.ink-datepicker',
             'Dropdown_1'    : '.ink-dropdown',
+            'FormValidator_2' : '.ink-formvalidator',
             'Gallery_1'     : 'ul.ink-gallery-source',
             'Modal_1'       : '.ink-modal',
             'ProgressBar_1' : '.ink-progress-bar',

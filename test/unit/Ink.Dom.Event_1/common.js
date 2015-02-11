@@ -1,6 +1,7 @@
 /*global bean:true, qwery:true*/
 
 QUnit.config.testTimeout = 4000;
+QUnit.config.blocking = true;
 sinon.config.useFakeTimers = false;
 
 var fixturesHTML =
