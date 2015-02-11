@@ -133,7 +133,7 @@
 
 html.no-flexbox,
 html.no-flexboxlegacy {
-  font-size: 0.97em;
+  font-size: 1em;
 }
 html.no-flexbox .ink-grid,
 html.no-flexboxlegacy .ink-grid {
