@@ -134,7 +134,7 @@
             &.prepend-button,
             &.prepend-symbol {
                 
-                span {
+                > span {
                     width: 100%;
                     position: relative;
 
@@ -156,7 +156,7 @@
 
                 display: table;
 
-                span {
+                > span {
                     
                     display: table-cell;
 
@@ -178,7 +178,7 @@
 
                 display: table;
 
-                span {
+                > span {
                     
                     display: table-cell;
                 
@@ -198,7 +198,7 @@
 
             &.append-symbol {
 
-                span {
+                > span {
 
                     display: block;
 
@@ -220,7 +220,7 @@
 
             &.prepend-symbol {
                 
-                span {
+                > span {
 
                     display: block;
 

@@ -242,8 +242,8 @@
         & > [class*=#{$class-name}-],
         & > [class*=all-],
         & > .all-auto {
-            padding-left: ( $gutter-width / 4);
-            margin-bottom: ( $gutter-width / 4);
+            padding-left: ( $gutter-width );
+            margin-bottom: ( $gutter-width );
         }
     }
 
@@ -603,7 +603,7 @@
             }
         }
     }
-} 
+}
 
 @mixin generate-visibility-classes ($breakpoint) {
 

@@ -47,7 +47,7 @@
         /**
          * @property {String} VERSION
          **/
-        VERSION: '3.1.2',
+        VERSION: '3.1.4',
         _checkPendingRequireModules: function() {
             var I, F, o, dep, mod, cb, pRMs = [];
             var toApply = [];
@@ -15330,7 +15330,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
             var parentIsControl = Selector.matchesSelector(
                 this._element.parentNode,
-                '.ink-form .control-group .control');
+                '.ink-form .control-group .control, .ink-form .control-group .control > *');
 
             if (parentIsControl) {
                 this._wrapper = this._element.parentNode;
