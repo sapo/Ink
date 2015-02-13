@@ -99,6 +99,7 @@ Ink.createModule( 'Ink.Util.Router' , '1' , [ 'Ink.Dom.Event_1' ] , function( In
      * you should use a simple rewriteRules in
      * your server configuration.
      * In Apache you can use something like this:
+     * RewriteCond %{REQUEST_FILENAME} !-f
      * RewriteRule   ^(.*)$  index.php?$1 [L]
      *
      * If you use the settings from above and
@@ -106,8 +107,8 @@ Ink.createModule( 'Ink.Util.Router' , '1' , [ 'Ink.Dom.Event_1' ] , function( In
      * you should use some more rewriteRules.
      * Again, in Apache, you can use something like this:
      * RewriteCond %{HTTP_USER_AGENT} .*MSIE.\d\.\d*
-     * RewriteCond %{REQUEST_URI} !index.php
-     * RewriteRule ^(.+)$ http://%{HTTP_HOST}/testRouter/3/#$1 [NE,L,R]
+     * RewriteCond %{REQUEST_FILENAME} !-f
+     * RewriteRule ^(.+)$ http://%{HTTP_HOST}/#$1 [NE,L,R]
      *
      */
     var Router = function( opt ) {
@@ -326,12 +327,16 @@ Ink.createModule( 'Ink.Util.Router' , '1' , [ 'Ink.Dom.Event_1' ] , function( In
 
                 if ( executePath.state !== joinArgs ) {
                     if ( 'state' in executePath ) {
-                        this._runCB( executePath.change , executePath.arr.concat( nArr ) ) !== false && this._runCB( executePath.exit , executePath.arr );
+                        if ( this._runCB( executePath.change , nArr.concat( executePath.arr ) ) !== false ) {
+                            this._runCB( executePath.exit , executePath.arr );
+
+                            this._runCB( executePath.init , nArr ) !== false && this._runCB( executePath.enter , nArr );
+                        }
+                    } else {
+                        this._runCB( executePath.init , nArr ) !== false && this._runCB( executePath.enter , nArr );
                     }
 
                     executePath.state = joinArgs;
-
-                    this._runCB( executePath.init , nArr ) !== false && this._runCB( executePath.enter , nArr );
                 }
 
                 executePath.arr = nArr;
