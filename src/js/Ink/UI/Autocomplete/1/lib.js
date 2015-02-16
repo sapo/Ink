@@ -148,10 +148,12 @@ Ink.createModule( 'Ink.UI.Autocomplete' , '1', [ 'Ink.UI.Common_1' , 'Ink.Dom.Se
                     break;
                 case Ivent.KEY_RETURN:
                 case Ivent.KEY_TAB:
-                    this.selectInput( )
-                        .closeSuggestions( );
+                    if ( this._isOpen ) {
+                        this.selectInput( )
+                            .closeSuggestions( );
 
-                    Ivent.stop( e );
+                        Ivent.stop( e );
+                    }
                     break;
                 case Ivent.KEY_UP:
                 case Ivent.KEY_DOWN:
