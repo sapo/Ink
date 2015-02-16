@@ -167,7 +167,7 @@ Ink.createModule( 'Ink.UI.Autocomplete' , '1', [ 'Ink.UI.Common_1' , 'Ink.Dom.Se
         _onKeyup : function( e ) {
             var keycode = e.keyCode;
 
-            if( keycode !== 20 && keycode !== Ivent.KEY_DOWN && keycode !== Ivent.KEY_UP && keycode !== Ivent.KEY_ESC && keycode !== Ivent.KEY_TAB && keycode !== Ivent.KEY_LEFT && keycode !== Ivent.KEY_RETURN && keycode !== Ivent.KEY_RIGHT ) {
+            if( keycode !== 20 && keycode !== 17 && keycode !== Ivent.KEY_HOME && keycode !== Ivent.KEY_END && keycode !== Ivent.KEY_INSERT && keycode !== Ivent.KEY_PAGEUP && keycode !== Ivent.KEY_PAGEDOWN && keycode !== Ivent.KEY_DOWN && keycode !== Ivent.KEY_UP && keycode !== Ivent.KEY_ESC && keycode !== Ivent.KEY_TAB && keycode !== Ivent.KEY_LEFT && keycode !== Ivent.KEY_RETURN && keycode !== Ivent.KEY_RIGHT ) {
                 Ivent.stop( e );
 
                 var o = this._options;
