@@ -251,7 +251,7 @@ Ink.createModule( 'Ink.UI.Autocomplete' , '1', [ 'Ink.UI.Common_1' , 'Ink.Dom.Se
             var l = this._results.length;
 
             if ( !this._isOpen ) {
-                if ( l && this._nWord >= o.minLength ) {
+                if ( l && ( this._nWord || '' ).length >= o.minLength ) {
                     this.openSuggestions( );
                 }
 
