@@ -34,7 +34,7 @@ Ink.requireModules(['Ink.UI.Modal_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1'], fun
         }, { trigger: trigger })
     }(InkElement.create('a', { href: '#' })));
 
-    modalTest('Neither does it open if you set autoOpen:false as an option', function(modal, els) {
+    modalTest('Neither does it open if you set autoDisplay:false as an option', function(modal, els) {
         ok(!modal.isOpen(), 'Modal is closed');
     }, { autoDisplay: false });
 

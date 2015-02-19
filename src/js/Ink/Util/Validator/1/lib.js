@@ -26,6 +26,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
                         'AO',
                         'CV',
                         'MZ',
+                        'TL',
                         'PT'
                     ],
 
