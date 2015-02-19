@@ -8149,6 +8149,8 @@ body.ink-drawer.over.right .right-drawer {
   left: 50%;
   width: 90%;
   height: 90%;
+  margin-top: -45vh;
+  margin-left: -45vw;
   background: white;
   z-index: 100;
   position: absolute;

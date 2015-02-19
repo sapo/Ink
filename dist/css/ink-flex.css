@@ -9270,10 +9270,20 @@ body.ink-drawer.over.right .right-drawer {
   left: 50%;
   width: 90%;
   height: 90%;
+  margin-top: -45vh;
+  margin-left: -45vw;
   background: white;
   z-index: 100;
   position: absolute;
   overflow: hidden;
+  display: flex;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  display: -webkit-flex;
+  display: flex;
+  display: -ms-flexbox;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
   opacity: 1;
   -webkit-box-shadow: rgba(0, 0, 0, 0.8) 0 0 15px 0;
@@ -9296,6 +9306,11 @@ body.ink-drawer.over.right .right-drawer {
   overflow-y: auto;
   overflow-x: hidden;
   height: auto;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -moz-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
 }
 .ink-modal > .modal-body .ink-grid {
   padding-left: 0;
