@@ -324,8 +324,17 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
                 }
             }
             return value === otherFieldValue;
-        }
+        },
 
+        /**
+         * Validates an [EAN barcode](https://en.wikipedia.org/wiki/International_Article_Number_%28EAN%29)
+         *
+         * @method ean
+         * @return {Boolean} True if the given value is an EAN. False if not.
+         */
+        'ean': function (value) {
+            return InkValidator.isEAN(value.replace(/[^\d]/g, ''), 'ean-13');
+        }
     };
 
     /**

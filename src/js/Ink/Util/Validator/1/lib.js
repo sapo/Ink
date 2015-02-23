@@ -1269,7 +1269,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
         },
 
         /**
-         * Validate an EAN barcode string.
+         * Validate an [EAN barcode](https://en.wikipedia.org/wiki/International_Article_Number_%28EAN%29) string.
          * @method isEAN
          * @param {String} code The code containing the EAN
          * @param {} [eanType='ean-13'] Select your EAN type. For now, only ean-13 is supported, and it's the default.
