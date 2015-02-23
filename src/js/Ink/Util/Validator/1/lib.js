@@ -1282,7 +1282,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
             if (code.length !== 13) { return false; }
 
             var digits = code.substr(0, code.length -1);
-            var givenCheck = code[code.length - 1];
+            var givenCheck = code.charAt(code.length - 1);
             var check = Validator.getEANCheckDigit(digits);
 
             return String(check) === givenCheck;
