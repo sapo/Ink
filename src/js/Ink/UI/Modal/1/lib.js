@@ -243,12 +243,6 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             }
         },
 
-        /**
-         * Responsible for setting the size of the modal (and position) based on the viewport.
-         * 
-         * @method _resizeContainer
-         * @private
-         */
         _resizeContainer: function() {
             var containerHeight = InkElement.elementHeight(this._modalDiv);
 
@@ -263,9 +257,6 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             }
 
             this._contentContainer.style.height = containerHeight + 'px';
-            if( containerHeight !== InkElement.elementHeight(this._contentContainer) ){
-                this._contentContainer.style.height = ~~(containerHeight - (InkElement.elementHeight(this._contentContainer) - containerHeight)) + 'px';
-            }
 
             if( this._markupMode ){ return; }
         },
@@ -434,10 +425,6 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
          */
         _waitForFade: function (elem, callback) {
             if (!opacitySupported) { return callback(); }
-
-            if ('ontransitionend' in elem) {
-                return Event.observeOnce(elem, 'transitionEnd', callback);
-            }
 
             var fadeChecks = 5;
             var fadeChecker = function () {
