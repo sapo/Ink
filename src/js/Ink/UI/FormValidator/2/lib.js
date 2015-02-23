@@ -335,7 +335,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
      */
     var validationMessages = new I18n({
         en_US: {
-            'formvalidator.required' : 'The {field} filling is mandatory',
+            'formvalidator.required' : 'Filling {field} is mandatory',
             'formvalidator.min_length': 'The {field} must have a minimum size of {param1} characters',
             'formvalidator.max_length': 'The {field} must have a maximum size of {param1} characters',
             'formvalidator.exact_length': 'The {field} must have an exact size of {param1} characters',
@@ -356,8 +356,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
             'formvalidator.numeric': 'The {field} should contain a number',
             'formvalidator.range': 'The {field} should contain a number between {param1} and {param2}',
             'formvalidator.color': 'The {field} should contain a valid color',
-            'formvalidator.matches': 'The {field} should match the field {param1}',
-            'formvalidator.validation_function_not_found': 'The rule {rule} has not been defined'
+            'formvalidator.matches': 'The {field} should match the field {param1}'
         },
         pt_PT: {
             'formvalidator.required' : 'Preencher {field} é obrigatório',
@@ -381,8 +380,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
             'formvalidator.numeric': '{field} deve conter um número válido',
             'formvalidator.range': '{field} deve conter um número entre {param1} e {param2}',
             'formvalidator.color': '{field} deve conter uma cor válida',
-            'formvalidator.matches': '{field} deve corresponder ao campo {param1}',
-            'formvalidator.validation_function_not_found': '[A regra {rule} não foi definida]'
+            'formvalidator.matches': '{field} deve corresponder ao campo {param1}'
         }
     }, 'en_US');
 
@@ -520,7 +518,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
             this._errors[rule] = validationMessages.text(i18nKey, paramObj);
 
             if (this._errors[rule] === i18nKey) {
-                this._errors[rule] = 'Validation message not found';
+                this._errors[rule] = '[Validation message not found for rule ]' + rule;
             }
         },
 
