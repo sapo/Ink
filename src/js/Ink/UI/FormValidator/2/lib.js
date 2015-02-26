@@ -7,6 +7,31 @@
 Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Element_1','Ink.Dom.Event_1','Ink.Dom.Selector_1','Ink.Dom.Css_1','Ink.Util.Array_1','Ink.Util.I18n_1','Ink.Util.Validator_1'], function( Common, Element, Event, Selector, Css, InkArray, I18n, InkValidator ) {
     'use strict';
 
+    function getValue(element) {
+        // TODO this is already implemented in FormSerialize.
+        switch(element.nodeName.toLowerCase()){
+            case 'select':
+                return Ink.s('option:selected', element).value;
+            case 'textarea':
+                return element.value;
+            case 'input':
+                if( "type" in element ){
+                    if( (element.type === 'radio') || (element.type === 'checkbox') ){
+                        if( element.checked ){
+                            return element.value;
+                        }
+                    } else if( element.type !== 'file' ){
+                        return element.value;
+                    }
+                } else {
+                    return element.value;
+                }
+                return;
+            default:
+                return element.innerHTML;
+        }
+    }
+
     /**
      * Validation Functions used in the rules (data-rules) option to FormValidator_2.
      *
@@ -539,29 +564,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
          * @public
          */
         getValue: function(){
-            // TODO this is already implemented in FormSerialize.
-
-            switch(this._element.nodeName.toLowerCase()){
-                case 'select':
-                    return Ink.s('option:selected',this._element).value;
-                case 'textarea':
-                    return this._element.value;
-                case 'input':
-                    if( "type" in this._element ){
-                        if( (this._element.type === 'radio') || (this._element.type === 'checkbox') ){
-                            if( this._element.checked ){
-                                return this._element.value;
-                            }
-                        } else if( this._element.type !== 'file' ){
-                            return this._element.value;
-                        }
-                    } else {
-                        return this._element.value;
-                    }
-                    return;
-                default:
-                    return this._element.innerHTML;
-            }
+            return getValue(this._element);
         },
 
         /**
