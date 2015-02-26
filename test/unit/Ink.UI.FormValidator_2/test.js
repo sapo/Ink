@@ -68,7 +68,7 @@ Ink.requireModules(['Ink.UI.FormValidator_2', 'Ink.Dom.Element_1', 'Ink.Dom.Sele
         myForm.parentNode.removeChild(myForm);
     }));
 
-    test('Skips validating matches fields just as long as their matched field is not required', sinon.test(function () {
+    test('Skips validating matches fields just as long as their matched field is not required', function () {
         var oldStuff = makeForm();
 
         var myForm = oldStuff.form;
@@ -99,9 +99,9 @@ Ink.requireModules(['Ink.UI.FormValidator_2', 'Ink.Dom.Element_1', 'Ink.Dom.Sele
         reparse(validator);
 
         equal(elms.passwordconfirmation[0].validate(), true, 'Empty password matching field is valid because the password is not required');
-    }));
+    });
 
-    test('Skips validating fields when they\'re empty, but still validates them if required', sinon.test(function () {
+    test('Skips validating fields when they\'re empty, but still validates them if required', function () {
         var oldStuff = makeForm();
 
         var myForm = oldStuff.form;
@@ -135,7 +135,35 @@ Ink.requireModules(['Ink.UI.FormValidator_2', 'Ink.Dom.Element_1', 'Ink.Dom.Sele
 
         equal(elms.number[0].validate(), false, 'Sanity check');
         equal(elms.requirednumber[0].validate(), true, 'Sanity check');
-    }));
+    });
+
+
+    test('(regression) Validation of a matches field fails if it doesn\'t have a [rules] attribute', function () {
+        var oldStuff = makeForm();
+
+        var myForm = oldStuff.form;
+        var validator = oldStuff.validator;
+
+        myForm.innerHTML = '';
+
+        myForm.appendChild(InkElement.create('input', {
+            type: 'text',
+            name: 'password'
+        }));
+
+        myForm.appendChild(InkElement.create('input', {
+            type: 'text',
+            name: 'passwordconfirmation',
+            'data-rules': 'matches[password]'
+        }));
+
+        var elms = validator.getElements();
+
+        reparse(validator);
+
+        equal(elms.passwordconfirmation[0].validate(), true,
+            'Empty password matching field is valid because the password is not required');
+    });
 
     test('Create new FormElements for each control-group in the form', sinon.test(function () {
         var oldStuff = makeForm();

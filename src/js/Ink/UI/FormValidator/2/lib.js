@@ -341,7 +341,17 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
          * @return {Boolean}         True if the values match. False if not.
          */
         'matches': function( value, fieldToCompare ){
-            var otherField = this.getFormElements()[fieldToCompare][0];
+            // Find the other field in the FormValidator.
+            var otherField = this.getFormElements()[fieldToCompare];
+
+            if (!otherField) {
+                // It's in the actual <form>, not in the FormValidator's fields
+                otherField = this._options.form._element[fieldToCompare];
+                return !!otherField && getValue(otherField) === value;
+            } else {
+                otherField = otherField[0];
+            }
+
             var otherFieldValue = otherField.getValue();
             if (otherField._rules.required) {
                 if (otherFieldValue === '') {
