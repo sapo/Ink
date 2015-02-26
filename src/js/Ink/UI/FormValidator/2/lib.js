@@ -346,8 +346,13 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
 
             if (!otherField) {
                 // It's in the actual <form>, not in the FormValidator's fields
-                otherField = this._options.form._element[fieldToCompare];
-                return !!otherField && getValue(otherField) === value;
+                var possibleFields = Ink.ss('input, select, textarea, .control-group', this._options.form._element);
+                for (var i = 0; i < possibleFields.length; i++) {
+                    if ((possibleFields[i].name || possibleFields[i].id) === fieldToCompare) {
+                        return getValue(possibleFields[i]) === value;
+                    }
+                }
+                return false;
             } else {
                 otherField = otherField[0];
             }
