@@ -1221,7 +1221,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
             if( !Common.isDOMElement(parentEl) ){
                 throw new Error('Please provide a valid DOMElement');
             }
-            InkElement.setHTML(parentEl, '');
+            InkElement.clear(parentEl);
         },
 
         /**
@@ -5305,6 +5305,31 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
 Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Element_1','Ink.Dom.Event_1','Ink.Dom.Selector_1','Ink.Dom.Css_1','Ink.Util.Array_1','Ink.Util.I18n_1','Ink.Util.Validator_1'], function( Common, Element, Event, Selector, Css, InkArray, I18n, InkValidator ) {
     'use strict';
 
+    function getValue(element) {
+        // TODO this is already implemented in FormSerialize.
+        switch(element.nodeName.toLowerCase()){
+            case 'select':
+                return Ink.s('option:selected', element).value;
+            case 'textarea':
+                return element.value;
+            case 'input':
+                if( "type" in element ){
+                    if( (element.type === 'radio') || (element.type === 'checkbox') ){
+                        if( element.checked ){
+                            return element.value;
+                        }
+                    } else if( element.type !== 'file' ){
+                        return element.value;
+                    }
+                } else {
+                    return element.value;
+                }
+                return;
+            default:
+                return element.innerHTML;
+        }
+    }
+
     /**
      * Validation Functions used in the rules (data-rules) option to FormValidator_2.
      *
@@ -5614,7 +5639,22 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
          * @return {Boolean}         True if the values match. False if not.
          */
         'matches': function( value, fieldToCompare ){
-            var otherField = this.getFormElements()[fieldToCompare][0];
+            // Find the other field in the FormValidator.
+            var otherField = this.getFormElements()[fieldToCompare];
+
+            if (!otherField) {
+                // It's in the actual <form>, not in the FormValidator's fields
+                var possibleFields = Ink.ss('input, select, textarea, .control-group', this._options.form._element);
+                for (var i = 0; i < possibleFields.length; i++) {
+                    if ((possibleFields[i].name || possibleFields[i].id) === fieldToCompare) {
+                        return getValue(possibleFields[i]) === value;
+                    }
+                }
+                return false;
+            } else {
+                otherField = otherField[0];
+            }
+
             var otherFieldValue = otherField.getValue();
             if (otherField._rules.required) {
                 if (otherFieldValue === '') {
@@ -5622,8 +5662,17 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
                 }
             }
             return value === otherFieldValue;
-        }
+        },
 
+        /**
+         * Validates an [EAN barcode](https://en.wikipedia.org/wiki/International_Article_Number_%28EAN%29)
+         *
+         * @method ean
+         * @return {Boolean} True if the given value is an EAN. False if not.
+         */
+        'ean': function (value) {
+            return InkValidator.isEAN(value.replace(/[^\d]/g, ''), 'ean-13');
+        }
     };
 
     /**
@@ -5633,7 +5682,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
      */
     var validationMessages = new I18n({
         en_US: {
-            'formvalidator.required' : 'The {field} filling is mandatory',
+            'formvalidator.required' : 'Filling {field} is mandatory',
             'formvalidator.min_length': 'The {field} must have a minimum size of {param1} characters',
             'formvalidator.max_length': 'The {field} must have a maximum size of {param1} characters',
             'formvalidator.exact_length': 'The {field} must have an exact size of {param1} characters',
@@ -5654,8 +5703,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
             'formvalidator.numeric': 'The {field} should contain a number',
             'formvalidator.range': 'The {field} should contain a number between {param1} and {param2}',
             'formvalidator.color': 'The {field} should contain a valid color',
-            'formvalidator.matches': 'The {field} should match the field {param1}',
-            'formvalidator.validation_function_not_found': 'The rule {rule} has not been defined'
+            'formvalidator.matches': 'The {field} should match the field {param1}'
         },
         pt_PT: {
             'formvalidator.required' : 'Preencher {field} é obrigatório',
@@ -5679,8 +5727,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
             'formvalidator.numeric': '{field} deve conter um número válido',
             'formvalidator.range': '{field} deve conter um número entre {param1} e {param2}',
             'formvalidator.color': '{field} deve conter uma cor válida',
-            'formvalidator.matches': '{field} deve corresponder ao campo {param1}',
-            'formvalidator.validation_function_not_found': '[A regra {rule} não foi definida]'
+            'formvalidator.matches': '{field} deve corresponder ao campo {param1}'
         }
     }, 'en_US');
 
@@ -5818,7 +5865,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
             this._errors[rule] = validationMessages.text(i18nKey, paramObj);
 
             if (this._errors[rule] === i18nKey) {
-                this._errors[rule] = 'Validation message not found';
+                this._errors[rule] = '[Validation message not found for rule ]' + rule;
             }
         },
 
@@ -5830,29 +5877,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
          * @public
          */
         getValue: function(){
-            // TODO this is already implemented in FormSerialize.
-
-            switch(this._element.nodeName.toLowerCase()){
-                case 'select':
-                    return Ink.s('option:selected',this._element).value;
-                case 'textarea':
-                    return this._element.value;
-                case 'input':
-                    if( "type" in this._element ){
-                        if( (this._element.type === 'radio') || (this._element.type === 'checkbox') ){
-                            if( this._element.checked ){
-                                return this._element.value;
-                            }
-                        } else if( this._element.type !== 'file' ){
-                            return this._element.value;
-                        }
-                    } else {
-                        return this._element.value;
-                    }
-                    return;
-                default:
-                    return this._element.innerHTML;
-            }
+            return getValue(this._element);
         },
 
         /**
@@ -6458,7 +6483,7 @@ Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
  * @version 1
  */
 
-Ink.createModule('Ink.UI.LazyLoad', '1', ['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1'], function(Common, InkEvent, InkElement) {
+Ink.createModule('Ink.UI.LazyLoad', '1', ['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1'], function(Common, InkEvent, InkElement, Css) {
 'use strict';
 
 function LazyLoad() {
@@ -6470,6 +6495,7 @@ LazyLoad._name = 'LazyLoad_1';
 LazyLoad._optionDefinition = {
     item: ['String', '.lazyload-item'],
     placeholder: ['String', null],
+    loadedClass: ['String', null],
     source: ['String', 'data-src'],
     destination: ['String', 'src'],
     delay: ['Number', 100],
@@ -6500,6 +6526,7 @@ LazyLoad.prototype = {
      * @param {Object}      [options]                           Options object, containing:
      * @param {String}      [options.item]                      Item selector. Defaults to '.lazyload-item'.
      * @param {String}      [options.placeholder]               Placeholder value for items which are not 'visible', in case they don't already have a value set.
+     * @param {String}      [options.loadedClass]               Add this class to the images when they're loaded.
      * @param {String}      [options.source]                    Source attribute. When an item is 'visible', use this attribute's value to set its destination attribute. Defaults to 'data-src'.
      * @param {String}      [options.destination]               Destination attribute. Attribute to change when the element is 'visible'. Defaults to 'src'. 
      * @param {Number}      [options.delay]                     Milliseconds to wait before trying to load items. Defaults to 100.
@@ -6573,11 +6600,8 @@ LazyLoad.prototype = {
 
             if (InkElement.inViewport(curElm.elm, { partial: true, margin: this._options.delta })) {
                 this._elInViewport(curElm);
-                if (this._options.image) {
-                    /* [todo] a seemingly unrelated option creates a branch? Some of this belongs in another module. */
-                    this._aData.splice(i, 1);
-                    i -= 1;
-                }
+                this._aData.splice(i, 1);
+                i -= 1;
             }
         }
 
@@ -6598,6 +6622,9 @@ LazyLoad.prototype = {
 
         if(this._options.image) {
             curElm.elm.setAttribute(this._options.destination, curElm.original);
+            if (this._options.loadedClass) {
+                Css.addClassName(curElm.elm, this._options.loadedClass);
+            }
             curElm.elm.removeAttribute(this._options.source);
         }
 
@@ -6662,6 +6689,14 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
         div.style.opacity = 'invalid';
         return div.style.opacity !== 'invalid';
     }(InkElement.create('div', {style: 'opacity: 1'})));
+
+    var vhVwSupported = (function (div) {
+        return div.style.height === '10vh' && div.style.width === '10vw';
+    }(InkElement.create('div', { style: 'height:10vh;width:10vw' })));
+
+    var flexSupported = (function (div) {
+        return div.style.display !== '';
+    }(InkElement.create('div', { style: 'display: flex' })));
 
     /**
      * @class Ink.UI.Modal
@@ -6739,7 +6774,12 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             this._handlers = {
                 click:   Ink.bindEvent(this._onShadeClick, this),
                 keyDown: Ink.bindEvent(this._onKeyDown, this),
-                resize:  Event.throttle(Ink.bindEvent(this._onResize, this), 250)
+                resize: null
+            };
+
+            this._dimensionIsPercentage = {
+                width: ('' + this._options.width).indexOf('%') !== -1,
+                height: ('' + this._options.height).indexOf('%') !== -1
             };
 
             this._isOpen = false;
@@ -6806,8 +6846,49 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
          * @private
          */
         _reposition: function(){
-            this._modalDiv.style.marginTop = (-InkElement.elementHeight(this._modalDiv)/2) + 'px';
-            this._modalDiv.style.marginLeft = (-InkElement.elementWidth(this._modalDiv)/2) + 'px';
+            // reposition vertically
+            var largerThan90Percent;
+
+            if (vhVwSupported && this._dimensionIsPercentage.height) {
+                this._modalDiv.style.marginTop = (-parseFloat(this._options.height)/2) + 'vh';
+            } else if (vhVwSupported) {
+                largerThan90Percent = parseFloat(this._options.height) > InkElement.viewportHeight() * 0.9;
+
+                if (largerThan90Percent !== this._heightWasLargerThan90Percent || !largerThan90Percent) {
+                    this._heightWasLargerThan90Percent = largerThan90Percent;
+
+                    if (largerThan90Percent) {
+                        this._modalDiv.style.marginTop = '0';
+                        this._modalDiv.style.top = '5vh';
+                    } else {
+                        this._modalDiv.style.marginTop = (-parseFloat(this._options.height)/2) + 'px';
+                        this._modalDiv.style.top = '';
+                    }
+                }
+            } else {
+                this._modalDiv.style.marginTop = (-InkElement.elementHeight(this._modalDiv)/2) + 'px';
+            }
+
+            // reposition horizontally
+            if (vhVwSupported && this._dimensionIsPercentage.width) {
+                this._modalDiv.style.marginLeft = (-parseFloat(this._options.width)/2) + 'vw';
+            } else if (vhVwSupported) {
+                largerThan90Percent = parseFloat(this._options.width) > InkElement.viewportWidth() * 0.9;
+
+                if (largerThan90Percent !== this._widthWasLargerThan90Percent || !largerThan90Percent) {
+                    this._widthWasLargerThan90Percent = largerThan90Percent;
+
+                    if (largerThan90Percent) {
+                        this._modalDiv.style.marginLeft = '0';
+                        this._modalDiv.style.left = '5vw';
+                    } else {
+                        this._modalDiv.style.marginLeft = (-parseFloat(this._options.width)/2) + 'px';
+                        this._modalDiv.style.left = '';
+                    }
+                }
+            } else {
+                this._modalDiv.style.marginLeft = (-InkElement.elementWidth(this._modalDiv)/2) + 'px';
+            }
         },
 
         /**
@@ -6817,28 +6898,17 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
          * @private
          */
         _onResize: function( ){
-            var isPercentage = {
-                width: ('' + this._options.width).indexOf('%') !== -1,
-                height: ('' + this._options.height).indexOf('%') !== -1
-            };
-            var currentViewport = {
-                height: InkElement.viewportHeight(),
-                width: InkElement.viewportWidth()
-            };
+            if (!vhVwSupported) {
+                this._avoidModalLargerThanScreen();
+            }
 
-            InkArray.forEach(['height', 'width'], Ink.bind(function (dimension) {
-                // Not used for percentage measurements
-                if (isPercentage[dimension]) { return; }
+            if (!vhVwSupported || (!this._dimensionIsPercentage.height || !this._dimensionIsPercentage.width)) {
+                this._reposition();
+            }
 
-                if (currentViewport[dimension] > this.originalStatus[dimension]) {
-                    this._modalDiv.style[dimension] = this._modalDiv.style[maxName(dimension)];
-                } else {
-                    this._modalDiv.style[dimension] = Math.round(currentViewport[dimension] * 0.9) + 'px';
-                }
-            }, this));
-
-            this._resizeContainer();
-            this._reposition();
+            if (!flexSupported) {
+                this._resizeContainer();
+            }
         },
 
         /**
@@ -6895,12 +6965,6 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             }
         },
 
-        /**
-         * Responsible for setting the size of the modal (and position) based on the viewport.
-         * 
-         * @method _resizeContainer
-         * @private
-         */
         _resizeContainer: function() {
             var containerHeight = InkElement.elementHeight(this._modalDiv);
 
@@ -6915,11 +6979,42 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             }
 
             this._contentContainer.style.height = containerHeight + 'px';
-            if( containerHeight !== InkElement.elementHeight(this._contentContainer) ){
-                this._contentContainer.style.height = ~~(containerHeight - (InkElement.elementHeight(this._contentContainer) - containerHeight)) + 'px';
-            }
 
             if( this._markupMode ){ return; }
+        },
+
+        _resizeContainerFlex: function() {
+            this._contentContainer.style.flex = '1';
+            this._modalDiv.style.display = 'flex';
+            this._modalDiv.style.flexDirection = 'column';
+        },
+
+        _avoidModalLargerThanScreen: function () {
+            if (!vhVwSupported) {
+                var currentViewport = {
+                    height: InkElement.viewportHeight(),
+                    width: InkElement.viewportWidth()
+                };
+
+                InkArray.forEach(['height', 'width'], Ink.bind(function (dimension) {
+                    // Not used for percentage measurements
+                    if (this._dimensionIsPercentage[dimension]) { return; }
+
+                    if (parseFloat(this._options[dimension]) > currentViewport[dimension] * 0.9) {
+                        this._modalDiv.style[dimension] = Math.round(currentViewport[dimension] * 0.9) + 'px';
+                    } else {
+                        if (isNaN(parseFloat(this._options[dimension]))) { return; }
+                        this._modalDiv.style[dimension] = parseFloat(this._options[dimension]) + 'px';
+                    }
+                }, this));
+            } else {
+                if (!this._dimensionIsPercentage.width) {
+                    this._modalDiv.style.maxWidth = '90vw';
+                }
+                if (!this._dimensionIsPercentage.height) {
+                    this._modalDiv.style.maxHeight = '90vh';
+                }
+            }
         },
 
         /**************
@@ -6928,7 +7023,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
 
         /**
          * Opens this Modal. 
-         * Use this if you created the modal with `autoOpen: false`
+         * Use this if you created the modal with `autoDisplay: false`
          * to open the modal when you want to.
          * @method open 
          * @param {Event} [event] (internal) In case its fired by the internal trigger.
@@ -6997,22 +7092,41 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                 width:              InkElement.elementWidth(this._modalDiv)
             };
 
-            /**
-             * Let's 'resize' it:
-             */
-            if( this._options.responsive ) {
-                this._onResize(true);
-                Event.observe( window,'resize',this._handlers.resize );
-            } else {
+            // /**
+            //  * Let's resize, place it:
+            //  */
+            this._avoidModalLargerThanScreen();
+            this._reposition();
+            if (!flexSupported) {
                 this._resizeContainer();
-                this._reposition();
+            } else {
+                this._resizeContainerFlex();
+            }
+
+            // /**
+            //  * Responsive modals (they're responsive by default) will resize as the viewport resizes.
+            //  * They need a resize handler if we're an old browser or they're not percentage-based
+            //  * (because pixel-size-based iframes become larger than the viewport at some point).
+            //  **/
+            if( this._options.responsive ) {
+                var needResizeHandler = !(
+                    vhVwSupported &&
+                    flexSupported &&
+                    //Css.getStyle(this._modalDiv, 'display') !== 'block' &&
+                    isPercentage.height &&
+                    isPercentage.width );
+
+                if (needResizeHandler) {
+                    this._handlers.resize = Event.throttle(Ink.bind(this._onResize, this), 500);
+                    Event.observe(window, 'resize', this._handlers.resize);
+                }
             }
 
             if (this._options.onShow) {
                 this._options.onShow(this);
             }
 
-            // subscribe events
+            // // subscribe events
             Event.observe(this._shadeElement, 'click', this._handlers.click);
             if (this._options.closeOnEscape ) {
                 Event.observe(document, 'keydown', this._handlers.keyDown);
@@ -7051,7 +7165,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
 
             this._isOpen = false;
 
-            if( this._options.responsive ){
+            if( this._handlers.resize ){
                 Event.stopObserving(window, 'resize', this._handlers.resize);
             }
 
@@ -7086,10 +7200,6 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
          */
         _waitForFade: function (elem, callback) {
             if (!opacitySupported) { return callback(); }
-
-            if ('ontransitionend' in elem) {
-                return Event.observeOnce(elem, 'transitionEnd', callback);
-            }
 
             var fadeChecks = 5;
             var fadeChecker = function () {
@@ -7216,7 +7326,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
      * @param {String|Element}      selector                    Selector or element
      * @param {Object}              options                     Options
      * @param {Number}              [options.size]              Number of pages.
-     * @param {Number}              [options.totalItemCount]    Total numeber of items to display
+     * @param {Number}              [options.totalItemCount]    Total number of items to display
      * @param {Number}              [options.itemsPerPage]      Number of items per page.
      * @param {Number}              [options.maxSize]           If passed, only shows at most maxSize items. displays also first|prev page and next page|last buttons
      * @param {Number}              [options.start]             Start page. defaults to 1
@@ -8424,8 +8534,7 @@ Ink.createModule('Ink.UI.Spy', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Do
     Spy._name = 'Spy_1';
 
     Spy._optionDefinition = {
-        target: ['Element', undefined],
-        activeClass: ['String', 'active'] // [todo] Spy#_options.activeClass
+        target: ['Element', undefined]
     };
 
     Spy.prototype = {
@@ -9949,7 +10058,6 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
      * @param {Object}              [options]                       Options object, containing:
      * @param {Boolean}             [options.preventUrlChange=false] Flag that determines if follows the link on click or stops the event
      * @param {String}              [options.active]                ID of the tab to activate on creation if the window hash is not already a tab ID.
-     * @param {Array}               [options.disabled=[]]           of the tabs that will be disabled on creation.
      * @param {Function}            [options.onBeforeChange]        Callback to be executed before changing tabs.
      * @param {Function}            [options.onChange]              Callback to be executed after changing tabs.
      * @param {Boolean}             [options.triggerEventsOnLoad=true] Call the above callbacks after this component is created.
@@ -9968,7 +10076,6 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
     Tabs._optionDefinition = {
         preventUrlChange:   ['Boolean', false],
         active:             ['String', undefined],
-        disabled:           ['Object', []],
         onBeforeChange:     ['Function', undefined],
         onChange:           ['Function', undefined],
         menuSelector:       ['String', '.tabs-nav'],
@@ -10708,7 +10815,7 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
      * @param {String}              [options.classNameOn]           CSS class to toggle when on. Defaults to 'show-all'.
      * @param {String}              [options.classNameOff]          CSS class to toggle when off. Defaults to 'hide-all'.
      * @param {String}              [options.triggerEvent]          Event that will trigger the toggling. Defaults to 'click'.
-     * @param {Boolean}             [options.closeOnClick]          Flag to toggle the targe off when clicking outside the toggled content. Defaults to true.
+     * @param {Boolean}             [options.closeOnClick]          Flag to toggle the target off when clicking outside the toggled content. Defaults to true.
      * @param {Boolean}             [options.canToggleAnAncestor]   Set to true if you want the toggle to target ancestors of itself. Defaults to false.
      * @param {String}              [options.closeOnInsideClick]    Toggle off when a child element matching this selector is clicked. Set to null to deactivate the check. Defaults to 'a[href]'.
      * @param {Boolean}             [options.initialState]          Flag to define initial state. false: off, true: on, null: markup. Defaults to null.
