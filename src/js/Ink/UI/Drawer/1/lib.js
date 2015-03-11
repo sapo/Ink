@@ -7,6 +7,104 @@
 Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', 'Ink.Dom.Selector_1', 'Ink.Dom.Element_1', 'Ink.Dom.Event_1', 'Ink.Dom.Css_1'], function(Common, Loaded, Selector, Element, Event, Css) {
     'use strict';
 
+    // A selector that finds focusable elements
+    var sFocusableElms = [
+        '[tabindex]:not([tabindex="-1"])',
+        'input',
+        'select',
+        'textarea',
+        'button',
+        'object',
+        'a[href]',
+        'area'
+    ].join(',');
+
+    /**
+     * Listen to a focus even on the document using capture, taking care to be the only focus listener in the whole page for this Drawer, and also to not regard focus events caused by the mouse.
+     * @method pageWideFocusListener
+     * @param {Function} callback Called when the focus is set on an element.
+     * @private
+     */
+    var onlyWrapper = null;
+    function pageWideFocusListener(callback) {
+        // We *necessarily* need capture to make this happen
+        if (!document.addEventListener) { return; }
+
+        if (onlyWrapper) {
+            _removePageWideFocusListener();
+        }
+
+        var mouseIsDown = false;
+        onlyWrapper = function (ev) {
+            if (ev.type  === 'mousedown' || ev.type === 'mouseup') {
+                // Disregard focus events when mouse is down
+                mouseIsDown = ev.type === 'mousedown';
+                return;
+            }
+
+            if (mouseIsDown) { return; }
+
+            callback(ev.target);
+        };
+
+        document.addEventListener('focus', onlyWrapper, true);
+        document.addEventListener('mousedown', onlyWrapper, true);
+        document.addEventListener('mouseup', onlyWrapper, true);
+    }
+
+    /**
+     * Remove the focus event listener added by pageWideFocusListener. Called when Drawer is closed.
+     * @method removePageWideFocusListener
+     * @private
+     */
+    function _removePageWideFocusListener() {
+        if (!document.addEventListener) { return; }
+        if (!onlyWrapper) { return; }
+        document.removeEventListener('focus', onlyWrapper, true);
+        document.removeEventListener('mousedown', onlyWrapper, true);
+        document.removeEventListener('mouseup', onlyWrapper, true);
+        onlyWrapper = null;
+    }
+
+    /**
+     * Finds the first focusable element inside a container and focuses it
+     * @method focusFirstFocusableElementInside
+     * @private
+     * @returns {Boolean} `true` if it found something to focus, `false` otherwise.
+     */
+    function focusFirstFocusableElementInside(container) {
+        // Find elements with positive tabIndex
+        var withTabIndex = Ink.ss('[tabindex]', container);
+
+        // Find the lowest tabIndex and focus it!
+        var lowestTabIndex = null;
+        var lowestTabIndexElm = null;
+        for (var i = 0; i < withTabIndex.length; i++) {
+            var ind = +withTabIndex[i].tabIndex;
+            if (!ind /* 0 or NaN */) {
+                withTabIndex.splice(i, 1);
+            }
+            if (lowestTabIndex === null || ind < lowestTabIndex) {
+                lowestTabIndex = ind;
+                lowestTabIndexElm = withTabIndex[i];
+            }
+        }
+
+        if (lowestTabIndexElm) {
+            lowestTabIndexElm.focus();
+            return true;
+        }
+
+        var firstFocusable = Ink.s(sFocusableElms, container);
+
+        if (firstFocusable) {
+            firstFocusable.focus();
+            return true;
+        }
+
+        return false;
+    }
+
     function elNotFound(el) {
         return 'Ink.UI.Drawer_1: Could not find the "' +
             el + '" element on this page. Please make sure it exists.';
@@ -54,8 +152,6 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
         rightDrawer:        ['String', '.right-drawer'],
         rightTrigger:       ['String', '.right-drawer-trigger'],
         contentDrawer:      ['String', '.content-drawer'],
-        closeOnContentClick: ['Boolean', true],
-        closeOnLinkClick:    ['Boolean', true],
         mode:               ['String', 'push'],
         sides:              ['String', 'both']
     };
@@ -74,8 +170,6 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
          * @xparam {String}     [options.rightDrawer='.right-drawer']        Right drawer selector. (see `options.leftDrawer`)
          * @xparam {String}     [options.rightTrigger='.right-drawer-trigger'] Right trigger selector (see `options.leftTrigger`)
          * @xparam {String}     [options.contentDrawer='.content-drawer']    Selector for the content drawer.
-         * @param {Boolean}     [options.closeOnContentClick=true]           Flag to close the drawer when someone clicks on the `.contentDrawer`
-         * @param {Boolean}     [options.closeOnLinkClick=true]              Flag to close the drawer when someone clicks on a link in the (left or right) drawer.
          * @param {String}      [options.mode='push']                        This can be 'push' or 'over'.
          * @param {String}      [options.sides='both']                       Can be 'left', 'right', or 'both'. Controls what sides have a drawer.
          *
@@ -160,7 +254,9 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
                     triggers: this._leftTriggers,
                     triggerOption: this._options.leftTrigger
                 });
-            } else if (this._options.sides === 'right' || this._options.sides === 'both') {
+            }
+
+            if (this._options.sides === 'right' || this._options.sides === 'both') {
                 validateSide({
                     name: 'right',
                     drawer: this._rightDrawer,
@@ -195,19 +291,28 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
          * @private
          **/
         _onClick: function(ev){
-            if(Element.findUpwardsBySelector(ev.currentTarget,this._options.leftTrigger)){
-                // Clicked on the left trigger
-                this._onTriggerClicked(ev, 'left');
-            } else if(Element.findUpwardsBySelector(ev.currentTarget,this._options.rightTrigger)){
-                this._onTriggerClicked(ev, 'right');
-            } else if(Element.findUpwardsBySelector(ev.currentTarget,this._options.contentDrawer)){
-                // Clicked on the rest of the body
-                if(this._options.closeOnContentClick) {
+            var clickedTrigger =
+                Element.findUpwardsBySelector(ev.currentTarget, this._options.leftTrigger) ? 'left' :
+                Element.findUpwardsBySelector(ev.currentTarget, this._options.rightTrigger) ? 'right' : null;
+
+            if (clickedTrigger) {
+                this._onTriggerClicked(ev, clickedTrigger);
+                return;
+            }
+
+            if (this._isOpen) {
+                var clickedInContent = Element.findUpwardsBySelector(
+                    ev.currentTarget, this._options.contentDrawer);
+
+                var clickedInLink = Element.isLink(ev.target);
+
+                if (clickedInContent || clickedInLink) {
                     this.close();
                 }
-            } else if (this._options.closeOnLinkClick && Element.isLink(ev.target)) {
-                this.close();
-                // No preventDefault() here
+
+                if (clickedInContent) {
+                    ev.preventDefault();
+                }
             }
         },
 
@@ -269,6 +374,22 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
                         Css.addClassName(drawerEl, 'show');
                     });
             }
+
+            var lastFocused = document.activeElement;
+            var didFocus = focusFirstFocusableElementInside(drawerEl);
+
+            pageWideFocusListener(Ink.bind(function (target) {
+                var insideDrawer = Element.isAncestorOf(drawerEl, target);
+
+                if (insideDrawer) { return; }
+
+                this.close();
+                _removePageWideFocusListener();
+
+                if (didFocus && lastFocused) {
+                    lastFocused.focus();
+                }
+            }, this));
         },
 
         /**
@@ -284,6 +405,8 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
             var drawerEl = this._getRecentDrawer();
 
             if (!drawerEl) { return; }
+
+            _removePageWideFocusListener();
 
             this._isOpen = false;
 

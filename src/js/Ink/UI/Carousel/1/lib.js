@@ -276,6 +276,8 @@ Ink.createModule('Ink.UI.Carousel', '1',
                     curPage += Math[ pointerDelta < 0 ? 'floor' : 'ceil' ](progressInPages);
                 }
 
+                curPage = limitRange(curPage, 0, this._numPages - 1);
+
                 // If something used to calculate progressInPages was zero, we get NaN here.
                 if (!isNaN(curPage)) {
                     this.setPage(curPage);
@@ -322,7 +324,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
          * Sets the current page index
          * @method setPage
          * @param {Number}  page   Index of the destination page.
-         * @param {Boolean} [wrap] Flag to activate circular counting (for example, if you set the page to `5` and there are only 4 pages, you're actually going to the first page).
+         * @param {Boolean} [wrap=false] Flag to activate circular counting (for example, if you set the page to `5` and there are only 4 pages, you're actually going to the first page).
          * @return {void}
          * @public
          **/
@@ -334,7 +336,12 @@ Ink.createModule('Ink.UI.Carousel', '1',
             }
             page = limitRange(page, 0, this._numPages - 1);
 
-            if (page === this._currentPage) { return; }
+            if (page === this._currentPage) {
+                if (this._swipeData) {
+                    this._setPage(page);  // Just advance the view.
+                }
+                return;
+            }
 
             if (this._pagination) {
                 this._pagination.setCurrent(page);  // _setPage is called by pagination because it listens to its Change event.
@@ -354,8 +361,6 @@ Ink.createModule('Ink.UI.Carousel', '1',
                 }
             }
 
-            if (page === this._currentPage) { return; }
-
             this._ulEl.style[ this._isY ? 'top' : 'left'] =
                 ['-', (_lengthToGo / this._ctnLength) * 100, '%'].join('');
 
@@ -369,7 +374,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
         /**
          * Goes to the next page
          * @method nextPage
-         * @param {Boolean} [wrap] Flag to loop from last page to first page.
+         * @param {Boolean} [wrap=false] Flag to loop from last page to first page.
          * @return {void}
          * @public
          **/
@@ -380,7 +385,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
         /**
          * Goes to the previous page
          * @method previousPage
-         * @param {Boolean} [wrap] Flag to loop from first page to last page.
+         * @param {Boolean} [wrap=false] Flag to loop from first page to last page.
          * @return {void}
          * @public
          **/

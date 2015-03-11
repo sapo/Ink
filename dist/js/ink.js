@@ -47,7 +47,7 @@
         /**
          * @property {String} VERSION
          **/
-        VERSION: '3.1.2',
+        VERSION: '3.1.4',
         _checkPendingRequireModules: function() {
             var I, F, o, dep, mod, cb, pRMs = [];
             var toApply = [];
@@ -195,12 +195,11 @@
                 };
             }
 
-            if (document.head) {
-                return document.head.appendChild(scriptEl);
-            }
-            var aHead = document.getElementsByTagName('head');
-            if(aHead.length > 0) {
-                return aHead[0].appendChild(scriptEl);
+            var head = document.head ||
+                document.getElementsByTagName('head')[0];
+
+            if (head) {
+                return head.appendChild(scriptEl);
             }
         },
 
@@ -716,6 +715,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
      * @param {Boolean}         [options.asynchronous=true]     If false, the request synchronous.
      * @param {String}          [options.contentType]           Content-type header to be sent. Defaults to 'application/x-www-form-urlencoded'
      * @param {Boolean}         [options.cors]                  Flag to activate CORS. Set this to true if you're doing a cross-origin request
+     * @param {Boolean}         [options.validateCors]          If this is set to `true`, perform a CORS request automatically based on the URL being cross-domain or not.
      * @param {Number}          [options.delay]                 Artificial delay. If the request is completed faster than this delay, wait the remaining time before executing the callbacks
      * @param {Boolean|String}  [options.evalJS=true]           If the request Content-type header is application/json, evaluates the response and populates responseJSON. Use 'force' if you want to force the response evaluation, no matter what Content-type it's using.
      * @param {String}          [options.method='POST']         HTTP request method. POST by default.
@@ -765,6 +765,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
                 asynchronous: true,
                 contentType:  'application/x-www-form-urlencoded',
                 cors: false,
+                validateCors: false,
                 debug: false,
                 delay: 0,
                 evalJS: true,
@@ -815,6 +816,10 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
             this.isCrossDomain = this._locationIsCrossDomain(urlLocation, location);
 
             this.requestHasBody = options.method.search(/^get|head$/i) < 0;
+
+            if (this.options.validateCors === true) {
+                this.options.cors = this.isCrossDomain;
+            }
 
             if(this.options.cors) {
                 this.isCrossDomain = false;
@@ -1488,14 +1493,14 @@ Ink.createModule('Ink.Net.JsonP', '1', [], function() {
      *
      * @param {String}      uri                         Request URL
      * @param {Object}      options                     Request options
-     * @param {Function}    options.onSuccess           Success callback
-     * @param {Function}    [options.onFailure]         Failure callback
+     * @param {Function}    options.onSuccess           Success callback. Called with the JSONP response.
+     * @param {Function}    [options.onFailure]         Failure callback. Called when there is a timeout.
      * @param {Object}      [options.failureObj]        Object to be passed as argument to failure callback
-     * @param {Number}      [options.timeout]           Timeout for request fail, in seconds. defaults to 10
-     * @param {Object}      [options.params]            Object with the parameters and respective values to unfold
-     * @param {String}      [options.callbackParam]     Parameter to use as callback. defaults to 'jsoncallback'
-     * @param {String}      [options.internalCallback]  Name of the callback function stored in the Ink.Net.JsonP object.
+     * @param {Number}      [options.timeout]           Timeout for the request, in seconds. defaults to 10.
+     * @param {Object}      [options.params]            Object with URL parameters.
+     * @param {String}      [options.callbackParam]     URL parameter which gets the name of the JSONP function to call. defaults to 'jsoncallback'.
      * @param {String}      [options.randVar]           (Advanced, not recommended unless you know what you're doing) A string to append to the callback name. By default, generate a random number. Use an empty string if you already passed the correct name in the internalCallback option.
+     * @param {String}      [options.internalCallback]  (Advanced) Name of the callback function stored in the Ink.Net.JsonP object (before it's prefixed).
      *
      * @sample Ink_Net_JsonP_1.html 
      */
@@ -1533,21 +1538,36 @@ Ink.createModule('Ink.Net.JsonP', '1', [], function() {
             }
 
             if (typeof this.uri !== 'string') {
-                throw 'Please define an URI';
+                throw new Error('Ink.Net.JsonP: Please define an URI');
             }
 
             if (typeof this.options.onSuccess !== 'function') {
-                throw 'please define a callback function on option onSuccess!';
+                throw new Error('Ink.Net.JsonP: please define a callback function on option onSuccess!');
             }
 
             Ink.Net.JsonP[this.options.internalCallback] = Ink.bind(function() {
-                window.clearTimeout(this.timeout);
-                delete window.Ink.Net.JsonP[this.options.internalCallback];
-                this._removeScriptTag();
                 this.options.onSuccess(arguments[0]);
+                this._cleanUp();
             }, this);
 
+            this.timeout = setTimeout(Ink.bind(function () {
+                this.abort();
+                if(typeof this.options.onFailure === 'function'){
+                    this.options.onFailure(this.options.failureObj);
+                }
+            }, this),
+            this.options.timeout * 1000);
+
             this._addScriptTag();
+        },
+
+        /**
+         * Abort the request, avoiding onSuccess or onFailure being called.
+         * @method abort
+         * @return {void}
+         **/
+        abort: function () {
+            Ink.Net.JsonP[this.options.internalCallback] = Ink.bindMethod(this, '_cleanUp');
         },
 
         _addParamsToGet: function(uri, params) {
@@ -1568,12 +1588,10 @@ Ink.createModule('Ink.Net.JsonP', '1', [], function() {
         },
 
         _getScriptContainer: function() {
-            var headEls = document.getElementsByTagName('head');
-            if (headEls.length === 0) {
-                var scriptEls = document.getElementsByTagName('script');
-                return scriptEls[0];
-            }
-            return headEls[0];
+            return document.body ||
+                document.getElementsByTagName('body')[0] ||
+                document.getElementsByTagName('head')[0] ||
+                document.documentElement;
         },
 
         _addScriptTag: function() {
@@ -1582,36 +1600,28 @@ Ink.createModule('Ink.Net.JsonP', '1', [], function() {
             this.options.params.rnd_seed = this.randVar;
             this.uri = this._addParamsToGet(this.uri, this.options.params);
             // create script tag
-            var scriptEl = document.createElement('script');
-            scriptEl.type = 'text/javascript';
-            scriptEl.src = this.uri;
+            this._scriptEl = document.createElement('script');
+            this._scriptEl.type = 'text/javascript';
+            this._scriptEl.src = this.uri;
             var scriptCtn = this._getScriptContainer();
-            scriptCtn.appendChild(scriptEl);
-            this.timeout = setTimeout(Ink.bind(this._requestFailed, this), (this.options.timeout * 1000));
+            scriptCtn.appendChild(this._scriptEl);
         },
 
-        _requestFailed : function () {
+        _cleanUp: function () {
+            if (this.timeout) {
+                window.clearTimeout(this.timeout);
+            }
+            delete this.options.onSuccess;
+            delete this.options.onFailure;
             delete Ink.Net.JsonP[this.options.internalCallback];
             this._removeScriptTag();
-            if(typeof this.options.onFailure === 'function'){
-                this.options.onFailure(this.options.failureObj);
-            }
         },
 
         _removeScriptTag: function() {
-            var scriptEl;
-            var scriptEls = document.getElementsByTagName('script');
-            var scriptUri;
-            for (var i = 0, f = scriptEls.length; i < f; ++i) {
-                scriptEl = scriptEls[i];
-                scriptUri = scriptEl.getAttribute('src') || scriptEl.src;
-                if (scriptUri !== null && scriptUri === this.uri) {
-                    scriptEl.parentNode.removeChild(scriptEl);
-                    return;
-                }
-            }
+            if (!this._scriptEl) { return; /* already removed */ }
+            this._scriptEl.parentNode.removeChild(this._scriptEl);
+            delete this._scriptEl;
         }
-
     };
 
     return JsonP;
@@ -4197,9 +4207,8 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
                     elm.innerHTML = html;
                 } catch (e) {
                     // Tables in IE7
-                    while (elm.firstChild) {
-                        elm.removeChild(elm.firstChild);
-                    }
+                    InkElement.clear( elm );
+
                     InkElement.appendHTML(elm, html);
                 }
             }
@@ -4431,6 +4440,12 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
 
             return dataset;
         },
+
+        clear : function( elem , child ) {
+            while ( ( child = elem.lastChild ) ) {
+                elem.removeChild( child );
+            }
+        } ,
 
         /**
          * Move the cursor on an input or textarea element.
@@ -4719,13 +4734,13 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
                 // a whitelist of properties (for different event types) tells us what to check for and copy
             var commonProps  = str2arr('altKey attrChange attrName bubbles cancelable ctrlKey currentTarget ' +
                   'detail eventPhase getModifierState isTrusted metaKey relatedNode relatedTarget shiftKey '  +
-                  'srcElement target timeStamp type view which propertyName')
+                  'srcElement target timeStamp type view which propertyName path')
               , mouseProps   = commonProps.concat(str2arr('button buttons clientX clientY dataTransfer '      +
-                  'fromElement offsetX offsetY pageX pageY screenX screenY toElement'))
+                  'fromElement offsetX offsetY pageX pageY screenX screenY toElement movementX movementY region'))
               , mouseWheelProps = mouseProps.concat(str2arr('wheelDelta wheelDeltaX wheelDeltaY wheelDeltaZ ' +
                   'axis')) // 'axis' is FF specific
               , keyProps     = commonProps.concat(str2arr('char charCode key keyCode keyIdentifier '          +
-                  'keyLocation location'))
+                  'keyLocation location isComposing code'))
               , textProps    = commonProps.concat(str2arr('data'))
               , touchProps   = commonProps.concat(str2arr('touches targetTouches changedTouches scale rotation'))
               , messageProps = commonProps.concat(str2arr('data origin source'))
@@ -5536,10 +5551,11 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      */
     observeOnce: function (element, eventName, callBack, useCapture) {
         var onceBack = function () {
-            InkEvent.stopObserving(element, eventName, onceBack);
-            return callBack();
+            InkEvent.stopObserving(element, eventName, handler);
+            return callBack.apply(this, arguments);
         };
-        return InkEvent.observe(element, eventName, onceBack, useCapture);
+        var handler = InkEvent.observe(element, eventName, onceBack, useCapture);
+        return handler;
     },
 
     /**
@@ -11917,6 +11933,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
                         'AO',
                         'CV',
                         'MZ',
+                        'TL',
                         'PT'
                     ],
 
@@ -13136,6 +13153,46 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
             }
 
             return this._luhn(num);
+        },
+
+        /**
+         * Get the check digit of an EAN code without a check digit.
+         * @method getEANCheckDigit
+         * @param {String} digits The remaining digits, out of which the check digit is calculated.
+         * @public
+         * @return {Number} The check digit, a number from 0 to 9.
+         */
+        getEANCheckDigit: function(digits){
+            var sum = 0, size, i;
+            digits = String(digits);
+            while (digits.length<12) {
+                digits = '0' + digits;
+            }
+            size = digits.length;
+            for (i = (size - 1); i >= 0; i--) {
+                sum += ((i % 2) * 2 + 1 ) * Number(digits.charAt(i));
+            }
+            return (10 - (sum % 10));
+        },
+
+        /**
+         * Validate an [EAN barcode](https://en.wikipedia.org/wiki/International_Article_Number_%28EAN%29) string.
+         * @method isEAN
+         * @param {String} code The code containing the EAN
+         * @param {} [eanType='ean-13'] Select your EAN type. For now, only ean-13 is supported, and it's the default.
+         * @public
+         * @return {Boolean} Whether the given `code` is an EAN-13
+         */
+        isEAN: function (code, eanType) {
+            /* For future support of more eanTypes */
+            if (!(eanType === undefined || eanType === 'ean-13')) { return false; }
+            if (code.length !== 13) { return false; }
+
+            var digits = code.substr(0, code.length -1);
+            var givenCheck = code.charAt(code.length - 1);
+            var check = Validator.getEANCheckDigit(digits);
+
+            return String(check) === givenCheck;
         }
     };
 

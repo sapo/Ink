@@ -57,7 +57,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
      * @param {String}              [options.prevLinkText]      Text for the previous button. Defaults to '«'.
      * @param {Boolean}             [options.showClean]         If the clean button should be visible. Defaults to true.
      * @param {Boolean}             [options.showClose]         If the close button should be visible. Defaults to true.
-     * @param {Boolean}             [options.shy]               If the datepicker should start automatically. Defaults to true.
+     * @param {Boolean}             [options.shy]               If the datepicker should hide automatically when the user clicks outside. Defaults to true.
      * @param {String}              [options.startDate]         Date to define initial month. Must be in yyyy-mm-dd format.
      * @param {Number}              [options.startWeekDay]      First day of the week. Sunday is zero. Defaults to 1 (Monday).
      * @param {Function}            [options.validYearFn]       Callback to execute when 'rendering' the month (in the month view)
@@ -402,7 +402,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
             var parentIsControl = Selector.matchesSelector(
                 this._element.parentNode,
-                '.ink-form .control-group .control');
+                '.ink-form .control-group .control, .ink-form .control-group .control > *');
 
             if (parentIsControl) {
                 this._wrapper = this._element.parentNode;

@@ -125,7 +125,9 @@ Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Common_1', 'Ink.Dom.Event_1', '
         },
         _init: function(root, elm) {
             InkEvent.observe(elm, 'mouseover', Ink.bindEvent(this._onMouseOver, this));
+            InkEvent.observe(elm, 'focus', Ink.bindEvent(this._onMouseOver, this));
             InkEvent.observe(elm, 'mouseout', Ink.bindEvent(this._onMouseOut, this));
+            InkEvent.observe(elm, 'blur', Ink.bindEvent(this._onMouseOut, this));
             InkEvent.observe(elm, 'mousemove', Ink.bindEvent(this._onMouseMove, this));
 
             this.root = root;
@@ -224,6 +226,11 @@ Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Common_1', 'Ink.Dom.Event_1', '
         },
         _placeTooltipElement: function (tooltip, mousePosition) {
             var where = this._getOpt('where');
+
+            if (mousePosition === null && (where === 'mousemove' || where === 'mousefix')) {
+                // When there are no mouse coords available (focus event)
+                where = 'up';
+            }
 
             if (where === 'mousemove' || where === 'mousefix') {
                 var mPos = mousePosition;
@@ -373,7 +380,13 @@ Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Common_1', 'Ink.Dom.Event_1', '
         },
         _onMouseOver: function(e) {
             // on IE < 10 you can't access the mouse event not even a tick after it fired
-            var mousePosition = this._getMousePosition(e);
+            var mousePosition;
+            if (e.type !== 'mouseover') {
+                // No mouse coords available
+                mousePosition = null;
+            } else {
+                mousePosition = this._getMousePosition(e);
+            }
             var delay = this._getFloatOpt('delay');
             if (delay) {
                 this._delayTimeout = setTimeout(Ink.bind(function () {

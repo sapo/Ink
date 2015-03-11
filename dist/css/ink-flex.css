@@ -8,7 +8,7 @@
  * @author    Sapo Ink Team
  * @license   http://opensource.org/licenses/MIT MIT
  * @link      http://ink.sapo.pt
- * @version   3.1.2
+ * @version   3.1.3
  */
 /**
  * Ink class names prefix
@@ -672,7 +672,7 @@ th {
 .ink-form p.label {
   padding: 0;
   margin: 0;
-  color: #555;
+  color: #555555;
   white-space: normal;
 }
 .ink-form select,
@@ -701,7 +701,7 @@ th {
   padding: 8px 6px;
   border: 1px solid #c6c6c6;
   resize: none;
-  background: #FFF;
+  background: white;
   vertical-align: middle;
 }
 .ink-form select:focus,
@@ -754,7 +754,7 @@ th {
   border-radius: 2px;
   padding: 6px;
   border: 1px solid #c6c6c6;
-  background: #FFF;
+  background: white;
   vertical-align: middle;
   line-height: 1.2;
 }
@@ -934,7 +934,7 @@ th {
   color: rgba(204, 125, 0, 0.6);
 }
 .ink-form .control-group.required label, .ink-form .control-group.required p.label {
-  color: #555;
+  color: #555555;
 }
 .ink-form .control-group.required label:after, .ink-form .control-group.required p.label:after {
   content: "\f069";
@@ -6340,158 +6340,180 @@ th {
 }
 @font-face {
   font-family: "Roboto";
-  src: url('../fonts/Roboto/roboto-thin-webfont.eot?1413779134');
-  src: url('../fonts/Roboto/roboto-thin-webfont.eot?&1413779134#iefix') format('embedded-opentype'), url('../fonts/Roboto/roboto-thin-webfont.woff?1413779134') format('woff'), url('../fonts/Roboto/roboto-thin-webfont.ttf?1413779134') format('truetype');
+  src: url('../fonts/Roboto/roboto-thin-webfont.eot');
+  src: url('../fonts/Roboto/roboto-thin-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto/roboto-thin-webfont.woff') format('woff'), url('../fonts/Roboto/roboto-thin-webfont.ttf') format('truetype');
   font-weight: 100;
   font-style: normal;
 }
+
 @font-face {
   font-family: "Roboto";
-  src: url('../fonts/Roboto/roboto-thinitalic-webfont.eot?1413779134');
-  src: url('../fonts/Roboto/roboto-thinitalic-webfont.eot?&1413779134#iefix') format('embedded-opentype'), url('../fonts/Roboto/roboto-thinitalic-webfont.woff?1413779134') format('woff'), url('../fonts/Roboto/roboto-thinitalic-webfont.ttf?1413779134') format('truetype');
+  src: url('../fonts/Roboto/roboto-thinitalic-webfont.eot');
+  src: url('../fonts/Roboto/roboto-thinitalic-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto/roboto-thinitalic-webfont.woff') format('woff'), url('../fonts/Roboto/roboto-thinitalic-webfont.ttf') format('truetype');
   font-weight: 100;
   font-style: italic;
 }
+
 @font-face {
   font-family: "Roboto";
-  src: url('../fonts/Roboto/roboto-light-webfont.eot?1413779134');
-  src: url('../fonts/Roboto/roboto-light-webfont.eot?&1413779134#iefix') format('embedded-opentype'), url('../fonts/Roboto/roboto-light-webfont.woff?1413779134') format('woff'), url('../fonts/Roboto/roboto-light-webfont.ttf?1413779134') format('truetype');
+  src: url('../fonts/Roboto/roboto-light-webfont.eot');
+  src: url('../fonts/Roboto/roboto-light-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto/roboto-light-webfont.woff') format('woff'), url('../fonts/Roboto/roboto-light-webfont.ttf') format('truetype');
   font-weight: 300;
   font-style: normal;
 }
+
 @font-face {
   font-family: "Roboto";
-  src: url('../fonts/Roboto/roboto-lightitalic-webfont.eot?1413779134');
-  src: url('../fonts/Roboto/roboto-lightitalic-webfont.eot?&1413779134#iefix') format('embedded-opentype'), url('../fonts/Roboto/roboto-lightitalic-webfont.woff?1413779134') format('woff'), url('../fonts/Roboto/roboto-lightitalic-webfont.ttf?1413779134') format('truetype');
+  src: url('../fonts/Roboto/roboto-lightitalic-webfont.eot');
+  src: url('../fonts/Roboto/roboto-lightitalic-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto/roboto-lightitalic-webfont.woff') format('woff'), url('../fonts/Roboto/roboto-lightitalic-webfont.ttf') format('truetype');
   font-weight: 300;
   font-style: italic;
 }
+
 @font-face {
   font-family: "Roboto";
-  src: url('../fonts/Roboto/roboto-regular-webfont.eot?1413779134');
-  src: url('../fonts/Roboto/roboto-regular-webfont.eot?&1413779134#iefix') format('embedded-opentype'), url('../fonts/Roboto/roboto-regular-webfont.woff?1413779134') format('woff'), url('../fonts/Roboto/roboto-regular-webfont.ttf?1413779134') format('truetype');
+  src: url('../fonts/Roboto/roboto-regular-webfont.eot');
+  src: url('../fonts/Roboto/roboto-regular-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto/roboto-regular-webfont.woff') format('woff'), url('../fonts/Roboto/roboto-regular-webfont.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
 }
+
 @font-face {
   font-family: "Roboto";
-  src: url('../fonts/Roboto/roboto-italic-webfont.eot?1413779134');
-  src: url('../fonts/Roboto/roboto-italic-webfont.eot?&1413779134#iefix') format('embedded-opentype'), url('../fonts/Roboto/roboto-italic-webfont.woff?1413779134') format('woff'), url('../fonts/Roboto/roboto-italic-webfont.ttf?1413779134') format('truetype');
+  src: url('../fonts/Roboto/roboto-italic-webfont.eot');
+  src: url('../fonts/Roboto/roboto-italic-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto/roboto-italic-webfont.woff') format('woff'), url('../fonts/Roboto/roboto-italic-webfont.ttf') format('truetype');
   font-weight: 400;
   font-style: italic;
 }
+
 @font-face {
   font-family: "Roboto";
-  src: url('../fonts/Roboto/roboto-medium-webfont.eot?1413779134');
-  src: url('../fonts/Roboto/roboto-medium-webfont.eot?&1413779134#iefix') format('embedded-opentype'), url('../fonts/Roboto/roboto-medium-webfont.woff?1413779134') format('woff'), url('../fonts/Roboto/roboto-medium-webfont.ttf?1413779134') format('truetype');
+  src: url('../fonts/Roboto/roboto-medium-webfont.eot');
+  src: url('../fonts/Roboto/roboto-medium-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto/roboto-medium-webfont.woff') format('woff'), url('../fonts/Roboto/roboto-medium-webfont.ttf') format('truetype');
   font-weight: 500;
   font-style: normal;
 }
+
 @font-face {
   font-family: "Roboto";
-  src: url('../fonts/Roboto/roboto-mediumitalic-webfont.eot?1413779134');
-  src: url('../fonts/Roboto/roboto-mediumitalic-webfont.eot?&1413779134#iefix') format('embedded-opentype'), url('../fonts/Roboto/roboto-mediumitalic-webfont.woff?1413779134') format('woff'), url('../fonts/Roboto/roboto-mediumitalic-webfont.ttf?1413779134') format('truetype');
+  src: url('../fonts/Roboto/roboto-mediumitalic-webfont.eot');
+  src: url('../fonts/Roboto/roboto-mediumitalic-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto/roboto-mediumitalic-webfont.woff') format('woff'), url('../fonts/Roboto/roboto-mediumitalic-webfont.ttf') format('truetype');
   font-weight: 500;
   font-style: italic;
 }
+
 @font-face {
   font-family: "Roboto";
-  src: url('../fonts/Roboto/roboto-bold-webfont.eot?1413779134');
-  src: url('../fonts/Roboto/roboto-bold-webfont.eot?&1413779134#iefix') format('embedded-opentype'), url('../fonts/Roboto/roboto-bold-webfont.woff?1413779134') format('woff'), url('../fonts/Roboto/roboto-bold-webfont.ttf?1413779134') format('truetype');
+  src: url('../fonts/Roboto/roboto-bold-webfont.eot');
+  src: url('../fonts/Roboto/roboto-bold-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto/roboto-bold-webfont.woff') format('woff'), url('../fonts/Roboto/roboto-bold-webfont.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;
 }
+
 @font-face {
   font-family: "Roboto";
-  src: url('../fonts/Roboto/roboto-bolditalic-webfont.eot?1413779134');
-  src: url('../fonts/Roboto/roboto-bolditalic-webfont.eot?&1413779134#iefix') format('embedded-opentype'), url('../fonts/Roboto/roboto-bolditalic-webfont.woff?1413779134') format('woff'), url('../fonts/Roboto/roboto-bolditalic-webfont.ttf?1413779134') format('truetype');
+  src: url('../fonts/Roboto/roboto-bolditalic-webfont.eot');
+  src: url('../fonts/Roboto/roboto-bolditalic-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto/roboto-bolditalic-webfont.woff') format('woff'), url('../fonts/Roboto/roboto-bolditalic-webfont.ttf') format('truetype');
   font-weight: 700;
   font-style: italic;
 }
+
 @font-face {
   font-family: "Roboto";
-  src: url('../fonts/Roboto/roboto-black-webfont.eot?1413779134');
-  src: url('../fonts/Roboto/roboto-black-webfont.eot?&1413779134#iefix') format('embedded-opentype'), url('../fonts/Roboto/roboto-black-webfont.woff?1413779134') format('woff'), url('../fonts/Roboto/roboto-black-webfont.ttf?1413779134') format('truetype');
+  src: url('../fonts/Roboto/roboto-black-webfont.eot');
+  src: url('../fonts/Roboto/roboto-black-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto/roboto-black-webfont.woff') format('woff'), url('../fonts/Roboto/roboto-black-webfont.ttf') format('truetype');
   font-weight: 900;
   font-style: normal;
 }
+
 @font-face {
   font-family: "Roboto";
-  src: url('../fonts/Roboto/roboto-blackitalic-webfont.eot?1413779134');
-  src: url('../fonts/Roboto/roboto-blackitalic-webfont.eot?&1413779134#iefix') format('embedded-opentype'), url('../fonts/Roboto/roboto-blackitalic-webfont.woff?1413779134') format('woff'), url('../fonts/Roboto/roboto-blackitalic-webfont.ttf?1413779134') format('truetype');
+  src: url('../fonts/Roboto/roboto-blackitalic-webfont.eot');
+  src: url('../fonts/Roboto/roboto-blackitalic-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto/roboto-blackitalic-webfont.woff') format('woff'), url('../fonts/Roboto/roboto-blackitalic-webfont.ttf') format('truetype');
   font-weight: 900;
   font-style: italic;
 }
+
 @font-face {
   font-family: "Roboto_condensed";
-  src: url('../fonts/Roboto_condensed/robotocondensed-light-webfont.eot?1413779136');
-  src: url('../fonts/Roboto_condensed/robotocondensed-light-webfont.eot?&1413779136#iefix') format('embedded-opentype'), url('../fonts/Roboto_condensed/robotocondensed-light-webfont.woff?1413779136') format('woff'), url('../fonts/Roboto_condensed/robotocondensed-light-webfont.ttf?1413779136') format('truetype');
+  src: url('../fonts/Roboto_condensed/robotocondensed-light-webfont.eot');
+  src: url('../fonts/Roboto_condensed/robotocondensed-light-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto_condensed/robotocondensed-light-webfont.woff') format('woff'), url('../fonts/Roboto_condensed/robotocondensed-light-webfont.ttf') format('truetype');
   font-weight: 300;
   font-style: normal;
 }
+
 @font-face {
   font-family: "Roboto_condensed";
-  src: url('../fonts/Roboto_condensed/robotocondensed-lightitalic-webfont.eot?1413779136');
-  src: url('../fonts/Roboto_condensed/robotocondensed-lightitalic-webfont.eot?&1413779136#iefix') format('embedded-opentype'), url('../fonts/Roboto_condensed/robotocondensed-lightitalic-webfont.woff?1413779136') format('woff'), url('../fonts/Roboto_condensed/robotocondensed-lightitalic-webfont.ttf?1413779136') format('truetype');
+  src: url('../fonts/Roboto_condensed/robotocondensed-lightitalic-webfont.eot');
+  src: url('../fonts/Roboto_condensed/robotocondensed-lightitalic-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto_condensed/robotocondensed-lightitalic-webfont.woff') format('woff'), url('../fonts/Roboto_condensed/robotocondensed-lightitalic-webfont.ttf') format('truetype');
   font-weight: 300;
   font-style: italic;
 }
+
 @font-face {
   font-family: "Roboto_condensed";
-  src: url('../fonts/Roboto_condensed/robotocondensed-regular-webfont.eot?1413779134');
-  src: url('../fonts/Roboto_condensed/robotocondensed-regular-webfont.eot?&1413779134#iefix') format('embedded-opentype'), url('../fonts/Roboto_condensed/robotocondensed-regular-webfont.woff?1413779134') format('woff'), url('../fonts/Roboto_condensed/robotocondensed-regular-webfont.ttf?1413779134') format('truetype');
+  src: url('../fonts/Roboto_condensed/robotocondensed-regular-webfont.eot');
+  src: url('../fonts/Roboto_condensed/robotocondensed-regular-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto_condensed/robotocondensed-regular-webfont.woff') format('woff'), url('../fonts/Roboto_condensed/robotocondensed-regular-webfont.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
 }
+
 @font-face {
   font-family: "Roboto_condensed";
-  src: url('../fonts/Roboto_condensed/robotocondensed-italic-webfont.eot?1413779136');
-  src: url('../fonts/Roboto_condensed/robotocondensed-italic-webfont.eot?&1413779136#iefix') format('embedded-opentype'), url('../fonts/Roboto_condensed/robotocondensed-italic-webfont.woff?1413779136') format('woff'), url('../fonts/Roboto_condensed/robotocondensed-italic-webfont.ttf?1413779136') format('truetype');
+  src: url('../fonts/Roboto_condensed/robotocondensed-italic-webfont.eot');
+  src: url('../fonts/Roboto_condensed/robotocondensed-italic-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto_condensed/robotocondensed-italic-webfont.woff') format('woff'), url('../fonts/Roboto_condensed/robotocondensed-italic-webfont.ttf') format('truetype');
   font-weight: 400;
   font-style: italic;
 }
+
 @font-face {
   font-family: "Roboto_condensed";
-  src: url('../fonts/Roboto_condensed/robotocondensed-bold-webfont.eot?1413779136');
-  src: url('../fonts/Roboto_condensed/robotocondensed-bold-webfont.eot?&1413779136#iefix') format('embedded-opentype'), url('../fonts/Roboto_condensed/robotocondensed-bold-webfont.woff?1413779136') format('woff'), url('../fonts/Roboto_condensed/robotocondensed-bold-webfont.ttf?1413779136') format('truetype');
+  src: url('../fonts/Roboto_condensed/robotocondensed-bold-webfont.eot');
+  src: url('../fonts/Roboto_condensed/robotocondensed-bold-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto_condensed/robotocondensed-bold-webfont.woff') format('woff'), url('../fonts/Roboto_condensed/robotocondensed-bold-webfont.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;
 }
+
 @font-face {
   font-family: "Roboto_condensed";
-  src: url('../fonts/Roboto_condensed/robotocondensed-bolditalic-webfont.eot?1413779136');
-  src: url('../fonts/Roboto_condensed/robotocondensed-bolditalic-webfont.eot?&1413779136#iefix') format('embedded-opentype'), url('../fonts/Roboto_condensed/robotocondensed-bolditalic-webfont.woff?1413779136') format('woff'), url('../fonts/Roboto_condensed/robotocondensed-bolditalic-webfont.ttf?1413779136') format('truetype');
+  src: url('../fonts/Roboto_condensed/robotocondensed-bolditalic-webfont.eot');
+  src: url('../fonts/Roboto_condensed/robotocondensed-bolditalic-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto_condensed/robotocondensed-bolditalic-webfont.woff') format('woff'), url('../fonts/Roboto_condensed/robotocondensed-bolditalic-webfont.ttf') format('truetype');
   font-weight: 700;
   font-style: italic;
 }
+
 @font-face {
   font-family: "Roboto_slab";
-  src: url('../fonts/Roboto_slab/robotoslab-thin-webfont.eot?1408628222');
-  src: url('../fonts/Roboto_slab/robotoslab-thin-webfont.eot?&1408628222#iefix') format('embedded-opentype'), url('../fonts/Roboto_slab/robotoslab-thin-webfont.woff?1408628222') format('woff'), url('../fonts/Roboto_slab/robotoslab-thin-webfont.ttf?1408628222') format('truetype');
+  src: url('../fonts/Roboto_slab/robotoslab-thin-webfont.eot');
+  src: url('../fonts/Roboto_slab/robotoslab-thin-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto_slab/robotoslab-thin-webfont.woff') format('woff'), url('../fonts/Roboto_slab/robotoslab-thin-webfont.ttf') format('truetype');
   font-weight: 100;
   font-style: normal;
 }
+
 @font-face {
   font-family: "Roboto_slab";
-  src: url('../fonts/Roboto_slab/robotoslab-light-webfont.eot?1408628222');
-  src: url('../fonts/Roboto_slab/robotoslab-light-webfont.eot?&1408628222#iefix') format('embedded-opentype'), url('../fonts/Roboto_slab/robotoslab-light-webfont.woff?1408628222') format('woff'), url('../fonts/Roboto_slab/robotoslab-light-webfont.ttf?1408628222') format('truetype');
+  src: url('../fonts/Roboto_slab/robotoslab-light-webfont.eot');
+  src: url('../fonts/Roboto_slab/robotoslab-light-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto_slab/robotoslab-light-webfont.woff') format('woff'), url('../fonts/Roboto_slab/robotoslab-light-webfont.ttf') format('truetype');
   font-weight: 300;
   font-style: normal;
 }
+
 @font-face {
   font-family: "Roboto_slab";
-  src: url('../fonts/Roboto_slab/robotoslab-regular-webfont.eot?1408628222');
-  src: url('../fonts/Roboto_slab/robotoslab-regular-webfont.eot?&1408628222#iefix') format('embedded-opentype'), url('../fonts/Roboto_slab/robotoslab-regular-webfont.woff?1408628222') format('woff'), url('../fonts/Roboto_slab/robotoslab-regular-webfont.ttf?1408628222') format('truetype');
+  src: url('../fonts/Roboto_slab/robotoslab-regular-webfont.eot');
+  src: url('../fonts/Roboto_slab/robotoslab-regular-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto_slab/robotoslab-regular-webfont.woff') format('woff'), url('../fonts/Roboto_slab/robotoslab-regular-webfont.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
 }
+
 @font-face {
   font-family: "Roboto_slab";
-  src: url('../fonts/Roboto_slab/robotoslab-bold-webfont.eot?1408628222');
-  src: url('../fonts/Roboto_slab/robotoslab-bold-webfont.eot?&1408628222#iefix') format('embedded-opentype'), url('../fonts/Roboto_slab/robotoslab-bold-webfont.woff?1408628222') format('woff'), url('../fonts/Roboto_slab/robotoslab-bold-webfont.ttf?1408628222') format('truetype');
+  src: url('../fonts/Roboto_slab/robotoslab-bold-webfont.eot');
+  src: url('../fonts/Roboto_slab/robotoslab-bold-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto_slab/robotoslab-bold-webfont.woff') format('woff'), url('../fonts/Roboto_slab/robotoslab-bold-webfont.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;
 }
+
 .ink-label {
   padding: 0 0.35em;
   white-space: nowrap;
@@ -6547,7 +6569,7 @@ th {
 .ink-navigation ul.dropdown {
   position: absolute;
   top: 110%;
-  background: #fff;
+  background: white;
   z-index: 30;
   border: 1px solid #d9d9d9;
   height: auto;
@@ -6638,7 +6660,7 @@ th {
 .ink-navigation ul.dropdown-menu li.active a,
 .ink-navigation ul.dropdown li.active a {
   background: #999999;
-  color: #fff;
+  color: white;
 }
 .ink-dropdown ul.dropdown-menu li.disabled a,
 .ink-dropdown ul.dropdown li.disabled a,
@@ -7031,7 +7053,7 @@ html {
 }
 
 body {
-  color: #555;
+  color: #555555;
   font-family: "Roboto", Arial, Helvetica, sans-serif;
   line-height: 1.45;
 }
@@ -7136,61 +7158,61 @@ body {
 }
 
 a {
-  color: #6998C9;
+  color: #6998c9;
   text-decoration: none;
   cursor: pointer;
 }
 a:hover {
-  color: #007ED5;
+  color: #007ed5;
   text-decoration: underline;
 }
 
 h1 {
   font-size: 2.2em;
   margin-top: 0;
-  margin-bottom: 0.59318em;
+  margin-bottom: 0.57539em;
 }
 
 h2 {
   font-size: 1.75em;
   margin-top: 0;
-  margin-bottom: 0.74571em;
+  margin-bottom: 0.72334em;
 }
 
 h3 {
   font-size: 1.5em;
   margin-top: 0;
-  margin-bottom: 0.87em;
+  margin-bottom: 0.8439em;
 }
 
 h4 {
   font-size: 1.25em;
   margin-top: 0;
-  margin-bottom: 1.044em;
+  margin-bottom: 1.01268em;
 }
 
 h5 {
   font-size: 1.1em;
   margin-top: 0;
-  margin-bottom: 1.18636em;
+  margin-bottom: 1.15077em;
 }
 
 h6 {
   font-size: 1.1em;
   margin-top: 0;
-  margin-bottom: 1.18636em;
+  margin-bottom: 1.15077em;
 }
 
 p {
   font-size: 1em;
   margin-top: 0;
-  margin-bottom: 1.305em;
+  margin-bottom: 1.26585em;
 }
 
 table {
   font-size: 1em;
   margin-top: 0;
-  margin-bottom: 1.305em;
+  margin-bottom: 1.26585em;
 }
 
 h1:first-child, h2:first-child, h3:first-child, h4:first-child, h5:first-child, h6:first-child, p:first-child {
@@ -7232,7 +7254,7 @@ address p {
   margin-top: 0;
 }
 address h6 {
-  color: #555;
+  color: #555555;
 }
 
 abbr:hover {
@@ -7258,7 +7280,7 @@ blockquote small::before, blockquote small::after {
   color: #777777;
 }
 .note strong {
-  color: #555;
+  color: #555555;
 }
 
 .small {
@@ -7304,6 +7326,10 @@ ul.unstyled {
 ul.unstyled ul {
   list-style: disc outside;
 }
+ul.unstyled ul.unstyled {
+  list-style: none;
+  padding-left: 0em;
+}
 ul.inline {
   list-style: none;
 }
@@ -7341,14 +7367,14 @@ dl.inline dd {
 
 figure.ink-image {
   position: relative;
-  border: 1px solid #555;
+  border: 1px solid #555555;
 }
 figure.ink-image > img {
   width: 100%;
 }
 figure.ink-image > figcaption {
   padding: 1em;
-  background: #fff;
+  background: white;
   line-height: 1.3;
 }
 figure.ink-image > figcaption.over-top, figure.ink-image > figcaption.over-bottom {
@@ -7358,7 +7384,7 @@ figure.ink-image > figcaption.over-top, figure.ink-image > figcaption.over-botto
   border: none;
 }
 figure.ink-image > figcaption.over-top.dark, figure.ink-image > figcaption.over-bottom.dark {
-  color: #fff;
+  color: white;
   background: rgba(0, 0, 0, 0.6);
 }
 figure.ink-image > figcaption.over-top {
@@ -7370,8 +7396,8 @@ figure.ink-image > figcaption.over-bottom {
   background: rgba(255, 255, 255, 0.7);
 }
 figure.ink-image > figcaption.dark {
-  color: #fff;
-  background: #222;
+  color: white;
+  background: #222222;
 }
 
 img {
@@ -7422,7 +7448,7 @@ img {
 }
 .ink-alert.block {
   border: 1px solid #b87814;
-  background: #fff;
+  background: white;
 }
 .ink-alert.block > h4 {
   background: rgba(255, 156, 0, 0.3);
@@ -7433,7 +7459,7 @@ img {
 }
 .ink-alert.block.success {
   border: 1px solid #38621d;
-  background: #fff;
+  background: white;
 }
 .ink-alert.block.success > h4 {
   background: rgba(74, 155, 23, 0.3);
@@ -7444,7 +7470,7 @@ img {
 }
 .ink-alert.block.error {
   border: 1px solid #891e1e;
-  background: #fff;
+  background: white;
 }
 .ink-alert.block.error > h4 {
   background: rgba(201, 17, 17, 0.3);
@@ -7455,7 +7481,7 @@ img {
 }
 .ink-alert.block.info {
   border: 1px solid #1e5b98;
-  background: #fff;
+  background: white;
 }
 .ink-alert.block.info > h4 {
   background: rgba(15, 117, 218, 0.3);
@@ -7467,7 +7493,7 @@ img {
 .ink-alert .ink-dismiss {
   font-family: Arial, sans-serif;
   font-weight: bold;
-  text-shadow: #fff 0 1px 0;
+  text-shadow: white 0 1px 0;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=25);
   opacity: 0.25;
 }
@@ -7482,14 +7508,14 @@ img {
   -ms-border-radius: 8em;
   -o-border-radius: 8em;
   border-radius: 8em;
-  color: #fff;
+  color: white;
 }
 .ink-badge.white {
-  background: #fff;
-  color: #555;
+  background: white;
+  color: #555555;
 }
 .ink-badge.black {
-  background: #000;
+  background: black;
 }
 .ink-badge.orange {
   background: #ff9c00;
@@ -7505,7 +7531,7 @@ img {
 }
 .ink-badge.yellow {
   background: #ffd500;
-  color: #555;
+  color: #555555;
 }
 .ink-badge.grey {
   background: gray;
@@ -7516,7 +7542,7 @@ img {
 
 .ink-button {
   background: #d9d9d9;
-  color: #000;
+  color: black;
   border: 1px solid #bfbfbf;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
@@ -7527,7 +7553,7 @@ img {
 }
 .ink-button:hover, .ink-button:active {
   text-decoration: none;
-  color: #000;
+  color: black;
   background: #cccccc;
   border: 1px solid #b3b3b3;
   -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 1px;
@@ -7552,14 +7578,14 @@ img {
   box-shadow: none;
 }
 .ink-button.blue {
-  color: #fff;
+  color: white;
   background: #0f75da;
   border: 1px solid #0c63b9;
 }
 .ink-button.blue:hover, .ink-button.blue:active {
   background: #0d68c2;
   border: 1px solid #0a56a1;
-  color: #fff;
+  color: white;
   text-decoration: none;
 }
 .ink-button.blue:focus {
@@ -7576,14 +7602,14 @@ img {
   box-shadow: none;
 }
 .ink-button.green {
-  color: #fff;
+  color: white;
   background: #4a9b17;
   border: 1px solid #3e8313;
 }
 .ink-button.green:hover, .ink-button.green:active {
   background: #3f8514;
   border: 1px solid #336d10;
-  color: #fff;
+  color: white;
   text-decoration: none;
 }
 .ink-button.green:focus {
@@ -7600,14 +7626,14 @@ img {
   box-shadow: none;
 }
 .ink-button.orange {
-  color: #fff;
+  color: white;
   background: #ff9c00;
   border: 1px solid #d88400;
 }
 .ink-button.orange:hover, .ink-button.orange:active {
   background: #e68c00;
   border: 1px solid #bf7400;
-  color: #fff;
+  color: white;
   text-decoration: none;
 }
 .ink-button.orange:focus {
@@ -7624,14 +7650,14 @@ img {
   box-shadow: none;
 }
 .ink-button.red {
-  color: #fff;
+  color: white;
   background: #c91111;
   border: 1px solid #aa0e0e;
 }
 .ink-button.red:hover, .ink-button.red:active {
   background: #b10f0f;
   border: 1px solid #920c0c;
-  color: #fff;
+  color: white;
   text-decoration: none;
 }
 .ink-button.red:focus {
@@ -7648,14 +7674,14 @@ img {
   box-shadow: none;
 }
 .ink-button.black {
-  color: #fff;
+  color: white;
   background: #1a1a1a;
   border: 1px solid #161616;
 }
 .ink-button.black:hover, .ink-button.black:active {
   background: #0d0d0d;
   border: 1px solid #090909;
-  color: #fff;
+  color: white;
   text-decoration: none;
 }
 .ink-button.black:focus {
@@ -7672,14 +7698,14 @@ img {
   box-shadow: none;
 }
 .ink-button.white {
-  color: #555;
-  background: #fff;
+  color: #555555;
+  background: white;
   border: 1px solid #d8d8d8;
 }
 .ink-button.white:hover, .ink-button.white:active {
   background: #f2f2f2;
   border: 1px solid #cbcbcb;
-  color: #555;
+  color: #555555;
   text-decoration: none;
 }
 .ink-button.white:focus {
@@ -7749,7 +7775,7 @@ img {
 }
 
 .ink-label {
-  color: #fff;
+  color: white;
   font-weight: 300;
   font-size: 0.938em;
   -webkit-border-radius: 2px;
@@ -7759,11 +7785,11 @@ img {
   border-radius: 2px;
 }
 .ink-label.white {
-  background: #fff;
-  color: #555;
+  background: white;
+  color: #555555;
 }
 .ink-label.black {
-  background: #000;
+  background: black;
 }
 .ink-label.orange {
   background: #ff9c00;
@@ -7779,7 +7805,7 @@ img {
 }
 .ink-label.yellow {
   background: #ffd500;
-  color: #555;
+  color: #555555;
 }
 .ink-label.grey {
   background: gray;
@@ -7809,10 +7835,10 @@ img {
   text-decoration: underline;
 }
 .ink-navigation ul.breadcrumbs.white {
-  background: #fff;
+  background: white;
 }
 .ink-navigation ul.breadcrumbs.white li a, .ink-navigation ul.breadcrumbs.white li:after {
-  color: #555;
+  color: #555555;
 }
 .ink-navigation ul.breadcrumbs.white li.active a {
   color: #cccccc;
@@ -7822,7 +7848,7 @@ img {
   background: #d9d9d9;
 }
 .ink-navigation ul.breadcrumbs.grey li a, .ink-navigation ul.breadcrumbs.grey li:after {
-  color: #555;
+  color: #555555;
 }
 .ink-navigation ul.breadcrumbs.grey li.active a {
   color: #a6a6a6;
@@ -7832,7 +7858,7 @@ img {
   background: #1a1a1a;
 }
 .ink-navigation ul.breadcrumbs.black li a, .ink-navigation ul.breadcrumbs.black li:after {
-  color: #fff;
+  color: white;
 }
 .ink-navigation ul.breadcrumbs.black li.active a {
   color: #666666;
@@ -7842,7 +7868,7 @@ img {
   background: #1b75ce;
 }
 .ink-navigation ul.breadcrumbs.blue li a, .ink-navigation ul.breadcrumbs.blue li:after {
-  color: #fff;
+  color: white;
 }
 .ink-navigation ul.breadcrumbs.blue li.active a {
   color: #08427b;
@@ -7852,7 +7878,7 @@ img {
   background: #f2990d;
 }
 .ink-navigation ul.breadcrumbs.orange li a, .ink-navigation ul.breadcrumbs.orange li:after {
-  color: #fff;
+  color: white;
 }
 .ink-navigation ul.breadcrumbs.orange li.active a {
   color: #995e00;
@@ -7862,7 +7888,7 @@ img {
   background: #4c9220;
 }
 .ink-navigation ul.breadcrumbs.green li a, .ink-navigation ul.breadcrumbs.green li:after {
-  color: #fff;
+  color: white;
 }
 .ink-navigation ul.breadcrumbs.green li.active a {
   color: #20420a;
@@ -7872,7 +7898,7 @@ img {
   background: #be1c1c;
 }
 .ink-navigation ul.breadcrumbs.red li a, .ink-navigation ul.breadcrumbs.red li:after {
-  color: #fff;
+  color: white;
 }
 .ink-navigation ul.breadcrumbs.red li.active a {
   color: #6b0909;
@@ -7881,27 +7907,27 @@ img {
 
 .ink-dropdown.blue ul.dropdown-menu li.active a {
   background: #0f75da;
-  color: #fff;
+  color: white;
 }
 .ink-dropdown.green ul.dropdown-menu li.active a {
   background: #4a9b17;
-  color: #fff;
+  color: white;
 }
 .ink-dropdown.orange ul.dropdown-menu li.active a {
   background: #ff9c00;
-  color: #fff;
+  color: white;
 }
 .ink-dropdown.red ul.dropdown-menu li.active a {
   background: #c91111;
-  color: #fff;
+  color: white;
 }
 .ink-dropdown.black ul.dropdown-menu li.active a {
   background: #1a1a1a;
-  color: #fff;
+  color: white;
 }
 .ink-dropdown.blue ul.dropdown-menu li.active a {
   background: #0f75da;
-  color: #fff;
+  color: white;
 }
 
 .ink-navigation ul.menu {
@@ -8029,7 +8055,7 @@ img {
   -ms-border-radius: 0 0 2px 2px;
   -o-border-radius: 0 0 2px 2px;
   border-radius: 0 0 2px 2px;
-  background: #fff;
+  background: white;
 }
 .ink-navigation ul.menu.horizontal > li ul.submenu li:last-child {
   -webkit-border-radius: 0 0 2px 2px;
@@ -8045,11 +8071,11 @@ img {
   background: white;
 }
 .ink-navigation ul.menu.white li ul.submenu {
-  background: #fff;
+  background: white;
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 .ink-navigation ul.menu.white li ul.submenu li a {
-  color: #555;
+  color: #555555;
 }
 .ink-navigation ul.menu.white li ul.submenu li a:hover {
   background: rgba(0, 0, 0, 0.05);
@@ -8065,7 +8091,7 @@ img {
   text-shadow: white 0 1px 0;
 }
 .ink-navigation ul.menu.white li a {
-  color: #555;
+  color: #555555;
   text-decoration: none;
 }
 .ink-navigation ul.menu.white li a:hover {
@@ -8075,11 +8101,11 @@ img {
   background: #d9d9d9;
 }
 .ink-navigation ul.menu.grey li ul.submenu {
-  background: #fff;
+  background: white;
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 .ink-navigation ul.menu.grey li ul.submenu li a {
-  color: #555;
+  color: #555555;
 }
 .ink-navigation ul.menu.grey li ul.submenu li a:hover {
   background: rgba(0, 0, 0, 0.05);
@@ -8095,7 +8121,7 @@ img {
   text-shadow: #ededed 0 1px 0;
 }
 .ink-navigation ul.menu.grey li a {
-  color: #555;
+  color: #555555;
   text-decoration: none;
 }
 .ink-navigation ul.menu.grey li a:hover {
@@ -8105,11 +8131,11 @@ img {
   background: #1a1a1a;
 }
 .ink-navigation ul.menu.black li ul.submenu {
-  background: #fff;
+  background: white;
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 .ink-navigation ul.menu.black li ul.submenu li a {
-  color: #555;
+  color: #555555;
 }
 .ink-navigation ul.menu.black li ul.submenu li a:hover {
   background: rgba(0, 0, 0, 0.05);
@@ -8125,7 +8151,7 @@ img {
   text-shadow: black 0 -1px 0;
 }
 .ink-navigation ul.menu.black li a {
-  color: #fff;
+  color: white;
   text-decoration: none;
 }
 .ink-navigation ul.menu.black li a:hover {
@@ -8135,11 +8161,11 @@ img {
   background: #1b75ce;
 }
 .ink-navigation ul.menu.blue li ul.submenu {
-  background: #fff;
+  background: white;
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 .ink-navigation ul.menu.blue li ul.submenu li a {
-  color: #555;
+  color: #555555;
 }
 .ink-navigation ul.menu.blue li ul.submenu li a:hover {
   background: rgba(0, 0, 0, 0.05);
@@ -8155,7 +8181,7 @@ img {
   text-shadow: #2289f0 0 1px 0;
 }
 .ink-navigation ul.menu.blue li a {
-  color: #fff;
+  color: white;
   text-decoration: none;
 }
 .ink-navigation ul.menu.blue li a:hover {
@@ -8165,11 +8191,11 @@ img {
   background: #4c9220;
 }
 .ink-navigation ul.menu.green li ul.submenu {
-  background: #fff;
+  background: white;
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 .ink-navigation ul.menu.green li ul.submenu li a {
-  color: #555;
+  color: #555555;
 }
 .ink-navigation ul.menu.green li ul.submenu li a:hover {
   background: rgba(0, 0, 0, 0.05);
@@ -8185,7 +8211,7 @@ img {
   text-shadow: #5bbf1c 0 1px 0;
 }
 .ink-navigation ul.menu.green li a {
-  color: #fff;
+  color: white;
   text-decoration: none;
 }
 .ink-navigation ul.menu.green li a:hover {
@@ -8195,11 +8221,11 @@ img {
   background: #f2990d;
 }
 .ink-navigation ul.menu.orange li ul.submenu {
-  background: #fff;
+  background: white;
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 .ink-navigation ul.menu.orange li ul.submenu li a {
-  color: #555;
+  color: #555555;
 }
 .ink-navigation ul.menu.orange li ul.submenu li a:hover {
   background: rgba(0, 0, 0, 0.05);
@@ -8215,7 +8241,7 @@ img {
   text-shadow: #ffac29 0 1px 0;
 }
 .ink-navigation ul.menu.orange li a {
-  color: #fff;
+  color: white;
   text-decoration: none;
 }
 .ink-navigation ul.menu.orange li a:hover {
@@ -8225,11 +8251,11 @@ img {
   background: #be1c1c;
 }
 .ink-navigation ul.menu.red li ul.submenu {
-  background: #fff;
+  background: white;
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 .ink-navigation ul.menu.red li ul.submenu li a {
-  color: #555;
+  color: #555555;
 }
 .ink-navigation ul.menu.red li ul.submenu li a:hover {
   background: rgba(0, 0, 0, 0.05);
@@ -8245,7 +8271,7 @@ img {
   text-shadow: #eb1717 0 1px 0;
 }
 .ink-navigation ul.menu.red li a {
-  color: #fff;
+  color: white;
   text-decoration: none;
 }
 .ink-navigation ul.menu.red li a:hover {
@@ -8302,7 +8328,7 @@ img {
   background: none;
 }
 .ink-navigation ul.pagination.white li a {
-  color: #fff;
+  color: white;
   text-decoration: none;
 }
 .ink-navigation ul.pagination.white li a:hover {
@@ -8322,7 +8348,7 @@ img {
   background: none;
 }
 .ink-navigation ul.pagination.white li a {
-  color: #555;
+  color: #555555;
   text-decoration: none;
 }
 .ink-navigation ul.pagination.white li a:hover {
@@ -8342,7 +8368,7 @@ img {
   background: none;
 }
 .ink-navigation ul.pagination.grey li a {
-  color: #fff;
+  color: white;
   text-decoration: none;
 }
 .ink-navigation ul.pagination.grey li a:hover {
@@ -8362,7 +8388,7 @@ img {
   background: none;
 }
 .ink-navigation ul.pagination.grey li a {
-  color: #555;
+  color: #555555;
   text-decoration: none;
 }
 .ink-navigation ul.pagination.grey li a:hover {
@@ -8382,7 +8408,7 @@ img {
   background: none;
 }
 .ink-navigation ul.pagination.black li a {
-  color: #fff;
+  color: white;
   text-decoration: none;
 }
 .ink-navigation ul.pagination.black li a:hover {
@@ -8402,7 +8428,7 @@ img {
   background: none;
 }
 .ink-navigation ul.pagination.black li a {
-  color: #fff;
+  color: white;
   text-decoration: none;
 }
 .ink-navigation ul.pagination.black li a:hover {
@@ -8422,7 +8448,7 @@ img {
   background: none;
 }
 .ink-navigation ul.pagination.orange li a {
-  color: #fff;
+  color: white;
   text-decoration: none;
 }
 .ink-navigation ul.pagination.orange li a:hover {
@@ -8442,7 +8468,7 @@ img {
   background: none;
 }
 .ink-navigation ul.pagination.orange li a {
-  color: #fff;
+  color: white;
   text-decoration: none;
 }
 .ink-navigation ul.pagination.orange li a:hover {
@@ -8462,7 +8488,7 @@ img {
   background: none;
 }
 .ink-navigation ul.pagination.blue li a {
-  color: #fff;
+  color: white;
   text-decoration: none;
 }
 .ink-navigation ul.pagination.blue li a:hover {
@@ -8482,7 +8508,7 @@ img {
   background: none;
 }
 .ink-navigation ul.pagination.blue li a {
-  color: #fff;
+  color: white;
   text-decoration: none;
 }
 .ink-navigation ul.pagination.blue li a:hover {
@@ -8502,7 +8528,7 @@ img {
   background: none;
 }
 .ink-navigation ul.pagination.green li a {
-  color: #fff;
+  color: white;
   text-decoration: none;
 }
 .ink-navigation ul.pagination.green li a:hover {
@@ -8522,7 +8548,7 @@ img {
   background: none;
 }
 .ink-navigation ul.pagination.green li a {
-  color: #fff;
+  color: white;
   text-decoration: none;
 }
 .ink-navigation ul.pagination.green li a:hover {
@@ -8542,7 +8568,7 @@ img {
   background: none;
 }
 .ink-navigation ul.pagination.red li a {
-  color: #fff;
+  color: white;
   text-decoration: none;
 }
 .ink-navigation ul.pagination.red li a:hover {
@@ -8562,7 +8588,7 @@ img {
   background: none;
 }
 .ink-navigation ul.pagination.red li a {
-  color: #fff;
+  color: white;
   text-decoration: none;
 }
 .ink-navigation ul.pagination.red li a:hover {
@@ -8584,7 +8610,7 @@ img {
   background: #1a1a1a;
 }
 .ink-navigation ul.pagination.dotted.white li a {
-  background: #fff;
+  background: white;
 }
 .ink-navigation ul.pagination.dotted.blue li a {
   background: #1b75ce;
@@ -8599,7 +8625,7 @@ img {
   background: #be1c1c;
 }
 .ink-navigation ul.pagination.chevron li.next a, .ink-navigation ul.pagination.chevron li.previous a {
-  color: #fff;
+  color: white;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
   opacity: 0.6;
 }
@@ -8610,13 +8636,13 @@ img {
   background: none;
 }
 .ink-navigation ul.pagination.chevron li.disabled a {
-  color: #fff;
+  color: white;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=40);
   opacity: 0.4;
   text-shadow: none;
 }
 .ink-navigation ul.pagination.chevron li.disabled a:hover, .ink-navigation ul.pagination.chevron li.disabled a:focus {
-  color: #fff;
+  color: white;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=40);
   opacity: 0.4;
 }
@@ -8640,7 +8666,7 @@ img {
 }
 
 .ink-navigation ul.pills li {
-  background: #fff;
+  background: white;
   font-weight: 300;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
@@ -8649,7 +8675,7 @@ img {
   border-radius: 2px;
 }
 .ink-navigation ul.pills li a {
-  color: #555;
+  color: #555555;
   background: none;
 }
 .ink-navigation ul.pills li a:hover {
@@ -8679,7 +8705,7 @@ img {
   background: none;
 }
 .ink-navigation ul.pills.grey li a {
-  color: #555;
+  color: #555555;
 }
 .ink-navigation ul.pills.grey li a:hover {
   background: #cccccc;
@@ -8698,7 +8724,7 @@ img {
   background: none;
 }
 .ink-navigation ul.pills.black li a {
-  color: #fff;
+  color: white;
 }
 .ink-navigation ul.pills.black li a:hover {
   background: #292929;
@@ -8717,7 +8743,7 @@ img {
   background: none;
 }
 .ink-navigation ul.pills.blue li a {
-  color: #fff;
+  color: white;
 }
 .ink-navigation ul.pills.blue li a:hover {
   background: #0d68c2;
@@ -8736,7 +8762,7 @@ img {
   background: none;
 }
 .ink-navigation ul.pills.green li a {
-  color: #fff;
+  color: white;
 }
 .ink-navigation ul.pills.green li a:hover {
   background: #3f8514;
@@ -8755,7 +8781,7 @@ img {
   background: none;
 }
 .ink-navigation ul.pills.orange li a {
-  color: #fff;
+  color: white;
 }
 .ink-navigation ul.pills.orange li a:hover {
   background: #e68c00;
@@ -8774,34 +8800,34 @@ img {
   background: none;
 }
 .ink-navigation ul.pills.red li a {
-  color: #fff;
+  color: white;
 }
 .ink-navigation ul.pills.red li a:hover {
   background: #b10f0f;
 }
 
 table.ink-table {
-  background: #fff;
+  background: white;
 }
 table.ink-table tr th, table.ink-table tr td {
-  border-bottom: #bbb 1px solid;
+  border-bottom: #bbbbbb 1px solid;
   background: none;
 }
 table.ink-table tr:last-child td {
   border-bottom: none;
 }
 table.ink-table tfoot tr th, table.ink-table tfoot tr td {
-  border-top: #bbb 1px solid;
+  border-top: #bbbbbb 1px solid;
 }
 table.ink-table.alternating tbody tr:nth-child(odd) {
   background-color: whitesmoke;
 }
 table.ink-table.hover tbody tr:hover {
   background: #fefbd6;
-  color: #555;
+  color: #555555;
 }
 table.ink-table.bordered {
-  border: #bbb 1px solid;
+  border: #bbbbbb 1px solid;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   -ms-border-radius: 2px;
@@ -8809,7 +8835,7 @@ table.ink-table.bordered {
   border-radius: 2px;
 }
 table.ink-table.bordered tr th {
-  border-left: #bbb 1px solid;
+  border-left: #bbbbbb 1px solid;
 }
 table.ink-table.bordered tr th:first-child {
   border-left: none;
@@ -8818,7 +8844,7 @@ table.ink-table.bordered tr:last-child td {
   border-bottom: none;
 }
 table.ink-table.bordered tr td {
-  border-left: #bbb 1px solid;
+  border-left: #bbbbbb 1px solid;
 }
 table.ink-table.bordered tr td:first-child {
   border-left: none;
@@ -8840,7 +8866,7 @@ table.ink-table tbody > tr.orange td {
   color: white;
 }
 table.ink-table tbody > tr.black td {
-  background: #000;
+  background: black;
   color: #cccccc;
 }
 table.ink-table tbody > tr.yellow td {
@@ -8976,7 +9002,7 @@ table.ink-table tbody > tr.yellow td {
   -webkit-box-shadow: rgba(0, 0, 0, 0.4) 0 1px 2px 0;
   -moz-box-shadow: rgba(0, 0, 0, 0.4) 0 1px 2px 0;
   box-shadow: rgba(0, 0, 0, 0.4) 0 1px 2px 0;
-  background: #fff;
+  background: white;
   z-index: 10;
 }
 .ink-calendar a {
@@ -9044,7 +9070,7 @@ html.ink-modal-is-open .ink-calendar {
   -ms-border-radius: 2px;
   -o-border-radius: 2px;
   border-radius: 2px;
-  color: #444;
+  color: #444444;
 }
 .ink-calendar-month li a:hover,
 .ink-calendar-year-selector li a:hover,
@@ -9057,15 +9083,15 @@ html.ink-modal-is-open .ink-calendar {
 .ink-calendar-month-selector li a.ink-calendar-on,
 .ink-calendar-month-selector li a.ink-calendar-on:hover {
   background: #0069d6;
-  color: #fff;
+  color: white;
 }
 .ink-calendar-month li a.ink-calendar-off, .ink-calendar-month li a.ink-calendar-off:hover,
 .ink-calendar-year-selector li a.ink-calendar-off,
 .ink-calendar-year-selector li a.ink-calendar-off:hover,
 .ink-calendar-month-selector li a.ink-calendar-off,
 .ink-calendar-month-selector li a.ink-calendar-off:hover {
-  background: #fff;
-  color: #aaa;
+  background: white;
+  color: #aaaaaa;
   cursor: default;
 }
 .ink-calendar-month ul,
@@ -9244,10 +9270,20 @@ body.ink-drawer.over.right .right-drawer {
   left: 50%;
   width: 90%;
   height: 90%;
-  background: #fff;
+  margin-top: -45vh;
+  margin-left: -45vw;
+  background: white;
   z-index: 100;
   position: absolute;
   overflow: hidden;
+  display: flex;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  display: -webkit-flex;
+  display: flex;
+  display: -ms-flexbox;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
   opacity: 1;
   -webkit-box-shadow: rgba(0, 0, 0, 0.8) 0 0 15px 0;
@@ -9270,6 +9306,11 @@ body.ink-drawer.over.right .right-drawer {
   overflow-y: auto;
   overflow-x: hidden;
   height: auto;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -moz-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
 }
 .ink-modal > .modal-body .ink-grid {
   padding-left: 0;
@@ -9287,7 +9328,7 @@ body.ink-drawer.over.right .right-drawer {
 .ink-modal > .modal-header > .modal-close, .ink-modal > header > .modal-close {
   padding-top: 2px;
   text-align: center;
-  color: #fff;
+  color: white;
   width: 26px;
   height: 26px;
   line-height: 1.2em;
@@ -9360,7 +9401,7 @@ body.ink-drawer.over.right .right-drawer {
   height: 100%;
   line-height: 1.7;
   text-align: center;
-  color: #000;
+  color: black;
   font-size: 0.813em;
   z-index: 10;
 }
@@ -9385,27 +9426,27 @@ body.ink-drawer.over.right .right-drawer {
 }
 .ink-progress-bar .bar.grey {
   background: #cccccc;
-  color: #555;
+  color: #555555;
 }
 .ink-progress-bar .bar.green {
   background: #4a9b17;
-  color: #fff;
+  color: white;
 }
 .ink-progress-bar .bar.blue {
   background: #0f75da;
-  color: #fff;
+  color: white;
 }
 .ink-progress-bar .bar.red {
   background: #c91111;
-  color: #fff;
+  color: white;
 }
 .ink-progress-bar .bar.orange {
   background: #ff9c00;
-  color: #555;
+  color: #555555;
 }
 .ink-progress-bar .bar.black {
-  background: #000;
-  color: #fff;
+  background: black;
+  color: white;
 }
 
 .dragging, .ink-sortable-list li {
@@ -9467,10 +9508,10 @@ body.ink-drawer.over.right .right-drawer {
   background: #f0f0f0;
 }
 .ink-tabs .tabs-nav li.active a {
-  color: #555;
+  color: #555555;
   cursor: default;
   text-decoration: none;
-  background: #fff;
+  background: white;
   border: 1px solid #cccccc;
 }
 .ink-tabs .tabs-nav:after {
@@ -9662,7 +9703,7 @@ body.ink-drawer.over.right .right-drawer {
 }
 .ink-tooltip.blue > .content {
   background: #0f75da;
-  color: #fff;
+  color: white;
 }
 .ink-tooltip.blue > .arrow.up {
   border-bottom-color: #0f75da;
@@ -9678,7 +9719,7 @@ body.ink-drawer.over.right .right-drawer {
 }
 .ink-tooltip.red > .content {
   background: #c91111;
-  color: #fff;
+  color: white;
 }
 .ink-tooltip.red > .arrow.up {
   border-bottom-color: #c91111;
@@ -9694,7 +9735,7 @@ body.ink-drawer.over.right .right-drawer {
 }
 .ink-tooltip.orange > .content {
   background: #ff9c00;
-  color: #fff;
+  color: white;
 }
 .ink-tooltip.orange > .arrow.up {
   border-bottom-color: #ff9c00;
@@ -9710,7 +9751,7 @@ body.ink-drawer.over.right .right-drawer {
 }
 .ink-tooltip.green > .content {
   background: #4a9b17;
-  color: #fff;
+  color: white;
 }
 .ink-tooltip.green > .arrow.up {
   border-bottom-color: #4a9b17;
@@ -9725,20 +9766,20 @@ body.ink-drawer.over.right .right-drawer {
   border-left-color: #4a9b17;
 }
 .ink-tooltip.black > .content {
-  background: #000;
-  color: #fff;
+  background: black;
+  color: white;
 }
 .ink-tooltip.black > .arrow.up {
-  border-bottom-color: #000;
+  border-bottom-color: black;
 }
 .ink-tooltip.black > .arrow.down {
-  border-top-color: #000;
+  border-top-color: black;
 }
 .ink-tooltip.black > .arrow.left {
-  border-right-color: #000;
+  border-right-color: black;
 }
 .ink-tooltip.black > .arrow.right {
-  border-left-color: #000;
+  border-left-color: black;
 }
 .ink-tooltip.grey > .content {
   background: #cccccc;

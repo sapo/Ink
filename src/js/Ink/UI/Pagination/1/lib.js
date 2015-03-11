@@ -43,7 +43,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
      * @param {String|Element}      selector                    Selector or element
      * @param {Object}              options                     Options
      * @param {Number}              [options.size]              Number of pages.
-     * @param {Number}              [options.totalItemCount]    Total numeber of items to display
+     * @param {Number}              [options.totalItemCount]    Total number of items to display
      * @param {Number}              [options.itemsPerPage]      Number of items per page.
      * @param {Number}              [options.maxSize]           If passed, only shows at most maxSize items. displays also first|prev page and next page|last buttons
      * @param {Number}              [options.start]             Start page. defaults to 1
@@ -333,10 +333,14 @@ Ink.createModule('Ink.UI.Pagination', '1',
                 this.setCurrent(this._size - 1);
             }
             else if (isPrevPage || isNextPage) {
-                this.setCurrent( (isPrevPage ? -1 : 1) * this._options.maxSize, true /* relative */);
+                this.setCurrent( (isPrevPage ? -1 : 1) * this._options.maxSize,
+                    true /* relative */,
+                    !!this._options.autoWrap /* whether to wrap */);
             }
             else if (isPrev || isNext) {
-                this.setCurrent(isPrev ? -1 : 1, true /* relative */);
+                this.setCurrent(isPrev ? -1 : 1,
+                    true /* relative */,
+                    !!this._options.autoWrap /* whether to wrap */);
             }
             else {
                 var aElem = Selector.select('[data-index]', liEl)[0];
@@ -405,10 +409,11 @@ Ink.createModule('Ink.UI.Pagination', '1',
          * @method setCurrent
          * @param {Number} nr           Sets the current page to given number.
          * @param {Boolean} [isRelative=false] If you set this to `true`, the function will perform a relative change. (example: setCurrent(1) will move to the next page, while setCurrent(-1) will move to the previous page)
+         * @param {Boolean} [wrap=false] Set this to true to wrap to the first page when moving past the last, and to wrap to the last page when moving before the first one.
          * @return {void}
          * @public
          */
-        setCurrent: function(nr, isRelative) {
+        setCurrent: function(nr, isRelative, wrap) {
             if (!Common.isInteger(nr)) {
                 throw new TypeError('1st argument must be an integer number!');
             }
@@ -417,12 +422,20 @@ Ink.createModule('Ink.UI.Pagination', '1',
                 nr += this._current;
             }
 
-            if (nr > this._size - 1) {
-                nr = this._options.autoWrap ? 0 : this._size - 1;
-            }
+            if (wrap) {
+                nr %= this._size;
 
-            if (nr < 0) {
-                nr = this._options.autoWrap ? this._size - 1 : 0;
+                if (nr < 0) {
+                    nr += this._size;
+                }
+            } else {
+                if (nr > this._size - 1) {
+                    nr = this._size - 1;
+                }
+
+                if (nr < 0) {
+                    nr = 0;
+                }
             }
 
             this._current = nr;
@@ -437,6 +450,30 @@ Ink.createModule('Ink.UI.Pagination', '1',
                 o[this._options.hashParameter] = nr;
                 Common.setHash(o);
             }*/  // undocumented option, removing
+        },
+
+        /**
+         * Navigates to next item
+         *
+         * @method next
+         * @param {Boolean} [wrap=false] Set this to true if you want to go to the first item when going after the last item.
+         * @return {void}
+         * @public
+         **/
+        next: function (wrap) {
+            this.setCurrent(1, true /*relative*/, wrap);
+        },
+
+        /**
+         * Navigates to the previous item
+         *
+         * @method previous
+         * @param {Boolean} [wrap=false] Set this to true if you want to go to the last item when going before the first item.
+         * @return {void}
+         * @public
+         **/
+        previous: function (wrap) {
+            this.setCurrent(-1, true /*relative*/, wrap);
         },
 
         /**

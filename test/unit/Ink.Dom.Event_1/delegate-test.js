@@ -35,16 +35,16 @@ Ink.requireModules(['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1'
             var trigger = self.trigger();
             var spy     = self.spy();
 
-            trigger.after(function () {
-              self.verifySimpleDelegateSpy(spy, el2);
-              start();
-            })
-
             regFn(el1, trigger.wrap(spy));
 
             Syn.click(el2);
             Syn.click(el3);
             Syn.click(el4);
+
+            trigger.after(function () {
+                self.verifySimpleDelegateSpy(spy, el2);
+                start();
+            })
         }
         this.runTest(start, function(el1, wrappedSpy){
             InkEvent.on(el1, 'click', '.bar', wrappedSpy);
@@ -60,15 +60,15 @@ Ink.requireModules(['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1'
             var trigger = self.trigger();
             var spy     = self.spy();
 
-            trigger.after(function () {
-              self.verifySimpleDelegateSpy(spy, el2);
-              start();
-            }, 50)
-
             regFn(el1, trigger.wrap(spy));
 
             Syn.click(el2);
             Syn.click(el3);
+
+            trigger.after(function () {
+                self.verifySimpleDelegateSpy(spy, el2);
+                start();
+            }, 50)
         }
         this.runTest(start, function(el1, wrappedSpy){
             InkEvent.on(el1, 'mouseup mousedown', '.bar', wrappedSpy);
@@ -85,16 +85,16 @@ Ink.requireModules(['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1'
             var trigger = self.trigger();
             var spy     = self.spy();
 
-            trigger.after(function () {
-                self.verifySimpleDelegateSpy(spy, el2);
-                start();
-            });
-
             regFn(el1, el2, trigger.wrap(spy));
 
             Syn.click(el2);
             Syn.click(el3);
             Syn.click(el4);
+
+            trigger.after(function () {
+                self.verifySimpleDelegateSpy(spy, el2);
+                start();
+            });
 
         }
         this.runTest(start, function(el1, el2, wrappedSpy){
@@ -114,15 +114,15 @@ Ink.requireModules(['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1'
                 InkEvent.remove(el1, 'click', trigger.wrapped(fn));
             };
 
-            trigger.after(function () {
-              equal(calls, 1, 'delegated event triggered once');
-              start();
-            })
-
             regFn(el1, trigger.wrap(fn));
 
             Syn.click(el2);
             Syn.click(el2);
+
+            trigger.after(function () {
+                equal(calls, 1, 'delegated event triggered once');
+                start();
+            })
         }
         this.runTest(start, function(el1, wrappedSpy){
             InkEvent.on(el1, 'click', '.bar', wrappedSpy);
@@ -144,17 +144,17 @@ Ink.requireModules(['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1'
             var trigger = self.trigger();
             var spy     = self.spy();
 
-            trigger.after(function () {
-                self.verifySimpleDelegateSpy(spy, el2);
-                start();
-            })
-
             InkEvent.setSelectorEngine();
             regFn(el1, trigger.wrap(spy));
 
             Syn.click(el2);
             Syn.click(el3);
             Syn.click(el4);
+
+            trigger.after(function () {
+                self.verifySimpleDelegateSpy(spy, el2);
+                start();
+            })
         }
         this.runTest(start, function(el1, wrappedSpy){
             InkEvent.on(el1, 'click', '.bar', wrappedSpy);
@@ -203,15 +203,6 @@ Ink.requireModules(['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1'
             var stub = self.stub();
             var spy     = self.spy();
 
-            trigger.after(function () {
-                equal(stub.callCount, 6, 'selector engine called');
-                strictEqual(stub.firstCall.args[0], selector, 'selector engine called with selector argument');
-                strictEqual(stub.firstCall.args[1], el1, 'selector engine called with selector argument');
-                self.verifySimpleDelegateSpy(spy, el2);
-                InkEvent.setSelectorEngine(null);
-                start();
-            })
-
             stub.returns([el2]);
 
             InkEvent.setSelectorEngine(stub);
@@ -222,6 +213,14 @@ Ink.requireModules(['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1'
             Syn.click(el3);
             Syn.click(el4);
 
+            trigger.after(function () {
+                equal(stub.callCount, 6, 'selector engine called');
+                strictEqual(stub.firstCall.args[0], selector, 'selector engine called with selector argument');
+                strictEqual(stub.firstCall.args[1], el1, 'selector engine called with selector argument');
+                self.verifySimpleDelegateSpy(spy, el2);
+                InkEvent.setSelectorEngine(null);
+                start();
+            })
         }
         this.runTest(start, function(el1, selector, wrappedSpy){
             InkEvent.on(el1, 'click', selector, wrappedSpy);

@@ -7,7 +7,7 @@
  * @author    Sapo Ink Team
  * @license   http://opensource.org/licenses/MIT MIT
  * @link      http://ink.sapo.pt
- * @version   3.1.1
+ * @version   3.1.3
  */
 /**
  * Ink class names prefix
@@ -24,6 +24,9 @@
  */
 /**
  * Buttons class names
+ */
+/**
+ * Dismiss class names
  */
 /**
  * Forms class names
@@ -77,6 +80,14 @@
 
 .no-margin {
   margin: 0 !important;
+}
+
+.no-margin-top {
+  margin-top: 0 !important;
+}
+
+.no-margin-bottom {
+  margin-bottom: 0 !important;
 }
 
 .no-padding {

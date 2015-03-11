@@ -31,7 +31,7 @@
      * @param {String}              [options.classNameOn]           CSS class to toggle when on. Defaults to 'show-all'.
      * @param {String}              [options.classNameOff]          CSS class to toggle when off. Defaults to 'hide-all'.
      * @param {String}              [options.triggerEvent]          Event that will trigger the toggling. Defaults to 'click'.
-     * @param {Boolean}             [options.closeOnClick]          Flag to toggle the targe off when clicking outside the toggled content. Defaults to true.
+     * @param {Boolean}             [options.closeOnClick]          Flag to toggle the target off when clicking outside the toggled content. Defaults to true.
      * @param {Boolean}             [options.canToggleAnAncestor]   Set to true if you want the toggle to target ancestors of itself. Defaults to false.
      * @param {String}              [options.closeOnInsideClick]    Toggle off when a child element matching this selector is clicked. Set to null to deactivate the check. Defaults to 'a[href]'.
      * @param {Boolean}             [options.initialState]          Flag to define initial state. false: off, true: on, null: markup. Defaults to null.
@@ -122,7 +122,7 @@
          */
         _bindEvents: function () {
             if ( this._options.triggerEvent ) {
-                InkEvent.observe(
+                InkEvent.on(
                     this._element,
                     this._options.triggerEvent,
                     Ink.bind(this._onTriggerEvent, this));
@@ -199,8 +199,14 @@
          * @private
          */
         _onOutsideClick: function( event ){
-            var tgtEl = InkEvent.element(event),
-                shades;
+            var tgtEl = InkEvent.element(event);
+            var shades;
+
+            if (!InkElement.isAncestorOf(document.documentElement, tgtEl)) {
+                // Because if the element was removed while the click event was
+                // bubbling, we can't tell where it came from
+                return;
+            }
 
             if (InkElement.findUpwardsBySelector(tgtEl, '[data-is-toggle-trigger="true"]')) { return; }
 

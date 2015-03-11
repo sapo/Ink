@@ -1,5 +1,5 @@
 .#{$alert-class-name} {
-    
+
     &.basic,
     &.block {
         font-size: .938em;
@@ -17,7 +17,7 @@
             top:.55em; *top:.2em;
         }
     }
-    
+
     &.block {
         font-size: 1em;
 
@@ -25,7 +25,7 @@
             padding: 1em 3em 1em 1em;
             font-size: .938em;
             line-height: 1.5;
-            margin:0; 
+            margin:0;
         }
 
         p { margin: 1.5em 1em; }
@@ -35,15 +35,15 @@
         }
     }
 
-    .ink-dismiss {
+    .#{$dismiss-class-name} {
         position: absolute;
         line-height: .56em;
         font-size: 1.8em;
         padding:5px;
         border: none;
         background:none;
-        top:.5em; 
-        *top:.2em; 
+        top:.5em;
+        *top:.2em;
         right:.4em;
     }
 }

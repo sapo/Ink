@@ -144,6 +144,7 @@ ul, ol {
     }
 }
 
+
 ul {
 
     &.unstyled {
@@ -152,6 +153,10 @@ ul {
 
         ul  {
             list-style:disc outside;
+            &.unstyled {
+                list-style: none;
+                padding-left: 0em;
+            }
         }
     }
 
@@ -167,6 +172,8 @@ ul {
         }
     }
 }
+
+
 
 dl {
     margin: 1em 0;

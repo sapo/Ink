@@ -18,6 +18,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
      * @param {Boolean}         [options.asynchronous=true]     If false, the request synchronous.
      * @param {String}          [options.contentType]           Content-type header to be sent. Defaults to 'application/x-www-form-urlencoded'
      * @param {Boolean}         [options.cors]                  Flag to activate CORS. Set this to true if you're doing a cross-origin request
+     * @param {Boolean}         [options.validateCors]          If this is set to `true`, perform a CORS request automatically based on the URL being cross-domain or not.
      * @param {Number}          [options.delay]                 Artificial delay. If the request is completed faster than this delay, wait the remaining time before executing the callbacks
      * @param {Boolean|String}  [options.evalJS=true]           If the request Content-type header is application/json, evaluates the response and populates responseJSON. Use 'force' if you want to force the response evaluation, no matter what Content-type it's using.
      * @param {String}          [options.method='POST']         HTTP request method. POST by default.
@@ -67,6 +68,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
                 asynchronous: true,
                 contentType:  'application/x-www-form-urlencoded',
                 cors: false,
+                validateCors: false,
                 debug: false,
                 delay: 0,
                 evalJS: true,
@@ -117,6 +119,10 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
             this.isCrossDomain = this._locationIsCrossDomain(urlLocation, location);
 
             this.requestHasBody = options.method.search(/^get|head$/i) < 0;
+
+            if (this.options.validateCors === true) {
+                this.options.cors = this.isCrossDomain;
+            }
 
             if(this.options.cors) {
                 this.isCrossDomain = false;

@@ -4,7 +4,7 @@
  * @version 1
  */
 
-Ink.createModule('Ink.UI.LazyLoad', '1', ['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1'], function(Common, InkEvent, InkElement) {
+Ink.createModule('Ink.UI.LazyLoad', '1', ['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1'], function(Common, InkEvent, InkElement, Css) {
 'use strict';
 
 function LazyLoad() {
@@ -16,6 +16,7 @@ LazyLoad._name = 'LazyLoad_1';
 LazyLoad._optionDefinition = {
     item: ['String', '.lazyload-item'],
     placeholder: ['String', null],
+    loadedClass: ['String', null],
     source: ['String', 'data-src'],
     destination: ['String', 'src'],
     delay: ['Number', 100],
@@ -46,6 +47,7 @@ LazyLoad.prototype = {
      * @param {Object}      [options]                           Options object, containing:
      * @param {String}      [options.item]                      Item selector. Defaults to '.lazyload-item'.
      * @param {String}      [options.placeholder]               Placeholder value for items which are not 'visible', in case they don't already have a value set.
+     * @param {String}      [options.loadedClass]               Add this class to the images when they're loaded.
      * @param {String}      [options.source]                    Source attribute. When an item is 'visible', use this attribute's value to set its destination attribute. Defaults to 'data-src'.
      * @param {String}      [options.destination]               Destination attribute. Attribute to change when the element is 'visible'. Defaults to 'src'. 
      * @param {Number}      [options.delay]                     Milliseconds to wait before trying to load items. Defaults to 100.
@@ -119,11 +121,8 @@ LazyLoad.prototype = {
 
             if (InkElement.inViewport(curElm.elm, { partial: true, margin: this._options.delta })) {
                 this._elInViewport(curElm);
-                if (this._options.image) {
-                    /* [todo] a seemingly unrelated option creates a branch? Some of this belongs in another module. */
-                    this._aData.splice(i, 1);
-                    i -= 1;
-                }
+                this._aData.splice(i, 1);
+                i -= 1;
             }
         }
 
@@ -144,6 +143,9 @@ LazyLoad.prototype = {
 
         if(this._options.image) {
             curElm.elm.setAttribute(this._options.destination, curElm.original);
+            if (this._options.loadedClass) {
+                Css.addClassName(curElm.elm, this._options.loadedClass);
+            }
             curElm.elm.removeAttribute(this._options.source);
         }
 

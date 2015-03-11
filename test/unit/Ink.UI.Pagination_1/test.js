@@ -2,7 +2,6 @@ Ink.requireModules(['Ink.UI.Pagination_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1',
     function makeContainer(options) {
         var container = InkElement.create('div', {
             className: 'ink-navigation ink-pagination ' + (options.className || ''),
-            style: 'display: none',
             insertBottom: document.body
         });
 
@@ -36,6 +35,66 @@ Ink.requireModules(['Ink.UI.Pagination_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1',
         equal(component._calculateSize(5, 5), 1);
         equal(component._calculateSize(10, 5), 2);
     });
+
+    test('setCurrent and wrap', function () {
+        var cont = makeContainer({});
+        var pag = new Ink.UI.Pagination(cont, { size: 3 });
+
+        equal(pag._current, 0);
+
+        pag.setCurrent(-1, null, true);
+        equal(pag._current, 2);
+
+        pag.setCurrent(-6, null, true);
+        equal(pag._current, 0);
+
+        pag.setCurrent(3, null, true);
+        equal(pag._current, 0);
+
+        pag.setCurrent(4, null, true);
+        equal(pag._current, 1);
+
+        pag.setCurrent(5, null, true);
+        equal(pag._current, 2);
+    });
+
+    test('next, previous', function () {
+        var cont = makeContainer({});
+        var pag = new Ink.UI.Pagination(cont, { size: 3 });
+
+        equal(pag._current, 0);
+
+        sinon.spy(pag, 'setCurrent');
+
+        pag.previous(); equal(pag._current, 0);
+        pag.previous(true); equal(pag._current, 2);
+
+        ok(pag.setCurrent.calledTwice);
+        ok(pag.setCurrent.calledWith(-1, true, true));
+
+        pag.setCurrent(2);
+
+        pag.setCurrent.reset();
+
+        pag.next(); equal(pag._current, 2);
+        pag.next(true); equal(pag._current, 0);
+
+        ok(pag.setCurrent.calledTwice);
+        ok(pag.setCurrent.calledWith(1, true, true));
+    });
+
+    testPagination('autoWrap', function (pag, cont) {
+        pag.setCurrent(2);  // Last page
+        stop();
+        Syn.click(Ink.s('li.next', cont), function () {
+            equal(pag.getCurrent(), 0);
+            pag.setCurrent(0);
+            Syn.click(Ink.s('li.previous', cont), function () {
+                equal(pag.getCurrent(), 2);
+                start();
+            })
+        })
+    }, { autoWrap: true });
 
     testPagination('(regression) fist, last buttons work', function(pag, cont) {
         pag.setCurrent(2);
