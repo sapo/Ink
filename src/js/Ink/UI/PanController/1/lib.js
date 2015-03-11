@@ -44,15 +44,14 @@ Ink.createModule( 'Ink.UI.PanController', '1' ,
         onDragStart                 : [ 'Function' , function( ) { } ] ,
         onDragEnd                   : [ 'Function' , function( ) { } ] ,
         requestTranslation          : [ 'Function' , function( dx , dy ) {
-            var elm = this._element;
+            if ( !dx && !dy ) { return false; }
 
-            var sl = elm.scrollLeft
-            var st = elm.scrollTop;
+            var elem = this._element;
 
-            elm.scrollLeft -= dx;
-            elm.scrollTop  -= dy;
+            elem.style.left = Math.max( parseInt( elem.style.left ) + dx | 0 , 0 ) + 'px';
+            elem.style.top  = Math.max( parseInt( elem.style.top  ) + dy | 0 , 0 ) + 'px';
 
-            return sl !== elm.scrollLeft || st !== elm.scrollTop;
+            return true;
         }]
     };
 
