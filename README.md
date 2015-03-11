@@ -2,9 +2,9 @@
 
 Ink is an interface kit for quick development of web interfaces, simple to use and expand on. It uses a combination of HTML, CSS and JavaScript to offer modern solutions for building layouts, display common interface elements and implement interactive features that are content-centric and user friendly for both your audience and your designers & developers.
 
-Ink is part of [SAPOs Open Source Software initiative](http://oss.sapo.pt).
+Ink is part of [SAPO's Open Source Software initiative](http://oss.sapo.pt).
 
-## Current Version: 3.1.2
+## Current Version: 3.1.4
 
 You can read our full documentation, examples and recipes in http://ink.sapo.pt
 
@@ -12,10 +12,10 @@ You can read our full documentation, examples and recipes in http://ink.sapo.pt
 
 Let's get you started with Ink right away. Here's what you need to know and do:
 
-1. Download the [latest](https://github.com/sapo/Ink/archive/3.1.2.zip) release.
+1. Download the [latest](https://github.com/sapo/Ink/archive/3.1.4.zip) release.
 2. Check the recipes we provide in the ```dist/cookbook``` folder and choose one to start from or use ```quick-start.html``` as a blank slate.
 3. Make sure you have `ink.css`, `ink-ie.css` and `ink.js` included somewhere in the `<head>`.
-4. Add your own css and scripts to carry all your project-specific changes. You can use ```quick-start.css``` from the ```dist/css``` folder. It allready contains the same media queries as Ink.
+4. Add your own css and scripts to carry all your project-specific changes. You can use ```quick-start.css``` from the ```dist/css``` folder. It already contains the same media queries as Ink.
 5. Keep coming back to the documentation to help you along the way.
 6. That's it! You'll see how easy it is once you pick it up.
 
@@ -33,7 +33,7 @@ ___
 
 ###Structure
 
-Since version 2.3.0 we've moved things around in order keep source code from distibution code separated:
+Since version 2.3.0 we've moved things around in order keep source code from distribution code separated:
 
 * **JS**
   ```
@@ -128,7 +128,7 @@ If you want to build from our source code, you'll need to install a few things:
 
 If you don't need to rebuild Javascript code you can just use [Scout](http://mhs.github.io/scout-app/) which is a nice, free and cross platform Sass/Compass compiler.
 
-Building on Windows is a lot tricker so we won't get into details on how to install all the required tools. Instead here's a list of usefull pages you'll need to read while trying this endeavour:
+Building on Windows is a lot tricker so we won't get into details on how to install all the required tools. Instead here's a list of useful pages you'll need to read while trying this endeavour:
 
   * [Getting started with Sass and Compass](http://thesassway.com/beginner/getting-started-with-sass-and-compass)
   * [Grunt](http://gruntjs.com/frequently-asked-questions)
@@ -152,7 +152,7 @@ The documentation is no longer distributed with Inks releases. We've completely 
 You can read it at http://ink.sapo.pt
 Get its source, contribute or report and issue here: **https://github.com/sapo/Ink-doc**
 
-## Ink is built with help from these wonderfull projects:
+## Ink is built with help from these wonderful projects:
 
 **CSS Generation**
 + [Sass](http://sass-lang.com/)
@@ -171,6 +171,8 @@ Get its source, contribute or report and issue here: **https://github.com/sapo/I
 + [Bower](http://bower.io/)
 
 ## Versions
+* [Ink 3.1.4](https://github.com/sapo/Ink/archive/3.1.4.zip)
+* [Ink 3.1.3](https://github.com/sapo/Ink/archive/3.1.3.zip)
 * [Ink 3.1.2](https://github.com/sapo/Ink/archive/3.1.2.zip)
 * [Ink 3.1.1](https://github.com/sapo/Ink/archive/3.1.1.zip)
 * [Ink 3.1.0](https://github.com/sapo/Ink/archive/3.1.0.zip)

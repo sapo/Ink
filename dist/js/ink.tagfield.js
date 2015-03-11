@@ -10,6 +10,102 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
     var backspaceKey = 8;
     var isTruthy = function (val) {return !!val;};
 
+    // Old IE (< 9) would split this into ['s'], but the correct behaviour is ['s', '']
+    // We get around this.
+    var buggySplit = 's,'.split(/,/g).length === 1;
+
+    var splitFunction = (function () {
+        // Solves the above problem in old IE. Taken from:
+        // http://blog.stevenlevithan.com/archives/cross-browser-split
+        // (slightly adapted so as to not touch String.prototype)
+        var nativeSplit = String.prototype.split,
+            compliantExecNpcg = /()??/.exec("")[1] === undefined, // NPCG: nonparticipating capturing group
+            self;
+
+        self = function (str, separator, limit) {
+            /*jshint -W038 */
+            /*jshint -W004 */
+            /*jshint boss:true */
+            /*jshint loopfunc:true */
+            // If `separator` is not a regex, use `nativeSplit`
+            if (Object.prototype.toString.call(separator) !== "[object RegExp]") {
+                return nativeSplit.call(str, separator, limit);
+            }
+            var output = [],
+                flags = (separator.ignoreCase ? "i" : "") +
+                        (separator.multiline  ? "m" : "") +
+                        (separator.extended   ? "x" : "") + // Proposed for ES6
+                        (separator.sticky     ? "y" : ""), // Firefox 3+
+                lastLastIndex = 0,
+                // Make `global` and avoid `lastIndex` issues by working with a copy
+                separator = new RegExp(separator.source, flags + "g"),
+                separator2, match, lastIndex, lastLength;
+            str += ""; // Type-convert
+            if (!compliantExecNpcg) {
+                // Doesn't need flags gy, but they don't hurt
+                separator2 = new RegExp("^" + separator.source + "$(?!\\s)", flags);
+            }
+            /* Values for `limit`, per the spec:
+             * If undefined: 4294967295 // Math.pow(2, 32) - 1
+             * If 0, Infinity, or NaN: 0
+             * If positive number: limit = Math.floor(limit); if (limit > 4294967295) limit -= 4294967296;
+             * If negative number: 4294967296 - Math.floor(Math.abs(limit))
+             * If other: Type-convert, then use the above rules
+             */
+            limit = limit === undefined ?
+                -1 >>> 0 : // Math.pow(2, 32) - 1
+                limit >>> 0; // ToUint32(limit)
+            while (match = separator.exec(str)) {
+                // `separator.lastIndex` is not reliable cross-browser
+                lastIndex = match.index + match[0].length;
+                if (lastIndex > lastLastIndex) {
+                    output.push(str.slice(lastLastIndex, match.index));
+                    // Fix browsers whose `exec` methods don't consistently return `undefined` for
+                    // nonparticipating capturing groups
+                    if (!compliantExecNpcg && match.length > 1) {
+                        match[0].replace(separator2, function () {
+                            for (var i = 1; i < arguments.length - 2; i++) {
+                                if (arguments[i] === undefined) {
+                                    match[i] = undefined;
+                                }
+                            }
+                        });
+                    }
+                    if (match.length > 1 && match.index < str.length) {
+                        Array.prototype.push.apply(output, match.slice(1));
+                    }
+                    lastLength = match[0].length;
+                    lastLastIndex = lastIndex;
+                    if (output.length >= limit) {
+                        break;
+                    }
+                }
+                if (separator.lastIndex === match.index) {
+                    separator.lastIndex++; // Avoid an infinite loop
+                }
+            }
+            if (lastLastIndex === str.length) {
+                if (lastLength || !separator.test("")) {
+                    output.push("");
+                }
+            } else {
+                output.push(str.slice(lastLastIndex));
+            }
+            return output.length > limit ? output.slice(0, limit) : output;
+        };
+
+        // For convenience
+        /* We don't override prototypes in Ink
+        String.prototype.split = function (separator, limit) {
+            return self(this, separator, limit);
+        };
+        */
+
+        return self;
+    }());
+
+
+
     /**
      * Use this class to have a field where a user can input several tags into a single text field. A good example is allowing the user to describe a blog post or a picture through tags, for later searching.
      *
@@ -171,7 +267,14 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
             if (!this._options.autoSplit) {
                 return;
             }
-            var split = this._input.value.split(this._options.separator);
+
+            var split;
+            if (!buggySplit) {
+                split = this._input.value.split(this._options.separator);
+            } else {
+                split = splitFunction(this._input.value, this._options.separator);
+            }
+
             if (split.length <= 1) {
                 return;
             }

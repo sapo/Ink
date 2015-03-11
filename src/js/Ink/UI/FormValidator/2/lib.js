@@ -7,6 +7,31 @@
 Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Element_1','Ink.Dom.Event_1','Ink.Dom.Selector_1','Ink.Dom.Css_1','Ink.Util.Array_1','Ink.Util.I18n_1','Ink.Util.Validator_1'], function( Common, Element, Event, Selector, Css, InkArray, I18n, InkValidator ) {
     'use strict';
 
+    function getValue(element) {
+        // TODO this is already implemented in FormSerialize.
+        switch(element.nodeName.toLowerCase()){
+            case 'select':
+                return Ink.s('option:selected', element).value;
+            case 'textarea':
+                return element.value;
+            case 'input':
+                if( "type" in element ){
+                    if( (element.type === 'radio') || (element.type === 'checkbox') ){
+                        if( element.checked ){
+                            return element.value;
+                        }
+                    } else if( element.type !== 'file' ){
+                        return element.value;
+                    }
+                } else {
+                    return element.value;
+                }
+                return;
+            default:
+                return element.innerHTML;
+        }
+    }
+
     /**
      * Validation Functions used in the rules (data-rules) option to FormValidator_2.
      *
@@ -316,9 +341,40 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
          * @return {Boolean}         True if the values match. False if not.
          */
         'matches': function( value, fieldToCompare ){
-            return ( value === this.getFormElements()[fieldToCompare][0].getValue() );
-        }
+            // Find the other field in the FormValidator.
+            var otherField = this.getFormElements()[fieldToCompare];
 
+            if (!otherField) {
+                // It's in the actual <form>, not in the FormValidator's fields
+                var possibleFields = Ink.ss('input, select, textarea, .control-group', this._options.form._element);
+                for (var i = 0; i < possibleFields.length; i++) {
+                    if ((possibleFields[i].name || possibleFields[i].id) === fieldToCompare) {
+                        return getValue(possibleFields[i]) === value;
+                    }
+                }
+                return false;
+            } else {
+                otherField = otherField[0];
+            }
+
+            var otherFieldValue = otherField.getValue();
+            if (otherField._rules.required) {
+                if (otherFieldValue === '') {
+                    return false;
+                }
+            }
+            return value === otherFieldValue;
+        },
+
+        /**
+         * Validates an [EAN barcode](https://en.wikipedia.org/wiki/International_Article_Number_%28EAN%29)
+         *
+         * @method ean
+         * @return {Boolean} True if the given value is an EAN. False if not.
+         */
+        'ean': function (value) {
+            return InkValidator.isEAN(value.replace(/[^\d]/g, ''), 'ean-13');
+        }
     };
 
     /**
@@ -328,7 +384,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
      */
     var validationMessages = new I18n({
         en_US: {
-            'formvalidator.required' : 'The {field} filling is mandatory',
+            'formvalidator.required' : 'Filling {field} is mandatory',
             'formvalidator.min_length': 'The {field} must have a minimum size of {param1} characters',
             'formvalidator.max_length': 'The {field} must have a maximum size of {param1} characters',
             'formvalidator.exact_length': 'The {field} must have an exact size of {param1} characters',
@@ -349,8 +405,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
             'formvalidator.numeric': 'The {field} should contain a number',
             'formvalidator.range': 'The {field} should contain a number between {param1} and {param2}',
             'formvalidator.color': 'The {field} should contain a valid color',
-            'formvalidator.matches': 'The {field} should match the field {param1}',
-            'formvalidator.validation_function_not_found': 'The rule {rule} has not been defined'
+            'formvalidator.matches': 'The {field} should match the field {param1}'
         },
         pt_PT: {
             'formvalidator.required' : 'Preencher {field} é obrigatório',
@@ -374,8 +429,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
             'formvalidator.numeric': '{field} deve conter um número válido',
             'formvalidator.range': '{field} deve conter um número entre {param1} e {param2}',
             'formvalidator.color': '{field} deve conter uma cor válida',
-            'formvalidator.matches': '{field} deve corresponder ao campo {param1}',
-            'formvalidator.validation_function_not_found': '[A regra {rule} não foi definida]'
+            'formvalidator.matches': '{field} deve corresponder ao campo {param1}'
         }
     }, 'en_US');
 
@@ -513,7 +567,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
             this._errors[rule] = validationMessages.text(i18nKey, paramObj);
 
             if (this._errors[rule] === i18nKey) {
-                this._errors[rule] = 'Validation message not found';
+                this._errors[rule] = '[Validation message not found for rule ]' + rule;
             }
         },
 
@@ -525,29 +579,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
          * @public
          */
         getValue: function(){
-            // TODO this is already implemented in FormSerialize.
-
-            switch(this._element.nodeName.toLowerCase()){
-                case 'select':
-                    return Ink.s('option:selected',this._element).value;
-                case 'textarea':
-                    return this._element.value;
-                case 'input':
-                    if( "type" in this._element ){
-                        if( (this._element.type === 'radio') || (this._element.type === 'checkbox') ){
-                            if( this._element.checked ){
-                                return this._element.value;
-                            }
-                        } else if( this._element.type !== 'file' ){
-                            return this._element.value;
-                        }
-                    } else {
-                        return this._element.value;
-                    }
-                    return;
-                default:
-                    return this._element.innerHTML;
-            }
+            return getValue(this._element);
         },
 
         /**
@@ -594,19 +626,23 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         validate: function(){
             this._errors = {};
 
-            if( "rules" in this._options || 1){
-                this._parseRules( this._options.rules );
-            }
-            
-            if( ("required" in this._rules) || (this.getValue() !== '') ){
+            this._parseRules( this._options.rules );
+
+            // We want to validate this field only if it's not empty
+            // "" is not an invalid number.
+            var doValidate = this.getValue() !== '' ||
+                // If it's required it will be validated anyway.
+                ("required" in this._rules) ||
+                // If it has a "matches" rule it will also be validated because "" is not a valid password confirmation.
+                ("matches" in this._rules);
+
+            if (doValidate) {
                 for(var rule in this._rules) {
                     if (this._rules.hasOwnProperty(rule)) {
                         if( (typeof validationFunctions[rule] === 'function') ){
                             if( validationFunctions[rule].apply(this, this._rules[rule] ) === false ){
-
                                 this._addError( rule );
                                 return false;
-
                             }
 
                         } else {

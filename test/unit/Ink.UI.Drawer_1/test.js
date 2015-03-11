@@ -1,4 +1,11 @@
-Ink.requireModules(['Ink.UI.Drawer_1', 'Ink.Dom.Css_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1'], function (Drawer, Css, InkEvent, InkElement) {
+Ink.requireModules(['Ink.UI.Drawer_1', 'Ink.Dom.Css_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Browser_1'], function (Drawer, Css, InkEvent, InkElement, Browser) {
+
+    if (Browser.IE && Browser.version <= 8) {
+        test('(skipping test because of incompatible IE version)', function () {
+            ok(true, 'Skippin\'');
+        })
+        return;
+    }
 
     var leftTrigger = document.body.appendChild(InkElement.create('div', {
         className: 'left-drawer-trigger'
@@ -18,6 +25,8 @@ Ink.requireModules(['Ink.UI.Drawer_1', 'Ink.Dom.Css_1', 'Ink.Dom.Event_1', 'Ink.
         className: 'right-drawer'
     }))
 
+    // Make our setTimeout calls which cause reflows or do animations instantaneous
+    sinon.stub(window, 'setTimeout').callsArg(0);
 
     var drawer = new Drawer(document.body)
 
@@ -73,28 +82,33 @@ Ink.requireModules(['Ink.UI.Drawer_1', 'Ink.Dom.Css_1', 'Ink.Dom.Event_1', 'Ink.
     }))
 
     test('open() and close()', function () {
-
         drawer.open('left')
 
         // the open() function is actually async because it needs
         // to trigger a reflow.
-        stop();
-        setTimeout(function () {
-            start();
-            ok(Css.hasClassName(document.body, ['push', 'left']));
-            ok(Css.hasClassName(leftDrawer, 'show'));
+        ok(Css.hasClassName(document.body, ['push', 'left']));
+        ok(Css.hasClassName(leftDrawer, 'show'));
 
-            drawer.close()
-            ok(!Css.hasClassName(document.body, 'push'));
-            ok(!Css.hasClassName(document.body, 'left'));
+        drawer.close()
+        ok(!Css.hasClassName(document.body, 'push'));
+        ok(!Css.hasClassName(document.body, 'left'));
 
-            if (!Drawer.transitionSupport) {
-                return ok(!Css.hasClassName(leftDrawer, 'show'));
-            }
+        if (!Drawer.transitionSupport) {
+            return ok(!Css.hasClassName(leftDrawer, 'show'));
+        }
 
-            ok(Css.hasClassName(leftDrawer, 'show'));
-            InkEvent.fire(leftDrawer, Drawer.transitionSupport.eventName);
-            ok(!Css.hasClassName(leftDrawer, 'show'));
-        }, 0);
-    })
+        ok(Css.hasClassName(leftDrawer, 'show'));
+        InkEvent.fire(leftDrawer, Drawer.transitionSupport.eventName);
+        ok(!Css.hasClassName(leftDrawer, 'show'));
+    });
+
+    test('focusing outside the drawer causes it to close', sinon.test(function () {
+        this.stub(drawer, 'close');
+
+        drawer.open();
+
+        InkEvent.fire(contentDrawer, 'focus');
+
+        ok(drawer.close.calledOnce, 'close() was called because of focus');
+    }));
 })

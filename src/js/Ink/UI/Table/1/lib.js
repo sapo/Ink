@@ -63,8 +63,8 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
      * @param {Object}              [options] Options object containing:
      * @param {Number}              [options.pageSize]                      Number of rows per page. Omit to avoid paginating.
      * @param {String}              [options.endpoint]                      Endpoint to get the records via AJAX. Omit if you don't want to do AJAX
-     * @param {Function}            [options.createEndpointUrl]             Callback to customise what URL the AJAX endpoint is at. Receives three arguments: base (the "endpoint" option), sort (`{ order: 'asc' or 'desc', field: fieldname }`) and page ({ page: page number, size: items per page })
-     * @param {Function}            [options.getDataFromEndPoint]           Callback to allow the user to retrieve the data himself given an URL.  Must accept two arguments: `url` and `callback`. This `callback` will take as a single argument a JavaScript object.
+     * @param {Function}            [options.createEndpointURL]             Callback to customise what URL the AJAX endpoint is at. Receives three arguments: base (the "endpoint" option), sort (`{ order: 'asc' or 'desc', field: fieldname }`) and page ({ page: page number, size: items per page })
+     * @param {Function}            [options.getDataFromEndpoint]           Callback to allow the user to retrieve the data himself given an URL.  Must accept two arguments: `url` and `callback`. This `callback` will take as a single argument a JavaScript object.
      * @param {Function}            [options.processJSONRows]               Retrieve an array of rows from the data which came from AJAX.
      * @param {Function}            [options.processJSONHeaders]            Get an object with all the headers' names as keys, and a { label, sortable } object as value.  Example: `{col1: {label: "Column 1"}, col2: {label: "Column 2", sortable: true}`.  Takes a single argument, the JSON response.
      * @param {Function}            [options.processJSONRow]                Process a row object before it gets on the table.
@@ -95,13 +95,15 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
         caretUpClass: ['String', 'fa fa-caret-up'],
         caretDownClass: ['String', 'fa fa-caret-down'],
         endpoint: ['String', null],
-        createEndpointUrl: ['Function', null /* default func uses above option */],
-        getDataFromEndPoint: ['Function', null /* by default use plain ajax for JSON */],
-        processJSONRows: ['Function', sameSame],
+        createEndpointUrl: ['Function', null],  // Deprecated misspelled option
+        createEndpointURL: ['Function', null /* default func uses above option */],
+        getDataFromEndPoint: ['Function', null],  // Deprecated mis-cased option
+        getDataFromEndpoint: ['Function', null /* by default use plain ajax for JSON */],
+        processJSONRows: ['Function', function (dt) { return typeof dt.length === 'number' ? dt : (dt.rows || null); }],
         processJSONRow: ['Function', sameSame],
         processJSONField: ['Function', sameSame],
         processJSONHeaders: ['Function', function (dt) { return dt.fields; }],
-        processJSONTotalRows: ['Function', function (dt) { return dt.length || dt.totalRows; }],
+        processJSONTotalRows: ['Function', function (dt) { return dt.totalRows || dt.length; }],
         getSortKey: ['Function', null],
         pagination: ['Element', null],
         allowResetSorting: ['Boolean', false],
@@ -123,6 +125,14 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
          * @private
          */
         _init: function(){
+            // Historic aliases
+            if (this._options.createEndpointUrl) {
+                this._options.createEndpointURL = this._options.createEndpointUrl;
+            }
+            if (this._options.getDataFromEndPoint) {
+                this._options.getDataFromEndpoint = this._options.getDataFromEndpoint;
+            }
+
             /**
              * Checking if it's in markup mode or endpoint mode
              */

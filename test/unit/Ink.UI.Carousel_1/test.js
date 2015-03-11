@@ -125,6 +125,24 @@ Ink.requireModules(['Ink.UI.Carousel_1', 'Ink.UI.Pagination_1', 'Ink.Dom.Element
             utils.dispatchTouchEvent(stage, 'end', 66, 10);
             ok(carousel.setPage.calledWith(1), 'Page changed');
         })
+
+        testCarousel('Regression: Page changes even if you swipe off the left of the carousel.', function (carousel, _, stage) {
+            sinon.stub(carousel, '_setPage');
+            utils.dispatchTouchEvent(stage, 'start', 1, 10);
+            utils.dispatchTouchEvent(stage, 'move', 99, 10);
+            utils.dispatchTouchEvent(stage, 'end', 99, 10);
+            ok(carousel._setPage.calledOnce, 'Page changed');
+            ok(carousel._setPage.calledWith(0), 'Page changed');
+        })
+
+        testCarousel('Regression: Page changes even if you swipe off the right of the carousel.', function (carousel, _, stage) {
+            sinon.stub(carousel, '_setPage');
+            utils.dispatchTouchEvent(stage, 'start', 99, 10);
+            utils.dispatchTouchEvent(stage, 'move', 1, 10);
+            utils.dispatchTouchEvent(stage, 'end', 1, 10);
+            ok(carousel._setPage.calledOnce, 'Page changed');
+            ok(carousel._setPage.calledWith(4), 'Page changed');
+        }, { initialPage: 4 })
     }
 
     function testCarouselRefit(name, cb) {

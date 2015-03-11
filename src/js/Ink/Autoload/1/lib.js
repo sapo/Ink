@@ -36,8 +36,12 @@ Ink.createModule('Ink.Autoload', 1, ['Ink.Dom.Selector_1', 'Ink.Util.Array_1', '
             'Animate_1'     : '.ink-animate',
             'Carousel_1'    : '.ink-carousel',
             'DatePicker_1'  : '.ink-datepicker',
+            'Draggable_1'   : '.ink-draggable',
             'Dropdown_1'    : '.ink-dropdown',
+            'Droppable_1.add' : '.ink-droppable',
+            'FormValidator_2' : '.ink-formvalidator',
             'Gallery_1'     : 'ul.ink-gallery-source',
+            'LazyLoad_1'    : '.ink-lazyload',
             'Modal_1'       : '.ink-modal',
             'ProgressBar_1' : '.ink-progress-bar',
             'SortableList_1': '.ink-sortable-list',
@@ -96,6 +100,12 @@ Ink.createModule('Ink.Autoload', 1, ['Ink.Dom.Selector_1', 'Ink.Util.Array_1', '
             }
 
             function findElements(mod) {
+                var fname;
+                if (/\./.test(mod)) {  // Droppable.add(elm, options)
+                    mod = mod.split('.');
+                    fname = mod[1];
+                    mod = mod[0];
+                }
                 var modName = 'Ink.UI.' + mod;
                 var elements = Selector.select( options.selectors[mod], parentEl );
 
@@ -108,7 +118,11 @@ Ink.createModule('Ink.Autoload', 1, ['Ink.Dom.Selector_1', 'Ink.Util.Array_1', '
                                     Component.getInstance(el) != null) {
                                 return; // Avoid multiple instantiation.
                             }
-                            new Component(el, Autoload.defaultOptions[mod]);
+                            if (!fname) {
+                                new Component(el, Autoload.defaultOptions[mod]);
+                            } else {
+                                Component[fname](el, Autoload.defaultOptions[mod]);
+                            }
                         });
                     });
                 }

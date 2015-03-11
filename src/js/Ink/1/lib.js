@@ -87,7 +87,7 @@
         /**
          * @property {String} VERSION
          **/
-        VERSION: '3.1.2',
+        VERSION: '3.1.4',
         _checkPendingRequireModules: function() {
             var I, F, o, dep, mod, cb, pRMs = [];
             var toApply = [];
