@@ -62,18 +62,21 @@ Ink.createModule( 'Ink.UI.PanController', '1' ,
 
             this._doc = ownerDocument( this._element );
 
-            this.dragDownListener = Ink.bind( this.dragDownListener , this );
-            this.dragMoveListener = Ink.bind( this.dragMoveListener , this );
-            this.dragUpListener   = Ink.bind( this.dragUpListener   , this );
-            this.preClickListener = Ink.bind( this.preClickListener , this );
+            this.dragDownListener  = Ink.bind( this.dragDownListener  , this );
+            this.dragMoveListener  = Ink.bind( this.dragMoveListener  , this );
+            this.dragUpListener    = Ink.bind( this.dragUpListener    , this );
+            this._preClickListener = Ink.bind( this._preClickListener , this );
 
-            Ivent.one( this._element , 'mousedown touchstart' , this.dragDownListener );
+            Ivent.on( this._element , 'mousedown touchstart' , this.dragDownListener );
+
+            Ivent.on( this._doc , 'mousemove touchmove' , this.dragMoveListener );
+            Ivent.on( this._doc , 'mouseup touchend'    , this.dragUpListener   );
         } ,
 
         destroy : function( ){
             Ivent.off( this._element , 'mousedown touchstart' , this.dragDownListener );
 
-            this.allowClick( );
+            this._allowClick( );
 
             this.stopDrag( false );
 
@@ -89,10 +92,7 @@ Ink.createModule( 'Ink.UI.PanController', '1' ,
             this.stopDrag( false );
             clearTimeout( this.easeOutTimeout );
 
-            if ( e.type === 'mousedown' ) { events.prevent(e); }
-
-            Ivent.one( this._doc , 'mousemove touchmove' , this.dragMoveListener );
-            Ivent.one( this._doc , 'mouseup touchend'    , this.dragUpListener   );
+            if ( e.type === 'mousedown' ) { Ivent.stopDefault( e ); }
 
             this._lastTarget = Ivent.element( e ); // for IE
 
@@ -109,14 +109,15 @@ Ink.createModule( 'Ink.UI.PanController', '1' ,
                 event   : { type : '' , target : null , detail : null } ,
                 timer   : Ink.bind( this._timer , this )
             };
-
-            setTimeout( Ink.bind( Ivent.one , Ivent , this._element , 'mousedown touchstart' , this.dragDownListener ) , 0 );
         } ,
 
         dragMoveListener : function( e ) {
             if ( !validateMouseButtonNoModifiers( e ) ) { return; }
 
             var state = this._dragState;
+
+            if ( !state ) { return; }
+
             var posInfo = e.touches && e.touches[ 0 ] || e;
 
             state.dx = ( posInfo.clientX || posInfo.screenX ) - state.x;
@@ -140,8 +141,6 @@ Ink.createModule( 'Ink.UI.PanController', '1' ,
             if ( !state.t && ( state.dx || state.dy ) ) {
                 state.t = setTimeout( state.timer , this._options.requestTranslationMinUpdate );
             }
-
-            setTimeout( Ink.bind( Ivent.one , Ivent , this._doc , 'mousemove touchmove' , this.dragMoveListener ) , 0 );
         } ,
 
         dragUpListener: function( e ) {
@@ -151,9 +150,6 @@ Ink.createModule( 'Ink.UI.PanController', '1' ,
         } ,
 
         stopDrag: function( doEaseOut , e ) {
-            Ivent.off( this._doc , 'mousemove touchmove' , this.dragMoveListener );
-            Ivent.off( this._doc , 'mouseup touchend'    , this.dragUpListener   );
-
             if ( this._dragState ) {
                 var state = this._dragState;
 
@@ -181,8 +177,9 @@ Ink.createModule( 'Ink.UI.PanController', '1' ,
                     if ( last_dots.length < 3 || last_dots[ last_dots.length - 1 ].time < now - 80 ) { return; }
 
                     // pixel / millisecond
-                    var sp_x = 0;
-                    var sp_y = 0;
+                    this._sp_x = 0;
+                    this._sp_y = 0;
+
                     var tt   = 0;
                     var tx   = 0;
                     var ty   = 0;
@@ -195,8 +192,8 @@ Ink.createModule( 'Ink.UI.PanController', '1' ,
                         }
                     });
 
-                    sp_x = tx / tt;
-                    sp_y = ty / tt;
+                    this._sp_x = tx / tt;
+                    this._sp_y = ty / tt;
 
                     this._tick = DateNow( );
 
@@ -206,17 +203,17 @@ Ink.createModule( 'Ink.UI.PanController', '1' ,
         } ,
 
         _allowClick : function( ) {
-            Ivent.off( dom2events ? this._doc : this._lastTarget , 'click' , this.preClickListener );
+            Ivent.off( dom2events ? this._doc : this._lastTarget , 'click' , this._preClickListener );
 
             this._lastTarget = null;
         } ,
         _preventClick : function( ) {
-            Ivent.on( dom2events ? this._doc : this._lastTarget , 'click' , this.preClickListener );
+            Ivent.on( dom2events ? this._doc : this._lastTarget , 'click' , this._preClickListener );
         } ,
         _preClickListener : function( e ) {
             if ( e.type === 'click' ){ Ivent.stop( e ); }
 
-            this.allowClick( );
+            this._allowClick( );
         } ,
 
         _timer : function() {
@@ -241,12 +238,12 @@ Ink.createModule( 'Ink.UI.PanController', '1' ,
             this.easeOutTimeout = null;
             var diff = DateNow( ) - this._tick;
 
-            var dx = sp_x * diff;
-            var dy = sp_y * diff;
+            var dx = this._sp_x * diff;
+            var dy = this._sp_y * diff;
 
             if ( ( 0.5 <= Math.abs( dx ) || 0.5 <= Math.abs( dy ) ) && this._options.requestTranslation.call( this , dx , dy ) ) {
-                sp_x *= this._options.speedEaseOutDecrease;
-                sp_y *= this._options.speedEaseOutDecrease;
+                this._sp_x *= this._options.speedEaseOutDecrease;
+                this._sp_y *= this._options.speedEaseOutDecrease;
 
                 this._easeOutTimeout = setTimeout( Ink.bind( this._post_animate , this ) , this._options.requestTranslationMinUpdate );
                 this._tick = DateNow( );
