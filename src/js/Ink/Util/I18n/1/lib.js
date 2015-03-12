@@ -12,7 +12,7 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
     var funcOrVal = function( ret , args ) {
         if ( typeof ret === 'function' ) {
             return ret.apply(this, args);
-        } else if (typeof ret !== undefined) {
+        } else if (typeof ret !== 'undefined') {
             return ret;
         } else {
             return '';
