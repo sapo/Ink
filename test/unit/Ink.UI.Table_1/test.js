@@ -85,21 +85,21 @@ Ink.requireModules(['Ink.UI.Table_1', 'Ink.UI.Common_1', 'Ink.Dom.Element_1', 'I
         Syn.click(header1, function () {
             deepEqual(
                 itemsInColumn(tableEl, 1),
-                [4, 3, 2, 1],
-                'numbers in column 1 are reversed');
+                [1, 2, 3, 4],
+                'numbers in column 1 are sorted');
             deepEqual(
                 itemsInColumn(tableEl, 2),
-                [1, 2, 3, 4],
-                'numbers in column 2 are sorted');
+                [4, 3, 2, 1],
+                'numbers in column 2 are reversed');
             Syn.click(header2, function () {
                 deepEqual(
-                    itemsInColumn(tableEl, 1),
-                    [1, 2, 3, 4],
-                    'numbers in column 1 are sorted');
-                deepEqual(
                     itemsInColumn(tableEl, 2),
+                    [1, 2, 3, 4],
+                    'numbers in column 2 are sorted');
+                deepEqual(
+                    itemsInColumn(tableEl, 1),
                     [4, 3, 2, 1],
-                    'numbers in column 2 are reversed');
+                    'numbers in column 1 are reversed');
                 start();
             });
         });
@@ -116,14 +116,14 @@ Ink.requireModules(['Ink.UI.Table_1', 'Ink.UI.Common_1', 'Ink.Dom.Element_1', 'I
         Syn.click(header1, function () {
             deepEqual(
                 itemsInColumn(tableEl, 1),
-                [4, 3, 'b', 'a'],
-                'In descending order numbers go first');
+                ['a', 'b', 3, 4],
+                'numbers in column 1 are sorted, numbers go last');
 
             Syn.click(header1, function () {
                 deepEqual(
                     itemsInColumn(tableEl, 1),
-                    ['a', 'b', 3, 4],
-                    'In ascending order numbers go last');
+                    [4, 3, 'b', 'a'],
+                    'numbers in column 1 are reversed, numbers go first');
                 start();
             });
         });
