@@ -154,11 +154,11 @@ Ink.requireModules(['Ink.UI.Table_1', 'Ink.UI.Common_1', 'Ink.Dom.Element_1', 'I
             pageSize: 2,
             pagination: pagElm,
             createEndpointURL: createEndpointURL,
-            processJSONRows,
-            processJSONRow,
-            processJSONField,
-            processJSONHeaders,
-            processJSONTotalRows
+            processJSONRows: processJSONRows,
+            processJSONRow: processJSONRow,
+            processJSONField: processJSONField,
+            processJSONHeaders: processJSONHeaders,
+            processJSONTotalRows: processJSONTotalRows
         });
 
         ok(!table._markupMode)
