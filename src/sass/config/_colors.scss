@@ -1,0 +1,49 @@
+// BODY
+$body-background            : #fff !default;
+
+// PLAIN TEXT
+$text-color                 : #555 !default;
+
+// HEADINGS
+$headings-color             : #404040 !default;
+
+// LINKS
+$link-color                 : #6998C9 !default;
+$link-visited-color         : #808080 !default;
+$link-active-color          : shade(red,5%) !default;
+$link-hover-color           : #007ED5 !default;
+$link-focus-color           : $link-color !default;
+
+$white                      : #fff !default;
+$black                      : #000 !default;
+$orange                     : #ff9c00 !default;
+$red                        : #c91111 !default;
+$green                      : #4a9b17 !default;
+$blue                       : #0f75da !default;
+$yellow                     : #ffd500 !default;
+
+$warning-bg                 : $orange !default;
+$caution-bg                 : $red !default;
+$error-bg                   : $red !default;
+$success-bg                 : $green !default;
+$info-bg                    : $blue !default;
+
+$grey-95                    : lighten($black, 5%) !default;
+$grey-90                    : lighten($black, 10%) !default;
+$grey-85                    : lighten($black, 15%) !default;
+$grey-80                    : lighten($black, 20%) !default;
+$grey-75                    : lighten($black, 25%) !default;
+$grey-70                    : lighten($black, 30%) !default;
+$grey-65                    : lighten($black, 35%) !default;
+$grey-60                    : lighten($black, 40%) !default;
+$grey-55                    : lighten($black, 45%) !default;
+$grey-50                    : lighten($black, 50%) !default;
+$grey-45                    : lighten($black, 55%) !default;
+$grey-40                    : lighten($black, 60%) !default;
+$grey-35                    : lighten($black, 65%) !default;
+$grey-30                    : lighten($black, 70%) !default;
+$grey-25                    : lighten($black, 75%) !default;
+$grey-20                    : lighten($black, 80%) !default;
+$grey-15                    : lighten($black, 85%) !default;
+$grey-10                    : lighten($black, 90%) !default;
+$grey-5                     : lighten($black, 95%) !default;

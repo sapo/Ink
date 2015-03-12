@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <title>InkJS - SortableList samples</title>
+
+        <link rel="stylesheet" href="../../../../../../dist/css/ink.css" />
+
+        <script type="text/javascript" src="../../../../Ink/1/lib.js"></script>
+        <script>
+            Ink.setPath('Ink', '../../../../Ink/');
+        </script>
+        <script src="../../../../../../dist/js/prettify.js"></script>
+        <style>
+            pre.prettyprint{
+                font-size: 0.75em;
+            }
+        </style>
+    </head>
+
+    <body onload="prettyPrint()">
+        <nav class="ink-navigation ink-container">
+            <ul class="menu horizontal black flat">
+                <li><a href="#">Item</a></li>
+                <li><a href="#">Item</a></li>
+                <li><a href="#">Item</a></li>
+                <li><a href="#">Item</a></li>
+            </ul>
+        </nav>
+        <div class="ink-container ink-grid">
+            <h1>SortableList Samples - InkJS</h1>
+
+            <section>
+                <header>
+                    <h2>SortableList #1 - Default Markup</h2>
+                </header>
+                <ul class="unstyled ink-sortable-list" id="slist">
+                    <li><span class="ink-label blue"><i class="fa fa-sort"></i> Drag here</span>First</li>
+                    <li><span class="ink-label blue"><i class="fa fa-sort"></i> Drag here</span>Second</li>
+                    <li><span class="ink-label blue"><i class="fa fa-sort"></i> Drag here</span>Third</li>
+                </ul>
+                <p>
+                    <pre class="prettyprint linenums">
+&lt;ul class="unstyled ink-sortable-list" id="slist"&gt;
+    &lt;li&gt;&lt;span class="ink-label blue"&gt;&lt;i class="fa fa-sort"&gt;&lt;/i&gt; Drag here&lt;/span&gt;First&lt;/li&gt;
+    &lt;li&gt;&lt;span class="ink-label blue"&gt;&lt;i class="fa fa-sort"&gt;&lt;/i&gt; Drag here&lt;/span&gt;Second&lt;/li&gt;
+    &lt;li&gt;&lt;span class="ink-label blue"&gt;&lt;i class="fa fa-sort"&gt;&lt;/i&gt; Drag here&lt;/span&gt;Third&lt;/li&gt;
+&lt;/ul&gt;
+&lt;script&gt;
+    var sList = new Ink.UI.SortableList('#slist');
+&lt;/script&gt;</pre>
+                </p>
+            </section>
+        </div>
+        <script>
+            Ink.requireModules(['Ink.UI.SortableList_1'], function(SortableList) {
+                var sList = new SortableList('#slist');
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Droppable - 3</title>
+        
+        <link rel="stylesheet" type="text/css" href="../../../../../dist/css/ink.css"/>
+
+        <script type="text/javascript" src="../../../Ink/1/lib.js"></script> 
+        <script type="text/javascript">
+            Ink.setPath('Ink', '../../../Ink/');
+        </script> 
+        
+        <style type="text/css">
+            .draggable.ink-button {
+                display: block;
+                background-color: #DDD;
+                width:  200px;
+                height: 100px;
+                overflow: hidden;
+            }
+
+            .draggable_handler {
+                height:  20px;
+                width:  100%;
+                background-color: #CCF;
+            }
+
+            .drops {
+                margin-left:    25%;
+                margin-top:        10%
+            }
+
+            .droppable {
+                color: #777;
+                border: 1px dotted #777;
+                width: 50%;
+                height: 200px;
+            }
+
+            .droppable_hover {
+                border: 2px solid #FAA;
+                box-shadow: 0 0 8px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="ink-grid">
+    <h1>Droppable - 4</h1>
+    <h2>onDrop named event handlers</h2>
+
+    <p>Below are two droppable &lt;ul&gt; elements with <code>onDrop: 'move'</code> and <code>onDropOut: 'revert'</code></p>
+
+<style type="text/css">
+    .hover {
+        border: 1px solid red;
+    }
+    .left, .right {
+        background-color: #eee;
+        padding-bottom: 1em;
+    }
+</style>
+<p>Drag list items from the left box to the right box.</p>
+
+ <div class="column-group gutters">
+  <div class="all-40">
+   <ul class="left">
+       <li>Draggable 1</li>
+       <li>Draggable 2</li>
+       <li>Draggable 3</li>
+   </ul>
+  </div>
+  <div class="all-40">
+   <ul class="right">
+   </ul>
+  </div>
+ </div>
+ <script type="text/javascript">
+     Ink.requireModules(['Ink.UI.Draggable_1', 'Ink.UI.Droppable_1'], function (Draggable, Droppable) {
+         new Draggable('.left li:eq(0)', {});
+         new Draggable('.left li:eq(1)', {});
+         new Draggable('.left li:eq(2)', {});
+         Droppable.add('.left', {
+                onDrop: 'move',
+                onDropOut: 'revert'
+             });
+         Droppable.add('.right', {
+                onDrop: 'move',
+                onDropOut: 'revert'
+             });
+     })
+ </script>
+
+        </div>
+    </body>
+</html>

@@ -1,0 +1,219 @@
+// Menu navigation
+
+@mixin nav-menu($nav-color: null) {
+
+    @if $nav-color == null {
+
+        @include border-radius($navigation-border-radius);
+        
+        > li {
+
+            font-weight: $navigation-font-weight;
+
+            &.active {
+                a { 
+                    text-decoration: underline;
+                }
+            }
+
+            &.heading {
+                font-weight: $navigation-heading-font-weight;
+            }
+
+            &.disabled {
+                a {
+                    color: $grey-30;
+                    @include text-shadow(lighten($grey-40,40%) 0 1px 0);
+
+                    &:hover {
+                        cursor: default;
+                        background: none;
+                        text-decoration: none;
+                    }
+                }
+            }
+
+            ul.submenu { 
+
+                li {
+                    font-size: .875em;
+                    a { border-bottom: 1px solid rgba($black, 0.1); }
+                }
+            }
+        }
+
+        &.vertical {
+
+            li {
+                a {
+                    border-bottom: 1px solid rgba($black,0.15);
+                }
+                
+                &:first-child {
+                    
+                    @include border-radius($navigation-border-radius $navigation-border-radius 0 0);
+
+                    > a { @include border-radius($navigation-border-radius $navigation-border-radius 0 0); }
+                }
+
+                &:last-child {
+                    @include border-radius(0 0 $navigation-border-radius $navigation-border-radius);
+
+                    > a { 
+                        border-bottom: none;
+                        @include border-radius(0 0 $navigation-border-radius $navigation-border-radius); 
+                    }
+
+                    .submenu {
+                        
+                        @include border-radius(0 0 $navigation-border-radius $navigation-border-radius);
+
+                        &.flyout  {
+                            @include border-radius($navigation-border-radius);    
+                        }
+
+                        li {
+
+                            &:last-child {
+                                @include border-radius(0 0 $navigation-border-radius $navigation-border-radius);
+                                a { @include border-radius(0 0 $navigation-border-radius $navigation-border-radius); }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        &.horizontal {
+
+            > li {
+
+                &:first-child {
+
+                    @include border-radius($navigation-border-radius 0 0 $navigation-border-radius);
+
+                    a { @include border-radius($navigation-border-radius 0 0 $navigation-border-radius); }
+                }
+
+                &:last-child {
+
+                    @include border-radius(0 $navigation-border-radius $navigation-border-radius 0);
+
+                    a { @include border-radius(0 $navigation-border-radius $navigation-border-radius 0); }
+                }
+
+                ul {
+
+                    &.submenu {
+
+                        @include border-radius(0 0 $navigation-border-radius $navigation-border-radius);
+                        background: $white;
+
+                        li {
+
+                            &:last-child {
+
+                                @include border-radius(0 0 $navigation-border-radius $navigation-border-radius);
+                                a { border-bottom: none; }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @if $nav-color != null {
+    
+        li {
+                    
+            ul.submenu { 
+                background: $white;
+                border: 1px solid rgba($black, 0.1);
+                li a { 
+                    color: $text-color; 
+                    &:hover { background: rgba($black, 0.05); }
+                }
+            }
+            &.disabled a:hover { background: none; }
+        }
+    }
+
+    @if $nav-color != null and lightness($nav-color) <= 10% {
+        background: desaturate($nav-color,10%);
+
+        li {
+            
+            &.active { background: lighten($nav-color,10%); }
+
+            &.disabled {
+                a {
+                    color: lighten($nav-color,30%);
+                    @include text-shadow(darken($nav-color,20%) 0 -1px 0);
+                }
+            }
+
+            a {
+                color: $white;
+                text-decoration: none;
+
+                &:hover {
+                    background: lighten($nav-color,15%);
+                }
+            }
+        }
+    }
+
+    @if $nav-color != null and lightness($nav-color) > 10% and lightness($nav-color) <= 80% {
+
+        background: desaturate($nav-color,10%);
+
+        li {
+            
+            &.active { background: darken($nav-color,10%); }
+
+            &.disabled {
+                a {
+                    color: darken($nav-color,20%);
+                    @include text-shadow(lighten($nav-color,8%) 0 1px 0);
+                }
+            }
+
+            a {
+                color: $white;
+                text-decoration: none;
+
+                &:hover {
+                    background: darken($nav-color,5%);
+                }
+            }
+        }
+    }
+
+    @if $nav-color != null and lightness($nav-color) > 80% {
+
+        background: desaturate($nav-color,10%);
+
+        li {
+            
+            &.active { background: darken($nav-color,10%); }
+
+            &.disabled {
+                a {
+                    color: darken($nav-color,20%);
+                    @include text-shadow(lighten($nav-color,8%) 0 1px 0);
+                }
+            }
+
+            a {
+                color: $text-color;
+                text-decoration: none;
+
+                &:hover {
+                    background: darken($nav-color,5%);
+                }
+            }
+        }
+    }
+
+}

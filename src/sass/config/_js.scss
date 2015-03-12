@@ -1,0 +1,34 @@
+// JS UI COMPONENTS
+
+// Date picker
+$datepicker-bgColor			: $white;
+$datepicker-cell-color		: #444;
+$datepicker-header-bg		: $grey-10;
+$datepicker-cellHover		: $grey-10;
+$datepicker-active-bg		: #0069d6;
+$datepicker-active-color	: $white;
+$datepicker-fontSize		: 13px;
+$datepicker-inactive-color	: #aaa;
+
+$calendar-cell-width        : 2.4em;
+$calendar-month-width       : $calendar-cell-width * 7;
+$calendar-padding           : .3em;
+$calendar-total-width       : $calendar-month-width + ($calendar-padding * 2);
+
+
+// Sortable list
+$sortable-list-height       : 40px;
+
+// Progress bars
+$progress-bar-height        : 1.8em;
+$progress-bar-fontSize      : .813em;
+$progress-bar-color         : $black;
+$progress-bar-bg            : $grey-5;
+
+// Tooltips
+$tooltip-padding: 0.5em 0.6em ;
+$tooltip-background-color: rgb(240,240,240);
+$tooltip-border-radius: $border-radius;
+$tooltip-font-size: 0.8em;
+$tooltip-text-color: rgb(140,140,140);
+$tooltip-arrow-size: 6px;

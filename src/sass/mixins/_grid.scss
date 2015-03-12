@@ -1,0 +1,787 @@
+// Grid
+
+// generates the grid main container
+@mixin generate-grid-container ($grid-container-class-name, $gutter-width) {
+
+    .#{$grid-container-class-name} {
+        padding: 0 $gutter-width;
+    }
+}
+
+// generates the grid column grouping container
+@mixin generate-column-group-container($gutter-width, $class-name) {
+
+    .#{$grid-column-group-class-name} {
+        @include pie-clearfix;
+    }
+
+    .#{$grid-column-group-class-name}.#{$grid-gutters-class-name} {
+        margin-left: $gutter-width * -1;
+        & > [class*=#{$class-name}-],
+        & > [class*=all-] {
+            padding-left: $gutter-width;
+            margin-bottom: $gutter-width;
+        }
+    }
+
+    .#{$grid-column-group-class-name}.#{$grid-horizontal-gutters-class-name} {
+        margin-left: $gutter-width * -1;
+        & > [class*=#{$class-name}-],
+        & > [class*=all-] {
+            padding-left: $gutter-width;
+        }
+    }
+
+    .#{$grid-column-group-class-name}.#{$grid-vertical-gutters-class-name} {
+        & > [class*=#{$class-name}-],
+        & > [class*=all-] {
+            margin-bottom: $gutter-width;
+        }
+    }
+
+    .#{$grid-column-group-class-name}.#{$grid-double-gutters-class-name} {
+        margin-left: ($gutter-width * 2) * -1;
+        & > [class*=#{$class-name}-],
+        & > [class*=all-] {
+            padding-left: ($gutter-width * 2);
+            margin-bottom: ($gutter-width * 2);
+        }
+    }
+
+    .#{$grid-column-group-class-name}.#{$grid-double-horizontal-gutters-class-name} {
+        margin-left: ($gutter-width * 2) * -1;
+        & > [class*=#{$class-name}-],
+        & > [class*=all-] {
+            padding-left: ($gutter-width * 2);
+        }
+    }
+
+    .#{$grid-column-group-class-name}.#{$grid-double-vertical-gutters-class-name} {
+        & > [class*=#{$class-name}-],
+        & > [class*=all-] {
+            margin-bottom: ($gutter-width * 2);
+        }
+    }
+
+    .#{$grid-column-group-class-name}.#{$grid-half-gutters-class-name} {
+        margin-left: ( $gutter-width / 2 ) * -1;
+        & > [class*=#{$class-name}-],
+        & > [class*=all-] {
+            padding-left: ( $gutter-width / 2);
+            margin-bottom: ( $gutter-width / 2);
+        }
+    }
+
+    .#{$grid-column-group-class-name}.#{$grid-half-horizontal-gutters-class-name} {
+        margin-left: ( $gutter-width / 2 ) * -1;
+        & > [class*=#{$class-name}-],
+        & > [class*=all-] {
+            padding-left: ( $gutter-width / 2);
+        }
+    }
+
+    .#{$grid-column-group-class-name}.#{$grid-half-vertical-gutters-class-name} {
+        & > [class*=#{$class-name}-],
+        & > [class*=all-] {
+            margin-bottom: ( $gutter-width / 2);
+        }
+    }
+
+    .#{$grid-column-group-class-name}.#{$grid-quarter-gutters-class-name} {
+        margin-left: ( $gutter-width / 4 ) * -1;
+        & > [class*=#{$class-name}-],
+        & > [class*=all-] {
+            padding-left: ( $gutter-width / 4);
+            margin-bottom: ( $gutter-width / 4);
+        }
+    }
+
+    .#{$grid-column-group-class-name}.#{$grid-quarter-horizontal-gutters-class-name} {
+        margin-left: ( $gutter-width / 4 ) * -1;
+        & > [class*=#{$class-name}-],
+        & > [class*=all-] {
+            padding-left: ( $gutter-width / 4);
+        }
+    }
+
+    .#{$grid-column-group-class-name}.#{$grid-quarter-vertical-gutters-class-name} {
+        & > [class*=#{$class-name}-],
+        & > [class*=all-] {
+            margin-bottom: ( $gutter-width / 4);
+        }
+    }
+
+    .#{$grid-column-group-class-name}.#{$class-name}-#{$grid-gutters-class-name} {
+        margin-left: $gutter-width * -1;
+        & > [class*=#{$class-name}-],
+        & > [class*=all-] {
+            padding-left: ( $gutter-width );
+            margin-bottom: ( $gutter-width );
+        }
+    }
+
+    .#{$grid-column-group-class-name}.#{$class-name}-#{$grid-horizontal-gutters-class-name} {
+        margin-left: $gutter-width * -1;
+        & > [class*=#{$class-name}-],
+        & > [class*=all-] {
+            padding-left: $gutter-width ;
+        }
+    }
+
+    .#{$grid-column-group-class-name}.#{$class-name}-#{$grid-vertical-gutters-class-name} {
+        & > [class*=#{$class-name}-],
+        & > [class*=all-] {
+            margin-bottom: $gutter-width;
+        }
+    }
+
+    .#{$grid-column-group-class-name}.#{$class-name}-#{$grid-double-gutters-class-name} {
+        margin-left: ($gutter-width * 2) * -1;
+        & > [class*=#{$class-name}-],
+        & > [class*=all-] {
+            padding-left: ( $gutter-width * 2);
+            margin-bottom: ( $gutter-width * 2);
+        }
+    }
+
+    .#{$grid-column-group-class-name}.#{$class-name}-#{$grid-double-horizontal-gutters-class-name} {
+        margin-left: ($gutter-width * 2) * -1;
+        & > [class*=#{$class-name}-],
+        & > [class*=all-] {
+            padding-left: ( $gutter-width * 2);
+        }
+    }
+
+    .#{$grid-column-group-class-name}.#{$class-name}-#{$grid-double-vertical-gutters-class-name} {
+        & > [class*=#{$class-name}-],
+        & > [class*=all-] {
+            margin-bottom: ( $gutter-width * 2);
+        }
+    }
+
+    .#{$grid-column-group-class-name}.#{$class-name}-#{$grid-half-gutters-class-name} {
+        margin-left: ( $gutter-width / 2 ) * -1;
+        & > [class*=#{$class-name}-],
+        & > [class*=all-] {
+            padding-left: ( $gutter-width / 2);
+            margin-bottom: ( $gutter-width / 2);
+        }
+    }
+
+    .#{$grid-column-group-class-name}.#{$class-name}-#{$grid-half-horizontal-gutters-class-name} {
+        margin-left: ( $gutter-width / 2 ) * -1;
+        & > [class*=#{$class-name}-],
+        & > [class*=all-] {
+            padding-left: ( $gutter-width / 2);
+        }
+    }
+
+    .#{$grid-column-group-class-name}.#{$class-name}-#{$grid-half-vertical-gutters-class-name} {
+        & > [class*=#{$class-name}-],
+        & > [class*=all-] {
+            margin-bottom: ( $gutter-width / 2);
+        }
+    }
+
+    .#{$grid-column-group-class-name}.#{$class-name}-#{$grid-quarter-gutters-class-name} {
+        margin-left: ( $gutter-width / 4 ) * -1;
+        & > [class*=#{$class-name}-],
+        & > [class*=all-] {
+            padding-left: ( $gutter-width / 4);
+            margin-bottom: ( $gutter-width / 4);
+        }
+    }
+
+    .#{$grid-column-group-class-name}.#{$class-name}-#{$grid-quarter-horizontal-gutters-class-name} {
+        margin-left: ( $gutter-width / 4 ) * -1;
+        & > [class*=#{$class-name}-],
+        & > [class*=all-] {
+            padding-left: ( $gutter-width / 4);
+        }
+    }
+
+    .#{$grid-column-group-class-name}.#{$class-name}-#{$grid-quarter-vertical-gutters-class-name} {
+        & > [class*=#{$class-name}-],
+        & > [class*=all-] {
+            margin-bottom: ( $gutter-width / 4);
+        }
+    }
+
+    .#{$grid-column-group-class-name}.#{$class-name}-#{$grid-no-gutters-class-name} {
+        margin-left: 0;
+        & > [class*=#{$class-name}-],
+        & > [class*=all-] {
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+    }
+
+    .#{$table-class-name} {
+        td,th,tr,thead,tbody,tfoot {
+            &[class*=#{$class-name}-] {
+                float: none;
+            }
+        }
+    }
+
+}
+
+@mixin generate-grid-all-divisions () {
+    // iteration counter
+    $i: 5;
+
+    // define the step size (this is the minimum column width percentage)
+    $step-size: 5;
+
+    // .#{$grid-column-group-class-name} > [class*=all-] {
+    //   float: left;
+    //   clear: none;
+    // }
+
+    // iterate to generate the width classes
+    @while $i <= 100 {
+        // generate the 33% width
+        @if $i > 30 and $i <= 35 {
+            .all-33 {
+                width: 33.33%;
+                float: left;
+                clear: none;
+            }
+        }
+
+        // generate the 66% width
+        @if $i > 65 and $i <= 70 {
+            .all-66 {
+                width: 66.66%;
+                float: left;
+                clear: none;
+            }
+        }
+
+        // generate the 16% width
+        @if $i > 15 and $i <= 20 {
+            .all-16 {
+                width: 16.66%;
+                float: left;
+                clear: none;
+            }
+        }
+
+
+        .all-#{$i} {
+            width: $i * 1%;
+            float: left;
+            clear: none;
+        }
+
+        @if $i == 100 {
+            [class~=all-#{$i}] {
+                float: none;
+                clear: both;
+            }
+        }
+
+        // increment the counter
+        $i: $i + $step-size;
+    }
+}
+
+@mixin generate-grid-divisions ($class-name) {
+    // iteration counter
+    $i: 5;
+
+    // define the step size (this is the minimum column width percentage)
+    $step-size: 5;
+
+    .#{$grid-column-group-class-name} > [class*=#{$class-name}-] {
+      float: left;
+      clear: none;
+    }
+
+    // iterate to generate the width classes
+    @while $i <= 100 {
+        // generate the 33% width
+        @if $i > 30 and $i <= 35 {
+            .#{$class-name}-33 {
+                width: 33.33%;
+            }
+        }
+
+        // generate the 66% width
+        @if $i > 65 and $i <= 70 {
+            .#{$class-name}-66 {
+                width: 66.66%;
+            }
+        }
+
+
+        // generate the 16% width
+        @if $i > 15 and $i <= 20 {
+            .#{$class-name}-16 {
+                width: 16.66%;
+            }
+        }
+
+
+        // generate the 5% step widths
+        .#{$class-name}-#{$i} {
+            width: $i * 1%;
+        }
+
+
+        @if $i == 100 {
+            [class*=#{$class-name}-#{$i}] {
+                float: none;
+                clear: both;
+            }
+        }
+
+        // increment the counter
+        $i: $i + $step-size;
+    }
+}
+
+@mixin generate-grid-helper-classes($class-name,$gutter-width) {
+
+    .#{$class-name}-push-left {
+        float: left;
+    }
+
+    .#{$class-name}-push-center {
+        float: none;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .#{$class-name}-push-right {
+        float: right;
+    }
+    .#{$class-name}-align-left {
+        text-align: left;
+    }
+    .#{$class-name}-align-center {
+        text-align: center;
+    }
+    .#{$class-name}-align-right {
+        text-align: right;
+    }
+
+    .#{$class-name}-no-margin {
+        margin: 0 !important;
+    }
+
+    $space-placements: (
+
+        (null,
+            (
+                (double,2),
+                (half,0.5),
+                ('quarter',0.25)
+            )
+        ),
+        ('vertical',
+            (
+                (double,2),
+                (half,0.5),
+                ('quarter',0.25)
+            )
+        ),
+        ('horizontal',
+            (
+                (double,2),
+                (half,0.5),
+                ('quarter',0.25)
+            )
+        ),
+        ('top',
+            (
+                (double,2),
+                (half,0.5),
+                ('quarter',0.25)
+            )
+        ),
+        ('right',
+            (
+                (double,2),
+                (half,0.5),
+                ('quarter',0.25)
+            )
+        ),
+        ('bottom',
+            (
+                (double,2),
+                (half,0.5),
+                ('quarter',0.25)
+            )
+        ),
+        ('left',
+            (
+                (double,2),
+                (half,0.5),
+                ('quarter',0.25)
+            )
+        )
+    );
+
+    @each $placement in $space-placements {
+
+        $position: nth($placement,1);
+
+        @if $position == horizontal {
+
+            .#{$position}-space {
+                margin-left: $gutter-width;
+                margin-right: $gutter-width;
+            }
+
+            .#{$class-name}-#{$position}-space {
+                margin-left: $gutter-width;
+                margin-right: $gutter-width;
+            }
+
+            .#{$position}-padding {
+                padding-left: $gutter-width;
+                padding-right: $gutter-width;
+            }
+
+            .#{$class-name}-#{$position}-padding {
+                padding-left: $gutter-width;
+                padding-right: $gutter-width;
+            }
+
+            @each $sub-division in nth($placement,2) {
+                $sub-division-class-name: nth($sub-division,1);
+                $sub-division-unit: nth($sub-division,2);
+
+                .#{$sub-division-class-name}-#{$position}-space {
+                    margin-left: $gutter-width * $sub-division-unit;
+                    margin-right: $gutter-width * $sub-division-unit;
+                }
+
+                .#{$class-name}-#{$sub-division-class-name}-#{$position}-space {
+                    margin-left: $gutter-width * $sub-division-unit;
+                    margin-right: $gutter-width * $sub-division-unit;
+                }
+
+                .#{$sub-division-class-name}-#{$position}-padding {
+                    padding-left: $gutter-width * $sub-division-unit;
+                    padding-right: $gutter-width * $sub-division-unit;
+                }
+
+                .#{$class-name}-#{$sub-division-class-name}-#{$position}-padding {
+                    padding-left: $gutter-width * $sub-division-unit;
+                    padding-right: $gutter-width * $sub-division-unit;
+                }
+            }
+
+        }
+
+        @if $position == vertical {
+
+            .#{$position}-space {
+                margin-top: $gutter-width;
+                margin-bottom: $gutter-width;
+            }
+
+            .#{$class-name}-#{$position}-space {
+                margin-top: $gutter-width;
+                margin-bottom: $gutter-width;
+            }
+
+            .#{$position}-padding {
+                padding-top: $gutter-width;
+                padding-bottom: $gutter-width;
+            }
+
+            .#{$class-name}-#{$position}-padding {
+                padding-top: $gutter-width;
+                padding-bottom: $gutter-width;
+            }
+
+            @each $sub-division in nth($placement,2) {
+                $sub-division-class-name: nth($sub-division,1);
+                $sub-division-unit: nth($sub-division,2);
+
+                .#{$sub-division-class-name}-#{$position}-space {
+                    margin-top: $gutter-width * $sub-division-unit;
+                    margin-bottom: $gutter-width * $sub-division-unit;
+                }
+
+                .#{$class-name}-#{$sub-division-class-name}-#{$position}-space {
+                    margin-top: $gutter-width * $sub-division-unit;
+                    margin-bottom: $gutter-width * $sub-division-unit;
+                }
+
+                .#{$sub-division-class-name}-#{$position}-padding {
+                    padding-top: $gutter-width * $sub-division-unit;
+                    padding-bottom: $gutter-width * $sub-division-unit;
+                }
+
+                .#{$class-name}-#{$sub-division-class-name}-#{$position}-padding {
+                    padding-top: $gutter-width * $sub-division-unit;
+                    padding-bottom: $gutter-width * $sub-division-unit;
+                }
+            }
+
+        }
+
+        @if $position != horizontal and $position != vertical and $position != null {
+
+            .#{$position}-space {
+                margin-#{$position}: $gutter-width;
+            }
+
+            .#{$class-name}-#{$position}-space {
+                margin-#{$position}: $gutter-width;
+            }
+
+            .#{$position}-padding {
+                padding-#{$position}: $gutter-width;
+            }
+
+            .#{$class-name}-#{$position}-padding {
+                padding-#{$position}: $gutter-width;
+            }
+
+            @each $sub-division in nth($placement,2) {
+                $sub-division-class-name: nth($sub-division,1);
+                $sub-division-unit: nth($sub-division,2);
+
+                .#{$sub-division-class-name}-#{$position}-space {
+                    margin-#{$position}: $gutter-width * $sub-division-unit;
+                }
+
+                .#{$class-name}-#{$sub-division-class-name}-#{$position}-space {
+                    margin-#{$position}: $gutter-width * $sub-division-unit;
+                }
+
+                .#{$sub-division-class-name}-#{$position}-padding {
+                    padding-#{$position}: $gutter-width * $sub-division-unit;
+                }
+
+                .#{$class-name}-#{$sub-division-class-name}-#{$position}-padding {
+                    padding-#{$position}: $gutter-width * $sub-division-unit;
+                }
+            }
+        }
+
+        @if $position == null {
+
+            .space {
+                margin: $gutter-width;
+            }
+
+            .#{$class-name}-space {
+                margin: $gutter-width;
+            }
+
+            .padding {
+                padding: $gutter-width;
+            }
+
+            .#{$class-name}-padding {
+                padding: $gutter-width;
+            }
+
+            @each $sub-division in nth($placement,2) {
+                $sub-division-class-name: nth($sub-division,1);
+                $sub-division-unit: nth($sub-division,2);
+
+                .#{$sub-division-class-name}-space {
+                    margin: $gutter-width * $sub-division-unit;
+                }
+
+                .#{$class-name}-#{$sub-division-class-name}-space {
+                    margin: $gutter-width * $sub-division-unit;
+                }
+
+                .#{$sub-division-class-name}-padding {
+                    padding: $gutter-width * $sub-division-unit;
+                }
+
+                .#{$class-name}-#{$sub-division-class-name}-padding {
+                    padding: $gutter-width * $sub-division-unit;
+                }
+            }
+        }
+    }
+}
+
+
+@mixin generate-visibility-classes ($breakpoint) {
+
+    .hide-#{$breakpoint} {
+        display: none !important;
+    }
+    .show-#{$breakpoint} {
+        display: inherit !important;
+    }
+
+    table.show-#{$breakpoint} {
+        display: table;
+    }
+    thead.show-#{$breakpoint} {
+        display: table-header-group;
+    }
+    tbody.show-#{$breakpoint} {
+        display: table-row-group;
+    }
+    tfoot.show-#{$breakpoint} {
+        display: table-footer-group;
+    }
+    tr.show-#{$breakpoint} {
+        display: table-row;
+    }
+    th.show-#{$breakpoint},
+    td.show-#{$breakpoint} {
+        display: table-cell;
+    }
+}
+
+@mixin css-js-bridge-legacy($breakpoints) {
+    
+    &:after {
+        content: js-bridge($grid-breakpoints);
+        display: none;
+    }
+    font-size: $base-font-size;
+}
+
+@mixin css-js-bridge($breakpoints) {
+
+    @each $breakpoint in $breakpoints {
+
+        $media: nth($breakpoint,1);
+        $class-name: nth($breakpoint,2);
+        $minimum-width: nth($breakpoint,3);
+        $maximum-width: nth($breakpoint,4);
+        $gutter-width: nth($breakpoint,5);
+        $base-font-size: nth($breakpoint,6);
+        $no-media-query: nth($breakpoint,7);
+
+        @if $minimum-width and not $maximum-width {
+            @media screen and (min-width: $minimum-width) {
+                html {
+                    &:after {
+                        content: js-bridge($breakpoints);
+                        display: none;
+                    }
+                    font-size: $base-font-size;
+                }
+            }
+        }
+
+        @if $minimum-width and $maximum-width {
+            @media screen and (min-width: $minimum-width) and (max-width: $maximum-width) {
+                html {
+                    &:after {
+                        content: js-bridge($breakpoints);
+                        display: none;
+                    }
+                    font-size: $base-font-size;
+                }
+            }
+        }
+
+        @if not $minimum-width and $maximum-width {
+            @media screen and (max-width: $maximum-width) {
+                html {
+                    &:after {
+                        content: js-bridge($breakpoints);
+                        display: none;
+                    }
+                    font-size: $base-font-size;
+                }
+            }
+        }
+    }
+}
+
+@mixin generate-ie-grid ($breakpoints) {
+
+    .#{$grid-class-name} {
+        width: auto;
+        max-width: $grid-max-width;
+        margin: 0 auto;
+    }
+
+    @each $breakpoint in $breakpoints {
+
+        $media:             nth($breakpoint,1);
+        $class-name:        nth($breakpoint,2);
+        $minimum-width:     nth($breakpoint,3);
+        $maximum-width:     nth($breakpoint,4);
+        $gutter-width:      nth($breakpoint,5);
+        $base-font-size:    nth($breakpoint,6);
+        $no-media-query:    nth($breakpoint,7);
+
+        @if $no-media-query {
+              @include generate-grid-container($grid-class-name, $gutter-width);
+              @include generate-grid-divisions($class-name);
+              @include generate-column-group-container($gutter-width,$class-name);
+              @include generate-grid-helper-classes($class-name,$gutter-width);
+              @include generate-visibility-classes($class-name);
+        }
+    }
+}
+
+@mixin generate-grid ($breakpoints) {
+
+    .#{$grid-class-name} {
+        width: auto;
+        max-width: $grid-max-width;
+        margin: 0 auto;
+    }
+
+    @include generate-grid-all-divisions();
+
+    @each $breakpoint in $breakpoints {
+
+        $media:             nth($breakpoint,1);
+        $class-name:        nth($breakpoint,2);
+        $minimum-width:     nth($breakpoint,3);
+        $maximum-width:     nth($breakpoint,4);
+        $gutter-width:      nth($breakpoint,5);
+        $base-font-size:    nth($breakpoint,6);
+        $no-media-query:    nth($breakpoint,7);
+
+        @if $minimum-width and not $maximum-width {
+            @media #{$media} and (min-width: $minimum-width) {
+                @include generate-grid-container($grid-class-name, $gutter-width);
+                @include generate-grid-divisions($class-name);
+                @include generate-column-group-container($gutter-width,$class-name);
+                @include generate-grid-helper-classes($class-name,$gutter-width);
+                @include generate-visibility-classes($class-name);
+            }
+        }
+
+        @if $minimum-width and $maximum-width {
+            @media #{$media} and (min-width: $minimum-width) and (max-width: $maximum-width) {
+                @include generate-grid-container($grid-class-name, $gutter-width);
+                @include generate-grid-divisions($class-name);
+                @include generate-column-group-container($gutter-width,$class-name);
+                @include generate-grid-helper-classes($class-name,$gutter-width);
+                @include generate-visibility-classes($class-name);
+            }
+        }
+
+        @if not $minimum-width and $maximum-width {
+            @media #{$media} and (max-width: $maximum-width) {
+                @include generate-grid-container($grid-class-name, $gutter-width);
+                @include generate-grid-divisions($class-name);
+                @include generate-column-group-container($gutter-width,$class-name);
+                @include generate-grid-helper-classes($class-name,$gutter-width);
+                @include generate-visibility-classes($class-name);
+            }
+        }
+
+        @if not $minimum-width and not $maximum-width {
+            @media #{$media} {
+                @include generate-grid-container($grid-class-name, $gutter-width);
+                @include generate-grid-divisions($class-name);
+                @include generate-column-group-container($gutter-width,$class-name);
+                @include generate-grid-helper-classes($class-name,$gutter-width);
+                @include generate-visibility-classes($class-name);
+            }
+        }
+    }
+}

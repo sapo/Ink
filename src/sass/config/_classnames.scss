@@ -1,0 +1,102 @@
+/**
+ * Ink class names prefix
+ * Used in all of Inks components root elements
+ */
+$ink-class-prefix             : ink !default;
+
+/**
+ * Grid class names
+ */
+$horizontal : horizontal !default;
+$vertical: vertical !default;
+$half: half !default;
+$quarter: quarter !default;
+$double: double !default;
+$no: no !default;
+
+$grid-class-name                : #{$ink-class-prefix}-grid !default;
+$flex-class-name                : #{$ink-class-prefix}-flex !default;
+$grid-column-group-class-name   : column-group !default;
+$grid-gutters-class-name        : gutters !default;
+$grid-half-gutters-class-name   : #{$half}-#{$grid-gutters-class-name} !default;
+$grid-quarter-gutters-class-name: #{$quarter}-#{$grid-gutters-class-name} !default;
+$grid-double-gutters-class-name : #{$double}-#{$grid-gutters-class-name} !default;
+$grid-no-gutters-class-name     : #{$no}-#{$grid-gutters-class-name} !default;
+
+
+$grid-horizontal-gutters-class-name        : #{$horizontal}-#{$grid-gutters-class-name} !default;
+$grid-half-horizontal-gutters-class-name   : #{$half}-#{$horizontal}-#{$grid-gutters-class-name} !default;
+$grid-quarter-horizontal-gutters-class-name: #{$quarter}-#{$horizontal}-#{$grid-gutters-class-name} !default;
+$grid-double-horizontal-gutters-class-name : #{$double}-#{$horizontal}-#{$grid-gutters-class-name} !default;
+
+
+$grid-vertical-gutters-class-name        : #{$vertical}-#{$grid-gutters-class-name} !default;
+$grid-half-vertical-gutters-class-name   : #{$half}-#{$vertical}-#{$grid-gutters-class-name} !default;
+$grid-quarter-vertical-gutters-class-name: #{$quarter}-#{$vertical}-#{$grid-gutters-class-name} !default;
+$grid-double-vertical-gutters-class-name : #{$double}-#{$vertical}-#{$grid-gutters-class-name} !default;
+
+/**
+ * Alerts class names
+ */
+$alert-class-name: #{$ink-class-prefix}-alert !default;
+
+/**
+ * Badges class names
+ */
+$badge-class-name: #{$ink-class-prefix}-badge !default;
+
+/**
+ * Buttons class names
+ */
+$button-class-name: #{$ink-class-prefix}-button !default;
+
+
+/**
+ * Dismiss class names
+ */
+$dismiss-class-name: #{$ink-class-prefix}-dismiss !default;
+
+/**
+ * Forms class names
+ */
+$form-class-name: #{$ink-class-prefix}-form !default;
+
+/**
+ * Labels class names
+ */
+$label-class-name: #{$ink-class-prefix}-label !default;
+
+/**
+ * Navigation class names
+ */
+$navigation-class-name: #{$ink-class-prefix}-navigation !default;
+
+/**
+ * Dropdown class names
+ */
+$dropdown-class-name: #{$ink-class-prefix}-dropdown !default;
+
+/**
+ * Tables class names
+ */
+$table-class-name: #{$ink-class-prefix}-table !default;
+
+/**
+ * Images class names
+ */
+$image-class-name: #{$ink-class-prefix}-image !default;
+
+/**
+ * JS UI components classe names
+ */
+$carousel-class-name        : #{$ink-class-prefix}-carousel !default;
+$drawer-class-name          : #{$ink-class-prefix}-drawer !default;
+$shade-class-name           : #{$ink-class-prefix}-shade !default;
+$modal-class-name           : #{$ink-class-prefix}-modal !default;
+$progress-bar-class-name    : #{$ink-class-prefix}-progress-bar !default;
+$sortable-list-class-name   : #{$ink-class-prefix}-sortable-list !default;
+$tabs-class-name            : #{$ink-class-prefix}-tabs !default;
+$tagfield-class-name        : #{$ink-class-prefix}-tagfield !default;
+$tag-class-name             : #{$ink-class-prefix}-tag !default;
+$tooltip-class-name         : #{$ink-class-prefix}-tooltip !default;
+$tree-view-classname        : #{$ink-class-prefix}-tree-view !default;

@@ -1,0 +1,59 @@
+.#{$button-class-name} {
+
+    background: $grey-15;
+    color: $button-text-color;
+    border: 1px solid darken($grey-15,10%);
+    @include border-radius($button-border-radius);
+    font-weight: $button-text-weight;
+
+    &:hover,
+    &:active {
+        text-decoration: none;
+        color: $button-text-color;
+        background: darken($grey-15, 5%);
+        border: 1px solid darken($grey-15,15%);
+        @include box-shadow(rgba(0,0,0,0.2) 0 1px 1px);
+    }
+
+    &:focus {
+        outline: none;
+        background: darken($grey-15, 5%);
+        @include box-shadow(rgba(0,0,0,0.2) 0 1px 1px inset);
+    }
+
+    &[disabled]{
+        background: lighten($grey-15,5%);
+        border: 1px solid lighten($grey-15,5%);
+        color: $grey-40;
+        &:hover { @include box-shadow(none); }
+    }
+    
+    &.blue      { @include ink-button($blue, $white); }
+    &.green     { @include ink-button($green, $white); }
+    &.orange    { @include ink-button($orange, $white); }
+    &.red       { @include ink-button($red, $white); }
+    &.black     { @include ink-button($grey-90, $white); }
+    &.white     { @include ink-button($white, $text-color); }
+  
+}
+
+.button-group {
+
+    & > .#{$button-class-name}  {
+
+        &[disabled]{
+            background: lighten($grey-15,5%);
+            border: 1px solid transparentize($grey-15,.4);
+            &:hover {
+                @include box-shadow(none);
+            }
+        }
+
+        &.blue      { @include button-group($blue);}
+        &.green     { @include button-group($green);}
+        &.orange    { @include button-group($orange);}
+        &.red       { @include button-group($red);}
+        &.black     { @include button-group($grey-90);}
+        &.white     { @include button-group($white);}
+    }
+}

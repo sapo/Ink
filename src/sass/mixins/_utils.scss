@@ -1,0 +1,54 @@
+// show hidden element
+.show-all {
+    display: inherit;
+}
+
+// hide visible element
+.hide-all {
+    display: none !important; 
+}
+
+// Removes margin
+.no-margin {
+    margin: 0 !important;
+}
+// Removes TOP margin
+.no-margin-top {
+    margin-top: 0 !important;
+}
+// Removes BOTTOM margin
+.no-margin-bottom {
+    margin-bottom: 0 !important;
+}
+
+// Removes padding
+.no-padding {
+    padding: 0 !important;
+}
+
+.push-left {
+    float: left;        
+}
+.push-center {
+    float: none !important;
+    margin-left: auto;
+    margin-right: auto;
+}
+.push-right {
+    float: right;
+    @include experimental(justify-content, flex-end, -moz, -webkit, not -o, not -ms, not -khtml, official);
+}
+.align-left {
+    text-align: left;
+}
+.align-center {
+    text-align: center;
+}
+.align-right {
+    text-align: right;
+}
+
+.clearfix {
+    @include pie-clearfix;
+    @include clearfix;
+}

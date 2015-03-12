@@ -1,0 +1,92 @@
+body {
+
+    $speed: 300ms;
+    $width: 220px;
+    $easing: cubic-bezier(0.860, 0.000, 0.070, 1.000);
+
+    &.#{$drawer-class-name} {
+
+        max-width: 100%;
+
+        .left-drawer,
+        .right-drawer,
+        .content-drawer {
+          @include transition-property(transform);
+          @include transition-duration($speed);
+          @include transition-timing-function($easing);
+        }
+
+        .left-drawer {
+            left: ($width * -1);
+        }
+
+        .right-drawer {
+            right: ($width * -1);
+        }
+
+        .content-drawer {
+            width: 100%;
+        }
+
+        .left-drawer,
+        .right-drawer {
+          position: absolute;
+          top: 0;
+          z-index: 0;
+          display: none;
+          overflow-x: hidden;
+          overflow-y: auto;
+          width: $width;
+          height: 100%;
+          -webkit-overflow-scrolling: touch;
+
+          &.show {
+            display: block;
+            position: fixed;
+          }
+
+        }
+
+        &.push {
+
+          overflow: hidden;
+          width: 100%;
+          height: 100%;
+
+          .content-drawer {
+            overflow: hidden;
+          }
+
+          &.left {
+            .left-drawer, .content-drawer {
+              @include translate($width,0);
+            }
+          }
+
+          &.right {
+            .right-drawer, .content-drawer {
+              @include translate(($width * -1),0);
+            }
+          }
+
+        }
+
+        &.over {
+          overflow: hidden;
+          -webkit-user-drag: none;
+
+          &.left {
+            .left-drawer {
+              @include translate($width,0);
+            }
+          }
+
+          &.right {
+            .right-drawer {
+              @include translate(($width * -1),0);
+            }
+          }
+
+        }
+    }
+}

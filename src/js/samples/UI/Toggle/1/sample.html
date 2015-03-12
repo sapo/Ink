@@ -1,0 +1,204 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <title>InkJS - Toggle samples</title>
+
+        <link rel="stylesheet" href="../../../../../../dist/css/ink.css" />
+
+        <script type="text/javascript" src="../../../../Ink/1/lib.js"></script>
+        <script>
+            Ink.setPath('Ink', '../../../../Ink/');
+        </script>
+        <script type="text/javascript" src="../../../../../../dist/js/prettify.js"></script>
+        <style>
+            pre.prettyprint{
+                font-size: 0.75em;
+            }
+        </style>
+    </head>
+
+    <body onload="prettyPrint()">
+        <nav class="ink-navigation ink-container">
+            <ul class="menu horizontal black flat">
+                <li><a href="#">Item</a></li>
+                <li><a href="#">Item</a></li>
+                <li><a href="#">Item</a></li>
+                <li><a href="#">Item</a></li>
+            </ul>
+        </nav>
+        <div class="ink-container ink-grid">
+            <h1>Toggle Samples - InkJS</h1>
+
+            <section>
+                <p>To use the Toggle, apply the ink-toggle class to the trigger element, and add a data-target attribute to it, to choose which element(s) get toggled. When you click outside, the toggled elements are hidden again.</p>
+
+                <p>Since it is integrated with the Ink classes, it just toggles on and off the hide-all and show-all classes.</p>
+            </section>
+            
+            <section>
+                <header>
+                    <h2>Super-simple example</h2>
+                </header>
+                <button class="ink-button" id="alert-toggler" data-target="#alert-toggle-target">
+                    See more
+                </button>
+
+                <div id="alert-toggle-target" class="ink-alert block hide-all" role="alert">
+                    <h4>This is a details section</h4>
+                    <p>Which you don't care about.</p>
+                </div>
+
+                <script type="text/javascript">
+                    Ink.requireModules(['Ink.UI.Toggle_1'], function (Toggle) {
+                        new Toggle('#alert-toggler');
+                    });
+                </script>
+
+                <hr>
+                
+                <p>
+                    Example code:
+                    <pre class="prettyprint linenums">
+&lt;button class="ink-button" id="alert-toggler" data-target="#alert-toggle-target"&gt;
+    See more
+&lt;/button&gt;
+
+&lt;div id="alert-toggle-target" class="ink-alert block hide-all" role="alert"&gt;
+    &lt;h4&gt;This is a details section&lt;/h4&gt;
+    &lt;p&gt;Which you don't care about.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;script type="text/javascript"&gt;
+    Ink.requireModules(['Ink.UI.Toggle_1'], function (Toggle) {
+        new Toggle('#alert-toggler');
+    });
+&lt;/script&gt;
+                    </pre>
+                </p>
+            </section>
+            
+            <section>
+                <header>
+                    <h2>Usage with the dropdown menu</h2>
+                </header>
+                <p>
+                    <span class="ink-label warning">Warning</span>
+                    Don't do this. You should use Ink.UI.Dropdown instead.
+                </p>
+                <div class="ink-dropdown">
+                    <button class="ink-button ink-toggle" data-target="#dropdown">
+                        Dropdown <span class="fa fa-caret-down"></span>
+                    </button>
+                    <ul id="dropdown" class="dropdown-menu hide-all">
+                        <li class="heading">Heading</li>
+                        <li class="separator-above"><a href="#">Option</a></li>
+                        <li><a href="#">Option</a></li>
+                        <li class="separator-above disabled"><a href="#">Disabled option</a></li>
+                        <li class="submenu">
+                            <a href="#" class="ink-toggle" data-target="#submenu1">A longer option name</a>
+                            <ul id="submenu1" class="dropdown-menu">
+                                <li class="submenu">
+                                    <a href="#" class="ink-toggle" data-target="#ultrasubmenu">Sub option</a>
+                                    <ul id="ultrasubmenu" class="dropdown-menu">
+                                        <li><a href="#">Sub option</a></li>
+                                        <li><a href="#" data-target="ultrasubmenu">Sub option</a></li>
+                                        <li><a href="#">Sub option</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Sub option</a></li>
+                                <li><a href="#">Sub option</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Option</a></li>
+                    </ul>
+                </div>
+                <script type="text/javascript">
+                    Ink.requireModules(['Ink.Util.Array_1','Ink.UI.Toggle_1'], function(InkArray, Toggle) {
+                        // You don't need this if you use autoload.js
+                        InkArray.each(Ink.ss('.ink-toggle'),function(item){
+                            new Toggle(item);
+                        });
+                    });
+                </script>
+
+                <p>
+                    <pre class="prettyprint linenums">
+&lt;div class="ink-dropdown"&gt;
+    &lt;button class="ink-button ink-toggle" data-target="#dropdown"&gt;
+        Dropdown &lt;span class="fa fa-caret-down"&gt;&lt;/span&gt;
+    &lt;/button&gt;
+    &lt;ul id="dropdown" class="dropdown-menu hide-all"&gt;
+        &lt;li class="heading"&gt;Heading&lt;/li&gt;
+        &lt;li class="separator-above"&gt;&lt;a href="#"&gt;Option&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Option&lt;/a&gt;&lt;/li&gt;
+        &lt;li class="separator-above disabled"&gt;&lt;a href="#"&gt;Disabled option&lt;/a&gt;&lt;/li&gt;
+        &lt;li class="submenu"&gt;
+            &lt;a href="#" class="ink-toggle" data-target="#submenu1"&gt;A longer option name&lt;/a&gt;
+            &lt;ul id="submenu1" class="dropdown-menu"&gt;
+                &lt;li class="submenu"&gt;
+                    &lt;a href="#" class="ink-toggle" data-target="#ultrasubmenu"&gt;Sub option&lt;/a&gt;
+                    &lt;ul id="ultrasubmenu" class="dropdown-menu"&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Sub option&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#" data-target="ultrasubmenu"&gt;Sub option&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Sub option&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/li&gt;
+                &lt;li&gt;&lt;a href="#"&gt;Sub option&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#"&gt;Sub option&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Option&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+&lt;script type="text/javascript"&gt;
+    Ink.requireModules(['Ink.Util.Array_1','Ink.UI.Toggle_1'], function(InkArray, Toggle) {
+        // You don't need this if you use autoload.js
+        InkArray.each(Ink.ss('.ink-toggle'),function(item){
+            new Toggle(item);
+        });
+    });
+&lt;/script&gt;
+                    </pre>
+                </p>
+            </section>
+
+            <section>
+                <h2>Toggling between two classes</h2>
+
+                <p>You can toggle an element between two classes. Just set data-class-name-on and data-class-name-off:</p>
+
+                <p>
+                    Click
+                    <button id="2cls" class="ink-button" data-target=".ink-label.green" data-class-name-on="green" data-class-name-off="red" data-close-on-click="false">here</button>
+                    to toggle <span class="ink-label green">this label's color</span>
+                </p>
+
+                <script>
+                    Ink.requireModules(['Ink.UI.Toggle_1'], function (Toggle) {
+                        // You don't need this if you use autoload.js
+                        new Toggle('#2cls');
+                    });
+                </script>
+
+                <p>
+                    <pre class="prettyprint linenums">
+&lt;p&gt;
+    Click
+    &lt;button id="2cls" data-target=".ink-label.green" data-class-name-on="green" data-class-name-off="red"&gt;here&lt;/button&gt;
+    to toggle &lt;span class="ink-label green"&gt;this label's color&lt;/span&gt;
+&lt;/p&gt;
+
+&lt;script&gt;
+    Ink.requireModules(['Ink.UI.Toggle_1'], function (Toggle) {
+        // You don't need this if you use autoload.js
+        new Toggle('#2cls');
+    });
+&lt;/script&gt;
+                    </pre>
+                </p>
+            </section>
+        </div>
+    </body>
+</html>

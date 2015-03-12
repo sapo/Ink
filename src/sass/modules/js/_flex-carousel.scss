@@ -1,0 +1,37 @@
+.#{$carousel-class-name} {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    display: block;
+
+    // This is what gets pulled left and right (or up and down)
+    .stage {
+        left: 0;
+        height: auto !important; // To be removed
+        margin-top: 0;
+        margin-bottom: 0;
+        padding-left: 0;
+        list-style-type: none;
+        white-space: nowrap;
+        position: relative;
+        overflow: visible; // This is needed
+        @include transition(compact(all 0.5s ease));
+
+        &.#{$grid-column-group-class-name} {
+            @include experimental-value(display, block, -moz, -webkit, not -o, not -ms, not -khtml, official);
+            @include experimental(flex-flow, none, -moz, -webkit, not -o, not -ms, not -khtml, official);
+        }
+
+        // Each slide
+        .slide {
+            position: relative;
+            display: inline-block;
+            vertical-align: top;
+            white-space: normal;
+            margin: 0;
+            float: none;
+            zoom: 1;
+            *display: inline; 
+        }
+    }
+}

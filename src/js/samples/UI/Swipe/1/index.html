@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>My InK Page</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="320">
+    
+        <!-- Favicon.ico placeholder -->
+        <link rel="shortcut icon" href="../img/ink-favicon.ico">
+        
+        <!-- Apple icon placeholder -->
+        <link rel="apple-touch-icon-precomposed" href="../img/touch-icon.57.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../img/touch-icon.72.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../img/touch-icon.114.png">
+
+        <!-- Apple splash screen placeholder -->
+        <link rel="apple-touch-startup-image" href="../img/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
+        <link rel="apple-touch-startup-image" href="../img/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+        <link rel="apple-touch-startup-image" href="../img/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+
+        <!-- Stylesheets -->
+        <link rel="stylesheet" href="../../../../../../dist/css/ink.css">
+        
+        <!--[if IE 7 ]>
+            <link rel="stylesheet" href="../css/ink-ie7.css" type="text/css" media="screen" title="no title" charset="utf-8">
+        <![endif]-->
+
+        <!-- Javascripts -->
+        <script src="../../../../Ink/1/lib.js"></script>
+        <script>
+            Ink.setPath('Ink', '../../../../Ink/');
+        </script>
+        <script type="text/javascript" src="../../../../../../dist/js/holder.js"></script>
+        <script type="text/javascript" src="../../../../../../dist/js/autoload.js"></script>
+        <script type="text/javascript" src="../../../../../../dist/js/html5shiv.js"></script>
+        
+        
+    </head>
+    <body>
+
+        <style>
+            .swipe {
+                border: 1px solid gray;
+                height: 100px;
+                line-height: 100px;
+                text-align: center;
+            }
+        </style>
+
+        <div class="ink-grid">
+            <h1>Ink.UI.Swipe sample</h1>
+            <p>You will need a touch-enabled device.</p>
+
+            <hr>
+
+            <p>Swipe vertically:</p>
+            <div class="swipe swipe-vertical push-center vspace all-33 medium-50 small-100 tiny-100"></div>
+
+            <p>Swipe horizontally:</p>
+            <div class="swipe swipe-horizontal push-center vspace all-33 medium-50 small-100 tiny-100"></div>
+
+            <p>Drag:</p>
+            <div class="swipe swipe-drag push-center vspace all-33 medium-50 small-100 tiny-100"></div>
+        </div>
+
+        <script>
+            Ink.requireModules(['Ink.UI.Swipe_1', 'Ink.Dom.Element_1'], function (Swipe, InkElement) {
+                new Swipe('.swipe-vertical', {
+                    axis: 'y',
+                    minDist: 20,
+                    onEnd: function (o) {
+                        InkElement.setTextContent(o.element, 'Swiped vertically!');
+                        setTimeout(
+                            Ink.bindMethod(InkElement, 'setTextContent', o.element, ''), 500);
+                    }
+                });
+                new Swipe('.swipe-horizontal', {
+                    axis: 'x',
+                    minDist: 50,
+                    onEnd: function (o) {
+                        InkElement.setTextContent(o.element, 'Swiped horizontally!');
+                        setTimeout(
+                            Ink.bindMethod(InkElement, 'setTextContent', o.element, ''), 500);
+                    }
+                })
+
+                new Swipe('.swipe-drag', {
+                    onStart: function (o) {
+                        o.element.style.position = 'absolute'
+                    },
+                    onMove: function (o) {
+                        var style = o.element.style
+                        style.left = o.position[0] + 'px'
+                        style.top = o.position[1] + 'px'
+                    },
+                    onEnd: function (o) {
+                        o.element.style.position = 'static'
+                    }
+                })
+            });
+        </script>
+    </body>
+</html>

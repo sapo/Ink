@@ -1,0 +1,117 @@
+.#{$shade-class-name} {
+    /* oldIE does not support rgba() and opacity is not an option here */
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgOAMAAM8AzbfAeUUAAAAASUVORK5CYII=);
+    background: rgba(0, 0, 0, 0.8);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin-top: 0;
+    position: fixed;
+    z-index: 100;
+    display: none;
+
+    @include opacity(0);
+
+    &.fade {
+        @include transition (opacity 300ms);
+    }
+
+    &.visible {
+        @include opacity(1);
+    }
+}
+
+.#{$modal-class-name} {
+    top: 50%;
+    left: 50%;
+    width: 90%;
+    height: 90%;
+    margin-top: -45vh;
+    margin-left: -45vw;
+    background: $white;
+    z-index: $layer-100;
+    position:absolute;
+    overflow: hidden;
+    @include opacity(1);
+    @include box-shadow(rgba(0,0,0,0.8) 0 0 15px 0);
+    @include border-radius($border-radius);
+    @include pie-clearfix;
+
+    > .modal-body {
+        padding: 1em;
+        overflow-y: auto;   
+        overflow-x: hidden;
+        height: auto;
+
+        .#{$grid-class-name} {
+            padding-left: 0;
+            padding-right: 0;
+            width: 100%;
+            min-width: 100%;
+        }
+    }
+
+    > .modal-header, > header {
+        border-bottom: 1px $grey-10 solid;
+        overflow: hidden;
+        @include box-shadow(rgba(175, 175, 175, 0.2) 0 1px 2px 0);
+
+        > .modal-close {
+
+            padding-top: 2px;
+            text-align: center;
+            color: $white;
+            width: 26px;
+            height: 26px;
+            line-height: 1.2em;
+            border: 0;
+            background: $grey-25;
+            font-size: 0;
+            
+            @include border-radius(50%);
+            @include text-shadow(rgba(0,0,0,0.6) 0 -1px 0);
+            @include opacity(.6);
+            // @include transition (compact(opacity 125ms ease-in-out));
+
+            &:after {
+                content: "\f00d";
+                font-family: FontAwesome;
+                font-size: medium;
+                line-height: 22px;
+            };
+            
+
+            &:hover {
+                @include opacity(1);
+            }
+
+            float: right;
+        }
+    }
+
+    > .modal-footer, > footer {
+        background: $grey-10;
+        margin-bottom: 0;
+        zoom: 1;  // IE7 needs layout...
+        @include box-shadow(rgba(175, 175, 175, 0.2) 0 -1px 2px 0);
+    }
+
+    > .modal-header, > header, > .modal-footer, > footer {
+        padding: .8em 1em .65em 1em;
+        &:before, &:after {
+            content: "."; 
+            display: block;
+            height: 0; 
+            clear: both; 
+            visibility: hidden; 
+        }
+    }        
+
+}
+
+.#{$modal-class-name}-open {
+    overflow: hidden; 
+}

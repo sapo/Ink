@@ -1,0 +1,129 @@
+.#{$navigation-class-name} {
+
+    ul {
+
+        *height: 100%;
+
+        &.menu {
+
+            @include pie-clearfix;
+
+            li {
+                *height: 100%;
+
+                &:hover {
+                    > ul.submenu {
+                        display: block;
+                    }
+                }
+
+                ul.submenu {
+                    display: none;
+                    position: absolute;
+                    z-index: $layer-10;
+                    li {
+                        //overflow: hidden;
+                        a {
+                            padding: $navigation-padding;
+                            display: block;
+                            float: none;
+                        }
+                    }
+                }
+            }
+
+            // horizontal menus
+            &.horizontal {
+
+
+                &.scrollable {
+
+                    font-size: 0;
+                    white-space: nowrap;
+                    overflow-x: scroll;
+                    overflow-y: hidden;
+                    -webkit-overflow-scrolling: touch;
+                    -webkit-transition: all 0.5s ease;
+                    -moz-transition: all 0.5s ease;
+                    -o-transition: all 0.5s ease;
+                    transition: all 0.5s ease;
+
+
+                    li {
+                        display: inline-block; float: none;
+                        a {
+                            border-right: rgba(10,10,10,0.3) 1px solid;
+                            font-size: initial;
+                        }
+                        &:last-child a {
+                            border-right: none;
+                        }
+                    }
+                }
+
+                li {
+                    float: left;
+                    position: relative;
+
+                    a {
+                        padding: $navigation-padding;
+                        display: block;
+                        line-height: $navigation-line-height;
+                    }
+
+                    .control {
+                        //line-height: $navigation-line-height * 1.45;
+                        margin-top: .3em;
+                    }
+
+                    ul.submenu {
+                        min-width: 100%;
+                        //top: $navigation-line-height + $navigation-v-padding * 2;
+                        left: 0;
+                        z-index: $layer-50;
+                        top: auto;
+                        left: auto;
+                        li {
+                            float: none;
+
+                            .flyout {
+                                position: absolute;
+                                //min-width: 8em;
+                                top: 0;
+                                @include border-radius($navigation-border-radius);
+
+                                &.left  { right: 100%; }
+                                &.right { left: 100%; }
+                            }
+                        }
+                    }
+                }
+            }
+            // vertical menus
+            &.vertical {
+                li {
+                    line-height: $navigation-line-height;
+                    position: relative;
+                    a {
+                        padding: $navigation-padding;
+                        display: block;
+                    }
+                    ul.submenu {
+                        position: relative;
+                        top: auto;
+                        left: auto;
+                        &.flyout {
+                            position: absolute;
+                            min-width: 8em;
+                            top: 0;
+                            @include border-radius($navigation-border-radius);
+
+                            &.left  { right: 100%; }
+                            &.right { left: 100%; }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

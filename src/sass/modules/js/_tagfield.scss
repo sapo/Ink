@@ -1,0 +1,48 @@
+.#{$tagfield-class-name} {
+
+	input[type="text"] {
+	    // Input for writing the next tag's content
+		&.new-tag-input {
+			background-color: #fff;
+			border: 1px solid #ccc;
+			line-height: 1em;
+			margin: 0;
+			padding: 5px;
+			@include border-radius(2px);
+
+			&:focus {
+				@include box-shadow(0px, 0px, 0px, 3px, #eaeaea);
+				border: 1px solid #c3c3c3;
+			}
+		}
+	}
+
+	span {
+
+		&.#{$tag-class-name} { 
+			background-color:#1b1b1b; 
+			color: #eaeaea;
+			text-shadow:none;
+			font-size: .9em;
+			font-weight: normal;
+			border:1px solid #000;
+			padding: 4px 6px;
+
+			i {
+
+				&.icon-remove {
+					color: #ccc;
+					font-size: .9em;
+					font-weight: normal;
+					margin-left: 4px;
+
+					&:hover {
+						cursor:pointer;
+						color: red;
+					}
+				}
+			}
+		}
+	}
+}
+

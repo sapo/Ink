@@ -1,0 +1,12 @@
+body {
+    font-family: sans-serif;
+}
+
+#ctn {
+    background-color: #000;
+    position: relative;
+}
+
+img {
+    position: absolute;
+}

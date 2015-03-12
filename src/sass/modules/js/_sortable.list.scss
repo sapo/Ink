@@ -1,0 +1,42 @@
+.dragging {
+    cursor: move;
+    -moz-user-select: none; 
+    -khtml-user-select: none; 
+    -webkit-user-select: none; 
+    -o-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -ms-user-drag: none;
+    -moz-user-drag: none; 
+    -khtml-user-drag: none; 
+    -webkit-user-drag: none; 
+    -o-user-drag: none;
+    user-drag: none;
+}
+
+.drag {
+    @include box-shadow (0, 0px, 10px, 0, rgba( 0, 0, 0, 0.3));
+}
+
+.#{$sortable-list-class-name} {
+    
+    li {
+        margin:0;
+        border-bottom:1px solid #ccc;
+        line-height: $sortable-list-height;
+        @extend .dragging;
+        
+        &:hover,
+        &.placeholder {
+            background: rgb(204,204,204);
+            background: rgba(204,204,204,0.2);
+        }
+        &.placeholder {
+           @extend .drag;
+        }
+        
+        .#{$label-class-name} {
+            margin:0 .8em;
+        }
+    }
+}

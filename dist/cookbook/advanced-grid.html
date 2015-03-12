@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Advanced Grid</title>
+        <meta name="description" content="">
+        <meta name="author" content="ink, cookbook, recipes">
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="320">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+        <!-- Place favicon.ico and apple-touch-icon(s) here  -->
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <link rel="apple-touch-icon" href="../img/touch-icon-iphone.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="../img/touch-icon-ipad.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="../img/touch-icon-iphone-retina.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="../img/touch-icon-ipad-retina.png">
+        <link rel="apple-touch-startup-image" href="../img/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
+        <link rel="apple-touch-startup-image" href="../img/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+        <link rel="apple-touch-startup-image" href="../img/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+
+        <!-- load Ink's CSS -->
+        <link rel="stylesheet" type="text/css" href="../css/ink-flex.min.css">
+        <link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css">
+
+        <!-- load Ink's CSS for IE8 -->
+        <!--[if lt IE 9 ]>
+            <link rel="stylesheet" href="../css/ink-ie.min.css" type="text/css" media="screen" title="no title" charset="utf-8">
+        <![endif]-->
+
+        <!-- test browser flexbox support and load legacy grid if unsupported -->
+        <script type="text/javascript" src="../js/modernizr.js"></script>
+        <script type="text/javascript">
+            Modernizr.load({
+              test: Modernizr.flexbox,
+              nope : '../css/ink-legacy.min.css'
+            });
+        </script>
+
+        <!-- load Ink's javascript files -->
+        <script type="text/javascript" src="../js/holder.js"></script>
+        <script type="text/javascript" src="../js/ink-all.min.js"></script>
+        <script type="text/javascript" src="../js/autoload.js"></script>
+
+        <style type="text/css">
+
+            body {
+                background: #ededed;
+            }
+
+            header {
+                border-bottom: 1px solid #cecece;
+            }
+
+            footer {
+                background: #ccc;
+            }
+
+        </style>
+
+    </head>
+
+    <body>
+
+        <div class="ink-grid">
+
+            <!--[if lte IE 9 ]>
+            <div class="ink-alert basic" role="alert">
+                <button class="ink-dismiss">&times;</button>
+                <p>
+                    <strong>You are using an outdated Internet Explorer version.</strong>
+                    Please <a href="http://browsehappy.com/">upgrade to a modern browser</a> to improve your web experience.
+                </p>
+            </div>
+            <![endif]-->
+
+            <!-- Add your site or application content here -->
+
+            <header class="clearfix vertical-padding">
+
+                <div class="logo xlarge-push-left large-push-left">
+                    <a href="#">
+                        <img src="holder.js/150x90/auto/ink" alt="">
+                    </a>
+                </div>
+
+                <nav class="ink-navigation xlarge-push-right large-push-right half-top-space">
+                    <ul class="menu horizontal black">
+                        <li class="active"><a href="#">item</a></li>
+                        <li><a href="#">item</a></li>
+                        <li><a href="#">item</a></li>
+                    </ul>
+                </nav>
+
+            </header>
+
+            <div class="column-group vertical-space">
+                <div class="all-100">
+                    <img src="holder.js/1650x300/ink/auto">
+                </div>
+            </div>
+
+            <h1>heading</h1>
+            <div class="column-group gutters">
+                <div class="xlarge-50 large-50 all-100">
+                    <img src="holder.js/960x640/ink/auto">
+                </div>
+                <div class="xlarge-25 large-25 all-50">
+                    <img src="holder.js/600x480/ink/auto">
+                    <p class="quarter-top-space">"Sit down," Edwin counselled soothingly. "Granser's all right. He's just  gettin' to the Scarlet Death, ain't you, Granser? He's just goin' to  tell us about it right now. Sit down, Hare-Lip. Go ahead, Granser."</p>
+                </div>
+                <div class="xlarge-25 large-25 all-50">
+                    <img src="holder.js/600x480/ink/auto">
+                    <p class="quarter-top-space">"Sit down," Edwin counselled soothingly. "Granser's all right. He's just  gettin' to the Scarlet Death, ain't you, Granser? He's just goin' to  tell us about it right now. Sit down, Hare-Lip. Go ahead, Granser."</p>
+                </div>
+            </div>
+            <div class="column-group gutters">
+                <div class="xlarge-50 large-50 all-100">
+                    <img src="holder.js/960x640/ink/auto">
+                </div>
+                <div class="xlarge-25 large-25 all-50">
+                    <img src="holder.js/600x480/ink/auto">
+                    <p class="quarter-top-space">"Sit down," Edwin counselled soothingly. "Granser's all right. He's just  gettin' to the Scarlet Death, ain't you, Granser? He's just goin' to  tell us about it right now. Sit down, Hare-Lip. Go ahead, Granser."</p>
+                </div>
+                <div class="xlarge-25 large-25 all-50">
+                    <img src="holder.js/600x480/ink/auto">
+                    <p class="quarter-top-space">"Sit down," Edwin counselled soothingly. "Granser's all right. He's just  gettin' to the Scarlet Death, ain't you, Granser? He's just goin' to  tell us about it right now. Sit down, Hare-Lip. Go ahead, Granser."</p>
+                </div>
+            </div>
+            <h2>heading</h2>
+            <div class="column-group gutters">
+                <div class="all-33 small-100 tiny-100">
+                    <img src="holder.js/600x480/ink/auto">
+                    <p class="quarter-top-space">"Sit down," Edwin counselled soothingly. "Granser's all right. He's just  gettin' to the Scarlet Death, ain't you, Granser? He's just goin' to  tell us about it right now. Sit down, Hare-Lip. Go ahead, Granser."</p>
+                </div>
+                <div class="all-33 small-100 tiny-100">
+                    <img src="holder.js/600x480/ink/auto">
+                    <p class="quarter-top-space">"Sit down," Edwin counselled soothingly. "Granser's all right. He's just  gettin' to the Scarlet Death, ain't you, Granser? He's just goin' to  tell us about it right now. Sit down, Hare-Lip. Go ahead, Granser."</p>
+                </div>
+                <div class="all-33 small-100 tiny-100">
+                    <img src="holder.js/600x480/ink/auto">
+                    <p class="quarter-top-space">"Sit down," Edwin counselled soothingly. "Granser's all right. He's just  gettin' to the Scarlet Death, ain't you, Granser? He's just goin' to  tell us about it right now. Sit down, Hare-Lip. Go ahead, Granser."</p>
+                </div>
+            </div>
+            <div class="column-group gutters">
+                <div class="xlarge-20 large-20 medium-25 small-50 tiny-100">
+                    <img src="holder.js/960x640/ink/auto">
+                </div>
+                <div class="xlarge-20 large-20 medium-25 small-50 tiny-100">
+                    <img src="holder.js/960x640/ink/auto">
+                </div>
+                <div class="xlarge-20 large-20 medium-25 small-50 tiny-100">
+                    <img src="holder.js/960x640/ink/auto">
+                </div>
+                <div class="xlarge-20 large-20 medium-25 small-50 tiny-100">
+                    <img src="holder.js/960x640/ink/auto">
+                </div>
+                <div class="xlarge-20 large-20 hide-small hide-medium tiny-100">
+                    <img src="holder.js/960x640/ink/auto">
+                </div>
+            </div>
+        </div>
+        <footer class="clearfix">
+            <div class="ink-grid">
+                <ul class="unstyled inline half-vertical-space">
+                    <li class="active"><a href="#">Welcome</a></li>
+                    <li><a href="#">Portfolio</a></li>
+                    <li><a href="#">About</a></li>
+                </ul>
+                <p class="note">copyright © photoguy</p>
+            </div>
+        </footer>
+    </body>
+
+</html>

@@ -1,0 +1,12 @@
+// Mixin for the treeview
+.#{$tree-view-classname} {
+    li {
+        list-style-type: none;
+    }
+
+    [data-open] >:before{
+        margin-left: -1.3em;
+        margin-right: .4em;
+        text-decoration: none;
+    }
+}

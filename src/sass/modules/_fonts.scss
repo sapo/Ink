@@ -1,0 +1,63 @@
+$fonts: (
+  (
+    Roboto,
+    roboto,
+    (
+      (thin,100,normal),
+      (thinitalic,100,italic),
+      (light,300,normal),
+      (lightitalic,300,italic),
+      (regular,400,normal),
+      (italic,400,italic),
+      (medium,500,normal),
+      (mediumitalic,500,italic),
+      (bold,700,normal),
+      (bolditalic,700,italic),
+      (black,900,normal),
+      (blackitalic,900,italic)
+    )
+  ),
+  (
+    Roboto_condensed,
+    robotocondensed,
+    (
+      (light,300,normal),
+      (lightitalic,300,italic),
+      (regular,400,normal),
+      (italic,400,italic),
+      (bold,700,normal),
+      (bolditalic,700,italic)
+    )
+  ),
+  (
+    Roboto_slab,
+    robotoslab,
+    (
+      (thin,100,(normal)),
+      (light,300,(normal)),
+      (regular,400,(normal)),
+      (bold,700,(normal))
+    )
+  )
+);
+
+@each $font in $fonts {
+
+  $font-name: nth($font,1);
+  $font-file-prefix: nth($font,2);
+
+  @each $variant in nth($font,3) {
+    $weight-name: nth($variant,1);
+    $weight: nth($variant,2);
+    $style: nth($variant,3);
+
+    @include font-face(
+        #{$font-name},
+        font-files("#{$font-name}/#{$font-file-prefix}-#{$weight-name}-webfont.woff","#{$font-name}/#{$font-file-prefix}-#{$weight-name}-webfont.ttf"),
+        "#{$font-name}/#{$font-file-prefix}-#{$weight-name}-webfont.eot",
+        #{$weight},
+        #{$style}
+    );
+
+  }
+}

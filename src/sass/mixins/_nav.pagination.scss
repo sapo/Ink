@@ -1,0 +1,218 @@
+// Pagination navigation
+
+@mixin nav-pagination($pagination-type:null, $nav-color: null) {
+
+    // PAGINATION:DEFAULT
+    @if $pagination-type == null and $nav-color == null {
+
+        @include border-radius($navigation-border-radius);
+
+        li {
+
+            font-weight: $navigation-font-weight;
+            
+            &.active a { text-decoration: underline; }
+            
+            &.disabled {
+                a {
+                    color: $grey-30;
+                    @include text-shadow(lighten($grey-40,40%) 0 1px 0);
+
+                    &:hover {
+                        cursor: default;
+                        background: none;
+                        text-decoration: none;
+                    }
+                }
+            }
+
+            &:first-child,
+            &:first-child a {
+                @include border-radius($navigation-border-radius 0 0 $navigation-border-radius);
+            }
+
+            &:last-child, 
+            &:last-child a {
+                @include border-radius(0 $navigation-border-radius $navigation-border-radius 0);
+            }
+        }
+    }
+
+    @if $pagination-type == null and $nav-color != null {
+        
+        li {
+
+            background: desaturate($nav-color,10%);
+
+            &.active a { background: darken($nav-color,10%); }
+
+            &.disabled {
+                a {
+                    color: darken($nav-color,20%);
+                    @include text-shadow(lighten($nav-color,8%) 0 1px 0);
+                    &:hover { background: none; }
+                }
+            }
+
+            a {
+                color: $white;
+                text-decoration: none;
+
+                &:hover {
+                    background: darken($nav-color,10%);
+                }
+            }
+        }
+    }
+
+    @if $pagination-type == null and $nav-color != null and lightness($nav-color) <= 10% {
+        
+        li {
+
+            background: desaturate($nav-color,10%);
+
+            &.active a { background: lighten($nav-color,10%); }
+
+            &.disabled {
+                a {
+                    color: lighten($nav-color,30%);
+                    @include text-shadow(darken($nav-color,20%) 0 -1px 0);
+                    &:hover { background: none; }
+                }
+            }
+
+            a {
+                color: $white;
+                text-decoration: none;
+
+                &:hover {
+                    background: lighten($nav-color,6%);
+                }
+            }
+        }
+    }
+
+    @if $pagination-type == null and $nav-color != null and lightness($nav-color) > 32% and lightness($nav-color) <= 80% {
+        
+        li {
+
+            background: desaturate($nav-color,10%);
+
+            &.active a { background: darken($nav-color,10%); }
+
+            &.disabled {
+                a {
+                    color: darken($nav-color,20%);
+                    @include text-shadow(lighten($nav-color,8%) 0 1px 0);
+                    &:hover { background: none; }
+                }
+            }
+
+            a {
+                color: $white;
+                text-decoration: none;
+
+                &:hover {
+                    background: darken($nav-color,5%);
+                }
+            }
+        }
+    }
+
+    @if $pagination-type == null and $nav-color != null and lightness($nav-color) > 80% {
+        
+        li {
+
+            background: desaturate($nav-color,10%);
+
+            &.active a { background: darken($nav-color,10%); }
+
+            &.disabled {
+                a {
+                    color: darken($nav-color,20%);
+                    @include text-shadow(lighten($nav-color,8%) 0 1px 0);
+                    &:hover { background: none; }
+                }
+            }
+
+            a {
+                color: $text-color;
+                text-decoration: none;
+
+                &:hover {
+                    background: darken($nav-color,5%);
+                }
+            }
+        }
+    }
+
+    // PAGINATION:CHEVRON
+    @if $pagination-type == chevron and $nav-color == null {
+
+        li {
+
+            &.next,
+            &.previous { 
+
+                a {
+                    color: $white;
+                    @include opacity(.6);
+                    
+                    &:hover,
+                    &:focus,
+                    &.active {
+                        @include opacity(.7);
+                        text-decoration: none;
+                        background: none;
+                    }
+                }
+            }
+
+            &.disabled {
+                a {
+                    color: $white;
+                    @include opacity(.4);
+                    @include text-shadow(none);
+                    &:hover,
+                    &:focus {
+                        color: $white;
+                        @include opacity(.4);
+                    }
+                }
+            }
+        }
+    }
+
+    @if $pagination-type == chevron and $nav-color != null {
+        
+        li {
+            &.next ,
+            &.previous,
+            &.disabled {
+                a { color: $nav-color; }
+            }
+        }
+    }
+
+    // PAGINATION:DOTTED
+    @if $pagination-type == dotted and $nav-color == null {
+
+        li {
+            background: none;
+    
+            a { 
+                background: $grey-40; 
+                @include opacity(.5);
+            }
+            
+            &:hover,
+            &.active {
+                a { @include opacity(1); }
+            }
+        }
+    }
+
+    @if $pagination-type == dotted and $nav-color != null {
+        li a { background: $nav-color; }
+    }
+}

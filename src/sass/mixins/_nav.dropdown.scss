@@ -1,0 +1,16 @@
+// Dropdown menu
+
+@mixin nav-dropdown($nav-color) {
+
+    ul.dropdown-menu {
+
+        li {
+            &.active {
+                a {
+                    background: $nav-color;
+                    color: $white;
+                }
+            }
+        }
+    }
+}

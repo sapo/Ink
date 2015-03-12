@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+  - "0.10"
+branches:
+  only:
+    - master
+    - staging
+    - develop
+    - gh-pages
+before_script:
+  - gem install compass
+  - npm install -g grunt-cli
+  - npm install -g bower
+script: "grunt --verbose"

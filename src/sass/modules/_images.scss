@@ -1,0 +1,53 @@
+figure {
+
+    &.#{$image-class-name} {
+
+        position: relative;
+        border: 1px solid $text-color;
+
+        > img {
+            //margin-bottom: -6px;
+            width: 100%;
+        }
+        
+        > figcaption {
+            padding: 1em;                
+            background: $caption-background;
+            line-height: 1.3;
+
+            &.over-top, &.over-bottom {
+                position: absolute;
+                width: 100%;
+                left: 0;
+                border: none;
+
+                &.dark {
+                    color: $dark-caption-text-color;
+                    background: $dark-caption-over-color;
+                }
+            }
+
+            &.over-top {                    
+                top: 0;
+                background: $caption-over-color;
+            }
+
+            &.over-bottom {
+                bottom: 0;
+                background: $caption-over-color;
+            }
+
+            &.dark {
+                color: $dark-caption-text-color;
+                background: $dark-caption-background-color;
+            }
+        }
+    }
+}
+
+img {
+    border: 0;
+    width: auto;
+    max-width: 100%;
+    vertical-align: top;
+}

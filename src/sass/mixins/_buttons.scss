@@ -1,0 +1,40 @@
+// Buttons
+
+@mixin ink-button($button-background-color, $button-text-color) {
+
+    color: $button-text-color; 
+    background: $button-background-color;
+    border: 1px solid shade($button-background-color, 15%);
+
+    &:hover,
+    &:active {
+        background: darken($button-background-color, 5%);
+        border: 1px solid darken(shade($button-background-color, 15%),5%);
+        color: $button-text-color;  // force text color for anchor tags
+        text-decoration: none;      // remove underline on anchor tags
+    }
+
+    &:focus {
+        background: darken($button-background-color, 5%);
+    }
+
+    &[disabled]{
+        background: transparentize($button-background-color,0.4);
+        border: 1px solid transparentize($button-background-color,1);
+        color: darken($button-background-color, 10%);
+        &:hover { @include box-shadow(none); }
+    }
+}
+
+@mixin button-group($button-background-color) {
+
+    &:first-child {
+        border-left: shade($button-background-color, 15%);
+    }
+
+    &[disabled]{
+        background: transparentize($button-background-color,0.4);
+        border: 1px solid transparentize($button-background-color,.7);
+    }
+
+}

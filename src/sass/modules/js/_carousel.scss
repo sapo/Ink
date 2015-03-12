@@ -1,0 +1,36 @@
+.#{$carousel-class-name} {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    display: block;
+
+    // This is what gets pulled left and right (or up and down)
+    .stage {
+        width: 100%;
+        left: 0;
+        height: auto !important; // To be removed
+        margin-top: 0;
+        margin-bottom: 0;
+        padding-left: 0;
+        list-style-type: none;
+        white-space: nowrap;
+        position: relative;
+        @include transition(compact(left 0.5s ease));
+
+        // Each slide
+        .slide {
+            position: relative;
+            display: inline-block;
+            vertical-align: top;
+            white-space: normal;
+            margin: 0;
+            float: none;
+            zoom: 1;
+            *display: inline; 
+        }
+    }
+
+    .#{$navigation-class-name} {
+        position: static;
+    }
+}

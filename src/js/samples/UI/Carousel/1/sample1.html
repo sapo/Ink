@@ -1,0 +1,339 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <title>InkJS - Carousel samples</title>
+
+        <!--[if IE lte 7]>
+            <script src="../../../../../../dist/js/html5shiv.js"></script>
+        <![endif]-->
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+
+        <link rel="stylesheet" type="text/css" href="../../../../../../dist/css/ink.css">
+
+        <script type="text/javascript" src="../../../../Ink/1/lib.js"></script>
+        <script>
+            Ink.setPath('Ink', '../../../../Ink/');
+        </script>
+
+        <style>
+            pre.prettyprint{
+                font-size: 0.75em;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="ink-container ink-grid">
+            <h1>Carousel Samples - InkJS</h1>
+
+            <style type="text/css">
+                ul li.slide {
+                    margin: 0;
+                }
+
+                #car1 li {
+                    width:  256px;
+                    height: 256px;
+                    background-color: #FDD;
+                }
+
+                #car1 li:nth-child(even) {
+                    background-color: #DDF;
+                }
+
+                /**************/
+
+                #car2 {
+                    height: 392px;
+                    height: 196px;
+                }
+
+                #car2 li {
+                    width:  196px;
+                    height: 196px;
+                    background-color: #FFD;
+                }
+
+                #car2 li:nth-child(even) {
+                    background-color: #DFF;
+                }
+
+                /**************/
+
+                .ink-navigation .dotted a {
+                    text-decoration: none !important;
+                    opacity: 0.33;
+                }
+
+                .ink-navigation .dotted .active a {
+                    opacity: 1;
+                }
+            </style>
+
+            <h2>Intro and basic concepts</h2>
+
+            <p><code>Ink.UI.Carousel</code> is a generic component for showing partial content, given that you have a way to "advance" and reveal the rest of your content. You can use this for a slideshow, showing one <code>slide</code> at a time, or for some kind of gallery or link collection, by showing more than one <code>slide</code> at a time.</p>
+
+            <p>There are two important elements involved: the <code>stage</code> element, which contains slides and is important because of slide sizing, and the <code>slide</code>s, which are direct children of the stage. Slides are organized into <code>page</code>s. When the carousel changes pages, this is unrelated to the slides inside.</p>
+
+            <hr>
+
+
+            <h2>Controlling how many slides exist on a single page</h2>
+
+            <p>The size of the slides affects the slide count per page. By setting the size of the <code>slide</code>s to 100% of the width (or height, if it's a vertical carousel), you get one slide per page. By setting your slides to 50% of the width, you get 2 slides per page, and so on.</p>
+
+            <p>Just use Ink's <code>large-*</code>, <code>medium-*</code>, <code>small-*</code> in each of your slides to make your carousel responsive. A slideshow in mobile, and a gallery in desktop and tablet.</p>
+
+            <p>Setting width to 100% in all slides:</p>
+
+            <div id="pages-are-slides" class="ink-carousel" data-paginator="#page-paginator">
+                <ul class="stage">
+                    <li class="slide all-100"><em>This is slide 1</em></li>
+                    <li class="slide all-100"><em>This is slide 2</em></li>
+                    <li class="slide all-100"><em>This is slide 3</em></li>
+                    <li class="slide all-100"><em>This is slide 4</em></li>
+                    <li class="slide all-100"><em>This is slide 5</em></li>
+                </ul>
+            </div>
+
+
+            <p>Setting width to less than 100% in all slides:</p>
+
+            <div id="more-slides-than-pages" class="ink-carousel">
+                <ul class="stage">
+                    <li class="slide xlarge-33 large-33 all-50"><em>This is slide 1</em></li>
+                    <li class="slide xlarge-33 large-33 all-50"><em>This is slide 2</em></li>
+                    <li class="slide xlarge-33 large-33 all-50"><em>This is slide 3</em></li>
+                    <li class="slide xlarge-33 large-33 all-50"><em>This is slide 4</em></li>
+                    <li class="slide xlarge-33 large-33 all-50"><em>This is slide 5</em></li>
+                </ul>
+            </div>
+
+            <script type="text/javascript">
+                Ink.requireModules(['Ink.UI.Carousel_1'], function(Carousel) {
+                    new Carousel('#pages-are-slides', { autoAdvance: 3000 });
+                    new Carousel('#more-slides-than-pages', { autoAdvance: 2000 });
+                });
+            </script>
+
+            <hr>
+
+            <h2>Using percentage widths</h2>
+
+            <div id="percentage" class="ink-carousel">
+                <ul class="unstyled stage">
+                    <li class="slide all-100 medium-50 large-33 xlarge-33">
+                        <h4>First</h4>
+                        <p>Lorem ipsum dolor etc.</p>
+                    </li>
+                    <li class="slide all-100 medium-50 large-33 xlarge-33">
+                        <h4>Second</h4>
+                        <p>Lorem ipsum dolor etc.</p>
+                    </li>
+                    </li>
+                    <li class="slide all-100 medium-50 large-33 xlarge-33">
+                        <h4>Third</h4>
+                        <p>Lorem ipsum dolor etc.</p>
+                    </li>
+                    </li>
+                    <li class="slide all-100 medium-50 large-33 xlarge-33">
+                        <h4>Fourth</h4>
+                        <p>Lorem ipsum dolor etc.</p>
+                    </li>
+                    </li>
+                </ul>
+            </div>
+
+            <nav id="percentagepag">
+                <ul class="pagination rounded shadowed red"></ul>
+            </nav>
+
+            <hr>
+
+            <h2>Vertical Carousels (experimental)</h2>
+
+            <p>When using a vertical carousel, it's important to set a width in your container. This is because of how block level elements behave.</p>
+
+            <div id="car2" class="ink-carousel" style="width: 196px">
+                <ul class="unstyled stage">
+                    <li class="slide">
+                        <a href="/cronica/alpha" class="box column-group gutters external">
+                            <div class="image-wrapper all-40 small-100 tiny-100">
+                                <img src="http://h.s.sl.pt/imgs/img_default.png">
+                            </div>
+                            <div class="description-wrapper all-60 small-100 tiny-100">
+                                <h5>Highlight Title<span class="fa fa-external-link"></span></h5>
+                                <p class="author">Baby Doe</p>
+                                É importante questionar o quanto a constante divulgação das informações ainda não demonstrou convincentemente que vai participar na mudança do impacto na agilidade decisória.
+                            </div>
+                        </a>
+                    </li>
+
+                    <li class="slide">
+                        <a href="/cronica/cronica-2" class="box column-group gutters external">
+                            <div class="image-wrapper all-40 small-100 tiny-100">
+                                <img src="http://h.s.sl.pt/imgs/img_default.png">
+                            </div>
+                            <div class="description-wrapper all-60 small-100 tiny-100">
+                                <h5>The war against bad habbits<span class="fa fa-external-link"></span></h5>
+                                <p class="author">Laurentino Franciscano</p>
+                                What she meant to say is that you're a ...
+                            </div>
+                        </a>
+                    </li>
+
+                    <li class="slide">
+                        <a href="/cronica/esta-fui-eu-que-fiz" class="box column-group gutters external">
+                            <div class="image-wrapper all-40 small-100 tiny-100">
+                                <img src="http://h.s.sl.pt/imgs/img_default.png">
+                            </div>
+                            <div class="description-wrapper all-60 small-100 tiny-100">
+                                <h5>o titulo de destaque<span class="fa fa-external-link"></span></h5>
+                                <p class="author">a fontezita da treta</p>
+                                esta é a descrição curta, ou seja, do destaque
+                            </div>
+                        </a>
+                    </li>
+
+                    <li class="slide">
+                        <a href="/cronica/cronica-3" class="box column-group gutters external">
+                            <div class="image-wrapper all-40 small-100 tiny-100">
+                                <img src="http://h.s.sl.pt/imgs/img_default.png">
+                            </div>
+                            <div class="description-wrapper all-60 small-100 tiny-100">
+                                <h5>short title<span class="fa fa-external-link"></span></h5>
+                                <p class="author">source</p>
+                                short description
+                            </div>
+                        </a>
+                    </li>
+
+                    <li class="slide">
+                        <a href="/cronica/fui-eu-que-inventei-a-internet" class="box column-group gutters external">
+                            <div class="image-wrapper all-40 small-100 tiny-100">
+                                <img src="http://placekitten.com/120/140">
+                            </div>
+                            <div class="description-wrapper all-60 small-100 tiny-100">
+                                <h5>Fui eu que inventei a Internet<span class="fa fa-external-link"></span></h5>
+                                <p class="author">Diário da Gomes</p>
+                                Num dia de verão
+                            </div>
+                        </a>
+                    </li>
+
+                    <li class="slide">
+                        <a href="/cronica/cronica-1" class="box column-group gutters external">
+                            <div class="image-wrapper all-40 small-100 tiny-100">
+                                <img src="http://placekitten.com/635/313">
+                            </div>
+                            <div class="description-wrapper all-60 small-100 tiny-100">
+                                <h5>cat<span class="fa fa-external-link"></span></h5>
+                                <p class="author">John</p>
+                                panther
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <nav id="p2" class="ink-navigation" data-previous-label="" data-next-label="">
+                <ul class="pagination dotted"></ul>
+            </nav>
+
+            <hr>
+
+            <h2>Change pages through Javascript, or BYOB (Bring Your Own Buttons)</h2>
+
+            <p>You can use the <code>setPage()</code>, <code>nextPage()</code> and <code>previousPage()</code> methods to change pages, as seen in the below example:</p>
+
+            <p>The <code>wrap</code> argument is used to make the pages "wrap around" both ends. If you are on the first page, and call <code>previousPage()</code>, this takes you to the last page.</p>
+
+            <div class="ink-carousel" id="controlled-carousel">
+                <ul class="untitled stage">
+                    <li class="slide all-100"><em>Page 1</em></li>
+                    <li class="slide all-100"><em>Page 2</em></li>
+                    <li class="slide all-100"><em>Page 3</em></li>
+                    <li class="slide all-100"><em>Page 4</em></li>
+                </ul>
+            </div>
+
+            <p>
+                <label>Wrap <input type="checkbox" checked id="byob-wrap"></label>
+                <button id="byob-prev">previousPage()</button>
+                <button id="byob-next">nextPage()</button>
+                setPage(<select id="byob-pages" name="">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>)
+            </p>
+
+            <script type="text/javascript">
+                Ink.requireModules(['Ink.UI.Carousel_1', 'Ink.Dom.Event_1'], function(Carousel, InkEvent) {
+                    var controlledCarousel = new Carousel('#controlled-carousel', {});
+                    controlledCarousel.setPage(Ink.i('byob-pages').value - 1);
+                    InkEvent.observe(Ink.i('byob-next'), 'click', function () {
+                        controlledCarousel.nextPage(Ink.i('byob-wrap').checked);
+                    })
+                    InkEvent.observe(Ink.i('byob-prev'), 'click', function () {
+                        controlledCarousel.previousPage(Ink.i('byob-wrap').checked);
+                    })
+                    InkEvent.observe(Ink.i('byob-pages'), 'change', function () {
+                        controlledCarousel.setPage(Ink.i('byob-pages').value - 1);
+                    })
+                });
+            </script>
+
+            <hr>
+
+            <h2>Auto-advance</h2>
+
+            <p>This is the Carousel that shouldn't really be used on the web, but is unfortunately everywhere, so we need to have one.</p>
+
+            <p>Use the <code>autoAdvance</code> option to set how many milliseconds pass before advancing a page.</p>
+
+            <div id="auto-advance" class="ink-carousel">
+                <ul class="stage">
+                    <li class="slide all-100"><em>This is slide 1</em></li>
+                    <li class="slide all-100"><em>This is slide 2</em></li>
+                    <li class="slide all-100"><em>This is slide 3</em></li>
+                    <li class="slide all-100"><em>This is slide 4</em></li>
+                    <li class="slide all-100"><em>This is slide 5</em></li>
+                </ul>
+            </div>
+
+            <script type="text/javascript">
+                Ink.requireModules(['Ink.UI.Carousel_1'], function(Carousel) {
+                    new Carousel('#auto-advance', { autoAdvance: 2000 });
+                });
+            </script>
+
+            <hr>
+        </div>
+
+        <script type="text/javascript">
+            Ink.requireModules(['Ink.UI.Carousel_1'], function(Carousel) {
+                window.c1 = new Carousel('#car1', {
+                    pagination: Ink.s('#p1'),
+                    center:     true,
+                    hideLast:   true
+                });
+
+                window.g2 = new Carousel('#car2', {
+                    pagination: Ink.s('#p2'),
+                    axis:       'y' // TODO
+                });
+
+                window.perc = new Carousel('#percentage', {
+                    pagination: '#percentagepag'
+                });
+            });
+        </script>
+    </body>
+</html>

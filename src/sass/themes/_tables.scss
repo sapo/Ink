@@ -1,0 +1,128 @@
+table.#{$table-class-name} {
+
+    background: $table-background;
+
+    tr {
+        th, td {
+            border-bottom: $table-cell-borderColor 1px solid; 
+            background:none
+        }
+
+        &:last-child {
+            td { border-bottom: none; }    
+        }
+    }
+
+    tfoot {
+        tr {
+            th, td { 
+                border-top: $table-cell-borderColor 1px solid; 
+            }
+        }
+    }
+
+    &.alternating {
+
+        tbody {
+
+            tr:nth-child(odd) {
+                background-color: $table-alternating-rowColor;
+            }
+
+        }
+    }
+
+    &.hover {
+
+        tbody {
+
+            tr:hover {
+                background: $table-row-hoverColor;
+                color: $text-color;
+            }
+        }
+    }
+
+    &.bordered {
+
+        border: $table-cell-borderColor 1px solid;
+        @include border-radius($table-border-radius);
+
+        tr {
+            
+            th {
+                border-left: $table-cell-borderColor 1px solid;
+                &:first-child {
+                    border-left: none;
+                }
+            }
+
+            &:last-child {
+                td {
+                    border-bottom: none;
+                }
+            }
+
+            td {
+                border-left: $table-cell-borderColor 1px solid;
+                &:first-child {
+                    border-left: none;
+                }
+            }
+        }
+    }
+
+    tbody {
+
+        & > tr {
+
+            &.red {
+                td {
+                    background: $red;
+                    color: lighten($red,80%);
+                }
+            }
+
+            
+            &.green {
+                td {
+                    background: $green;
+                    color: lighten($green,80%);
+                }
+            }
+
+            
+            &.blue {
+                td {
+                    background: $blue;
+                    color: lighten($blue,80%);
+                }
+            }
+
+            
+            &.orange {
+                td {
+                    background: $orange;
+                    color: lighten($orange,80%);
+                }
+            }
+
+            
+            &.black {
+                td {
+                    background: $black;
+                    color: lighten($black,80%);
+                }
+            }
+
+            
+            &.yellow {
+                td {
+                    background: $yellow;
+                    color: darken($yellow,80%);
+                }
+            }
+        
+        }
+    }
+}

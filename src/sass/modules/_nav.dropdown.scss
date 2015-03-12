@@ -1,0 +1,136 @@
+.#{$dropdown-class-name},
+.#{$navigation-class-name} {
+
+    position: relative;
+    
+    ul.dropdown-menu, 
+    ul.dropdown {
+
+        position: absolute;
+        top: 110%;
+        //display: inline-block;
+        background: $white;
+        z-index: $layer-30;
+        border: 1px solid $grey-15;
+        height: auto;
+        width: auto;
+        min-width: 10em;
+        max-width: 12em;
+        @include border-radius($border-radius);
+        @include box-shadow(rgba(100,100,100,0.3) 0 0 1px 0);
+        padding: .3em 0;
+        margin-left: 0px;
+        padding: .35em 0;   
+        font-size: .85em;
+
+        li {
+            
+            @include box-shadow(none);
+            @include border-radius(none);
+            width: auto;
+            height: auto;
+            min-height: auto;
+            display: list-item;
+            float: none;
+            margin: 0;
+            text-align: left;
+            text-transform: none;                    
+            padding: 0;
+            position: relative;
+            list-style-type: none;
+
+            &.separator-above {
+                padding-top: .35em;
+                margin-top: .35em;
+                border-top: 1px solid $grey-15;
+            }
+
+            &.separator-below {
+                padding-bottom: .35em;
+                margin-bottom: .35em;
+                border-bottom: 1px solid $grey-15;
+                
+            }
+
+            &.heading {
+                font-weight: 700;
+                padding-bottom: .35em;
+                margin-bottom: .35em;
+                padding: .5em .8em;
+                color: $grey-80;
+            }
+
+            a {
+                color: #444;
+                padding: .5em .8em;
+                display: block;
+                clear: both;
+
+                &:hover {
+                    background: $grey-5;
+                    text-decoration: none;
+                }
+            }
+
+            &.active {
+                a {
+                    background: $grey-40;
+                    color: $white;
+                }
+            }
+
+            &.disabled {
+                a {
+                    color: $grey-30;
+                    &:hover {
+                        background: transparent;
+                        cursor: default;
+
+                    }
+                }
+            }
+
+            &.submenu {
+
+                overflow: visible;
+
+                > a {
+
+                    white-space: nowrap;
+
+                    &:after {
+                        content: "\f0da";
+                        width: auto;
+                        margin-left: .8em;
+                        font-family: FontAwesome;
+                        color: $grey-30;
+                    }
+                }
+
+                &:hover {
+
+                    > a {
+                        background: $grey-5;
+                        text-decoration: none;
+                        
+                    }
+
+                    &:hover {
+                        > ul.dropdown-menu, > ul.dropdown {
+                            display: block;
+                        }
+                    }
+
+                }
+
+                > ul.dropdown-menu, > ul.dropdown {
+                    font-size: inherit;
+                    position: absolute;
+                    top: -.36em;
+                    left: 100%;
+                    display: none;
+                }
+            }
+        }
+    }
+}

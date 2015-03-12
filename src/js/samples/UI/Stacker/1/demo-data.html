@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>
+            Empty page
+        </title>
+        <meta name="description" content="">
+        <meta name="author" content="ink, cookbook, recipes">
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="320">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <link rel="shortcut icon" href="../img/ink-favicon.ico">
+        <link rel="apple-touch-icon-precomposed" href="../img/touch-icon.57.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../img/touch-icon.72.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../img/touch-icon.114.png">
+        <link rel="apple-touch-startup-image" href="../img/splash.320x460.png"
+        media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
+        <link rel="apple-touch-startup-image" href="../img/splash.768x1004.png"
+        media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+        <link rel="apple-touch-startup-image" href="../img/splash.1024x748.png"
+        media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+
+        <link rel="stylesheet" type="text/css" href="http://cdn.ink.sapo.pt/2.2.1/css/ink.css">
+        
+        <!--[if IE 7 ]>
+            <link rel="stylesheet" href="http://cdn.ink.sapo.pt/2.2.1/css/ink-ie7.css" type="text/css" media="screen" title="no title" charset="utf-8">
+        <![endif]-->
+        
+        <script type="text/javascript" src="../../../../Ink/1/lib.js"></script>
+        <script>
+            Ink.setPath('Ink', '../../../../Ink/');
+        </script>
+<style type="text/css">
+.custom-stackeritem{
+height:100px;
+}
+.custom-stackeritem.blue{ background-color:blue; margin:5px 0 5px 0;}
+.custom-stackeritem.green{ background-color:green; margin:5px 0 5px 0;}
+.custom-stackeritem.orange{ background-color:orange; margin:5px 0 5px 0;}
+.custom-stackeritem {
+    font-size: 25px;
+color: #FFF;
+}
+</style>
+        
+    </head>
+    
+    <body>        
+        <div class="ink-grid">
+            <div class="column-group ink-stacker gutters" data-column=".custom-stackercolumn" data-item=".custom-stackeritem">
+                <div class="all-33 medium-50 small-100 tiny-100 custom-stackercolumn">
+                    <div id="a" class="custom-stackeritem  blue">a</div>
+                    <div id="d" class="custom-stackeritem  blue">d</div>
+                    <div id="g" class="custom-stackeritem  blue">g</div>
+                </div>
+                <div class="all-33 medium-50 small-100 tiny-100 hide-small custom-stackercolumn">
+                    <div id="b" class="custom-stackeritem  green">b</div>
+                    <div id="e" class="custom-stackeritem  green">e</div>
+                    <div id="h" class="custom-stackeritem  green">h</div>
+                </div>
+                <div class="all-33 medium-50 small-100 tiny-100 hide-medium hide-small custom-stackercolumn">
+                    <div id="c" class="custom-stackeritem  orange">c</div>
+                    <div id="f" class="custom-stackeritem  orange">f</div>
+                    <div id="i" class="custom-stackeritem  orange">i</div>
+                </div>
+            </div>
+            <div class="content-center"><button class="ink-button gray" onclick="addMoreItems();">Load More</button></div>
+        </div>
+
+<script type="text/javascript">
+Ink.requireModules(['Ink.UI.Stacker_1'], function (Stacker) {
+    var stacker = new Stacker('.ink-stacker', {});
+
+    window.addMoreItems = function (){
+        var start = Math.round(Math.random() * 1000);
+        for(var i=0; i < 12; i++) {
+            var div = document.createElement('div');
+            div.className = 'stacker-item blue';
+            div.style.height = (50 + Math.random() * 100)+'px';
+            div.innerHTML = start + i;
+
+            stacker.addItem(div);
+        }
+
+        stacker.reloadItems();
+    }
+});
+
+</script>
+
+    </body>
+</html>

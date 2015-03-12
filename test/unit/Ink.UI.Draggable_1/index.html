@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Ink.UI.Draggable unit tests</title>
+
+        <link type="text/css" href="../../../bower_components/qunit/qunit/qunit.css" rel="stylesheet"/>
+        <script type="text/javascript" src="../../../bower_components/qunit/qunit/qunit.js"></script>
+        <script type="text/javascript" src="../../../bower_components/qunit-tap/lib/qunit-tap.js"></script>
+        <script type="text/javascript" src="../../qunitTapGlue.js"></script>
+        <script type="text/javascript" src="../../seleniumGlue.js"></script>
+
+        <script type="text/javascript" src="../../../bower_components/syn/dist/syn.js"></script>
+        <script src="../../../bower_components/sinonjs-built/pkg/sinon.js"></script>
+        <script src="../../eventUtils.js"></script>
+        <!--[if IE]>
+            <script src="../../../bower_components/sinonjs-built/pkg/sinon-ie.js"></script>
+            <script src="../../../bower_components/sinonjs-built/pkg/sinon-timers-ie.js"></script>
+        <![endif]-->
+
+		<!-- test dependencies here -->
+		<script type="text/javascript" src="../../../src/js/Ink/1/lib.js"></script>
+        <script>
+            Ink.setPath('Ink', '../../../src/js/Ink/');
+        </script>
+	</head>
+
+	<body>
+		<h1 id="qunit-header">Ink.UI.Draggable</h1>
+		<h2 id="qunit-banner"></h2>
+		<h2 id="qunit-userAgent"></h2>
+        <ol id="qunit-tests"></ol>
+        <div style="display:none" id="tab_html">
+            <ul class="tabs-nav">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#news">News</a></li>
+                <li><a href="#description">Description</a></li>
+                <li><a href="#stuff">Stuff</a></li>
+                <li><a href="#more_stuff">More stuff</a></li>
+            </ul>
+            <div class="tabs-content" id="home">
+                <h4>Home</h4>
+                <p>Arnold ipsum (...)</p>
+            </div>
+            <div class="tabs-content" id="news">
+                <h4>News</h4>
+                <p>Arnold ipsum (...)</p>
+            </div>
+            <div class="tabs-content" id="description">
+                <h4>Description</h4>
+                <p>Arnold ipsum (...)</p>
+            </div>
+            <div class="tabs-content" id="stuff">
+                <h4>Stuff</h4>
+                <p>Arnold ipsum (...)</p>
+            </div>
+            <div class="tabs-content" id="more_stuff">
+                <h4>More Stuff</h4>
+                <p>Arnold ipsum (...)</p>
+            </div>
+        </div>
+
+        <script type="text/javascript" src="test.js"></script>
+	</body>
+</html>
