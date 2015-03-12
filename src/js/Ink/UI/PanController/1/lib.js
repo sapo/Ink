@@ -6,7 +6,7 @@ Ink.createModule( 'Ink.UI.PanController', '1' ,
     var dom2events = typeof addEventListener === 'function';
 
     var validateNoModifiers = function( e ) { return !e.ctrlKey && !e.altKey && !e.shiftKey && !e.metaKey; };
-    var validateMouseButtonNoModifiers = function( e ) { return validateNoModifiers( e ) && ( e.button === 0 || e.button === 1 || ( e.type.substring( 0 , 5 ) === 'touch' && e.button === null ) ); };
+    var validateMouseButtonNoModifiers = function( e ) { return validateNoModifiers( e ) && ( e.button === 0 || e.button === 1 || ( e.type.substring( 0 , 5 ) === 'touch' && e.button === undefined ) ); };
 
     var DateNow = Date.now ? Date.now : function() { return new Date().getTime(); };
 
@@ -66,14 +66,14 @@ Ink.createModule( 'Ink.UI.PanController', '1' ,
             this.dragUpListener    = Ink.bind( this.dragUpListener    , this );
             this._preClickListener = Ink.bind( this._preClickListener , this );
 
-            Ivent.on( this._element , 'mousedown touchstart' , this.dragDownListener );
+            Ivent.on( this._element , 'touchstart mousedown' , this.dragDownListener );
 
-            Ivent.on( this._doc , 'mousemove touchmove' , this.dragMoveListener );
-            Ivent.on( this._doc , 'mouseup touchend'    , this.dragUpListener   );
+            Ivent.on( this._doc , 'touchmove mousemove' , this.dragMoveListener );
+            Ivent.on( this._doc , 'touchend mouseup'    , this.dragUpListener   );
         } ,
 
         destroy : function( ){
-            Ivent.off( this._element , 'mousedown touchstart' , this.dragDownListener );
+            Ivent.off( this._element , 'touchstart mousedown' , this.dragDownListener );
 
             this._allowClick( );
 
@@ -87,11 +87,11 @@ Ink.createModule( 'Ink.UI.PanController', '1' ,
         dragDownListener: function( e ) {
             this._allowClick( );
 
-            if ( !validateMouseButtonNoModifiers( e ) ) { return; }
+            if ( !validateMouseButtonNoModifiers( e.originalEvent ) ) { return; }
             this.stopDrag( false );
             clearTimeout( this.easeOutTimeout );
 
-            if ( e.type === 'mousedown' ) { Ivent.stopDefault( e ); }
+            if ( e.type !== 'mousedown' ) { Ivent.stopDefault( e ); }
 
             this._lastTarget = Ivent.element( e ); // for IE
 
@@ -111,7 +111,7 @@ Ink.createModule( 'Ink.UI.PanController', '1' ,
         } ,
 
         dragMoveListener : function( e ) {
-            if ( !validateMouseButtonNoModifiers( e ) ) { return; }
+            if ( !validateMouseButtonNoModifiers( e.originalEvent ) ) { return; }
 
             var state = this._dragState;
 
@@ -143,7 +143,7 @@ Ink.createModule( 'Ink.UI.PanController', '1' ,
         } ,
 
         dragUpListener: function( e ) {
-            if ( !validateMouseButtonNoModifiers( e ) ) { return; }
+            if ( !validateMouseButtonNoModifiers( e.originalEvent ) ) { return; }
 
             this.stopDrag( true ,  e );
         } ,
