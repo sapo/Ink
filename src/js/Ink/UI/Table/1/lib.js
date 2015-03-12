@@ -261,7 +261,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
 
             if (sortAndReverse) {
                 this._sort(index);
-                if (isAscending) {
+                if (!isAscending) {
                     this._data.reverse();
                 }
             }
