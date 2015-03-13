@@ -378,10 +378,23 @@ module.exports = function (grunt) {
 
         bump : {
             options: {
-                files: [ 'bower.json', 'package.json', '<%= ink.folders.js.src %>/1/lib.js'],
+                files: [
+                    'bower.json',
+                    'package.json',
+                    'README.md',
+                    '<%= ink.folders.js.src %>/1/lib.js',
+                    './src/sass/ink-flex.scss',
+                    './src/sass/ink-ie.scss',
+                    './src/sass/ink-legacy.scss',
+                    './src/sass/ink.scss',
+                    './src/sass/quick-start.scss'
+                ],
                 push: false,
                 commit: false,
                 tagName: '%VERSION%',
+                regExp: new RegExp(
+                    '([\'|\"|@]?version[\'|\"]?[ ]*:?[ ]*[\'|\"]?)(\\d+\\.\\d+\\.\\d+(-' +
+                    '\\.\\d+)?(-\\d+)?)[\\d||A-a|.|-]*([\'|\"]?)', 'i'),
                 createTag: false,
                 commitFiles: []
             }    
