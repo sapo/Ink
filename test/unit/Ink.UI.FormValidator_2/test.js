@@ -68,6 +68,39 @@ Ink.requireModules(['Ink.UI.FormValidator_2', 'Ink.Dom.Element_1', 'Ink.Dom.Sele
         myForm.parentNode.removeChild(myForm);
     }));
 
+    test('Error messages', function () {
+        var formPack = makeForm();
+
+        var form = formPack.form;
+        var validator = formPack.validator;
+
+        form.innerHTML = '';
+
+        form.appendChild(InkElement.create('input', {
+            type: 'text',
+            name: 'FIELD1NAME',
+            'data-rules': 'required'
+        }));
+
+        form.appendChild(InkElement.create('input', {
+            type: 'text',
+            name: 'field2name',
+            'data-rules': 'required',
+            'data-error': 'ERROR TEXT'
+        }));
+
+        ok(!validator.validate(), 'sanity check')
+
+        equal(Ink.ss('p.tip', form).length, 2,
+            'there should be 2 error paras')
+
+        ok(/FIELD1NAME/.test(
+            InkElement.textContent(Ink.s('p.tip', form))))
+        equal(InkElement.textContent(
+            Ink.s('[name="field2name"] + p.tip', form)), 'ERROR TEXT')
+    });
+
+
     test('Skips validating matches fields just as long as their matched field is not required', function () {
         var oldStuff = makeForm();
 

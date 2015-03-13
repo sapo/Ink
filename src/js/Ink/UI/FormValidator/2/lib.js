@@ -450,6 +450,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
      * @param  {Object} options Object with configuration options
      * @param  {String} [options.label] Label for this element. It is used in the error message. If not specified, the text in the `label` tag in the control-group is used.
      * @param  {String} [options.rules] Rules string to be parsed.
+     * @param  {String} [options.error] Error message to show in case of error
      * @param  {FormValidator} options.form FormValidator instance.
      */
     function FormElement(){
@@ -460,7 +461,8 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
 
     FormElement._optionDefinition = {
         label: ['String', null],
-        rules: ['String', null], // The rules to apply
+        rules: ['String', null],  // The rules to apply
+        error: ['String', null],  // Error message
         form: ['Object']
     };
 
@@ -564,11 +566,19 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
 
             var i18nKey = 'formvalidator.' + rule;
 
-            this._errors[rule] = validationMessages.text(i18nKey, paramObj);
+            var err;
 
-            if (this._errors[rule] === i18nKey) {
-                this._errors[rule] = '[Validation message not found for rule ]' + rule;
+            if (this._options.error) {
+                err = this._options.error;
+            } else {
+                err = validationMessages.text(i18nKey, paramObj);
+
+                if (err === i18nKey) {
+                    err = '[Validation message not found for rule ]' + rule;
+                }
             }
+
+            this._errors[rule] = err;
         },
 
         /**
@@ -952,7 +962,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
                     }
 
                     var paragraph = document.createElement('p');
-                    Css.addClassName(paragraph,'tip');
+                    Css.addClassName(paragraph, 'tip');
                     if (controlElement || controlGroupElement) {
                         (controlElement || controlGroupElement).appendChild(paragraph);
                     } else {
