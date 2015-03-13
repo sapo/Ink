@@ -250,7 +250,7 @@
             }
 
             if (callHandler && typeof this._options.onChangeState === 'function') {
-                var ret = this._options.onChangeState(on);
+                var ret = this._options.onChangeState.call(this, on, { element: this._element });
                 if (ret === false) { return false; } //  Canceled by the event handler
             }
             for (i = 0, len = this._targets.length; i < len; i++) {
