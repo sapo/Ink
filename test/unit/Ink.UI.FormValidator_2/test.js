@@ -101,6 +101,13 @@ Ink.requireModules(['Ink.UI.FormValidator_2', 'Ink.Dom.Element_1', 'Ink.Dom.Sele
         equal(InkElement.textContent(tips[1]), 'ERROR TEXT')
     });
 
+    test('languages', function() {
+        var form = makeForm();
+        form.validator.setLanguage('pt_PT');
+        equal(form.validator.getLanguage(), 'pt_PT');
+        notEqual(FormValidator.getI18n(), form.validator.getI18n());
+        equal(form.validator.getI18n().lang(), 'pt_PT');
+    })
 
     test('Skips validating matches fields just as long as their matched field is not required', function () {
         var oldStuff = makeForm();

@@ -891,6 +891,55 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         },
 
         /**
+         * Set my I18n instance with the validation messages.
+         * @method setI18n
+         * @param {Ink.Util.I18n_1} i18n I18n instance
+         **/
+        setI18n: function (i18n) {
+            if (i18n.clone) {
+                // New function, added safety
+                i18n = i18n.clone();
+            }
+            this.i18n = i18n;
+        },
+
+        /**
+         * Get my I18n instance with the validation messages.
+         * @method getI18n
+         * @return {Ink.Util.I18n_1} I18n instance
+         **/
+        getI18n: function () {
+            return this.i18n || validationMessages;
+        },
+
+        /**
+         * Set the language of this form validator to the given language code
+         * If we don't have an i18n instance, create one which is a copy of the global one.
+         * @method setLanguage
+         * @param {String} language Language code (ex: en_US, pt_PT)
+         * @return {void}
+         * @public
+         **/
+        setLanguage: function (language) {
+            if (!this.i18n) {
+                this.setI18n(validationMessages);
+            }
+            this.i18n.lang(language);
+        },
+
+        /**
+         * Gets the language code string (pt_PT or en_US for example) in use currently by this formvalidator.
+         * May be global
+         *
+         * @method getLanguage
+         * @public
+         * @return {String} Language code.
+         **/
+        getLanguage: function (language) {
+            return this.i18n ? this.i18n.lang() : validationMessages.lang();
+        },
+
+        /**
          * Validates every registered FormElement 
          * This method looks inside the this._formElements object for validation targets.
          * Also, based on the this._options.beforeValidation, this._options.onError, and this._options.onSuccess, this callbacks are executed when defined.

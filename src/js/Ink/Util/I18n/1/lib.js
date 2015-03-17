@@ -49,6 +49,17 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
 
             return this;
         },
+
+        clone: function () {
+            var theClone = new I18n();
+            for (var i = 0, len = this._dicts.length; i < len; i++) {
+                theClone.append(this._dicts[i]);
+            }
+            theClone.testMode(this.testMode());
+            theClone.lang(this.lang());
+            return theClone;
+        },
+
         /**
          * Adds translation strings for the helper to use.
          *
