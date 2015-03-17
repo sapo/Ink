@@ -89,15 +89,16 @@ Ink.requireModules(['Ink.UI.FormValidator_2', 'Ink.Dom.Element_1', 'Ink.Dom.Sele
             'data-error': 'ERROR TEXT'
         }));
 
-        ok(!validator.validate(), 'sanity check')
+        ok(!validator.validate(), 'sanity check');
 
-        equal(Ink.ss('p.tip', form).length, 2,
+        var tips = Ink.ss('p.tip', form);
+
+        equal(tips.length, 2,
             'there should be 2 error paras')
 
         ok(/FIELD1NAME/.test(
-            InkElement.textContent(Ink.s('p.tip', form))))
-        equal(InkElement.textContent(
-            Ink.s('[name="field2name"] + p.tip', form)), 'ERROR TEXT')
+            InkElement.textContent(tips[0])))
+        equal(InkElement.textContent(tips[1]), 'ERROR TEXT')
     });
 
 
