@@ -48,7 +48,7 @@
     Toggle._optionDefinition = {
         target:         ['Elements'],
         triggerEvent:   ['String', 'click'],
-        closeOnClick:   ['Boolean', true],
+        closeOnClick:   ['Boolean', null],
         canToggleAnAncestor: ['Boolean', false],
         isAccordion:    ['Boolean', false],
         initialState:   ['Boolean', null],  // May be true, false, or null to be what it is right now
@@ -71,8 +71,11 @@
 
             this._targets = Common.elsOrSelector(this._options.target);
 
-            // Boolean option handling
-            this._options.closeOnClick = this._options.closeOnClick;
+            // closeOnClick should default to false when isAccordion
+            if (this._options.closeOnClick === null) {
+                this._options.closeOnClick =
+                    this._options.isAccordion ? false : true
+            }
             // Actually a throolean
             if (this._options.initialState === null) {
                 this._options.initialState = Css.hasClassName(this._targets[0], this._options.classNameOn);
