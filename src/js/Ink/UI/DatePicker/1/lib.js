@@ -522,7 +522,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 if (this._options.shy) {
                     this._hide();
                 } else {
-                    this._updateCal()
+                    this._updateCal();
                 }
             } else if( Number(elemData.calMonth) ) {
                 this._month = Number(elemData.calMonth) - 1;
