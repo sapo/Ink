@@ -252,6 +252,16 @@ test('getNextDecade, getPrevDecade', function () {
     deepEqual(dt._getNextDecade(), null);
 });
 
+test('getNextDecade, getPrevDecade and an uneven date-range', function () {
+    dt._setMinMax('1939-07-15:1951-02-10');
+    dt.setDate('1940-06-01');
+    equal(dt._getPrevDecade(), 1930);
+    equal(dt._getNextDecade(), 1950);
+    dt._setMinMax('1940-01-01:1945-02-10');
+    equal(dt._getPrevDecade(), null);
+    equal(dt._getNextDecade(), null);
+});
+
 test('dateCmp', function () {
     var y2k = { _year: 2000, _month: 0, _day: 1};
     var y2kandaday = { _year: 2000, _month: 0, _day: 2};

@@ -28,6 +28,10 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         return {_year: date.getFullYear(), _month: date.getMonth(), _day: date.getDate()};
     }
 
+    function getDecade(year) {
+        return Math.floor(year / 10) * 10;  // Round to first place
+    }
+
     /**
      * @class Ink.UI.DatePicker
      * @constructor
@@ -1202,14 +1206,14 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         _getPrevDecade: function (date) {
             date = date || { _year: this._year, _month: this._month, _day: this._day };
             var decade = this._getCurrentDecade(date);
-            if (decade - 10 < this._min._year) { return null; }
+            if (getDecade(decade - 10) < getDecade(this._min._year)) { return null; }
             return decade - 10;
         },
 
         /** Returns the decade given a date or year*/
         _getCurrentDecade: function (year) {
             year = year ? (year._year || year) : this._year;
-            return Math.floor(year / 10) * 10;  // Round to first place
+            return getDecade(this._year);
         },
 
         _callUserCallbackBase: function (cb, date) {
