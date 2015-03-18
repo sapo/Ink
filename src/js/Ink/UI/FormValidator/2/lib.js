@@ -935,7 +935,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
          * @public
          * @return {String} Language code.
          **/
-        getLanguage: function (language) {
+        getLanguage: function () {
             return this.i18n ? this.i18n.lang() : validationMessages.lang();
         },
 
