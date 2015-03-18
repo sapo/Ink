@@ -3,16 +3,16 @@
 @mixin alert($alert-type, $alert-color) {
 
     @if $alert-type == basic {
-        
+
         background: rgba($alert-color,.25);
         color: darken(desaturate($alert-color,20%),10%);
         border: 1px solid darken(desaturate($alert-color,20%),10%);
 
-        .ink-dismiss { color: darken(desaturate($alert-color,20%),10%); }
+        .#{$dismiss-class-name} { color: darken(desaturate($alert-color,20%),10%); }
     }
 
     @if $alert-type == block {
-        
+
         border: 1px solid darken(desaturate($alert-color,20%),10%);
         background: $alert-block-bg;
 
@@ -21,7 +21,7 @@
             color: darken(desaturate($alert-color,20%),10%);
         }
 
-        .ink-dismiss { color: darken(desaturate($alert-color,20%),10%); }
+        .#{$dismiss-class-name} { color: darken(desaturate($alert-color,20%),10%); }
     }
 
 }

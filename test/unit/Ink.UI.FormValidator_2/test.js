@@ -68,7 +68,48 @@ Ink.requireModules(['Ink.UI.FormValidator_2', 'Ink.Dom.Element_1', 'Ink.Dom.Sele
         myForm.parentNode.removeChild(myForm);
     }));
 
-    test('Skips validating matches fields just as long as their matched field is not required', sinon.test(function () {
+    test('Error messages', function () {
+        var formPack = makeForm();
+
+        var form = formPack.form;
+        var validator = formPack.validator;
+
+        form.innerHTML = '';
+
+        form.appendChild(InkElement.create('input', {
+            type: 'text',
+            name: 'FIELD1NAME',
+            'data-rules': 'required'
+        }));
+
+        form.appendChild(InkElement.create('input', {
+            type: 'text',
+            name: 'field2name',
+            'data-rules': 'required',
+            'data-error': 'ERROR TEXT'
+        }));
+
+        ok(!validator.validate(), 'sanity check');
+
+        var tips = Ink.ss('p.tip', form);
+
+        equal(tips.length, 2,
+            'there should be 2 error paras')
+
+        ok(/FIELD1NAME/.test(
+            InkElement.textContent(tips[0])))
+        equal(InkElement.textContent(tips[1]), 'ERROR TEXT')
+    });
+
+    test('languages', function() {
+        var form = makeForm();
+        form.validator.setLanguage('pt_PT');
+        equal(form.validator.getLanguage(), 'pt_PT');
+        notEqual(FormValidator.getI18n(), form.validator.getI18n());
+        equal(form.validator.getI18n().lang(), 'pt_PT');
+    })
+
+    test('Skips validating matches fields just as long as their matched field is not required', function () {
         var oldStuff = makeForm();
 
         var myForm = oldStuff.form;
@@ -99,9 +140,9 @@ Ink.requireModules(['Ink.UI.FormValidator_2', 'Ink.Dom.Element_1', 'Ink.Dom.Sele
         reparse(validator);
 
         equal(elms.passwordconfirmation[0].validate(), true, 'Empty password matching field is valid because the password is not required');
-    }));
+    });
 
-    test('Skips validating fields when they\'re empty, but still validates them if required', sinon.test(function () {
+    test('Skips validating fields when they\'re empty, but still validates them if required', function () {
         var oldStuff = makeForm();
 
         var myForm = oldStuff.form;
@@ -135,7 +176,35 @@ Ink.requireModules(['Ink.UI.FormValidator_2', 'Ink.Dom.Element_1', 'Ink.Dom.Sele
 
         equal(elms.number[0].validate(), false, 'Sanity check');
         equal(elms.requirednumber[0].validate(), true, 'Sanity check');
-    }));
+    });
+
+
+    test('(regression) Validation of a matches field fails if it doesn\'t have a [rules] attribute', function () {
+        var oldStuff = makeForm();
+
+        var myForm = oldStuff.form;
+        var validator = oldStuff.validator;
+
+        myForm.innerHTML = '';
+
+        myForm.appendChild(InkElement.create('input', {
+            type: 'text',
+            name: 'password'
+        }));
+
+        myForm.appendChild(InkElement.create('input', {
+            type: 'text',
+            name: 'passwordconfirmation',
+            'data-rules': 'matches[password]'
+        }));
+
+        var elms = validator.getElements();
+
+        reparse(validator);
+
+        equal(elms.passwordconfirmation[0].validate(), true,
+            'Empty password matching field is valid because the password is not required');
+    });
 
     test('Create new FormElements for each control-group in the form', sinon.test(function () {
         var oldStuff = makeForm();

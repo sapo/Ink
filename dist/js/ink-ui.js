@@ -1221,7 +1221,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
             if( !Common.isDOMElement(parentEl) ){
                 throw new Error('Please provide a valid DOMElement');
             }
-            InkElement.setHTML(parentEl, '');
+            InkElement.clear(parentEl);
         },
 
         /**
@@ -1776,7 +1776,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
  * @version 1
  */
 
-Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1','Ink.Util.Date_1', 'Ink.Dom.Browser_1'], function(Common, Event, Css, InkElement, Selector, InkArray, InkDate ) {
+Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1','Ink.Util.Date_1', 'Ink.Util.I18n_1'], function(Common, Event, Css, InkElement, Selector, InkArray, InkDate, I18n ) {
     'use strict';
 
     // Clamp a number into a min/max limit
@@ -1792,6 +1792,19 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         return dateishFromYMD(+split[0], +split[1] - 1, +split[2]);
     }
 
+    function keys(obj) {
+        if (Object.keys) {
+            return Object.keys(obj);
+        }
+        var ret = [];
+        for (var key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                ret.push(key);
+            }
+        }
+        return ret;
+    }
+
     function dateishFromYMD(year, month, day) {
         return {_year: year, _month: month, _day: day};
     }
@@ -1800,6 +1813,75 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         return {_year: date.getFullYear(), _month: date.getMonth(), _day: date.getDate()};
     }
 
+    function getDecade(year) {
+        return Math.floor(year / 10) * 10;  // Round to first place
+    }
+
+    var datePickerI18n = new I18n({
+        pt_PT: {
+            'datepicker.clean':       'Limpar',
+            'datepicker.close':       'Fechar',
+            'datepicker.format':      'dd-mm-yyyy',
+            'datepicker.of':          ' de ',
+            'datepicker.next_button': '»',
+            'datepicker.prev_button': '«',
+            'datepicker.months': {
+                 1:'Janeiro',
+                 2:'Fevereiro',
+                 3:'Março',
+                 4:'Abril',
+                 5:'Maio',
+                 6:'Junho',
+                 7:'Julho',
+                 8:'Agosto',
+                 9:'Setembro',
+                10:'Outubro',
+                11:'Novembro',
+                12:'Dezembro'
+            },
+            'datepicker.week_days': {
+                0:'Domingo',
+                1:'Segunda-feira',
+                2:'Terça-feira',
+                3:'Quarta-feira',
+                4:'Quinta-feira',
+                5:'Sexta-feira',
+                6:'Sábado'
+            }
+        },
+        en_US: {
+            'datepicker.clean':       'Clear',
+            'datepicker.close':       'Close',
+            'datepicker.format':      'dd-mm-yyyy',
+            'datepicker.of':          ' of ',
+            'datepicker.next_button': '»',
+            'datepicker.prev_button': '«',
+            'datepicker.months': {
+                 1:'January',
+                 2:'February',
+                 3:'March',
+                 4:'April',
+                 5:'May',
+                 6:'June',
+                 7:'July',
+                 8:'August',
+                 9:'September',
+                10:'October',
+                11:'November',
+                12:'December'
+            },
+            'datepicker.week_days': {
+                0:'Sunday',
+                1:'Monday',
+                2:'Tuesday',
+                3:'Wednesday',
+                4:'Thursday',
+                5:'Friday',
+                6:'Saturday'
+            }
+        }
+    }, 'en_US');
+
     /**
      * @class Ink.UI.DatePicker
      * @constructor
@@ -1807,10 +1889,8 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
      *
      * @param {String|Element}      selector                    Datepicker element
      * @param {Object}              [options]                   Options
-     * @param {Boolean}             [options.autoOpen]          Flag to automatically open the datepicker.
-     * @param {String}              [options.cleanText]         Text for the clean button. Defaults to 'Clear'.
-     * @param {String}              [options.closeText]         Text for the close button. Defaults to 'Close'.
-     * @param {String}              [options.cssClass]          CSS class to be applied on the datepicker
+     * @param {String}              [options.lang]              Set the language of this Ink.Util.I18n instance. pt_PT and en_US are available, but using getI18n().append({ lang_CODE: {...} }) you can create your own language.
+     * @param {Boolean}             [options.autoOpen]          Flag to automatically open the datepicker.  * @param {String}              [options.cssClass]          CSS class to be applied on the datepicker
      * @param {String|Element}      [options.pickerField]       (if not using in an input[type="text"]) Element which displays the DatePicker when clicked. Defaults to an "open" link.
      * @param {String}              [options.dateRange]         Enforce limits to year, month and day for the Date, ex: '1990-08-25:2020-11'
      * @param {Boolean}             [options.displayInSelect]   Flag to display the component in a select element.
@@ -1818,15 +1898,11 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
      * @param {String|Element}      [options.monthField]        (if using options.displayInSelect) `select` field with months.
      * @param {String|Element}      [options.yearField]         (if using options.displayInSelect) `select` field with years.
      * @param {String}              [options.format]            Date format string
-     * @param {Object}              [options.month]             Hash of month names. Defaults to english month names. January is 1.
-     * @param {String}              [options.nextLinkText]      Text for the previous button. Defaults to '«'.
-     * @param {String}              [options.ofText]            Text to show between month and year. Defaults to ' of '.
      * @param {Boolean}             [options.onFocus]           If the datepicker should open when the target element is focused. Defaults to true.
      * @param {Function}            [options.onMonthSelected]   Callback to execute when the month is selected.
      * @param {Function}            [options.onSetDate]         Callback to execute when the date is set.
      * @param {Function}            [options.onYearSelected]    Callback to execute when the year is selected.
      * @param {String}              [options.position]          Position for the datepicker. Either 'right' or 'bottom'. Defaults to 'right'.
-     * @param {String}              [options.prevLinkText]      Text for the previous button. Defaults to '«'.
      * @param {Boolean}             [options.showClean]         If the clean button should be visible. Defaults to true.
      * @param {Boolean}             [options.showClose]         If the close button should be visible. Defaults to true.
      * @param {Boolean}             [options.shy]               If the datepicker should hide automatically when the user clicks outside. Defaults to true.
@@ -1837,8 +1913,14 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
      * @param {Function}            [options.validDayFn]        Callback to execute when 'rendering' the day (in the month view)
      * @param {Function}            [options.nextValidDateFn]   Function to calculate the next valid date, given the current. Useful when there's invalid dates or time frames.
      * @param {Function}            [options.prevValidDateFn]   Function to calculate the previous valid date, given the current. Useful when there's invalid dates or time frames.
-     * @param {Object}              [options.wDay]              Hash of week day names. Sunday is 0. Defaults to { 0:'Sunday', 1:'Monday', etc...
      * @param {String}              [options.yearRange]         Enforce limits to year for the Date, ex: '1990:2020' (deprecated)
+     * @param {Object}              [options.month]             (Deprecated. use options.lang or i18n instead) Hash of month names. Defaults to english month names. January is 1.
+     * @param {Object}              [options.wDay]              (Deprecated. use options.lang or i18n instead) Hash of week day names. Sunday is 0. Defaults to { 0:'Sunday', 1:'Monday', etc...
+     * @param {String}              [options.nextLinkText]      (Deprecated. use options.lang or i18n instead) Text for the previous button. Defaults to '»'.
+     * @param {String}              [options.prevLinkText]      (Deprecated. use options.lang or i18n instead) Text for the previous button. Defaults to '«'.
+     * @param {String}              [options.ofText]            (Deprecated. use options.lang or i18n instead) Text to show between month and year. Defaults to ' of '.
+     * @param {String}              [options.cleanText]         (Deprecated. use options.lang or i18n instead) Text for the clean button. Defaults to 'Clear'.
+     * @param {String}              [options.closeText]         (Deprecated. use options.lang or i18n instead) Text for the close button. Defaults to 'Close'.
      *
      * @sample Ink_UI_DatePicker_1.html
      */
@@ -1850,8 +1932,6 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
     DatePicker._optionDefinition = {
         autoOpen:        ['Boolean', false],
-        cleanText:       ['String', 'Clear'],
-        closeText:       ['String', 'Close'],
         pickerField:     ['Element', null],
         containerElement:['Element', null],
         cssClass:        ['String', 'ink-calendar bottom'],
@@ -1864,14 +1944,11 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         yearField:       ['Element', null],
 
         format:          ['String', 'yyyy-mm-dd'],
-        nextLinkText:    ['String', '»'],
-        ofText:          ['String', ' of '],
         onFocus:         ['Boolean', true],
         onMonthSelected: ['Function', null],
         onSetDate:       ['Function', null],
         onYearSelected:  ['Function', null],
         position:        ['String', 'right'],
-        prevLinkText:    ['String', '«'],
         showClean:       ['Boolean', true],
         showClose:       ['Boolean', true],
         shy:             ['Boolean', true],
@@ -1886,30 +1963,17 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         prevValidDateFn: ['Function', null],
         yearRange:       ['String', null],
 
-        // Text
-        month: ['Object', {
-             1:'January',
-             2:'February',
-             3:'March',
-             4:'April',
-             5:'May',
-             6:'June',
-             7:'July',
-             8:'August',
-             9:'September',
-            10:'October',
-            11:'November',
-            12:'December'
-        }],
-        wDay: ['Object', {
-            0:'Sunday',
-            1:'Monday',
-            2:'Tuesday',
-            3:'Wednesday',
-            4:'Thursday',
-            5:'Friday',
-            6:'Saturday'
-        }]
+        // I18n
+        lang:            ['String', null],
+
+        // Old I18n
+        month:       ['Object', null],
+        wDay:        ['Object', null],
+        nextLinkText:['String', null],
+        prevLinkText:['String', null],
+        ofText:      ['String', null],
+        cleanText:   ['String', null],
+        closeText:   ['String', null]
     };
 
     DatePicker.prototype = {
@@ -1919,7 +1983,37 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * @method _init
          * @private
          */
-        _init: function(){
+        _init: function() {
+            this.i18n = datePickerI18n.clone();
+
+            if (this._options.lang) {
+                this.i18n.lang(this._options.lang);
+            }
+
+            // Convert any legacy i18n options passed into a nice i18n object
+            var lang = this._options.lang || datePickerI18n.lang();
+            var dict = {};
+            dict[lang] = {};
+
+            if (this._options.month) {
+                dict[lang]['datepicker.months'] = this._options.month; }
+            if (this._options.wDay) {
+                dict[lang]['datepicker.week_days'] = this._options.wDay; }
+            if (this._options.nextLinkText) {
+                dict[lang]['datepicker.next_button'] = this._options.nextLinkText; }
+            if (this._options.prevLinkText) {
+                dict[lang]['datepicker.prev_button'] = this._options.prevLinkText; }
+            if (this._options.ofText) {
+                dict[lang]['datepicker.of'] = this._options.ofText; }
+            if (this._options.cleanText) {
+                dict[lang]['datepicker.clean'] = this._options.cleanText; }
+            if (this._options.closeText) {
+                dict[lang]['datepicker.close'] = this._options.closeText; }
+
+            if (keys(dict[lang]).length) {
+                this.i18n.append(dict);
+            }
+
             this._options.format = this._dateParsers[ this._options.format ] || this._options.format;
 
             this._hoverPicker = false;
@@ -1980,7 +2074,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             this._monthPrev.appendChild(InkElement.create('a', {
                 href: '#prev',
                 className: 'change_month_prev',
-                setHTML: this._options.prevLinkText
+                setHTML: this.i18n.text('datepicker.prev_button')
             }));
 
             this._monthNext = document.createElement('div');
@@ -1988,7 +2082,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             this._monthNext.appendChild(InkElement.create('a', {
                 href: '#next',
                 className: 'change_month_next',
-                setHTML: this._options.nextLinkText
+                setHTML: this.i18n.text('datepicker.next_button')
             }));
 
             calendarTop.appendChild(this._monthPrev);
@@ -2029,12 +2123,12 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             this._monthChanger = InkElement.create('a', {
                 href: '#monthchanger',
                 className: 'ink-calendar-link-month',
-                setTextContent: this._options.month[this._month + 1]
+                setTextContent: this.i18n.getKey('datepicker.months')[this._month + 1]
             });
 
             this._ofText = InkElement.create('span', {
                 className: 'ink-calendar-of-text',
-                setHTML: this._options.ofText
+                setTextContent: this.i18n.text('datepicker.of')
             });
 
             this._yearChanger = InkElement.create('a', {
@@ -2160,7 +2254,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             var liMonth = document.createElement('li');
             liMonth.appendChild(InkElement.create('a', {
                 'data-cal-month': mon,
-                setTextContent: this._options.month[mon].substring(0, 3)
+                setTextContent: this.i18n.getKey('datepicker.months')[mon].substring(0, 3)
             }));
             return liMonth;
         },
@@ -2198,13 +2292,13 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             if(this._options.showClean){
                 this._superTopBar.appendChild(InkElement.create('a', {
                     className: 'clean',
-                    setHTML: this._options.cleanText
+                    setHTML: this.i18n.text('datepicker.clean')
                 }));
             }
             if(this._options.showClose){
                 this._superTopBar.appendChild(InkElement.create('a', {
                     className: 'close',
-                    setHTML: this._options.closeText
+                    setHTML: this.i18n.text('datepicker.close')
                 }));
             }
             this._containerObject.appendChild(this._superTopBar);
@@ -2287,7 +2381,11 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
             if( Number(elemData.calDay) ){
                 this.setDate(new Date(this._year, this._month, elemData.calDay));
-                this._hide();
+                if (this._options.shy) {
+                    this._hide();
+                } else {
+                    this._updateCal();
+                }
             } else if( Number(elemData.calMonth) ) {
                 this._month = Number(elemData.calMonth) - 1;
                 this._showDefaultView();
@@ -2535,8 +2633,8 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * @private
          */
         _updateDescription: function(){
-            InkElement.setTextContent(this._monthChanger, this._options.month[this._month + 1]);
-            InkElement.setTextContent(this._ofText, this._options.ofText);
+            InkElement.setTextContent(this._monthChanger, this.i18n.getKey('datepicker.months')[this._month + 1]);
+            InkElement.setTextContent(this._ofText, this.i18n.text('datepicker.of'));
             InkElement.setTextContent(this._yearChanger, this._year);
         },
 
@@ -2562,7 +2660,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 prevYearLi.appendChild(InkElement.create('a', {
                     href: '#year_prev',
                     className: 'change_year_prev',
-                    setHTML: this._options.prevLinkText
+                    setHTML: this.i18n.text('datepicker.prev_button')
                 }));
 
                 yearUl.appendChild(prevYearLi);
@@ -2587,7 +2685,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 nextYearLi.appendChild(InkElement.create('a', {
                     href: '#year_next',
                     className: 'change_year_next',
-                    setHTML: this._options.nextLinkText
+                    setHTML: this.i18n.text('datepicker.next_button')
                 }));
 
                 yearUl.appendChild(nextYearLi);
@@ -2974,14 +3072,14 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         _getPrevDecade: function (date) {
             date = date || { _year: this._year, _month: this._month, _day: this._day };
             var decade = this._getCurrentDecade(date);
-            if (decade - 10 < this._min._year) { return null; }
+            if (getDecade(decade - 10) < getDecade(this._min._year)) { return null; }
             return decade - 10;
         },
 
         /** Returns the decade given a date or year*/
         _getCurrentDecade: function (year) {
             year = year ? (year._year || year) : this._year;
-            return Math.floor(year / 10) * 10;  // Round to first place
+            return getDecade(this._year);
         },
 
         _callUserCallbackBase: function (cb, date) {
@@ -3134,7 +3232,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             for(var i=0; i<7; i++){
                 wDay = (startWeekDay + i) % 7;
                 header.appendChild(InkElement.create('li', {
-                    setTextContent: this._options.wDay[wDay].substring(0, 1)
+                    setTextContent: this.i18n.getKey('datepicker.week_days')[wDay].substring(0, 1)
                 }));
             }
 
@@ -3176,21 +3274,53 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             }
         },
 
-        /*
-         * // TODO implement this
-         * Prototype's method to allow the 'i18n files' to change all objects' language at once.
-         * @param {Object} options                  Object with the texts' configuration.
-         * @param {String} options.closeText        Text of the close anchor
-         * @param {String} options.cleanText        Text of the clean text anchor
-         * @param {String} options.prevLinkText     "Previous" link's text
-         * @param {String} options.nextLinkText     "Next" link's text
-         * @param {String} options.ofText           The text "of", present in 'May of 2013'
-         * @param {Object} options.month            An object with keys from 1 to 12 for the full months' names
-         * @param {Object} options.wDay             An object with keys from 0 to 6 for the full weekdays' names
+        /**
+         * Set my I18n instance with the calendar text
+         * @method setI18n
+         * @param {Ink.Util.I18n_1} i18n I18n instance
+         **/
+        setI18n: function (i18n) {
+            if (i18n.clone) {
+                // New function, added safety
+                i18n = i18n.clone();
+            }
+            this.i18n = i18n;
+        },
+
+        /**
+         * Get my I18n instance with the calendar text
+         * @method getI18n
+         * @return {Ink.Util.I18n_1} I18n instance
+         **/
+        getI18n: function () {
+            return this.i18n || datePickerI18n;
+        },
+
+        /**
+         * Set the language to the given language code
+         * If we don't have an i18n instance, create one which is a copy of the global one.
+         * @method setLanguage
+         * @param {String} language Language code (ex: en_US, pt_PT)
+         * @return {void}
          * @public
-         */
-        lang: function( options ){
-            this._lang = options;
+         **/
+        setLanguage: function (language) {
+            if (!this.i18n) {
+                this.setI18n(datePickerI18n);
+            }
+            this.i18n.lang(language);
+        },
+
+        /**
+         * Gets the language code string (pt_PT or en_US for example) currently in use.
+         * May be global
+         *
+         * @method getLanguage
+         * @public
+         * @return {String} Language code.
+         **/
+        getLanguage: function () {
+            return this.i18n ? this.i18n.lang() : datePickerI18n.lang();
         },
 
         /**
@@ -4156,10 +4286,10 @@ Ink.createModule('Ink.UI.Dropdown', '1', ['Ink.UI.Common_1', 'Ink.UI.Toggle_1', 
          * @param {Element|String}   trigger                Trigger Element
          * @param {Object}           options                Options Object
          * @param {Element|String}   options.target         Target of the dropdown action.
-         * @param {Number}          [options.hoverOpen]     The number of milliseconds you need to hover with the mouse before the dropdown opens.
+         * @param {Number}          [options.hoverOpen]     The number of seconds you need to hover with the mouse before the dropdown opens.
          * @param {Boolean}         [options.dismissOnInsideClick=false] Whether to dismiss the dropdown when there's a click inside.
          * @param {Boolean}         [options.dismissOnOutsideClick=true] Whether to dismiss the dropdown when there's a click outside.
-         * @param {Number}          [options.dismissAfter]  When the mouse moves away from the dropdown, wait for `dismissAfter` milliseconds and only then dismiss.
+         * @param {Number}          [options.dismissAfter]  When the mouse moves away from the dropdown, wait for `dismissAfter` seconds and only then dismiss.
          * @param {Function}        [options.onInsideClick] Called when there's a click inside the dropdown.
          * @param {Function}        [options.onOutsideClick] Called when there's a click outside the dropdown.
          * @param {Function}        [options.onOpen]        Called when the dropdown is opened.
@@ -5305,6 +5435,31 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
 Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Element_1','Ink.Dom.Event_1','Ink.Dom.Selector_1','Ink.Dom.Css_1','Ink.Util.Array_1','Ink.Util.I18n_1','Ink.Util.Validator_1'], function( Common, Element, Event, Selector, Css, InkArray, I18n, InkValidator ) {
     'use strict';
 
+    function getValue(element) {
+        // TODO this is already implemented in FormSerialize.
+        switch(element.nodeName.toLowerCase()){
+            case 'select':
+                return Ink.s('option:selected', element).value;
+            case 'textarea':
+                return element.value;
+            case 'input':
+                if( "type" in element ){
+                    if( (element.type === 'radio') || (element.type === 'checkbox') ){
+                        if( element.checked ){
+                            return element.value;
+                        }
+                    } else if( element.type !== 'file' ){
+                        return element.value;
+                    }
+                } else {
+                    return element.value;
+                }
+                return;
+            default:
+                return element.innerHTML;
+        }
+    }
+
     /**
      * Validation Functions used in the rules (data-rules) option to FormValidator_2.
      *
@@ -5614,7 +5769,22 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
          * @return {Boolean}         True if the values match. False if not.
          */
         'matches': function( value, fieldToCompare ){
-            var otherField = this.getFormElements()[fieldToCompare][0];
+            // Find the other field in the FormValidator.
+            var otherField = this.getFormElements()[fieldToCompare];
+
+            if (!otherField) {
+                // It's in the actual <form>, not in the FormValidator's fields
+                var possibleFields = Ink.ss('input, select, textarea, .control-group', this._options.form._element);
+                for (var i = 0; i < possibleFields.length; i++) {
+                    if ((possibleFields[i].name || possibleFields[i].id) === fieldToCompare) {
+                        return getValue(possibleFields[i]) === value;
+                    }
+                }
+                return false;
+            } else {
+                otherField = otherField[0];
+            }
+
             var otherFieldValue = otherField.getValue();
             if (otherField._rules.required) {
                 if (otherFieldValue === '') {
@@ -5622,8 +5792,17 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
                 }
             }
             return value === otherFieldValue;
-        }
+        },
 
+        /**
+         * Validates an [EAN barcode](https://en.wikipedia.org/wiki/International_Article_Number_%28EAN%29)
+         *
+         * @method ean
+         * @return {Boolean} True if the given value is an EAN. False if not.
+         */
+        'ean': function (value) {
+            return InkValidator.isEAN(value.replace(/[^\d]/g, ''), 'ean-13');
+        }
     };
 
     /**
@@ -5633,7 +5812,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
      */
     var validationMessages = new I18n({
         en_US: {
-            'formvalidator.required' : 'The {field} filling is mandatory',
+            'formvalidator.required' : 'Filling {field} is mandatory',
             'formvalidator.min_length': 'The {field} must have a minimum size of {param1} characters',
             'formvalidator.max_length': 'The {field} must have a maximum size of {param1} characters',
             'formvalidator.exact_length': 'The {field} must have an exact size of {param1} characters',
@@ -5654,8 +5833,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
             'formvalidator.numeric': 'The {field} should contain a number',
             'formvalidator.range': 'The {field} should contain a number between {param1} and {param2}',
             'formvalidator.color': 'The {field} should contain a valid color',
-            'formvalidator.matches': 'The {field} should match the field {param1}',
-            'formvalidator.validation_function_not_found': 'The rule {rule} has not been defined'
+            'formvalidator.matches': 'The {field} should match the field {param1}'
         },
         pt_PT: {
             'formvalidator.required' : 'Preencher {field} é obrigatório',
@@ -5679,8 +5857,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
             'formvalidator.numeric': '{field} deve conter um número válido',
             'formvalidator.range': '{field} deve conter um número entre {param1} e {param2}',
             'formvalidator.color': '{field} deve conter uma cor válida',
-            'formvalidator.matches': '{field} deve corresponder ao campo {param1}',
-            'formvalidator.validation_function_not_found': '[A regra {rule} não foi definida]'
+            'formvalidator.matches': '{field} deve corresponder ao campo {param1}'
         }
     }, 'en_US');
 
@@ -5701,6 +5878,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
      * @param  {Object} options Object with configuration options
      * @param  {String} [options.label] Label for this element. It is used in the error message. If not specified, the text in the `label` tag in the control-group is used.
      * @param  {String} [options.rules] Rules string to be parsed.
+     * @param  {String} [options.error] Error message to show in case of error
      * @param  {FormValidator} options.form FormValidator instance.
      */
     function FormElement(){
@@ -5711,7 +5889,8 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
 
     FormElement._optionDefinition = {
         label: ['String', null],
-        rules: ['String', null], // The rules to apply
+        rules: ['String', null],  // The rules to apply
+        error: ['String', null],  // Error message
         form: ['Object']
     };
 
@@ -5815,11 +5994,19 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
 
             var i18nKey = 'formvalidator.' + rule;
 
-            this._errors[rule] = validationMessages.text(i18nKey, paramObj);
+            var err;
 
-            if (this._errors[rule] === i18nKey) {
-                this._errors[rule] = 'Validation message not found';
+            if (this._options.error) {
+                err = this._options.error;
+            } else {
+                err = validationMessages.text(i18nKey, paramObj);
+
+                if (err === i18nKey) {
+                    err = '[Validation message not found for rule ]' + rule;
+                }
             }
+
+            this._errors[rule] = err;
         },
 
         /**
@@ -5830,29 +6017,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
          * @public
          */
         getValue: function(){
-            // TODO this is already implemented in FormSerialize.
-
-            switch(this._element.nodeName.toLowerCase()){
-                case 'select':
-                    return Ink.s('option:selected',this._element).value;
-                case 'textarea':
-                    return this._element.value;
-                case 'input':
-                    if( "type" in this._element ){
-                        if( (this._element.type === 'radio') || (this._element.type === 'checkbox') ){
-                            if( this._element.checked ){
-                                return this._element.value;
-                            }
-                        } else if( this._element.type !== 'file' ){
-                            return this._element.value;
-                        }
-                    } else {
-                        return this._element.value;
-                    }
-                    return;
-                default:
-                    return this._element.innerHTML;
-            }
+            return getValue(this._element);
         },
 
         /**
@@ -6154,6 +6319,55 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         },
 
         /**
+         * Set my I18n instance with the validation messages.
+         * @method setI18n
+         * @param {Ink.Util.I18n_1} i18n I18n instance
+         **/
+        setI18n: function (i18n) {
+            if (i18n.clone) {
+                // New function, added safety
+                i18n = i18n.clone();
+            }
+            this.i18n = i18n;
+        },
+
+        /**
+         * Get my I18n instance with the validation messages.
+         * @method getI18n
+         * @return {Ink.Util.I18n_1} I18n instance
+         **/
+        getI18n: function () {
+            return this.i18n || validationMessages;
+        },
+
+        /**
+         * Set the language of this form validator to the given language code
+         * If we don't have an i18n instance, create one which is a copy of the global one.
+         * @method setLanguage
+         * @param {String} language Language code (ex: en_US, pt_PT)
+         * @return {void}
+         * @public
+         **/
+        setLanguage: function (language) {
+            if (!this.i18n) {
+                this.setI18n(validationMessages);
+            }
+            this.i18n.lang(language);
+        },
+
+        /**
+         * Gets the language code string (pt_PT or en_US for example) currently in use by this formvalidator.
+         * May be global
+         *
+         * @method getLanguage
+         * @public
+         * @return {String} Language code.
+         **/
+        getLanguage: function () {
+            return this.i18n ? this.i18n.lang() : validationMessages.lang();
+        },
+
+        /**
          * Validates every registered FormElement 
          * This method looks inside the this._formElements object for validation targets.
          * Also, based on the this._options.beforeValidation, this._options.onError, and this._options.onSuccess, this callbacks are executed when defined.
@@ -6225,7 +6439,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
                     }
 
                     var paragraph = document.createElement('p');
-                    Css.addClassName(paragraph,'tip');
+                    Css.addClassName(paragraph, 'tip');
                     if (controlElement || controlGroupElement) {
                         (controlElement || controlGroupElement).appendChild(paragraph);
                     } else {
@@ -6458,7 +6672,7 @@ Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
  * @version 1
  */
 
-Ink.createModule('Ink.UI.LazyLoad', '1', ['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1'], function(Common, InkEvent, InkElement) {
+Ink.createModule('Ink.UI.LazyLoad', '1', ['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1'], function(Common, InkEvent, InkElement, Css) {
 'use strict';
 
 function LazyLoad() {
@@ -6470,6 +6684,7 @@ LazyLoad._name = 'LazyLoad_1';
 LazyLoad._optionDefinition = {
     item: ['String', '.lazyload-item'],
     placeholder: ['String', null],
+    loadedClass: ['String', null],
     source: ['String', 'data-src'],
     destination: ['String', 'src'],
     delay: ['Number', 100],
@@ -6500,6 +6715,7 @@ LazyLoad.prototype = {
      * @param {Object}      [options]                           Options object, containing:
      * @param {String}      [options.item]                      Item selector. Defaults to '.lazyload-item'.
      * @param {String}      [options.placeholder]               Placeholder value for items which are not 'visible', in case they don't already have a value set.
+     * @param {String}      [options.loadedClass]               Add this class to the images when they're loaded.
      * @param {String}      [options.source]                    Source attribute. When an item is 'visible', use this attribute's value to set its destination attribute. Defaults to 'data-src'.
      * @param {String}      [options.destination]               Destination attribute. Attribute to change when the element is 'visible'. Defaults to 'src'. 
      * @param {Number}      [options.delay]                     Milliseconds to wait before trying to load items. Defaults to 100.
@@ -6573,11 +6789,8 @@ LazyLoad.prototype = {
 
             if (InkElement.inViewport(curElm.elm, { partial: true, margin: this._options.delta })) {
                 this._elInViewport(curElm);
-                if (this._options.image) {
-                    /* [todo] a seemingly unrelated option creates a branch? Some of this belongs in another module. */
-                    this._aData.splice(i, 1);
-                    i -= 1;
-                }
+                this._aData.splice(i, 1);
+                i -= 1;
             }
         }
 
@@ -6598,6 +6811,9 @@ LazyLoad.prototype = {
 
         if(this._options.image) {
             curElm.elm.setAttribute(this._options.destination, curElm.original);
+            if (this._options.loadedClass) {
+                Css.addClassName(curElm.elm, this._options.loadedClass);
+            }
             curElm.elm.removeAttribute(this._options.source);
         }
 
@@ -6662,6 +6878,14 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
         div.style.opacity = 'invalid';
         return div.style.opacity !== 'invalid';
     }(InkElement.create('div', {style: 'opacity: 1'})));
+
+    var vhVwSupported = (function (div) {
+        return div.style.height === '10vh' && div.style.width === '10vw';
+    }(InkElement.create('div', { style: 'height:10vh;width:10vw' })));
+
+    var flexSupported = (function (div) {
+        return div.style.display !== '';
+    }(InkElement.create('div', { style: 'display: flex' })));
 
     /**
      * @class Ink.UI.Modal
@@ -6739,7 +6963,12 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             this._handlers = {
                 click:   Ink.bindEvent(this._onShadeClick, this),
                 keyDown: Ink.bindEvent(this._onKeyDown, this),
-                resize:  Event.throttle(Ink.bindEvent(this._onResize, this), 250)
+                resize: null
+            };
+
+            this._dimensionIsPercentage = {
+                width: ('' + this._options.width).indexOf('%') !== -1,
+                height: ('' + this._options.height).indexOf('%') !== -1
             };
 
             this._isOpen = false;
@@ -6806,8 +7035,49 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
          * @private
          */
         _reposition: function(){
-            this._modalDiv.style.marginTop = (-InkElement.elementHeight(this._modalDiv)/2) + 'px';
-            this._modalDiv.style.marginLeft = (-InkElement.elementWidth(this._modalDiv)/2) + 'px';
+            // reposition vertically
+            var largerThan90Percent;
+
+            if (vhVwSupported && this._dimensionIsPercentage.height) {
+                this._modalDiv.style.marginTop = (-parseFloat(this._options.height)/2) + 'vh';
+            } else if (vhVwSupported) {
+                largerThan90Percent = parseFloat(this._options.height) > InkElement.viewportHeight() * 0.9;
+
+                if (largerThan90Percent !== this._heightWasLargerThan90Percent || !largerThan90Percent) {
+                    this._heightWasLargerThan90Percent = largerThan90Percent;
+
+                    if (largerThan90Percent) {
+                        this._modalDiv.style.marginTop = '0';
+                        this._modalDiv.style.top = '5vh';
+                    } else {
+                        this._modalDiv.style.marginTop = (-parseFloat(this._options.height)/2) + 'px';
+                        this._modalDiv.style.top = '';
+                    }
+                }
+            } else {
+                this._modalDiv.style.marginTop = (-InkElement.elementHeight(this._modalDiv)/2) + 'px';
+            }
+
+            // reposition horizontally
+            if (vhVwSupported && this._dimensionIsPercentage.width) {
+                this._modalDiv.style.marginLeft = (-parseFloat(this._options.width)/2) + 'vw';
+            } else if (vhVwSupported) {
+                largerThan90Percent = parseFloat(this._options.width) > InkElement.viewportWidth() * 0.9;
+
+                if (largerThan90Percent !== this._widthWasLargerThan90Percent || !largerThan90Percent) {
+                    this._widthWasLargerThan90Percent = largerThan90Percent;
+
+                    if (largerThan90Percent) {
+                        this._modalDiv.style.marginLeft = '0';
+                        this._modalDiv.style.left = '5vw';
+                    } else {
+                        this._modalDiv.style.marginLeft = (-parseFloat(this._options.width)/2) + 'px';
+                        this._modalDiv.style.left = '';
+                    }
+                }
+            } else {
+                this._modalDiv.style.marginLeft = (-InkElement.elementWidth(this._modalDiv)/2) + 'px';
+            }
         },
 
         /**
@@ -6817,28 +7087,17 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
          * @private
          */
         _onResize: function( ){
-            var isPercentage = {
-                width: ('' + this._options.width).indexOf('%') !== -1,
-                height: ('' + this._options.height).indexOf('%') !== -1
-            };
-            var currentViewport = {
-                height: InkElement.viewportHeight(),
-                width: InkElement.viewportWidth()
-            };
+            if (!vhVwSupported) {
+                this._avoidModalLargerThanScreen();
+            }
 
-            InkArray.forEach(['height', 'width'], Ink.bind(function (dimension) {
-                // Not used for percentage measurements
-                if (isPercentage[dimension]) { return; }
+            if (!vhVwSupported || (!this._dimensionIsPercentage.height || !this._dimensionIsPercentage.width)) {
+                this._reposition();
+            }
 
-                if (currentViewport[dimension] > this.originalStatus[dimension]) {
-                    this._modalDiv.style[dimension] = this._modalDiv.style[maxName(dimension)];
-                } else {
-                    this._modalDiv.style[dimension] = Math.round(currentViewport[dimension] * 0.9) + 'px';
-                }
-            }, this));
-
-            this._resizeContainer();
-            this._reposition();
+            if (!flexSupported) {
+                this._resizeContainer();
+            }
         },
 
         /**
@@ -6895,12 +7154,6 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             }
         },
 
-        /**
-         * Responsible for setting the size of the modal (and position) based on the viewport.
-         * 
-         * @method _resizeContainer
-         * @private
-         */
         _resizeContainer: function() {
             var containerHeight = InkElement.elementHeight(this._modalDiv);
 
@@ -6915,11 +7168,42 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             }
 
             this._contentContainer.style.height = containerHeight + 'px';
-            if( containerHeight !== InkElement.elementHeight(this._contentContainer) ){
-                this._contentContainer.style.height = ~~(containerHeight - (InkElement.elementHeight(this._contentContainer) - containerHeight)) + 'px';
-            }
 
             if( this._markupMode ){ return; }
+        },
+
+        _resizeContainerFlex: function() {
+            this._contentContainer.style.flex = '1';
+            this._modalDiv.style.display = 'flex';
+            this._modalDiv.style.flexDirection = 'column';
+        },
+
+        _avoidModalLargerThanScreen: function () {
+            if (!vhVwSupported) {
+                var currentViewport = {
+                    height: InkElement.viewportHeight(),
+                    width: InkElement.viewportWidth()
+                };
+
+                InkArray.forEach(['height', 'width'], Ink.bind(function (dimension) {
+                    // Not used for percentage measurements
+                    if (this._dimensionIsPercentage[dimension]) { return; }
+
+                    if (parseFloat(this._options[dimension]) > currentViewport[dimension] * 0.9) {
+                        this._modalDiv.style[dimension] = Math.round(currentViewport[dimension] * 0.9) + 'px';
+                    } else {
+                        if (isNaN(parseFloat(this._options[dimension]))) { return; }
+                        this._modalDiv.style[dimension] = parseFloat(this._options[dimension]) + 'px';
+                    }
+                }, this));
+            } else {
+                if (!this._dimensionIsPercentage.width) {
+                    this._modalDiv.style.maxWidth = '90vw';
+                }
+                if (!this._dimensionIsPercentage.height) {
+                    this._modalDiv.style.maxHeight = '90vh';
+                }
+            }
         },
 
         /**************
@@ -6928,7 +7212,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
 
         /**
          * Opens this Modal. 
-         * Use this if you created the modal with `autoOpen: false`
+         * Use this if you created the modal with `autoDisplay: false`
          * to open the modal when you want to.
          * @method open 
          * @param {Event} [event] (internal) In case its fired by the internal trigger.
@@ -6997,22 +7281,41 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                 width:              InkElement.elementWidth(this._modalDiv)
             };
 
-            /**
-             * Let's 'resize' it:
-             */
-            if( this._options.responsive ) {
-                this._onResize(true);
-                Event.observe( window,'resize',this._handlers.resize );
-            } else {
+            // /**
+            //  * Let's resize, place it:
+            //  */
+            this._avoidModalLargerThanScreen();
+            this._reposition();
+            if (!flexSupported) {
                 this._resizeContainer();
-                this._reposition();
+            } else {
+                this._resizeContainerFlex();
+            }
+
+            // /**
+            //  * Responsive modals (they're responsive by default) will resize as the viewport resizes.
+            //  * They need a resize handler if we're an old browser or they're not percentage-based
+            //  * (because pixel-size-based iframes become larger than the viewport at some point).
+            //  **/
+            if( this._options.responsive ) {
+                var needResizeHandler = !(
+                    vhVwSupported &&
+                    flexSupported &&
+                    //Css.getStyle(this._modalDiv, 'display') !== 'block' &&
+                    isPercentage.height &&
+                    isPercentage.width );
+
+                if (needResizeHandler) {
+                    this._handlers.resize = Event.throttle(Ink.bind(this._onResize, this), 500);
+                    Event.observe(window, 'resize', this._handlers.resize);
+                }
             }
 
             if (this._options.onShow) {
                 this._options.onShow(this);
             }
 
-            // subscribe events
+            // // subscribe events
             Event.observe(this._shadeElement, 'click', this._handlers.click);
             if (this._options.closeOnEscape ) {
                 Event.observe(document, 'keydown', this._handlers.keyDown);
@@ -7051,7 +7354,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
 
             this._isOpen = false;
 
-            if( this._options.responsive ){
+            if( this._handlers.resize ){
                 Event.stopObserving(window, 'resize', this._handlers.resize);
             }
 
@@ -7086,10 +7389,6 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
          */
         _waitForFade: function (elem, callback) {
             if (!opacitySupported) { return callback(); }
-
-            if ('ontransitionend' in elem) {
-                return Event.observeOnce(elem, 'transitionEnd', callback);
-            }
 
             var fadeChecks = 5;
             var fadeChecker = function () {
@@ -7216,7 +7515,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
      * @param {String|Element}      selector                    Selector or element
      * @param {Object}              options                     Options
      * @param {Number}              [options.size]              Number of pages.
-     * @param {Number}              [options.totalItemCount]    Total numeber of items to display
+     * @param {Number}              [options.totalItemCount]    Total number of items to display
      * @param {Number}              [options.itemsPerPage]      Number of items per page.
      * @param {Number}              [options.maxSize]           If passed, only shows at most maxSize items. displays also first|prev page and next page|last buttons
      * @param {Number}              [options.start]             Start page. defaults to 1
@@ -8424,8 +8723,7 @@ Ink.createModule('Ink.UI.Spy', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Do
     Spy._name = 'Spy_1';
 
     Spy._optionDefinition = {
-        target: ['Element', undefined],
-        activeClass: ['String', 'active'] // [todo] Spy#_options.activeClass
+        target: ['Element', undefined]
     };
 
     Spy.prototype = {
@@ -9259,7 +9557,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
      * @class Ink.UI.Table
      * @constructor
      * @version 1
-     * @param {String|Element}      selector                                Your `<table>` element.
+     * @param {String|Element}      selector                                Your `table` element.
      * @param {Object}              [options] Options object containing:
      * @param {Number}              [options.pageSize]                      Number of rows per page. Omit to avoid paginating.
      * @param {String}              [options.endpoint]                      Endpoint to get the records via AJAX. Omit if you don't want to do AJAX
@@ -9336,7 +9634,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
             /**
              * Checking if it's in markup mode or endpoint mode
              */
-            this._markupMode = !this._options.endpoint;
+            this._markupMode = !(this._options.endpoint || this._options.createEndpointURL);
 
             if( this._options.visibleFields ){
                 this._options.visibleFields = this._options.visibleFields.toString().split(/[, ]+/g);
@@ -9455,18 +9753,21 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
         _invertSortOrder: function (index, sortAndReverse) {
             var isAscending = this._sortableFields[index] === 'asc';
 
+            // Reset the sort order of everything
             for (var i = 0, len = this._headers.length; i < len; i++) {
                 this._setSortOrderOfColumn(i, null);
             }
+            // Except for the index we're looking at
+            this._setSortOrderOfColumn(index, !isAscending);
 
             if (sortAndReverse) {
                 this._sort(index);
                 if (isAscending) {
                     this._data.reverse();
                 }
+            } else {
+                this._getData();
             }
-
-            this._setSortOrderOfColumn(index, !isAscending);
         },
 
         _setSortOrderOfColumn: function(index, up) {
@@ -9792,10 +10093,10 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
             var sortOrder = this._getSortOrder() || null;
             var page = null;
 
-            if (this._pagination) {
+            if (this._options.pageSize) {
                 page = {
                     size: this._options.pageSize,
-                    page: this._pagination.getCurrent() + 1
+                    page: this._pagination ? this._pagination.getCurrent() + 1 : 1
                 };
             }
 
@@ -9820,13 +10121,13 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
                 return null; // no sorting going on
             }
             return {
-                field: this._originalFields[index],
+                field: this._originalFields[index] || Element.textContent(this._headers[index]),
                 order: this._sortableFields[index]
             };
         },
 
         _getUrl: function (sort, page) {
-            var urlCreator = this._options.createEndpointUrl ||
+            var urlCreator = this._options.createEndpointURL ||
                 function (endpoint, sort, page
                         /* TODO implement filters too */) {
                     endpoint = InkUrl.parseUrl(endpoint);
@@ -9902,6 +10203,8 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
                 this._createHeadersFromJson( headers );
                 this._resetSortOrder();
                 this._addHeadersClasses();
+            } else {
+                this._resetSortOrder();
             }
 
             this._createRowsFromJSON( rows );
@@ -9949,7 +10252,6 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
      * @param {Object}              [options]                       Options object, containing:
      * @param {Boolean}             [options.preventUrlChange=false] Flag that determines if follows the link on click or stops the event
      * @param {String}              [options.active]                ID of the tab to activate on creation if the window hash is not already a tab ID.
-     * @param {Array}               [options.disabled=[]]           of the tabs that will be disabled on creation.
      * @param {Function}            [options.onBeforeChange]        Callback to be executed before changing tabs.
      * @param {Function}            [options.onChange]              Callback to be executed after changing tabs.
      * @param {Boolean}             [options.triggerEventsOnLoad=true] Call the above callbacks after this component is created.
@@ -9968,7 +10270,6 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
     Tabs._optionDefinition = {
         preventUrlChange:   ['Boolean', false],
         active:             ['String', undefined],
-        disabled:           ['Object', []],
         onBeforeChange:     ['Function', undefined],
         onChange:           ['Function', undefined],
         menuSelector:       ['String', '.tabs-nav'],
@@ -10032,7 +10333,9 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
                                  Selector.select('a', this._menu)[0];
 
             if (activeMenuLink) {
+                this._firstTime = true;
                 this._changeTab(activeMenuLink, this._options.triggerEventsOnLoad);
+                this._firstTime = false;
             }
         },
 
@@ -10056,7 +10359,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
             // going to be shown below). That is intentional. If the content is
             // shown and location.hash changes, scroll jumps to that pane, and
             // we do not want that.
-            if (window.location.hash !== href && !this._options.preventUrlChange) {
+            if (window.location.hash !== href && !this._options.preventUrlChange && !this._firstTime) {
                 window.location.hash = href;
             }
 
@@ -10708,7 +11011,7 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
      * @param {String}              [options.classNameOn]           CSS class to toggle when on. Defaults to 'show-all'.
      * @param {String}              [options.classNameOff]          CSS class to toggle when off. Defaults to 'hide-all'.
      * @param {String}              [options.triggerEvent]          Event that will trigger the toggling. Defaults to 'click'.
-     * @param {Boolean}             [options.closeOnClick]          Flag to toggle the targe off when clicking outside the toggled content. Defaults to true.
+     * @param {Boolean}             [options.closeOnClick]          Flag to toggle the target off when clicking outside the toggled content. Defaults to true.
      * @param {Boolean}             [options.canToggleAnAncestor]   Set to true if you want the toggle to target ancestors of itself. Defaults to false.
      * @param {String}              [options.closeOnInsideClick]    Toggle off when a child element matching this selector is clicked. Set to null to deactivate the check. Defaults to 'a[href]'.
      * @param {Boolean}             [options.initialState]          Flag to define initial state. false: off, true: on, null: markup. Defaults to null.
@@ -10725,7 +11028,7 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
     Toggle._optionDefinition = {
         target:         ['Elements'],
         triggerEvent:   ['String', 'click'],
-        closeOnClick:   ['Boolean', true],
+        closeOnClick:   ['Boolean', null],
         canToggleAnAncestor: ['Boolean', false],
         isAccordion:    ['Boolean', false],
         initialState:   ['Boolean', null],  // May be true, false, or null to be what it is right now
@@ -10748,8 +11051,11 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
 
             this._targets = Common.elsOrSelector(this._options.target);
 
-            // Boolean option handling
-            this._options.closeOnClick = this._options.closeOnClick;
+            // closeOnClick should default to false when isAccordion
+            if (this._options.closeOnClick === null) {
+                this._options.closeOnClick =
+                    this._options.isAccordion ? false : true;
+            }
             // Actually a throolean
             if (this._options.initialState === null) {
                 this._options.initialState = Css.hasClassName(this._targets[0], this._options.classNameOn);
@@ -10927,7 +11233,7 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
             }
 
             if (callHandler && typeof this._options.onChangeState === 'function') {
-                var ret = this._options.onChangeState(on);
+                var ret = this._options.onChangeState.call(this, on, { element: this._element });
                 if (ret === false) { return false; } //  Canceled by the event handler
             }
             for (i = 0, len = this._targets.length; i < len; i++) {

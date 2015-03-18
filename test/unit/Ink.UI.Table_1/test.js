@@ -1,4 +1,4 @@
-Ink.requireModules(['Ink.UI.Table_1', 'Ink.UI.Common_1', 'Ink.Dom.Element_1', 'Ink.Util.Array_1', 'Ink.Dom.Selector_1', 'Ink.UI.Pagination_1'], function (Table, Common, InkElement, InkArray, Selector, Pagination) {
+Ink.requireModules(['Ink.UI.Table_1', 'Ink.UI.Common_1', 'Ink.Dom.Element_1', 'Ink.Util.Array_1', 'Ink.Dom.Selector_1', 'Ink.UI.Pagination_1', 'Ink.Net.Ajax_1', 'Ink.Util.Json_1'], function (Table, Common, InkElement, InkArray, Selector, Pagination, Ajax, Json) {
     function makeContainer() {
         return InkElement.create('div', {
             // style: 'display: none',
@@ -127,6 +127,168 @@ Ink.requireModules(['Ink.UI.Table_1', 'Ink.UI.Common_1', 'Ink.Dom.Element_1', 'I
                 start();
             });
         });
+    });
+
+    test('Ajax table', function ()  {
+        var container = makeContainer();
+        InkElement.setHTML(Ink.s('tbody', container), '')
+        var tableEl = Ink.s('table', container);
+
+        var createEndpointURL = sinon.stub().returns('/some/url')
+
+        var processJSONRows = sinon.spy(
+            Table._optionDefinition.processJSONRows[1]);
+        var processJSONRow = sinon.spy(
+            Table._optionDefinition.processJSONRow[1]);
+        var processJSONField = sinon.spy(
+            Table._optionDefinition.processJSONField[1]);
+        var processJSONHeaders = sinon.spy(
+            Table._optionDefinition.processJSONHeaders[1]);
+        var processJSONTotalRows = sinon.spy(
+            Table._optionDefinition.processJSONTotalRows[1]);
+
+        var pagElm = document.createElement('nav')
+
+        sinon.stub(Ajax.prototype, 'init')
+        var table = new Table(tableEl, {
+            pageSize: 2,
+            pagination: pagElm,
+            createEndpointURL: createEndpointURL,
+            processJSONRows: processJSONRows,
+            processJSONRow: processJSONRow,
+            processJSONField: processJSONField,
+            processJSONHeaders: processJSONHeaders,
+            processJSONTotalRows: processJSONTotalRows
+        });
+
+        ok(!table._markupMode)
+
+        ok(createEndpointURL.calledOnce)
+        deepEqual(createEndpointURL.lastCall.args, [
+            null,
+            null,  // sortOrder
+            {
+                page: 1,  // Pages start in 1
+                size: 2   // pageSize
+            }
+        ])
+        ok(Ajax.prototype.init.calledWith('/some/url'))
+
+        var onSuccess = Ajax.prototype.init.lastCall.args[1].onSuccess;
+
+        var res;
+        var resFields;
+        var resRows;
+        var resTotalRows;
+
+        onSuccess({
+            status: 200,
+            responseText: Json.stringify((res = {
+                fields: (resFields = [
+                    'col1',
+                    'col2'
+                ]),
+                rows: (resRows = [
+                    {
+                       col1: '1',
+                       col2: 'a'
+                    },
+                    {
+                       col1: '2',
+                       col2: 'b'
+                    }
+                ]),
+                totalRows: (resTotalRows = 2)
+            }))
+        });
+
+        deepEqual(
+            itemsInColumn(tableEl, 1),
+            [1, 2],
+            'data came from the ajax request!');
+
+        // Now we look at the options we gave it and see if they were called with what we expect
+        ok(processJSONRows.calledWith(res))
+        ok(processJSONRow.calledTwice)
+        ok(processJSONRow.calledWith(resRows[0]))
+        ok(processJSONRow.calledWith(resRows[1]))
+        ok(processJSONField.getCalls().length === 4)
+        ok(processJSONHeaders.notCalled, 'processJSONHeaders not called unless there\'s no headers in the DOM')
+        ok(processJSONTotalRows.calledWith(res))
+
+        // Resetting the counters
+        Ajax.prototype.init.reset()
+        createEndpointURL.reset()
+
+        onSuccess({
+            status: 200,
+            responseText: Json.stringify((res = {
+                fields: (resFields = [
+                    'col1',
+                    'col2'
+                ]),
+                rows: (resRows = [
+                    {
+                       col1: '1',
+                       col2: 'a'
+                    },
+                    {
+                       col1: '2',
+                       col2: 'b'
+                    }
+                ]),
+                totalRows: (resTotalRows = 2)
+            }))
+        });
+        stop()
+        var header1 = Ink.ss('thead th', tableEl)[0];
+        Syn.click(header1, function () {
+            ok(Ajax.prototype.init.calledOnce)
+            ok(createEndpointURL.calledOnce)
+
+            deepEqual(createEndpointURL.lastCall.args, [
+                null,
+                {
+                    field: 'col1',
+                    order: 'asc'
+                },
+                {
+                    page: 1,
+                    size: 2
+                }
+            ])
+
+            var onSuccess = Ajax.prototype.init.lastCall.args[1].onSuccess;
+            onSuccess({
+                status: 200,
+                responseText: Json.stringify(({
+                    fields: ([
+                        'col1',
+                        'col2'
+                    ]),
+                    rows: ([
+                        {
+                           col1: '2',
+                           col2: 'b'
+                        },
+                        {
+                           col1: '1',
+                           col2: 'a'
+                        }
+                    ]),
+                    totalRows: (2)
+                }))
+            });
+
+            deepEqual(
+                itemsInColumn(tableEl, 1),
+                [2, 1],
+                'data came from the ajax request! Again!');
+
+            // Sorry Ajax, we leave you alone now
+            Ajax.prototype.init.restore();
+            start();
+        })
     });
 });
 

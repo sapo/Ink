@@ -36,10 +36,10 @@ Ink.createModule('Ink.UI.Dropdown', '1', ['Ink.UI.Common_1', 'Ink.UI.Toggle_1', 
          * @param {Element|String}   trigger                Trigger Element
          * @param {Object}           options                Options Object
          * @param {Element|String}   options.target         Target of the dropdown action.
-         * @param {Number}          [options.hoverOpen]     The number of milliseconds you need to hover with the mouse before the dropdown opens.
+         * @param {Number}          [options.hoverOpen]     The number of seconds you need to hover with the mouse before the dropdown opens.
          * @param {Boolean}         [options.dismissOnInsideClick=false] Whether to dismiss the dropdown when there's a click inside.
          * @param {Boolean}         [options.dismissOnOutsideClick=true] Whether to dismiss the dropdown when there's a click outside.
-         * @param {Number}          [options.dismissAfter]  When the mouse moves away from the dropdown, wait for `dismissAfter` milliseconds and only then dismiss.
+         * @param {Number}          [options.dismissAfter]  When the mouse moves away from the dropdown, wait for `dismissAfter` seconds and only then dismiss.
          * @param {Function}        [options.onInsideClick] Called when there's a click inside the dropdown.
          * @param {Function}        [options.onOutsideClick] Called when there's a click outside the dropdown.
          * @param {Function}        [options.onOpen]        Called when the dropdown is opened.

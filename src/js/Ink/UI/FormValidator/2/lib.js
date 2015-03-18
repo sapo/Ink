@@ -7,6 +7,31 @@
 Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Element_1','Ink.Dom.Event_1','Ink.Dom.Selector_1','Ink.Dom.Css_1','Ink.Util.Array_1','Ink.Util.I18n_1','Ink.Util.Validator_1'], function( Common, Element, Event, Selector, Css, InkArray, I18n, InkValidator ) {
     'use strict';
 
+    function getValue(element) {
+        // TODO this is already implemented in FormSerialize.
+        switch(element.nodeName.toLowerCase()){
+            case 'select':
+                return Ink.s('option:selected', element).value;
+            case 'textarea':
+                return element.value;
+            case 'input':
+                if( "type" in element ){
+                    if( (element.type === 'radio') || (element.type === 'checkbox') ){
+                        if( element.checked ){
+                            return element.value;
+                        }
+                    } else if( element.type !== 'file' ){
+                        return element.value;
+                    }
+                } else {
+                    return element.value;
+                }
+                return;
+            default:
+                return element.innerHTML;
+        }
+    }
+
     /**
      * Validation Functions used in the rules (data-rules) option to FormValidator_2.
      *
@@ -316,7 +341,22 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
          * @return {Boolean}         True if the values match. False if not.
          */
         'matches': function( value, fieldToCompare ){
-            var otherField = this.getFormElements()[fieldToCompare][0];
+            // Find the other field in the FormValidator.
+            var otherField = this.getFormElements()[fieldToCompare];
+
+            if (!otherField) {
+                // It's in the actual <form>, not in the FormValidator's fields
+                var possibleFields = Ink.ss('input, select, textarea, .control-group', this._options.form._element);
+                for (var i = 0; i < possibleFields.length; i++) {
+                    if ((possibleFields[i].name || possibleFields[i].id) === fieldToCompare) {
+                        return getValue(possibleFields[i]) === value;
+                    }
+                }
+                return false;
+            } else {
+                otherField = otherField[0];
+            }
+
             var otherFieldValue = otherField.getValue();
             if (otherField._rules.required) {
                 if (otherFieldValue === '') {
@@ -324,8 +364,17 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
                 }
             }
             return value === otherFieldValue;
-        }
+        },
 
+        /**
+         * Validates an [EAN barcode](https://en.wikipedia.org/wiki/International_Article_Number_%28EAN%29)
+         *
+         * @method ean
+         * @return {Boolean} True if the given value is an EAN. False if not.
+         */
+        'ean': function (value) {
+            return InkValidator.isEAN(value.replace(/[^\d]/g, ''), 'ean-13');
+        }
     };
 
     /**
@@ -335,7 +384,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
      */
     var validationMessages = new I18n({
         en_US: {
-            'formvalidator.required' : 'The {field} filling is mandatory',
+            'formvalidator.required' : 'Filling {field} is mandatory',
             'formvalidator.min_length': 'The {field} must have a minimum size of {param1} characters',
             'formvalidator.max_length': 'The {field} must have a maximum size of {param1} characters',
             'formvalidator.exact_length': 'The {field} must have an exact size of {param1} characters',
@@ -356,8 +405,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
             'formvalidator.numeric': 'The {field} should contain a number',
             'formvalidator.range': 'The {field} should contain a number between {param1} and {param2}',
             'formvalidator.color': 'The {field} should contain a valid color',
-            'formvalidator.matches': 'The {field} should match the field {param1}',
-            'formvalidator.validation_function_not_found': 'The rule {rule} has not been defined'
+            'formvalidator.matches': 'The {field} should match the field {param1}'
         },
         pt_PT: {
             'formvalidator.required' : 'Preencher {field} é obrigatório',
@@ -381,8 +429,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
             'formvalidator.numeric': '{field} deve conter um número válido',
             'formvalidator.range': '{field} deve conter um número entre {param1} e {param2}',
             'formvalidator.color': '{field} deve conter uma cor válida',
-            'formvalidator.matches': '{field} deve corresponder ao campo {param1}',
-            'formvalidator.validation_function_not_found': '[A regra {rule} não foi definida]'
+            'formvalidator.matches': '{field} deve corresponder ao campo {param1}'
         }
     }, 'en_US');
 
@@ -403,6 +450,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
      * @param  {Object} options Object with configuration options
      * @param  {String} [options.label] Label for this element. It is used in the error message. If not specified, the text in the `label` tag in the control-group is used.
      * @param  {String} [options.rules] Rules string to be parsed.
+     * @param  {String} [options.error] Error message to show in case of error
      * @param  {FormValidator} options.form FormValidator instance.
      */
     function FormElement(){
@@ -413,7 +461,8 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
 
     FormElement._optionDefinition = {
         label: ['String', null],
-        rules: ['String', null], // The rules to apply
+        rules: ['String', null],  // The rules to apply
+        error: ['String', null],  // Error message
         form: ['Object']
     };
 
@@ -517,11 +566,19 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
 
             var i18nKey = 'formvalidator.' + rule;
 
-            this._errors[rule] = validationMessages.text(i18nKey, paramObj);
+            var err;
 
-            if (this._errors[rule] === i18nKey) {
-                this._errors[rule] = 'Validation message not found';
+            if (this._options.error) {
+                err = this._options.error;
+            } else {
+                err = validationMessages.text(i18nKey, paramObj);
+
+                if (err === i18nKey) {
+                    err = '[Validation message not found for rule ]' + rule;
+                }
             }
+
+            this._errors[rule] = err;
         },
 
         /**
@@ -532,29 +589,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
          * @public
          */
         getValue: function(){
-            // TODO this is already implemented in FormSerialize.
-
-            switch(this._element.nodeName.toLowerCase()){
-                case 'select':
-                    return Ink.s('option:selected',this._element).value;
-                case 'textarea':
-                    return this._element.value;
-                case 'input':
-                    if( "type" in this._element ){
-                        if( (this._element.type === 'radio') || (this._element.type === 'checkbox') ){
-                            if( this._element.checked ){
-                                return this._element.value;
-                            }
-                        } else if( this._element.type !== 'file' ){
-                            return this._element.value;
-                        }
-                    } else {
-                        return this._element.value;
-                    }
-                    return;
-                default:
-                    return this._element.innerHTML;
-            }
+            return getValue(this._element);
         },
 
         /**
@@ -856,6 +891,55 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         },
 
         /**
+         * Set my I18n instance with the validation messages.
+         * @method setI18n
+         * @param {Ink.Util.I18n_1} i18n I18n instance
+         **/
+        setI18n: function (i18n) {
+            if (i18n.clone) {
+                // New function, added safety
+                i18n = i18n.clone();
+            }
+            this.i18n = i18n;
+        },
+
+        /**
+         * Get my I18n instance with the validation messages.
+         * @method getI18n
+         * @return {Ink.Util.I18n_1} I18n instance
+         **/
+        getI18n: function () {
+            return this.i18n || validationMessages;
+        },
+
+        /**
+         * Set the language of this form validator to the given language code
+         * If we don't have an i18n instance, create one which is a copy of the global one.
+         * @method setLanguage
+         * @param {String} language Language code (ex: en_US, pt_PT)
+         * @return {void}
+         * @public
+         **/
+        setLanguage: function (language) {
+            if (!this.i18n) {
+                this.setI18n(validationMessages);
+            }
+            this.i18n.lang(language);
+        },
+
+        /**
+         * Gets the language code string (pt_PT or en_US for example) currently in use by this formvalidator.
+         * May be global
+         *
+         * @method getLanguage
+         * @public
+         * @return {String} Language code.
+         **/
+        getLanguage: function () {
+            return this.i18n ? this.i18n.lang() : validationMessages.lang();
+        },
+
+        /**
          * Validates every registered FormElement 
          * This method looks inside the this._formElements object for validation targets.
          * Also, based on the this._options.beforeValidation, this._options.onError, and this._options.onSuccess, this callbacks are executed when defined.
@@ -927,7 +1011,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
                     }
 
                     var paragraph = document.createElement('p');
-                    Css.addClassName(paragraph,'tip');
+                    Css.addClassName(paragraph, 'tip');
                     if (controlElement || controlGroupElement) {
                         (controlElement || controlGroupElement).appendChild(paragraph);
                     } else {

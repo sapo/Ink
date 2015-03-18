@@ -43,7 +43,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
      * @param {String|Element}      selector                    Selector or element
      * @param {Object}              options                     Options
      * @param {Number}              [options.size]              Number of pages.
-     * @param {Number}              [options.totalItemCount]    Total numeber of items to display
+     * @param {Number}              [options.totalItemCount]    Total number of items to display
      * @param {Number}              [options.itemsPerPage]      Number of items per page.
      * @param {Number}              [options.maxSize]           If passed, only shows at most maxSize items. displays also first|prev page and next page|last buttons
      * @param {Number}              [options.start]             Start page. defaults to 1

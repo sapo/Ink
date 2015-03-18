@@ -26,7 +26,6 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
      * @param {Object}              [options]                       Options object, containing:
      * @param {Boolean}             [options.preventUrlChange=false] Flag that determines if follows the link on click or stops the event
      * @param {String}              [options.active]                ID of the tab to activate on creation if the window hash is not already a tab ID.
-     * @param {Array}               [options.disabled=[]]           of the tabs that will be disabled on creation.
      * @param {Function}            [options.onBeforeChange]        Callback to be executed before changing tabs.
      * @param {Function}            [options.onChange]              Callback to be executed after changing tabs.
      * @param {Boolean}             [options.triggerEventsOnLoad=true] Call the above callbacks after this component is created.
@@ -45,7 +44,6 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
     Tabs._optionDefinition = {
         preventUrlChange:   ['Boolean', false],
         active:             ['String', undefined],
-        disabled:           ['Object', []],
         onBeforeChange:     ['Function', undefined],
         onChange:           ['Function', undefined],
         menuSelector:       ['String', '.tabs-nav'],
@@ -109,7 +107,9 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
                                  Selector.select('a', this._menu)[0];
 
             if (activeMenuLink) {
+                this._firstTime = true;
                 this._changeTab(activeMenuLink, this._options.triggerEventsOnLoad);
+                this._firstTime = false;
             }
         },
 
@@ -133,7 +133,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
             // going to be shown below). That is intentional. If the content is
             // shown and location.hash changes, scroll jumps to that pane, and
             // we do not want that.
-            if (window.location.hash !== href && !this._options.preventUrlChange) {
+            if (window.location.hash !== href && !this._options.preventUrlChange && !this._firstTime) {
                 window.location.hash = href;
             }
 

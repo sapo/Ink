@@ -126,8 +126,7 @@ Ink.createModule('Ink.UI.Spy', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Do
     Spy._name = 'Spy_1';
 
     Spy._optionDefinition = {
-        target: ['Element', undefined],
-        activeClass: ['String', 'active'] // [todo] Spy#_options.activeClass
+        target: ['Element', undefined]
     };
 
     Spy.prototype = {

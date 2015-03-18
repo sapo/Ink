@@ -25,6 +25,7 @@
 }
 
 .#{$modal-class-name} {
+
     top: 50%;
     left: 50%;
     width: 90%;
@@ -35,6 +36,12 @@
     z-index: $layer-100;
     position:absolute;
     overflow: hidden;
+
+    display: flex;
+    @include experimental(flex-direction, column, -moz, -webkit, not -o, -ms, not -khtml, official);
+    @include experimental-value(display, flex, not -moz, -webkit, not -o, not -ms, not -khtml, official);
+    @include experimental-value(display, flexbox, not -moz, not -webkit, not -o, -ms, not -khtml, not official);
+
     @include opacity(1);
     @include box-shadow(rgba(0,0,0,0.8) 0 0 15px 0);
     @include border-radius($border-radius);
@@ -45,6 +52,12 @@
         overflow-y: auto;   
         overflow-x: hidden;
         height: auto;
+
+        -webkit-box-flex: 1;
+        -webkit-flex: 1;
+        -moz-box-flex: 1;
+        -ms-flex: 1;
+        flex: 1;
 
         .#{$grid-class-name} {
             padding-left: 0;

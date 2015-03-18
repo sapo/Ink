@@ -66,6 +66,23 @@ test('ascii', function () {
     invalid (val.ascii(ccedil));
 });
 
+
+module('EAN');
+
+test('isEAN validating ean-13 codes', function () {
+    valid  (val.isEAN('5601314222208'))
+    invalid(val.isEAN('5601314222201'))
+
+    invalid(val.isEAN('9780262011531'))
+
+    valid  (val.isEAN('9330071314999'))
+    invalid(val.isEAN('9330071314990'))
+
+    valid  (val.isEAN('9330071314999'))
+    invalid(val.isEAN('9330071314990'))
+    invalid(val.isEAN('0016820054453'))
+})
+
 module('number');
 var numb = function (numb, options) {
     return val.number(numb, Ink.extendObj({returnNumber: true}, options));
