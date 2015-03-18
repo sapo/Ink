@@ -928,7 +928,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         },
 
         /**
-         * Gets the language code string (pt_PT or en_US for example) in use currently by this formvalidator.
+         * Gets the language code string (pt_PT or en_US for example) currently in use by this formvalidator.
          * May be global
          *
          * @method getLanguage
