@@ -8,7 +8,7 @@
  * @author    Sapo Ink Team
  * @license   http://opensource.org/licenses/MIT MIT
  * @link      http://ink.sapo.pt
- * @version   3.1.3
+ * @version   3.1.5
  */
 /**
  * Ink class names prefix
@@ -25,6 +25,9 @@
  */
 /**
  * Buttons class names
+ */
+/**
+ * Dismiss class names
  */
 /**
  * Forms class names
@@ -8127,6 +8130,8 @@ body.ink-drawer.over.right .right-drawer {
   left: 50%;
   width: 90%;
   height: 90%;
+  margin-top: -45vh;
+  margin-left: -45vw;
   background: #fff;
   z-index: 100;
   position: absolute;

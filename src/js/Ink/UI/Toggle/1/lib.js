@@ -31,7 +31,7 @@
      * @param {String}              [options.classNameOn]           CSS class to toggle when on. Defaults to 'show-all'.
      * @param {String}              [options.classNameOff]          CSS class to toggle when off. Defaults to 'hide-all'.
      * @param {String}              [options.triggerEvent]          Event that will trigger the toggling. Defaults to 'click'.
-     * @param {Boolean}             [options.closeOnClick]          Flag to toggle the targe off when clicking outside the toggled content. Defaults to true.
+     * @param {Boolean}             [options.closeOnClick]          Flag to toggle the target off when clicking outside the toggled content. Defaults to true.
      * @param {Boolean}             [options.canToggleAnAncestor]   Set to true if you want the toggle to target ancestors of itself. Defaults to false.
      * @param {String}              [options.closeOnInsideClick]    Toggle off when a child element matching this selector is clicked. Set to null to deactivate the check. Defaults to 'a[href]'.
      * @param {Boolean}             [options.initialState]          Flag to define initial state. false: off, true: on, null: markup. Defaults to null.
@@ -48,7 +48,7 @@
     Toggle._optionDefinition = {
         target:         ['Elements'],
         triggerEvent:   ['String', 'click'],
-        closeOnClick:   ['Boolean', true],
+        closeOnClick:   ['Boolean', null],
         canToggleAnAncestor: ['Boolean', false],
         isAccordion:    ['Boolean', false],
         initialState:   ['Boolean', null],  // May be true, false, or null to be what it is right now
@@ -71,8 +71,11 @@
 
             this._targets = Common.elsOrSelector(this._options.target);
 
-            // Boolean option handling
-            this._options.closeOnClick = this._options.closeOnClick;
+            // closeOnClick should default to false when isAccordion
+            if (this._options.closeOnClick === null) {
+                this._options.closeOnClick =
+                    this._options.isAccordion ? false : true;
+            }
             // Actually a throolean
             if (this._options.initialState === null) {
                 this._options.initialState = Css.hasClassName(this._targets[0], this._options.classNameOn);
@@ -250,7 +253,7 @@
             }
 
             if (callHandler && typeof this._options.onChangeState === 'function') {
-                var ret = this._options.onChangeState(on);
+                var ret = this._options.onChangeState.call(this, on, { element: this._element });
                 if (ret === false) { return false; } //  Canceled by the event handler
             }
             for (i = 0, len = this._targets.length; i < len; i++) {

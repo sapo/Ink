@@ -71,4 +71,10 @@ Ink.requireModules(['Ink.UI.LazyLoad_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1', '
         ll._onScroll();
         ok(InkElement.inViewport.called, 'InkElement.inViewport called when a scroll happens')
     }, { autoInit: true, childCount: 1, scrollElement: scrollElement, stubInViewport: { ret: false }  });
+
+    testLazyLoad("loadedClass", sinon.test(function (ll, cont) {
+        this.stub(Css, 'addClassName');
+        ll._elInViewport({ elm: Ink.s('.test-div-0', cont), original: '' })
+        ok(Css.addClassName.called)
+    }), { loadedClass: 'im-loaded' });
 });

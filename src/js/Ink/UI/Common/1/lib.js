@@ -545,7 +545,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
             if( !Common.isDOMElement(parentEl) ){
                 throw new Error('Please provide a valid DOMElement');
             }
-            InkElement.setHTML(parentEl, '');
+            InkElement.clear(parentEl);
         },
 
         /**

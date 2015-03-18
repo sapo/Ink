@@ -26,6 +26,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
                         'AO',
                         'CV',
                         'MZ',
+                        'TL',
                         'PT'
                     ],
 
@@ -1245,6 +1246,46 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
             }
 
             return this._luhn(num);
+        },
+
+        /**
+         * Get the check digit of an EAN code without a check digit.
+         * @method getEANCheckDigit
+         * @param {String} digits The remaining digits, out of which the check digit is calculated.
+         * @public
+         * @return {Number} The check digit, a number from 0 to 9.
+         */
+        getEANCheckDigit: function(digits){
+            var sum = 0, size, i;
+            digits = String(digits);
+            while (digits.length<12) {
+                digits = '0' + digits;
+            }
+            size = digits.length;
+            for (i = (size - 1); i >= 0; i--) {
+                sum += ((i % 2) * 2 + 1 ) * Number(digits.charAt(i));
+            }
+            return (10 - (sum % 10));
+        },
+
+        /**
+         * Validate an [EAN barcode](https://en.wikipedia.org/wiki/International_Article_Number_%28EAN%29) string.
+         * @method isEAN
+         * @param {String} code The code containing the EAN
+         * @param {} [eanType='ean-13'] Select your EAN type. For now, only ean-13 is supported, and it's the default.
+         * @public
+         * @return {Boolean} Whether the given `code` is an EAN-13
+         */
+        isEAN: function (code, eanType) {
+            /* For future support of more eanTypes */
+            if (!(eanType === undefined || eanType === 'ean-13')) { return false; }
+            if (code.length !== 13) { return false; }
+
+            var digits = code.substr(0, code.length -1);
+            var givenCheck = code.charAt(code.length - 1);
+            var check = Validator.getEANCheckDigit(digits);
+
+            return String(check) === givenCheck;
         }
     };
 

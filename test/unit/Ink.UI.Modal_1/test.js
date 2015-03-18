@@ -1,5 +1,5 @@
 Ink.requireModules(['Ink.UI.Modal_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1'], function (Modal, InkElement, Css) {
-    function makeContainer() {
+    function makeContainer(opt) {
         var cont = document.body.appendChild(InkElement.create('div', {
             className: 'ink-shade fade'
         }))
@@ -8,25 +8,41 @@ Ink.requireModules(['Ink.UI.Modal_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1'], fun
             className: 'ink-modal'
         }))
 
+        if (opt && opt.makeHeader) {
+            var header = modal.appendChild(InkElement.create('div', { className: 'modal-header' }))
+        }
+
         var body = modal.appendChild(InkElement.create('div', {
             className: 'modal-body'
         }));
 
+        if (opt && opt.makeFooter) {
+            var footer = modal.appendChild(InkElement.create('div', { className: 'modal-footer' }))
+        }
+
         return cont;
     }
 
+    var vhVwSupported = (function (div) {
+        return div.style.height === '10vh' && div.style.width === '10vw';
+    }(InkElement.create('div', { style: 'height:10vh;width:10vw' })));
+
+    var flexSupported = (function (div) {
+        return div.style.display !== '';
+    }(InkElement.create('div', { style: 'display: flex' })));
+
     function modalTest(name, testBack, options) {
         test(name, function () {
-            var els = makeContainer();
+            var els = makeContainer(options);
             var modal = new Modal(Ink.s('.ink-modal', els), options || {});
             testBack(modal, els);
         })
     }
 
-    modalTest('Modal opens automatically', function(modal, els) {
+    modalTest('Modal opens automatically when autoDisplay: true', function(modal, els) {
         ok(modal.isOpen(), 'Modal is open');
         modal.dismiss();  // go away!
-    });
+    }, { autoDisplay: true });
 
     (function (trigger) {
         modalTest('creating a modal with a trigger doesn\'t auto-open it', function(modal, cont) {
@@ -34,7 +50,7 @@ Ink.requireModules(['Ink.UI.Modal_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1'], fun
         }, { trigger: trigger })
     }(InkElement.create('a', { href: '#' })));
 
-    modalTest('Neither does it open if you set autoOpen:false as an option', function(modal, els) {
+    modalTest('Neither does it open if you set autoDisplay:false as an option', function(modal, els) {
         ok(!modal.isOpen(), 'Modal is closed');
     }, { autoDisplay: false });
 
@@ -62,5 +78,127 @@ Ink.requireModules(['Ink.UI.Modal_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1'], fun
             ok(!modal.isOpen(), 'clicking the shade causes it to close');
             start();
         });
-    }, { autoDisplay: true })
+    }, { autoDisplay: true });
+
+    modalTest('A new modal has style.height, style.width set to its height, width options\' values', function (modal, els) {
+        equal(modal._modalDiv.style.height, '100px');
+        equal(modal._modalDiv.style.width, '90%');
+        modal.dismiss();
+    }, { height: '100px', width: '90%', autoDisplay: true });
+
+    modalTest('_reposition, called on construction and resize, repositions the modal by setting the marginTop and marginLeft style properties to negative values', function (modal) {
+        sinon.stub(InkElement, 'elementHeight').returns(200);
+        sinon.stub(InkElement, 'elementWidth').returns(100);
+        modal._reposition();
+        if (vhVwSupported) {
+            ok(!modal._element.style.marginTop, 'If there\'s vh/vw support, _reposition won\'t touch marginTop');
+            ok(!modal._element.style.marginLeft, 'If there\'s vh/vw support, _reposition won\'t touch marginLeft');
+        } else {
+            equal(modal._element.style.marginTop, '-100px');
+            equal(modal._element.style.marginLeft, '-50px');
+        }
+        modal.dismiss();
+        InkElement.elementHeight.restore();
+        InkElement.elementWidth.restore();
+    });
+    modalTest('_reposition, called on construction and resize, repositions the modal by setting the marginTop and marginLeft style properties to negative values, part 2', function (modal) {
+        sinon.stub(InkElement, 'elementHeight').returns(200);
+        sinon.stub(InkElement, 'elementWidth').returns(100);
+        modal._reposition();
+        if (vhVwSupported) {
+            equal(modal._element.style.marginTop, '-45vh', 'marginTop becomes -(90% / 2)')
+            equal(modal._element.style.marginLeft, '-40vw', 'marginLeft becomes -(80% / 2)')
+        } else {
+            equal(modal._element.style.marginTop, '-100px');
+            equal(modal._element.style.marginLeft, '-50px');
+        }
+        modal.dismiss();
+        InkElement.elementHeight.restore();
+        InkElement.elementWidth.restore();
+        // debugger
+    }, { height: '90%', width: '80%' });
+
+
+    if (!flexSupported) {
+        modalTest('_resizeContainer, called on construction and resize, sets the height of the modal container to be the height of the modal, minus that of the header and footer', function (modal, els) {
+            // sinon.stub(InkElement, 'viewportWidth').returns(800);
+            // sinon.stub(InkElement, 'viewportHeight').returns(600);
+            var height = sinon.stub(InkElement, 'elementHeight', function (elm) {
+                return elm === modal._modalDiv ? 500 :
+                    elm === modal._modalHeader ? 100 :
+                    elm === modal._modalFooter ? 150 : ok(false)
+            })
+
+            modal._resizeContainer()
+
+            equal(modal._contentContainer.style.height, '250px')
+            modal.dismiss();
+            height.restore();
+        }, { makeHeader: true, makeFooter: true });
+    } else {
+        modalTest('_resizeContainerFlex, called on construction and resize, sets the height of the modal container to be the height of the modal, minus that of the header and footer', function (modal, els) {
+            ok(modal._contentContainer.style.flex);
+            equal(modal._modalDiv.style.display, 'flex');
+            equal(modal._modalDiv.style.flexDirection, 'column');
+            modal.dismiss();
+        }, { makeHeader: true, makeFooter: true });
+    }
+
+    test('_onResize makes sure fixed-size modals aren\'t larger than the screen. When the screen is sized down, the size is limited. When it goes back up, the size goes back to where it started. Then it calls _reposition() and _resizeContainer()', function () {
+        var els = makeContainer();
+        var modal = new Modal(Ink.s('.ink-modal', els), { autoDisplay: true, height: '80%', width: '80%' });
+
+        sinon.stub(modal, '_reposition');  // Don't call these
+        sinon.stub(modal, '_resizeContainer');  // Don't call these
+        sinon.stub(modal, '_avoidModalLargerThanScreen');  // Don't call these
+
+        modal._onResize();
+
+        ok(modal._reposition.calledOnce === !vhVwSupported,
+            '_onResize() calls modal._reposition() once if no vh/vw supported')
+        ok(modal._resizeContainer.calledOnce === !flexSupported,
+            '_onResize() calls modal._resizeContainer() once if no flex support')
+        ok(modal._avoidModalLargerThanScreen.calledOnce === !vhVwSupported,
+            '_onResize() calls modal._avoidModalLargerThanScreen() once if no vh/vw supported')
+
+        modal.dismiss();
+    });
+
+    if (!vhVwSupported) {
+        // Unnecessary to test, because if vh/vw is supported we set maxWidth/Height to 90vw/w
+        test('_avoidModalLargerThanScreen makes sure fixed-size modals aren\'t larger than the screen. When the screen is sized down, the size is limited. When it goes back up, the size goes back to where it started.', function () {
+            sinon.stub(InkElement, 'viewportWidth').returns(300);
+            sinon.stub(InkElement, 'viewportHeight').returns(300);
+
+            var els = makeContainer();
+            var modal = new Modal(Ink.s('.ink-modal', els), { autoDisplay: true, height: '200px', width: '200px' });
+
+            modal._avoidModalLargerThanScreen();
+
+            equal(modal._modalDiv.style.height, '200px');
+            equal(modal._modalDiv.style.width, '200px');
+
+            InkElement.viewportWidth.returns(100)
+            InkElement.viewportHeight.returns(100)
+
+            modal._avoidModalLargerThanScreen();
+
+            equal(modal._modalDiv.style.height, '90px');
+            equal(modal._modalDiv.style.width, '90px');
+
+            InkElement.viewportWidth.returns(400)
+            InkElement.viewportHeight.returns(400)
+
+            modal._avoidModalLargerThanScreen();
+
+            equal(modal._modalDiv.style.height, '200px');
+            equal(modal._modalDiv.style.width, '200px');
+
+            modal.dismiss();
+        });
+    }
+
+/*
+    modalTest('Resizing the modal sets the body\'s style.height', function (modal, els) {
+    });*/
 })
