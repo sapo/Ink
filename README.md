@@ -4,7 +4,7 @@ Ink is an interface kit for quick development of web interfaces, simple to use a
 
 Ink is part of [SAPO's Open Source Software initiative](http://oss.sapo.pt).
 
-## Current Version: 3.1.4
+## Current Version: 3.1.5
 
 You can read our full documentation, examples and recipes in http://ink.sapo.pt
 
@@ -12,7 +12,7 @@ You can read our full documentation, examples and recipes in http://ink.sapo.pt
 
 Let's get you started with Ink right away. Here's what you need to know and do:
 
-1. Download the [latest](https://github.com/sapo/Ink/archive/3.1.4.zip) release.
+1. Download the [latest](https://github.com/sapo/Ink/archive/3.1.5.zip) release.
 2. Check the recipes we provide in the ```dist/cookbook``` folder and choose one to start from or use ```quick-start.html``` as a blank slate.
 3. Make sure you have `ink.css`, `ink-ie.css` and `ink.js` included somewhere in the `<head>`.
 4. Add your own css and scripts to carry all your project-specific changes. You can use ```quick-start.css``` from the ```dist/css``` folder. It already contains the same media queries as Ink.
@@ -171,6 +171,7 @@ Get its source, contribute or report and issue here: **https://github.com/sapo/I
 + [Bower](http://bower.io/)
 
 ## Versions
+* [Ink 3.1.5](https://github.com/sapo/Ink/archive/3.1.5.zip)
 * [Ink 3.1.4](https://github.com/sapo/Ink/archive/3.1.4.zip)
 * [Ink 3.1.3](https://github.com/sapo/Ink/archive/3.1.3.zip)
 * [Ink 3.1.2](https://github.com/sapo/Ink/archive/3.1.2.zip)
