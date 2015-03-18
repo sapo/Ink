@@ -39,9 +39,8 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
      *
      * @param {String|Element}      selector                    Datepicker element
      * @param {Object}              [options]                   Options
+     * @param {String}              [options.lang]              Set the language of this Ink.Util.I18n instance. pt_PT and en_US are available, but using getI18n().append({ lang_CODE: {...} }) you can create your own language.
      * @param {Boolean}             [options.autoOpen]          Flag to automatically open the datepicker.
-     * @param {String}              [options.cleanText]         Text for the clean button. Defaults to 'Clear'.
-     * @param {String}              [options.closeText]         Text for the close button. Defaults to 'Close'.
      * @param {String}              [options.cssClass]          CSS class to be applied on the datepicker
      * @param {String|Element}      [options.pickerField]       (if not using in an input[type="text"]) Element which displays the DatePicker when clicked. Defaults to an "open" link.
      * @param {String}              [options.dateRange]         Enforce limits to year, month and day for the Date, ex: '1990-08-25:2020-11'
@@ -50,15 +49,11 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
      * @param {String|Element}      [options.monthField]        (if using options.displayInSelect) `select` field with months.
      * @param {String|Element}      [options.yearField]         (if using options.displayInSelect) `select` field with years.
      * @param {String}              [options.format]            Date format string
-     * @param {Object}              [options.month]             Hash of month names. Defaults to english month names. January is 1.
-     * @param {String}              [options.nextLinkText]      Text for the previous button. Defaults to '«'.
-     * @param {String}              [options.ofText]            Text to show between month and year. Defaults to ' of '.
      * @param {Boolean}             [options.onFocus]           If the datepicker should open when the target element is focused. Defaults to true.
      * @param {Function}            [options.onMonthSelected]   Callback to execute when the month is selected.
      * @param {Function}            [options.onSetDate]         Callback to execute when the date is set.
      * @param {Function}            [options.onYearSelected]    Callback to execute when the year is selected.
      * @param {String}              [options.position]          Position for the datepicker. Either 'right' or 'bottom'. Defaults to 'right'.
-     * @param {String}              [options.prevLinkText]      Text for the previous button. Defaults to '«'.
      * @param {Boolean}             [options.showClean]         If the clean button should be visible. Defaults to true.
      * @param {Boolean}             [options.showClose]         If the close button should be visible. Defaults to true.
      * @param {Boolean}             [options.shy]               If the datepicker should hide automatically when the user clicks outside. Defaults to true.
@@ -69,8 +64,14 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
      * @param {Function}            [options.validDayFn]        Callback to execute when 'rendering' the day (in the month view)
      * @param {Function}            [options.nextValidDateFn]   Function to calculate the next valid date, given the current. Useful when there's invalid dates or time frames.
      * @param {Function}            [options.prevValidDateFn]   Function to calculate the previous valid date, given the current. Useful when there's invalid dates or time frames.
-     * @param {Object}              [options.wDay]              Hash of week day names. Sunday is 0. Defaults to { 0:'Sunday', 1:'Monday', etc...
      * @param {String}              [options.yearRange]         Enforce limits to year for the Date, ex: '1990:2020' (deprecated)
+     * @param {Object}              [options.month]             (Deprecated. use options.lang or i18n instead) Hash of month names. Defaults to english month names. January is 1.
+     * @param {Object}              [options.wDay]              (Deprecated. use options.lang or i18n instead) Hash of week day names. Sunday is 0. Defaults to { 0:'Sunday', 1:'Monday', etc...
+     * @param {String}              [options.nextLinkText]      (Deprecated. use options.lang or i18n instead) Text for the previous button. Defaults to '»'.
+     * @param {String}              [options.prevLinkText]      (Deprecated. use options.lang or i18n instead) Text for the previous button. Defaults to '«'.
+     * @param {String}              [options.ofText]            (Deprecated. use options.lang or i18n instead) Text to show between month and year. Defaults to ' of '.
+     * @param {String}              [options.cleanText]         (Deprecated. use options.lang or i18n instead) Text for the clean button. Defaults to 'Clear'.
+     * @param {String}              [options.closeText]         (Deprecated. use options.lang or i18n instead) Text for the close button. Defaults to 'Close'.
      *
      * @sample Ink_UI_DatePicker_1.html
      */
@@ -82,8 +83,6 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
     DatePicker._optionDefinition = {
         autoOpen:        ['Boolean', false],
-        cleanText:       ['String', 'Clear'],
-        closeText:       ['String', 'Close'],
         pickerField:     ['Element', null],
         containerElement:['Element', null],
         cssClass:        ['String', 'ink-calendar bottom'],
@@ -96,14 +95,11 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         yearField:       ['Element', null],
 
         format:          ['String', 'yyyy-mm-dd'],
-        nextLinkText:    ['String', '»'],
-        ofText:          ['String', ' of '],
         onFocus:         ['Boolean', true],
         onMonthSelected: ['Function', null],
         onSetDate:       ['Function', null],
         onYearSelected:  ['Function', null],
         position:        ['String', 'right'],
-        prevLinkText:    ['String', '«'],
         showClean:       ['Boolean', true],
         showClose:       ['Boolean', true],
         shy:             ['Boolean', true],
@@ -118,30 +114,17 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         prevValidDateFn: ['Function', null],
         yearRange:       ['String', null],
 
-        // Text
-        month: ['Object', {
-             1:'January',
-             2:'February',
-             3:'March',
-             4:'April',
-             5:'May',
-             6:'June',
-             7:'July',
-             8:'August',
-             9:'September',
-            10:'October',
-            11:'November',
-            12:'December'
-        }],
-        wDay: ['Object', {
-            0:'Sunday',
-            1:'Monday',
-            2:'Tuesday',
-            3:'Wednesday',
-            4:'Thursday',
-            5:'Friday',
-            6:'Saturday'
-        }]
+        // I18n
+        lang:            ['String', null],
+
+        // Old I18n
+        month:       ['Object', null],
+        wDay:        ['Object', null],
+        nextLinkText:['String', null],
+        prevLinkText:['String', null],
+        ofText:      ['String', null],
+        cleanText:   ['String', null],
+        closeText:   ['String', null]
     };
 
     DatePicker.prototype = {
