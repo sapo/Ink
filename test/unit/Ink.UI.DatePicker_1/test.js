@@ -1,4 +1,4 @@
-Ink.requireModules(['Ink.UI.DatePicker_1', 'Ink.Dom.Css_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Util.Array_1'], function (DatePicker, Css, InkEvent, InkElement, InkArray) {
+Ink.requireModules(['Ink.UI.DatePicker_1', 'Ink.Dom.Css_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Util.Array_1', 'Ink.Util.I18n_1'], function (DatePicker, Css, InkEvent, InkElement, InkArray, I18n) {
 
 var body = document.body;
 var dtElm;
@@ -43,6 +43,71 @@ test('setDate', function () {
     equal(dt._year, 2000);
     equal(dt._month + 1, 1);
     equal(dt._day, 1);
+});
+
+test('i18n', function () {
+    var i18n = new I18n({
+        tt_TT: {  // Test lang
+            'datepicker.clean': 'CLEEAN',
+            'datepicker.close': 'CLOOSE',
+            'datepicker.prev_button': 'PREEV',
+            'datepicker.next_button': 'NEEXT',
+            'datepicker.of': 'OOF',
+            'datepicker.week_days': {
+                0: 'X',
+                1: 'M',
+                2: 'T',
+                3: 'W',
+                4: 'T',
+                5: '%',
+                6: '_'
+            },
+            'datepicker.months': {
+                1: 'T',
+                2: 'T',
+                3: 'T',
+                4: 'T',
+                5: 'T',
+                6: 'T',
+                7: 'T',
+                8: 'T',
+                9: 'T',
+                10: 'T',
+                11: 'T',
+                12: 'T',
+            }
+        }
+    }, 'tt_TT');
+
+    dt.setI18n(i18n);
+    dt._render();
+    dt.setLanguage('tt_TT');
+    dt._renderSuperTopBar();
+
+    ok(/CLEEAN/.test(dt._superTopBar.outerHTML), 'making sure i18n is being used on the top bar');
+    ok(/CLOOSE/.test(dt._superTopBar.outerHTML), 'making sure i18n is being used on the top bar');
+
+    dt._showYearSelector();
+
+    ok(/PREEV/.test(dt._yearSelector.outerHTML), 'making sure i18n is being used on the previous button');
+    ok(/NEEXT/.test(dt._yearSelector.outerHTML), 'making sure i18n is being used on the next button');
+
+    ok(/OOF/.test(dt._monthDescContainer.outerHTML), 'making sure i18n is being used for the of text');
+
+    ok(/X/.test(dt._getMonthCalendarHeader(0).outerHTML), 'making sure i18n is being used for the week day names');
+
+    dt._showMonthSelector();
+    ok(/T/.test(dt._monthSelector.outerHTML), 'making sure i18n is being used for the month names');
+});
+
+test('_options.lang', function() {
+    mkDatePicker({
+        lang: 'pt_PT'
+    });
+
+    equal(dt._options.lang, 'pt_PT')
+    equal(dt.getLanguage(), 'pt_PT');
+    equal(dt.getI18n().lang(), 'pt_PT', 'there\'s an i18n instance here');
 });
 
 test('setDate with Date objects', function () {
