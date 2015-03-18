@@ -356,7 +356,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
             this._ofText = InkElement.create('span', {
                 className: 'ink-calendar-of-text',
-                setHTML: this.i18n.text('datepicker.of')
+                setTextContent: this.i18n.text('datepicker.of')
             });
 
             this._yearChanger = InkElement.create('a', {
@@ -862,7 +862,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          */
         _updateDescription: function(){
             InkElement.setTextContent(this._monthChanger, this.i18n.getKey('datepicker.months')[this._month + 1]);
-            InkElement.setTextContent(this._ofText, this._options.ofText);
+            InkElement.setTextContent(this._ofText, this.i18n.text('datepicker.of'));
             InkElement.setTextContent(this._yearChanger, this._year);
         },
 
