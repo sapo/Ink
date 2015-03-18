@@ -450,6 +450,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
      * @param  {Object} options Object with configuration options
      * @param  {String} [options.label] Label for this element. It is used in the error message. If not specified, the text in the `label` tag in the control-group is used.
      * @param  {String} [options.rules] Rules string to be parsed.
+     * @param  {String} [options.error] Error message to show in case of error
      * @param  {FormValidator} options.form FormValidator instance.
      */
     function FormElement(){
@@ -460,7 +461,8 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
 
     FormElement._optionDefinition = {
         label: ['String', null],
-        rules: ['String', null], // The rules to apply
+        rules: ['String', null],  // The rules to apply
+        error: ['String', null],  // Error message
         form: ['Object']
     };
 
@@ -564,11 +566,19 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
 
             var i18nKey = 'formvalidator.' + rule;
 
-            this._errors[rule] = validationMessages.text(i18nKey, paramObj);
+            var err;
 
-            if (this._errors[rule] === i18nKey) {
-                this._errors[rule] = '[Validation message not found for rule ]' + rule;
+            if (this._options.error) {
+                err = this._options.error;
+            } else {
+                err = validationMessages.text(i18nKey, paramObj);
+
+                if (err === i18nKey) {
+                    err = '[Validation message not found for rule ]' + rule;
+                }
             }
+
+            this._errors[rule] = err;
         },
 
         /**
@@ -881,6 +891,55 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         },
 
         /**
+         * Set my I18n instance with the validation messages.
+         * @method setI18n
+         * @param {Ink.Util.I18n_1} i18n I18n instance
+         **/
+        setI18n: function (i18n) {
+            if (i18n.clone) {
+                // New function, added safety
+                i18n = i18n.clone();
+            }
+            this.i18n = i18n;
+        },
+
+        /**
+         * Get my I18n instance with the validation messages.
+         * @method getI18n
+         * @return {Ink.Util.I18n_1} I18n instance
+         **/
+        getI18n: function () {
+            return this.i18n || validationMessages;
+        },
+
+        /**
+         * Set the language of this form validator to the given language code
+         * If we don't have an i18n instance, create one which is a copy of the global one.
+         * @method setLanguage
+         * @param {String} language Language code (ex: en_US, pt_PT)
+         * @return {void}
+         * @public
+         **/
+        setLanguage: function (language) {
+            if (!this.i18n) {
+                this.setI18n(validationMessages);
+            }
+            this.i18n.lang(language);
+        },
+
+        /**
+         * Gets the language code string (pt_PT or en_US for example) currently in use by this formvalidator.
+         * May be global
+         *
+         * @method getLanguage
+         * @public
+         * @return {String} Language code.
+         **/
+        getLanguage: function () {
+            return this.i18n ? this.i18n.lang() : validationMessages.lang();
+        },
+
+        /**
          * Validates every registered FormElement 
          * This method looks inside the this._formElements object for validation targets.
          * Also, based on the this._options.beforeValidation, this._options.onError, and this._options.onSuccess, this callbacks are executed when defined.
@@ -952,7 +1011,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
                     }
 
                     var paragraph = document.createElement('p');
-                    Css.addClassName(paragraph,'tip');
+                    Css.addClassName(paragraph, 'tip');
                     if (controlElement || controlGroupElement) {
                         (controlElement || controlGroupElement).appendChild(paragraph);
                     } else {
