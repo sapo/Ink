@@ -843,6 +843,7 @@ th {
 }
 .ink-form .control-group .control.append-button .ink-button {
   margin: 0;
+  flex-shrink: 0;
   -webkit-border-radius: 0 2px 2px 0;
   -moz-border-radius: 0 2px 2px 0;
   -ms-border-radius: 0 2px 2px 0;
@@ -864,6 +865,7 @@ th {
 }
 .ink-form .control-group .control.prepend-button .ink-button {
   margin: 0;
+  flex-shrink: 0;
   -webkit-border-radius: 2px 0 0 2px;
   -moz-border-radius: 2px 0 0 2px;
   -ms-border-radius: 2px 0 0 2px;
