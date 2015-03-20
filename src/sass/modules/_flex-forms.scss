@@ -160,8 +160,6 @@
 
                 span {
                     
-                    //display: table-cell;
-
                     & > input,
                     & > select,
                     & > textarea {
@@ -215,7 +213,7 @@
                     & > [class*=" fa-"] {
                         position: absolute;
                         right: 1em;
-                        top: .86em;
+                        top: .76em;
                         pointer-events: none;
                     }
                 }
@@ -237,7 +235,7 @@
                     & > [class*=" fa-"] {
                         position: absolute;
                         left: 1em;
-                        top: .86em;
+                        top: .76em;
                         pointer-events: none;
                     }
                 }
