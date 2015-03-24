@@ -233,7 +233,13 @@ Ink.createModule( 'Ink.UI.Autocomplete' , '1', [ 'Ink.UI.Common_1' , 'Ink.Dom.Se
             this.cleanSuggestions( );
             this._idx = 0;
 
-            for ( var i = 0, l = results.length; i < l; i++ ) {
+            var l = results.length;
+
+            if ( !l ) {
+                return this.closeSuggestions( );
+            }
+
+            for ( var i = 0; i < l; i++ ) {
                 var span = document.createElement( 'span' );
                 span.setAttribute( 'data-idx' , i );
 
