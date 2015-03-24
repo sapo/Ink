@@ -74,7 +74,7 @@
             // closeOnClick should default to false when isAccordion
             if (this._options.closeOnClick === null) {
                 this._options.closeOnClick =
-                    this._options.isAccordion ? false : true;
+                    (this._options.isAccordion || this._options.canToggleAnAncestor) ? false : true;
             }
             // Actually a throolean
             if (this._options.initialState === null) {
