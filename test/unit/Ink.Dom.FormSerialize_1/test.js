@@ -145,6 +145,13 @@ Ink.requireModules(['Ink.Dom.FormSerialize_1', 'Ink.Dom.Selector_1', 'Ink.Util.A
         ])
     });
 
+    test('regression: A serialized checkbox is not an array', function () {
+        var form = document.createElement('form')
+        form.innerHTML = '<input type="checkbox" name="foo" value=1>' +
+            '<input type="checkbox" name="foo" checked value=2>';
+        deepEqual(FormSerialize.serialize(form), { foo: "2" })
+    });
+
     test('serializing radio buttons', function () {
         var form = document.createElement('form')
         form.innerHTML = '<input type="radio" name="foo" value=1>' +
@@ -181,7 +188,7 @@ Ink.requireModules(['Ink.Dom.FormSerialize_1', 'Ink.Dom.Selector_1', 'Ink.Util.A
         //])
 
         form.innerHTML = '<input type="checkbox" name="foo" value=2>';
-        deepEqual(FormSerialize.serialize(form, { outputUnchecked: true }), { foo: [null] })
+        deepEqual(FormSerialize.serialize(form, { outputUnchecked: true }), { foo: null })
     });
 
     test('serializing unselected radiobuttons yields nothing by default', function () {
