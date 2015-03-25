@@ -99,7 +99,10 @@ Ink.createModule( 'Ink.UI.Autocomplete' , '1', [ 'Ink.UI.Common_1' , 'Ink.Dom.Se
             if ( !this._isOpen || !l ) { return this; }
 
             var selected = this._results[ this._idx ];
-            this._input.value = this._options.getValue( selected );
+
+            if ( this._options.forceValue ) {
+                this._input.value = this._options.getValue( selected );
+            }
 
             this._options.onSelect.call( this , selected );
 
@@ -200,6 +203,9 @@ Ink.createModule( 'Ink.UI.Autocomplete' , '1', [ 'Ink.UI.Common_1' , 'Ink.Dom.Se
 
             if ( Elem.descendantOf( this._suggestion , el ) ) {
                 Ivent.stop( e );
+
+                var selected = this._results[ this._idx ];
+                this._input.value = this._options.getValue( selected );
 
                 this.selectInput( )
                     .closeSuggestions( );
