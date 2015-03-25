@@ -80,7 +80,7 @@ Ink.createModule( 'Ink.UI.Autocomplete' , '1', [ 'Ink.UI.Common_1' , 'Ink.Dom.Se
             this._results = [ ];
 
             Ivent.observe( this._input      , 'keyup'     , Ink.bind( this._onKeyup     , this ) );
-            Ivent.observe( this._input      , 'keydown'   , Ink.bind( this._onKeydonw   , this ) );
+            Ivent.observe( this._input      , 'keydown'   , Ink.bind( this._onKeydown   , this ) );
             Ivent.observe( this._suggestion , 'mouseover' , Ink.bind( this._onMouseover , this ) );
             Ivent.observe( window           , 'click'     , Ink.bind( this._onClick     , this ) );
 
@@ -141,7 +141,7 @@ Ink.createModule( 'Ink.UI.Autocomplete' , '1', [ 'Ink.UI.Common_1' , 'Ink.Dom.Se
             return this;
         } ,
 
-        _onKeydonw : function( e ) {
+        _onKeydown : function( e ) {
             switch ( e.keyCode ) {
                 case Ivent.KEY_ESC:
                     this.closeSuggestions( )
