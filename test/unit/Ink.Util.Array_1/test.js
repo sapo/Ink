@@ -3,7 +3,10 @@ Ink.requireModules(['Ink.Util.Array_1'], function (InkArray) {
     'use strict';
     module('ES5 additions');
     test('isArray', function () {
-        var shouldBeArray = [[], [1]];
+        var shouldBeArray = [
+            [],
+            [1]
+        ];
 
         var shouldNotBeArray = [
             null,
@@ -90,7 +93,29 @@ Ink.requireModules(['Ink.Util.Array_1'], function (InkArray) {
 
     test('groupBy()', function () {
         deepEqual(
-            InkArray.groupBy('AAAABBBCCDAABBB'.split('')),
+            InkArray.groupBy(
+                'AAAABBBCCDAABBB'.split('')),
+            [
+                ['A', 'A', 'A', 'A', 'A', 'A'],
+                ['B', 'B', 'B', 'B', 'B', 'B'],
+                ['C', 'C'],
+                ['D']
+            ],
+            'default behaviour');
+
+        deepEqual(
+            InkArray.groupBy(
+                'CAABCD'.split('')),
+            [
+                ['C', 'C'],
+                ['A', 'A'],
+                ['B'],
+                ['D']
+            ],
+            'grouping does not sort the groups');
+
+        deepEqual(
+            InkArray.groupBy('AAAABBBCCDAABBB'.split(''), { adjacentGroups: true }),
             [
                 ['A', 'A', 'A', 'A'],
                 ['B', 'B', 'B'],
@@ -99,43 +124,30 @@ Ink.requireModules(['Ink.Util.Array_1'], function (InkArray) {
                 ['A', 'A'],
                 ['B', 'B', 'B']
             ],
-            'default behaviour');
+            'adjacent groups');
 
         deepEqual(
             InkArray.groupBy(
-                'AAAABBBCCDAABBB'.split(''),
-                { pairs: true }),
-            [
-                ['A', ['A', 'A', 'A', 'A']],
-                ['B', ['B', 'B', 'B']],
-                ['C', ['C', 'C']],
-                ['D', ['D']],
-                ['A', ['A', 'A']],
-                ['B', ['B', 'B', 'B']]
-            ],
-            'pairs:true');
-
-        deepEqual(
-            InkArray.groupBy(
-                [0.1, 0.2, 0.3, 1.1, 1.2, 1.3, 2.5],
-                { key: Math.floor }),
-            [
-                [0.1, 0.2, 0.3],
-                [1.1, 1.2, 1.3],
-                [2.5]
-            ],
-            'using a key function');
-
-        deepEqual(
-            InkArray.groupBy(
-                [0.1, 0.2, 0.3, 1.1, 1.2, 1.3, 2.5],
+                [0.1, 0.2, 0.3, 2.2, 1.1, 1.2, 1.3, 2.5],
                 { key: Math.floor, pairs: true }),
             [
                 [0, [0.1, 0.2, 0.3]],
+                [2, [2.2, 2.5]],
+                [1, [1.1, 1.2, 1.3]]
+            ],
+            'key function and pairs:true');
+
+        deepEqual(
+            InkArray.groupBy(
+                [0.1, 0.2, 0.3, 2.3, 1.1, 1.2, 1.3, 2.5],
+                { key: Math.floor, pairs: true, adjacentGroups: true }),
+            [
+                [0, [0.1, 0.2, 0.3]],
+                [2, [2.3]],
                 [1, [1.1, 1.2, 1.3]],
                 [2, [2.5]]
             ],
-            'key function and pairs:true');
+            'key function, pairs:true and adjacent groups');
     });
 
 
