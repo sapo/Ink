@@ -173,7 +173,8 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, ['Ink.Util.Array_1', 'Ink.Dom.Eleme
 
         _fillInPairs: function (form, pairs) {
             pairs = InkArray.groupBy(pairs, {
-                key: function (pair) { return pair[0].replace(/\[\]$/, ''); }
+                key: function (pair) { return pair[0].replace(/\[\]$/, ''); },
+                adjacentGroups: true
             });
 
             // For each chunk...
