@@ -156,7 +156,7 @@ Ink.requireModules(['Ink.Util.Array_1'], function (InkArray) {
                 { name: 'Bob', 'class': 1999 },
                 { name: 'Jane', 'class': 2001 },
                 { name: 'Steve', 'class': 2001 },
-                { name: 'Bettie', 'class': 2002 },
+                { name: 'Bettie', 'class': 2002 }
             ], { key: 'class' }),
             [
                 [

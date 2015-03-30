@@ -88,7 +88,7 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
                     }
                 } else {
                     // Find a group which had this key before, otherwise make a new group
-                    pushTo = groups[keys.indexOf(latestKey)] || newGroup(latestKey);
+                    pushTo = groups[InkArray.keyValue(latestKey, keys, true)] || newGroup(latestKey);
                 }
 
                 if (!options.pairs) {
