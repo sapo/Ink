@@ -47,12 +47,7 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
         groupBy: function (arr, options) {
             options = options || {};
 
-            var ret = [];
-            var latestGroup;
             var latestKey;
-            function eq(a, b) {
-                return outKey(a) === outKey(b);
-            }
             function outKey(item) {
                 if (typeof options.key === 'function') {
                     return options.key(item);
@@ -75,7 +70,7 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
                 latestKey = outKey(arr[i]);
 
                 // Ok we have a new item, what group do we push it to?
-                var pushTo
+                var pushTo;
                 if (options.adjacentGroups) {
                     // In adjacent groups we just look at the previous group to see if it matches us.
                     if (keys[keys.length - 1] === latestKey) {

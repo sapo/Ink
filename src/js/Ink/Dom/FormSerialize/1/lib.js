@@ -58,11 +58,11 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, ['Ink.Util.Array_1', 'Ink.Dom.Eleme
                 } else {
                     if (name in out) {
                         if (!(out[name] instanceof Array)) {
-                            out[name] = [out[name]]
+                            out[name] = [out[name]];
                         }
-                        out[name].push(value)
+                        out[name].push(value);
                     } else if (phpArray) {
-                        out[name] = [value]
+                        out[name] = [value];
                     } else {
                         out[name] = value;
                     }
