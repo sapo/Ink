@@ -11,6 +11,7 @@ function mkDatePicker(options) {
         startDate: '2000-10-10',
         format: 'dd/mm/yyyy'
     }, options));
+    return dt;
 }
 
 module('main', {
@@ -44,6 +45,22 @@ test('setDate', function () {
     equal(dt._month + 1, 1);
     equal(dt._day, 1);
 });
+
+test('onSetDate', function () {
+    var onSetDate = sinon.spy();
+    var dt = mkDatePicker({ onSetDate: onSetDate });
+    ok(onSetDate.notCalled, 'onSetDate won\'t be called until the user selects a date');
+
+    dt.setDate('2001-10-9');
+
+    ok(onSetDate.notCalled, 'onSetDate won\'t be called when the API sets the date');
+
+    dt._year = 2001;
+    dt._month = 5 + 1;
+    dt._setDate({ dataset: { calDay: 10 } });
+
+    ok(onSetDate.calledOnce, 'onSetDate called when the user clicks an element which chooses a date');
+})
 
 test('i18n', function () {
     var i18n = new I18n({
