@@ -150,6 +150,28 @@ Ink.requireModules(['Ink.Util.Array_1'], function (InkArray) {
             'key function, pairs:true and adjacent groups');
     });
 
+    test('groupBy() key function can be a string, it takes it from the object', function () {
+        deepEqual(
+            InkArray.groupBy([
+                { name: 'Bob', 'class': 1999 },
+                { name: 'Jane', 'class': 2001 },
+                { name: 'Steve', 'class': 2001 },
+                { name: 'Bettie', 'class': 2002 },
+            ], { key: 'class' }),
+            [
+                [
+                    { "class": 1999, "name": "Bob" }
+                ],
+                [
+                    { "class": 2001, "name": "Jane" },
+                    { "class": 2001, "name": "Steve" }
+                ],
+                [
+                    { "class": 2002, "name": "Bettie" }
+                ]
+            ],
+            'Using a string as a key');
+    });
 
     test('range()', function () {
         var range = InkArray.range;

@@ -33,7 +33,7 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          * @param {Array}    arr             The input array.
          * @param {Object}   [options]       Options object, containing:
          * @param {Boolean}  [options.adjacentGroups] Set to `true` to mimick the python `groupby` function and only group adjacent things. For example, `'AABAA'` becomes `[['A', 'A'], ['B'], ['A', 'A']]` instead of `{ 'A': ['A', 'A', 'A', 'A'], 'B': ['B'] }`
-         * @param {Function} [options.key]   A function which computes the group key by which the items are grouped.
+         * @param {Function|String} [options.key]   A function which computes the group key by which the items are grouped. Alternatively, you can pass a string and groupBy will pluck it out of the object and use that as a key.
          * @param {Boolean}  [options.pairs] Set to `true` if you want to output an array of `[key, [group...]]` pairs instead of an array of groups.
          * @return {Array} An array containing the groups (which are arrays of input items)
          *
@@ -42,6 +42,11 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          *        InkArray.groupBy([1.1, 1.2, 2.1], { key: Math.floor })  // -> [ [1.1, 1.2], [2.1] ]
          *        InkArray.groupBy([1.1, 1.2, 2.1], { key: Math.floor, pairs: true })  // -> [ [1, [1.1, 1.2]], [2, [2.1]] ]
          *        InkArray.groupBy([1.1, 1.2, 2.1], { key: Math.floor, pairs: true })  // -> [ [1, [1.1, 1.2]], [2, [2.1]] ]
+         *        InkArray.groupBy([
+         *            { year: 2000, month: 1 },
+         *            { year: 2000, month: 2 },
+         *            { year: 2001, month: 4 }
+         *        ], { key: 'year' })  // -> [ [ { year: 2000, month: 1 }, { year: 2000, month: 2} ], [ { year: 2001, month: 2 } ] ]
          *
          **/
         groupBy: function (arr, options) {
@@ -51,6 +56,8 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
             function outKey(item) {
                 if (typeof options.key === 'function') {
                     return options.key(item);
+                } else if (typeof options.key === 'string') {
+                    return item[options.key];
                 } else {
                     return item;
                 }
