@@ -180,7 +180,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
             var self = this;
             function autoAdvance() {
                 self.nextPage(true /* wrap */);
-                this._autoAdvanceSto = setTimeout(autoAdvance, ms);
+                self._autoAdvanceSto = setTimeout(autoAdvance, ms);
             }
 
             this._autoAdvanceSto = setTimeout(autoAdvance, ms);
