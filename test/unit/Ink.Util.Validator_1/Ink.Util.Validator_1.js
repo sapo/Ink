@@ -83,6 +83,14 @@ test('isEAN validating ean-13 codes', function () {
     invalid(val.isEAN('0016820054453'))
 })
 
+test('isEAN validating ean-8 codes', function () {
+    valid  (val.isEAN('96384077', 'ean-8'))
+    invalid(val.isEAN('96384074', 'ean-8'))
+
+    invalid(val.isEAN('96384077', 'ean-13'))
+    invalid(val.isEAN('96384077'))
+});
+
 module('number');
 var numb = function (numb, options) {
     return val.number(numb, Ink.extendObj({returnNumber: true}, options));

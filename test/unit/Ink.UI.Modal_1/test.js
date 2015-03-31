@@ -78,7 +78,16 @@ Ink.requireModules(['Ink.UI.Modal_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1'], fun
             ok(!modal.isOpen(), 'clicking the shade causes it to close');
             start();
         });
-    }, { autoDisplay: true });
+    }, { autoDisplay: true, closeOnClick: true });
+
+    modalTest('regression: clicking the shade with closeOnClick: false does NOT make the modal close', function (modal, els) {
+        stop();
+        Syn.click({}, modal._modalShadow, function () {
+            ok(modal.isOpen(), 'did not close! lel');
+            modal.dismiss();
+            start();
+        });
+    }, { autoDisplay: true, closeOnClick: false });
 
     modalTest('A new modal has style.height, style.width set to its height, width options\' values', function (modal, els) {
         equal(modal._modalDiv.style.height, '100px');

@@ -46,17 +46,26 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, ['Ink.Util.Array_1', 'Ink.Dom.Eleme
             var pairs = this.asPairs(form, { elements: true, emptyArray: emptyArrayToken, outputUnchecked: options.outputUnchecked });
             if (pairs == null) { return pairs; }
             InkArray.forEach(pairs, function (pair) {
+                var phpArray = /\[\]$/.test(pair[0]);
                 var name = pair[0].replace(/\[\]$/, '');
                 var value = pair[1];
                 var el = pair[2];
 
                 if (value === emptyArrayToken) {
                     out[name] = [];  // It's an empty select[multiple]
-                } else if (!(FormSerialize._resultsInArray(el) || /\[\]$/.test(pair[0]))) {
+                } else if (!(FormSerialize._resultsInArray(el) || phpArray)) {
                     out[name] = value;
                 } else {
-                    out[name] = out[name] || [];
-                    out[name].push(value);
+                    if (name in out) {
+                        if (!(out[name] instanceof Array)) {
+                            out[name] = [out[name]];
+                        }
+                        out[name].push(value);
+                    } else if (phpArray) {
+                        out[name] = [value];
+                    } else {
+                        out[name] = value;
+                    }
                 }
             });
 
@@ -164,7 +173,8 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, ['Ink.Util.Array_1', 'Ink.Dom.Eleme
 
         _fillInPairs: function (form, pairs) {
             pairs = InkArray.groupBy(pairs, {
-                key: function (pair) { return pair[0].replace(/\[\]$/, ''); }
+                key: function (pair) { return pair[0].replace(/\[\]$/, ''); },
+                adjacentGroups: true
             });
 
             // For each chunk...

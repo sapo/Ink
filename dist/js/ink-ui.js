@@ -330,12 +330,41 @@ Ink.createModule('Ink.UI.Carousel', '1',
 
         _setUpAutoAdvance: function () {
             if (!this._options.autoAdvance) { return; }
-            var self = this;
+            this.autoAdvance(this._options.autoAdvance);
+        },
 
-            setTimeout(function autoAdvance() {
+        /**
+         * Auto-advance the carousel every `ms` milliseconds.
+         *
+         * @method autoAdvance
+         * @param [ms] {String} Number of milliseconds between advances.
+         * @return {void}
+         *
+         **/
+        autoAdvance: function (ms) {
+            if (this._autoAdvanceSto) { return; }
+
+            var self = this;
+            function autoAdvance() {
                 self.nextPage(true /* wrap */);
-                setTimeout(autoAdvance, self._options.autoAdvance);
-            }, this._options.autoAdvance);
+                self._autoAdvanceSto = setTimeout(autoAdvance, ms);
+            }
+
+            this._autoAdvanceSto = setTimeout(autoAdvance, ms);
+        },
+
+        /**
+         * Stop the carousel from auto-advancing. Calls clearTimeout to cancel the auto-advancer.
+         *
+         * @method stopAutoAdvance
+         * @return {void}
+         *
+         **/
+        stopAutoAdvance: function () {
+            if (!this._autoAdvanceSto) { return; }
+
+            clearTimeout(this._autoAdvanceSto);
+            this._autoAdvanceSto = null;
         },
 
         /**
@@ -2892,6 +2921,11 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             if (objClicked) {
                 var data = InkElement.data(objClicked);
                 this._day = (+data.calDay) || this._day;
+
+                if(this._options.onSetDate) {
+                    // calling onSetDate because the user selected something
+                    this._options.onSetDate( this , { date : this.getDate() } );
+                }
             }
 
             var dt = this._fitDateToRange(this);
@@ -2906,10 +2940,6 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 this._options.dayField.value   = this._day;
                 this._options.monthField.value = this._month + 1;
                 this._options.yearField.value  = this._year;
-            }
-
-            if(this._options.onSetDate) {
-                this._options.onSetDate( this , { date : this.getDate() } );
             }
         },
 
@@ -7110,7 +7140,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
         _onShadeClick: function(ev) {
             var tgtEl = Event.element(ev);
 
-            if (tgtEl === this._modalShadow /* TODO rename to this._modalShade */) {
+            if (tgtEl === this._modalShadow && this._options.closeOnClick) {
                 this.dismiss();
             } else if (Css.hasClassName(tgtEl, 'ink-close') || Css.hasClassName(tgtEl, 'ink-dismiss') || 
                 InkElement.findUpwardsBySelector(tgtEl, '.ink-close,.ink-dismiss') ||
@@ -8438,8 +8468,14 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Css_1',
          */
         _onDown: function(ev) {
             if (this._isMoving || this._placeholder) { return; }
-            if(this._options.handleSelector && !Selector.matchesSelector(ev.target, this._options.handleSelector)) { return; }
             var tgtEl = ev.currentTarget;
+            if(this._options.handleSelector) {
+                var handle = Element.findUpwardsBySelector(ev.target, this._options.handleSelector);
+
+                if (!(handle && Element.isAncestorOf(tgtEl, handle))) {
+                    return;
+                }
+            }
             this._isMoving = tgtEl;
             this._placeholder = tgtEl.cloneNode(true);
             this._movePlaceholder(tgtEl);
@@ -11054,7 +11090,7 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
             // closeOnClick should default to false when isAccordion
             if (this._options.closeOnClick === null) {
                 this._options.closeOnClick =
-                    this._options.isAccordion ? false : true;
+                    (this._options.isAccordion || this._options.canToggleAnAncestor) ? false : true;
             }
             // Actually a throolean
             if (this._options.initialState === null) {
@@ -11072,7 +11108,7 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
                 this._accordionContainer = InkElement.findUpwardsByClass(
                     this._element, 'accordion');
                 if (!this._accordionContainer) {
-                    Ink.warn('Ink.UI.Toggle_1: This toggle has the isToggle option set to `true`, but is not a descendant of an element with the class "accordion"! Because of this, it won\'t be able to find other toggles in the same accordion and cooperate with them.');
+                    Ink.warn('Ink.UI.Toggle_1: This toggle has the isAccordion option set to `true`, but is not a descendant of an element with the class "accordion"! Because of this, it won\'t be able to find other toggles in the same accordion and cooperate with them.');
                 }
             }
 
@@ -11190,8 +11226,6 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
                 // bubbling, we can't tell where it came from
                 return;
             }
-
-            if (InkElement.findUpwardsBySelector(tgtEl, '[data-is-toggle-trigger="true"]')) { return; }
 
             var ancestorOfTargets = InkArray.some(this._targets, function (target) {
                 return InkElement.isAncestorOf(target, tgtEl) || target === tgtEl;

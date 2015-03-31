@@ -1259,7 +1259,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
             var sum = 0, size, i;
             digits = String(digits);
             while (digits.length<12) {
-                digits = '0' + digits;
+                digits = '00000' + digits;
             }
             size = digits.length;
             for (i = (size - 1); i >= 0; i--) {
@@ -1272,14 +1272,25 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
          * Validate an [EAN barcode](https://en.wikipedia.org/wiki/International_Article_Number_%28EAN%29) string.
          * @method isEAN
          * @param {String} code The code containing the EAN
-         * @param {} [eanType='ean-13'] Select your EAN type. For now, only ean-13 is supported, and it's the default.
+         * @param {} [eanType='ean-13'] Select your EAN type. Can be 'ean-8' or 'ean-13'
          * @public
          * @return {Boolean} Whether the given `code` is an EAN-13
          */
         isEAN: function (code, eanType) {
             /* For future support of more eanTypes */
-            if (!(eanType === undefined || eanType === 'ean-13')) { return false; }
-            if (code.length !== 13) { return false; }
+            if (eanType === undefined) { eanType = 'ean-13'; }
+
+            switch(eanType) {
+                case 'ean-13':
+                    if (code.length !== 13) { return false; }
+                    break;
+                case 'ean-8':
+                    if (code.length !== 8) { return false; }
+                    break;
+                default:
+                    // Unknown barcode type
+                    return false;
+            }
 
             var digits = code.substr(0, code.length -1);
             var givenCheck = code.charAt(code.length - 1);

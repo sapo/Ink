@@ -74,7 +74,7 @@
             // closeOnClick should default to false when isAccordion
             if (this._options.closeOnClick === null) {
                 this._options.closeOnClick =
-                    this._options.isAccordion ? false : true;
+                    (this._options.isAccordion || this._options.canToggleAnAncestor) ? false : true;
             }
             // Actually a throolean
             if (this._options.initialState === null) {
@@ -92,7 +92,7 @@
                 this._accordionContainer = InkElement.findUpwardsByClass(
                     this._element, 'accordion');
                 if (!this._accordionContainer) {
-                    Ink.warn('Ink.UI.Toggle_1: This toggle has the isToggle option set to `true`, but is not a descendant of an element with the class "accordion"! Because of this, it won\'t be able to find other toggles in the same accordion and cooperate with them.');
+                    Ink.warn('Ink.UI.Toggle_1: This toggle has the isAccordion option set to `true`, but is not a descendant of an element with the class "accordion"! Because of this, it won\'t be able to find other toggles in the same accordion and cooperate with them.');
                 }
             }
 
@@ -210,8 +210,6 @@
                 // bubbling, we can't tell where it came from
                 return;
             }
-
-            if (InkElement.findUpwardsBySelector(tgtEl, '[data-is-toggle-trigger="true"]')) { return; }
 
             var ancestorOfTargets = InkArray.some(this._targets, function (target) {
                 return InkElement.isAncestorOf(target, tgtEl) || target === tgtEl;

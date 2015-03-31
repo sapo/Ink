@@ -163,12 +163,41 @@ Ink.createModule('Ink.UI.Carousel', '1',
 
         _setUpAutoAdvance: function () {
             if (!this._options.autoAdvance) { return; }
-            var self = this;
+            this.autoAdvance(this._options.autoAdvance);
+        },
 
-            setTimeout(function autoAdvance() {
+        /**
+         * Auto-advance the carousel every `ms` milliseconds.
+         *
+         * @method autoAdvance
+         * @param [ms] {String} Number of milliseconds between advances.
+         * @return {void}
+         *
+         **/
+        autoAdvance: function (ms) {
+            if (this._autoAdvanceSto) { return; }
+
+            var self = this;
+            function autoAdvance() {
                 self.nextPage(true /* wrap */);
-                setTimeout(autoAdvance, self._options.autoAdvance);
-            }, this._options.autoAdvance);
+                self._autoAdvanceSto = setTimeout(autoAdvance, ms);
+            }
+
+            this._autoAdvanceSto = setTimeout(autoAdvance, ms);
+        },
+
+        /**
+         * Stop the carousel from auto-advancing. Calls clearTimeout to cancel the auto-advancer.
+         *
+         * @method stopAutoAdvance
+         * @return {void}
+         *
+         **/
+        stopAutoAdvance: function () {
+            if (!this._autoAdvanceSto) { return; }
+
+            clearTimeout(this._autoAdvanceSto);
+            this._autoAdvanceSto = null;
         },
 
         /**

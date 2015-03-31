@@ -1761,7 +1761,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * Get the scroll's width.
+         * Returns how much pixels the page was scrolled from the left side of the document.
          * @method scrollWidth
          * @return {Number} Scroll width
          */
@@ -1776,13 +1776,16 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * Get the scroll's height.
+         * Returns how much pixels the page was scrolled from the top of the document.
          * @method scrollHeight
          * @return {Number} Scroll height
          */
         scrollHeight: function() {
             if (typeof window.self.pageYOffset !== 'undefined') {
                 return window.self.pageYOffset;
+            }
+            if (typeof document.body !== 'undefined' && typeof document.body.scrollTop !== 'undefined' && typeof document.documentElement !== 'undefined' && typeof document.documentElement.scrollTop !== 'undefined') {
+                return document.body.scrollTop || document.documentElement.scrollTop;
             }
             if (typeof document.documentElement !== 'undefined' && typeof document.documentElement.scrollTop !== 'undefined') {
                 return document.documentElement.scrollTop;
