@@ -160,8 +160,6 @@
 
                 span {
                     
-                    //display: table-cell;
-
                     & > input,
                     & > select,
                     & > textarea {
@@ -171,6 +169,7 @@
                 
                 .#{$button-class-name} {
                     margin: 0;
+                    flex-shrink: 0;
                     @include border-radius(0 $border-radius $border-radius 0);
                     border-left: none;
                 }
@@ -194,6 +193,7 @@
                 
                 .#{$button-class-name} {
                     margin: 0;
+                    flex-shrink: 0;
                     @include border-radius($border-radius 0 0 $border-radius);
                     border-right: none;
                 }
@@ -215,7 +215,7 @@
                     & > [class*=" fa-"] {
                         position: absolute;
                         right: 1em;
-                        top: .86em;
+                        top: .76em;
                         pointer-events: none;
                     }
                 }
@@ -237,7 +237,7 @@
                     & > [class*=" fa-"] {
                         position: absolute;
                         left: 1em;
-                        top: .86em;
+                        top: .76em;
                         pointer-events: none;
                     }
                 }

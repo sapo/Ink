@@ -242,7 +242,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
         _onShadeClick: function(ev) {
             var tgtEl = Event.element(ev);
 
-            if (tgtEl === this._modalShadow /* TODO rename to this._modalShade */) {
+            if (tgtEl === this._modalShadow && this._options.closeOnClick) {
                 this.dismiss();
             } else if (Css.hasClassName(tgtEl, 'ink-close') || Css.hasClassName(tgtEl, 'ink-dismiss') || 
                 InkElement.findUpwardsBySelector(tgtEl, '.ink-close,.ink-dismiss') ||

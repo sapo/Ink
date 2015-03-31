@@ -47,7 +47,7 @@
         /**
          * @property {String} VERSION
          **/
-        VERSION: '3.1.5',
+        VERSION: '3.1.6',
         _checkPendingRequireModules: function() {
             var I, F, o, dep, mod, cb, pRMs = [];
             var toApply = [];
@@ -4576,7 +4576,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * Get the scroll's width.
+         * Returns how much pixels the page was scrolled from the left side of the document.
          * @method scrollWidth
          * @return {Number} Scroll width
          */
@@ -4591,13 +4591,16 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * Get the scroll's height.
+         * Returns how much pixels the page was scrolled from the top of the document.
          * @method scrollHeight
          * @return {Number} Scroll height
          */
         scrollHeight: function() {
             if (typeof window.self.pageYOffset !== 'undefined') {
                 return window.self.pageYOffset;
+            }
+            if (typeof document.body !== 'undefined' && typeof document.body.scrollTop !== 'undefined' && typeof document.documentElement !== 'undefined' && typeof document.documentElement.scrollTop !== 'undefined') {
+                return document.body.scrollTop || document.documentElement.scrollTop;
             }
             if (typeof document.documentElement !== 'undefined' && typeof document.documentElement.scrollTop !== 'undefined') {
                 return document.documentElement.scrollTop;
@@ -5973,17 +5976,26 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, ['Ink.Util.Array_1', 'Ink.Dom.Eleme
             var pairs = this.asPairs(form, { elements: true, emptyArray: emptyArrayToken, outputUnchecked: options.outputUnchecked });
             if (pairs == null) { return pairs; }
             InkArray.forEach(pairs, function (pair) {
+                var phpArray = /\[\]$/.test(pair[0]);
                 var name = pair[0].replace(/\[\]$/, '');
                 var value = pair[1];
                 var el = pair[2];
 
                 if (value === emptyArrayToken) {
                     out[name] = [];  // It's an empty select[multiple]
-                } else if (!(FormSerialize._resultsInArray(el) || /\[\]$/.test(pair[0]))) {
+                } else if (!(FormSerialize._resultsInArray(el) || phpArray)) {
                     out[name] = value;
                 } else {
-                    out[name] = out[name] || [];
-                    out[name].push(value);
+                    if (name in out) {
+                        if (!(out[name] instanceof Array)) {
+                            out[name] = [out[name]];
+                        }
+                        out[name].push(value);
+                    } else if (phpArray) {
+                        out[name] = [value];
+                    } else {
+                        out[name] = value;
+                    }
                 }
             });
 
@@ -6091,7 +6103,8 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, ['Ink.Util.Array_1', 'Ink.Dom.Eleme
 
         _fillInPairs: function (form, pairs) {
             pairs = InkArray.groupBy(pairs, {
-                key: function (pair) { return pair[0].replace(/\[\]$/, ''); }
+                key: function (pair) { return pair[0].replace(/\[\]$/, ''); },
+                adjacentGroups: true
             });
 
             // For each chunk...
@@ -8345,51 +8358,76 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
         },
 
         /**
-         * Loops through an array, grouping similar items together.
+         * Finds similar objects in an array and groups them together into subarrays for you. Groups have 1 or more item each.
          * @method groupBy
          * @param {Array}    arr             The input array.
          * @param {Object}   [options]       Options object, containing:
-         * @param {Function} [options.key]   A function which computes the group key by which the items are grouped.
+         * @param {Boolean}  [options.adjacentGroups] Set to `true` to mimick the python `groupby` function and only group adjacent things. For example, `'AABAA'` becomes `[['A', 'A'], ['B'], ['A', 'A']]` instead of `{ 'A': ['A', 'A', 'A', 'A'], 'B': ['B'] }`
+         * @param {Function|String} [options.key]   A function which computes the group key by which the items are grouped. Alternatively, you can pass a string and groupBy will pluck it out of the object and use that as a key.
          * @param {Boolean}  [options.pairs] Set to `true` if you want to output an array of `[key, [group...]]` pairs instead of an array of groups.
-         * @return {Array} An array containing arrays of chunks.
+         * @return {Array} An array containing the groups (which are arrays of input items)
          *
          * @example
-         *        InkArray.groupBy([1, 1, 2, 2, 3, 1])  // -> [ [1, 1], [2, 2], [3], [1] ]
+         *        InkArray.groupBy([1, 1, 2, 2, 3, 1])  // -> [ [1, 1, 1], [2, 2], [3] ]
          *        InkArray.groupBy([1.1, 1.2, 2.1], { key: Math.floor })  // -> [ [1.1, 1.2], [2.1] ]
          *        InkArray.groupBy([1.1, 1.2, 2.1], { key: Math.floor, pairs: true })  // -> [ [1, [1.1, 1.2]], [2, [2.1]] ]
+         *        InkArray.groupBy([1.1, 1.2, 2.1], { key: Math.floor, pairs: true })  // -> [ [1, [1.1, 1.2]], [2, [2.1]] ]
+         *        InkArray.groupBy([
+         *            { year: 2000, month: 1 },
+         *            { year: 2000, month: 2 },
+         *            { year: 2001, month: 4 }
+         *        ], { key: 'year' })  // -> [ [ { year: 2000, month: 1 }, { year: 2000, month: 2} ], [ { year: 2001, month: 2 } ] ]
          *
          **/
         groupBy: function (arr, options) {
             options = options || {};
-            var ret = [];
-            var latestGroup;
-            function eq(a, b) {
-                return outKey(a) === outKey(b);
-            }
+
+            var latestKey;
             function outKey(item) {
                 if (typeof options.key === 'function') {
                     return options.key(item);
+                } else if (typeof options.key === 'string') {
+                    return item[options.key];
                 } else {
                     return item;
                 }
             }
 
-            for (var i = 0, len = arr.length; i < len; i++) {
-                latestGroup = [arr[i]];
+            function newGroup(key) {
+                var ret = options.pairs ? [key, []] : [];
+                groups.push(ret);
+                keys.push(key);
+                return ret;
+            }
 
-                // Chunkin'
-                while ((i + 1 < len) && eq(arr[i], arr[i + 1])) {
-                    latestGroup.push(arr[i + 1]);
-                    i++;
+            var keys = [];
+            var groups = [];
+
+            for (var i = 0, len = arr.length; i < len; i++) {
+                latestKey = outKey(arr[i]);
+
+                // Ok we have a new item, what group do we push it to?
+                var pushTo;
+                if (options.adjacentGroups) {
+                    // In adjacent groups we just look at the previous group to see if it matches us.
+                    if (keys[keys.length - 1] === latestKey) {
+                        pushTo = groups[groups.length - 1];
+                    } else {
+                        // This doesn't belong to the latest group, make a new one
+                        pushTo = newGroup(latestKey);
+                    }
+                } else {
+                    // Find a group which had this key before, otherwise make a new group
+                    pushTo = groups[InkArray.keyValue(latestKey, keys, true)] || newGroup(latestKey);
                 }
 
-                if (options.pairs) {
-                    ret.push([outKey(arr[i]), latestGroup]);
+                if (!options.pairs) {
+                    pushTo.push(arr[i]);
                 } else {
-                    ret.push(latestGroup);
+                    pushTo[1].push(arr[i]);
                 }
             }
-            return ret;
+            return groups;
         },
 
         /**
@@ -13177,7 +13215,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
             var sum = 0, size, i;
             digits = String(digits);
             while (digits.length<12) {
-                digits = '0' + digits;
+                digits = '00000' + digits;
             }
             size = digits.length;
             for (i = (size - 1); i >= 0; i--) {
@@ -13190,14 +13228,25 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
          * Validate an [EAN barcode](https://en.wikipedia.org/wiki/International_Article_Number_%28EAN%29) string.
          * @method isEAN
          * @param {String} code The code containing the EAN
-         * @param {} [eanType='ean-13'] Select your EAN type. For now, only ean-13 is supported, and it's the default.
+         * @param {} [eanType='ean-13'] Select your EAN type. Can be 'ean-8' or 'ean-13'
          * @public
          * @return {Boolean} Whether the given `code` is an EAN-13
          */
         isEAN: function (code, eanType) {
             /* For future support of more eanTypes */
-            if (!(eanType === undefined || eanType === 'ean-13')) { return false; }
-            if (code.length !== 13) { return false; }
+            if (eanType === undefined) { eanType = 'ean-13'; }
+
+            switch(eanType) {
+                case 'ean-13':
+                    if (code.length !== 13) { return false; }
+                    break;
+                case 'ean-8':
+                    if (code.length !== 8) { return false; }
+                    break;
+                default:
+                    // Unknown barcode type
+                    return false;
+            }
 
             var digits = code.substr(0, code.length -1);
             var givenCheck = code.charAt(code.length - 1);
@@ -13543,12 +13592,41 @@ Ink.createModule('Ink.UI.Carousel', '1',
 
         _setUpAutoAdvance: function () {
             if (!this._options.autoAdvance) { return; }
-            var self = this;
+            this.autoAdvance(this._options.autoAdvance);
+        },
 
-            setTimeout(function autoAdvance() {
+        /**
+         * Auto-advance the carousel every `ms` milliseconds.
+         *
+         * @method autoAdvance
+         * @param [ms] {String} Number of milliseconds between advances.
+         * @return {void}
+         *
+         **/
+        autoAdvance: function (ms) {
+            if (this._autoAdvanceSto) { return; }
+
+            var self = this;
+            function autoAdvance() {
                 self.nextPage(true /* wrap */);
-                setTimeout(autoAdvance, self._options.autoAdvance);
-            }, this._options.autoAdvance);
+                self._autoAdvanceSto = setTimeout(autoAdvance, ms);
+            }
+
+            this._autoAdvanceSto = setTimeout(autoAdvance, ms);
+        },
+
+        /**
+         * Stop the carousel from auto-advancing. Calls clearTimeout to cancel the auto-advancer.
+         *
+         * @method stopAutoAdvance
+         * @return {void}
+         *
+         **/
+        stopAutoAdvance: function () {
+            if (!this._autoAdvanceSto) { return; }
+
+            clearTimeout(this._autoAdvanceSto);
+            this._autoAdvanceSto = null;
         },
 
         /**
@@ -16105,6 +16183,11 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             if (objClicked) {
                 var data = InkElement.data(objClicked);
                 this._day = (+data.calDay) || this._day;
+
+                if(this._options.onSetDate) {
+                    // calling onSetDate because the user selected something
+                    this._options.onSetDate( this , { date : this.getDate() } );
+                }
             }
 
             var dt = this._fitDateToRange(this);
@@ -16119,10 +16202,6 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 this._options.dayField.value   = this._day;
                 this._options.monthField.value = this._month + 1;
                 this._options.yearField.value  = this._year;
-            }
-
-            if(this._options.onSetDate) {
-                this._options.onSetDate( this , { date : this.getDate() } );
             }
         },
 
@@ -20323,7 +20402,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
         _onShadeClick: function(ev) {
             var tgtEl = Event.element(ev);
 
-            if (tgtEl === this._modalShadow /* TODO rename to this._modalShade */) {
+            if (tgtEl === this._modalShadow && this._options.closeOnClick) {
                 this.dismiss();
             } else if (Css.hasClassName(tgtEl, 'ink-close') || Css.hasClassName(tgtEl, 'ink-dismiss') || 
                 InkElement.findUpwardsBySelector(tgtEl, '.ink-close,.ink-dismiss') ||
@@ -21651,8 +21730,14 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Css_1',
          */
         _onDown: function(ev) {
             if (this._isMoving || this._placeholder) { return; }
-            if(this._options.handleSelector && !Selector.matchesSelector(ev.target, this._options.handleSelector)) { return; }
             var tgtEl = ev.currentTarget;
+            if(this._options.handleSelector) {
+                var handle = Element.findUpwardsBySelector(ev.target, this._options.handleSelector);
+
+                if (!(handle && Element.isAncestorOf(tgtEl, handle))) {
+                    return;
+                }
+            }
             this._isMoving = tgtEl;
             this._placeholder = tgtEl.cloneNode(true);
             this._movePlaceholder(tgtEl);
@@ -24267,7 +24352,7 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
             // closeOnClick should default to false when isAccordion
             if (this._options.closeOnClick === null) {
                 this._options.closeOnClick =
-                    this._options.isAccordion ? false : true;
+                    (this._options.isAccordion || this._options.canToggleAnAncestor) ? false : true;
             }
             // Actually a throolean
             if (this._options.initialState === null) {
@@ -24285,7 +24370,7 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
                 this._accordionContainer = InkElement.findUpwardsByClass(
                     this._element, 'accordion');
                 if (!this._accordionContainer) {
-                    Ink.warn('Ink.UI.Toggle_1: This toggle has the isToggle option set to `true`, but is not a descendant of an element with the class "accordion"! Because of this, it won\'t be able to find other toggles in the same accordion and cooperate with them.');
+                    Ink.warn('Ink.UI.Toggle_1: This toggle has the isAccordion option set to `true`, but is not a descendant of an element with the class "accordion"! Because of this, it won\'t be able to find other toggles in the same accordion and cooperate with them.');
                 }
             }
 
@@ -24403,8 +24488,6 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
                 // bubbling, we can't tell where it came from
                 return;
             }
-
-            if (InkElement.findUpwardsBySelector(tgtEl, '[data-is-toggle-trigger="true"]')) { return; }
 
             var ancestorOfTargets = InkArray.some(this._targets, function (target) {
                 return InkElement.isAncestorOf(target, tgtEl) || target === tgtEl;

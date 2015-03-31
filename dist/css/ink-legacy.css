@@ -7,7 +7,7 @@
  * @author    Sapo Ink Team
  * @license   http://opensource.org/licenses/MIT MIT
  * @link      http://ink.sapo.pt
- * @version   3.1.5
+ * @version   3.1.6
  */
 /**
  * Ink class names prefix
@@ -136,7 +136,7 @@
 
 html.no-flexbox,
 html.no-flexboxlegacy {
-  font-size: 1em;
+  font-size: 0.97em;
 }
 html.no-flexbox .ink-grid,
 html.no-flexboxlegacy .ink-grid {
@@ -4694,6 +4694,450 @@ html.no-flexboxlegacy .ink-carousel .stage .slide {
 html.no-flexbox .ink-carousel .ink-navigation,
 html.no-flexboxlegacy .ink-carousel .ink-navigation {
   position: static;
+}
+html.no-flexbox .ink-form fieldset,
+html.no-flexboxlegacy .ink-form fieldset {
+  border: none;
+  margin-bottom: 1.5em;
+  padding: 0;
+  margin: 0;
+}
+html.no-flexbox .ink-form fieldset legend,
+html.no-flexboxlegacy .ink-form fieldset legend {
+  font-size: 1.438em;
+  font-weight: 700;
+  width: 100%;
+  border-bottom: 1px solid #ddd;
+}
+html.no-flexbox .ink-form fieldset legend + *,
+html.no-flexboxlegacy .ink-form fieldset legend + * {
+  -webkit-margin-top-collapse: separate;
+  margin: 2em 0;
+}
+html.no-flexbox .ink-form p.tip,
+html.no-flexboxlegacy .ink-form p.tip {
+  font-size: .875em;
+  color: #909090;
+  position: relative;
+  margin: .2em 0 0 .1em;
+}
+html.no-flexbox .ink-form p.label,
+html.no-flexboxlegacy .ink-form p.label {
+  padding: 0;
+  margin: 0;
+  color: #555555;
+  white-space: normal;
+}
+html.no-flexbox .ink-form select,
+html.no-flexbox .ink-form textarea,
+html.no-flexbox .ink-form input[type="text"],
+html.no-flexbox .ink-form input[type="password"],
+html.no-flexbox .ink-form input[type="datetime"],
+html.no-flexbox .ink-form input[type="datetime-local"],
+html.no-flexbox .ink-form input[type="date"],
+html.no-flexbox .ink-form input[type="month"],
+html.no-flexbox .ink-form input[type="time"],
+html.no-flexbox .ink-form input[type="week"],
+html.no-flexbox .ink-form input[type="number"],
+html.no-flexbox .ink-form input[type="email"],
+html.no-flexbox .ink-form input[type="url"],
+html.no-flexbox .ink-form input[type="search"],
+html.no-flexbox .ink-form input[type="tel"],
+html.no-flexbox .ink-form input[type="color"],
+html.no-flexboxlegacy .ink-form select,
+html.no-flexboxlegacy .ink-form textarea,
+html.no-flexboxlegacy .ink-form input[type="text"],
+html.no-flexboxlegacy .ink-form input[type="password"],
+html.no-flexboxlegacy .ink-form input[type="datetime"],
+html.no-flexboxlegacy .ink-form input[type="datetime-local"],
+html.no-flexboxlegacy .ink-form input[type="date"],
+html.no-flexboxlegacy .ink-form input[type="month"],
+html.no-flexboxlegacy .ink-form input[type="time"],
+html.no-flexboxlegacy .ink-form input[type="week"],
+html.no-flexboxlegacy .ink-form input[type="number"],
+html.no-flexboxlegacy .ink-form input[type="email"],
+html.no-flexboxlegacy .ink-form input[type="url"],
+html.no-flexboxlegacy .ink-form input[type="search"],
+html.no-flexboxlegacy .ink-form input[type="tel"],
+html.no-flexboxlegacy .ink-form input[type="color"] {
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
+  font-weight: 300;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+  padding: 8px 6px;
+  border: 1px solid #c6c6c6;
+  resize: none;
+  background: white;
+  vertical-align: middle;
+}
+html.no-flexbox .ink-form select:focus,
+html.no-flexbox .ink-form textarea:focus,
+html.no-flexbox .ink-form input[type="text"]:focus,
+html.no-flexbox .ink-form input[type="password"]:focus,
+html.no-flexbox .ink-form input[type="datetime"]:focus,
+html.no-flexbox .ink-form input[type="datetime-local"]:focus,
+html.no-flexbox .ink-form input[type="date"]:focus,
+html.no-flexbox .ink-form input[type="month"]:focus,
+html.no-flexbox .ink-form input[type="time"]:focus,
+html.no-flexbox .ink-form input[type="week"]:focus,
+html.no-flexbox .ink-form input[type="number"]:focus,
+html.no-flexbox .ink-form input[type="email"]:focus,
+html.no-flexbox .ink-form input[type="url"]:focus,
+html.no-flexbox .ink-form input[type="search"]:focus,
+html.no-flexbox .ink-form input[type="tel"]:focus,
+html.no-flexbox .ink-form input[type="color"]:focus,
+html.no-flexboxlegacy .ink-form select:focus,
+html.no-flexboxlegacy .ink-form textarea:focus,
+html.no-flexboxlegacy .ink-form input[type="text"]:focus,
+html.no-flexboxlegacy .ink-form input[type="password"]:focus,
+html.no-flexboxlegacy .ink-form input[type="datetime"]:focus,
+html.no-flexboxlegacy .ink-form input[type="datetime-local"]:focus,
+html.no-flexboxlegacy .ink-form input[type="date"]:focus,
+html.no-flexboxlegacy .ink-form input[type="month"]:focus,
+html.no-flexboxlegacy .ink-form input[type="time"]:focus,
+html.no-flexboxlegacy .ink-form input[type="week"]:focus,
+html.no-flexboxlegacy .ink-form input[type="number"]:focus,
+html.no-flexboxlegacy .ink-form input[type="email"]:focus,
+html.no-flexboxlegacy .ink-form input[type="url"]:focus,
+html.no-flexboxlegacy .ink-form input[type="search"]:focus,
+html.no-flexboxlegacy .ink-form input[type="tel"]:focus,
+html.no-flexboxlegacy .ink-form input[type="color"]:focus {
+  outline: none;
+  border-color: rgba(153, 153, 153, 0.9);
+  -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 1px inset;
+  -moz-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 1px inset;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 1px 1px inset;
+  outline: 0 none;
+}
+html.no-flexbox .ink-form select:disabled,
+html.no-flexbox .ink-form textarea:disabled,
+html.no-flexbox .ink-form input[type="text"]:disabled,
+html.no-flexbox .ink-form input[type="password"]:disabled,
+html.no-flexbox .ink-form input[type="datetime"]:disabled,
+html.no-flexbox .ink-form input[type="datetime-local"]:disabled,
+html.no-flexbox .ink-form input[type="date"]:disabled,
+html.no-flexbox .ink-form input[type="month"]:disabled,
+html.no-flexbox .ink-form input[type="time"]:disabled,
+html.no-flexbox .ink-form input[type="week"]:disabled,
+html.no-flexbox .ink-form input[type="number"]:disabled,
+html.no-flexbox .ink-form input[type="email"]:disabled,
+html.no-flexbox .ink-form input[type="url"]:disabled,
+html.no-flexbox .ink-form input[type="search"]:disabled,
+html.no-flexbox .ink-form input[type="tel"]:disabled,
+html.no-flexbox .ink-form input[type="color"]:disabled,
+html.no-flexboxlegacy .ink-form select:disabled,
+html.no-flexboxlegacy .ink-form textarea:disabled,
+html.no-flexboxlegacy .ink-form input[type="text"]:disabled,
+html.no-flexboxlegacy .ink-form input[type="password"]:disabled,
+html.no-flexboxlegacy .ink-form input[type="datetime"]:disabled,
+html.no-flexboxlegacy .ink-form input[type="datetime-local"]:disabled,
+html.no-flexboxlegacy .ink-form input[type="date"]:disabled,
+html.no-flexboxlegacy .ink-form input[type="month"]:disabled,
+html.no-flexboxlegacy .ink-form input[type="time"]:disabled,
+html.no-flexboxlegacy .ink-form input[type="week"]:disabled,
+html.no-flexboxlegacy .ink-form input[type="number"]:disabled,
+html.no-flexboxlegacy .ink-form input[type="email"]:disabled,
+html.no-flexboxlegacy .ink-form input[type="url"]:disabled,
+html.no-flexboxlegacy .ink-form input[type="search"]:disabled,
+html.no-flexboxlegacy .ink-form input[type="tel"]:disabled,
+html.no-flexboxlegacy .ink-form input[type="color"]:disabled {
+  background: #f2f2f2;
+  cursor: not-allowed;
+}
+html.no-flexbox .ink-form .input-file,
+html.no-flexboxlegacy .ink-form .input-file {
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+  padding: 6px;
+  border: 1px solid #c6c6c6;
+  background: white;
+  vertical-align: middle;
+  line-height: 1.2;
+}
+html.no-flexbox .ink-form .input-file input[type="file"],
+html.no-flexboxlegacy .ink-form .input-file input[type="file"] {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  -o-border-radius: 0;
+  border-radius: 0;
+  border: none;
+  padding: 0;
+  background: none;
+  width: 100%;
+}
+html.no-flexbox .ink-form .ink-button,
+html.no-flexboxlegacy .ink-form .ink-button {
+  margin: 0 5px;
+}
+html.no-flexbox .ink-form label,
+html.no-flexboxlegacy .ink-form label {
+  cursor: pointer;
+}
+html.no-flexbox .ink-form select,
+html.no-flexboxlegacy .ink-form select {
+  line-height: 2;
+  cursor: pointer;
+}
+html.no-flexbox .ink-form textarea,
+html.no-flexboxlegacy .ink-form textarea {
+  min-height: 5em;
+}
+html.no-flexbox .ink-form .control-group,
+html.no-flexboxlegacy .ink-form .control-group {
+  line-height: 2;
+  margin-bottom: 1em;
+  *zoom: 1;
+}
+html.no-flexbox .ink-form .control-group:after,
+html.no-flexboxlegacy .ink-form .control-group:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+html.no-flexbox .ink-form .control-group .control,
+html.no-flexboxlegacy .ink-form .control-group .control {
+  position: relative;
+  *zoom: 1;
+}
+html.no-flexbox .ink-form .control-group .control:after,
+html.no-flexboxlegacy .ink-form .control-group .control:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+html.no-flexbox .ink-form .control-group .control > li,
+html.no-flexboxlegacy .ink-form .control-group .control > li {
+  position: relative;
+  *zoom: 1;
+}
+html.no-flexbox .ink-form .control-group .control > li:after,
+html.no-flexboxlegacy .ink-form .control-group .control > li:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+html.no-flexbox .ink-form .control-group .control > input, html.no-flexbox .ink-form .control-group .control > select, html.no-flexbox .ink-form .control-group .control > textarea,
+html.no-flexboxlegacy .ink-form .control-group .control > input,
+html.no-flexboxlegacy .ink-form .control-group .control > select,
+html.no-flexboxlegacy .ink-form .control-group .control > textarea {
+  width: 100%;
+}
+html.no-flexbox .ink-form .control-group .control > input + .fa, html.no-flexbox .ink-form .control-group .control > select + .fa, html.no-flexbox .ink-form .control-group .control > textarea + .fa,
+html.no-flexboxlegacy .ink-form .control-group .control > input + .fa,
+html.no-flexboxlegacy .ink-form .control-group .control > select + .fa,
+html.no-flexboxlegacy .ink-form .control-group .control > textarea + .fa {
+  display: none;
+}
+html.no-flexbox .ink-form .control-group .control.append-button > span, html.no-flexbox .ink-form .control-group .control.append-symbol > span, html.no-flexbox .ink-form .control-group .control.prepend-button > span, html.no-flexbox .ink-form .control-group .control.prepend-symbol > span,
+html.no-flexboxlegacy .ink-form .control-group .control.append-button > span,
+html.no-flexboxlegacy .ink-form .control-group .control.append-symbol > span,
+html.no-flexboxlegacy .ink-form .control-group .control.prepend-button > span,
+html.no-flexboxlegacy .ink-form .control-group .control.prepend-symbol > span {
+  width: 100%;
+  position: relative;
+}
+html.no-flexbox .ink-form .control-group .control.append-button > span > input, html.no-flexbox .ink-form .control-group .control.append-button > span > select, html.no-flexbox .ink-form .control-group .control.append-button > span > textarea, html.no-flexbox .ink-form .control-group .control.append-symbol > span > input, html.no-flexbox .ink-form .control-group .control.append-symbol > span > select, html.no-flexbox .ink-form .control-group .control.append-symbol > span > textarea, html.no-flexbox .ink-form .control-group .control.prepend-button > span > input, html.no-flexbox .ink-form .control-group .control.prepend-button > span > select, html.no-flexbox .ink-form .control-group .control.prepend-button > span > textarea, html.no-flexbox .ink-form .control-group .control.prepend-symbol > span > input, html.no-flexbox .ink-form .control-group .control.prepend-symbol > span > select, html.no-flexbox .ink-form .control-group .control.prepend-symbol > span > textarea,
+html.no-flexboxlegacy .ink-form .control-group .control.append-button > span > input,
+html.no-flexboxlegacy .ink-form .control-group .control.append-button > span > select,
+html.no-flexboxlegacy .ink-form .control-group .control.append-button > span > textarea,
+html.no-flexboxlegacy .ink-form .control-group .control.append-symbol > span > input,
+html.no-flexboxlegacy .ink-form .control-group .control.append-symbol > span > select,
+html.no-flexboxlegacy .ink-form .control-group .control.append-symbol > span > textarea,
+html.no-flexboxlegacy .ink-form .control-group .control.prepend-button > span > input,
+html.no-flexboxlegacy .ink-form .control-group .control.prepend-button > span > select,
+html.no-flexboxlegacy .ink-form .control-group .control.prepend-button > span > textarea,
+html.no-flexboxlegacy .ink-form .control-group .control.prepend-symbol > span > input,
+html.no-flexboxlegacy .ink-form .control-group .control.prepend-symbol > span > select,
+html.no-flexboxlegacy .ink-form .control-group .control.prepend-symbol > span > textarea {
+  width: 100%;
+}
+html.no-flexbox .ink-form .control-group .control.append-button > input[type="submit"], html.no-flexbox .ink-form .control-group .control.append-button > input[type="button"], html.no-flexbox .ink-form .control-group .control.append-button > input[type="reset"], html.no-flexbox .ink-form .control-group .control.append-symbol > input[type="submit"], html.no-flexbox .ink-form .control-group .control.append-symbol > input[type="button"], html.no-flexbox .ink-form .control-group .control.append-symbol > input[type="reset"], html.no-flexbox .ink-form .control-group .control.prepend-button > input[type="submit"], html.no-flexbox .ink-form .control-group .control.prepend-button > input[type="button"], html.no-flexbox .ink-form .control-group .control.prepend-button > input[type="reset"], html.no-flexbox .ink-form .control-group .control.prepend-symbol > input[type="submit"], html.no-flexbox .ink-form .control-group .control.prepend-symbol > input[type="button"], html.no-flexbox .ink-form .control-group .control.prepend-symbol > input[type="reset"],
+html.no-flexboxlegacy .ink-form .control-group .control.append-button > input[type="submit"],
+html.no-flexboxlegacy .ink-form .control-group .control.append-button > input[type="button"],
+html.no-flexboxlegacy .ink-form .control-group .control.append-button > input[type="reset"],
+html.no-flexboxlegacy .ink-form .control-group .control.append-symbol > input[type="submit"],
+html.no-flexboxlegacy .ink-form .control-group .control.append-symbol > input[type="button"],
+html.no-flexboxlegacy .ink-form .control-group .control.append-symbol > input[type="reset"],
+html.no-flexboxlegacy .ink-form .control-group .control.prepend-button > input[type="submit"],
+html.no-flexboxlegacy .ink-form .control-group .control.prepend-button > input[type="button"],
+html.no-flexboxlegacy .ink-form .control-group .control.prepend-button > input[type="reset"],
+html.no-flexboxlegacy .ink-form .control-group .control.prepend-symbol > input[type="submit"],
+html.no-flexboxlegacy .ink-form .control-group .control.prepend-symbol > input[type="button"],
+html.no-flexboxlegacy .ink-form .control-group .control.prepend-symbol > input[type="reset"] {
+  width: auto;
+}
+html.no-flexbox .ink-form .control-group .control.append-button,
+html.no-flexboxlegacy .ink-form .control-group .control.append-button {
+  display: table;
+}
+html.no-flexbox .ink-form .control-group .control.append-button > span,
+html.no-flexboxlegacy .ink-form .control-group .control.append-button > span {
+  display: table-cell;
+}
+html.no-flexbox .ink-form .control-group .control.append-button > span > input, html.no-flexbox .ink-form .control-group .control.append-button > span > select, html.no-flexbox .ink-form .control-group .control.append-button > span > textarea,
+html.no-flexboxlegacy .ink-form .control-group .control.append-button > span > input,
+html.no-flexboxlegacy .ink-form .control-group .control.append-button > span > select,
+html.no-flexboxlegacy .ink-form .control-group .control.append-button > span > textarea {
+  -webkit-border-radius: 2px 0 0 2px;
+  -moz-border-radius: 2px 0 0 2px;
+  -ms-border-radius: 2px 0 0 2px;
+  -o-border-radius: 2px 0 0 2px;
+  border-radius: 2px 0 0 2px;
+}
+html.no-flexbox .ink-form .control-group .control.append-button .ink-button,
+html.no-flexboxlegacy .ink-form .control-group .control.append-button .ink-button {
+  margin: 0;
+  -webkit-border-radius: 0 2px 2px 0;
+  -moz-border-radius: 0 2px 2px 0;
+  -ms-border-radius: 0 2px 2px 0;
+  -o-border-radius: 0 2px 2px 0;
+  border-radius: 0 2px 2px 0;
+  border-left: none;
+}
+html.no-flexbox .ink-form .control-group .control.prepend-button,
+html.no-flexboxlegacy .ink-form .control-group .control.prepend-button {
+  display: table;
+}
+html.no-flexbox .ink-form .control-group .control.prepend-button > span,
+html.no-flexboxlegacy .ink-form .control-group .control.prepend-button > span {
+  display: table-cell;
+}
+html.no-flexbox .ink-form .control-group .control.prepend-button > span > input, html.no-flexbox .ink-form .control-group .control.prepend-button > span > select, html.no-flexbox .ink-form .control-group .control.prepend-button > span > textarea,
+html.no-flexboxlegacy .ink-form .control-group .control.prepend-button > span > input,
+html.no-flexboxlegacy .ink-form .control-group .control.prepend-button > span > select,
+html.no-flexboxlegacy .ink-form .control-group .control.prepend-button > span > textarea {
+  -webkit-border-radius: 0 2px 2px 0;
+  -moz-border-radius: 0 2px 2px 0;
+  -ms-border-radius: 0 2px 2px 0;
+  -o-border-radius: 0 2px 2px 0;
+  border-radius: 0 2px 2px 0;
+}
+html.no-flexbox .ink-form .control-group .control.prepend-button .ink-button,
+html.no-flexboxlegacy .ink-form .control-group .control.prepend-button .ink-button {
+  margin: 0;
+  -webkit-border-radius: 2px 0 0 2px;
+  -moz-border-radius: 2px 0 0 2px;
+  -ms-border-radius: 2px 0 0 2px;
+  -o-border-radius: 2px 0 0 2px;
+  border-radius: 2px 0 0 2px;
+  border-right: none;
+}
+html.no-flexbox .ink-form .control-group .control.append-symbol > span,
+html.no-flexboxlegacy .ink-form .control-group .control.append-symbol > span {
+  display: block;
+}
+html.no-flexbox .ink-form .control-group .control.append-symbol > span > input, html.no-flexbox .ink-form .control-group .control.append-symbol > span > select, html.no-flexbox .ink-form .control-group .control.append-symbol > span > textarea,
+html.no-flexboxlegacy .ink-form .control-group .control.append-symbol > span > input,
+html.no-flexboxlegacy .ink-form .control-group .control.append-symbol > span > select,
+html.no-flexboxlegacy .ink-form .control-group .control.append-symbol > span > textarea {
+  padding-right: 2.5em;
+}
+html.no-flexbox .ink-form .control-group .control.append-symbol > span > [class^="fa-"], html.no-flexbox .ink-form .control-group .control.append-symbol > span > [class*=" fa-"],
+html.no-flexboxlegacy .ink-form .control-group .control.append-symbol > span > [class^="fa-"],
+html.no-flexboxlegacy .ink-form .control-group .control.append-symbol > span > [class*=" fa-"] {
+  position: absolute;
+  right: 1em;
+  top: .76em;
+  pointer-events: none;
+}
+html.no-flexbox .ink-form .control-group .control.prepend-symbol > span,
+html.no-flexboxlegacy .ink-form .control-group .control.prepend-symbol > span {
+  display: block;
+}
+html.no-flexbox .ink-form .control-group .control.prepend-symbol > span > input, html.no-flexbox .ink-form .control-group .control.prepend-symbol > span > select, html.no-flexbox .ink-form .control-group .control.prepend-symbol > span > textarea,
+html.no-flexboxlegacy .ink-form .control-group .control.prepend-symbol > span > input,
+html.no-flexboxlegacy .ink-form .control-group .control.prepend-symbol > span > select,
+html.no-flexboxlegacy .ink-form .control-group .control.prepend-symbol > span > textarea {
+  padding-left: 2.5em;
+}
+html.no-flexbox .ink-form .control-group .control.prepend-symbol > span > [class^="fa-"], html.no-flexbox .ink-form .control-group .control.prepend-symbol > span > [class*=" fa-"],
+html.no-flexboxlegacy .ink-form .control-group .control.prepend-symbol > span > [class^="fa-"],
+html.no-flexboxlegacy .ink-form .control-group .control.prepend-symbol > span > [class*=" fa-"] {
+  position: absolute;
+  left: 1em;
+  top: .76em;
+  pointer-events: none;
+}
+html.no-flexbox .ink-form .control-group input[type="radio"],
+html.no-flexbox .ink-form .control-group input[type="checkbox"],
+html.no-flexboxlegacy .ink-form .control-group input[type="radio"],
+html.no-flexboxlegacy .ink-form .control-group input[type="checkbox"] {
+  position: absolute;
+  border: none;
+  cursor: pointer;
+}
+html.no-flexbox .ink-form .control-group input[type="radio"] + label,
+html.no-flexbox .ink-form .control-group input[type="checkbox"] + label,
+html.no-flexboxlegacy .ink-form .control-group input[type="radio"] + label,
+html.no-flexboxlegacy .ink-form .control-group input[type="checkbox"] + label {
+  margin-top: -.28em;
+  padding-left: 1.25em;
+  vertical-align: super;
+  display: inline-block;
+}
+html.no-flexbox .ink-form .control-group .inline li,
+html.no-flexboxlegacy .ink-form .control-group .inline li {
+  padding: 0;
+}
+html.no-flexbox .ink-form .control-group .inline li label,
+html.no-flexboxlegacy .ink-form .control-group .inline li label {
+  margin-right: 1em;
+}
+html.no-flexbox .ink-form .control-group.validation.error input, html.no-flexbox .ink-form .control-group.validation.error textarea, html.no-flexbox .ink-form .control-group.validation.error select,
+html.no-flexboxlegacy .ink-form .control-group.validation.error input,
+html.no-flexboxlegacy .ink-form .control-group.validation.error textarea,
+html.no-flexboxlegacy .ink-form .control-group.validation.error select {
+  outline: none;
+  border-color: rgba(200, 10, 16, 0.8);
+  -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 1px inset;
+  -moz-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 1px inset;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 1px 1px inset;
+  border: 1px solid rgba(200, 10, 16, 0.5);
+}
+html.no-flexbox .ink-form .control-group.validation.error p.tip,
+html.no-flexboxlegacy .ink-form .control-group.validation.error p.tip {
+  color: rgba(150, 7, 12, 0.55);
+}
+html.no-flexbox .ink-form .control-group.validation.warning input, html.no-flexbox .ink-form .control-group.validation.warning textarea, html.no-flexbox .ink-form .control-group.validation.warning select,
+html.no-flexboxlegacy .ink-form .control-group.validation.warning input,
+html.no-flexboxlegacy .ink-form .control-group.validation.warning textarea,
+html.no-flexboxlegacy .ink-form .control-group.validation.warning select {
+  outline: none;
+  border-color: rgba(255, 156, 0, 0.9);
+  -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 1px inset;
+  -moz-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 1px inset;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 1px 1px inset;
+  border: 1px solid rgba(255, 156, 0, 0.6);
+}
+html.no-flexbox .ink-form .control-group.validation.warning p.tip,
+html.no-flexboxlegacy .ink-form .control-group.validation.warning p.tip {
+  color: rgba(204, 125, 0, 0.6);
+}
+html.no-flexbox .ink-form .control-group.required label, html.no-flexbox .ink-form .control-group.required p.label,
+html.no-flexboxlegacy .ink-form .control-group.required label,
+html.no-flexboxlegacy .ink-form .control-group.required p.label {
+  color: #555555;
+}
+html.no-flexbox .ink-form .control-group.required label:after, html.no-flexbox .ink-form .control-group.required p.label:after,
+html.no-flexboxlegacy .ink-form .control-group.required label:after,
+html.no-flexboxlegacy .ink-form .control-group.required p.label:after {
+  content: "\f069";
+  color: #c91111;
+  margin-left: .6em;
+  font-family: FontAwesome;
+  font-size: .75em;
+  width: 1.25em;
+}
+html.no-flexbox .ink-form .control-group.required ul.control label:after,
+html.no-flexboxlegacy .ink-form .control-group.required ul.control label:after {
+  content: "";
 }
 
 /* ==========================================================================

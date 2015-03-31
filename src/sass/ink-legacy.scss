@@ -7,7 +7,7 @@
  * @author    Sapo Ink Team
  * @license   http://opensource.org/licenses/MIT MIT
  * @link      http://ink.sapo.pt
- * @version   3.1.5
+ * @version   3.1.6
  */
 
 // Import Compass Core
@@ -50,6 +50,7 @@ html.no-flexbox,
 html.no-flexboxlegacy {
   @import "modules/legacy-grid";
   @import "modules/js/carousel";
+  @import "modules/forms";
 }
 
 @import "modules/print";

@@ -4,7 +4,7 @@ Ink is an interface kit for quick development of web interfaces, simple to use a
 
 Ink is part of [SAPO's Open Source Software initiative](http://oss.sapo.pt).
 
-## Current Version: 3.1.5
+## Current Version: 3.1.6
 
 You can read our full documentation, examples and recipes in http://ink.sapo.pt
 
