@@ -1,5 +1,5 @@
 
-Ink.createModule('Ink.UI.DragDrop', 1, ['Ink.Dom.Element_1', 'Ink.Dom.Event_1', 'Ink.Dom.Css_1', 'Ink.UI.Common_1'], function(InkElement, InkEvent, InkCss, UICommon){
+Ink.createModule('Ink.UI.DragDrop', 1, ['Ink.Dom.Element_1', 'Ink.Dom.Event_1', 'Ink.Dom.Css_1', 'Ink.Util.Array_1', 'Ink.UI.Common_1'], function(InkElement, InkEvent, InkCss, InkArray, UICommon){
     'use strict';
 
     function DragDrop() {
@@ -22,9 +22,9 @@ Ink.createModule('Ink.UI.DragDrop', 1, ['Ink.Dom.Element_1', 'Ink.Dom.Event_1', 
         _init: function() {
             this._dragActive = false;
 
-            this._elmDraggable = null;
-            this._elmDraggableCloned = null;
-            this._elmPlaceholder = null;
+            this._draggedElm = null;
+            this._clonedElm = null;
+            this._placeholderElm = null;
 
             this._mouseDelta = [0, 0];
 
@@ -38,16 +38,16 @@ Ink.createModule('Ink.UI.DragDrop', 1, ['Ink.Dom.Element_1', 'Ink.Dom.Event_1', 
         _onMouseDown: function(event) {
             var tgt = InkEvent.element(event);
 
-            var elmDraggable = InkElement.findUpwardsBySelector(tgt, this._options.dragItem);
+            var draggedElm = InkElement.findUpwardsBySelector(tgt, this._options.dragItem);
 
             var elmIgnoreDraggable = InkElement.findUpwardsBySelector(tgt, this._options.ignoreDrag);
 
-            if(elmDraggable && !elmIgnoreDraggable) {
+            if(draggedElm && !elmIgnoreDraggable) {
 
                 InkEvent.stopDefault(event);
 
                 // has handler
-                var handleElm = Ink.s(this._options.dragHandle, elmDraggable);
+                var handleElm = Ink.s(this._options.dragHandle, draggedElm);
                 if(handleElm && InkElement.findUpwardsBySelector(tgt, this._options.dragHandle)) {
                     this._dragActive = true;
                 } else if (!handleElm) {
@@ -55,57 +55,57 @@ Ink.createModule('Ink.UI.DragDrop', 1, ['Ink.Dom.Element_1', 'Ink.Dom.Event_1', 
                 }
 
                 if (this._dragActive) {
-                    this._startDrag(event, elmDraggable);
+                    this._startDrag(event, draggedElm);
                 }
             }
         },
 
-        _startDrag: function(event, elmDraggable) {
+        _startDrag: function(event, draggedElm) {
             // TODO rename
-            this._elmDraggableCloned = elmDraggable.cloneNode(true);
-            this._elmPlaceholder = elmDraggable.cloneNode(false);
+            this._clonedElm = draggedElm.cloneNode(true);
+            this._placeholderElm = draggedElm.cloneNode(false);
 
-            InkCss.addClassName(this._elmDraggableCloned, this._options.classDraggableCloned);
-            this._elmDraggableCloned.removeAttribute('id');
+            InkCss.addClassName(this._clonedElm, this._options.classDraggableCloned);
+            this._clonedElm.removeAttribute('id');
 
-            InkCss.addClassName(this._elmPlaceholder, this._options.classPlaceholder);
-            this._elmPlaceholder.removeAttribute('id');
+            InkCss.addClassName(this._placeholderElm, this._options.classPlaceholder);
+            this._placeholderElm.removeAttribute('id');
 
-            var rect = elmDraggable.getBoundingClientRect();
+            var rect = draggedElm.getBoundingClientRect();
             var dragElmDims = [
                 rect.right - rect.left,
                 rect.bottom - rect.top
             ];
-            var dragElmPos = InkElement.offset(elmDraggable);
 
-            this._elmDraggableCloned.style.width = dragElmDims[0] + 'px';
-            this._elmDraggableCloned.style.height = dragElmDims[1] + 'px';
+            this._clonedElm.style.width = dragElmDims[0] + 'px';
+            this._clonedElm.style.height = dragElmDims[1] + 'px';
 
-            this._elmPlaceholder.style.width = dragElmDims[0] + 'px';
-            this._elmPlaceholder.style.height = dragElmDims[1] + 'px';
-            this._elmPlaceholder.style.visibility = 'hidden';
+            this._placeholderElm.style.width = dragElmDims[0] + 'px';
+            this._placeholderElm.style.height = dragElmDims[1] + 'px';
+            this._placeholderElm.style.visibility = 'hidden';
 
             // TODO goes in style
-            this._elmDraggableCloned.style.position = 'fixed';
-            this._elmDraggableCloned.style.zIndex = '1000';
-            this._elmDraggableCloned.style.left = rect.left + 'px';
-            this._elmDraggableCloned.style.top = rect.top + 'px';
+            this._clonedElm.style.position = 'fixed';
+            this._clonedElm.style.zIndex = '1000';
+            this._clonedElm.style.left = rect.left + 'px';
+            this._clonedElm.style.top = rect.top + 'px';
 
             var mousePos = InkEvent.pointer(event);
+            var dragElmPos = InkElement.offset(draggedElm);
             this._mouseDelta = [
                 (mousePos.x - dragElmPos[0]),
                 (mousePos.y - dragElmPos[1])
             ];
 
-            this._elmDraggableCloned.style.opacity = '0.6';
+            this._clonedElm.style.opacity = '0.6';
 
-            elmDraggable.parentNode.insertBefore(this._elmDraggableCloned, elmDraggable);
+            draggedElm.parentNode.insertBefore(this._clonedElm, draggedElm);
 
             // TODO rename
-            this._elmDraggable = elmDraggable;
+            this._draggedElm = draggedElm;
 
-            elmDraggable.parentNode.insertBefore(this._elmPlaceholder, elmDraggable);
-            InkCss.addClassName(elmDraggable, 'hide-all');
+            draggedElm.parentNode.insertBefore(this._placeholderElm, draggedElm);
+            InkCss.addClassName(draggedElm, 'hide-all');
 
             InkEvent.on(document, 'mousemove.inkdraggable touchmove.inkdraggable',
                 Ink.bindEvent(InkEvent.throttle(this._onMouseMove, 50), this));
@@ -119,13 +119,13 @@ Ink.createModule('Ink.UI.DragDrop', 1, ['Ink.Dom.Element_1', 'Ink.Dom.Event_1', 
             InkEvent.stopDefault(event);
 
             var mousePos = InkEvent.pointer(event);
-
+            
             var scrollLeft = InkElement.scrollWidth();
             var scrollTop = InkElement.scrollHeight();
 
-            this._elmDraggableCloned.style.left =
+            this._clonedElm.style.left =
                 (mousePos.x - this._mouseDelta[0] - scrollLeft) + 'px';
-            this._elmDraggableCloned.style.top =
+            this._clonedElm.style.top =
                 (mousePos.y - this._mouseDelta[1] - scrollTop) + 'px';
 
             var elUnderMouse = (function findElementUnderMouse(exceptFor) {
@@ -139,9 +139,13 @@ Ink.createModule('Ink.UI.DragDrop', 1, ['Ink.Dom.Element_1', 'Ink.Dom.Event_1', 
                 exceptFor.style.display = '';
 
                 return ret;
-            }(this._elmDraggableCloned));
+            }(this._clonedElm));
 
             var elmOverDroppable = InkElement.findUpwardsBySelector(elUnderMouse, this._options.dropItem);
+
+            if (!elmOverDroppable && InkElement.isAncestorOf(this._element, elUnderMouse)) {
+                elmOverDroppable = this._element;
+            }
 
             if(elmOverDroppable && (InkElement.descendantOf(this._element, elmOverDroppable) || this._element === elmOverDroppable)) {
                 var elmOver = InkElement.findUpwardsBySelector(elUnderMouse, this._options.dragItem);
@@ -149,9 +153,9 @@ Ink.createModule('Ink.UI.DragDrop', 1, ['Ink.Dom.Element_1', 'Ink.Dom.Event_1', 
                 if(elmOver && !InkCss.hasClassName(elmOver, this._options.classDraggableCloned) && !InkCss.hasClassName(elmOver, this._options.classPlaceholder)) {
                     // The mouse cursor is over another drag-item
                     this._insertPlaceholder(elmOver);
-                } else if (!Ink.s('.drag-item', elmOverDroppable)) {
+                } else if (!Ink.s(this._options.dragItem, elmOverDroppable)) {
                     // The mouse cursor is over nothing in particular, but still inside a list of drag-items
-                    elmOverDroppable.appendChild(this._elmPlaceholder);
+                    elmOverDroppable.appendChild(this._placeholderElm);
                 }
             } else {
                 // The cursor is outside anything useful
@@ -162,16 +166,16 @@ Ink.createModule('Ink.UI.DragDrop', 1, ['Ink.Dom.Element_1', 'Ink.Dom.Event_1', 
             if (!this._dragActive) { return; }
 
             // The actual dropping is just putting our *real* node where the placeholder once was.
-            InkElement.insertBefore(this._elmDraggable, this._elmPlaceholder);
+            InkElement.insertBefore(this._draggedElm, this._placeholderElm);
 
-            InkElement.remove(this._elmPlaceholder);
-            InkElement.remove(this._elmDraggableCloned);
+            InkElement.remove(this._placeholderElm);
+            InkElement.remove(this._clonedElm);
 
-            InkCss.removeClassName(this._elmDraggable, 'hide-all');
+            InkCss.removeClassName(this._draggedElm, 'hide-all');
 
-            this._elmPlaceholder = null;
-            this._elmDraggableCloned = null;
-            this._elmDraggable = null;
+            this._placeholderElm = null;
+            this._clonedElm = null;
+            this._draggedElm = null;
 
             InkEvent.off(document, '.inkdraggable');
 
@@ -188,14 +192,14 @@ Ink.createModule('Ink.UI.DragDrop', 1, ['Ink.Dom.Element_1', 'Ink.Dom.Event_1', 
         _insertPlaceholder: function(elm) {
             var goesAfter = true;
 
-            if (InkElement.previousSiblings(elm).indexOf(this._elmPlaceholder) === -1) {
+            if (!InkArray.inArray(this._placeholderElm, InkElement.previousSiblings(elm))) {
                 goesAfter = false;
             }
 
             if(goesAfter) {
-                InkElement.insertAfter(this._elmPlaceholder, elm);
+                InkElement.insertAfter(this._placeholderElm, elm);
             } else {
-                InkElement.insertBefore(this._elmPlaceholder, elm);
+                InkElement.insertBefore(this._placeholderElm, elm);
             }
         }
     };
