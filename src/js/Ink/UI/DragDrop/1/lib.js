@@ -2,6 +2,19 @@
 Ink.createModule('Ink.UI.DragDrop', 1, ['Ink.Dom.Element_1', 'Ink.Dom.Event_1', 'Ink.Dom.Css_1', 'Ink.Util.Array_1', 'Ink.UI.Common_1'], function(InkElement, InkEvent, InkCss, InkArray, UICommon){
     'use strict';
 
+    function findElementUnderMouse(opt) {
+        // TODO take advantage of getElementsFromPoint when it comes out
+        opt.exceptFor.style.display = 'none';
+
+        var ret = document.elementFromPoint(
+            opt.x,
+            opt.y);
+
+        opt.exceptFor.style.display = '';
+
+        return ret;
+    }
+
     function DragDrop() {
         UICommon.BaseUIComponent.apply(this, arguments);
     }
@@ -12,10 +25,10 @@ Ink.createModule('Ink.UI.DragDrop', 1, ['Ink.Dom.Element_1', 'Ink.Dom.Event_1', 
         // dragdropContainer: ['Element', '.dragdrop-container'], - is this._element
         dragItem:       ['String', '.drag-item'],
         dragHandle:     ['String', '.drag-handle'],
-        dropItem:       ['String', '.drop-item'],
+        dropZone:       ['String', '.drop-zone'],
         ignoreDrag:     ['String', '.drag-ignore'],
-        classDraggableCloned: ['String', 'drag-cloned-item'],
-        classPlaceholder: ['String', 'drag-placeholder-item']
+        draggedCloneClass: ['String', 'drag-cloned-item'],
+        placeholderClass: ['String', 'drag-placeholder-item']
     };
 
     DragDrop.prototype = {
@@ -65,10 +78,10 @@ Ink.createModule('Ink.UI.DragDrop', 1, ['Ink.Dom.Element_1', 'Ink.Dom.Event_1', 
             this._clonedElm = draggedElm.cloneNode(true);
             this._placeholderElm = draggedElm.cloneNode(false);
 
-            InkCss.addClassName(this._clonedElm, this._options.classDraggableCloned);
+            InkCss.addClassName(this._clonedElm, this._options.draggedCloneClass);
             this._clonedElm.removeAttribute('id');
 
-            InkCss.addClassName(this._placeholderElm, this._options.classPlaceholder);
+            InkCss.addClassName(this._placeholderElm, this._options.placeholderClass);
             this._placeholderElm.removeAttribute('id');
 
             var rect = draggedElm.getBoundingClientRect();
@@ -128,38 +141,51 @@ Ink.createModule('Ink.UI.DragDrop', 1, ['Ink.Dom.Element_1', 'Ink.Dom.Event_1', 
             this._clonedElm.style.top =
                 (mousePos.y - this._mouseDelta[1] - scrollTop) + 'px';
 
-            var elUnderMouse = (function findElementUnderMouse(exceptFor) {
-                // TODO take advantage of getElementsFromPoint when it comes out
-                exceptFor.style.display = 'none';
+            var elUnderMouse = findElementUnderMouse({
+                x: mousePos.x - scrollLeft,
+                y: mousePos.y - scrollTop,
+                exceptFor: this._clonedElm
+            });
 
-                var ret = document.elementFromPoint(
-                    mousePos.x - scrollLeft,
-                    mousePos.y - scrollTop);
+            var dropZoneUnderMouse =
+                InkElement.findUpwardsBySelector(elUnderMouse, this._options.dropZone);
 
-                exceptFor.style.display = '';
-
-                return ret;
-            }(this._clonedElm));
-
-            var elmOverDroppable = InkElement.findUpwardsBySelector(elUnderMouse, this._options.dropItem);
-
-            if (!elmOverDroppable && InkElement.isAncestorOf(this._element, elUnderMouse)) {
-                elmOverDroppable = this._element;
+            if (!dropZoneUnderMouse &&
+                    (InkElement.isAncestorOf(this._element, elUnderMouse) ||
+                    this._element === elUnderMouse)) {
+                dropZoneUnderMouse = this._element;
             }
 
-            if(elmOverDroppable && (InkElement.descendantOf(this._element, elmOverDroppable) || this._element === elmOverDroppable)) {
-                var elmOver = InkElement.findUpwardsBySelector(elUnderMouse, this._options.dragItem);
+            var isMyDropZone = InkElement.isAncestorOf(this._element, dropZoneUnderMouse) ||
+                this._element === dropZoneUnderMouse;
 
-                if(elmOver && !InkCss.hasClassName(elmOver, this._options.classDraggableCloned) && !InkCss.hasClassName(elmOver, this._options.classPlaceholder)) {
+            if(dropZoneUnderMouse && isMyDropZone) {
+                var otherDragItem =
+                    InkElement.findUpwardsBySelector(elUnderMouse, this._options.dragItem);
+
+                if(otherDragItem &&
+                        !InkCss.hasClassName(otherDragItem, this._options.draggedCloneClass) &&
+                        !InkCss.hasClassName(otherDragItem, this._options.placeholderClass)) {
                     // The mouse cursor is over another drag-item
-                    this._insertPlaceholder(elmOver);
-                } else if (!Ink.s(this._options.dragItem, elmOverDroppable)) {
-                    // The mouse cursor is over nothing in particular, but still inside a list of drag-items
-                    elmOverDroppable.appendChild(this._placeholderElm);
+                    this._insertPlaceholder(otherDragItem);
+                } else if (this._dropZoneIsEmpty(dropZoneUnderMouse)) {
+                    // The mouse cursor is over an empty dropzone, so there is nowhere to put it "after" or "before"
+                    dropZoneUnderMouse.appendChild(this._placeholderElm);
                 }
             } else {
                 // The cursor is outside anything useful
             }
+        },
+
+        _dropZoneIsEmpty: function (dropZone) {
+            var dragItems = Ink.ss(this._options.dragItem, dropZone);
+
+            return !InkArray.some(dragItems, Ink.bind(function isSpecial(item) {
+                return (
+                    item !== this._draggedElm &&
+                    item !== this._placeholderElm &&
+                    item !== this._clonedElm);
+            }, this))
         },
 
         _onMouseUp: function() {

@@ -117,7 +117,49 @@ Ink.requireModules(['Ink.UI.DragDrop_1', 'Ink.UI.Common_1', 'Ink.Dom.Css_1', 'In
         ok(Ink.s('.dg1 + .dg2 + .dg3', elm), 'Could sort up across two items.');
     });
 
-    if ('ontouchstart' in window) {
-        // TODO
+
+    module('Linked containers')
+
+    function dragAndTest2Containers(name, testBack, options) {
+        testDragDrop(name, function (component, elm) {
+            elm.innerHTML =
+                '<div class="drop-zone drop1" style="width: 200px; height: 100px; float: left;">' +
+                    '<div class="drag-item drag1">Drag me!</div>' +
+                '</div>' +
+                '<div class="drop-zone drop2" style="width: 200px; height: 100px; float: left;">' +
+                    '<div class="drag-item drag2">Drag me!2</div>' +
+                '</div>';
+
+            var drop1 = Ink.s('.drop1', elm)
+            var drop2 = Ink.s('.drop2', elm)
+            var drag1 = Ink.s('.drag1', elm)
+            var drag2 = Ink.s('.drag2', elm)
+
+            var r = drag1.getBoundingClientRect()
+            var r2 = drag2.getBoundingClientRect()
+
+            InkEvent.fire(elm, 'mousedown', { target: drag1, clientX: r.left + 5, clientY: r.top + 5 })
+
+            testBack(component, elm, { drop1: drop1, drop2: drop2, drag1: drag1, drag2: drag2, r: r, r2: r2 });
+        }, options || {})
     }
+
+    dragAndTest2Containers('Can drop an element in the second container.', function (component, elm, bag) {
+        InkEvent.fire(document, 'mousemove', { clientX: bag.r2.left + 5, clientY: bag.r2.top + 5 })
+        InkEvent.fire(document, 'mouseup');
+
+        ok(Ink.s('.drag1 + .drag2', bag.drop2), 'drag1 and drag2 got to the second container')
+        ok(!Ink.s('.drag1, drag2', bag.drop1), 'could not find drag1 nor drag2 in the first container')
+    });
+
+    dragAndTest2Containers('Can drop an element in an empty container.', function (component, elm, bag) {
+        bag.drop2.innerHTML = '';
+
+        var drop2Rect = bag.drop2.getBoundingClientRect()
+
+        InkEvent.fire(document, 'mousemove', { clientX: drop2Rect.left + 5, clientY: drop2Rect.top + 5 })
+        InkEvent.fire(document, 'mouseup');
+
+        strictEqual(bag.drop2.firstChild, bag.drag1, 'drag1 got to the second container');
+    });
 });
