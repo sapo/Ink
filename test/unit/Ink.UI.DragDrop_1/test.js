@@ -1,4 +1,6 @@
 Ink.requireModules(['Ink.UI.DragDrop_1', 'Ink.UI.Common_1', 'Ink.Dom.Css_1', 'Ink.Dom.Element_1', 'Ink.Dom.Event_1', 'Ink.Dom.Selector_1'], function (DragDrop, Common, Css, InkElement, InkEvent, Selector) {
+    'use strict';
+
     function olhometroEqual(a, b, tolerance, msg) {
         if (typeof tolerance !== 'number') {
             msg = tolerance;
@@ -55,6 +57,8 @@ Ink.requireModules(['Ink.UI.DragDrop_1', 'Ink.UI.Common_1', 'Ink.Dom.Css_1', 'In
             InkEvent.fire(elm, 'mousedown', { target: dg1, clientX: r.left + 5, clientY: r.top + 5 })
 
             testBack(component, elm, { dg1: dg1, dg2: dg2, r: r, r2: r2, dg3: dg3 });
+
+            component.destroy();
         }, options || {})
     }
 

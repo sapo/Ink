@@ -163,9 +163,10 @@ Ink.createModule('Ink.UI.DragDrop', 1, ['Ink.Dom.Element_1', 'Ink.Dom.Event_1', 
                 var otherDragItem =
                     InkElement.findUpwardsBySelector(elUnderMouse, this._options.dragItem);
 
-                if(otherDragItem &&
-                        !InkCss.hasClassName(otherDragItem, this._options.draggedCloneClass) &&
-                        !InkCss.hasClassName(otherDragItem, this._options.placeholderClass)) {
+                if (otherDragItem &&
+                        otherDragItem !== this._clonedElm &&
+                        otherDragItem !== this._placeholderElm &&
+                        otherDragItem !== this._draggedElm) {
                     // The mouse cursor is over another drag-item
                     this._insertPlaceholder(otherDragItem);
                 } else if (this._dropZoneIsEmpty(dropZoneUnderMouse)) {
@@ -227,6 +228,18 @@ Ink.createModule('Ink.UI.DragDrop', 1, ['Ink.Dom.Element_1', 'Ink.Dom.Event_1', 
             } else {
                 InkElement.insertBefore(this._placeholderElm, elm);
             }
+        },
+
+        /**
+         * Destroy your DragDrop, removing it from the DOM
+         *
+         * @method destroy
+         **/
+        destroy: function () {
+            if (this._dragActive) {
+                InkEvent.off(document, '.inkdraggable');
+            }
+            UICommon.destroyComponent.call(this);
         }
     };
 
