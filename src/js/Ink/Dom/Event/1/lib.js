@@ -226,7 +226,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
             // on the DOM, stop() is an alias for both of them together
             Event.prototype.preventDefault = function () {
               if (this.originalEvent.preventDefault) this.originalEvent.preventDefault()
-              else this.originalEvent.returnValue = false
+              else try { this.originalEvent.returnValue = false } catch(e) {}
             }
             Event.prototype.stopPropagation = function () {
               if (this.originalEvent.stopPropagation) this.originalEvent.stopPropagation()
@@ -796,19 +796,28 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * @method throttle
      * @param {Function} func   Function to call. Arguments and context are both passed.
      * @param {Number} [wait]=0 Milliseconds to wait between calls.
+     * @param {Object} [options={}] Options object, containing:
+     * @param {Boolean} [options.preventDefault=false] Whether to call preventDefault() on events received here. Use this to throttle mousemove events which you also want to preventDefault() because throttle will not call your function all the time so you don't get a chance to preventDefault() all the events, altough you might need to.
+     * @param {Mixed} [options.bind] The throttled function is bound to this context. Otherwise, it will use whatever `this` it gets. Just a shorthand of also calling Ink.bind(context, func) on the function after throttling it.
      * @return {Function} A function throttled which will only be called at most every `wait` milliseconds.
      * @sample Ink_Dom_Event_1_throttle.html 
      **/
-    throttle: function (func, wait) {
+    throttle: function (func, wait, opt) {
         wait = wait || 0;
+        opt = opt || {};
         var lastCall = 0;  // Warning: This breaks on Jan 1st 1970 0:00
         var timeout;
-        function throttled() {
+        function throttled(maybeEvent) {
             var now = +new Date();
             var timeDiff = now - lastCall;
+            if (opt.preventDefault &&
+                    maybeEvent &&
+                    typeof maybeEvent.preventDefault === 'function') {
+                maybeEvent.preventDefault();
+            }
             if (timeDiff >= wait) {
                 lastCall = now;
-                return func.apply(this, [].slice.call(arguments));
+                return func.apply('bind' in opt ? opt.bind : this, [].slice.call(arguments));
             } else {
                 var that = this;
                 var args = [].slice.call(arguments);
@@ -1122,9 +1131,9 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      */
     pointerX: function(ev)
     {
-        return (ev.touches && ev.touches[0] && ev.touches[0].clientX) ||
+        return (ev.touches && ev.touches[0] && ev.touches[0].pageX) ||
             (ev.pageX) ||
-            (ev.clientX + (document.documentElement.scrollLeft || document.body.scrollLeft));
+            (ev.clientX);
     },
 
     /**
@@ -1137,9 +1146,9 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      */
     pointerY: function(ev)
     {
-        return (ev.touches && ev.touches[0] && ev.touches[0].clientY) ||
+        return (ev.touches && ev.touches[0] && ev.touches[0].pageY) ||
             (ev.pageY) ||
-            (ev.clientY + (document.documentElement.scrollTop || document.body.scrollTop));
+            (ev.clientY);
     },
 
     /**
