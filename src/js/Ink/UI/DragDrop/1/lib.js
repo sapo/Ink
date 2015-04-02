@@ -32,6 +32,32 @@ Ink.createModule('Ink.UI.DragDrop', 1, ['Ink.Dom.Element_1', 'Ink.Dom.Event_1', 
     };
 
     DragDrop.prototype = {
+        /**
+         * A replacement for Draggables, Droppables, and SortableList. It aims to be good at creating draggables, droppables and sortable lists at the same time while keeping it simple for everyone.
+         *
+         * A DragDrop component may contain one or more "dropZone"s, which are the areas where the "dragItem"s can be dropped. You can identify elements as being a dropZone or a dragItem by using the correct selectors (".drag-item" and ".drop-zone").
+         *
+         * @class Ink.UI.DragDrop
+         * @constructor
+         * @version 1
+         * @param {Element} [element] Root element for the DragDrop. It can contain one or more dropzones.
+         * @param {Object} [options]
+         *  Options object, containing:
+         * @param {String} [options.dragItem='.drag-item']
+         *  Selector for the items to be dragged
+         * @param {String} [options.dragHandle='.drag-handle']
+         *  Selector for a dragging handle. You won't be able to drag other parts of the dragItem.
+         * @param {String} [options.dropZone='.drop-zone']
+         *  Selector of drop zones. Should add this to the element itself.
+         * @param {String} [options.ignoreDrag='.drag-ignore']
+         *  Selector of places where you can't drag.
+         * @param {String} [options.draggedCloneClass='drag-cloned-item']
+         *  Class for the cloned (and position:fixed'ed) element.
+         * @param {String} [options.placeholderClass='drag-placeholder-item']
+         *  Class for the placeholder clone
+         *
+         * @sample Ink_UI_DragDrop_1.html
+         **/
         _init: function() {
             this._dragActive = false;
 
@@ -248,6 +274,8 @@ Ink.createModule('Ink.UI.DragDrop', 1, ['Ink.Dom.Element_1', 'Ink.Dom.Event_1', 
          * Destroy your DragDrop, removing it from the DOM
          *
          * @method destroy
+         * @public
+         * @returns {void}
          **/
         destroy: function () {
             if (this._dragActive) {
