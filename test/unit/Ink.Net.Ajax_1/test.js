@@ -94,6 +94,23 @@ Ink.requireModules(['Ink.Net.Ajax_1'], function (Ajax) {
         });
     });
 
+    test('abort a request', function () {
+        var ajx = new Ajax('test.json', {
+            method: 'get',
+            onSuccess: function (ajx, responseJSON) {
+                // Do stuff with response
+                ok(false);
+            },
+            onFailure: function () {
+                ok(false);
+            }
+        });
+
+        ajx.abort();
+
+        ok(true);
+    });
+
     test('request does-not-exist.json', function () {
         stop();
         new Ajax('does-not-exist.json', {
@@ -103,7 +120,7 @@ Ink.requireModules(['Ink.Net.Ajax_1'], function (Ajax) {
                 start();
             },
             onFailure: function (ajx, response) {
-                equal(ajx.status, 404);
+                ok(ajx.status === 404 || ajx.status === 500);
                 start();
             }
         });
@@ -144,10 +161,11 @@ Ink.requireModules(['Ink.Net.Ajax_1'], function (Ajax) {
     });
 
     test('validateCors', sinon.test(function () {
+        sinon.stub(Ink, 'error');
         var ajx = new Ajax('http://example.com/', {
             validateCors: false
         });
-        equal(ajx.options.cors, false, 'ajx.options.cors set to true because validateCors set to true');
+        equal(ajx.options.cors, false, 'ajx.options.cors not set because we did not set validateCors');
 
         var ajx = new Ajax('http://example.com/', {
             validateCors: true
@@ -158,6 +176,9 @@ Ink.requireModules(['Ink.Net.Ajax_1'], function (Ajax) {
             validateCors: true
         });
         equal(ajx.options.cors, false, 'ajx.options.cors set to false because it\'s a same-domain request');
+
+        ok(Ink.error.calledOnce, 'Only one warning was generated');
+        Ink.error.restore();
     }))
 });
 
