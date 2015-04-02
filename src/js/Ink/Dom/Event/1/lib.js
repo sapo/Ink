@@ -1133,7 +1133,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     {
         return (ev.touches && ev.touches[0] && ev.touches[0].pageX) ||
             (ev.pageX) ||
-            (ev.clientX + (document.documentElement.scrollLeft || document.body.scrollLeft));
+            (ev.clientX);
     },
 
     /**
@@ -1148,7 +1148,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     {
         return (ev.touches && ev.touches[0] && ev.touches[0].pageY) ||
             (ev.pageY) ||
-            (ev.clientY + (document.documentElement.scrollTop || document.body.scrollTop));
+            (ev.clientY);
     },
 
     /**
