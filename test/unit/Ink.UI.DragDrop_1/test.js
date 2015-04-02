@@ -1,6 +1,11 @@
 Ink.requireModules(['Ink.UI.DragDrop_1', 'Ink.UI.Common_1', 'Ink.Dom.Css_1', 'Ink.Dom.Element_1', 'Ink.Dom.Event_1', 'Ink.Dom.Selector_1'], function (DragDrop, Common, Css, InkElement, InkEvent, Selector) {
     'use strict';
 
+    if (/PhantomJS/.test(navigator.userAgent)) {
+        test('(skipping tests in phantom)', function () { ok(true, 'skippin\''); });
+        return;
+    }
+
     function olhometroEqual(a, b, tolerance, msg) {
         if (typeof tolerance !== 'number') {
             msg = tolerance;

@@ -120,8 +120,14 @@ Ink.createModule('Ink.UI.DragDrop', 1, ['Ink.Dom.Element_1', 'Ink.Dom.Event_1', 
             draggedElm.parentNode.insertBefore(this._placeholderElm, draggedElm);
             InkCss.addClassName(draggedElm, 'hide-all');
 
-            InkEvent.on(document, 'mousemove.inkdraggable touchmove.inkdraggable',
-                Ink.bindEvent(InkEvent.throttle(this._onMouseMove, 50), this));
+
+            var mouseMoveThrottled = InkEvent.throttle(this._onMouseMove, 50, {
+                // Prevent the default of events
+                preventDefault: true,
+                bind: this
+            });
+
+            InkEvent.on(document, 'mousemove.inkdraggable touchmove.inkdraggable', mouseMoveThrottled);
             InkEvent.on(document, 'mouseup.inkdraggable touchend.inkdraggable',
                 Ink.bindEvent(this._onMouseUp, this));
         },
@@ -129,10 +135,8 @@ Ink.createModule('Ink.UI.DragDrop', 1, ['Ink.Dom.Element_1', 'Ink.Dom.Event_1', 
         _onMouseMove: function(event) {
             if (!this._dragActive) { return; }
 
-            InkEvent.stopDefault(event);
-
             var mousePos = InkEvent.pointer(event);
-            
+
             var scrollLeft = InkElement.scrollWidth();
             var scrollTop = InkElement.scrollHeight();
 
@@ -163,10 +167,7 @@ Ink.createModule('Ink.UI.DragDrop', 1, ['Ink.Dom.Element_1', 'Ink.Dom.Event_1', 
                 var otherDragItem =
                     InkElement.findUpwardsBySelector(elUnderMouse, this._options.dragItem);
 
-                if (otherDragItem &&
-                        otherDragItem !== this._clonedElm &&
-                        otherDragItem !== this._placeholderElm &&
-                        otherDragItem !== this._draggedElm) {
+                if (otherDragItem && this._isDragItem(otherDragItem)) {
                     // The mouse cursor is over another drag-item
                     this._insertPlaceholder(otherDragItem);
                 } else if (this._dropZoneIsEmpty(dropZoneUnderMouse)) {
@@ -178,15 +179,28 @@ Ink.createModule('Ink.UI.DragDrop', 1, ['Ink.Dom.Element_1', 'Ink.Dom.Event_1', 
             }
         },
 
+        /**
+         * Returns whether a given .drag-item element is a plain old .drag-item element
+         * and not one of the clones we're creating or the element we're really dragging.
+         *
+         * Used because the selector ".drag-item" finds these elements we don't consider drag-items
+         *
+         * @method _isDragItem
+         **/
+        _isDragItem: function (elm) {
+             return (
+                elm !== this._draggedElm &&
+                elm !== this._placeholderElm &&
+                elm !== this._clonedElm);
+        },
+
         _dropZoneIsEmpty: function (dropZone) {
+            // Find elements with the class .drag-item in the drop-zone
             var dragItems = Ink.ss(this._options.dragItem, dropZone);
 
-            return !InkArray.some(dragItems, Ink.bind(function isSpecial(item) {
-                return (
-                    item !== this._draggedElm &&
-                    item !== this._placeholderElm &&
-                    item !== this._clonedElm);
-            }, this))
+            // Make sure none of these elements are actually the dragged element,
+            // the placeholder, or the position:fixed clone.
+            return !InkArray.some(dragItems, Ink.bindMethod(this, '_isDragItem'));
         },
 
         _onMouseUp: function() {
