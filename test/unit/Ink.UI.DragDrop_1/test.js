@@ -50,6 +50,43 @@ Ink.requireModules(['Ink.UI.DragDrop_1', 'Ink.UI.Common_1', 'Ink.Dom.Css_1', 'In
         });
     }
 
+    testDragDrop('on{Drag,Drop} options', function (component, elm) {
+        var onDragSpy = component.getOption('onDrag');
+        var onDropSpy = component.getOption('onDrop');
+
+        var target = Ink.s('.dg1', elm);
+        var rect = target.getBoundingClientRect();
+        InkEvent.fire(elm, 'mousedown', { target: target, clientX: rect.left + 5, clientY: rect.top + 5 });
+
+        ok(onDragSpy.calledOnce, 'onDrag was called once');
+        ok(onDropSpy.notCalled, 'onDrop not called yet');
+
+        InkEvent.fire(document, 'mousemove', { clientX: 100, clientY: 100 });
+        InkEvent.fire(document, 'mouseup');
+
+        ok(onDropSpy.calledOnce, 'onDrop called');
+        ok(onDragSpy.calledOnce, 'onDrag just called that once');
+
+        deepEqual(
+            onDragSpy.lastCall.args[0],
+            {
+                dragItem: target,
+                dropZone: elm
+            }, 'An object with { dragItem, dropZone } is the argument of the event handler.');
+        deepEqual(
+            onDropSpy.lastCall.args[0],
+            {
+                origin: elm,
+                dragItem: target,
+                dropZone: elm
+            }, 'An object with { origin, dragItem, dropZone } is the argument of the event handler.');
+        strictEqual(onDragSpy.lastCall.thisValue, component, 'callbacks called with the DragDrop instance as `this`');
+        strictEqual(onDropSpy.lastCall.thisValue, component, 'callbacks called with the DragDrop instance as `this`');
+    }, {
+        onDrag: sinon.spy(),
+        onDrop: sinon.spy()
+    });
+
     function dragAndTest(name, testBack, options) {
         testDragDrop(name, function (component, elm) {
             var dg1 = Ink.s('.dg1', elm)

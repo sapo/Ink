@@ -28,7 +28,9 @@ Ink.createModule('Ink.UI.DragDrop', 1, ['Ink.Dom.Element_1', 'Ink.Dom.Event_1', 
         dropZone:       ['String', '.drop-zone'],
         ignoreDrag:     ['String', '.drag-ignore'],
         draggedCloneClass: ['String', 'drag-cloned-item'],
-        placeholderClass: ['String', 'drag-placeholder-item']
+        placeholderClass: ['String', 'drag-placeholder-item'],
+        onDrag:         ['Function', null],
+        onDrop:         ['Function', null]
     };
 
     DragDrop.prototype = {
@@ -55,6 +57,10 @@ Ink.createModule('Ink.UI.DragDrop', 1, ['Ink.Dom.Element_1', 'Ink.Dom.Event_1', 
          *  Class for the cloned (and position:fixed'ed) element.
          * @param {String} [options.placeholderClass='drag-placeholder-item']
          *  Class for the placeholder clone
+         * @param {Function} [options.onDrag]
+         *  Called when dragging starts. Takes an `{ dragItem, dropZone }` object.
+         * @param {Function} [options.onDrag]
+         *  Called when dragging ends. Takes an `{ origin, dragItem, dropZone }` object.
          *
          * @sample Ink_UI_DragDrop_1.html
          **/
@@ -64,6 +70,7 @@ Ink.createModule('Ink.UI.DragDrop', 1, ['Ink.Dom.Element_1', 'Ink.Dom.Event_1', 
             this._draggedElm = null;
             this._clonedElm = null;
             this._placeholderElm = null;
+            this._originalDrop = null;
 
             this._mouseDelta = [0, 0];
 
@@ -146,6 +153,24 @@ Ink.createModule('Ink.UI.DragDrop', 1, ['Ink.Dom.Element_1', 'Ink.Dom.Event_1', 
             draggedElm.parentNode.insertBefore(this._placeholderElm, draggedElm);
             InkCss.addClassName(draggedElm, 'hide-all');
 
+            var hasOnDrag = typeof this._options.onDrag === 'function';
+            var hasOnDrop = typeof this._options.onDrop === 'function';
+
+            if (hasOnDrag || hasOnDrop) {
+                var dragEvent = {
+                    dragItem: this._draggedElm,
+                    dropItem:
+                        InkElement.findUpwardsBySelector(this._draggedElm, this._options.dropZone) || this._element
+                };
+
+                if (hasOnDrag) {
+                    this._options.onDrag.call(this, dragEvent);
+                }
+
+                if (hasOnDrop) {
+                    this._originalDrop = dragEvent.dropZone;
+                }
+            }
 
             var mouseMoveThrottled = InkEvent.throttle(this._onMouseMove, 50, {
                 // Prevent the default of events
@@ -240,13 +265,38 @@ Ink.createModule('Ink.UI.DragDrop', 1, ['Ink.Dom.Element_1', 'Ink.Dom.Event_1', 
 
             InkCss.removeClassName(this._draggedElm, 'hide-all');
 
-            this._placeholderElm = null;
-            this._clonedElm = null;
-            this._draggedElm = null;
-
             InkEvent.off(document, '.inkdraggable');
 
             this._dragActive = false;
+
+            if (typeof this._options.onDrop === 'function') {
+                this._options.onDrop.call(this, {
+                    origin: this._originalDrop,
+                    dragItem: this._draggedElm,
+                    dropZone: InkElement.findUpwardsBySelector(this._draggedElm, this._options.dropZone) || this._element
+                });
+            }
+
+            this._placeholderElm = null;
+            this._clonedElm = null;
+            this._draggedElm = null;
+            this._originalDrop = null;
+        },
+
+
+        /**
+         * Returns what element the user is dragging, or `null` if no drag is occurring.
+         *
+         * @method getDraggedElement
+         * @returns {Element|null} Element being dragged
+         * @public
+         **/
+        getDraggedElement: function () {
+            if (!this.dragActive) {
+                return null;
+            }
+
+            return this._draggedElm;
         },
 
         /**
