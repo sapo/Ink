@@ -98,10 +98,6 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                 resize: null
             };
 
-            this._dimensionIsPercentage = {
-                width: ('' + this._options.width).indexOf('%') !== -1,
-                height: ('' + this._options.height).indexOf('%') !== -1
-            };
 
             this._isOpen = false;
 
@@ -160,6 +156,13 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             }
         },
 
+        _dimensionIsPercentage: function () {
+            return {
+                width: ('' + this._options.width).indexOf('%') !== -1,
+                height: ('' + this._options.height).indexOf('%') !== -1
+            };
+        },
+
         /**
          * Responsible for repositioning the modal
          * 
@@ -170,7 +173,9 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             // reposition vertically
             var largerThan90Percent;
 
-            if (vhVwSupported && this._dimensionIsPercentage.height) {
+            var dimensionIsPercentage = this._dimensionIsPercentage();
+
+            if (vhVwSupported && dimensionIsPercentage.height) {
                 this._modalDiv.style.marginTop = (-parseFloat(this._options.height)/2) + 'vh';
             } else if (vhVwSupported) {
                 largerThan90Percent = parseFloat(this._options.height) > InkElement.viewportHeight() * 0.9;
@@ -191,7 +196,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             }
 
             // reposition horizontally
-            if (vhVwSupported && this._dimensionIsPercentage.width) {
+            if (vhVwSupported && dimensionIsPercentage.width) {
                 this._modalDiv.style.marginLeft = (-parseFloat(this._options.width)/2) + 'vw';
             } else if (vhVwSupported) {
                 largerThan90Percent = parseFloat(this._options.width) > InkElement.viewportWidth() * 0.9;
@@ -223,7 +228,9 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                 this._avoidModalLargerThanScreen();
             }
 
-            if (!vhVwSupported || (!this._dimensionIsPercentage.height || !this._dimensionIsPercentage.width)) {
+            var dimensionIsPercentage = this._dimensionIsPercentage();
+
+            if (!vhVwSupported || (!dimensionIsPercentage.height || !dimensionIsPercentage.width)) {
                 this._reposition();
             }
 
@@ -311,6 +318,8 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
         },
 
         _avoidModalLargerThanScreen: function () {
+            var dimensionIsPercentage = this._dimensionIsPercentage();
+
             if (!vhVwSupported) {
                 var currentViewport = {
                     height: InkElement.viewportHeight(),
@@ -319,7 +328,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
 
                 InkArray.forEach(['height', 'width'], Ink.bind(function (dimension) {
                     // Not used for percentage measurements
-                    if (this._dimensionIsPercentage[dimension]) { return; }
+                    if (dimensionIsPercentage[dimension]) { return; }
 
                     if (parseFloat(this._options[dimension]) > currentViewport[dimension] * 0.9) {
                         this._modalDiv.style[dimension] = Math.round(currentViewport[dimension] * 0.9) + 'px';
@@ -329,10 +338,10 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                     }
                 }, this));
             } else {
-                if (!this._dimensionIsPercentage.width) {
+                if (!dimensionIsPercentage.width) {
                     this._modalDiv.style.maxWidth = '90vw';
                 }
-                if (!this._dimensionIsPercentage.height) {
+                if (!dimensionIsPercentage.height) {
                     this._modalDiv.style.maxHeight = '90vh';
                 }
             }
@@ -385,10 +394,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
              * If any size has been user-defined, let's set them as max-width and max-height
              */
 
-            var isPercentage = {
-                width: ('' + this._options.width).indexOf('%') !== -1,
-                height: ('' + this._options.height).indexOf('%') !== -1
-            };
+            var isPercentage = this._dimensionIsPercentage();
 
             InkArray.forEach(['width', 'height'], Ink.bind(function (dimension) {
                 if (this._options[dimension] !== undefined) {
