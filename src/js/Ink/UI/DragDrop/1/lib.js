@@ -1,5 +1,5 @@
 
-Ink.createModule('Ink.UI.DragDrop', 1, ['Ink.Dom.Element_1', 'Ink.Dom.Event_1', 'Ink.Dom.Css_1', 'Ink.Util.Array_1', 'Ink.UI.Common_1'], function(InkElement, InkEvent, InkCss, InkArray, UICommon){
+Ink.createModule('Ink.UI.DragDrop', 1, ['Ink.Dom.Element_1', 'Ink.Dom.Event_1', 'Ink.Dom.Css_1', 'Ink.Util.Array_1', 'Ink.UI.Common_1', 'Ink.Dom.Selector_1'], function(InkElement, InkEvent, InkCss, InkArray, UICommon, Selector){
     'use strict';
 
     function findElementUnderMouse(opt) {
@@ -159,8 +159,7 @@ Ink.createModule('Ink.UI.DragDrop', 1, ['Ink.Dom.Element_1', 'Ink.Dom.Event_1', 
             if (hasOnDrag || hasOnDrop) {
                 var dragEvent = {
                     dragItem: this._draggedElm,
-                    dropItem:
-                        InkElement.findUpwardsBySelector(this._draggedElm, this._options.dropZone) || this._element
+                    dropZone: this.getDropZone(this._draggedElm)
                 };
 
                 if (hasOnDrag) {
@@ -203,22 +202,17 @@ Ink.createModule('Ink.UI.DragDrop', 1, ['Ink.Dom.Element_1', 'Ink.Dom.Event_1', 
             });
 
             var dropZoneUnderMouse =
-                InkElement.findUpwardsBySelector(elUnderMouse, this._options.dropZone);
+                this.getDropZone(elUnderMouse);
 
-            if (!dropZoneUnderMouse &&
-                    (InkElement.isAncestorOf(this._element, elUnderMouse) ||
-                    this._element === elUnderMouse)) {
-                dropZoneUnderMouse = this._element;
-            }
-
-            var isMyDropZone = InkElement.isAncestorOf(this._element, dropZoneUnderMouse) ||
-                this._element === dropZoneUnderMouse;
+            var isMyDropZone = dropZoneUnderMouse && (
+                InkElement.isAncestorOf(this._element, dropZoneUnderMouse) ||
+                this._element === dropZoneUnderMouse);
 
             if(dropZoneUnderMouse && isMyDropZone) {
                 var otherDragItem =
                     InkElement.findUpwardsBySelector(elUnderMouse, this._options.dragItem);
 
-                if (otherDragItem && this._isDragItem(otherDragItem)) {
+                if (otherDragItem && this.isDragItem(otherDragItem)) {
                     // The mouse cursor is over another drag-item
                     this._insertPlaceholder(otherDragItem);
                 } else if (this._dropZoneIsEmpty(dropZoneUnderMouse)) {
@@ -236,10 +230,13 @@ Ink.createModule('Ink.UI.DragDrop', 1, ['Ink.Dom.Element_1', 'Ink.Dom.Event_1', 
          *
          * Used because the selector ".drag-item" finds these elements we don't consider drag-items
          *
-         * @method _isDragItem
+         * @method isDragItem
+         * @param elm {Element} The element to test.
+         * @public
          **/
-        _isDragItem: function (elm) {
-             return (
+        isDragItem: function (elm) {
+            return (
+                Selector.matchesSelector(elm, this._options.dragItem) &&
                 elm !== this._draggedElm &&
                 elm !== this._placeholderElm &&
                 elm !== this._clonedElm);
@@ -251,7 +248,7 @@ Ink.createModule('Ink.UI.DragDrop', 1, ['Ink.Dom.Element_1', 'Ink.Dom.Event_1', 
 
             // Make sure none of these elements are actually the dragged element,
             // the placeholder, or the position:fixed clone.
-            return !InkArray.some(dragItems, Ink.bindMethod(this, '_isDragItem'));
+            return !InkArray.some(dragItems, Ink.bindMethod(this, 'isDragItem'));
         },
 
         _onMouseUp: function() {
@@ -273,7 +270,7 @@ Ink.createModule('Ink.UI.DragDrop', 1, ['Ink.Dom.Element_1', 'Ink.Dom.Event_1', 
                 this._options.onDrop.call(this, {
                     origin: this._originalDrop,
                     dragItem: this._draggedElm,
-                    dropZone: InkElement.findUpwardsBySelector(this._draggedElm, this._options.dropZone) || this._element
+                    dropZone: this.getDropZone(this._draggedElm)
                 });
             }
 
@@ -283,6 +280,24 @@ Ink.createModule('Ink.UI.DragDrop', 1, ['Ink.Dom.Element_1', 'Ink.Dom.Event_1', 
             this._originalDrop = null;
         },
 
+        /**
+         * Get the dropZone containing the given element.
+         *
+         * @method getDropZone
+         * @param dragItem {Element} The dragItem to find the dropZone of
+         * @returns {Element}
+         * @public
+         **/
+        getDropZone: function (dragItem) {
+            var ret = InkElement.findUpwardsBySelector(
+                dragItem, this._options.dropZone) || this._element;
+
+            if (InkElement.isAncestorOf(this._element, ret) || ret === this._element) {
+                return ret
+            }
+
+            return null;
+        },
 
         /**
          * Returns what element the user is dragging, or `null` if no drag is occurring.
