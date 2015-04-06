@@ -77,19 +77,19 @@ Ink.requireModules(['Ink.UI.DragDrop_1', 'Ink.UI.Common_1', 'Ink.Dom.Css_1', 'In
     dragAndTest('Moving things, dropping things.', function (component, elm, bag) {
         var oldRect = Ink.s('.drag-cloned-item', elm).getBoundingClientRect()
 
-        InkEvent.fire(document, 'mousemove', { clientX: bag.r.left + 10, clientY: bag.r.top + 10 });
+        InkEvent.fire(document, 'mousemove', { clientX: bag.r.left + 15, clientY: bag.r.top + 15 });
 
         var newRect = Ink.s('.drag-cloned-item', elm).getBoundingClientRect()
 
-        olhometroEqual(newRect.left - oldRect.left, 5, 'left is differing by 5');
-        olhometroEqual(newRect.top - oldRect.top, 5, 'top is differing by 5');
+        olhometroEqual(newRect.left - oldRect.left, 10, 3, 'left is differing by 10');
+        olhometroEqual(newRect.top - oldRect.top, 10, 3, 'top is differing by 10');
 
         InkEvent.fire(document, 'mouseup');
 
         var newRect = bag.dg1.getBoundingClientRect();
 
-        olhometroEqual(newRect.left, oldRect.left, 'thing snapped back');
-        olhometroEqual(newRect.top, oldRect.top, 'thing snapped back');
+        olhometroEqual(newRect.left, oldRect.left, 3, 'thing snapped back');
+        olhometroEqual(newRect.top, oldRect.top, 3, 'thing snapped back');
     });
 
     dragAndTest('Sorting things.', function (component, elm, bag) {
@@ -125,7 +125,6 @@ Ink.requireModules(['Ink.UI.DragDrop_1', 'Ink.UI.Common_1', 'Ink.Dom.Css_1', 'In
 
         ok(Ink.s('.dg1 + .dg2 + .dg3', elm), 'Could sort up across two items.');
     });
-
 
     module('Linked containers')
 
