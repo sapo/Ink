@@ -164,23 +164,13 @@ Ink.requireModules(['Ink.UI.Carousel_1', 'Ink.UI.Pagination_1', 'Ink.Dom.Element
 
     module('autoAdvance');
 
-    test('autoAdvance', sinon.test(function () {
-        var setTimeout = this.stub(window, 'setTimeout').returns('setTimeout handle');
-        var clearTimeout = this.stub(window, 'clearTimeout');
+    test('autoAdvance', function () {
         var carousel = new Carousel(makeContainer(), { autoAdvance: 3000 });
-        ok(setTimeout.calledOnce,
-            'called setTimeout');
-        ok(clearTimeout.notCalled);
-        ok(setTimeout.lastCall.args[1] === 3000,
-            'setTimeout called with 3000 (from the autoAdvance option');
-        setTimeout.reset();
+
+        equal(typeof carousel._autoAdvanceSto, 'number', '_autoAdvanceSto has a setTimeout handle');
 
         carousel.stopAutoAdvance();
-        ok(clearTimeout.calledOnce,
-            'clearTimeout was called');
 
-        carousel.autoAdvance(2000);
-        ok(setTimeout.calledOnce);
-        ok(setTimeout.lastCall.args[1] === 2000);
-    }));
+        equal(carousel._autoAdvanceSto, null, '_autoAdvanceSto is now null');
+    });
 });
