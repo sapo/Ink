@@ -219,9 +219,8 @@ Ink.createModule('Ink.UI.DragDrop', 1, ['Ink.Dom.Element_1', 'Ink.Dom.Event_1', 
                     // The mouse cursor is over an empty dropzone, so there is nowhere to put it "after" or "before"
                     dropZoneUnderMouse.appendChild(this._placeholderElm);
                 }
-            } else {
-                // The cursor is outside anything useful
             }
+            // Otherwise, the cursor is outside anything useful
         },
 
         /**
@@ -293,7 +292,7 @@ Ink.createModule('Ink.UI.DragDrop', 1, ['Ink.Dom.Element_1', 'Ink.Dom.Event_1', 
                 dragItem, this._options.dropZone) || this._element;
 
             if (InkElement.isAncestorOf(this._element, ret) || ret === this._element) {
-                return ret
+                return ret;
             }
 
             return null;
