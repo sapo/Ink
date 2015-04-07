@@ -171,6 +171,7 @@ Get its source, contribute or report and issue here: **https://github.com/sapo/I
 + [Bower](http://bower.io/)
 
 ## Versions
+* [Ink 3.1.6](https://github.com/sapo/Ink/archive/3.1.6.zip)
 * [Ink 3.1.5](https://github.com/sapo/Ink/archive/3.1.5.zip)
 * [Ink 3.1.4](https://github.com/sapo/Ink/archive/3.1.4.zip)
 * [Ink 3.1.3](https://github.com/sapo/Ink/archive/3.1.3.zip)

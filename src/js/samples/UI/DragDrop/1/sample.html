@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>DragDrop</title>
+        <meta name="description" content="">
+        <meta name="author" content="ink, cookbook, recipes">
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="320">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+        <!-- Place favicon.ico and apple-touch-icon(s) here  -->
+
+        <link rel="shortcut icon" href="../../../../../../dist/img/favicon.ico">
+        <link rel="apple-touch-icon" href="../../../../../../dist/img/touch-icon-iphone.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="../../../../../../dist/img/touch-icon-ipad.png"> 
+        <link rel="apple-touch-icon" sizes="120x120" href="../../../../../../dist/img/touch-icon-iphone-retina.png">        <link rel="apple-touch-icon" sizes="152x152" href="../../../../../../dist/img/touch-icon-ipad-retina.png">
+        <link rel="apple-touch-startup-image" href="../../../../../../dist/img/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
+        <link rel="apple-touch-startup-image" href="../../../../../../dist/img/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+        <link rel="apple-touch-startup-image" href="../../../../../../dist/img/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+        <!-- load Ink's css from the cdn -->
+        <link rel="stylesheet" type="text/css" href="../../../../../../dist/css/ink-flex.min.css">
+        <link rel="stylesheet" type="text/css" href="../../../../../../dist/css/font-awesome.min.css">
+        <!-- load Ink's css for IE8 -->
+        <!--[if lt IE 9 ]>
+            <link rel="stylesheet" href="../../../../../../dist/css/ink-ie.min.css" type="text/css" media="screen" title="no title" charset="utf-8">
+        <![endif]-->
+        <!-- test browser flexbox support and load legacy grid if unsupported -->        <script type="text/javascript" src="../../../../../../dist/js/modernizr.js"></script>
+        <script type="text/javascript">
+            Modernizr.load({
+                test: Modernizr.flexbox,              
+                nope : '../../../../../../dist/css/ink-legacy.min.css'
+            });        
+        </script>
+
+        <style type="text/css">
+        .drag-item {
+            border:1px solid black;
+            background-color: orange;
+            cursor: move; 
+        }
+        </style>
+
+        <link rel="stylesheet" href="../../../../../../dist/css/font-awesome.css" />
+        <link rel="stylesheet" href="../../../../../../dist/css/ink.css" />
+        <!--[if IE lte 9]
+        <link rel="stylesheet" href="../../../../../../dist/css/ink-legacy.css" />
+        -->
+
+        <script type="text/javascript" src="../../../../Ink/1/lib.js"></script>
+        <script>
+            Ink.setPath('Ink', '../../../../Ink/');
+        </script>
+        <script type="text/javascript" src="../../../../../../dist/js/prettify.js"></script>
+
+    </head>
+    <body>
+        <!-- Add your site or application content here -->
+        <div class="ink-grid">
+            <div class="column-group">
+                <div class="all-70 medium-100 small-100 tiny-100">
+                    <h1>Coluna do conteudo</h1>
+                    <p> Sane eiusdem concilii patres, cum ad reliquas cogitationes breviarii quoque curam adiungerent, tempore tamen exclusi, rem totam ex ipsius concilii decreto ad auctoritatem et iudicium Romani Pontificis retulerunt.  </p>
+                    <hr />
+
+                    <h2>DragDrop Here</h2> 
+
+                    <div class="column-group drop-zone gutters" id="dragdrop-container">
+                        <div class="all-20 drag-item" id="div-1"><h3 id="h3-1"><i class="fa fa-arrows drag-handle"></i> DragMe 1</h3></div>
+                        <div class="all-20 drag-item" id="div-2"><h3 id="h3-2"><i class="fa fa-arrows drag-handle"></i> DragMe 2</h3></div>
+                        <div class="all-20 drag-item" id="div-3"><h3 id="h3-3"><i class="fa fa-arrows drag-handle"></i> DragMe 3</h3></div>
+                        <div class="all-20 drag-item" id="div-4"><h3 id="h3-4"><i class="fa fa-arrows drag-handle"></i> DragMe 4</h3></div>
+                        <div class="all-20 drag-item" id="div-5"><h3 id="h3-5"><i class="fa fa-arrows drag-handle"></i> DragMe 5</h3></div>
+                        <div class="all-20 drag-item" id="div-6"><h3 id="h3-6"><i class="fa fa-arrows drag-handle"></i> DragMe 6</h3></div>
+                        <div class="all-20 drag-item" id="div-7"><h3 id="h3-7"><i class="fa fa-arrows drag-handle"></i> DragMe 7</h3></div>
+                        <div class="all-20 drag-item" id="div-8"><h3 id="h3-8"><i class="fa fa-arrows drag-handle"></i> DragMe 8</h3></div>
+                        <div class="all-20 drag-item" id="div-9"><h3 id="h3-9"><i class="fa fa-arrows drag-handle"></i> DragMe 9</h3></div>
+                    </div>
+
+                    <hr />
+
+                    <ul class="unstyled drop-zone" id="sortlist-container">
+                        <li class="drag-item"><i class="fa fa-sort"></i> &nbsp; &nbsp; Sort item 1 <button type="button" class="push-right drag-ignore" style="border:1px solid red;"  onclick="Ink.log('coiso');"> coiso</button></li>
+                        <li class="drag-item"><i class="fa fa-sort"></i> &nbsp; &nbsp; Sort item 2</li>
+                        <li class="drag-item"><i class="fa fa-sort"></i> &nbsp; &nbsp; Sort item 3</li>
+                        <li class="drag-item"><i class="fa fa-sort"></i> &nbsp; &nbsp; Sort item 4</li>
+                        <li class="drag-item"><i class="fa fa-sort"></i> &nbsp; &nbsp; Sort item 5</li>
+                    </ul>
+
+                    <hr />
+
+
+                    <div class="column-group drop-zone" id="reorder-container">
+                        <div class="all-50">
+                            <ul class="drop-zone" style="min-height: 30px; border:1px solid red;">
+                                <li class="drag-item"><i class="fa fa-arrows"></i> &nbsp; &nbsp; Sort item left 1</li>
+                                <li class="drag-item"><i class="fa fa-arrows"></i> &nbsp; &nbsp; Sort item left 2</li>
+                                <li class="drag-item"><i class="fa fa-arrows"></i> &nbsp; &nbsp; Sort item left 3</li>
+                            </ul>
+                        </div>
+                        <div class="all-50">
+                            <ul class="drop-zone" style="min-height:30px; border: 1px solid red;">
+                                <li class="drag-item"><i class="fa fa-arrows"></i> &nbsp; &nbsp; Sort item right 1</li>
+                                <li class="drag-item"><i class="fa fa-arrows"></i> &nbsp; &nbsp; Sort item right 2</li>
+                                <li class="drag-item"><i class="fa fa-arrows"></i> &nbsp; &nbsp; Sort item right 3</li>
+                            </ul>
+                        </div>
+                    </div>
+
+
+                    <p> Sane eiusdem concilii patres, cum ad reliquas cogitationes breviarii quoque curam adiungerent, tempore tamen exclusi, rem totam ex ipsius concilii decreto ad auctoritatem et iudicium Romani Pontificis retulerunt.  </p>
+                    <p> Sane eiusdem concilii patres, cum ad reliquas cogitationes breviarii quoque curam adiungerent, tempore tamen exclusi, rem totam ex ipsius concilii decreto ad auctoritatem et iudicium Romani Pontificis retulerunt.  </p>
+                    <p> Sane eiusdem concilii patres, cum ad reliquas cogitationes breviarii quoque curam adiungerent, tempore tamen exclusi, rem totam ex ipsius concilii decreto ad auctoritatem et iudicium Romani Pontificis retulerunt.  </p>
+
+
+                </div>
+                <div class="all-30 medium-100 hide-small hide-tiny">
+                    <h1>SideBar</h1>
+
+                </div>
+            </div>
+        </div>
+        <script>
+            Ink.requireModules(['Ink.UI.DragDrop_1'], function(DragDrop) {
+                new DragDrop('#dragdrop-container'); 
+                new DragDrop('#sortlist-container'); 
+                new DragDrop('#reorder-container'); 
+                //new DragDrop('#coiso-teste'); 
+            });
+        </script>
+
+        <style>
+        </style>
+
+    </body>
+</html>
+

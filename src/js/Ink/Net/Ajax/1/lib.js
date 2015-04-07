@@ -419,6 +419,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
             if (this.transport) {
                 clearTimeout(this.delayTimeout);
                 clearTimeout(this.stoTimeout);
+                this._aborted = true;
                 try { this.transport.abort(); } catch(ex) {}
                 this.finish();
             }
@@ -431,8 +432,8 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
          * @return {void}
          * @public
          */
-        runStateChange: function()
-        {
+        runStateChange: function() {
+            if (this._aborted) { return; }  // We don't care!
             var rs = this.transport.readyState;
             if (rs === 3) {
                 if (this.isHTTP) {
