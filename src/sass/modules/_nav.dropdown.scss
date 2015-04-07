@@ -115,10 +115,8 @@
                         
                     }
 
-                    &:hover {
-                        > ul.dropdown-menu, > ul.dropdown {
-                            display: block;
-                        }
+                    > ul.dropdown-menu, > ul.dropdown {
+                        display: block;
                     }
 
                 }
