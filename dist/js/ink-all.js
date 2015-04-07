@@ -47,7 +47,7 @@
         /**
          * @property {String} VERSION
          **/
-        VERSION: '3.1.6',
+        VERSION: '3.1.7',
         _checkPendingRequireModules: function() {
             var I, F, o, dep, mod, cb, pRMs = [];
             var toApply = [];
@@ -1116,6 +1116,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
             if (this.transport) {
                 clearTimeout(this.delayTimeout);
                 clearTimeout(this.stoTimeout);
+                this._aborted = true;
                 try { this.transport.abort(); } catch(ex) {}
                 this.finish();
             }
@@ -1128,8 +1129,8 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
          * @return {void}
          * @public
          */
-        runStateChange: function()
-        {
+        runStateChange: function() {
+            if (this._aborted) { return; }  // We don't care!
             var rs = this.transport.readyState;
             if (rs === 3) {
                 if (this.isHTTP) {
@@ -4841,7 +4842,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
             // on the DOM, stop() is an alias for both of them together
             Event.prototype.preventDefault = function () {
               if (this.originalEvent.preventDefault) this.originalEvent.preventDefault()
-              else this.originalEvent.returnValue = false
+              else try { this.originalEvent.returnValue = false } catch(e) {}
             }
             Event.prototype.stopPropagation = function () {
               if (this.originalEvent.stopPropagation) this.originalEvent.stopPropagation()
@@ -5411,19 +5412,28 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * @method throttle
      * @param {Function} func   Function to call. Arguments and context are both passed.
      * @param {Number} [wait]=0 Milliseconds to wait between calls.
+     * @param {Object} [options={}] Options object, containing:
+     * @param {Boolean} [options.preventDefault=false] Whether to call preventDefault() on events received here. Use this to throttle mousemove events which you also want to preventDefault() because throttle will not call your function all the time so you don't get a chance to preventDefault() all the events, altough you might need to.
+     * @param {Mixed} [options.bind] The throttled function is bound to this context. Otherwise, it will use whatever `this` it gets. Just a shorthand of also calling Ink.bind(context, func) on the function after throttling it.
      * @return {Function} A function throttled which will only be called at most every `wait` milliseconds.
      * @sample Ink_Dom_Event_1_throttle.html 
      **/
-    throttle: function (func, wait) {
+    throttle: function (func, wait, opt) {
         wait = wait || 0;
+        opt = opt || {};
         var lastCall = 0;  // Warning: This breaks on Jan 1st 1970 0:00
         var timeout;
-        function throttled() {
+        function throttled(maybeEvent) {
             var now = +new Date();
             var timeDiff = now - lastCall;
+            if (opt.preventDefault &&
+                    maybeEvent &&
+                    typeof maybeEvent.preventDefault === 'function') {
+                maybeEvent.preventDefault();
+            }
             if (timeDiff >= wait) {
                 lastCall = now;
-                return func.apply(this, [].slice.call(arguments));
+                return func.apply('bind' in opt ? opt.bind : this, [].slice.call(arguments));
             } else {
                 var that = this;
                 var args = [].slice.call(arguments);
@@ -5737,9 +5747,9 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      */
     pointerX: function(ev)
     {
-        return (ev.touches && ev.touches[0] && ev.touches[0].clientX) ||
+        return (ev.touches && ev.touches[0] && ev.touches[0].pageX) ||
             (ev.pageX) ||
-            (ev.clientX + (document.documentElement.scrollLeft || document.body.scrollLeft));
+            (ev.clientX);
     },
 
     /**
@@ -5752,9 +5762,9 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      */
     pointerY: function(ev)
     {
-        return (ev.touches && ev.touches[0] && ev.touches[0].clientY) ||
+        return (ev.touches && ev.touches[0] && ev.touches[0].pageY) ||
             (ev.pageY) ||
-            (ev.clientY + (document.documentElement.scrollTop || document.body.scrollTop));
+            (ev.clientY);
     },
 
     /**
@@ -16657,6 +16667,363 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
     return DatePicker;
 });
 
+
+Ink.createModule('Ink.UI.DragDrop', 1, ['Ink.Dom.Element_1', 'Ink.Dom.Event_1', 'Ink.Dom.Css_1', 'Ink.Util.Array_1', 'Ink.UI.Common_1', 'Ink.Dom.Selector_1'], function(InkElement, InkEvent, InkCss, InkArray, UICommon, Selector){
+    'use strict';
+
+    function findElementUnderMouse(opt) {
+        // TODO take advantage of getElementsFromPoint when it comes out
+        opt.exceptFor.style.display = 'none';
+
+        var ret = document.elementFromPoint(
+            opt.x,
+            opt.y);
+
+        opt.exceptFor.style.display = '';
+
+        return ret;
+    }
+
+    function DragDrop() {
+        UICommon.BaseUIComponent.apply(this, arguments);
+    }
+
+    DragDrop._name = 'DragDrop_1';
+
+    DragDrop._optionDefinition = {
+        // dragdropContainer: ['Element', '.dragdrop-container'], - is this._element
+        dragItem:       ['String', '.drag-item'],
+        dragHandle:     ['String', '.drag-handle'],
+        dropZone:       ['String', '.drop-zone'],
+        ignoreDrag:     ['String', '.drag-ignore'],
+        draggedCloneClass: ['String', 'drag-cloned-item'],
+        placeholderClass: ['String', 'drag-placeholder-item'],
+        onDrag:         ['Function', null],
+        onDrop:         ['Function', null]
+    };
+
+    DragDrop.prototype = {
+        /**
+         * A replacement for Draggables, Droppables, and SortableList. It aims to be good at creating draggables, droppables and sortable lists at the same time while keeping it simple for everyone.
+         *
+         * A DragDrop component may contain one or more "dropZone"s, which are the areas where the "dragItem"s can be dropped. You can identify elements as being a dropZone or a dragItem by using the correct selectors (".drag-item" and ".drop-zone").
+         *
+         * @class Ink.UI.DragDrop
+         * @constructor
+         * @version 1
+         * @param {Element} [element] Root element for the DragDrop. It can contain one or more dropzones.
+         * @param {Object} [options]
+         *  Options object, containing:
+         * @param {String} [options.dragItem='.drag-item']
+         *  Selector for the items to be dragged
+         * @param {String} [options.dragHandle='.drag-handle']
+         *  Selector for a dragging handle. You won't be able to drag other parts of the dragItem.
+         * @param {String} [options.dropZone='.drop-zone']
+         *  Selector of drop zones. Should add this to the element itself.
+         * @param {String} [options.ignoreDrag='.drag-ignore']
+         *  Selector of places where you can't drag.
+         * @param {String} [options.draggedCloneClass='drag-cloned-item']
+         *  Class for the cloned (and position:fixed'ed) element.
+         * @param {String} [options.placeholderClass='drag-placeholder-item']
+         *  Class for the placeholder clone
+         * @param {Function} [options.onDrag]
+         *  Called when dragging starts. Takes an `{ dragItem, dropZone }` object.
+         * @param {Function} [options.onDrag]
+         *  Called when dragging ends. Takes an `{ origin, dragItem, dropZone }` object.
+         *
+         * @sample Ink_UI_DragDrop_1.html
+         **/
+        _init: function() {
+            this._dragActive = false;
+
+            this._draggedElm = null;
+            this._clonedElm = null;
+            this._placeholderElm = null;
+            this._originalDrop = null;
+
+            this._mouseDelta = [0, 0];
+
+            this._addEvents();
+        },
+
+        _addEvents: function() {
+            InkEvent.on(this._element, 'mousedown touchstart', Ink.bindEvent(this._onMouseDown, this));
+        },
+
+        _onMouseDown: function(event) {
+            var tgt = InkEvent.element(event);
+
+            var draggedElm = InkElement.findUpwardsBySelector(tgt, this._options.dragItem);
+
+            var elmIgnoreDraggable = InkElement.findUpwardsBySelector(tgt, this._options.ignoreDrag);
+
+            if(draggedElm && !elmIgnoreDraggable) {
+
+                InkEvent.stopDefault(event);
+
+                // has handler
+                var handleElm = Ink.s(this._options.dragHandle, draggedElm);
+                if(handleElm && InkElement.findUpwardsBySelector(tgt, this._options.dragHandle)) {
+                    this._dragActive = true;
+                } else if (!handleElm) {
+                    this._dragActive = true;
+                }
+
+                if (this._dragActive) {
+                    this._startDrag(event, draggedElm);
+                }
+            }
+        },
+
+        _startDrag: function(event, draggedElm) {
+            // TODO rename
+            this._clonedElm = draggedElm.cloneNode(true);
+            this._placeholderElm = draggedElm.cloneNode(false);
+
+            InkCss.addClassName(this._clonedElm, this._options.draggedCloneClass);
+            this._clonedElm.removeAttribute('id');
+
+            InkCss.addClassName(this._placeholderElm, this._options.placeholderClass);
+            this._placeholderElm.removeAttribute('id');
+
+            var rect = draggedElm.getBoundingClientRect();
+            var dragElmDims = [
+                rect.right - rect.left,
+                rect.bottom - rect.top
+            ];
+
+            this._clonedElm.style.width = dragElmDims[0] + 'px';
+            this._clonedElm.style.height = dragElmDims[1] + 'px';
+
+            this._placeholderElm.style.width = dragElmDims[0] + 'px';
+            this._placeholderElm.style.height = dragElmDims[1] + 'px';
+            this._placeholderElm.style.visibility = 'hidden';
+
+            // TODO goes in style
+            this._clonedElm.style.position = 'fixed';
+            this._clonedElm.style.zIndex = '1000';
+            this._clonedElm.style.left = rect.left + 'px';
+            this._clonedElm.style.top = rect.top + 'px';
+
+            var mousePos = InkEvent.pointer(event);
+            var dragElmPos = InkElement.offset(draggedElm);
+            this._mouseDelta = [
+                (mousePos.x - dragElmPos[0]),
+                (mousePos.y - dragElmPos[1])
+            ];
+
+            this._clonedElm.style.opacity = '0.6';
+
+            draggedElm.parentNode.insertBefore(this._clonedElm, draggedElm);
+
+            // TODO rename
+            this._draggedElm = draggedElm;
+
+            draggedElm.parentNode.insertBefore(this._placeholderElm, draggedElm);
+            InkCss.addClassName(draggedElm, 'hide-all');
+
+            var hasOnDrag = typeof this._options.onDrag === 'function';
+            var hasOnDrop = typeof this._options.onDrop === 'function';
+
+            if (hasOnDrag || hasOnDrop) {
+                var dragEvent = {
+                    dragItem: this._draggedElm,
+                    dropZone: this.getDropZone(this._draggedElm)
+                };
+
+                if (hasOnDrag) {
+                    this._options.onDrag.call(this, dragEvent);
+                }
+
+                if (hasOnDrop) {
+                    this._originalDrop = dragEvent.dropZone;
+                }
+            }
+
+            var mouseMoveThrottled = InkEvent.throttle(this._onMouseMove, 50, {
+                // Prevent the default of events
+                preventDefault: true,
+                bind: this
+            });
+
+            InkEvent.on(document, 'mousemove.inkdraggable touchmove.inkdraggable', mouseMoveThrottled);
+            InkEvent.on(document, 'mouseup.inkdraggable touchend.inkdraggable',
+                Ink.bindEvent(this._onMouseUp, this));
+        },
+
+        _onMouseMove: function(event) {
+            if (!this._dragActive) { return; }
+
+            var mousePos = InkEvent.pointer(event);
+
+            var scrollLeft = InkElement.scrollWidth();
+            var scrollTop = InkElement.scrollHeight();
+
+            this._clonedElm.style.left =
+                (mousePos.x - this._mouseDelta[0] - scrollLeft) + 'px';
+            this._clonedElm.style.top =
+                (mousePos.y - this._mouseDelta[1] - scrollTop) + 'px';
+
+            var elUnderMouse = findElementUnderMouse({
+                x: mousePos.x - scrollLeft,
+                y: mousePos.y - scrollTop,
+                exceptFor: this._clonedElm
+            });
+
+            var dropZoneUnderMouse =
+                this.getDropZone(elUnderMouse);
+
+            var isMyDropZone = dropZoneUnderMouse && (
+                InkElement.isAncestorOf(this._element, dropZoneUnderMouse) ||
+                this._element === dropZoneUnderMouse);
+
+            if(dropZoneUnderMouse && isMyDropZone) {
+                var otherDragItem =
+                    InkElement.findUpwardsBySelector(elUnderMouse, this._options.dragItem);
+
+                if (otherDragItem && this.isDragItem(otherDragItem)) {
+                    // The mouse cursor is over another drag-item
+                    this._insertPlaceholder(otherDragItem);
+                } else if (this._dropZoneIsEmpty(dropZoneUnderMouse)) {
+                    // The mouse cursor is over an empty dropzone, so there is nowhere to put it "after" or "before"
+                    dropZoneUnderMouse.appendChild(this._placeholderElm);
+                }
+            }
+            // Otherwise, the cursor is outside anything useful
+        },
+
+        /**
+         * Returns whether a given .drag-item element is a plain old .drag-item element
+         * and not one of the clones we're creating or the element we're really dragging.
+         *
+         * Used because the selector ".drag-item" finds these elements we don't consider drag-items
+         *
+         * @method isDragItem
+         * @param elm {Element} The element to test.
+         * @public
+         **/
+        isDragItem: function (elm) {
+            return (
+                Selector.matchesSelector(elm, this._options.dragItem) &&
+                elm !== this._draggedElm &&
+                elm !== this._placeholderElm &&
+                elm !== this._clonedElm);
+        },
+
+        _dropZoneIsEmpty: function (dropZone) {
+            // Find elements with the class .drag-item in the drop-zone
+            var dragItems = Ink.ss(this._options.dragItem, dropZone);
+
+            // Make sure none of these elements are actually the dragged element,
+            // the placeholder, or the position:fixed clone.
+            return !InkArray.some(dragItems, Ink.bindMethod(this, 'isDragItem'));
+        },
+
+        _onMouseUp: function() {
+            if (!this._dragActive) { return; }
+
+            // The actual dropping is just putting our *real* node where the placeholder once was.
+            InkElement.insertBefore(this._draggedElm, this._placeholderElm);
+
+            InkElement.remove(this._placeholderElm);
+            InkElement.remove(this._clonedElm);
+
+            InkCss.removeClassName(this._draggedElm, 'hide-all');
+
+            InkEvent.off(document, '.inkdraggable');
+
+            this._dragActive = false;
+
+            if (typeof this._options.onDrop === 'function') {
+                this._options.onDrop.call(this, {
+                    origin: this._originalDrop,
+                    dragItem: this._draggedElm,
+                    dropZone: this.getDropZone(this._draggedElm)
+                });
+            }
+
+            this._placeholderElm = null;
+            this._clonedElm = null;
+            this._draggedElm = null;
+            this._originalDrop = null;
+        },
+
+        /**
+         * Get the dropZone containing the given element.
+         *
+         * @method getDropZone
+         * @param dragItem {Element} The dragItem to find the dropZone of
+         * @returns {Element}
+         * @public
+         **/
+        getDropZone: function (dragItem) {
+            var ret = InkElement.findUpwardsBySelector(
+                dragItem, this._options.dropZone) || this._element;
+
+            if (InkElement.isAncestorOf(this._element, ret) || ret === this._element) {
+                return ret;
+            }
+
+            return null;
+        },
+
+        /**
+         * Returns what element the user is dragging, or `null` if no drag is occurring.
+         *
+         * @method getDraggedElement
+         * @returns {Element|null} Element being dragged
+         * @public
+         **/
+        getDraggedElement: function () {
+            if (!this.dragActive) {
+                return null;
+            }
+
+            return this._draggedElm;
+        },
+
+        /**
+         * Called when mouse has moved over a new element
+         *
+         * Given a competitor drag-item, it figures out
+         * whether we want to put our placeholder *after* it or *before* it.
+         *
+         **/
+        _insertPlaceholder: function(elm) {
+            var goesAfter = true;
+
+            if (!InkArray.inArray(this._placeholderElm, InkElement.previousSiblings(elm))) {
+                goesAfter = false;
+            }
+
+            if(goesAfter) {
+                InkElement.insertAfter(this._placeholderElm, elm);
+            } else {
+                InkElement.insertBefore(this._placeholderElm, elm);
+            }
+        },
+
+        /**
+         * Destroy your DragDrop, removing it from the DOM
+         *
+         * @method destroy
+         * @public
+         * @returns {void}
+         **/
+        destroy: function () {
+            if (this._dragActive) {
+                InkEvent.off(document, '.inkdraggable');
+            }
+            UICommon.destroyComponent.call(this);
+        }
+    };
+
+    UICommon.createUIComponent(DragDrop);
+
+    return DragDrop;
+});
+
+
 /**
  * Dragging elements around
  * @module Ink.UI.Draggable_1
@@ -20179,6 +20546,34 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
         return div.style.display !== '';
     }(InkElement.create('div', { style: 'display: flex' })));
 
+    var cleanDimension = function (dim) {
+        dim = dim.replace(/^\s+|\s+$/g, '');
+        var hasPercent = dim.indexOf('%') !== -1;
+        var hasPx = dim.indexOf('px') !== -1;
+        return !hasPercent && !hasPx ? dim + '%' :
+            !hasPercent && hasPx ? dim :
+            !hasPx && hasPercent ? dim :
+            dim + 'px';
+    };
+
+    var dimensionOfLayout = function (dimensionList, needleLayout) {
+        var dims = dimensionList.split(/\s+/g);
+        var theDefault;
+        for (var i = 0; i < dims.length; i++) {
+            var _dim = dims[i].split('-');
+            var layout = _dim[0].replace(/^\s+|\s+$/g, '');
+
+            if (layout === needleLayout) {
+                return cleanDimension(_dim[1]);
+            }
+
+            if (layout === 'all') {
+                theDefault = cleanDimension(_dim[1]);
+            }
+        }
+        return theDefault;
+    };
+
     /**
      * @class Ink.UI.Modal
      * @constructor
@@ -20202,15 +20597,6 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
      * @sample Ink_UI_Modal_1.html
      */
 
-    function upName(dimension) {
-        // omg IE
-        var firstCharacter = dimension.match(/^./)[0];
-        return firstCharacter.toUpperCase() + dimension.replace(/^./, '');
-    }
-    function maxName(dimension) {
-        return 'max' + upName(dimension);
-    }
-
     var openModals = [];
 
     function Modal() {
@@ -20223,8 +20609,8 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
         /**
          * Width, height and markup really optional, as they can be obtained by the element
          */
-        width:        ['String', undefined],
-        height:       ['String', undefined],
+        width:        ['String', '90%'],
+        height:       ['String', '90%'],
 
         /**
          * To add extra classes
@@ -20258,9 +20644,9 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                 resize: null
             };
 
-            this._dimensionIsPercentage = {
-                width: ('' + this._options.width).indexOf('%') !== -1,
-                height: ('' + this._options.height).indexOf('%') !== -1
+            this._dimensionIsVariant = {
+                width: ('' + this._options.width).indexOf(' ') !== -1,
+                height: ('' + this._options.height).indexOf(' ') !== -1
             };
 
             this._isOpen = false;
@@ -20320,6 +20706,49 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             }
         },
 
+        _dimensionIsPercentage: function () {
+            var dims = this._getDimensions();
+            return {
+                width: ('' + dims.width).indexOf('%') !== -1,
+                height: ('' + dims.height).indexOf('%') !== -1
+            };
+        },
+
+        _getDimensions: function (opt) {
+            opt = opt || {};
+            var dims = {
+                width: this._options.width,
+                height: this._options.height
+            };
+            var currentLayout;
+            if (this._dimensionIsVariant.width || this._dimensionIsVariant.height) {
+                currentLayout = Common.currentLayout();
+            }
+            if (this._dimensionIsVariant.width) {
+                dims.width = dimensionOfLayout(dims.width, currentLayout);
+            }
+            if (this._dimensionIsVariant.height) {
+                dims.height = dimensionOfLayout(dims.height, currentLayout);
+            }
+            if (opt.dynamic) {
+                var isPercentage = this._dimensionIsPercentage();
+                if (!isPercentage.width) {
+                    // TODO maxWidth and maxHeight should be options, not bound to 90%
+                    var maxWidth = InkElement.viewportWidth() * 0.9;
+                    if (parseFloat(dims.width) >= maxWidth) {
+                        dims.width = maxWidth + 'px';
+                    }
+                }
+                if (!isPercentage.height) {
+                    var maxHeight = InkElement.viewportHeight() * 0.9;
+                    if (parseFloat(dims.height) >= maxHeight) {
+                        dims.height = maxHeight + 'px';
+                    }
+                }
+            }
+            return dims;
+        },
+
         /**
          * Responsible for repositioning the modal
          * 
@@ -20330,19 +20759,22 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             // reposition vertically
             var largerThan90Percent;
 
-            if (vhVwSupported && this._dimensionIsPercentage.height) {
-                this._modalDiv.style.marginTop = (-parseFloat(this._options.height)/2) + 'vh';
-            } else if (vhVwSupported) {
-                largerThan90Percent = parseFloat(this._options.height) > InkElement.viewportHeight() * 0.9;
+            var dimensionIsPercentage = this._dimensionIsPercentage();
+            var dims = this._getDimensions();
 
-                if (largerThan90Percent !== this._heightWasLargerThan90Percent || !largerThan90Percent) {
+            if (vhVwSupported && dimensionIsPercentage.height) {
+                this._modalDiv.style.marginTop = (-parseFloat(dims.height)/2) + 'vh';
+            } else if (vhVwSupported) {
+                largerThan90Percent = parseFloat(dims.height) > InkElement.viewportHeight() * 0.9;
+
+                if (largerThan90Percent !== this._heightWasLargerThan90Percent || !largerThan90Percent || this._dimensionIsVariant.height) {
                     this._heightWasLargerThan90Percent = largerThan90Percent;
 
                     if (largerThan90Percent) {
                         this._modalDiv.style.marginTop = '0';
                         this._modalDiv.style.top = '5vh';
                     } else {
-                        this._modalDiv.style.marginTop = (-parseFloat(this._options.height)/2) + 'px';
+                        this._modalDiv.style.marginTop = (-parseFloat(dims.height)/2) + 'px';
                         this._modalDiv.style.top = '';
                     }
                 }
@@ -20351,19 +20783,19 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             }
 
             // reposition horizontally
-            if (vhVwSupported && this._dimensionIsPercentage.width) {
-                this._modalDiv.style.marginLeft = (-parseFloat(this._options.width)/2) + 'vw';
+            if (vhVwSupported && dimensionIsPercentage.width) {
+                this._modalDiv.style.marginLeft = (-parseFloat(dims.width)/2) + 'vw';
             } else if (vhVwSupported) {
-                largerThan90Percent = parseFloat(this._options.width) > InkElement.viewportWidth() * 0.9;
+                largerThan90Percent = parseFloat(dims.width) > InkElement.viewportWidth() * 0.9;
 
-                if (largerThan90Percent !== this._widthWasLargerThan90Percent || !largerThan90Percent) {
+                if (largerThan90Percent !== this._widthWasLargerThan90Percent || !largerThan90Percent || this._dimensionIsVariant.width) {
                     this._widthWasLargerThan90Percent = largerThan90Percent;
 
                     if (largerThan90Percent) {
                         this._modalDiv.style.marginLeft = '0';
                         this._modalDiv.style.left = '5vw';
                     } else {
-                        this._modalDiv.style.marginLeft = (-parseFloat(this._options.width)/2) + 'px';
+                        this._modalDiv.style.marginLeft = (-parseFloat(dims.width)/2) + 'px';
                         this._modalDiv.style.left = '';
                     }
                 }
@@ -20379,11 +20811,19 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
          * @private
          */
         _onResize: function( ){
-            if (!vhVwSupported) {
+            var dimensionsAreVariant = this._dimensionIsVariant.height || this._dimensionIsVariant.width;
+            var dimensionIsPercentage = this._dimensionIsPercentage();
+            var dimensionsArePercentage = !dimensionIsPercentage.height || !dimensionIsPercentage.width;
+
+            if (dimensionsAreVariant) {
+                this._resize();
+            }
+
+            if (!vhVwSupported || dimensionsAreVariant) {
                 this._avoidModalLargerThanScreen();
             }
 
-            if (!vhVwSupported || (!this._dimensionIsPercentage.height || !this._dimensionIsPercentage.width)) {
+            if (!vhVwSupported || dimensionsArePercentage || dimensionsAreVariant) {
                 this._reposition();
             }
 
@@ -20446,6 +20886,13 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             }
         },
 
+        _resize: function () {
+            var dims = this._getDimensions();
+
+            this._modalDiv.style.width = dims.width;
+            this._modalDiv.style.height = dims.height;
+        },
+
         _resizeContainer: function() {
             var containerHeight = InkElement.elementHeight(this._modalDiv);
 
@@ -20471,28 +20918,34 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
         },
 
         _avoidModalLargerThanScreen: function () {
+            var dimensionIsPercentage = this._dimensionIsPercentage();
+
             if (!vhVwSupported) {
                 var currentViewport = {
                     height: InkElement.viewportHeight(),
                     width: InkElement.viewportWidth()
                 };
 
+                var dims = this._getDimensions();
+
                 InkArray.forEach(['height', 'width'], Ink.bind(function (dimension) {
                     // Not used for percentage measurements
-                    if (this._dimensionIsPercentage[dimension]) { return; }
+                    if (dimensionIsPercentage[dimension]) { return; }
 
-                    if (parseFloat(this._options[dimension]) > currentViewport[dimension] * 0.9) {
-                        this._modalDiv.style[dimension] = Math.round(currentViewport[dimension] * 0.9) + 'px';
+                    var dim = Math.round(currentViewport[dimension] * 0.9);
+
+                    if (parseFloat(dims[dimension]) > dim) {
+                        this._modalDiv.style[dimension] = dim + 'px';
                     } else {
-                        if (isNaN(parseFloat(this._options[dimension]))) { return; }
-                        this._modalDiv.style[dimension] = parseFloat(this._options[dimension]) + 'px';
+                        if (isNaN(parseFloat(dims[dimension]))) { return; }
+                        this._modalDiv.style[dimension] = parseFloat(dims[dimension]) + 'px';
                     }
                 }, this));
             } else {
-                if (!this._dimensionIsPercentage.width) {
+                if (!dimensionIsPercentage.width) {
                     this._modalDiv.style.maxWidth = '90vw';
                 }
-                if (!this._dimensionIsPercentage.height) {
+                if (!dimensionIsPercentage.height) {
                     this._modalDiv.style.maxHeight = '90vh';
                 }
             }
@@ -20517,8 +20970,6 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             if (this.isOpen()) { return false; }
 
             if( event ){ Event.stop(event); }
-
-            var elem = (document.compatMode === "CSS1Compat") ?  document.documentElement : document.body;
 
             Css.addClassName( this._modalShadow,'ink-shade' );
             this._modalShadow.style.display = this._modalDiv.style.display = 'block';
@@ -20545,33 +20996,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
              * If any size has been user-defined, let's set them as max-width and max-height
              */
 
-            var isPercentage = {
-                width: ('' + this._options.width).indexOf('%') !== -1,
-                height: ('' + this._options.height).indexOf('%') !== -1
-            };
-
-            InkArray.forEach(['width', 'height'], Ink.bind(function (dimension) {
-                if (this._options[dimension] !== undefined) {
-                    this._modalDiv.style[dimension] = this._options[dimension];
-                    if (!isPercentage[dimension]) {
-                        this._modalDiv.style[maxName(dimension)] =
-                            InkElement['element' + upName(dimension)](this._modalDiv) + 'px';
-                    }
-                } else {
-                    this._modalDiv.style[maxName(dimension)] = InkElement['element' + upName(dimension)](this._modalDiv) + 'px';
-                }
-
-                if (isPercentage[dimension] && parseInt(elem['client' + maxName(dimension)], 10) <= parseInt(this._modalDiv.style[dimension], 10) ) {
-                    this._modalDiv.style[dimension] = Math.round(parseInt(elem['client' + maxName(dimension)], 10) * 0.9) + 'px';
-                }
-            }, this));
-
-            this.originalStatus = {
-                viewportHeight:     InkElement.elementHeight(elem),
-                viewportWidth:      InkElement.elementWidth(elem),
-                height:             InkElement.elementHeight(this._modalDiv),
-                width:              InkElement.elementWidth(this._modalDiv)
-            };
+            this._resize();
 
             // /**
             //  * Let's resize, place it:
@@ -20590,12 +21015,16 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             //  * (because pixel-size-based iframes become larger than the viewport at some point).
             //  **/
             if( this._options.responsive ) {
+                var isPercentage = this._dimensionIsPercentage();
+
                 var needResizeHandler = !(
                     vhVwSupported &&
                     flexSupported &&
                     //Css.getStyle(this._modalDiv, 'display') !== 'block' &&
                     isPercentage.height &&
-                    isPercentage.width );
+                    isPercentage.width &&
+                    !this._dimensionIsVariant.height &&
+                    !this._dimensionIsVariant.width );
 
                 if (needResizeHandler) {
                     this._handlers.resize = Event.throttle(Ink.bind(this._onResize, this), 500);
