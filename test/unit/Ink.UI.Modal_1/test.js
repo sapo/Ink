@@ -1,4 +1,4 @@
-Ink.requireModules(['Ink.UI.Modal_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1'], function (Modal, InkElement, Css) {
+Ink.requireModules(['Ink.UI.Common_1', 'Ink.UI.Modal_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1'], function (Common, Modal, InkElement, Css) {
     function makeContainer(opt) {
         var cont = document.body.appendChild(InkElement.create('div', {
             className: 'ink-shade fade'
@@ -169,6 +169,37 @@ Ink.requireModules(['Ink.UI.Modal_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1'], fun
             '_onResize() calls modal._resizeContainer() once if no flex support')
         ok(modal._avoidModalLargerThanScreen.calledOnce === !vhVwSupported,
             '_onResize() calls modal._avoidModalLargerThanScreen() once if no vh/vw supported')
+
+        modal.dismiss();
+    });
+
+    test('variant dimensions', function () {
+        var els = makeContainer();
+        try {
+            var modal = new Modal(Ink.s('.ink-modal', els), { autoDisplay: true, height: 'large-79 all-20', width: '80%' });
+        } catch(e) {
+            ok(false, 'creating the modal yielded an exception')
+        }
+
+        expect(2);
+
+        sinon.stub(Common, 'currentLayout')
+
+        Common.currentLayout.returns('large')
+
+        deepEqual(modal._getDimensions(), {
+            width: '80%',
+            height: '79%'
+        });
+
+        Common.currentLayout.returns('tiny')
+
+        deepEqual(modal._getDimensions(), {
+            width: '80%',
+            height: '20%'
+        });
+
+        Common.currentLayout.restore();
 
         modal.dismiss();
     });

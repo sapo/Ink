@@ -70,15 +70,6 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
      * @sample Ink_UI_Modal_1.html
      */
 
-    function upName(dimension) {
-        // omg IE
-        var firstCharacter = dimension.match(/^./)[0];
-        return firstCharacter.toUpperCase() + dimension.replace(/^./, '');
-    }
-    function maxName(dimension) {
-        return 'max' + upName(dimension);
-    }
-
     var openModals = [];
 
     function Modal() {
@@ -249,7 +240,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             } else if (vhVwSupported) {
                 largerThan90Percent = parseFloat(dims.height) > InkElement.viewportHeight() * 0.9;
 
-                if (largerThan90Percent !== this._heightWasLargerThan90Percent || !largerThan90Percent) {
+                if (largerThan90Percent !== this._heightWasLargerThan90Percent || !largerThan90Percent || this._dimensionIsVariant.height) {
                     this._heightWasLargerThan90Percent = largerThan90Percent;
 
                     if (largerThan90Percent) {
@@ -270,7 +261,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             } else if (vhVwSupported) {
                 largerThan90Percent = parseFloat(dims.width) > InkElement.viewportWidth() * 0.9;
 
-                if (largerThan90Percent !== this._widthWasLargerThan90Percent || !largerThan90Percent) {
+                if (largerThan90Percent !== this._widthWasLargerThan90Percent || !largerThan90Percent || this._dimensionIsVariant.width) {
                     this._widthWasLargerThan90Percent = largerThan90Percent;
 
                     if (largerThan90Percent) {
@@ -293,15 +284,19 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
          * @private
          */
         _onResize: function( ){
+            var dimensionsAreVariant = this._dimensionIsVariant.height || this._dimensionIsVariant.width;
             var dimensionIsPercentage = this._dimensionIsPercentage();
             var dimensionsArePercentage = !dimensionIsPercentage.height || !dimensionIsPercentage.width;
 
+            if (dimensionsAreVariant) {
+                this._resize();
+            }
 
-            if (!vhVwSupported) {
+            if (!vhVwSupported || dimensionsAreVariant) {
                 this._avoidModalLargerThanScreen();
             }
 
-            if (!vhVwSupported || dimensionsArePercentage) {
+            if (!vhVwSupported || dimensionsArePercentage || dimensionsAreVariant) {
                 this._reposition();
             }
 
@@ -362,6 +357,13 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                     Event.stop(ev);
                 }
             }
+        },
+
+        _resize: function () {
+            var dims = this._getDimensions();
+
+            this._modalDiv.style.width = dims.width;
+            this._modalDiv.style.height = dims.height;
         },
 
         _resizeContainer: function() {
@@ -442,8 +444,6 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
 
             if( event ){ Event.stop(event); }
 
-            var elem = (document.compatMode === "CSS1Compat") ?  document.documentElement : document.body;
-
             Css.addClassName( this._modalShadow,'ink-shade' );
             this._modalShadow.style.display = this._modalDiv.style.display = 'block';
 
@@ -469,30 +469,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
              * If any size has been user-defined, let's set them as max-width and max-height
              */
 
-            var isPercentage = this._dimensionIsPercentage();
-
-            InkArray.forEach(['width', 'height'], Ink.bind(function (dimension) {
-                if (this._options[dimension] !== undefined) {
-                    this._modalDiv.style[dimension] = this._options[dimension];
-                    if (!isPercentage[dimension]) {
-                        this._modalDiv.style[maxName(dimension)] =
-                            InkElement['element' + upName(dimension)](this._modalDiv) + 'px';
-                    }
-                } else {
-                    this._modalDiv.style[maxName(dimension)] = InkElement['element' + upName(dimension)](this._modalDiv) + 'px';
-                }
-
-                if (isPercentage[dimension] && parseInt(elem['client' + maxName(dimension)], 10) <= parseInt(this._modalDiv.style[dimension], 10) ) {
-                    this._modalDiv.style[dimension] = Math.round(parseInt(elem['client' + maxName(dimension)], 10) * 0.9) + 'px';
-                }
-            }, this));
-
-            this.originalStatus = {
-                viewportHeight:     InkElement.elementHeight(elem),
-                viewportWidth:      InkElement.elementWidth(elem),
-                height:             InkElement.elementHeight(this._modalDiv),
-                width:              InkElement.elementWidth(this._modalDiv)
-            };
+            this._resize();
 
             // /**
             //  * Let's resize, place it:
@@ -518,7 +495,9 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                     flexSupported &&
                     //Css.getStyle(this._modalDiv, 'display') !== 'block' &&
                     isPercentage.height &&
-                    isPercentage.width );
+                    isPercentage.width &&
+                    !this._dimensionIsVariant.height &&
+                    !this._dimensionIsVariant.width );
 
                 if (needResizeHandler) {
                     this._handlers.resize = Event.throttle(Ink.bind(this._onResize, this), 500);
