@@ -91,17 +91,17 @@ Ink.requireModules(['Ink.UI.Modal_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1'], fun
 
     modalTest('A new modal has style.height, style.width set to its height, width options\' values', function (modal, els) {
         equal(modal._modalDiv.style.height, '100px');
-        equal(modal._modalDiv.style.width, '90%');
+        equal(modal._modalDiv.style.width, '91%');
         modal.dismiss();
-    }, { height: '100px', width: '90%', autoDisplay: true });
+    }, { height: '100px', width: '91%', autoDisplay: true });
 
     modalTest('_reposition, called on construction and resize, repositions the modal by setting the marginTop and marginLeft style properties to negative values', function (modal) {
         sinon.stub(InkElement, 'elementHeight').returns(200);
         sinon.stub(InkElement, 'elementWidth').returns(100);
         modal._reposition();
         if (vhVwSupported) {
-            ok(!modal._element.style.marginTop, 'If there\'s vh/vw support, _reposition won\'t touch marginTop');
-            ok(!modal._element.style.marginLeft, 'If there\'s vh/vw support, _reposition won\'t touch marginLeft');
+            equal(modal._element.style.marginTop, '-45vh');
+            equal(modal._element.style.marginLeft, '-45vw');
         } else {
             equal(modal._element.style.marginTop, '-100px');
             equal(modal._element.style.marginLeft, '-50px');
@@ -109,7 +109,7 @@ Ink.requireModules(['Ink.UI.Modal_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1'], fun
         modal.dismiss();
         InkElement.elementHeight.restore();
         InkElement.elementWidth.restore();
-    });
+    }, { height: '90%', width: '90%' });
     modalTest('_reposition, called on construction and resize, repositions the modal by setting the marginTop and marginLeft style properties to negative values, part 2', function (modal) {
         sinon.stub(InkElement, 'elementHeight').returns(200);
         sinon.stub(InkElement, 'elementWidth').returns(100);

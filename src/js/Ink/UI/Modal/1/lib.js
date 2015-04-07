@@ -19,6 +19,34 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
         return div.style.display !== '';
     }(InkElement.create('div', { style: 'display: flex' })));
 
+    var cleanDimension = function (dim) {
+        dim = dim.trim();
+        var hasPercent = dim.indexOf('%') !== -1;
+        var hasPx = dim.indexOf('px') !== -1;
+        return !hasPercent && !hasPx ? dim + '%' :
+            !hasPercent && hasPx ? dim :
+            !hasPx && hasPercent ? dim :
+            dim + 'px';
+    };
+
+    var dimensionOfLayout = (function (dimensionList, needleLayout) {
+        var dims = dimensionList.split(/\s+/g);
+        var theDefault;
+        for (var i = 0; i < dims.length; i++) {
+            var _dim = dims[i].split('-');
+            var layout = _dim[0].trim();
+
+            if (layout === needleLayout) {
+                return cleanDimension(_dim[1]);
+            }
+
+            if (layout === 'all') {
+                theDefault = cleanDimension(_dim[1]);
+            }
+        }
+        return theDefault;
+    });
+
     /**
      * @class Ink.UI.Modal
      * @constructor
@@ -63,8 +91,8 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
         /**
          * Width, height and markup really optional, as they can be obtained by the element
          */
-        width:        ['String', undefined],
-        height:       ['String', undefined],
+        width:        ['String', '90%'],
+        height:       ['String', '90%'],
 
         /**
          * To add extra classes
@@ -98,6 +126,10 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                 resize: null
             };
 
+            this._dimensionIsVariant = {
+                width: ('' + this._options.width).indexOf(' ') !== -1,
+                height: ('' + this._options.height).indexOf(' ') !== -1,
+            };
 
             this._isOpen = false;
 
@@ -157,10 +189,46 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
         },
 
         _dimensionIsPercentage: function () {
+            var dims = this._getDimensions();
             return {
-                width: ('' + this._options.width).indexOf('%') !== -1,
-                height: ('' + this._options.height).indexOf('%') !== -1
+                width: ('' + dims.width).indexOf('%') !== -1,
+                height: ('' + dims.height).indexOf('%') !== -1
             };
+        },
+
+        _getDimensions: function (opt) {
+            opt = opt || {}
+            var dims = {
+                width: this._options.width,
+                height: this._options.height
+            };
+            var currentLayout;
+            if (this._dimensionIsVariant.width || this._dimensionIsVariant.height) {
+                currentLayout = Common.currentLayout();
+            }
+            if (this._dimensionIsVariant.width) {
+                dims.width = dimensionOfLayout(dims.width, currentLayout);
+            }
+            if (this._dimensionIsVariant.height) {
+                dims.height = dimensionOfLayout(dims.height, currentLayout);
+            }
+            if (opt.dynamic) {
+                var isPercentage = this._dimensionIsPercentage();
+                if (!isPercentage.width) {
+                    // TODO maxWidth and maxHeight should be options, not bound to 90%
+                    var maxWidth = InkElement.viewportWidth() * 0.9;
+                    if (parseFloat(dims.width) >= maxWidth) {
+                        dims.width = maxWidth + 'px';
+                    }
+                }
+                if (!isPercentage.height) {
+                    var maxHeight = InkElement.viewportHeight() * 0.9;
+                    if (parseFloat(dims.height) >= maxHeight) {
+                        dims.height = maxHeight + 'px';
+                    }
+                }
+            }
+            return dims;
         },
 
         /**
@@ -174,11 +242,12 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             var largerThan90Percent;
 
             var dimensionIsPercentage = this._dimensionIsPercentage();
+            var dims = this._getDimensions();
 
             if (vhVwSupported && dimensionIsPercentage.height) {
-                this._modalDiv.style.marginTop = (-parseFloat(this._options.height)/2) + 'vh';
+                this._modalDiv.style.marginTop = (-parseFloat(dims.height)/2) + 'vh';
             } else if (vhVwSupported) {
-                largerThan90Percent = parseFloat(this._options.height) > InkElement.viewportHeight() * 0.9;
+                largerThan90Percent = parseFloat(dims.height) > InkElement.viewportHeight() * 0.9;
 
                 if (largerThan90Percent !== this._heightWasLargerThan90Percent || !largerThan90Percent) {
                     this._heightWasLargerThan90Percent = largerThan90Percent;
@@ -187,7 +256,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                         this._modalDiv.style.marginTop = '0';
                         this._modalDiv.style.top = '5vh';
                     } else {
-                        this._modalDiv.style.marginTop = (-parseFloat(this._options.height)/2) + 'px';
+                        this._modalDiv.style.marginTop = (-parseFloat(dims.height)/2) + 'px';
                         this._modalDiv.style.top = '';
                     }
                 }
@@ -197,9 +266,9 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
 
             // reposition horizontally
             if (vhVwSupported && dimensionIsPercentage.width) {
-                this._modalDiv.style.marginLeft = (-parseFloat(this._options.width)/2) + 'vw';
+                this._modalDiv.style.marginLeft = (-parseFloat(dims.width)/2) + 'vw';
             } else if (vhVwSupported) {
-                largerThan90Percent = parseFloat(this._options.width) > InkElement.viewportWidth() * 0.9;
+                largerThan90Percent = parseFloat(dims.width) > InkElement.viewportWidth() * 0.9;
 
                 if (largerThan90Percent !== this._widthWasLargerThan90Percent || !largerThan90Percent) {
                     this._widthWasLargerThan90Percent = largerThan90Percent;
@@ -208,7 +277,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                         this._modalDiv.style.marginLeft = '0';
                         this._modalDiv.style.left = '5vw';
                     } else {
-                        this._modalDiv.style.marginLeft = (-parseFloat(this._options.width)/2) + 'px';
+                        this._modalDiv.style.marginLeft = (-parseFloat(dims.width)/2) + 'px';
                         this._modalDiv.style.left = '';
                     }
                 }
@@ -224,13 +293,15 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
          * @private
          */
         _onResize: function( ){
+            var dimensionIsPercentage = this._dimensionIsPercentage();
+            var dimensionsArePercentage = !dimensionIsPercentage.height || !dimensionIsPercentage.width;
+
+
             if (!vhVwSupported) {
                 this._avoidModalLargerThanScreen();
             }
 
-            var dimensionIsPercentage = this._dimensionIsPercentage();
-
-            if (!vhVwSupported || (!dimensionIsPercentage.height || !dimensionIsPercentage.width)) {
+            if (!vhVwSupported || dimensionsArePercentage) {
                 this._reposition();
             }
 
@@ -326,15 +397,19 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                     width: InkElement.viewportWidth()
                 };
 
+                var dims = this._getDimensions();
+
                 InkArray.forEach(['height', 'width'], Ink.bind(function (dimension) {
                     // Not used for percentage measurements
                     if (dimensionIsPercentage[dimension]) { return; }
 
-                    if (parseFloat(this._options[dimension]) > currentViewport[dimension] * 0.9) {
-                        this._modalDiv.style[dimension] = Math.round(currentViewport[dimension] * 0.9) + 'px';
+                    var dim = Math.round(currentViewport[dimension] * 0.9)
+
+                    if (parseFloat(dims[dimension]) > dim) {
+                        this._modalDiv.style[dimension] = dim + 'px';
                     } else {
-                        if (isNaN(parseFloat(this._options[dimension]))) { return; }
-                        this._modalDiv.style[dimension] = parseFloat(this._options[dimension]) + 'px';
+                        if (isNaN(parseFloat(dims[dimension]))) { return; }
+                        this._modalDiv.style[dimension] = parseFloat(dims[dimension]) + 'px';
                     }
                 }, this));
             } else {
@@ -436,6 +511,8 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             //  * (because pixel-size-based iframes become larger than the viewport at some point).
             //  **/
             if( this._options.responsive ) {
+                var isPercentage = this._dimensionIsPercentage();
+
                 var needResizeHandler = !(
                     vhVwSupported &&
                     flexSupported &&
