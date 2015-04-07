@@ -20,7 +20,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
     }(InkElement.create('div', { style: 'display: flex' })));
 
     var cleanDimension = function (dim) {
-        dim = dim.trim();
+        dim = dim.replace(/^\s+|\s+$/g, '');
         var hasPercent = dim.indexOf('%') !== -1;
         var hasPx = dim.indexOf('px') !== -1;
         return !hasPercent && !hasPx ? dim + '%' :
@@ -29,12 +29,12 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             dim + 'px';
     };
 
-    var dimensionOfLayout = (function (dimensionList, needleLayout) {
+    var dimensionOfLayout = function (dimensionList, needleLayout) {
         var dims = dimensionList.split(/\s+/g);
         var theDefault;
         for (var i = 0; i < dims.length; i++) {
             var _dim = dims[i].split('-');
-            var layout = _dim[0].trim();
+            var layout = _dim[0].replace(/^\s+|\s+$/g, '');
 
             if (layout === needleLayout) {
                 return cleanDimension(_dim[1]);
@@ -45,7 +45,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             }
         }
         return theDefault;
-    });
+    };
 
     /**
      * @class Ink.UI.Modal
@@ -128,7 +128,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
 
             this._dimensionIsVariant = {
                 width: ('' + this._options.width).indexOf(' ') !== -1,
-                height: ('' + this._options.height).indexOf(' ') !== -1,
+                height: ('' + this._options.height).indexOf(' ') !== -1
             };
 
             this._isOpen = false;
@@ -197,7 +197,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
         },
 
         _getDimensions: function (opt) {
-            opt = opt || {}
+            opt = opt || {};
             var dims = {
                 width: this._options.width,
                 height: this._options.height
@@ -403,7 +403,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                     // Not used for percentage measurements
                     if (dimensionIsPercentage[dimension]) { return; }
 
-                    var dim = Math.round(currentViewport[dimension] * 0.9)
+                    var dim = Math.round(currentViewport[dimension] * 0.9);
 
                     if (parseFloat(dims[dimension]) > dim) {
                         this._modalDiv.style[dimension] = dim + 'px';
