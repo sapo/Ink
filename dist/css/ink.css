@@ -8,7 +8,7 @@
  * @author    Sapo Ink Team
  * @license   http://opensource.org/licenses/MIT MIT
  * @link      http://ink.sapo.pt
- * @version   3.1.6
+ * @version   3.1.7
  */
 /**
  * Ink class names prefix
@@ -5626,13 +5626,13 @@ th {
   background: #f2f2f2;
   text-decoration: none;
 }
-.ink-dropdown ul.dropdown-menu li.submenu:hover:hover > ul.dropdown-menu, .ink-dropdown ul.dropdown-menu li.submenu:hover:hover > ul.dropdown,
-.ink-dropdown ul.dropdown li.submenu:hover:hover > ul.dropdown-menu,
-.ink-dropdown ul.dropdown li.submenu:hover:hover > ul.dropdown,
-.ink-navigation ul.dropdown-menu li.submenu:hover:hover > ul.dropdown-menu,
-.ink-navigation ul.dropdown-menu li.submenu:hover:hover > ul.dropdown,
-.ink-navigation ul.dropdown li.submenu:hover:hover > ul.dropdown-menu,
-.ink-navigation ul.dropdown li.submenu:hover:hover > ul.dropdown {
+.ink-dropdown ul.dropdown-menu li.submenu:hover > ul.dropdown-menu, .ink-dropdown ul.dropdown-menu li.submenu:hover > ul.dropdown,
+.ink-dropdown ul.dropdown li.submenu:hover > ul.dropdown-menu,
+.ink-dropdown ul.dropdown li.submenu:hover > ul.dropdown,
+.ink-navigation ul.dropdown-menu li.submenu:hover > ul.dropdown-menu,
+.ink-navigation ul.dropdown-menu li.submenu:hover > ul.dropdown,
+.ink-navigation ul.dropdown li.submenu:hover > ul.dropdown-menu,
+.ink-navigation ul.dropdown li.submenu:hover > ul.dropdown {
   display: block;
 }
 .ink-dropdown ul.dropdown-menu li.submenu > ul.dropdown-menu, .ink-dropdown ul.dropdown-menu li.submenu > ul.dropdown,
@@ -6005,7 +6005,7 @@ body {
 }
 
 .condensed-300, .condensed-thin {
-  font-weight: 200;
+  font-weight: 300;
   font-family: Roboto_condensed, Arial, Helvetica, sans-serif;
 }
 
