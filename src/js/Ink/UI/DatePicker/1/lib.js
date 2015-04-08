@@ -412,7 +412,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             var opener = this._picker || this._element;
 
             Event.observe(opener, 'click', Ink.bindEvent(function(e){
-                Event.stop(e);
+                Event.stopDefault(e);
                 this.show();
             },this));
 
@@ -534,12 +534,12 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
         _listenToContainerObjectEvents: function () {
             Event.observe(this._containerObject, 'mouseover' ,Ink.bindEvent(function(e){
-                Event.stop( e );
+                Event.stopDefault( e );
                 this._hoverPicker = true;
             },this));
 
             Event.observe(this._containerObject, 'mouseout', Ink.bindEvent(function(e){
-                Event.stop( e );
+                Event.stopDefault( e );
                 this._hoverPicker = false;
             },this));
 
@@ -554,7 +554,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 return null;
             }
 
-            Event.stop(e);
+            Event.stopDefault(e);
 
             // Relative changers
             this._onRelativeChangerClick(elem);
