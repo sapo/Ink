@@ -87,7 +87,7 @@ Ink.requireModules(['Ink.UI.Carousel_1', 'Ink.UI.Pagination_1', 'Ink.Dom.Element
         equal(carousel._setPage.lastCall.args[0], 2);
     }));
 
-    if ('ontouchstart' in document) {
+    if ('ontouchstart' in document && !/PhantomJS/.test(navigator.userAgent)) {
         module('Touch');
 
         testCarousel('You can swipe the carousel sideways to trigger a page change', function (carousel, _, stage) {
