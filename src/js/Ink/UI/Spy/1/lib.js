@@ -106,7 +106,7 @@ Ink.createModule('Ink.UI.Spy', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Do
      * Spy is an UI component which tells the user which section is currently visible.
      * Spy can be used to highlight a menu item for the section which is visible to the user.
      * You need two things: A menu element (which contains your links inside `li` tags), and an element containing your section's content.
-	 * The links must be inside `li` tags. These will get the 'active' class, to signal which item is currently visible. In your CSS you need to add styling for this class.
+     * The links must be inside `li` tags. These will get the 'active' class, to signal which item is currently visible. In your CSS you need to add styling for this class.
      * To use Ink.UI.Spy for more than one section, loop through your sections (as you see in the sample below), or just load `autoload.js` and set add the `data-spy="true"` attribute to your sections.
      * The currently visible element's corresponding link in the menu gets the 'visible' class added to it.
      *
