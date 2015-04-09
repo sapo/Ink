@@ -571,7 +571,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
             if (this._options.error) {
                 err = this._options.error;
             } else {
-                err = validationMessages.text(i18nKey, paramObj);
+                err = this._options.form.getI18n().text(i18nKey, paramObj);
 
                 if (err === i18nKey) {
                     err = '[Validation message not found for rule ]' + rule;
@@ -677,6 +677,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
      * @constructor
      * @param {String|Element}      selector                        Either a CSS Selector string, or the form's Element
      * @param {Object}              [options]                       Options object, containing the following options:
+     * @param {String}              [options.lang]                  Set the language of the error messages. This internally sets the lang of our Ink.Util.I18n instance. pt_PT and en_US are available, but using getI18n().append({ lang_CODE: {...} }) you can create your own language.
      * @param {String}              [options.eventTrigger]          Event that will trigger the validation. Defaults to 'submit'.
      * @param {Boolean}             [options.neverSubmit]           Flag to cancel the submit event. Use this to avoid submitting the form.
      * @param {Selector}            [options.searchFor]             Selector containing the validation data-attributes. Defaults to 'input, select, textarea, .control-group'.
@@ -693,6 +694,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
     FormValidator._name = 'FormValidator_1';
 
     FormValidator._optionDefinition = {
+        lang: ['String', 'en_US'],
         eventTrigger: ['String', 'submit'],
         neverSubmit: ['Boolean', false],
         searchFor: ['String', 'input, select, textarea, .control-group'],
@@ -828,6 +830,9 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
                     Ink.bindEvent(this.validate,this) );
             }
 
+            if (this._options.lang) {
+                this.setLanguage(this._options.lang);
+            }
         },
 
         /**
