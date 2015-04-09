@@ -406,6 +406,13 @@ module.exports = function (grunt) {
     grunt.registerTask('dist', ['css', 'js', 'compress']);
     grunt.registerTask('dependencies', ['bower', 'copy:fontAwesome', 'copy:compass']);
     grunt.registerTask('default', ['dependencies','css','js']);
+    grunt.registerTask('lintdoc', function (module) {
+        require('eslint/lib/cli').execute([
+            'x',
+            'x',
+            path.join(__dirname, 'src/js/Ink')
+        ]);
+    });
     grunt.registerTask('_phantomjs', function (module) {
         this.requires('connect:test');
 
