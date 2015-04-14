@@ -996,45 +996,52 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
                 if( typeof this._options.onError === 'function' ){
                     this._options.onError( errorElements );
                 }
-                this._errorMessages = [];
-                this._markedErrorElements = [];
 
-                InkArray.each( errorElements, Ink.bind(function( formElement ){
-                    var controlGroupElement;
-                    var controlElement;
-                    if( Css.hasClassName(formElement.getElement(),'control-group') ){
-                        controlGroupElement = formElement.getElement();
-                        controlElement = Ink.s('.control',formElement.getElement());
-                    } else {
-                        controlGroupElement = Element.findUpwardsByClass(formElement.getElement(),'control-group');
-                        controlElement = Element.findUpwardsByClass(formElement.getElement(),'control');
-                    }
+                this._invalid(errorElements);
 
-                    if(controlGroupElement) {
-                        Css.addClassName( controlGroupElement, ['validation', 'error'] );
-                        this._markedErrorElements.push(controlGroupElement);
-                    }
-
-                    var paragraph = document.createElement('p');
-                    Css.addClassName(paragraph, 'tip');
-                    if (controlElement || controlGroupElement) {
-                        (controlElement || controlGroupElement).appendChild(paragraph);
-                    } else {
-                        Element.insertAfter(paragraph, formElement.getElement());
-                    }
-
-                    var errors = formElement.getErrors();
-                    var errorArr = [];
-                    for (var k in errors) {
-                        if (errors.hasOwnProperty(k)) {
-                            errorArr.push(errors[k]);
-                        }
-                    }
-                    paragraph.innerHTML = errorArr.join('<br/>');
-                    this._errorMessages.push(paragraph);
-                }, this));
                 return false;
             }
+        },
+
+        _invalid: function (errorElements) {
+            errorElements = errorElements || [];
+            this._errorMessages = [];
+            this._markedErrorElements = [];
+
+            InkArray.each( errorElements, Ink.bind(function( formElement ){
+                var controlGroupElement;
+                var controlElement;
+                if( Css.hasClassName(formElement.getElement(),'control-group') ){
+                    controlGroupElement = formElement.getElement();
+                    controlElement = Ink.s('.control',formElement.getElement());
+                } else {
+                    controlGroupElement = Element.findUpwardsByClass(formElement.getElement(),'control-group');
+                    controlElement = Element.findUpwardsByClass(formElement.getElement(),'control');
+                }
+
+                if(controlGroupElement) {
+                    Css.addClassName( controlGroupElement, ['validation', 'error'] );
+                    this._markedErrorElements.push(controlGroupElement);
+                }
+
+                var paragraph = document.createElement('p');
+                Css.addClassName(paragraph, 'tip');
+                if (controlElement || controlGroupElement) {
+                    (controlElement || controlGroupElement).appendChild(paragraph);
+                } else {
+                    Element.insertAfter(paragraph, formElement.getElement());
+                }
+
+                var errors = formElement.getErrors();
+                var errorArr = [];
+                for (var k in errors) {
+                    if (errors.hasOwnProperty(k)) {
+                        errorArr.push(errors[k]);
+                    }
+                }
+                paragraph.innerHTML = errorArr.join('<br/>');
+                this._errorMessages.push(paragraph);
+            }, this));
         }
     };
 

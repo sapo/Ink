@@ -239,4 +239,17 @@ Ink.requireModules(['Ink.UI.FormValidator_2', 'Ink.Dom.Element_1', 'Ink.Dom.Sele
 
         myForm.parentNode.removeChild(myForm);
     }));
+
+    test('When a form is invalid, _invalid is called with an array of errored elements', sinon.test(function () {
+        var oldStuff = makeForm();
+        var validator = oldStuff.validator;
+
+        Ink.s('input', oldStuff.form).setAttribute('data-rules', 'required')
+
+        var invalid = this.spy(validator, '_invalid');
+
+        validator.validate();
+
+        equal(invalid.callCount, 1, '_invalid() was called once, because form was invalid')
+    }));
 });
