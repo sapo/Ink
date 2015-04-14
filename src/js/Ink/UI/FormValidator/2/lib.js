@@ -967,6 +967,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
             InkArray.each( this._markedErrorElements, function (errorElement) {
                 Css.removeClassName(errorElement,  ['validation', 'error']);
             });
+            Css.removeClassName(this._element, 'form-error');
             InkArray.each( this._errorMessages, Element.remove);
 
             this.getElements();
@@ -1007,6 +1008,8 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
             errorElements = errorElements || [];
             this._errorMessages = [];
             this._markedErrorElements = [];
+
+            Css.addClassName(this._element, 'form-error');
 
             InkArray.each( errorElements, Ink.bind(function( formElement ){
                 var controlGroupElement;

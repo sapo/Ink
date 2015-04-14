@@ -1,5 +1,5 @@
 /*globals equal,test*/
-Ink.requireModules(['Ink.UI.FormValidator_2', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1', 'Ink.Util.Array_1', 'Ink.Dom.Event_1'], function (FormValidator, InkElement, Selector, InkArray, InkEvent) {
+Ink.requireModules(['Ink.UI.FormValidator_2', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1', 'Ink.Util.Array_1', 'Ink.Dom.Event_1', 'Ink.Dom.Css_1'], function (FormValidator, InkElement, Selector, InkArray, InkEvent, Css) {
     'use strict';
 
     function makeForm(options) {
@@ -252,4 +252,12 @@ Ink.requireModules(['Ink.UI.FormValidator_2', 'Ink.Dom.Element_1', 'Ink.Dom.Sele
 
         equal(invalid.callCount, 1, '_invalid() was called once, because form was invalid')
     }));
+
+    test('_invalid puts a "form-error" class in the form', function () {
+        var bag = makeForm()
+
+        bag.validator._invalid();
+
+        ok(Css.hasClassName(bag.form, 'form-error'), 'form-error class added');
+    })
 });
