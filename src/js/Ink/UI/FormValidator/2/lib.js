@@ -384,6 +384,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
      */
     var validationMessages = new I18n({
         en_US: {
+            'formvalidator.generic_error' : '{field} is invalid',
             'formvalidator.required' : 'Filling {field} is mandatory',
             'formvalidator.min_length': 'The {field} must have a minimum size of {param1} characters',
             'formvalidator.max_length': 'The {field} must have a maximum size of {param1} characters',
@@ -408,6 +409,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
             'formvalidator.matches': 'The {field} should match the field {param1}'
         },
         pt_PT: {
+            'formvalidator.generic_error' : '{field} inválido',
             'formvalidator.required' : 'Preencher {field} é obrigatório',
             'formvalidator.min_length': '{field} deve ter no mínimo {param1} caracteres',
             'formvalidator.max_length': '{field} tem um tamanho máximo de {param1} caracteres',
@@ -474,6 +476,8 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
             this._errors = {};
             this._rules = {};
             this._value = null;
+            this._forceInvalid = null;
+            this._forceValid = null;
 
             if (this._options.label === null) {
                 this._options.label = this._getLabel();
@@ -548,37 +552,45 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
          * Then it replaces some tokens in the message for a more 'custom' reading
          *
          * @method _addError
-         * @param  {String|null} rule    Rule that failed, or null if no rule was found.
+         * @param  {Object} opt Options object, containing either `rule` or `message`, below:
+         * @param  {String} [rule] The rule that called for this error. Used to find a message.
+         * @param  {String} [messag] The raw error message.
          * @private
          * @static
          */
-        _addError: function(rule){
-            var params = this._rules[rule] || [];
+        _addError: function(opt){
+            if (typeof opt === 'string') { opt = { rule: opt }; }
+            var rule = opt.rule;
+            var message = opt.message;
 
-            var paramObj = {
-                field: this._options.label,
-                value: this.getValue()
-            };
+            if (!message && !rule) { throw new Error('FormElement#_addError: Please pass an error message, or a rule that was broken'); }
 
-            for( var i = 1; i < params.length; i++ ){
-                paramObj['param' + i] = params[i];
-            }
+            if (!message) {
+                var params = this._rules[rule] || [];
 
-            var i18nKey = 'formvalidator.' + rule;
+                var paramObj = {
+                    field: this._options.label,
+                    value: this.getValue()
+                };
 
-            var err;
+                for( var i = 1; i < params.length; i++ ){
+                    paramObj['param' + i] = params[i];
+                }
 
-            if (this._options.error) {
-                err = this._options.error;
-            } else {
-                err = this._options.form.getI18n().text(i18nKey, paramObj);
+                var i18nKey = 'formvalidator.' + rule;
 
-                if (err === i18nKey) {
-                    err = '[Validation message not found for rule ]' + rule;
+                if (this._options.error) {
+                    message = this._options.error;
+                } else {
+                    message = this._options.form.getI18n().text(i18nKey, paramObj);
+
+                    if (message === i18nKey) {
+                        message = '[Validation message not found for rule ]' + rule;
+                    }
                 }
             }
 
-            this._errors[rule] = err;
+            this._errors[rule] = message;
         },
 
         /**
@@ -590,6 +602,16 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
          */
         getValue: function(){
             return getValue(this._element);
+        },
+
+        /**
+         * Gets this FormElement's display label, as passed to the error messages.
+         *
+         * @method getLabel
+         * @return {String} The label string, from the name, id or data-label
+         **/
+        getLabel: function () {
+            return this._options.label;
         },
 
         /**
@@ -626,6 +648,63 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         },
 
         /**
+         * Sets the rules string (just as passed in data-rules) of this FormElement.
+         *
+         * Use this if a form's rules need to be dynamically modified.
+         *
+         * @method setRules
+         * @param {String} rulesStr String with rules
+         * @return {void}
+         * @public
+         **/
+        setRules: function (rulesStr) {
+            this._options.rules = rulesStr;
+        },
+
+        /**
+         * Forcefully mark this FormElement as invalid. Use unsetInvalid() to remove this forced invalidation.
+         *
+         * @method forceInvalid
+         * @param {String} [message='(a generic error string)'] The error message to show.
+         **/
+        forceInvalid: function (message) {
+            this._forceInvalid = message ?
+                message :
+                this._options.form.getI18n().text('formvalidator.generic_error', { field: this.getLabel() });
+        },
+
+        /**
+         * Undo a forceInvalid() call on this FormElement.
+         *
+         * @method unforceInvalid
+         * @return {void}
+         **/
+        unforceInvalid: function () {
+            this._forceInvalid = null;
+        },
+
+        /**
+         * Forcefully mark this FormElement as valid
+         *
+         * @method forceValid
+         * @return {void}
+         *
+         **/
+        forceValid: function() {
+            this._forceValid = true;
+        },
+
+        /**
+         * Undo a forceValid() call
+         *
+         * @method unforceValid
+         * @return {void}
+         **/
+        unforceValid: function() {
+            this._forceValid = false;
+        },
+
+        /**
          * Validates the element based on the rules defined.
          * It parses the rules defined in the _options.rules property.
          *
@@ -634,6 +713,18 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
          * @public
          */
         validate: function(){
+            if (this._forceValid) {
+                /* The user says it's valid */
+                this._errors = {};
+                return true;
+            }
+
+            if (this._forceInvalid) {
+                /* The user says it's invalid */
+                this._addError({ message: this._forceInvalid });
+                return false;
+            }
+
             this._errors = {};
 
             this._parseRules( this._options.rules );
@@ -651,13 +742,15 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
                     if (this._rules.hasOwnProperty(rule)) {
                         if( (typeof validationFunctions[rule] === 'function') ){
                             if( validationFunctions[rule].apply(this, this._rules[rule] ) === false ){
-                                this._addError( rule );
+                                this._addError({ rule: rule });
                                 return false;
                             }
 
                         } else {
                             Ink.warn('Rule "' + rule + '" not found. Used in element:', this._element);
-                            this._addError( null );
+                            this._addError({
+                                message: this._options.form.getI18n().text('formvalidator.generic_error', { field: this.getLabel() })
+                            });
                             return false;
                         }
                     }
@@ -681,7 +774,8 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
      * @param {String}              [options.eventTrigger]          Event that will trigger the validation. Defaults to 'submit'.
      * @param {Boolean}             [options.neverSubmit]           Flag to cancel the submit event. Use this to avoid submitting the form.
      * @param {Selector}            [options.searchFor]             Selector containing the validation data-attributes. Defaults to 'input, select, textarea, .control-group'.
-     * @param {Function}            [options.beforeValidation]      Callback to be executed before validating the form
+     * @param {Function}            [options.beforeValidation]      Callback to be executed before validating the form. Takes { validator (this FormValidator), elements (Object containing arrays of FormElement) } as an argument. Use this callback to preemptively mark fields as invalid or valid using forceInvalid or forceValid.
+     * @param {Function}            [options.extraValidation]       Use this callback to perform extra validation on the form. Useful for cross-validation of several fields, for example. Takes { validator (this FormValidator), elements (Object containing arrays of FormElement), errorCount (errors the form had before calling the function) } as an argument, and is called at the end of validate(). Return false to force the form to be invalid. You are responsible for showing any visual feedback to the user for now. This might change later.
      * @param {Function}            [options.onError]               Validation error callback
      * @param {Function}            [options.onSuccess]             Validation success callback
      *
@@ -700,7 +794,8 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         searchFor: ['String', 'input, select, textarea, .control-group'],
         beforeValidation: ['Function', undefined],
         onError: ['Function', undefined],
-        onSuccess: ['Function', undefined]
+        onSuccess: ['Function', undefined],
+        extraValidation: ['Function', undefined]
     };
 
     /**
@@ -839,6 +934,8 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
          * Searches for the elements in the form.
          * This method is based in the this._options.searchFor configuration.
          *
+         * Returns an object mapping names of object to arrays of FormElement instances.
+         *
          * @method getElements
          * @return {Object} An object with the elements in the form, indexed by name/id
          * @public
@@ -960,8 +1057,13 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
                 Event.stopDefault(event);
             }
 
+            this.getElements();
+
             if( typeof this._options.beforeValidation === 'function' ){
-                this._options.beforeValidation();
+                this._options.beforeValidation.call(this, {
+                    validator: this,
+                    elements: this._formElements
+                });
             }
 
             InkArray.each( this._markedErrorElements, function (errorElement) {
@@ -970,7 +1072,6 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
             Css.removeClassName(this._element, 'form-error');
             InkArray.each( this._errorMessages, Element.remove);
 
-            this.getElements();
             var errorElements = [];
 
             for( var key in this._formElements ){
@@ -982,13 +1083,23 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
                     }
                 }
             }
+
+            var isValid = errorElements.length === 0;
+
+            if (typeof this._options.extraValidation === 'function') {
+                var param = {
+                    validator: this,
+                    elements: this._formElements,
+                    errorCount: errorElements.length
+                };
+                var result = this._options.extraValidation.call(this, param);
+                if (result === false) { isValid = false; }
+            }
             
-            if( errorElements.length === 0 ){
+            if( isValid ){
                 if( typeof this._options.onSuccess === 'function' ){
                     this._options.onSuccess();
                 }
-
-                return true;
             } else {
                 if(event) {
                     Event.stopDefault(event);
@@ -999,9 +1110,9 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
                 }
 
                 this._invalid(errorElements);
-
-                return false;
             }
+
+            return isValid;
         },
 
         _invalid: function (errorElements) {

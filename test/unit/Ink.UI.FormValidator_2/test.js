@@ -29,7 +29,7 @@ Ink.requireModules(['Ink.UI.FormValidator_2', 'Ink.Dom.Element_1', 'Ink.Dom.Sele
         }));
 
         if (options.makeValidator) {
-            var validator = new FormValidator(form)
+            var validator = new FormValidator(form, options)
         }
         
         return {
@@ -260,4 +260,61 @@ Ink.requireModules(['Ink.UI.FormValidator_2', 'Ink.Dom.Element_1', 'Ink.Dom.Sele
 
         ok(Css.hasClassName(bag.form, 'form-error'), 'form-error class added');
     })
+
+    test('extraValidation', function() {
+        var extraValidation = sinon.stub();
+
+        var bag = makeForm({
+            extraValidation: extraValidation
+        });
+
+        extraValidation.returns(true);
+        var ret = bag.validator.validate();
+
+        equal(ret, true, 'sanity check: form was valid');
+
+        ok(extraValidation.calledOnce);
+        strictEqual(extraValidation.lastCall.thisValue, bag.validator);
+        deepEqual(extraValidation.lastCall.args, [{
+            validator: bag.validator,
+            elements: bag.validator.getElements(),
+            errorCount: 0,
+        }]);
+
+        extraValidation.returns(false);
+        var ret = bag.validator.validate();
+        equal(ret, false, 'extraValidation can make a valid form invalid');
+    })
+
+    test('setRules', function () {
+        var bag = makeForm();
+
+        var elm = bag.validator.getElements()['element_26'][0];
+        elm.setRules('foo|bar|baz');
+        equal(elm._options.rules, 'foo|bar|baz');
+    })
+
+    test('forceInvalid(), unforceInvalid()', function () {
+        var bag = makeForm()
+
+        var elm = bag.validator.getElements()['element_26'][0]
+        ok(bag.validator.validate(), 'sanity check, form is initially valid')
+        elm.forceInvalid('MESSAGE');
+        ok(!bag.validator.validate(), 'Not valid any more, because we invalidated an element')
+        elm.unforceInvalid();
+        ok(bag.validator.validate(), 'Not valid any more, because we invalidated an element')
+    })
+
+    test('forceValid(), unforceValid()', function () {
+        var bag = makeForm()
+
+        var elm = bag.validator.getElements()['element_26'][0]
+        elm.forceInvalid();
+        ok(!bag.validator.validate(), 'sanity check, form is initially invalid')
+        elm.forceValid();
+        ok(bag.validator.validate(), 'Now we\'re valid')
+        elm.unforceValid();
+        ok(!bag.validator.validate(), 'Not valid any more, because we called unforceValid')
+    })
 });
+
