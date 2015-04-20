@@ -5,7 +5,6 @@ table.#{$table-class-name} {
     tr {
         th, td {
             border-bottom: $table-cell-borderColor 1px solid; 
-            background:none
         }
 
         &:last-child {
