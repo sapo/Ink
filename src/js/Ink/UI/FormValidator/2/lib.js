@@ -478,6 +478,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
             this._value = null;
             this._forceInvalid = null;
             this._forceValid = null;
+            this._errorParagraph = null;
 
             if (this._options.label === null) {
                 this._options.label = this._getLabel();
@@ -678,6 +679,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
          *
          * @method unforceInvalid
          * @return {void}
+         * @public
          **/
         unforceInvalid: function () {
             this._forceInvalid = null;
@@ -688,6 +690,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
          *
          * @method forceValid
          * @return {void}
+         * @public
          *
          **/
         forceValid: function() {
@@ -699,9 +702,97 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
          *
          * @method unforceValid
          * @return {void}
+         * @public
          **/
         unforceValid: function() {
             this._forceValid = false;
+        },
+
+        /**
+         * Returns the element which gets the .validation.error classes. Might not exist.
+         *
+         * @method getControlGroup
+         * @return {Element|void}
+         * @public
+         **/
+        getControlGroup: function () {
+            if( Css.hasClassName(this._element, 'control-group') ){
+                return this._element;
+            } else {
+                return Element.findUpwardsByClass(this._element, 'control-group');
+            }
+        },
+
+        /**
+         * Returns the .control element. Might not exist
+         *
+         * @method getControl
+         * @return {Element|void}
+         * @public
+         **/
+        getControl: function () {
+            if( Css.hasClassName(this._element, 'control-group') ){
+                return Ink.s('.control', this._element) || undefined;
+            } else {
+                return Element.findUpwardsByClass(this._element, 'control');
+            }
+        },
+
+        /**
+         * Remove error marking and any error paragraphs
+         *
+         * @method removeErrors
+         * @return {void}
+         * @public
+         **/
+        removeErrors: function() {
+            var controlGroup = this.getControlGroup();
+            if (controlGroup) {
+                Css.removeClassName(controlGroup, ['validation', 'error']);
+            }
+            if (this._errorParagraph) {
+                Element.remove(this._errorParagraph);
+            }
+        },
+
+        /**
+         * Displays error messages and marks as invalid, if this is invalid.
+         *
+         * @method displayErrors
+         * @return {void}
+         * @public
+         **/
+        displayErrors: function() {
+            this.validate();
+            this.removeErrors();
+
+            var errors = this.getErrors();
+            var errorArr = [];
+            for (var k in errors) {
+                if (errors.hasOwnProperty(k)) {
+                    errorArr.push(errors[k]);
+                }
+            }
+
+            if (!errorArr.length) { return; }
+
+            var controlGroupElement = this.getControlGroup();
+            var controlElement = this.getControl();
+
+            if(controlGroupElement) {
+                Css.addClassName( controlGroupElement, ['validation', 'error'] );
+            }
+
+            var paragraph = document.createElement('p');
+            Css.addClassName(paragraph, 'tip');
+            if (controlElement || controlGroupElement) {
+                (controlElement || controlGroupElement).appendChild(paragraph);
+            } else {
+                Element.insertAfter(paragraph, this._element);
+            }
+
+            paragraph.innerHTML = errorArr.join('<br/>');
+            this._errorParagraph = paragraph;
         },
 
         /**
@@ -723,6 +814,10 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
                 /* The user says it's invalid */
                 this._addError({ message: this._forceInvalid });
                 return false;
+            }
+
+            if (this._element.disabled) {
+                return true;
             }
 
             this._errors = {};
@@ -910,7 +1005,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
             this._errorMessages = [];
 
             /**
-             * Array of elements marked with validation errors
+             * Array of FormElements marked with validation errors
              *
              * @property _markedErrorElements
              */
@@ -1066,17 +1161,14 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
                 });
             }
 
-            InkArray.each( this._markedErrorElements, function (errorElement) {
-                Css.removeClassName(errorElement,  ['validation', 'error']);
-            });
             Css.removeClassName(this._element, 'form-error');
-            InkArray.each( this._errorMessages, Element.remove);
 
             var errorElements = [];
 
             for( var key in this._formElements ){
                 if( this._formElements.hasOwnProperty(key) ){
                     for( var counter = 0; counter < this._formElements[key].length; counter+=1 ){
+                        this._formElements[key][counter].removeErrors()
                         if( !this._formElements[key][counter].validate() ) {
                             errorElements.push(this._formElements[key][counter]);
                         }
@@ -1118,44 +1210,12 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         _invalid: function (errorElements) {
             errorElements = errorElements || [];
             this._errorMessages = [];
-            this._markedErrorElements = [];
 
             Css.addClassName(this._element, 'form-error');
 
-            InkArray.each( errorElements, Ink.bind(function( formElement ){
-                var controlGroupElement;
-                var controlElement;
-                if( Css.hasClassName(formElement.getElement(),'control-group') ){
-                    controlGroupElement = formElement.getElement();
-                    controlElement = Ink.s('.control',formElement.getElement());
-                } else {
-                    controlGroupElement = Element.findUpwardsByClass(formElement.getElement(),'control-group');
-                    controlElement = Element.findUpwardsByClass(formElement.getElement(),'control');
-                }
-
-                if(controlGroupElement) {
-                    Css.addClassName( controlGroupElement, ['validation', 'error'] );
-                    this._markedErrorElements.push(controlGroupElement);
-                }
-
-                var paragraph = document.createElement('p');
-                Css.addClassName(paragraph, 'tip');
-                if (controlElement || controlGroupElement) {
-                    (controlElement || controlGroupElement).appendChild(paragraph);
-                } else {
-                    Element.insertAfter(paragraph, formElement.getElement());
-                }
-
-                var errors = formElement.getErrors();
-                var errorArr = [];
-                for (var k in errors) {
-                    if (errors.hasOwnProperty(k)) {
-                        errorArr.push(errors[k]);
-                    }
-                }
-                paragraph.innerHTML = errorArr.join('<br/>');
-                this._errorMessages.push(paragraph);
-            }, this));
+            for (var i = 0; i < errorElements.length; i++) {
+                errorElements[i].displayErrors();
+            }
         }
     };
 

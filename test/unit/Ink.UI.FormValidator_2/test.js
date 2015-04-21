@@ -206,6 +206,25 @@ Ink.requireModules(['Ink.UI.FormValidator_2', 'Ink.Dom.Element_1', 'Ink.Dom.Sele
             'Empty password matching field is valid because the password is not required');
     });
 
+    test('[disabled] fields count as valid', function() {
+        var bag = makeForm();
+
+        InkElement.setHTML(bag.control, '');
+
+        var elm = InkElement.create('input', {
+            type: 'text',
+            'data-rules': 'required',
+            value: ''
+        });
+
+        bag.control.appendChild(elm);
+        ok(!bag.validator.validate(), 'sanity check');
+
+        elm.setAttribute('disabled', 'disabled');
+
+        ok(bag.validator.validate(), 'now it should be valid');
+    });
+
     test('Create new FormElements for each control-group in the form', sinon.test(function () {
         var oldStuff = makeForm();
 
