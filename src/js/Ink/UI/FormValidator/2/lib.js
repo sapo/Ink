@@ -1160,6 +1160,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
 
             if( typeof this._options.beforeValidation === 'function' ){
                 this._options.beforeValidation.call(this, {
+                    event: event,
                     validator: this,
                     elements: this._formElements
                 });
@@ -1184,6 +1185,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
 
             if (typeof this._options.extraValidation === 'function') {
                 var param = {
+                    event: event,
                     validator: this,
                     elements: this._formElements,
                     errorCount: errorElements.length
