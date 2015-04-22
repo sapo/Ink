@@ -197,7 +197,8 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         'text': function (value, whitespace, punctuation) {
             return InkValidator.unicode(value, {
                 singleLineWhitespace: whitespace,
-                unicodePunctuation: punctuation});
+                numbers: true,
+                unicodePunctuation: punctuation });
         },
 
         /*
@@ -211,7 +212,10 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
          **/
         'latin': function (value, punctuation, whitespace) {
             if ( typeof value !== 'string') { return false; }
-            return InkValidator.latin1(value, {latin1Punctuation: punctuation, singleLineWhitespace: whitespace});
+            return InkValidator.latin1(value, {
+                latin1Punctuation: punctuation,
+                singleLineWhitespace: whitespace,
+                numbers: true });
         },
 
         /**
