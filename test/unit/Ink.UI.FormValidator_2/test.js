@@ -295,6 +295,7 @@ Ink.requireModules(['Ink.UI.FormValidator_2', 'Ink.Dom.Element_1', 'Ink.Dom.Sele
         ok(extraValidation.calledOnce);
         strictEqual(extraValidation.lastCall.thisValue, bag.validator);
         deepEqual(extraValidation.lastCall.args, [{
+            'event': undefined,
             validator: bag.validator,
             elements: bag.validator.getElements(),
             errorCount: 0,
