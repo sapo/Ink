@@ -5,31 +5,27 @@ table {
         width: 100%;
         border-collapse: collapse;
         border-spacing: 0;
-        
-        tr {
-            th {
-                padding: $table-cell-padding;
-                line-height: $table-row-line-height;
-                &[data-sortable="true"]{
-                
-                    &:hover {
-                        cursor: pointer;
-                        text-decoration: underline;
-                        i {
-                            text-decoration: none;
-                        }
-                    }
 
+        th, td {
+            padding: $table-cell-padding;
+            line-height: $table-row-line-height;
+        }
+
+        th {
+            &[data-sortable="true"]{
+
+                &:hover {
+                    cursor: pointer;
+                    text-decoration: underline;
                     i {
-                        padding-left: .5em;
+                        text-decoration: none;
                     }
-                    
                 }
-            }
 
-            td {
-                padding: $table-cell-padding;
-                line-height: $table-row-line-height;
+                i {
+                    padding-left: .5em;
+                }
+
             }
         }
 
