@@ -314,6 +314,15 @@ Ink.requireModules(['Ink.UI.FormValidator_2', 'Ink.Dom.Element_1', 'Ink.Dom.Sele
         equal(elm._options.rules, 'foo|bar|baz');
     })
 
+    test('setting data-rules should be equivalent to setRules when validate() is called', function () {
+        var bag = makeForm({ autoReparse: true });
+
+        var elm = bag.validator.getElements()['element_26'][0];
+        elm._element.setAttribute('data-rules', 'foo|bar|baz');
+        elm.validate();
+        equal(elm._options.rules, 'foo|bar|baz');
+    })
+
     test('forceInvalid(), unforceInvalid()', function () {
         var bag = makeForm()
 

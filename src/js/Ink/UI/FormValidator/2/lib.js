@@ -457,6 +457,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
      * @param  {String} [options.label] Label for this element. It is used in the error message. If not specified, the text in the `label` tag in the control-group is used.
      * @param  {String} [options.rules] Rules string to be parsed.
      * @param  {String} [options.error] Error message to show in case of error
+     * @param  {Boolean} [options.autoReparse] Set to `true` to reparse data-rules every time this is submitted.
      * @param  {FormValidator} options.form FormValidator instance.
      */
     function FormElement(){
@@ -469,6 +470,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         label: ['String', null],
         rules: ['String', null],  // The rules to apply
         error: ['String', null],  // Error message
+        autoReparse: ['Boolean', false],
         form: ['Object']
     };
 
@@ -826,6 +828,13 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
 
             this._errors = {};
 
+            if (this._options.autoReparse) {
+                var rules = this._element.getAttribute('data-rules');
+                if (rules) {
+                    this._options.rules = rules;
+                }
+            }
+
             this._parseRules( this._options.rules );
 
             // We want to validate this field only if it's not empty
@@ -874,6 +883,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
      * @param {Boolean}             [options.neverSubmit]           Flag to cancel the submit event. Use this to avoid submitting the form.
      * @param {Selector}            [options.searchFor]             Selector containing the validation data-attributes. Defaults to 'input, select, textarea, .control-group'.
      * @param {Function}            [options.beforeValidation]      Callback to be executed before validating the form. Takes { validator (this FormValidator), elements (Object containing arrays of FormElement) } as an argument. Use this callback to preemptively mark fields as invalid or valid using forceInvalid or forceValid.
+     * @param {Boolean}             [options.autoReparse]           Set to `true` to reparse data-rules in input elements every time this is submitted.
      * @param {Function}            [options.extraValidation]       Use this callback to perform extra validation on the form. Useful for cross-validation of several fields, for example. Takes { validator (this FormValidator), elements (Object containing arrays of FormElement), errorCount (errors the form had before calling the function) } as an argument, and is called at the end of validate(). Return false to force the form to be invalid. You are responsible for showing any visual feedback to the user for now. This might change later.
      * @param {Function}            [options.onError]               Validation error callback
      * @param {Function}            [options.onSuccess]             Validation success callback
@@ -890,6 +900,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         lang: ['String', null],
         eventTrigger: ['String', 'submit'],
         neverSubmit: ['Boolean', false],
+        autoReparse: ['Boolean', false],
         searchFor: ['String', 'input, select, textarea, .control-group'],
         beforeValidation: ['Function', undefined],
         onError: ['Function', undefined],
@@ -1087,6 +1098,9 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
                 if (this._formElements[key][j].getElement() === element) {
                     return null;
                 }
+            }
+            if (!element.getAttribute('data-auto-reparse')) {
+                options.autoReparse = this._options.autoReparse;
             }
             return new FormElement(element, options);
         },
