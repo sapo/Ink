@@ -489,6 +489,10 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
             if (this._options.label === null) {
                 this._options.label = this._getLabel();
             }
+
+            // Mostly true, whether the element has an attribute named "data-rules".
+            // Used only if options.autoReparse is true.
+            this._elementHadDataRules = this._element.hasAttribute('data-rules');
         },
 
         /**
@@ -832,6 +836,10 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
                 var rules = this._element.getAttribute('data-rules');
                 if (rules) {
                     this._options.rules = rules;
+                } else if (this._elementHadDataRules && !this._element.hasAttribute('data-rules')) {
+                    // Element had [data-rules], but it was removed.
+                    // Which means it is actually valid.
+                    return true;
                 }
             }
 
