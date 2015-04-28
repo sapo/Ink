@@ -1062,6 +1062,21 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
             if (!this._formElements) {
                 this._formElements = {};
             }
+            for (var k in this._formElements) if (this._formElements.hasOwnProperty(k)) {
+                var i = this._formElements[k].length;
+                while (i--) {
+                    if (!Element.isAncestorOf(document.documentElement,
+                            this._formElements[k][i]._element)) {
+                        // Element was detached from DOM, remove its formElement from our roster.
+                        this._formElements[k][i].removeErrors();
+                        this._formElements[k].splice(i, 1);
+                    }
+                }
+                // Check if formElement was removed.
+                if (this._formElements[k].length == 0) {
+                    delete this._formElements[k]
+                }
+            }
             var formElements = Selector.select( this._options.searchFor, this._rootElement );
 
             for(var i=0; i<formElements.length; i+=1 ){

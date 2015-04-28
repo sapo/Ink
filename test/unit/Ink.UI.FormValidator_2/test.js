@@ -335,6 +335,22 @@ Ink.requireModules(['Ink.UI.FormValidator_2', 'Ink.Dom.Element_1', 'Ink.Dom.Sele
         ok(elm.validate())
     })
 
+    test('removing element removes it from the getElements result thing.', function () {
+        var bag = makeForm()
+
+        bag.form.innerHTML = '<input type="text" name="inpt" data-rules="required" >'
+
+        var elm = bag.validator.getElements()['inpt'][0]
+
+        ok(!bag.validator.validate())
+
+        equal(bag.validator.getElements()['inpt'].length, 1)
+        elm._element.parentNode.removeChild(elm._element);
+        equal(bag.validator.getElements()['inpt'], undefined)
+
+        ok(bag.validator.validate())
+    })
+
     test('forceInvalid(), unforceInvalid()', function () {
         var bag = makeForm()
 
