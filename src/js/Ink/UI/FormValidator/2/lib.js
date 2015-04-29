@@ -1062,8 +1062,9 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
             if (!this._formElements) {
                 this._formElements = {};
             }
+            var i;
             for (var k in this._formElements) if (this._formElements.hasOwnProperty(k)) {
-                var i = this._formElements[k].length;
+                i = this._formElements[k].length;
                 while (i--) {
                     if (!Element.isAncestorOf(document.documentElement,
                             this._formElements[k][i]._element)) {
@@ -1073,13 +1074,13 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
                     }
                 }
                 // Check if formElement was removed.
-                if (this._formElements[k].length == 0) {
-                    delete this._formElements[k]
+                if (this._formElements[k].length === 0) {
+                    delete this._formElements[k];
                 }
             }
             var formElements = Selector.select( this._options.searchFor, this._rootElement );
 
-            for(var i=0; i<formElements.length; i+=1 ){
+            for(i=0; i<formElements.length; i+=1 ){
                 var element = formElements[i];
 
                 var dataAttrs = Element.data( element );
@@ -1210,7 +1211,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
             for( var key in this._formElements ){
                 if( this._formElements.hasOwnProperty(key) ){
                     for( var counter = 0; counter < this._formElements[key].length; counter+=1 ){
-                        this._formElements[key][counter].removeErrors()
+                        this._formElements[key][counter].removeErrors();
                         if( !this._formElements[key][counter].validate() ) {
                             errorElements.push(this._formElements[key][counter]);
                         }
