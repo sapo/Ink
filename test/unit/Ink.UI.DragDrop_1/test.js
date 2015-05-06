@@ -88,6 +88,49 @@ Ink.requireModules(['Ink.UI.DragDrop_1', 'Ink.UI.Common_1', 'Ink.Dom.Css_1', 'In
         onDrop: sinon.spy()
     });
 
+    function testDragDropWithHandle(name, cb, opt) {
+        testDragDrop(name, function(component, elm){
+            var dg1 = Ink.s('.dg1', elm)
+            var dg2 = Ink.s('.dg2', elm)
+            var handle1 = InkElement.create('div', {
+                style: 'height:10px;width:10px',
+                className: 'handle1 drag-handle' })
+            var handle2 = InkElement.create('div', {
+                style: 'height:10px;width:10px',
+                className: 'handle2 drag-handle' })
+            dg1.appendChild(handle1)
+            dg2.appendChild(handle2)
+            // .dg3 intentionally left without handle!
+            cb(component, elm)
+        }, opt);
+    }
+
+    testDragDropWithHandle('Dragging outside the handle does nothing.', function(ddrop, elm){
+        // .dg1 has a handle
+        var dg1 = Ink.s('.dg1', elm)
+        var r = dg1.getBoundingClientRect()
+        InkEvent.fire(elm, 'mousedown', { target: dg1, clientX: r.left + 5, clientY: r.top + 5 })
+        InkEvent.fire(document, 'mouseup')
+        ok(ddrop._options.onDrag.notCalled, 'Drag did not start')
+        ok(ddrop._options.onDrop.notCalled, 'Drag did not start')
+    }, {
+        onDrag: sinon.spy(),
+        onDrop: sinon.spy()
+    });
+
+    testDragDropWithHandle('(regression) Dragging outside the handle does not preventDefault the event!', function(ddrop, elm){
+        // .dg1 has a handle
+        var dg1 = Ink.s('.dg1', elm)
+        var r = dg1.getBoundingClientRect()
+        var preventDefault = sinon.spy()
+        InkEvent.fire(elm, 'mousedown', { target: dg1, clientX: r.left + 5, clientY: r.top + 5, preventDefault: preventDefault })
+        InkEvent.fire(document, 'mouseup')
+        ok(preventDefault.notCalled)
+    }, {
+        onDrag: sinon.spy(),
+        onDrop: sinon.spy()
+    });
+
     function dragAndTest(name, testBack, options) {
         testDragDrop(name, function (component, elm) {
             var dg1 = Ink.s('.dg1', elm)
