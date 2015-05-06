@@ -47,6 +47,7 @@ Ink.requireModules(['Ink.UI.DragDrop_1', 'Ink.UI.Common_1', 'Ink.Dom.Css_1', 'In
             var elm = makeDragDropDom();
             var component = new DragDrop(elm, options || {});
             testBack(component, elm);
+            InkElement.remove(elm)
         });
     }
 
