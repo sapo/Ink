@@ -396,6 +396,10 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 this._updateDate( );
                 this._showDefaultView( );
                 this.setDate( );
+                if(this._options.onSetDate) {
+                    // calling onSetDate because the user selected something
+                    this._options.onSetDate( this , { date : this.getDate() } );
+                }
                 if ( !this._inline && !this._hoverPicker ) {
                     this._hide(true);
                 }
