@@ -450,7 +450,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                     ];
 
                     for (var i = 0, len = cannotBe.length; i < len; i++) {
-                        if (cannotBe[i] && InkElement.descendantOf(cannotBe[i], target)) {
+                        if (cannotBe[i] && (InkElement.descendantOf(cannotBe[i], target) || cannotBe[i] === target)) {
                             return;
                         }
                     }
