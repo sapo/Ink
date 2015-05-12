@@ -615,7 +615,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             var elemData = InkElement.data(elem);
 
             if( Number(elemData.calDay) ){
-                this.setDate(new Date(this._year, this._month, elemData.calDay));
+                this.setDate(new Date(this._year, this._month, elemData.calDay), elem);
                 if (this._options.shy) {
                     this._hide();
                 } else {
@@ -1118,7 +1118,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * @return {void}
          * @public
          */
-        setDate: function( dateString ) {
+        setDate: function( dateString , objClicked) {
             if (dateString && typeof dateString.getDate === 'function') {
                 dateString = [ dateString.getFullYear(),
                     dateString.getMonth() + 1, dateString.getDate() ].join('-');
@@ -1131,7 +1131,13 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 this._day   = +auxDate[ 2 ];
             }
 
-            this._setDate( );
+            this._setDate( objClicked );
+            if(!objClicked) {
+                if(this._options.onSetDate) {
+                    // calling onSetDate because the user selected something
+                    this._options.onSetDate( this , { date : this.getDate() } );
+                }
+            }
         },
 
         /**
