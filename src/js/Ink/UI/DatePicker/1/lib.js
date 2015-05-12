@@ -446,6 +446,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                         this._options.monthField,
                         this._options.yearField,
                         this._picker,
+                        this._containerObject,
                         this._element
                     ];
 
@@ -1132,12 +1133,6 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             }
 
             this._setDate( objClicked );
-            if(!objClicked) {
-                if(this._options.onSetDate) {
-                    // calling onSetDate because the user selected something
-                    this._options.onSetDate( this , { date : this.getDate() } );
-                }
-            }
         },
 
         /**
