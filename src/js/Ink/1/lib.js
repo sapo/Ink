@@ -9,7 +9,7 @@
     'use strict';
 
     // skip redefinition of Ink core
-    if ('Ink' in window) { return; }
+    if ('Ink' in window && typeof Ink.requireModules === 'function') { return; }
 
 
     // internal data
