@@ -437,6 +437,10 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          * @sample Ink_Util_Array_1_range.html
          **/
         range: function range(start, stop, step) {
+            if (arguments.length === 1) {
+                stop = start;
+                start = 0;
+            }
             // From: https://github.com/mcandre/node-range
             if (!step) {
                 step = 1;
