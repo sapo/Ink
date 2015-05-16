@@ -479,6 +479,28 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
         },
 
         /**
+         * Object.keys replacement. Returns a list of an object's own properties.
+         *
+         * If Object.keys is available, just calls it.
+         *
+         * @method keys
+         * @param {Object} obj Object with the properties.
+         * @return {Array} An array of strings describing the properties in the given object.
+         * @public
+         *
+         **/
+        keys: function (obj) {
+            if (Object.keys) {
+                return Object.keys(obj);
+            }
+            var ret = [];
+            for (var k in obj) if (obj.hasOwnProperty(k)) {
+                ret.push(k);
+            }
+            return ret;
+        },
+
+        /**
          * Removes a range of values from the array
          *
          * @method remove

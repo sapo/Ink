@@ -188,4 +188,12 @@ Ink.requireModules(['Ink.Util.Array_1'], function (InkArray) {
 
         deepEqual(range(5), [0, 1, 2, 3, 4])
     })
+
+    test('keys', function() {
+        deepEqual(InkArray.keys({ foo: 1, bar: 2}), ['foo', 'bar'], 'returns keys in object')
+        deepEqual(InkArray.keys({ }), [], 'empty object results in empty array')
+        throws(function () {
+            InkArray.keys(null)
+        })
+    })
 });
