@@ -629,6 +629,13 @@ th {
   -o-border-radius: 0 2px 2px 0;
   border-radius: 0 2px 2px 0;
 }
+.button-group > .ink-button:only-child {
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+}
 .button-group:after {
   content: "";
   display: table;
@@ -8258,9 +8265,9 @@ body.ink-drawer.over.right .right-drawer {
   -ms-border-radius: 2px;
   -o-border-radius: 2px;
   border-radius: 2px;
-  -webkit-box-shadow: 0, 1px, 3px, 0, rgba(0, 0, 0, 0.2), inset;
-  -moz-box-shadow: 0, 1px, 3px, 0, rgba(0, 0, 0, 0.2), inset;
-  box-shadow: 0, 1px, 3px, 0, rgba(0, 0, 0, 0.2), inset;
+  -webkit-box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.2);
 }
 .ink-progress-bar .caption {
   position: absolute;
@@ -8276,10 +8283,10 @@ body.ink-drawer.over.right .right-drawer {
 }
 .ink-progress-bar .bar {
   height: 1.3em;
-  text-shadow: rgba(0, 0, 0, 0.25), 0, 1px, 0;
-  -webkit-box-shadow: 0, 1px, 1px, 0, rgba(0, 0, 0, 0.1), inset;
-  -moz-box-shadow: 0, 1px, 1px, 0, rgba(0, 0, 0, 0.1), inset;
-  box-shadow: 0, 1px, 1px, 0, rgba(0, 0, 0, 0.1), inset;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.1);
   -webkit-transition-property: width;
   -moz-transition-property: width;
   -o-transition-property: width;
@@ -8335,9 +8342,9 @@ body.ink-drawer.over.right .right-drawer {
 }
 
 .drag, .ink-sortable-list li.placeholder {
-  -webkit-box-shadow: 0, 0px, 10px, 0, rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 0, 0px, 10px, 0, rgba(0, 0, 0, 0.3);
-  box-shadow: 0, 0px, 10px, 0, rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
 }
 
 .ink-sortable-list li {
@@ -8491,9 +8498,9 @@ body.ink-drawer.over.right .right-drawer {
   border-radius: 2px;
 }
 .ink-tagfield input[type="text"].new-tag-input:focus {
-  -webkit-box-shadow: 0px, 0px, 0px, 3px, #eaeaea;
-  -moz-box-shadow: 0px, 0px, 0px, 3px, #eaeaea;
-  box-shadow: 0px, 0px, 0px, 3px, #eaeaea;
+  -webkit-box-shadow: 0 0 0 3px #eaeaea;
+  -moz-box-shadow: 0 0 0 3px #eaeaea;
+  box-shadow: 0 0 0 3px #eaeaea;
   border: 1px solid #c3c3c3;
 }
 .ink-tagfield span.ink-tag {
