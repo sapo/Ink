@@ -37,6 +37,10 @@
         &:last-child {
             @include border-radius(0 $button-border-radius $button-border-radius 0);
         }
+
+        &:only-child {
+            @include border-radius($button-border-radius);
+        }
     }
 
     @include pie-clearfix;
