@@ -88,7 +88,7 @@
     "node_modules"
   ],
   "dependencies": {
-    "font-awesome": "~4.2.0",
+    "font-awesome": "~4.3.0",
     "animate.css": "~3.2.0",
     "bower-compass-core": ">=0.0.1"
   },
