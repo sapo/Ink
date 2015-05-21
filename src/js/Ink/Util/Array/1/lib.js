@@ -266,6 +266,25 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
         },
 
         /**
+         * Like forEach, but for objects.
+         *
+         * Calls `callback` with `(value, key, entireObject)` once for each key-value pair in `obj`
+         *
+         * @method forEachObj
+         * @param {Object}      obj         Input object
+         * @param {Function}    callback    Iteration callback, called once for each key/value pair in the object. `function (value, key, all) { this === context }`
+         * @param {Mixed}       [context]   Set what the context (`this`) in the function will be.
+         * @return void
+         * @public
+         * @sample Ink_Util_Array_forEachObj.html
+         **/
+        forEachObj: function(obj, callback, context) {
+            InkArray.forEach(InkArray.keys(obj), function (item) {
+                callback.call(context || null, obj[item], item, obj);
+            });
+        },
+
+        /**
          * Alias for backwards compatibility. See forEach
          *
          * @method each
@@ -437,11 +456,12 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          * @sample Ink_Util_Array_1_range.html
          **/
         range: function range(start, stop, step) {
+            // From: https://github.com/mcandre/node-range
             if (arguments.length === 1) {
                 stop = start;
                 start = 0;
             }
-            // From: https://github.com/mcandre/node-range
+
             if (!step) {
                 step = 1;
             }

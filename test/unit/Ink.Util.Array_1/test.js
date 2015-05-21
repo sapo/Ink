@@ -75,6 +75,25 @@ Ink.requireModules(['Ink.Util.Array_1'], function (InkArray) {
 
     module('');
 
+    test('forEachObj', function() {
+        var inpt = {
+            a: '1',
+            b: '2'
+        }
+
+        var ctx = {}
+
+        var callback = sinon.spy()
+
+        InkArray.forEachObj(inpt, callback, ctx)
+
+        ok(callback.calledTwice)
+
+        ok(callback.calledWith('1', 'a', inpt), 'called with (value, key, all)')
+        ok(callback.calledWith('2', 'b', inpt), 'called with (value2, key2, all)')
+        ok(callback.calledOn(ctx), 'called with the correct context')
+    })
+
     test('map context', 1, function () {
         InkArray.map([1], function (v, i, all) {
             deepEqual(this, 'this');
