@@ -6,7 +6,8 @@ html {
 body {
     color: $text-color;
     @include ink-font-stack(sans);
-    line-height: $base-line-height;
+    font-size: inherit;
+    //line-height: $base-line-height;
 }
 
 .fw-100, .fw-light { font-weight: 100; }
