@@ -62,6 +62,19 @@ test('onSetDate', function () {
     ok(onSetDate.calledOnce, 'onSetDate called when the user clicks an element which chooses a date');
 })
 
+test('regression: onSetDate called on click', function () {
+    var onSetDate = sinon.spy();
+    var dt = mkDatePicker({ onSetDate: onSetDate });
+
+    dt.show()
+
+    InkEvent.fire(
+        Ink.s('[data-cal-day="6"]', dt._containerObject),
+        'click')
+
+    ok(onSetDate.calledOnce)
+})
+
 test('i18n', function () {
     var i18n = new I18n({
         tt_TT: {  // Test lang
