@@ -1647,7 +1647,7 @@ th {
     -moz-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    -webkit-align-self: flex-center;
+    -webkit-align-self: center;
     -ms-flex-item-align: center;
     align-self: center;
   }
@@ -2671,7 +2671,7 @@ th {
     -moz-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    -webkit-align-self: flex-center;
+    -webkit-align-self: center;
     -ms-flex-item-align: center;
     align-self: center;
   }
@@ -3695,7 +3695,7 @@ th {
     -moz-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    -webkit-align-self: flex-center;
+    -webkit-align-self: center;
     -ms-flex-item-align: center;
     align-self: center;
   }
@@ -4719,7 +4719,7 @@ th {
     -moz-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    -webkit-align-self: flex-center;
+    -webkit-align-self: center;
     -ms-flex-item-align: center;
     align-self: center;
   }
@@ -5743,7 +5743,7 @@ th {
     -moz-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    -webkit-align-self: flex-center;
+    -webkit-align-self: center;
     -ms-flex-item-align: center;
     align-self: center;
   }
