@@ -1178,7 +1178,10 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             this._day = dt._day;
 
             if(!this._options.displayInSelect){
-                this._element.value = this._writeDateInFormat();
+                var formattedDate = this._writeDateInFormat();
+                if (formattedDate !== this._element.value) {
+                    this._element.value = formattedDate;
+                }
             } else {
                 this._options.dayField.value   = this._day;
                 this._options.monthField.value = this._month + 1;
