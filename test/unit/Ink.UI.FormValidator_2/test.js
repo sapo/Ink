@@ -225,6 +225,27 @@ Ink.requireModules(['Ink.UI.FormValidator_2', 'Ink.Dom.Element_1', 'Ink.Dom.Sele
         ok(bag.validator.validate(), 'now it should be valid');
     });
 
+    test('regression: [disabled] has precedence over forceInvalid when inplace', function() {
+        var bag = makeForm();
+
+        InkElement.setHTML(bag.control, '');
+
+        var elm = InkElement.create('input', {
+            type: 'text',
+            'data-rules': 'required',
+            name: 'foo',
+            value: ''
+        });
+
+        bag.control.appendChild(elm);
+
+        bag.validator.getElements()['foo'][0].forceInvalid('invalid you are!')
+
+        elm.setAttribute('disabled', 'disabled');
+
+        ok(bag.validator.validate(), 'now it should be valid');
+    });
+
     test('Create new FormElements for each control-group in the form', sinon.test(function () {
         var oldStuff = makeForm();
 

@@ -820,14 +820,14 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
                 return true;
             }
 
+            if (this._element.disabled) {
+                return true;
+            }
+
             if (this._forceInvalid) {
                 /* The user says it's invalid */
                 this._addError({ message: this._forceInvalid });
                 return false;
-            }
-
-            if (this._element.disabled) {
-                return true;
             }
 
             this._errors = {};
