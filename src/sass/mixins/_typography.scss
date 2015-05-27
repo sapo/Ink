@@ -1,23 +1,23 @@
 @mixin ink-font-stack ($style: sans) {
 
     @if $style == sans {
-      font-family: $sans-serif-font-stack;
+      font: $base-font-weight $base-font-variant $base-font-stretch #{$base-font-size}/#{$base-line-height} $sans-serif-font-stack;
     }
 
     @if $style == serif {
-      font-family: $serif-font-stack;
+      font: $base-font-weight $base-font-variant $base-font-stretch #{$base-font-size}/#{$base-line-height} $serif-font-stack;
     }
 
     @if $style == condensed {
-      font-family: $condensed-font-stack;
+      font: $base-font-weight $base-font-variant $base-font-stretch #{$base-font-size}/#{$base-line-height} $condensed-font-stack;
     }
 
     @if $style == slab {
-      font-family: $slab-font-stack;
+      font: $base-font-weight $base-font-variant $base-font-stretch #{$base-font-size}/#{$base-line-height} $slab-font-stack;
     }
 
     @if $style == mono {
-      font-family: $mono-font-stack;
+      font: $base-font-weight $base-font-variant $base-font-stretch #{$base-font-size}/#{$base-line-height} $mono-font-stack;
     }
 }
 

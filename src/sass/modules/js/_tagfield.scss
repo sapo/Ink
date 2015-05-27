@@ -11,7 +11,7 @@
 			@include border-radius(2px);
 
 			&:focus {
-				@include box-shadow(0px, 0px, 0px, 3px, #eaeaea);
+				@include box-shadow(0 0 0 3px #eaeaea);
 				border: 1px solid #c3c3c3;
 			}
 		}

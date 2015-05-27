@@ -221,7 +221,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
             var tgtEl = Event.element(event),
                 paginated = this._options.pageSize !== undefined;
 
-            Event.stop(event);
+            Event.stopDefault(event);
 
             var index = InkArray.keyValue(tgtEl, this._headers, true);
             var sortable = index !== false && this._sortableFields[index] !== undefined;

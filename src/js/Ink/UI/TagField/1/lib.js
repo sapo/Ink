@@ -138,8 +138,6 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
 
     TagField._optionDefinition = {
         tags: ['String', []],
-        tagQuery: ['Object', null],
-        tagQueryAsync: ['Object', null],
         allowRepeated: ['Boolean', false],
         maxTags: ['Integer', -1],
         outSeparator: ['String', ','],

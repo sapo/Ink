@@ -30,12 +30,12 @@ Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
     ImageQuery._name = 'ImageQuery_1';
 
-	ImageQuery._optionDefinition = {
-		src: ['String'],
-		retina: ['String', undefined],
-		queries: ['Object'],
-		onLoad: ['Function', null]
-	};
+    ImageQuery._optionDefinition = {
+        src: ['String'],
+        retina: ['String', undefined],
+        queries: ['Object'],
+        onLoad: ['Function', null]
+    };
 
     ImageQuery.prototype = {
 
@@ -188,7 +188,7 @@ Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
     };
 
-	Common.createUIComponent(ImageQuery);
+    Common.createUIComponent(ImageQuery);
 
     return ImageQuery;
 
