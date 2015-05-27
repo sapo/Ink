@@ -28,10 +28,10 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
      * @param {String}              [options.active]                ID of the tab to activate on creation if the window hash is not already a tab ID.
      * @param {Function}            [options.onBeforeChange]        Callback to be executed before changing tabs.
      * @param {Function}            [options.onChange]              Callback to be executed after changing tabs.
-     * @param {Boolean}             [options.triggerEventsOnLoad=true] Call the above callbacks after this component is created.
      * 
      * @param {String}              [options.menuSelector='.tabs-nav'] Selector to find your tab links.
      * @param {String}              [options.contentSelector='.tabs-content'] Selector to find your tab content panes.
+     * @param {Boolean}             [options.triggerEventsOnLoad=true] Call the above callbacks after this component is created.
      *
      * @sample Ink_UI_Tabs_1.html
      */

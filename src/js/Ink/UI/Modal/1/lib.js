@@ -313,6 +313,8 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
          * @private
          */
         _onShadeClick: function(ev) {
+            if (!this._isOpen) { return; }
+
             var tgtEl = Event.element(ev);
 
             if (tgtEl === this._modalShadow && this._options.closeOnClick) {
@@ -336,7 +338,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
 
                 // Only stop the event if this dismisses this modal
                 if (!this._isOpen) {
-                    Event.stop(ev);
+                    Event.stopDefault(ev);
                 }
             }
         },
@@ -354,7 +356,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                     openModals[openModals.length - 1] === this) {
                 this.dismiss();
                 if (!this._isOpen) {
-                    Event.stop(ev);
+                    Event.stopDefault(ev);
                 }
             }
         },
@@ -442,7 +444,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
 
             if (this.isOpen()) { return false; }
 
-            if( event ){ Event.stop(event); }
+            if( event ){ Event.stopDefault(event); }
 
             Css.addClassName( this._modalShadow,'ink-shade' );
             this._modalShadow.style.display = this._modalDiv.style.display = 'block';
@@ -506,7 +508,13 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             }
 
             if (this._options.onShow) {
-                this._options.onShow(this);
+                var trigger = InkElement.findUpwardsBySelector(
+                        Event.element(event),
+                        this._options.trigger);
+
+                this._options.onShow.call(this, this, {
+                    trigger: trigger
+                });
             }
 
             // // subscribe events
@@ -616,7 +624,29 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
          * @public
          */
         getContentElement: function() {
-            return this._contentContainer;
+            return this._contentContainer || null;
+        },
+
+        /**
+         * Returns the modal element
+         *
+         * @method getModalElement
+         * @return {Element} Modal element
+         * @public
+         */
+        getModalElement: function () {
+            return this._modalDiv || null;
+        },
+
+        /**
+         * Returns the modal shade (the page-covering dark shade element)
+         *
+         * @method getShadeElement
+         * @return {Element} Modal shade
+         * @public
+         */
+        getShadeElement: function () {
+            return this._modalShadow || null;
         },
 
         /**

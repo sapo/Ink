@@ -167,21 +167,22 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
             var isObj = typeof pars[ 0 ] === 'object';
 
             var original = this.getKey( str );
+
             if ( original === undefined ) { original = this._testMode ? '[' + str + ']' : str; }
             if ( typeof original === 'number' ) { original += ''; }
 
             if (typeof original === 'string') {
                 original = original.replace( pattrText , function( m , $1 , $2 , $3 ) {
                     var ret =
-                        $1 ? $1 :
-                        $2 ? pars[ $2 - ( isObj ? 0 : 1 ) ] :
-                        $3 ? pars[ 0 ][ $3 ] || '' :
+                        $1            ? $1 :
+                        $2            ? pars[ $2 - ( isObj ? 0 : 1 ) ] :
+                        $3 && pars[0] ? pars[ 0 ][ $3 ] || '' :
                              pars[ (idx++) + ( isObj ? 1 : 0 ) ];
                     return funcOrVal( ret , [idx].concat(pars) );
                 });
                 return original;
             }
-             
+
             return (
                 typeof original === 'function' ? original.apply( this , pars ) :
                 original instanceof Array      ? funcOrVal( original[ pars[ 0 ] ] , pars ) :

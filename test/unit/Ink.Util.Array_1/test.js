@@ -75,6 +75,25 @@ Ink.requireModules(['Ink.Util.Array_1'], function (InkArray) {
 
     module('');
 
+    test('forEachObj', function() {
+        var inpt = {
+            a: '1',
+            b: '2'
+        }
+
+        var ctx = {}
+
+        var callback = sinon.spy()
+
+        InkArray.forEachObj(inpt, callback, ctx)
+
+        ok(callback.calledTwice)
+
+        ok(callback.calledWith('1', 'a', inpt), 'called with (value, key, all)')
+        ok(callback.calledWith('2', 'b', inpt), 'called with (value2, key2, all)')
+        ok(callback.calledOn(ctx), 'called with the correct context')
+    })
+
     test('map context', 1, function () {
         InkArray.map([1], function (v, i, all) {
             deepEqual(this, 'this');
@@ -181,5 +200,19 @@ Ink.requireModules(['Ink.Util.Array_1'], function (InkArray) {
         deepEqual(range(10, 0, -1), [10, 9, 8, 7, 6, 5, 4, 3, 2, 1], 'negative step');
         deepEqual(range(0, 3, 2), [0, 2], 'regression: if step is not divisible by abs(start - stop) we get an infinite loop');
         deepEqual(range(3, 0, -2), [3, 1], 'regression: if step is not divisible by abs(start - stop) we get an infinite loop (negative step now)');
+    })
+
+    test('regression: range(10) should behave like range(0, 10)', function() {
+        var range = InkArray.range
+
+        deepEqual(range(5), [0, 1, 2, 3, 4])
+    })
+
+    test('keys', function() {
+        deepEqual(InkArray.keys({ foo: 1, bar: 2}), ['foo', 'bar'], 'returns keys in object')
+        deepEqual(InkArray.keys({ }), [], 'empty object results in empty array')
+        throws(function () {
+            InkArray.keys(null)
+        })
     })
 });

@@ -124,4 +124,14 @@ Ink.requireModules(['Ink.UI.Pagination_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1',
         ok(Ink.s('li.next a span', container), '.next is wrapped too');
         ok(!Ink.s('li:not(.previous):not(.next) a span', container), 'sanity check: everything else is not.');
     }, { ulClassNames: ' chevron' });
+
+    testPagination('When Pagination has both the "chevron" option and the "dotted" option, it gets both the numbered elements and the previous/next buttons', function (_, container) {
+        ok(Ink.s('li.previous a span', container), '.previous is wrapped in a span');
+        ok(Ink.s('li.next a span', container), '.next is wrapped too');
+        ok(!Ink.s('li:not(.previous):not(.next) a span', container), 'sanity check: everything else is not.');
+
+        ok(Ink.s('[data-index="0"]', container), 'also gets the numbers')
+        ok(Ink.s('[data-index="1"]', container), 'also gets the numbers')
+        ok(Ink.s('[data-index="2"]', container), 'also gets the numbers')
+    }, { ulClassNames: ' chevron dotted' });
 });

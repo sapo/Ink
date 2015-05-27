@@ -266,6 +266,25 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
         },
 
         /**
+         * Like forEach, but for objects.
+         *
+         * Calls `callback` with `(value, key, entireObject)` once for each key-value pair in `obj`
+         *
+         * @method forEachObj
+         * @param {Object}      obj         Input object
+         * @param {Function}    callback    Iteration callback, called once for each key/value pair in the object. `function (value, key, all) { this === context }`
+         * @param {Mixed}       [context]   Set what the context (`this`) in the function will be.
+         * @return void
+         * @public
+         * @sample Ink_Util_Array_forEachObj.html
+         **/
+        forEachObj: function(obj, callback, context) {
+            InkArray.forEach(InkArray.keys(obj), function (item) {
+                callback.call(context || null, obj[item], item, obj);
+            });
+        },
+
+        /**
          * Alias for backwards compatibility. See forEach
          *
          * @method each
@@ -438,6 +457,11 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          **/
         range: function range(start, stop, step) {
             // From: https://github.com/mcandre/node-range
+            if (arguments.length === 1) {
+                stop = start;
+                start = 0;
+            }
+
             if (!step) {
                 step = 1;
             }
@@ -472,6 +496,28 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          */
         insert: function(arr, idx, value) {
             arr.splice(idx, 0, value);
+        },
+
+        /**
+         * Object.keys replacement. Returns a list of an object's own properties.
+         *
+         * If Object.keys is available, just calls it.
+         *
+         * @method keys
+         * @param {Object} obj Object with the properties.
+         * @return {Array} An array of strings describing the properties in the given object.
+         * @public
+         *
+         **/
+        keys: function (obj) {
+            if (Object.keys) {
+                return Object.keys(obj);
+            }
+            var ret = [];
+            for (var k in obj) if (obj.hasOwnProperty(k)) {
+                ret.push(k);
+            }
+            return ret;
         },
 
         /**

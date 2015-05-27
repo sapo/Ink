@@ -8,7 +8,7 @@ Ink.createModule('Ink.UI.Spy', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Do
 
     // Maps a spy target (EG a menu with links inside) to spied instances.
     var spyTargets = [
-        // [target, [spied, spied, spied...]], ...
+        // [target, [spied, spied, spied...], { margin }], ...
     ];
 
     function targetIndex(target) {
@@ -20,11 +20,11 @@ Ink.createModule('Ink.UI.Spy', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Do
         return null;
     }
 
-    function addSpied(spied, target) {
+    function addSpied(spied, target, options) {
         var index = targetIndex(target);
 
         if (index === null) {
-            spyTargets.push([target, [spied]]);
+            spyTargets.push([target, [spied], options]);
         } else {
             spyTargets[index][1].push(spied);
         }
@@ -40,12 +40,12 @@ Ink.createModule('Ink.UI.Spy', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Do
 
     function onScroll() {
         for (var i = 0, len = spyTargets.length; i < len; i++) {
-            onScrollForTarget(spyTargets[i][0], spyTargets[i][1]);
+            onScrollForTarget(spyTargets[i][0], spyTargets[i][1], spyTargets[i][2]);
         }
     }
 
-    function onScrollForTarget(target, spied) {
-        var activeEl = findActiveElement(spied);
+    function onScrollForTarget(target, spied, options) {
+        var activeEl = findActiveElement(spied, options);
 
         // This selector finds li's to deactivate
         var toDeactivate = Selector.select('li.active', target);
@@ -66,7 +66,7 @@ Ink.createModule('Ink.UI.Spy', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Do
         }
     }
 
-    function findActiveElement(spied) {
+    function findActiveElement(spied, options) {
         /* 
          * Find the element above the top of the screen, but closest to it.
          *          _____ 
@@ -87,11 +87,14 @@ Ink.createModule('Ink.UI.Spy', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Do
         // the element is above the top of the screen.
         var closest = -Infinity;
         var closestIndex;
-        var bBox;
+        var top;
         for( var i = 0, total = spied.length; i < total; i++ ){
-            bBox = spied[i].getBoundingClientRect();
-            if (bBox.top <= 0 && bBox.top > closest) {
-                closest = bBox.top;
+            top = spied[i].getBoundingClientRect().top;
+            if (options.margin) {
+                top -= options.margin;
+            }
+            if (top <= 0 && top > closest) {
+                closest = top;
                 closestIndex = i;
             }
         }
@@ -106,7 +109,7 @@ Ink.createModule('Ink.UI.Spy', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Do
      * Spy is an UI component which tells the user which section is currently visible.
      * Spy can be used to highlight a menu item for the section which is visible to the user.
      * You need two things: A menu element (which contains your links inside `li` tags), and an element containing your section's content.
-	 * The links must be inside `li` tags. These will get the 'active' class, to signal which item is currently visible. In your CSS you need to add styling for this class.
+     * The links must be inside `li` tags. These will get the 'active' class, to signal which item is currently visible. In your CSS you need to add styling for this class.
      * To use Ink.UI.Spy for more than one section, loop through your sections (as you see in the sample below), or just load `autoload.js` and set add the `data-spy="true"` attribute to your sections.
      * The currently visible element's corresponding link in the menu gets the 'visible' class added to it.
      *
@@ -116,6 +119,7 @@ Ink.createModule('Ink.UI.Spy', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Do
      * @param {String|Element}    selector              The spied element
      * @param {Object}            [options] Options
      * @param {Element|String}    options.target    Target menu where the spy will highlight the right option.
+     * @param {Number}            [options.margin=0] A margin from the top of the screen. Use this if you have a `position:fixed` top bar on your site.
      *
      * @sample Ink_UI_Spy_1.html
      */
@@ -126,7 +130,8 @@ Ink.createModule('Ink.UI.Spy', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Do
     Spy._name = 'Spy_1';
 
     Spy._optionDefinition = {
-        target: ['Element', undefined]
+        target: ['Element', undefined],
+        margin: ['Number', 0]
     };
 
     Spy.prototype = {
@@ -137,7 +142,7 @@ Ink.createModule('Ink.UI.Spy', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Do
          * @private
          */
         _init: function() {
-            addSpied(this._element, this._options.target);
+            addSpied(this._element, this._options.target, this._options);
             observeOnScroll();
             onScroll();
         }

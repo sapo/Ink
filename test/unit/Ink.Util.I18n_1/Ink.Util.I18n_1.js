@@ -281,6 +281,18 @@ Ink.requireModules( [ 'Ink.Util.I18n' ] , function ( I18n ) {
             'olá, coisinho');
     });
 
+    test('text() without replacement patterns to get a string with replacements', function () {
+        var theString = '{} {0} {foo}'
+        var i18n = make().lang('pt_PT').append({'pt_PT': {
+            'noreplacements': theString
+        }})
+
+        equal(
+            i18n.text('noreplacements'),
+            ' ' + ' ')
+        ok(true)
+    })
+
     test('Global stuff', function () {
         I18n.langGlobal('en_US')
         equal(new I18n({}).lang(), 'en_US');
