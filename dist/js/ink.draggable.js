@@ -181,8 +181,8 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
          * onStart event handler
          * 
          * @method _onStart
-         * @param {Object} e window.event object
-         * @return {Boolean|void} In some cases return false. Otherwise is void
+         * @param {Object} e mousedown or touchstart event
+         * @return {Boolean|void} Returns false to cancel the event, unless the drag has already been started.
          * @private
          */
         _onStart: function(e) {
@@ -288,7 +288,7 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
          * Function that gets the timestamp of the current run from time to time. (FPS)
          * 
          * @method _onDragFacade
-         * @param {Object} window.event object.
+         * @param {Object} mousemove or touchmove event object
          * @private
          */
         _onDragFacade: function(e) {
@@ -303,7 +303,8 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
          * Function that handles the dragging movement
          * 
          * @method _onDrag
-         * @param {Object} window.event object.
+         * @param {Object} mousemove or touchmove event object.
+         * @returns {Boolean|void} Returns false to cancel the event, which avoids accidental selection.
          * @private
          */
         _onDrag: function(e) {

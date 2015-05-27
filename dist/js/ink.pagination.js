@@ -288,7 +288,12 @@ Ink.createModule('Ink.UI.Pagination', '1',
 
             // When we're dotted, the default for sideButtons is `false`. When we're note, it's `true`.
             // Since the default is actually "1", we do a === true check when we're dotted, and a truthish check when we're not.
-            if ((isDotted && this._options.sideButtons === true) || (!isDotted && this._options.sideButtons)) {
+            var showSideButtons =
+                (isDotted && isChevron) || // dotted chevron has side buttons
+                (isDotted && !isChevron && this._options.sideButtons === true) ||
+                (!isDotted && !!this._options.sideButtons);
+
+            if (showSideButtons) {
                 this._prevEl = createLiEl('previous', { wrapText: isChevron });
                 this._nextEl = createLiEl('next', { wrapText: isChevron });
             }
@@ -313,7 +318,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
          * @private
          */
         _onClick: function(ev) {
-            Event.stop(ev);
+            Event.stopDefault(ev);
 
             var liEl = Event.element(ev);
             if ( Css.hasClassName(liEl, this._options.activeClass) ||

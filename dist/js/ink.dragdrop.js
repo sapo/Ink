@@ -89,9 +89,6 @@ Ink.createModule('Ink.UI.DragDrop', 1, ['Ink.Dom.Element_1', 'Ink.Dom.Event_1', 
             var elmIgnoreDraggable = InkElement.findUpwardsBySelector(tgt, this._options.ignoreDrag);
 
             if(draggedElm && !elmIgnoreDraggable) {
-
-                InkEvent.stopDefault(event);
-
                 // has handler
                 var handleElm = Ink.s(this._options.dragHandle, draggedElm);
                 if(handleElm && InkElement.findUpwardsBySelector(tgt, this._options.dragHandle)) {
@@ -101,6 +98,7 @@ Ink.createModule('Ink.UI.DragDrop', 1, ['Ink.Dom.Element_1', 'Ink.Dom.Event_1', 
                 }
 
                 if (this._dragActive) {
+                    InkEvent.stopDefault(event);
                     this._startDrag(event, draggedElm);
                 }
             }

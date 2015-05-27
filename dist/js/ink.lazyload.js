@@ -7,6 +7,10 @@
 Ink.createModule('Ink.UI.LazyLoad', '1', ['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1'], function(Common, InkEvent, InkElement, Css) {
 'use strict';
 
+var scrollSupport = 'onscroll' in document &&
+    // Opera Mini reports having the scroll event, but it does not.
+    typeof operamini === 'undefined';
+
 function LazyLoad() {
     Common.BaseUIComponent.apply(this, arguments);
 }
@@ -73,6 +77,13 @@ LazyLoad.prototype = {
     _activate: function() 
     {
         this._getData();
+        if (!scrollSupport) {
+            // If there is no scroll event support (Opera Mini!), load everything now.
+            // A trivial fallback, that avoids entire pages without images.
+            for (var i = 0; i < this._aData.length; i++) {
+                this._elInViewport(this._aData[i]);
+            }
+        }
         if(!this._hasEvents) {
             this._addEvents(); 
         }
@@ -97,6 +108,7 @@ LazyLoad.prototype = {
 
     _addEvents: function() 
     {
+        if (!scrollSupport) { return; }
         this._onScrollThrottled = InkEvent.throttle(Ink.bindEvent(this._onScroll, this), this._options.delay);
         if('ontouchmove' in document.documentElement && this._options.touchEvents) {
             InkEvent.observe(document.documentElement, 'touchmove', this._onScrollThrottled);
