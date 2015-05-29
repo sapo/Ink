@@ -682,8 +682,8 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          *
          * @method registerInstance
          * @static
-         * @param  {Object}   inst Object to be registered
-         * @param  {Element}  [el=inst._element]   Element to associate with `inst`. Defaults to `_element` property of `inst`.
+         * @param  {Object}  inst Object that holds the instance.
+         * @param  {Element} el   Element to associate with `inst`.
          * @return {Boolean} `true` if we could create the instance, `false` otherwise.
          */
         registerInstance: function(inst, el) {

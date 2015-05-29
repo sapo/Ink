@@ -36,6 +36,7 @@ Ink.createModule('Ink.Autoload', 1, ['Ink.Dom.Selector_1', 'Ink.Util.Array_1', '
             'Animate_1'     : '.ink-animate',
             'Carousel_1'    : '.ink-carousel',
             'DatePicker_1'  : '.ink-datepicker',
+            'DragDrop_1'    : '.ink-dragdrop',
             'Draggable_1'   : '.ink-draggable',
             'Dropdown_1'    : '.ink-dropdown',
             'Droppable_1.add' : '.ink-droppable',
