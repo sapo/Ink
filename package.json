@@ -1,6 +1,6 @@
 {
   "name": "sapo_ink",
-  "version": "3.1.8",
+  "version": "3.1.9",
   "description": "SAPO InK - Interface Toolkit",
   "homepage": "http://ink.sapo.pt",
   "main": "dist/js/ink-all.js",
