@@ -128,7 +128,7 @@ If you want to build from our source code, you'll need to install a few things:
 
 If you don't need to rebuild Javascript code you can just use [Scout](http://mhs.github.io/scout-app/) which is a nice, free and cross platform Sass/Compass compiler.
 
-Building on Windows is a lot tricker so we won't get into details on how to install all the required tools. Instead here's a list of useful pages you'll need to read while trying this endeavour:
+Building on Windows is a lot trickier so we won't get into details on how to install all the required tools. Instead here's a list of useful pages you'll need to read while trying this endeavour:
 
   * [Getting started with Sass and Compass](http://thesassway.com/beginner/getting-started-with-sass-and-compass)
   * [Grunt](http://gruntjs.com/frequently-asked-questions)
