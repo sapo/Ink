@@ -338,7 +338,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
 
                 // Only stop the event if this dismisses this modal
                 if (!this._isOpen) {
-                    Event.stopDefault(ev);
+                    Event.stop(ev);
                 }
             }
         },
