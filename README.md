@@ -147,10 +147,10 @@ Grunt exposes these build tasks:
 ---
 
 ## Documentation
-The documentation is no longer distributed with Inks releases. We've completely rewritten or documentation and are now running our site on Github pages using Jekyll.
+The documentation is no longer distributed with Ink releases. We've completely rewritten or documentation and are now running our site on Github pages using Jekyll.
 
 You can read it at http://ink.sapo.pt
-Get its source, contribute or report and issue here: **https://github.com/sapo/Ink-doc**
+Get its source, contribute or report an issue here: **https://github.com/sapo/Ink-doc**
 
 ## Ink is built with help from these wonderful projects:
 
