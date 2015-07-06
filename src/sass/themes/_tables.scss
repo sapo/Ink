@@ -121,6 +121,13 @@ table.#{$table-class-name} {
                     color: darken($yellow,80%);
                 }
             }
+
+            &.grey {
+                td {
+                    background: $grey-10;
+                    color: darken($grey-10,80%);
+                }
+            }
         
         }
     }

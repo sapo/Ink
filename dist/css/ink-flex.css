@@ -8876,6 +8876,10 @@ table.ink-table tbody > tr.yellow td {
   background: #ffd500;
   color: black;
 }
+table.ink-table tbody > tr.grey td {
+  background: #e6e6e6;
+  color: #1a1a1a;
+}
 
 .animated.slow {
   animation-duration: 1s;
