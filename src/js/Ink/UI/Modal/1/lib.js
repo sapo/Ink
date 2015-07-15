@@ -508,9 +508,11 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             }
 
             if (this._options.onShow) {
-                var trigger = InkElement.findUpwardsBySelector(
-                        Event.element(event),
-                        this._options.trigger);
+                if (event) {
+                    var trigger = InkElement.findUpwardsBySelector(
+                            Event.element(event),
+                            this._options.trigger);
+                }
 
                 this._options.onShow.call(this, this, {
                     trigger: trigger
