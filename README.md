@@ -95,13 +95,6 @@ If you want to build from our source code, you'll need to install a few things:
   ```
 
 * #### Ubuntu
-  * **Install Node.js**
-  ```
-  sudo apt-get install python-software-properties python g++ make
-  sudo add-apt-repository ppa:chris-lea/node.js
-  sudo apt-get update
-  sudo apt-get install nodejs
-  ```
   * **Install Grunt:**
   ```
   sudo npm install -g grunt-cli
