@@ -23,13 +23,9 @@ Ink.requireModules(['Ink.UI.Common_1', 'Ink.UI.Modal_1', 'Ink.Dom.Element_1', 'I
         return cont;
     }
 
-    var vhVwSupported = (function (div) {
-        return div.style.height === '10vh' && div.style.width === '10vw';
-    }(InkElement.create('div', { style: 'height:10vh;width:10vw' })));
+    var vhVwSupported = Modal._vhVwSupported;
 
-    var flexSupported = (function (div) {
-        return div.style.display !== '';
-    }(InkElement.create('div', { style: 'display: flex' })));
+    var flexSupported = Modal._flexSupported;
 
     function modalTest(name, testBack, options) {
         test(name, function () {

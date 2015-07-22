@@ -11,9 +11,21 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
         return div.style.opacity !== 'invalid';
     }(InkElement.create('div', {style: 'opacity: 1'})));
 
-    var vhVwSupported = (function (div) {
-        return div.style.height === '10vh' && div.style.width === '10vw';
-    }(InkElement.create('div', { style: 'height:10vh;width:10vw' })));
+    var vhVwSupported = (function (elem) {
+        // Stolen with pride from modernizr:
+        // https://github.com/Modernizr/Modernizr/blob/master/feature-detects/css/vhunit.js
+        // and https://github.com/Modernizr/Modernizr/blob/master/feature-detects/css/vwunit.js
+        var height = parseInt(window.innerHeight / 2, 10);
+        var compHeight = parseInt((window.getComputedStyle ?
+                                  getComputedStyle(elem, null) :
+                                  elem.currentStyle)['height'], 10);
+        var width = parseInt(window.innerWidth / 2, 10);
+        var compWidth = parseInt((window.getComputedStyle ?
+                                  getComputedStyle(elem, null) :
+                                  elem.currentStyle).width, 10);
+
+        return compHeight === height && compWidth === width
+    }(InkElement.create('div', { style: 'height:50vh;width:50vw' })));
 
     var flexSupported = (function (div) {
         return div.style.display !== '';
@@ -691,6 +703,9 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
     };
 
     Common.createUIComponent(Modal, { elementIsOptional: true });
+
+    Modal._vhVwSupported = vhVwSupported;
+    Modal._flexSupported = flexSupported;
 
     return Modal;
 
