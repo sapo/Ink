@@ -11,7 +11,9 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         // TODO this is already implemented in FormSerialize.
         switch(element.nodeName.toLowerCase()){
             case 'select':
-                return Ink.s('option:selected', element).value;
+                var checkedOpt = Ink.s('option:checked', element);
+                if (checkedOpt) { return checkedOpt.value; }
+                return '';
             case 'textarea':
                 return element.value;
             case 'input':
