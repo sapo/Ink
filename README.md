@@ -4,7 +4,7 @@ Ink is an interface kit for quick development of web interfaces, simple to use a
 
 Ink is part of [SAPO's Open Source Software initiative](http://oss.sapo.pt).
 
-## Current Version: 3.1.9
+## Current Version: 3.1.10
 
 You can read our full documentation, examples and recipes in http://ink.sapo.pt
 
@@ -164,6 +164,7 @@ Get its source, contribute or report an issue here: **https://github.com/sapo/In
 + [Bower](http://bower.io/)
 
 ## Versions
+* [Ink 3.1.10](https://github.com/sapo/Ink/archive/3.1.10.zip)
 * [Ink 3.1.9](https://github.com/sapo/Ink/archive/3.1.9.zip)
 * [Ink 3.1.8](https://github.com/sapo/Ink/archive/3.1.8.zip)
 * [Ink 3.1.7](https://github.com/sapo/Ink/archive/3.1.7.zip)
