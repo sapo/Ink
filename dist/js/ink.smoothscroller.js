@@ -157,18 +157,18 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.UI.Common_1', 'Ink.Dom.Even
 
             if(hash) {
                 event.preventDefault();
-                var activeLiSelector = 'ul > li.active > ' + selector;
-
                 var selector = 'a[name="' + hash + '"],#' + hash;
+
                 var elm = Ink.s(selector);
-                var activeLi = Ink.s(activeLiSelector);
-                activeLi = activeLi && activeLi.parentNode;
+                var closestUL = InkElement.findUpwardsBySelector(link, 'ul');
+
+                if (closestUL) {
+                    var currentlyActive = Ink.s('li.active', closestUL);
+                    Css.removeClassName(currentlyActive, 'active')
+                }
 
                 if (elm) {
-                    if (!Css.hasClassName(link.parentNode, 'active')) {
-                        if (activeLi) {
-                            Css.removeClassName(activeLi, 'active');
-                        }
+                    if (link.parentNode && link.parentNode.tagName.toLowerCase() === 'li') {
                         Css.addClassName(link.parentNode, 'active');
                     }
 
