@@ -58,6 +58,12 @@ Ink.createModule('Ink.UI.Carousel', '1',
     };
 
     Carousel.prototype = {
+        _validate: function(){
+            var ulEl = Ink.s('ul.stage', this._element);
+            if (!ulEl) {
+                return new Error('Carousel must contain a ul.stage element!')
+            }
+        },
         _init: function () {
             this._handlers = {
                 paginationChange: Ink.bindMethod(this, '_onPaginationChange'),

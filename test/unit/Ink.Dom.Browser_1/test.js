@@ -53,5 +53,9 @@ Ink.requireModules(['Ink.Dom.Browser_1'], function (Browser) {
         checkIs('Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; .NET4.0E; .NET4.0C; Media Center PC 6.0; rv:11.0) like Gecko', 'IE', '11.0');
         checkIs('Mozilla/5.0 (IE 11.0; Windows NT 6.3; Trident/7.0; .NET4.0E; .NET4.0C; rv:11.0) like Gecko', 'IE', '11.0');
     });
+
+    test('regression: IE11 mobile, who pretends to be safari', function() {
+        checkIs('Mozilla/5.0 (Mobile; Windows Phone 8.1; Android 4.0; ARM; Trident/7.0; Touch; rv:11.0; IEMobile/11.0; NOKIA; Lumia 1520) like iPhone OS 7_0_3 Mac OS X AppleWebKit/537 (KHTML, like Gecko) Mobile Safari/537', 'IE', '11.0')
+    })
 });
 

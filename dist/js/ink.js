@@ -47,7 +47,7 @@
         /**
          * @property {String} VERSION
          **/
-        VERSION: '3.1.9',
+        VERSION: '3.1.10',
         _checkPendingRequireModules: function() {
             var I, F, o, dep, mod, cb, pRMs = [];
             var toApply = [];
@@ -1836,7 +1836,7 @@ Ink.createModule('Ink.Dom.Browser', '1', [], function() {
 
             sAgent = sAgent.toLowerCase();
 
-            if (/applewebkit\//.test(sAgent)) {
+            if (/applewebkit\//.test(sAgent) && !/iemobile/.test(sAgent)) {
                 this.cssPrefix = '-webkit-';
                 this.domPrefix = 'Webkit';
                 if(/(chrome|crios)\//.test(sAgent)) {
@@ -3556,7 +3556,8 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
             if (typeof options === 'boolean') {
                 options = {partial: options, margin: 0};
             }
-            options = Ink.extendObj({ partial: false, margin: 0}, options || {});
+            options = options || {};
+            options.margin = options.margin || 0
             if (options.partial) {
                 return  dims.bottom + options.margin > 0                           && // from the top
                         dims.left   - options.margin < InkElement.viewportWidth()  && // from the right

@@ -59,7 +59,7 @@ Ink.createModule('Ink.UI.DragDrop', 1, ['Ink.Dom.Element_1', 'Ink.Dom.Event_1', 
          *  Class for the placeholder clone
          * @param {Function} [options.onDrag]
          *  Called when dragging starts. Takes an `{ dragItem, dropZone }` object.
-         * @param {Function} [options.onDrag]
+         * @param {Function} [options.onDrop]
          *  Called when dragging ends. Takes an `{ origin, dragItem, dropZone }` object.
          *
          * @sample Ink_UI_DragDrop_1.html
