@@ -61,7 +61,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
         _validate: function(){
             var ulEl = Ink.s('ul.stage', this._element);
             if (!ulEl) {
-                return new Error('Carousel must contain a ul.stage element!')
+                return new Error('Carousel must contain a ul.stage element!');
             }
         },
         _init: function () {
