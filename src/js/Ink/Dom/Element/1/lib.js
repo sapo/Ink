@@ -740,7 +740,8 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
             if (typeof options === 'boolean') {
                 options = {partial: options, margin: 0};
             }
-            options = Ink.extendObj({ partial: false, margin: 0}, options || {});
+            options = options || {};
+            options.margin = options.margin || 0
             if (options.partial) {
                 return  dims.bottom + options.margin > 0                           && // from the top
                         dims.left   - options.margin < InkElement.viewportWidth()  && // from the right

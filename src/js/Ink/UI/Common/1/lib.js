@@ -660,7 +660,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
                     // regular concatenation.
                     //
                     // But they won't. So don't change this.
-                    Ink.warn('Creating more than one ' + nameWithoutVersion + 'for the same element.',
+                    Ink.warn('Creating more than one ' + nameWithoutVersion + ' for the same element.',
                             '(Was creating a ' + nameWithoutVersion + ' on:', elm, ').');
                     return false;
                 }

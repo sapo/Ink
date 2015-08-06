@@ -205,7 +205,7 @@ Ink.createModule('Ink.Dom.Browser', '1', [], function() {
 
             sAgent = sAgent.toLowerCase();
 
-            if (/applewebkit\//.test(sAgent)) {
+            if (/applewebkit\//.test(sAgent) && !/iemobile/.test(sAgent)) {
                 this.cssPrefix = '-webkit-';
                 this.domPrefix = 'Webkit';
                 if(/(chrome|crios)\//.test(sAgent)) {

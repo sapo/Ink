@@ -336,7 +336,7 @@ Ink.requireModules(['Ink.Dom.Element_1', 'Ink.Dom.Selector_1', 'Ink.Dom.Css_1'],
 
         // Partially inside from the right
         rect.returns({left: 99, right: 200, top: 10, bottom: 10})
-        ok(InkElement.inViewport(fakeEl, true))
+        ok(InkElement.inViewport(fakeEl, { partial: true }))
 
         // Partially inside from the top
         rect.returns({top: -101, bottom: 1, left: 10, right: 10})

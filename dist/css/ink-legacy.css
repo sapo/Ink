@@ -7,7 +7,7 @@
  * @author    Sapo Ink Team
  * @license   http://opensource.org/licenses/MIT MIT
  * @link      http://ink.sapo.pt
- * @version   3.1.9
+ * @version   3.1.10
  */
 /**
  * Ink class names prefix
@@ -136,7 +136,7 @@
 
 html.no-flexbox,
 html.no-flexboxlegacy {
-  font-size: 0.97em;
+  font-size: 1em;
 }
 html.no-flexbox .ink-grid,
 html.no-flexboxlegacy .ink-grid {
@@ -4725,7 +4725,7 @@ html.no-flexbox .ink-form p.label,
 html.no-flexboxlegacy .ink-form p.label {
   padding: 0;
   margin: 0;
-  color: #555555;
+  color: #555;
   white-space: normal;
 }
 html.no-flexbox .ink-form select,
@@ -4770,7 +4770,7 @@ html.no-flexboxlegacy .ink-form input[type="color"] {
   padding: 8px 6px;
   border: 1px solid #c6c6c6;
   resize: none;
-  background: white;
+  background: #FFF;
   vertical-align: middle;
 }
 html.no-flexbox .ink-form select:focus,
@@ -4856,7 +4856,7 @@ html.no-flexboxlegacy .ink-form .input-file {
   border-radius: 2px;
   padding: 6px;
   border: 1px solid #c6c6c6;
-  background: white;
+  background: #FFF;
   vertical-align: middle;
   line-height: 1.2;
 }
@@ -5123,7 +5123,7 @@ html.no-flexboxlegacy .ink-form .control-group.validation.warning p.tip {
 html.no-flexbox .ink-form .control-group.required label, html.no-flexbox .ink-form .control-group.required p.label,
 html.no-flexboxlegacy .ink-form .control-group.required label,
 html.no-flexboxlegacy .ink-form .control-group.required p.label {
-  color: #555555;
+  color: #555;
 }
 html.no-flexbox .ink-form .control-group.required label:after, html.no-flexbox .ink-form .control-group.required p.label:after,
 html.no-flexboxlegacy .ink-form .control-group.required label:after,

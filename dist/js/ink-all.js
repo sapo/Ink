@@ -47,7 +47,7 @@
         /**
          * @property {String} VERSION
          **/
-        VERSION: '3.1.9',
+        VERSION: '3.1.10',
         _checkPendingRequireModules: function() {
             var I, F, o, dep, mod, cb, pRMs = [];
             var toApply = [];
@@ -1836,7 +1836,7 @@ Ink.createModule('Ink.Dom.Browser', '1', [], function() {
 
             sAgent = sAgent.toLowerCase();
 
-            if (/applewebkit\//.test(sAgent)) {
+            if (/applewebkit\//.test(sAgent) && !/iemobile/.test(sAgent)) {
                 this.cssPrefix = '-webkit-';
                 this.domPrefix = 'Webkit';
                 if(/(chrome|crios)\//.test(sAgent)) {
@@ -3556,7 +3556,8 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
             if (typeof options === 'boolean') {
                 options = {partial: options, margin: 0};
             }
-            options = Ink.extendObj({ partial: false, margin: 0}, options || {});
+            options = options || {};
+            options.margin = options.margin || 0
             if (options.partial) {
                 return  dims.bottom + options.margin > 0                           && // from the top
                         dims.left   - options.margin < InkElement.viewportWidth()  && // from the right
@@ -13544,6 +13545,12 @@ Ink.createModule('Ink.UI.Carousel', '1',
     };
 
     Carousel.prototype = {
+        _validate: function(){
+            var ulEl = Ink.s('ul.stage', this._element);
+            if (!ulEl) {
+                return new Error('Carousel must contain a ul.stage element!')
+            }
+        },
         _init: function () {
             this._handlers = {
                 paginationChange: Ink.bindMethod(this, '_onPaginationChange'),
@@ -14684,7 +14691,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
                     // regular concatenation.
                     //
                     // But they won't. So don't change this.
-                    Ink.warn('Creating more than one ' + nameWithoutVersion + 'for the same element.',
+                    Ink.warn('Creating more than one ' + nameWithoutVersion + ' for the same element.',
                             '(Was creating a ' + nameWithoutVersion + ' on:', elm, ').');
                     return false;
                 }
@@ -16822,7 +16829,7 @@ Ink.createModule('Ink.UI.DragDrop', 1, ['Ink.Dom.Element_1', 'Ink.Dom.Event_1', 
          *  Class for the placeholder clone
          * @param {Function} [options.onDrag]
          *  Called when dragging starts. Takes an `{ dragItem, dropZone }` object.
-         * @param {Function} [options.onDrag]
+         * @param {Function} [options.onDrop]
          *  Called when dragging ends. Takes an `{ origin, dragItem, dropZone }` object.
          *
          * @sample Ink_UI_DragDrop_1.html
@@ -19198,7 +19205,9 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         // TODO this is already implemented in FormSerialize.
         switch(element.nodeName.toLowerCase()){
             case 'select':
-                return Ink.s('option:selected', element).value;
+                var checkedOpt = Ink.s('option:checked', element);
+                if (checkedOpt) { return checkedOpt.value; }
+                return '';
             case 'textarea':
                 return element.value;
             case 'input':
@@ -20880,9 +20889,21 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
         return div.style.opacity !== 'invalid';
     }(InkElement.create('div', {style: 'opacity: 1'})));
 
-    var vhVwSupported = (function (div) {
-        return div.style.height === '10vh' && div.style.width === '10vw';
-    }(InkElement.create('div', { style: 'height:10vh;width:10vw' })));
+    var vhVwSupported = (function (elem) {
+        // Stolen with pride from modernizr:
+        // https://github.com/Modernizr/Modernizr/blob/master/feature-detects/css/vhunit.js
+        // and https://github.com/Modernizr/Modernizr/blob/master/feature-detects/css/vwunit.js
+        var height = parseInt(window.innerHeight / 2, 10);
+        var compHeight = parseInt((window.getComputedStyle ?
+                                  getComputedStyle(elem, null) :
+                                  elem.currentStyle)['height'], 10);
+        var width = parseInt(window.innerWidth / 2, 10);
+        var compWidth = parseInt((window.getComputedStyle ?
+                                  getComputedStyle(elem, null) :
+                                  elem.currentStyle).width, 10);
+
+        return compHeight === height && compWidth === width
+    }(InkElement.create('div', { style: 'height:50vh;width:50vw' })));
 
     var flexSupported = (function (div) {
         return div.style.display !== '';
@@ -21207,7 +21228,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
 
                 // Only stop the event if this dismisses this modal
                 if (!this._isOpen) {
-                    Event.stopDefault(ev);
+                    Event.stop(ev);
                 }
             }
         },
@@ -21377,9 +21398,11 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             }
 
             if (this._options.onShow) {
-                var trigger = InkElement.findUpwardsBySelector(
-                        Event.element(event),
-                        this._options.trigger);
+                if (event) {
+                    var trigger = InkElement.findUpwardsBySelector(
+                            Event.element(event),
+                            this._options.trigger);
+                }
 
                 this._options.onShow.call(this, this, {
                     trigger: trigger
@@ -21558,6 +21581,9 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
     };
 
     Common.createUIComponent(Modal, { elementIsOptional: true });
+
+    Modal._vhVwSupported = vhVwSupported;
+    Modal._flexSupported = flexSupported;
 
     return Modal;
 
@@ -22391,18 +22417,18 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.UI.Common_1', 'Ink.Dom.Even
 
             if(hash) {
                 event.preventDefault();
-                var activeLiSelector = 'ul > li.active > ' + selector;
-
                 var selector = 'a[name="' + hash + '"],#' + hash;
+
                 var elm = Ink.s(selector);
-                var activeLi = Ink.s(activeLiSelector);
-                activeLi = activeLi && activeLi.parentNode;
+                var closestUL = InkElement.findUpwardsBySelector(link, 'ul');
+
+                if (closestUL) {
+                    var currentlyActive = Ink.s('li.active', closestUL);
+                    Css.removeClassName(currentlyActive, 'active')
+                }
 
                 if (elm) {
-                    if (!Css.hasClassName(link.parentNode, 'active')) {
-                        if (activeLi) {
-                            Css.removeClassName(activeLi, 'active');
-                        }
+                    if (link.parentNode && link.parentNode.tagName.toLowerCase() === 'li') {
                         Css.addClassName(link.parentNode, 'active');
                     }
 
