@@ -212,7 +212,8 @@ module.exports = function (grunt) {
                 src: [
                   '<%= ink.folders.css.dist %>/*.css',
                   '<%= ink.folders.css.dist %>/*.css.map',
-                  '!<%= ink.folders.css.dist %>/quick-start.css'
+                  '!<%= ink.folders.css.dist %>/quick-start.css',
+                    '!<%= ink.folders.css.dist %>/font-awesome.css'
                 ]
             },
             csscontrib: [ '<%= ink.folders.css.dist %>/contrib' ]
@@ -300,18 +301,19 @@ module.exports = function (grunt) {
             },
         },
 
-        compass: {
-            css: {
-                options: {
-                    outputStyle: 'expanded',
-                    noLineComments: true,
-                    relativeAssets: true,
-                    sassDir: 'src/sass',
-                    cssDir: "dist/css",
-                    fontsDir: 'dist/fonts',
-                    imagesDir: 'dist/img'
-                }
+        sass: {
+            options: {
+                sourceMap: false,
             },
+            dist: {
+                files: [{
+                    expand: true,
+                    cwd: "src/sass",
+                    src: ["*.scss"],
+                    dest: "dist/css",
+                    ext: ".css"
+                }]
+            }
         },
 
         cssmin: {
@@ -400,11 +402,10 @@ module.exports = function (grunt) {
             }    
         }
     });
-
     grunt.registerTask('js', ['clean:js', 'concat', 'uglify']);
-    grunt.registerTask('css', ['clean:css', 'compass', 'copy:facss', 'clean:csscontrib', 'cssmin']);
+    grunt.registerTask('css', ['clean:css', 'sass', 'copy:facss', 'clean:csscontrib', 'cssmin']);
     grunt.registerTask('dist', ['css', 'js', 'compress']);
-    grunt.registerTask('dependencies', ['bower', 'copy:fontAwesome', 'copy:compass']);
+    grunt.registerTask('dependencies', ['bower', 'copy:fontAwesome']);
     grunt.registerTask('default', ['dependencies','css','js']);
     grunt.registerTask('lintdoc', function (module) {
         require('eslint/lib/cli').execute([

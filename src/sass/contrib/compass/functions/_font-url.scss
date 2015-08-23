@@ -1,0 +1,41 @@
+@function font-url ($file) {
+  @return url($font-dir + '/' + $file);
+}
+
+@function font-files ($args...) {
+  $css: '';
+  $idx: 0;
+  @each $font in $args {
+    $idx: $idx + 1;
+    $format: null;
+    $separator: null;
+
+    @if (str_index($font, '.woff2') != null) {
+      $format: "woff2"
+    }
+    @if (str_index($font, '.woff') != null) {
+      $format: "woff"
+    }
+
+    @if (str_index($font, '.ttf') != null) {
+      $format: "truetype"
+    }
+
+    @if (str_index($font, '.svg') != null) {
+      $format: "svg"
+    }
+    $font: font-url($font);
+
+    @if ($idx != 1) {
+      $separator: ',';
+    }
+
+    @if ($format != null) {
+      $css: "#{$css}#{$separator} #{$font} format('#{$format}')";
+    }
+    @else {
+      $css: "#{$css}#{$separator} #{$font}";
+    }
+  }
+  @return unquote($css);
+}
