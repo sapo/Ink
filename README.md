@@ -62,7 +62,6 @@ We've also unified our build system using [Grunt](http://gruntjs.com/) and [Bowe
 If you want to build from our source code, you'll need to install a few things:
 * [Node.js](http://nodejs.org/)
 * [Ruby](https://www.ruby-lang.org/en/downloads/)
-* [Compass](http://compass-style.org/)
 * [Grunt](http://gruntjs.com/)
 * [Bower](http://bower.io/)
 
@@ -85,10 +84,6 @@ If you want to build from our source code, you'll need to install a few things:
   ```
   npm install -g bower
   ```
-  * **Install Compass:**
-  ```
-  sudo gem update --system && sudo gem install compass
-  ```
   * **Move into Inks folder and install remaining build tools:**
   ```
   npm install
@@ -106,10 +101,6 @@ If you want to build from our source code, you'll need to install a few things:
   * **Install Ruby:**
   ```
   sudo apt-get install ruby rubygems
-  ```
-  * **Install Compass:**
-  ```
-  sudo gem install compass
   ```
   * **Move into Inks folder and install remaining build tools:**
   ```
@@ -149,7 +140,6 @@ Get its source, contribute or report an issue here: **https://github.com/sapo/In
 
 **CSS Generation**
 + [Sass](http://sass-lang.com/)
-+ [Compass](http://compass-style.org/)
 
 **Typography and Icons**
 + [FontAwesome](http://fortawesome.github.io/Font-Awesome/)

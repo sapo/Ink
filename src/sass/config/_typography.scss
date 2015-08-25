@@ -1,8 +1,9 @@
 // After the default variables are set, import the required Compass partials.
-@import "compass/support";
-@import "compass/css3/box-sizing";
+@import "../contrib/compass/support";
+@import "../contrib/compass/css3/box-sizing";
 // @import "compass/typography/vertical_rhythm";
 
+$font-dir: '../fonts' !default;
 
 // Font stack definitions
 $sans-serif-font-stack  : "Roboto", Arial, Helvetica, sans-serif !default;

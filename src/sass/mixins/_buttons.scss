@@ -1,5 +1,5 @@
 // Buttons
-
+@import "../contrib/compass/functions/colors";
 @mixin ink-button($button-background-color, $button-text-color) {
 
     color: $button-text-color; 
