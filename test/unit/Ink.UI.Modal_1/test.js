@@ -200,6 +200,18 @@ Ink.requireModules(['Ink.UI.Common_1', 'Ink.UI.Modal_1', 'Ink.Dom.Element_1', 'I
         modal.dismiss();
     });
 
+    test('Regression: When onDismiss throws an error, Modal should still be dismissed.', function() {
+        var els = makeContainer();
+
+        var modal = new Modal(Ink.s('.ink-modal', els), { autoDisplay: false, onDismiss: function() { throw new Error('I\'m a poorly written onDismiss!') } });
+
+        modal.open();
+
+        modal.dismiss();
+
+        ok(!Css.hasClassName(Ink.s('.ink-shade', els), 'visible'))
+    });
+
     if (!vhVwSupported) {
         // Unnecessary to test, because if vh/vw is supported we set maxWidth/Height to 90vw/w
         test('_avoidModalLargerThanScreen makes sure fixed-size modals aren\'t larger than the screen. When the screen is sized down, the size is limited. When it goes back up, the size goes back to where it started.', function () {
