@@ -343,6 +343,30 @@
 
 @mixin generate-grid-helper-classes($class-name,$gutter-width) {
 
+
+    // Vertical align
+    .push-top,
+    .#{$class-name}-push-top {
+        position: relative;
+        top: 0%;
+        @include translateY(0%);
+    }
+
+    .push-bottom,
+    .#{$class-name}-push-bottom {
+        position: relative;
+        top: 100%;
+        @include translateY(-100%);
+    }
+
+    .push-middle,
+    .#{$class-name}-push-middle {
+        position: relative;
+        top: 50%;
+        @include translateY(-50%);
+    }
+    
+    // Horizontal align
     .#{$class-name}-push-left {
         float: left;
     }
@@ -355,6 +379,8 @@
     .#{$class-name}-push-right {
         float: right;
     }
+
+    // Text align
     .#{$class-name}-align-left {
         text-align: left;
     }
@@ -365,6 +391,7 @@
         text-align: right;
     }
 
+    // Spacing
     .#{$class-name}-no-margin {
         margin: 0 !important;
     }
