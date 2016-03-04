@@ -615,6 +615,42 @@ html.no-flexboxlegacy [class~=all-100] {
   html.no-flexboxlegacy .ink-table tfoot[class*=xlarge-] {
     float: none;
   }
+  html.no-flexbox .push-top,
+  html.no-flexbox .xlarge-push-top,
+  html.no-flexboxlegacy .push-top,
+  html.no-flexboxlegacy .xlarge-push-top {
+    position: relative;
+    top: 0%;
+    -webkit-transform: translateY(0%);
+    -moz-transform: translateY(0%);
+    -ms-transform: translateY(0%);
+    -o-transform: translateY(0%);
+    transform: translateY(0%);
+  }
+  html.no-flexbox .push-bottom,
+  html.no-flexbox .xlarge-push-bottom,
+  html.no-flexboxlegacy .push-bottom,
+  html.no-flexboxlegacy .xlarge-push-bottom {
+    position: relative;
+    top: 100%;
+    -webkit-transform: translateY(-100%);
+    -moz-transform: translateY(-100%);
+    -ms-transform: translateY(-100%);
+    -o-transform: translateY(-100%);
+    transform: translateY(-100%);
+  }
+  html.no-flexbox .push-middle,
+  html.no-flexbox .xlarge-push-middle,
+  html.no-flexboxlegacy .push-middle,
+  html.no-flexboxlegacy .xlarge-push-middle {
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
   html.no-flexbox .xlarge-push-left,
   html.no-flexboxlegacy .xlarge-push-left {
     float: left;
@@ -1487,6 +1523,42 @@ html.no-flexboxlegacy [class~=all-100] {
   html.no-flexboxlegacy .ink-table tbody[class*=large-],
   html.no-flexboxlegacy .ink-table tfoot[class*=large-] {
     float: none;
+  }
+  html.no-flexbox .push-top,
+  html.no-flexbox .large-push-top,
+  html.no-flexboxlegacy .push-top,
+  html.no-flexboxlegacy .large-push-top {
+    position: relative;
+    top: 0%;
+    -webkit-transform: translateY(0%);
+    -moz-transform: translateY(0%);
+    -ms-transform: translateY(0%);
+    -o-transform: translateY(0%);
+    transform: translateY(0%);
+  }
+  html.no-flexbox .push-bottom,
+  html.no-flexbox .large-push-bottom,
+  html.no-flexboxlegacy .push-bottom,
+  html.no-flexboxlegacy .large-push-bottom {
+    position: relative;
+    top: 100%;
+    -webkit-transform: translateY(-100%);
+    -moz-transform: translateY(-100%);
+    -ms-transform: translateY(-100%);
+    -o-transform: translateY(-100%);
+    transform: translateY(-100%);
+  }
+  html.no-flexbox .push-middle,
+  html.no-flexbox .large-push-middle,
+  html.no-flexboxlegacy .push-middle,
+  html.no-flexboxlegacy .large-push-middle {
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
   }
   html.no-flexbox .large-push-left,
   html.no-flexboxlegacy .large-push-left {
@@ -2361,6 +2433,42 @@ html.no-flexboxlegacy [class~=all-100] {
   html.no-flexboxlegacy .ink-table tfoot[class*=medium-] {
     float: none;
   }
+  html.no-flexbox .push-top,
+  html.no-flexbox .medium-push-top,
+  html.no-flexboxlegacy .push-top,
+  html.no-flexboxlegacy .medium-push-top {
+    position: relative;
+    top: 0%;
+    -webkit-transform: translateY(0%);
+    -moz-transform: translateY(0%);
+    -ms-transform: translateY(0%);
+    -o-transform: translateY(0%);
+    transform: translateY(0%);
+  }
+  html.no-flexbox .push-bottom,
+  html.no-flexbox .medium-push-bottom,
+  html.no-flexboxlegacy .push-bottom,
+  html.no-flexboxlegacy .medium-push-bottom {
+    position: relative;
+    top: 100%;
+    -webkit-transform: translateY(-100%);
+    -moz-transform: translateY(-100%);
+    -ms-transform: translateY(-100%);
+    -o-transform: translateY(-100%);
+    transform: translateY(-100%);
+  }
+  html.no-flexbox .push-middle,
+  html.no-flexbox .medium-push-middle,
+  html.no-flexboxlegacy .push-middle,
+  html.no-flexboxlegacy .medium-push-middle {
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
   html.no-flexbox .medium-push-left,
   html.no-flexboxlegacy .medium-push-left {
     float: left;
@@ -3233,6 +3341,42 @@ html.no-flexboxlegacy [class~=all-100] {
   html.no-flexboxlegacy .ink-table tbody[class*=small-],
   html.no-flexboxlegacy .ink-table tfoot[class*=small-] {
     float: none;
+  }
+  html.no-flexbox .push-top,
+  html.no-flexbox .small-push-top,
+  html.no-flexboxlegacy .push-top,
+  html.no-flexboxlegacy .small-push-top {
+    position: relative;
+    top: 0%;
+    -webkit-transform: translateY(0%);
+    -moz-transform: translateY(0%);
+    -ms-transform: translateY(0%);
+    -o-transform: translateY(0%);
+    transform: translateY(0%);
+  }
+  html.no-flexbox .push-bottom,
+  html.no-flexbox .small-push-bottom,
+  html.no-flexboxlegacy .push-bottom,
+  html.no-flexboxlegacy .small-push-bottom {
+    position: relative;
+    top: 100%;
+    -webkit-transform: translateY(-100%);
+    -moz-transform: translateY(-100%);
+    -ms-transform: translateY(-100%);
+    -o-transform: translateY(-100%);
+    transform: translateY(-100%);
+  }
+  html.no-flexbox .push-middle,
+  html.no-flexbox .small-push-middle,
+  html.no-flexboxlegacy .push-middle,
+  html.no-flexboxlegacy .small-push-middle {
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
   }
   html.no-flexbox .small-push-left,
   html.no-flexboxlegacy .small-push-left {
@@ -4107,6 +4251,42 @@ html.no-flexboxlegacy [class~=all-100] {
   html.no-flexboxlegacy .ink-table tfoot[class*=tiny-] {
     float: none;
   }
+  html.no-flexbox .push-top,
+  html.no-flexbox .tiny-push-top,
+  html.no-flexboxlegacy .push-top,
+  html.no-flexboxlegacy .tiny-push-top {
+    position: relative;
+    top: 0%;
+    -webkit-transform: translateY(0%);
+    -moz-transform: translateY(0%);
+    -ms-transform: translateY(0%);
+    -o-transform: translateY(0%);
+    transform: translateY(0%);
+  }
+  html.no-flexbox .push-bottom,
+  html.no-flexbox .tiny-push-bottom,
+  html.no-flexboxlegacy .push-bottom,
+  html.no-flexboxlegacy .tiny-push-bottom {
+    position: relative;
+    top: 100%;
+    -webkit-transform: translateY(-100%);
+    -moz-transform: translateY(-100%);
+    -ms-transform: translateY(-100%);
+    -o-transform: translateY(-100%);
+    transform: translateY(-100%);
+  }
+  html.no-flexbox .push-middle,
+  html.no-flexbox .tiny-push-middle,
+  html.no-flexboxlegacy .push-middle,
+  html.no-flexboxlegacy .tiny-push-middle {
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
   html.no-flexbox .tiny-push-left,
   html.no-flexboxlegacy .tiny-push-left {
     float: left;
@@ -4717,7 +4897,7 @@ html.no-flexboxlegacy .ink-form fieldset legend + * {
 html.no-flexbox .ink-form p.tip,
 html.no-flexboxlegacy .ink-form p.tip {
   font-size: .875em;
-  color: #909090;
+  color: #919191;
   position: relative;
   margin: .2em 0 0 .1em;
 }
@@ -4768,7 +4948,7 @@ html.no-flexboxlegacy .ink-form input[type="color"] {
   -o-border-radius: 2px;
   border-radius: 2px;
   padding: 8px 6px;
-  border: 1px solid #c6c6c6;
+  border: 1px solid #c7c7c7;
   resize: none;
   background: #FFF;
   vertical-align: middle;
@@ -4855,7 +5035,7 @@ html.no-flexboxlegacy .ink-form .input-file {
   -o-border-radius: 2px;
   border-radius: 2px;
   padding: 6px;
-  border: 1px solid #c6c6c6;
+  border: 1px solid #c7c7c7;
   background: #FFF;
   vertical-align: middle;
   line-height: 1.2;
@@ -5103,7 +5283,7 @@ html.no-flexboxlegacy .ink-form .control-group.validation.error select {
 }
 html.no-flexbox .ink-form .control-group.validation.error p.tip,
 html.no-flexboxlegacy .ink-form .control-group.validation.error p.tip {
-  color: rgba(150, 7, 12, 0.55);
+  color: rgba(150, 8, 12, 0.55);
 }
 html.no-flexbox .ink-form .control-group.validation.warning input, html.no-flexbox .ink-form .control-group.validation.warning textarea, html.no-flexbox .ink-form .control-group.validation.warning select,
 html.no-flexboxlegacy .ink-form .control-group.validation.warning input,
