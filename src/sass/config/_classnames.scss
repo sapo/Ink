@@ -90,9 +90,11 @@ $image-class-name: #{$ink-class-prefix}-image !default;
  * JS UI components classe names
  */
 $carousel-class-name        : #{$ink-class-prefix}-carousel !default;
+$datepicker-class-name      : #{$ink-class-prefix}-datepicker !default;
 $drawer-class-name          : #{$ink-class-prefix}-drawer !default;
 $shade-class-name           : #{$ink-class-prefix}-shade !default;
 $modal-class-name           : #{$ink-class-prefix}-modal !default;
+$gallery-class-name         : #{$ink-class-prefix}-gallery !default;
 $progress-bar-class-name    : #{$ink-class-prefix}-progress-bar !default;
 $sortable-list-class-name   : #{$ink-class-prefix}-sortable-list !default;
 $tabs-class-name            : #{$ink-class-prefix}-tabs !default;
