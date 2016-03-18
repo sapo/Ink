@@ -10,9 +10,7 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
     // A selector that finds focusable elements
     var sFocusableElms = [
         '[tabindex]:not([tabindex="-1"])',
-        'input',
         'select',
-        'textarea',
         'button',
         'object',
         'a[href]',

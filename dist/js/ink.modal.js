@@ -24,7 +24,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                                   getComputedStyle(elem, null) :
                                   elem.currentStyle).width, 10);
 
-        return compHeight === height && compWidth === width
+        return compHeight === height && compWidth === width;
     }(InkElement.create('div', { style: 'height:50vh;width:50vw' })));
 
     var flexSupported = (function (div) {
@@ -520,8 +520,9 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             }
 
             if (this._options.onShow) {
+                var trigger;
                 if (event) {
-                    var trigger = InkElement.findUpwardsBySelector(
+                    trigger = InkElement.findUpwardsBySelector(
                             Event.element(event),
                             this._options.trigger);
                 }
@@ -564,8 +565,10 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             if (!this._isOpen) { /* Already dismissed. WTF IE. */ return; }
 
             if (this._options.onDismiss) {
-                var ret = this._options.onDismiss(this);
-                if (ret === false) { return; }
+                try {
+                    var ret = this._options.onDismiss(this);
+                    if (ret === false) { return; }
+                } catch(e) { Ink.error(e); }
             }
 
             this._isOpen = false;

@@ -164,7 +164,7 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.UI.Common_1', 'Ink.Dom.Even
 
                 if (closestUL) {
                     var currentlyActive = Ink.s('li.active', closestUL);
-                    Css.removeClassName(currentlyActive, 'active')
+                    Css.removeClassName(currentlyActive, 'active');
                 }
 
                 if (elm) {

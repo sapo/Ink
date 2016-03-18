@@ -4717,7 +4717,7 @@ html.no-flexboxlegacy .ink-form fieldset legend + * {
 html.no-flexbox .ink-form p.tip,
 html.no-flexboxlegacy .ink-form p.tip {
   font-size: .875em;
-  color: #909090;
+  color: #919191;
   position: relative;
   margin: .2em 0 0 .1em;
 }
@@ -4768,7 +4768,7 @@ html.no-flexboxlegacy .ink-form input[type="color"] {
   -o-border-radius: 2px;
   border-radius: 2px;
   padding: 8px 6px;
-  border: 1px solid #c6c6c6;
+  border: 1px solid #c7c7c7;
   resize: none;
   background: #FFF;
   vertical-align: middle;
@@ -4855,7 +4855,7 @@ html.no-flexboxlegacy .ink-form .input-file {
   -o-border-radius: 2px;
   border-radius: 2px;
   padding: 6px;
-  border: 1px solid #c6c6c6;
+  border: 1px solid #c7c7c7;
   background: #FFF;
   vertical-align: middle;
   line-height: 1.2;
@@ -5103,7 +5103,7 @@ html.no-flexboxlegacy .ink-form .control-group.validation.error select {
 }
 html.no-flexbox .ink-form .control-group.validation.error p.tip,
 html.no-flexboxlegacy .ink-form .control-group.validation.error p.tip {
-  color: rgba(150, 7, 12, 0.55);
+  color: rgba(150, 8, 12, 0.55);
 }
 html.no-flexbox .ink-form .control-group.validation.warning input, html.no-flexbox .ink-form .control-group.validation.warning textarea, html.no-flexbox .ink-form .control-group.validation.warning select,
 html.no-flexboxlegacy .ink-form .control-group.validation.warning input,

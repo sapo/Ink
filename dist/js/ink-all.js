@@ -3557,7 +3557,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
                 options = {partial: options, margin: 0};
             }
             options = options || {};
-            options.margin = options.margin || 0
+            options.margin = options.margin || 0;
             if (options.partial) {
                 return  dims.bottom + options.margin > 0                           && // from the top
                         dims.left   - options.margin < InkElement.viewportWidth()  && // from the right
@@ -13548,7 +13548,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
         _validate: function(){
             var ulEl = Ink.s('ul.stage', this._element);
             if (!ulEl) {
-                return new Error('Carousel must contain a ul.stage element!')
+                return new Error('Carousel must contain a ul.stage element!');
             }
         },
         _init: function () {
@@ -17585,9 +17585,7 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
     // A selector that finds focusable elements
     var sFocusableElms = [
         '[tabindex]:not([tabindex="-1"])',
-        'input',
         'select',
-        'textarea',
         'button',
         'object',
         'a[href]',
@@ -20348,6 +20346,21 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         },
 
         /**
+         * Adds new a new language dictionary
+         * If we don't have an i18n instance, create one which is a copy of the global one.
+         * @method addLanguage
+         * @param {Object} language Language ({de_DE: {'formvalidator.generic_error' : '{field} ist ungültig'}})
+         * @return {void}
+         * @public
+         **/
+        addLanguage: function (dictionary) {
+            if (!this.i18n) {
+                this.setI18n(validationMessages);
+            }
+            this.i18n.append(dictionary);
+        },
+
+        /**
          * Set the language of this form validator to the given language code
          * If we don't have an i18n instance, create one which is a copy of the global one.
          * @method setLanguage
@@ -20902,7 +20915,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                                   getComputedStyle(elem, null) :
                                   elem.currentStyle).width, 10);
 
-        return compHeight === height && compWidth === width
+        return compHeight === height && compWidth === width;
     }(InkElement.create('div', { style: 'height:50vh;width:50vw' })));
 
     var flexSupported = (function (div) {
@@ -21398,8 +21411,9 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             }
 
             if (this._options.onShow) {
+                var trigger;
                 if (event) {
-                    var trigger = InkElement.findUpwardsBySelector(
+                    trigger = InkElement.findUpwardsBySelector(
                             Event.element(event),
                             this._options.trigger);
                 }
@@ -21442,8 +21456,10 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             if (!this._isOpen) { /* Already dismissed. WTF IE. */ return; }
 
             if (this._options.onDismiss) {
-                var ret = this._options.onDismiss(this);
-                if (ret === false) { return; }
+                try {
+                    var ret = this._options.onDismiss(this);
+                    if (ret === false) { return; }
+                } catch(e) { Ink.error(e); }
             }
 
             this._isOpen = false;
@@ -22424,7 +22440,7 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.UI.Common_1', 'Ink.Dom.Even
 
                 if (closestUL) {
                     var currentlyActive = Ink.s('li.active', closestUL);
-                    Css.removeClassName(currentlyActive, 'active')
+                    Css.removeClassName(currentlyActive, 'active');
                 }
 
                 if (elm) {
@@ -23231,12 +23247,19 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
          * @private
          */
         _isDisabledInLayout: function () {
-            if (!this._options.activateInLayouts) {
+            if(!this._options.activateInLayouts) {
                 return false;
             }
+
             var currentLayout = Common.currentLayout();
-            if (!currentLayout) { return false; }
-            return this._options.activateInLayouts.indexOf(currentLayout) === -1;
+            if (!currentLayout) { return false; };
+            var layouts = this._options.activateInLayouts.split(',');            
+            for ( var i = 0; i < layouts.length; i++ ) {
+              if (layouts[i] === currentLayout) {
+                 return false;
+              }
+            }
+            return true;
         },
 
         /**

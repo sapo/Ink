@@ -3557,7 +3557,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
                 options = {partial: options, margin: 0};
             }
             options = options || {};
-            options.margin = options.margin || 0
+            options.margin = options.margin || 0;
             if (options.partial) {
                 return  dims.bottom + options.margin > 0                           && // from the top
                         dims.left   - options.margin < InkElement.viewportWidth()  && // from the right
