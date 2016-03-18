@@ -1157,7 +1157,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
          * Adds new a new language dictionary
          * If we don't have an i18n instance, create one which is a copy of the global one.
          * @method addLanguage
-         * @param {Object} language Language ({de_DE: {'formvalidator.generic_error' : '{field} is invalid'}})
+         * @param {Object} language Language ({de_DE: {'formvalidator.generic_error' : '{field} ist ungültig'}})
          * @return {void}
          * @public
          **/
