@@ -118,7 +118,8 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
         onDismiss:    ['Function', undefined],
         closeOnClick: ['Boolean', false],
         closeOnEscape: ['Boolean', true],
-        responsive:    ['Boolean', true]
+        responsive:    ['Boolean', true],
+        preventPageScroll: ['Boolean',false]
     };
 
     Modal.prototype = {
@@ -541,7 +542,11 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             this._isOpen = true;
             openModals.push(this);
 
-            Css.addClassName(document.documentElement, 'ink-modal-open');
+            if (this._options.preventPageScroll === true) {
+                Css.setStyle(document.body,'position: fixed');
+            } 
+            
+            Css.addClassName(document.documentElement, 'ink-modal-open');                
         },
 
         /**
@@ -597,7 +602,13 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                 var htmlEl = document.documentElement;
 
                 // Remove the class from the HTML element.
+
+
+                if (this._options.preventPageScroll === true) {
+                    document.body.style.position = '';
+                } 
                 Css.removeClassName(htmlEl, 'ink-modal-open');
+
             }
         },
 
